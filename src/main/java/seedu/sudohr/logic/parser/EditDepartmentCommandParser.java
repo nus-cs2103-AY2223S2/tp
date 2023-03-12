@@ -25,7 +25,8 @@ public class EditDepartmentCommandParser implements Parser<EditDepartmentCommand
         try {
             name = ParserUtil.parseDepartmentName(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditDepartmentCommand.MESSAGE_USAGE), pe);
         }
 
         EditDepartmentCommand.EditDepartmentDescriptor editDepartmentDescriptor =

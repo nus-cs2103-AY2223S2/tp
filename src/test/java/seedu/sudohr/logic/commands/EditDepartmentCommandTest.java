@@ -1,27 +1,24 @@
 package seedu.sudohr.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.sudohr.logic.commands.CommandTestUtil.*;
+import static seedu.sudohr.testutil.TypicalDepartmentNames.*;
+import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.sudohr.commons.core.Messages;
-import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.UserPrefs;
 import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.EditDepartmentDescriptorBuilder;
-import seedu.sudohr.testutil.EditPersonDescriptorBuilder;
-import seedu.sudohr.testutil.PersonBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.sudohr.logic.commands.CommandTestUtil.*;
-import static seedu.sudohr.testutil.TypicalDepartmentNames.DEPARTMENT_NAME_FIRST;
-import static seedu.sudohr.testutil.TypicalDepartmentNames.DEPARTMENT_NAME_SECOND;
-import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditDepartmentCommand.
@@ -48,100 +45,37 @@ public class EditDepartmentCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
-
-        PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new SudoHr(model.getSudoHr()), new UserPrefs());
-        expectedModel.setPerson(lastPerson, editedPerson);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditCommand.EditPersonDescriptor());
-        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditDepartmentCommand editDepartmentCommand =
+                new EditDepartmentCommand(DEPARTMENT_NAME_FIRST, new EditDepartmentCommand.EditDepartmentDescriptor());
+        Department editedDepartment = model.getDepartment(DEPARTMENT_NAME_FIRST);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new SudoHr(model.getSudoHr()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage =
+                String.format(EditDepartmentCommand.MESSAGE_EDIT_DEPARTMENT_SUCCESS, editedDepartment);
 
         Model expectedModel = new ModelManager(new SudoHr(model.getSudoHr()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editDepartmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+    public void execute_duplicateDepartmentUnfilteredList_failure() {
+        Department firstDepartment = model.getDepartment(DEPARTMENT_NAME_FIRST);
+        EditDepartmentCommand.EditDepartmentDescriptor descriptor =
+                new EditDepartmentDescriptorBuilder(firstDepartment).build();
+        EditDepartmentCommand editDepartmentCommand = new EditDepartmentCommand(DEPARTMENT_NAME_SECOND, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editDepartmentCommand, model, EditDepartmentCommand.MESSAGE_DUPLICATE_DEPARTMENT);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_invalidDepartmentIndexUnfilteredList_failure() {
+        EditDepartmentCommand.EditDepartmentDescriptor descriptor =
+                new EditDepartmentDescriptorBuilder().withName(DEPARTMENT_NAME_THIRD).build();
+        EditDepartmentCommand editDepartmentCommand =
+                new EditDepartmentCommand(new DepartmentName("Fake Department"), descriptor);
 
-        // edit person in filtered list into a duplicate in sudohr book
-        Person personInList = model.getSudoHr().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(personInList).build());
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
-
-    @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of sudohr book
-     */
-    @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of sudohr book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getSudoHr().getPersonList().size());
-
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editDepartmentCommand, model, Messages.MESSAGE_DEPARTMENT_NOT_FOUND);
     }
 
     @Test

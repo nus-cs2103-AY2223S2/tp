@@ -30,8 +30,8 @@ public class EditDepartmentDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditDepartmentDescriptor} that we are building.
      */
-    public EditDepartmentDescriptorBuilder withName(String name) {
-        descriptor.setName(new DepartmentName(name));
+    public EditDepartmentDescriptorBuilder withName(DepartmentName name) {
+        descriptor.setName(name);
         return this;
     }
 

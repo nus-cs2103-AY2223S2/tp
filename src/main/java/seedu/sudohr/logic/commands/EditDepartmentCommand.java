@@ -25,6 +25,7 @@ public class EditDepartmentCommand extends Command {
     public static final String MESSAGE_EDIT_DEPARTMENT_SUCCESS = "Edited Department: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_DEPARTMENT = "This department already exists in SudoHR.";
+    public static final String MESSAGE_DEPARTMENT_NOT_FOUND = "The department to edit does not exist in SudoHR.";
 
     private final DepartmentName name;
     private final EditDepartmentCommand.EditDepartmentDescriptor editDepartmentDescriptor;
@@ -47,6 +48,11 @@ public class EditDepartmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Department departmentToEdit = model.getDepartment(name);
+
+        if (departmentToEdit == null) {
+            throw new CommandException(MESSAGE_DEPARTMENT_NOT_FOUND);
+        }
+
         Department editedDepartment = createEditedDepartment(departmentToEdit, editDepartmentDescriptor);
 
         if (!departmentToEdit.equals(editedDepartment) && model.hasDepartment(editedDepartment)) {
