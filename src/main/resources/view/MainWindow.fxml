@@ -34,7 +34,9 @@
           <Menu mnemonicParsing="false" text="Timetable">
             <MenuItem fx:id="timetableMenuItem" mnemonicParsing="false" onAction="#handleTimetable" text="Scheduled Jobs" />
           </Menu>
-
+          <Menu mnemonicParsing="false" text="Statistics">
+            <MenuItem fx:id="statsItem" mnemonicParsing="false" onAction="#handleStats" text="Statistics" />
+          </Menu>
         </MenuBar>
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
