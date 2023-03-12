@@ -11,8 +11,10 @@ public class RemoveMeetingCommandParser implements Parser<RemoveMeetingCommand> 
     public RemoveMeetingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new RemoveMeetingCommand(index);
+            String[] indexes = args.trim().split(" ");
+            Index indexPerson = ParserUtil.parseIndex(indexes[0]);
+            Index indexMeeting = ParserUtil.parseIndex(indexes[1]);
+            return new RemoveMeetingCommand(indexPerson, indexMeeting);
         } catch (ParseException parseErr) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveMeetingCommand.MESSAGE_USAGE, parseErr)

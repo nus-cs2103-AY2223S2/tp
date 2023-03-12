@@ -11,29 +11,38 @@ import java.util.List;
 public class RemoveMeetingCommand extends Command{
     public static final String COMMAND_WORD = "meetingRemove";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes a meeting from the person identified"
+            + ": Removes a meeting by specified index number from the person identified"
             + "by the index number used in the last person listing.\n"
             + "If there no meeting to be removed, nothing will be removed.\n"
-            + "Parameters: [Index]"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: [Index] [Meeting Index]"
+            + "Example: " + COMMAND_WORD + " 1 2";
     public static final String MESSAGE_REMOVE_SUCCESS = "Removed meeting from person: %1$s";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Remark command not implemented yet";
+    public static final String MESSAGE_ARGUMENTS = "Person Index: %1$d, Meeting Index: %1$d";
 
-    private Index index;
+    private Index indexPerson;
+    private Index indexMeeting;
 
-    public RemoveMeetingCommand(Index index) {
-        this.index = index;
+    public RemoveMeetingCommand(Index indexPerson, Index indexMeeting) {
+        this.indexPerson = indexPerson;
+        this.indexMeeting = indexMeeting;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (indexPerson.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        personToEdit.getMeetings().remove(0);
+        Person personToEdit = lastShownList.get(indexPerson.getZeroBased());
+
+        if (indexMeeting.getZeroBased() >= personToEdit.getMeetings().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        }
+
+        personToEdit.getMeetings().remove(indexMeeting.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
 
