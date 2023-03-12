@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -22,9 +21,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
     private FilteredList<Person> filteredPersonsByName;
-    private ObservableList<Person> persons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,8 +35,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersonsByName = new FilteredList<>(this.addressBook.getPersonListByName());
-        persons = FXCollections.observableArrayList(addressBook.getPersonList());
-        filteredPersons = new FilteredList<>(persons);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -130,16 +127,15 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        persons.setAll(addressBook.getPersonList());
         filteredPersons.setPredicate(predicate);
     }
 
     @Override
     public void updateFilteredPersonListByName(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        persons.setAll(addressBook.getPersonList());
         filteredPersons.setPredicate(predicate);
-        persons.setAll(filteredPersonsByName);
+        filteredPersonsByName.setPredicate(predicate);
+        addressBook.setPersons(this.addressBook.getPersonListByName());
     }
 
     @Override
