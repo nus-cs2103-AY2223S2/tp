@@ -14,7 +14,10 @@ import seedu.address.model.Model;
 public class SelectDeckCommand extends Command {
 
     public static final String COMMAND_WORD = "selectDeck";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Select a deck of cards.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Select a deck of cards "
+            + "by the index number used in the displayed deck list.\n"
+            + "Parameter: INDEX (must be a positive integer).\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Deck selected: %1$s"; // %1$s is the first argument in format
     public static final String MESSAGE_INVALID_DECK_DISPLAYED_INDEX = "Deck index provided is invalid";

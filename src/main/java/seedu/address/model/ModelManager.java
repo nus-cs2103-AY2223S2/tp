@@ -117,7 +117,7 @@ public class ModelManager implements Model {
         masterDeck.setCard(target, editedCard);
     }
 
-    //=========== Filtered Card List Accessors =============================================================
+    //=========== Filtered Card/Deck List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Card} backed by the internal list of
@@ -128,9 +128,9 @@ public class ModelManager implements Model {
         return filteredCards;
     }
 
-    //    public ObservableList<seedu.address.model.deck.Deck> getFilteredDeckList() {
-    //        return null; // Placeholder
-    //    }
+    public ObservableList<Deck> getFilteredDeckList() {
+        return filteredDecks;
+    }
 
     @Override
     public void updateFilteredCardList(Predicate<Card> predicate) {

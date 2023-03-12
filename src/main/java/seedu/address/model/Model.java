@@ -83,8 +83,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered card list */
     ObservableList<Card> getFilteredCardList();
 
-    //     /** Returns an unmodifiable view of the filtered deck list */
-    //     ObservableList<Deck> getFilteredDeckList();
+    /** Returns an unmodifiable view of the filtered deck list */
+    ObservableList<Deck> getFilteredDeckList();
 
     /**
      * Updates the filter of the filtered card list to filter by the given {@code predicate}.
