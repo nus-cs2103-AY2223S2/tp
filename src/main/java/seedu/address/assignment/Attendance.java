@@ -9,7 +9,7 @@ class Attendance {
     /**
      * constructor for attendance class
      */
-    public Attendance () {
+    public Attendance() {
     }
 
     /**
@@ -20,7 +20,7 @@ class Attendance {
         if (index <= 0 || index >= 12) {
             System.out.println("Error, attendance index out of range");
         }
-        this.attendanceList[index - 1]  = true;
+        this.attendanceList[index - 1] = true;
     }
 
     /**
@@ -32,6 +32,6 @@ class Attendance {
         if (index <= 0 || index >= 12) {
             System.out.println("Error, attendance index out of range");
         }
-        this.attendanceList[index - 1]  = false;
+        this.attendanceList[index - 1] = false;
     }
 }
