@@ -114,6 +114,30 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasTutorial(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return addressBook.hasTutorial(tutorial);
+    }
+
+    @Override
+    public void deleteTutorial(Tutorial target) {
+        addressBook.removeTutorial(target);
+    }
+
+    @Override
+    public void addTutorial(Tutorial tutorial) {
+        addressBook.addTutorial(tutorial);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
+        requireAllNonNull(target, editedTutorial);
+
+        addressBook.setTutorial(target, editedTutorial);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,20 +150,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Tutorial> getFilteredTutorialList() {
-        return filteredTutorials;
-    }
-
-    @Override
-    public void addTutorial(Tutorial tutorial) {
-        addressBook.addTutorial(tutorial);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Tutorial List Accessors =============================================================
+
+    @Override
+    public ObservableList<Tutorial> getFilteredTutorialList() {
+        return filteredTutorials;
     }
 
     @Override
@@ -164,7 +184,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTutorials.equals(other.filteredTutorials);
     }
-
 }

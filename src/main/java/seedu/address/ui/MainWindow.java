@@ -137,8 +137,6 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(filterPersonList(logic.getFilteredPersonList()));
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        ObservableList<Tutorial> list = logic.getFilteredTutorialList();
-
         eventListPanel = new EventListPanel(filterTutorialList(logic.getFilteredTutorialList()));
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
@@ -164,13 +162,15 @@ public class MainWindow extends UiPart<Stage> {
         //Store all the filtered lists into a single list
         List<ObservableList<Person>> filteredList = new ArrayList<>();
 
-        //If nothing to filter or just 1 column, return original list
-        if (personList.size() <= 3) {
+        //If nothing to filter, return original list
+        if (personList.size() == 0) {
             return filteredList;
         }
 
+        int terminate = Math.min(personList.size(), 3);
+
         //Filter according to which list it belongs
-        for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < terminate; j++) {
             int size = personList.size() - j;
             int limit = size / skip + Math.min(size % skip, 1);
 
@@ -188,16 +188,16 @@ public class MainWindow extends UiPart<Stage> {
         int skip = 3;
         //Store all the filtered lists into a single list
         List<ObservableList<Tutorial>> filteredList = new ArrayList<>();
-        filteredList.add(tutorialList);
 
-        /*
         //If nothing to filter, return empty list
-        if (tutorialList.size() <= 3) {
+        if (tutorialList.size() == 0) {
             return filteredList;
         }
 
+        int terminate = Math.min(tutorialList.size(), 3);
+
         //Filter according to which list it belongs
-        for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < terminate; j++) {
             int size = tutorialList.size() - j;
             int limit = size / skip + Math.min(size % skip, 1);
 
@@ -208,7 +208,6 @@ public class MainWindow extends UiPart<Stage> {
 
             filteredList.add(subList);
         }
-         */
         return filteredList;
     }
 

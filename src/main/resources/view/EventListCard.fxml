@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" spacing="20" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane prefHeight="3503.0" prefWidth="3350.0" style="-fx-background-radius: 16; -fx-background-color: white;" HBox.hgrow="ALWAYS">
+    <GridPane style="-fx-background-radius: 16; -fx-background-color: C4C4C4;" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>

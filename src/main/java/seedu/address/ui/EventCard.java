@@ -11,7 +11,7 @@ import seedu.address.model.event.Event;
  * Informs the user on the number of undone tasks
  */
 public class EventCard extends UiPart<Region> {
-    private static final String FXML = "EventCard.fxml";
+    private static final String FXML = "EventListCard.fxml";
     public final Event event;
     //private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 

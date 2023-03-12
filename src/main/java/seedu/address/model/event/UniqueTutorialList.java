@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.event.Tutorial;
 import seedu.address.model.event.exceptions.DuplicateTutorialException;
 import seedu.address.model.event.exceptions.TutorialNotFoundException;
 
@@ -19,7 +18,7 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent tutorial as the given argument.
      */
     public boolean contains(Tutorial toCheck) {
         requireNonNull(toCheck);
@@ -27,8 +26,8 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a tutorial to the list.
+     * The tutorial must not already exist in the list.
      */
     public void add(Tutorial toAdd) {
         requireNonNull(toAdd);
@@ -39,9 +38,9 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedTutorial}.
+     * Replaces the tutorial {@code target} in the list with {@code editedTutorial}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedTutorial} must not be the same as another existing person in the list.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the list.
      */
     public void setTutorial(Tutorial target, Tutorial editedTutorial) {
         requireAllNonNull(target, editedTutorial);
@@ -59,8 +58,8 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent tutorial from the list.
+     * The tutorial must exist in the list.
      */
     public void remove(Tutorial toRemove) {
         requireNonNull(toRemove);
@@ -75,16 +74,16 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code tutorials}.
+     * {@code tutorials} must not contain duplicate tutorials.
      */
-    public void setTutorials(List<Tutorial> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+    public void setTutorials(List<Tutorial> tutorials) {
+        requireAllNonNull(tutorials);
+        if (!tutorialsAreUnique(tutorials)) {
             throw new DuplicateTutorialException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(tutorials);
     }
 
     /**
@@ -112,12 +111,12 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code tutorials} contains only unique tutorials.
      */
-    private boolean personsAreUnique(List<Tutorial> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameTutorial(persons.get(j))) {
+    private boolean tutorialsAreUnique(List<Tutorial> tutorials) {
+        for (int i = 0; i < tutorials.size() - 1; i++) {
+            for (int j = i + 1; j < tutorials.size(); j++) {
+                if (tutorials.get(i).isSameTutorial(tutorials.get(j))) {
                     return false;
                 }
             }

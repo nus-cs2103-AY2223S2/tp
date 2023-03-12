@@ -104,11 +104,48 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// tutorial-level operations
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasTutorial(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return tutorials.contains(tutorial);
+    }
+
+    /**
+     * Adds a tutorial to the address book.
+     * The tutorial must not already exist in the address book.
+     */
+    public void addTutorial(Tutorial p) {
+        tutorials.add(p);
+    }
+
+    /**
+     * Replaces the given tutorial {@code target} in the list with {@code editedTutorial}.
+     * {@code target} must exist in the address book.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the address book.
+     */
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
+        requireNonNull(editedTutorial);
+
+        tutorials.setTutorial(target, editedTutorial);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTutorial(Tutorial key) {
+        tutorials.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons"
+        return persons.asUnmodifiableObservableList().size() + " persons "
                 + tutorials.asUnmodifiableObservableList().size() + " tutorials";
         // TODO: refine later
     }
@@ -116,10 +153,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
-    }
-
-    public void addTutorial(Tutorial t) {
-        tutorials.add(t);
     }
 
     @Override
