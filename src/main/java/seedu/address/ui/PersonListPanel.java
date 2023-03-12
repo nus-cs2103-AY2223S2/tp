@@ -40,19 +40,11 @@ public class PersonListPanel extends UiPart<Region> {
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
 
-            boolean isChecked = false;
-
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                if (logic.findCheckedPerson() != null && logic.findCheckedPerson().equals(person)) {
-                    setStyle("-fx-background-color: #605BF1;");
-                    isChecked = true;
-                } else {
-                    setStyle("-fx-background-color: #EFEEFC;");
-                }
-                setGraphic(new PersonCard(person, getIndex() + 1, isChecked).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
     }

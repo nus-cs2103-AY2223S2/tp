@@ -2,12 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -41,6 +43,9 @@ public class CheckCommand extends Command {
 
         Person personToCheck = personList.get(targetIndex.getZeroBased());
         model.checkPerson(personToCheck);
+        String[] nameKeywords = personToCheck.getName().fullName.split(" ");
+
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         return new CommandResult(String.format(MESSAGE_CHECK_PERSON_SUCCESS, personToCheck));
     }
 

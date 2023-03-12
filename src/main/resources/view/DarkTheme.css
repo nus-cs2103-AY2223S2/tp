@@ -64,10 +64,10 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 100%)
-        transparent;
+            transparent
+            transparent
+            derive(-fx-base, 100%)
+            transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -103,7 +103,7 @@
     -fx-background-insets: 0;
     -fx-background-color: white;
     -fx-background-radius: 8;
-    -fx-padding:18 0 18 18;
+    -fx-padding:18 18 18 18;
 }
 
 /*Individual student*/
@@ -112,7 +112,41 @@
     -fx-graphic-text-gap : 0;
     -fx-padding: 24 6 24 6;
     -fx-background-insets: 6 0 6 0;
+    -fx-background-color: transparent;
     -fx-background-radius: 8;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: #EFEEFC;
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: #B9B7EF;
+}
+
+/*Background color for person list when it is highlighted*/
+.list-cell:filled:even selected {
+    -fx-background-color: #EFEEFC;
+    -fx-text-fill: #4A4A4A;
+}
+
+.list-cell:filled:odd selected {
+    -fx-background-color: #B9B7EF;
+    -fx-text-fill: #4A4A4A;
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-border-width: 0;
+}
+
+/*Student list text color*/
+.list-cell .label {
+    -fx-text-fill: #4A4A4A;
+    -fx-font-family: "SansSerif";
+}
+
+.list-cell:filled:selected .label{
+    -fx-text-fill: #4A4A4A;
 }
 
 .cell_big_label {
@@ -121,7 +155,6 @@
     -fx-font-size: 22px;
     -fx-text-fill: #4A4A4A;
     -fx-padding: 0 0 4 0;
-    -fx-wrap-text: true;
 }
 
 .cell_small_label {
@@ -138,7 +171,6 @@
     -fx-font-weight: bold;
     -fx-text-fill: #605BF1;
     -fx-padding: 18 0 -6 18;
-    -fx-wrap-text: true;
 }
 
 /*Input field*/
@@ -149,7 +181,7 @@
 
 /*Main field background*/
 .pane-with-border {
-     -fx-background-color: #EFEEFC;
+    -fx-background-color: #EFEEFC;
 }
 
 /*Text in the result display*/
@@ -275,8 +307,8 @@ menu .left-container {
 
 /*Extra*/
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
 }
 
 /*Extra*/
