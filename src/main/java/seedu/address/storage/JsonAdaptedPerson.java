@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
+import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,18 +26,20 @@ class JsonAdaptedPerson {
     private final String name;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String deck;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given card details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("deck") String deck) {
         this.name = name;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.deck = deck;
     }
 
     /**
@@ -48,6 +51,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        deck = source.getDeck().deckName;
     }
 
     /**
@@ -80,7 +84,8 @@ class JsonAdaptedPerson {
         final Answer modelAnswer = new Answer(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Card(modelQuestion, modelAnswer, modelTags);
+        final Deck modelDeck = new Deck(deck);
+        return new Card(modelQuestion, modelAnswer, modelTags, modelDeck);
     }
 
 }

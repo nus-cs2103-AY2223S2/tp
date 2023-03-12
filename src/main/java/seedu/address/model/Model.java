@@ -95,7 +95,7 @@ public interface Model {
     void updateFilteredDeckList(Predicate<Deck> predicate);
 
     /** Returns the deck */
-    ReadOnlyMasterDeck getSelectedDeck();
+    Deck getSelectedDeck();
 
     void addDeck(Deck deck);
 
@@ -109,5 +109,4 @@ public interface Model {
     void selectDeck(Index idx);
 
     void unselectDeck();
-    String getSelectedDeckName();
 }

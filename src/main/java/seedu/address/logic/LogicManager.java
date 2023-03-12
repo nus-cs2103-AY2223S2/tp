@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
 import seedu.address.storage.Storage;
 
 /**
@@ -43,9 +44,9 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command;
-        String selectedDeckName = this.model.getSelectedDeckName();
-        if (selectedDeckName != null) {
-            command = addressBookParser.parseCommandWhenDeckSelected(commandText, selectedDeckName);
+        Deck selectedDeck = this.model.getSelectedDeck();
+        if (selectedDeck != null) {
+            command = addressBookParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
         } else {
             command = addressBookParser.parseCommandWhenDeckNotSelected(commandText);
         }

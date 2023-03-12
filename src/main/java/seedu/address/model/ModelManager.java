@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private MasterDeck masterDeck;
     private final UserPrefs userPrefs;
     private FilteredList<Deck> filteredDecks;
-    private String selectedDeckName = null; // null when not selected, may want to consider accepting Set<> next time
+    private Deck selectedDeck = null; // null when not selected, may want to consider accepting Set<> next time
     private FilteredList<Card> filteredCards;
 
     /**
@@ -162,11 +162,6 @@ public class ModelManager implements Model {
     /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
     // Todo: Link getDeck() to GUI
     @Override
-    public ReadOnlyMasterDeck getSelectedDeck() {
-        return this.masterDeck;
-    }
-
-    @Override
     public void addDeck(Deck deck) {
         masterDeck.addDeck(deck);
         updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
@@ -196,7 +191,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getSelectedDeckName() {
-        return null;
+    public Deck getSelectedDeck() {
+        return selectedDeck;
     }
 }

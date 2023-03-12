@@ -13,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
+import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,11 +26,11 @@ public class AddCommandParser implements Parser<AddCommand> {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args, String selectedDeckName) throws ParseException {
+    public AddCommand parse(String args, Deck selectedDeck) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_TAG);
 
-        assert selectedDeckName != null;
+        assert selectedDeck != null;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_ANSWER)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -40,14 +41,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         Answer answer = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ANSWER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Card card = new Card(question, answer, tagList);
+        Card card = new Card(question, answer, tagList, selectedDeck);
 
         return new AddCommand(card);
     }
 
+    // temporary solution during refactoring
     @Override
     public AddCommand parse(String userInput) throws ParseException {
-        return parse(userInput, "Default");
+        return parse(userInput, new Deck("Default Deck"));
     }
 
     /**
