@@ -98,8 +98,12 @@ public class Repository<T extends Relationship<T>> implements ReadOnlyRepository
 
     @Override
     public String toString() {
+        this.items.asUnmodifiableObservableList()
+                .stream().map(x -> x.toString()).forEach(System.out::println);
+
         return items.asUnmodifiableObservableList().size() + " tasks";
         // TODO: refine later
+
     }
 
     @Override

@@ -91,6 +91,16 @@ public class RepositoryModelManager<T extends Relationship<T>> {
         return itemFilteredList;
     }
 
+    public void printList() {
+        itemFilteredList.stream().map(x -> x.toString()).forEach(System.out::println);
+    }
+
+
+    public FilteredList<T> getFilteredItemList(Predicate<T> predicate) {
+        updateFilteredItemList(predicate);
+        return itemFilteredList;
+    }
+
     /**
      * Updates the filter of the filtered item list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

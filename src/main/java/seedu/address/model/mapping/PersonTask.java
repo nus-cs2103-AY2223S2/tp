@@ -58,4 +58,9 @@ public class PersonTask implements Relationship<PersonTask> {
     public boolean isSame(PersonTask obj) {
         return equals(obj);
     }
+
+    @Override
+    public String toString(){
+        return String.format("Person Id: %1$s\nAssigned Task Id: %2$s", personId, taskId);
+    }
 }
