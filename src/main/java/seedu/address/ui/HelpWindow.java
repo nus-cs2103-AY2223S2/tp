@@ -98,5 +98,6 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+        copyButton.setText("Link Copied!");
     }
 }
