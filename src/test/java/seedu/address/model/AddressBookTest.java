@@ -1,26 +1,33 @@
 package seedu.address.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.MeetingBuilder;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_LOCATION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAddressBooks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalMeetings.MEETING_A;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAddressBooks.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalMeetings.MEETING_A;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.MeetingBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
@@ -47,7 +54,7 @@ public class AddressBookTest {
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons, Collections.singletonList(MEETING_A));
 
@@ -58,7 +65,7 @@ public class AddressBookTest {
     public void resetData_withDuplicateMeetings_throwsDuplicateMeetingException() {
         // Two meetings with the same identity fields
         Meeting editedMeetingA = new MeetingBuilder(MEETING_A).withLocation(VALID_MEETING_LOCATION)
-                .withDescription(VALID_MEETING_DESCRIPTION).build();
+            .withDescription(VALID_MEETING_DESCRIPTION).build();
         List<Meeting> newMeetings = Arrays.asList(MEETING_A, editedMeetingA);
         AddressBookStub newData = new AddressBookStub(Collections.singletonList(ALICE), newMeetings);
 
@@ -117,7 +124,7 @@ public class AddressBookTest {
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
@@ -125,7 +132,7 @@ public class AddressBookTest {
     public void hasMeeting_meetingWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addMeeting(MEETING_A);
         Meeting editedMeeting = new MeetingBuilder(MEETING_A).withLocation(VALID_MEETING_LOCATION)
-                .withDescription(VALID_MEETING_DESCRIPTION).build();
+            .withDescription(VALID_MEETING_DESCRIPTION).build();
         assertTrue(addressBook.hasMeeting(editedMeeting));
     }
 
@@ -138,7 +145,6 @@ public class AddressBookTest {
     public void getMeetingList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getMeetingList().remove(0));
     }
-
 
 
     /**

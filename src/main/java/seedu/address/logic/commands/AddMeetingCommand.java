@@ -1,18 +1,25 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.meeting.*;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Location;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.Title;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 /**
  * Adds a meeting to the address book.
@@ -20,13 +27,13 @@ import static seedu.address.logic.parser.CliSyntax.*;
 public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "addm";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the address book. "
-            + "Parameters: "
-            + PREFIX_MEETING_TITLE + "MEETING "
-            + PREFIX_PERSON + "NAME "
-            + PREFIX_DATE + "DATE\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MEETING_TITLE + "Meeting with John "
-            + PREFIX_PERSON + "John Doe " + PREFIX_DATE + "2020-10-10";
+        + "Parameters: "
+        + PREFIX_MEETING_TITLE + "MEETING "
+        + PREFIX_PERSON + "NAME "
+        + PREFIX_DATE + "DATE\n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_MEETING_TITLE + "Meeting with John "
+        + PREFIX_PERSON + "John Doe " + PREFIX_DATE + "2020-10-10";
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
 
@@ -55,8 +62,8 @@ public class AddMeetingCommand extends Command {
     }
 
     /**
-     * Creates an AddMeetingCommand to add a {@code Meeting} class with the specified attributes {@code Title}, {@code attendees},
-     * {@code DateTime}, {@code Location}, {@code Description}
+     * Creates an AddMeetingCommand to add a {@code Meeting} class with the specified attributes {@code Title},
+     * {@code attendees}, {@code DateTime}, {@code Location}, {@code Description}
      */
     public AddMeetingCommand(Title meetingTitle, DateTime dateTime, Set<Name> attendees, Location location,
                              Description description) {
@@ -93,11 +100,11 @@ public class AddMeetingCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddMeetingCommand // instanceof handles nulls
-                && meetingTitle.equals(((AddMeetingCommand) other).meetingTitle)
-                && dateTime.equals(((AddMeetingCommand) other).dateTime)
-                && attendeeNames.equals(((AddMeetingCommand) other).attendeeNames)
-                && location.equals(((AddMeetingCommand) other).location)
-                && description.equals(((AddMeetingCommand) other).description));
+            || (other instanceof AddMeetingCommand // instanceof handles nulls
+            && meetingTitle.equals(((AddMeetingCommand) other).meetingTitle)
+            && dateTime.equals(((AddMeetingCommand) other).dateTime)
+            && attendeeNames.equals(((AddMeetingCommand) other).attendeeNames)
+            && location.equals(((AddMeetingCommand) other).location)
+            && description.equals(((AddMeetingCommand) other).description));
     }
 }

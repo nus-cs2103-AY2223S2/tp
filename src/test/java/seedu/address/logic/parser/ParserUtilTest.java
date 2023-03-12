@@ -1,6 +1,18 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
@@ -11,17 +23,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -140,7 +141,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress( null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
     }
 
     @Test
@@ -163,7 +164,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail( null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail(null));
     }
 
     @Test
@@ -254,69 +255,69 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void ParseDateTime_null_throwsNullPointerException() {
+    public void parseDateTime_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime(null));
     }
 
     @Test
-    public void ParseDateTime_invalidValue_throwsParseException() {
+    public void parseDateTime_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME));
     }
 
     @Test
-    public void ParseDateTime_validValueWithoutWhitespace_returnsDateTime() throws Exception {
+    public void parseDateTime_validValueWithoutWhitespace_returnsDateTime() throws Exception {
         DateTime expectedDateTime = new DateTime(VALID_DATETIME);
         assertEquals(expectedDateTime, ParserUtil.parseDateTime(VALID_DATETIME));
     }
 
     @Test
-    public void ParseDateTime_validValueWithWhitespace_returnsTrimmedDateTime() throws Exception {
+    public void parseDateTime_validValueWithWhitespace_returnsTrimmedDateTime() throws Exception {
         String dateTimeWithWhitespace = WHITESPACE + VALID_DATETIME + WHITESPACE;
         DateTime expectedDateTime = new DateTime(VALID_DATETIME);
         assertEquals(expectedDateTime, ParserUtil.parseDateTime(dateTimeWithWhitespace));
     }
 
     @Test
-    public void ParseLocation_null_throwsNullPointerException() {
+    public void parseLocation_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseLocation(null));
     }
 
     @Test
-    public void ParseLocation_invalidValue_throwsParseException() {
+    public void parseLocation_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseLocation(INVALID_LOCATION));
     }
 
     @Test
-    public void ParseLocation_validValueWithoutWhitespace_returnsLocation() throws Exception {
+    public void parseLocation_validValueWithoutWhitespace_returnsLocation() throws Exception {
         Location expectedLocation = new Location(VALID_LOCATION);
         assertEquals(expectedLocation, ParserUtil.parseLocation(VALID_LOCATION));
     }
 
     @Test
-    public void ParseLocation_validValueWithWhitespace_returnsTrimmedLocation() throws Exception {
+    public void parseLocation_validValueWithWhitespace_returnsTrimmedLocation() throws Exception {
         String locationWithWhitespace = WHITESPACE + VALID_LOCATION + WHITESPACE;
         Location expectedLocation = new Location(VALID_LOCATION);
         assertEquals(expectedLocation, ParserUtil.parseLocation(locationWithWhitespace));
     }
 
     @Test
-    public void ParseDescription_null_throwsNullPointerException() {
+    public void parseDescription_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription(null));
     }
 
     @Test
-    public void ParseDescription_invalidValue_throwsParseException() {
+    public void parseDescription_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
     }
 
     @Test
-    public void ParseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
+    public void parseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
         Description expectedDescription = new Description(VALID_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_DESCRIPTION));
     }
 
     @Test
-    public void ParseDescription_validValueWithWhitespace_returnsTrimmedDescription() throws Exception {
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedDescription() throws Exception {
         String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
         Description expectedDescription = new Description(VALID_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
