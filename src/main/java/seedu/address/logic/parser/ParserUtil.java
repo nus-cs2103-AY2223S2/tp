@@ -123,6 +123,11 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * @param medicalCondition string message
+     * @return MedicalCondition type
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
     public static MedicalCondition parseMedicalCond(String medicalCondition) throws ParseException {
         requireNonNull(medicalCondition);
         String trimmed = medicalCondition.trim();

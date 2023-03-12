@@ -1,7 +1,8 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
-
+/**
+ * To record the patient MedicalCondition
+ */
 public class MedicalCondition {
     public String value;
     public MedicalCondition(String tagName) {
@@ -10,7 +11,7 @@ public class MedicalCondition {
 
     @Override
     public String toString() {
-      return  value;
+        return value;
     }
 
     private String getValue() {
