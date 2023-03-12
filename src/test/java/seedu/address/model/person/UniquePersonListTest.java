@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
 
@@ -36,7 +39,6 @@ public class UniquePersonListTest {
         assertTrue(uniquePersonList.contains(ALICE));
     }
 
-    /*
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
@@ -44,8 +46,6 @@ public class UniquePersonListTest {
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
-
-     */
 
     @Test
     public void add_nullPerson_throwsNullPointerException() {
@@ -82,7 +82,6 @@ public class UniquePersonListTest {
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
-    /*
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
@@ -93,8 +92,6 @@ public class UniquePersonListTest {
         expectedUniquePersonList.add(editedAlice);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
-
-     */
 
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {

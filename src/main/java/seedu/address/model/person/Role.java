@@ -2,29 +2,18 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-
-/**
- * Represents a Person's role.
- * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
- */
 public class Role {
 
-    public static final String MESSAGE_CONSTRAINTS = "Role should only contain alphanumeric characters and spaces"
-            + ", and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Role should only contain alphanumeric characters and spaces, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "[\\p{Alpha}\\p{Digit}]*";
 
     public final String value;
 
-    /**
-     * Constructs a {@code Role}.
-     *
-     * @param role A valid role.
-     */
-    public Role(String role) {
-        requireNonNull(role);
-        checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
-        value = role;
+    public Role(String personRole) {
+        requireNonNull(personRole);
+        checkArgument(isValidRole(personRole), MESSAGE_CONSTRAINTS);
+        value = personRole;
     }
 
     public static boolean isValidRole(String test) {

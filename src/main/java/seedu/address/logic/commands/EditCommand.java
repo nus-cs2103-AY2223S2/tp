@@ -166,13 +166,9 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setRole(Role role) {
-            this.role = role;
-        }
+        public void setRole(Role role) { this.role = role; }
 
-        public Optional<Role> getRole() {
-            return Optional.ofNullable(role);
-        }
+        public Optional<Role> getRole() { return Optional.ofNullable(role); }
 
         @Override
         public boolean equals(Object other) {
