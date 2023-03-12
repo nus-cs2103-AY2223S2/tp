@@ -39,9 +39,9 @@ class JsonAdaptedRole {
      */
     @JsonCreator
     public JsonAdaptedRole(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("salary") String salary,
-            @JsonProperty("deadline") String deadline) {
+                           @JsonProperty("email") String email, @JsonProperty("address") String address,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("salary") String salary,
+                           @JsonProperty("deadline") String deadline) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -120,7 +120,8 @@ class JsonAdaptedRole {
         final Salary modelSalary = new Salary(salary);
 
         if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
         }
         if (!Deadline.isValidDeadline(deadline)) {
             throw new IllegalValueException(Deadline.getMessageConstraint());
