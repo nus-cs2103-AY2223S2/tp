@@ -17,6 +17,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.job.DeliveryJobListPanel;
+import seedu.address.ui.main.CommandBox;
+import seedu.address.ui.main.ResultDisplay;
+import seedu.address.ui.main.StatusBarFooter;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -46,9 +49,8 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-
     private MenuItem timetableMenuItem;
-    
+
     @FXML
     private MenuItem statsItem;
 

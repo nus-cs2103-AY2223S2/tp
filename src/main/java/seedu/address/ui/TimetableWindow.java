@@ -11,6 +11,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.main.CommandBox;
+import seedu.address.ui.main.ResultDisplay;
+import seedu.address.ui.main.StatusBarFooter;
 
 /**
  * Controller for a timetable page

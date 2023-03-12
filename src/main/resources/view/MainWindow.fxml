@@ -33,6 +33,9 @@
                            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                         </items>
                      </Menu>
+                     <Menu mnemonicParsing="false" text="Timetable">
+                        <MenuItem fx:id="timetableMenuItem" mnemonicParsing="false" onAction="#handleTimetable" text="Scheduled Jobs" />
+                     </Menu>
                      <Menu mnemonicParsing="false" text="Statistics">
                         <items>
                            <MenuItem fx:id="statsItem" mnemonicParsing="false" onAction="#handleStats" text="Statistics" />
