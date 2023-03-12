@@ -19,7 +19,7 @@ public class DeleteCommandsTest {
 
     @Test
     public void execute_validIndexsUnfilteredList_success(){
-        /*
+
         Person personToDelete1 = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person personToDelete2 = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         ArrayList<Index> temp = new ArrayList<>();
@@ -38,8 +38,6 @@ public class DeleteCommandsTest {
         expectedModel.deletePerson(personToDelete2);
 
         assertCommandSuccess(deleteCommands, model, expectedMessage, expectedModel);
-
-         */
 
     }
 }
