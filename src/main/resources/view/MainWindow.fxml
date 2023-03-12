@@ -40,8 +40,10 @@
           <Tab fx:id="drugTab" closable="false" text="Drug Inventory">
             <StackPane fx:id="drugListPanelPlaceholder" HBox.hgrow="ALWAYS" />
           </Tab>
+          <Tab fx:id="hospitalTab" closable="false" text="Hospital Hotlines">
+            <StackPane fx:id="hospitalRecordPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+          </Tab>
         </TabPane>
-
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
