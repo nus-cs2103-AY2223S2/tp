@@ -36,7 +36,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.logic.commands.FindCommand // instanceof handles nulls
+                || (other instanceof FindCommand // instanceof handles nulls
                 && predicate.equals((
                         (seedu.address.logic.commands.patientcommands.FindCommand) other).predicate)); // state check
     }

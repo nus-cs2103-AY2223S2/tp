@@ -19,7 +19,7 @@ import seedu.address.model.person.exceptions.PatientNotFoundException;
  * as to ensure that the person with exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Patient#isSamePerson(Patient)
  */
 public class UniquePatientList implements Iterable<Patient> {
 
