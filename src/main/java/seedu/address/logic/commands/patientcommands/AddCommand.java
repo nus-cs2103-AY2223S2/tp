@@ -22,27 +22,27 @@ import seedu.address.model.person.Patient;
  */
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to patient records. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to patient records.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_DOB + "DOB "
-            + PREFIX_GENDER + "GENDER "
-            + PREFIX_IC + "IC"
-            + PREFIX_DRUG_ALLERGY + "DRUG ALLERGY "
-            + PREFIX_EMERGENCY_CONTACT_NUMBER + "EMERGENCY CONTACT NUMBER\n"
+            + PREFIX_NAME + " NAME "
+            + PREFIX_PHONE + " PHONE "
+            + PREFIX_EMAIL + " EMAIL "
+            + PREFIX_ADDRESS + " ADDRESS "
+            + PREFIX_DOB + " DOB "
+            + PREFIX_GENDER + " GENDER "
+            + PREFIX_IC + " IC "
+            + PREFIX_DRUG_ALLERGY + " DRUG_ALLERGY "
+            + PREFIX_EMERGENCY_CONTACT_NUMBER + " EMERGENCY_CONTACT_NUMBER\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Tom Smith "
-            + PREFIX_PHONE + "84356788 "
-            + PREFIX_EMAIL + "tsmith@gmail.com "
-            + PREFIX_ADDRESS + "969 Lock Street #04-32 "
-            + PREFIX_DOB + "2001-05-28 "
-            + PREFIX_GENDER + "MALE "
-            + PREFIX_IC + "T0278234M "
-            + PREFIX_DRUG_ALLERGY + "Aspirin "
-            + PREFIX_EMERGENCY_CONTACT_NUMBER + "93746552\n";
+            + PREFIX_NAME + " Tom Smith "
+            + PREFIX_PHONE + " 84356788 "
+            + PREFIX_EMAIL + " tsmith@gmail.com "
+            + PREFIX_ADDRESS + " 969 Lock Street #04-32 "
+            + PREFIX_DOB + " 2001-05-28 "
+            + PREFIX_GENDER + " MALE "
+            + PREFIX_IC + " T0278234M "
+            + PREFIX_DRUG_ALLERGY + " Aspirin "
+            + PREFIX_EMERGENCY_CONTACT_NUMBER + " 93746552";
 
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";

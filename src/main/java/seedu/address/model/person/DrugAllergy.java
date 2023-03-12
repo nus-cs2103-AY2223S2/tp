@@ -9,8 +9,9 @@ import seedu.address.model.tag.Tag;
  * Represents a patient's drug allergy in the patient record
  */
 public class DrugAllergy {
-    public static final String MESSAGE_CONSTRAINTS = "Drug allergy should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Drug allergy should be alphanumeric "
+            + "and less than 500 characters long";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}{1,499}+";
     private final Tag drugAllergy;
 
     /**

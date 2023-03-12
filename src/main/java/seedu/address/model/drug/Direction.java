@@ -8,8 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Direction {
     public static final String MESSAGE_CONSTRAINTS =
-            "Direction should be in sentence form and it should not be blank";
-    public static final String VALIDATION_REGEX = "[0-9a-zA-Z][a-zA-Z0-9: ,.-]*";
+            "Direction should be in sentence form, it should not be blank and less than 500 characters long";
+    public static final String VALIDATION_REGEX = "[0-9a-zA-Z][a-zA-Z0-9: ,.-]{0,499}";
     public final String value;
 
     /**

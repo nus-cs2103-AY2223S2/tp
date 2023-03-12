@@ -49,7 +49,6 @@ public class DrugListPanel extends UiPart<Region> {
     private void displayDrugDetail() {
         drugListView.setOnMouseClicked(event -> {
             Drug selectedDrug = drugListView.getSelectionModel().getSelectedItem();
-            System.out.println(selectedDrug.toString());
             selectedTradeName.setText(selectedDrug.getTradeName().tradeName);
             selectedActiveIngredient.setText("Active Ingredient: " + selectedDrug.getActiveIngredient().value);
             selectedDirection.setText("Direction: " + selectedDrug.getDirection().value);

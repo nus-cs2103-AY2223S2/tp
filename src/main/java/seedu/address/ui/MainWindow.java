@@ -96,6 +96,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Tab hospitalTab;
 
+    private String theme;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -109,10 +111,11 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        helpWindow = new HelpWindow();
+        setTheme(logic.getGuiSettings());
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -201,6 +204,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the default theme based on {@code guiSettings}
+     */
+    private void setTheme(GuiSettings guiSettings) {
+        String theme = guiSettings.getTheme();
+        if (theme.equals("DARK")) {
+            toggleDarkTheme();
+        } else {
+            toggleLightTheme();
+        }
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -221,8 +236,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), theme);
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -247,6 +263,7 @@ public class MainWindow extends UiPart<Stage> {
                 getClass().getResource("/stylesheet/Extensions.css")).toExternalForm());
         helpWindow.getScene().getStylesheets().remove(Objects.requireNonNull(
                 getClass().getResource("/stylesheet/HelpWindow.css")).toExternalForm());
+        theme = "LIGHT";
 
     }
 
@@ -269,6 +286,7 @@ public class MainWindow extends UiPart<Stage> {
                 getClass().getResource("/stylesheet/LightTheme.css")).toExternalForm());
         helpWindow.getScene().getStylesheets().remove(Objects.requireNonNull(
                 getClass().getResource("/stylesheet/HelpWindowLight.css")).toExternalForm());
+        theme = "DARK";
     }
     /**
      * Executes the command and returns the result.

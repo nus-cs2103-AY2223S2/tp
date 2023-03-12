@@ -38,22 +38,22 @@ public class UpdateCommand extends Command {
     public static final String COMMAND_WORD = "update";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Update the details of the person identified given the patient name."
+            + ": Update the details of the person identified given the patient name. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: Patient name"
-            + "[ " + PREFIX_PHONE + " PHONE] "
-            + "[ " + PREFIX_EMAIL + " EMAIL] "
-            + "[ " + PREFIX_ADDRESS + " ADDRESS] "
-            + "[ " + PREFIX_DOB + " DATE OF BIRTH] "
-            + "[ " + PREFIX_GENDER + " GENDER] "
-            + "[ " + PREFIX_IC + " IC] "
-            + "[ " + PREFIX_NAME + " DRUG ALLERGY NUMBER] \n"
-            + "[ " + PREFIX_EMERGENCY_CONTACT_NUMBER + " EMEMRGENCY CONTACT] "
+            + " [ " + PREFIX_PHONE + " PHONE ] "
+            + " [ " + PREFIX_EMAIL + " EMAIL ] "
+            + " [ " + PREFIX_ADDRESS + " ADDRESS ] "
+            + " [ " + PREFIX_DOB + " DATE_OF_BIRTH ] "
+            + " [ " + PREFIX_GENDER + " GENDER ] "
+            + " [ " + PREFIX_IC + " IC ] "
+            + " [ " + PREFIX_NAME + " DRUG ALLERGY NUMBER ] "
+            + " [ " + PREFIX_EMERGENCY_CONTACT_NUMBER + " EMRGENCY CONTACT ]\n"
             + "Example: " + COMMAND_WORD + " John "
             + PREFIX_PHONE + " 91234567 "
-            + PREFIX_EMAIL + " johndoe@example.com"
-            + PREFIX_DRUG_ALLERGY + "Aspirin "
-            + PREFIX_EMERGENCY_CONTACT_NUMBER + "93746552\n";
+            + PREFIX_EMAIL + " johndoe@example.com "
+            + PREFIX_DRUG_ALLERGY + " Aspirin "
+            + PREFIX_EMERGENCY_CONTACT_NUMBER + " 93746552";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Updated Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

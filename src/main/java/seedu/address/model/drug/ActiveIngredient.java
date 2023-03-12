@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ActiveIngredient {
     public static final String MESSAGE_CONSTRAINTS =
             "Active ingredient should only contain alphanumeric characters, spaces and dashes, and it should not be"
-                    + " blank";
-    public static final String VALIDATION_REGEX = "[a-zA-Z0-9][a-zA-Z0-9 -]*";
+                    + " blank but less than 200 characters long";
+    public static final String VALIDATION_REGEX = "[a-zA-Z0-9][a-zA-Z0-9 -]{0,200}";
     public final String value;
 
     /**

@@ -8,13 +8,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Purpose {
     public static final String MESSAGE_CONSTRAINTS = "Purposes should be in phrase form "
-            + "and only contain alphabets or whitespace";
+            + "and only contain alphabets or whitespace, it cannot be blank but less than "
+            + "500 characters long";
 
     /*
      * The first 3 consecutive characters are upper or lowercase alphabetical characters,
      * followed by 0 or more alphabetical or whitespace characters.
      */
-    public static final String VALIDATION_REGEX = "[A-Za-z][A-Za-z\\s,.-]*";
+    public static final String VALIDATION_REGEX = "[A-Za-z][A-Za-z\\s,.-]{0,499}";
 
     public final String purpose;
 

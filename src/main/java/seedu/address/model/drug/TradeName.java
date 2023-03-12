@@ -8,13 +8,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TradeName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Trade names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Trade names should only contain alphanumeric characters and spaces, "
+                    + "it should not be blank and less than 50 characters";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]{0,49}";
 
     public final String tradeName;
 

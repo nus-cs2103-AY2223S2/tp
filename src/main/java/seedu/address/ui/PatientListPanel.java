@@ -44,7 +44,6 @@ public class PatientListPanel extends UiPart<Region> {
     private void displayPatientDetail() {
         patientListView.setOnMouseClicked(event -> {
             Patient selectedPatient = patientListView.getSelectionModel().getSelectedItem();
-            System.out.println(selectedPatient.toString());
             selectedName.setText(selectedPatient.getName().fullName);
             selectedPhone.setText("Tel: " + selectedPatient.getPhone().value);
             selectedAddress.setText("Address: " + selectedPatient.getAddress().value);
