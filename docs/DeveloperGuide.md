@@ -18,27 +18,6 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-## **User Profile**
-
-Business People on their computers most of their days who can type quickly and have many temporary contacts
-
-## **Value Proposition**
- 
-- Quick Contacts provide business people with the tools to organise their contacts with ease
-- Business people have numerous contacts, many of which are temporary and save these contacts into their main contact book which will clutter it in no time.
-- With Quick Contacts, businesspeople can easily find the relevant contacts as Quick Contacts intelligently manage their contacts for them.
-
-## **User stories**
-<img src="images/UserStories1.png" width="280" />
-<img src="images/UserStories2.png" width="280" />
-
-## **Use Cases**
-User recieves an email for a meeting next week. He is already at his computer. He creates a meeting and sets the time to live of the meeting till next week. after the meeting he does not need to delete the meeting from his contacts any longer
-
-## **Non-Functional requirements**
-- create meeting object
-- create way for objects to kill themselves
-- ensure meeting do not interefere with person class
 
 ## **Design**
 
@@ -114,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `QuickContactsParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -131,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `QuickContactsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `QuickContactsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -147,7 +126,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `QuickContacts`, which `Person` references. This allows `QuickContacts` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -162,12 +141,12 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `QuickContactsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.QuickContacts.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -179,37 +158,37 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedQuickContacts`. It extends `QuickContacts` with an undo/redo history, stored internally as an `QuickContactsStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedQuickContacts#commit()` — Saves the current address book state in its history.
+* `VersionedQuickContacts#undo()` — Restores the previous address book state from its history.
+* `VersionedQuickContacts#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitQuickContacts()`, `Model#undoQuickContacts()` and `Model#redoQuickContacts()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedQuickContacts` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitQuickContacts()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `QuickContactsStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitQuickContacts()`, causing another modified address book state to be saved into the `QuickContactsStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitQuickContacts()`, so the address book state will not be saved into the `QuickContactsStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoQuickContacts()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial QuickContacts state, then there are no previous QuickContacts states to restore. The `undo` command uses `Model#canUndoQuickContacts()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -222,17 +201,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoQuickContacts()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `QuickContactsStateList.size() - 1`, pointing to the latest address book state, then there are no undone QuickContacts states to restore. The `redo` command uses `Model#canRedoQuickContacts()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitQuickContacts()`, `Model#undoQuickContacts()` or `Model#redoQuickContacts()`. Thus, the `QuickContactsStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitQuickContacts()`. Since the `currentStatePointer` is not pointing at the end of the `QuickContactsStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -278,6 +257,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* Business People on their computers most of their days
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
@@ -291,29 +271,77 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                             | I want to …​                                                                | So that I can…​                                                 |
+| -------- | ---------------------------------------------------------------------------| -----------------------------------------------------------------------------------|----------------------------------------------------------------------- |
+| `* * *`  | new user                                                                   | see usage instructions                                                             | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                                                       | add a new person                                                                   |                                                                        |
+| `* * *`  | user                                                                       | delete a person                                                                    | remove entries that I no longer need                                   |
+| `* * *`  | user                                                                       | find a person by name                                                              | locate details of persons without having to go through the entire list |
+| `* *`    | user                                                                       | hide private contact details                                                       | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the contact book                                 | sort persons by name                                                               | locate a person easily                                                 |
+|`*`       | user                                                                       | Find a person by tag                                                               | I can filter the contacts by tags                                      |
+|`*`       | user                                                                       | Sort by tag priority                                                               | I can find the most important contacts                                 |
+|`*`       | user                                                                       | Assign tag priority                                                                |                                                                        |
+|`*`       | user                                                                       | Retrieve deleted contacts                                                          |                                                                        |
+|`*`       | user                                                                       | Set a date for deletion of contacts                                                | Remove the contacts automatically                                      |
+|`*`       | user                                                                       | Add a contact                                                                      | Store my contact in app                                                |
+|`*`       | user                                                                       | Delete a contact                                                                   | Remove unwanted contacts                                               |
+|`*`       | user                                                                       | Edit a contact                                                                     | Change details of existing contacts                                    |
+|`*`       | user                                                                       | Assign tag to contact                                                              | Categorise my contacts                                                 |
+|`*`       | user                                                                       | Use the help command                                                               | To see available commands                                              |
+|`*`       | power user                                                                 | Assign shortcuts to different actions                                              | I can cut down on the time taken to type                               |
+|`*`       | User with many connections                                                 | Export my contacts                                                                 | I can share my contacts easily                                         |
+|`*`       | User with many connections                                                 | Copy the details of my contacts                                                    | I can share my contacts easily                                         |
+|`*`       | User with many existing contacts                                           | Import my contacts automatically                                                   | I don\'t have to spend too much time creating contacts one by one  |
+|`*`       | User with many meetups with people                                         | Sort meetings based on the date and time                                           | I can prioritize my time well                                          |
+|`*`       | Busy user with many meetups                                                | Receive notifications about meetups with contacts                                  | I won\'t be late for meetups                                       |
+|`*`       | User with many meetups with people                                         | Create a meeting                                                                   | Schedule a meeting                                                     |
+|`*`       | User with many meetups with people                                         | Edit a meeting                                                                     | Change meeting details                                                 |
+|`*`       | User with many meetups with people                                         | Delete a meeting                                                                   | Remove cancelled or completed meetings                                 |
+|`*`       | User with many meetups with people                                         | View all meetings                                                                  | See in a glance the meetings that I have                               |
+|`*`       | User with many meetups with people                                         | View meeting details                                                               | Understand what my meeting is about                                    |
+|`*`       | Users with meetings                                                        | Add a reminder to meeting                                                          | So I do not forget the meeting                                         |
+|`*`       | Users with meetings                                                        | Edit reminder of meeting                                                           | Change how frequent my reminders are                                   |
+|`*`       | Users with meetings                                                        | Delete a reminder                                                                  | So I am not spammed with reminders                                     |
+|`*`       | Users with many meetings                                                   | Tag meeting                                                                        | Organize they types of meetings                                        |
+|`*`       | User who are very familiar with the keyboard                               | Add custom keybinds | So that I am faster at organizing contacts                   |                                                                        |
+|`*`       | User with many meetings                                                    | See how many days left to a meeting                                                | I don\'t forget to attend one                                      |
+|`*`       | User in a hurry                                                            | Undo previous action up to 3 previous actions                                      | I can be fast and a bit sloppy without worrying                        |
+|`*`       | User who use the app for a long time                                       | Set a reminder to tag people | In future I can better organize people              |                                                                        |
+|`*`       | User who forget what is in contacts                                        | Ask if person/meeting still relevant | So that the contact remain relatively clean |                                                                        |
+|`*`       | User assign name to priority tag                                           | Customise the tags                                                                 | I can remember more easily who is ranked higher                        |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `QuickContacts` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2.  QuickContacts adds that person
+3.  QuickContacts shows new person in list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. String in a field illegal.
+    * 1a1. Show error message
+
+  Use case resumes at step 1.
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  QuickContacts shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  QuickContacts deletes the person
 
     Use case ends.
 
@@ -325,9 +353,138 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. QuickContacts shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Find a Person**
+
+**MSS**
+
+1.  User requests searches person by name
+2.  QuickContacts shows that person
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. String in a field illegal.
+    * 1a1. Show error message
+
+  Use case continues at step 1.
+
+**Use case: Edit an existing person's details**
+
+**MSS**
+
+1.  User requests to edit a person
+2.  QuickContacts shows the person with the updated details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. String in a field illegal.
+    * 1a1. Show error message
+
+* 1b. Person cannot be found.
+    * 1b1. Show error message
+
+  Use case continues at step 1.
+
+**Use case: User want to list all**
+
+**MSS**
+
+1.  User request list
+2.  QuickContacts shows all the person and meetings
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. list is empty
+
+  Use case ends.
+
+
+**Use case: User wants to clear everything**
+
+**MSS**
+
+1.  User requests to clear
+2.  QuickContacts deletes everyone and all the meetings
+
+    Use case ends.
+
+**Use case: User wants to exit**
+
+**MSS**
+
+1.  User requests to exit
+2.  QuickContacts closes
+
+    Use case ends.
+
+**Use case: Add a meeting**
+
+**MSS**
+
+1.  User requests to add a meeting
+2.  QuickContacts adds that meeting
+3.  QuickContacts shows new meeting in list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. String in a field illegal.
+    * 1a1. Show error message
+
+  Use case resumes at step 1.
+
+**Use case: Delete a meeting**
+
+**MSS**
+
+1.  User requests to list meetings
+2.  QuickContacts shows a list of meetings
+3.  User requests to delete a specific meeting in the list
+4.  QuickContacts deletes the meeting
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. QuickContacts shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit a meeting**
+
+**MSS**
+
+1.  User requests to edit a meeting
+2.  QuickContacts shows the meeting with the updated details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. String in a field illegal.
+    * 1a1. Show error message
+
+* 1b. Meeting cannot be found.
+    * 1b1. Show error message
+
+  Use case continues at step 1.
+
 
 *{More to be added}*
 
@@ -336,6 +493,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Can support 1000 meetings with same amount of lag as 10 meeting
+5. Commands should be intuitive to not technical people
+6. Should be clear that meeting and people are 2 seperate things
 
 *{More to be added}*
 
@@ -343,6 +503,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Meetings**: Important dates with a duration and a place
+* **Find**: Searches by name field, case insensitive, match all matching words individually
+* **GUI**: Graphic User Interface
+* **MSS**: Main Success Scenario
+* **OS**: Operating System
+* **Java**: Programming Language by SUN Oracle
+* **CLI**: Command Line Interface
+
 
 --------------------------------------------------------------------------------------------------------------------
 

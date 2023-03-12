@@ -57,6 +57,11 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String VALID_MEETING_TITLE = "Welfare call";
+    public static final String VALID_MEETING_DATETIME = "01/01/2021 11:11";
+    public static final String VALID_MEETING_LOCATION = "In school";
+    public static final String VALID_MEETING_DESCRIPTION = "Finish up school project (computer science)";
+
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 

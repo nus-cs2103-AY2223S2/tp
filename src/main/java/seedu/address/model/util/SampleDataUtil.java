@@ -57,4 +57,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns an attendee set containing the list of Person given.
+     */
+    public static Set<Person> getAttendeeSet(Person... attendees) {
+        return Arrays.stream(attendees)
+                .collect(Collectors.toSet());
+    }
 }
