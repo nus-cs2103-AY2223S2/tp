@@ -24,27 +24,41 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
-        ExportCommand.writeToCsvFile(model);
+        writeToCsvFile(model);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
+    /**
+     * Writes to the csv file with details of {@code Client}
+     * @param model model {@code FitBookModel} which the command should operate on.
+     * @throws CommandException If an error occurs during command execution.
+     */
     public static void writeToCsvFile(FitBookModel model) throws CommandException {
         List<Client> clients = model.getFilteredClientList().stream().collect(Collectors.toList());
         try {
             File csv = new File(FILE_NAME + CSV_EXTENSION);
             PrintWriter pw = new PrintWriter(csv);
-            ExportCommand.addHeaderRow(pw);
-            ExportCommand.addClientRows(pw, clients);
+            writeHeaderRow(pw);
+            writeClientRows(pw, clients);
         } catch (FileNotFoundException e) {
             throw new CommandException(MESSAGE_FAILURE);
         }
     }
 
-    public static void addHeaderRow(PrintWriter pw) {
+    /**
+     * Writes the header row in the csv file.
+     * @param pw the PrintWriter responsible for writing row into the csv file.
+     */
+    public static void writeHeaderRow(PrintWriter pw) {
         pw.printf("Name, Phone Number, Email, Address, Weight, Gender\n");
     }
 
-    public static void addClientRows(PrintWriter pw, List<Client> clients) {
+    /**
+     * Writes the client detail rows into the csv file.
+     * @param pw the PrintWriter responsible for writing rows into the csv file.
+     * @param clients List of clients stored in FitBook.
+     */
+    public static void writeClientRows(PrintWriter pw, List<Client> clients) {
         for (Client client : clients) {
             pw.printf("%s, %s, %s, %s, %s, %s\n", client.getName(), client.getPhone(), client.getEmail(),
                     client.getAddress().toString().replaceAll("[^a-zA-Z0-9]", " "),
