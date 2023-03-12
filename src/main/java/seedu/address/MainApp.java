@@ -15,13 +15,9 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.CareFlowLogic;
 import seedu.address.logic.CareFlowLogicManager;
-import seedu.address.model.CareFlowModel;
-import seedu.address.model.CareFlowModelManager;
-import seedu.address.model.DrugInventory;
-import seedu.address.model.PatientRecord;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.readonly.ReadOnlyDrugInventory;
+import seedu.address.model.readonly.ReadOnlyHospitalRecords;
 import seedu.address.model.readonly.ReadOnlyPatientRecord;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.CareFlowStorage;
@@ -85,7 +81,8 @@ public class MainApp extends Application {
 
         ReadOnlyPatientRecord initialDataPatient;
         ReadOnlyDrugInventory initialDataDrug;
-
+        ReadOnlyHospitalRecords initialDataHospital;
+        initialDataHospital = new HospitalRecord();
         try {
             patientRecordOptional = storage.readPatientRecord();
             drugInventoryOptional = storage.readDrugInventory();
@@ -108,7 +105,9 @@ public class MainApp extends Application {
             initialDataPatient = new PatientRecord();
             initialDataDrug = new DrugInventory();
         }
-        return new CareFlowModelManager(initialDataPatient, initialDataDrug, userPrefs);
+
+
+        return new CareFlowModelManager(initialDataPatient, initialDataDrug, initialDataHospital, userPrefs);
     }
 
     private void initLogging(Config config) {
