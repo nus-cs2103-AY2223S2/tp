@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -39,9 +38,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Question question = ParserUtil.parseName(argMultimap.getValue(PREFIX_QUESTION).get());
         Answer answer = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ANSWER).get());
-        // Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Tag> tagList = new HashSet<>();
-        tagList.add(new Tag(selectedDeckName));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Card card = new Card(question, answer, tagList);
 
