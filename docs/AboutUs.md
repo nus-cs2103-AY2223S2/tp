@@ -29,7 +29,7 @@ You can reach us at the email `what email should we put here?`
 - Role: Team Lead
 - Responsibilities: UI
 
-### Ethan Chen Ee Shuen
+## Ethan Chen Ee Shuen
 
 <img src="images/bipbipboopboop.png" width="200px">
 
