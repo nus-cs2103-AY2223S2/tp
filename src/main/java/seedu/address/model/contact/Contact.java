@@ -36,11 +36,7 @@ public class Contact {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameContact(Contact otherContact) {
-
-        // different name, all other attributes same -> returns false
-//        editedAlice = new ContactBuilder(ALICE).withName(VALID_NAME_BOB).build();
-//        assertFalse(ALICE.isSameContact(editedAlice));
-
+        
         if (otherContact == null) {
             return false;
         }
