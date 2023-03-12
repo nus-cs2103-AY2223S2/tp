@@ -23,6 +23,7 @@ public class ModelManager implements Model {
 
     private MasterDeck masterDeck;
     private final UserPrefs userPrefs;
+
     private FilteredList<Deck> filteredDecks;
     private Deck selectedDeck = null; // null when not selected, to switch to Optional<Deck> later on
     private FilteredList<Card> filteredCards;
@@ -116,7 +117,7 @@ public class ModelManager implements Model {
         masterDeck.setCard(target, editedCard);
     }
 
-    //=========== Filtered Card List Accessors =============================================================
+    //=========== Filtered Card/Deck List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Card} backed by the internal list of
@@ -125,6 +126,10 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Card> getFilteredCardList() {
         return filteredCards;
+    }
+
+    public ObservableList<Deck> getFilteredDeckList() {
+        return filteredDecks;
     }
 
     @Override
@@ -181,7 +186,9 @@ public class ModelManager implements Model {
     @Override
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
-        // deck = deck.get(zeroBasesIdx);
+        // TODO: Modify this once PR is merged
+        /* Deck selectedDeck = filteredDecks.get(zeroBasesIdx);
+        selectedDeckName = selectedDeck.getName(); */
     }
 
     @Override

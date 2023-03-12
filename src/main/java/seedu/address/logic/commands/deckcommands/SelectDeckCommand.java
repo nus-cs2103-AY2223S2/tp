@@ -3,6 +3,7 @@ package seedu.address.logic.commands.deckcommands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -10,10 +11,13 @@ import seedu.address.model.Model;
 /**
  * Selects a deck to operate on.
  */
-public class SelectDeckCommand { // Todo: Extends Command after Kok Hai refractors Model
+public class SelectDeckCommand extends Command {
 
     public static final String COMMAND_WORD = "selectDeck";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Select a deck of cards.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Select a deck of cards "
+            + "by the index number used in the displayed deck list.\n"
+            + "Parameter: INDEX (must be a positive integer).\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Deck selected: %1$s"; // %1$s is the first argument in format
     public static final String MESSAGE_INVALID_DECK_DISPLAYED_INDEX = "Deck index provided is invalid";
@@ -27,20 +31,12 @@ public class SelectDeckCommand { // Todo: Extends Command after Kok Hai refracto
         this.deckIndex = idx;
     }
 
-    // @Override
-    /**
-     * Executes the command and returns the result message. This javadoc message is here
-     * to pass checkstyle. TODO: remove later
-     *
-     * @param model {@code Model} which the command should operate on.
-     * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
-     */
+    @Override
     public CommandResult execute(Model model) throws CommandException {
+        /*
         requireNonNull(model);
 
-        /*
-        List<Deck> deckList = model.getDecks(); // TODO implement getDecks in Model
+        List<Deck> deckList = model.getFilteredDeckList();
         boolean isIndexOutOfBound = deckIndex.getZeroBased() >= deckList.size();
         if (isIndexOutOfBound) {
             throw new CommandException(MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
@@ -48,8 +44,8 @@ public class SelectDeckCommand { // Todo: Extends Command after Kok Hai refracto
 
         model.selectDeck(deckIndex);
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedDeck()));
-         */
-        return new CommandResult("test");
+        */
+        return new CommandResult("Test");
     }
 
     @Override
