@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -120,5 +121,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static MedicalCondition parseMedicalCond(String medicalCondition) throws ParseException {
+        requireNonNull(medicalCondition);
+        String trimmed = medicalCondition.trim();
+        if (!Tag.isValidTagName(trimmed)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new MedicalCondition(medicalCondition);
     }
 }
