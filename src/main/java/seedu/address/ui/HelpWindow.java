@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.AppUtil.getImage;
+
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -10,8 +12,6 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-
-import static seedu.address.commons.util.AppUtil.getImage;
 
 /**
  * Controller for a help page

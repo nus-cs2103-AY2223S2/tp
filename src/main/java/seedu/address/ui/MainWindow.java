@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.AppUtil.getImage;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -19,8 +21,6 @@ import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.ui.core.ItemListPanel;
-
-import static seedu.address.commons.util.AppUtil.getImage;
 
 /**
  * The Main Window. Provides the basic application layout containing
