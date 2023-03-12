@@ -42,6 +42,8 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private DrugListPanel drugListPanel;
 
+    private DrugPieChartPanel drugPieChartPanel;
+
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -51,8 +53,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
-//    @FXML
-//    private StackPane patientDrugListPanelPlaceholder;
 
     @FXML
     private StackPane patientListPanelPlaceholder;
@@ -69,6 +69,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane drugListPanelPlaceholder;
 
+    @FXML
+    private StackPane drugPieChartPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -162,6 +164,9 @@ public class MainWindow extends UiPart<Stage> {
 
         drugListPanel = new DrugListPanel(logic.getFilteredDrugList());
         drugListPanelPlaceholder.getChildren().add(drugListPanel.getRoot());
+
+        drugPieChartPanel = new DrugPieChartPanel(logic.getFilteredDrugList());
+        drugPieChartPanelPlaceholder.getChildren().add(drugPieChartPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

@@ -61,6 +61,10 @@ public class StorageCount {
                 && count.equals(((StorageCount) other).count)); // state check
     }
 
+    public Integer getCount() {
+        return this.count;
+    }
+
     @Override
     public int hashCode() {
         return count.hashCode();

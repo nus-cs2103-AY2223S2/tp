@@ -32,8 +32,7 @@
             <MenuItem fx:id="dark" mnemonicParsing="false" onAction="#toggleDarkTheme" text="Dark Theme" />
           </Menu>
         </MenuBar>
-
-
+        <StackPane fx:id="drugPieChartPanelPlaceholder"/>
         <TabPane fx:id="tabPane" minWidth="340" prefWidth="340" tabClosingPolicy="UNAVAILABLE">
           <Tab fx:id="patientTab" closable="false" text="Patient Records">
             <StackPane fx:id="patientListPanelPlaceholder" HBox.hgrow="ALWAYS" />
