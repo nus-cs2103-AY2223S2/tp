@@ -54,7 +54,8 @@ public class UniqueItemList<T extends Relationship<T>> implements Iterable<T> {
             throw new ItemNotFoundException();
         }
 
-        if (!target.isSame(editedItem) && contains(editedItem)) {
+        if (!target.isSame(editedItem) && contains(editedItem)
+                && !target.hasSameId(editedItem)) {
             throw new DuplicateItemException();
         }
 

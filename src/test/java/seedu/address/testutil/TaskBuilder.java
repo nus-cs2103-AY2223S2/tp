@@ -20,7 +20,7 @@ public class TaskBuilder {
 
     private Subject subject;
     private Content content;
-    private final Status status;
+    private Status status;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -83,6 +83,14 @@ public class TaskBuilder {
      */
     public TaskBuilder withContent(String content) {
         this.content = new Content(content);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withStatus(boolean status) {
+        this.status = new Status(status);
         return this;
     }
 

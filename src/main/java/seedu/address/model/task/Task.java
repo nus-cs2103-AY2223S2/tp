@@ -62,6 +62,7 @@ public class Task implements Relationship<Task> {
         return status;
     }
 
+
     /**
      * Returns true if both tasks have the same subject.
      * This defines a weaker notion of equality between two tasks.
@@ -74,6 +75,11 @@ public class Task implements Relationship<Task> {
 
         return otherTask != null
             && otherTask.getSubject().equals(getSubject());
+    }
+
+    @Override
+    public boolean hasSameId(Task otherTask) {
+        return otherTask.getId().equals(getId());
     }
 
     @Override

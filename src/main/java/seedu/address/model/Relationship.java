@@ -5,4 +5,5 @@ package seedu.address.model;
  */
 public interface Relationship<T> {
     boolean isSame(T obj);
+    boolean hasSameId(T obj);
 }
