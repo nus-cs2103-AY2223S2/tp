@@ -44,7 +44,7 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to CoDoc.
+   * `add n/John Doe g/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to CoDoc.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -71,10 +71,10 @@ CoDoc is a desktop app for students in SoC (School of Computing) to connect with
   e.g. `[s/SKILL]…​` can be used as ` ` (i.e. 0 times), `s/python`, `s/python s/sql` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME g/GITHUB_USERNAME`, `g/GITHUB_USERNAME n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `g/12341234 g/56785678`, only `g/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -136,7 +136,7 @@ _Edits an existing person in CoDoc._
 > - You can remove all the person’s skills by typing s/ without specifying any skills after it
 > 
 > **Examples:**
-> - edit p/91234567 e/johndoe@example.com will edit the phone number and email address of the person to be 91234567 and johndoe@example.com respectively. 
+> - edit g/91234567 e/johndoe@example.com will edit the github username and email address of the person to be 91234567 and johndoe@example.com respectively. 
 > - edit n/Betsy Crower s/ Edits the name of the person to be Betsy Crower and clears all existing skills.
 
 <a name="find"></a>

@@ -16,19 +16,19 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.skill.Skill;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_GITHUB = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "Àpython";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_GITHUB = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "C++";
@@ -80,21 +80,21 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseGithub_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGithub(INVALID_GITHUB));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseGithub_validValueWithoutWhitespace_returnsGithub() throws Exception {
+        Github expectedGithub = new Github(VALID_GITHUB);
+        assertEquals(expectedGithub, ParserUtil.parseGithub(VALID_GITHUB));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseGithub_validValueWithWhitespace_returnsTrimmedGithub() throws Exception {
+        String githubWithWhitespace = WHITESPACE + VALID_GITHUB + WHITESPACE;
+        Github expectedGithub = new Github(VALID_GITHUB);
+        assertEquals(expectedGithub, ParserUtil.parseGithub(githubWithWhitespace));
     }
 
     @Test

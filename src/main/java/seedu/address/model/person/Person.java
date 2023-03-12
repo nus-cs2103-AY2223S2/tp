@@ -18,7 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Github github;
     private final Email email;
 
     // Data fields
@@ -29,10 +29,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills, Set<Mod> mods) {
-        requireAllNonNull(name, phone, email, address, skills, mods);
+    public Person(Name name, Github github, Email email, Address address, Set<Skill> skills, Set<Mod> mods) {
+        requireAllNonNull(name, github, email, address, skills, mods);
         this.name = name;
-        this.phone = phone;
+        this.github = github;
         this.email = email;
         this.address = address;
         this.skills.addAll(skills);
@@ -42,10 +42,10 @@ public class Person {
     /**
      * Overloaded constructor to be remove once Mod is fully implemented.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, address, skills);
+    public Person(Name name, Github github, Email email, Address address, Set<Skill> skills) {
+        requireAllNonNull(name, github, email, address, skills);
         this.name = name;
-        this.phone = phone;
+        this.github = github;
         this.email = email;
         this.address = address;
         this.skills.addAll(skills);
@@ -55,8 +55,8 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Github getGithub() {
+        return github;
     }
 
     public Email getEmail() {
@@ -108,7 +108,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getGithub().equals(getGithub())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getSkills().equals(getSkills());
@@ -117,15 +117,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, skills);
+        return Objects.hash(name, github, email, address, skills);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Github: ")
+                .append(getGithub())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")

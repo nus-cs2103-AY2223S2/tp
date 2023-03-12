@@ -15,7 +15,7 @@ UniquePersonList -right-> Person
 Person -up-> "*" Skill
 
 Person *--> Name
-Person *--> Phone
+Person *--> Github
 Person *--> Email
 Person *--> Address
 @enduml
