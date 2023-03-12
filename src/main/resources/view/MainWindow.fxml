@@ -43,12 +43,12 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="186.0" minHeight="100" prefHeight="186.0" prefWidth="1061.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <GridPane prefHeight="599.0" prefWidth="1061.0" VBox.vgrow="ALWAYS">
+            <GridPane prefHeight="471.0" prefWidth="1061.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -64,13 +64,13 @@
                 </padding>
                 <StackPane fx:id="internshipListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #383838;" GridPane.columnIndex="1">
+                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #383838;" styleClass="pane-with-border" GridPane.columnIndex="1">
                      <children>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Internship Details" StackPane.alignment="TOP_LEFT">
                                  <font>
-                                    <Font name="Segoe UI Bold" size="20.0" />
+                                    <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                                  <StackPane.margin>
                                     <Insets left="20.0" top="20.0" />
