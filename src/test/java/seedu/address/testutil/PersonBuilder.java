@@ -89,6 +89,12 @@ public class PersonBuilder {
         return this;
     }
 
+    /*
+    public PersonBuilder withMeetings() {
+
+    }
+     */
+
     public Person build() {
         return new Person(name, phone, email, address, tags, meetings);
     }
