@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.

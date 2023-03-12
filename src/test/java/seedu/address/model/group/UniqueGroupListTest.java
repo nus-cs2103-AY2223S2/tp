@@ -1,9 +1,9 @@
 package seedu.address.model.group;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,13 +15,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 
 public class UniqueGroupListTest {
     private final UniqueGroupList emptyGroupList = new UniqueGroupList();
-    Group group = new Group("2103T");
-    Group groupWithSameName = new Group("2103T");
-    Group anotherGroup = new Group("2101");
+    private final Group group = new Group("2103T");
+    private final Group groupWithSameName = new Group("2103T");
+    private final Group anotherGroup = new Group("2101");
 
     @Test
     public void addGroupToList() {

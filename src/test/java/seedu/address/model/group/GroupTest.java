@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class GroupTest {
-    Group group1 = new Group("2103T");
-    Group group2 = new Group("2101");
-    Group group1Duplicate = new Group("2103T");
+    private final Group group1 = new Group("2103T");
+    private final Group group2 = new Group("2101");
+    private final Group group1Duplicate = new Group("2103T");
 
     @Test
     public void equals() {
