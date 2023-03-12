@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.socialmedia.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,15 +25,19 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    // Social media fields
+    private final Telegram telegram;
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Telegram telegram, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.telegram = telegram;
         this.tags.addAll(tags);
     }
 
@@ -58,6 +63,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Telegram getTelegram() {
+        return telegram;
     }
 
     /**
@@ -111,6 +120,11 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
+
+        if (telegram != null) {
+            builder.append("; Telegram: ")
+                .append(getTelegram());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
