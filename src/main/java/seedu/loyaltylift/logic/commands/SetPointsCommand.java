@@ -3,6 +3,7 @@ package seedu.loyaltylift.logic.commands;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
+import seedu.loyaltylift.model.customer.Points;
 
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
@@ -26,13 +27,13 @@ public class SetPointsCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Points: %2$d";
 
     private final Index index;
-    private final Integer points;
+    private final Points points;
 
     /**
      * @param index of the customer in the filtered person list to set points
      * @param points of the customer to be set
      */
-    public SetPointsCommand(Index index, Integer points) {
+    public SetPointsCommand(Index index, Points points) {
         requireAllNonNull(index, points);
 
         this.index = index;

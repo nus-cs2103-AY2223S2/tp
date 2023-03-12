@@ -4,6 +4,7 @@ import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
+import seedu.loyaltylift.model.customer.Points;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -24,6 +25,6 @@ public class SetPointsCommandParser implements Parser<SetPointsCommand> {
                     SetPointsCommand.MESSAGE_USAGE), ive);
         }
 
-        return new SetPointsCommand(index, points);
+        return new SetPointsCommand(index, new Points(points));
     }
 }

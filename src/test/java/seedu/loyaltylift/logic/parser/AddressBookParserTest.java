@@ -19,6 +19,7 @@ import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescript
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
+import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 import seedu.loyaltylift.testutil.CustomerUtil;
 import seedu.loyaltylift.testutil.EditCustomerDescriptorBuilder;
@@ -91,9 +92,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_setpoints() throws Exception {
-        final Integer points = 100;
+        final Points points = new Points(100);
         SetPointsCommand command = (SetPointsCommand) parser.parseCommand(SetPointsCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + points);
+                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + points.value);
         assertEquals(new SetPointsCommand(INDEX_FIRST_CUSTOMER, points), command);
     }
 

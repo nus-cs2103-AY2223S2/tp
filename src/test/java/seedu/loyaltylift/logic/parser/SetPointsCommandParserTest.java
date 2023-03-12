@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
+import seedu.loyaltylift.model.customer.Points;
 
 public class SetPointsCommandParserTest {
     private SetPointsCommandParser parser = new SetPointsCommandParser();
@@ -20,7 +21,7 @@ public class SetPointsCommandParserTest {
         // must have points, /pt with no integer afterwards will not be parsed successfully
         Index targetIndex = INDEX_FIRST_CUSTOMER;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_POINTS + nonEmptyPoints;
-        SetPointsCommand expectedCommand = new SetPointsCommand(INDEX_FIRST_CUSTOMER, nonEmptyPoints);
+        SetPointsCommand expectedCommand = new SetPointsCommand(INDEX_FIRST_CUSTOMER, new Points(nonEmptyPoints));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
