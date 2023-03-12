@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.sudohr.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.sudohr.model.person.Address;
 import seedu.sudohr.model.person.Email;
+import seedu.sudohr.model.person.Id;
 import seedu.sudohr.model.person.Name;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.model.person.Phone;
@@ -32,11 +33,20 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
+        descriptor.setId(person.getId());
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+    }
+
+    /**
+     * Sets the {@code id} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withId(String id) {
+        descriptor.setId(new Id(id));
+        return this;
     }
 
     /**
