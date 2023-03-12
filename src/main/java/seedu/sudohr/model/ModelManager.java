@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final SudoHr sudoHr;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Department> filteredDepartments;
 
     /**
      * Initializes a ModelManager with the given sudoHr and userPrefs.
@@ -33,7 +35,9 @@ public class ModelManager implements Model {
 
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
+
         filteredPersons = new FilteredList<>(this.sudoHr.getPersonList());
+        filteredDepartments = new FilteredList<>(this.sudoHr.getDepartmentList());
     }
 
     public ModelManager() {
@@ -87,6 +91,8 @@ public class ModelManager implements Model {
         return sudoHr;
     }
 
+    //=========== Person-Level Operations ==============================================================================
+
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -126,6 +132,56 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Department-Level Operations ==========================================================================
+
+    @Override
+    public boolean hasDepartment(Department department) {
+        requireNonNull(department);
+        return sudoHr.hasDepartment(department);
+    }
+
+    @Override
+    public void addDepartment(Department d) {
+        sudoHr.addDepartment(d);
+    }
+
+    @Override
+    public void setDepartment(Department target, Department editedDepartment) {
+        sudoHr.setDepartment(target, editedDepartment);
+    }
+
+    @Override
+    public void removeDepartment(Department key) {
+        sudoHr.removeDepartment(key);
+    }
+
+    @Override
+    public void addEmployeeToDepartment(Person p, Department d) {
+        sudoHr.addEmployeeToDepartment(p, d);
+    }
+
+    @Override
+    public void removeEmployeeFromDepartment(Person p, Department d) {
+        sudoHr.removeEmployeeFromDepartment(p, d);
+    }
+
+    //=========== Filtered Department List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Department} backed by the internal list of
+     * {@code versionedsudoHr}
+     */
+    @Override
+    public ObservableList<Department> getFilteredDepartmentList() {
+        return filteredDepartments;
+    }
+
+    @Override
+    public void updateFilteredDepartmentList(Predicate<Department> predicate) {
+        requireNonNull(predicate);
+        filteredDepartments.setPredicate(predicate);
     }
 
     @Override

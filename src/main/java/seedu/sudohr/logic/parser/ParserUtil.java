@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.commons.util.StringUtil;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
+import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.person.Address;
 import seedu.sudohr.model.person.Email;
 import seedu.sudohr.model.person.Id;
@@ -136,5 +137,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code DepartmentName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static DepartmentName parseDepartmentName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new DepartmentName(trimmedName);
     }
 }

@@ -7,7 +7,7 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.sudohr.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.sudohr.testutil.TypicalPersons.getTypicalSudoHr;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.sudohr.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSudoHr(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
