@@ -24,18 +24,20 @@ public class Role {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Salary salary;
+    private final Deadline deadline;
 
     /**
      * Every field must be present and not null.
      */
-    public Role(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Salary salary) {
-        requireAllNonNull(name, phone, email, address, tags, salary);
+    public Role(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Salary salary, Deadline deadline) {
+        requireAllNonNull(name, phone, email, address, tags, salary, deadline);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.salary = salary;
+        this.deadline = deadline;
     }
 
     public Name getName() {
@@ -61,8 +63,13 @@ public class Role {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
     public Salary getSalary() {
         return salary;
+    }
+
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     /**
@@ -98,13 +105,14 @@ public class Role {
                 && otherRole.getEmail().equals(getEmail())
                 && otherRole.getAddress().equals(getAddress())
                 && otherRole.getTags().equals(getTags())
-                && otherRole.getSalary().equals(getSalary());
+                && otherRole.getSalary().equals(getSalary())
+                && otherRole.getDeadline().equals(getDeadline());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, salary);
+        return Objects.hash(name, phone, email, address, tags, salary, deadline);
     }
 
     @Override
@@ -124,6 +132,7 @@ public class Role {
             tags.forEach(builder::append);
         }
         builder.append("; Salary: ").append(getSalary());
+        builder.append("; Deadline: ").append(getDeadline());
         return builder.toString();
     }
 

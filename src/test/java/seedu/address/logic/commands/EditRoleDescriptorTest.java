@@ -19,7 +19,7 @@ public class EditRoleDescriptorTest {
 
     @Test
     public void equals() {
-        // same values -> returns true
+        // sa``me values -> returns true
         EditRoleDescriptor descriptorWithSameValues = new EditRoleDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 

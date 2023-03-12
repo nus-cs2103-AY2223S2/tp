@@ -24,12 +24,14 @@ public class JsonAdaptedRoleTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_SALARY = "MORE THAN 4000";
+    private static final String INVALID_DEADLINE = "OLDER THAN CURRENT DATE";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_SALARY = BENSON.getSalary().toString();
+    private static final String VALID_DEADLINE = BENSON.getSalary().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -43,7 +45,8 @@ public class JsonAdaptedRoleTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedRole role =
-                new JsonAdaptedRole(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_SALARY);
+                new JsonAdaptedRole(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+                        VALID_SALARY, VALID_DEADLINE);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
@@ -51,7 +54,7 @@ public class JsonAdaptedRoleTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedRole role = new JsonAdaptedRole(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                VALID_SALARY);
+                VALID_SALARY, VALID_DEADLINE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
@@ -59,7 +62,8 @@ public class JsonAdaptedRoleTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedRole role =
-                new JsonAdaptedRole(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_SALARY);
+                new JsonAdaptedRole(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+                        VALID_SALARY, VALID_DEADLINE);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
@@ -67,7 +71,7 @@ public class JsonAdaptedRoleTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedRole role = new JsonAdaptedRole(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                VALID_SALARY);
+                VALID_SALARY, VALID_DEADLINE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
@@ -75,7 +79,8 @@ public class JsonAdaptedRoleTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedRole role =
-                new JsonAdaptedRole(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_SALARY);
+                new JsonAdaptedRole(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+                        VALID_SALARY, VALID_DEADLINE);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
@@ -83,7 +88,7 @@ public class JsonAdaptedRoleTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedRole role = new JsonAdaptedRole(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS,
-                VALID_SALARY);
+                VALID_SALARY, VALID_DEADLINE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
@@ -91,7 +96,8 @@ public class JsonAdaptedRoleTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedRole role =
-                new JsonAdaptedRole(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS, VALID_SALARY);
+                new JsonAdaptedRole(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS,
+                        VALID_SALARY, VALID_DEADLINE);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
@@ -99,7 +105,7 @@ public class JsonAdaptedRoleTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedRole role = new JsonAdaptedRole(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS,
-                VALID_SALARY);
+                VALID_SALARY, VALID_DEADLINE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
@@ -109,7 +115,8 @@ public class JsonAdaptedRoleTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedRole role =
-                new JsonAdaptedRole(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags, VALID_SALARY);
+                new JsonAdaptedRole(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags,
+                        VALID_SALARY, VALID_DEADLINE);
         assertThrows(IllegalValueException.class, role::toModelType);
     }
 

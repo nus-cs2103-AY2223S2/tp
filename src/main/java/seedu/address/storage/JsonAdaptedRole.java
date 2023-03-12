@@ -10,12 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.job.Address;
-import seedu.address.model.job.Email;
-import seedu.address.model.job.Name;
-import seedu.address.model.job.Phone;
-import seedu.address.model.job.Role;
-import seedu.address.model.job.Salary;
+import seedu.address.model.job.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +26,7 @@ class JsonAdaptedRole {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String salary;
+    private final String deadline;
 
     /**
      * Constructs a {@code JsonAdaptedRole} with the given role details.
@@ -38,7 +34,8 @@ class JsonAdaptedRole {
     @JsonCreator
     public JsonAdaptedRole(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("salary") String salary) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("salary") String salary,
+            @JsonProperty("deadline") String deadline) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,6 +44,7 @@ class JsonAdaptedRole {
             this.tagged.addAll(tagged);
         }
         this.salary = salary;
+        this.deadline = deadline;
     }
 
     /**
@@ -61,6 +59,7 @@ class JsonAdaptedRole {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         salary = source.getSalary().salary;
+        deadline = source.getDeadline().deadline;
     }
 
     /**
@@ -112,10 +111,17 @@ class JsonAdaptedRole {
         if (!Salary.isValidSalary(salary)) {
             throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
         }
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Salary.class.getSimpleName()));
+        }
+        if (!Deadline.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Deadline.messageConstraint);
+        }
         final Salary modelSalary = new Salary(salary);
+        final Deadline modelDeadline = new Deadline(deadline);
 
         final Set<Tag> modelTags = new HashSet<>(roleTags);
-        return new Role(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSalary);
+        return new Role(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSalary, modelDeadline);
     }
 
 }
