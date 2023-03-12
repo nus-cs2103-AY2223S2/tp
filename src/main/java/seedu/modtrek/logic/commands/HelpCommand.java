@@ -1,9 +1,6 @@
 package seedu.modtrek.logic.commands;
 
 import seedu.modtrek.model.Model;
-import seedu.modtrek.model.module.Code;
-
-import java.util.Set;
 
 /**
  * Format full help instructions for every command for display.

@@ -1,16 +1,16 @@
 package seedu.modtrek.logic.parser;
 
-import seedu.modtrek.logic.commands.AddCommand;
-import seedu.modtrek.logic.commands.EditCommand;
-import seedu.modtrek.logic.commands.DeleteCommand;
-import seedu.modtrek.logic.commands.HelpCommand;
-import seedu.modtrek.logic.commands.TagCommand;
-import seedu.modtrek.logic.commands.ListCommand;
-import seedu.modtrek.logic.commands.FindCommand;
-import seedu.modtrek.logic.commands.ExitCommand;
-import seedu.modtrek.logic.parser.exceptions.ParseException;
-
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import seedu.modtrek.logic.commands.AddCommand;
+import seedu.modtrek.logic.commands.DeleteCommand;
+import seedu.modtrek.logic.commands.EditCommand;
+import seedu.modtrek.logic.commands.ExitCommand;
+import seedu.modtrek.logic.commands.FindCommand;
+import seedu.modtrek.logic.commands.HelpCommand;
+import seedu.modtrek.logic.commands.ListCommand;
+import seedu.modtrek.logic.commands.TagCommand;
+import seedu.modtrek.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new HelpCommand object
