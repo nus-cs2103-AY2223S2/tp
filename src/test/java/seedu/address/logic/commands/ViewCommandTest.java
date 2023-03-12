@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.testutil.TypicalPersons.ALBERT;
 import static seedu.address.testutil.TypicalPersons.ANG;
 import static seedu.address.testutil.TypicalPersons.BART;
 import static seedu.address.testutil.TypicalPersons.CLARK;
@@ -102,7 +103,7 @@ public class ViewCommandTest {
     }
 
     @Test
-    public void compare_commandInequality_false() {
+    public void compare_viewCommandInequality_false() {
         ViewCommand command1 = new ViewCommand("Lisa Meitner", null);
         ViewCommand command2 = new ViewCommand("Lisa Meitner", Index.fromZeroBased(1));
         assertNotEquals(command1, command2);
@@ -119,6 +120,22 @@ public class ViewCommandTest {
         assertNotEquals(command5, command1);
         assertNotEquals(command6, command2);
         assertNotEquals(command6, command1);
+    }
+
+    @Test
+    public void compare_otherCommandInequality_false() {
+        ViewCommand viewCommand = new ViewCommand("Lisa Meitner", null);
+        AddCommand addCommand = new AddCommand(ALBERT);
+        DeleteCommand deleteCommand = new DeleteCommand(Index.fromZeroBased(1));
+        assertNotEquals(addCommand, viewCommand);
+        assertNotEquals(deleteCommand, viewCommand);
+
+    }
+
+    @Test
+    public void compare_foreignObjectInequality_false() {
+        ViewCommand viewCommand = new ViewCommand("Lisa Meitner", null);
+        assertNotEquals("Hello", viewCommand);
     }
 
 }
