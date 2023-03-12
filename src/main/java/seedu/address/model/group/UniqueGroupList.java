@@ -1,6 +1,7 @@
 package seedu.address.model.group;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -79,15 +81,23 @@ public class UniqueGroupList implements Iterable<Group> {
         return internalList.iterator();
     }
 
-    /**
-     * Replaces the contents of this list with {@code groups}.
-     * {@code groups} must not contain duplicate groups.
-     */
     public void setGroups(UniqueGroupList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
+    /**
+     * Replaces the contents of this list with {@code groups}.
+     * {@code groups} must not contain duplicate persons.
+     */
+    public void setGroups(List<Group> groups) {
+        requireAllNonNull(groups);
+        if (!groupsAreUnique(groups)) {
+            throw new DuplicateGroupException();
+        }
+
+        internalList.setAll(groups);
+    }
 
     @Override
     public boolean equals(Object other) {
