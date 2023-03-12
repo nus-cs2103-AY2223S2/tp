@@ -31,7 +31,9 @@ import seedu.address.model.person.fields.subfields.Tag;
 /**
  * Abstract class to inherit from for parser classes which parse objects of the {@link Person} class
  */
-public class EditPersonCommandParser {
+public abstract class EditPersonCommandParser {
+
+    public abstract Optional<Index> parseIndex(String index) throws ParseException;
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -49,7 +51,7 @@ public class EditPersonCommandParser {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = this.parseIndex(argMultimap.getPreamble());
             editPersonDescriptor.setIndex(index);
         } catch (ParseException pe) {
             throw new ParseException(

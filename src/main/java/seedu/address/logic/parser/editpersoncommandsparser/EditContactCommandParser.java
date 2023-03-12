@@ -2,9 +2,12 @@ package seedu.address.logic.parser.editpersoncommandsparser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -24,5 +27,10 @@ public class EditContactCommandParser extends EditPersonCommandParser implements
         EditPersonDescriptor editPersonDescriptor = this.parseForTags(args);
 
         return new EditContactCommand(editPersonDescriptor);
+    }
+
+    @Override
+    public Optional<Index> parseIndex(String index) throws ParseException {
+        return ParserUtil.parseIndex(index);
     }
 }
