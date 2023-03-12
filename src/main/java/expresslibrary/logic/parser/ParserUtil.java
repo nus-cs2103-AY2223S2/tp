@@ -9,10 +9,7 @@ import java.util.Set;
 import expresslibrary.commons.core.index.Index;
 import expresslibrary.commons.util.StringUtil;
 import expresslibrary.logic.parser.exceptions.ParseException;
-import expresslibrary.model.person.Address;
-import expresslibrary.model.person.Email;
-import expresslibrary.model.person.Name;
-import expresslibrary.model.person.Phone;
+import expresslibrary.model.person.*;
 import expresslibrary.model.tag.Tag;
 
 /**
@@ -120,5 +117,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Book parseBook(String book) throws ParseException {
+        requireNonNull(book);
+        String trimmedBook = book.trim();
+        if (!Book.isValidTitle(trimmedBook)) {
+            throw new ParseException(Book.MESSAGE_CONSTRAINTS);
+        }
+        return new Book(trimmedBook);
     }
 }
