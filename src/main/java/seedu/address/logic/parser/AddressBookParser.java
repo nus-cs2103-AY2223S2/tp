@@ -19,8 +19,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UnfavoriteCommand;
-import seedu.address.logic.parser.editpersoncommands.EditContactCommandParser;
-import seedu.address.logic.parser.editpersoncommands.EditUserCommandParser;
+import seedu.address.logic.parser.editpersoncommandsparser.EditContactCommandParser;
+import seedu.address.logic.parser.editpersoncommandsparser.EditUserCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -48,8 +48,6 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        System.out.println(commandWord);
-        System.out.println(arguments);
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
