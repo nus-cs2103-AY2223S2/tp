@@ -17,11 +17,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Controller for a statistics page
  */
 public class StatisticsWindow extends UiPart<Stage> {
-    public static final String STATISTICS= "Here are your statistics: ";
+    public static final String STATISTICS = "Here are your statistics: ";
+    private static final String FXML = "StatisticsWindow.fxml";
+
     private final Logger logger = LogsCenter.getLogger(getClass());
     private Stage primaryStage;
     private Logic logic;
-    private static final String FXML = "StatisticsWindow.fxml";
 
     private ResultDisplay resultDisplay;
     @FXML
