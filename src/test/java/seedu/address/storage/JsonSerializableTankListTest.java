@@ -27,7 +27,7 @@ class JsonSerializableTankListTest {
         JsonSerializableTankList dataFromFile = JsonUtil.readJsonFile(TYPICAL_TANKS_FILE,
                 JsonSerializableTankList.class).get();
         TankList tankListFromFile = dataFromFile.toModelType();
-        TankList typicalTanksTankList = TypicalTanks.getTypicalTankList();
+        TankList typicalTanksTankList = TypicalTanks.getTypicalTankListVersionTwo();
         assertEquals(tankListFromFile, typicalTanksTankList);
     }
 

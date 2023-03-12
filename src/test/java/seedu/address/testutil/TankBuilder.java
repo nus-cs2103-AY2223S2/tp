@@ -7,7 +7,7 @@ import seedu.address.model.tank.TankName;
  * A utility class to help with building Tank objects.
  */
 public class TankBuilder {
-    public static final String DEFAULT_TANK_NAME = "My Tank";
+    public static final String DEFAULT_NAME = "Coral Tank 2";
 
     private TankName tankName;
 
@@ -15,7 +15,7 @@ public class TankBuilder {
      * Creates a {@code TankBuilder} with the default details.
      */
     public TankBuilder() {
-        tankName = new TankName(DEFAULT_TANK_NAME);
+        tankName = new TankName(DEFAULT_NAME);
     }
 
     /**

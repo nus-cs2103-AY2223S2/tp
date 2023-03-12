@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTanks.TANK_A;
 import static seedu.address.testutil.TypicalTanks.TANK_D;
 import static seedu.address.testutil.TypicalTanks.TANK_E;
-import static seedu.address.testutil.TypicalTanks.getTypicalTankList;
+import static seedu.address.testutil.TypicalTanks.getTypicalTankListVersionTwo;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -66,7 +66,7 @@ class JsonTankListStorageTest {
     @Test
     public void readAndSaveTankList_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempTankList.json");
-        TankList original = getTypicalTankList();
+        TankList original = getTypicalTankListVersionTwo();
         JsonTankListStorage jsonTankListStorage = new JsonTankListStorage(filePath);
 
         // Save in new file and read back
