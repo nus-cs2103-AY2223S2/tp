@@ -6,19 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.logic.commands.patientcommands.AddCommand;
+import seedu.address.model.person.Patient;
+import seedu.address.testutil.PatientBuilder;
 
 public class AddCommandTest {
 
@@ -49,8 +41,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Patient alice = new PatientBuilder().withName("Alice").build();
+        Patient bob = new PatientBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

@@ -257,8 +257,6 @@ public class MainWindow extends UiPart<Stage> {
                 getClass().getResource("/stylesheet/LightTheme.css")).toExternalForm());
         helpWindow.getScene().getStylesheets().remove(Objects.requireNonNull(
                 getClass().getResource("/stylesheet/HelpWindowLight.css")).toExternalForm());
-
-
     }
 
     /**

@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.generalcommand.HelpCommand;
 import seedu.address.logic.parser.drugparser.DrugParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.generalparser.GeneralParser;
