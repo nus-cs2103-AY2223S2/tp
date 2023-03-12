@@ -7,6 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Comment {
 
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     /** Represents the comment of a person */
     public final String value;
 
@@ -36,6 +37,19 @@ public class Comment {
         return other == this // short circuit if same object
                 || (other instanceof Comment // instanceof handles nulls
                 && value.equals(((Comment) other).value)); // state check
+    }
+
+    /**
+     * Returns true if a given string is a valid comment.
+     * @param test
+     * @return true if a given string is a valid comment.
+     */
+    public static boolean isValidComment(String test) {
+        if (test.equals("Insert student comment here!")) {
+            return true;
+        }
+
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class Cca {
     /**
      * Constructs an {@code Address}.
      *
-     * @param cca A valid cca.
+     * @param cca A valid cca in String.
      */
     public Cca(String cca) {
         requireNonNull(cca);
@@ -30,6 +30,9 @@ public class Cca {
 
     /**
      * Returns true if a given string is a valid email.
+     *
+     * @param test String to be tested
+     * @return true if the string is a valid cca (alphanumeric value)
      */
     public static boolean isValidCca(String test) {
         if (test.equals("Insert student CCA here!")) {

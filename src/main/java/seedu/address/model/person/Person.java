@@ -88,7 +88,7 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
-
+        //Need to rethink what constitutes same student
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
     }

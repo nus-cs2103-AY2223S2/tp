@@ -49,8 +49,7 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_PHONESTUDENT + "91234567 "
             + PREFIX_CCA + "Captain Ball";
 
-    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New student added:";
 
     private final Student toAdd;
 
