@@ -13,6 +13,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +27,7 @@ class CsvAdaptedPerson {
     private final String email;
     private final String address;
     private final List<CsvAdaptedTag> tagged = new ArrayList<>();
+    private final String remark;
 
     /**
      * Constructs a {@code CsvAdaptedPerson} with the given person details.
@@ -36,9 +38,10 @@ class CsvAdaptedPerson {
         this.phone = tokens[1];
         this.email = tokens[2];
         this.address = tokens[3];
-        for (int i = 4; i < tokens.length; ++i) {
+        for (int i = 4; i < tokens.length - 1; ++i) {
             this.tagged.add(new CsvAdaptedTag(tokens[i]));
         }
+        this.remark = tokens[tokens.length - 1];
     }
 
     /**
@@ -52,6 +55,7 @@ class CsvAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(CsvAdaptedTag::new)
                 .collect(Collectors.toList()));
+        remark = CsvUtil.toCsvField(source.getRemark().value);
     }
 
 
@@ -99,7 +103,10 @@ class CsvAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final Remark modelRemark = remark != null ? new Remark(remark) : null;
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelRemark);
     }
 
     @Override

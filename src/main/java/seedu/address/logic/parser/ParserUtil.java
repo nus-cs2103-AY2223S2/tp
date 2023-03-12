@@ -52,6 +52,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
+     */
+    public static Set<Name> parseNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<Name> nameSet = new HashSet<>();
+        for (String nameName : names) {
+            nameSet.add(parseName(nameName));
+        }
+        return nameSet;
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -64,6 +76,18 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses {@code Collection<String> phones} into a {@code Set<Phone>}.
+     */
+    public static Set<Phone> parsePhones(Collection<String> phones) throws ParseException {
+        requireNonNull(phones);
+        final Set<Phone> phoneSet = new HashSet<>();
+        for (String phoneName : phones) {
+            phoneSet.add(parsePhone(phoneName));
+        }
+        return phoneSet;
     }
 
     /**
@@ -82,6 +106,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> addresses} into a {@code Set<Address>}.
+     */
+    public static Set<Address> parseAddresses(Collection<String> addresses) throws ParseException {
+        requireNonNull(addresses);
+        final Set<Address> addressSet = new HashSet<>();
+        for (String addressName : addresses) {
+            addressSet.add(parseAddress(addressName));
+        }
+        return addressSet;
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -94,6 +130,18 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses {@code Collection<String> emails} into a {@code Set<Email>}.
+     */
+    public static Set<Email> parseEmails(Collection<String> emails) throws ParseException {
+        requireNonNull(emails);
+        final Set<Email> emailSet = new HashSet<>();
+        for (String emailName : emails) {
+            emailSet.add(parseEmail(emailName));
+        }
+        return emailSet;
     }
 
     /**
@@ -133,5 +181,17 @@ public class ParserUtil {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
         return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses {@code Collection<String> remarks} into a {@code Set<Remark>}.
+     */
+    public static Set<Remark> parseRemarks(Collection<String> remarks) throws ParseException {
+        requireNonNull(remarks);
+        final Set<Remark> remarkSet = new HashSet<>();
+        for (String remarkName : remarks) {
+            remarkSet.add(parseRemark(remarkName));
+        }
+        return remarkSet;
     }
 }
