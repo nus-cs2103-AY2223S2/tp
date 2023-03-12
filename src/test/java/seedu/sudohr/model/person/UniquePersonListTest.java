@@ -4,14 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 import static seedu.sudohr.testutil.TypicalPersons.ALICE;
@@ -213,7 +208,7 @@ public class UniquePersonListTest {
 
     // first error accounted is that of duplicate person
     @Test
-    public void add_PersonWithSameIdEmailPhone_throwsDuplicatePhoneNumberException() {
+    public void add_PersonWithSameIdEmailPhone_throwsDuplicatePersonException() {
         uniquePersonList.add(BOB);
         Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)

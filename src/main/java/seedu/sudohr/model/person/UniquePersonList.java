@@ -91,6 +91,14 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
 
+        if (!target.phoneClashes(editedPerson) && sharesPhoneNumber(editedPerson)) {
+            throw new DuplicatePhoneNumberException();
+        }
+
+        if (!target.emailClashes(editedPerson) && sharesEmail(editedPerson)) {
+            throw new DuplicateEmailException();
+        }
+
         internalList.set(index, editedPerson);
     }
 
@@ -118,6 +126,12 @@ public class UniquePersonList implements Iterable<Person> {
         requireAllNonNull(persons);
         if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
+        }
+        if (!phoneNumbersAreUnique(persons)) {
+            throw new DuplicatePhoneNumberException();
+        }
+        if (!emailsAreUnique(persons)) {
+            throw new DuplicateEmailException();
         }
 
         internalList.setAll(persons);
@@ -154,6 +168,34 @@ public class UniquePersonList implements Iterable<Person> {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
                 if (persons.get(i).isSamePerson(persons.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if {@code persons} contains only unique emails.
+     */
+    private boolean emailsAreUnique(List<Person> persons) {
+        for (int i = 0; i < persons.size() - 1; i++) {
+            for (int j = i + 1; j < persons.size(); j++) {
+                if (persons.get(i).emailClashes(persons.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if {@code persons} contains only unique phone numbers.
+     */
+    private boolean phoneNumbersAreUnique(List<Person> persons) {
+        for (int i = 0; i < persons.size() - 1; i++) {
+            for (int j = i + 1; j < persons.size(); j++) {
+                if (persons.get(i).phoneClashes(persons.get(j))) {
                     return false;
                 }
             }

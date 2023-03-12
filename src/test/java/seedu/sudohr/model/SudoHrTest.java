@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 import static seedu.sudohr.testutil.TypicalDepartments.ENGINEERING;
@@ -12,6 +15,7 @@ import static seedu.sudohr.testutil.TypicalDepartments.SALES;
 import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 import static seedu.sudohr.testutil.TypicalPersons.ALICE;
 import static seedu.sudohr.testutil.TypicalPersons.BENSON;
+import static seedu.sudohr.testutil.TypicalPersons.BOB;
 import static seedu.sudohr.testutil.TypicalPersons.CARL;
 import static seedu.sudohr.testutil.TypicalPersons.GEORGE;
 import static seedu.sudohr.testutil.TypicalPersons.HOON;
@@ -29,7 +33,9 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
 import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.person.exceptions.DuplicateEmailException;
 import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
+import seedu.sudohr.model.person.exceptions.DuplicatePhoneNumberException;
 import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.PersonBuilder;
 
@@ -58,14 +64,62 @@ public class SudoHrTest {
 
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        // adding two person with the exact same fields
+        Person editedAlice = new PersonBuilder(ALICE).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Department> newDepartments = Arrays.asList();
         SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
 
         assertThrows(DuplicatePersonException.class, () -> sudoHr.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateId_throwsDuplicatePersonException() {
+        // adding two persons with only id matching
+        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+                .build();
+        List<Person> newPersons = Arrays.asList(BOB, editedAlice);
+        List<Department> newDepartments = Arrays.asList();
+        SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
+
+        assertThrows(DuplicatePersonException.class, () -> sudoHr.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateEmail_throwsDuplicateEmailException() {
+        // adding two persons with only email matching
+        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+                .build();
+        List<Person> newPersons = Arrays.asList(BOB, editedAlice);
+        List<Department> newDepartments = Arrays.asList();
+        SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
+
+        assertThrows(DuplicateEmailException.class, () -> sudoHr.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicatePhoneNumber_throwsDuplicatePhoneNumberException() {
+        // adding two persons with only phone number matching
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .build();
+        List<Person> newPersons = Arrays.asList(BOB, editedAlice);
+        List<Department> newDepartments = Arrays.asList();
+        SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
+
+        assertThrows(DuplicatePhoneNumberException.class, () -> sudoHr.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateEmailPhoneNumber_throwsDuplicatePhoneNumberException() {
+        // adding two persons with only phone number matching
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .build();
+        List<Person> newPersons = Arrays.asList(BOB, editedAlice);
+        List<Department> newDepartments = Arrays.asList();
+        SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
+
+        assertThrows(DuplicatePhoneNumberException.class, () -> sudoHr.resetData(newData));
     }
 
     @Test
@@ -85,11 +139,79 @@ public class SudoHrTest {
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        sudoHr.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasPerson_personWithSameIdInAddressBook_returnsTrue() {
+        sudoHr.addPerson(BOB);
+        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertTrue(sudoHr.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void hasClashingEmail_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> sudoHr.hasClashingEmail(null));
+    }
+
+    @Test
+    public void hasClashingEmail_personNotInAddressBook_returnsFalse() {
+        assertFalse(sudoHr.hasClashingEmail(ALICE));
+    }
+
+    @Test
+    public void hasClashingEmail_personWithSameIdInAddressBook_returnsFalse() {
+        sudoHr.addPerson(BOB);
+        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+                .build();
+        assertFalse(sudoHr.hasClashingEmail(editedAlice));
+    }
+
+    @Test
+    public void hasClashingEmail_personWithDifferentIdInAddressBook_returnsTrue() {
+        sudoHr.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+                .build();
+        assertTrue(sudoHr.hasClashingEmail(editedAlice));
+    }
+
+    @Test
+    public void hasClashingEmail_personWithSameEmailOnlyInAddressBook_returnsTrue() {
+        sudoHr.addPerson(BOB);
+        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+                .build();
+        assertTrue(sudoHr.hasClashingEmail(editedAlice));
+    }
+
+    @Test
+    public void hasClashingPhoneNumber_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> sudoHr.hasClashingPhoneNumber(null));
+    }
+
+    @Test
+    public void hasClashingPhoneNumber_personNotInAddressBook_returnsFalse() {
+        assertFalse(sudoHr.hasClashingPhoneNumber(ALICE));
+    }
+
+    @Test
+    public void hasClashingPhoneNumber_personWithSameIdInAddressBook_returnsFalse() {
+        sudoHr.addPerson(BOB);
+        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+                .build();
+        assertFalse(sudoHr.hasClashingPhoneNumber(editedAlice));
+    }
+
+    @Test
+    public void hasClashingPhoneNumber_personWithDifferentIdInAddressBook_returnsTrue() {
+        sudoHr.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+                .build();
+        assertTrue(sudoHr.hasClashingPhoneNumber(editedAlice));
+    }
+
+    @Test
+    public void hasClashingPhoneNumber_personWithSamePhoneNumberOnlyInAddressBook_returnsTrue() {
+        sudoHr.addPerson(BOB);
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .build();
+        assertTrue(sudoHr.hasClashingPhoneNumber(editedAlice));
     }
 
     @Test
