@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.jobs.DeliveryJob;
-import seedu.address.model.jobs.Earning;
 
 /**
  * JsonAdaptedDeliveryJob
@@ -14,7 +13,7 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
     private final String jobId;
     private final JsonAdaptedPerson recepient;
     private final String slot;
-    private final Earning earning;
+    private final String earning;
     private final boolean isDelivered;
 
     /**
@@ -29,13 +28,13 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
         @JsonProperty("jobid") String jobId,
         @JsonProperty("recepient") JsonAdaptedPerson recepient,
         @JsonProperty("slot") String deliverySlot,
-        @JsonProperty("earning") double earning,
+        @JsonProperty("earning") String earning,
         @JsonProperty("isDelivered") boolean isDelivered
     ) {
         this.jobId = jobId;
         this.recepient = recepient;
         this.slot = deliverySlot;
-        this.earning = new Earning(Double.toString(earning));
+        this.earning = earning;
         this.isDelivered = isDelivered;
     }
 
@@ -48,7 +47,7 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
         this.jobId = source.getJobId();
         this.recepient = new JsonAdaptedPerson(source.getRecepient());
         this.slot = source.getDeliverSlot();
-        this.earning = source.getEarning();
+        this.earning = source.getEarning().value;
         this.isDelivered = source.getDeliveredStatus();
     }
 

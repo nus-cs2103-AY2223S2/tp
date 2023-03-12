@@ -26,10 +26,6 @@ public class Earning {
         value = earning;
     }
 
-    public double value() {
-        return Double.parseDouble(value);
-    }
-
     /**
      * Returns true if a given string is a valid earning.
      */

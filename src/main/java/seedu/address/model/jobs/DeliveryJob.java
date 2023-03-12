@@ -25,7 +25,7 @@ public class DeliveryJob {
      * @param packages
      * @param earning
      */
-    public DeliveryJob(Person recepient, String deliverSlot, Earning earning) {
+    public DeliveryJob(Person recepient, String deliverSlot, String earning) {
         this(UUID.randomUUID().toString(), recepient, deliverSlot, earning, false);
     }
 
@@ -38,11 +38,11 @@ public class DeliveryJob {
      * @param packages
      * @param earning
      */
-    public DeliveryJob(String jobId, Person recepient, String deliverSlot, Earning earning, boolean isDelivered) {
+    public DeliveryJob(String jobId, Person recepient, String deliverSlot, String earning, boolean isDelivered) {
         this.jobId = jobId;
         this.recepient = recepient;
         this.deliverSlot = deliverSlot;
-        this.earning = earning;
+        this.earning = new Earning(earning);
         this.isDelivered = isDelivered;
     }
 

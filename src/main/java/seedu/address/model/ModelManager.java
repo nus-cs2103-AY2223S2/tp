@@ -30,22 +30,6 @@ public class ModelManager implements Model {
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
-     */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with address book: " + addressBook + ", user prefs " + userPrefs);
-
-        this.addressBook = new AddressBook(addressBook);
-        this.deliveryJobSystem = null;
-        this.userPrefs = new UserPrefs(userPrefs);
-        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredDeliveryJobs = null;
-        this.reminderList = null;
-    }
-
-    /**
-     * ModelManager
      *
      * @param addressBook
      * @param deliveryJobSystem
@@ -69,8 +53,7 @@ public class ModelManager implements Model {
      * ModelManager.
      */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
-        // this(new AddressBook(), new DeliveryJobSystem(), new UserPrefs());
+        this(new AddressBook(), new DeliveryJobSystem(), new UserPrefs());
     }
 
     // UserPrefs ===================================================================
