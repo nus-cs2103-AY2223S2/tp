@@ -21,8 +21,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
+import seedu.address.model.video.Video;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -161,12 +165,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasModule(Module module) {
+        public boolean hasModule(ReadOnlyModule module) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteModule(Module target) {
+        public void deleteModule(ReadOnlyModule target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -176,17 +180,57 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setModule(Module target, Module editedModule) {
+        public void setModule(ReadOnlyModule target, Module editedModule) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Module> getFilteredModuleList() {
+        public boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredModuleList(Predicate<Module> predicate) {
+        public void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLecture(ReadOnlyModule module, Lecture lecture) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteVideo(ReadOnlyLecture lecture, Video video) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addVideo(ReadOnlyLecture lecture, Video video) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<? extends ReadOnlyModule> getFilteredModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
