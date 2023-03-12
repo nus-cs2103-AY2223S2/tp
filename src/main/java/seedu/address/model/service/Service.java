@@ -3,6 +3,7 @@ package seedu.address.model.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.model.Vehicle;
 import seedu.address.model.entity.person.Technician;
@@ -48,6 +49,14 @@ public class Service {
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     *
+     * @return Entry date of service
+     */
+    public LocalDate getEntryDate() {
+        return this.entryDate;
     }
 
     /**
@@ -146,7 +155,7 @@ public class Service {
      *
      * @return the list of technicians assigned to this task.
      */
-    public List<Technician> isAssignedTo() {
+    public List<Technician> getAssignedTechnicians() {
         return assignedTechnicians;
     }
 
@@ -184,5 +193,40 @@ public class Service {
      */
     public void setComplete(boolean complete) {
         isComplete = complete;
+    }
+
+    @Override
+    public String toString() {
+        String newline = System.lineSeparator();
+        String parts = this.getRequiredParts().stream()
+                .map(Object::toString)
+                .reduce("", (a, b) -> a + "\n"  + b);
+        if (parts.length() > 0) {
+            parts = parts.substring(1);
+        }
+        String technicians = this.getAssignedTechnicians().stream()
+                .map(Objects::toString)
+                .reduce("", (a, b) -> a + "\n" + b);
+        if (technicians.length() > 0) {
+            technicians = technicians.substring(1);
+        }
+        String status = this.isComplete() ? "COMPLETE" : "INCOMPLETE";
+        String formatter = "<<Service>>" + newline
+                + "ID: %d" + newline
+                + "Desc: %s" + newline
+                + "Entry Date: %s" + newline
+                + "Est Finish Date: %s" + newline
+                + "Parts Required: %n %s" + newline
+                + "Assigned Technicians: %n %s" + newline
+                + "%s";
+
+        return String.format(formatter,
+                this.getId(),
+                this.getDescription(),
+                this.getEntryDate(),
+                this.getEstimatedFinishDate(),
+                parts,
+                technicians,
+                status);
     }
 }
