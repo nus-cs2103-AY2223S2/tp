@@ -24,10 +24,10 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Employee: %1$s";
 
 
-    private final EmployeeId employee_Id;
+    private final EmployeeId employeeId;
 
     public DeleteCommand(EmployeeId employeeId) {
-        this.employee_Id = employeeId;
+        this.employeeId = employeeId;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
         Person personToDelete;
 
         for (Person person : lastShownList) {
-            if (person.getEmployeeId().equals(employee_Id)) {
+            if (person.getEmployeeId().equals(employeeId)) {
                 model.deletePerson(person);
                 personToDelete = person;
                 return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
@@ -52,6 +52,6 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && employee_Id.equals(((DeleteCommand) other).employee_Id)); // state check
+                && employeeId.equals(((DeleteCommand) other).employeeId)); // state check
     }
 }

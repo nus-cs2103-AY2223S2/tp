@@ -3,7 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.EmployeeId;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -19,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_DEPARTMENT = "Marketing";
 
     private Name name;
+    private EmployeeId employeeId;
     private Phone phone;
     private Email email;
     private Address address;
@@ -30,6 +37,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        employeeId = new EmployeeId();
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -42,6 +50,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        employeeId = personToCopy.getEmployeeId();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
@@ -49,11 +58,24 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
     }
 
+    public static void setEmployeeId(String id) {
+        EmployeeId.setCount(Integer.parseInt(id));
+    }
+
+
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EmployeeId} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmployeeId(String employeeId) {
+        this.employeeId = new EmployeeId(employeeId);
         return this;
     }
 
@@ -98,7 +120,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, department, tags);
+        return new Person(name, employeeId, phone, email, address, department, tags);
     }
 
 }
