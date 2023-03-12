@@ -12,6 +12,7 @@ import seedu.address.model.service.Appointment;
 import seedu.address.model.service.Part;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
+import seedu.address.model.service.exception.PartNotFoundException;
 
 /**
  * A Shop is an entity that usually buy sells things.
@@ -19,11 +20,13 @@ import seedu.address.model.service.Service;
 public abstract class Shop extends Entity {
     private final List<Customer> customers;
     private final List<Appointment> appointments;
+    private final List<Vehicle> vehicles;
     private final PartMap partMap;
 
     public Shop() {
         this.customers = new ArrayList<>();
         this.appointments = new ArrayList<>();
+        this.vehicles = new ArrayList<>();
         this.partMap = new PartMap();
     }
 
@@ -41,6 +44,13 @@ public abstract class Shop extends Entity {
      */
     public List<Customer> getCustomers() {
         return this.customers;
+    }
+
+    /**
+     * @return List of vehicles in the shop
+     */
+    public List<Vehicle> getVehicles() {
+        return this.vehicles;
     }
 
     /**
@@ -72,6 +82,7 @@ public abstract class Shop extends Entity {
         for (var customer : customers) {
             if (customer.getId() == customerId) {
                 customer.addVehicle(vehicle);
+                this.getVehicles().add(vehicle);
                 return;
             }
         }
@@ -81,28 +92,17 @@ public abstract class Shop extends Entity {
     /**
      * Adds service to a vehicle
      *
-     * @param customerId Id of vehicle owner
-     * @param vehicleId  Id of vehicle
-     * @param service    Service to be added to vehicle
-     * @throws PersonNotFoundException  If customer not registered with shop
+     * @param vehicleId Id of vehicle
+     * @param service   Service to be added to vehicle
      * @throws VehicleNotFoundException if customer does not have specific vehicle
      */
-    public void addService(int customerId, int vehicleId, Service service)
-            throws VehicleNotFoundException, PersonNotFoundException {
-        for (var customer : this.getCustomers()) {
-            if (customer.getId() != customerId) {
-                continue;
-            }
-            for (var vehicle : customer.getVehicles()) {
-                if (vehicle.getId() != vehicleId) {
-                    continue;
-                }
+    public void addService(int vehicleId, Service service) throws VehicleNotFoundException {
+        for (var vehicle : this.getVehicles()) {
+            if (vehicle.getId() == vehicleId) {
                 vehicle.addService(service);
-                return;
             }
-            throw new VehicleNotFoundException();
         }
-        throw new PersonNotFoundException();
+        throw new VehicleNotFoundException();
     }
 
     /**
@@ -111,7 +111,17 @@ public abstract class Shop extends Entity {
      * @param part Part to be added
      */
     public void addPart(Part part) {
-        this.partMap.addPart(part.getName(), part);
+        this.getPartMap().addPart(part.getName(), part);
+    }
+
+    /**
+     * Increases part stock
+     *
+     * @param partName Name of part
+     * @param amt Amount to increase by
+     */
+    public void addPartStock(String partName, int amt) throws PartNotFoundException {
+        this.partMap.getPart(partName).increaseStock(amt);
     }
 
     /**

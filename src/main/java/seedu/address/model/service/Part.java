@@ -78,6 +78,14 @@ public class Part {
     }
 
     /**
+     * Increase stock amt of part by a certain quantity
+     * @param quantity Amount to add
+     */
+    public void increaseStock(int quantity) {
+        setStockLeft(getStockLeft() + quantity);
+    }
+
+    /**
      * This method decrements the quantity of this part.
      *
      * @throws InsufficientPartException if not enough parts
