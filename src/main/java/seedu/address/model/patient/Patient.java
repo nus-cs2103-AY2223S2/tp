@@ -16,6 +16,7 @@ public class Patient {
     private final Name name;
 
     // Data fields
+    private Status status = Status.GRAY;
 
     /**
      * Every field must be present and not null.
@@ -26,12 +27,28 @@ public class Patient {
         this.name = name;
     }
 
+    public Patient(NRIC nric, Name name, Status status) {
+        requireAllNonNull(nric, name, status);
+        this.nric = nric;
+        this.name = name;
+        this.status = status;
+    }
+
     public NRIC getNric() {
         return nric;
     }
 
     public Name getName() {
         return name;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status newStatus) {
+        requireAllNonNull(status);
+        status = newStatus;
     }
 
     /**
@@ -64,13 +81,14 @@ public class Patient {
 
         Patient otherPatient = (Patient) other;
         return otherPatient.getNric().equals(getNric())
-                && otherPatient.getName().equals(getName());
+                && otherPatient.getName().equals(getName())
+                && otherPatient.getStatus().equals(getStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(nric, name);
+        return Objects.hash(nric, name, status);
     }
 
     @Override
@@ -78,9 +96,10 @@ public class Patient {
         final StringBuilder builder = new StringBuilder();
         builder.append(getNric())
                 .append("; Name: ")
-                .append(getName());
+                .append(getName())
+                .append("; Status: ")
+                .append(getStatus());
 
         return builder.toString();
     }
-
 }
