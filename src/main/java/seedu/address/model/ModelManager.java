@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -205,7 +206,8 @@ public class ModelManager implements Model {
     public void reviewDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         Deck deckToReview = filteredDecks.get(zeroBasesIdx);
-        currentReview = new Review(deckToReview);
+        List<Card> cardList = null; //TODO add predicate to retrieve list of cards
+        currentReview = new Review(deckToReview, cardList);
     };
 
     @Override
