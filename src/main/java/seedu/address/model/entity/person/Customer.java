@@ -1,6 +1,7 @@
 package seedu.address.model.entity.person;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.Vehicle;
@@ -13,7 +14,7 @@ public class Customer extends Person {
 
     private static int incrementalId = 0;
     private int id;
-    private ArrayList<Vehicle> vehicles;
+    private List<Vehicle> vehicles;
     // Service History
 
     /**
@@ -21,6 +22,7 @@ public class Customer extends Person {
      */
     public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
+        this.vehicles = new ArrayList<>();
         id = ++incrementalId;
     }
 
@@ -36,7 +38,7 @@ public class Customer extends Person {
      * This method returns a list of vehicles which the Customer has.
      * @return a list of vehicles this customer has.
      */
-    public ArrayList<Vehicle> getVehicles() {
+    public List<Vehicle> getVehicles() {
         return vehicles;
     }
 
@@ -54,6 +56,18 @@ public class Customer extends Person {
      */
     public void removeVehicle(Vehicle vehicle) {
         this.vehicles.remove(vehicle);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof Customer) {
+            Customer otherCustomer = (Customer) other;
+            return this.getId() == otherCustomer.getId();
+        }
+        return false;
     }
 
 }

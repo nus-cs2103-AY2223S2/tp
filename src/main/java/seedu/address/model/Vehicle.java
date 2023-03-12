@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.model.service.Service;
 
@@ -15,7 +16,7 @@ public class Vehicle {
     private String color;
     private String brand;
     private VehicleType type;
-    private ArrayList<Service> services;
+    private List<Service> services;
 
     /**
      * This enum allows us to specify vehicle type without creating respective classes.
@@ -37,6 +38,7 @@ public class Vehicle {
         this.color = color;
         this.brand = brand;
         this.type = type;
+        this.services = new ArrayList<>();
     }
 
     /**
@@ -127,9 +129,9 @@ public class Vehicle {
     /**
      * This method returns the services that is needed to be done to this vehicle.
      *
-     * @return
+     * @return List of services
      */
-    public ArrayList<Service> getServices() {
+    public List<Service> getServices() {
         return services;
     }
 
