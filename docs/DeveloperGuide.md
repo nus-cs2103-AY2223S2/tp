@@ -285,22 +285,22 @@ Our application:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                                 | I want to …​                                                                         | So that I can…​                                                          |
-|----------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| `* * *`  | new user                                                                | see instructions on how to use the app                                               | so that I can refer to the instructions when learning how to use the app |
-| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                   | easily find them in a single place                                       |
-| `* * *`  | a home bakery owner                                                     | easily add orders into my _order_ list                                               | efficiently keep track of my orders                                      |
-| `* * *`  | a home bakery owner who has lots of deadlines to meet                   | add _tasks_, such as ordering ingredients                                            | so that I can keep track of my to-do list                                |
-| `* * *`  | a familiar user                                                         | delete existing _supplier_ information                                               | ensure that the supplier contacts keyed in are correct                   |
-| `* * *`  | a familiar user                                                         | delete orders from my order list                                                     | clear my order list of orders that are not required anymore              |
-| `* * *`  | a familiar user                                                         | delete tasks from my task list                                                       | remove tasks that I no longer need to complete                           |
-| `* *`    | an expert user                                                          | easily update supplier information                                                   | keep my records accurate and up-to-date                                  |
-| `* *`    | an expert user                                                          | edit existing information about orders                                               | keep my order details accurate and up-to-date                            |
-| `* *`    | an expert user                                                          | edit existing task information                                                       | easily correct any wrong information keyed in  |
-| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                           | have a clearer view of ‘who supplies what’ at a glance |
-| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details | have a record of everything  |
-| `* *`    | a business owner on a time crunch                                       | mark my tasks as Done or Not Done (Task status)                                      | keep track of my deadlines and plan my time well  |
-| `* *`    | a forgetful business owner                                              | look for supplier information using keywords like name, phone number or email        | quickly obtain the details of the contact when I forget them |
+| Priority | As a / an …​                                                         | I want to …​                                                                      | So that I can…​                                           |
+|----------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| `* * *`  | new user                                                                | see instructions on how to use the app                                               | refer to the instructions when learning how to use the app   |
+| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                   | easily find them in a single place                           |
+| `* * *`  | home bakery owner                                                       | add orders into my _order_ list                                                      | efficiently keep track of my orders                          |
+| `* * *`  | home bakery owner who has lots of deadlines to meet                     | add _tasks_, such as ordering ingredients                                            | keep track of my to-do list                                  |
+| `* * *`  | familiar user                                                           | delete existing _supplier_ information                                               | ensure that the supplier contacts keyed in are correct       |
+| `* * *`  | familiar user                                                           | delete existing orders from my order list                                            | clear my order list of orders that are not required anymore  |
+| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                              | remove tasks that I no longer need to complete               |
+| `* *`    | expert user                                                             | edit existing supplier information                                                   | keep my records accurate and up-to-date                      |
+| `* *`    | expert user                                                             | edit existing information about orders                                               | keep my order details accurate and up-to-date                |
+| `* *`    | expert user                                                             | edit existing task information                                                       | easily correct any wrong information keyed in                |
+| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                           | have a clearer view of ‘who supplies what’ at a glance       |
+| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details | have a record of everything                                  |
+| `* *`    | business owner on a time crunch                                         | mark tasks as Done or Not Done (Task status)                                         | keep track of my deadlines and plan my time well             |
+| `* *`    | forgetful business owner                                                | look for supplier information using keywords like name, phone number or email        | quickly obtain the details of the contact when I forget them |
 
 *{More to be added}*
 
@@ -309,65 +309,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Home bakery owner`)
 
 
-**Use case: Add a new order**
+**Use case: Add a new task**
 
 MSS
 
-1. Home bakery owner requests to add a new order
-2. Trackr displays a input bar for entering the details of the new order
-3. Home bakery owner enters the required information
-5. Trackr saves the new order to the system
+1. Home bakery owner requests to add a new task.
+2. Home bakery owner enters an add task command with the required information.
+3. Trackr saves the new task to the system.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The Home bakery owner does not enter all required information.
-* 3a1. Trackr shows an error message.
+* 2a. The Home bakery owner does not enter all required information.
+  Trackr shows an error message.
 
-  Use case resumes at step 2.
-
-  Use case ends without adding any order.
+  Use case ends without adding any task.
 
 **Use case: Add a new supplier**
 
 MSS
 
-1. Home bakery owner requests to add a new supplier
-2. Trackr displays a input bar for entering the details of the new supplier
-3. Home bakery owner enters the required information
-5. Trackr saves the new supplier to the system
+1. Home bakery owner requests to add a new supplier information.
+2. Home bakery owner enters an add supplier command with the required information.
+3. Trackr saves the new supplier to the system.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The Home bakery owner does not enter all required information.
-* 3a1. Trackr shows an error message.
-
-  Use case resumes at step 2.
+* 2a. The Home bakery owner does not enter all required information.
+Trackr shows an error message.
 
   Use case ends without adding any supplier.
 
-**Use case: Add a new task**
+**Use case: Add a new order**
 
 MSS
 
-1. Home bakery owner requests to add a new task
-2. Trackr displays a input bar for entering the details of the new task
-3. Home bakery owner enters the required information
-5. Trackr saves the new task to the system
+1. Home bakery owner requests to add a new order. 
+2. Home bakery owner enters an add order command with the required information. 
+3. Trackr saves the new order to the system.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 3a. The Home bakery owner does not enter all required information.
-* 3a1. Trackr shows an error message.
+* 2a. The Home bakery owner does not enter all required information.
+Trackr shows an error message.
 
-  Use case resumes at step 2.
-
-  Use case ends without adding any task.
+    Use case ends without adding any order.
 
 
 **Use case: Delete an order**
@@ -441,34 +432,34 @@ MSS
 
 **Use case: Edit an order**
 
-**MSS**
+MSS
 
 1. Home bakery owner requests to list orders
 2. Trackr shows a list of orders
-3. Home bakery owner selects a specific order to edit
-4. Trackr displays the details of the selected order
-5. Home bakery owner makes changes to the order details
-6. Trackr updates the order details with the new information
+3. Home bakery owner enters an edit order command with the index of the order and the updated information 
+4. Trackr updates the order details with the new information
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
+Use case ends.
+* 3a. The Home bakery owner enters an invalid index.
+Trackr displays an error message.
+    
+    Use case ends.
 
-  Use case ends.
-* 3a. The Home bakery owner selects an invalid order.
+
 
 **Use case: Edit a supplier information**
 
-**MSS**
+MSS
 
-1. Home bakery owner requests to list supplier
-2. Trackr shows a list of suppliers
-3. Home bakery owner selects a specific supplier information to edit
-4. Trackr displays the details of the selected supplier
-5. Home bakery owner makes changes to the supplier details
-6. Trackr updates the supplier details with the new information
+1. Home bakery owner requests to list suppliers. 
+2. Trackr shows a list of suppliers. 
+3. Home bakery owner enters an edit supplier command with the index of the supplier and the updated information. 
+4. Trackr updates the supplier details with the new information.
 
    Use case ends.
 
@@ -476,25 +467,20 @@ MSS
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
+* 3a. The Home bakery owner enters an invalid index.
+Trackr displays an error message.
 
-* 3a. The Home bakery owner selects an invalid supplier.
-
-    * 3a1. Trackr shows an error message.
-
-  Use case resumes at step 2.
-
+    Use case ends.
 
 **Use case: Edit a task information**
 
-**MSS**
+MSS
 
-1. Home bakery owner requests to list tasks
-2. Trackr shows a list of tasks
-3. Home bakery owner selects a specific task information to edit
-4. Trackr displays the details of the selected task
-5. Home bakery owner makes changes to the task details
-6. Trackr updates the tasks details with the new information
+1. Home bakery owner requests to list tasks.
+2. Trackr shows a list of tasks.
+3. Home bakery owner enters an edit task command with the index of the task and the updated information.
+4. Trackr updates the task details with the new information.
 
    Use case ends.
 
@@ -504,77 +490,103 @@ MSS
 
   Use case ends.
 
-* 3a. The Home bakery owner selects an invalid task.
+* 3a. The Home bakery owner enters an invalid index.
+  Trackr displays an error message.
 
-    * 3a1. Trackr shows an error message.
-
-  Use case resumes at step 2.
+  Use case ends.
 
 
-**Use case: Find an order**
+**Use case: Finding a task**
 
 MSS
 
-1. Home bakery owner requests to search for an order
-2. Trackr displays a search bar
-3. Home bakery owner enters search criteria
-4. Home bakery owner submits the search
-5. Trackr displays a list of orders that match the search criteria
+1. Home bakery owner requests to find an order.
+2. Home bakery owner enters the find_order command with the desired search criteria.
+3. Trackr searches for orders that match the given criteria.
+4. Trackr displays a list of orders that match the criteria.
 
    Use case ends.
 
 **Extensions**
 
-* 5a. No orders match the search criteria in the correct format.
-* 5a1. Trackr shows a message indicating that no orders were found.
+* 2a. The Home bakery owner does not enter any search criteria.
+  Trackr displays an error message.
+  Use case ends.
+* 4a. No order matches the given search criteria.
+  Trackr displays a message indicating no matching order is found.
 
   Use case ends.
 
-**Use case: Find a supplier**
+
+**Use case: Finding a supplier**
 
 MSS
 
-1. Home bakery owner requests to search for a supplier
-2. Trackr displays a search bar
-3. Home bakery owner enters search criteria in the correct format.
-4. Home bakery owner submits the search
-5. Trackr displays a list of suppliers that match the search criteria
+1. Home bakery owner requests to find a supplier.
+2. Home bakery owner enters the find_supplier command with the desired search criteria.
+3. Trackr searches for suppliers that match the given criteria.
+4. Trackr displays a list of suppliers that match the criteria.
 
    Use case ends.
 
 **Extensions**
 
-* 5a. No suppliers match the search criteria in the correct format.
-* 5a1. Trackr shows a message indicating that no suppliers were found.
+* 2a. The Home bakery owner does not enter any search criteria.
+  Trackr displays an error message.
+
+  Use case ends.
+* 4a. No supplier matches the given search criteria.
+  Trackr displays a message indicating no matching supplier is found.
 
   Use case ends.
 
-**Use case: Find a task**
+**Use case: Finding a task**
 
 MSS
 
-1. Home bakery owner requests to search for a task
-2. Trackr displays a search bar
-3. Home bakery owner enters search criteria in the correct format.
-4. Home bakery owner submits the search
-5. Trackr displays a list of tasks that match the search criteria
+1. Home bakery owner requests to find a task. 
+2. Home bakery owner enters the find_task command with the desired search criteria. 
+3. Trackr searches for tasks that match the given criteria. 
+4. Trackr displays a list of tasks that match the criteria. 
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 5a. No tasks match the search criteria.
-* 5a1. Trackr shows a message indicating that no tasks were found.
+* 2a. The Home bakery owner does not enter any search criteria.
+Trackr displays an error message.
+Use case ends.
+* 4a. No task matches the given search criteria.
+Trackr displays a message indicating no matching task is found.
 
   Use case ends.
+
+**Use case: Switch to another tab**
+
+MSS
+
+1. Home bakery owner requests to switch to another tab. 
+2. Home bakery owner enters the tab command with the target tab. 
+3. Trackr switches to the target tab.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The Home bakery owner enters an invalid target tab.
+Trackr displays an error message. 
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should be able to hold up to 1000 supplier contacts without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 

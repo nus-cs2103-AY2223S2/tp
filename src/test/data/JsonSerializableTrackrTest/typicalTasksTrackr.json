@@ -1,0 +1,13 @@
+{
+  "_comment": "Trackr save file which contains the same Task values as in TypicalTasks#getTypicalTaskList()",
+  "persons" : [ ],
+  "tasks": [ {
+    "taskName": "Sort Inventory",
+    "taskDeadline": "01/01/2024",
+    "taskStatus": "N"
+  }, {
+    "taskName": "Buy 5kg of Eggs",
+    "taskDeadline": "11/10/2023",
+    "taskStatus": "D"
+  } ]
+}
