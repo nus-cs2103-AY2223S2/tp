@@ -1,9 +1,12 @@
 package seedu.library.ui;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -16,6 +19,7 @@ import seedu.library.logic.Logic;
 import seedu.library.logic.commands.CommandResult;
 import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.logic.parser.exceptions.ParseException;
+import java.time.LocalTime;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -49,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Label date;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -105,7 +112,11 @@ public class MainWindow extends UiPart<Stage> {
             }
         });
     }
-
+    void setDate(){
+        LocalDate today = LocalDate.now();
+        DayOfWeek day = today.getDayOfWeek();
+        date.setText(day.name());
+    }
     /**
      * Fills up all the placeholders of this window.
      */
