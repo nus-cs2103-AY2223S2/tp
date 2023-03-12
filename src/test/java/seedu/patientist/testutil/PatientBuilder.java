@@ -9,6 +9,9 @@ import seedu.patientist.model.person.patient.PatientIdNumber;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.util.SampleDataUtil;
 
+/**
+ * A utility class to help with building Patient objects
+ */
 public class PatientBuilder extends PersonBuilder {
 
     public static final String DEFAULT_STATUS =
@@ -22,6 +25,9 @@ public class PatientBuilder extends PersonBuilder {
     private PatientStatusDetails status;
     private PatientIdNumber id;
 
+    /**
+     * Creates a Patient from default details, with defaults specified here and in PersonBuilder
+     */
     public PatientBuilder() {
         super();
         this.status = new PatientStatusDetails(DEFAULT_STATUS);

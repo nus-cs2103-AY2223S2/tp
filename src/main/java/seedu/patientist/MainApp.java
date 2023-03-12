@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty patientist book will be used instead if errors occur when reading {@code storage}'s patientist book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPatientist> PatientistOptional;
+        Optional<ReadOnlyPatientist> patientistOptional;
         ReadOnlyPatientist initialData;
         try {
-            PatientistOptional = storage.readPatientist();
-            if (!PatientistOptional.isPresent()) {
+            patientistOptional = storage.readPatientist();
+            if (!patientistOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Patientist");
             }
-            initialData = PatientistOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = patientistOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Patientist");
             initialData = new Patientist();

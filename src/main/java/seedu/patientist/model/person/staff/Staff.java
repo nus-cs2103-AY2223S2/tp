@@ -1,5 +1,7 @@
 package seedu.patientist.model.person.staff;
 
+import java.util.Set;
+
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.Name;
@@ -7,8 +9,11 @@ import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.tag.Tag;
 
-import java.util.Set;
-
+/**
+ * Represents a Staff object in Patientist
+ * Guarantees: superclass guarantees
+ * TODO: Implement this
+ */
 public class Staff extends Person {
     /**
      * Every field must be present and not null.

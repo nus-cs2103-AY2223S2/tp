@@ -1,5 +1,8 @@
 package seedu.patientist.model.person.patient;
 
+/**
+ * Represents the status details of a patient. This is where the treatment progress and notes are to be recorded.
+ */
 public class PatientStatusDetails {
     private String details;
 
