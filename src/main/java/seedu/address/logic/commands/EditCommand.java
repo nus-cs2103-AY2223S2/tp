@@ -89,7 +89,9 @@ public class EditCommand extends Command {
         // updatedEventTag contains placeholder if "evt/" is not called
         // updatedEventTag contains Set of Index if "evt/Index" is called
         Set<EventTag> originalTagSet = editedPerson.getTags();
-        editedPerson = handleTagChange(updatedEventTags, originalTagSet, editedPerson, lastShownEventList);
+        if (!updatedEventTags.equals(placeHolder)) {
+            editedPerson = handleTagChange(updatedEventTags, originalTagSet, editedPerson, lastShownEventList);
+        }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -104,7 +106,7 @@ public class EditCommand extends Command {
      */
     public Person handleTagChange(Set<Index> updatedEventTags, Set<EventTag> originalTagSet, Person editedPerson,
                                 List<Event> lastShownEventList) throws CommandException {
-        if (!updatedEventTags.isEmpty() && !updatedEventTags.contains(Index.fromZeroBased(0))) {
+        if (!updatedEventTags.isEmpty()) {
             for (Index eventIndex: updatedEventTags) {
                 if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
                     throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
@@ -115,7 +117,7 @@ public class EditCommand extends Command {
             Person personWithEvent = editedPerson;
             editedPerson = new Person(personWithEvent.getName(), personWithEvent.getPhone(), personWithEvent.getEmail(),
                     personWithEvent.getAddress(), originalTagSet);
-        } else if (updatedEventTags.isEmpty()) {
+        } else {
             Person personToClearTags = editedPerson;
             editedPerson = new Person(personToClearTags.getName(), personToClearTags.getPhone(),
                     personToClearTags.getEmail(), personToClearTags.getAddress(), new HashSet<>());
