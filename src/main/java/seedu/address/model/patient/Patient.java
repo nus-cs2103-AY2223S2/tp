@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Patient {
 
     // Identity fields
+    private final NRIC nric;
     private final Name name;
 
     // Data fields
@@ -19,9 +20,14 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name) {
-        requireAllNonNull(name);
+    public Patient(NRIC nric, Name name) {
+        requireAllNonNull(nric, name);
+        this.nric = nric;
         this.name = name;
+    }
+
+    public NRIC getNric() {
+        return nric;
     }
 
     public Name getName() {
@@ -29,7 +35,7 @@ public class Patient {
     }
 
     /**
-     * Returns true if both patients have the same name.
+     * Returns true if both patients have the same nric and name.
      * This defines a weaker notion of equality between two patients.
      */
     public boolean isSamePatient(Patient otherPatient) {
@@ -38,6 +44,7 @@ public class Patient {
         }
 
         return otherPatient != null
+                && otherPatient.getNric().equals(getNric())
                 && otherPatient.getName().equals(getName());
     }
 
@@ -56,19 +63,22 @@ public class Patient {
         }
 
         Patient otherPatient = (Patient) other;
-        return otherPatient.getName().equals(getName());
+        return otherPatient.getNric().equals(getNric())
+                && otherPatient.getName().equals(getName());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name);
+        return Objects.hash(nric, name);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
+        builder.append(getNric())
+                .append("; Name: ")
+                .append(getName());
 
         return builder.toString();
     }
