@@ -99,7 +99,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasDoctor(Doctor doctor) {
         requireNonNull(doctor);
-        return addressBook.hasPerson(doctor);
+        return addressBook.hasDoctor(doctor);
     }
 
     @Override
@@ -116,7 +116,7 @@ public class ModelManager implements Model {
     @Override
     public void addDoctor(Doctor doctor) {
         addressBook.addDoctor(doctor);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
     }
 
     @Override

@@ -42,7 +42,7 @@ public class EditDoctorCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_SPECIALTY + "SPECIALTY"
+            + PREFIX_SPECIALTY + "SPECIALTY "
             + PREFIX_YOE + "YEARS OF EXPERIENCE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "

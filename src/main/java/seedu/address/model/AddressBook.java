@@ -55,7 +55,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the doctor list with {@code doctors}.
      * {@code doctors} must not contain duplicate doctors.
      */
-    public void setDoctors(List<Doctor> persons) {
+    public void setDoctors(List<Doctor> doctors) {
         this.doctors.setDoctors(doctors);
     }
 
@@ -84,7 +84,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasDoctor(Doctor doctor) {
         requireNonNull(doctor);
-        return persons.contains(doctor);
+        return doctors.contains(doctor);
     }
 
     /**
@@ -101,7 +101,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param doctor
      */
     public void addDoctor(Doctor doctor) {
-        persons.add(doctor);
+        doctors.add(doctor);
     }
 
     /**
@@ -163,6 +163,4 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
-
-
 }
