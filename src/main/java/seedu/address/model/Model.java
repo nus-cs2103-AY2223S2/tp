@@ -61,7 +61,7 @@ public interface Model {
      * Deletes the given recipe.
      * The recipe must exist in the address book.
      */
-    void deleteRECIPE(Recipe target);
+    void deleteRecipe(Recipe target);
 
     /**
      * Adds the given recipe.
