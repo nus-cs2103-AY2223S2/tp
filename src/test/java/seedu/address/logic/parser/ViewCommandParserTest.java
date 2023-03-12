@@ -26,7 +26,7 @@ class ViewCommandParserTest {
                 new ViewCommand("Alex Quentin", null));
 
         assertParseSuccess(viewCommandParser, CommandTestUtil.NAME_DESC_BEN,
-                new ViewCommand("Benjamin DeMeer", null));
+                new ViewCommand("Benjamin Khoo", null));
     }
 
     @Test
