@@ -1,10 +1,11 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.util.DateTimeUtil.toDateTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.model.reminder.Reminder;
 
-import static seedu.address.commons.util.DateTimeUtil.toDateTime;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * Jackson-friendly version of {@link Reminder}.
