@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.Student;
 import seedu.address.testutil.PersonBuilder;
 
@@ -121,6 +122,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addParent(Parent parent) {
+
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -141,12 +147,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasParent(Parent parent) {
+            return false;
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteStudent(Student target) {
+
+        }
+
+        @Override
+        public void deleteParent(Parent target) {
 
         }
 
@@ -161,6 +177,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setParent(Parent target, Parent editedParent) {
+
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -171,12 +192,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Parent> getFilteredParentList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+
+        }
+
+        @Override
+        public void updateFilteredParentList(Predicate<Parent> predicate) {
 
         }
     }
