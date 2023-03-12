@@ -12,6 +12,9 @@ import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 
+/**
+ * Exports the client list into a csv file.
+ */
 public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";

@@ -1,6 +1,5 @@
 package seedu.fitbook.logic;
 
-import java.io.FileNotFoundException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
@@ -22,7 +21,7 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException, FileNotFoundException;
+    CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
      * Returns the FitBook.

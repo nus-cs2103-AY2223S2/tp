@@ -12,7 +12,6 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.fitbook.model.FitBookModel.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -79,7 +78,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(FitBookModel model) throws CommandException , FileNotFoundException {
+    public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
         List<Client> lastShownList = model.getFilteredClientList();
 

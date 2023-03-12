@@ -11,8 +11,6 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
-import java.io.FileNotFoundException;
-
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
@@ -61,7 +59,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(FitBookModel model) throws CommandException , FileNotFoundException {
+    public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
         if (model.hasClient(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

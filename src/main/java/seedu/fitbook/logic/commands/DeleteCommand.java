@@ -2,7 +2,6 @@ package seedu.fitbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import seedu.fitbook.commons.core.Messages;
@@ -32,7 +31,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(FitBookModel model) throws CommandException , FileNotFoundException {
+    public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
         List<Client> lastShownList = model.getFilteredClientList();
 

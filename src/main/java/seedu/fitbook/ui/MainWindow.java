@@ -1,6 +1,5 @@
 package seedu.fitbook.ui;
 
-import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -193,8 +192,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 }
