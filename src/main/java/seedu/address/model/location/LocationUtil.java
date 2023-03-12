@@ -94,7 +94,9 @@ public class LocationUtil {
      * @return a {@code Map} object from {@code String} to {@code Location}.
      */
     private static Map<String, Location> getLocationHashMap(Set<Location> locations) {
-        return locations.stream().collect(Collectors.toMap(Location::getName, location -> location));
+        return locations.stream()
+                .collect(Collectors.toMap(location -> location.getName().toLowerCase(),
+                        location -> location));
     }
 
 }

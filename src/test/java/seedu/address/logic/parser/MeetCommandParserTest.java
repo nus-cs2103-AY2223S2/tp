@@ -41,6 +41,7 @@ public class MeetCommandParserTest {
                 new MeetCommand(Set.of(Index.fromOneBased(1)), LocationUtil.EAT_LOCATIONS));
         assertParseSuccess(STUDY_COMMAND_PARSER, "1",
                 new MeetCommand(Set.of(Index.fromOneBased(1)), LocationUtil.STUDY_LOCATIONS));
+
         assertParseSuccess(MEET_COMMAND_PARSER, "2 7",
                 new MeetCommand(Set.of(Index.fromOneBased(2), Index.fromOneBased(7)),
                         LocationUtil.MEET_LOCATIONS));

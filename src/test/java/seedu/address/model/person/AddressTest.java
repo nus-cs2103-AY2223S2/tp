@@ -27,7 +27,25 @@ public class AddressTest {
 
         // valid addresses
         assertTrue(Address.isValidAddress("Punggol"));
-        assertTrue(Address.isValidAddress("Pasir Ris")); // one character
-        assertTrue(Address.isValidAddress("Sixth Avenue")); // long address
+        assertTrue(Address.isValidAddress("Pasir Ris"));
+        assertTrue(Address.isValidAddress("Sixth Avenue"));
+
+        // wrong case but still works
+        assertTrue(Address.isValidAddress("punGGol"));
+        assertTrue(Address.isValidAddress("pasir ris"));
+        assertTrue(Address.isValidAddress("SIXTH avenue"));
+
+        // untrimmed still works
+        assertTrue(Address.isValidAddress("   Punggol"));
+        assertTrue(Address.isValidAddress("Pasir Ris   "));
+
+        // wrong spacing
+        assertFalse(Address.isValidAddress("Pasir  Ris"));
+        assertFalse(Address.isValidAddress("   Sixth     Avenue  "));
+
+        // looks valid, but is wrong
+        assertFalse(Address.isValidAddress("Pungol"));
+        assertFalse(Address.isValidAddress("Paris Ris"));
+        assertFalse(Address.isValidAddress("Fifth Avenue"));
     }
 }

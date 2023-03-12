@@ -46,12 +46,12 @@ public class Location implements Comparable<Location> {
 
     /**
      * Constructs a named {@code Location}.
-     * @param name A valid name.
+     * @param name A non-null string.
      * @param lat A valid latitude.
      * @param lon A valid longitude.
      */
     public Location(String name, double lat, double lon) {
-        requireAllNonNull(lat, lon);
+        requireAllNonNull(name, lat, lon);
         checkArgument(isValidLocation(lat, lon), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.lat = lat;

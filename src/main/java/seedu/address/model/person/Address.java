@@ -26,14 +26,15 @@ public class Address implements Comparable<Address> {
     public Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = LocationUtil.ADDRESSES_HASH_MAP.get(address);
+        value = LocationUtil.ADDRESSES_HASH_MAP.get(address.toLowerCase());
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
-        return test != null && LocationUtil.ADDRESSES_HASH_MAP.containsKey(test);
+        return test != null
+                && LocationUtil.ADDRESSES_HASH_MAP.containsKey(test.trim().toLowerCase());
     }
 
     /**

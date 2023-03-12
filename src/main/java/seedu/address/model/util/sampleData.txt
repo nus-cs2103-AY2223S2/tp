@@ -48,7 +48,6 @@ Kent Richards|99591399|kentrichards@gmail.com|Kent Ridge|@kentrichards|CCA|CS210
 Kevin Ho|99997496|kevinho@gmail.com|Kovan|@kevinho|NUS|IS2101 CS2030S LAC2201 YSC1207 CS2113T CS2107
 Khadijah Al Junied|94417745|khadijahaljunied@gmail.com|Aljunied|@khadijahaljunied|Groupmate|CS2108 CS2040 CS2107 CS2103 CS2104 CS2101
 Khoo Pang Seng|84238643|khoopangseng@gmail.com|Kupang|@khoopangseng||LSM4215 CS2103 SPH5890F IS2103 CS2105 CS2108
-Khoo Shun Yee|91985806|khooshunyee@gmail.com|Yishun|@khooshunyee|NS|CS2106 CS2102 CS2104 CS2107 MT5010 CE2134
 Lavender Crawford|83340546|lavendercrawford@gmail.com|Lavender|@lavendercrawford|Groupmate|BT2102 CS2113T CS2113 CS4243 CS2100 IS2103
 Low Wong Chuan|99894723|lowwongchuan@gmail.com|Lorong Chuan|@lowwongchuan|CCA|EL5270R BN5101 CS2113 CS2106 IS2103 CS2108
 Marceline Parker|93823732|marcelineparker@gmail.com|Marsiling|@marcelineparker|NS|CS2105 CS2102 CE2407B CS2107 CS2100 CS2030S
@@ -70,6 +69,7 @@ Nicole Windsor|87418518|nicolewindsor@gmail.com|Nicoll Highway|@nicolewindsor|CC
 Novena Thomson|89036217|novenathomson@gmail.com|Novena|@novenathomson|NS|CE2134 CS2101 CS4239 PH3217 AR5423 CS2100
 Nur Khatibah Abdul Ibrahim|93378168|nurkhatibahabdulibrahim@gmail.com|Khatib|@nurkhatibahabdulibrahim|NS|CS2101 SPH5405 IS2101 YSS2201 CS2104 CS2105
 Phillip Raffles|99145228|phillipraffles@gmail.com|Raffles Place|@phillipraffles|Groupmate NS|XFE4401 CS2103 CS2102 LAG2201 CS2100 CS2105
+Qiu Shun Yi|91985806|qiushunyi@gmail.com|Yishun|@qiushunyi|NS|CS2106 CS2102 CS2104 CS2107 MT5010 CE2134
 Ritchie Thomson|93005025|ritchiethomson@gmail.com|Upper Thomson|@ritchiethomson|Study|DEP5107 CS2108 DOS4811 CS2101 CS2104 CS2040S
 Ruby McPherson|82332900|rubymcpherson@gmail.com|MacPherson|@rubymcpherson|TA CCA|CS2103 IS2103 CS2113 CS2220 MA2104 BT2101
 Samantha Kee|97782035|samanthakee@gmail.com|Sam Kee|@samanthakee||CS2101 CS2040 LSM3246 CS2107 BN3202 CS2109S
