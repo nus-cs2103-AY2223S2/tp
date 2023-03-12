@@ -47,8 +47,6 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label role;
     @FXML
-    private Label status;
-    @FXML
     private Label date;
     @FXML
     private FlowPane tags;
@@ -74,9 +72,6 @@ public class InternshipCard extends UiPart<Region> {
         role.setText(internship.getRole().fullRole);
         internshipCardInformation.add(role.getText());
 
-        //Add Status
-        status.setText(internship.getStatus().toString());
-        internshipCardInformation.add(status.getText());
 
         //Add Date
         date.setText(internship.getDate().fullDate);
