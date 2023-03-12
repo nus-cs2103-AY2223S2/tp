@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -66,9 +65,6 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Optional<Index> parseIndex(String oneBasedIndex) throws ParseException {
-//        if (Objects.equals(oneBasedIndex, "")) {
-//            return Optional.empty();
-//        }
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
