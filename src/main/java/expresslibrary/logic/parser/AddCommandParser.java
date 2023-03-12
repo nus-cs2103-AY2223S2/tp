@@ -2,6 +2,7 @@ package expresslibrary.logic.parser;
 
 import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_BOOK;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_NAME;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -13,11 +14,13 @@ import java.util.stream.Stream;
 import expresslibrary.logic.commands.AddCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
 import expresslibrary.model.person.Address;
+import expresslibrary.model.person.Book;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
 import expresslibrary.model.person.Person;
 import expresslibrary.model.person.Phone;
 import expresslibrary.model.tag.Tag;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -42,9 +45,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Book book = ParserUtil.parseBook(argMultimap.getValue(PREFIX_BOOK).get());
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Person person = new Person(name, phone, email, address, book, tagList);
 
         return new AddCommand(person);
     }

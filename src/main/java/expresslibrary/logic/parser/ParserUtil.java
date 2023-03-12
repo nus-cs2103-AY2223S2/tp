@@ -10,10 +10,12 @@ import expresslibrary.commons.core.index.Index;
 import expresslibrary.commons.util.StringUtil;
 import expresslibrary.logic.parser.exceptions.ParseException;
 import expresslibrary.model.person.Address;
+import expresslibrary.model.person.Book;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
 import expresslibrary.model.person.Phone;
 import expresslibrary.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +122,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String book} into a {@code Book}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code book} is invalid.
+     */
+    public static Book parseBook(String book) throws ParseException {
+        requireNonNull(book);
+        String trimmedBook = book.trim();
+        if (!Book.isValidTitle(trimmedBook)) {
+            throw new ParseException(Book.MESSAGE_CONSTRAINTS);
+        }
+        return new Book(trimmedBook);
     }
 }
