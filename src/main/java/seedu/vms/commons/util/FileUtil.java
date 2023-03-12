@@ -49,14 +49,6 @@ public class FileUtil {
         }
     }
 
-    /**
-     * See {@link #createIfMissing(Path)}.
-     *
-     * @param pathString - the path to the file to create.
-     */
-    public static void createIfMissing(String pathString) throws IOException {
-        createIfMissing(Paths.get(pathString));
-    }
 
     /**
      * Creates a file if it does not exist along with its missing parent directories.
@@ -80,21 +72,6 @@ public class FileUtil {
         if (parentDir != null) {
             Files.createDirectories(parentDir);
         }
-    }
-
-    /**
-     * Assumes file exists
-     */
-    public static String readFromFile(Path file) throws IOException {
-        return new String(Files.readAllBytes(file), CHARSET);
-    }
-
-    /**
-     * Writes given string to a file.
-     * Will create the file if it does not exist yet.
-     */
-    public static void writeToFile(Path file, String content) throws IOException {
-        Files.write(file, content.getBytes(CHARSET));
     }
 
 
