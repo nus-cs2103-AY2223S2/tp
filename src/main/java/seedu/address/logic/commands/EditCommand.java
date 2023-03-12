@@ -53,7 +53,7 @@ public class EditCommand extends Command {
             + PREFIX_CONTACT + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"
             + PREFIX_SALARY + "4000 "
-            + PREFIX_DEADLINE + "2023-11-20";
+            + PREFIX_DEADLINE + "2023-10-20";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Role: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

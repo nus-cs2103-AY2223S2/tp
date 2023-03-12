@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "Tech "
             + PREFIX_SALARY + "4000"
-            + PREFIX_DEADLINE + "2023-11-20";
+            + PREFIX_DEADLINE + "2023-10-20";
 
     public static final String MESSAGE_SUCCESS = "New role added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This role already exists in the Techtrack.";

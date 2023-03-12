@@ -31,7 +31,6 @@ public class RoleBuilder {
     private Address address;
     private Set<Tag> tags;
     private Salary salary;
-
     private Deadline deadline;
 
     /**

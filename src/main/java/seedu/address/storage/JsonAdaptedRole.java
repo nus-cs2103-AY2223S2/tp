@@ -117,13 +117,14 @@ class JsonAdaptedRole {
         if (!Salary.isValidSalary(salary)) {
             throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
         }
+        final Salary modelSalary = new Salary(salary);
+
         if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Salary.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
         }
         if (!Deadline.isValidDeadline(deadline)) {
             throw new IllegalValueException(Deadline.getMessageConstraint());
         }
-        final Salary modelSalary = new Salary(salary);
         final Deadline modelDeadline = new Deadline(deadline);
 
         final Set<Tag> modelTags = new HashSet<>(roleTags);

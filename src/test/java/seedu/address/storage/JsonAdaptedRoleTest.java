@@ -23,15 +23,12 @@ public class JsonAdaptedRoleTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_SALARY = "MORE THAN 4000";
-    private static final String INVALID_DEADLINE = "OLDER THAN CURRENT DATE";
-
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_SALARY = BENSON.getSalary().toString();
-    private static final String VALID_DEADLINE = BENSON.getSalary().toString();
+    private static final String VALID_DEADLINE = BENSON.getDeadline().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

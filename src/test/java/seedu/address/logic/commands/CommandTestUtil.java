@@ -40,8 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_SALARY_AMY = "4000";
     public static final String VALID_SALARY_BOB = "4000";
-    public static final String VALID_DEADLINE_AMY = "2023-11-20";
-    public static final String VALID_DEADLINE_BOB = "2023-05-17";
+    public static final String VALID_DEADLINE_AMY = "2023-10-20";
+    public static final String VALID_DEADLINE_BOB = "2023-10-20";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_ROLE + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_ROLE + VALID_NAME_BOB;
@@ -65,7 +65,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "dn1"; // Characters not allowed in salaries
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
-            + "2023-2A-20"; // Characters not allowed in deadline
+            + "2023-10-2a"; // Characters not allowed in deadline
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
