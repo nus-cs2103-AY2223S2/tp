@@ -15,7 +15,6 @@ import seedu.address.model.recipe.Email;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
-import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 
 /**
