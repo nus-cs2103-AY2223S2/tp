@@ -5,11 +5,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AdvanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NamePhoneNumberPredicate;
 import seedu.address.model.person.Phone;
@@ -33,7 +33,7 @@ public class AdvanceCommandParser implements Parser<AdvanceCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        LocalDateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
+        InterviewDateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
 
         return new AdvanceCommand(new NamePhoneNumberPredicate(name, phone), dateTime);
     }

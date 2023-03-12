@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
@@ -27,7 +26,7 @@ public class Person {
     private final Address address;
     private Status status;
     private final Set<Tag> notes = new HashSet<>();
-    private Optional<LocalDateTime> interviewDateTime = Optional.empty();
+    private Optional<InterviewDateTime> interviewDateTime = Optional.empty();
 
     /**
      * Every field must be present and not null.
@@ -75,7 +74,7 @@ public class Person {
      * @return Interview date of the applicant.
      * @throws NoSuchElementException Thrown when no interview date is present.
      */
-    public LocalDateTime getInterviewDateTime() throws NoSuchElementException {
+    public InterviewDateTime getInterviewDateTime() throws NoSuchElementException {
         return interviewDateTime.orElseThrow();
     }
 
@@ -83,7 +82,7 @@ public class Person {
      * Sets interview dateTime for shortlisted applicants.
      * @param interviewDateTime Interview dateTime for the applicant.
      */
-    public void setInterviewDateTime(LocalDateTime interviewDateTime) {
+    public void setInterviewDateTime(InterviewDateTime interviewDateTime) {
         this.interviewDateTime = Optional.of(interviewDateTime);
     }
 
@@ -162,5 +161,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }
