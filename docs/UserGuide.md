@@ -240,7 +240,7 @@ Examples:
 * `listo s` shows all orders, sorted by status.
 * `listo f/pending` shows all orders with "pending" status.
 
-### Editing a person : `edito`
+### Editing an order : `edito`
 
 Edits an existing order in LoyaltyLift.
 
@@ -272,7 +272,7 @@ Examples:
 * `findo chocolate` returns `chocolate cake` and `chocolate muffin`
 * `findo banana muffin` returns `banana cake`, `chocolate muffin`<br>
 
-### Deleting a person : `deleteo`
+### Deleting an order : `deleteo`
 
 Deletes the specified person from the address book.
 
