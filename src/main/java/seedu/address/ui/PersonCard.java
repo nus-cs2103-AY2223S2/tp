@@ -30,12 +30,10 @@ public class PersonCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label name;
-
-    @FXML
-    private Label employeeId;
-
     @FXML
     private Label id;
+    @FXML
+    private Label employeeId;
     @FXML
     private Label phone;
     @FXML
