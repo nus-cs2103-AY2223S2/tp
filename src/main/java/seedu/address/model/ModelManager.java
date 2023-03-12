@@ -23,8 +23,9 @@ public class ModelManager implements Model {
 
     private MasterDeck masterDeck;
     private final UserPrefs userPrefs;
-    private FilteredList<Card> filteredCards;
     private FilteredList<Deck> filteredDecks;
+    private String selectedDeckName = null; // null when not selected, may want to consider accepting Set<> next time
+    private FilteredList<Card> filteredCards;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -192,5 +193,10 @@ public class ModelManager implements Model {
     public void unselectDeck() {
         this.masterDeck = null;
         this.filteredDecks = null;
+    }
+
+    @Override
+    public String getSelectedDeckName() {
+        return null;
     }
 }

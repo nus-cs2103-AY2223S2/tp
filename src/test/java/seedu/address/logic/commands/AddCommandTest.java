@@ -49,7 +49,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validCard);
         ModelStub modelStub = new ModelStubWithPerson(validCard);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CARD, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -193,6 +193,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public String getSelectedDeckName() {
+            return null; // to edit in the future
+        }
     }
 
     /**
