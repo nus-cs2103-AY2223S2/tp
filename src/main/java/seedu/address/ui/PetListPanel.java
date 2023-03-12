@@ -14,7 +14,7 @@ import seedu.address.model.pet.Pet;
  * Panel containing the list of pets.
  */
 public class PetListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "PetListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PetListPanel.class);
 
     @FXML
