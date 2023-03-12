@@ -11,7 +11,9 @@ import seedu.address.model.person.Person;
 /**
  * Represents a Delivery job in the Delivery jobs book.
  * Guarantees: details are present and not null, field values are validated, immutable.
+ * @deprecated Merging with jobs.DeliveryJob
  */
+@Deprecated
 public class DeliveryJob {
 
     private final int id;

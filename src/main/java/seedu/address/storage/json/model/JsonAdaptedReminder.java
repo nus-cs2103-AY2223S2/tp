@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.json.model;
 
 import static seedu.address.commons.util.DateTimeUtil.toDateTime;
 

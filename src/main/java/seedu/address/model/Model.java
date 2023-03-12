@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -12,10 +13,9 @@ import seedu.address.model.reminder.Reminder;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
+    /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<DeliveryJob> PREDICATE_SHOW_ALL_DELIVERY_JOBS = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -93,6 +93,26 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    // DELIVERY JOB SYSTEM ===================================
+
+    void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem);
+
+    ReadOnlyDeliveryJobSystem getDeliveryJobSystem();
+
+    boolean hasDeliveryJob(DeliveryJob job);
+
+    void deleteDeliveryJob(DeliveryJob target);
+
+    void addDeliveryJob(DeliveryJob job);
+
+    void setDeliveryJob(DeliveryJob target, DeliveryJob editedJob);
+
+    ObservableList<DeliveryJob> getDeliveryJobList();
+
+    void updateFilteredDeliveryJobList(Predicate<DeliveryJob> predicate);
+
+    // NOTIFICATION =========================================
+
     /**
      * Deletes the given reminder.
      * The reminder must exist in reminders.
@@ -108,6 +128,4 @@ public interface Model {
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Reminder> getReminderList();
-
-
 }

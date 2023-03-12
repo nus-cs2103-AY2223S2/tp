@@ -315,7 +315,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User opens the system.
 2. System list all pending jobs.
 3. User selects the job for details.
-5. System displays the full detail of the delivery job
+4. System displays the full detail of the delivery job.
 </pre>
 </details>
 
