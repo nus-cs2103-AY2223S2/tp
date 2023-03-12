@@ -19,6 +19,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.NameContainsKeywordsPredicate;
+import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.TankNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditFishDescriptorBuilder;
 
 /**
@@ -123,6 +125,20 @@ public class CommandTestUtil {
         model.updateFilteredFishList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredFishList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the fish at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTankAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTankList().size());
+
+        Tank fish = model.getFilteredTankList().get(targetIndex.getZeroBased());
+        final String[] splitName = fish.getTankName().fullTankName.split("\\s+");
+        model.updateFilteredTankList(new TankNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredTankList().size());
     }
 
 }
