@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TimetableWindow timetableWindow;
     private StatisticsWindow statsWindow;
 
     @FXML
@@ -43,7 +44,12 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+
+    private MenuItem timetableMenuItem;
+    
+    @FXML
     private MenuItem statsItem;
+
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -70,6 +76,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        timetableWindow = new TimetableWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
     }
 
@@ -153,6 +160,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens Timetable window.
+     */
+    @FXML
+    private void handleTimetable() {
+        if (!timetableWindow.isShowing()) {
+            timetableWindow.show();
+            timetableWindow.fillInnerParts();
+        } else {
+            timetableWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -166,6 +186,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        timetableWindow.hide();
         statsWindow.hide();
         primaryStage.hide();
     }
