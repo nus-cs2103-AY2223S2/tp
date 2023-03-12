@@ -40,6 +40,22 @@ task coverage(type: JacocoReport) {
     }
 }
 
+task headless {
+    doLast {
+        test {
+            systemProperties = [
+                    'testfx.robot'   : 'glass',
+                    'testfx.headless': 'true',
+                    'prism.order'    : 'sw',
+                    'prism.text'     : 't2k',
+            ]
+        }
+    }
+}
+
+// Run tests after headless properties are set
+test.mustRunAfter headless
+
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
