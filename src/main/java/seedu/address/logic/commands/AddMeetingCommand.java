@@ -26,9 +26,7 @@ public class AddMeetingCommand extends Command{
             + "other meetings on the day or period specified.\n"
             + "Parameters: [INDEX] m/ [DATE START] [DATE END]\n"
             + "Example: " + COMMAND_WORD + "1 m/ 30-03-2020 20:10 22:10";
-    public static final String MESSAGE_ERROR = "meeting format incorrect!\n"
-            + "Correct format is as follow: \n"
-            + "meeting add [INDEX] DD-MM-YYYY HH:MM HH:MM.";
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d Meeting: %2$s";
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting to Person: %1$s";
 
     private final Index index;
