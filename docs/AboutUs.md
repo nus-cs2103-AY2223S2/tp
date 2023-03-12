@@ -19,15 +19,15 @@ You can reach us at the email `what email should we put here?`
 - Role: Team lead, Integration, Java expert
 - Responsibilities: Parser, Model
 
-## Jane Doe
+## Liu JiaYue
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/liujiayue314.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/liujiayue314)]
+[[portfolio](team/liujiayue314.md)]
 
-- Role: Team Lead
-- Responsibilities: UI
+- Role: Developer
+- Responsibilities: Storage
 
 ## Ethan Chen Ee Shuen
 
