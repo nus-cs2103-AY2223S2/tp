@@ -190,8 +190,7 @@ public class ModelManager implements Model {
 
     @Override
     public void unselectDeck() {
-        this.masterDeck = null;
-        this.filteredDecks = null;
+        this.selectedDeck = null;
     }
 
     @Override
