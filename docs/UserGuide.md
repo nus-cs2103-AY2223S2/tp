@@ -44,9 +44,9 @@ Examples:
 * `add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate street, block 576, #01-02`
 
 
-### Listing all persons : `list`
+### Listing all employees : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all employees and their details in the ExecutivePro database.
 
 Format: `list`
 
