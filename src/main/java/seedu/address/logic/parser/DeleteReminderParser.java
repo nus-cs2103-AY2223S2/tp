@@ -5,6 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.DeleteReminder;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new DeleteReminder object
+ */
 public class DeleteReminderParser implements Parser<DeleteReminder> {
     @Override
     public DeleteReminder parse(String args) throws ParseException {

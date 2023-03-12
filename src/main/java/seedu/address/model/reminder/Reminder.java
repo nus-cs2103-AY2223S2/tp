@@ -13,7 +13,11 @@ public class Reminder {
     private final String description;
     private final LocalDateTime reminderDateTime;
 
-
+    /**
+     * Constructor to create a Reminder object.
+     * @param description Description of the reminder. Description can be left blank, but not null (ie. "").
+     * @param reminderDateTime When the reminder will be activated. Cannot be null.
+     */
     public Reminder(String description, LocalDateTime reminderDateTime) {
         requireAllNonNull(description, reminderDateTime);
         this.description = description;
@@ -32,6 +36,10 @@ public class Reminder {
         return dateTimeToString(reminderDateTime);
     }
 
+    /**
+     * Returns Description of reminder
+     * @return Description
+     */
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription());

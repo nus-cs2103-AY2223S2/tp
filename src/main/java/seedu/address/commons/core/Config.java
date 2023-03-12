@@ -2,7 +2,6 @@ package seedu.address.commons.core;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import java.util.Objects;
 import java.util.logging.Level;
 

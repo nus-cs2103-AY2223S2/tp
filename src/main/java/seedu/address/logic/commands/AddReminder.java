@@ -8,6 +8,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.reminder.Reminder;
 
+/**
+ * Adds a reminder to the address book.
+ */
 public class AddReminder extends Command {
 
     public static final String COMMAND_WORD = "add_reminder";
