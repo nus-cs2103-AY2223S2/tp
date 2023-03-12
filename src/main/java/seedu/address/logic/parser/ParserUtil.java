@@ -81,7 +81,7 @@ public class ParserUtil {
      * Parses a {@code String jd} into an {@code JobDescription}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code JobDescription} is invalid.
      */
     public static JobDescription parseJobDescription(String jd) throws ParseException {
         requireNonNull(jd);
