@@ -51,10 +51,8 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        int currentId = EmployeeId.getCount();
 
         if (model.hasPerson(toAdd)) {
-            EmployeeId.setCount(currentId);
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
