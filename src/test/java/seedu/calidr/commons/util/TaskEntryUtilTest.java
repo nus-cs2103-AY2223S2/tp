@@ -1,7 +1,6 @@
 package seedu.calidr.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.calidr.testutil.TypicalTasks.DEADLINE1;
 import static seedu.calidr.testutil.TypicalTasks.EVENT1;
 import static seedu.calidr.testutil.TypicalTasks.TODO1;
 
@@ -18,13 +17,13 @@ class TaskEntryUtilTest {
         assertEquals(todoEntry.getPriority(), TODO1.getPriority());
         assertEquals(todoEntry.getIsDone(), TODO1.isDone());
 
-        TaskEntry deadlineEntry = TaskEntryUtil.convert(DEADLINE1);
+        TaskEntry deadlineEntry = TaskEntryUtil.convert(TODO1);
 
-        assertEquals(deadlineEntry.getTitle(), DEADLINE1.getDescription());
-        assertEquals(deadlineEntry.getInterval().getStartDateTime(), DEADLINE1.getBy());
-        assertEquals(deadlineEntry.getInterval().getEndDateTime(), DEADLINE1.getBy().plusHours(1));
-        assertEquals(deadlineEntry.getPriority(), DEADLINE1.getPriority());
-        assertEquals(deadlineEntry.getIsDone(), DEADLINE1.isDone());
+        assertEquals(deadlineEntry.getTitle(), TODO1.getDescription());
+        assertEquals(deadlineEntry.getInterval().getStartDateTime(), TODO1.getBy());
+        assertEquals(deadlineEntry.getInterval().getEndDateTime(), TODO1.getBy().plusHours(1));
+        assertEquals(deadlineEntry.getPriority(), TODO1.getPriority());
+        assertEquals(deadlineEntry.getIsDone(), TODO1.isDone());
 
         TaskEntry eventEntry = TaskEntryUtil.convert(EVENT1);
 
