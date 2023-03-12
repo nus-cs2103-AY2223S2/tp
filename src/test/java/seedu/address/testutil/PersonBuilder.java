@@ -112,12 +112,18 @@ public class PersonBuilder {
         }
         return this;
     }
-
+    /**
+     * Sets the {@code contact} of the {@code Event} that we are building.
+     */
     public PersonBuilder withContact(String name, String number) {
         this.contact = new Contact(new ContactName(name), new ContactPhone(number));
         return this;
     }
 
+    /**
+     * Builds the event.
+     * @return Event that is built.
+     */
     public Event build() {
         Event event = new Event(name, rate, address, timing, tags);
         if (!contact.equals(new Contact(new ContactName(DEFAULT_NAME), new ContactPhone(DEFAULT_CONTACTNUM)))) {

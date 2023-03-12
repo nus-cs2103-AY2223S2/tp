@@ -36,7 +36,6 @@ public class Contact {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameContact(Contact otherContact) {
-        
         if (otherContact == null) {
             return false;
         }
