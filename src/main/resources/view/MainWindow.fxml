@@ -39,7 +39,7 @@
           </padding>
           <items>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-            <StackPane fx:id="DeckListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="deckListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </items>
         </SplitPane>
 
