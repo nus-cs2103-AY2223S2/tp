@@ -40,6 +40,8 @@ public class InternshipCard extends UiPart<Region> {
     private Label date;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label statusLabel;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -55,6 +57,7 @@ public class InternshipCard extends UiPart<Region> {
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        statusLabel.setText(internship.getStatus().toString());
     }
 
     @Override
