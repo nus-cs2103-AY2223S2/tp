@@ -68,6 +68,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Deck} of the {@code Card} that we are building.
+     */
     public PersonBuilder withDeck(String deckName) {
         this.deck = new Deck(deckName);
         return this;

@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;
-import seedu.address.model.deck.Deck;
 
 public class JsonAdaptedCardTest {
     private static final String INVALID_NAME = "R@chel";
