@@ -1,11 +1,14 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.AppUtil.getImage;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -26,6 +29,7 @@ import seedu.address.ui.core.ItemListPanel;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String WINGMAN_LOGO = "/images/wingman.png";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -42,6 +46,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private ImageView wingmanLogo;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -113,6 +120,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        wingmanLogo.setImage(getImage(WINGMAN_LOGO));
+
         itemListPanel = new ItemListPanel(logic.getFilteredItemList());
         Region item = itemListPanel.getRoot();
         personListPanelPlaceholder.getChildren().add(item);
