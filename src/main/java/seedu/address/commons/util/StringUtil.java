@@ -154,6 +154,7 @@ public class StringUtil {
 
     /**
      * Multiline String indentation
+     *
      * @param string Lines to be indented
      * @param spaces Amount of spaces to indent with
      * @return Indented multiline string
@@ -167,7 +168,7 @@ public class StringUtil {
         }
         return string.lines()
                 .map(s -> prepend + s)
-                .reduce("" ,(a, b) -> a + NEWLINE + b)
+                .reduce("", (a, b) -> a + NEWLINE + b)
                 .substring(1);
     }
 }
