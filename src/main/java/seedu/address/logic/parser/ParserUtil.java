@@ -57,12 +57,14 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (phone != null) {
+            String trimmedPhone = phone.trim();
+            if (!Phone.isValidPhone(trimmedPhone)) {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            }
+            return new Phone(trimmedPhone);
         }
-        return new Phone(trimmedPhone);
+        return new Phone(null);
     }
 
     /**
@@ -72,12 +74,14 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (address != null) {
+            String trimmedAddress = address.trim();
+            if (!Address.isValidAddress(trimmedAddress)) {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            }
+            return new Address(trimmedAddress);
         }
-        return new Address(trimmedAddress);
+        return new Address(null);
     }
 
     /**

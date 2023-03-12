@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -25,8 +24,9 @@ public class Address {
      * @param address A valid address.
      */
     public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        if (address != null) {
+            checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        }
         value = address;
     }
 
@@ -39,7 +39,10 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        if (value != null) {
+            return value;
+        }
+        return "<not added>";
     }
 
     @Override
