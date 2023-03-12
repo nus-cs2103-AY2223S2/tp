@@ -94,7 +94,12 @@ public class JsonUtil {
 
 
     /**
-     * Deserializes a JSON file in the resource folder.
+     * Deserializes a JSON file in the resource folder to an object instance.
+     *
+     * @param pathString - the path to the file to deserialize in the resource
+     *      folder as a String.
+     * @param valueType - the type of the object to deserialize to.
+     * @throws IOException if an I/O error occurs.
      */
     public static <T> T deserializeFromResource(String pathString, Class<T> valueType)
                 throws IOException {
@@ -105,13 +110,16 @@ public class JsonUtil {
 
 
     /**
-     * Deserializes a JSON file in the specified pathString.
+     * Deserializes a JSON file to an object instance.
      *
+     * @param <T> - the type of the object to deserialize to.
+     * @param path - path to the file to deserialize from.
+     * @param valueType - the type of the object to deserialize to.
      * @throws IOException if an I/O exception occurs.
      */
-    public static <T> T deserializeFromFile(String pathString, Class<T> valueType)
+    public static <T> T deserializeFromFile(Path path, Class<T> valueType)
                 throws IOException {
-        try (BufferedReader reader = FileUtil.getFileReader(pathString)) {
+        try (BufferedReader reader = FileUtil.getFileReader(path)) {
             return objectMapper.readValue(reader, valueType);
         }
     }
@@ -120,12 +128,12 @@ public class JsonUtil {
     /**
      * Serializes the given object instance to the specified file.
      *
-     * @param pathString - path of the file to serialize to.
+     * @param path - path to serialize to.
      * @param instance - the object instance to serialize.
      * @throws IOException if an I/O error occurs.
      */
-    public static void serializeToFile(String pathString, Object instance) throws IOException {
-        try (BufferedWriter writer = FileUtil.getFileWriter(pathString)) {
+    public static void serializeToFile(Path path, Object instance) throws IOException {
+        try (BufferedWriter writer = FileUtil.getFileWriter(path)) {
             objectMapper.writerWithDefaultPrettyPrinter()
                     .writeValue(writer, instance);
         }

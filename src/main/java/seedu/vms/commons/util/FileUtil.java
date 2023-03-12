@@ -117,8 +117,8 @@ public class FileUtil {
      *
      * @throws FileNotFoundException if the file cannot be found.
      */
-    public static BufferedReader getFileReader(String pathString) throws FileNotFoundException {
-        return new BufferedReader(new FileReader(Paths.get(pathString).toFile()), BUFFER_SIZE);
+    public static BufferedReader getFileReader(Path path) throws FileNotFoundException {
+        return new BufferedReader(new FileReader(path.toFile()), BUFFER_SIZE);
     }
 
 
@@ -128,7 +128,7 @@ public class FileUtil {
      * @throws IOException if an I/O exception occurs
      *      (see {@link #FileWriter(java.io.File)}).
      */
-    public static BufferedWriter getFileWriter(String pathString) throws IOException {
-        return new BufferedWriter(new FileWriter(Paths.get(pathString).toFile()), BUFFER_SIZE);
+    public static BufferedWriter getFileWriter(Path path) throws IOException {
+        return new BufferedWriter(new FileWriter(path.toFile()), BUFFER_SIZE);
     }
 }
