@@ -28,6 +28,7 @@ public class TypicalPatients {
     public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
             .withStatus(VALID_STATUS_AMY).withId(VALID_PID_AMY).build();
+
     public static final Patient ADAM = new PatientBuilder().withName("Adam Sandler")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("adam@example.com")
             .withPhone("94351253").withId("G73829173B")
@@ -37,6 +38,11 @@ public class TypicalPatients {
             .withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
             .withPhone(VALID_PHONE_BOB).withId(VALID_PID_BOB).withStatus(VALID_STATUS_BOB)
             .withTags("Block2WardC").build(); //Default status
+
+    public static final Patient CHARLIE = new PatientBuilder().withName("Charlie Sandler")
+            .withAddress("123, abc, #08-111").withEmail("charlie@example.com")
+            .withPhone("2136784").withId("G487659645D")
+            .withTags("Block2WardA").withStatus("Doing good").build();
 
     public static Patientist getTypicalPatientist() {
         Patientist pt = new Patientist();

@@ -27,7 +27,7 @@ import seedu.patientist.model.person.NameContainsKeywordsPredicate;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.testutil.EditPersonDescriptorBuilder;
 import seedu.patientist.testutil.PatientBuilder;
-import seedu.patientist.testutil.PersonUtil;
+import seedu.patientist.testutil.PatientUtil;
 
 public class PatientistParserTest {
 
@@ -36,7 +36,7 @@ public class PatientistParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Patient patient = new PatientBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(patient));
+        AddCommand command = (AddCommand) parser.parseCommand(PatientUtil.getAddCommand(patient));
         assertEquals(new AddCommand(patient), command);
     }
 
@@ -58,7 +58,7 @@ public class PatientistParserTest {
         Patient patient = new PatientBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(patient).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

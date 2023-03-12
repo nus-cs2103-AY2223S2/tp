@@ -16,9 +16,7 @@ import seedu.patientist.model.util.SampleDataUtil;
  */
 public class PatientBuilder extends PersonBuilder {
 
-    public static final String DEFAULT_STATUS = "The patient is currently in stable condition. \n"
-            + "The patient is required to attend physiotherapy 3 times a week. \n"
-            + "The patient has medical allergy as follows: None";
+    public static final String DEFAULT_STATUS = "Doing good";
     public static final String DEFAULT_ID = "A1234567890B";
 
     private PatientStatusDetails status;

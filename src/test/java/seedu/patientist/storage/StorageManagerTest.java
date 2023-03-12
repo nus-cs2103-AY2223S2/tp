@@ -2,7 +2,7 @@ package seedu.patientist.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalPatients.getTypicalPatientist;
 
 import java.nio.file.Path;
 
