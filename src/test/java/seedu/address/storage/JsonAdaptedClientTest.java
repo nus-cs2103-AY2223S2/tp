@@ -135,9 +135,9 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_invalidPolicies_throwsIllegalValueException() {
         List<JsonAdaptedPolicy> invalidPolicies = new ArrayList<>(VALID_POLICIES);
-        Policy INVALID_POLICY = new Policy(new PolicyName(INVALID_POLICY_NAME), new CustomDate(INVALID_DATE),
+        Policy invalidPolicy = new Policy(new PolicyName(INVALID_POLICY_NAME), new CustomDate(INVALID_DATE),
                 new Premium(INVALID_PREMIUM), new Frequency(INVALID_FREQUENCY));
-        invalidPolicies.add(new JsonAdaptedPolicy(INVALID_POLICY));
+        invalidPolicies.add(new JsonAdaptedPolicy(invalidPolicy));
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_TAGS, invalidPolicies);
         assertThrows(IllegalValueException.class, client::toModelType);
