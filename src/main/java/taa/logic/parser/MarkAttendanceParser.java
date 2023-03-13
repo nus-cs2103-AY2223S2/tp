@@ -21,7 +21,6 @@ import taa.model.tag.Tag;
 public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
     @Override
     public MarkAttendanceCommand parse(String userInput) throws ParseException {
-        System.out.println("1 we are in the markAttendaceParser");
         requireNonNull(userInput);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_TAG, PREFIX_WEEK);
@@ -29,7 +28,6 @@ public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
         Index index;
         int week = 1;
 
-        System.out.println("2 we are in the markAttendaceParser");
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -37,19 +35,17 @@ public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
                     EditCommand.MESSAGE_USAGE), pe);
         }
 
-        System.out.println("3 we are in the markAttendaceParser");
         MarkAttendanceCommand.EditStudentDescriptor editStudentDescriptor =
                 new MarkAttendanceCommand.EditStudentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
-        System.out.println("4 we are in the markAttendaceParser");
         if (argMultimap.getValue(PREFIX_WEEK).isPresent()) {
             System.out.println(argMultimap.getValue(PREFIX_WEEK).get());
             week = ParserUtil.parseWeek("1");
         }
-        System.out.println("5 we are in the markAttendaceParser");
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
 
         System.out.println("6 we are in the markAttendaceParser");

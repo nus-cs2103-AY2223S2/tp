@@ -64,6 +64,10 @@ public class MarkAttendanceCommand extends Command {
         return new CommandResult(String.format(SUCCESS_MSG, studentToEdit));
     }
 
+    /**
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+     * edited with {@code editStudentDescriptor}.
+     */
     private static Student createEditedPerson(Student studentToEdit, MarkAttendanceCommand.EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
@@ -135,6 +139,11 @@ public class MarkAttendanceCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Checks for equality
+         * @param other other object to check equality
+         * @return true if equal otherwise false
+         */
         @Override
         public boolean equals(Object other) {
             // short circuit if same object

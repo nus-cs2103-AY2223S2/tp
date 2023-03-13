@@ -26,6 +26,9 @@ public class Attendance {
         return true;
     }
 
+    /**
+     * @return number of weeks marked present
+     */
     public int getNumWeeksPresent() {
         int count = 0;
         for (int i = 0; i < 12; i++) {
@@ -36,6 +39,10 @@ public class Attendance {
         return count;
     }
 
+    /**
+     * Marks attendance as true
+     * @param week week that is to be marked
+     */
     public void markAttendance(int week) {
         this.attendanceList[week] = true;
     }
@@ -59,22 +66,11 @@ public class Attendance {
         return Integer.parseInt(week);
     }
 
-    public Attendance getCopy() {
-        Attendance copy = new Attendance();
-        for (int i = 0; i < 12; i++) {
-            copy.attendanceList[i] = this.attendanceList[i];
-        }
-        return copy;
-    }
-
     /**
      * Function to mark attendance
      * @param index index to mark
      */
     public void mark(int index) {
-        if (index <= 0 || index >= 12) {
-            System.out.println("Error, attendance index out of range");
-        }
         this.attendanceList[index - 1] = true;
     }
 
