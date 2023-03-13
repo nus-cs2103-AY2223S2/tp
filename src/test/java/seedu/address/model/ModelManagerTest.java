@@ -45,14 +45,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setFriendlyLinkFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setPairFilePath(Paths.get("pair/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setFriendlyLinkFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setPairFilePath(Paths.get("new/pair/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -69,15 +69,39 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setFriendlyLinkFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setFriendlyLinkFilePath(null));
+    public void setElderlyFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setElderlyFilePath(null));
     }
 
     @Test
-    public void setFriendlyLinkFilePath_validPath_setsFriendlyLinkFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setFriendlyLinkFilePath(path);
-        assertEquals(path, modelManager.getFriendlyLinkFilePath());
+    public void setElderlyFilePath_validPath_setsElderlyFilePath() {
+        Path path = Paths.get("elderly/file/path");
+        modelManager.setElderlyFilePath(path);
+        assertEquals(path, modelManager.getElderlyFilePath());
+    }
+
+    @Test
+    public void setVolunteerFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setVolunteerFilePath(null));
+    }
+
+    @Test
+    public void setVolunteerFilePath_validPath_setsVolunteerFilePath() {
+        Path path = Paths.get("volunteer/file/path");
+        modelManager.setVolunteerFilePath(path);
+        assertEquals(path, modelManager.getVolunteerFilePath());
+    }
+
+    @Test
+    public void setPairFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPairFilePath(null));
+    }
+
+    @Test
+    public void setPairFilePath_validPath_setsPairFilePath() {
+        Path path = Paths.get("pair/file/path");
+        modelManager.setPairFilePath(path);
+        assertEquals(path, modelManager.getPairFilePath());
     }
 
     @Test
@@ -226,7 +250,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setFriendlyLinkFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setPairFilePath(Paths.get("differentFilePath"));
         assertNotEquals(modelManager, new ModelManager(friendlyLink, differentUserPrefs));
     }
 }

@@ -38,14 +38,35 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' FriendlyLink database file path.
+     * Returns the user prefs' elderly database file path.
      */
-    Path getFriendlyLinkFilePath();
+    Path getElderlyFilePath();
 
     /**
-     * Sets the user prefs' FriendlyLink database file path.
+     * Sets the user prefs' elderly database file path.
      */
-    void setFriendlyLinkFilePath(Path friendlyLinkFilePath);
+    void setElderlyFilePath(Path elderlyFilePath);
+
+    /**
+     * Returns the user prefs' volunteer database file path.
+     */
+    Path getVolunteerFilePath();
+
+    /**
+     * Sets the user prefs' volunteer database file path.
+     */
+    void setVolunteerFilePath(Path volunteerFilePath);
+
+
+    /**
+     * Returns the user prefs' pair database file path.
+     */
+    Path getPairFilePath();
+
+    /**
+     * Sets the user prefs' pair database file path.
+     */
+    void setPairFilePath(Path pairFilePath);
 
     /**
      * Replaces FriendlyLink database data with the data in {@code friendlyLink}.

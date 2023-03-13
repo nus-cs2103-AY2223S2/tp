@@ -42,9 +42,19 @@ public interface Logic {
     ObservableList<Pair> getFilteredPairList();
 
     /**
-     * Returns the user prefs' friendly link file path.
+     * Returns the user prefs' elderly file path.
      */
-    Path getFriendlyLinkFilePath();
+    Path getElderlyFilePath();
+
+    /**
+     * Returns the user prefs' volunteer file path.
+     */
+    Path getVolunteerFilePath();
+
+    /**
+     * Returns the user prefs' pair file path.
+     */
+    Path getPairFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

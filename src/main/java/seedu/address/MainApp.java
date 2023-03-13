@@ -61,7 +61,7 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
 
         // load storage data
-        PairStorage pairStorage = new JsonPairStorage(userPrefs.getFriendlyLinkFilePath());
+        PairStorage pairStorage = new JsonPairStorage(userPrefs.getPairFilePath());
         ElderlyStorage elderlyStorage = new JsonElderlyStorage(userPrefs.getElderlyFilePath());
         VolunteerStorage volunteerStorage = new JsonVolunteerStorage(userPrefs.getVolunteerFilePath());
 

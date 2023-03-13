@@ -69,17 +69,6 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    @Override
-    public Path getFriendlyLinkFilePath() {
-        return userPrefs.getFriendlyLinkFilePath();
-    }
-
-    @Override
-    public void setFriendlyLinkFilePath(Path friendlyLinkFilePath) {
-        requireNonNull(friendlyLinkFilePath);
-        userPrefs.setFriendlyLinkFilePath(friendlyLinkFilePath);
-    }
-
     //=========== FriendlyLink ================================================================================
 
     @Override
@@ -93,6 +82,17 @@ public class ModelManager implements Model {
     }
 
     //=========== FriendlyLink Elderly  ======================================================================
+
+    @Override
+    public Path getElderlyFilePath() {
+        return userPrefs.getElderlyFilePath();
+    }
+
+    @Override
+    public void setElderlyFilePath(Path elderlyFilePath) {
+        requireNonNull(elderlyFilePath);
+        userPrefs.setElderlyFilePath(elderlyFilePath);
+    }
 
     public Elderly getElderly(Nric nric) {
         requireNonNull(nric);
@@ -111,10 +111,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void addElderly(Elderly elderly) {
         friendlyLink.addElderly(elderly);
-        updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
+        @SuppressWarnings("unchecked")
+        Predicate<Elderly> predicate = (Predicate<Elderly>) PREDICATE_SHOW_ALL;
+        updateFilteredElderlyList(predicate);
     }
 
     @Override
@@ -124,6 +125,18 @@ public class ModelManager implements Model {
     }
 
     //=========== FriendlyLink Volunteers ======================================================================
+
+    @Override
+    public Path getVolunteerFilePath() {
+        return userPrefs.getVolunteerFilePath();
+    }
+
+    @Override
+    public void setVolunteerFilePath(Path volunteerFilePath) {
+        requireNonNull(volunteerFilePath);
+        userPrefs.setVolunteerFilePath(volunteerFilePath);
+    }
+
 
     @Override
     public Volunteer getVolunteer(Nric nric) {
@@ -143,10 +156,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void addVolunteer(Volunteer volunteer) {
         friendlyLink.addVolunteer(volunteer);
-        updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
+        @SuppressWarnings("unchecked")
+        Predicate<Volunteer> predicate = (Predicate<Volunteer>) PREDICATE_SHOW_ALL;
+        updateFilteredVolunteerList(predicate);
     }
 
     @Override
@@ -156,6 +170,18 @@ public class ModelManager implements Model {
     }
 
     //=========== FriendlyLink Pairs ======================================================================
+
+    @Override
+    public Path getPairFilePath() {
+        return userPrefs.getPairFilePath();
+    }
+
+    @Override
+    public void setPairFilePath(Path friendlyLinkFilePath) {
+        requireNonNull(friendlyLinkFilePath);
+        userPrefs.setPairFilePath(friendlyLinkFilePath);
+    }
+
     @Override
     public boolean hasPair(Pair pair) {
         requireNonNull(pair);
