@@ -100,6 +100,12 @@ public class TypicalPersons {
         .withEmail("")
         .withAddress("")
         .build();
+    public static final Person EMPTY_TWO = new PersonBuilder().withName("Empty Contact 2")
+        .withProfile("")
+        .withPhone("")
+        .withEmail("")
+        .withAddress("")
+        .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
