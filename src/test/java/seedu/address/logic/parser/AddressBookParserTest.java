@@ -21,6 +21,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LinkContactCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.NewContactCommand;
@@ -114,6 +115,17 @@ public class AddressBookParserTest {
             MarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new MarkCommand(INDEX_FIRST_PERSON), command);
     }
+
+    @Test
+    public void parseCommand_linkContact() throws Exception {
+        Contact contact = new ContactBuilder().build();
+        Event event = new PersonBuilder().build();
+        LinkContactCommand command = (LinkContactCommand) parser.parseCommand(
+                LinkContactCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + contact.getPhone().value);
+        assertEquals(new LinkContactCommand(INDEX_FIRST_PERSON, contact.getPhone().value), command);
+    }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

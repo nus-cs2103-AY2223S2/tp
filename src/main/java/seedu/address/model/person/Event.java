@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +25,7 @@ public class Event {
     private final Timing timing;
     private final Set<Tag> tags = new HashSet<>();
     private Mark mark;
+    private Contact contact;
 
     /**
      * Every field must be present and not null.
@@ -36,6 +38,7 @@ public class Event {
         this.timing = timing;
         this.tags.addAll(tags);
         this.mark = new Mark();
+        this.contact = new Contact();
     }
 
     public Name getName() {
@@ -57,6 +60,10 @@ public class Event {
         return mark;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -70,6 +77,15 @@ public class Event {
      */
     public void mark() {
         mark.setDone();
+    }
+
+    /**
+     * Link a contact to
+     * @param contact
+     */
+    public void linkContact(Contact contact) {
+        requireAllNonNull(contact);
+        this.contact = contact;
     }
 
     /**
@@ -106,13 +122,14 @@ public class Event {
                 && otherEvent.getAddress().equals(getAddress())
                 && otherEvent.getTiming().equals(getTiming())
                 && otherEvent.getMark().equals(getMark())
+                && otherEvent.getContact().equals(getContact())
                 && otherEvent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, rate, address, timing, mark, tags);
+        return Objects.hash(name, rate, address, timing, mark, contact, tags);
     }
 
     @Override
@@ -127,6 +144,11 @@ public class Event {
                 .append(getTiming())
                 .append("; Mark: ")
                 .append(getMark());
+
+        if (!contact.isNull()) {
+            builder.append("; Contact: ")
+                    .append(getContact());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
