@@ -128,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanel = new ListViewPanel<>(
                 logic.getFilteredAppointmentMap(),
                 appointment -> new AppointmentCard(appointment).getRoot());
-        appointmentListPanelPlaceholder.getChildren().add(vaxTypeListPanel);
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
