@@ -17,28 +17,37 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final EmployeeId employeeId;
     private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Address address;
+    private final Department department;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, EmployeeId employeeId, Phone phone, Email email, Address address,
+                  Department department, Set<Tag> tags) {
+        requireAllNonNull(name, employeeId, phone, email, address, department, tags);
         this.name = name;
+        this.employeeId = employeeId;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.department = department;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
     }
+    public EmployeeId getEmployeeId() {
+        return this.employeeId;
+    }
+
 
     public Phone getPhone() {
         return phone;
@@ -52,12 +61,29 @@ public class Person {
         return address;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns true if both persons have the same employee ID.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameEmployeeID(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson.getEmployeeId().equals(getEmployeeId());
     }
 
     /**
@@ -89,28 +115,34 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
+                && otherPerson.getEmployeeId().equals(getEmployeeId())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getDepartment().equals(getDepartment())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, employeeId, phone, email, address, department, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Employee ID: ")
+                .append(getEmployeeId())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Department: ")
+                .append(getDepartment());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

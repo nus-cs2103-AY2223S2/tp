@@ -255,7 +255,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: Human Resource managers that
+**Target user profile**: Human Resource manager that
 
 * has a need to manage a significant number of employees
 * prefer desktop apps over other types
@@ -398,7 +398,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+#### *Technical Terminology*
+
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+
+#### *ExecutivePro Terminology*
+* **HR**: Human Resources department of a company responsible for managing employee life cycle and administering employee benefits
+* **HR Manager**: Human Resource Manager will lead and direct the routine functions of the Human Resources (HR) department including hiring and interviewing staff, administering pay, benefits, and leave, and enforcing company policies and practices
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------

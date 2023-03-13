@@ -4,7 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EmployeeId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -20,11 +22,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DEPARTMENT = "Marketing";
 
     private Name name;
+    private EmployeeId employeeId;
     private Phone phone;
     private Email email;
     private Address address;
+    private Department department;
     private Set<Tag> tags;
 
     /**
@@ -32,9 +37,11 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        employeeId = new EmployeeId();
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        department = new Department(DEFAULT_DEPARTMENT);
         tags = new HashSet<>();
     }
 
@@ -43,17 +50,32 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        employeeId = personToCopy.getEmployeeId();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        department = personToCopy.getDepartment();
         tags = new HashSet<>(personToCopy.getTags());
     }
+
+    public static void setEmployeeId(String id) {
+        EmployeeId.setCount(Integer.parseInt(id));
+    }
+
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EmployeeId} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmployeeId(String employeeId) {
+        this.employeeId = new EmployeeId(employeeId);
         return this;
     }
 
@@ -89,8 +111,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Department} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDepartment(String department) {
+        this.department = new Department(department);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, employeeId, phone, email, address, department, tags);
     }
 
 }

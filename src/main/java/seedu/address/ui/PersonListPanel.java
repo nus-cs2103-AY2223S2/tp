@@ -24,6 +24,7 @@ public class PersonListPanel extends UiPart<Region> {
     private ListView<Person> personListView;
     @FXML
     private Label nameCard;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -32,6 +33,7 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
         nameCard.setText("Welcome to ExecutivePro v1.2");
+
     }
 
     /**
