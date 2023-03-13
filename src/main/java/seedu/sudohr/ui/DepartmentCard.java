@@ -1,5 +1,7 @@
 package seedu.sudohr.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -7,13 +9,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.sudohr.model.department.Department;
 
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Department}.
  */
 
-public class DepartmentCard extends UiPart<Region>{
+public class DepartmentCard extends UiPart<Region> {
 
     private static final String FXMl = "DepartmentListCard.fxml";
 
