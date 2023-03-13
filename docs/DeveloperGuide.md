@@ -257,14 +257,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* is a student going to or am currently applying for internships
+* is a student going to or is currently applying for internships
 * has a need to manage a significant number of internship applications
-* prefer desktop apps over other types
+* prefer desktop apps over other types of apps
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage internship applications faster than a typical mouse/GUI driven app
+**Value proposition**: manages internship applications faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -283,7 +283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** refers to `sprINT` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** refers to `sprINT` and the **Actor** refers to the `user`, unless specified otherwise)
 
 **Use case 1: Add an application entry**
 
@@ -399,10 +399,10 @@ ___
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-3. Should take less than 500MB of memory while in operation.
-4. Should be able to view all (up to 1500) application entries on the homepage interface without noticeable lags.
-5. Will not perform any automated tasks e.g., send periodic reminders. Hence, sprINT will not have a server component.
+2. Should take less than 500MB of memory while in operation.
+3. Should be able to view all (up to 1500) application entries on the homepage interface without noticeable lags.
+4. Will not perform any automated tasks e.g., send periodic reminders. Hence, sprINT will not have a server component.
+5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 

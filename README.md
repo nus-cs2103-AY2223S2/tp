@@ -7,9 +7,9 @@
 
 Welcome to *sprINT*!
 
-**sprINT** is an **internship-tracking application** that was created to assist students in their internship hunt. Students often face a great administrative burden in keeping track of their high volume of job or internship applications, which include details like interview dates and Online Assessment links.
+**sprINT** is an **internship-tracking application** that was created to assist students in their internship hunt. Students often face a great administrative burden in keeping track of the high volume of job or internship applications, which include details like interview dates and Online Assessment links.
 
-Therefore, our app aims to help these students by keeping track of information such as the application status, progress and deadlines.
+Therefore, our app aims to help these students by tracking and recording their application details, such as the company, contacts, status and deadlines.
 
 
 * The project represents an ongoing software project for a desktop application (called _sprINT_) used for managing internship applications.

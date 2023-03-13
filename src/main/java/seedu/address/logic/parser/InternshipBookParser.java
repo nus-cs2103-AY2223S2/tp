@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddApplicationCommand;
 import seedu.address.logic.commands.ApplicationCommand;
 //import seedu.address.logic.commands.DeleteApplicationCommand;
-//import seedu.address.logic.commands.EditApplicationCommand;
+import seedu.address.logic.commands.EditApplicationCommand;
 import seedu.address.logic.commands.HelpApplicationCommand;
 import seedu.address.logic.commands.FindApplicationCommand;
 import seedu.address.logic.commands.ListApplicationCommand;
@@ -59,10 +59,10 @@ public class InternshipBookParser {
         case ListApplicationCommand.COMMAND_WORD:
             return new ListApplicationCommand();
 
-        /*
         case EditApplicationCommand.COMMAND_WORD:
             return new EditApplicationCommandParser().parse(arguments);
 
+        /*
         case DeleteApplicationCommand.COMMAND_WORD:
             return new DeleteApplicationCommandParser().parse(arguments);
 
