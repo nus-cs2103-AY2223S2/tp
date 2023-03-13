@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static trackr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -20,8 +19,6 @@ import trackr.logic.commands.ClearCommand;
 import trackr.logic.commands.DeleteCommand;
 import trackr.logic.commands.EditCommand;
 import trackr.logic.commands.EditCommand.EditPersonDescriptor;
-import trackr.logic.commands.EditTaskCommand;
-import trackr.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindCommand;
 import trackr.logic.commands.HelpCommand;
@@ -31,7 +28,6 @@ import trackr.model.person.NameContainsKeywordsPredicate;
 import trackr.model.person.Person;
 import trackr.model.task.Task;
 import trackr.testutil.EditPersonDescriptorBuilder;
-import trackr.testutil.EditTaskDescriptorBuilder;
 import trackr.testutil.PersonBuilder;
 import trackr.testutil.PersonUtil;
 import trackr.testutil.TaskBuilder;
@@ -85,29 +81,6 @@ public class TrackrParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
-
-    @Test
-    public void parseCommand_editTask() throws Exception {
-        Task task = new TaskBuilder().build();
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
-        EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
-                EditTaskCommand.COMMAND_WORD + " "
-                        + INDEX_FIRST_OBJECT.getOneBased()
-                        + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
-        assertEquals(new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor), command);
-    }
-
-    @Test
-    public void parseCommand_editTaskShortcut() throws Exception {
-        Task task = new TaskBuilder().build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
-        EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
-                EditTaskCommand.COMMAND_WORD_SHORTCUT + " "
-                        + INDEX_FIRST_OBJECT.getOneBased()
-                        + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
-        assertEquals(new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor), command);
-    }
-
 
     @Test
     public void parseCommand_exit() throws Exception {
