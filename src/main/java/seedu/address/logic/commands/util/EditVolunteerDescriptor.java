@@ -28,19 +28,19 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
 
     /**
      * Creates and returns a {@code Volunteer} with the details of {@code volunteerToEdit}
-     * edited with {@code editVolunteerDescriptor}.
+     * edited with {@code editPersonDescriptor}.
      */
     public static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
-                                                   EditVolunteerDescriptor editVolunteerDescriptor) {
+                                                   EditPersonDescriptor editPersonDescriptor) {
         assert volunteerToEdit != null;
 
-        Name updatedName = editVolunteerDescriptor.getName().orElse(volunteerToEdit.getName());
-        Phone updatedPhone = editVolunteerDescriptor.getPhone().orElse(volunteerToEdit.getPhone());
-        Email updatedEmail = editVolunteerDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
-        Address updatedAddress = editVolunteerDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
-        Nric updatedNric = editVolunteerDescriptor.getNric().orElse(volunteerToEdit.getNric());
-        Age updatedAge = editVolunteerDescriptor.getAge().orElse(volunteerToEdit.getAge());
-        Set<Tag> updatedTags = editVolunteerDescriptor.getTags().orElse(volunteerToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(volunteerToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(volunteerToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
+        Nric updatedNric = editPersonDescriptor.getNric().orElse(volunteerToEdit.getNric());
+        Age updatedAge = editPersonDescriptor.getAge().orElse(volunteerToEdit.getAge());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(volunteerToEdit.getTags());
 
         return new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedNric, updatedAge, updatedTags);

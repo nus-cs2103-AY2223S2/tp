@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
@@ -13,7 +14,9 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.logic.commands.util.EditPersonDescriptor;
+import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -27,8 +30,8 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the elderly/volunteer identified "
-            + "by the NRIC of the elderly/volunteer. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+            + "by the NRIC of the person. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: NRIC "
             + "[" + PREFIX_NAME + "NAME] "
@@ -36,6 +39,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_AGE + "AGE] "
+            + "[" + PREFIX_NRIC + "NEW_NRIC] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " S4263131J "
             + PREFIX_PHONE + "91234567 "
@@ -69,7 +73,7 @@ public class EditCommand extends Command {
         Elderly elderlyToEdit = model.getElderly(nric);
 
         if (elderlyToEdit != null) {
-            Elderly editedElderly = EditPersonDescriptor.createEditedElderly(
+            Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(
                     elderlyToEdit,
                     editPersonDescriptor
             );
@@ -87,7 +91,7 @@ public class EditCommand extends Command {
         if (volunteerToEdit == null) {
             throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
         }
-        Volunteer editedVolunteer = EditPersonDescriptor.createEditedVolunteer(
+        Volunteer editedVolunteer = EditVolunteerDescriptor.createEditedVolunteer(
                 volunteerToEdit,
                 editPersonDescriptor
         );

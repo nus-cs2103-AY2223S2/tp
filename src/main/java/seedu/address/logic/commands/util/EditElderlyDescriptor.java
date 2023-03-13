@@ -36,21 +36,25 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
      * Creates and returns a {@code Elderly} with the details of {@code elderlyToEdit}
      * edited with {@code editElderlyDescriptor}.
      */
-    public static Elderly createEditedElderly(Elderly elderlyToEdit, EditElderlyDescriptor editElderlyDescriptor) {
+    public static Elderly createEditedElderly(Elderly elderlyToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert elderlyToEdit != null;
 
-        Name updatedName = editElderlyDescriptor.getName().orElse(elderlyToEdit.getName());
-        Phone updatedPhone = editElderlyDescriptor.getPhone().orElse(elderlyToEdit.getPhone());
-        Email updatedEmail = editElderlyDescriptor.getEmail().orElse(elderlyToEdit.getEmail());
-        Address updatedAddress = editElderlyDescriptor.getAddress().orElse(elderlyToEdit.getAddress());
-        Nric updatedNric = editElderlyDescriptor.getNric().orElse(elderlyToEdit.getNric());
-        Age updatedAge = editElderlyDescriptor.getAge().orElse(elderlyToEdit.getAge());
-        RiskLevel updagetRiskLevel = editElderlyDescriptor.getRiskLevel()
-                .orElse(elderlyToEdit.getRiskLevel());
-        Set<Tag> updatedTags = editElderlyDescriptor.getTags().orElse(elderlyToEdit.getTags());
-
+        Name updatedName = editPersonDescriptor.getName().orElse(elderlyToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(elderlyToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(elderlyToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(elderlyToEdit.getAddress());
+        Nric updatedNric = editPersonDescriptor.getNric().orElse(elderlyToEdit.getNric());
+        Age updatedAge = editPersonDescriptor.getAge().orElse(elderlyToEdit.getAge());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(elderlyToEdit.getTags());
+        // Setting elderly-specific attributes
+        RiskLevel updatedRiskLevel = elderlyToEdit.getRiskLevel();
+        if (editPersonDescriptor instanceof EditElderlyDescriptor) {
+            EditElderlyDescriptor editElderlyDescriptor = (EditElderlyDescriptor) editPersonDescriptor;
+            updatedRiskLevel = editElderlyDescriptor.getRiskLevel()
+                    .orElse(elderlyToEdit.getRiskLevel());
+        }
         return new Elderly(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updagetRiskLevel, updatedTags);
+                updatedNric, updatedAge, updatedRiskLevel, updatedTags);
     }
 
 
