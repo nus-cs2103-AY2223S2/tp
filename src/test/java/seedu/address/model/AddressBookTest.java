@@ -18,6 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.ContactPhone;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -81,6 +84,20 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void linkContact_linkContactToEvent_success() {
+        addressBook.addPerson(ALICE);
+        addressBook.linkContact(ALICE, new Contact(new ContactName("ALICE"), new ContactPhone("91234567")));
+        Event editedAlice = new PersonBuilder(ALICE).withContact("ALICE", "91234567").build();
+        assertTrue(addressBook.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void linkContact_linkNullToEvent_throwsNullPointerException() {
+        addressBook.addPerson(ALICE);
+        assertThrows(NullPointerException.class, () -> addressBook.linkContact(ALICE, null));
     }
 
     /**

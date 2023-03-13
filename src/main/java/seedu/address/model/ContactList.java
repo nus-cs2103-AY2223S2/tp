@@ -31,7 +31,9 @@ public class ContactList implements ReadOnlyContactList {
         contacts = new UniqueContactList();
     }
 
-    public ContactList() {}
+    public ContactList() {
+
+    }
 
     /**
      * Creates an ContactList using the Contacts in the {@code toBeCopied}
@@ -47,7 +49,7 @@ public class ContactList implements ReadOnlyContactList {
      * Replaces the contents of the contact list with {@code contacts}.
      * {@code contacts} must not contain duplicate contactss.
      */
-    public void setPersons(List<Contact> contacts) {
+    public void setContacts(List<Contact> contacts) {
         this.contacts.setContacts(contacts);
     }
 
@@ -57,7 +59,7 @@ public class ContactList implements ReadOnlyContactList {
     public void resetData(ReadOnlyContactList newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getContactList());
+        setContacts(newData.getContactList());
     }
 
     //// contact-level operations

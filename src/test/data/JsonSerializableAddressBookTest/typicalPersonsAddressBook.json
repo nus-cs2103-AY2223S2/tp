@@ -7,6 +7,7 @@
     "startTiming": "11-12-2023 02:00",
     "endTiming": "11-12-2023 10:00",
     "mark": "[ ]",
+    "contact" : " ",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +16,7 @@
     "startTiming": "11-03-2024 12:00",
     "endTiming": "11-03-2024 17:00",
     "mark": "[ ]",
+    "contact" : " ",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +25,7 @@
     "startTiming": "25-01-2023 12:00",
     "endTiming": "26-01-2024 12:00",
     "mark": "[ ]",
+    "contact" : " ",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "startTiming": "11-03-2024 12:00",
     "endTiming": "11-03-2024 13:00",
     "mark": "[ ]",
+    "contact" : " ",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "startTiming": "11-03-2025 12:00",
     "endTiming": "11-03-2025 17:00",
     "mark": "[ ]",
+    "contact" : " ",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "startTiming": "01-01-2024 12:30",
     "endTiming": "02-01-2024 02:15",
     "mark": "[ ]",
+    "contact" : " ",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "startTiming": "11-03-2023 23:20",
     "endTiming": "12-03-2023 00:00",
     "mark": "[ ]",
+    "contact" : " ",
     "tagged" : [ ]
   } ]
 }

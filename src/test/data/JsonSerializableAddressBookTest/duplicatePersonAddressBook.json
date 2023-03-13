@@ -5,6 +5,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "startTiming": "11-03-2023 11:00",
     "endTiming": "11-03-2023 12:00",
+    "contact" : " ",
     "mark": "[ ]",
     "tagged": [ "friends" ]
   }, {
@@ -13,6 +14,7 @@
     "address": "4th street",
     "startTiming": "11-03-2023 11:00",
     "endTiming": "11-03-2023 12:00",
+    "contact" : " ",
     "mark": "[ ]"
   } ]
 }

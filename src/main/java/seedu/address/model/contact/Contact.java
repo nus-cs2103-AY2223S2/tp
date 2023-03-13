@@ -9,8 +9,8 @@ import java.util.Objects;
  */
 public class Contact {
 
-    private final ContactName name;
-    private final ContactPhone phone;
+    private ContactName name;
+    private ContactPhone phone;
 
     /**
      * Every field must be present and not null.
@@ -20,6 +20,8 @@ public class Contact {
         this.name = name;
         this.phone = phone;
     }
+
+    public Contact() {};
 
     public ContactName getName() {
         return name;
@@ -34,13 +36,29 @@ public class Contact {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameContact(Contact otherContact) {
+        if (otherContact == null) {
+            return false;
+        }
+
         if (otherContact == this) {
             return true;
         }
 
-        return otherContact != null
-                && otherContact.getName().equals(getName());
+        if (this.name == otherContact.name) {
+            return true;
+        }
+
+        if (otherContact.getName().equals(this.getName())) {
+            return true;
+        }
+
+        return false;
     }
+
+    public boolean isNull() {
+        return this.name == null;
+    }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -48,6 +66,10 @@ public class Contact {
      */
     @Override
     public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+
         if (other == this) {
             return true;
         }
@@ -57,6 +79,10 @@ public class Contact {
         }
 
         Contact otherContact = (Contact) other;
+        if (this.name == otherContact.name && this.phone == otherContact.phone) {
+            return true;
+        }
+
         return otherContact.getName().equals(getName())
                 && otherContact.getPhone().equals(getPhone());
     }
@@ -75,6 +101,17 @@ public class Contact {
                 .append(getPhone());
 
         return builder.toString();
+    }
+
+    /**
+     * Formats the string needed to save in Json file
+     */
+    public String toCardString() {
+        try {
+            return name.fullName + " HP:" + phone.value;
+        } catch (NullPointerException npe) {
+            return " ";
+        }
     }
 
 }

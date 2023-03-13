@@ -4,6 +4,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.ContactPhone;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Mark;
@@ -23,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_START_TIME = "12-03-2023 11:00";
     public static final String DEFAULT_END_TIME = "12-03-2023 12:00";
+    public static final String DEFAULT_CONTACTNUM = "91234567";
 
     private Name name;
     private Rate rate;
@@ -30,6 +34,8 @@ public class PersonBuilder {
     private Timing timing;
     private Mark mark;
     private Set<Tag> tags;
+    private Contact contact;
+
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +46,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         timing = new Timing(DEFAULT_START_TIME, DEFAULT_END_TIME);
         tags = new HashSet<>();
+        contact = new Contact(new ContactName(DEFAULT_NAME), new ContactPhone(DEFAULT_CONTACTNUM));
     }
 
     /**
@@ -52,6 +59,7 @@ public class PersonBuilder {
         timing = personToCopy.getTiming();
         mark = personToCopy.getMark();
         tags = new HashSet<>(personToCopy.getTags());
+        contact = personToCopy.getContact();
     }
 
     /**
@@ -104,9 +112,24 @@ public class PersonBuilder {
         }
         return this;
     }
+    /**
+     * Sets the {@code contact} of the {@code Event} that we are building.
+     */
+    public PersonBuilder withContact(String name, String number) {
+        this.contact = new Contact(new ContactName(name), new ContactPhone(number));
+        return this;
+    }
 
+    /**
+     * Builds the event.
+     * @return Event that is built.
+     */
     public Event build() {
-        return new Event(name, rate, address, timing, tags);
+        Event event = new Event(name, rate, address, timing, tags);
+        if (!contact.equals(new Contact(new ContactName(DEFAULT_NAME), new ContactPhone(DEFAULT_CONTACTNUM)))) {
+            event.linkContact(this.contact);
+        }
+        return event;
     }
 
 }
