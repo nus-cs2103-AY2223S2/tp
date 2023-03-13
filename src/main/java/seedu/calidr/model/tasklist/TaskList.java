@@ -1,9 +1,16 @@
 package seedu.calidr.model.tasklist;
 
-import java.util.ArrayList;
+import static java.util.Objects.requireNonNull;
+import static javafx.collections.FXCollections.observableList;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.collections.ObservableList;
 import seedu.calidr.exception.CalidrException;
 import seedu.calidr.exception.CalidrInvalidArgumentException;
+import seedu.calidr.model.ReadOnlyAddressBook;
+import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.task.Priority;
 import seedu.calidr.model.task.Task;
 
@@ -11,9 +18,9 @@ import seedu.calidr.model.task.Task;
  * Represents a task list manager that aids in storing and manipulating the
  * list of Tasks.
  */
-public class TaskList {
+public class TaskList implements ReadOnlyTaskList {
 
-    private final ArrayList<Task> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     /**
      * Returns all the Tasks in the list of Tasks.
@@ -168,6 +175,17 @@ public class TaskList {
         } else {
             throw new CalidrInvalidArgumentException("Sorry... That is an invalid task number :/");
         }
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return observableList(tasks);
+    }
+
+    public void resetData(ReadOnlyTaskList newData) {
+        requireNonNull(newData);
+
+        this.tasks = newData.getTaskList();
     }
 
 }
