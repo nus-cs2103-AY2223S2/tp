@@ -72,12 +72,11 @@ public class Person {
     }
 
     /**
-     * Returns the interview dateTime for the applicant if present, else throws {@code NoSuchElementException}
+     * Returns the interview dateTime for the applicant if present, else returns null
      * @return Interview date of the applicant.
-     * @throws NoSuchElementException Thrown when no interview date is present.
      */
-    public InterviewDateTime getInterviewDateTime() throws NoSuchElementException {
-        return interviewDateTime.orElseThrow();
+    public InterviewDateTime getInterviewDateTime() {
+        return interviewDateTime.orElse(null);
     }
 
     public String getInterviewDateTimeString() {

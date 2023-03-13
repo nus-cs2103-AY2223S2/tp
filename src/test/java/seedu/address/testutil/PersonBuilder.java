@@ -57,6 +57,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         status = personToCopy.getStatus();
+        interviewDateTime = Optional.ofNullable(personToCopy.getInterviewDateTime());
         tags = new HashSet<>(personToCopy.getNotes());
     }
 
@@ -113,7 +114,11 @@ public class PersonBuilder {
      */
     public PersonBuilder withInterviewDateTime(String interviewDateTime) {
         try {
-            this.interviewDateTime = Optional.of(new InterviewDateTime(interviewDateTime));
+            if (interviewDateTime.equals("")) {
+                this.interviewDateTime = Optional.empty();
+            } else {
+                this.interviewDateTime = Optional.of(new InterviewDateTime(interviewDateTime));
+            }
         } catch (ParseException e) {
             this.interviewDateTime = Optional.empty();
         }
