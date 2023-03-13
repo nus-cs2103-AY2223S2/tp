@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.function.Function;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.commons.core.index.Index;
@@ -154,6 +157,11 @@ public class ParserUtil {
             throw new ParseException(Messages.MESSAGE_EMPTY_SOURCE);
         }
         return trimmedSource;
+    }
+
+    // Performs a map operation.
+    public static <T, U>  Optional<U> parseOptionalWith(Optional<T> src, ParserFn<T, U> f) throws ParseException {
+        return src.isPresent() ? Optional.of(f.parse(src.get())) : Optional.empty();
     }
 
 }
