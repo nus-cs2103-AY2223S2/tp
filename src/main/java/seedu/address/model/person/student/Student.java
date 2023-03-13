@@ -4,6 +4,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
@@ -23,7 +24,7 @@ public class Student extends Person {
     private final Age age;
     private final Image image;
     private final Cca cca;
-    private final StudentClass sc;
+    private final Class sc;
     private Attendance attendance;
     private Homework homework;
     private Test test;
@@ -48,7 +49,7 @@ public class Student extends Person {
      * @param test Tests student took.
      * @param tags Tag given to student.
      */
-    public Student(Name name, StudentClass sc, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age,
+    public Student(Name name, Class sc, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age,
                    Image image, Email email, Phone phone, Cca cca, Address address, Attendance attendance,
                    Homework homework, Test test, Set<Tag> tags, Comment comment) {
         super(name, phone, email, address, tags);
@@ -124,7 +125,7 @@ public class Student extends Person {
      *
      * @return Student's class.
      */
-    public StudentClass getStudentClass() {
+    public Class getStudentClass() {
         return sc;
     }
 
@@ -164,6 +165,13 @@ public class Student extends Person {
         return comment;
     }
 
+    /**
+     * A method that returns a boolean value to indicate if other is equal to this Student.
+     * Note that this method only checks for attributes that are unique and unchanging to Student.
+     *
+     * @param other
+     * @return
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -176,24 +184,16 @@ public class Student extends Person {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
-                && otherStudent.getStudentClass().equals(getStudentClass())
+                && otherStudent.getClass().equals(getClass())
                 && otherStudent.getIndexNumber().equals(getIndexNumber())
-                && otherStudent.getSex().equals(getSex())
-                && otherStudent.getParentName().equals(getParentName())
-                && otherStudent.getAge().equals(getAge())
-                && otherStudent.getImage().equals(getImage())
-                && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getCca().equals(getCca())
-                && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getSex().equals(getSex());
     }
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Student Class: ")
-                .append(getStudentClass())
+                .append(getClass())
                 .append("; Index Number: ")
                 .append(getIndexNumber())
                 .append("; Sex: ")

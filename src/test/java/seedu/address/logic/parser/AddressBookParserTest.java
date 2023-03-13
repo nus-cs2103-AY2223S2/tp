@@ -25,17 +25,17 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.student.IndexNumber;
-import seedu.address.model.person.student.StudentClass;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
     private static final IndexNumber TEST_INDEX = new IndexNumber("1");
-    private static final StudentClass TEST_CLASS = new StudentClass("1A");
+    private static final Class TEST_CLASS = Class.of("1A");
 
     private final AddressBookParser parser = new AddressBookParser();
 
