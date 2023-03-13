@@ -6,6 +6,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
@@ -13,7 +14,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
-import seedu.address.model.person.student.StudentClass;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,7 +24,7 @@ public class Parent extends Person {
     private final Image image;
     private final IndexNumber indexNumber;
     private final Relationship relationship;
-    private final StudentClass sc;
+    private final Class sc;
     private final List<Student> children = new ArrayList<>();
 
     /**
@@ -39,7 +39,7 @@ public class Parent extends Person {
      * @param address Residential address of Parent / NOK.
      * @param tags Tags given to Parent object.
      */
-    public Parent(StudentClass sc, IndexNumber indexNumber, Name name, Relationship relationship, Age age, Image image,
+    public Parent(Class sc, IndexNumber indexNumber, Name name, Relationship relationship, Age age, Image image,
                   Email email, Phone phone, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;

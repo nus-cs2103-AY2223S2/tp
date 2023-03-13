@@ -33,6 +33,7 @@ import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
@@ -115,7 +116,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
                 || studentClass.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentAddCommand.MESSAGE_USAGE));
         }
-        StudentClass sc = ParserUtil.parseStudentClass(studentClass);
+        Class sc = ParserUtil.parseStudentClass(studentClass);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
         Sex sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
@@ -145,7 +146,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StudentCommentCommand.MESSAGE_USAGE));
         }
-        StudentClass sc = ParserUtil.parseStudentClass(studentClass);
+        Class sc = ParserUtil.parseStudentClass(studentClass);
         IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
         Comment comment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
         return new StudentCommentCommand(sc, indexNumber, comment);

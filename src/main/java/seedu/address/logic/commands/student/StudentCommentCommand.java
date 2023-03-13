@@ -11,6 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
@@ -34,14 +35,14 @@ public class StudentCommentCommand extends StudentCommand {
     private final IndexNumber index;
     private final Comment comment;
 
-    private final StudentClass studentClass;
+    private final Class studentClass;
     /**
      * Creates an AddCommand to add the specified {@code Person}
      *
      * @param index of the person in the filtered person list to edit
      * @param comment of the person to be updated to
      */
-    public StudentCommentCommand(StudentClass studentClass, IndexNumber index, Comment comment) {
+    public StudentCommentCommand(Class studentClass, IndexNumber index, Comment comment) {
         requireAllNonNull(index, comment);
 
         this.index = index;

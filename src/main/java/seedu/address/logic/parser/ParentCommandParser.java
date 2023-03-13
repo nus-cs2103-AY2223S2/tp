@@ -32,7 +32,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.person.student.IndexNumber;
-import seedu.address.model.person.student.StudentClass;
+import seedu.address.model.person.Class;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -79,7 +79,7 @@ public class ParentCommandParser {
                 || studentClass.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParentAddCommand.MESSAGE_USAGE));
         }
-        StudentClass sc = ParserUtil.parseStudentClass(studentClass);
+        Class sc = ParserUtil.parseStudentClass(studentClass);
         IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Relationship rls = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
