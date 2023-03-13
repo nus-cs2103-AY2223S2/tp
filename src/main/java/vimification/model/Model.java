@@ -6,13 +6,17 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import vimification.commons.core.GuiSettings;
 import vimification.model.person.Person;
+import vimification.model.task.Task;
+
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
+    Predicate<Person> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -33,6 +37,30 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    //=========== Task oriented methods (NEW CODE) =============================================================
+
+    /**
+     * Adds the given new task.
+     */
+    void addTask(Task newTask);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the task list.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Task> getFilteredTaskList();
+
+    //=========== Person oriented methods (OLD CODE) =============================================================
 
     /**
      * Returns the user prefs' address book file path.
