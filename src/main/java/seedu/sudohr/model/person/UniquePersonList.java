@@ -91,11 +91,11 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
 
-        if (!target.phoneClashes(editedPerson) && sharesPhoneNumber(editedPerson)) {
+        if (!target.isSamePerson(editedPerson) && sharesPhoneNumber(editedPerson)) {
             throw new DuplicatePhoneNumberException();
         }
 
-        if (!target.emailClashes(editedPerson) && sharesEmail(editedPerson)) {
+        if (!target.isSamePerson(editedPerson) && sharesEmail(editedPerson)) {
             throw new DuplicateEmailException();
         }
 

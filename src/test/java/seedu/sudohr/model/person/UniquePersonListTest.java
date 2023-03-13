@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.sudohr.testutil.Assert.assertThrows;
@@ -253,13 +255,24 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void setPerson_editedPersonHasSameIdentityOnly_success() {
+        uniquePersonList.add(BOB);
+        Person newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
+        uniquePersonList.setPerson(BOB, newBob);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
+        expectedUniquePersonList.add(newBob);
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
+    public void setPerson_editedPersonHasSameIdentityAndEmailOnly_success() {
+        uniquePersonList.add(BOB);
+        Person newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
+                .build();
+        uniquePersonList.setPerson(BOB, newBob);
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.add(newBob);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
@@ -273,11 +286,35 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setPerson_editedPersonAlreadyExists_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
     }
+
+    // edited person now has unique phone number that does not exist in SudoHR
+    @Test
+    public void setPerson_editedPersonNewPhoneIsUnique_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        Person newBob = new PersonBuilder().withPhone(VALID_PHONE_AMY)
+                .build();
+        uniquePersonList.setPerson(BOB, newBob);
+    }
+
+    // edited person now has phone number that already exists in SudoHR
+
+    // edited person is different id but with a unique phone number
+
+    // edited person is different id but with phone number that exists
+
+
+
+
+    // edited person shares email with another
+
+    // edited person shares same email and phone number with someone else
+
 
     /** Tests removal of a person **/
     @Test

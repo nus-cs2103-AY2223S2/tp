@@ -32,7 +32,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlySudoHr sudoHr, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(sudoHr, userPrefs);
 
-        logger.fine("Initializing with sudohr book: " + sudoHr + " and user prefs " + userPrefs);
+        logger.fine("Initializing with SudoHR: " + sudoHr + " and user prefs " + userPrefs);
 
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
