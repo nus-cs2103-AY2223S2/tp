@@ -12,6 +12,7 @@ import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
 
 /**
@@ -23,6 +24,7 @@ public class JsonAdaptedInternshipApplication {
     private final String companyName;
     private final String jobTitle;
     private final List<String> contact = new ArrayList<>();
+    private final String status;
 
     /**
      * Constructs a {@code JsonAdaptedInternshipApplication} with the given InternshipApplication details.
@@ -30,12 +32,14 @@ public class JsonAdaptedInternshipApplication {
     @JsonCreator
     public JsonAdaptedInternshipApplication(@JsonProperty("companyName") String companyName,
                                             @JsonProperty("jobTitle") String jobTitle,
+                                            @JsonProperty("status") String status,
                                             @JsonProperty("contact") List<String> contact) {
         this.companyName = companyName;
         this.jobTitle = jobTitle;
         if (contact != null) {
             this.contact.addAll(contact);
         }
+        this.status = status;
     }
 
     /**
@@ -48,6 +52,7 @@ public class JsonAdaptedInternshipApplication {
             contact.add(source.getContact().getPhone().value);
             contact.add(source.getContact().getEmail().value);
         }
+        status = source.getStatus().name();
     }
 
     /**
@@ -75,6 +80,15 @@ public class JsonAdaptedInternshipApplication {
         }
         final JobTitle modelJobTitle = new JobTitle(jobTitle);
 
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    InternshipStatus.class.getSimpleName()));
+        }
+        if (!InternshipStatus.isValidStatus(status)) {
+            throw new IllegalValueException(InternshipStatus.MESSAGE_CONSTRAINTS);
+        }
+        final InternshipStatus modelStatus = InternshipStatus.valueOf(status);
+
         if (contact.size() == 2) {
             if (!Phone.isValidPhone(contact.get(0))) {
                 throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -87,9 +101,9 @@ public class JsonAdaptedInternshipApplication {
             final Email modelEmail = new Email(contact.get(1));
             final Contact modelContact = new Contact(modelPhone, modelEmail);
 
-            return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact);
+            return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus);
         } else {
-            return new InternshipApplication(modelCompanyName, modelJobTitle);
+            return new InternshipApplication(modelCompanyName, modelJobTitle, modelStatus);
         }
     }
 }

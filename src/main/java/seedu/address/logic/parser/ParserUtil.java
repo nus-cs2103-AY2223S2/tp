@@ -13,6 +13,7 @@ import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Status;
@@ -168,5 +169,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code InternshipStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static InternshipStatus parseInternshipStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!InternshipStatus.isValidStatus(trimmedStatus)) {
+            throw new ParseException(InternshipStatus.MESSAGE_CONSTRAINTS);
+        }
+        return InternshipStatus.valueOf(trimmedStatus);
     }
 }
