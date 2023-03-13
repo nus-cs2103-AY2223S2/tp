@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -13,6 +15,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -54,6 +57,24 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndexs_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseindexs("10 a", " "));
+    }
+
+    @Test
+    public void parseIndexs_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
+                ParserUtil.parseindexs("1" + Long.toString(Integer.MAX_VALUE + 1), " "));
+    }
+
+    @Test
+    public void parseIndexs_validInput_success() throws Exception {
+        ArrayList<Index> a1 = ParserUtil.parseindexs("1 2", " ");
+        assertEquals(INDEX_FIRST_PERSON, a1.get(0));
+        assertEquals(INDEX_SECOND_PERSON, a1.get(1));
     }
 
     @Test

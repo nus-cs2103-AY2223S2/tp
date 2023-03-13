@@ -9,48 +9,39 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wang ShaoFeng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sfcoding123.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/sfcoding123)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Project Management and Testing
 
 ### Wei De
 
-<img src="images/IMG_1672.JPG" width="200px">
+<img src="images/weideteo.png" width="200px">
 
 [[github](https://github.com/WeideTeo)]
 [[portfolio](https://www.linkedin.com/in/weideteo/)]
 
 * Role: Developer
-* Responsibilities: Functions
+* Responsibilities: Add Functions
 
-### Wang ShaoFeng
-
-<img src="images/791654880285_.pic_hd.jpg" width="200px">
-
-[[github](https://github.com/SFCoding123)]
-[[portfolio](https://www.linkedin.com/in/shaofeng-wang-468303197/)]
-
-* Role: Team Lead
-* Responsibilities: UI
 
 ### Luo Xizi
 
 <img src="images/lxz333.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/lxz333)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
 ### Shen Chenzi
 
-![docs/images/shenchenzi.png](https://user-images.githubusercontent.com/97273558/221216937-eecda515-93e0-47b0-9b74-d0f08ac43253.jpg)
+<img src="images/shenchenzizoe.png" width="220px">
 
 [[github](https://github.com/shenchenzizoe)]
 [[portfolio](team/johndoe.md)]

@@ -257,42 +257,75 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* private doctor or doctor's receptionist
+* requires to manage large amount of patients details
+* wants to organise and access patients data easily
 * prefer desktop apps over other types
-* can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+The problem addressed is to assist in digitizing patient details. By converting traditional paper records into
+electronic ones, healthcare providers can easily and efficiently organize and manage patient data.
+This not only saves time and reduces the risk of errors, but it also makes it easier to retrieve and update the
+information when needed.
+Additionally, with the use of electronic scheduling systems, healthcare providers can easily schedule and reschedule
+appointments, improving the overall experience for both patients and staff.
+Overall, digitizing patient details helps to improve the quality of care and make the healthcare delivery process more
+streamlined and efficient.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority | As a …​ | I want to …​                                                                       | So that I can…​                                                                                                                |
+|----------|---------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | User    | Record a person's age                                                              | Keep track of their basic profile                                                                                              |
+| `* * *`  | User    | Record a person's gender                                                           | Assign the male or female doctor when necessary                                                                                |
+| `* * *`  | User    | Record a person's phone number                                                     | Contact them conveniently                                                                                                      |
+| `* * *`  | User    | Record a person's email/address                                                    | Efficiently manage the communication and consultation process with patients                                                    |
+| `* * *`  | User    | Give patients zero or more tags                                                    | Easily classify different groups of patients by their illness, medication, and other information to serve their specific needs |
+| `* * *`  | User    | Add a certain medical condition and add the relevant patients in the same category | Organize patients based on their medical conditions                                                                            |
+| `* * *`  | User    | Add new types of medications and assign them to patients                           | Keep track of patients' medications and prescriptions                                                                          | 
+| `* * *`  | User    | List all current contacts                                                          | View general information, update list, and add filters/classifications                                                         |
+| `* * *`  | User    | Rank patients by schedule, name, and medical conditions                            | Manage consultation time and content efficiently                                                                               | 
+| `* * *`  | User    | Search for a medication and get the number of patients taking it                   | Determine how much medication to order for the clinic                                                                          | 
+| `* * *`  | User    | Edit patient information (phone number, name, location, medical condition)         | Update patient records                                                                                                         | 
+| `* * *`  | User    | Edit a patient contact                                                             | Modify patient contact information                                                                                             | 
+| `* * *`  | User    | Schedule appointments                                                              | Book and manage appointments to reduce workload                                                                                | 
+| `* * *`  | User    | Update appointment timing                                                          | Modify appointment times                                                                                                       | 
+| `* * *`  | User    | Mark appointments as done                                                          | Indicate when appointments are completed                                                                                       | 
+| `* * *`  | User    | Edit available medication amount                                                   | Maintain inventory and stock levels                                                                                            | 
+| `* * *`  | User    | Search for patients by name                                                        | Locate patient records by name                                                                                                 | 
+| `* * *`  | User    | Search for patients by phone number                                                | Locate patient records by phone number                                                                                         | 
+| `* * *`  | User    | Search for patients by location                                                    | Locate patients by location                                                                                                    | 
+| `* * *`  | User    | Search for patients by medical condition                                           | Locate patients by medical condition                                                                                           | 
+| `* * *`  | User    | Search for appointments by date                                                    | View appointments on a specific date                                                                                           | 
+| `* * *`  | User    | Access help function                                                               | Get information on using the software                                                                                          | 
+| `* * *`  | User    | Access patient health information                                                  | View patient medical history                                                                                                   | 
+| `* * *`  | User    | Access patient prescriptions                                                       | View patient medication history                                                                                                | 
+| `*`      | User    | Check available medication stock                                                   | Determine when to order more medication                                                                                        | 
+| `*`      | User    | Clear all contacts                                                                 | Delete all patient records                                                                                                     | 
+| `*`      | User    | Clear contacts by tags                                                             | Delete patient records based on tags                                                                                           | 
+| `*`      | User    | Clear contacts by location                                                         | Delete patient records based on location                                                                                       | 
+| `*`      | User    | Delete medication                                                                  | Remove a medication from the system                                                                                            | 
+| `*`      | User    | Delete appointment                                                                 | Remove an appointment from the system                                                                                          | 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: Delete a patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list patients.
+2.  Medimate shows a list of patients.
+3.  User requests to delete a specific patient in the list.
+4.  Medimate deletes the patient.
 
     Use case ends.
 
@@ -304,16 +337,111 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Medimate shows an error message.
 
       Use case resumes at step 2.
 
 *{More to be added}*
 
+**Use case: Edit a patient particulars**
+
+**MSS**
+
+1. User request to Edit a patient details.
+2. MediMate ask for type of details.
+3. User chose the type and enter the new details.
+4. MediMate record the details.
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enter wrong input format. 
+  * 1a1. Medimate give correct format and ask user to input again.
+  * 1a2. User enters the input with correct format.
+    
+    Use Case ends.
+  
+* 1b. Patient does not exist.
+    * 1b1. Medimate reminds user to check for patient name.
+    * 1b2. User enters the input with correct format
+      
+      Use Case ends.
+      
+* 3a. User enter Invalid type.
+    * 3a1. Medimate give the available types and ask user to input again.
+      
+      Use Case ends.
+
+**Use case: Find a patient particulars**
+
+**MSS**
+
+1. User request to find a patient using his details.
+2. Medimate ask for the type of details.
+3. User chose the type of details.
+4. Medimate display the patient.
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enter wrong input format.
+    * 1a1. Medimate give correct format and ask user to input again.
+    * 1a2. User enters the input with correct format.
+      
+      Use Case ends.
+
+
+* 1b. Patient does not exist.
+    * 1b1. Medimate reminds user to check for patient name.
+    * 1b2. User enter the input with correct format. 
+   
+      Use Case ends.
+
+
+*  3a. User chose Invalid type
+   * 3a1. Medimate give the available types and ask user to input again
+     Use Case ends.
+
+
+**Use case:  Add a patient**
+
+**MSS**
+
+1.  User requests to add a patient and inputs his information.
+2.  Medimate adds the patient.
+
+    Use Case ends.
+
+**Extensions**
+
+* 1a. User input format is wrong.
+  * 1a1.  Medimate asks User for another correct input of the patient’s information.
+  * 1a2. User inputs a new line of patient’s information with the correct format.
+    
+    Use Case resumes at step 2.
+
+**Use case:  List patients by their booked schedules**
+
+**MSS**
+
+1. User requests to list all patients based on their scheduled time
+2. Medimate displays a list of all patients sorted in order based on scheduled time
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
