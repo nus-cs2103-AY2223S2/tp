@@ -71,6 +71,16 @@ public class AddClientCommandParserTest {
         Client expectedClient = new ClientBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
                 new AddClientCommand(expectedClient));
+
+        // no phone number
+        expectedClient = new ClientBuilder(AMY).withPhone(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND,
+                new AddClientCommand(expectedClient));
+
+        // no email
+        expectedClient = new ClientBuilder(AMY).withEmail(null).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + TAG_DESC_FRIEND,
+                new AddClientCommand(expectedClient));
     }
 
     @Test
@@ -79,14 +89,6 @@ public class AddClientCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB,
                 expectedMessage);
 
         // all prefixes missing

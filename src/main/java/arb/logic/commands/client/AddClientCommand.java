@@ -18,7 +18,7 @@ import arb.model.client.Client;
  */
 public class AddClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-client";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the address book. "
             + "Parameters: "

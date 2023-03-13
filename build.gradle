@@ -63,6 +63,8 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+    implementation group: 'org.ocpsoft.prettytime', name: 'prettytime-nlp', version: '5.0.6.Final'
 }
 
 shadowJar {

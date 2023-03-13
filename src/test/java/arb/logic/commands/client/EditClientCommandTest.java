@@ -110,7 +110,7 @@ public class EditClientCommandTest {
         EditClientCommand editClientCommand = new EditClientCommand(INDEX_SECOND_CLIENT, descriptor);
 
         assertCommandFailure(editClientCommand, ListType.CLIENT, model,
-                EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
+                Messages.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
@@ -123,7 +123,7 @@ public class EditClientCommandTest {
                 new EditClientDescriptorBuilder(clientInList).build());
 
         assertCommandFailure(editClientCommand, ListType.CLIENT, model,
-                EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
+                Messages.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
