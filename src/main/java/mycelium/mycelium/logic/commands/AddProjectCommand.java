@@ -2,6 +2,8 @@ package mycelium.mycelium.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.Model;
@@ -60,4 +62,20 @@ public class AddProjectCommand extends Command {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AddProjectCommand that = (AddProjectCommand) o;
+        return toAdd.isSame(that.toAdd);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
+    }
 }

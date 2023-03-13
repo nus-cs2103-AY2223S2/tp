@@ -41,7 +41,7 @@ public class AddClientCommandTest {
     }
 
     @Test
-    public void execute_duplicateClient_throwsCommandException() throws Exception{
+    public void execute_duplicateClient_throwsCommandException() throws Exception {
         Client client = new ClientBuilder().build();
         AddClientCommand cmd = new AddClientCommand(client);
 
@@ -53,7 +53,7 @@ public class AddClientCommandTest {
     }
 
     @Test
-    public void equals(){
+    public void equals() {
         // Create two clients with different emails. All else identical.
         Client alice = new ClientBuilder().withEmail("alice@silkroad.com").build();
         Client bob = new ClientBuilder().withEmail("bob@silkroad.com").build();
@@ -62,9 +62,15 @@ public class AddClientCommandTest {
         AddClientCommand addBob = new AddClientCommand(bob);
 
         Map<String, Pair<AddClientCommand, AddClientCommand>> equalTests = Map.of(
-            "same object", Pair.of(addAlice, addAlice),
-            "same fields, different object", Pair.of(addAlice, new AddClientCommand(alice)),
-            "same email, different fields", Pair.of(addAlice, new AddClientCommand(new ClientBuilder().withEmail(alice.getEmail().value).withName("not alice").build()))
+            "same object",
+            Pair.of(addAlice, addAlice),
+            "same fields, different object",
+            Pair.of(addAlice, new AddClientCommand(alice)),
+            "same email, different fields",
+            Pair.of(addAlice,
+                new AddClientCommand(new ClientBuilder().withEmail(alice.getEmail().value)
+                    .withName("not alice")
+                    .build()))
         );
 
         equalTests.forEach((desc, tt) -> {
