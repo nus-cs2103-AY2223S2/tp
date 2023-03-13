@@ -8,8 +8,8 @@ import seedu.address.logic.commands.EditCommand.EditFishDescriptor;
 import seedu.address.model.fish.Address;
 import seedu.address.model.fish.Email;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
-import seedu.address.model.fish.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ public class EditFishDescriptorBuilder {
     public EditFishDescriptorBuilder(Fish fish) {
         descriptor = new EditFishDescriptor();
         descriptor.setName(fish.getName());
-        descriptor.setPhone(fish.getPhone());
+        descriptor.setLastFedDate(fish.getLastFedDate());
         descriptor.setEmail(fish.getEmail());
         descriptor.setAddress(fish.getAddress());
         descriptor.setTags(fish.getTags());
@@ -48,10 +48,10 @@ public class EditFishDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditFishDescriptor} that we are building.
+     * Sets the {@code LastFedDate} of the {@code EditFishDescriptor} that we are building.
      */
-    public EditFishDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditFishDescriptorBuilder withLastFedDate(String lastFedDate) {
+        descriptor.setLastFedDate(new LastFedDate(lastFedDate));
         return this;
     }
 

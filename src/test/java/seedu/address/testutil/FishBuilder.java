@@ -6,8 +6,8 @@ import java.util.Set;
 import seedu.address.model.fish.Address;
 import seedu.address.model.fish.Email;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
-import seedu.address.model.fish.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,12 +17,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class FishBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_LAST_FED_DATE = "01/01/2000";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private LastFedDate lastFedDate;
     private Email email;
     private Address address;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class FishBuilder {
      */
     public FishBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        lastFedDate = new LastFedDate(DEFAULT_LAST_FED_DATE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class FishBuilder {
      */
     public FishBuilder(Fish fishToCopy) {
         name = fishToCopy.getName();
-        phone = fishToCopy.getPhone();
+        lastFedDate = fishToCopy.getLastFedDate();
         email = fishToCopy.getEmail();
         address = fishToCopy.getAddress();
         tags = new HashSet<>(fishToCopy.getTags());
@@ -74,10 +74,10 @@ public class FishBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Fish} that we are building.
+     * Sets the {@code LastFedDate} of the {@code Fish} that we are building.
      */
-    public FishBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public FishBuilder withLastFedDate(String lastFedDate) {
+        this.lastFedDate = new LastFedDate(lastFedDate);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class FishBuilder {
     }
 
     public Fish build() {
-        return new Fish(name, phone, email, address, tags);
+        return new Fish(name, lastFedDate, email, address, tags);
     }
 
 }

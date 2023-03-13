@@ -13,8 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.fish.Address;
 import seedu.address.model.fish.Email;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
-import seedu.address.model.fish.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,7 +25,7 @@ class JsonAdaptedFish {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Fish's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String lastFedDate;
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -34,11 +34,11 @@ class JsonAdaptedFish {
      * Constructs a {@code JsonAdaptedFish} with the given fish details.
      */
     @JsonCreator
-    public JsonAdaptedFish(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedFish(@JsonProperty("name") String name, @JsonProperty("lastFedDate") String lastFedDate,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
+        this.lastFedDate = lastFedDate;
         this.email = email;
         this.address = address;
         if (tagged != null) {
@@ -51,7 +51,7 @@ class JsonAdaptedFish {
      */
     public JsonAdaptedFish(Fish source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        lastFedDate = source.getLastFedDate().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
@@ -78,13 +78,14 @@ class JsonAdaptedFish {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (lastFedDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LastFedDate.class
+                    .getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!LastFedDate.isValidLastFedDate(lastFedDate)) {
+            throw new IllegalValueException(LastFedDate.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final LastFedDate modelLastFedDate = new LastFedDate(lastFedDate);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -103,7 +104,7 @@ class JsonAdaptedFish {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(fishTags);
-        return new Fish(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Fish(modelName, modelLastFedDate, modelEmail, modelAddress, modelTags);
     }
 
 }

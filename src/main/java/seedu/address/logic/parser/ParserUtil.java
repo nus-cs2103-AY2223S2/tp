@@ -11,8 +11,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.fish.Address;
 import seedu.address.model.fish.Email;
+import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
-import seedu.address.model.fish.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.TankName;
 import seedu.address.model.task.Description;
@@ -53,18 +53,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String lastFedDate} into a {@code LastFedDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code lastFedDate} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static LastFedDate parseLastFedDate(String lastFedDate) throws ParseException {
+        requireNonNull(lastFedDate);
+        String trimmedLastFedDate = lastFedDate.trim();
+        if (!LastFedDate.isValidLastFedDate(trimmedLastFedDate)) {
+            throw new ParseException(LastFedDate.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new LastFedDate(trimmedLastFedDate);
     }
 
     /**
