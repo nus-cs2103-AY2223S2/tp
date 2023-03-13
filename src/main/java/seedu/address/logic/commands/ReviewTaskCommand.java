@@ -54,10 +54,7 @@ public class ReviewTaskCommand extends Command{
         Id tId = task.getId();
         Subject subject = task.getSubject();
 
-        RepositoryModelManager<PersonTask> personTaskModelManager = officeConnectModel.getPersonTaskModelManager();
-        ObservableList<PersonTask> assignedPersonList = personTaskModelManager
-                .getFilteredItemList()
-                .filtered(persontask -> persontask.getTaskId().equals(tId));
+        ObservableList<PersonTask> assignedPersonList = getAssignedPersonList(officeConnectModel, tId);
 
         RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
         model.updateFilteredPersonList(person -> assignedPersonList.stream()
@@ -70,5 +67,13 @@ public class ReviewTaskCommand extends Command{
         } else {
             return new CommandResult(String.format(MESSAGE_PERSON_ASSIGNED, subject));
         }
+    }
+
+    private static ObservableList<PersonTask> getAssignedPersonList(OfficeConnectModel officeConnectModel, Id tId) {
+        RepositoryModelManager<PersonTask> personTaskModelManager = officeConnectModel.getPersonTaskModelManager();
+        ObservableList<PersonTask> assignedPersonList = personTaskModelManager
+                .getFilteredItemList()
+                .filtered(persontask -> persontask.getTaskId().equals(tId));
+        return assignedPersonList;
     }
 }
