@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Truong Minh Duong Project Portfolio Page
+title: JETHRO SIM SHENG YANG Project Portfolio Page
 ---
 
 ### Project: tuition center admin managing system (TCAMS)
