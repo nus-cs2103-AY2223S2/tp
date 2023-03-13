@@ -28,6 +28,7 @@ import arb.logic.commands.project.EditProjectCommand;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
 import arb.logic.commands.project.FindProjectCommand;
 import arb.logic.commands.project.ListProjectCommand;
+import arb.logic.commands.project.MarkProjectCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
 import arb.model.client.NameContainsKeywordsPredicate;
@@ -147,6 +148,13 @@ public class AddressBookParserTest {
     public void parseCommand_listProject() throws Exception {
         assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD) instanceof ListProjectCommand);
         assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD + " 3") instanceof ListProjectCommand);
+    }
+
+    @Test
+    public void parseCommand_markProject() throws Exception {
+        MarkProjectCommand command = (MarkProjectCommand) parser.parseCommand(
+                MarkProjectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new MarkProjectCommand(INDEX_FIRST), command);
     }
 
     @Test
