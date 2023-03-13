@@ -129,7 +129,7 @@ public class CommandTestUtil {
     static {
         DESC_CARDIO = new EditRoutineDescriptorBuilder().withExercisesIndex(VALID_EXERCISE_INDEX)
                 .withExercise(VALID_EXERCISE_PUSHUP).build();
-        DESC_STRENGTH = new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_NAME_CARDIO).build();
+        DESC_STRENGTH = new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_NAME_STRENGTH).build();
     }
 
     /**
