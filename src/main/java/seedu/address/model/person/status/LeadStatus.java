@@ -24,6 +24,9 @@ public class LeadStatus {
     public final LeadStatusName statusName;
     //TODO add in LocalDateTime to record timestamp of status creation
 
+    /**
+     * Creates a LeadStatus given a valid String key for a LeadStatusName.
+     */
     public LeadStatus(String statusName) {
         requireNonNull(statusName);
         checkArgument(isValidLeadStatus(statusName), MESSAGE_CONSTRAINTS);

@@ -30,7 +30,7 @@ public class StatusCommand extends Command {
 
     public static final String COMMAND_WORD = "status";
 
-    public static final String MESSAGE_USAGE =  COMMAND_WORD + ": Handles lead statuses, "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Handles lead statuses, "
             + "allows for setting of statuses or finding contacts matching the status.\n"
             + "Parameters (choose only one): \n"
             + "[INDEX " + PREFIX_STATUS_ASSIGN + " STATUS_TYPE] OR "
@@ -51,6 +51,13 @@ public class StatusCommand extends Command {
     private final LeadStatus status;
     private final boolean isSearch;
 
+    //TODO add DateTime timestamp of when the status was set.
+
+    /**
+     * Constructor for a StatusCommand. Takes in an index of a person valid lead status.
+     * @param index a valid index for a person
+     * @param status a valid LeadStatus
+     */
     public StatusCommand(Index index, LeadStatus status) {
         requireNonNull(index);
         requireNonNull(status);
@@ -60,6 +67,10 @@ public class StatusCommand extends Command {
         this.isSearch = false;
     }
 
+    /**
+     * Constructor for a status command. Enables search for the status given.
+     * @param status a valid LeadStatus to search for
+     */
     public StatusCommand(LeadStatus status) {
         requireNonNull(status);
 
@@ -94,8 +105,8 @@ public class StatusCommand extends Command {
             model.setPerson(toBeUpdated, updatedStatusPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-            return new CommandResult(String.format(MESSAGE_STATUS_ASSIGN_PERSON_SUCCESS, updatedStatusPerson.getName()
-                    , status));
+            return new CommandResult(String.format(MESSAGE_STATUS_ASSIGN_PERSON_SUCCESS, updatedStatusPerson.getName(),
+                    status));
         }
 
         //TODO look for matching lead status

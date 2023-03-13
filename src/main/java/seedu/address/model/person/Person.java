@@ -29,7 +29,7 @@ public class Person {
     private final Remark remark;
     private final LeadStatus status;
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. By default, the LeadStatus is "Uncontacted".
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags, remark);
@@ -42,6 +42,9 @@ public class Person {
         this.status = new LeadStatus(LeadStatusName.UNCONTACTED.getLabel());
     }
 
+    /**
+     * Constructor for a person with a given LeadStatus.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                      LeadStatus status) {
         requireAllNonNull(name, phone, email, address, tags, remark);
