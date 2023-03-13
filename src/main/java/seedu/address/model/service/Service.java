@@ -214,7 +214,7 @@ public class Service {
         String newline = System.lineSeparator();
         String parts = this.getRequiredParts().stream()
                 .map(Object::toString)
-                .reduce("", (a, b) -> a + "\n"  + b);
+                .reduce("", (a, b) -> a + "\n" + b);
         if (parts.length() > 0) {
             parts = parts.substring(1);
         }
