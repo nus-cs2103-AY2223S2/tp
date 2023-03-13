@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.patientist.logic.commands.AddCommand;
+import seedu.patientist.logic.commands.AddStaffCommand;
 import seedu.patientist.logic.commands.ClearCommand;
 import seedu.patientist.logic.commands.Command;
 import seedu.patientist.logic.commands.DeleteCommand;
@@ -47,6 +48,9 @@ public class PatientistParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddStaffCommand.COMMAND_WORD:
+            return new AddStaffCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
