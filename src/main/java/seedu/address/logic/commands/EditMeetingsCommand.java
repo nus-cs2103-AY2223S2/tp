@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
@@ -36,12 +36,12 @@ public class EditMeetingsCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_TIMEDATE + "TIMEDATE] "
-            + "[" + PREFIX_ATTENDEES + "ATTENDEES] "
+            + "[" + PREFIX_DATETIME + "TIMEDATE] "
+            + "[" + PREFIX_PERSON + "ATTENDEES] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TIMEDATE + "14/02/23"
+            + PREFIX_DATETIME + "14/02/23"
             + PREFIX_LOCATION + "Stoa Poikile";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";

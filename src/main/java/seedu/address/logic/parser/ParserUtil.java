@@ -56,20 +56,6 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
     /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static Title parseTitle(String title) throws ParseException {
-        requireNonNull(title);
-        String trimmedTitle = title.trim();
-        if (!Title.isValidTitle(trimmedTitle)) {
-            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
-        }
-        return new Title(trimmedTitle);
-    }
-    /**
      * Parses a Collection of {@code String names} to a set of {@code Name}.
      *
      * @param names A collection of names.
@@ -105,53 +91,8 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static DateTime parseDateTime(String dateTime) throws ParseException {
-        requireNonNull(dateTime);
-        String trimmedDateTime = dateTime.trim();
-        if (!DateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
-        }
-        return new DateTime(trimmedDateTime);
-    }
-
-    /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
     public static Set<Person> parseAttendees(String attendees) throws ParseException {
         return new HashSet<Person>();
-    }
-
-    /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static Location parseLocation(String location) throws ParseException {
-        requireNonNull(location);
-        String trimmedLocation = location.trim();
-        if (!Location.isValidLocation(trimmedLocation)) {
-            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
-        }
-        return new Location(trimmedLocation);
-    }
-
-    /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static Description parseDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
-        }
-        return new Description(trimmedDescription);
     }
     /**
      * Parses a {@code String address} into an {@code Address}.

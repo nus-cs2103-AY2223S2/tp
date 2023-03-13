@@ -98,12 +98,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasMeeting(Meeting meeting) {
-        requireNonNull(meeting);
-        return addressBook.hasMeeting(meeting);
-    }
-
-    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
