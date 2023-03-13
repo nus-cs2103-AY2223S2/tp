@@ -14,6 +14,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.NRIC;
+import seedu.address.model.patient.Status;
+
 
 /**
  * Edits the details of an existing patient in the address book.
@@ -80,8 +83,10 @@ public class EditCommand extends Command {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse((Name) patientToEdit.getName());
+        NRIC updatedNric = editPatientDescriptor.getNric().orElse((NRIC) patientToEdit.getNric());
+        Status updatedStatus = editPatientDescriptor.getStatus().orElse((Status) patientToEdit.getStatus());
 
-        return new Patient(updatedName);
+        return new Patient(updatedNric, updatedName, updatedStatus);
     }
 
     @Override
@@ -109,6 +114,8 @@ public class EditCommand extends Command {
      */
     public static class EditPatientDescriptor {
         private Name name;
+        private NRIC nric;
+        private Status status;
 
         public EditPatientDescriptor() {
         }
@@ -119,21 +126,40 @@ public class EditCommand extends Command {
          */
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
+            setNric(toCopy.nric);
+            setStatus(toCopy.status);
+
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name);
+            return CollectionUtil.isAnyNonNull(name, nric, status);
         }
 
         public void setName(Name name) {
             this.name = name;
         }
 
+        public void setNric(NRIC nric) {
+            this.nric = nric;
+        }
+
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public Optional<NRIC> getNric() {
+            return Optional.ofNullable(nric);
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
         }
 
         @Override
@@ -151,7 +177,9 @@ public class EditCommand extends Command {
             // state check
             EditPatientDescriptor e = (EditPatientDescriptor) other;
 
-            return getName().equals(e.getName());
+            return getName().equals(e.getName())
+                    && getStatus().equals(e.getStatus())
+                    && getNric().equals(e.getNric());
         }
     }
 }

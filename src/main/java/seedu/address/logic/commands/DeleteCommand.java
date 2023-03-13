@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 
 /**
- * Deletes a patient identified using it's displayed index from the address book.
+ * Deletes a patient identified using it's displayed index from MedInfo.
  */
 public class DeleteCommand extends Command {
 
