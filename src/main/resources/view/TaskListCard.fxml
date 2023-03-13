@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
+  <GridPane prefHeight="105.0" prefWidth="2753.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="105.0" prefWidth="1493.0" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
@@ -26,14 +26,16 @@
           </minWidth>
         </Label>
         <Label fx:id="taskDesc" styleClass="cell_big_label" text="\$taskDesc" />
-         <Label fx:id="personAssigned" styleClass="cell_small_label" text="\$personAssigned" />
+            <Region prefHeight="17.0" prefWidth="200.0" />
+         <Label fx:id="personAssigned" styleClass="cell_small_label" text="Assigned To : $personAssigned" />
             <VBox.margin>
                <Insets bottom="10.0" />
             </VBox.margin>
       </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-            <Label fx:id="taskDeadline" styleClass="cell_small_label" text="\$taskDeadline" />
+            <Label fx:id="taskDeadline" styleClass="cell_small_label" text="Due by : $taskDeadline" />
+               <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="117.0" />
             <Label fx:id="personRole" styleClass="cell_small_label" text="\$personRole" />
             </children>
          </HBox>
