@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import seedu.calidr.exception.CalidrException;
 import seedu.calidr.exception.CalidrInvalidArgumentException;
-import seedu.calidr.model.task.Priority;
+import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.Task;
 
 /**

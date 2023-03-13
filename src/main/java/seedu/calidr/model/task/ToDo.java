@@ -1,5 +1,7 @@
 package seedu.calidr.model.task;
 
+import seedu.calidr.model.task.params.Priority;
+
 import java.time.LocalDateTime;
 
 /**

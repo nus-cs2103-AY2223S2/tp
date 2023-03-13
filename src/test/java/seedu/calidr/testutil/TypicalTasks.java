@@ -3,7 +3,7 @@ package seedu.calidr.testutil;
 import java.time.LocalDateTime;
 
 import seedu.calidr.model.task.Event;
-import seedu.calidr.model.task.Priority;
+import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.ToDo;
 
 /**
