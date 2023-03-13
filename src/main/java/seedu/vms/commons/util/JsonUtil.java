@@ -5,26 +5,24 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
-import seedu.vms.commons.core.LogsCenter;
-
 /**
  * Converts a Java object instance to JSON and vice versa
  */
 public class JsonUtil {
-
-    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+    private static final String FORMAT_INVALID_JSON_FILE = "File is not in a valid JSON format: %s";
 
     private static ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules()
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
@@ -39,10 +37,12 @@ public class JsonUtil {
     /**
      * Deserializes a JSON file in the resource folder to an object instance.
      *
+     * @param <T> - the type of the object to deserialize to.
      * @param pathString - the path to the file to deserialize in the resource
      *      folder as a String.
      * @param valueType - the type of the object to deserialize to.
      * @throws IOException if an I/O error occurs.
+     * @throws NullPointerException if any parameter is {@code null}.
      */
     public static <T> T deserializeFromResource(String pathString, Class<T> valueType)
                 throws IOException {
@@ -59,11 +59,14 @@ public class JsonUtil {
      * @param path - path to the file to deserialize from.
      * @param valueType - the type of the object to deserialize to.
      * @throws IOException if an I/O exception occurs.
+     * @throws NullPointerException if any parameter is {@code null}.
      */
     public static <T> T deserializeFromFile(Path path, Class<T> valueType)
                 throws IOException {
         try (BufferedReader reader = FileUtil.getFileReader(path)) {
             return objectMapper.readValue(reader, valueType);
+        } catch (JsonParseException | JsonMappingException jsonEx) {
+            throw new IOException(FORMAT_INVALID_JSON_FILE, jsonEx);
         }
     }
 
@@ -74,6 +77,7 @@ public class JsonUtil {
      * @param path - path to serialize to.
      * @param instance - the object instance to serialize.
      * @throws IOException if an I/O error occurs.
+     * @throws NullPointerException if any parameter is {@code null}.
      */
     public static void serializeToFile(Path path, Object instance) throws IOException {
         try (BufferedWriter writer = FileUtil.getFileWriter(path)) {
