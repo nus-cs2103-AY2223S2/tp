@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import seedu.address.commons.core.index.Index;
 
 /**
  * This class is the parent class of tasks that make up the tasklist.
@@ -9,6 +10,7 @@ public class Task {
 
     protected boolean isDone;
     private final TaskDescription description;
+    private Index personAssignedIndex;
 
 
     /**
@@ -17,6 +19,7 @@ public class Task {
     public Task(TaskDescription description) {
         this.description = description;
         this.isDone = false;
+        this.personAssignedIndex = null;
     }
 
     /**
@@ -35,6 +38,24 @@ public class Task {
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
+    }
+
+    /**
+     * Assigns a person to the current task.
+     *
+     * @param personIndex Index of the person to be assigned to the current task
+     */
+    public void assignPerson(Index personIndex) {
+        this.personAssignedIndex = personIndex;
+    }
+
+    /**
+     * Supplies the index of the person assigned to the current task when requested.
+     *
+     * @return Index index of the person assigned to the current task
+     */
+    public Index getPersonAssignedIndex() {
+        return this.personAssignedIndex;
     }
 
     /**
