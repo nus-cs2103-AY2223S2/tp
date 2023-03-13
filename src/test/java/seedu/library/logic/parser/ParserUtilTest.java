@@ -24,7 +24,7 @@ public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_AUTHOR = " ";
-    private static final String INVALID_GENRE = "example.com";
+    private static final String INVALID_GENRE = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rachel Walker";
