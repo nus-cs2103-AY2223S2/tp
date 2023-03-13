@@ -14,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.model.person.Person;
-import seedu.calidr.model.task.Deadline;
 import seedu.calidr.model.task.Event;
 import seedu.calidr.model.task.Priority;
 import seedu.calidr.model.task.Task;
@@ -139,7 +138,11 @@ public class ModelManager implements Model {
     public ArrayList<Task> getTaskList() {
         // TODO remove stub
         ArrayList<Task> taskList = new ArrayList<>();
-        taskList.add(new ToDo("CS2103T", Priority.HIGH));
+        taskList.add(new ToDo("CS2103T",
+                        LocalDateTime.of(2023, 3, 14, 12, 30),
+                        Priority.HIGH
+                )
+        );
         taskList.add(new Event("CS3211",
                         LocalDateTime.of(2023, 3, 12, 10, 10),
                         LocalDateTime.of(2023, 3, 12, 10, 30),
