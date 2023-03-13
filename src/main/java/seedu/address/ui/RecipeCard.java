@@ -14,7 +14,7 @@ import seedu.address.model.recipe.Recipe;
  */
 public class RecipeCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "RecipeListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,7 +42,7 @@ public class RecipeCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Recipe} and index to display.
+     * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
      */
     public RecipeCard(Recipe recipe, int displayedIndex) {
         super(FXML);
