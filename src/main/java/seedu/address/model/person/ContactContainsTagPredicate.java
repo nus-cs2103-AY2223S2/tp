@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import seedu.address.model.tag.Tag;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -13,31 +14,30 @@ import java.util.function.Predicate;
  */
 public class ContactContainsTagPredicate implements Predicate<Person> {
     // keywords are the different kind of tags
-    private final List<String> keywords;
+    private final Set<Tag> tagSet;
 
-    public ContactContainsTagPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public ContactContainsTagPredicate(Set<Tag> tagSet) {
+        this.tagSet = tagSet;
     }
 
     @Override
     public boolean test(Person person) {
         // perform filtering based on the tag attribute
-        for (String filterValue : keywords) {
-            Set<Tag> tagSet = person.getTags();
-            for(Tag currentTag : tagSet) {
-                String currentTagName = currentTag.tagName;
-                if (currentTagName.equalsIgnoreCase(filterValue)) {
-                    return true;
-                }
-            }
+        Set<Tag> personTags = person.getTags();
+        Set<Tag> tempTagsSet = new HashSet<>(this.tagSet);
+        tempTagsSet.removeAll(personTags);
+        boolean isTagsExists = tempTagsSet.isEmpty();
+        if (!isTagsExists) {
+            return false;
+        } else {
+            return true;
         }
-        return false;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ContactContainsTagPredicate // instanceof handles nulls
-                && keywords.equals(((ContactContainsTagPredicate) other).keywords)); // state check
+                && tagSet.equals(((ContactContainsTagPredicate) other).tagSet)); // state check
     }
 }

@@ -4,6 +4,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactContainsTagPredicate;
+import seedu.address.model.person.Person;
+
+import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
 
@@ -15,15 +18,14 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "%1$s contact matches the tag!";
 
-    private final ContactContainsTagPredicate predicate;
+    private final Predicate<Person> predicate;
 
-    public FilterCommand(ContactContainsTagPredicate predicate) {
+    public FilterCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // do something here
         requireNonNull(model);
         model.updateFilteredPersonList(this.predicate);
         return new CommandResult(
