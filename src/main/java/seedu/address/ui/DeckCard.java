@@ -2,12 +2,13 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.deck.Deck;
 
-import java.util.Comparator;
+/**
+ * An UI component that displays information of a {@code Deck}.
+ */
 
 public class DeckCard extends UiPart<Region> {
     private static final String FXML = "DeckListCard.fxml";
@@ -30,8 +31,9 @@ public class DeckCard extends UiPart<Region> {
     private Label id;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Card} and index to display.
+     * Creates a {@code DeckCode} with the given {@code deck} and index to display.
      */
+
     public DeckCard(Deck deck, int displayedIndex) {
         super(FXML);
         this.deck = deck;
