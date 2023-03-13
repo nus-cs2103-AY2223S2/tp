@@ -3,8 +3,10 @@ package seedu.sudohr.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +38,15 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
+    public Person get(Id id) {
+        for (Person employee: internalList) {
+            if (employee.getId().equals(id)) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.
@@ -46,6 +57,17 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Adds all employees in the set to the list.
+     * The person must not already exist in the list.
+     */
+    public void addAll(Set<Person> employees) {
+        requireNonNull(employees);
+        for (Person employee: employees) {
+            add(employee);
+        }
     }
 
     /**
@@ -102,6 +124,15 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns the backing list as a set {@code employeeSet}.
+     */
+    public Set<Person> asSet() {
+        Set<Person> employeeSet = new HashSet<>();
+        employeeSet.addAll(internalList);
+        return employeeSet;
     }
 
     @Override

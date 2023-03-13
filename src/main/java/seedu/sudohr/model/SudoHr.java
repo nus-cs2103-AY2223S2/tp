@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.department.UniqueDepartmentList;
+import seedu.sudohr.model.person.Id;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.model.person.UniquePersonList;
 
@@ -73,6 +74,15 @@ public class SudoHr implements ReadOnlySudoHr {
     //=========== Person-Level Operations ==============================================================================
 
     /**
+     * Returns the employee with the given Id.
+     * @param Id The Id to find.
+     * @return The corresponding employee.
+     */
+    public Person getPerson(Id id) {
+        return persons.get(id);
+    }
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the sudohr book.
      */
     public boolean hasPerson(Person person) {
@@ -110,20 +120,20 @@ public class SudoHr implements ReadOnlySudoHr {
     //=========== Department-Level Operations ==========================================================================
 
     /**
-     * Returns true if a department with the same identity as {@code department} exists in SudoHR.
-     */
-    public boolean hasDepartment(Department department) {
-        requireNonNull(department);
-        return departments.contains(department);
-    }
-
-    /**
      * Returns the department with the given name.
      * @param name The department name to find.
      * @return The corresponding department.
      */
     public Department getDepartment(DepartmentName name) {
         return departments.getDepartment(name);
+    }
+
+    /**
+     * Returns true if a department with the same identity as {@code department} exists in SudoHR.
+     */
+    public boolean hasDepartment(Department department) {
+        requireNonNull(department);
+        return departments.contains(department);
     }
 
     /**

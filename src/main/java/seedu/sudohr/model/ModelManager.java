@@ -13,6 +13,7 @@ import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.person.Id;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -93,6 +94,12 @@ public class ModelManager implements Model {
     }
 
     //=========== Person-Level Operations ==============================================================================
+
+    @Override
+    public Person getPerson(Id employeeId) {
+        requireNonNull(employeeId);
+        return sudoHr.getPerson(employeeId);
+    }
 
     @Override
     public boolean hasPerson(Person person) {

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.person.UniquePersonList;
 
 /**
  * Represents a Department in SudoHR.
@@ -12,7 +13,7 @@ import seedu.sudohr.model.person.Person;
  */
 public class Department {
     private final DepartmentName name;
-    private final Set<Person> employees = new HashSet<>(); // To convert to UniqueList
+    private final UniquePersonList employees = new UniquePersonList(); // To convert to UniqueList
 
     public Department(DepartmentName name) {
         this.name = name;
@@ -33,7 +34,14 @@ public class Department {
     }
 
     public Set<Person> getEmployees() {
-        return Collections.unmodifiableSet(employees);
+        return Collections.unmodifiableSet(employees.asSet());
+    }
+
+    /**
+     * Returns whether employee exists in the department.
+     */
+    public boolean hasEmployee(Person e) {
+        return employees.contains(e);
     }
 
     /**

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.person.Id;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -55,6 +56,8 @@ public interface Model {
     ReadOnlySudoHr getSudoHr();
 
     //=========== Person-Level Operations ==============================================================================
+
+    public Person getPerson(Id employeeId);
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the sudohr book.
