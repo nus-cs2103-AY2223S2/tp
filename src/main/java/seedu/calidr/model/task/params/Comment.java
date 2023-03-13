@@ -21,12 +21,12 @@ public class Comment {
     /**
      * Constructs an {@code Comment}.
      *
-     * @param address A valid comment.
+     * @param comment A valid comment.
      */
-    public Comment(String address) {
-        requireNonNull(address);
-        checkArgument(isValidComment(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Comment(String comment) {
+        requireNonNull(comment);
+        checkArgument(isValidComment(comment), MESSAGE_CONSTRAINTS);
+        value = comment;
     }
 
     /**

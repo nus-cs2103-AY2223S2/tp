@@ -1,7 +1,5 @@
 package seedu.calidr.model.task.params;
 
-import seedu.calidr.model.person.Address;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.calidr.commons.util.AppUtil.checkArgument;
 
@@ -23,12 +21,12 @@ public class Title {
     /**
      * Constructs an {@code Title}.
      *
-     * @param address A valid title.
+     * @param title A valid title.
      */
-    public Title(String address) {
-        requireNonNull(address);
-        checkArgument(isValidTitle(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Title(String title) {
+        requireNonNull(title);
+        checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
+        value = title;
     }
 
     /**

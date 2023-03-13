@@ -21,12 +21,12 @@ public class Location {
     /**
      * Constructs an {@code Location}.
      *
-     * @param address A valid location.
+     * @param location A valid location.
      */
-    public Location(String address) {
-        requireNonNull(address);
-        checkArgument(isValidLocation(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Location(String location) {
+        requireNonNull(location);
+        checkArgument(isValidLocation(location), MESSAGE_CONSTRAINTS);
+        value = location;
     }
 
     /**
