@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Class;
@@ -111,8 +109,7 @@ public class Student extends Person {
      * prompt the user to create a new parent.
      *
      * @param parentName Parent name that is used to check if a Parent exists already.
-     * @return Parent object that could be gotten from the UniqueParentList if exists or prompts the user to create
-     * a New Parent object.
+     * @return Parent object from the UniqueParentList if exists or prompts the user to create a new Parent object.
      */
     private Parent setParent(ParentName parentName, IndexNumber indexNumber, Class sc) {
         UniqueParentList parents = Class.getAllParents();

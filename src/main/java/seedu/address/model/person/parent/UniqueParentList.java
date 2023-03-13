@@ -8,9 +8,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.person.Class;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.ParentName;
 
@@ -32,11 +32,11 @@ public class UniqueParentList implements Iterable<Parent> {
 
     public Parent getParent(ParentName parentName, IndexNumber indexNumber, Class sc) {
         requireNonNull(parentName);
-        for(Parent p : internalUnmodifiableList) {
+        for (Parent p : internalUnmodifiableList) {
             //System.out.println(parentName.toString());
             //System.out.println(p.getName().toString());
             if (parentName.toString().equals(p.getName().toString())) {
-                if ( (indexNumber.equals(p.getIndexNumber())) && (sc.equals(p.getClass())) ) {
+                if ((indexNumber.equals(p.getIndexNumber())) && (sc.equals(p.getClass()))) {
                     return p;
                 }
             }
