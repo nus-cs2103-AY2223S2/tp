@@ -7,7 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.task.Task;
 
 /**
  * Wraps all data at the address-book level
@@ -92,32 +91,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
-    }
-
-    //// task-level operations
-
-    /**
-     * Returns true if a task with the same identity as {@code task} exists in the task list for the given person.
-     */
-    public boolean personHasTask(Person person, Task task) {
-        requireNonNull(task);
-        return persons.personHasTask(person, task);
-    }
-
-    /**
-     * Adds a task to a given person in the address book.
-     * The task must not already exist in the given person's task list.
-     */
-    public void addTaskToPerson(Person person, Task task) {
-        persons.addTaskToPerson(person, task);
-    }
-
-    /**
-     * Removes {@code task} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeTaskFromPerson(Person person, Task task) {
-        persons.removeTaskFromPerson(person, task);
     }
 
     //// util methods
