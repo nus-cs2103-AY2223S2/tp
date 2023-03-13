@@ -81,9 +81,13 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_sort() throws Exception {
+    public void parseCommand_sortClient() throws Exception {
         assertTrue(parser.parseCommand(SortClientCommand.COMMAND_WORD) instanceof SortClientCommand);
         assertTrue(parser.parseCommand(SortClientCommand.COMMAND_WORD + " 3") instanceof SortClientCommand);
+    }
+
+    @Test
+    public void parseCommand_sortProject() throws Exception {
         SortProjectCommand sortProjectCommand = (SortProjectCommand) parser.parseCommand(
                 SortProjectCommand.COMMAND_WORD + CommandTestUtil.SORTING_OPTION_DESC);
         assertEquals(new SortProjectCommand(TypicalProjectSortingOptions.BY_DEADLINE), sortProjectCommand);
