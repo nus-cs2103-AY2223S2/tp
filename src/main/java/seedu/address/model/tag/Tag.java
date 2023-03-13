@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags cannot be an empty string!";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags cannot be an empty string or more than 30 characters!";
+    public static final String VALIDATION_REGEX = "^.{1,30}$";
 
     public final String tagName;
 
@@ -29,7 +29,8 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        if (test.equals("")) {
+        System.out.println(test);
+        if (test.isEmpty() || !test.matches(VALIDATION_REGEX)) {
             return false;
         }
         return true;

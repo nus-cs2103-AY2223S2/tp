@@ -5,6 +5,7 @@ import static seedu.address.storage.JsonAdaptedInternship.MISSING_FIELD_MESSAGE_
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.GOOGLE;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class JsonAdaptedInternshipTest {
     private static final String INVALID_ROLE = "Software E!gineer";
     private static final String INVALID_STATUS = " ";
     private static final String INVALID_DATE = "1st March 2023";
-    private static final String INVALID_TAG = "#front";
+    private static final String INVALID_TAG = "";
 
     private static final String VALID_COMPANY_NAME = GOOGLE.getCompanyName().toString();
     private static final String VALID_ROLE = GOOGLE.getRole().toString();
@@ -99,5 +100,14 @@ public class JsonAdaptedInternshipTest {
                 new JsonAdaptedInternship(VALID_COMPANY_NAME, VALID_ROLE, VALID_STATUS, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTags_throwsIllegalValueException() {
+        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        JsonAdaptedInternship internship =
+                new JsonAdaptedInternship(VALID_COMPANY_NAME, VALID_ROLE, VALID_STATUS, VALID_DATE, invalidTags);
+        assertThrows(IllegalValueException.class, internship::toModelType);
     }
 }
