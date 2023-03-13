@@ -162,16 +162,16 @@ public class ModelManagerTest {
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
-        // different sortedClientList -> returns true
+        // different sortedClientList -> returns false
         modelManager.updateSortedClientList(CLIENT_NAME_COMPARATOR);
-        assertTrue(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateSortedClientList(CLIENT_NO_COMPARATOR);
 
-        // different sortedProjectList -> returns true
+        // different sortedProjectList -> returns false
         modelManager.updateSortedProjectList(PROJECT_DEADLINE_COMPARATOR);
-        assertTrue(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateSortedProjectList(PROJECT_NO_COMPARATOR);

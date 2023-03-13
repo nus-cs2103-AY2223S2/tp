@@ -223,7 +223,9 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients)
-                && filteredProjects.equals(other.filteredProjects);
+                && filteredProjects.equals(other.filteredProjects)
+                && sortedClients.equals(other.sortedClients)
+                && sortedProjects.equals(other.sortedProjects);
     }
 
 }
