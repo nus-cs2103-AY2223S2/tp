@@ -40,8 +40,7 @@ public class RemoveMeetingCommand extends Command {
     * Executes meetingRemove command
     * @param model {@code Model} which the command should operate on.
     * @return CommandResult Object
-    * @throws CommandException when index of person or meeting specified
-    * is out of range or invalid
+    * @throws CommandException when index of person or meeting specified is out of range or invalid
     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
