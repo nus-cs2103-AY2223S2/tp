@@ -149,6 +149,23 @@ public class Person {
     }
 
     /**
+     * Returns true if the other person has the same interview date.
+     * This is needed as Optional's equals method fails when two different Optional objects
+     * are created with same value.
+     */
+    public boolean hasSameDate(Person other) {
+        Optional<InterviewDateTime> idt1 = getInterviewDateTime();
+        Optional<InterviewDateTime> idt2 = other.getInterviewDateTime();
+        if (idt1.isEmpty() && idt2.isEmpty()) { //both dates are null
+            return true;
+        } else if (idt1.isPresent() && idt2.isPresent()) { //both dates exist
+            return idt1.get().getDateTime().equals(idt2.get().getDateTime());
+        } else { //only one exists
+            return false;
+        }
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -163,13 +180,14 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getNotes().equals(getNotes())
                 && otherPerson.getStatus().equals(getStatus())
-                && otherPerson.getInterviewDateTime().equals(getInterviewDateTime());
+                && otherPerson.hasSameDate(this);
     }
 
     @Override
