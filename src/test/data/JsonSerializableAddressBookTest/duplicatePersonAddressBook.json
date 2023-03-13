@@ -3,6 +3,7 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "photo" : "https://picsum.photos/id/342/200/300",
     "address": "123, Jurong West Ave 6, #08-111",
     "remark" : "",
     "performance": "1",
@@ -11,8 +12,27 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "photo" : "https://picsum.photos/id/342/200/300",
     "address": "4th street",
     "remark" : "",
     "performance": "1"
-  } ]
+  } ],
+  "tutorials": [
+    {
+      "name": "Tutorial 1",
+      "date": "05/02/2023",
+      "students": [
+      ],
+      "attachments": [],
+      "notes": []
+    },
+    {
+      "name": "Tutorial 1",
+      "date": "05/02/2023",
+      "students": [
+      ],
+      "attachments": [],
+      "notes": []
+    }
+  ]
 }

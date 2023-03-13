@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,38 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the address book.
+     */
+    boolean hasTutorial(Tutorial tutorial);
+
+    /**
+     * Deletes the given tutorial.
+     * The tutorial must exist in the address book.
+     */
+    void deleteTutorial(Tutorial target);
+
+    /**
+     * Adds the given tutorial.
+     * {@code tutorial} must not already exist in the address book.
+     */
+    void addTutorial(Tutorial tutorial);
+
+    /**
+     * Replaces the given tutorial {@code target} with {@code editedTutorial}.
+     * {@code target} must exist in the address book.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another
+     * existing tutorial in the address book.
+     */
+    void setTutorial(Tutorial target, Tutorial editedTutorial);
+
+    /** Returns an unmodifiable view of the filtered tutorial list */
+    ObservableList<Tutorial> getFilteredTutorialList();
+
+    /**
+     * Updates the filter of the filtered tutorial list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTutorialList(Predicate<Tutorial> predicate);
 }

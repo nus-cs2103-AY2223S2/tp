@@ -257,54 +257,123 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* CS2040 TAs
+* has a need to manage a small number of undergraduate students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* prefer using vim commands
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage students and practice using vim commands
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+1. Epic: As a CS2040 TA, I can monitor my schedule through the number of events (consultations / labs / tutorials) I have
+
+| Priority    | As a CS2040 …​  | I want to …​                    | So that I …​                                                   |
+|-------------|--------------------|------------------------------------|-------------------------------------------------------------------|
+| `* * *`     | Lab TA             | create lab events                  | can track details related to the lab                              |
+| `* * *`     | TA                 | create consultation events         | can track details related to the consultation                     |
+| `* * *`     | Lab TA             | edit a lab event                   | will be reminded of the correct lab schedule                      |
+| `* * *`     | Tutorial TA        | edit a tutorial event              | will be reminded of the correct tutorial schedule                 |
+| `* * *`     | TA                 | edit a consultation event          | will be reminded of the correct consultation schedule             |
+| `* * *`     | Tutorial TA        | delete a tutorial event            | can remove completed/cancelled tutorials                          |
+| `* * *`     | Lab TA             | delete a lab event                 | can remove completed/cancelled labs                               |
+| `* * *`     | TA                 | delete a consultation event        | can remove completed/cancelled consultations                      |
+| `* * *`     | New TA             | list all upcoming the 2040 events  | can effectively pre-plan the schedule for the rest of my modules  |
+
+
+2. Epic: As a CS2040 TA, I can effectively manage and keep track of all my students
+
+| Priority | As a CS2040 …​| I want to …​                                                                                                              | So that I …​                                                                                                       |
+|----------|------------------|---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | TA               | edit 2040 student's information                                                                                                 | can fix erroneously added students                                                                                          |
+| `* * *`  | TA               | delete students from a 2040 event                                                                                               | can remove students who are no longer in the module                                                                         |
+| `* * *`  | TA               | have a search function to search for the desired student                                                                        | do not have to scroll through the namelist when marking attendance/giving class participation marks                         |
+| `* * *`  | New TA           | list all my students of 2040                                                                                                    | can view all my students at a glance                                                                                        |
+| `* * *`  | TA               | view a list of low-performing students at a glance based on grades                                                              | can immediately tell who is falling behind and personally offer them help                                                   |
+| `* *`    | Tutorial TA      | see the attendance of students during a particular class in a calendar                                                          | can manage any admin matters efficiently and correctly, or flag out any low outliers                                        |
+| `* *`    | Concerned TA     | find out which students are suddenly performing poorly/experienced sudden drop in performance                                   | know which students to check in on                                                                                          |
+| `* *`    | TA               | be able to see how my students are doing in their examinations                                                                  | have data on their individual performance, which allows me to flag out low performers and help them out                     |
+| `* *`    | TA               | have an an overview of students' progress in tutorials and labs submissions, especially where progress seemed slow or difficult | can identify trends in learning difficulties, ie which specific topics/concepts students seem to generally struggle with    |
+| `* *`    | Lab TA           | track my students' progress on weekly lab assignments                                                                           | can make sure everyone submits their assignments on time and offer guidance if they need it                                 |
+| `*`      | Concerned Lab TA | view the number of late lab submission per student                                                                              | can immediately tell who is falling behind and personally offer them help                                                   |
+| `*`      | TA               | remind students via email if a 2040 event is rescheduled                                                                        | will not wast student's time                                                                                                |
+| `*`      | Busy TA          | automatically send out reminders to students about upcoming deadlines                                                           | can spend less time on these administrative matters                                                                         |
+| `*`      | Busy TA          | receive reminders on students who have yet to submit their work nearing the deadline                                            | can check up on them individually if needed                                                                                 |
+| `*`      | Tutorial TA      | know my students' progress on their tutorial questions every week (ie. how many questions they are unsure of)                   | can decide how to pace my tutorial                                                                                          |
+| `*`      | Lab TA           | see how my students are progressing on weekly topics on Visualgo                                                                | can send out reminders if I believe they have missed out on any weekly topics or offer help if they appear to be struggling |
+| `*`      | Motivational TA  | find out who are the most consistent students                                                                                   | can recommend them for future TA positions                                                                                  |
+
+3. Epic: As a CS2040 TA, I can track students progress and information
+
+| Priority | As a CS2040 …​| I want to …​                                                                                                              | So that I …​                                                                                                       |
+|----------|------------------|---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | TA               | view a list of low-performing students at a glance based on grades                                                              | can immediately tell who is falling behind and personally offer them help                                                   |
+| `* *`    | Tutorial TA      | see the attendance of students during a particular class in a calendar                                                          | can manage any admin matters efficiently and correctly, or flag out any low outliers                                        |
+| `* *`    | Concerned TA     | find out which students are suddenly performing poorly/experienced sudden drop in performance                                   | know which students to check in on                                                                                          |
+| `* *`    | TA               | be able to see how my students are doing in their examinations                                                                  | have data on their individual performance, which allows me to flag out low performers and help them out                     |
+| `* *`    | TA               | have an an overview of students' progress in tutorials and labs submissions, especially where progress seemed slow or difficult | can identify trends in learning difficulties, ie which specific topics/concepts students seem to generally struggle with    |
+| `* *`    | Lab TA           | track my students' progress on weekly lab assignments                                                                           | can make sure everyone submits their assignments on time and offer guidance if they need it                                 |
+| `*`      | Concerned Lab TA | view the number of late lab submission per student                                                                              | can immediately tell who is falling behind and personally offer them help                                                   |
+| `*`      | TA               | remind students via email if a 2040 event is rescheduled                                                                        | will not wast student's time                                                                                                |
+| `*`      | Busy TA          | automatically send out reminders to students about upcoming deadlines                                                           | can spend less time on these administrative matters                                                                         |
+| `*`      | Busy TA          | receive reminders on students who have yet to submit their work nearing the deadline                                            | can check up on them individually if needed                                                                                 |
+| `*`      | Tutorial TA      | know my students' progress on their tutorial questions every week (ie. how many questions they are unsure of)                   | can decide how to pace my tutorial                                                                                          |
+| `*`      | Lab TA           | see how my students are progressing on weekly topics on Visualgo                                                                | can send out reminders if I believe they have missed out on any weekly topics or offer help if they appear to be struggling |
+| `*`      | Motivational TA  | find out who are the most consistent students                                                                                   | can recommend them for future TA positions                                                                                  |
+
+
+4. Epic: As a CS2040 TA, I want to note down important information during an event
+
+| Priority | As a CS2040 …​   | I want to …​                                           | So that I …​                                           |
+|----------|---------------------|-----------------------------------------------------------|-----------------------------------------------------------|
+| `* *`    | TA                  | add notes to events (such as tutorials)                   | won’t lose track of past events information               |
+| `* *`    | TA                  | edit event notes                                          | will convenient update them when I have to                |
+| `* *`    | TA                  | delete notes from an event                                | will not have cluttered notes                             |
+| `*`      | Tutorial TA         | take down the queries of student                          | can seek to reply them later                              |
+| `*`      | TA                  | summarise my performances at the end of this semester     | may reflect upon them                                     |
+| `*`      | Lab TA              | note down some common vim commands as a cheatsheet        | can better navigate to inspect student codes via terminal |
+
+5. Epic: As a CS2040 TA, I want to see a help guide
+
+| Priority | As a CS2040 …​  | I want to …​                                          | So that I …​                                                |
+|----------|--------------------|----------------------------------------------------------|----------------------------------------------------------------|
+| `* *`    | New TA             | have an instruction to tell me what input format to use  | do not have to trial-and-error to figure out the right format  |
+| `* *`    | New TA             | have the help page functions to be clear and unambiguous | will not be confused and input wrong commands                  |
+| `*`      | New TA             | have an interactive help guide                           | do not have to manually read the help manual                   |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TrAcker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+Old use cases examples
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list students
+2.  TrAcker shows a list of students
+3.  User requests to remove student who dropped the module from the list
+4.  TrAcker deletes the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. There are no students.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TrAcker shows an error message.
 
       Use case resumes at step 2.
 
@@ -313,8 +382,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 50 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be able to display student profile pictures within 10 seconds
+5. Should be able to show student performance in a chart within 10 seconds
 
 *{More to be added}*
 

@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Tutorial> filteredTutorials;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
     }
 
     public ModelManager() {
@@ -111,6 +114,30 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasTutorial(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return addressBook.hasTutorial(tutorial);
+    }
+
+    @Override
+    public void deleteTutorial(Tutorial target) {
+        addressBook.removeTutorial(target);
+    }
+
+    @Override
+    public void addTutorial(Tutorial tutorial) {
+        addressBook.addTutorial(tutorial);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
+        requireAllNonNull(target, editedTutorial);
+
+        addressBook.setTutorial(target, editedTutorial);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,6 +153,19 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Tutorial List Accessors =============================================================
+
+    @Override
+    public ObservableList<Tutorial> getFilteredTutorialList() {
+        return filteredTutorials;
+    }
+
+    @Override
+    public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
+        requireNonNull(predicate);
+        filteredTutorials.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +184,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTutorials.equals(other.filteredTutorials);
     }
-
 }

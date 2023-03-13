@@ -60,7 +60,7 @@ public class PerformanceCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getPhoto(),
                 personToEdit.getAddress(), personToEdit.getRemark(), performance, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
