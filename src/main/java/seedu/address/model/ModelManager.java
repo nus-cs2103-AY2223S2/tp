@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.TimeComparator;
 
 /**
- * Represents the in-memory model  of the address book data.
+ * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
