@@ -15,13 +15,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.TelegramHandle;
-import seedu.address.model.person.User;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
@@ -134,6 +128,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        ContactIndex unchangedContactIndex = editPersonDescriptor.getContactIndex();
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
                 .orElse(personToEdit.getTelegramHandle());
@@ -142,7 +137,7 @@ public class EditCommand extends Command {
         Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
                 .orElse(personToEdit.getImmutableModuleTags());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTelegramHandle,
-                updatedGroupTags, updatedModuleTags);
+                unchangedContactIndex, updatedGroupTags, updatedModuleTags);
     }
 
     /**
@@ -162,7 +157,8 @@ public class EditCommand extends Command {
                 .orElse(userToEdit.getImmutableModuleTags());
 
         return new User(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTelegramHandle, updatedGroupTags, updatedModuleTags);
+                updatedAddress, updatedTelegramHandle, new ContactIndex(0),
+                updatedGroupTags, updatedModuleTags);
     }
 
     @Override
@@ -192,6 +188,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private ContactIndex contactIndex;
         private TelegramHandle telegramHandle;
         private Set<GroupTag> groupTags;
         private Set<ModuleTag> moduleTags;
@@ -207,6 +204,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setContactIndex(toCopy.contactIndex);
             setTelegramHandle(toCopy.telegramHandle);
             setGroupTags(toCopy.groupTags);
             setModuleTags(toCopy.moduleTags);
@@ -219,12 +217,20 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, groupTags, moduleTags, telegramHandle);
         }
 
+        public void setContactIndex(ContactIndex contactIndex) {
+            this.contactIndex = contactIndex;
+        }
+
         public void setName(Name name) {
             this.name = name;
         }
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public ContactIndex getContactIndex() {
+            return contactIndex;
         }
 
         public void setPhone(Phone phone) {
@@ -310,6 +316,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getContactIndex().equals(e.getContactIndex())
                     && getAddress().equals(e.getAddress())
                     && getTelegramHandle().equals(e.getTelegramHandle())
                     && getGroupTags().equals(e.getGroupTags())
