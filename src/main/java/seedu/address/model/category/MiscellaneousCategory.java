@@ -25,5 +25,4 @@ public class MiscellaneousCategory extends Category {
     public int hashCode() {
         return categoryName.hashCode();
     }
-
 }
