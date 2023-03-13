@@ -22,7 +22,7 @@ public class TypicalTasks {
     public static final Task DEPOSIT_CASH = new TaskBuilder().withSubject("Deposit cash")
             .withContent("Deposit cash from last week at the bank.").build();
     public static final Task SET_APPOINTMENT = new TaskBuilder().withSubject("Set appointment")
-            .withContent("Set up meeting with Mdm Tay for next Monday").build();
+            .withContent("Set up meeting with Mdm Tay for next Monday").withStatus(true).build();
     public static final Task DATA_ENTRY = new TaskBuilder().withSubject("Data entry")
             .withContent("Update spreadsheet with client information.").withStatus(true).build();
 

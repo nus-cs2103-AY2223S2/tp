@@ -11,5 +11,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_TASK_ALREADY_DONE = "The task is already marked as done";
-
+    public static final String MESSAGE_TASK_ALREADY_NOT_DONE = "This task is already marked as not done";
 }
