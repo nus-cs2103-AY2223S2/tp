@@ -2,15 +2,8 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.person.Person;
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
@@ -24,12 +17,12 @@ public interface Model1 {
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    void setUserPrefs(ReadOnlyUserPrefs1 userPrefs);
 
     /**
      * Returns the user prefs.
      */
-    ReadOnlyUserPrefs getUserPrefs();
+    ReadOnlyUserPrefs1 getUserPrefs();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -42,48 +35,48 @@ public interface Model1 {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' internship catalogue file path.
      */
-    Path getAddressBookFilePath();
+    Path getInternshipCatalogueFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' internship catalogue file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setInternshipCatalogueFilePath(Path internshipCatalogueFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces internship catalogue data with the data in {@code internshipCatalogue}.
      */
-    void setInternshipCatalogue(ReadOnlyInternshipCatalogue addressBook);
+    void setInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue);
 
-    /** Returns the AddressBook */
+    /** Returns the InternshipCatalogue */
     ReadOnlyInternshipCatalogue getInternshipCatalogue();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a internship with the same contents as {@code internship} exists in the internship catalogue.
      */
     boolean hasInternship(Internship internship);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given internship.
+     * The internship must exist in the internship catalogue.
      */
     void deleteInternship(Internship target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given internship.
+     * {@code internship} must not already exist in the internship catalogue.
      */
     void addInternship(Internship internship);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given internship {@code target} with {@code editedInternship}.
+     * {@code target} must exist in the internship.
+     * The internship content of {@code editedInternship} must not be the same as another existing internship in the internship catalogue.
      */
     void setInternship(Internship target, Internship editedInternship);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered internship list */
     ObservableList<Internship> getFilteredInternshipList();
 
     /**

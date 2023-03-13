@@ -17,12 +17,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.logging.Logger;
-import seedu.address.ui.HelpWindow;
-import seedu.address.ui.InternshipListPanel;
-import seedu.address.ui.ResultDisplay;
-import seedu.address.ui.UiPart;
-
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -122,7 +116,7 @@ public class MainWindow1 extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         // Check Logic if methis getTinsFilePath matches
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getInternshipCatalogueFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

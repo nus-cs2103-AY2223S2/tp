@@ -1,4 +1,4 @@
-/*package seedu.address;
+package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -13,60 +13,52 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.Logic;
 import seedu.address.logic.Logic1;
-import seedu.address.logic.LogicManager;
 import seedu.address.logic.LogicManager1;
-import seedu.address.model.AddressBook;
 import seedu.address.model.InternshipCatalogue;
-import seedu.address.model.Model;
 import seedu.address.model.Model1;
-import seedu.address.model.ModelManager;
 import seedu.address.model.ModelManager1;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyInternshipCatalogue;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.model.ReadOnlyUserPrefs1;
+import seedu.address.model.UserPrefs1;
+import seedu.address.model.util.SampleDataUtil1;
+import seedu.address.storage.InternshipCatalogueStorage;
+import seedu.address.storage.JsonInternshipCatalogueStorage;
+import seedu.address.storage.JsonUserPrefsStorage1;
+import seedu.address.storage.Storage1;
+import seedu.address.storage.StorageManager1;
+import seedu.address.storage.UserPrefsStorage1;
 import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;*/
+import seedu.address.ui.UiManager;
 
 /**
  * Runs the application.
  */
-/*
-public class MainApp extends Application {
-
+public class MainApp1 extends Application {
     public static final Version VERSION = new Version(0, 2, 0, true);
 
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static final Logger logger = LogsCenter.getLogger(MainApp1.class);
 
     protected Ui ui;
     // Changed this to new Logic Class
     protected Logic1 logic;
-    protected Storage storage;
+    protected Storage1 storage;
     // Changes this to Model class.
     protected Model1 model;
     protected Config config;
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing InternshipCatalogue ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
-        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
-        UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        UserPrefsStorage1 userPrefsStorage = new JsonUserPrefsStorage1(config.getUserPrefsFilePath());
+        UserPrefs1 userPrefs = initPrefs(userPrefsStorage);
+        InternshipCatalogueStorage internshipCatalogueStorage = new JsonInternshipCatalogueStorage(userPrefs.getInternshipCatalogueFilePath());
+        storage = new StorageManager1(internshipCatalogueStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,55 +67,34 @@ public class MainApp extends Application {
         logic = new LogicManager1(model, storage);
 
         ui = new UiManager(logic);
-    }*/
+    }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s internship catalogue and {@code userPrefs}. <br>
+     * The data from the sample internship catalogue will be used instead if {@code storage}'s internship catalogue is not found,
+     * or an empty internship catalogue will be used instead if errors occur when reading {@code storage}'s internship catalogue.
      */
-    /*
-    private Model1 initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model1 initModelManager(Storage1 storage, ReadOnlyUserPrefs1 userPrefs) {
         Optional<ReadOnlyInternshipCatalogue> internshipCatalogueOptional;
         ReadOnlyInternshipCatalogue initialData;
-//        try {
-//            addressBookOptional = storage.readAddressBook();
-//            if (!addressBookOptional.isPresent()) {
-//                logger.info("Data file not found. Will be starting with a sample AddressBook");
-//            }
-//            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-//        } catch (DataConversionException e) {
-//            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-//            initialData = new AddressBook();
-//        } catch (IOException e) {
-//            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-//            initialData = new AddressBook();
-//        }
+
+        try {
+            internshipCatalogueOptional = storage.readInternshipCatalogue();
+            if (!internshipCatalogueOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Internship Catalogue");
+            }
+            initialData = internshipCatalogueOptional.orElseGet(SampleDataUtil1::getSampleInternshipCatalogue);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty InternshipCatalogue");
+            initialData = new InternshipCatalogue();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty InternshipCatalogue");
+            initialData = new InternshipCatalogue();
+        }
 
         return new ModelManager1(initialData, userPrefs);
     }
 
-    /*private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        }
-
-        return new ModelManager(initialData, userPrefs);
-    }*/
-
-    /*
     private void initLogging(Config config) {
         LogsCenter.init(config);
     }
@@ -133,7 +104,6 @@ public class MainApp extends Application {
      * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead
      * if {@code configFilePath} is null.
      */
-    /*
     protected Config initConfig(Path configFilePath) {
         Config initializedConfig;
         Path configFilePathUsed;
@@ -170,23 +140,21 @@ public class MainApp extends Application {
      * or a new {@code UserPrefs} with default configuration if errors occur when
      * reading from the file.
      */
-
-    /*
-    protected UserPrefs initPrefs(UserPrefsStorage storage) {
+    protected UserPrefs1 initPrefs(UserPrefsStorage1 storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
         logger.info("Using prefs file : " + prefsFilePath);
 
-        UserPrefs initializedPrefs;
+        UserPrefs1 initializedPrefs;
         try {
-            Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
-            initializedPrefs = prefsOptional.orElse(new UserPrefs());
+            Optional<UserPrefs1> prefsOptional = storage.readUserPrefs();
+            initializedPrefs = prefsOptional.orElse(new UserPrefs1());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
                     + "Using default user prefs");
-            initializedPrefs = new UserPrefs();
+            initializedPrefs = new UserPrefs1();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initializedPrefs = new UserPrefs();
+            initializedPrefs = new UserPrefs1();
         }
 
         //Update prefs file in case it was missing to begin with or there are new/unused fields
@@ -201,17 +169,18 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting The Intern's Ship " + MainApp1.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Internship Catalogue] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
     }
-} */
+}
+
