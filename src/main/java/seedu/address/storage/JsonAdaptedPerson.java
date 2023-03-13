@@ -30,8 +30,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final String age;
-    private String medicalCondition;
+    private String age = null;
+    private String medicalCondition = null;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -57,6 +57,8 @@ class JsonAdaptedPerson {
         }
         if (medicalCondition != null) {
             this.medicalCondition = medicalCondition;
+        } else {
+            this.medicalCondition = "";
         }
     }
 
@@ -69,10 +71,15 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        age = source.getAge().age;
+
+        if (source.getAge().age != null) {
+            age = source.getAge().age;
+        }
+
         if (source.getMedicalCondition().getValue() != null) {
             medicalCondition = source.getMedicalCondition().getValue();
         }
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -121,18 +128,23 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final Age modelAge = new Age(age);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
 
-        if (age != null) {
-            final Age modelAge = new Age(age);
+
+        if (age != null && medicalCondition != null) {
+            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelMedical);
+        }
+        if (age != null && medicalCondition == null) {
             return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags);
         }
-        if (medicalCondition != null) {
-            final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
+        if (age == null && medicalCondition != null) {
             return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedical);
-
         }
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
