@@ -17,12 +17,12 @@ import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.logic.commands.CommandResult;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
-import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.ui.client.ClientListCard;
 import mycelium.mycelium.ui.common.ListPanel;
 import mycelium.mycelium.ui.common.TabPage;
 import mycelium.mycelium.ui.common.UiPart;
-import mycelium.mycelium.ui.person.PersonListCard;
 import mycelium.mycelium.ui.project.ProjectListCard;
 
 /**
@@ -39,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ListPanel<Person> personListPanel;
+    private ListPanel<Client> clientListPanel;
     private ListPanel<Project> projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -124,9 +124,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         projectListPanel = new ListPanel<Project>(logic.getFilteredProjectList(), ProjectListCard::new);
-        personListPanel = new ListPanel<Person>(logic.getFilteredPersonList(), PersonListCard::new);
+        clientListPanel = new ListPanel<Client>(logic.getFilteredClientList(), ClientListCard::new);
         projectTab = new TabPage("Projects", projectListPanel);
-        clientTab = new TabPage("Client", personListPanel);
+        clientTab = new TabPage("Client", clientListPanel);
         projectTab.fillInnerContent();
         clientTab.fillInnerContent();
         tabPane.getTabs().addAll(projectTab.getRoot(), clientTab.getRoot());
@@ -181,8 +181,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ListPanel<Person> getPersonListPanel() {
-        return personListPanel;
+    public ListPanel<Client> getClientListPanel() {
+        return clientListPanel;
     }
 
     public ListPanel<Project> getProjectListPanel() {
