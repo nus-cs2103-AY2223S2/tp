@@ -35,8 +35,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Question question = ParserUtil.parseName(argMultimap.getValue(PREFIX_QUESTION).get());
-        Answer answer = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ANSWER).get());
+        Question question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
+        Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Card card = new Card(question, answer, tagList, Optional.empty());
