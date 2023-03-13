@@ -39,9 +39,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         TimeSlot timeSlot = ParserUtil.parseTimeSlot(argMultimap.getValue(PREFIX_TIMESLOT).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Remark remark = new Remark("");
+        Remark remark = new Remark("None.");
+        Deadline deadline = new Deadline("None.");
 
-        Person person = new Person(name, type, timeSlot, address, tagList, remark);
+        Person person = new Person(name, type, timeSlot, address, tagList, remark, deadline);
 
         return new AddCommand(person);
     }

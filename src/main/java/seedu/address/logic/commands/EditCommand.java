@@ -95,8 +95,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Remark updatedRemark = personToEdit.getRemark();
+        Deadline updatedDeadline = personToEdit.getDeadline();
 
-        return new Person(updatedName, updatedType, updatedTimeSlot, updatedAddress, updatedTags, updatedRemark);
+        return new Person(updatedName, updatedType, updatedTimeSlot, updatedAddress, updatedTags, updatedRemark,
+                updatedDeadline);
     }
 
     @Override
@@ -127,6 +129,7 @@ public class EditCommand extends Command {
         private TimeSlot timeSlot;
         private Address address;
         private Remark remark;
+        private Deadline deadline;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -142,13 +145,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setRemark(toCopy.remark);
+            setDeadline(toCopy.deadline);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, type, timeSlot, address, tags, remark);
+            return CollectionUtil.isAnyNonNull(name, type, timeSlot, address, tags, remark, deadline);
         }
 
         public void setName(Name name) {
@@ -200,6 +204,18 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
+        public void setDeadline(Deadline deadline) { this.deadline = deadline; }
+
+        public Optional<Deadline> getDeadline() { return Optional.ofNullable(deadline); }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -219,15 +235,9 @@ public class EditCommand extends Command {
                     && getType().equals(e.getType())
                     && getTimeSlot().equals(e.getTimeSlot())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
-        }
-
-        public void setRemark(Remark remark) {
-            this.remark = remark;
-        }
-
-        public Optional<Remark> getRemark() {
-            return Optional.ofNullable(remark);
+                    && getTags().equals(e.getTags())
+                    && getRemark().equals(e.getRemark())
+                    && getDeadline().equals(e.getDeadline());
         }
     }
 }

@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label remark;
     @FXML
+    private Label deadline;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,12 +54,13 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         type.setText(person.getType().value);
-        address.setText(person.getAddress().value);
-        timeSlot.setText(person.getTimeSlot().value);
-        remark.setText(person.getRemark().value);
+        address.setText("Venue: " + person.getAddress().value);
+        timeSlot.setText("Time: " + person.getTimeSlot().value);
+        remark.setText("Remark: " + person.getRemark().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        deadline.setText("Deadline: " + person.getDeadline().value);
     }
 
     @Override

@@ -26,6 +26,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String remark;
+    private final String deadline;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -33,7 +34,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("type") String type,
             @JsonProperty("timeSlot") String timeSlot, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark,
+            @JsonProperty("deadline") String deadline) {
         this.name = name;
         this.type = type;
         this.timeSlot = timeSlot;
@@ -42,6 +44,7 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.remark = remark;
+        this.deadline = deadline;
     }
 
     /**
@@ -56,6 +59,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         remark = source.getRemark().value;
+        deadline = source.getDeadline().value;
     }
 
     /**
@@ -107,7 +111,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
-        return new Person(modelName, modelType, modelTimeSlot, modelAddress, modelTags, modelRemark);
+        final Deadline modelDeadline = new Deadline(deadline);
+        return new Person(modelName, modelType, modelTimeSlot, modelAddress, modelTags, modelRemark, modelDeadline);
     }
 
 }
