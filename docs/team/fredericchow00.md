@@ -40,6 +40,16 @@ Accepted: 1
 Rejected: 0
 ```
 
+- Enhanced the `AdvanceCommand` and `AdvanceCommandParser` to detect when there should or should not be 
+a need for the user to provide an interview date for the applicant when the user calls the `Advance` feature
+
+
+Example 1: John Doe's application status is `Applied`, so calling the `Advance` command would change 
+John Doe's status to `Shortlisted`, where an interview date is mandatory. 
+
+Example 2: Calling `Advance` on John Doe again change John Doe's status to `Accepted` and hence, the command 
+would *NOT* require an interview date. 
+
 (**Code contributions**)
 
 Example
@@ -66,7 +76,7 @@ Example
 
 - **Community**:
 
-  - to be added soon
+  - Reviewed Pull Requests (PRs) made by team members
 
 - **Tools**:
 
