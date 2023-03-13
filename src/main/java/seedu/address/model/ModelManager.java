@@ -106,12 +106,21 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    @Override
     public void addIsolatedEvent(Person person, IsolatedEvent event) {
         addressBook.addIsolatedEvent(person, event);
     }
 
     @Override
+    public void setIsolatedEvent(Person person, IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
+        requireAllNonNull(person, originalEvent, editedEvent);
+        addressBook.setIsolatedEvent(person, originalEvent, editedEvent);
+
+    }
+
+    @Override
     public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
+        requireAllNonNull(personToEdit, event);
         addressBook.deleteIsolatedEvent(personToEdit, event);
     }
 

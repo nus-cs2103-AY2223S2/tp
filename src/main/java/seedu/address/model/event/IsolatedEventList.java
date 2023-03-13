@@ -3,6 +3,8 @@ package seedu.address.model.event;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+import seedu.address.model.event.exceptions.EventNotFoundException;
+
 /**
  * Represents the list of {@code IsolatedEvent} that each {@code Person} has.
  */
@@ -53,6 +55,19 @@ public class IsolatedEventList {
         return event;
     }
 
+    /**
+     * Edit the current event in the isolated event list.
+     * @param originalEvent to be edited.
+     * @param editedEvent to be edited to.
+     */
+    public void edit(IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
+        if (!isolatedEvents.contains(originalEvent)) {
+            throw new EventNotFoundException();
+        }
+        isolatedEvents.remove(originalEvent);
+        isolatedEvents.add(editedEvent);
+    }
+
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
@@ -61,4 +76,5 @@ public class IsolatedEventList {
         }
         return output.toString();
     }
+
 }

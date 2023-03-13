@@ -88,4 +88,15 @@ class IsolatedEventListTest {
         assertEquals("Skiing from: 09/03/2023 14:00 to: 09/03/2023 15:00",
                 isolatedEventList.getIsolatedEvent(2).toString());
     }
+
+    @Test
+    void edit() {
+        IsolatedEvent event = new IsolatedEventStub("Skiing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID);
+        isolatedEventList.insert(event);
+        IsolatedEvent editedEvent = new IsolatedEventStub("Canoeing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID);
+        isolatedEventList.edit(event, editedEvent);
+        assertEquals(isolatedEventList.getIsolatedEvent(0).toString(), editedEvent.toString());
+    }
 }

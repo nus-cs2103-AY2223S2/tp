@@ -14,9 +14,9 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
     public static final String MESSAGE_CONSTRAINTS_DATE =
             "Date should be in the format: dd/MM/yyyy HH:mm";
 
-    private final String eventName;
-    private final LocalDateTime startDate;
-    private final LocalDateTime endDate;
+    private String eventName;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     /**
      * Constructor for IsolatedEvent class.
@@ -37,6 +37,10 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
 
     public LocalDateTime getEndDate() {
         return this.endDate;
+    }
+
+    public String getEventName() {
+        return this.eventName;
     }
 
     @Override
