@@ -127,17 +127,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given internship application {@code target} in the list with {@code editedInternshipApplication}.
-     * {@code target} must exist in the list of applications.
-     */
-    public void setInternshipApplication(InternshipApplication target,
-                                         InternshipApplication editedInternshipApplication) {
-        requireNonNull(editedInternshipApplication);
-
-        applications.setApplication(target, editedInternshipApplication);
-    }
-
-    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */

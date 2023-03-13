@@ -98,12 +98,6 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /**
-     * Replaces the given internship application {@code target} with {@code editedApplication}.
-     * {@code target} must exist in the list of applications.
-     */
-    void setInternshipApplication(InternshipApplication target, InternshipApplication editedInternshipApplication);
-
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

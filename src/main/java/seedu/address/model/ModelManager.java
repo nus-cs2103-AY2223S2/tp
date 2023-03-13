@@ -132,14 +132,6 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    @Override
-    public void setInternshipApplication(InternshipApplication target,
-                                         InternshipApplication editedInternshipApplication) {
-        requireAllNonNull(target, editedInternshipApplication);
-
-        addressBook.setInternshipApplication(target, editedInternshipApplication);
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
