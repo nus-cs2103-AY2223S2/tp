@@ -3,7 +3,6 @@ package seedu.address.model.entity.shop.garage;
 import java.util.ArrayList;
 
 import seedu.address.model.entity.person.Staff;
-import seedu.address.model.entity.shop.Shop;
 
 /**
  * This class represents a Garage which the user of this program owns.

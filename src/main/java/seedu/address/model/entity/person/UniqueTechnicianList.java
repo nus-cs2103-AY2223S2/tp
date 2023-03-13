@@ -1,21 +1,24 @@
 package seedu.address.model.entity.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.person.exceptions.DuplicatePersonException;
 import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 /**
  * A list of technicians that enforces uniqueness between its elements and does not allow nulls.
- * A technician is considered unique by comparing using {@code Technician#isSameTechnician(Customer)}. As such, adding and updating of
- * technicians uses Technician#isSameStaff(Staff) for equality so as to ensure that the technician being added or updated is
- * unique in terms of identity in the UniqueTechnicianList. However, the removal of a technician uses Staff#equals(Object) so
+ * A technician is considered unique by comparing using
+ * {@code Technician#isSameTechnician(Customer)}. As such, adding and updating of
+ * technicians uses Technician#isSameStaff(Staff) for equality so as to
+ * ensure that the technician being added or updated is
+ * unique in terms of identity in the UniqueTechnicianList. However, the removal of a technician uses
+ * Staff#equals(Object) so
  * that we ensure technicians with the same staff id will be removed.
  *
  * Supports a minimal set of list operations.

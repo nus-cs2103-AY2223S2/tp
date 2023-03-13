@@ -1,21 +1,26 @@
 package seedu.address.model.entity.shop;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyShop;
-import seedu.address.model.entity.person.Technician;
-import seedu.address.model.entity.person.UniqueTechnicianList;
-import seedu.address.model.service.*;
 import seedu.address.model.entity.person.Customer;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.person.UniqueCustomerList;
+import seedu.address.model.entity.person.UniqueTechnicianList;
 import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
-import seedu.address.model.service.exception.VehicleNotFoundException;
+import seedu.address.model.service.Part;
+import seedu.address.model.service.PartMap;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.ServiceList;
+import seedu.address.model.service.UniqueVehicleList;
+import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.service.exception.PartNotFoundException;
-
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.service.exception.VehicleNotFoundException;
 
 /**
  * A Shop is an entity that usually buy sells things.

@@ -72,6 +72,9 @@ public class Customer extends Person {
         this.vehicleIds.remove(vehicle.getId());
     }
 
+    /**
+     * Returns true if both customers have the same id.
+     */
     public boolean isSameCustomer(Customer otherCustomer) {
         if (otherCustomer == this) {
             return true;

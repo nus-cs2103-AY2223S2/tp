@@ -1,21 +1,25 @@
 package seedu.address.model.entity.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.person.exceptions.DuplicatePersonException;
 import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 /**
  * A list of customers that enforces uniqueness between its elements and does not allow nulls.
- * A customer is considered unique by comparing using {@code Customer#isSameCustomer(Customer)}. As such, adding and updating of
- * customers uses Customer#isSameCustomer(Customer) for equality so as to ensure that the customer being added or updated is
- * unique in terms of identity in the UniqueCustomerList. However, the removal of a customer uses Customer#equals(Object) so
+ * A customer is considered unique by comparing using
+ * {@code Customer#isSameCustomer(Customer)}.
+ * As such, adding and updating of customers uses
+ * Customer#isSameCustomer(Customer) for equality
+ * so as to ensure that the customer being added or updated is unique in
+ * terms of identity in the
+ * UniqueCustomerList. However, the removal of a customer uses Customer#equals(Object) so
  * that we ensure customers with either exactly the same fields or the same id will be removed.
  *
  * Supports a minimal set of list operations.

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Technician;
 
 /**
@@ -201,6 +200,9 @@ public class Service {
         isComplete = complete;
     }
 
+    /**
+     * Returns true if both Services have the same id.
+     */
     public boolean isSameService(Service otherService) {
         if (otherService == this) {
             return true;

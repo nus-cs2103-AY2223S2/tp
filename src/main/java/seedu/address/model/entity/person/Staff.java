@@ -27,6 +27,9 @@ public abstract class Staff extends Person {
         return id;
     }
 
+    /**
+     * Returns true if both staffs have the same id.
+     */
     public boolean isSameStaff(Staff otherStaff) {
         if (otherStaff == this) {
             return true;

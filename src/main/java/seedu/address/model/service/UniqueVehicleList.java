@@ -1,21 +1,24 @@
 package seedu.address.model.service;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.service.exception.DuplicateVehicleException;
 import seedu.address.model.service.exception.VehicleNotFoundException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 /**
  * A list of vehicles that enforces uniqueness between its elements and does not allow nulls.
- * A vehicle is considered unique by comparing using {@code Vehicle#isSameVehicle(Vehicle)}. As such, adding and updating of
- * vehicles uses Vehicle#isSameVehicle(Vehicle) for equality so as to ensure that the vehicle being added or updated is
- * unique in terms of plate number in the UniqueVehicleList. However, the removal of a vehicle uses Vehicle#equals(Object) so
+ * A vehicle is considered unique by comparing using
+ * {@code Vehicle#isSameVehicle(Vehicle)}. As such, adding and updating of
+ * vehicles uses Vehicle#isSameVehicle(Vehicle) for equality so as to ensure
+ * that the vehicle being added or updated is
+ * unique in terms of plate number in the UniqueVehicleList. However, the removal of a
+ * vehicle uses Vehicle#equals(Object) so
  * that we ensure vehicles with the same car plates will be removed.
  *
  * Supports a minimal set of list operations.
