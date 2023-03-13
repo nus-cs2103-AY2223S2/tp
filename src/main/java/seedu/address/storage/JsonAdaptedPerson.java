@@ -57,19 +57,6 @@ class JsonAdaptedPerson {
             this.medicalCondition = medicalCondition;
         }
     }
-    
-    public JsonAdaptedPerson(String name, String phone, String email, String address, List<JsonAdaptedTag> tagged) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
-        if (time != null) {
-            this.time = LocalDateTime.parse(time);
-        }
-    }
 
     public JsonAdaptedPerson(String name, String phone, String email, String address, List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -90,12 +77,13 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         if (source.hasTime()) {
             time = source.getTime();
-        if (source.getMedicalCondition().getValue() != null) {
-            medicalCondition = source.getMedicalCondition().getValue();
-        }
-        tagged.addAll(source.getTags().stream()
+            if (source.getMedicalCondition().getValue() != null) {
+                medicalCondition = source.getMedicalCondition().getValue();
+            }
+            tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        }
     }
 
     /**
@@ -143,16 +131,14 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if (time == null) {
-            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-        } else {
+        if (time != null) {
             return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, time);
         }
         if (medicalCondition != null) {
             final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
-            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedical);
+            return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, new MedicalCondition(medicalCondition));
         }
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
-
 }

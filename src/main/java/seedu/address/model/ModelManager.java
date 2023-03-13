@@ -144,7 +144,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
         SortedList<Person> newSortedList = new SortedList<>(filteredPersons, new TimeComparator());
         persons.setAll(newSortedList);
-        
+    }
     @Override
     public void updateFilteredPersonListByName(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -171,5 +171,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

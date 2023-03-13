@@ -52,25 +52,19 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Optional<String> time = argMultimap.getValue(PREFIX_SCHEDULE);
         LocalDateTime parsedTime = null;
+        Optional<String> medicalString = argMultimap.getValue(PREFIX_MEDICAL);
         if (time.isPresent()) {
             parsedTime = ParserUtil.parseTime(time.get());
         }
         if (parsedTime != null) {
             person = new Person(name, phone, email, address, tagList, parsedTime);
+        } else if (medicalString.isPresent()) {
+            MedicalCondition medicalCondition = ParserUtil.parseMedicalCond(medicalString.get());
+            person = new Person(name, phone, email, address, tagList, medicalCondition);
         } else {
             person = new Person(name, phone, email, address, tagList);
         }
         return new AddCommand(person);
-
-        Optional<String> medicalString = argMultimap.getValue(PREFIX_MEDICAL);
-        if (medicalString.isEmpty()) {
-            Person person = new Person(name, phone, email, address, tagList);
-            return new AddCommand(person);
-        } else {
-            MedicalCondition medicalCondition = ParserUtil.parseMedicalCond(medicalString.get());
-            Person person = new Person(name, phone, email, address, tagList, medicalCondition);
-            return new AddCommand(person);
-        }
     }
 
     /**

@@ -61,15 +61,16 @@ public class PersonCard extends UiPart<Region> {
             time.setText(person.getTime().toString());
         } else {
             time.setText("");
-        if (person.getMedicalCondition() == null) {
-            medicalCondition.setText("");
-        } else {
-            String s = person.getMedicalCondition().getValue();
-            medicalCondition.setText(s);
-        }
-        person.getTags().stream()
+            if (person.getMedicalCondition() == null) {
+                medicalCondition.setText("");
+            } else {
+                String s = person.getMedicalCondition().getValue();
+                medicalCondition.setText(s);
+            }
+            person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        }
     }
 
     @Override
