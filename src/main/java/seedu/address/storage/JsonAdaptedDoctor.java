@@ -22,7 +22,7 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
     private final String yearsOfExperience;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given doctor details.
+     * Constructs a {@code JsonAdaptedDoctor} with the given doctor details.
      */
     @JsonCreator
     public JsonAdaptedDoctor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
