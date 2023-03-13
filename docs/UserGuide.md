@@ -10,11 +10,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 --------------------------------------------------------------------------------------------------------------------
 
-<span style="color:#00ADB5">
-<h2>
-Table of Contents
-</h2>
-</span>
+##Table of Contents
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
@@ -32,14 +28,7 @@ Table of Contents
 
 --------------------------------------------------------------------------------------------------------------------
 
-<a name="quick-start">
-<span style="color:#00ADB5">
-<h2>
-Quick Start
-</h2>
-</span>
-</a>
-
+##Quick Start <a name="quick-start"></a>
 
 1. Ensure you have Java 11 or above installed in your Computer.
 1. Download `modtrek.jar` here. (To be inserted)
@@ -51,13 +40,7 @@ Quick Start
 
 --------------------------------------------------------------------------------------------------------------------
 
-<a name="features">
-<span style="color:#00ADB5">
-<h2>
-Features
-</h2>
-</span>
-</a>
+##Features <a name="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -71,7 +54,7 @@ Features
 
 ### MODTrek supports the following features:
 
-<h4 style="color:#F76B8A">Add a Module : `add`</h4>
+####Add a Module : `add`
 
 Adds a module to the module list. Modules must be distinct.
 
@@ -81,7 +64,7 @@ Command syntax: `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t 
 
 Example: `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`
 
-<h4 style="color:#F76B8A">Delete a Module : `delete`</h4>
+####Delete a Module : `delete`
 
 Deletes all/the specified module(s) from the module list.
 
@@ -89,7 +72,7 @@ Command syntax: _To delete specific modules:_ `delete /m <code1> (/m <code2>) ..
 
 Example: `delete /m CS2100 /m CS2040S`
 
-<h4 style="color:#F76B8A">Edit a Module : `edit`</h4>
+####Edit a Module : `edit`
 
 Edits an existing module in the module list.
 
@@ -99,7 +82,7 @@ Example: `edit ES2660 /m CS2101 /g B+`
 
 :exclamation: Past data will be overridden and not be saved
 
-<h4 style="color:#F76B8A">Tag a Module : `tag`</h4>
+####Tag a Module : `tag`
 
 Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.
 
@@ -109,13 +92,13 @@ Example:
 * `tag CS2030S include cs_foundation`
 * `tag ES2660 remove university_level it_professionalism`
 
-<h4 style="color:#F76B8A">List modules : `list`</h4>
+####List modules : `list`
 
 Displays all the modules taken by the user.
 
 Command syntax: `list`
 
-<h4 style="color:#F76B8A">Find modules : `find`</h4>
+####Find modules : `find`
 
 Displays specific module(s) satisfying the search query (by code, credits, year-semester, and/or grade) and their details previously logged by the user.
 
@@ -125,29 +108,23 @@ Example:
 * `find /c 4 /g A+`
 * `find /y y2s2`
 
-<h4 style="color:#F76B8A">Exit MODTrek : `exit`</h4>
+####Exit MODTrek : `exit`
 
 Exits the program.
 
 Command syntax: `exit`
 
-<h4 style="color:#F76B8A">Saving MODTrek data</h4>
+####Saving MODTrek data
 
 Saves the modified data regarding the modules into the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-<h4 style="color:#F76B8A">Editing MODTrek data</h4>
+####Editing MODTrek data
 
 ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.<br> <br>:warning: **Caution!** If your changes to the data file makes its format invalid, ModTrek will discard all data and start with an empty data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<a name="faq">
-<span style="color:#00ADB5">
-<h2>
-Frequently Asked Questions (FAQ)
-</h2>
-</span>
-</a>
+##Frequently Asked Questions (FAQ) <a name="faq"></a>
 
 **Q**: Why is it that I can add in modules not offered in NUS<br>
 **A**: Unfortunately we do not have a database to store all the available modules in NUS.
@@ -156,13 +133,8 @@ are provided only by NUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<a name="command_summary">
-<span style="color:#00ADB5">
-<h2>
-Command Summary
-</h2>
-</span>
-</a>
+##Command Summary <a name="command_summary"></a>
+
 
 | Action                   | Format, Examples                                                                                                                                                                                  |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
