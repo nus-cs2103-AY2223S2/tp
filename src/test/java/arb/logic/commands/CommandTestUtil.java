@@ -16,12 +16,16 @@ import java.util.List;
 import arb.commons.core.index.Index;
 import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.exceptions.CommandException;
+import arb.logic.commands.project.EditProjectCommand;
 import arb.model.AddressBook;
 import arb.model.ListType;
 import arb.model.Model;
 import arb.model.client.Client;
 import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.project.Project;
+import arb.model.project.TitleContainsKeywordsPredicate;
 import arb.testutil.EditClientDescriptorBuilder;
+import arb.testutil.EditProjectDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -81,6 +85,18 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
+    public static final EditProjectCommand.EditProjectDescriptor DESC_SKY_PAINTING;
+    public static final EditProjectCommand.EditProjectDescriptor DESC_OIL_PAINTING;
+
+    static {
+        DESC_SKY_PAINTING = new EditProjectDescriptorBuilder().withTitle(VALID_TITLE_SKY_PAINTING)
+                .withDeadline(VALID_DEADLINE_SKY_PAINTING).build();
+
+        DESC_OIL_PAINTING = new EditProjectDescriptorBuilder().withTitle(VALID_TITLE_OIL_PAINTING)
+                .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .build();
+    }
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -138,6 +154,20 @@ public class CommandTestUtil {
         model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the project at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showProjectAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
+
+        Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
+        final String[] splitName = project.getTitle().fullTitle.split("\\s+");
+        model.updateFilteredProjectList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredProjectList().size());
     }
 
 }
