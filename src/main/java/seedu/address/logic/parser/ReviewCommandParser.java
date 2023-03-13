@@ -1,17 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ReviewCommand;
 import seedu.address.logic.commands.ReviewTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsExactKeywordsPredicate;
-import seedu.address.model.task.SubjectContainsExactKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ReviewCommand object
@@ -31,9 +28,9 @@ public class ReviewCommandParser implements Parser<ReviewCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReviewTaskCommand.MESSAGE_USAGE));
         }
 
-        String[] subjectKeywords = trimmedArgs.split("\\s+");
+        String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new ReviewCommand(new NameContainsExactKeywordsPredicate((Arrays.asList(subjectKeywords))));
+        return new ReviewCommand(new NameContainsExactKeywordsPredicate((Arrays.asList(nameKeywords))));
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

@@ -60,7 +60,7 @@ public class PersonTask implements Relationship<PersonTask> {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("Person Id: %1$s\nAssigned Task Id: %2$s", personId, taskId);
     }
 }
