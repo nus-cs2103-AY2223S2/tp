@@ -51,7 +51,9 @@ public class Person {
         return email;
     }
 
-    public Book getBook() { return book; }
+    public Book getBook() {
+        return book;
+    }
     public Address getAddress() {
         return address;
     }
