@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.ui.ConfirmationDialog;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -25,13 +26,34 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_DELETE_APPLICATION_SUCCESS = "Deleted Application: %1$s";
-
+    public static final String MESSAGE_DELETE_APPLICATION_FAILED = "Application: %1$s Not Deleted";
+    public static final String MESSAGE_DELETE_EXECUTE_ERROR = "Delete command executed but no result!";
     public static final String MESSAGE_DELETE_CONFIRMATION = "Are you sure you want to delete this: application-%1$s";
 
     private final Index targetIndex;
 
+    private CommandResult resultMessage;
+
+    /**
+     * Creates an DeleteCommand to delete the specified {@code targetIndex} internship
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        this.resultMessage = new CommandResult(MESSAGE_DELETE_EXECUTE_ERROR);
+    }
+
+    /**
+     * Deletes {@code internshipToDelete} from the {@code model} data and returns result message with respect to
+     * the user's action to {@code confirm}.
+     */
+    public CommandResult getResultString(Model model, boolean confirm, Person internshipToDelete) {
+        if (confirm) {
+            model.deleteInternship(internshipToDelete);
+            resultMessage = new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, internshipToDelete));
+        } else {
+            resultMessage = new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_FAILED, internshipToDelete));
+        }
+        return resultMessage;
     }
 
     @Override
@@ -44,8 +66,11 @@ public class DeleteCommand extends Command {
         }
 
         Person internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteInternship(internshipToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, internshipToDelete));
+
+        ConfirmationDialog confirmationDialog = new ConfirmationDialog((
+                String.format(MESSAGE_DELETE_CONFIRMATION, internshipToDelete.getName())));
+
+        return getResultString(model, confirmationDialog.getConfirmationStatus(), internshipToDelete);
     }
 
     @Override
