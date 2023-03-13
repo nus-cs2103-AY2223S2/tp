@@ -18,6 +18,7 @@ import seedu.address.logic.commands.group.GroupListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupNameContainsKeywordsPredicate;
+import seedu.address.model.person.MemberOfGroupPredicate;
 
 class GroupCommandParserTest {
     private final GroupCommandParser parser = new GroupCommandParser();
@@ -40,7 +41,8 @@ class GroupCommandParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         GroupFindCommand command = (GroupFindCommand) parser.parse(GroupFindCommand.SUB_COMMAND_WORD
                 + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new GroupFindCommand(new GroupNameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new GroupFindCommand(new GroupNameContainsKeywordsPredicate(keywords),
+                new MemberOfGroupPredicate(keywords)), command);
     }
 
     @Test

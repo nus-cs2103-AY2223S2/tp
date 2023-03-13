@@ -5,11 +5,13 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.group.GroupFindCommand;
 import seedu.address.model.group.GroupNameContainsKeywordsPredicate;
+import seedu.address.model.person.MemberOfGroupPredicate;
 
 class GroupFindCommandParserTest {
 
@@ -23,9 +25,11 @@ class GroupFindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
+        List<String> keywordList = Arrays.asList("Friends", "CS2103");
         // no leading and trailing whitespaces
         GroupFindCommand expectedGroupFindCommand =
-                new GroupFindCommand(new GroupNameContainsKeywordsPredicate(Arrays.asList("Friends", "CS2103")));
+                new GroupFindCommand(new GroupNameContainsKeywordsPredicate(keywordList),
+                        new MemberOfGroupPredicate(keywordList));
         assertParseSuccess(parser, "Friends CS2103", expectedGroupFindCommand);
 
         // multiple whitespaces between keywords

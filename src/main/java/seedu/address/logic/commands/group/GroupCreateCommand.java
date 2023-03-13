@@ -27,7 +27,7 @@ public class GroupCreateCommand extends GroupCommand {
     private final Group toAdd;
 
     /**
-     * Creates a GroupCreateCommand to create a Group in the address
+     * Creates a GroupCreateCommand to create a Group in the address book
      */
     public GroupCreateCommand(Group group) {
         requireNonNull(group);
