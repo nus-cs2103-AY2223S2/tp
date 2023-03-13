@@ -74,9 +74,6 @@ public class InternshipApplication {
     public JobTitle getJobTitle() {
         return jobTitle;
     }
-    public InternshipStatus getStatus() {
-        return status;
-    }
 
     public InternshipStatus getStatus() {
         return status;
