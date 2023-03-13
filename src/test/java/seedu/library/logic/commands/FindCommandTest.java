@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
 import seedu.library.model.UserPrefs;
-import seedu.library.model.bookmark.NameContainsKeywordsPredicate;
+import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,10 +29,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        TitleContainsKeywordsPredicate firstPredicate =
+                new TitleContainsKeywordsPredicate(Collections.singletonList("first"));
+        TitleContainsKeywordsPredicate secondPredicate =
+                new TitleContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -57,7 +57,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noBookmarkFound() {
         String expectedMessage = String.format(MESSAGE_BOOKMARKS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        TitleContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredBookmarkList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -67,7 +67,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleBookmarksFound() {
         String expectedMessage = String.format(MESSAGE_BOOKMARKS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        TitleContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredBookmarkList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -75,9 +75,9 @@ public class FindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TitleContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private TitleContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new TitleContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
