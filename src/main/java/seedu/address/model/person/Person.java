@@ -4,7 +4,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -24,6 +26,7 @@ public class Person {
     private final Address address;
     private Status status;
     private final Set<Tag> notes = new HashSet<>();
+    private Optional<InterviewDateTime> interviewDateTime = Optional.empty();
 
     /**
      * Every field must be present and not null.
@@ -67,6 +70,23 @@ public class Person {
     }
 
     /**
+     * Returns the interview dateTime for the applicant if present, else throws {@code NoSuchElementException}
+     * @return Interview date of the applicant.
+     * @throws NoSuchElementException Thrown when no interview date is present.
+     */
+    public InterviewDateTime getInterviewDateTime() throws NoSuchElementException {
+        return interviewDateTime.orElseThrow();
+    }
+
+    /**
+     * Sets interview dateTime for shortlisted applicants.
+     * @param interviewDateTime Interview dateTime for the applicant.
+     */
+    public void setInterviewDateTime(InterviewDateTime interviewDateTime) {
+        this.interviewDateTime = Optional.of(interviewDateTime);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -92,6 +112,17 @@ public class Person {
             return true;
         default:
             return false;
+        }
+    }
+
+    /**
+     * Returns true if the person status can be rejected otherwise false.
+     */
+    public boolean rejectStatus() {
+        if (this.status == status.REJECTED) {
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -141,5 +172,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }
