@@ -25,9 +25,9 @@ public class ContactContainsTagPredicate implements Predicate<Person> {
         // perform filtering based on the tag attribute
         Set<Tag> personTags = person.getTags();
         Set<Tag> tempTagsSet = new HashSet<>(this.tagSet);
-        tempTagsSet.removeAll(personTags);
+        tempTagsSet.retainAll(personTags);
         boolean isTagsExists = tempTagsSet.isEmpty();
-        if (!isTagsExists) {
+        if (isTagsExists) {
             return false;
         } else {
             return true;
