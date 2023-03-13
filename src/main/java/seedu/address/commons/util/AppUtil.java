@@ -3,7 +3,7 @@ package seedu.address.commons.util;
 import static java.util.Objects.requireNonNull;
 
 import javafx.scene.image.Image;
-import seedu.address.MainApp;
+import seedu.address.MainApp1;
 
 /**
  * A container for App specific utility functions
@@ -15,7 +15,7 @@ public class AppUtil {
      */
     public static Image getImage(String imagePath) {
         requireNonNull(imagePath);
-        return new Image(MainApp.class.getResourceAsStream(imagePath));
+        return new Image(MainApp1.class.getResourceAsStream(imagePath));
     }
 
     /**

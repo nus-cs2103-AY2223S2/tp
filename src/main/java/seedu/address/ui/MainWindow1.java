@@ -17,12 +17,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.logging.Logger;
-import seedu.address.ui.HelpWindow;
-import seedu.address.ui.InternshipListPanel;
-import seedu.address.ui.ResultDisplay;
-import seedu.address.ui.UiPart;
-
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -37,6 +31,7 @@ public class MainWindow1 extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private InternshipListPanel internshipListPanel;
+    private InternshipInfoPanel internshipInfoPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -50,13 +45,18 @@ public class MainWindow1 extends UiPart<Stage> {
     private StackPane internshipListPanelPlaceholder;
 
     @FXML
+    private StackPane internshipInfoPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
 
+
+
     /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code MainWindow1} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow1(Stage primaryStage, Logic1 logic) {
         super(FXML, primaryStage);
@@ -118,11 +118,14 @@ public class MainWindow1 extends UiPart<Stage> {
         internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList());
         internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
 
+        internshipInfoPanel = new InternshipInfoPanel();
+        internshipInfoPanelPlaceholder.getChildren().add(internshipInfoPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         // Check Logic if methis getTinsFilePath matches
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getInternshipCatalogueFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -173,6 +176,10 @@ public class MainWindow1 extends UiPart<Stage> {
         return internshipListPanel;
     }
 
+    public InternshipInfoPanel getInternshipInfoPanel() {
+        return internshipInfoPanel;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -183,6 +190,7 @@ public class MainWindow1 extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            internshipInfoPanel.updateInfoPanel(null);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

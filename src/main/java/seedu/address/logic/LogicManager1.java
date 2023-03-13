@@ -10,13 +10,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command1;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.InternshipCatalogueParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model1;
 import seedu.address.model.ReadOnlyInternshipCatalogue;
 import seedu.address.model.internship.Internship;
-import seedu.address.storage.Storage;
+import seedu.address.storage.Storage1;
 
 /**
  * The main LogicManager of the app.
@@ -26,13 +25,13 @@ public class LogicManager1 implements Logic1 {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model1 model;
-    private final Storage storage;
+    private final Storage1 storage;
     private final InternshipCatalogueParser internshipCatalogueParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager1(Model1 model, Storage storage) {
+    public LogicManager1(Model1 model, Storage1 storage) {
         this.model = model;
         this.storage = storage;
         this.internshipCatalogueParser = new InternshipCatalogueParser();
@@ -46,12 +45,11 @@ public class LogicManager1 implements Logic1 {
         Command1 command = this.internshipCatalogueParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
-        // Add When storage becomes available.
-//        try {
-//            //storage.saveAddressBook(model.getInternshipCatalogue());
-//        } catch (IOException ioe) {
-//            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-//        }
+        try {
+            storage.saveInternshipCatalogue(model.getInternshipCatalogue());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
 
         return commandResult;
     }
@@ -67,8 +65,8 @@ public class LogicManager1 implements Logic1 {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getInternshipCatalogueFilePath() {
+        return model.getInternshipCatalogueFilePath();
     }
 
     @Override
