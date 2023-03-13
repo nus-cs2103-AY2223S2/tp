@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Clears the openings list.
  */
-public class NewClearCommand extends Command {
+public class ClearCommandNew extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Openings list has been cleared!";
