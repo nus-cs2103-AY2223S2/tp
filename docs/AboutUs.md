@@ -14,6 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhongli5712.png" width="200px">
 
 [[github](https://github.com/Zhongli5712)]
+[[portfolio](team/zhongli5712.md)]
 
 * Role: Developer
 * Responsibilities: new courses
@@ -23,6 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/leeyi45.png" width="200px">
 
 [[github](https://github.com/leeyi45)]
+[[portfolio](team/leeyi45.md)]
 
 * Role: Team Lead
 * Responsibilities: display and storage
@@ -32,6 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jugsliao.png" width="200px">
 
 [[github](https://github.com/jugsliao)]
+[[portfolio](team/jugsliao.md)]
 
 * Role: Developer
 * Responsibilities: add tutors
@@ -41,6 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/gekhro.png" width="200px">
 
 [[github](https://github.com/gekhro)]
+[[portfolio](team/gekhro.md)]
 
 * Role: Developer
 * Responsibilities: add students
