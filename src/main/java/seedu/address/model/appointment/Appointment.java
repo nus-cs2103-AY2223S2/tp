@@ -16,6 +16,8 @@ public class Appointment {
     // to add another Dr name field to link appmt to a doctor)
     public Appointment(Name name, Booking booking) {
         requireAllNonNull(name, booking);
+        //String bookingStr = booking.getBookingDate();
+        //checkArgument(isValidAppointment(bookingStr), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.booking = booking;
     }

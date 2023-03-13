@@ -126,9 +126,10 @@ public class ParserUtil {
     public static Booking parseBooking(String booking) throws ParseException {
         requireNonNull(booking);
         String trimmedBooking = booking.trim();
-        if(!Booking.isValidBooking(trimmedBooking)) {
+        if(!Booking.isValidBookingFormat(trimmedBooking)) {
             throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
         }
+
         return new Booking(trimmedBooking);
     }
 }
