@@ -16,6 +16,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
@@ -100,6 +101,12 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPolicyList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(IndexOutOfBoundsException.class, () -> modelManager.getFilteredPolicyList().remove(0));
+    }
+
+    @Test
+    public void getFilteredPolicyList_returnsEmptyList() {
+        modelManager.updateSelectedClient(AMY);
+        assertEquals(FXCollections.observableArrayList(), modelManager.getFilteredPolicyList());
     }
 
     @Test
