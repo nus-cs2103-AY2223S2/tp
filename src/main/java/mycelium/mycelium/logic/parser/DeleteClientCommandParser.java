@@ -3,8 +3,6 @@ package mycelium.mycelium.logic.parser;
 import static mycelium.mycelium.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_CLIENT_EMAIL;
 
-import java.util.stream.Stream;
-
 import mycelium.mycelium.logic.commands.DeleteClientCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.person.Email;
@@ -13,16 +11,6 @@ import mycelium.mycelium.model.person.Email;
  * A command to delete an existing client.
  */
 public class DeleteClientCommandParser implements Parser<DeleteClientCommand> {
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteClientCommand
      * and returns a DeleteClientCommand object for execution.
@@ -32,7 +20,7 @@ public class DeleteClientCommandParser implements Parser<DeleteClientCommand> {
     public DeleteClientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_EMAIL);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE));
         }

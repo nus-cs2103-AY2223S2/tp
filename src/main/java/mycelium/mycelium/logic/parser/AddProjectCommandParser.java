@@ -11,7 +11,6 @@ import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.Date;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import mycelium.mycelium.logic.commands.AddProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
@@ -23,14 +22,6 @@ import mycelium.mycelium.model.project.ProjectStatus;
  * A command to add a new project.
  */
 public class AddProjectCommandParser implements Parser<AddProjectCommand> {
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddProjectCommand
      * and returns an AddProjectCommand object for execution.
@@ -44,7 +35,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
                 PREFIX_ACCEPTED_DATE, PREFIX_DEADLINE_DATE
             );
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME, PREFIX_CLIENT_EMAIL)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME, PREFIX_CLIENT_EMAIL)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }

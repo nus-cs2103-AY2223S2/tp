@@ -8,7 +8,6 @@ import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_CLIENT_YEAR_OF_BIR
 import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import mycelium.mycelium.logic.commands.AddClientCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
@@ -23,13 +22,7 @@ import mycelium.mycelium.model.person.Phone;
  * A command to add a new client.
  */
 public class AddClientCommandParser implements Parser<AddClientCommand> {
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
+
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddClientCommand
@@ -42,7 +35,7 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_NAME, PREFIX_CLIENT_EMAIL, PREFIX_SOURCE,
                 PREFIX_CLIENT_YEAR_OF_BIRTH, PREFIX_CLIENT_MOBILE_NUMBER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_NAME, PREFIX_CLIENT_EMAIL)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CLIENT_NAME, PREFIX_CLIENT_EMAIL)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE));
         }

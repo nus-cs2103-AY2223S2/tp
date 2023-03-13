@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.commons.core.index.Index;
@@ -168,7 +169,7 @@ public class ParserUtil {
      * Performs a map operation.
      *
      * @param src The raw input to pass, which may be an {@code Optional.empty()}
-     * @param f The parsing function to use against the raw input
+     * @param f   The parsing function to use against the raw input
      * @param <T> Type of the raw input
      * @param <U> Type of the parsed result
      * @return The parsed result, wrapped in an {@code Optional}
@@ -178,4 +179,11 @@ public class ParserUtil {
         return src.isPresent() ? Optional.of(f.parse(src.get())) : Optional.empty();
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 }
