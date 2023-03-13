@@ -51,13 +51,13 @@ public class ToDo extends Task {
     public String getFileRepresentation() {
         String mark = (super.isDone()) ? "X" : " ";
 
-        return "D" + "~" + this.getPriority() + "~" + mark + "~" + this.getDescription() + "~" + this.by;
+        return "T" + "~" + this.getPriority() + "~" + mark + "~" + this.getDescription() + "~" + this.by;
     }
 
     @Override
     public String toString() {
 
-        return "[D]" + super.toString()
+        return "[T]" + super.toString()
                 + " (by: "
                 + Task.getDateTimeString(this.by)
                 + ")";
