@@ -78,6 +78,10 @@ public class InternshipApplication {
         return status;
     }
 
+    public InternshipStatus getStatus() {
+        return status;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

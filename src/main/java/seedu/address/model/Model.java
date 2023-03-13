@@ -71,7 +71,13 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deleteInternship(Person target);
+    void deletePerson(Person target);
+
+    /**
+     * Deletes the given internship application.
+     * The application must exist in the address book.
+     */
+    void deleteInternship(InternshipApplication application);
 
     /**
      * Adds the given application.

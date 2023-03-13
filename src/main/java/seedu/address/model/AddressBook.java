@@ -134,6 +134,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeApplication(InternshipApplication key) {
+        applications.remove(key);
+    }
+
     //// util methods
 
     @Override

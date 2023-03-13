@@ -2,8 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.InternshipApplication;
 import seedu.address.ui.ConfirmationDialog;
 
 /**
@@ -37,7 +40,9 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        if (model.getFilteredInternshipList().size() == 0) {
+        List<InternshipApplication> lastShownList = model.getFilteredInternshipList();
+
+        if (lastShownList.size() == 0) {
             return new CommandResult(MESSAGE_NULL);
         }
 
