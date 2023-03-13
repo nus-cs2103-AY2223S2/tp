@@ -10,6 +10,7 @@ import seedu.calidr.model.person.Email;
 import seedu.calidr.model.person.Name;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.model.person.Phone;
+import seedu.calidr.model.person.Remark;
 import seedu.calidr.model.tag.Tag;
 
 /**
@@ -17,7 +18,7 @@ import seedu.calidr.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private final EditPersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
         descriptor = new EditPersonDescriptor();
@@ -37,6 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setRemark(person.getRemark());
     }
 
     /**
@@ -78,6 +80,11 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    public EditPersonDescriptorBuilder withRemark(String remark) {
+        descriptor.setRemark(new Remark(remark));
         return this;
     }
 
