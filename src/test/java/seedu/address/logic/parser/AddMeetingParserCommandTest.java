@@ -14,8 +14,9 @@ import seedu.address.model.person.Meeting;
 
 import org.junit.jupiter.api.Test;
 
+
 public class AddMeetingParserCommandTest {
-    private AddMeetingCommandParser parser = new AddMeetingCommandParser();
+    private final AddMeetingCommandParser parser = new AddMeetingCommandParser();
     private final String NonEmptyMeeting = "09-11-2001 11:30 12:30";
 
     @Test

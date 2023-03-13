@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
+/**
+ * Removes a meeting by specified index from specified person
+ */
 public class RemoveMeetingCommand extends Command{
     public static final String COMMAND_WORD = "meetingRemove";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -23,11 +26,23 @@ public class RemoveMeetingCommand extends Command{
     private Index indexPerson;
     private Index indexMeeting;
 
+    /**
+     * Removes meeting at specified index from specified {@code Person}
+     * @param indexPerson index of Person to look up
+     * @param indexMeeting index of meeting in Person to remove
+     */
     public RemoveMeetingCommand(Index indexPerson, Index indexMeeting) {
         this.indexPerson = indexPerson;
         this.indexMeeting = indexMeeting;
     }
 
+    /**
+     * Executes meetingRemove command
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult Object
+     * @throws CommandException when index of person or meeting specified
+     * is out of range or invalid
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();

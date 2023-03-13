@@ -17,6 +17,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Meeting;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code AddMeetingCommand}.
+ */
 public class AddMeetingCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 

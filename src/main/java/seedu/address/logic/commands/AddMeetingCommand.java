@@ -76,8 +76,8 @@ public class AddMeetingCommand extends Command {
      * Checks if any 2 AddMeetingCommand are the same. This is done
      * by checking if both Meeting objects are assigned to the same person
      * and have same day, start and end time.
-     * @param other
-     * @return
+     * @param other Other AddMeetingCommand object to compare to
+     * @return boolean value on whether both objects are the same or not
      */
     @Override
     public boolean equals(Object other) {
