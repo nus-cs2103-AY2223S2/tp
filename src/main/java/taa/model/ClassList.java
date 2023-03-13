@@ -19,6 +19,7 @@ public class ClassList implements ReadOnlyAddressBook {
     private UniqueStudentList students;
     private AssignmentList assignments;
     private int classId;
+    private static int lastId = 0;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,7 +31,7 @@ public class ClassList implements ReadOnlyAddressBook {
     {
         assignments = new AssignmentList();
         students = new UniqueStudentList();
-        classId = 1;
+        this.classId = ++lastId;
     }
 
     public ClassList() {}
