@@ -7,18 +7,18 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.shape.Circle?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.Text?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER" prefHeight="50.0" prefWidth="85.0">
         <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
         </padding>
         <children>
-            <Circle fx:id="circle" radius = '70' stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="circle" radius="70" stroke="BLACK" strokeType="INSIDE" />
         </children>
     </VBox>
     <GridPane HBox.hgrow="ALWAYS">
@@ -27,52 +27,42 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-                <Text text = "Index:" fill="burlywood" />
-                <Label fx:id="index" styleClass="cell_small_label" text="\$index" />
+                <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
             </HBox>
             <FlowPane fx:id="tags" />
             <HBox>
-                <Text text = "Class:    " fill="burlywood" />
-                <Label fx:id="className" styleClass="cell_small_label" text="\$class" />
+                <Text fill="burlywood" text="Relationship:    " />
+                <Label fx:id="relationship" styleClass="cell_small_label" text="\\$relationship" />
             </HBox>
             <HBox>
-                <Text text = "Parent/Next of Kin Name:    " fill="burlywood" />
-                <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName" />
+                <Text fill="burlywood" text="Address:    " />
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             </HBox>
             <HBox>
-                <Text text = "Age:    " fill="burlywood" />
+                <Text fill="burlywood" text="Age:    " />
                 <Label fx:id="age" styleClass="cell_small_label" text="\$age" />
             </HBox>
+
             <HBox>
-                <Text text = "Gender:   " fill="burlywood" />
-                <Label fx:id="sex" styleClass="cell_small_label" text="\$sex" />
-            </HBox>
-            <HBox>
-                <Text text = "Email:    " fill="burlywood" />
+                <Text fill="burlywood" text="Email:    " />
                 <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
             </HBox>
             <HBox>
-                <Text text = "Phone:    " fill="burlywood" />
+                <Text fill="burlywood" text="Phone:    " />
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             </HBox>
-            <HBox>
-                <Text text = "CCA:    " fill="burlywood" />
-                <Label fx:id="cca" styleClass="cell_small_label" text="\$cca" />
-            </HBox>
-            <HBox>
-                <Text text = "Comments:    " fill="burlywood" />
-                <Label fx:id="comment" styleClass="cell_small_label" text="\$cca" />
-            </HBox>
         </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
 </HBox>
