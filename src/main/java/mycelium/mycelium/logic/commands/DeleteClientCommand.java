@@ -2,7 +2,7 @@ package mycelium.mycelium.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.util.Optional;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
@@ -34,17 +34,12 @@ public class DeleteClientCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Client>
-            listWithTargetClient =
-            model.getFilteredClientList().filtered(c -> c.getEmail().equals(targetEmail));
-
-        if (listWithTargetClient.size() == 0) {
+        Optional<Client> targetClient = model.getUniqueClient(c -> c.getEmail().equals(targetEmail));
+        if (targetClient.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT);
         }
-
-        Client clientToDelete = listWithTargetClient.get(0);
-        model.deleteClient(clientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, clientToDelete));
+        model.deleteClient(targetClient.get());
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, targetClient.get()));
     }
 
     @Override

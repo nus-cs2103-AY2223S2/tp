@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -198,6 +199,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredProjectList(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Client> getUniqueClient(Predicate<Client> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

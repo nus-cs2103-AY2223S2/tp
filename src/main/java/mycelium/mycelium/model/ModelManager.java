@@ -4,9 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -141,6 +144,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<Client> getUniqueClient(Predicate<Client> predicate) {
+        List<Client> clients = addressBook.getClientList().stream().filter(predicate).collect(Collectors.toList());
+        if (clients.size() > 1) {
+            throw new DuplicateClientException();
+        }
+        return clients.size() == 0 ? Optional.empty() : Optional.of(clients.get(0));
+    }
+
+    @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
@@ -238,4 +250,6 @@ public class ModelManager implements Model {
     public int hashCode() {
         return Objects.hash(addressBook, userPrefs, filteredPersons, filteredClients, filteredProjects);
     }
+
+
 }

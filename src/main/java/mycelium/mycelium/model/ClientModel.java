@@ -1,5 +1,6 @@
 package mycelium.mycelium.model;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -10,6 +11,12 @@ import mycelium.mycelium.model.client.Client;
  * The API for operations related to clients.
  */
 public interface ClientModel {
+    /**
+     * Finds a single client that matches the specified predicate. Expects to
+     * find either zero or one clients. If more than one client matches the
+     * provided predicate, throws {@code DuplicateClientException}.
+     */
+    Optional<Client> getUniqueClient(Predicate<Client> predicate);
 
     /**
      * Determines whether a given client is present in the list of clients.
