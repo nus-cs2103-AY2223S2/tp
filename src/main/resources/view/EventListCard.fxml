@@ -32,7 +32,7 @@
                 <children>
                 </children>
             </HBox>
-         <ProgressBar prefWidth="200.0" progress="0.35" style="-fx-accent: #643FDB;" />
+         <ProgressBar prefHeight="15.0" prefWidth="91.0" progress="0.35" style="-fx-accent: #643FDB;" />
         </VBox>
       <HBox prefHeight="81.0" prefWidth="150.0" />
         <rowConstraints>
