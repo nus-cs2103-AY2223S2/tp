@@ -25,7 +25,7 @@ public class UiManager implements Ui {
 
     // CHanges to new logic
     private Logic1 logic;
-    private MainWindow1 mainWindow;
+    private MainWindow mainWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -43,7 +43,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow1(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 

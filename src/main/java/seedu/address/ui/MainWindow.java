@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
+import seedu.address.logic.Logic1;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -22,27 +22,30 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    private Logic logic;
+    private Logic1 logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private InternshipListPanel internshipListPanel;
+    private InternshipInfoPanel internshipInfoPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
-    @FXML
+    @javafx.fxml.FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane internshipListPanelPlaceholder;
+
+    @FXML
+    private StackPane internshipInfoPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -50,10 +53,12 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic1 logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -110,12 +115,16 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList());
+        internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
+
+        internshipInfoPanel = new InternshipInfoPanel();
+        internshipInfoPanelPlaceholder.getChildren().add(internshipInfoPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        // Check Logic if methis getTinsFilePath matches
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -163,8 +172,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public InternshipListPanel getInternshipListPanel() {
+        return internshipListPanel;
+    }
+
+    public InternshipInfoPanel getInternshipInfoPanel() {
+        return internshipInfoPanel;
     }
 
     /**
@@ -177,6 +190,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            internshipInfoPanel.updateInfoPanel(commandResult.getInternship());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -193,4 +207,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }
