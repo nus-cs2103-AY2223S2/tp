@@ -60,8 +60,8 @@ public class JsonPetPalStorage implements PetPalStorage {
     }
 
     @Override
-    public void savePetPal(ReadOnlyPetPal PetPal) throws IOException {
-        savePetPal(PetPal, filePath);
+    public void savePetPal(ReadOnlyPetPal petPal) throws IOException {
+        savePetPal(petPal, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonPetPalStorage implements PetPalStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void savePetPal(ReadOnlyPetPal PetPal, Path filePath) throws IOException {
-        requireNonNull(PetPal);
+    public void savePetPal(ReadOnlyPetPal petPal, Path filePath) throws IOException {
+        requireNonNull(petPal);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializablePetPal(PetPal), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePetPal(petPal), filePath);
     }
 
 }

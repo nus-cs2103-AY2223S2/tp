@@ -12,7 +12,12 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.pet.*;
+import seedu.address.model.pet.Address;
+import seedu.address.model.pet.Email;
+import seedu.address.model.pet.Name;
+import seedu.address.model.pet.OwnerName;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.Phone;
 import seedu.address.model.tag.Tag;
 
 /**

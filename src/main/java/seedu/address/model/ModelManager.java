@@ -70,16 +70,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPetPalFilePath(Path PetPalFilePath) {
-        requireNonNull(PetPalFilePath);
-        userPrefs.setPetPalFilePath(PetPalFilePath);
+    public void setPetPalFilePath(Path petPalFilePath) {
+        requireNonNull(petPalFilePath);
+        userPrefs.setPetPalFilePath(petPalFilePath);
     }
 
     //=========== PetPal ================================================================================
 
     @Override
-    public void setPetPal(ReadOnlyPetPal PetPal) {
-        this.petPal.resetData(PetPal);
+    public void setPetPal(ReadOnlyPetPal petPal) {
+        this.petPal.resetData(petPal);
     }
 
     @Override

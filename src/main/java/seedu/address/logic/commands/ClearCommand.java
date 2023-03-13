@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.PetPal;
 import seedu.address.model.Model;
+import seedu.address.model.PetPal;
 
 /**
- * Clears the address book.
+ * Clears the pet list.
  */
 public class ClearCommand extends Command {
 

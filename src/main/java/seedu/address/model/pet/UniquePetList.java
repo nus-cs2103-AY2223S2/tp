@@ -12,11 +12,11 @@ import seedu.address.model.pet.exceptions.DuplicatePetException;
 import seedu.address.model.pet.exceptions.PetNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of pets that enforces uniqueness between its elements and does not allow nulls.
+ * A pet is considered unique by comparing using {@code Pet#isSamePet(Pet)}. As such, adding and updating of
+ * pets uses Pet#isSamePet(Pet) for equality so as to ensure that the pet being added or updated is
+ * unique in terms of identity in the UniquePetList. However, the removal of a pet uses Pet#equals(Object) so
+ * as to ensure that the pet with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +29,7 @@ public class UniquePetList implements Iterable<Pet> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent pet as the given argument.
      */
     public boolean contains(Pet toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +37,8 @@ public class UniquePetList implements Iterable<Pet> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a pet to the list.
+     * The pet must not already exist in the list.
      */
     public void add(Pet toAdd) {
         requireNonNull(toAdd);
@@ -49,9 +49,9 @@ public class UniquePetList implements Iterable<Pet> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the pet {@code target} in the list with {@code editedPet}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The pet identity of {@code editedPet} must not be the same as another existing pet in the list.
      */
     public void setPet(Pet target, Pet editedPet) {
         requireAllNonNull(target, editedPet);
@@ -69,8 +69,8 @@ public class UniquePetList implements Iterable<Pet> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent pet from the list.
+     * The pet must exist in the list.
      */
     public void remove(Pet toRemove) {
         requireNonNull(toRemove);
@@ -85,8 +85,8 @@ public class UniquePetList implements Iterable<Pet> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code pets}.
+     * {@code pets} must not contain duplicate pets.
      */
     public void setPets(List<Pet> pets) {
         requireAllNonNull(pets);
@@ -122,7 +122,7 @@ public class UniquePetList implements Iterable<Pet> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code pets} contains only unique pets.
      */
     private boolean petsAreUnique(List<Pet> pets) {
         for (int i = 0; i < pets.size() - 1; i++) {
