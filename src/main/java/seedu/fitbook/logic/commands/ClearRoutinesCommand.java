@@ -2,7 +2,6 @@ package seedu.fitbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
 

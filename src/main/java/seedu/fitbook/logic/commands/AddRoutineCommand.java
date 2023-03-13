@@ -1,12 +1,12 @@
 package seedu.fitbook.logic.commands;
 
-import seedu.fitbook.logic.commands.exceptions.CommandException;
-import seedu.fitbook.model.FitBookModel;
-import seedu.fitbook.model.routines.Routine;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ROUTINE;
+
+import seedu.fitbook.logic.commands.exceptions.CommandException;
+import seedu.fitbook.model.FitBookModel;
+import seedu.fitbook.model.routines.Routine;
 
 /**
  * Adds a routine to the FitBook.

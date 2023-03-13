@@ -15,14 +15,8 @@ import seedu.fitbook.storage.routine.FitBookExerciseRoutineStorage;
 
 /**
  * Manages storage of FitBook and Exercise Routine data in local storage.
-=======
-import seedu.fitbook.model.ReadOnlyUserPrefs;
-import seedu.fitbook.model.UserPrefs;
-
-/**
- * Manages storage of FitBook data in local storage.
->>>>>>> master
  */
+
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
