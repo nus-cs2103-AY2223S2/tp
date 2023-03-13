@@ -26,11 +26,12 @@ class SelectCommandTest {
         Client clientToSelect = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
         SelectCommand selectCommand = new SelectCommand(INDEX_FIRST_CLIENT);
 
-        String expectedMessage = String.format(SelectCommand.MESSAGE_SELECT_CLIENT_SUCCESS, clientToSelect);
+        String expectedMessage = SelectCommand.MESSAGE_SELECT_CLIENT_SUCCESS;
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, clientToSelect, true, false, false);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        assertCommandSuccess(selectCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(selectCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test

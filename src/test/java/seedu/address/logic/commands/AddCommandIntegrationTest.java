@@ -28,12 +28,12 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_newClient_success() {
         Client validClient = new ClientBuilder().build();
+        CommandResult expectedCommandResult = new CommandResult(AddCommand.MESSAGE_SUCCESS, validClient);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addClient(validClient);
 
-        assertCommandSuccess(new AddCommand(validClient), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validClient), expectedModel);
+        assertCommandSuccess(new AddCommand(validClient), model, expectedCommandResult, expectedModel);
     }
 
     @Test

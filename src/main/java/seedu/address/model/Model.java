@@ -6,23 +6,26 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.policy.Policy;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
-
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * {@code Predicate} that always evaluate to true
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
 
     /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -45,12 +48,14 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
+     * Returns the AddressBook
+     */
+    ReadOnlyAddressBook getAddressBook();
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
@@ -76,11 +81,24 @@ public interface Model {
      */
     void setClient(Client target, Client editedClient);
 
-    /** Returns an unmodifiable view of the filtered client list */
+    /**
+     * Returns an unmodifiable view of the filtered client list
+     */
     ObservableList<Client> getFilteredClientList();
 
     /**
+     * Returns an unmodifiable view of the filtered policy list of the selected client
+     */
+    ObservableList<Policy> getFilteredPolicyList();
+
+    /**
+     * Updates the selected Client
+     */
+    void updateSelectedClient(Client targetClient);
+
+    /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
@@ -91,6 +109,8 @@ public interface Model {
     void commit();
 
     boolean canUndo();
+
     void redo();
+
     void undo();
 }
