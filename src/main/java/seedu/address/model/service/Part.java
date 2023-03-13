@@ -1,7 +1,7 @@
 package seedu.address.model.service;
 
 import seedu.address.model.entity.Entity;
-import seedu.address.model.service.exception.InsufficientPart;
+import seedu.address.model.service.exception.InsufficientPartException;
 
 /**
  * This class represents a vehicle part.
@@ -15,7 +15,7 @@ public class Part {
     private String description;
     private Entity purchasedFrom;
     private int cost;
-    private PartType type;
+    private final PartType type;
 
     /**
      * This represents the various types of vehicle parts.
@@ -78,13 +78,21 @@ public class Part {
     }
 
     /**
+     * Increase stock amt of part by a certain quantity
+     * @param quantity Amount to add
+     */
+    public void increaseStock(int quantity) {
+        setStockLeft(getStockLeft() + quantity);
+    }
+
+    /**
      * This method decrements the quantity of this part.
      *
-     * @throws InsufficientPart
+     * @throws InsufficientPartException if not enough parts
      */
-    public void useStock() throws InsufficientPart {
+    public void useStock() throws InsufficientPartException {
         if (stockLeft < 1) {
-            throw new InsufficientPart(this);
+            throw new InsufficientPartException(this);
         }
         stockLeft--;
     }

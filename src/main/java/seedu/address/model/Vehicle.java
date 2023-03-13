@@ -1,7 +1,9 @@
 package seedu.address.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.service.Service;
 
 /**
@@ -11,32 +13,38 @@ import seedu.address.model.service.Service;
 public class Vehicle {
     private static int incrementalID = 0;
     private int id;
+    private int ownerId;
     private String plateNumber;
     private String color;
     private String brand;
     private VehicleType type;
-    private ArrayList<Service> services;
+    private List<Service> services;
 
     /**
      * This enum allows us to specify vehicle type without creating respective classes.
      */
     public enum VehicleType {
-        MOTORBIKE, CAR
+        MOTORBIKE,
+        CAR
     }
 
     /**
      * This method is the constructor for the Vehicle class.
+     *
+     * @param ownerId     Id of customer that owns the vehicle
      * @param plateNumber The Vehicle Registration Number (VRN) of the vehicle.
-     * @param color This is the color of the vehicle.
-     * @param brand This is the brand of the vehicle (i.e. KIA).
-     * @param type What vehicle type this vehicle is (i.e. Bike)
+     * @param color       This is the color of the vehicle.
+     * @param brand       This is the brand of the vehicle (i.e. KIA).
+     * @param type        What vehicle type this vehicle is (i.e. Bike)
      */
-    public Vehicle(String plateNumber, String color, String brand, VehicleType type) {
+    public Vehicle(int ownerId, String plateNumber, String color, String brand, VehicleType type) {
         id = ++incrementalID;
+        this.ownerId = ownerId;
         this.plateNumber = plateNumber;
         this.color = color;
         this.brand = brand;
         this.type = type;
+        this.services = new ArrayList<>();
     }
 
     /**
@@ -47,6 +55,13 @@ public class Vehicle {
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     * @return Id of customer that owns the vehicle
+     */
+    public int getOwnerId() {
+        return this.ownerId;
     }
 
     /**
@@ -118,7 +133,7 @@ public class Vehicle {
     /**
      * This method changes the VehicleType of this vehicle.
      *
-     * @param type  the VehicleType to be changed to.
+     * @param type the VehicleType to be changed to.
      */
     public void setType(VehicleType type) {
         this.type = type;
@@ -127,9 +142,9 @@ public class Vehicle {
     /**
      * This method returns the services that is needed to be done to this vehicle.
      *
-     * @return
+     * @return List of services
      */
-    public ArrayList<Service> getServices() {
+    public List<Service> getServices() {
         return services;
     }
 
@@ -151,4 +166,16 @@ public class Vehicle {
         this.services.remove(service);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append(String.format("ID: %s", this.getId()))
+                .append(String.format("%nOwner: %s", this.getOwnerId()))
+                .append(String.format("%nPlate: %s", this.getPlateNumber()))
+                .append(String.format("%nColor: %s", this.getColor()))
+                .append(String.format("%nBrand: %s", this.getBrand()))
+                .append(String.format("%nType: %s", this.getType()))
+                .append(String.format("%nServices Required: %n%s", StringUtil.indent(this.getServices().toString(), 2)))
+                .toString();
+    }
 }

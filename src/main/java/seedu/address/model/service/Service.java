@@ -2,8 +2,10 @@ package seedu.address.model.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-import seedu.address.model.Vehicle;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.entity.person.Technician;
 
 /**
@@ -13,34 +15,31 @@ public class Service {
     private static int incrementalID = 0;
     private final int id;
     private final LocalDate entryDate;
-    private ArrayList<Part> parts;
-    private Vehicle vehicle;
+    private List<Part> requiredParts;
     private String description;
     private LocalDate estimatedFinishDate;
-    private ArrayList<Technician> assignedTo;
+    private List<Technician> assignedTechnicians;
     private boolean isComplete = false;
+
     /**
      *  This method is the constructor for a Service.
      *
-     * @param vehicle The vehicle that requires servicing.
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      */
-    public Service(Vehicle vehicle, int estimatedDaysRequired) {
+    public Service(int estimatedDaysRequired) {
         this.id = ++incrementalID;
-        this.vehicle = vehicle;
         entryDate = LocalDate.now();
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
-        parts = new ArrayList<Part>();
+        this.requiredParts = new ArrayList<>();
+        this.assignedTechnicians = new ArrayList<>();
     }
 
     /**
      * This method is the constructor for a Service.
      * By default, this method estimates the amount of time needed to be 7 whole days (not working days).
-     *
-     * @param vehicle The vehicle that requires servicing.
      */
-    public Service(Vehicle vehicle) {
-        this(vehicle, 7);
+    public Service() {
+        this(7);
     }
 
     /**
@@ -50,6 +49,13 @@ public class Service {
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     * @return Entry date of service
+     */
+    public LocalDate getEntryDate() {
+        return this.entryDate;
     }
 
     /**
@@ -75,8 +81,8 @@ public class Service {
      *
      * @return a list of parts needed to repair this.
      */
-    public ArrayList<Part> getParts() {
-        return parts;
+    public List<Part> getRequiredParts() {
+        return requiredParts;
     }
 
     /**
@@ -85,7 +91,7 @@ public class Service {
      * @param part The part to be added.
      */
     public void addPart(Part part) {
-        parts.add(part);
+        requiredParts.add(part);
     }
 
     /**
@@ -94,16 +100,9 @@ public class Service {
      * @param part The part to be removed.
      */
     public void removePart(Part part) {
-        parts.remove(part);
+        requiredParts.remove(part);
     }
 
-    /**
-     * This method returns the vehicle that requires this service.
-     * @return returns the Vehicle that this Service is linked to.
-     */
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
 
     /**
      * This method returns the bill of this service.
@@ -112,32 +111,24 @@ public class Service {
      * @return The cost of this service.
      */
     public int bill() {
-        return parts.stream().mapToInt(i -> i.getCost()).sum();
+        return requiredParts.stream().mapToInt(i -> i.getCost()).sum();
     }
 
     /**
-     * This method adds a part needed for this service.
+     * This method adds some parts needed for this service.
      *
-     * @param part The part needed to be added.
+     * @param parts The part needed to be added.
      */
-    public void addParts(Part part) {
-        parts.add(part);
+    public void addParts(List<Part> parts) {
+        requiredParts.addAll(parts);
     }
 
     /**
-     * This method removes a part that was added to this service.
-     * @param part The part to be removed.
+     * This method removes some parts that was added to this service.
+     * @param parts The part to be removed.
      */
-    public void removeParts(Part part) {
-        parts.remove(part);
-    }
-
-    /**
-     * This method assigns a particular vehicle to this service.
-     * @param vehicle The vehicle needed for this service.
-     */
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void removeParts(List<Part> parts) {
+        requiredParts.removeAll(parts);
     }
 
     /**
@@ -163,8 +154,8 @@ public class Service {
      *
      * @return the list of technicians assigned to this task.
      */
-    public ArrayList<Technician> isAssignedTo() {
-        return assignedTo;
+    public List<Technician> getAssignedTechnicians() {
+        return assignedTechnicians;
     }
 
     /**
@@ -173,7 +164,7 @@ public class Service {
      * @param technician The technician assigned to this service.
      */
     public void assignTechnician(Technician technician) {
-        assignedTo.add(technician);
+        assignedTechnicians.add(technician);
     }
 
     /**
@@ -182,7 +173,7 @@ public class Service {
      * @param technician The technician to be removed from this service.
      */
     public void removeTechnician(Technician technician) {
-        assignedTo.remove(technician);
+        assignedTechnicians.remove(technician);
     }
 
     /**
@@ -201,5 +192,40 @@ public class Service {
      */
     public void setComplete(boolean complete) {
         isComplete = complete;
+    }
+
+    @Override
+    public String toString() {
+        String newline = System.lineSeparator();
+        String parts = this.getRequiredParts().stream()
+                .map(Object::toString)
+                .reduce("", (a, b) -> a + "\n"  + b);
+        if (parts.length() > 0) {
+            parts = parts.substring(1);
+        }
+        String technicians = this.getAssignedTechnicians().stream()
+                .map(Objects::toString)
+                .reduce("", (a, b) -> a + "\n" + b);
+        if (technicians.length() > 0) {
+            technicians = technicians.substring(1);
+        }
+        String status = this.isComplete() ? "COMPLETE" : "INCOMPLETE";
+        String formatter = "<<Service>>" + newline
+                + "ID: %d" + newline
+                + "Desc: %s" + newline
+                + "Entry Date: %s" + newline
+                + "Est Finish Date: %s" + newline
+                + "Parts Required: %n %s" + newline
+                + "Assigned Technicians: %n %s" + newline
+                + "%s";
+
+        return String.format(formatter,
+                this.getId(),
+                this.getDescription(),
+                this.getEntryDate(),
+                this.getEstimatedFinishDate(),
+                StringUtil.indent(parts, 2),
+                StringUtil.indent(technicians, 2),
+                status);
     }
 }

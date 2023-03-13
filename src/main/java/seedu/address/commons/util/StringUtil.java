@@ -20,6 +20,8 @@ public class StringUtil {
             '\t',
             '\r');
 
+    public static final String NEWLINE = System.lineSeparator();
+
     private StringUtil() {
     }
 
@@ -148,5 +150,25 @@ public class StringUtil {
         return Stream.of(lines)
                 .reduce("", (a, b) -> a + delimiter + b)
                 .substring(delimiter.length());
+    }
+
+    /**
+     * Multiline String indentation
+     *
+     * @param string Lines to be indented
+     * @param spaces Amount of spaces to indent with
+     * @return Indented multiline string
+     */
+    public static String indent(String string, int spaces) {
+        String prepend = Stream.generate(() -> " ")
+                .limit(spaces)
+                .reduce("", (a, b) -> a + b);
+        if (string.length() == 0) {
+            return prepend;
+        }
+        return string.lines()
+                .map(s -> prepend + s)
+                .reduce("", (a, b) -> a + NEWLINE + b)
+                .substring(1);
     }
 }

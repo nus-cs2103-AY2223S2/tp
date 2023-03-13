@@ -2,6 +2,7 @@ package seedu.address.model.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Staff;
@@ -12,21 +13,23 @@ import seedu.address.model.entity.person.Staff;
 public class Appointment {
     private Customer customer;
     private LocalDateTime timeDate;
-
-    private ArrayList<Staff> staffs;
+    private List<Staff> staffs;
 
     /**
      * This method is the constructor for Appointment.
+     *
      * @param customer The customer to meet.
      * @param timeDate The date time which this appointment occurs.
      */
     public Appointment(Customer customer, LocalDateTime timeDate) {
         this.customer = customer;
         this.timeDate = timeDate;
+        this.staffs = new ArrayList<>();
     }
 
     /**
      * This method returns the customer who we are meeting.
+     *
      * @return The customer.
      */
     public Customer getCustomer() {
@@ -47,7 +50,7 @@ public class Appointment {
      *
      * @return a list of staff members.
      */
-    public ArrayList<Staff> getStaffs() {
+    public List<Staff> getStaffs() {
         return staffs;
     }
 
@@ -56,7 +59,16 @@ public class Appointment {
      *
      * @param staffs a list of staff members.
      */
-    public void setStaffs(ArrayList<Staff> staffs) {
+    public void setStaffs(List<Staff> staffs) {
         this.staffs = staffs;
+    }
+
+    /**
+     * Adds staff to the staff list
+     *
+     * @param staff Staff to be added
+     */
+    public void addStaff(Staff staff) {
+        this.getStaffs().add(staff);
     }
 }
