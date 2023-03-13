@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
@@ -22,22 +22,29 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Github("alexyeoh"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getSkillSet("python")),
+                getSkillSet("python"),
+                getModuleSet("AY2223S2 CS1101")),
             new Person(new Name("Bernice Yu"), new Github("bernice-yu"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getSkillSet("java", "python")),
+                getSkillSet("java", "python"),
+                getModuleSet("AY2223S2 CS1101", "AY2223S2 CS2030S")),
             new Person(new Name("Charlotte Oliveiro"), new Github("ch4rl0tt3"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getSkillSet("sql")),
+                getSkillSet("sql"),
+                getModuleSet("AY2223S2 CS1101", "AY2223S2 CS2030S", "AY2223S2 CS2040S")),
+
             new Person(new Name("David Li"), new Github("David-Li"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getSkillSet("c")),
+                getSkillSet("c"),
+                getModuleSet("AY2223S2 CS1101", "AY2223S2 CS2030S")),
             new Person(new Name("Irfan Ibrahim"), new Github("iRf4n"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getSkillSet("javascript")),
+                getSkillSet("javascript"),
+                getModuleSet("AY2223S2 CS1101", "AY2223S2 CS2030S")),
             new Person(new Name("Roy Balakrishnan"), new Github("b4l4Kr15H-n4n"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getSkillSet("java"))
+                getSkillSet("java"),
+                getModuleSet("AY2223S2 CS1101", "AY2223S2 CS2030S"))
         };
     }
 
@@ -57,14 +64,12 @@ public class SampleDataUtil {
                 .map(Skill::new)
                 .collect(Collectors.toSet());
     }
-
     /**
-     * Returns a mod set containing the list of strings given.
+     * Returns a module list containing the list of strings given.
      */
-    public static Set<Mod> getModSet(String... strings) {
+    public static Set<Module> getModuleSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Mod::new)
+                .map(Module::new)
                 .collect(Collectors.toSet());
     }
-
 }

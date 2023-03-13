@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
@@ -30,7 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
-    private final List<JsonAdaptedMods> mods = new ArrayList<>();
+    private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
 
     /**
@@ -40,7 +40,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("github") String github,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("skills") List<JsonAdaptedSkill> skills,
-            @JsonProperty("modules") List<JsonAdaptedMods> mods) {
+            @JsonProperty("modules") List<JsonAdaptedModule> modules) {
         this.name = name;
         this.github = github;
         this.email = email;
@@ -48,8 +48,8 @@ class JsonAdaptedPerson {
         if (skills != null) {
             this.skills.addAll(skills);
         }
-        if (mods != null) {
-            this.mods.addAll(mods);
+        if (modules != null) {
+            this.modules.addAll(modules);
         }
     }
 
@@ -64,8 +64,8 @@ class JsonAdaptedPerson {
         skills.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
-        mods.addAll(source.getMods().stream()
-                .map(JsonAdaptedMods::new)
+        modules.addAll(source.getModules().stream()
+                .map(JsonAdaptedModule::new)
                 .collect(Collectors.toList()));
     }
 
@@ -76,15 +76,13 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Skill> personSkills = new ArrayList<>();
+        final List<Module> personModules = new ArrayList<>();
         for (JsonAdaptedSkill skill : skills) {
             personSkills.add(skill.toModelType());
         }
-
-        final List<Mod> personMods = new ArrayList<>();
-        for (JsonAdaptedMods mod : mods) {
-            personMods.add(mod.toModelType());
+        for (JsonAdaptedModule module : modules) {
+            personModules.add(module.toModelType());
         }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -112,8 +110,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Skill> modelSkills = new HashSet<>(personSkills);
-        final Set<Mod> modelMods = new HashSet<>(personMods);
-        return new Person(modelName, modelGithub, modelEmail, modelAddress, modelSkills, modelMods);
+        final Set<Module> modelModules = new HashSet<>(personModules);
+        return new Person(modelName, modelGithub, modelEmail, modelAddress, modelSkills, modelModules);
     }
 
 }

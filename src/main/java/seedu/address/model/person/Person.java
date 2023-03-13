@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -24,19 +24,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Skill> skills = new HashSet<>();
-    private final Set<Mod> mods = new HashSet<>();
+    private final Set<Module> modules = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Github github, Email email, Address address, Set<Skill> skills, Set<Mod> mods) {
-        requireAllNonNull(name, github, email, address, skills, mods);
+    public Person(Name name, Github github, Email email, Address address, Set<Skill> skills, Set<Module> modules) {
+        requireAllNonNull(name, github, email, address, skills, modules);
         this.name = name;
         this.github = github;
         this.email = email;
         this.address = address;
         this.skills.addAll(skills);
-        this.mods.addAll(mods);
+        this.modules.addAll(modules);
     }
 
     /**
@@ -49,6 +49,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.skills.addAll(skills);
+        this.modules.addAll(modules);
     }
 
     public Name getName() {
@@ -74,9 +75,12 @@ public class Person {
     public Set<Skill> getSkills() {
         return Collections.unmodifiableSet(skills);
     }
-
-    public Set<Mod> getMods() {
-        return Collections.unmodifiableSet(mods);
+    /**
+     * Returns an immutable Module List, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Module> getModules() {
+        return Collections.unmodifiableSet(modules);
     }
 
     /**
@@ -111,13 +115,14 @@ public class Person {
                 && otherPerson.getGithub().equals(getGithub())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getSkills().equals(getSkills());
+                && otherPerson.getSkills().equals(getSkills())
+                && otherPerson.getModules().equals(getModules());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, github, email, address, skills);
+        return Objects.hash(name, github, email, address, skills, modules);
     }
 
     @Override
@@ -136,7 +141,10 @@ public class Person {
             builder.append("; Skills: ");
             skills.forEach(builder::append);
         }
-
+        if (!modules.isEmpty()) {
+            builder.append("; Modules: ");
+            modules.forEach(builder::append);
+        }
         return builder.toString();
     }
 
