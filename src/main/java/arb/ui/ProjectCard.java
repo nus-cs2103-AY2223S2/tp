@@ -47,7 +47,7 @@ public class ProjectCard extends UiPart<Region> {
         title.setText(project.getTitle().title);
 
         if (project.isDeadlinePresent()) {
-            deadline.setText(project.getDeadline().dueDate);
+            deadline.setText(project.getDeadline().toString());
         } else {
             contentsPane.getChildren().remove(deadline);
         }

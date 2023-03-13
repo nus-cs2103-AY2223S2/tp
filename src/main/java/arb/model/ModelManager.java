@@ -97,6 +97,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetClientList() {
+        addressBook.setClients(new ArrayList<Client>());
+    }
+
+    @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
@@ -111,12 +116,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteClient(Client target) {
         addressBook.removeClient(target);
-    }
-
-    @Override
-    public void markProject(Project project) {
-        addressBook.markProject(project);
-        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override

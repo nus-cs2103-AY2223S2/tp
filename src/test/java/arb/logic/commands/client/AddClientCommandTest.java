@@ -119,6 +119,11 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public void resetClientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
@@ -165,11 +170,6 @@ public class AddClientCommandTest {
 
         @Override
         public void setProject(Project target, Project editedProject) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void markProject(Project target) {
             throw new AssertionError("This method should not be called.");
         }
 

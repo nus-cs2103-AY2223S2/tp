@@ -15,4 +15,11 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_LIST_CLIENT = "The client list is currently not being shown! "
             + "You can switch to the client list with the command 'list-client'";
+
+    public static final String MESSAGE_DUPLICATE_CLIENT = "The edited client at the index provided is the same as"
+            + " an existing client!";
+
+    public static final String MESSAGE_DUPLICATE_PROJECT = "The edited project at the index provided is the same as"
+            + " an existing project!";
+
 }
