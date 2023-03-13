@@ -1,4 +1,4 @@
-package arb.logic.commands.client;
+package arb.logic.commands.project;
 
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -11,32 +11,32 @@ import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
-import arb.testutil.TypicalProjects;
+import arb.testutil.TypicalClients;
 
-public class ClearClientCommandTest {
+public class ClearProjectCommandTest {
 
     @Test
     public void execute_emptyAddressBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearClientCommand(), ListType.CLIENT, ListType.CLIENT, model,
-                ClearClientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearProjectCommand(), ListType.PROJECT, ListType.PROJECT, model,
+                ClearProjectCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(TypicalProjects.getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(TypicalClients.getTypicalAddressBook(), new UserPrefs());
 
-        assertCommandSuccess(new ClearClientCommand(), ListType.CLIENT, ListType.CLIENT, model,
-                ClearClientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearProjectCommand(), ListType.PROJECT, ListType.PROJECT, model,
+                ClearProjectCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_withCurrentListTypeProject_failure() {
-        assertCommandFailure(new ClearClientCommand(), ListType.PROJECT, new ModelManager(),
-                Messages.MESSAGE_INVALID_LIST_CLIENT);
+        assertCommandFailure(new ClearProjectCommand(), ListType.CLIENT, new ModelManager(),
+                Messages.MESSAGE_INVALID_LIST_PROJECT);
     }
 
 }

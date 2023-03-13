@@ -56,6 +56,12 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /** Empties the project list of the address book. */
+    void resetProjectList();
+
+    /** Empties the client list of the address book. */
+    void resetClientList();
+
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
@@ -123,5 +129,4 @@ public interface Model {
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
 
-    void markProject(Project projectToMark);
 }
