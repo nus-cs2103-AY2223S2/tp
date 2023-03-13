@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.review.Review;
 import seedu.address.storage.Storage;
 
 /**
@@ -45,6 +46,13 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command;
         Deck selectedDeck = this.model.getSelectedDeck();
+        Review currReview = this.model.getReview();
+        if (currReview != null) {
+            command = masterDeckParser.parseCommandWhenReviewing(commandText);
+        } else if (selectedDeck != null) {
+            command = masterDeckParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
+        };
+
         if (selectedDeck != null) {
             command = masterDeckParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
         } else {

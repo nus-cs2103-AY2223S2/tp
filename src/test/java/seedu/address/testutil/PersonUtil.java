@@ -29,7 +29,7 @@ public class PersonUtil {
     public static String getPersonDetails(Card card) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_QUESTION + card.getQuestion().question + " ");
-        sb.append(PREFIX_ANSWER + card.getAddress().answer + " ");
+        sb.append(PREFIX_ANSWER + card.getAnswer().answer + " ");
         card.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

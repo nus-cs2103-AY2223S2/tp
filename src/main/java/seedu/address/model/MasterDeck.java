@@ -52,6 +52,10 @@ public class MasterDeck implements ReadOnlyMasterDeck {
         this.cards.setCards(cards);
     }
 
+    public void setDecks(List<Deck> decks) {
+        this.decks.setDecks(decks);
+    }
+
     /**
      * Resets the existing data of this {@code Deck} with {@code newData}.
      */
@@ -59,6 +63,7 @@ public class MasterDeck implements ReadOnlyMasterDeck {
         requireNonNull(newData);
 
         setCards(newData.getCardList());
+        setDecks(newData.getDeckList());
     }
 
     //// card-level operations
@@ -101,6 +106,21 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     //// util methods
 
     /**
+     * For sample data (SampleDataUtil), Cards may be added without adding Decks,
+     * hence this function initialises Decks from the list of Cards.
+     * In normal operation, Cards can only be added when a Deck is selected
+     * hence this function should not be called in normal operation.
+     */
+    public void initDecks() {
+        for (Card card: cards) {
+            if (!decks.contains(card.getDeck())) {
+                System.out.println(card.getDeck().getDeckName());
+                addDeck(card.getDeck());
+            }
+        }
+    }
+
+    /**
      * Returns true if a deck with the same identity as {@code deck} exists.
      */
     public boolean hasDeck(Deck deck) {
@@ -123,7 +143,6 @@ public class MasterDeck implements ReadOnlyMasterDeck {
      */
     public void setDeck(Deck target, Deck editedDeck) {
         requireNonNull(editedDeck);
-
         decks.setDeck(target, editedDeck);
     }
 
