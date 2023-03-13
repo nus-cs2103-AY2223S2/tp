@@ -46,7 +46,8 @@
 //    @Test
 //    public void toModelType_invalidName_throwsIllegalValueException() {
 //        JsonAdaptedPerson person =
-//                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_CONTACT);
+//                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+//                VALID_CONTACT);
 //        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
 //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
 //    }
@@ -62,7 +63,8 @@
 //    @Test
 //    public void toModelType_invalidAddress_throwsIllegalValueException() {
 //        JsonAdaptedPerson person =
-//                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS, VALID_CONTACT);
+//                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS,
+//                VALID_CONTACT);
 //        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
 //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
 //    }
@@ -80,7 +82,8 @@
 //        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
 //        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
 //        JsonAdaptedPerson person =
-//                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags, VALID_CONTACT);
+//                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags,
+//                VALID_CONTACT);
 //        assertThrows(IllegalValueException.class, person::toModelType);
 //    }
 //

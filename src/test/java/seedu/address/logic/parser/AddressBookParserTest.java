@@ -95,14 +95,15 @@
 //    public void parseCommand_addContact() throws Exception {
 //        Contact contact = new ContactBuilder().build();
 //        System.out.println(ContactUtil.getAddContactCommand(contact));
-//        AddContactCommand command = (AddContactCommand) parser.parseCommand(ContactUtil.getAddContactCommand(contact));
+//        AddContactCommand command = (AddContactCommand) parser.parseCommand(
+//          ContactUtil.getAddContactCommand(contact));
 //        assertEquals(new AddContactCommand(INDEX_FIRST_PERSON, contact), command);
 //    }
 //
 //    @Test
 //    public void parseCommand_unrecognisedInput_throwsParseException() {
-//        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-//            -> parser.parseCommand(""));
+//        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE),
+//          () -> parser.parseCommand(""));
 //    }
 //
 //    @Test

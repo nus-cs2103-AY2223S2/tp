@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -7,10 +10,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
-import seedu.address.model.person.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.JobTitle;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.person.InternshipApplication}.
@@ -69,7 +71,7 @@ public class JsonAdaptedInternshipApplication {
                                                             JobTitle.class.getSimpleName()));
         }
         if (!JobTitle.isValidJobTitle(jobTitle)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
         }
         final JobTitle modelJobTitle = new JobTitle(jobTitle);
 
