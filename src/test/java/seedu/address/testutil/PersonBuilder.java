@@ -40,7 +40,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Card cardToCopy) {
         question = cardToCopy.getQuestion();
-        answer = cardToCopy.getAddress();
+        answer = cardToCopy.getAnswer();
         tags = new HashSet<>(cardToCopy.getTags());
         deck = cardToCopy.getDeck();
     }

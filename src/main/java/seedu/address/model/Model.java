@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.review.Review;
 
 /**
  * The API of the Model component.
@@ -17,7 +18,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Card> PREDICATE_SHOW_ALL_CARDS = unused -> true;
 
-    Predicate<Deck> PREDICATE_SHOW_ALL_DECKS = unused -> true;
+    Predicate<Deck> PREDICATE_SHOW_ALL_DECKS = unused -> true; //this is unnecessary?
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -113,4 +114,12 @@ public interface Model {
 
     void unselectDeck();
     String getSelectedDeckName();
+
+    void reviewDeck(Index idx);
+
+    Review getReview();
+
+    void endReview();
+
+    String getReviewDeckName();
 }

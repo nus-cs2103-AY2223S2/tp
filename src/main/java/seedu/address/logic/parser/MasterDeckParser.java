@@ -13,10 +13,13 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EndReviewCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FlipCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ReviewCommand;
 import seedu.address.logic.commands.SelectDeckCommand;
 import seedu.address.logic.commands.UnselectDeckCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -25,7 +28,7 @@ import seedu.address.model.deck.Deck;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class MasterDeckParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -76,6 +79,9 @@ public class AddressBookParser {
         case SelectDeckCommand.COMMAND_WORD:
             return new SelectDeckCommandParser().parse(arguments);
 
+        case ReviewCommand.COMMAND_WORD:
+            return new ReviewCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -100,8 +106,40 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
         case UnselectDeckCommand.COMMAND_WORD:
             return new UnselectDeckCommand();
+
+        case ReviewCommand.COMMAND_WORD:
+            return new ReviewCommandParser().parse(arguments);
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    /**
+     * Parses user input into command for execution when a review is underway.
+     *
+     * @param userInput full user input string
+     * @return the command based on the user input
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public Command parseCommandWhenReviewing(String userInput) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = matcher.group("arguments");
+        switch (commandWord) {
+
+        case EndReviewCommand.COMMAND_WORD:
+            return new EndReviewCommand();
+
+        case FlipCommand.COMMAND_WORD:
+            return new FlipCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -40,7 +40,7 @@ public class Card {
         return question;
     }
 
-    public Answer getAddress() {
+    public Answer getAnswer() {
         return answer;
     }
 
@@ -89,7 +89,7 @@ public class Card {
 
         Card otherCard = (Card) other;
         return otherCard.getQuestion().equals(getQuestion())
-                && otherCard.getAddress().equals(getAddress())
+                && otherCard.getAnswer().equals(getAnswer())
                 && otherCard.getTags().equals(getTags());
     }
 
@@ -104,7 +104,7 @@ public class Card {
         final StringBuilder builder = new StringBuilder();
         builder.append(getQuestion())
                 .append("; Answer: ")
-                .append(getAddress());
+                .append(getAnswer());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

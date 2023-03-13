@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> 6a6a23fb7fcb68c336e3033d2292d262dbd1e9e4
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -14,7 +18,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
+import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.review.Review;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,18 +32,24 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     private FilteredList<Deck> filteredDecks;
+<<<<<<< HEAD
     private Optional<Deck> selectedDeck = Optional.empty();
+=======
+    private Deck selectedDeck = null; // null when not selected, to switch to Optional<Deck> later on
+    private Optional<Review> currReview = Optional.empty();
+
+>>>>>>> 6a6a23fb7fcb68c336e3033d2292d262dbd1e9e4
     private FilteredList<Card> filteredCards;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyMasterDeck deck, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(deck, userPrefs);
+    public ModelManager(ReadOnlyMasterDeck masterDeck, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(masterDeck, userPrefs);
 
-        logger.fine("Initializing with address book: " + deck + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + masterDeck + " and user prefs " + userPrefs);
 
-        this.masterDeck = new MasterDeck(deck);
+        this.masterDeck = new MasterDeck(masterDeck);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCards = new FilteredList<>(this.masterDeck.getCardList());
         filteredDecks = new FilteredList<>(this.masterDeck.getDeckList());
@@ -46,6 +58,8 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new MasterDeck(), new UserPrefs());
     }
+
+
 
     //=========== UserPrefs ==================================================================================
 
@@ -108,7 +122,6 @@ public class ModelManager implements Model {
     @Override
     public void addCard(Card card) {
         masterDeck.addCard(card);
-        updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
     @Override
@@ -178,7 +191,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeDeck(Deck key) {
+    public void removeDeck(Deck key) { //TODO should remove all cards associated with deck
         masterDeck.removeDeck(key);
         updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
     }
@@ -192,6 +205,7 @@ public class ModelManager implements Model {
     @Override
     public void unselectDeck() {
         this.selectedDeck = null;
+        updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
     @Override
@@ -200,7 +214,34 @@ public class ModelManager implements Model {
     }
 
     @Override
+<<<<<<< HEAD
     public String getSelectedDeckName() {
         return selectedDeck.get().getDeckName();
     }
+=======
+    public void reviewDeck(Index deckIndex) {
+        int zeroBasesIdx = deckIndex.getZeroBased();
+        Deck deckToReview = filteredDecks.get(zeroBasesIdx);
+        List<Card> cardList = new FilteredList<>(
+                masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
+        );
+        currReview = Optional.of(new Review(deckToReview, cardList));
+    };
+
+    @Override
+    public Review getReview() {
+        return currReview.orElse(null);
+    };
+
+    @Override
+    public void endReview() {
+        currReview = Optional.empty();
+    }
+
+    @Override
+    public String getReviewDeckName() {
+        return currReview.map(rev -> rev.getDeckName()).orElse(null);
+    }
+
+>>>>>>> 6a6a23fb7fcb68c336e3033d2292d262dbd1e9e4
 }

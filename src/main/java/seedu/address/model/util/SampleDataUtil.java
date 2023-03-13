@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code Deck} with sample data.
  */
 public class SampleDataUtil {
-    public static Card[] getSamplePersons() {
+    public static Card[] getSampleCards() {
         return new Card[] {
             new Card(new Question("Alex Yeoh"),
                     new Answer("Blk 30 Geylang Street 29, #06-40"),
@@ -40,12 +40,13 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyMasterDeck getSampleAddressBook() {
-        MasterDeck sampleAb = new MasterDeck();
-        for (Card sampleCard : getSamplePersons()) {
-            sampleAb.addCard(sampleCard);
+    public static ReadOnlyMasterDeck getSampleMasterDeck() {
+        MasterDeck sampleMasterDeck = new MasterDeck();
+        for (Card sampleCard : getSampleCards()) {
+            sampleMasterDeck.addCard(sampleCard);
         }
-        return sampleAb;
+        sampleMasterDeck.initDecks();
+        return sampleMasterDeck;
     }
 
     /**
