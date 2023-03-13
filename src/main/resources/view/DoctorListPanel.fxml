@@ -9,5 +9,5 @@
   <HBox alignment="CENTER" styleClass="only-bottom-primary-border">
     <Label fx:id="contactListTitle" styleClass="label-header-3" text="Doctors"/>
   </HBox>
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" styleClass="contact-listview"/>
+  <ListView fx:id="doctorListView" VBox.vgrow="ALWAYS" styleClass="contact-listview"/>
 </VBox>
