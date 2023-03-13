@@ -2,6 +2,7 @@ package seedu.task.model.task;
 
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
@@ -49,6 +50,17 @@ public class Deadline extends Task {
                 && otherTask.getTags().equals(getTags())
                 && otherTask.getDeadline().equals(getDeadline());
     }
+
+    /**
+     * Returns true if {@code deadline} is within the {@code alertWindow} from the current time.
+     */
+    @Override
+    public boolean isComingUp() {
+        boolean isAfterNow = this.deadline.value.isAfter(LocalDateTime.now());
+        boolean isBeforeAlert = this.deadline.value.minus(alertWindow).isBefore(LocalDateTime.now());
+        return isAfterNow && isBeforeAlert;
+    }
+
 
     @Override
     public int hashCode() {
