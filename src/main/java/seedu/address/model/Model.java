@@ -84,4 +84,17 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns if there is an undoable command in model.
+     * @return True if there is an undoable command in model, false otherwise.
+     */
+    boolean hasUndoableCommand();
+
+    /**
+     * Undoes the changes made by the last modification command used
+     * @return The string representation of the last modification command used
+     */
+    void executeUndo();
+
 }
