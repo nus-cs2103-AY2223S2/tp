@@ -95,13 +95,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.remove(key);
     }
 
-    public Client getFirstClient() {
-        if (clients.size() == 0) {
-            return null;
-        }
-        return clients.asUnmodifiableObservableList().get(0);
-    }
-
     //// util methods
 
     @Override
