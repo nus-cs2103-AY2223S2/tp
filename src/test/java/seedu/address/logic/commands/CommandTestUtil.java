@@ -10,12 +10,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.DoctorContainsKeywordsPredicate;
+import seedu.address.model.person.DoctorFilter;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -116,6 +120,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+    /**
+     * Updates {@code model}'s filtered list to show only the doctor at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showDoctorAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredDoctorList().size());
+
+        Doctor doctor = model.getFilteredDoctorList().get(targetIndex.getZeroBased());
+        final String[] splitName = doctor.getName().fullName.split("\\s+");
+        model.updateFilteredDoctorList(new DoctorContainsKeywordsPredicate(new DoctorFilter(splitName[0], "",
+                "", "", "", new HashSet<>())));
+
+        assertEquals(1, model.getFilteredDoctorList().size());
     }
 
 }

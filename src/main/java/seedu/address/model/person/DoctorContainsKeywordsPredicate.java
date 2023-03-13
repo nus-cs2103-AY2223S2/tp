@@ -24,4 +24,5 @@ public class DoctorContainsKeywordsPredicate implements Predicate<Person> {
                 || (other instanceof DoctorContainsKeywordsPredicate // instanceof handles nulls
                 && doctorFilter.equals(((DoctorContainsKeywordsPredicate) other).doctorFilter)); // state check
     }
+
 }
