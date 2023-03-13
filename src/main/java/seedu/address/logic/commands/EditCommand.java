@@ -3,12 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_SET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -19,12 +18,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -41,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_EVENT_SET + "EVENT INDEX]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -52,39 +51,81 @@ public class EditCommand extends Command {
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+    private final Optional<Set<Index>> eventIndexSet;
 
     /**
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor, Optional<Set<Index>> eventIndexSet) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.eventIndexSet = eventIndexSet;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
+        List<Event> lastShownEventList = model.getFilteredEventList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownPersonList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownPersonList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        //eventIndexSet not present means "evt/" is not called
+        if (eventIndexSet.isPresent()) {
+            Set<Index> updatedEventIndex = eventIndexSet.orElse(new HashSet<>());
+            // updatedEventIndex is empty if "evt/" is called
+            // updatedEventIndex contains Set of Index if "evt/Index" is called
+            Set<Event> originalEventSet = editedPerson.getEventSet();
+            editedPerson = handleIndexChange(updatedEventIndex, originalEventSet, editedPerson, lastShownEventList);
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
+
+
+    /**
+     * Creates and returns a {@code Person} with the updated Event Set changes
+     * Adds additional events to the person to be edited if event set is edited
+     * Clear all events of the person to be edited if only prefix_event_set is present without the event index
+     */
+    public Person handleIndexChange(Set<Index> updatedEventIndex, Set<Event> originalEventSet, Person editedPerson,
+                                List<Event> lastShownEventList) throws CommandException {
+        if (!updatedEventIndex.isEmpty()) {
+            for (Index eventIndex: updatedEventIndex) {
+                if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+                }
+                Event eventToAdd = lastShownEventList.get(eventIndex.getZeroBased());
+                if (!originalEventSet.contains(eventToAdd)) {
+                    originalEventSet.add(eventToAdd);
+                }
+            }
+            Person personWithEvent = editedPerson;
+            editedPerson = new Person(personWithEvent.getName(), personWithEvent.getPhone(), personWithEvent.getEmail(),
+                    personWithEvent.getAddress(), originalEventSet);
+        } else {
+            Person personToClearTags = editedPerson;
+            editedPerson = new Person(personToClearTags.getName(), personToClearTags.getPhone(),
+                    personToClearTags.getEmail(), personToClearTags.getAddress(), new HashSet<>());
+        }
+        return editedPerson;
+    }
+
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
@@ -97,7 +138,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Event> updatedTags = personToEdit.getEventSet();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -129,7 +170,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private Set<Event> eventSet;
 
         public EditPersonDescriptor() {}
 
@@ -142,14 +183,14 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setEventSet(toCopy.eventSet);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, eventSet);
         }
 
         public void setName(Name name) {
@@ -185,21 +226,21 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code events} to this object's {@code eventSet}.
+         * A defensive copy of {@code eventSet} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setEventSet(Set<Event> events) {
+            this.eventSet = (events != null) ? new HashSet<>(events) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns an event set
+         * Returns {@code Optional#empty()} if {@code eventSet} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Event>> getEventSet() {
+            return (eventSet != null) ? Optional.of(eventSet) : Optional.empty();
         }
+
 
         @Override
         public boolean equals(Object other) {
@@ -220,7 +261,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getEventSet().equals(e.getEventSet());
         }
     }
 }
