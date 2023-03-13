@@ -128,9 +128,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addContactToInternship(Person target, Contact contact) {
-        requireAllNonNull(target, contact);
-        addressBook.addContactToInternship(target, contact);
+    public void setInternshipApplication(InternshipApplication target,
+                                         InternshipApplication editedInternshipApplication) {
+        requireAllNonNull(target, editedInternshipApplication);
+
+        addressBook.setInternshipApplication(target, editedInternshipApplication);
     }
 
     //=========== Filtered Person List Accessors =============================================================

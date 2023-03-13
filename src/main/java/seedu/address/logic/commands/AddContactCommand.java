@@ -3,16 +3,19 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.Tag;
 
 /**
  * Adds a contact to an application identified using it's displayed index from the list of internship applications.
@@ -50,16 +53,32 @@ public class AddContactCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<InternshipApplication> lastShownList = model.getFilteredInternshipList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
         }
 
-        Person internshipToAddContact = lastShownList.get(targetIndex.getZeroBased());
-        model.addContactToInternship(internshipToAddContact, toAdd);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        InternshipApplication internshipToAddContact = lastShownList.get(targetIndex.getZeroBased());
+        InternshipApplication internshipWithContact = createInternshipWithContact(internshipToAddContact, toAdd);
+
+        model.setInternshipApplication(internshipToAddContact, internshipWithContact);
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_ADD_CONTACT_SUCCESS, internshipToAddContact + "\n" + toAdd));
+    }
+
+    /**
+     * Creates and returns a {@code InternshipApplication} with the details of {@code internshipToAddContact}
+     * added with the contact {@code toAdd}.
+     */
+    private static InternshipApplication createInternshipWithContact(InternshipApplication internshipToAddContact,
+                                                                     Contact contact) {
+        assert internshipToAddContact != null;
+
+        CompanyName companyName = internshipToAddContact.getCompanyName();
+        JobTitle jobTitle = internshipToAddContact.getJobTitle();
+
+        return new InternshipApplication(companyName, jobTitle, contact);
     }
 
     @Override

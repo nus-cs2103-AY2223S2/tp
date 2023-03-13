@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,6 +21,7 @@ public class InternshipApplication {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
+    private static Contact contact;
 
     /**
      * Every field must be present and not null.
@@ -28,6 +30,16 @@ public class InternshipApplication {
         requireAllNonNull(name, job);
         this.companyName = name;
         this.jobTitle = job;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public InternshipApplication(CompanyName name, JobTitle job, Contact contact) {
+        requireAllNonNull(name, job);
+        this.companyName = name;
+        this.jobTitle = job;
+        this.contact = contact;
     }
 
     public CompanyName getCompanyName() {
@@ -43,6 +55,10 @@ public class InternshipApplication {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Contact getContact() {
+        return contact;
     }
 
     /**
@@ -95,6 +111,13 @@ public class InternshipApplication {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        if (contact != null) {
+            builder.append("; Company Phone: ")
+                    .append(contact.getPhone())
+                    .append("; Company Email: ")
+                    .append(contact.getEmail());
         }
         return builder.toString();
     }
