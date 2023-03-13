@@ -2,6 +2,9 @@ package mycelium.mycelium.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -163,6 +166,19 @@ public class ParserUtil {
             throw new ParseException(Messages.MESSAGE_EMPTY_STR);
         }
         return trimmedSource;
+    }
+
+    /**
+     * Parses a string into a {@code LocalDate} using the formatter provided.
+     */
+    public static LocalDate parseLocalDate(String s, DateTimeFormatter dateFmt) throws ParseException {
+        requireNonNull(s);
+        String trimmedSource = s.trim();
+        try {
+            return LocalDate.parse(trimmedSource, dateFmt);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_DATE);
+        }
     }
 
     /**

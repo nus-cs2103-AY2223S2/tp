@@ -46,7 +46,10 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
         // The project's status and acceptedOn date take default values.
         ProjectStatus projectStatus = ProjectStatus.NOT_STARTED; // TODO actually parse this
-        LocalDate acceptedOn = LocalDate.now(); // TODO parse this shit
+        Optional<String> maybeAcceptedOn = argMultimap.getValue(PREFIX_ACCEPTED_DATE);
+        LocalDate acceptedOn = maybeAcceptedOn.isPresent()
+            ? ParserUtil.parseLocalDate(maybeAcceptedOn.get(), Project.DATE_FMT)
+            : LocalDate.now();
 
         Optional<String> source = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_SOURCE),
@@ -54,7 +57,9 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Optional<String> description = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION),
             ParserUtil::parseNonEmptyString);
-        Optional<LocalDate> deadline = Optional.empty(); // TODO parse this shit
+        Optional<LocalDate> deadline = ParserUtil.parseOptionalWith(
+            argMultimap.getValue(PREFIX_SOURCE),
+            d -> ParserUtil.parseLocalDate(d, Project.DATE_FMT));
 
         Project project = new Project(name, projectStatus, clientEmail, source, description, acceptedOn, deadline);
 
