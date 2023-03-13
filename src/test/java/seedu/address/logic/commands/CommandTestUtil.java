@@ -39,6 +39,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_ALEX = "301 Commonwealth Avenue";
     public static final String ADDRESS_BEN = "11 Kallang Bahru";
     public static final String TELEGRAM_HANDLE_ALEX = "@alexquentin";
+    public static final Integer INDEX_ALEX = 16;
+    public static final Integer INDEX_BEN = 17;
     public static final String TELEGRAM_HANDLE_BEN = "@benjamindemeer";
     public static final String VALID_GROUP_1 = "Groupmate";
     public static final String VALID_GROUP_2 = "TA";
