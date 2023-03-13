@@ -16,6 +16,7 @@ import seedu.address.model.meeting.Title;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -54,7 +55,6 @@ public class ParserUtil {
         }
         return new Name(trimmedName);
     }
-
     /**
      * Parses a Collection of {@code String names} to a set of {@code Name}.
      *
@@ -85,7 +85,15 @@ public class ParserUtil {
         }
         return new Phone(trimmedPhone);
     }
-
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Set<Person> parseAttendees(String attendees) throws ParseException {
+        return new HashSet<Person>();
+    }
     /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.

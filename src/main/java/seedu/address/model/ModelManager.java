@@ -119,6 +119,7 @@ public class ModelManager implements Model {
     public Person getPersonByName(Name personName) {
         return addressBook.getPersonByName(personName);
     }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -135,6 +136,13 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -166,6 +174,11 @@ public class ModelManager implements Model {
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
         return addressBook.hasMeeting(meeting);
+    }
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+        addressBook.setMeeting(target, editedMeeting);
     }
 
     /**
