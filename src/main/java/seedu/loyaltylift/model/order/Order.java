@@ -59,7 +59,6 @@ public class Order {
         return createdDate;
     }
 
-
     /**
      * Returns true if both orders have the same name.
      * This defines a weaker notion of equality between two orders.
