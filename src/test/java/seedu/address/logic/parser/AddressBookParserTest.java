@@ -27,9 +27,13 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.group.GroupCommand;
 import seedu.address.logic.commands.group.GroupCreateCommand;
 import seedu.address.logic.commands.group.GroupDeleteCommand;
+import seedu.address.logic.commands.group.GroupFindCommand;
+import seedu.address.logic.commands.group.GroupListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.group.GroupCommandParser;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupNameContainsKeywordsPredicate;
+import seedu.address.model.person.MemberOfGroupPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -109,6 +113,16 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_groupFind() throws Exception {
+        List<String> keywords = Arrays.asList("CS2103T", "CS2101");
+        GroupFindCommand command = (GroupFindCommand) parser.parseCommand(GroupCommand.COMMAND_WORD + " "
+                + GroupFindCommand.SUB_COMMAND_WORD + " "
+                + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new GroupFindCommand(new GroupNameContainsKeywordsPredicate(keywords),
+                new MemberOfGroupPredicate(keywords)), command);
+    }
+
+    @Test
     public void parseCommand_groupDelete() throws Exception {
         GroupDeleteCommand command = (GroupDeleteCommand) parser.parseCommand(GroupCommand.COMMAND_WORD + " "
                 + GroupDeleteCommand.SUB_COMMAND_WORD + " 1");
@@ -116,6 +130,13 @@ public class AddressBookParserTest {
                 groupParser.parse(GroupDeleteCommand.SUB_COMMAND_WORD + " 1");
         assertEquals(new GroupDeleteCommand(Index.fromOneBased(1)), command);
         assertEquals(command, command2);
+    }
+
+    @Test
+    public void parseCommand_groupList() throws Exception {
+        assertTrue(parser.parseCommand(GroupCommand.COMMAND_WORD + " "
+                + GroupListCommand.SUB_COMMAND_WORD) instanceof GroupListCommand);
+        assertTrue(parser.parseCommand(GroupCommand.COMMAND_WORD + " list") instanceof GroupListCommand);
     }
 
     @Test
