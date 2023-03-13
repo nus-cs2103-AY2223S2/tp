@@ -167,16 +167,18 @@ Examples:
 
 Deletes all tasks of a student.
 
-Format: `deleteTasks INDEX`
+Format: `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`
 
-* Deletes all tasks of a student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes a task at the specified `INDEX_OF_TASK` of a specified student (`INDEX_OF_STUDENT`).
+* The first index refers to the index number shown in the displayed student list and
+the second index refers to the index of the task in the displayed task list of the student.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-* `listStudents` followed by `deleteTasks 2` deletes all tasks of the 2nd student in the student list.
-* `find Betsy` followed by `deleteTasks 1` deletes all tasks of the 1st student in the results of the `find` command.
+* `listStudents` followed by `deleteTask 2 3` deletes the third task of the 2nd student in the student list.
+* `find Betsy` followed by `deleteTasks 1 6` deletes the sixth task of the 1st student in the results of the 
+`find` command.
 
 ### Adding a score for a student: `addScore`
 

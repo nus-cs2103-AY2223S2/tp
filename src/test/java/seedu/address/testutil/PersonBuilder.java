@@ -10,6 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.score.ScoreList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskList;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -29,6 +30,7 @@ public class PersonBuilder {
     private Address address;
     private Phone parentPhone;
     private Set<Tag> tags;
+    private TaskList taskList;
     private ScoreList scoreList;
 
     /**
@@ -41,6 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         parentPhone = new Phone(DEFAULT_PARENT_PHONE);
         tags = new HashSet<>();
+        taskList = new TaskList();
         scoreList = new ScoreList();
     }
 
@@ -54,7 +57,8 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         parentPhone = personToCopy.getParentPhone();
         tags = new HashSet<>(personToCopy.getTags());
-        scoreList = personToCopy.scoreList();
+        taskList = personToCopy.getTaskList();
+        scoreList = personToCopy.getScoreList();
     }
 
     /**
@@ -106,12 +110,21 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code TaskList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTaskList(TaskList taskList) {
+        this.taskList = taskList;
+        return this;
+    }
+
+    /**
      * Sets the {@code ScoreList} of the {@code Person} that we are building.
      */
     public PersonBuilder withScoreList(ScoreList scoreList) {
         this.scoreList = scoreList;
         return this;
     }
+
     public Person build() {
         return new Person(name, phone, email, address, parentPhone, tags);
     }
