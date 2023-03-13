@@ -22,7 +22,7 @@ public class Task {
         this.description = description;
         this.isDone = false;
         this.personAssigned = null;
-        this.personName = null; 
+        this.personName = null;
         this.deadlineDate = deadlineDate;
     }
 
@@ -53,7 +53,6 @@ public class Task {
         this.personAssigned = personIndex;
         this.personName = personName;
     }
-    
 
     /**
      * Supplies the index of the person assigned to the current task when requested.
