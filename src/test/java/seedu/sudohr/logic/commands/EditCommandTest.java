@@ -113,7 +113,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in sudohr book
-        Employee personInList = model.getSudoHr().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Employee personInList = model.getSudoHr().getEmployeeList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
@@ -138,7 +138,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of sudohr book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getSudoHr().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSudoHr().getEmployeeList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());

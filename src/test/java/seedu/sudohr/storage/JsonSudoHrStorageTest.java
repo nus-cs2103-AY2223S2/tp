@@ -84,14 +84,14 @@ public class JsonSudoHrStorageTest {
         assertEquals(original, new SudoHr(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addEmployee(HOON);
+        original.removeEmployee(ALICE);
         jsonAddressBookStorage.saveSudoHr(original, filePath);
         readBack = jsonAddressBookStorage.readSudoHr(filePath).get();
         assertEquals(original, new SudoHr(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addEmployee(IDA);
         jsonAddressBookStorage.saveSudoHr(original); // file path not specified
         readBack = jsonAddressBookStorage.readSudoHr().get(); // file path not specified
         assertEquals(original, new SudoHr(readBack));

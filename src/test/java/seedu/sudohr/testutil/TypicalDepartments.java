@@ -40,7 +40,7 @@ public class TypicalDepartments {
     public static SudoHr getTypicalSudoHr() {
         SudoHr sh = new SudoHr();
         for (Employee person : TypicalPersons.getTypicalPersons()) {
-            sh.addPerson(person);
+            sh.addEmployee(person);
         }
 
         for (Department department : getTypicalDepartments()) {

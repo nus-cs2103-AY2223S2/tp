@@ -69,7 +69,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of sudohr book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getSudoHr().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSudoHr().getEmployeeList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

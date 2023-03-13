@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        filteredEmployees = new FilteredList<>(this.sudoHr.getPersonList());
+        filteredEmployees = new FilteredList<>(this.sudoHr.getEmployeeList());
         filteredDepartments = new FilteredList<>(this.sudoHr.getDepartmentList());
     }
 
@@ -97,17 +97,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
-        return sudoHr.hasPerson(employee);
+        return sudoHr.hasEmployee(employee);
     }
 
     @Override
     public void deleteEmployee(Employee target) {
-        sudoHr.removePerson(target);
+        sudoHr.removeEmployee(target);
     }
 
     @Override
     public void addEmployee(Employee employee) {
-        sudoHr.addPerson(employee);
+        sudoHr.addEmployee(employee);
         updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
     }
 
@@ -115,7 +115,7 @@ public class ModelManager implements Model {
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireAllNonNull(target, editedEmployee);
 
-        sudoHr.setPerson(target, editedEmployee);
+        sudoHr.setEmployee(target, editedEmployee);
     }
 
     //=========== Filtered Employee List Accessors =============================================================

@@ -44,7 +44,7 @@ public class SampleDataUtil {
     public static ReadOnlySudoHr getSampleSudoHr() {
         SudoHr sampleAb = new SudoHr();
         for (Employee samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            sampleAb.addEmployee(samplePerson);
         }
         return sampleAb;
     }

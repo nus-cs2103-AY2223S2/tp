@@ -77,7 +77,7 @@ public class TypicalPersons {
     public static SudoHr getTypicalSudoHr() {
         SudoHr ab = new SudoHr();
         for (Employee person : getTypicalPersons()) {
-            ab.addPerson(person);
+            ab.addEmployee(person);
         }
         return ab;
     }

@@ -42,7 +42,7 @@ class JsonSerializableSudoHr {
      * @param source future changes to this will not affect the created {@code JsonSerializableSudoHr}.
      */
     public JsonSerializableSudoHr(ReadOnlySudoHr source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getEmployeeList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         departments.addAll(source.getDepartmentList().stream().map(JsonAdaptedDepartment::new)
                 .collect(Collectors.toList()));
     }
@@ -57,10 +57,10 @@ class JsonSerializableSudoHr {
 
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Employee person = jsonAdaptedPerson.toModelType();
-            if (sudoHr.hasPerson(person)) {
+            if (sudoHr.hasEmployee(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            sudoHr.addPerson(person);
+            sudoHr.addEmployee(person);
         }
 
         for (JsonAdaptedDepartment jsonAdaptedDepartment : departments) {

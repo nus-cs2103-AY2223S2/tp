@@ -24,7 +24,7 @@ public class AddressBookBuilder {
      * Adds a new {@code Employee} to the {@code SudoHr} that we are building.
      */
     public AddressBookBuilder withPerson(Employee person) {
-        sudoHr.addPerson(person);
+        sudoHr.addEmployee(person);
         return this;
     }
 

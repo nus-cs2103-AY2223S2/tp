@@ -39,7 +39,7 @@ public class SudoHrTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), sudoHr.getPersonList());
+        assertEquals(Collections.emptyList(), sudoHr.getEmployeeList());
     }
 
     //// Employee tests
@@ -70,31 +70,31 @@ public class SudoHrTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> sudoHr.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> sudoHr.hasEmployee(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(sudoHr.hasPerson(ALICE));
+        assertFalse(sudoHr.hasEmployee(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        sudoHr.addPerson(ALICE);
-        assertTrue(sudoHr.hasPerson(ALICE));
+        sudoHr.addEmployee(ALICE);
+        assertTrue(sudoHr.hasEmployee(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        sudoHr.addPerson(ALICE);
+        sudoHr.addEmployee(ALICE);
         Employee editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(sudoHr.hasPerson(editedAlice));
+        assertTrue(sudoHr.hasEmployee(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> sudoHr.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> sudoHr.getEmployeeList().remove(0));
     }
 
     //// Department tests
@@ -153,7 +153,7 @@ public class SudoHrTest {
         }
 
         @Override
-        public ObservableList<Employee> getPersonList() {
+        public ObservableList<Employee> getEmployeeList() {
             return persons;
         }
 

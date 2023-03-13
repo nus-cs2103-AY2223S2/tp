@@ -17,7 +17,7 @@ import seedu.sudohr.model.employee.UniqueEmployeeList;
  */
 public class SudoHr implements ReadOnlySudoHr {
 
-    private final UniqueEmployeeList persons;
+    private final UniqueEmployeeList employees;
     private final UniqueDepartmentList departments;
 
     /*
@@ -28,7 +28,7 @@ public class SudoHr implements ReadOnlySudoHr {
      *   among constructors.
      */
     {
-        persons = new UniqueEmployeeList();
+        employees = new UniqueEmployeeList();
         departments = new UniqueDepartmentList();
     }
 
@@ -48,8 +48,8 @@ public class SudoHr implements ReadOnlySudoHr {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Employee> persons) {
-        this.persons.setEmployees(persons);
+    public void setEmployees(List<Employee> employees) {
+        this.employees.setEmployees(employees);
     }
 
     /**
@@ -66,45 +66,45 @@ public class SudoHr implements ReadOnlySudoHr {
     public void resetData(ReadOnlySudoHr newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setEmployees(newData.getEmployeeList());
         setDepartments(newData.getDepartmentList());
     }
 
     //=========== Employee-Level Operations ==============================================================================
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the sudohr book.
+     * Returns true if a employee with the same identity as {@code employee} exists in the sudohr book.
      */
-    public boolean hasPerson(Employee person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasEmployee(Employee employee) {
+        requireNonNull(employee);
+        return employees.contains(employee);
     }
 
     /**
-     * Adds a person to the sudohr book.
-     * The person must not already exist in the sudohr book.
+     * Adds an employee to the sudohr book.
+     * The employee must not already exist in the sudohr book.
      */
-    public void addPerson(Employee p) {
-        persons.add(p);
+    public void addEmployee(Employee e) {
+        employees.add(e);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given employee {@code target} in the list with {@code editedEmployee}.
      * {@code target} must exist in the sudohr book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the sudohr book.
+     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the sudohr book.
      */
-    public void setPerson(Employee target, Employee editedPerson) {
-        requireNonNull(editedPerson);
+    public void setEmployee(Employee target, Employee editedEmployee) {
+        requireNonNull(editedEmployee);
 
-        persons.setEmployee(target, editedPerson);
+        employees.setEmployee(target, editedEmployee);
     }
 
     /**
      * Removes {@code key} from this {@code SudoHr}.
      * {@code key} must exist in the sudohr book.
      */
-    public void removePerson(Employee key) {
-        persons.remove(key);
+    public void removeEmployee(Employee key) {
+        employees.remove(key);
     }
 
     //=========== Department-Level Operations ==========================================================================
@@ -184,13 +184,13 @@ public class SudoHr implements ReadOnlySudoHr {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return employees.asUnmodifiableObservableList().size() + " employees";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Employee> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Employee> getEmployeeList() {
+        return employees.asUnmodifiableObservableList();
     }
 
     @Override
@@ -202,11 +202,11 @@ public class SudoHr implements ReadOnlySudoHr {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SudoHr // instanceof handles nulls
-                && persons.equals(((SudoHr) other).persons));
+                && employees.equals(((SudoHr) other).employees));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return employees.hashCode();
     }
 }

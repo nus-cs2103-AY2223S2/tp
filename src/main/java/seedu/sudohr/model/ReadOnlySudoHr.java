@@ -10,10 +10,10 @@ import seedu.sudohr.model.employee.Employee;
 public interface ReadOnlySudoHr {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the employee list.
+     * This list will not contain any duplicate employees.
      */
-    ObservableList<Employee> getPersonList();
+    ObservableList<Employee> getEmployeeList();
 
     /**
      * Returns an unmodifiable view of the departments list.
