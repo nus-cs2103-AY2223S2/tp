@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Label?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" id="recipeDetailsContainer" fx:id="recipeDetailsContainer"
+            prefHeight="460">
+    <VBox prefHeight="200" prefWidth="400" alignment="CENTER">
+        <Label fx:id="recipeTitle" text="\$recipeTitle" wrapText="true" styleClass="details_title_label"
+               />
+
+        <Label fx:id="recipeDesc" text="\$recipeDesc" wrapText="true" styleClass="details_desc_label" />
+        <VBox alignment="CENTER_LEFT">
+            <Label fx:id="stepsTitle" text="\$stepsTitle" wrapText="true" styleClass="details_steps_title" />
+            <VBox fx:id="steps" styleClass="details_steps_label"/>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

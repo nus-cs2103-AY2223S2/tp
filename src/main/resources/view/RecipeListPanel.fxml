@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="recipeListView" VBox.vgrow="ALWAYS" />
-</VBox>
+<?import javafx.geometry.Insets?>
+<HBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" >
+    <children>
+        <VBox maxWidth="350.0" minWidth="200.0" HBox.hgrow="ALWAYS" >
+            <ListView fx:id="recipeListView" onMouseClicked="#handleMouseClick" />
+        </VBox>
+        <AnchorPane fx:id="recipeDetailsPanelPlaceholder" minWidth="300.0" VBox.vgrow="ALWAYS">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <HBox.margin>
+                <Insets left="10.0" />
+            </HBox.margin></AnchorPane>
+    </children>
+</HBox>

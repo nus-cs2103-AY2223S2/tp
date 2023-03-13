@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final RecipeBook recipeBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Recipe> filteredRecipes;
+    private Recipe currentViewingRecipe;
 
     /**
      * Initializes a ModelManager with the given recipeBook and userPrefs.
@@ -33,6 +34,7 @@ public class ModelManager implements Model {
 
         this.recipeBook = new RecipeBook(recipeBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.currentViewingRecipe = null;
         filteredRecipes = new FilteredList<>(this.recipeBook.getRecipeList());
     }
 
@@ -110,6 +112,20 @@ public class ModelManager implements Model {
 
         recipeBook.setRecipe(target, editedRecipe);
     }
+
+    @Override
+    public void setCurrentViewingRecipe(Recipe recipe) {
+        currentViewingRecipe = recipe;
+        System.out.println("Set current viewing recipe in Model!");
+    }
+
+    @Override
+    public Recipe getCurrentRecipe() {
+        System.out.println("Getting current viewing recipe in model");
+        return currentViewingRecipe;
+    }
+
+
 
     //=========== Filtered Recipe List Accessors =============================================================
 

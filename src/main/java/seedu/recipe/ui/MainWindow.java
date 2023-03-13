@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private RecipeListPanel recipeListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private RecipeDetailsPanel recipeDetailsPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +44,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane recipeListPanelPlaceholder;
+
+    @FXML
+    private StackPane recipeDetailsPanelPlaceholder;
+
+    @FXML
+    private StackPane instructionsDisplayPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,8 +118,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
-
         recipeListPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
