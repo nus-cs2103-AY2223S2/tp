@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Technician;
 
 /**
@@ -16,7 +17,7 @@ public class Service {
     private final int id;
     private final LocalDate entryDate;
     private List<Part> requiredParts;
-    private String description;
+    private final String description;
     private LocalDate estimatedFinishDate;
     private final Set<Integer> assignedToIds = new HashSet<>();
     private boolean isComplete = false;
@@ -26,9 +27,10 @@ public class Service {
      *
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      */
-    public Service(int id, int estimatedDaysRequired) {
+    public Service(int id, int estimatedDaysRequired, String description) {
         this.id = id;
         entryDate = LocalDate.now();
+        this.description = description;
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
         requiredParts = new ArrayList<Part>();
     }
@@ -36,13 +38,13 @@ public class Service {
     /**
      *  This method is the constructor for a Service.
      *
-     * @param vehicle The vehicle that requires servicing.
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      * @param assignedToIds The list of staffs ids that this service is assigned to.
      */
-    public Service(int id, int estimatedDaysRequired, Set<Integer> assignedToIds) {
+    public Service(int id, int estimatedDaysRequired, Set<Integer> assignedToIds, String description) {
         this.id = id;
         entryDate = LocalDate.now();
+        this.description = description;
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
         requiredParts = new ArrayList<Part>();
         this.assignedToIds.addAll(assignedToIds);
@@ -53,7 +55,7 @@ public class Service {
      * By default, this method estimates the amount of time needed to be 7 whole days (not working days).
      */
     public Service(int id) {
-        this(id, 7);
+        this(id, 7, "");
     }
 
     /**
@@ -155,15 +157,6 @@ public class Service {
     }
 
     /**
-     * This method sets the description of this service.
-     *
-     * @param description the new description of this service.
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
      * This method returns the list of technician ids assigned to this task.
      *
      * @return the list of technician ids assigned to this task.
@@ -206,6 +199,28 @@ public class Service {
      */
     public void setComplete(boolean complete) {
         isComplete = complete;
+    }
+
+    public boolean isSameService(Service otherService) {
+        if (otherService == this) {
+            return true;
+        }
+
+        return otherService != null
+                && otherService.getId() == getId();
+
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof Service) {
+            Service otherService = (Service) other;
+            return this.getId() == otherService.getId() || super.equals(other);
+        }
+        return false;
     }
 
     @Override

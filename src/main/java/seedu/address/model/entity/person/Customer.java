@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.Vehicle;
+import seedu.address.model.service.Vehicle;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -16,7 +16,7 @@ public class Customer extends Person {
 
     private final int id;
     private final Set<Integer> vehicleIds = new HashSet<>();
-    // Service History
+    // TODO: Service History list, ensure its HashSet of service ids*
 
     /**
      * {@inheritDoc}
@@ -72,6 +72,15 @@ public class Customer extends Person {
         this.vehicleIds.remove(vehicle.getId());
     }
 
+    public boolean isSameCustomer(Customer otherCustomer) {
+        if (otherCustomer == this) {
+            return true;
+        }
+
+        return otherCustomer != null
+                && otherCustomer.getId() == getId();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) {
@@ -79,7 +88,7 @@ public class Customer extends Person {
         }
         if (other instanceof Customer) {
             Customer otherCustomer = (Customer) other;
-            return this.getId() == otherCustomer.getId();
+            return this.getId() == otherCustomer.getId() || super.equals(other);
         }
         return false;
     }

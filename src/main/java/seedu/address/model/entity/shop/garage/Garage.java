@@ -8,7 +8,7 @@ import seedu.address.model.entity.shop.Shop;
 /**
  * This class represents a Garage which the user of this program owns.
  */
-public class Garage extends Shop {
+public class Garage {
     private ArrayList<Staff> staffs;
     private ArrayList<Lot> lots;
 
