@@ -8,7 +8,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.socialmedia.Instagram;
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.socialmedia.Telegram;
+import seedu.address.model.socialmedia.WhatsApp;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,13 +24,16 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_TELEGRAM = "@amy";
+    public static final SocialMedia DEFAULT_SOCIALMEDIA = SocialMedia.create()
+        .withInstagram(Instagram.of("amybee"))
+        .withTelegram(Telegram.of("amy"))
+        .withWhatsapp(WhatsApp.of(DEFAULT_PHONE));
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Telegram telegram;
+    private SocialMedia socialMedia;
     private Set<Tag> tags;
 
     /**
@@ -38,7 +44,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        telegram = new Telegram(DEFAULT_TELEGRAM);
+        socialMedia = DEFAULT_SOCIALMEDIA;
         tags = new HashSet<>();
     }
 
@@ -50,7 +56,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        telegram = personToCopy.getTelegram();
+        socialMedia = personToCopy.getSocialMedia();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -95,7 +101,8 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, telegram, tags);
+        return new Person(name, phone, email, address, tags)
+            .withSocialMedia(socialMedia);
     }
 
 }

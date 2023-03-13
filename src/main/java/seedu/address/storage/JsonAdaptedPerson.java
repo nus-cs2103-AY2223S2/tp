@@ -15,7 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.socialmedia.Telegram;
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,7 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final String telegram;
+    private final SocialMedia socialMedia;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,13 +38,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("telegram") String telegram,
+                             @JsonProperty("socialMedia") SocialMedia socialMedia,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.telegram = telegram;
+
+        this.socialMedia = SocialMedia.create();
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -58,7 +59,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        telegram = source.getTelegram().value;
+        socialMedia = source.getSocialMedia();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -107,12 +108,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Telegram modelTelegram = telegram == null || telegram.isEmpty()
-                ? Telegram.DUMMY_TELEGRAM
-                : new Telegram(telegram);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTelegram, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags)
+            .withSocialMedia(socialMedia);
     }
 
 }

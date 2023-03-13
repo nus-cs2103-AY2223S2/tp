@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.socialmedia.Telegram;
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,19 +26,28 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     // Social media fields
-    private final Telegram telegram;
+    private final SocialMedia socialMedia;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Telegram telegram, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.telegram = telegram;
+        this.socialMedia = SocialMedia.create();
         this.tags.addAll(tags);
+    }
+
+    private Person(Person previous, SocialMedia socialMedia) {
+        this.name = previous.name;
+        this.phone = previous.phone;
+        this.email = previous.email;
+        this.address = previous.address;
+        this.socialMedia = socialMedia;
+        this.tags.addAll(previous.tags);
     }
 
     public Name getName() {
@@ -65,8 +74,18 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Telegram getTelegram() {
-        return telegram;
+    /**
+     * Updates SocialMedia.
+     */
+    public Person withSocialMedia(SocialMedia socialMedia) {
+        if (socialMedia == null) {
+            return this;
+        }
+        return new Person(this, socialMedia);
+    }
+
+    public SocialMedia getSocialMedia() {
+        return socialMedia;
     }
 
     /**
@@ -121,10 +140,7 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        if (telegram != null) {
-            builder.append("; Telegram: ")
-                .append(getTelegram());
-        }
+        builder.append(socialMedia.toString());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

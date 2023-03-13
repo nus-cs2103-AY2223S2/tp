@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -13,7 +16,10 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.socialmedia.Instagram;
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.socialmedia.Telegram;
+import seedu.address.model.socialmedia.WhatsApp;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -123,21 +129,43 @@ public class ParserUtil {
         return tagSet;
     }
 
+    private static Instagram parseInstagram(String instagram) {
+        if (instagram == null || instagram.isEmpty()) {
+            return null;
+        }
+        return Instagram.of(instagram);
+    }
+
+    private static Telegram parseTelegram(String telegram) {
+        if (telegram == null || telegram.isEmpty()) {
+            return null;
+        }
+        return Telegram.of(telegram);
+    }
+
+    private static WhatsApp parseWhatsApp(String whatsApp) {
+        if (whatsApp == null || whatsApp.isEmpty()) {
+            return null;
+        }
+        return WhatsApp.of(whatsApp);
+    }
+
     /**
-     * Parses a {@code String telegram} into an {@code Telegram}.
+     * Parses a {@code String socialMedia} into an {@code SocialMedia}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code telegram} is invalid.
      */
-    public static Telegram parseTelegram(String telegram) throws ParseException {
-        requireNonNull(telegram);
-        String trimmedTelegram = telegram.trim();
-        if (Telegram.isDummyTelegram(trimmedTelegram)) {
-            return Telegram.DUMMY_TELEGRAM;
+    public static SocialMedia parseSocialMedia(String socialMediaArgs) {
+        if (socialMediaArgs == null || socialMediaArgs.isBlank()) {
+            return null;
         }
-        if (!Telegram.isValidTelegram(telegram)) {
-            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
-        }
-        return new Telegram(trimmedTelegram);
+
+        ArgumentMultimap argMultimap =
+            ArgumentTokenizer.tokenize(" " + socialMediaArgs.trim(),
+                PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP);
+
+        return SocialMedia.create()
+            .withInstagram(ParserUtil.parseInstagram(argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).orElse("")))
+            .withTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).orElse("")))
+            .withWhatsapp(ParserUtil.parseWhatsApp(argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).orElse("")));
     }
 }
