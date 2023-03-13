@@ -1,11 +1,7 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.loyaltylift.logic.parser.CliSyntax.*;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.Collections;
@@ -20,10 +16,10 @@ import seedu.loyaltylift.commons.util.CollectionUtil;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
-import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 
