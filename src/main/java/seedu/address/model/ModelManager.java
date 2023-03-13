@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -115,6 +117,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteEventFromPersonList(Event eventToDelete) {
+        requireNonNull(eventToDelete);
+        addressBook.deleteEventFromPersonList(eventToDelete);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
+    @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return addressBook.hasEvent(event);
@@ -132,15 +149,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
