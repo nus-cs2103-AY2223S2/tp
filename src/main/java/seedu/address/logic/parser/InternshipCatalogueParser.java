@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command1;
 import seedu.address.logic.commands.DeleteCommand1;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand1;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,6 +46,8 @@ public class InternshipCatalogueParser {
             return new DeleteCommandParser1().parse(arguments);
         case ListCommand1.COMMAND_WORD:
             return new ListCommand1();
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane fx:id="infoPanel" hgap="30.0" vgap="50.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox>
+         <children>
+            <Label fx:id="position" styleClass="info-panel-h1" text="Software Engineering" VBox.vgrow="ALWAYS">
+               <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+               </minWidth>
+      <!--         <minHeight>-->
+      <!--            &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
+      <!--            <Region fx:constant="USE_PREF_SIZE" />-->
+      <!--         </minHeight>-->
+      
+            </Label>
+            <Separator fx:id="separator" prefWidth="200.0" />
+            <Label fx:id="company" styleClass="info-panel-h2" text="Sample sample sample">
+               <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+               </minWidth>
+            </Label>
+         </children>
+      </VBox>
+      <VBox GridPane.rowIndex="1">
+         <children>
+            <Label fx:id="status" styleClass="info-panel-h3" text="Status">
+               <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+               </minWidth>
+            </Label>
+            <Label fx:id="description" styleClass="info-panel-h3" text="Description">
+               <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+               </minWidth>
+            </Label>
+         </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </VBox>
+   </children>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="47.42857142857143" minHeight="9.714298793247764" prefHeight="25.714272635323653" />
+   </rowConstraints>
+   <columnConstraints>
+      <ColumnConstraints maxWidth="93.14288766043526" minWidth="12.000004359654017" prefWidth="54.28570992606027" />
+      <ColumnConstraints maxWidth="93.14285278320312" minWidth="10.0" prefWidth="50.857147216796875" />
+   </columnConstraints>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="50.0" />
+   </padding>
+</GridPane>

@@ -60,7 +60,7 @@ public class Internship {
     }
 
     /**
-     * Returns true if both internships have the same id
+     * Returns true if both internships have the same position and company name.
      * This defines a weaker notion of equality between two internships.
      */
     public boolean isSameInternship(Internship otherInternship) {
@@ -69,7 +69,8 @@ public class Internship {
         }
 
         return otherInternship != null
-                && otherInternship.getId().equals(getId());
+                && otherInternship.getPosition().equals(getPosition())
+                && otherInternship.getCompany().equals(getCompany());
     }
 
     /**
