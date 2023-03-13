@@ -1,5 +1,6 @@
 ---
-Zhang Yuquan's Project Portfolio Page
+layout:
+title: Zhang Yuquan's Project Portfolio Page
 ---
 
 ### Project: Ez-Schedule
