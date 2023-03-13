@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-<<<<<<< HEAD:src/main/java/seedu/modtrek/MainApp.java
 import seedu.modtrek.commons.core.Config;
 import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.commons.core.Version;
