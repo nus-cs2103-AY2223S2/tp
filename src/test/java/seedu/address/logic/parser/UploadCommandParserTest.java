@@ -12,13 +12,14 @@ import seedu.address.logic.commands.UploadCommand;
 
 class UploadCommandParserTest {
 
-    private static final String TEST_FILE_PATH = "/hello/test.txt";
+    private static final String SOURCE = "source/path.txt";
+    private static final String DESTINATION = "./data";
 
     private UploadCommandParser parser = new UploadCommandParser();
 
     @Test
     public void parse_validArgs_returnsUploadCommand() {
-        assertParseSuccess(parser, TEST_FILE_PATH, new UploadCommand(Paths.get(TEST_FILE_PATH)));
+        assertParseSuccess(parser, SOURCE, new UploadCommand(Paths.get(SOURCE), Paths.get(DESTINATION)));
     }
 
     @Test

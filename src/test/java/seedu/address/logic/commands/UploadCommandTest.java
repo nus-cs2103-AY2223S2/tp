@@ -24,88 +24,101 @@ import seedu.address.model.UserPrefs;
  */
 class UploadCommandTest {
 
-    private static final String TEST_FILE_PATH = "src/test/data/UploadFileTest/test.txt";
-    private static final String DUPLICATE_FILE_PATH = "src/test/data/UploadFileTest/DuplicateFile/test.txt";
-    private static final String INVALID_FILE_PATH = "invalid/file/path.txt";
+    private static final Path UPLOAD_TEST_FOLDER_PATH = Paths.get("src/test/data/UploadFileTest");
+
+    private static final Path SOURCE_FOLDER_PATH = UPLOAD_TEST_FOLDER_PATH.resolve("SourceFolder");
+    private static final Path DESTINATION_FOLDER_PATH = UPLOAD_TEST_FOLDER_PATH.resolve("DestinationFolder");
+
+    private static final Path SOURCE_TEST_FILE = SOURCE_FOLDER_PATH.resolve("test.txt");
+    private static final Path SOURCE_DUPLICATE_FILE = SOURCE_FOLDER_PATH.resolve("DuplicateFile/test.txt");
+
+    private static final Path INVALID_FILE_PATH = Paths.get("invalid/file/path.txt");
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validPathMessage_success() {
-        Path sourcePath = Paths.get(TEST_FILE_PATH);
-        UploadCommand uploadCommand = new UploadCommand(sourcePath);
+        Path sourcePath = SOURCE_TEST_FILE;
+        Path destPath = DESTINATION_FOLDER_PATH;
+        UploadCommand uploadCommand = new UploadCommand(sourcePath, destPath);
         String expectedMessage = "File " + sourcePath.getFileName() + " successfully added to CLIpboard";
         assertCommandSuccess(uploadCommand, model, expectedMessage, model);
 
-        //delete test.txt from data folder
-        File toDelete = new File(UploadCommand.DESTINATION_FILEPATH + "/test.txt");
+        //delete test.txt from destination folder
+        File toDelete = new File(DESTINATION_FOLDER_PATH + "/test.txt");
         toDelete.delete();
     }
 
     @Test
     public void execute_validPathUpload_success() {
-        Path sourcePath = Paths.get(TEST_FILE_PATH);
-        UploadCommand uploadCommand = new UploadCommand(sourcePath);
+        Path sourcePath = SOURCE_TEST_FILE;
+        Path destPath = DESTINATION_FOLDER_PATH;
+        UploadCommand uploadCommand = new UploadCommand(sourcePath, destPath);
         try {
             uploadCommand.execute(model);
-            Path destinationPath = Paths.get(UploadCommand.DESTINATION_FILEPATH).resolve(sourcePath.getFileName());
+            Path destinationPath = destPath.resolve(sourcePath.getFileName());
             assertTrue(Files.exists(destinationPath));
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
 
-        //delete test.txt from data folder
-        File toDelete = new File(UploadCommand.DESTINATION_FILEPATH + "/test.txt");
+        //delete test.txt from destination folder
+        File toDelete = new File(DESTINATION_FOLDER_PATH + "/test.txt");
         toDelete.delete();
     }
 
     @Test
     public void execute_duplicateFile_success() {
-        UploadCommand uploadTestCommand = new UploadCommand(Paths.get(TEST_FILE_PATH));
-        UploadCommand uploadDuplicateCommand = new UploadCommand(Paths.get(DUPLICATE_FILE_PATH));
+        UploadCommand uploadTestCommand = new UploadCommand(SOURCE_TEST_FILE, DESTINATION_FOLDER_PATH);
+        UploadCommand uploadDuplicateCommand = new UploadCommand(SOURCE_DUPLICATE_FILE, DESTINATION_FOLDER_PATH);
         try {
             uploadTestCommand.execute(model);
             uploadDuplicateCommand.execute(model);
-            String sourceText = new String(Files.readAllBytes(Paths.get(DUPLICATE_FILE_PATH)));
+            String sourceText = new String(Files.readAllBytes(SOURCE_DUPLICATE_FILE));
             String destinationText =
-                    new String(Files.readAllBytes(Paths.get(UploadCommand.DESTINATION_FILEPATH + "/test.txt")));
+                    new String(Files.readAllBytes(DESTINATION_FOLDER_PATH.resolve("test.txt")));
             assertTrue(destinationText.equals(sourceText));
         } catch (CommandException | IOException e) {
             throw new AssertionError("Execution of command should not fail.", e);
         }
 
-        //delete test.txt from data folder
-        File toDelete = new File(UploadCommand.DESTINATION_FILEPATH + "/test.txt");
+        //delete test.txt from destination folder
+        File toDelete = new File(DESTINATION_FOLDER_PATH + "/test.txt");
         toDelete.delete();
     }
 
     @Test
     public void execute_invalidPath_throwsCommandException() {
-        Path sourcePath = Paths.get(INVALID_FILE_PATH);
-        UploadCommand uploadCommand = new UploadCommand(sourcePath);
+        Path sourcePath = INVALID_FILE_PATH;
+        UploadCommand uploadCommand = new UploadCommand(sourcePath, sourcePath);
         assertCommandFailure(uploadCommand, model, UploadCommand.MESSAGE_INVALID_FILEPATH);
 
     }
 
     @Test
     void equals() {
-        UploadCommand uploadFirstCommand = new UploadCommand(Paths.get(TEST_FILE_PATH));
-        UploadCommand uploadSecondCommand = new UploadCommand(Paths.get(DUPLICATE_FILE_PATH));
+        UploadCommand uploadCommand = new UploadCommand(SOURCE_TEST_FILE, DESTINATION_FOLDER_PATH);
 
         // same object -> returns true
-        assertTrue(uploadFirstCommand.equals(uploadFirstCommand));
+        assertTrue(uploadCommand.equals(uploadCommand));
 
         // same values -> returns true
-        UploadCommand uploadFirstCommandCopy = new UploadCommand(Paths.get(TEST_FILE_PATH));
-        assertTrue(uploadFirstCommand.equals(uploadFirstCommandCopy));
+        UploadCommand uploadFirstCommandCopy = new UploadCommand(SOURCE_TEST_FILE, DESTINATION_FOLDER_PATH);
+        assertTrue(uploadCommand.equals(uploadFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(uploadFirstCommand.equals(1));
+        assertFalse(uploadCommand.equals(1));
 
         // null -> returns false
-        assertFalse(uploadFirstCommand.equals(null));
+        assertFalse(uploadCommand.equals(null));
 
-        // different file -> returns false
-        assertFalse(uploadFirstCommand.equals(uploadSecondCommand));
+        // different source -> returns false
+        assertFalse(uploadCommand.equals(new UploadCommand(SOURCE_DUPLICATE_FILE, DESTINATION_FOLDER_PATH)));
+
+        // different destination -> returns false
+        assertFalse(uploadCommand.equals(new UploadCommand(SOURCE_TEST_FILE, INVALID_FILE_PATH)));
+
+        //different source and destination -> returns false
+        assertFalse(uploadCommand.equals(new UploadCommand(SOURCE_DUPLICATE_FILE, INVALID_FILE_PATH)));
     }
 }
