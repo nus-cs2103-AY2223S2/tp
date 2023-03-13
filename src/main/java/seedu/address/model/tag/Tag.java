@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags should not be blank, and" +
-            "should be at most 30 characters";
+    public static final String MESSAGE_CONSTRAINTS = "Tags should not be blank, and"
+            + "should be at most 30 characters";
     public static final String VALIDATION_REGEX = "^.{1,30}$";
 
     public final String tagName;
