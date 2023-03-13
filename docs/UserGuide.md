@@ -141,7 +141,7 @@ Format: `delete ID`
 
 Examples:
 
-`delete SE_G1` 
+`delete SE_G1`
 `ARE YOU SURE YOU WANT TO DELETE SOFTWARE ENGINEER, GOOGLE` : `YES`
 
 ### Exiting the program : `exit`
