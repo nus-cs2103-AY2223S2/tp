@@ -19,7 +19,7 @@ public class Title {
     public final String value;
 
     /**
-     * Constructs an {@code Title}.
+     * Constructs a {@code Title}.
      *
      * @param title A valid title.
      */

@@ -19,7 +19,7 @@ public class Comment {
     public final String value;
 
     /**
-     * Constructs an {@code Comment}.
+     * Constructs a {@code Comment}.
      *
      * @param comment A valid comment.
      */
