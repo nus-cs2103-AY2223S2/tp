@@ -79,7 +79,12 @@ public class Event {
         mark.setDone();
     }
 
+    /**
+     * Link a contact to
+     * @param contact
+     */
     public void linkContact(Contact contact) {
+        requireAllNonNull(contact);
         this.contact = contact;
     }
 

@@ -94,6 +94,12 @@ public class AddressBookTest {
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
+    @Test
+    public void linkContact_linkNullToEvent_throwsNullPointerException() {
+        addressBook.addPerson(ALICE);
+        assertThrows(NullPointerException.class, () -> addressBook.linkContact(ALICE, null));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
