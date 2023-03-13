@@ -18,8 +18,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.score.Score;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
-
 
 /**
  * Jackson-friendly version of {@link Person}.
