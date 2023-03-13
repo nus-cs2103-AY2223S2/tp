@@ -26,6 +26,7 @@ public class ListCommand extends Command {
      * @param model model of all applicants
      */
     public String getSuccessMessage(Model model) {
+        model.sortFilteredPersonList((p1, p2) -> 0); //revert back to original ordering
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return String.format(MESSAGE_SUCCESS_FORMAT, getNumApplicants(model), getNumApplied(model),
                 getNumShortlisted(model), getNumAccepted(model), getNumRejected(model));

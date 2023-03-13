@@ -25,18 +25,20 @@ public class Person {
     private final Address address;
     private Status status;
     private final Set<Tag> notes = new HashSet<>();
-    private Optional<InterviewDateTime> interviewDateTime = Optional.empty();
+    private Optional<InterviewDateTime> interviewDateTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Status status, Set<Tag> notes) {
+    public Person(Name name, Phone phone, Email email, Address address, Status status,
+                  InterviewDateTime interviewDateTime, Set<Tag> notes) {
         requireAllNonNull(name, phone, email, address, notes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.status = status;
+        this.interviewDateTime = Optional.ofNullable(interviewDateTime);
         this.notes.addAll(notes);
     }
 
@@ -74,6 +76,10 @@ public class Person {
      */
     public Optional<InterviewDateTime> getInterviewDateTime() {
         return interviewDateTime;
+    }
+
+    public String getInterviewDateTimeString() {
+        return interviewDateTime.map(InterviewDateTime::toString).orElse("");
     }
 
     /**

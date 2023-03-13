@@ -1,10 +1,13 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -22,12 +25,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STATUS = "APPLIED";
+    public static final String DEFAULT_INTERVIEWDATETIME = "";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Status status;
+    private Optional<InterviewDateTime> interviewDateTime;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +44,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         status = Status.valueOf(DEFAULT_STATUS);
+        interviewDateTime = Optional.empty();
         tags = new HashSet<>();
     }
 
@@ -51,6 +57,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         status = personToCopy.getStatus();
+        interviewDateTime = Optional.ofNullable(personToCopy.getInterviewDateTime());
         tags = new HashSet<>(personToCopy.getNotes());
     }
 
@@ -102,8 +109,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code InterviewDateTime} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withInterviewDateTime(String interviewDateTime) {
+        try {
+            if (interviewDateTime.equals("")) {
+                this.interviewDateTime = Optional.empty();
+            } else {
+                this.interviewDateTime = Optional.of(new InterviewDateTime(interviewDateTime));
+            }
+        } catch (ParseException e) {
+            this.interviewDateTime = Optional.empty();
+        }
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, status, tags);
+        return new Person(name, phone, email, address, status, interviewDateTime.orElse(null), tags);
     }
 
 }
