@@ -14,7 +14,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to MedInfo. "
             + "Parameters: "
             + PREFIX_NAME + "NAME \n"
             + "Example: " + COMMAND_WORD + " "
