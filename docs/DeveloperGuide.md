@@ -82,7 +82,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 1. Chef requests to list recipes
 2. Book shows a list of ***all*** recipes
 3. Chef requests to delete a specific recipe in the list
-4. Book deletes the person
+4. Book deletes the recipe
 
     Use case ends.
 

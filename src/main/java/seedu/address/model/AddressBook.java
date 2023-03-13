@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.UniqueRecipeList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameRecipe comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueRecipeList recipes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        recipes = new UniqueRecipeList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Recipes in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -40,11 +40,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the recipe list with {@code recipes}.
+     * {@code recipes} must not contain duplicate recipes.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes.setRecipes(recipes);
     }
 
     /**
@@ -53,68 +53,68 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setRecipes(newData.getRecipeList());
     }
 
-    //// person-level operations
+    //// recipe-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a recipe with the same identity as {@code recipe} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasRecipe(Recipe recipe) {
+        requireNonNull(recipe);
+        return recipes.contains(recipe);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a recipe to the address book.
+     * The recipe must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addRecipe(Recipe p) {
+        recipes.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given recipe {@code target} in the list with {@code editedRecipe}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setRecipe(Recipe target, Recipe editedRecipe) {
+        requireNonNull(editedRecipe);
 
-        persons.setPerson(target, editedPerson);
+        recipes.setRecipe(target, editedRecipe);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeRecipe(Recipe key) {
+        recipes.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return recipes.asUnmodifiableObservableList().size() + " recipes";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Recipe> getRecipeList() {
+        return recipes.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && recipes.equals(((AddressBook) other).recipes));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return recipes.hashCode();
     }
 }

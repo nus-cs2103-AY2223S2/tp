@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -27,19 +27,19 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Recipe validRecipe = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addRecipe(validRecipe);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validRecipe), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validRecipe), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        Recipe recipeInList = model.getAddressBook().getRecipeList().get(0);
+        assertCommandFailure(new AddCommand(recipeInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }
