@@ -12,12 +12,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
-import seedu.address.model.person.Industry;
-import seedu.address.model.person.Occupation;
-import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Industry;
+import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
@@ -76,13 +76,13 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        gender = source.getGender().value;
+        gender = source.getGender().gender;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        company = source.getCompany().value;
-        industry = source.getIndustry().value;
-        occupation = source.getOccupation().value;
-        jobTitle = source.getJobTitle().value;
+        company = source.getCompany().companyName;
+        industry = source.getIndustry().industry;
+        occupation = source.getOccupation().occupation;
+        jobTitle = source.getJobTitle().jobTitle;
         address = source.getAddress().value;
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
