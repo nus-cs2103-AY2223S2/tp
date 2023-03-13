@@ -7,9 +7,9 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 # TABLE OF CONTENT
 
 [FEATURES](#features)
-1. [Add student](addStudent)
-2. [Delete student](deleteStudent)
-3. [List student](listStudent)
+1. [Add student](#addStudent)
+2. [Delete student](#deleteStudent)
+3. [List student](#listStudent)
 4. [Local save](#save)
 5. [Local load](#load)
 6. [Exit program](#exit)
