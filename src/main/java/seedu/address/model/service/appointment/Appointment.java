@@ -12,7 +12,6 @@ import java.util.Set;
 public class Appointment {
     private int customerId;
     private LocalDateTime timeDate;
-    private List<Staff> staffs;
 
     private final Set<Integer> staffIds = new HashSet<>();
 
@@ -24,7 +23,6 @@ public class Appointment {
     public Appointment(int customerId, LocalDateTime timeDate) {
         this.customerId = customerId;
         this.timeDate = timeDate;
-        this.staffs = new ArrayList<>();
     }
 
     /**
