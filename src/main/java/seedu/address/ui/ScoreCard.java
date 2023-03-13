@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 /**
- * An UI component that displays information of a {@code Task}.
+ * An UI component that displays information of a {@code Score}.
  */
 public class ScoreCard extends UiPart<Region> {
     private static final String FXML = "ScoreListCard.fxml";
