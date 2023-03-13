@@ -1,9 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditIsolatedEventCommand;
-
 import java.time.LocalDateTime;
 
+import seedu.address.logic.commands.EditIsolatedEventCommand;
+
+/**
+ * A utility class to help with building EditPersonDescriptor objects.
+ */
 public class EditEventDescriptorBuilder {
     private EditIsolatedEventCommand.EditEventDescriptor descriptor;
 

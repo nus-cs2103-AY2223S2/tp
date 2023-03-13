@@ -8,6 +8,7 @@ import static seedu.address.testutil.SampleEventUtil.SKIING_ISOLATED_EVENT;
 import static seedu.address.testutil.SampleEventUtil.SLEEPING_ISOLATED_EVENT;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditIsolatedEventCommand.EditEventDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,10 +29,10 @@ public class EditIsolatedEventCommandTest {
         model.addPerson(editedPerson);
         model.addIsolatedEvent(editedPerson, SKIING_ISOLATED_EVENT);
 
-        EditEventDescriptor EditEventDescriptor = new EditEventDescriptorBuilder("Sleep", TWO_O_CLOCK_VALID,
+        EditEventDescriptor editEventDescriptor = new EditEventDescriptorBuilder("Sleep", TWO_O_CLOCK_VALID,
                 THREE_O_CLOCK_VALID).build();
         EditIsolatedEventCommand command = new EditIsolatedEventCommand(Index.fromOneBased(1),
-                Index.fromOneBased(1), EditEventDescriptor);
+                Index.fromOneBased(1), editEventDescriptor);
 
         String expectedMessage = String.format(MESSAGE_SUCCESS, SLEEPING_ISOLATED_EVENT)
                 + " from " + SKIING_ISOLATED_EVENT + " for " + editedPerson.getName();
