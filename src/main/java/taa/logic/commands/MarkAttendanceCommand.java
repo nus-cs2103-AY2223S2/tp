@@ -2,21 +2,14 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
-import taa.commons.util.CollectionUtil;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 import taa.model.student.Attendance;
-import taa.model.student.Name;
 import taa.model.student.Student;
-import taa.model.tag.Tag;
 
 public class MarkAttendanceCommand extends Command {
     public static final String COMMAND_WORD = "markAtd";
@@ -27,11 +20,23 @@ public class MarkAttendanceCommand extends Command {
     private final int week;
 
 
+    /**
+     * Constructor for MarkAttendanceCommand
+     * @param index index of student
+     * @param week week to mark
+     */
     public MarkAttendanceCommand(Index index, int week) {
         this.index = index;
         this.week = week;
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     * @throws CommandException If an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

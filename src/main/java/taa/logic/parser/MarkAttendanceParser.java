@@ -18,6 +18,9 @@ import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Attendance;
 import taa.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new MarkAttendanceCommand object
+ */
 public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
     @Override
     public MarkAttendanceCommand parse(String userInput) throws ParseException {
