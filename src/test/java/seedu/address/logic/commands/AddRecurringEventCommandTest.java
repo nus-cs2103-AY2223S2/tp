@@ -1,9 +1,10 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.SampleDateTimeUtil.TWELVE_O_CLOCK_VALID;
+import static seedu.address.testutil.SampleDateTimeUtil.TWO_O_CLOCK_VALID;
 
 import java.time.DayOfWeek;
-import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,8 +26,8 @@ public class AddRecurringEventCommandTest {
         Person editedPerson = new PersonBuilder().build();
         model.addPerson(editedPerson);
 
-        RecurringEvent recurringEvent = new RecurringEvent("biking", DayOfWeek.valueOf("MONDAY"),
-                LocalTime.parse("12:00"), LocalTime.parse("14:00"));
+        RecurringEvent recurringEvent = new RecurringEvent("biking", DayOfWeek.MONDAY,
+                TWELVE_O_CLOCK_VALID.toLocalTime(), TWO_O_CLOCK_VALID.toLocalTime());
 
         AddRecurringEventCommand command = new AddRecurringEventCommand(Index.fromOneBased(1),
                 recurringEvent);
@@ -43,7 +44,7 @@ public class AddRecurringEventCommandTest {
 
         System.out.println(expectedList);
 
-        assertEquals(expectedList, "biking\n");
+        assertEquals(expectedList, "1. biking\n");
 
     }
 }
