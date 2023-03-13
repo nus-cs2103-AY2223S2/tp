@@ -1,21 +1,16 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.patient.NRIC;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Patient objects.
  */
-public class PersonBuilder {
+public class PatientBuilder {
 
     public static final String DEFAULT_NRIC = "T1234567A";
     public static final String DEFAULT_NAME = "Alex Smith";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
 
     private NRIC nric;
     private Name name;
@@ -23,7 +18,7 @@ public class PersonBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public PatientBuilder() {
         nric = new NRIC(DEFAULT_NRIC);
         name = new Name(DEFAULT_NAME);
     }
@@ -31,7 +26,7 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code patientToCopy}.
      */
-    public PersonBuilder(Patient patientToCopy) {
+    public PatientBuilder(Patient patientToCopy) {
         nric = patientToCopy.getNric();
         name = patientToCopy.getName();
     }
@@ -39,8 +34,16 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Patient} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public PatientBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code NRIC} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withNRIC(String nric) {
+        this.nric = new NRIC(nric);
         return this;
     }
 

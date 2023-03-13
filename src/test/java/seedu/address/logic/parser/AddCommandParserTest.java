@@ -9,22 +9,22 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPatients.AMY;
+import static seedu.address.testutil.TypicalPatients.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.patient.*;
 import seedu.address.model.patient.Patient;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 public class AddCommandParserTest {
         private AddCommandParser parser = new AddCommandParser();
 
         @Test
         public void parse_allFieldsPresent_success() {
-                Patient expectedPatient = new PersonBuilder(BOB).build();
+                Patient expectedPatient = new PatientBuilder(BOB).build();
 
                 // whitespace only preamble
                 assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB, new AddCommand(expectedPatient));
@@ -42,14 +42,14 @@ public class AddCommandParserTest {
                 assertParseSuccess(parser, NAME_DESC_BOB, new AddCommand(expectedPatient));
 
                 // multiple tags - all accepted
-                Patient expectedPatientMultipleTags = new PersonBuilder(BOB).build();
+                Patient expectedPatientMultipleTags = new PatientBuilder(BOB).build();
                 assertParseSuccess(parser, NAME_DESC_BOB, new AddCommand(expectedPatientMultipleTags));
         }
 
         @Test
         public void parse_optionalFieldsMissing_success() {
                 // zero tags
-                Patient expectedPatient = new PersonBuilder(AMY).withTags().build();
+                Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
                 assertParseSuccess(parser, NAME_DESC_AMY,
                                 new AddCommand(expectedPatient));
         }
