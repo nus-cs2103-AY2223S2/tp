@@ -20,19 +20,19 @@ import seedu.sudohr.model.employee.Employee;
 @JsonRootName(value = "sudohr")
 class JsonSerializableSudoHr {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "Employees list contains duplicate employee(s).";
     public static final String MESSAGE_DUPLICATE_DEPARTMENTS = "Departments list contains duplicate department(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
     private final List<JsonAdaptedDepartment> departments = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableSudoHr} with the given persons.
+     * Constructs a {@code JsonSerializableSudoHr} with the given employees.
      */
     @JsonCreator
-    public JsonSerializableSudoHr(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+    public JsonSerializableSudoHr(@JsonProperty("employees") List<JsonAdaptedEmployee> employees,
                                   @JsonProperty("departments") List<JsonAdaptedDepartment> departments) {
-        this.persons.addAll(persons);
+        this.employees.addAll(employees);
         this.departments.addAll(departments);
     }
 
@@ -42,7 +42,7 @@ class JsonSerializableSudoHr {
      * @param source future changes to this will not affect the created {@code JsonSerializableSudoHr}.
      */
     public JsonSerializableSudoHr(ReadOnlySudoHr source) {
-        persons.addAll(source.getEmployeeList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        employees.addAll(source.getEmployeeList().stream().map(JsonAdaptedEmployee::new).collect(Collectors.toList()));
         departments.addAll(source.getDepartmentList().stream().map(JsonAdaptedDepartment::new)
                 .collect(Collectors.toList()));
     }
@@ -55,12 +55,12 @@ class JsonSerializableSudoHr {
     public SudoHr toModelType() throws IllegalValueException {
         SudoHr sudoHr = new SudoHr();
 
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Employee person = jsonAdaptedPerson.toModelType();
-            if (sudoHr.hasEmployee(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedEmployee jsonAdaptedEmployee : employees) {
+            Employee employee = jsonAdaptedEmployee.toModelType();
+            if (sudoHr.hasEmployee(employee)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EMPLOYEE);
             }
-            sudoHr.addEmployee(person);
+            sudoHr.addEmployee(employee);
         }
 
         for (JsonAdaptedDepartment jsonAdaptedDepartment : departments) {

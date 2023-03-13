@@ -22,14 +22,14 @@ class JsonAdaptedDepartment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Department's %s field is missing!";
 
     private final String name;
-    private final List<JsonAdaptedPerson> employees = new ArrayList<>();
+    private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedDepartment} with the given department details.
      */
     @JsonCreator
     public JsonAdaptedDepartment(@JsonProperty("name") String name,
-                                 @JsonProperty("employees") List<JsonAdaptedPerson> employees) {
+                                 @JsonProperty("employees") List<JsonAdaptedEmployee> employees) {
         this.name = name;
         if (employees != null) {
             this.employees.addAll(employees);
@@ -42,18 +42,18 @@ class JsonAdaptedDepartment {
     public JsonAdaptedDepartment(Department source) {
         name = source.getName().fullName;
         this.employees.addAll(source.getEmployees().stream()
-                .map(JsonAdaptedPerson::new)
+                .map(JsonAdaptedEmployee::new)
                 .collect(Collectors.toList()));
     }
 
     /**
      * Converts this Jackson-friendly adapted department object into the model's {@code Employee} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted employee.
      */
     public Department toModelType() throws IllegalValueException {
         final List<Employee> departmentEmployees = new ArrayList<>();
-        for (JsonAdaptedPerson employee : employees) {
+        for (JsonAdaptedEmployee employee : employees) {
             departmentEmployees.add(employee.toModelType());
         }
 
