@@ -55,8 +55,6 @@ public class ParserUtil {
      * @throws ParseException if the given {@code week} is invalid
      */
     public static int parseWeek(String week) throws ParseException {
-        System.out.println("we are in parseweek");
-        System.out.println(week);
         requireNonNull(week);
         String trimmedWeek = week.trim();
         if (!Attendance.isValidWeek(trimmedWeek)) {

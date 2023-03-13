@@ -147,6 +147,10 @@ public class EditCommand extends Command {
             this.attendance = attendance;
         }
 
+        public Optional<Attendance> getAttendance() {
+            return Optional.ofNullable(this.attendance);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.

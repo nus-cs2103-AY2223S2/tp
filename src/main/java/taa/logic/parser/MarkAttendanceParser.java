@@ -26,7 +26,7 @@ public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
                 ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_TAG, PREFIX_WEEK);
 
         Index index;
-        int week = 1;
+        int week = -1;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -35,27 +35,15 @@ public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
                     EditCommand.MESSAGE_USAGE), pe);
         }
 
-        MarkAttendanceCommand.EditStudentDescriptor editStudentDescriptor =
-                new MarkAttendanceCommand.EditStudentDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-
         if (argMultimap.getValue(PREFIX_WEEK).isPresent()) {
-            System.out.println(argMultimap.getValue(PREFIX_WEEK).get());
-            week = ParserUtil.parseWeek("1");
+            week = ParserUtil.parseWeek(argMultimap.getValue(PREFIX_WEEK).get());
         }
-
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
-
-        System.out.println("6 we are in the markAttendaceParser");
 
         if (week == -1) {
             throw new ParseException(Attendance.errorMsg);
         }
 
-        System.out.println("we have reached the end of mark attendance");
-        return new MarkAttendanceCommand(index, editStudentDescriptor, week);
+        return new MarkAttendanceCommand(index, week);
     }
 
     /**
