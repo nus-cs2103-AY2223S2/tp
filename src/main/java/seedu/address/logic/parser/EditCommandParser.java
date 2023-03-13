@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_OLD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
@@ -24,6 +25,7 @@ import java.util.Set;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.skill.Skill;
 
@@ -48,7 +50,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_SKILL_ADD, PREFIX_SKILL_DELETE, PREFIX_SKILL_OLD, PREFIX_SKILL_NEW,
-                        PREFIX_MOD_ADD, PREFIX_MOD_DELETE, PREFIX_MOD_OLD, PREFIX_MOD_NEW);
+                        PREFIX_MOD_ADD, PREFIX_MOD_DELETE, PREFIX_MOD_OLD, PREFIX_MOD_NEW, PREFIX_MODULE);
 
         if (args.isEmpty() || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
@@ -75,6 +77,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL_DELETE))
                     .ifPresent(editPersonDescriptor::deleteSkills);
         }
+        parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(editPersonDescriptor::setModules);
 
         if (argMultimap.getValue(PREFIX_SKILL_OLD).isPresent()
                 && argMultimap.getValue(PREFIX_SKILL_NEW).isPresent()) {
@@ -109,6 +112,15 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> skillSet = skills.size() == 1 && skills.contains("") ? Collections.emptySet() : skills;
         return Optional.of(ParserUtil.parseSkills(skillSet));
+    }
+    private Optional<Set<Module>> parseModulesForEdit(Collection<String> modules) throws ParseException {
+        assert modules != null;
+
+        if (modules.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> moduleList = modules.size() == 1 && modules.contains("") ? Collections.emptySet() : modules;
+        return Optional.of(ParserUtil.parseModules(moduleList));
     }
 
     private void parseSkillsForUpdate(List<String> oldSkills, List<String> newSkills,

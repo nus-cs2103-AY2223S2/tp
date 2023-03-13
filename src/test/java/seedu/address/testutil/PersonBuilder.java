@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.mod.Mod;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -27,7 +27,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Skill> skills;
-    private Set<Mod> mods;
+    private Set<Module> mods;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -50,14 +50,14 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         skills = new HashSet<>(personToCopy.getSkills());
-        mods = new HashSet<>(personToCopy.getMods());
+        mods = new HashSet<>(personToCopy.getModules());
     }
 
     /**
      * Parses the {@code mods} into a {@code Set<Mod>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withMods(String ... mods) {
-        this.mods = SampleDataUtil.getModSet(mods);
+        this.mods = SampleDataUtil.getModuleSet(mods);
         return this;
     }
 
@@ -102,7 +102,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, skills);
+        return new Person(name, phone, email, address, skills, mods);
     }
 
 }

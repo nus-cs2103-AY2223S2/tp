@@ -3,10 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_ADD;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NEW;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_OLD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NEW;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_OLD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
@@ -24,6 +25,7 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -49,6 +51,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SKILL_DELETE + "SKILL] "
             + "[" + PREFIX_SKILL_OLD + "SKILL " + PREFIX_SKILL_NEW + "SKILL]...\n"
             + "Example: " + COMMAND_WORD
+            + "[" + PREFIX_MODULE + "MODULE]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -101,8 +105,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Skill> updatedSkills = editPersonDescriptor.getSkills().orElse(personToEdit.getSkills());
+        Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedSkills);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedSkills, updatedModules);
     }
 
     @Override
@@ -132,6 +137,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Skill> skills;
+        private Set<Module> modules;
 
         public EditPersonDescriptor() {}
 
@@ -156,6 +162,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setModules(toCopy.modules);
             addSkills(toCopy.skills);
         }
 
@@ -163,7 +170,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, skills);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, skills, modules);
         }
 
         public void setName(Name name) {
@@ -275,6 +282,14 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code modules} to this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void setModules(Set<Module> modules) {
+            this.modules = (modules != null) ? new HashSet<>(modules) : null;
+        }
+
+        /**
          * Returns an unmodifiable skill set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code skills} is null.
@@ -283,6 +298,14 @@ public class EditCommand extends Command {
             return (skills != null) ? Optional.of(Collections.unmodifiableSet(skills)) : Optional.empty();
         }
 
+        /**
+         * Returns an unmodifiable module list, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code modules} is null.
+         */
+        public Optional<Set<Module>> getModules() {
+            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
+        }
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -302,7 +325,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getSkills().equals(e.getSkills());
+                    && getSkills().equals(e.getSkills())
+                    && getModules().equals(e.getModules());
         }
     }
 }
