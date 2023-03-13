@@ -12,11 +12,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.commons.core.LogsCenter;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.exceptions.DuplicateClientException;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
 import mycelium.mycelium.model.util.exceptions.DuplicateItemException;
 import mycelium.mycelium.model.util.exceptions.ItemNotFoundException;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,8 +30,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Client> filteredClients;
     private final FilteredList<Project> filteredProjects;
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -40,6 +43,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
     }
 
@@ -136,6 +140,45 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return addressBook.hasClient(client);
+    }
+
+    @Override
+    public void deleteClient(Client client) {
+        try {
+            addressBook.removeClient(client);
+        } catch (ItemNotFoundException e) {
+            logger.warning(String.format(
+                    "Requested deletion for client with name %s not found in address book, ignoring...",
+                    client.getName()));
+        }
+    }
+
+    @Override
+    public void addClient(Client client) {
+        try {
+            addressBook.addClient(client);
+        } catch (DuplicateItemException e) {
+            throw new DuplicateClientException();
+        }
+        updateFilteredClientList(x -> true);
+    }
+
+    //=========== Filtered Client List Accessors =============================================================
+
+    @Override
+    public ObservableList<Client> getFilteredClientList() {
+        return filteredClients;
+    }
+
+    @Override
+    public void updateFilteredClientList(Predicate<Client> predicate) {
+        requireNonNull(predicate);
+        filteredClients.setPredicate(predicate);
+    }
+
     public boolean hasProject(Project project) {
         return addressBook.hasProject(project);
     }
@@ -161,6 +204,8 @@ public class ModelManager implements Model {
         updateFilteredProjectList(x -> true);
     }
 
+    //=========== Filtered Project List Accessors =============================================================
+
     @Override
     public ObservableList<Project> getFilteredProjectList() {
         return filteredProjects;
@@ -181,14 +226,15 @@ public class ModelManager implements Model {
             return false;
         }
         ModelManager that = (ModelManager) o;
-        return Objects.equals(addressBook, that.addressBook) && Objects.equals(userPrefs,
-            that.userPrefs) && Objects.equals(filteredPersons, that.filteredPersons) && Objects.equals(
-            filteredProjects,
-            that.filteredProjects);
+        return Objects.equals(addressBook, that.addressBook)
+                && Objects.equals(userPrefs, that.userPrefs)
+                && Objects.equals(filteredPersons, that.filteredPersons)
+                && Objects.equals(filteredClients, that.filteredClients)
+                && Objects.equals(filteredProjects, that.filteredProjects);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(addressBook, userPrefs, filteredPersons, filteredProjects);
+        return Objects.hash(addressBook, userPrefs, filteredPersons, filteredClients, filteredProjects);
     }
 }

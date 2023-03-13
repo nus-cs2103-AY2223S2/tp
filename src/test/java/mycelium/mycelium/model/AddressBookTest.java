@@ -18,10 +18,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.exceptions.DuplicatePersonException;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.util.exceptions.DuplicateItemException;
+import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.PersonBuilder;
 import mycelium.mycelium.testutil.ProjectBuilder;
 
@@ -34,6 +36,7 @@ public class AddressBookTest {
         // Here, we're just checking that all the default lists are empty. This is because they are meant to be
         // populated after initialization by external sources, e.g. JSON files.
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getClientList());
         assertEquals(Collections.emptyList(), addressBook.getProjectList());
     }
 
@@ -55,9 +58,21 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons, List.of());
+        AddressBookStub newData = new AddressBookStub(newPersons, List.of(), List.of());
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateClients_throwsDuplicateClientException() {
+        // Two clients with the same identity fields
+        List<Client> newClients = List.of(
+                new ClientBuilder().build(),
+                new ClientBuilder().build()
+        );
+        AddressBookStub newData = new AddressBookStub(List.of(), newClients, List.of());
+
+        assertThrows(DuplicateItemException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -66,10 +81,9 @@ public class AddressBookTest {
             new ProjectBuilder().build(),
             new ProjectBuilder().build()
         );
-        AddressBookStub newData = new AddressBookStub(List.of(), newProjects);
+        AddressBookStub newData = new AddressBookStub(List.of(), List.of(), newProjects);
         assertThrows(DuplicateItemException.class, () -> addressBook.resetData(newData));
     }
-
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
@@ -90,13 +104,42 @@ public class AddressBookTest {
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-            .build();
+                .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void hasClient_nullClient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasClient(null));
+    }
+
+    @Test
+    public void hasClient_clientNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasClient(new ClientBuilder().build()));
+    }
+
+    @Test
+    public void hasClient_clientInAddressBook_returnsTrue() {
+        Client john = new ClientBuilder().build();
+        addressBook.addClient(john);
+        assertTrue(addressBook.hasClient(john));
+    }
+    // Should this be included?
+    //    @Test
+    //    public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    //        addressBook.addClient(new ClientBuilder.build());
+    //        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    //                .build();
+    //        assertTrue(addressBook.hasPerson(editedAlice));
+    //    }
+    @Test
+    public void getClientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getClientList().remove(0));
     }
 
     @Test
@@ -136,17 +179,24 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
         // TODO update the constructor here to take in a list of projects too
-        AddressBookStub(Collection<Person> persons, Collection<Project> projects) {
+        AddressBookStub(Collection<Person> persons, Collection<Client> clients, Collection<Project> projects) {
             this.persons.setAll(persons);
+            this.clients.setAll(clients);
             this.projects.setAll(projects);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Client> getClientList() {
+            return clients;
         }
 
         @Override
