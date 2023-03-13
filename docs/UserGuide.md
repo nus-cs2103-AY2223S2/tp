@@ -10,7 +10,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Table of Contents
+## Table of Contents
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
@@ -28,7 +28,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Quick Start <a name="quick-start"></a>
+## Quick Start <a name="quick-start"></a>
 
 1. Ensure you have Java 11 or above installed in your Computer.
 1. Download `modtrek.jar` here. (To be inserted)
@@ -40,7 +40,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Features <a name="features"></a>
+## Features <a name="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -54,7 +54,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 ### MODTrek supports the following features:
 
-####Add a Module : `add`
+#### Add a Module : `add`
 
 Adds a module to the module list. Modules must be distinct.
 
@@ -64,7 +64,7 @@ Command syntax: `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t 
 
 Example: `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`
 
-####Delete a Module : `delete`
+#### Delete a Module : `delete`
 
 Deletes all/the specified module(s) from the module list.
 
@@ -72,7 +72,7 @@ Command syntax: _To delete specific modules:_ `delete /m <code1> (/m <code2>) ..
 
 Example: `delete /m CS2100 /m CS2040S`
 
-####Edit a Module : `edit`
+#### Edit a Module : `edit`
 
 Edits an existing module in the module list.
 
@@ -82,7 +82,7 @@ Example: `edit ES2660 /m CS2101 /g B+`
 
 :exclamation: Past data will be overridden and not be saved
 
-####Tag a Module : `tag`
+#### Tag a Module : `tag`
 
 Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.
 
@@ -92,13 +92,13 @@ Example:
 * `tag CS2030S include cs_foundation`
 * `tag ES2660 remove university_level it_professionalism`
 
-####List modules : `list`
+#### List modules : `list`
 
 Displays all the modules taken by the user.
 
 Command syntax: `list`
 
-####Find modules : `find`
+#### Find modules : `find`
 
 Displays specific module(s) satisfying the search query (by code, credits, year-semester, and/or grade) and their details previously logged by the user.
 
@@ -108,23 +108,23 @@ Example:
 * `find /c 4 /g A+`
 * `find /y y2s2`
 
-####Exit MODTrek : `exit`
+#### Exit MODTrek : `exit`
 
 Exits the program.
 
 Command syntax: `exit`
 
-####Saving MODTrek data
+#### Saving MODTrek data
 
 Saves the modified data regarding the modules into the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-####Editing MODTrek data
+#### Editing MODTrek data
 
 ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.<br> <br>:warning: **Caution!** If your changes to the data file makes its format invalid, ModTrek will discard all data and start with an empty data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Frequently Asked Questions (FAQ) <a name="faq"></a>
+## Frequently Asked Questions (FAQ) <a name="faq"></a>
 
 **Q**: Why is it that I can add in modules not offered in NUS<br>
 **A**: Unfortunately we do not have a database to store all the available modules in NUS.
@@ -133,7 +133,7 @@ are provided only by NUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Command Summary <a name="command_summary"></a>
+## Command Summary <a name="command_summary"></a>
 
 
 | Action                   | Format, Examples                                                                                                                                                                                  |
