@@ -1,6 +1,8 @@
 package seedu.calidr.model.tasklist;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.calidr.exception.CalidrException;
 import seedu.calidr.exception.CalidrInvalidArgumentException;
@@ -13,7 +15,22 @@ import seedu.calidr.model.task.Task;
  */
 public class TaskList {
 
-    private final ArrayList<Task> tasks = new ArrayList<>();
+    private final List<Task> tasks;
+
+    public TaskList() {
+        this.tasks = new ArrayList<>();
+    }
+
+    public TaskList(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    /**
+     * Get a Stream of Tasks (readonly)
+     */
+    public Stream<Task> getTasks() {
+        return tasks.stream();
+    }
 
     /**
      * Returns all the Tasks in the list of Tasks.
