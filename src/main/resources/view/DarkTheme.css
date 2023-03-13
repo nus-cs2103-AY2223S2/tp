@@ -353,3 +353,17 @@
     -fx-background-radius: 3;
     -fx-font-size: 11;
 }
+
+#taskField {
+    -fx-hgap: 7;
+    -fx-vgap: 5;
+}
+
+#taskField .label {
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-background-color: #cae1ff;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-font-size: 12;
+}

@@ -10,7 +10,7 @@ import trackr.commons.core.LogsCenter;
 import trackr.logic.commands.Command;
 import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.exceptions.CommandException;
-import trackr.logic.parser.AddressBookParser;
+import trackr.logic.parser.TrackrParser;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ReadOnlyAddressBook;
@@ -28,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final TrackrParser trackrParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -36,7 +36,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        trackrParser = new TrackrParser();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = trackrParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

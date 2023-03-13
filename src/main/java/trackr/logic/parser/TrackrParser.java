@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import trackr.logic.commands.AddCommand;
+import trackr.logic.commands.AddTaskCommand;
 import trackr.logic.commands.ClearCommand;
 import trackr.logic.commands.Command;
 import trackr.logic.commands.DeleteCommand;
@@ -20,7 +21,7 @@ import trackr.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TrackrParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -46,6 +47,10 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddTaskCommand.COMMAND_WORD:
+        case AddTaskCommand.COMMAND_WORD_SHORTCUT:
+            return new AddTaskCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

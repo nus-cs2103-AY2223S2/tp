@@ -41,7 +41,20 @@ public class TaskNameTest {
 
     @Test
     public void toStringTest() {
-        String expected = "Sort Inventory";
-        assertEquals(expected, new TaskName("Sort Inventory").toString());
+        String expectedTaskName = "Sort Inventory";
+        assertEquals(expectedTaskName, new TaskName("Sort Inventory").toString());
+    }
+
+    @Test
+    public void equals() {
+        TaskName taskName = new TaskName("Sort Inventory");
+        TaskName differentTaskName = new TaskName("Sort");
+
+        assertTrue(taskName.equals(taskName)); //same object
+        assertTrue(taskName.equals(new TaskName("Sort Inventory"))); //same task name
+
+        assertFalse(taskName.equals(null)); //null
+        assertFalse(taskName.equals(differentTaskName)); //different task name
+        assertFalse(taskName.equals(1)); //different type
     }
 }

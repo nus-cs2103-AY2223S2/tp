@@ -97,8 +97,37 @@ public class TaskListTest {
     }
 
     @Test
+    public void setTaskList_withDifferentTask_success() {
+        TaskList expectedTaskList = new TaskList();
+        expectedTaskList.addTask(BUY_FLOUR_N);
+
+        taskList.addTask(SORT_INVENTORY_N);
+        taskList.setTask(SORT_INVENTORY_N, BUY_FLOUR_N);
+
+        assertEquals(expectedTaskList, taskList);
+    }
+
+    @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> taskList.getTaskList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        taskList.addTask(SORT_INVENTORY_N);
+
+        TaskList differentTaskList = new TaskList();
+        differentTaskList.addTask(BUY_FLOUR_N);
+
+        TaskList sameTaskList = new TaskList();
+        sameTaskList.addTask(SORT_INVENTORY_N);
+
+        assertTrue(taskList.equals(taskList)); //same object
+        assertTrue(taskList.equals(sameTaskList)); //contains the same tasks
+
+        assertFalse(taskList.equals(null)); //null
+        assertFalse(taskList.equals(differentTaskList)); //different task lists
+        assertFalse(taskList.equals(1)); //different objects
     }
 
     /**
