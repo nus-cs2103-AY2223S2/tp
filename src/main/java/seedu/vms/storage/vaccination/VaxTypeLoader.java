@@ -1,6 +1,7 @@
 package seedu.vms.storage.vaccination;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,8 +62,8 @@ public class VaxTypeLoader {
      *      JSON file.
      * @throws IOException if an I/O error occurs.
      */
-    public static VaxTypeManager load(String pathString) throws IllegalValueException, IOException {
-        VaxTypeLoader loader = JsonUtil.deserializeFromFile(pathString, VaxTypeLoader.class);
+    public static VaxTypeManager load(Path path) throws IllegalValueException, IOException {
+        VaxTypeLoader loader = JsonUtil.deserializeFromFile(path, VaxTypeLoader.class);
         return loader.toModelType();
     }
 
@@ -81,7 +82,7 @@ public class VaxTypeLoader {
      *
      * @throws IOexception if an I/O error occurs.
      */
-    public void write(String pathString) throws IOException {
-        JsonUtil.serializeToFile(pathString, this);
+    public void write(Path path) throws IOException {
+        JsonUtil.serializeToFile(path, this);
     }
 }

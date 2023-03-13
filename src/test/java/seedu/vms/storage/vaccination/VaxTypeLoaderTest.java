@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -59,7 +60,7 @@ public class VaxTypeLoaderTest {
 
     @Test
     public void load_fileDefaultValues() throws Exception {
-        VaxTypeManager storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_DEFAULT_VALUES);
+        VaxTypeManager storage = VaxTypeLoader.load(Paths.get(TEST_FOLDER_PATH + FILE_DEFAULT_VALUES));
         VaxType vaxType = storage.get(DEFAULT_NAME.getName()).get();
         VaxTestingUtil.assertVaxType(vaxType,
                 DEFAULT_NAME,
@@ -74,7 +75,7 @@ public class VaxTypeLoaderTest {
 
     @Test
     public void load_multipleTypes() throws Exception {
-        VaxTypeManager storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_VALID_MULTIPLE);
+        VaxTypeManager storage = VaxTypeLoader.load(Paths.get(TEST_FOLDER_PATH + FILE_VALID_MULTIPLE));
         VaxType vaxType = storage.get(DEFAULT_NAME.getName()).get();
         VaxTestingUtil.assertVaxType(vaxType,
                 DEFAULT_NAME,
@@ -98,7 +99,7 @@ public class VaxTypeLoaderTest {
 
     @Test
     public void load_emptyList() throws Exception {
-        VaxTypeManager storage = VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_EMPTY);
+        VaxTypeManager storage = VaxTypeLoader.load(Paths.get(TEST_FOLDER_PATH + FILE_EMPTY));
         assertTrue(storage.asUnmodifiableObservableMap().isEmpty());
     }
 
@@ -106,7 +107,7 @@ public class VaxTypeLoaderTest {
     @Test
     void load_fileMissingName_exceptionThrown() throws Exception {
         try {
-            VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_MISSING_NAME);
+            VaxTypeLoader.load(Paths.get(TEST_FOLDER_PATH + FILE_MISSING_NAME));
         } catch (IllegalValueException illValEx) {
             // expected exception
             return;
@@ -117,7 +118,7 @@ public class VaxTypeLoaderTest {
     @Test
     void load_emptyReq_exceptionThrown() throws Exception {
         try {
-            VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_EMPTY_REQ);
+            VaxTypeLoader.load(Paths.get(TEST_FOLDER_PATH + FILE_EMPTY_REQ));
         } catch (IllegalValueException illValEx) {
             // expected exception
             return;
@@ -128,7 +129,7 @@ public class VaxTypeLoaderTest {
     @Test
     void load_missingReq_exceptionThrown() throws Exception {
         try {
-            VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_MISSING_REQ);
+            VaxTypeLoader.load(Paths.get(TEST_FOLDER_PATH + FILE_MISSING_REQ));
         } catch (IllegalValueException illValEx) {
             // expected exception
             return;
@@ -139,7 +140,7 @@ public class VaxTypeLoaderTest {
     @Test
     void load_missingReqType_exceptionThrown() throws Exception {
         try {
-            VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_MISSING_REQ_TYPE);
+            VaxTypeLoader.load(Paths.get(TEST_FOLDER_PATH + FILE_MISSING_REQ_TYPE));
         } catch (IllegalValueException illValEx) {
             // expected exception
             return;
@@ -150,7 +151,7 @@ public class VaxTypeLoaderTest {
     @Test
     void load_nonStringInReqList_exceptionThrown() throws Exception {
         try {
-            VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_NON_STRING_IN_REQ);
+            VaxTypeLoader.load(Paths.get(TEST_FOLDER_PATH + FILE_NON_STRING_IN_REQ));
         } catch (IOException ioEx) {
             // expected exception
             return;
@@ -161,7 +162,7 @@ public class VaxTypeLoaderTest {
     @Test
     void load_unknownReqType_exceptionThrown() throws Exception {
         try {
-            VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_UNKNOWN_REQ_TYPE);
+            VaxTypeLoader.load(Paths.get(TEST_FOLDER_PATH + FILE_UNKNOWN_REQ_TYPE));
         } catch (IOException ioEx) {
             // expected exception
             return;
@@ -172,7 +173,7 @@ public class VaxTypeLoaderTest {
     @Test
     void load_nonJsonFormat_exceptionThrown() throws Exception {
         try {
-            VaxTypeLoader.load(TEST_FOLDER_PATH + FILE_NON_JSON_FORMAT);
+            VaxTypeLoader.load(Paths.get(TEST_FOLDER_PATH + FILE_NON_JSON_FORMAT));
         } catch (IOException ioEx) {
             // expected exception
             return;
@@ -192,8 +193,8 @@ public class VaxTypeLoaderTest {
 
     private void testSaveMethod(VaxTypeManager manager) throws Exception {
         Path saveFile = testFolder.resolve(TEST_SAVE_FILE);
-        VaxTypeLoader.fromModelType(manager).write(saveFile.toString());
-        VaxTypeManager loaded = VaxTypeLoader.load(saveFile.toString());
+        VaxTypeLoader.fromModelType(manager).write(saveFile);
+        VaxTypeManager loaded = VaxTypeLoader.load(saveFile);
         assertEquals(manager.asUnmodifiableObservableMap(), loaded.asUnmodifiableObservableMap());
     }
 }

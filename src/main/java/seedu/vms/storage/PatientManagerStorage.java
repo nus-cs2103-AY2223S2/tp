@@ -2,7 +2,6 @@ package seedu.vms.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 
 import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
@@ -23,12 +22,12 @@ public interface PatientManagerStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyPatientManager> readPatientManager() throws DataConversionException, IOException;
+    ReadOnlyPatientManager readPatientManager() throws IOException;
 
     /**
      * @see #getPatientManagerFilePath()
      */
-    Optional<ReadOnlyPatientManager> readPatientManager(Path filePath) throws DataConversionException, IOException;
+    ReadOnlyPatientManager readPatientManager(Path filePath) throws IOException;
 
     /**
      * Saves the given {@link ReadOnlyPatientManager} to the storage.
