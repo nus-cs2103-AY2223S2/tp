@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Status;
+import seedu.address.model.util.SortByInterviewDate;
 
 
 public class InterviewCommand extends Command {
@@ -21,6 +22,7 @@ public class InterviewCommand extends Command {
      */
     public String getSuccessMessage(Model model) {
         model.updateFilteredPersonList(shortlistedPredicate);
+        model.sortFilteredPersonList(new SortByInterviewDate());
         return MESSAGE_SUCCESS_FORMAT;
     }
 
