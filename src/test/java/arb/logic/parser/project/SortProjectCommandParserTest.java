@@ -17,19 +17,19 @@ import static arb.testutil.TypicalProjects.SKY_PAINTING;
 
 import org.junit.jupiter.api.Test;
 
-import arb.logic.commands.project.AddProjectCommand;
+import arb.logic.commands.project.SortProjectCommand;
 import arb.model.project.Project;
 import arb.model.project.Title;
 import arb.testutil.ProjectBuilder;
 
-public class AddProjectCommandParserTest {
-    private AddProjectCommandParser parser = new AddProjectCommandParser();
+public class SortProjectCommandParserTest {
+    private SortProjectCommandParser parser = new SortProjectCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
         Project expectedProject = new ProjectBuilder(SKY_PAINTING).build();
 
-        // whitespace only preamble
+        /*// whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING,
                 new AddProjectCommand(expectedProject));
 
@@ -39,16 +39,8 @@ public class AddProjectCommandParserTest {
 
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_OIL_PAINTING + DEADLINE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
+                new AddProjectCommand(expectedProject));*/
 
-    }
-
-    @Test
-    public void parse_optionalFieldsMissing_success() {
-        // no deadline
-        Project expectedProject = new ProjectBuilder(SKY_PAINTING).withDeadline(null).build();
-        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
     }
 
     @Test

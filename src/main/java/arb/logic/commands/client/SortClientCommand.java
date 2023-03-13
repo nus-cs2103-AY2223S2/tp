@@ -9,7 +9,7 @@ import arb.model.ListType;
 import arb.model.Model;
 
 /**
- * Sorts all clients in the address book.
+ * Sorts all clients in the address book by name.
  */
 public class SortClientCommand extends Command {
 

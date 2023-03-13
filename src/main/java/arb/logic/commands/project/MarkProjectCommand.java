@@ -1,6 +1,7 @@
 package arb.logic.commands.project;
 
 import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
+import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -53,6 +54,7 @@ public class MarkProjectCommand extends Command {
         model.setProject(projectToMark, projectToMark);
         //projectToMark.markAsDone();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
         return new CommandResult(String.format(MESSAGE_MARK_PROJECT_SUCCESS, projectToMark), ListType.PROJECT);
     }
 

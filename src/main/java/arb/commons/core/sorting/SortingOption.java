@@ -14,6 +14,7 @@ public class SortingOption {
 
     public final static String deadlineSortingOption = "deadline";
     public final static String titleSortingOption = "name";
+
     public static final String MESSAGE_SUCCESS_TITLE = "Sorted all projects by name!";
     public static final String MESSAGE_SUCCESS_DEADLINE = "Sorted all projects by deadline!";
 

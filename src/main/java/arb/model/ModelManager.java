@@ -128,12 +128,14 @@ public class ModelManager implements Model {
     public void addClient(Client client) {
         addressBook.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        updateSortedClientList(CLIENT_NO_COMPARATOR);
     }
 
     @Override
     public void addProject(Project project) {
         addressBook.addProject(project);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        updateSortedProjectList(PROJECT_NO_COMPARATOR);
     }
 
     @Override

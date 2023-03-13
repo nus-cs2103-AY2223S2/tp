@@ -4,6 +4,7 @@ import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
+import static arb.model.Model.CLIENT_NO_COMPARATOR;
 import static arb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static java.util.Objects.requireNonNull;
 
@@ -87,6 +88,7 @@ public class EditClientCommand extends Command {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        model.updateSortedClientList(CLIENT_NO_COMPARATOR);
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient), ListType.CLIENT);
     }
 

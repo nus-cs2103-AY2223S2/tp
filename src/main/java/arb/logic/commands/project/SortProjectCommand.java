@@ -25,9 +25,13 @@ public class SortProjectCommand extends Command {
 
     private final SortingOption sortingOption;
 
+    /**
+     * @param sortingOption to sort the project list with
+     */
     public SortProjectCommand(SortingOption sortingOption) {
         this.sortingOption = sortingOption;
     }
+
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) {
         requireNonNull(model);

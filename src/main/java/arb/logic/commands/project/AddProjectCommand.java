@@ -48,7 +48,6 @@ public class AddProjectCommand extends Command {
         }
 
         model.addProject(toAdd);
-        model.updateSortedProjectList(Model.PROJECT_NO_COMPARATOR);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ListType.PROJECT);
     }
 
