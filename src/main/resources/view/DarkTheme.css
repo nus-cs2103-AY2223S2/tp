@@ -99,20 +99,16 @@
     -fx-padding: 0 0 0 0;
 }
 
-.list-cell:filled:even {
+.list-cell:filled {
     -fx-background-color: white;
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
-}
-
-.list-cell:filled:odd {
-    -fx-background-color: white;
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-text-fill: #000000;
 }
 
 .list-cell:filled:selected {
     -fx-background-color: #006994;
+    -fx-border-color: #7e7e7e;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -127,15 +123,28 @@
     -fx-text-fill: #000000;
 }
 
+.list-cell:filled:selected .cell_big_label {
+    -fx-text-fill: white;
+}
+
 .cell_small_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 15px;
     -fx-text-fill: #000000;
 }
+
+.list-cell:filled:selected .cell_small_label {
+    -fx-text-fill: white;
+}
+
 .cell_small_label_constants {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 15px;
-    -fx-text-fill: #7E7E7E;
+    -fx-text-fill: #7e7e7e;
+}
+
+.list-cell:filled:selected .cell_small_label_constants {
+    -fx-text-fill: #c4bebe;
 }
 
 .stack-pane {
