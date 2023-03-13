@@ -89,7 +89,7 @@ public class EditCommand extends Command {
         Question updatedQuestion = editPersonDescriptor.getName().orElse(cardToEdit.getQuestion());
         Answer updatedAnswer = editPersonDescriptor.getAddress().orElse(cardToEdit.getAnswer());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(cardToEdit.getTags());
-        Deck updatedDeck = editPersonDescriptor.getDeck().orElse(cardToEdit.getDeck());
+        Optional<Deck> updatedDeck = editPersonDescriptor.getDeck().orElse(Optional.of(cardToEdit.getDeck().get()));
 
         return new Card(updatedQuestion, updatedAnswer, updatedTags, updatedDeck);
     }
@@ -120,7 +120,7 @@ public class EditCommand extends Command {
         private Question question;
         private Answer answer;
         private Set<Tag> tags;
-        private Deck deck;
+        private Optional<Deck> deck;
 
         public EditPersonDescriptor() {}
 
@@ -132,6 +132,7 @@ public class EditCommand extends Command {
             setName(toCopy.question);
             setAddress(toCopy.answer);
             setTags(toCopy.tags);
+            setDeck(toCopy.deck);
         }
 
         /**
@@ -156,10 +157,10 @@ public class EditCommand extends Command {
         public Optional<Answer> getAddress() {
             return Optional.ofNullable(answer);
         }
-        public void setDeck(Deck deck) {
+        public void setDeck(Optional<Deck> deck) {
             this.deck = deck;
         }
-        public Optional<Deck> getDeck() {
+        public Optional<Optional<Deck>> getDeck() {
             return Optional.ofNullable(deck);
         }
 

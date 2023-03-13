@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -98,7 +99,7 @@ public interface Model {
     void updateFilteredDeckList(Predicate<Deck> predicate);
 
     /** Returns the deck */
-    Deck getSelectedDeck();
+    Optional<Deck> getSelectedDeck();
 
     void addDeck(Deck deck);
 
@@ -112,6 +113,7 @@ public interface Model {
     void selectDeck(Index idx);
 
     void unselectDeck();
+    String getSelectedDeckName();
 
     void reviewDeck(Index idx);
 

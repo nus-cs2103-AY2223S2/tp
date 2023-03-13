@@ -5,10 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.CardInDeckPredicate;
+import seedu.address.model.deck.Deck;
 
 /**
  * Adds a card to the selected deck.
@@ -43,13 +46,13 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
+        Optional<Deck> selectedDeck = model.getSelectedDeck();
         if (model.hasCard(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CARD);
         }
-
+        toAdd.setDeck(selectedDeck);
         model.addCard(toAdd);
-        model.updateFilteredCardList(new CardInDeckPredicate(model.getSelectedDeck()));
+        model.updateFilteredCardList(new CardInDeckPredicate(model.getSelectedDeck().get()));
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

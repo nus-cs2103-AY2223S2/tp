@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -45,15 +46,12 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command;
-        Deck selectedDeck = this.model.getSelectedDeck();
+        Optional<Deck> selectedDeck = this.model.getSelectedDeck();
         Review currReview = this.model.getReview();
+
         if (currReview != null) {
             command = masterDeckParser.parseCommandWhenReviewing(commandText);
-        } else if (selectedDeck != null) {
-            command = masterDeckParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
-        };
-
-        if (selectedDeck != null) {
+        } else if (selectedDeck.isPresent()) {
             command = masterDeckParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
         } else {
             command = masterDeckParser.parseCommandWhenDeckNotSelected(commandText);

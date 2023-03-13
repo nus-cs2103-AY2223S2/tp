@@ -113,9 +113,8 @@ public class MasterDeck implements ReadOnlyMasterDeck {
      */
     public void initDecks() {
         for (Card card: cards) {
-            if (!decks.contains(card.getDeck())) {
-                System.out.println(card.getDeck().getDeckName());
-                addDeck(card.getDeck());
+            if (!decks.contains(card.getDeck().get())) {
+                addDeck(card.getDeck().get());
             }
         }
     }

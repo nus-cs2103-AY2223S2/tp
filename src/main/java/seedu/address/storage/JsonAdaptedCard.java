@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -51,7 +52,7 @@ class JsonAdaptedCard {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        deck = source.getDeck().deckName;
+        deck = source.getDeck().get().deckName;
     }
 
     /**
@@ -84,7 +85,7 @@ class JsonAdaptedCard {
         final Answer modelAnswer = new Answer(answer);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Deck modelDeck = new Deck(deck);
+        final Optional<Deck> modelDeck = Optional.of(new Deck(deck));
         return new Card(modelQuestion, modelAnswer, modelTags, modelDeck);
     }
 

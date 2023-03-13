@@ -20,7 +20,7 @@ public class CardInDeckPredicate implements Predicate<Card> {
 
     @Override
     public boolean test(Card card) {
-        return deck.isSameDeck(card.getDeck());
+        return deck.isSameDeck(card.getDeck().get());
     }
 
     @Override

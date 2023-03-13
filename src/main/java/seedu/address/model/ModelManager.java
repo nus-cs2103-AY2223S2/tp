@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     private FilteredList<Deck> filteredDecks;
-    private Deck selectedDeck = null; // null when not selected, to switch to Optional<Deck> later on
+    private Optional<Deck> selectedDeck = Optional.empty();
     private Optional<Review> currReview = Optional.empty();
 
     private FilteredList<Card> filteredCards;
@@ -192,7 +192,7 @@ public class ModelManager implements Model {
     @Override
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
-        selectedDeck = filteredDecks.get(zeroBasesIdx);
+        selectedDeck = Optional.of(filteredDecks.get(zeroBasesIdx));
     }
 
     @Override
@@ -202,11 +202,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Deck getSelectedDeck() {
+    public Optional<Deck> getSelectedDeck() {
         return selectedDeck;
     }
 
     @Override
+    public String getSelectedDeckName() {
+        return selectedDeck.get().getDeckName();
+    }
+
+    /**
+     * Starts a new review session based on deckIndex selected
+     * @param deckIndex
+     */
     public void reviewDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         Deck deckToReview = filteredDecks.get(zeroBasesIdx);

@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,22 +21,22 @@ public class SampleDataUtil {
         return new Card[] {
             new Card(new Question("Alex Yeoh"),
                     new Answer("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), new Deck("Default Deck")),
+                getTagSet("friends"), Optional.of(new Deck("Default Deck"))),
             new Card(new Question("Bernice Yu"),
                 new Answer("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), new Deck("Default Deck")),
+                getTagSet("colleagues", "friends"), Optional.of(new Deck("Default Deck"))),
             new Card(new Question("Charlotte Oliveiro"),
                 new Answer("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"), new Deck("Default Deck")),
+                getTagSet("neighbours"), Optional.of(new Deck("Default Deck"))),
             new Card(new Question("David Li"),
                 new Answer("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"), new Deck("Default Deck")),
+                getTagSet("family"), Optional.of(new Deck("Default Deck"))),
             new Card(new Question("Irfan Ibrahim"),
                 new Answer("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates"), new Deck("Default Deck")),
+                getTagSet("classmates"), Optional.of(new Deck("Default Deck"))),
             new Card(new Question("Roy Balakrishnan"),
                 new Answer("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"), new Deck("Default Deck"))
+                getTagSet("colleagues"), Optional.of(new Deck("Default Deck")))
         };
     }
 
