@@ -93,6 +93,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void markEvent(Event target, Event markedEvent) {
+        persons.mark(target, markedEvent);
+    }
+
     //// util methods
 
     @Override

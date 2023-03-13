@@ -4,22 +4,25 @@
     "name" : "Alice Pauline",
     "rate" : "94351253",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ],
     "startTiming": "11-12-2023 02:00",
-    "endTiming": "11-12-2023 10:00"
+    "endTiming": "11-12-2023 10:00",
+    "mark": "[ ]",
+    "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "rate" : "98765432",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ],
     "startTiming": "11-03-2024 12:00",
-    "endTiming": "11-03-2024 17:00"
+    "endTiming": "11-03-2024 17:00",
+    "mark": "[ ]",
+    "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "rate" : "95352563",
     "address" : "wall street",
     "startTiming": "25-01-2023 12:00",
     "endTiming": "26-01-2024 12:00",
+    "mark": "[ ]",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +30,7 @@
     "address" : "10th street",
     "startTiming": "11-03-2024 12:00",
     "endTiming": "11-03-2024 13:00",
+    "mark": "[ ]",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +38,7 @@
     "address" : "michegan ave",
     "startTiming": "11-03-2025 12:00",
     "endTiming": "11-03-2025 17:00",
+    "mark": "[ ]",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +46,7 @@
     "address" : "little tokyo",
     "startTiming": "01-01-2024 12:30",
     "endTiming": "02-01-2024 02:15",
+    "mark": "[ ]",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +54,7 @@
     "address" : "4th street",
     "startTiming": "11-03-2023 23:20",
     "endTiming": "12-03-2023 00:00",
+    "mark": "[ ]",
     "tagged" : [ ]
   } ]
 }

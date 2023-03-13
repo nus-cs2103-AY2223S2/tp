@@ -4,12 +4,14 @@
     "rate": "9482424",
     "address": "4th street",
     "startTiming": "11-03-2023 11:00",
-    "endTiming": "11-03-2023 12:00"
+    "endTiming": "11-03-2023 12:00",
+    "mark": "[ ]"
   }, {
     "name": "Person With Invalid Phone Field",
     "rate": "948asdf2424",
     "address": "4th street",
     "startTiming": "11-03-2023 11:00",
-    "endTiming": "11-03-2023 12:00"
+    "endTiming": "11-03-2023 12:00",
+    "mark": "[ ]"
   } ]
 }

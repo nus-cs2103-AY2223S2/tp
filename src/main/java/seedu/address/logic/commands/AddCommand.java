@@ -26,6 +26,8 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_RATE + "RATE "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TIMING_START + "START_TIME "
+            + PREFIX_TIMING_END + "END_TIME "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "DJ at wedding "

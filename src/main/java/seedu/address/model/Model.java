@@ -79,6 +79,12 @@ public interface Model {
     void deletePerson(Event target);
 
     /**
+     * Marks the given event.
+     * The event must exist in the address book.
+     */
+    void markEvent(Event target, Event markedEvent);
+
+    /**
      * Adds the given contact.
      * {@code contact} must not already exist in the contact list.
      */

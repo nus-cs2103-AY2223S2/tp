@@ -185,6 +185,11 @@ public class AddCommandTest {
         public Rate getRate(Event event) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void markEvent(Event target, Event markedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

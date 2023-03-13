@@ -17,12 +17,13 @@ public class Event {
 
     // Identity fields
     private final Name name;
-    private final Rate rate;
 
     // Data fields
+    private final Rate rate;
     private final Address address;
     private final Timing timing;
     private final Set<Tag> tags = new HashSet<>();
+    private Mark mark;
 
     /**
      * Every field must be present and not null.
@@ -34,6 +35,7 @@ public class Event {
         this.address = address;
         this.timing = timing;
         this.tags.addAll(tags);
+        this.mark = new Mark();
     }
 
     public Name getName() {
@@ -51,6 +53,10 @@ public class Event {
         return timing;
     }
 
+    public Mark getMark() {
+        return mark;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -60,7 +66,14 @@ public class Event {
     }
 
     /**
-     * Returns true if both events have the same name.
+     * Marks event as done.
+     */
+    public void mark() {
+        mark.setDone();
+    }
+
+    /**
+     * Returns true if both events have the same name and the same timing.
      * This defines a weaker notion of equality between two events.
      */
     public boolean isSameEvent(Event otherEvent) {
@@ -69,7 +82,8 @@ public class Event {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName());
+                && otherEvent.getName().equals(getName())
+                && otherEvent.getTiming().equals(getTiming());
     }
 
     /**
@@ -91,13 +105,14 @@ public class Event {
                 && otherEvent.getRate().equals(getRate())
                 && otherEvent.getAddress().equals(getAddress())
                 && otherEvent.getTiming().equals(getTiming())
+                && otherEvent.getMark().equals(getMark())
                 && otherEvent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, rate, address, timing, tags);
+        return Objects.hash(name, rate, address, timing, mark, tags);
     }
 
     @Override
@@ -109,7 +124,9 @@ public class Event {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Timing: ")
-                .append(getTiming());
+                .append(getTiming())
+                .append("; Mark: ")
+                .append(getMark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

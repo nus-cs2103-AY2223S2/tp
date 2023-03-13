@@ -40,6 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_END_TIME_AMY = "11-03-2023 12:00";
     public static final String VALID_START_TIME_BOB = "04-04-2023 11:00";
     public static final String VALID_END_TIME_BOB = "04-05-2023 13:00";
+    public static final String VALID_MARK_AMY = "[ ]";
+    public static final String VALID_MARK_BOB = "[ ]";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 

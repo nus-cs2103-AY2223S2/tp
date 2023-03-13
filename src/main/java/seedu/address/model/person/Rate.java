@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Represents an Event's rate in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRate(String)}
  */
 public class Rate {
 
@@ -14,9 +14,9 @@ public class Rate {
     public final double value;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Rate}.
      *
-     * @param name A valid name.
+     * @param value A valid rate.
      */
     public Rate(String value) {
         requireNonNull(value);
