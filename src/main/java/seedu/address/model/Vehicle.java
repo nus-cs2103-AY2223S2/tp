@@ -46,7 +46,6 @@ public class Vehicle {
         this.color = color;
         this.brand = brand;
         this.type = type;
-        this.services = new ArrayList<>();
     }
 
     /**
@@ -194,7 +193,7 @@ public class Vehicle {
                 .append(String.format("%nColor: %s", this.getColor()))
                 .append(String.format("%nBrand: %s", this.getBrand()))
                 .append(String.format("%nType: %s", this.getType()))
-                .append(String.format("%nServices Required: %n%s", StringUtil.indent(this.getServices().toString(), 2)))
+                .append(String.format("%nServices Required: %n%s", StringUtil.indent(this.getServiceIds().toString(), 2)))
                 .toString();
     }
 }

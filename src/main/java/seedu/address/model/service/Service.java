@@ -26,7 +26,7 @@ public class Service {
      *
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      */
-    public Service(int estimatedDaysRequired) {
+    public Service(int id, int estimatedDaysRequired) {
         this.id = id;
         entryDate = LocalDate.now();
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
@@ -40,9 +40,8 @@ public class Service {
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      * @param assignedToIds The list of staffs ids that this service is assigned to.
      */
-    public Service(int id, Vehicle vehicle, int estimatedDaysRequired, Set<Integer> assignedToIds) {
+    public Service(int id, int estimatedDaysRequired, Set<Integer> assignedToIds) {
         this.id = id;
-        this.vehicle = vehicle;
         entryDate = LocalDate.now();
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
         requiredParts = new ArrayList<Part>();
@@ -53,8 +52,8 @@ public class Service {
      * This method is the constructor for a Service.
      * By default, this method estimates the amount of time needed to be 7 whole days (not working days).
      */
-    public Service(int id, Vehicle vehicle) {
-        this(id, vehicle, 7);
+    public Service(int id) {
+        this(id, 7);
     }
 
     /**
@@ -218,8 +217,8 @@ public class Service {
         if (parts.length() > 0) {
             parts = parts.substring(1);
         }
-        String technicians = this.getAssignedTechnicians().stream()
-                .map(Objects::toString)
+        String technicians = this.getAssignedToIds().stream()
+                .map(Object::toString)
                 .reduce("", (a, b) -> a + "\n" + b);
         if (technicians.length() > 0) {
             technicians = technicians.substring(1);
