@@ -116,8 +116,6 @@
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
@@ -346,8 +344,8 @@
 }
 
 #tags {
-    -fx-hgap: 15;
-    -fx-vgap: 15;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
 }
 
 #tags .label {
@@ -356,7 +354,7 @@
     -fx-padding: 2 4 2 4;
     -fx-border-radius: 4;
     -fx-background-radius: 4;
-    -fx-font-size: 13;
+    -fx-font-size: 11;
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
 }
