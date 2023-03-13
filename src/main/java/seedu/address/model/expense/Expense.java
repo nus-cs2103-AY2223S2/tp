@@ -8,7 +8,6 @@ import seedu.address.model.category.Category;
  * Represents an Expense in the address book.
  * Guarantees: details are present and not null, field values are validated,
  * immutable.
- * 
  * @author shirsho-12
  * @version 1.0
  */
@@ -24,7 +23,6 @@ public class Expense {
 
     /**
      * Constructor for Expense class.
-     * 
      * @param name     Name of the expense
      * @param amount   Amount of the expense
      * @param date     Date of the expense

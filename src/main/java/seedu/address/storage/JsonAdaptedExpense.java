@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
-import seedu.address.model.expense.Expense;;
+import seedu.address.model.expense.Expense;
 
 /**
  * Jackson-friendly version of {@link Expense}.
@@ -56,9 +56,11 @@ public class JsonAdaptedExpense {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Expense} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Expense} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Expense toModelType() throws IllegalValueException {
         if (name == null) {

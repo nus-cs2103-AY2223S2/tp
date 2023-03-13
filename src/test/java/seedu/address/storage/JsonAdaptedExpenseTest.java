@@ -36,7 +36,8 @@ public class JsonAdaptedExpenseTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedExpense expense = new JsonAdaptedExpense(
                 new Expense(INVALID_NAME, VALID_AMOUNT, VALID_DATE, VALID_CATEGORY));
-        String expectedMessage = "Name should only contain alphanumeric characters and spaces, and it should not be blank";
+        String expectedMessage = "Name should only contain alphanumeric"
+                + "characters and spaces, and it should not be blank";
         assertThrows(IllegalValueException.class, expectedMessage, expense::toModelType);
     }
 
@@ -60,7 +61,8 @@ public class JsonAdaptedExpenseTest {
     public void toModelType_invalidCategory_throwsIllegalValueException() {
         JsonAdaptedExpense expense = new JsonAdaptedExpense(
                 new Expense(VALID_NAME, VALID_AMOUNT, VALID_DATE, INVALID_CATEGORY));
-        String expectedMessage = "Category should only contain alphanumeric characters and spaces, and it should not be blank";
+        String expectedMessage = "Category should only contain alphanumeric"
+                + "characters and spaces, and it should not be blank";
         assertThrows(IllegalValueException.class, expectedMessage, expense::toModelType);
     }
 

@@ -10,7 +10,15 @@ public abstract class Category {
 
     protected String categoryName;
     protected String description;
-
+    /**
+     * Constructor for Category class.
+     * @param categoryName Name of the category
+     * @param description Description of the category
+     */
+    public Category(String categoryName, String description) {
+        this.categoryName = categoryName;
+        this.description = description;
+    }
     public String getCategoryName() {
         return this.categoryName;
     };
@@ -18,11 +26,6 @@ public abstract class Category {
     public String getDescription() {
         return this.description;
     };
-
-    public Category(String categoryName, String description) {
-        this.categoryName = categoryName;
-        this.description = description;
-    }
 
     @Override
     public String toString() {
