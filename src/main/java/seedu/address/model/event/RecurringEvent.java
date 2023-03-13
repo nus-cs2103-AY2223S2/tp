@@ -53,6 +53,14 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
     }
 
     /**
+     * Gets the day that the event takes place
+     * @return the dayOfWeek
+     */
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    /**
      * Get the value for the day of the week
      * 0, 1, 2, 3, 4, 5, 6 stands for Monday, Tuesday, Wednesday, Thursday, Friday,
      * Saturday and Sunday respectively
@@ -125,7 +133,7 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
             count++;
         }
 
-        if (!isDayBetweenPeriod && count != 0) {
+        if (!isDayBetweenPeriod && !eventDay.equals(this.dayOfWeek)) {
             //day does not fall between start and end day. E.g. FRIDAY does not fall between MONDAY and Thursday
             return false;
         }

@@ -11,6 +11,10 @@ import seedu.address.model.event.exceptions.EventNotFoundException;
 public class IsolatedEventList {
     private final TreeSet<IsolatedEvent> isolatedEvents = new TreeSet<>();
 
+    public TreeSet<IsolatedEvent> getIsolatedEvents() {
+        return isolatedEvents;
+    }
+
     /**
      * Insert the isolated event object into the isolated event list.
      * @param newEvent to be inserted.

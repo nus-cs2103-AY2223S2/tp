@@ -12,6 +12,11 @@ public class RecurringEventList {
     public void insert(RecurringEvent newEvent) {
         this.recurringEvents.add(newEvent);
     }
+
+    public TreeSet<RecurringEvent> getRecurringEvents() {
+        return recurringEvents;
+    }
+
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
