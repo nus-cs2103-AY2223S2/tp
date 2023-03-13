@@ -99,7 +99,7 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> eventIndexTags} into a {@code Set<Index>}.
      */
-    public static Set<Index> parseEventIndexTags(Collection<String> eventIndexTags) throws ParseException {
+    public static Set<Index> parseEventIndex(Collection<String> eventIndexTags) throws ParseException {
         requireNonNull(eventIndexTags);
         final Set<Index> tagSet = new HashSet<>();
         for (String indexTag : eventIndexTags) {

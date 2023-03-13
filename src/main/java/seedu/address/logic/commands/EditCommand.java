@@ -99,10 +99,9 @@ public class EditCommand extends Command {
 
 
     /**
-     * Creates and returns a {@code Person} with the updated Tag changes
-     * Adds additional tags to the person to be edited if tags are edited
-     * Clear all tags of the person to be edited if only prefix_event_tag is present without the event index
-     * Keep the tags unchanged if prefix_event_tag is not present in edit command
+     * Creates and returns a {@code Person} with the updated Event Set changes
+     * Adds additional events to the person to be edited if event set is edited
+     * Clear all events of the person to be edited if only prefix_event_set is present without the event index
      */
     public Person handleIndexChange(Set<Index> updatedEventIndex, Set<Event> originalEventSet, Person editedPerson,
                                 List<Event> lastShownEventList) throws CommandException {

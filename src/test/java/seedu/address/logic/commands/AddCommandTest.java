@@ -60,7 +60,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validPerson, INDEX_SET_FIRST_EVENT).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS_ADD_EVENT, validPerson),
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }

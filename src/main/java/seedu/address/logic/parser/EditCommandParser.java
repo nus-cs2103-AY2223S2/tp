@@ -79,8 +79,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (index.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = index.size() == 1 && index.contains("") ? Collections.emptySet() : index;
-        return Optional.of(ParserUtil.parseEventIndexTags(tagSet));
+        Collection<String>indexSet = index.size() == 1 && index.contains("") ? Collections.emptySet() : index;
+        return Optional.of(ParserUtil.parseEventIndex(indexSet));
     }
 
     /**
@@ -92,7 +92,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (event.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = event.size() == 1 && event.contains("") ? Collections.emptySet() : event;
         return Optional.of(new HashSet<>());
     }
 }

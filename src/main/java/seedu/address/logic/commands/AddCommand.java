@@ -42,7 +42,6 @@ public class AddCommand extends Command {
             + PREFIX_EVENT_SET + " 2";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_SUCCESS_ADD_EVENT = "New person added : %1$s to the event";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
@@ -79,7 +78,7 @@ public class AddCommand extends Command {
             Person personWithEvent = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(),
                     toAdd.getAddress(), eventSet);
             model.addPerson(personWithEvent);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_ADD_EVENT, personWithEvent));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, personWithEvent));
         } else {
             model.addPerson(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
