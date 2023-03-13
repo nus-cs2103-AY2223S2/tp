@@ -59,9 +59,6 @@ public class Card {
     public void setDeck(Optional<Deck> newDeck) {
         this.deck = newDeck;
     }
-    public String getDeckName() {
-        return this.deck.get().getDeckName();
-    }
 
     /**
      * Returns true if both persons have the same question.
