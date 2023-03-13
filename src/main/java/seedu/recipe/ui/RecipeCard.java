@@ -48,7 +48,7 @@ public class RecipeCard extends UiPart<Region> {
         super(FXML);
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
-        name.setText(recipe.getName().fullName);
+        name.setText(recipe.getName().recipeName);
         ingredient.setText(recipe.getIngredient().value);
         address.setText(recipe.getAddress().value);
         email.setText(recipe.getEmail().value);

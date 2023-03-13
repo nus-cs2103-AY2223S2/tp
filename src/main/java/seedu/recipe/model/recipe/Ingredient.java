@@ -4,11 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.recipe.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Recipe's phone number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ * Represents a recipe's ingredient in the recipe book.
  */
 public class Ingredient {
-
 
     public static final String MESSAGE_CONSTRAINTS =
             "Ingredient numbers should only contain numbers, and it should be at least 3 digits long";

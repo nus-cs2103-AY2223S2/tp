@@ -50,7 +50,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Recipe} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Recipe source) {
-        name = source.getName().fullName;
+        name = source.getName().recipeName;
         phone = source.getIngredient().value;
         email = source.getEmail().value;
         address = source.getAddress().value;

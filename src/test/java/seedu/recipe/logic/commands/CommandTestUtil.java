@@ -119,7 +119,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredRecipeList().size());
 
         Recipe recipe = model.getFilteredRecipeList().get(targetIndex.getZeroBased());
-        final String[] splitName = recipe.getName().fullName.split("\\s+");
+        final String[] splitName = recipe.getName().recipeName.split("\\s+");
         model.updateFilteredRecipeList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredRecipeList().size());

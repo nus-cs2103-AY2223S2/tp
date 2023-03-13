@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.recipe.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Recipe's name in the address book.
+ * Represents a Recipe's name in the recipe book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
@@ -18,7 +18,7 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    public final String recipeName;
 
     /**
      * Constructs a {@code Name}.
@@ -28,7 +28,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        recipeName = name;
     }
 
     /**
@@ -41,19 +41,19 @@ public class Name {
 
     @Override
     public String toString() {
-        return fullName;
+        return recipeName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                && recipeName.equals(((Name) other).recipeName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return recipeName.hashCode();
     }
 
 }
