@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
 
+    private final VersionedAddressBook versionedAddressBook;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -33,6 +34,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        versionedAddressBook = new VersionedAddressBook(this.addressBook);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
     }
 
@@ -80,6 +82,16 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        commit();
+    }
+
+    /**
+     * Overload
+     * This version doesn't do commit
+     * @param addressBook
+     */
+    public void setAddressBook(AddressBook addressBook) {
+        this.addressBook.resetData(addressBook.clone());
     }
 
     @Override
@@ -93,15 +105,46 @@ public class ModelManager implements Model {
         return addressBook.hasClient(client);
     }
 
+    //=========== Versioned Address Book =====================================================================
+    public void commit() {
+        versionedAddressBook.commit(addressBook);
+    }
+
+    public boolean canUndo() {
+        return versionedAddressBook.canUndo();
+    }
+
+    public boolean canRedo() {
+        return versionedAddressBook.canRedo();
+    }
+
+    /**
+     * Undo and checkout the version of AddressBook that we want
+     */
+    public void undo() {
+        AddressBook ab = versionedAddressBook.undo();
+        setAddressBook(ab);
+    }
+
+    /**
+     * Redo and checkout the version of AddressBook that we want
+     */
+    public void redo() {
+        AddressBook ab = versionedAddressBook.redo();
+        setAddressBook(ab);
+    }
+
     @Override
     public void deleteClient(Client target) {
         addressBook.removeClient(target);
+        commit();
     }
 
     @Override
     public void addClient(Client client) {
         addressBook.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        commit();
     }
 
     @Override
@@ -109,6 +152,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedClient);
 
         addressBook.setClient(target, editedClient);
+        commit();
     }
 
     //=========== Filtered Client List Accessors =============================================================
