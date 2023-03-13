@@ -81,6 +81,8 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        // invalid tag
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
         // invalid company name
         assertParseFailure(parser, "1" + INVALID_COMPANY_NAME_DESC, CompanyName.MESSAGE_CONSTRAINTS);
         // invalid role
@@ -89,12 +91,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_STATUS_DESC, Status.MESSAGE_CONSTRAINTS);
         // invalid date
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS);
-        // invalid tag
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
-
         // invalid role followed by valid status
         assertParseFailure(parser, "1" + INVALID_ROLE_DESC + STATUS_DESC_APPLE, Role.MESSAGE_CONSTRAINTS);
-
         // valid role followed by invalid role. The test case for invalid role followed by valid role
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + ROLE_DESC_GOOGLE + INVALID_ROLE_DESC, Role.MESSAGE_CONSTRAINTS);

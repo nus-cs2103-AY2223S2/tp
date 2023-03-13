@@ -56,9 +56,8 @@ public class CommandTestUtil {
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "pending";
     // invalid date format where dates have to be yyyy-MM-dd
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "23-02-02";
-    // '*' not allowed in tags
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "front*";
-
+    // tag more than 30 characters
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

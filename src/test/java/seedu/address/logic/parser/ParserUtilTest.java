@@ -25,7 +25,7 @@ public class ParserUtilTest {
     private static final String INVALID_ROLE = "i@S Developer";
     private static final String INVALID_STATUS = "pending";
     private static final String INVALID_DATE = "23-02-01";
-    private static final String INVALID_TAG = "#front";
+    private static final String INVALID_TAG = " ";
 
     private static final String VALID_COMPANY_NAME = "Apple";
     private static final String VALID_ROLE = "iOS Developer";

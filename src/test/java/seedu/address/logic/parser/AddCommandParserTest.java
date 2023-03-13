@@ -127,7 +127,7 @@ public class AddCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
-                + DATE_DESC_GOOGLE + INVALID_TAG_DESC + VALID_TAG_FRONT, Tag.MESSAGE_CONSTRAINTS);
+                + DATE_DESC_GOOGLE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_COMPANY_NAME_DESC + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE

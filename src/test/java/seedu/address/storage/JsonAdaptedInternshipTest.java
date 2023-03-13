@@ -22,7 +22,7 @@ public class JsonAdaptedInternshipTest {
     private static final String INVALID_ROLE = "Software E!gineer";
     private static final String INVALID_STATUS = " ";
     private static final String INVALID_DATE = "1st March 2023";
-    private static final String INVALID_TAG = "#front";
+    private static final String INVALID_TAG = "";
 
     private static final String VALID_COMPANY_NAME = GOOGLE.getCompanyName().toString();
     private static final String VALID_ROLE = GOOGLE.getRole().toString();
@@ -110,5 +110,4 @@ public class JsonAdaptedInternshipTest {
                 new JsonAdaptedInternship(VALID_COMPANY_NAME, VALID_ROLE, VALID_STATUS, VALID_DATE, invalidTags);
         assertThrows(IllegalValueException.class, internship::toModelType);
     }
-
 }
