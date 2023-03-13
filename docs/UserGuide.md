@@ -27,7 +27,7 @@ MyLib is a **desktop app for managing bookmarks, optimized for use via a Command
 
    * `list` : Lists all Bookmarks.
 
-   * `add n/The Odyssey a/Homer s/Reading g/Epic poetry t/Literature class readings` : Adds a bookmark for the book `The Odessey` to the Library.
+   * `add n/The Odyssey a/Homer p/Reading g/Epic poetry t/Literature class readings` : Adds a bookmark for the book `The Odessey` to the Library.
 
    * `delete 3` : Deletes the 3rd Bookmark shown in the current list.
 
@@ -78,15 +78,15 @@ Format: `help`
 
 Adds a bookmark to the library.
 
-Format: `add n/TITLE a/AUTHOR s/STATUS g/GENRE [t/TAG]…​`
+Format: `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/Hobbit a/J. R. R. Tolkien s/Finished g/Fantasy`
-* `add n/The Odyssey a/Homer s/Reading g/Epic poetry n/Literature class readings`
+* `add n/Hobbit a/J. R. R. Tolkien p/Finished g/Fantasy`
+* `add n/The Odyssey a/Homer p/Reading g/Epic poetry n/Literature class readings`
 
 ### Listing all bookmarks : `list`
 
@@ -98,7 +98,7 @@ Format: `list`
 
 Edits an existing bookmark in the library.
 
-Format: `edit INDEX [n/TITLE] [a/AUTHOR] [s/STATUS] [g/GENRE] [t/TAG]…​`
+Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [t/TAG]…​`
 
 * Edits the bookmark at the specified `INDEX`. The index refers to the index number shown in the displayed bookmark list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -184,10 +184,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/TITLE a/AUTHOR s/STATUS g/GENRE [t/TAG]…​` <br> e.g., `add n/The Odyssey a/Homer s/Reading g/Epic poetry t/Literature class readings`
+**Add** | `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE [t/TAG]…​` <br> e.g., `add n/The Odyssey a/Homer p/Reading g/Epic poetry t/Literature class readings`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/TITLE] [a/AUTHOR] [s/STATUS] [g/GENRE] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
+**Edit** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chainsaw Man`
 **List** | `list`
 **Help** | `help`
