@@ -190,7 +190,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            internshipInfoPanel.updateInfoPanel(null);
+            internshipInfoPanel.updateInfoPanel(commandResult.getInternship());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
