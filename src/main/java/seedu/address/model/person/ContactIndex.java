@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import seedu.address.model.person.exceptions.InvalidContactIndexException;
-
 import java.util.Objects;
+
+import seedu.address.model.person.exceptions.InvalidContactIndexException;
 
 /**
  * Represents the index of the person in EduMate

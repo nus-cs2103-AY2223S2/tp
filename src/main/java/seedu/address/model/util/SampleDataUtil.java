@@ -17,7 +17,14 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
@@ -106,10 +113,10 @@ public class SampleDataUtil {
     private static Person getSamplePerson(String personData) {
         List<String> personDataList = Stream.of(personData.split("\\|"))
                 .map(String::trim)
-                .limit(7) // Maximum of 7 fields
+                .limit(8) // Maximum of 8 fields
                 .collect(Collectors.toList());
 
-        if (personDataList.size() != 7) {
+        if (personDataList.size() != 8) {
             return null;
         }
 

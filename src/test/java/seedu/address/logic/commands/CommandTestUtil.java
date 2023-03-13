@@ -83,11 +83,13 @@ public class CommandTestUtil {
         DESC_ALEX = new EditPersonDescriptorBuilder().withName(NAME_ALEX)
                 .withPhone(PHONE_ALEX).withEmail(EMAIL_ALEX).withAddress(ADDRESS_ALEX)
                 .withTelegramHandle(TELEGRAM_HANDLE_ALEX)
+                .withContactIndex(INDEX_ALEX)
                 .withGroupTags(VALID_GROUP_2)
                 .withModuleTags(VALID_MODULE_1, VALID_MODULE_2).build();
         DESC_BEN = new EditPersonDescriptorBuilder().withName(NAME_BEN)
                 .withPhone(PHONE_BEN).withEmail(EMAIL_BEN)
                 .withAddress(ADDRESS_BEN)
+                .withContactIndex(INDEX_BEN)
                 .withTelegramHandle(TELEGRAM_HANDLE_BEN)
                 .withGroupTags(VALID_GROUP_1, VALID_GROUP_2)
                 .withModuleTags(VALID_MODULE_2).build();

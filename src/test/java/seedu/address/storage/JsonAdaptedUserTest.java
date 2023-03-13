@@ -62,8 +62,7 @@ public class JsonAdaptedUserTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedUser user = new JsonAdaptedUser(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_TELEGRAM_HANDLE,VALID_CONTACT_INDEX,
-                VALID_TAGS, VALID_MODULE_TAGS);
+                VALID_TELEGRAM_HANDLE, VALID_CONTACT_INDEX, VALID_TAGS, VALID_MODULE_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, user::toModelType);
     }
@@ -72,8 +71,7 @@ public class JsonAdaptedUserTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedUser user =
                 new JsonAdaptedUser(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_TELEGRAM_HANDLE,VALID_CONTACT_INDEX,
-                        VALID_TAGS, VALID_MODULE_TAGS);
+                        VALID_TELEGRAM_HANDLE, VALID_CONTACT_INDEX, VALID_TAGS, VALID_MODULE_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, user::toModelType);
     }
@@ -81,8 +79,7 @@ public class JsonAdaptedUserTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedUser user = new JsonAdaptedUser(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
-                VALID_TELEGRAM_HANDLE,VALID_CONTACT_INDEX,
-                VALID_TAGS, VALID_MODULE_TAGS);
+                VALID_TELEGRAM_HANDLE, VALID_CONTACT_INDEX, VALID_TAGS, VALID_MODULE_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, user::toModelType);
     }
@@ -91,8 +88,7 @@ public class JsonAdaptedUserTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedUser user =
                 new JsonAdaptedUser(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS,
-                        VALID_TELEGRAM_HANDLE,VALID_CONTACT_INDEX,
-                        VALID_TAGS, VALID_MODULE_TAGS);
+                        VALID_TELEGRAM_HANDLE, VALID_CONTACT_INDEX, VALID_TAGS, VALID_MODULE_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, user::toModelType);
     }
@@ -100,8 +96,7 @@ public class JsonAdaptedUserTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedUser user = new JsonAdaptedUser(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
-                VALID_TELEGRAM_HANDLE,VALID_CONTACT_INDEX,
-                VALID_TAGS, VALID_MODULE_TAGS);
+                VALID_TELEGRAM_HANDLE, VALID_CONTACT_INDEX, VALID_TAGS, VALID_MODULE_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, user::toModelType);
     }
@@ -110,8 +105,7 @@ public class JsonAdaptedUserTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedUser user =
                 new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                        VALID_TELEGRAM_HANDLE, VALID_CONTACT_INDEX,
-                        VALID_TAGS, VALID_MODULE_TAGS);
+                        VALID_TELEGRAM_HANDLE, VALID_CONTACT_INDEX, VALID_TAGS, VALID_MODULE_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, user::toModelType);
     }

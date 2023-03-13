@@ -9,11 +9,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
-import javax.imageio.stream.MemoryCacheImageInputStream;
 
 /**
  * Jackson-friendly version of {@link User}.
@@ -99,11 +104,11 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
         }
         final TelegramHandle modelTelegramHandle = new TelegramHandle(telegramHandle);
 
-        if (contactIndex == null) {
+        if (index == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ContactIndex.class.getSimpleName()));
         }
-        final ContactIndex modelContactIndex = new ContactIndex(contactIndex);
+        final ContactIndex modelContactIndex = new ContactIndex(index);
         final Set<GroupTag> modelGroupTags = new HashSet<>(userGroupTags);
         final Set<ModuleTag> modelModuleTags = new HashSet<>(userModuleTags);
         return new User(modelName, modelPhone, modelEmail,

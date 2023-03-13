@@ -58,6 +58,7 @@ public class EduMateParserTest {
         String commandString = EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor);
+        System.out.println(commandString);
         EditCommand command = (EditCommand) parser.parseCommand(commandString);
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }

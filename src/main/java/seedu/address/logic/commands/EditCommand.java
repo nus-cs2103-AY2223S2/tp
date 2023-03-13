@@ -15,7 +15,14 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
@@ -128,7 +135,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        ContactIndex unchangedContactIndex = editPersonDescriptor.getContactIndex();
+        ContactIndex unchangedContactIndex = personToEdit.getContactIndex();
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
                 .orElse(personToEdit.getTelegramHandle());
@@ -316,7 +323,6 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getContactIndex().equals(e.getContactIndex())
                     && getAddress().equals(e.getAddress())
                     && getTelegramHandle().equals(e.getTelegramHandle())
                     && getGroupTags().equals(e.getGroupTags())
