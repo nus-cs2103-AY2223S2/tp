@@ -183,7 +183,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public List<Task> getFilteredTaskList() {
+        public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called");
         }
     }

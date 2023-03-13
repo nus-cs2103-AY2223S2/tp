@@ -140,8 +140,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param personIndex
      */
     public void assignTask(Index taskIndex, Index personIndex) {
-        tasks.assignTask(taskIndex, personIndex);
+        String personName = persons.getPerson(personIndex).getName().toString();
+        tasks.assignTask(taskIndex, personIndex, personName);
     }
+
+
 
     /**
      * Removes {@code key} from this {@code AddressBook}.

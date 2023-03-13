@@ -171,7 +171,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<Task> getFilteredTaskList() {
+    public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
     }
 

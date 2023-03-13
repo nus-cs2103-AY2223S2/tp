@@ -125,5 +125,5 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    List<Task> getFilteredTaskList();
+    ObservableList<Task> getFilteredTaskList();
 }

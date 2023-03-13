@@ -15,7 +15,7 @@ public class DeadlineTask extends Task {
      * @param date The date of the event.
      */
     public DeadlineTask(TaskDescription description, Date date) {
-        super(description);
+        super(description, date);
         this.deadlineDate = date;
     }
 

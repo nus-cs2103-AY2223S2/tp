@@ -98,6 +98,10 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
+    public Person getPerson(Index personIndex) {
+        return internalList.get(personIndex.getZeroBased());
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
