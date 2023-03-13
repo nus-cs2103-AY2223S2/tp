@@ -59,4 +59,44 @@ class IsolatedEventListTest {
         assertFalse(isolatedEventList.contain(new IsolatedEventStub("sleep", TWO_O_CLOCK_VALID,
                 THREE_O_CLOCK_VALID)));
     }
+
+    @Test
+    void deleteIsolatedEvent() {
+        IsolatedEvent event = new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID);
+        isolatedEventList.insert(event);
+        assertTrue(isolatedEventList.contain(event));
+        isolatedEventList.deleteIsolatedEvent(event);
+        assertFalse(isolatedEventList.contain(event));
+    }
+
+    @Test
+    void getIsolatedEvent() {
+        isolatedEventList.insert(new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Skiing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Canoeing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+
+        assertEquals("Biking from: 09/03/2023 14:00 to: 09/03/2023 15:00",
+                isolatedEventList.getIsolatedEvent(0).toString());
+
+        assertEquals("Canoeing from: 09/03/2023 14:00 to: 09/03/2023 15:00",
+                isolatedEventList.getIsolatedEvent(1).toString());
+
+        assertEquals("Skiing from: 09/03/2023 14:00 to: 09/03/2023 15:00",
+                isolatedEventList.getIsolatedEvent(2).toString());
+    }
+
+    @Test
+    void edit() {
+        IsolatedEvent event = new IsolatedEventStub("Skiing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID);
+        isolatedEventList.insert(event);
+        IsolatedEvent editedEvent = new IsolatedEventStub("Canoeing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID);
+        isolatedEventList.edit(event, editedEvent);
+        assertEquals(isolatedEventList.getIsolatedEvent(0).toString(), editedEvent.toString());
+    }
 }

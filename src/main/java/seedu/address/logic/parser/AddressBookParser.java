@@ -8,15 +8,20 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddIsolatedEventCommand;
+import seedu.address.logic.commands.AddRecurringEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteIsolatedEventCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditIsolatedEventCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.group.GroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.group.GroupCommandParser;
 
 /**
  * Parses user input.
@@ -69,8 +74,21 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case AddRecurringEventCommand.COMMAND_WORD:
+            return new AddRecurringEventCommandParser().parse(arguments);
+
         case AddIsolatedEventCommand.COMMAND_WORD:
             return new IsolatedEventCommandParser().parse(arguments);
+
+        case DeleteIsolatedEventCommand.COMMAND_WORD:
+            return new DeleteIsolatedEventParser().parse(arguments);
+
+        case EditIsolatedEventCommand.COMMAND_WORD:
+            return new EditIsolatedEventCommandParser().parse(arguments);
+
+        case GroupCommand.COMMAND_WORD:
+            return new GroupCommandParser().parse(arguments);
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

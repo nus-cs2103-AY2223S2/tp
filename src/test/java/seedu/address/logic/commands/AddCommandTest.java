@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -171,12 +172,38 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Group> getFilteredGroupList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public void addRecurringEvent(Person personToEdit, RecurringEvent eventToAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredGroupList(Predicate<Group> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addIsolatedEvent(Person index, IsolatedEvent eventToAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent,
+                                     IsolatedEvent editedIsolatedEvent) {
             throw new AssertionError("This method should not be called.");
         }
     }

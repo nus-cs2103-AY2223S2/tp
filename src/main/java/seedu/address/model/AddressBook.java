@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Person;
@@ -44,8 +46,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
-
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
@@ -61,6 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setGroups(newData.getGroupList());
     }
 
     //// person-level operations
@@ -88,6 +89,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addIsolatedEvent(Person person, IsolatedEvent event) {
         person.addIsolatedEvent(event);
+    }
+
+    public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
+        personToEdit.getIsolatedEventList().deleteIsolatedEvent(event);
+    }
+
+    public void setIsolatedEvent(Person person, IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
+        requireNonNull(editedEvent);
+        person.getIsolatedEventList().edit(originalEvent, editedEvent);
+    }
+
+    public void addRecurringEvent(Person person, RecurringEvent event) {
+        person.addRecurringEvent(event);
     }
 
     /**
@@ -148,6 +162,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the group list with {@code groups}.
+     * {@code groups} must not contain duplicate groups.
+     */
+    public void setGroups(List<Group> groups) {
+        this.groups.setGroups(groups);
+    }
+
+    /**
      * Returns true if a group with the same group name as {@code group} exists in the address book.
      */
     public boolean hasGroup(Group group) {
@@ -159,7 +181,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().size() + " persons"
+                + ", " + groups.asUnmodifiableObservableList().size() + " groups";
         // TODO: refine later
     }
 
@@ -169,14 +192,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Group> getGroupList() {
+        return groups.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && groups.equals(((AddressBook) other).groups));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(persons, groups);
     }
+
 }

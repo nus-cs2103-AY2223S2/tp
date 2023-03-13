@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class AddIsolatedEventCommand extends Command {
     public static final String COMMAND_WORD = "event_create";
-    public static final String MESSAGE_SUCCESS = "New isolated event added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New recurring event added: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add an isolated event into the isolated event list"
@@ -35,6 +35,8 @@ public class AddIsolatedEventCommand extends Command {
      * @param eventToAdd
      */
     public AddIsolatedEventCommand(Index index, IsolatedEvent eventToAdd) {
+        requireNonNull(index);
+        requireNonNull(eventToAdd);
         this.eventToAdd = eventToAdd;
         this.index = index;
     }

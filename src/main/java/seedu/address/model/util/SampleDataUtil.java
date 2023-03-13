@@ -48,10 +48,20 @@ public class SampleDataUtil {
         };
     }
 
+    public static Group[] getSampleGroups() {
+        return new Group[] {
+            new Group("Friends"),
+            new Group("CS2103")
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Group sampleGroup : getSampleGroups()) {
+            sampleAb.addGroup(sampleGroup);
         }
         return sampleAb;
     }
