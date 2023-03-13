@@ -206,6 +206,11 @@ public class AddCommandTest {
         public Optional<Client> getUniqueClient(Predicate<Client> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Optional<Project> getUniqueProject(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

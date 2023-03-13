@@ -2,7 +2,7 @@ package mycelium.mycelium.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.util.Optional;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
@@ -32,16 +32,12 @@ public class DeleteProjectCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Project> listWithTargetProject =
-            model.getFilteredProjectList().filtered(p -> p.getName().equals(targetProjectName));
-
-        if (listWithTargetProject.size() == 0) {
+        Optional<Project> targetProject = model.getUniqueProject(p -> p.getName().equals(targetProjectName));
+        if (targetProject.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT);
         }
-
-        Project projectToDelete = listWithTargetProject.get(0);
-        model.deleteProject(projectToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
+        model.deleteProject(targetProject.get());
+        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, targetProject.get()));
     }
 
     @Override

@@ -192,6 +192,15 @@ public class ModelManager implements Model {
         filteredClients.setPredicate(predicate);
     }
 
+    @Override
+    public Optional<Project> getUniqueProject(Predicate<Project> predicate) {
+        List<Project> projects = addressBook.getProjectList().stream().filter(predicate).collect(Collectors.toList());
+        if (projects.size() > 1) {
+            throw new DuplicateProjectException();
+        }
+        return projects.size() == 0 ? Optional.empty() : Optional.of(projects.get(0));
+    }
+
     public boolean hasProject(Project project) {
         return addressBook.hasProject(project);
     }
