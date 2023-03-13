@@ -8,9 +8,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
-import seedu.address.model.person.student.StudentClass;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -27,12 +27,12 @@ public class StudentDeleteCommand extends StudentCommand {
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
 
     private final IndexNumber targetIndex;
-    private final StudentClass studentClass;
+    private final Class studentClass;
 
     /**
      * Creates a StudentDeleteCommand to delete the specified {@code Student}
      */
-    public StudentDeleteCommand(IndexNumber targetIndex, StudentClass studentClass) {
+    public StudentDeleteCommand(IndexNumber targetIndex, Class studentClass) {
         this.targetIndex = targetIndex;
         this.studentClass = studentClass;
     }

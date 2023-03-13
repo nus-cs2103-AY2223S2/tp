@@ -158,7 +158,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      */
     public StudentDeleteCommand deleteCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
         try {
-            StudentClass sc = ParserUtil.parseStudentClass(studentClass);
+            Class sc = ParserUtil.parseStudentClass(studentClass);
             IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
             return new StudentDeleteCommand(indexNumber, sc);
         } catch (ParseException pe) {
