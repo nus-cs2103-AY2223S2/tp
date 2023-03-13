@@ -4,6 +4,7 @@ import static arb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -97,6 +98,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetClientList() {
+        addressBook.setClients(new ArrayList<Client>());
+    }
+
+    @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
@@ -111,12 +117,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteClient(Client target) {
         addressBook.removeClient(target);
-    }
-
-    @Override
-    public void markProject(Project project) {
-        addressBook.markProject(project);
-        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override

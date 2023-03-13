@@ -83,7 +83,7 @@ public class EditClientCommand extends Command {
         Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_CLIENT);
         }
 
         model.setClient(clientToEdit, editedClient);
