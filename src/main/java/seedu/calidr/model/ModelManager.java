@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.model.person.Person;
+import seedu.calidr.model.task.Deadline;
 import seedu.calidr.model.task.Event;
 import seedu.calidr.model.task.Priority;
 import seedu.calidr.model.task.Task;

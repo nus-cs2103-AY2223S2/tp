@@ -1,39 +1,65 @@
 package seedu.calidr.model.task;
 
+import java.time.LocalDateTime;
+
 /**
- * Represents a task that should be completed, with no time constraints.
+ * Represents a deadline - a task that should be completed within
+ * a particular date and time.
  */
 public class ToDo extends Task {
 
-    public ToDo(String description) {
-        super(description);
-    }
+    private final LocalDateTime by;
 
     /**
-     * Creates a ToDo object with the given description and priority.
+     * Creates a Deadline object with the given description and MEDIUM priority.
      *
      * @param description The description of the ToDo.
-     * @param priority The priority associated with the ToDo.
      */
-    public ToDo(String description, Priority priority) {
+    public ToDo(String description, LocalDateTime by) {
+        super(description);
 
-        super(description, priority);
+        assert by != null;
+
+        this.by = by;
     }
 
     /**
-     * Gets the String representation of the to-do to be stored in the text file.
+     * Creates a Deadline object with the given description and priority.
      *
-     * @return The String representation of the to-do to be stored in the text file.
+     * @param description The description of the Deadline.
+     * @param priority The priority associated with the Deadline.
+     */
+    public ToDo(String description, LocalDateTime by, Priority priority) {
+        super(description, priority);
+
+        assert by != null;
+
+        this.by = by;
+    }
+
+    public LocalDateTime getBy() {
+        return by;
+    }
+
+
+    /**
+     * Gets the String representation of the deadline to be stored in the text file.
+     *
+     * @return The String representation of the deadline to be stored in the text file.
      */
     @Override
     public String getFileRepresentation() {
         String mark = (super.isDone()) ? "X" : " ";
 
-        return "T" + "~" + this.getPriority() + "~" + mark + "~" + this.getDescription();
+        return "D" + "~" + this.getPriority() + "~" + mark + "~" + this.getDescription() + "~" + this.by;
     }
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+
+        return "[D]" + super.toString()
+                + " (by: "
+                + Task.getDateTimeString(this.by)
+                + ")";
     }
 }
