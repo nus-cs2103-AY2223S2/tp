@@ -19,6 +19,9 @@ import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
 
+/**
+ * A command to add a new project.
+ */
 public class AddProjectCommandParser implements Parser<AddProjectCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

@@ -1,24 +1,25 @@
 package mycelium.mycelium.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import mycelium.mycelium.commons.core.Messages;
-import mycelium.mycelium.commons.core.index.Index;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.project.Project;
 
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * A command to delete an existing project.
+ */
 public class DeleteProjectCommand extends Command {
     public static final String COMMAND_ACRONYM = "dp";
 
     public static final String MESSAGE_USAGE = COMMAND_ACRONYM
-            + ": Deletes the project with the given project name.\n"
-            + "Parameters: PROJECT NAME \n"
-            + "Example: " + COMMAND_ACRONYM + " " + CliSyntax.PREFIX_PROJECT_NAME + " Mycelium";
+        + ": Deletes the project with the given project name.\n"
+        + "Parameters: PROJECT NAME \n"
+        + "Example: " + COMMAND_ACRONYM + " " + CliSyntax.PREFIX_PROJECT_NAME + " Mycelium";
 
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
@@ -32,7 +33,7 @@ public class DeleteProjectCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Project> listWithTargetProject =
-                model.getFilteredProjectList().filtered(p -> p.getName().equals(targetProjectName));
+            model.getFilteredProjectList().filtered(p -> p.getName().equals(targetProjectName));
 
         if (listWithTargetProject.size() == 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT);
@@ -46,7 +47,7 @@ public class DeleteProjectCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteProjectCommand// instanceof handles nulls
-                && targetProjectName.equals(((DeleteProjectCommand) other).targetProjectName)); // state check
+            || (other instanceof DeleteProjectCommand// instanceof handles nulls
+            && targetProjectName.equals(((DeleteProjectCommand) other).targetProjectName)); // state check
     }
 }

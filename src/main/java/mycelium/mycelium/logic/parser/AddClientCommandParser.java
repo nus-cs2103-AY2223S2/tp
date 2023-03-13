@@ -19,6 +19,9 @@ import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
 
 
+/**
+ * A command to add a new client.
+ */
 public class AddClientCommandParser implements Parser<AddClientCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

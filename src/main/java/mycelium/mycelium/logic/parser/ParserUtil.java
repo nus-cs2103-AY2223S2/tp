@@ -6,20 +6,18 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.Callable;
-import java.util.function.Function;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.commons.core.index.Index;
 import mycelium.mycelium.commons.util.StringUtil;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Address;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.tag.Tag;
-import mycelium.mycelium.model.client.YearOfBirth;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -129,7 +127,8 @@ public class ParserUtil {
         return tagSet;
     }
 
-    /** Parses a {@code String year of birth} into an {@code YearOfBirth}.
+    /**
+     * Parses a {@code String year of birth} into an {@code YearOfBirth}.
      * Leading and trailing whitespaces will be trimmed.
      */
     public static YearOfBirth parseYearOfBirth(String yearOfBirth) throws ParseException {
@@ -141,26 +140,32 @@ public class ParserUtil {
         return new YearOfBirth(trimmedYearOfBirth);
     }
 
+    /**
+     * Parses a project's status from its string representation.
+     */
     public static ProjectStatus parseProjectStatus(String projectStatus) throws ParseException {
         requireNonNull(projectStatus);
-       /* String trimmedProjectStatus = projectStatus.trim();
-        if (!ProjectStatus.isValidProjectStatus(trimmedProjectStatus)) {
-            throw new ParseException(ProjectStatus.MESSAGE_CONSTRAINTS);
-        }*/
+        // String trimmedProjectStatus = projectStatus.trim();
+        // if (!ProjectStatus.isValidProjectStatus(trimmedProjectStatus)) {
+        // throw new ParseException(ProjectStatus.MESSAGE_CONSTRAINTS);
+        // }
         return ProjectStatus.NOT_STARTED;
     }
 
+    /**
+     * Parses a string by asserting that it is non empty after trimming.
+     */
     public static String parseNonEmptyString(String source) throws ParseException {
         requireNonNull(source);
         String trimmedSource = source.trim();
         if (source.isEmpty()) {
-            throw new ParseException(Messages.MESSAGE_EMPTY_SOURCE);
+            throw new ParseException(Messages.MESSAGE_EMPTY_STR);
         }
         return trimmedSource;
     }
 
     // Performs a map operation.
-    public static <T, U>  Optional<U> parseOptionalWith(Optional<T> src, ParserFn<T, U> f) throws ParseException {
+    public static <T, U> Optional<U> parseOptionalWith(Optional<T> src, ParserFn<T, U> f) throws ParseException {
         return src.isPresent() ? Optional.of(f.parse(src.get())) : Optional.empty();
     }
 
