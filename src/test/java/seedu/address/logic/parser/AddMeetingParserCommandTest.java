@@ -6,23 +6,23 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import org.junit.jupiter.api.Test;
+import java.time.LocalDateTime;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.model.person.Meeting;
 
-import java.time.LocalDateTime;
+import org.junit.jupiter.api.Test;
 
-public class AddMeetingParserTest {
+public class AddMeetingParserCommandTest {
     private AddMeetingCommandParser parser = new AddMeetingCommandParser();
-    private final String NONEMPTYMEETING = "09-11-2001 11:30 12:30";
+    private final String NonEmptyMeeting = "09-11-2001 11:30 12:30";
 
     @Test
-    public void parse_indexSpecified_success() throws Exception{
+    public void parse_indexSpecified_success() throws Exception {
         // have MEETING
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + " " + PREFIX_MEETING + NONEMPTYMEETING;
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_MEETING + NonEmptyMeeting;
 
         Meeting testMeeting = new Meeting(
                 LocalDateTime.of(2001, 11, 9, 11, 30),
@@ -45,6 +45,6 @@ public class AddMeetingParserTest {
         assertParseFailure(parser, AddMeetingCommand.COMMAND_WORD, expectedMessage);
 
         // no index
-        assertParseFailure(parser, AddMeetingCommand.COMMAND_WORD + " " + NONEMPTYMEETING, expectedMessage);
+        assertParseFailure(parser, AddMeetingCommand.COMMAND_WORD + " " + NonEmptyMeeting, expectedMessage);
     }
 }

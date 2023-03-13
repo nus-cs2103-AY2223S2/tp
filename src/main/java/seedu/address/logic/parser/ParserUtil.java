@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +10,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -121,6 +124,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String meeting} into a {@code Meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if start time given is after the end time given
+     */
     public static Meeting parseMeeting(String meeting) throws ParseException {
         requireNonNull(meeting);
         String trimmedMeeting = meeting.trim();
@@ -132,21 +141,23 @@ public class ParserUtil {
         return new Meeting(start, end);
     }
 
+    /**
+     * Parses {@code String dateTime} into a pair of
+     * {@code LocalDateTime} objects
+     */
     private static LocalDateTime[] parseDateTime(String dateTime) {
         String[] dateTimeStrings = dateTime.split(" ");
         String[] dateString = dateTimeStrings[0].split("-");
         String[] startTimeString = dateTimeStrings[1].split(":");
         String[] endTimeString = dateTimeStrings[2].split(":");
 
-        int day, month, year, startHour, endHour, startMinute, endMinute;
-
-        day = Integer.parseInt(dateString[0]);
-        month = Integer.parseInt(dateString[1]);
-        year = Integer.parseInt(dateString[2]);
-        startHour = Integer.parseInt(startTimeString[0]);
-        startMinute = Integer.parseInt(startTimeString[1]);
-        endHour = Integer.parseInt(endTimeString[0]);
-        endMinute = Integer.parseInt(endTimeString[1]);
+        int day = Integer.parseInt(dateString[0]);
+        int month = Integer.parseInt(dateString[1]);
+        int year = Integer.parseInt(dateString[2]);
+        int startHour = Integer.parseInt(startTimeString[0]);
+        int startMinute = Integer.parseInt(startTimeString[1]);
+        int endHour = Integer.parseInt(endTimeString[0]);
+        int endMinute = Integer.parseInt(endTimeString[1]);
 
         return new LocalDateTime[]{
                 LocalDateTime.of(year, month, day, startHour, startMinute),

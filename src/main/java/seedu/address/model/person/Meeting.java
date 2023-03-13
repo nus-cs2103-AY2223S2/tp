@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Person's meetings in the address book.
@@ -16,8 +16,9 @@ public class Meeting {
 
     /**
      * Constructor for Meeting
+     *
      * @param start start date and time of meeting
-     * @param end end date and time of meeting. Must be after start
+     * @param end   end date and time of meeting. Must be after start
      */
     public Meeting(LocalDateTime start, LocalDateTime end) throws ParseException {
         if (end.isBefore(start)) {
@@ -35,6 +36,40 @@ public class Meeting {
         this.end = LocalDateTime.MIN;
     }
 
+    /**
+     * Checks if there are timing clashes between this meeting and m
+     * Returns true if timings do clash, false otherwise
+     *
+     * @param m Meeting to be compared with
+     */
+    public boolean checkTimeClash(Meeting m) {
+        //if m starts and end at the same time
+        if (m.start.equals(this.start) && m.end.equals(this.end)) {
+            return true;
+        }
+        //if m ends at this.start
+        if (m.end.equals(this.start)) {
+            return true;
+        }
+        //if m ends in between
+        if (m.end.isAfter(this.start) & m.end.isBefore(this.end)) {
+            return true;
+        }
+        //if m starts at the same time
+        if (m.start.equals(this.start)) {
+            return true;
+        }
+        //if m starts in between
+        if (m.start.isAfter(this.start) & m.start.isBefore(this.end)) {
+            return true;
+        }
+        //if m starts at the end
+        if (m.start.equals(this.end)) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this) {
@@ -46,6 +81,7 @@ public class Meeting {
         Meeting mt = (Meeting) o;
         return mt.start.equals(this.start) && mt.end == this.end;
     }
+
     @Override
     public String toString() {
         if (isEmpty()) {
