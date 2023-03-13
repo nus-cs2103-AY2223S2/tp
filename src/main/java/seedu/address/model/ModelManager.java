@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Doctor> filteredDoctors;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredDoctors = new FilteredList<>(this.addressBook.getDoctorList());
     }
 
     public ModelManager() {
@@ -95,6 +97,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasDoctor(Doctor doctor) {
+        requireNonNull(doctor);
+        return addressBook.hasDoctor(doctor);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -105,17 +113,10 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-
     @Override
     public void addDoctor(Doctor doctor) {
         addressBook.addDoctor(doctor);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public boolean hasDoctor(Doctor doctor) {
-        requireNonNull(doctor);
-        return addressBook.hasPerson(doctor);
+        updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
     }
 
     @Override
@@ -123,6 +124,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setDoctor(Doctor target, Doctor editedDoctor) {
+        requireAllNonNull(target, editedDoctor);
+
+        addressBook.setDoctor(target, editedDoctor);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -137,9 +145,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Doctor> getFilteredDoctorList() {
+        return filteredDoctors;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredDoctorList(Predicate<Doctor> predicate) {
+        requireNonNull(predicate);
+        filteredDoctors.setPredicate(predicate);
     }
 
     @Override
@@ -158,7 +177,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredDoctors.equals(other.filteredDoctors);
     }
 
 }
