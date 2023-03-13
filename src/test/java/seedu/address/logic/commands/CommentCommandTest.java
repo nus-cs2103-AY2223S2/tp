@@ -88,7 +88,7 @@ public class CommentCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         CommentCommand remarkCommand = new CommentCommand(outOfBoundIndex, new Comment(VALID_COMMENT_BOB));
 
-        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -104,7 +104,7 @@ public class CommentCommandTest {
 
         CommentCommand remarkCommand = new CommentCommand(outOfBoundIndex, new Comment(VALID_COMMENT_BOB));
 
-        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
