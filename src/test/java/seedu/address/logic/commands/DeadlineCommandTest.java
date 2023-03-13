@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -170,7 +171,22 @@ public class DeadlineCommandTest {
         }
 
         @Override
-        public List<Task> getFilteredTaskList() {
+        public boolean hasTaskIndex(Index taskIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPersonIndex(Index personIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void assignTask(Index taskIndex, Index personIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called");
         }
     }
