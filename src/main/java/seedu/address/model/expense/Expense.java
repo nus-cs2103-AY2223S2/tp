@@ -1,7 +1,8 @@
 package seedu.address.model.expense;
 
 import java.util.Date;
-import java.util.Locale.Category;
+
+import seedu.address.model.category.Category;
 
 /**
  * Represents an Expense in the address book.
@@ -12,6 +13,10 @@ import java.util.Locale.Category;
  * @version 1.0
  */
 public class Expense {
+
+    public static final String MESSAGE_CONSTRAINTS = "Expense names should be alphanumeric";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
     private String name;
     private double amount;
     private Date date;
@@ -56,6 +61,14 @@ public class Expense {
                 + ", date=" + date
                 + ", category='" + category + '\''
                 + '}';
+    }
+
+    public static boolean isValidCategory(Category category) {
+        return Category.isValidCategoryName(category.getCategoryName());
+    }
+
+    public static boolean isValidName(String name) {
+        return name.matches(VALIDATION_REGEX);
     }
 
     @Override

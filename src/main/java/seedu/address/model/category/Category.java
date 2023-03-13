@@ -5,6 +5,9 @@ package seedu.address.model.category;
  */
 public abstract class Category {
 
+    public static final String MESSAGE_CONSTRAINTS = "Category names should be alphanumeric";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
     protected String categoryName;
     protected String description;
 
@@ -24,6 +27,13 @@ public abstract class Category {
     @Override
     public String toString() {
         return this.categoryName;
+    }
+
+    /**
+     * Returns true if a given string is a valid category name.
+     */
+    public static boolean isValidCategoryName(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

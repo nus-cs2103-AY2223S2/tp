@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.category.MiscellaneousCategory;
+import seedu.address.model.category.UserDefinedCategory;
+
 public class ExpenseTest {
 
-    private final Expense expense = new Expense("test", 1.0, null, "test");
+    private final Expense expense = new Expense("test", 1.0, null, new MiscellaneousCategory());
 
     @Test
     public void getName() {
@@ -35,8 +38,8 @@ public class ExpenseTest {
 
     @Test
     public void setCategory() {
-        expense.setCategory("test2");
-        assertEquals("test2", expense.getCategory());
+        expense.setCategory(new UserDefinedCategory(null, null));
+        assertEquals(new UserDefinedCategory(null, null), expense.getCategory());
     }
 
     @Test
