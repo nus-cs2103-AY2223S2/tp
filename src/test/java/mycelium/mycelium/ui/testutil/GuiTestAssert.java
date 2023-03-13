@@ -2,10 +2,10 @@ package mycelium.mycelium.ui.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Date;
+
 import guitests.guihandles.ProjectListCardHandle;
 import mycelium.mycelium.model.project.Project;
-
-import java.util.Date;
 
 /**
  * A set of assertion methods useful for writing GUI tests.
