@@ -1,12 +1,14 @@
-package mycelium.mycelium.ui.testUtil;
+package mycelium.mycelium.ui.testutil;
+
 
 import java.util.concurrent.TimeoutException;
 
-import mycelium.mycelium.ui.common.UiPart;
 import org.testfx.api.FxToolkit;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import mycelium.mycelium.ui.common.UiPart;
+
 
 /**
  * Provides an isolated stage to test an individual {@code UiPart}.

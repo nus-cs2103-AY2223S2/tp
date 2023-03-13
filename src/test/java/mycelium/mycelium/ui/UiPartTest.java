@@ -1,5 +1,6 @@
 package mycelium.mycelium.ui;
 
+
 import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

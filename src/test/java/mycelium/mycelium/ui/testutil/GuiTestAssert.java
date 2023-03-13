@@ -1,9 +1,9 @@
-package mycelium.mycelium.ui.testUtil;
+package mycelium.mycelium.ui.testutil;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import guitests.guihandles.ProjectListCardHandle;
 import mycelium.mycelium.model.project.Project;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * A set of assertion methods useful for writing GUI tests.

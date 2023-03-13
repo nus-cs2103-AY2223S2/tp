@@ -21,6 +21,9 @@ public class GuiRobot extends FxRobot {
 
     private final boolean isHeadlessMode;
 
+    /**
+     * Creates a {@code GuiRobot} to facilitate GUI testing.
+     */
     public GuiRobot() {
         String headlessPropertyValue = System.getProperty(PROPERTY_TESTFX_HEADLESS);
         isHeadlessMode = headlessPropertyValue != null && headlessPropertyValue.equals("true");
@@ -49,8 +52,7 @@ public class GuiRobot extends FxRobot {
     /**
      * Waits for {@code event} to be true by {@code DEFAULT_WAIT_FOR_EVENT_TIMEOUT_MILLISECONDS} milliseconds.
      *
-     * @throws EventTimeoutException if the time taken exceeds {@code DEFAULT_WAIT_FOR_EVENT_TIMEOUT_MILLISECONDS}
-     * milliseconds.
+     * @throws EventTimeoutException if the time taken exceeds {@code DEFAULT_WAIT_FOR_EVENT_TIMEOUT_MILLISECONDS} ms.
      */
     public void waitForEvent(BooleanSupplier event) {
         waitForEvent(event, DEFAULT_WAIT_FOR_EVENT_TIMEOUT_MILLISECONDS);

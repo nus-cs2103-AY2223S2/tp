@@ -1,5 +1,6 @@
 package guitests.guihandles;
 
+
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import mycelium.mycelium.model.project.Project;
@@ -28,7 +29,9 @@ public class ProjectListCardHandle extends NodeHandle<Node> {
     private final Label deadlineLabel;
 
 
-
+    /**
+     * Creates a {@code ProjectListCardHandle} with the default details.
+     */
     public ProjectListCardHandle(Node cardNode) {
         super(cardNode);
 

@@ -1,17 +1,17 @@
 package mycelium.mycelium.ui.project;
 
 
-import static mycelium.mycelium.ui.testUtil.GuiTestAssert.assertCardDisplaysProject;
+import static mycelium.mycelium.ui.testutil.GuiTestAssert.assertCardDisplaysProject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 import guitests.guihandles.ProjectListCardHandle;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.testutil.ProjectBuilder;
 import mycelium.mycelium.ui.GuiUnitTest;
-import org.junit.jupiter.api.Test;
-
 
 public class ProjectListCardTest extends GuiUnitTest {
 

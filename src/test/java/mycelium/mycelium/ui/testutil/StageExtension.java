@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui.testUtil;
+package mycelium.mycelium.ui.testutil;
 
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
