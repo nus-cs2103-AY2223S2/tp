@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -162,6 +163,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<DeliveryJob> getSortedDeliveryJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setDeliveryJobSystem'");
@@ -211,6 +222,7 @@ public class AddCommandTest {
         public ObservableList<Reminder> getReminderList() {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**

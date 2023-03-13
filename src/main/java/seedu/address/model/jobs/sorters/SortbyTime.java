@@ -1,8 +1,8 @@
 package seedu.address.model.jobs.sorters;
 
-import seedu.address.model.jobs.DeliveryJob;
-
 import java.util.Comparator;
+
+import seedu.address.model.jobs.DeliveryJob;
 
 /**
  * Helper class implementing Comparator
