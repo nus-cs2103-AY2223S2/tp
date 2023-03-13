@@ -16,6 +16,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Group> PREDICATE_SHOW_ALL_GROUPS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -81,6 +84,10 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Group> getFilteredGroupList();
+
     /**
      * Adds the given person into a group.
      * {@code person} must not already exist in the {@code group}
@@ -109,7 +116,10 @@ public interface Model {
      * Returns true if a group with the same group name as {@code group} exists in the address book.
      */
     boolean hasGroup(Group group);
+
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredGroupList(Predicate<Group> predicate);
 
     /**
      * Add IsolatedEvent object to the person's isolated event list.

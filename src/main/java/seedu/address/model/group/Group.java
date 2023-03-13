@@ -25,15 +25,32 @@ public class Group {
         this.groupName = groupName;
     }
 
+    public String getName() {
+        return groupName;
+    }
+
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid group name.
      */
     public static boolean isValidGroupName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
-     * Returns true if both grouos are the same group object or have the same group name
+     * Returns true if both groups have the same name.
+     * This defines a weaker notion of equality between two groups.
+     */
+    public boolean isSameGroup(Group otherGroup) {
+        if (otherGroup == this) {
+            return true;
+        }
+
+        return otherGroup != null
+                && otherGroup.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both groups are the same group object or have the same group name
      */
     @Override
     public boolean equals(Object other) {

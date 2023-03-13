@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.group;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -23,57 +24,61 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+/**
+ * Contains integration tests (interaction with the Model) for GroupListCommand.
+ */
+class GroupCreateCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new GroupCreateCommand(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        GroupCreateCommandTest.ModelStubAcceptingGroupCreated modelStub =
+                new GroupCreateCommandTest.ModelStubAcceptingGroupCreated();
+        Group validGroup = new Group("CS2103");
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new GroupCreateCommand(validGroup).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(GroupCreateCommand.MESSAGE_SUCCESS, validGroup), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validGroup), modelStub.groupsCreated);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateGroup_throwsCommandException() {
+        Group validGroup = new Group("CS2103");
+        GroupCreateCommand groupCreateCommand = new GroupCreateCommand(validGroup);
+        GroupCreateCommandTest.ModelStub modelStub = new GroupCreateCommandTest.ModelStubWithGroup(validGroup);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                GroupCreateCommand.MESSAGE_DUPLICATE_GROUP, () -> groupCreateCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Group friendsGroup = new Group("Friends");
+        Group courseGroup = new Group("CS2103");
+        GroupCreateCommand createFriendsGroupCommand = new GroupCreateCommand(friendsGroup);
+        GroupCreateCommand createCourseGroupCommand = new GroupCreateCommand(courseGroup);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(createFriendsGroupCommand.equals(createFriendsGroupCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        GroupCreateCommand createFriendsGroupCommandCopy = new GroupCreateCommand(friendsGroup);
+        assertTrue(createFriendsGroupCommand.equals(createFriendsGroupCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(createFriendsGroupCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(createFriendsGroupCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(createFriendsGroupCommand.equals(createCourseGroupCommand));
     }
 
     /**
@@ -189,53 +194,42 @@ public class AddCommandTest {
         public void addIsolatedEvent(Person index, IsolatedEvent eventToAdd) {
             throw new AssertionError("This method should not be called.");
         }
+    }
 
-        @Override
-        public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
-            throw new AssertionError("This method should not be called.");
+    /**
+     * A Model stub that contains a single group.
+     */
+    private class ModelStubWithGroup extends GroupCreateCommandTest.ModelStub {
+        private final Group group;
+
+        ModelStubWithGroup(Group group) {
+            requireNonNull(group);
+            this.group = group;
         }
 
         @Override
-        public void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent,
-                                     IsolatedEvent editedIsolatedEvent) {
-            throw new AssertionError("This method should not be called.");
+        public boolean hasGroup(Group group) {
+            requireNonNull(group);
+            return this.group.isSameGroup(group);
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that always accept the group being added.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubAcceptingGroupCreated extends GroupCreateCommandTest.ModelStub {
+        final ArrayList<Group> groupsCreated = new ArrayList<>();
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        @Override
+        public boolean hasGroup(Group group) {
+            requireNonNull(group);
+            return groupsCreated.stream().anyMatch(group::isSameGroup);
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addGroup(Group group) {
+            requireNonNull(group);
+            groupsCreated.add(group);
         }
 
         @Override
@@ -243,5 +237,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
 }
