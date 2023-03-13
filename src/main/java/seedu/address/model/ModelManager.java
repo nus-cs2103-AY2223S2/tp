@@ -166,8 +166,6 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-
-
     //=========== Filtered Group List Accessors =============================================================
     /**
      * Returns an unmodifiable view of the list of {@code Group} backed by the internal list of
