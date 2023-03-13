@@ -51,7 +51,9 @@ public class Person {
         return email;
     }
 
-    public Book getBook() { return book; }
+    public Book getBook() {
+        return book;
+    }
     public Address getAddress() {
         return address;
     }
@@ -101,7 +103,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, book, tags);
     }
 
     @Override
