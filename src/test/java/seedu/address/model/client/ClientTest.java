@@ -1,5 +1,6 @@
 package seedu.address.model.client;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -13,6 +14,7 @@ import static seedu.address.testutil.TypicalClients.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import seedu.address.testutil.ClientBuilder;
 
 public class ClientTest {
@@ -48,6 +50,12 @@ public class ClientTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new ClientBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameClient(editedBob));
+    }
+
+    @Test
+    void getFilteredPolicyList() {
+        Client client = new ClientBuilder().build();
+        assertEquals(FXCollections.observableArrayList(), client.getFilteredPolicyList());
     }
     /*
     @Test
