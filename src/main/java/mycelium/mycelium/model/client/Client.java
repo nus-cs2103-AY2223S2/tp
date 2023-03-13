@@ -138,4 +138,6 @@ public class Client implements IsSame<Client> {
     public int hashCode() {
         return Objects.hash(name, email, yearOfBirth, source, mobileNumber);
     }
+
+    // TODO implement a user-friendly toString method
 }

@@ -148,5 +148,7 @@ public class Project implements IsSame<Project> {
     public int hashCode() {
         return Objects.hash(name, status, clientEmail, source, description, acceptedOn, deadline);
     }
+
+    // TODO implement a user-friendly toString()
 }
 
