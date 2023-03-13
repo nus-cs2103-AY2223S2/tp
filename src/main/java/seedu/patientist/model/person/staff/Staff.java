@@ -34,4 +34,22 @@ public class Staff extends Person {
         sb.append("; Type: Staff ");
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if (!(object instanceof Staff)) {
+            return false;
+        }
+
+        Staff otherStaff = (Staff) object;
+        return otherStaff.getName().equals(getName())
+                && otherStaff.getPhone().equals(getPhone())
+                && otherStaff.getEmail().equals(getEmail())
+                && otherStaff.getAddress().equals(getAddress())
+                && otherStaff.getTags().equals(getTags());
+    }
 }
