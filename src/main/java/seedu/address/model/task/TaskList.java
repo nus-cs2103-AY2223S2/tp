@@ -106,6 +106,15 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
+     * Gets the internal list for task list panel to get all tasks for a specific student.
+     *
+     * @return All tasks in list.
+     */
+    public ObservableList<Task> getInternalList() {
+        return internalList;
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {

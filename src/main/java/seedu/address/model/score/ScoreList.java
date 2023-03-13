@@ -100,6 +100,14 @@ public class ScoreList implements Iterable<Score> {
     }
 
     /**
+     * Gets the internal list for score list panel to get all scores for a specific student.
+     * @return All tasks in list.
+     */
+    public ObservableList<Score> getInternalList() {
+        return internalList;
+    }
+
+    /**
      * Returns the backing score list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Score> asUnmodifiableObservableList() {
