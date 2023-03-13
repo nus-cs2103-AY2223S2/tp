@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -67,10 +69,42 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     */
+    public boolean hasPatient(Patient patient) {
+        requireNonNull(patient);
+        return persons.contains(patient);
+    }
+
+    /**
+     * Returns true if a doctor with the same identity as {@code doctor} exists in the address book.
+     */
+    public boolean hasDoctor(Doctor doctor) {
+        requireNonNull(doctor);
+        return persons.contains(doctor);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
+        persons.add(p);
+    }
+
+    /**
+     * Adds a patient to the address book.
+     * The patient must not already exist in the address book.
+     */
+    public void addPatient(Patient p) {
+        persons.add(p);
+    }
+
+    /**
+     * Adds a doctor to the address book.
+     * The doctor must not already exist in the address book.
+     */
+    public void addDoctor(Doctor p) {
         persons.add(p);
     }
 
