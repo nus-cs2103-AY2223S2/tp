@@ -68,7 +68,7 @@ public class AdvanceCommand extends Command {
                 && isValidInterviewDateInput(personToAdvance, this.interviewDateTime)) {
             advanceApplicant(model, personToAdvance, this.interviewDateTime);
         }
-        return new CommandResult("Successfully advanced " + personToAdvance.getName().fullName);
+        return new CommandResult("Successfully advanced " + personToAdvance.getName());
     }
 
     /**

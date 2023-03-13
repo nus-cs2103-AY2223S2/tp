@@ -54,7 +54,7 @@ public class RejectCommand extends Command {
         if (canRejectApplicant(model, personToReject)) {
             rejectApplicant(model, personToReject);
         }
-        return new CommandResult("Successfully rejected " + personToReject.getName().fullName);
+        return new CommandResult("Successfully rejected " + personToReject.getName());
     }
 
     /**
