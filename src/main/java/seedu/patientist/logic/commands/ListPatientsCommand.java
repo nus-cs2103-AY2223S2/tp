@@ -1,9 +1,9 @@
 package seedu.patientist.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.patientist.model.Model;
 import seedu.patientist.model.person.IsPatientPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Lists all patients in the patientist book to the user.

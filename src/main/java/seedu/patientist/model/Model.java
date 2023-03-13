@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.model.person.Person;
-import seedu.patientist.model.person.patient.Patient;
 
 /**
  * The API of the Model component.
