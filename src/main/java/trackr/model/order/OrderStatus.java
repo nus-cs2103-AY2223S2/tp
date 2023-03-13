@@ -38,6 +38,8 @@ public class OrderStatus {
             orderStatus = "D";
         } else if (status.equalsIgnoreCase("I")) {
             orderStatus = "I";
+        } else if (status.equalsIgnoreCase("N")) {
+            orderStatus = "N";
         }
     }
 
@@ -61,6 +63,13 @@ public class OrderStatus {
         } else {
             return "Delivered";
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof OrderStatus // instanceof handles nulls
+                && orderStatus == ((OrderStatus) other).orderStatus); // state check
     }
 
     @Override
