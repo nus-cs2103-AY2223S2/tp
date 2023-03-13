@@ -31,6 +31,7 @@ public class Status {
      */
     public Status(String status) {
         requireNonNull(status);
+        status = status.toLowerCase();
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
         this.fullStatus = status;
     }
@@ -47,7 +48,7 @@ public class Status {
         if (test == null) {
             throw new NullPointerException();
         }
-        return SETOFVALIDSTATUSES.contains(test);
+        return SETOFVALIDSTATUSES.contains(test.toLowerCase());
     }
 
     /**
@@ -57,7 +58,7 @@ public class Status {
      */
     @Override
     public String toString() {
-        return fullStatus;
+        return fullStatus.substring(0, 1).toUpperCase() + fullStatus.substring(1);
     }
 
 

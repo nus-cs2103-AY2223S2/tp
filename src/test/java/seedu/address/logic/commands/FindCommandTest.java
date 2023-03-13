@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.internship.CompanyNameContainsKeywordsPredicate;
+import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,10 +29,12 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        CompanyNameContainsKeywordsPredicate firstPredicate =
-                new CompanyNameContainsKeywordsPredicate(Collections.singletonList("first"));
-        CompanyNameContainsKeywordsPredicate secondPredicate =
-                new CompanyNameContainsKeywordsPredicate(Collections.singletonList("second"));
+        InternshipContainsKeywordsPredicate firstPredicate =
+                new InternshipContainsKeywordsPredicate(Collections.singletonList("first"),
+                        Collections.singletonList("first"), Collections.singletonList("first"));
+        InternshipContainsKeywordsPredicate secondPredicate =
+                new InternshipContainsKeywordsPredicate(Collections.singletonList("second"),
+                        Collections.singletonList("second"), Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -55,9 +57,11 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noInternshipFound() {
+    public void execute_noKeywords_noInternshipFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIP_LISTED_OVERVIEW, 0);
-        CompanyNameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        InternshipContainsKeywordsPredicate predicate =
+                new InternshipContainsKeywordsPredicate(Collections.emptyList(), Collections.emptyList(),
+                        Collections.emptyList());
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -67,17 +71,12 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleInternshipsFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIP_LISTED_OVERVIEW, 3);
-        CompanyNameContainsKeywordsPredicate predicate = preparePredicate("Goldman Riot Samsung");
+        InternshipContainsKeywordsPredicate predicate =
+                new InternshipContainsKeywordsPredicate(Arrays.asList("Goldman", "Riot", "Samsung"),
+                        Collections.emptyList(), Collections.emptyList());
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(GOLDMAN, RIOTGAMES, SAMSUNG), model.getFilteredInternshipList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private CompanyNameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new CompanyNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

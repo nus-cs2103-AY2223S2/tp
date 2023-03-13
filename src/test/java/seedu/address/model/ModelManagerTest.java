@@ -11,11 +11,12 @@ import static seedu.address.testutil.TypicalInternships.GOOGLE;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.internship.CompanyNameContainsKeywordsPredicate;
+import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -119,7 +120,9 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = APPLE.getCompanyName().fullCompanyName.split("\\s+");
-        modelManager.updateFilteredInternshipList(new CompanyNameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredInternshipList(new InternshipContainsKeywordsPredicate(Arrays.asList(keywords),
+                Collections.emptyList(),
+                Collections.emptyList()));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
