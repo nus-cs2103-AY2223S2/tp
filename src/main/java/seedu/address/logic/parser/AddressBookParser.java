@@ -13,6 +13,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteIsolatedEventCommand;
+import seedu.address.logic.commands.DeleteRecurringEventCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditIsolatedEventCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -74,9 +75,6 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case AddRecurringEventCommand.COMMAND_WORD:
-            return new AddRecurringEventCommandParser().parse(arguments);
-
         case AddIsolatedEventCommand.COMMAND_WORD:
             return new IsolatedEventCommandParser().parse(arguments);
 
@@ -85,6 +83,12 @@ public class AddressBookParser {
 
         case EditIsolatedEventCommand.COMMAND_WORD:
             return new EditIsolatedEventCommandParser().parse(arguments);
+
+        case AddRecurringEventCommand.COMMAND_WORD:
+            return new AddRecurringEventCommandParser().parse(arguments);
+
+        case DeleteRecurringEventCommand.COMMAND_WORD:
+            return new DeleteRecurringEventParser().parse(arguments);
 
         case GroupCommand.COMMAND_WORD:
             return new GroupCommandParser().parse(arguments);

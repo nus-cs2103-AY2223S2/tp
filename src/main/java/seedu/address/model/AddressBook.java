@@ -100,8 +100,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         person.getIsolatedEventList().edit(originalEvent, editedEvent);
     }
 
+    /**
+     * Add the recurring event into the person's isolated event list
+     * @param person in which the event is being added to
+     * @param event that is going to be added to the person
+     */
     public void addRecurringEvent(Person person, RecurringEvent event) {
         person.addRecurringEvent(event);
+    }
+
+    public void deleteRecurringEvent(Person person, RecurringEvent event) {
+        person.getRecurringEventList().deleteRecurringEvent(event);
     }
 
     /**

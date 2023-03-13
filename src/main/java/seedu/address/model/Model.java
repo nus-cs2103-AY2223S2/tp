@@ -140,4 +140,5 @@ public interface Model {
 
     void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent, IsolatedEvent editedIsolatedEvent);
 
+    void deleteRecurringEvent(Person personToEdit, RecurringEvent event);
 }

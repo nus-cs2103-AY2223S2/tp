@@ -128,6 +128,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addRecurringEvent(Person person, RecurringEvent event) {
+        requireAllNonNull(person, event);
+        addressBook.addRecurringEvent(person, event);
+    }
+
+    @Override
+    public void deleteRecurringEvent(Person person, RecurringEvent event) {
+        requireAllNonNull(person, event);
+        addressBook.deleteRecurringEvent(person, event);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
@@ -195,11 +207,6 @@ public class ModelManager implements Model {
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
         filteredGroups.setPredicate(predicate);
-    }
-
-    @Override
-    public void addRecurringEvent(Person person, RecurringEvent event) {
-        addressBook.addRecurringEvent(person, event);
     }
 
     @Override

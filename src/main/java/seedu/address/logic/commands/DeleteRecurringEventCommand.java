@@ -8,20 +8,22 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.IsolatedEvent;
-import seedu.address.model.event.IsolatedEventList;
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.RecurringEventList;
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
+
 /**
- * Deletes an isolated event from a person's isolated event list using it's displayed person index
+ * Deletes a recurring event from a person's recurring event list using it's displayed person index
  * and displayed event index from the address book.
  */
-public class DeleteIsolatedEventCommand extends Command {
-    public static final String COMMAND_WORD = "ie_delete";
-    public static final String MESSAGE_SUCCESS = "Isolated event deleted: %1$s";
+public class DeleteRecurringEventCommand extends Command {
+    public static final String COMMAND_WORD = "re_delete";
+    public static final String MESSAGE_SUCCESS = "Recurring event deleted: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Delete an isolated event into the isolated event list"
+            + ": Delete an recurring event into the recurring event list"
             + "by the index number used in the last person listing.\n "
             + "Parameters: index number of the person and index number of the event in the event list"
             + "1 1 \n"
@@ -36,21 +38,22 @@ public class DeleteIsolatedEventCommand extends Command {
      * @param personIndex the index of the person.
      * @param eventIndex the index of the event to be deleted.
      */
-    public DeleteIsolatedEventCommand(Index personIndex, Index eventIndex) {
+    public DeleteRecurringEventCommand(Index personIndex, Index eventIndex) {
         this.personIndex = personIndex;
         this.eventIndex = eventIndex;
     }
 
     /**
-     * Get the Person object and the IsolatedEvent object to be deleted and
+     * Get the Person object and the ReccuringEvent object to be deleted and
      * delete the event from the person's isolated event list.
      * @param model {@code Model} which the command should operate on.
      * @return Command result displaying the command successful message.
      * @throws CommandException
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, EventConflictException {
         requireNonNull(model);
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (personIndex.getZeroBased() >= lastShownList.size()) {
@@ -58,23 +61,21 @@ public class DeleteIsolatedEventCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(personIndex.getZeroBased());
+        RecurringEventList recurringEventList = personToEdit.getRecurringEventList();
 
-        IsolatedEventList isolatedEventList = personToEdit.getIsolatedEventList();
-
-        if (eventIndex.getZeroBased() >= isolatedEventList.getSize()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ISOLATED_EVENT_LIST);
+        if (eventIndex.getZeroBased() >= recurringEventList.getSize()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_RECURRING_EVENT_LIST);
         }
 
-        IsolatedEvent event = isolatedEventList.getIsolatedEvent(eventIndex.getZeroBased());
-
+        RecurringEvent event = recurringEventList.getRecurringEvent(eventIndex.getZeroBased());
         if (event == null) {
-            throw new CommandException(Messages.MESSAGE_UNKNOWN_ISOLATED_EVENT);
+            throw new CommandException(Messages.MESSAGE_UNKNOWN_RECURRING_EVENT);
         }
 
-        model.deleteIsolatedEvent(personToEdit, event);
+        model.deleteRecurringEvent(personToEdit, event);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, event) + " to "
                 + personToEdit.getName());
-    }
 
+    }
 }

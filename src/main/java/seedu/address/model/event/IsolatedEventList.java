@@ -16,6 +16,14 @@ public class IsolatedEventList {
     }
 
     /**
+     * Gets the total number of event in the isolatedEcent
+     * @return the size of the isolatedEvents
+     */
+    public int getSize() {
+        return isolatedEvents.size();
+    }
+
+    /**
      * Insert the isolated event object into the isolated event list.
      * @param newEvent to be inserted.
      */

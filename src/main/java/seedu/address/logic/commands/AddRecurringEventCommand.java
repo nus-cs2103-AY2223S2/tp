@@ -40,6 +40,8 @@ public class AddRecurringEventCommand extends Command {
      * @param index
      */
     public AddRecurringEventCommand(Index index, RecurringEvent eventToAdd) {
+        requireNonNull(index);
+        requireNonNull(eventToAdd);
         this.eventToAdd = eventToAdd;
         this.index = index;
     }

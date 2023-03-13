@@ -1,6 +1,7 @@
 package seedu.address.model.event;
 
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 /**
@@ -16,6 +17,34 @@ public class RecurringEventList {
     public TreeSet<RecurringEvent> getRecurringEvents() {
         return recurringEvents;
     }
+
+    /**
+     * Gets the total number of event in the recurringEvents
+     * @return the size of the recurringEvents
+     */
+    public int getSize() {
+        return recurringEvents.size();
+    }
+
+    /**
+     * Get the recurring event in the recurring event list with the event's index.
+     * @param index of the event.
+     * @return recurringEventObject
+     */
+    public RecurringEvent getRecurringEvent(int index) {
+        Iterator<RecurringEvent> it = recurringEvents.iterator();
+        RecurringEvent recurringEvent = null;
+        int counter = 0;
+        while (it.hasNext()) {
+            recurringEvent = it.next();
+            if (counter == index) {
+                break;
+            }
+            counter++;
+        }
+        return recurringEvent;
+    }
+
 
     @Override
     public String toString() {
@@ -46,5 +75,9 @@ public class RecurringEventList {
             }
         }
         return output.toString();
+    }
+
+    public void deleteRecurringEvent(RecurringEvent event) {
+        recurringEvents.remove(event);
     }
 }
