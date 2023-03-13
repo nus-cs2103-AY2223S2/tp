@@ -13,6 +13,10 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.policy.CustomDate;
+import seedu.address.model.client.policy.Frequency;
+import seedu.address.model.client.policy.PolicyName;
+import seedu.address.model.client.policy.Premium;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +124,65 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String policyName} into a {@code PolicyName}.
+     * @param policyName String to be parsed
+     * @return PolicyName
+     * @throws ParseException if the given {@code policyName} is invalid.
+     */
+    public static PolicyName parsePolicyName(String policyName) throws ParseException {
+        requireNonNull(policyName);
+        String trimmedPolicyName = policyName.trim();
+        if (!PolicyName.isValidName(trimmedPolicyName)) {
+            throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS);
+        }
+        return new PolicyName(trimmedPolicyName);
+    }
+
+    /**
+     * Parses a {@code String customDate} into a {@code CustomDate}.
+     * @param customDate
+     * @return CustomDate
+     * @throws ParseException if the given {@code customDate} is invalid.
+     */
+    public static CustomDate parseCustomDate(String customDate) throws ParseException {
+        requireNonNull(customDate);
+        String trimmedCustomDate = customDate.trim();
+        if (!CustomDate.isValidDate(trimmedCustomDate)) {
+            throw new ParseException(CustomDate.MESSAGE_CONSTRAINTS);
+        }
+        return new CustomDate(trimmedCustomDate);
+    }
+
+    /**
+     * Parses a {@code String premium} into a {@code Premium}.
+     * @param premium String to be parsed
+     * @return Premium
+     * @throws ParseException if the given {@code premium} is invalid.
+     */
+    public static Premium parsePremium(String premium) throws ParseException {
+        requireNonNull(premium);
+        String trimmedPremium = premium.trim();
+        if (!Premium.isValidPremium(trimmedPremium)) {
+            throw new ParseException(Premium.MESSAGE_CONSTRAINTS);
+        }
+        return new Premium(trimmedPremium);
+    }
+
+    /**
+     * Parses a {@code String frequency} into a {@code Frequency}.
+     * @param frequency String to be parsed
+     * @return Frequency
+     * @throws ParseException if the given {@code frequency} is invalid.
+     */
+    public static Frequency parseFrequency(String frequency) throws ParseException {
+        requireNonNull(frequency);
+        String trimmedFrequency = frequency.trim();
+        if (!Frequency.isValidFrequency(trimmedFrequency)) {
+            throw new ParseException(Frequency.MESSAGE_CONSTRAINTS);
+        }
+        return new Frequency(trimmedFrequency);
     }
 }

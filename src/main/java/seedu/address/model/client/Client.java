@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +24,7 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final UniquePolicyList policyList;
 
     /**
      * Every field must be present and not null.
@@ -34,6 +36,7 @@ public class Client {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.policyList = new UniquePolicyList();
     }
 
     public Name getName() {
@@ -50,6 +53,9 @@ public class Client {
 
     public Address getAddress() {
         return address;
+    }
+    public UniquePolicyList getPolicyList() {
+        return policyList;
     }
 
 
@@ -93,13 +99,14 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getTags().equals(getTags())
+                && otherClient.getPolicyList().equals(getPolicyList());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, policyList);
     }
 
     @Override
@@ -117,6 +124,10 @@ public class Client {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        if (!policyList.isEmpty()) {
+            builder.append("; Policies: ");
+            policyList.forEach(builder::append);
         }
         return builder.toString();
     }

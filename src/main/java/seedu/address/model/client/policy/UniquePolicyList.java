@@ -48,6 +48,14 @@ public class UniquePolicyList implements Iterable<Policy> {
     }
 
     /**
+     * Returns true if the list is empty.
+     * @return true if the list is empty.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    /**
      * Replaces the policy {@code target} in the list with {@code editedPolicy}.
      * {@code target} must exist in the list.
      * The policy identity of {@code editedPolicy} must not be the same as another existing policy in the list.
