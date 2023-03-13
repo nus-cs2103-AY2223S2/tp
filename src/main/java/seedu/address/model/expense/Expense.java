@@ -1,12 +1,13 @@
 package seedu.address.model.expense;
 
 import java.util.Date;
+import java.util.Locale.Category;
 
 /**
  * Represents an Expense in the address book.
  * Guarantees: details are present and not null, field values are validated,
  * immutable.
- * TODO: Change Category to Category class
+ * 
  * @author shirsho-12
  * @version 1.0
  */
@@ -14,17 +15,17 @@ public class Expense {
     private String name;
     private double amount;
     private Date date;
-    // TODO: Change to Category class
-    private String category;
+    private Category category;
 
     /**
      * Constructor for Expense class.
+     * 
      * @param name     Name of the expense
      * @param amount   Amount of the expense
      * @param date     Date of the expense
      * @param category Category of the expense
      */
-    public Expense(String name, double amount, Date date, String category) {
+    public Expense(String name, double amount, Date date, Category category) {
         this.name = name;
         this.amount = amount;
         this.date = date;
@@ -43,7 +44,7 @@ public class Expense {
         return date;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
@@ -107,7 +108,7 @@ public class Expense {
         this.date = date;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 }
