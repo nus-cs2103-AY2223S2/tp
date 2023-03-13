@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PID;
 
+import java.util.Objects;
+
 import seedu.patientist.commons.core.Messages;
 import seedu.patientist.model.Model;
-import seedu.patientist.model.person.NameContainsKeywordsPredicate;
+import seedu.patientist.model.person.patient.PatientNameContainsKeywordsPredicate;
 import seedu.patientist.model.person.patient.PidContainsKeywordsPredicate;
 
 /**
@@ -25,13 +27,13 @@ public class FindPatientCommand extends Command {
             + PREFIX_PID + "A12345B";
 
     private final PidContainsKeywordsPredicate pidPredicate;
-    private final NameContainsKeywordsPredicate namePredicate;
+    private final PatientNameContainsKeywordsPredicate namePredicate;
 
     /**
      * Constructor for FindPatientCommand with NameContainsKeywordsPredicate.
      * @param predicate The name keywords to check for.
      */
-    public FindPatientCommand(NameContainsKeywordsPredicate predicate) {
+    public FindPatientCommand(PatientNameContainsKeywordsPredicate predicate) {
         this.namePredicate = predicate;
         this.pidPredicate = null;
     }
@@ -57,7 +59,7 @@ public class FindPatientCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                || (other instanceof FindPatientCommand // instanceof handles nulls
-                   && namePredicate.equals(((FindPatientCommand) other).namePredicate)// state check
-                   && pidPredicate.equals(((FindPatientCommand) other).pidPredicate));
+                   && Objects.equals(namePredicate, ((FindPatientCommand) other).namePredicate)// state check
+                   && Objects.equals(pidPredicate, ((FindPatientCommand) other).pidPredicate));
     }
 }

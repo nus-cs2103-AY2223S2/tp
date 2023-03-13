@@ -26,7 +26,7 @@ import seedu.patientist.model.person.patient.Patient;
  */
 public class TypicalPatients {
     public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND, "Patient")
             .withStatus(VALID_STATUS_AMY).withId(VALID_PID_AMY).build();
 
     public static final Patient ADAM = new PatientBuilder().withName("Adam Sandler")
