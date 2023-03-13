@@ -9,7 +9,7 @@ import taa.model.ClassList;
 import taa.model.ReadOnlyAddressBook;
 
 /**
- * Represents a storage for {@link ClassList}.
+ * Represents a storage for {@link ClassList}.`
  */
 public interface AddressBookStorage {
 

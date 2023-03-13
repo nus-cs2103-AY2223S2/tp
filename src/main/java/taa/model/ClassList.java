@@ -46,6 +46,24 @@ public class ClassList implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameClassList(ClassList otherClassList) {
+        if (otherClassList == this) {
+            return true;
+        }
+
+        return otherClassList != null
+                && otherClassList.getClassId() == (getClassId());
+    }
+
+    public int getClassId() {
+        return this.classId;
+    }
+
+
+    /**
      * Replaces the contents of the student list with {@code students}.
      * {@code students} must not contain duplicate students.
      */
