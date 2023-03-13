@@ -22,17 +22,19 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Medication medication;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Medication medication, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.medication = medication;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +52,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Medication getMedication() {
+        return medication;
     }
 
     /**
@@ -92,6 +98,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getMedication().equals(getMedication())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -109,6 +116,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Medication: ")
+                .append(getMedication())
                 .append("; Address: ")
                 .append(getAddress());
 

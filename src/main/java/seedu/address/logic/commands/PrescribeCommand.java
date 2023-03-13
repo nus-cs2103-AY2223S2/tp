@@ -1,0 +1,82 @@
+package seedu.address.logic.commands;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Medication;
+import seedu.address.model.person.Person;
+
+import java.util.List;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+/**
+ * Changes the remark of an existing person in the address book.
+ */
+public class PrescribeCommand extends Command {
+
+    public static final String COMMAND_WORD = "prescribe";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Changes current medication information of the person identified "
+            + "by the index number used in the last person listing. "
+            + "Existing medication information will be overwritten by input.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "m/ [MEDICATION]\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + "m/ paracetamol";
+
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Medication: %2$s";
+
+    public static final String MESSAGE_ADD_PRESCRIBE_SUCCESS = "Added medication to Person: %1$s";
+    public static final String MESSAGE_DELETE_PRESCRIBE_SUCCESS = "Removed medication from Person: %1$s";
+
+
+    public final Index index;
+    private final Medication medication;
+
+    public PrescribeCommand(Index index, Medication medication) {
+        requireAllNonNull(index, medication);
+
+        this.index = index;
+        this.medication = medication;
+    }
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person editedPerson = new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getAddress(),
+                medication, personToEdit.getTags()
+        );
+
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(generateSuccessMessage(editedPerson));
+    }
+
+    /**
+     * Generates a command execution success message based on whether
+     * the remark is added to or removed from
+     * {@code personToEdit}.
+     */
+    private String generateSuccessMessage(Person personToEdit) {
+        String message = !medication.value.isEmpty() ? MESSAGE_ADD_PRESCRIBE_SUCCESS : MESSAGE_DELETE_PRESCRIBE_SUCCESS;
+        return String.format(message, personToEdit);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PrescribeCommand // instanceof handles nulls
+                && medication.equals(((PrescribeCommand) other).medication)); // state check
+    }
+
+}
