@@ -20,16 +20,16 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "docedex")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Doctors list contains duplicate doctor(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedDoctor> doctors = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given doctors.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("doctors") List<JsonAdaptedDoctor> doctors) {
-        this.persons.addAll(doctors);
+        this.doctors.addAll(doctors);
     }
 
     /**
@@ -38,22 +38,18 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream()
-                .map(JsonSerializableAddressBook::convertToJsonAdaptedPerson).collect(Collectors.toList()));
+        doctors.addAll(source.getDoctorList().stream()
+                .map(JsonSerializableAddressBook::convertToJsonAdaptedDoctor).collect(Collectors.toList()));
     }
 
     /**
-     * Converts a given {@code Person} into either a JsonAdaptedPerson or JsonAdaptedDoctor.
+     * Converts a given {@code Doctor} into a JsonAdaptedDoctor.
      *
-     * @param person a person object.
-     * @return a JsonAdaptedPerson.
+     * @param doctor a doctor object.
+     * @return a JsonAdaptedDoctor.
      */
-    private static JsonAdaptedPerson convertToJsonAdaptedPerson(Person person) {
-        if (person instanceof Doctor) {
-            return new JsonAdaptedDoctor((Doctor) person);
-        } else {
-            return new JsonAdaptedPerson(person);
-        }
+    private static JsonAdaptedDoctor convertToJsonAdaptedDoctor(Doctor doctor) {
+        return new JsonAdaptedDoctor(doctor);
     }
 
     /**
@@ -63,12 +59,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+        for (JsonAdaptedDoctor jsonAdaptedDoctor : doctors) {
+            Doctor doctor = jsonAdaptedDoctor.toModelType();
+            if (addressBook.hasDoctor(doctor)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            addressBook.addDoctor(doctor);
         }
         return addressBook;
     }
