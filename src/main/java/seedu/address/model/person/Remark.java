@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Remark {
     public final String value;
+    public final String NULL_REMARK = "None yet!";
 
     /**
      * Accepts remark that is not empty
@@ -16,6 +17,13 @@ public class Remark {
     public Remark(String remark) {
         requireNonNull(remark);
         value = remark;
+    }
+
+    /**
+     * Initiates a null remark object without null error.
+     */
+    public Remark() {
+        value = NULL_REMARK;
     }
 
     @Override

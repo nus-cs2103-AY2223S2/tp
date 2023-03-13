@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Performance {
     public final String value;
+    public final String NULL_PERFORMANCE = "None yet!";
 
     /**
      * Accepts remark that is not empty
@@ -17,6 +18,13 @@ public class Performance {
         requireNonNull(performance);
         //Add check to make sure it is not a gibberish number
         value = performance;
+    }
+
+    /**
+     * Initiates null performance object without causing error.
+     */
+    public Performance() {
+        value = NULL_PERFORMANCE;
     }
 
     @Override
