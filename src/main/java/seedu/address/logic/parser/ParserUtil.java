@@ -13,7 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.role.Role;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.TaskDescription;
 
@@ -133,25 +133,25 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Role parseRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!Role.isValidRoleName(trimmedRole)) {
+            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Role(trimmedRole);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> roles} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Role> parseRoles(Collection<String> roles) throws ParseException {
+        requireNonNull(roles);
+        final Set<Role> roleSet = new HashSet<>();
+        for (String roleName : roles) {
+            roleSet.add(parseRole(roleName));
         }
-        return tagSet;
+        return roleSet;
     }
 
     /**
