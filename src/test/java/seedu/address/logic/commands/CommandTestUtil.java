@@ -24,8 +24,8 @@ import seedu.address.model.person.DoctorContainsKeywordsPredicate;
 import seedu.address.model.person.DoctorFilter;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
