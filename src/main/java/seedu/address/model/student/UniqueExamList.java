@@ -97,7 +97,7 @@ public class UniqueExamList implements Iterable<Exam> {
     }
 
     /**
-     * Overloaded method that accepts a List<Exam> item
+     * Overloaded method that accepts a List of Exams item
      * Replaces the contents of this list with {@code replacement}.
      * {@code replacement} must not contain duplicate Exams.
      *
