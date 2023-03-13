@@ -226,16 +226,16 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code events} to this object's {@code eventSet}.
+         * A defensive copy of {@code eventSet} is used internally.
          */
         public void setEventSet(Set<Event> events) {
             this.eventSet = (events != null) ? new HashSet<>(events) : null;
         }
 
         /**
-         * Returns a tag set
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns an event set
+         * Returns {@code Optional#empty()} if {@code eventSet} is null.
          */
         public Optional<Set<Event>> getEventSet() {
             return (eventSet != null) ? Optional.of(eventSet) : Optional.empty();

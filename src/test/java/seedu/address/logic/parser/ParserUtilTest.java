@@ -168,7 +168,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEventIndexSet_collectionWithInvalidTags_throwsParseException() {
+    public void parseEventIndexSet_collectionWithInvalidIndex_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil
                 .parseEventIndex(Arrays.asList(VALID_EVENT_INDEX_1, INVALID_EVENT_SET)));
     }

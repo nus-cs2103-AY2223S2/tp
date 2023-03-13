@@ -53,8 +53,8 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getEventSet().stream()
-                .sorted(Comparator.comparing(tag -> tag.getName().toString()))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getName().toString())));
+                .sorted(Comparator.comparing(event -> event.getName().toString()))
+                .forEach(event -> tags.getChildren().add(new Label(event.getName().toString())));
     }
 
     @Override

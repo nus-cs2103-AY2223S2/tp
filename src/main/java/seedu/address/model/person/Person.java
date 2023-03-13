@@ -113,7 +113,7 @@ public class Person {
 
         Set<Event> eventSet = getEventSet();
         if (!eventSet.isEmpty()) {
-            builder.append("; Event Tags: ");
+            builder.append("; Event Set: ");
             eventSet.forEach(builder::append);
         }
         return builder.toString();

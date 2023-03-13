@@ -41,9 +41,7 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_EVENT_TAG_CARNIVAL = "Carnival";
-    public static final String VALID_EVENT_TAG_SPORTS_DAY = "20th Sports Day @ Sports Hub";
-    public static final String VALID_EVENT_TAG_WEDDING_DINNER = "Wedding Dinner";
+    //public static final String VALID_EVENT_TAG_SPORTS_DAY = "20th Sports Day @ Sports Hub";
     public static final String VALID_EVENT_INDEX_CARNIVAL = "2";
     public static final String VALID_EVENT_INDEX_SPORTS_DAY = "3";
     public static final String VALID_EVENT_INDEX_WEDDING_DINNER = "1";
