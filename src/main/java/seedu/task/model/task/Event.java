@@ -59,13 +59,15 @@ public class Event extends Task {
     }
 
     /**
-     * Returns true if {@code to} is within the {@code alertWindow} from the current time.
+     * Returns true if {@code to} or {@code from} is within the {@code alertWindow} from the current time.
      */
     @Override
     public boolean isComingUp() {
-        boolean isAfterNow = this.to.value.isAfter(LocalDateTime.now());
-        boolean isBeforeAlert = this.to.value.minus(alertWindow).isBefore(LocalDateTime.now());
-        return isAfterNow && isBeforeAlert;
+        boolean isToAfterNow = this.to.value.isAfter(LocalDateTime.now());
+        boolean isToBeforeAlert = this.to.value.minus(alertWindow).isBefore(LocalDateTime.now());
+        boolean isFromAfterNow = this.from.value.isAfter(LocalDateTime.now());
+        boolean isFromBeforeAlert = this.from.value.minus(alertWindow).isBefore(LocalDateTime.now());
+        return (isFromAfterNow && isFromBeforeAlert) || (isToAfterNow && isToBeforeAlert);
     }
 
     @Override
