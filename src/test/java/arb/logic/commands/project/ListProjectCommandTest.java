@@ -1,7 +1,7 @@
-package arb.logic.commands.client;
+package arb.logic.commands.project;
 
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static arb.logic.commands.CommandTestUtil.showClientAtIndex;
+import static arb.logic.commands.CommandTestUtil.showProjectAtIndex;
 import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -13,11 +13,7 @@ import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
 
-/**
- * Contains integration tests (interaction with the Model) and unit tests for ListClientCommand.
- */
-public class ListClientCommandTest {
-
+public class ListProjectCommandTest {
     private Model model;
     private Model expectedModel;
 
@@ -29,14 +25,21 @@ public class ListClientCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListClientCommand(), ListType.CLIENT, ListType.CLIENT, model,
-                ListClientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListProjectCommand(), ListType.PROJECT, ListType.PROJECT, model,
+                ListProjectCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_currentListShownClient_success() {
+        assertCommandSuccess(new ListProjectCommand(), ListType.CLIENT, ListType.PROJECT, model,
+                ListProjectCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showClientAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListClientCommand(), ListType.CLIENT, ListType.CLIENT, model,
-                ListClientCommand.MESSAGE_SUCCESS, expectedModel);
+        showProjectAtIndex(model, INDEX_FIRST);
+        assertCommandSuccess(new ListProjectCommand(), ListType.PROJECT, ListType.PROJECT, model,
+                ListProjectCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
+

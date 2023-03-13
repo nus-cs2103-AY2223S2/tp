@@ -3,7 +3,7 @@ package arb.logic.parser.client;
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static arb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static arb.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class DeleteClientCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteClientCommand() {
-        assertParseSuccess(parser, "1", new DeleteClientCommand(INDEX_FIRST_CLIENT));
+        assertParseSuccess(parser, "1", new DeleteClientCommand(INDEX_FIRST));
     }
 
     @Test
