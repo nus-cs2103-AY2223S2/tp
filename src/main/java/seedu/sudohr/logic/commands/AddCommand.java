@@ -13,13 +13,13 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.employee.Employee;
 
 /**
- * Adds a person to the sudohr book.
+ * Adds an employee to the sudohr book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the sudohr book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to the sudohr book. "
             + "Parameters: "
             + PREFIX_ID + "EMPLOYEE_ID "
             + PREFIX_NAME + "NAME "
@@ -36,17 +36,17 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the sudohr book";
+    public static final String MESSAGE_SUCCESS = "New employee added: %1$s";
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the sudohr book";
 
     private final Employee toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Employee}
      */
-    public AddCommand(Employee person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Employee employee) {
+        requireNonNull(employee);
+        toAdd = employee;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasEmployee(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
         }
 
         model.addEmployee(toAdd);
