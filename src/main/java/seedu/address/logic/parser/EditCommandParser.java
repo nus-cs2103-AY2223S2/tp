@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_OLD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
@@ -50,7 +49,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_SKILL_ADD, PREFIX_SKILL_DELETE, PREFIX_SKILL_OLD, PREFIX_SKILL_NEW,
-                        PREFIX_MOD_ADD, PREFIX_MOD_DELETE, PREFIX_MOD_OLD, PREFIX_MOD_NEW, PREFIX_MODULE);
+                        PREFIX_MOD_ADD, PREFIX_MOD_DELETE, PREFIX_MOD_OLD, PREFIX_MOD_NEW);
 
         if (args.isEmpty() || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
@@ -71,13 +70,34 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
+
+        editSkills(argMultimap, editPersonDescriptor);
+
+        editModules(argMultimap, editPersonDescriptor);
+
+        if (editPersonDescriptor.getSkills().isEmpty() && originalEditPersonDescriptor.getSkills().isPresent()) {
+            throw new ParseException(EditCommand.MESSAGE_SKILL_DOES_NOT_EXIST);
+        }
+
+        if (editPersonDescriptor.getModules().isEmpty() && originalEditPersonDescriptor.getModules().isPresent()) {
+            throw new ParseException(EditCommand.MESSAGE_MOD_DOES_NOT_EXIST);
+        }
+
+        if (editPersonDescriptor.equals(originalEditPersonDescriptor)) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+        return new EditCommand(editPersonDescriptor);
+    }
+
+    private void editSkills(ArgumentMultimap argMultimap, EditPersonDescriptor editPersonDescriptor)
+            throws ParseException {
+
         parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL_ADD)).ifPresent(editPersonDescriptor::addSkills);
 
         if (argMultimap.getValue(PREFIX_SKILL_DELETE).isPresent()) {
             parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL_DELETE))
                     .ifPresent(editPersonDescriptor::deleteSkills);
         }
-        parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(editPersonDescriptor::setModules);
 
         if (argMultimap.getValue(PREFIX_SKILL_OLD).isPresent()
                 && argMultimap.getValue(PREFIX_SKILL_NEW).isPresent()) {
@@ -86,17 +106,29 @@ public class EditCommandParser implements Parser<EditCommand> {
             parseSkillsForUpdate(oldSkills, newSkills, editPersonDescriptor);
         } else if (argMultimap.getValue(PREFIX_SKILL_OLD).isPresent()
                 || argMultimap.getValue(PREFIX_SKILL_NEW).isPresent()) {
-            throw new ParseException(EditCommand.MESSAGE_INCORRECT_OLD_NEW_PREFIX);
+            throw new ParseException(EditCommand.MESSAGE_INCORRECT_OLD_NEW_SKILL_PREFIX);
+        }
+    }
+
+    private void editModules(ArgumentMultimap argMultimap, EditPersonDescriptor editPersonDescriptor)
+            throws ParseException {
+
+        parseModulesForEdit(argMultimap.getAllValues(PREFIX_MOD_ADD)).ifPresent(editPersonDescriptor::addMods);
+
+        if (argMultimap.getValue(PREFIX_MOD_DELETE).isPresent()) {
+            parseModulesForEdit(argMultimap.getAllValues(PREFIX_MOD_DELETE))
+                    .ifPresent(editPersonDescriptor::deleteMods);
         }
 
-        if (editPersonDescriptor.getSkills().isEmpty()) {
-            throw new ParseException(EditCommand.MESSAGE_SKILL_DOES_NOT_EXIST);
+        if (argMultimap.getValue(PREFIX_MOD_OLD).isPresent()
+                && argMultimap.getValue(PREFIX_MOD_NEW).isPresent()) {
+            List<String> oldMods = argMultimap.getAllValues(PREFIX_MOD_OLD);
+            List<String> newMods = argMultimap.getAllValues(PREFIX_MOD_NEW);
+            parseModsForUpdate(oldMods, newMods, editPersonDescriptor);
+        } else if (argMultimap.getValue(PREFIX_MOD_OLD).isPresent()
+                || argMultimap.getValue(PREFIX_MOD_NEW).isPresent()) {
+            throw new ParseException(EditCommand.MESSAGE_INCORRECT_OLD_NEW_MOD_PREFIX);
         }
-        if (editPersonDescriptor.equals(originalEditPersonDescriptor)) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-
-        return new EditCommand(editPersonDescriptor);
     }
 
     /**
@@ -132,7 +164,19 @@ public class EditCommandParser implements Parser<EditCommand> {
                 editPersonDescriptor.updateSkills(setOfOldSkills.get(), setOfNewSkills.get());
             }
         } else {
-            throw new ParseException("The number of old skills not equal to number of new skills");
+            throw new ParseException(EditCommand.MESSAGE_UNEQUAL_OLD_NEW_SKILLS);
+        }
+    }
+    private void parseModsForUpdate(List<String> oldMods, List<String> newMods,
+                                      EditPersonDescriptor editPersonDescriptor) throws ParseException {
+        if (newMods.size() == oldMods.size()) {
+            Optional<Set<Module>> setOfOldMods = parseModulesForEdit(oldMods);
+            Optional<Set<Module>> setOfNewMods = parseModulesForEdit(newMods);
+            if (setOfOldMods.isPresent() && setOfNewMods.isPresent()) {
+                editPersonDescriptor.updateMods(setOfOldMods.get(), setOfNewMods.get());
+            }
+        } else {
+            throw new ParseException(EditCommand.MESSAGE_UNEQUAL_OLD_NEW_MODS);
         }
     }
 

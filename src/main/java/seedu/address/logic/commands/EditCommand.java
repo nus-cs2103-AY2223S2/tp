@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_OLD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
@@ -46,12 +45,13 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS]\n"
             + "[" + PREFIX_SKILL_ADD + "SKILL] "
             + "[" + PREFIX_SKILL_DELETE + "SKILL] "
             + "[" + PREFIX_SKILL_OLD + "SKILL " + PREFIX_SKILL_NEW + "SKILL]...\n"
-            + "Example: " + COMMAND_WORD
-            + "[" + PREFIX_MODULE + "MODULE]...\n"
+            + "[" + PREFIX_MOD_ADD + "MOD] "
+            + "[" + PREFIX_MOD_DELETE + "MOD] "
+            + "[" + PREFIX_MOD_OLD + "MOD " + PREFIX_MOD_NEW + "MOD]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -62,8 +62,16 @@ public class EditCommand extends Command {
             "This person already exists in the address book.";
     public static final String MESSAGE_SKILL_DOES_NOT_EXIST =
             "There is a skill you are trying to delete/update that does not exist";
-    public static final String MESSAGE_INCORRECT_OLD_NEW_PREFIX =
+    public static final String MESSAGE_MOD_DOES_NOT_EXIST =
+            "There is a module you are trying to delete/update that does not exist";
+    public static final String MESSAGE_INCORRECT_OLD_NEW_SKILL_PREFIX =
             "To update existing skills, the prefixes so/ and sn/ must be present";
+    public static final String MESSAGE_INCORRECT_OLD_NEW_MOD_PREFIX =
+            "To update existing modules, the prefixes so/ and sn/ must be present";
+    public static final String MESSAGE_UNEQUAL_OLD_NEW_SKILLS =
+            "The number of old skills not equal to number of new skills";
+    public static final String MESSAGE_UNEQUAL_OLD_NEW_MODS =
+            "The number of old modules not equal to number of new modules";
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
@@ -151,6 +159,8 @@ public class EditCommand extends Command {
             this.email = person.getEmail();
             this.address = person.getAddress();
             this.skills = person.getSkills();
+            this.modules = person.getModules();
+
         }
 
         /**
@@ -163,7 +173,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setModules(toCopy.modules);
-            addSkills(toCopy.skills);
+            setSkills(toCopy.skills);
         }
 
         /**
@@ -203,6 +213,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setSkills(Set<Skill> skills) {
+            this.skills = (skills != null) ? new HashSet<>(skills) : null;
+        }
+
+        public void setModules(Set<Module> modules) {
+            this.modules = (modules != null) ? new HashSet<>(modules) : null;
         }
 
         /**
@@ -282,11 +300,81 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code modules} to this object's {@code modules}.
+         * Adds {@code modules} to this object's {@code modules}.
          * A defensive copy of {@code modules} is used internally.
          */
-        public void setModules(Set<Module> modules) {
-            this.modules = (modules != null) ? new HashSet<>(modules) : null;
+        public void addMods(Set<Module> modules) {
+            Set<Module> set = new HashSet<>();
+            if (modules != null && this.modules != null) {
+                set.addAll(this.modules);
+                set.addAll(modules);
+                System.out.println(set);
+                this.modules = set;
+            } else {
+                this.modules = modules;
+            }
+        }
+        //edit m+/AY2223S1 CS2108
+
+        /**
+         * Deletes {@code modules} from this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void deleteMods(Set<Module> modules) {
+            if (modules != null && this.modules != null) {
+                deleteModsHelper(modules);
+            }
+        }
+
+        private void deleteModsHelper(Set<Module> modules) {
+            if (hasMods(modules)) {
+                Set<Module> result = new HashSet<>();
+                for (Module m : this.modules) {
+                    if (!modules.contains(m)) {
+                        result.add(m);
+                    }
+                }
+                this.modules = result;
+            } else {
+                this.modules = null;
+            }
+        }
+
+        /**
+         * Updates {@code modules} from this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void updateMods(Set<Module> oldMods, Set<Module> newMods) {
+            if (oldMods != null && newMods != null && this.modules != null) {
+                updateModsHelper(oldMods, newMods);
+            }
+        }
+
+        private void updateModsHelper(Set<Module> oldMods, Set<Module> newMods) {
+            if (hasMods(oldMods)) {
+                Set<Module> result = new HashSet<>();
+                for (Module m : this.modules) {
+                    if (oldMods.contains(m)) {
+                        Module newMod = newMods.iterator().next();
+                        result.add(newMod);
+                        newMods.remove(newMod);
+                    } else {
+                        result.add(m);
+                    }
+                }
+                this.modules = result;
+            } else {
+                this.modules = null;
+            }
+        }
+
+        private boolean hasMods(Set<Module> oldMods) {
+            for (Module m : oldMods) {
+                if (!this.modules.contains(m)) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         /**

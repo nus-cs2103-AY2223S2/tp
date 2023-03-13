@@ -18,6 +18,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_MOD_DELETE = new Prefix("m-/");
     public static final Prefix PREFIX_MOD_OLD = new Prefix("mo/");
     public static final Prefix PREFIX_MOD_NEW = new Prefix("mn/");
-    public static final Prefix PREFIX_MODULE = new Prefix("m/");
 
 }

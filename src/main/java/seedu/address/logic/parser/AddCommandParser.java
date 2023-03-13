@@ -1,12 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -40,7 +35,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_EMAIL,
                         PREFIX_ADDRESS,
                         PREFIX_SKILL_ADD,
-                        PREFIX_MODULE
+                        PREFIX_MOD_ADD
                 );
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL)
@@ -53,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElseGet(() -> null));
         Set<Skill> skillList = ParserUtil.parseSkills(argMultimap.getAllValues(PREFIX_SKILL_ADD));
-        Set<Module> moduleSet = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
+        Set<Module> moduleSet = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MOD_ADD));
 
         Person person = new Person(name, phone, email, address, skillList, moduleSet);
 
