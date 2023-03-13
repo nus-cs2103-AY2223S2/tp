@@ -11,6 +11,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 
+/**
+ * Adds an employee to an existing department inside SudoHR.
+ */
 public class AddEmployeeToDepartmentCommand extends Command {
 
     public static final String COMMAND_WORD = "aetd";
