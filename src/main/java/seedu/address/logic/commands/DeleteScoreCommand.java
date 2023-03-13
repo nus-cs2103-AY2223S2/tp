@@ -23,7 +23,7 @@ public class DeleteScoreCommand extends Command {
             + "Parameters: INDEX_OF_STUDENT INDEX_OF_SCORE (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_DELETE_SCORE_SUCCESS = "Deleted Score for %1$s: %2$s";
+    public static final String MESSAGE_DELETE_SCORE_SUCCESS = "Deleted score for %1$s: %2$s";
 
     private final Index studentIndex;
     private final Index scoreIndex;
