@@ -102,6 +102,8 @@ public class ModelManager implements Model {
         this.addressBook.resetData(addressBook);
     }
 
+    // =========== Person ================================================================================
+
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -143,6 +145,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Client ==================================================================================
     @Override
     public Optional<Client> getUniqueClient(Predicate<Client> predicate) {
         List<Client> clients = addressBook.getClientList().stream().filter(predicate).collect(Collectors.toList());
