@@ -1,0 +1,242 @@
+package seedu.sudohr.logic.commands;
+
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.sudohr.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import seedu.sudohr.commons.core.GuiSettings;
+import seedu.sudohr.logic.commands.exceptions.CommandException;
+import seedu.sudohr.model.Model;
+import seedu.sudohr.model.ReadOnlySudoHr;
+import seedu.sudohr.model.ReadOnlyUserPrefs;
+import seedu.sudohr.model.SudoHr;
+import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.testutil.PersonBuilder;
+
+public class AddCommandTest {
+
+    @Test
+    public void constructor_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    }
+
+    @Test
+    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Employee validPerson = new PersonBuilder().build();
+
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    }
+
+    @Test
+    public void execute_duplicatePerson_throwsCommandException() {
+        Employee validPerson = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void equals() {
+        Employee alice = new PersonBuilder().withName("Alice").build();
+        Employee bob = new PersonBuilder().withName("Bob").build();
+        AddCommand addAliceCommand = new AddCommand(alice);
+        AddCommand addBobCommand = new AddCommand(bob);
+
+        // same object -> returns true
+        assertTrue(addAliceCommand.equals(addAliceCommand));
+
+        // same values -> returns true
+        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addAliceCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addAliceCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(addAliceCommand.equals(addBobCommand));
+    }
+
+    /**
+     * A default model stub that have all of the methods failing.
+     */
+    private class ModelStub implements Model {
+        @Override
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyUserPrefs getUserPrefs() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public GuiSettings getGuiSettings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getSudoHrFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSudoHrFilePath(Path sudoHrFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEmployee(Employee employee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSudoHr(ReadOnlySudoHr sudoHr) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlySudoHr getSudoHr() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEmployee(Employee employee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEmployee(Employee target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEmployee(Employee target, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Employee> getFilteredEmployeeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Department getDepartment(DepartmentName name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasDepartment(Department department) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addDepartment(Department d) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDepartment(Department target, Department editedDepartment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeDepartment(Department key) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEmployeeToDepartment(Employee p, Department d) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeEmployeeFromDepartment(Employee p, Department d) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Department> getFilteredDepartmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredDepartmentList(Predicate<Department> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+    }
+
+    /**
+     * A Model stub that contains a single person.
+     */
+    private class ModelStubWithPerson extends ModelStub {
+        private final Employee person;
+
+        ModelStubWithPerson(Employee person) {
+            requireNonNull(person);
+            this.person = person;
+        }
+
+        @Override
+        public boolean hasEmployee(Employee employee) {
+            requireNonNull(employee);
+            return this.person.isSameEmployee(employee);
+        }
+    }
+
+    /**
+     * A Model stub that always accept the person being added.
+     */
+    private class ModelStubAcceptingPersonAdded extends ModelStub {
+        final ArrayList<Employee> personsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasEmployee(Employee employee) {
+            requireNonNull(employee);
+            return personsAdded.stream().anyMatch(employee::isSameEmployee);
+        }
+
+        @Override
+        public void addEmployee(Employee employee) {
+            requireNonNull(employee);
+            personsAdded.add(employee);
+        }
+
+        @Override
+        public ReadOnlySudoHr getSudoHr() {
+            return new SudoHr();
+        }
+    }
+
+}

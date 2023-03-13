@@ -1,0 +1,6 @@
+{
+  "employees": [],
+  "departments": [ {
+    "name": "@Engineering"
+  } ]
+}

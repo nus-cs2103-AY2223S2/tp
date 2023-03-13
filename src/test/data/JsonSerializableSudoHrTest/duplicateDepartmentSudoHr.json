@@ -1,0 +1,10 @@
+{
+  "employees": [],
+  "departments": [ {
+    "name": "Engineering",
+    "employees" : [ ]
+  }, {
+    "name": "Engineering",
+    "employees" : [ ]
+  } ]
+}
