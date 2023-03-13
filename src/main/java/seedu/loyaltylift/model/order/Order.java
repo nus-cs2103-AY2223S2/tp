@@ -5,6 +5,9 @@ import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Date;
 import java.util.Objects;
 
+import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
+
 /**
  * Represents an Order in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.

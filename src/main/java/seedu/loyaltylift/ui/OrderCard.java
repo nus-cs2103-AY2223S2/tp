@@ -47,7 +47,7 @@ public class OrderCard extends UiPart<Region> {
         super(FXML);
         this.order = order;
         id.setText(displayedIndex + ". ");
-        name.setText(order.getName().name);
+        name.setText(order.getName().fullName);
         quantity.setText(order.getQuantity().toString());
         address.setText(order.getAddress().toString());
 
