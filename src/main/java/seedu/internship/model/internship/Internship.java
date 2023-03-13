@@ -107,7 +107,7 @@ public class Internship {
                 .append(getCompany())
                 .append("; Status: ")
                 .append(getStatus())
-                .append("; Description")
+                .append("; Description: ")
                 .append(getDescription());
 
         Set<Tag> tags = getTags();
