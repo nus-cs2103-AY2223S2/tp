@@ -23,13 +23,14 @@ import codoc.model.skill.Skill;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_GITHUB = "+651234";
-    private static final String INVALID_LINKEDIN = " ";
+    private static final String INVALID_LINKEDIN = "linkedin.com/in/A-while-back-I-needed-to-count-the-amount-of"
+            + "-letters-that-a-piece-of-text-in-an-email-template-had123";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "Àpython";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_GITHUB = "123456";
-    private static final String VALID_LINKEDIN = "123 Main Street #0505";
+    private static final String VALID_LINKEDIN = "linkedin.com/in/r4ch3t";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "C++";
     private static final String VALID_SKILL_2 = "javascript";

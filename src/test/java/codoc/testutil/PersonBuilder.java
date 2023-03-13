@@ -18,9 +18,9 @@ import codoc.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_GITHUB = "85355255";
+    public static final String DEFAULT_GITHUB = "amyG";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_LINKEDIN = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LINKEDIN = "linkedin.com/in/4my";
 
     private Name name;
     private Github github;

@@ -70,6 +70,6 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match github, email and linkedin, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withGithub("12345")
-                .withEmail("alice@email.com").withLinkedin("Main Street").build()));
+                .withEmail("alice@email.com").withLinkedin("linkedin.com/in/alice").build()));
     }
 }

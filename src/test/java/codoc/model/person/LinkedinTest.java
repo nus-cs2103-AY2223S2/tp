@@ -24,9 +24,10 @@ public class LinkedinTest {
         assertFalse(Linkedin.isValidLinkedin(" ")); // spaces only
 
         // valid linkedins
-        assertTrue(Linkedin.isValidLinkedin("Blk 456, Den Road, #01-355"));
-        assertTrue(Linkedin.isValidLinkedin("-")); // one character
-        assertTrue(Linkedin.isValidLinkedin("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long
+        assertTrue(Linkedin.isValidLinkedin("linkedin.com/in/r4ch3t"));
+        assertTrue(Linkedin.isValidLinkedin("linkedin.com/in/r4ch3t-with-hyphens")); // one character
+        assertTrue(Linkedin.isValidLinkedin("linkedin.com/in/A-while-back-I-needed-to-count-the-amount-of"
+                + "-letters-that-a-piece-of-text-in-an-email-template-had12")); // max characters
         // linkedin
     }
 }

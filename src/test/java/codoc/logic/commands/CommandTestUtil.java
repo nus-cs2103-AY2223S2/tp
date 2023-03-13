@@ -32,8 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_GITHUB_BOB = "bob-456";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_LINKEDIN_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_LINKEDIN_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_LINKEDIN_AMY = "linkedin.com/in/4my";
+    public static final String VALID_LINKEDIN_BOB = "linkedin.com/in/b0b";
     public static final String VALID_SKILL_JAVA = "java";
     public static final String VALID_SKILL_CSHARP = "C#";
 
@@ -52,7 +52,8 @@ public class CommandTestUtil {
     public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB + "-bob"; // GitHub usernames cannot start
     // with '-'
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_LINKEDIN_DESC = " " + PREFIX_LINKEDIN; // empty string not allowed for linkedins
+    public static final String INVALID_LINKEDIN_DESC = " " + PREFIX_LINKEDIN + "linkedin.com/in/4my sheesh"; // space
+    // not allowed for linkedins
     public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL + "hubbyü"; // '*' not allowed in skills
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

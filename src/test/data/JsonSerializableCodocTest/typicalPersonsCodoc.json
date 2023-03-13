@@ -4,44 +4,44 @@
     "name" : "Alice Pauline",
     "github" : "alice-Pauline",
     "email" : "alice@example.com",
-    "linkedin" : "123, Jurong West Ave 6, #08-111",
+    "linkedin" : "linkedin.com/in/alice",
     "skills" : [ "python" ]
   }, {
     "name" : "Benson Meier",
     "github" : "bensonmeier",
     "email" : "johnd@example.com",
-    "linkedin" : "311, Clementi Ave 2, #02-25",
+    "linkedin" : "linkedin.com/in/alice",
     "skills" : [ "java", "python" ],
     "modules" : ["AY2223S1 CS1101S", "AY2223S1 CS1231S"]
   }, {
     "name" : "Carl Kurz",
     "github" : "Carl-Kurz",
     "email" : "heinz@example.com",
-    "linkedin" : "wall street",
+    "linkedin" : "linkedin.com/in/carl123",
     "skills" : [ ]
   }, {
     "name" : "Daniel Meier",
     "github" : "d4nielMeier",
     "email" : "cornelia@example.com",
-    "linkedin" : "10th street",
+    "linkedin" : "linkedin.com/in/daniel-Meier",
     "skills" : [ "python" ]
   }, {
     "name" : "Elle Meyer",
     "github" : "Elle-meyer",
     "email" : "werner@example.com",
-    "linkedin" : "michegan ave",
+    "linkedin" : "linkedin.com/in/elle101",
     "skills" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "github" : "F1onaKunz",
     "email" : "lydia@example.com",
-    "linkedin" : "little tokyo",
+    "linkedin" : "linkedin.com/in/FIONA-kunz",
     "skills" : [ ]
   }, {
     "name" : "George Best",
     "github" : "george-b3st",
     "email" : "anna@example.com",
-    "linkedin" : "4th street",
+    "linkedin" : "linkedin.com/in/GeorGe123",
     "skills" : [ ]
   } ]
 }

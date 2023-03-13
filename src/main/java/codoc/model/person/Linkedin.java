@@ -3,18 +3,19 @@ package codoc.model.person;
 import codoc.commons.util.AppUtil;
 
 /**
- * Represents a Person's linkedin in CoDoc.
- * Guarantees: immutable; is valid as declared in {@link #isValidLinkedin(String)}
+ * Represents a Person's linkedin in CoDoc. Guarantees: immutable; is valid as declared in
+ * {@link #isValidLinkedin(String)}
  */
 public class Linkedin {
 
-    public static final String MESSAGE_CONSTRAINTS = "Linkedin URLs can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "LinkedIn profile URL must start with 'linkedin.com/in/', "
+            + "followed by 3-100 characters consisting of letters, numbers, and hyphens.";
 
     /*
-     * The first character of the linkedin must not be a whitespace,
+     * The first character of the LinkedIn must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "linkedin\\.com/in/[a-zA-Z0-9\\\\-]{3,100}";
 
     public final String value;
 
