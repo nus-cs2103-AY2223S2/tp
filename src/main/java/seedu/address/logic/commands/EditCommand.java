@@ -52,13 +52,14 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "Existing values will be overwritten by the input values. "
+            + "To edit timing, both start and end time must be included.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_RATE + "RATE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TIMING_START + "START_TIME (must also have end time) "
-            + "[" + PREFIX_TIMING_END + "END_TIME (must also have start time) "
+            + "[" + PREFIX_TIMING_START + "START_TIME] "
+            + "[" + PREFIX_TIMING_END + "END_TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
