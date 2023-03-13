@@ -16,11 +16,13 @@ import taa.model.student.UniqueStudentList;
  */
 public class ClassList implements ReadOnlyAddressBook {
 
+    private static int lastId = 0;
+
     private UniqueStudentList students;
     private AssignmentList assignments;
     private int classId;
-    private static int lastId = 0;
     private int studentCount = 0;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html

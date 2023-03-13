@@ -1,5 +1,10 @@
 package taa.model;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 import javafx.collections.ObservableList;
 import taa.commons.util.CollectionUtil;
 import taa.model.student.Name;
@@ -7,11 +12,9 @@ import taa.model.student.Student;
 import taa.model.student.UniqueStudentList;
 import taa.model.tag.Tag;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
+/**
+ * Represents a tutor in the TAA application
+ */
 public class Tutor implements ReadOnlyAddressBook {
     private static int lastId = 0;
     // Identity fields
