@@ -35,7 +35,7 @@ Rank the roles based on the priority chosen by the user.
 FORMAT: rank roleID LEVEL
 
 ### Listing details for ranked roles:
-When the person clicks on the role, list details about the internship that they have ranked
+When the role clicks on the role, list details about the internship that they have ranked
 FORMAT: list
 
 ### Save Data
