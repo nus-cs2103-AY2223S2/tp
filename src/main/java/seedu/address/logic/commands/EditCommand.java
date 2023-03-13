@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -25,6 +26,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -98,8 +100,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags().orElse(personToEdit.getModuleTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedModuleTags);
     }
 
     @Override
@@ -131,6 +134,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
+        private Set<ModuleTag> moduleTags;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -143,13 +148,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setModuleTags(toCopy.moduleTags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, moduleTags);
         }
 
         public void setName(Name name) {
@@ -201,6 +207,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setModuleTags(Set<ModuleTag> moduleTags) {
+            this.moduleTags = (moduleTags != null) ? new HashSet<>(moduleTags) : null;
+        }
+
+        public Optional<Set<ModuleTag>> getModuleTags() {
+            return (moduleTags != null) ? Optional.of(Collections.unmodifiableSet(moduleTags)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -220,7 +234,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getModuleTags().equals(e.getModuleTags());
         }
     }
 }

@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedModuleTag> moduleTagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,13 +38,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("moduleTagged") List<JsonAdaptedModuleTag> moduleTagged ) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (moduleTagged != null) {
+            this.moduleTagged.addAll(moduleTagged);
         }
     }
 
@@ -57,6 +63,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        moduleTagged.addAll(source.getModuleTags().stream()
+                .map(JsonAdaptedModuleTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -66,6 +75,10 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<ModuleTag> moduleTags = new ArrayList<>();
+        for(JsonAdaptedModuleTag tag : moduleTagged) {
+            moduleTags.add(tag.toModelType());
+        }
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
@@ -103,7 +116,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<ModuleTag> modelModuleTags = new HashSet<>(moduleTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,modelModuleTags);
     }
 
 }
