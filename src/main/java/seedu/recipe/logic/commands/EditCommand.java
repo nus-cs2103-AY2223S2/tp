@@ -8,7 +8,6 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -19,7 +18,6 @@ import seedu.recipe.commons.util.CollectionUtil;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.recipe.*;
-import seedu.recipe.model.tag.Tag;
 
 /**
  * Edits the details of an existing recipe in the recipe book.
@@ -92,7 +90,8 @@ public class EditCommand extends Command {
 
         Title updatedTitle = editRecipeDescriptor.getTitle().orElse(recipeToEdit.getTitle());
         Description updatedDesc = editRecipeDescriptor.getDesc().orElse(recipeToEdit.getDesc());
-        Set<Ingredient> updatedIngredients = editRecipeDescriptor.getIngredients().orElse(recipeToEdit.getIngredients());
+        Set<Ingredient> updatedIngredients = editRecipeDescriptor.getIngredients()
+                .orElse(recipeToEdit.getIngredients());
         Set<Step> updatedSteps = editRecipeDescriptor.getSteps().orElse(recipeToEdit.getSteps());
 
         return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps);

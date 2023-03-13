@@ -66,12 +66,6 @@ public class LogicManager implements Logic {
         return model.getFilteredRecipeList();
     }
 
-
-    @Override
-    public Recipe getCurrentViewingRecipe() {
-        return model.getCurrentRecipe();
-    }
-
     @Override
     public Path getRecipeBookFilePath() {
         return model.getRecipeBookFilePath();
