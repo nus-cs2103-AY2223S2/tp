@@ -17,6 +17,7 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
   * [Create New Event](#create-new-event)
   * [View Event List](#list-all-events)
   * [Delete an Event](#delete-an-event)
+  * [Edit an Event](#edit-an-event)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -41,7 +42,7 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 
    * `newcontact n/John Doe p/98765432` : Adds a contact named `John Doe` to the contact list.
 
-   * `deleteevent 3` : Deletes the 3rd event shown in the current list.
+   * `delete 3` : Deletes the 3rd event shown in the current list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -67,11 +68,11 @@ Adding a contact to contacts
 Displays all contacts saved in a list
 
 **Format**: `listcontact` -->
-### Link Contact to Event: `link` <a id = "link-contact-to-event"></a>
+### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
 
 Links client contact to an event.
 
-**Format**: `link INDEX CONTACT`
+**Format**: `linkcontact INDEX CONTACT`
 
 - Links contact to the event at the specified `INDEX`.
 
@@ -79,7 +80,7 @@ Links client contact to an event.
   - The `INDEX` must be a positive integer 1, 2, 3, …​
 
 **Example**:
-- `link 2 91234567` links `2nd event` to contact `91234567` in the list.
+- `linkcontact 2 91234567` links `2nd event` to contact `91234567` in the list.
 
 
 ### View Rate: `rate` <a id = "view-rate"></a>
@@ -97,7 +98,7 @@ Displays the rate tagged to an event.
 - `rate 2` returns the rate of `2nd event` in the event list.
 
 
-### Tag Rate: `newrate` <a id = "tag-rate"></a>
+<!-- ### Tag Rate: `newrate` <a id = "tag-rate"></a>
 
 Tags a rate to an event.
 
@@ -109,7 +110,7 @@ Tags a rate to an event.
   - The `INDEX` must be a positive integer 1, 2, 3, …​
 
 **Example**:
-- `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list.
+- `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list. -->
 
 
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
@@ -140,21 +141,40 @@ Creates a new event
 
 Shows a list of all events in the address book
 
-**Format**: `listevent`
+**Format**: `list`
 
 
-### Delete an Event: `deleteevent` <a id = "delete-an-event"></a>
+### Delete an Event: `delete` <a id = "delete-an-event"></a>
 
 Deletes the specified event from the event book.
 
-**Format**: `deleteevent INDEX`
+**Format**: `delete INDEX`
 
-- Deletes the event at the specified INDEX
+- Deletes the event at the specified `INDEX`
+
   - The `INDEX` refers to the index number shown in the displayed event list.
   - The `INDEX` must be a positive integer 1, 2, 3, …​
 
 **Example**:
-  - `deleteevent 2` deletes the `2nd event` in the event list.
+  - `delete 2` deletes the `2nd event` in the event list.
+
+### Edit an Event: `edit` <a id = "edit-an-event"></a>
+
+Edits the specified event from the event book.
+
+**Format**: `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`
+
+- Edits the event at the specified `INDEX`
+
+  - The `INDEX` refers to the index number shown in the displayed event list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …​
+  - At least one of the optional fields must be provided.
+  - Edits will replace existing values, edits are not cumulative.
+  - Tags can be removed by typing `t/` without specifying any tags after it.
+
+**Example**:
+  - `edit 1 p/91234567 r/100` Edits the phone number and rate of the 1st person to be 91234567 and j100 respectively.
+  - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
 
 ### Saving the data
 
@@ -170,14 +190,13 @@ Paidlancers data are saved in the hard disk automatically exiting the program. T
 |                    Commands                     |               Command Format                |                                Example Usage                                |
 |:-----------------------------------------------:|:-------------------------------------------:|:---------------------------------------------------------------------------:|
 |         [Add a Contact](#add-a-contact)         |        `newcontact n/NAME p/NUMBER`         |                    `newcontact n/Deborah Tan p/91234567`                    |
-|    [Listing All Contact](#list-all-contacts)    |                `listcontact`                |                                `listcontact`                                |
-| [Link Contact to Event](#link-contact-to-event) |            `link INDEX CONTACT`             |                              `link 2 91234567`                              |
+| [Link Contact to Event](#link-contact-to-event) |            `linkcontact INDEX CONTACT`             |                              `linkcontact 2 91234567`                              |
 |             [View Rate](#view-rate)             |                `rate INDEX`                 |                                  `rate 2`                                   |
-|             [Tag a rate](#tag-rate)             |           `newrate INDEX AMOUNT`            |                               `newrate 2 100`                               |
 |       [Marks Event as Done](#mark-event)        |                `mark INDEX`                 |                                  `mark 2`                                   |
 |     [Create a new Event](#create-new-event)     |               `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`               |                             `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`                  
-|       [View Event List](#list-all-events)       |                 `listevent`                 |                                 `listevent`                                 |
-|       [Delete an Event](#delete-an-event)       |               `deleteevent 2`               |                               `deleteevent 2`                               |
+|       [View Event List](#list-all-events)       |                 `list`                 |                                 `list`                                 |
+|       [Delete an Event](#delete-an-event)       |               `delete INDEX`               |                               `delete 2`                               |
+|       [Edit an Event](#edit-an-event)       |               `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`               |                               `edit 2 r/100`                               |
 |
 
 [Back to top](#)
