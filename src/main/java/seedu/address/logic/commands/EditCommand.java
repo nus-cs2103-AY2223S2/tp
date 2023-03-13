@@ -57,6 +57,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_RATE + "RATE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TIMING_START + "START_TIME (must also have end time) "
+            + "[" + PREFIX_TIMING_END + "END_TIME (must also have start time) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
@@ -250,6 +252,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getRate().equals(e.getRate())
                     && getAddress().equals(e.getAddress())
+                    && getTiming().equals(e.getTiming())
                     && getTags().equals(e.getTags());
         }
     }
