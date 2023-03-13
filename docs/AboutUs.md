@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jrmckh.png" width="200px">
 
 [[github](http://github.com/JrmCkh)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jermckh.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
