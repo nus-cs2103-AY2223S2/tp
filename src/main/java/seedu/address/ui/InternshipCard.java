@@ -69,12 +69,34 @@ public class InternshipCard extends UiPart<Region> {
         internshipCardInformation.add(companyName.getText());
 
         //Add Role
-        role.setText(internship.getRole().fullRole);
+        role.setText("Role: " + internship.getRole().fullRole);
         internshipCardInformation.add(role.getText());
 
-
         //Add Date
-        date.setText(internship.getDate().fullDate);
+        String dateLabel;
+        switch (internship.getStatus().toString()) {
+        case "New":
+            dateLabel = "Date Added: ";
+            break;
+        case "Applied":
+            dateLabel = "Date Applied: ";
+            break;
+        case "Assessment":
+            dateLabel = "Date of Assessment: ";
+            break;
+        case "Interview":
+            dateLabel = "Date of Interview: ";
+            break;
+        case "Offered":
+            dateLabel = "Date of Notice of Offer: ";
+            break;
+        case "Rejected":
+            dateLabel = "Date of Notice of Rejection: ";
+            break;
+        default:
+            dateLabel = "Date: ";
+        }
+        date.setText(dateLabel + internship.getDate().fullDate);
         internshipCardInformation.add(date.getText());
 
         //Add Tags

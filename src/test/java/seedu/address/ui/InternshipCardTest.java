@@ -72,10 +72,10 @@ public class InternshipCardTest extends GuiUnitTest {
         assertTrue(internshipCardInformation.get(1).equals("Amazon"));
 
         //Check Role
-        assertTrue(internshipCardInformation.get(2).equals("Cloud Architect"));
+        assertTrue(internshipCardInformation.get(2).equals("Role: " + "Cloud Architect"));
 
         //Check Date
-        assertTrue(internshipCardInformation.get(3).equals("2023-02-01"));
+        assertTrue(internshipCardInformation.get(3).equals("Date of Assessment: " + "2023-02-01"));
 
         //Check Tags
         assertTrue(internshipCardInformation.get(4).equals("aws"));
