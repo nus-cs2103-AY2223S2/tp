@@ -32,8 +32,7 @@ public class FindCommandTest {
     public void testEquals() {
         List<String> firstSingletonList = Collections.singletonList("first");
         List<String> secondSingletonList = Collections.singletonList("second");
-        PersonContainsKeywordsPredicate firstPersonPredicate =
-                new PersonContainsKeywordsPredicate(
+        PersonContainsKeywordsPredicate firstPersonPredicate = new PersonContainsKeywordsPredicate(
                         firstSingletonList,
                         firstSingletonList,
                         firstSingletonList,

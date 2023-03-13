@@ -27,8 +27,8 @@ public class LanguageContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        LanguageContainsKeywordsPredicate firstPredicateCopy =
-                new LanguageContainsKeywordsPredicate(firstPredicateKeywordList);
+        LanguageContainsKeywordsPredicate firstPredicateCopy = new LanguageContainsKeywordsPredicate(
+                firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,8 +44,8 @@ public class LanguageContainsKeywordsPredicateTest {
     @Test
     public void test_languageContainsKeywords_returnsTrue() {
         // One keyword
-        LanguageContainsKeywordsPredicate predicate =
-                new LanguageContainsKeywordsPredicate(Collections.singletonList("java"));
+        LanguageContainsKeywordsPredicate predicate = new LanguageContainsKeywordsPredicate(
+                Collections.singletonList("java"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
                 .withLanguages("java", "python")
@@ -77,11 +77,17 @@ public class LanguageContainsKeywordsPredicateTest {
     public void test_languageDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         LanguageContainsKeywordsPredicate predicate = new LanguageContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withLanguages("java", "python").build()));
+        assertFalse(predicate.test(new PersonBuilder()
+                .withName("Alice")
+                .withLanguages("java", "python")
+                .build()));
 
         // Non-matching keyword
         predicate = new LanguageContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").withLanguages("java", "python").build()));
+        assertFalse(predicate.test(new PersonBuilder()
+                .withName("Alice Bob")
+                .withLanguages("java", "python")
+                .build()));
 
         // Keywords match name, phone, email and address, but does not match language
         predicate = new LanguageContainsKeywordsPredicate(Arrays.asList(

@@ -16,8 +16,7 @@ public class PersonContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        PersonContainsKeywordsPredicate firstPersonPredicate =
-                new PersonContainsKeywordsPredicate(
+        PersonContainsKeywordsPredicate firstPersonPredicate = new PersonContainsKeywordsPredicate(
                         firstPredicateKeywordList,
                         firstPredicateKeywordList,
                         firstPredicateKeywordList,
@@ -93,8 +92,7 @@ public class PersonContainsKeywordsPredicateTest {
         assertTrue(secondTagPersonPredicate.equals(secondTagPersonPredicate));
 
         // same values -> returns true
-        PersonContainsKeywordsPredicate firstPersonPredicateCopy =
-                new PersonContainsKeywordsPredicate(
+        PersonContainsKeywordsPredicate firstPersonPredicateCopy = new PersonContainsKeywordsPredicate(
                         firstPredicateKeywordList,
                         firstPredicateKeywordList,
                         firstPredicateKeywordList,

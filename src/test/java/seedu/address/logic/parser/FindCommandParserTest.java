@@ -26,7 +26,7 @@ public class FindCommandParserTest {
                 emptyKeywords,
                 emptyKeywords,
                 emptyKeywords));
-        assertParseSuccess(parser, "     ", command);
+        assertParseSuccess(parser, "", command);
     }
 
     @Test

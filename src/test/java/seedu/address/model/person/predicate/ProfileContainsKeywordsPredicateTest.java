@@ -27,8 +27,8 @@ public class ProfileContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ProfileContainsKeywordsPredicate firstPredicateCopy =
-                new ProfileContainsKeywordsPredicate(firstPredicateKeywordList);
+        ProfileContainsKeywordsPredicate firstPredicateCopy = new ProfileContainsKeywordsPredicate(
+                firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,28 +44,43 @@ public class ProfileContainsKeywordsPredicateTest {
     @Test
     public void test_profileContainsKeywords_returnsTrue() {
         // One keyword
-        ProfileContainsKeywordsPredicate predicate =
-                new ProfileContainsKeywordsPredicate(Collections.singletonList("alice-nus"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").withProfile("alice-nus").build()));
+        ProfileContainsKeywordsPredicate predicate = new ProfileContainsKeywordsPredicate(
+                Collections.singletonList("alice-nus"));
+        assertTrue(predicate.test(new PersonBuilder()
+                .withName("Alice Bob")
+                .withProfile("alice-nus")
+                .build()));
 
         // Only one matching keyword
         predicate = new ProfileContainsKeywordsPredicate(Arrays.asList("alice-nus", "Carol-nus"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").withProfile("alice-nus").build()));
+        assertTrue(predicate.test(new PersonBuilder()
+                .withName("Alice Carol")
+                .withProfile("alice-nus")
+                .build()));
 
         // Mixed-case keywords
         predicate = new ProfileContainsKeywordsPredicate(Arrays.asList("ALiCE-NuS"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").withProfile("alice-nus").build()));
+        assertTrue(predicate.test(new PersonBuilder()
+                .withName("Alice Bob")
+                .withProfile("alice-nus")
+                .build()));
     }
 
     @Test
     public void test_profileDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         ProfileContainsKeywordsPredicate predicate = new ProfileContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withProfile("alice-nus").build()));
+        assertFalse(predicate.test(new PersonBuilder()
+                .withName("Alice")
+                .withProfile("alice-nus")
+                .build()));
 
         // Non-matching keyword
         predicate = new ProfileContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").withProfile("alice-nus").build()));
+        assertFalse(predicate.test(new PersonBuilder()
+                .withName("Alice Bob")
+                .withProfile("alice-nus")
+                .build()));
 
         // Keywords match name, phone, email and address, but does not match profile
         predicate = new ProfileContainsKeywordsPredicate(Arrays.asList(
