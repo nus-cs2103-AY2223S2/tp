@@ -2,7 +2,6 @@ package seedu.calidr.ui;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -19,8 +18,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.commons.util.TaskEntryUtil;
+import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.TaskEntry;
-import seedu.calidr.model.task.Task;
 
 
 /**
@@ -83,9 +82,11 @@ public class CalendarPanel extends UiPart<Region> {
      *
      * @param taskList the task list
      */
-    public void updateCalendar(ArrayList<Task> taskList) {
+    public void updateCalendar(ReadOnlyTaskList taskList) {
         // TODO: Asynchronous / lazy loading
         calendar.clear();
-        calendar.addEntries(taskList.stream().map(TaskEntryUtil::convert).collect(Collectors.toUnmodifiableList()));
+        calendar.addEntries(taskList.getTaskList()
+                .stream().map(TaskEntryUtil::convert)
+                .collect(Collectors.toUnmodifiableList()));
     }
 }
