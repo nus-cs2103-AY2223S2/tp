@@ -16,7 +16,7 @@ public class RankTest {
     @Test
     public void constructor_invalidRank_throwsIllegalArgumentException() {
         String invalidRank = "";
-        assertThrows(IllegalArgumentException.class, () -> new Email(invalidRank));
+        assertThrows(IllegalArgumentException.class, () -> new Rank(invalidRank));
     }
 
     @Test
