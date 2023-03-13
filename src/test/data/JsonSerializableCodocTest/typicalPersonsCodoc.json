@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "Codoc save file which contains the same Person values as in TypicalPersons#getTypicalCodoc()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "github" : "alice-Pauline",
