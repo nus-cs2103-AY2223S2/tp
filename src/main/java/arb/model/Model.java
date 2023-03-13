@@ -23,7 +23,7 @@ public interface Model {
     Comparator<Client> CLIENT_NAME_COMPARATOR = (c1, c2) -> {
         return c1.getName().compareTo(c2.getName());
     };
-    
+
     /** {@code comparator} for sorted project list that compares using project titles */
     Comparator<Project> PROJECT_TITLE_COMPARATOR = (p1, p2) -> {
         return p1.getTitle().compareTo(p2.getTitle());
@@ -31,6 +31,13 @@ public interface Model {
 
     /** {@code comparator} for sorted project list that compares using project deadlines */
     Comparator<Project> PROJECT_DEADLINE_COMPARATOR = (p1, p2) -> {
+        if (!p1.isDeadlinePresent() && !p2.isDeadlinePresent()) {
+            return 0;
+        } else if (!p1.isDeadlinePresent()) {
+            return 1;
+        } else if (!p2.isDeadlinePresent()) {
+            return -1;
+        }
         return p1.getDeadline().compareTo(p2.getDeadline());
     };
 

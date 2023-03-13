@@ -1,9 +1,15 @@
 package arb.model;
 
+import static arb.model.Model.CLIENT_NAME_COMPARATOR;
+import static arb.model.Model.CLIENT_NO_COMPARATOR;
 import static arb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
+import static arb.model.Model.PROJECT_DEADLINE_COMPARATOR;
+import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalClients.ALICE;
 import static arb.testutil.TypicalClients.BENSON;
+import static arb.testutil.TypicalProjects.OIL_PAINTING;
+import static arb.testutil.TypicalProjects.SKY_PAINTING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -89,13 +95,45 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasProject(null));
+    }
+
+    @Test
+    public void hasProject_projectNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasProject(SKY_PAINTING));
+    }
+
+    @Test
+    public void hasProject_projectInAddressBook_returnsTrue() {
+        modelManager.addProject(SKY_PAINTING);
+        assertTrue(modelManager.hasProject(SKY_PAINTING));
+    }
+
+    @Test
     public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClientList().remove(0));
     }
 
     @Test
+    public void getFilteredProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredProjectList().remove(0));
+    }
+
+    @Test
+    public void getSortedClientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedClientList().remove(0));
+    }
+
+    @Test
+    public void getSortedProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedProjectList().remove(0));
+    }
+
+    @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withClient(BENSON).withClient(ALICE)
+                .withProject(OIL_PAINTING).withProject(SKY_PAINTING).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -116,13 +154,27 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
-        // different filteredList -> returns false
+        // different filteredClientList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+
+        // different sortedClientList -> returns true
+        modelManager.updateSortedClientList(CLIENT_NAME_COMPARATOR);
+        assertTrue(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateSortedClientList(CLIENT_NO_COMPARATOR);
+
+        // different sortedProjectList -> returns true
+        modelManager.updateSortedProjectList(PROJECT_DEADLINE_COMPARATOR);
+        assertTrue(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateSortedProjectList(PROJECT_NO_COMPARATOR);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

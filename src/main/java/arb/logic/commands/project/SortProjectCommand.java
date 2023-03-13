@@ -1,9 +1,9 @@
 package arb.logic.commands.project;
 
-import static java.util.Objects.requireNonNull;
 import static arb.logic.parser.CliSyntax.PREFIX_OPTION;
+import static java.util.Objects.requireNonNull;
 
-import arb.commons.core.sorting.SortingOption;
+import arb.commons.core.sorting.ProjectSortingOption;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.model.ListType;
@@ -23,19 +23,26 @@ public class SortProjectCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_OPTION + "name";
 
-    private final SortingOption sortingOption;
+    private final ProjectSortingOption sorter;
 
     /**
-     * @param sortingOption to sort the project list with
+     * @param sorter to sort the project list with
      */
-    public SortProjectCommand(SortingOption sortingOption) {
-        this.sortingOption = sortingOption;
+    public SortProjectCommand(ProjectSortingOption sorter) {
+        this.sorter = sorter;
     }
 
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) {
         requireNonNull(model);
-        model.updateSortedProjectList(sortingOption.getComparator());
-        return new CommandResult(sortingOption.getSuccessMessage(), ListType.PROJECT);
+        model.updateSortedProjectList(sorter.getComparator());
+        return new CommandResult(sorter.getSuccessMessage(), ListType.PROJECT);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortProjectCommand // instanceof handles nulls
+                && sorter.equals(((SortProjectCommand) other).sorter)); // state check
     }
 }

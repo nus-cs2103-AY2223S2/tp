@@ -5,7 +5,7 @@ import static arb.logic.parser.CliSyntax.PREFIX_OPTION;
 
 import java.util.stream.Stream;
 
-import arb.commons.core.sorting.SortingOption;
+import arb.commons.core.sorting.ProjectSortingOption;
 import arb.logic.commands.project.SortProjectCommand;
 import arb.logic.parser.ArgumentMultimap;
 import arb.logic.parser.ArgumentTokenizer;
@@ -32,9 +32,9 @@ public class SortProjectCommandParser implements Parser<SortProjectCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortProjectCommand.MESSAGE_USAGE));
         }
 
-        SortingOption sortingOption = ParserUtil.parseSortingOption(argMultimap.getValue(PREFIX_OPTION).get());
+        ProjectSortingOption sorter = ParserUtil.parseSortingOption(argMultimap.getValue(PREFIX_OPTION).get());
 
-        return new SortProjectCommand(sortingOption);
+        return new SortProjectCommand(sorter);
     }
 
     /**

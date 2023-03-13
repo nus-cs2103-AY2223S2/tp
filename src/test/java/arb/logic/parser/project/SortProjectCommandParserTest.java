@@ -1,75 +1,30 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
-import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
-import static arb.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
-import static arb.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
-import static arb.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static arb.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static arb.logic.commands.CommandTestUtil.TITLE_DESC_OIL_PAINTING;
-import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
-import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
-import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.SORTING_OPTION_DESC;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static arb.testutil.TypicalProjects.SKY_PAINTING;
+import static arb.testutil.TypicalProjectSortingOptions.BY_DEADLINE;
 
 import org.junit.jupiter.api.Test;
 
 import arb.logic.commands.project.SortProjectCommand;
-import arb.model.project.Project;
-import arb.model.project.Title;
-import arb.testutil.ProjectBuilder;
 
 public class SortProjectCommandParserTest {
+
     private SortProjectCommandParser parser = new SortProjectCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
-        Project expectedProject = new ProjectBuilder(SKY_PAINTING).build();
-
-        /*// whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
-
-        // multiple names - last name accepted
-        assertParseSuccess(parser, TITLE_DESC_OIL_PAINTING + TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
-
-        // multiple deadlines - last deadline accepted
-        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_OIL_PAINTING + DEADLINE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));*/
-
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortProjectCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE);
-
-        // missing name prefix
-        assertParseFailure(parser, VALID_TITLE_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING,
-                expectedMessage);
-
-        // all prefixes missing
-        assertParseFailure(parser, VALID_TITLE_SKY_PAINTING + VALID_DEADLINE_SKY_PAINTING,
-                expectedMessage);
-    }
-
-    @Test
-    public void parse_invalidValue_failure() {
-        // invalid name
-        assertParseFailure(parser, INVALID_TITLE_DESC + DEADLINE_DESC_SKY_PAINTING, Title.MESSAGE_CONSTRAINTS);
-
-        // invalid deadline
-        //assertParseFailure(parser, TITLE_DESC_SKY_PAINTING + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
-
-        // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_TITLE_DESC + INVALID_DEADLINE_DESC,
-                Title.MESSAGE_CONSTRAINTS);
-
-        // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
+    public void parse_validArgs_returnsSortProjectCommand() {
+        // no leading and trailing whitespaces
+        SortProjectCommand expectedSortProjectCommand =
+                new SortProjectCommand(BY_DEADLINE);
+        assertParseSuccess(parser, SORTING_OPTION_DESC, expectedSortProjectCommand);
     }
 }

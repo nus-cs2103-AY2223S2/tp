@@ -17,6 +17,7 @@ import arb.logic.commands.client.FindClientCommand;
 import arb.logic.commands.client.ListClientCommand;
 import arb.logic.commands.client.SortClientCommand;
 import arb.logic.commands.project.AddProjectCommand;
+import arb.logic.commands.project.EditProjectCommand;
 import arb.logic.commands.project.MarkProjectCommand;
 import arb.logic.commands.project.SortProjectCommand;
 import arb.logic.parser.client.AddClientCommandParser;
@@ -25,6 +26,7 @@ import arb.logic.parser.client.EditClientCommandParser;
 import arb.logic.parser.client.FindClientCommandParser;
 import arb.logic.parser.exceptions.ParseException;
 import arb.logic.parser.project.AddProjectCommandParser;
+import arb.logic.parser.project.EditProjectCommandParser;
 import arb.logic.parser.project.MarkProjectCommandParser;
 import arb.logic.parser.project.SortProjectCommandParser;
 
@@ -66,6 +68,9 @@ public class AddressBookParser {
 
         case EditClientCommand.COMMAND_WORD:
             return new EditClientCommandParser().parse(arguments);
+
+        case EditProjectCommand.COMMAND_WORD:
+            return new EditProjectCommandParser().parse(arguments);
 
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);
