@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.Ultron;
 import seedu.address.model.ModelNew;
+import seedu.address.model.Ultron;
 
 /**
  * Clears the openings list.
