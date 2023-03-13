@@ -114,4 +114,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDoctorList(Predicate<Doctor> predicate);
+
+
+    /**
+     * Deletes the given doctor.
+     * The person must exist in the address book.
+     */
+    void deleteDoctor(Doctor target);
 }
