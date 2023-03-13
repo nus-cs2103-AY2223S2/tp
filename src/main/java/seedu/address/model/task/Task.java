@@ -10,7 +10,7 @@ public class Task {
 
     protected boolean isDone;
     private final TaskDescription description;
-    private Index personAssigned;
+    private Index personAssignedIndex;
 
 
     /**
@@ -19,7 +19,7 @@ public class Task {
     public Task(TaskDescription description) {
         this.description = description;
         this.isDone = false;
-        this.personAssigned = null;
+        this.personAssignedIndex = null;
     }
 
     /**
@@ -46,7 +46,7 @@ public class Task {
      * @param personIndex Index of the person to be assigned to the current task
      */
     public void assignPerson(Index personIndex) {
-        this.personAssigned = personIndex;
+        this.personAssignedIndex = personIndex;
     }
 
     /**
@@ -54,8 +54,8 @@ public class Task {
      *
      * @return Index index of the person assigned to the current task
      */
-    public Index getPersonAssigned() {
-        return this.personAssigned;
+    public Index getPersonAssignedIndex() {
+        return this.personAssignedIndex;
     }
 
     /**
