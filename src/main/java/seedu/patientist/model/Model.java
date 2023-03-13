@@ -89,6 +89,15 @@ public interface Model {
     void deletePatient(Patient target, Ward ward);
 
     /**
+     * Deletes the given person from the whole patientist.
+     * If the person is a staff in multiple wards, all occurrences are deleted.
+     * Since any given Patient can only exist in 1 ward, this method is functionally
+     * identical to {@code Model::deletePerson} and {@code Model::deletePatient} when
+     * deleting patients, except there is no need to specify which ward the patient is in
+     */
+    void deletePerson(Person target);
+
+    /**
      * Deletes the given person from the ward specified.
      * The ward must exist in the patientist book.
      * The person must exist in the patientist book.
@@ -113,13 +122,19 @@ public interface Model {
      * Replaces target Patient with edited Patient.
      * Target patient must exist in ward, edited patient must not already exist.
      */
-    void setPatient(Patient target, Patient edited, Ward ward);
+    void setPatient(Patient target, Patient edited);
 
     /**
      * Replaces target Staff with edited Staff throughout whole Patientist.
      * Target Staff must exist in ward, edited Staff must not already exist.
      */
     void setStaff(Staff target, Staff edited);
+
+    /**
+     * Replaces target Person with edited Person throughout Patientist.
+     * Target person must exist in Patientist, and edited person must not already exist.
+     */
+    void setPerson(Person target, Person edited);
 
     /**
      * Returns true if a ward with the same name as {@code ward} exists in the patientist book

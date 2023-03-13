@@ -118,6 +118,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deletePerson(Person target) {
+        patientist.removePerson(target);
+    }
+
+    @Override
     public void deletePerson(Person target, Ward ward) {
         patientist.removePerson(target, ward);
     }
@@ -134,15 +139,26 @@ public class ModelManager implements Model {
 
 
     @Override
-    public void setPatient(Patient target, Patient edited, Ward ward) {
-        requireAllNonNull(target, edited, ward);
-        patientist.setPatient(target, edited, ward);
+    public void setPatient(Patient target, Patient edited) {
+        requireAllNonNull(target, edited);
+        patientist.setPatient(target, edited);
     }
 
     @Override
     public void setStaff(Staff target, Staff edited) {
         requireAllNonNull(target, edited);
         patientist.setStaff(target, edited);
+    }
+
+    @Override
+    public void setPerson(Person target, Person edited) {
+        requireAllNonNull(target, edited);
+        if (target instanceof Staff) {
+            patientist.setStaff((Staff) target, (Staff) edited);
+        }
+        if (target instanceof Patient) {
+            patientist.setPatient((Patient) target, (Patient) edited);
+        }
     }
 
     @Override

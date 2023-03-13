@@ -52,7 +52,7 @@ class JsonSerializablePatientist {
             if (patientist.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            patientist.addPerson(person);
+            //patientist.addPerson(person); TODO: change to add staff or patient to appropriate ward
         }
         return patientist;
     }

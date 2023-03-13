@@ -1,6 +1,5 @@
 package seedu.patientist.model;
 
-import static java.util.Objects.compare;
 import static java.util.Objects.requireNonNull;
 import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -9,8 +8,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
-import seedu.patientist.model.person.UniquePersonList;
-import seedu.patientist.model.person.exceptions.DuplicatePersonException;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
@@ -75,6 +72,9 @@ public class Patientist implements ReadOnlyPatientist {
         return wards.contains(person);
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in {@code ward}.
+     */
     public boolean hasPerson(Person person, Ward ward) {
         requireAllNonNull(person, ward);
         return ward.containsPerson(person);
@@ -114,15 +114,18 @@ public class Patientist implements ReadOnlyPatientist {
     }
 
     /**
-     * Replaces the given patient {@code target} in the list with {@code edited}.
+     * Replaces the given patient {@code target} with {@code edited}.
      * {@code target} must exist in the patientist book.
      * {@code ward} must exist in the patientist book.
      * The patient identity of {@code edited} must not be the same as another existing patient in the paitentist book.
      */
-    public void setPatient(Patient target, Patient edited, Ward ward) {
-        requireAllNonNull(target, edited, ward);
-
-        ward.setPatient(target, edited);
+    public void setPatient(Patient target, Patient edited) {
+        requireAllNonNull(target, edited);
+        for (Ward ward : wards) {
+            if (ward.containsPatient(target)) {
+                ward.setPatient(target, edited);
+            }
+        }
     }
 
     /**
@@ -146,6 +149,22 @@ public class Patientist implements ReadOnlyPatientist {
         }
     }
 
+    /**
+     * Removes {@code key} from all {@code ward}s.
+     * {@code key} could be a staff or patient, all instances will be removed.
+     */
+    public void removePerson(Person key) {
+        for (Ward ward : wards) {
+            if (ward.containsPerson(key)) {
+                ward.deletePerson(key);
+            }
+        }
+    }
+
+    /**
+     * Removes {@code key} from this {@code ward}.
+     * {@code key} could be a staff or patient.
+     */
     public void removePerson(Person person, Ward ward) {
         if (person instanceof Staff) {
             removeStaff((Staff) person, ward);
@@ -153,7 +172,7 @@ public class Patientist implements ReadOnlyPatientist {
         if (person instanceof Patient) {
             removePatient((Patient) person, ward);
         }
-        return;//TODO: there's some kind of exception to be thrown here idk what
+        return; //TODO: there's some kind of exception to be thrown here idk what
     }
 
     /**
@@ -174,16 +193,28 @@ public class Patientist implements ReadOnlyPatientist {
         return this.wards.contains(ward);
     }
 
+    /**
+     * Adds {@code ward} to the patientist's wardlist
+     */
     public void addWard(Ward ward) {
         requireAllNonNull(ward);
         wards.add(ward);
     }
 
+    /**
+     * Deletes {@code ward} from the patientist's wardlist.
+     * {@code ward} must exist.
+     */
     public void deleteWard(Ward ward) {
         requireAllNonNull(ward);
         wards.delete(ward);
     }
 
+    /**
+     * Replaces {@code target} ward with {@code edited} ward.
+     * Target must already exist.
+     * Edited must not already exist.
+     */
     public void setWard(Ward target, Ward edited) {
         requireAllNonNull(target, edited);
         wards.setWard(target, edited);

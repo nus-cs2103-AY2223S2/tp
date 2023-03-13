@@ -54,7 +54,8 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        //model.addPerson(toAdd); TODO: simply just adding person is not meaningful anymore.
+        //need to specify patient or staff, and which ward to add to
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

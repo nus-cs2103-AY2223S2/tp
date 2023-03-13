@@ -1,16 +1,20 @@
 package seedu.patientist.model.ward;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.patientist.model.person.Person;
-import seedu.patientist.model.person.UniquePersonList;
+import static seedu.patientist.commons.util.AppUtil.checkArgument;
+import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static seedu.patientist.commons.util.AppUtil.checkArgument;
-import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.patientist.model.person.Person;
 
+/**
+ * Representation of a list of wards that enforces uniqueness between the wards.
+ * Wards are identified by their name, thus addition and deletion occur
+ * based on equality check of {@code Ward::equals}, which compares name only.
+ */
 public class WardList implements Iterable<Ward> {
 
     public static final String INVALID_INDEX_MESSAGE = "Specified index needs to be in range of list indices";
@@ -19,11 +23,17 @@ public class WardList implements Iterable<Ward> {
     private final ObservableList<Ward> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Sets internal wardlist as {@code wards}.
+     */
     public void setWards(WardList wards) {
         requireAllNonNull(wards);
         internalList.setAll(wards.internalList);
     }
 
+    /**
+     * Sets internal wardlist using the provided {@code List<Ward>}
+     */
     public void setWards(List<Ward> wards) {
         requireAllNonNull(wards);
         if (!wardsAreUnique(wards)) {
@@ -33,33 +43,49 @@ public class WardList implements Iterable<Ward> {
         internalList.setAll(wards);
     }
 
-    public void setWard(Ward target, Ward editedWard) {
-        requireAllNonNull(target, editedWard);
+    /**
+     * Replaces target ward with edited ward.
+     * Target ward must already exist.
+     * Edited ward cannot already exist.
+     */
+    public void setWard(Ward target, Ward edited) {
+        requireAllNonNull(target, edited);
 
         int idx = internalList.indexOf(target);
         if (idx == -1) {
             return; //TODO: implement and throw WardNotFoundException
         }
 
-        if (!target.equals(editedWard) && contains(editedWard)) {
+        if (!target.equals(edited) && contains(edited)) {
             return; //TODO: implement and throw DuplicateWardException
         }
 
-        internalList.set(idx, editedWard);
+        internalList.set(idx, edited);
     }
 
+    /**
+     * Adds given ward to wardlist.
+     * Ward cannot already exist.
+     */
     public void add(Ward ward) {
         requireAllNonNull(ward);
         if (contains(ward)) {
-            return;//TODO: implement and throw DuplicateWardException
+            return; //TODO: implement and throw DuplicateWardException
         }
         internalList.add(ward);
     }
 
+    /**
+     * Returns true if targetWard is in the list.
+     */
     public boolean contains(Ward targetWard) {
         return internalList.stream().anyMatch(targetWard::equals);
     }
 
+    /**
+     * Returns true if person is in any of the wards in the list.
+     * Person can be staff or patient.
+     */
     public boolean contains(Person person) {
         for (Ward ward : internalList) {
             if (ward.containsPerson(person)) {
@@ -69,6 +95,10 @@ public class WardList implements Iterable<Ward> {
         return false;
     }
 
+    /**
+     * Deletes ward from the wardlist
+     * ward must already exist.
+     */
     public void delete(Ward ward) {
         requireAllNonNull(ward);
         if (!internalList.remove(ward)) {
