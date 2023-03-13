@@ -8,6 +8,8 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.policy.Policy;
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,11 +23,15 @@ public class ClientBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    public static final Policy DEFAULT_POLICY = new PolicyBuilder().build();
+
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+
+    private UniquePolicyList policyList;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +42,8 @@ public class ClientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        policyList = new UniquePolicyList();
+        policyList.add(DEFAULT_POLICY);
     }
 
     /**
@@ -47,6 +55,7 @@ public class ClientBuilder {
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
         tags = new HashSet<>(clientToCopy.getTags());
+        policyList = clientToCopy.getPolicyList();
     }
 
     /**
@@ -89,8 +98,21 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code UniquePolicyList} of the {@code Client} that we are building.
+     * @param policies the policies that belong to the client.
+     * @return A ClientBuilder that builds into {@code Client} when called.
+     */
+    public ClientBuilder withPolicyList(Policy... policies) {
+        policyList = new UniquePolicyList();
+        for (Policy policy : policies) {
+            policyList.add(policy);
+        }
+        return this;
+    }
+    // Don't need withPolicyList() because by default it should always be empty
     public Client build() {
-        return new Client(name, phone, email, address, tags);
+        return new Client(name, phone, email, address, tags, policyList);
     }
 
 }

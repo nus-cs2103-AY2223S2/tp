@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalClients.BENSON;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,11 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.policy.CustomDate;
+import seedu.address.model.client.policy.Frequency;
+import seedu.address.model.client.policy.Policy;
+import seedu.address.model.client.policy.PolicyName;
+import seedu.address.model.client.policy.Premium;
 
 public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "R@chel";
@@ -23,6 +29,11 @@ public class JsonAdaptedClientTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+
+    private static final String INVALID_POLICY_NAME = "#HealthInsuance";
+    private static final String INVALID_DATE = "10-10-2023";
+    private static final String INVALID_FREQUENCY = "Biweekly";
+    private static final String INVALID_PREMIUM = "Hello";
 
     //private static final String INVALID_POLICY = //; a policy with invalid frequency
 
@@ -34,9 +45,11 @@ public class JsonAdaptedClientTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    private static final List<JsonAdaptedPolicy> VALID_POLICIES = BENSON.getPolicyList().stream()
-            .map(JsonAdaptedPolicy::new).collect(Collectors.toList());
-    @Test
+
+    private static final List<JsonAdaptedPolicy> VALID_POLICIES = StreamSupport.stream(
+            BENSON.getPolicyList().spliterator(), false).map(JsonAdaptedPolicy::new)
+            .collect(Collectors.toList());
+
     public void toModelType_validClientDetails_returnsClient() throws Exception {
         JsonAdaptedClient client = new JsonAdaptedClient(BENSON);
         assertEquals(BENSON, client.toModelType());
@@ -122,7 +135,12 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_invalidPolicies_throwsIllegalValueException() {
         List<JsonAdaptedPolicy> invalidPolicies = new ArrayList<>(VALID_POLICIES);
-        invalidPolicies.add(new JsonAdaptedPolicy());
+        Policy INVALID_POLICY = new Policy(new PolicyName(INVALID_POLICY_NAME), new CustomDate(INVALID_DATE),
+                new Premium(INVALID_PREMIUM), new Frequency(INVALID_FREQUENCY));
+        invalidPolicies.add(new JsonAdaptedPolicy(INVALID_POLICY));
+        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_TAGS, invalidPolicies);
+        assertThrows(IllegalValueException.class, client::toModelType);
     }
 
 
