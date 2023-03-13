@@ -41,14 +41,12 @@
         </VBox>
             <HBox prefHeight="106.0" prefWidth="580.0" VBox.vgrow="NEVER">
                <children>
-      
-                                   <StackPane fx:id="commandBoxPlaceholder" prefHeight="83.0" prefWidth="269.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                 <StackPane fx:id="commandBoxPlaceholder" prefHeight="83.0" prefWidth="269.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
               </StackPane>
-      
-                                   <StackPane fx:id="resultDisplayPlaceholder" prefHeight="65.0" prefWidth="302.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                 <StackPane fx:id="resultDisplayPlaceholder" prefHeight="65.0" prefWidth="302.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
