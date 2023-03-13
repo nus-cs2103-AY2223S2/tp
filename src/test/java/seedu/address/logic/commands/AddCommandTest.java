@@ -4,15 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.WEDDING_DINNER;
 import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_NO_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +26,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -66,7 +74,6 @@ public class AddCommandTest {
     }
 
 
-
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
@@ -84,6 +91,23 @@ public class AddCommandTest {
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
+
+    @Test
+    public void execute_invalidEventIndexFilteredList_throwsCommandException() {
+        showEventAtIndex(model, INDEX_FIRST_EVENT);
+
+        Index outOfBoundIndex = INDEX_SECOND_EVENT;
+        Set<Index> outOfBoundIndexSet = new HashSet<>();
+        outOfBoundIndexSet.add(outOfBoundIndex);
+        Person validPerson = new PersonBuilder().withEventSet(WEDDING_DINNER).build();
+
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEventList().size());
+
+        AddCommand addCommand = new AddCommand(validPerson, outOfBoundIndexSet);;
+
+        assertCommandFailure(addCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+    }
+
 
     @Test
     public void equals() {
