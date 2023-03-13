@@ -50,7 +50,7 @@ public class FindTaskCommandTest {
         // null -> returns false
         assertFalse(findTaskFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different task -> returns false
         assertFalse(findTaskFirstCommand.equals(findTaskSecondCommand));
     }
 

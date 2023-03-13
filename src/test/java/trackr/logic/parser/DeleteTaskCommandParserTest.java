@@ -21,7 +21,7 @@ public class DeleteTaskCommandParserTest {
     private DeleteTaskCommandParser parser = new DeleteTaskCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteTaskCommand() {
         assertParseSuccess(parser, "1", new DeleteTaskCommand(INDEX_FIRST_OBJECT));
     }
 
