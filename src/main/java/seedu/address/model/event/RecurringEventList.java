@@ -15,8 +15,10 @@ public class RecurringEventList {
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
+        int count = 1;
         for (RecurringEvent re : recurringEvents) {
-            output.append(re.getEventName()).append("\n");
+            output.append(count + ". " + re.getEventName()).append("\n");
+            count++;
         }
         return output.toString();
     }
