@@ -126,7 +126,7 @@ public class EditCommand extends Command {
          */
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
-            setNRIC(toCopy.nric);
+            setNric(toCopy.nric);
             setStatus(toCopy.status);
 
         }
