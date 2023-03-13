@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private EnlargedContactCard enlargedContactCard;
-    private PersonListPanel personListPanel;
+    private DoctorListPanel doctorListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -118,8 +118,8 @@ public class MainWindow extends UiPart<Stage> {
         enlargedContactCard = new EnlargedContactCard(new DoctorStub());
         enlargedContactCardPlaceholder.getChildren().add(enlargedContactCard.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());
+        personListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -171,8 +171,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public DoctorListPanel getPersonListPanel() {
+        return doctorListPanel;
     }
 
     /**
