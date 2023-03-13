@@ -118,4 +118,6 @@ public interface Model {
     Review getReview();
 
     void endReview();
+
+    String getReviewDeckName();
 }

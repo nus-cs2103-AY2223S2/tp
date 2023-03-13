@@ -9,7 +9,7 @@ import seedu.address.model.Model;
  */
 public class FlipCommand extends Command {
 
-    public static final String COMMAND_WORD = "flip";
+    public static final String COMMAND_WORD = "f";
 
     public static final String MESSAGE_SUCCESS = "Flashcard is flipped! Showing answer.";
 

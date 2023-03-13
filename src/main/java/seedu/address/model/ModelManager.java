@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -29,7 +30,7 @@ public class ModelManager implements Model {
 
     private FilteredList<Deck> filteredDecks;
     private Deck selectedDeck = null; // null when not selected, to switch to Optional<Deck> later on
-    private Review currReview = null;
+    private Optional<Review> currReview = Optional.empty();
 
     private FilteredList<Card> filteredCards;
 
@@ -212,17 +213,22 @@ public class ModelManager implements Model {
         List<Card> cardList = new FilteredList<>(
                 masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
         );
-        currReview = new Review(deckToReview, cardList);
+        currReview = Optional.of(new Review(deckToReview, cardList));
     };
 
     @Override
     public Review getReview() {
-        return currReview;
+        return currReview.orElse(null);
     };
 
     @Override
     public void endReview() {
-        currReview = null;
+        currReview = Optional.empty();
+    }
+
+    @Override
+    public String getReviewDeckName() {
+        return currReview.map(rev -> rev.getDeckName()).orElse(null);
     }
 
 }

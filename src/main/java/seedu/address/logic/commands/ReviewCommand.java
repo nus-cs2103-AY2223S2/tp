@@ -44,7 +44,7 @@ public class ReviewCommand extends Command {
         }
 
         model.reviewDeck(deckIndex);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getReview().getDeckName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getReviewDeckName()));
     }
 
     @Override
