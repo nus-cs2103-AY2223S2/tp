@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
 
 /**
  * The API of the Model component.
@@ -13,7 +14,6 @@ import seedu.patientist.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
