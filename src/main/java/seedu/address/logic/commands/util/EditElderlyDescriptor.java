@@ -62,7 +62,7 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return super.isAnyFieldEdited() && CollectionUtil.isAnyNonNull(riskLevel);
+        return super.isAnyFieldEdited() || CollectionUtil.isAnyNonNull(riskLevel);
     }
 
     public void setRiskLevel(RiskLevel riskLevel) {

@@ -77,7 +77,7 @@ public class EditElderlyCommand extends Command {
         }
 
         Elderly elderlyToEdit = lastShownList.get(index.getZeroBased());
-        Elderly editedElderly = editElderlyDescriptor.createEditedElderly(elderlyToEdit, editElderlyDescriptor);
+        Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(elderlyToEdit, editElderlyDescriptor);
 
         if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_ELDERLY);
