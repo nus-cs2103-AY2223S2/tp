@@ -164,6 +164,13 @@ public class Student extends Person {
         return comment;
     }
 
+    /**
+     * A method that returns a boolean value to indicate if other is equal to this Student.
+     * Note that this method only checks for attributes that are unique and unchanging to Student.
+     *
+     * @param other
+     * @return
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -178,15 +185,7 @@ public class Student extends Person {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getStudentClass().equals(getStudentClass())
                 && otherStudent.getIndexNumber().equals(getIndexNumber())
-                && otherStudent.getSex().equals(getSex())
-                && otherStudent.getParentName().equals(getParentName())
-                && otherStudent.getAge().equals(getAge())
-                && otherStudent.getImage().equals(getImage())
-                && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getCca().equals(getCca())
-                && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getSex().equals(getSex());
     }
     @Override
     public String toString() {
