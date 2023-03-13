@@ -1,12 +1,16 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.transaction.PersonTransactionMap;
+import seedu.address.model.transaction.Transaction;
+import seedu.address.model.transaction.UniqueTransactionList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +19,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueTransactionList transactions;
+    private final PersonTransactionMap personTransactionRelation;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +31,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        transactions = new UniqueTransactionList();
+        personTransactionRelation = new PersonTransactionMap();
     }
 
     public AddressBook() {}
@@ -93,6 +101,32 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+
+    public void hasTransaction(Transaction transaction) {
+        // implementation here
+    }
+
+    /**
+     * Adds a given transaction to the transaction list.
+     * A transaction must have an association with a Person.
+     * A person may have zero to many transactions.
+     * @param t
+     */
+    public void addTransaction(Transaction t, Person owner) {
+        requireAllNonNull(t, owner);
+
+        personTransactionRelation.addRelation(t, owner);
+        transactions.add(t);
+    }
+
+    public void setTransaction(Transaction transaction) {
+        // implementation here
+    }
+
+    public void removeTransaction(Transaction key) {
+        // implementation here
+    }
+
     //// util methods
 
     @Override
@@ -104,6 +138,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Transaction> getTransactionList() {
+        return transactions.asUnmodifiableObservableList();
     }
 
     @Override
