@@ -36,7 +36,7 @@ h4 {
 
 @each $color, $value in $theme-colors {
   .alert-#{$color} {
-    @include alert-variant(#0d6efd, #dc3545, #28a745);
+    @include alert-variant(color-level($value, $alert-bg-level), color-level($value, $alert-border-level), color-level($value, $alert-color-level));
   }
 }
 
