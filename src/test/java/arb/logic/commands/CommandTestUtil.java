@@ -21,6 +21,8 @@ import arb.model.ListType;
 import arb.model.Model;
 import arb.model.client.Client;
 import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.project.Project;
+import arb.model.project.TitleContainsKeywordsPredicate;
 import arb.testutil.EditClientDescriptorBuilder;
 
 /**
@@ -98,7 +100,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, ListType, ListType, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}, {@code currentListBeingShown} and {@code listToBeShown}.
      */
     public static void assertCommandSuccess(Command command, ListType currentListBeingShown, ListType listToBeShown,
@@ -138,6 +140,20 @@ public class CommandTestUtil {
         model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());
+    }
+
+    /**
+     * Updates {@code models}'s filtered list to show only the project at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showProjectAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
+
+        Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = project.getTitle().title.split("\\s+");
+        model.updateFilteredProjectList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+
+        assertEquals(1, model.getFilteredProjectList().size());
     }
 
 }
