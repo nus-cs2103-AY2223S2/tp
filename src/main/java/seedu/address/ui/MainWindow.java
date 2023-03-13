@@ -236,6 +236,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             }
 
+            if (commandResult.isShowTimetable()) {
+                handleTimetable();
+            }
+
             if (commandResult.isExit()) {
                 handleExit();
             }
