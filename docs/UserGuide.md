@@ -71,11 +71,11 @@ Features
 
 ### MODTrek supports the following features:
 
-<h4 style="color:#F76B8A">Add a Module : `add`</h4>  
+<h4 style="color:#F76B8A">Add a Module : `add`</h4>
 
 Adds a module to the module list. Modules must be distinct.
 
-Command syntax: `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)` 
+Command syntax: `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
 
 :exclamation: For `...`, specify one or more tags to be added, separated by space (' ').
 
@@ -151,7 +151,7 @@ Frequently Asked Questions (FAQ)
 
 **Q**: Why is it that I can add in modules not offered in NUS<br>
 **A**: Unfortunately we do not have a database to store all the available modules in NUS.
-We can only check if the module code is formatted correctly, and we trust users to key in modules that 
+We can only check if the module code is formatted correctly, and we trust users to key in modules that
 are provided only by NUS.
 
 --------------------------------------------------------------------------------------------------------------------
