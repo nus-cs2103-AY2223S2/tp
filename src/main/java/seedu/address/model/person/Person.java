@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -15,10 +16,16 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    // To be removed once Person class is updated
+    private static final String VALID_PHONE_PLACEHOLDER = "11111111";
+    private static final String VALID_EMAIL_PLACEHOLDER = "amy@example.com";
+
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
+
+    private Contact contact;
 
     // Data fields
     private final Address address;
@@ -34,6 +41,32 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    // To be removed once Person class is updated
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, address, tags);
+        this.name = name;
+        this.phone = new Phone(VALID_PHONE_PLACEHOLDER);
+        this.email = new Email(VALID_EMAIL_PLACEHOLDER);
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Address address, Set<Tag> tags, Contact contact) {
+        requireAllNonNull(name, address, tags, contact);
+        this.name = name;
+        this.phone = new Phone(VALID_PHONE_PLACEHOLDER);
+        this.email = new Email(VALID_EMAIL_PLACEHOLDER);
+        this.address = address;
+        this.tags.addAll(tags);
+        this.contact = contact;
     }
 
     public Name getName() {
@@ -58,6 +91,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     /**

@@ -22,9 +22,9 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 3. Copy the file to the folder you want to use as the _home folder_ for your InternEaseApp.
 
 4. Start the app by:
-    - Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
+    - Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
       or
-    - Double-click on the downloaded `InternEase.jar` file.<br>
+    - Double-clicking the downloaded `InternEase.jar` file.<br>
    > **Note**<br>
    > You should see the app is running now. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -34,15 +34,15 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 
     * `add n/TechCompany j/Software Engineer` : Adds an application for the `Software Engineer` role at `TechCompany`.
 
-    * `list` : Shows all the internships that the user has applied.
+    * `list` : Displays all the internships that the user has applied for.
 
-    * `delete 2` : Deletes the 2nd internship application in the list of applications.
+    * `delete 2` : Deletes the second internship application in the list of applications.
 
     * `find TechCompany` : Searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as `Google`
 
     * `edit_status 2 s/PENDING` : Changes the status of the 2nd application in the applications list to `Pending offer`.
 
-    * `exit` : Exits the app.
+    * `exit` : Exits the application.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -74,6 +74,22 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 
 </div>
 
+
+### Viewing help: `help`
+Shows a user guide message on how to use the internship tracker.
+
+Format: help
+
+### Adding an application: `add`
+
+Adds an application to the internship tracker.
+
+Format: ` add n/COMPANY_NAME j/JOB_TITLE`
+
+Examples:
+* `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
+* `add n/LinkedIn j/Software Engineer` adds an application for the Software Engineer role at LinkedIn.
+
 ### Adding contact details: `add_contact`
 
 Adds the contact details of a company to a specified application.
@@ -102,6 +118,18 @@ Format: `edit_status INDEX s/STATUS`
 Examples:
 * `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
 
+### Displaying list of internship applications:`list`
+
+Displays a list of applied internships
+
+Format: `list`
+
+Examples:
+
+* `list` shows all the internships that the user has applied for with 1 indexing.
+* If there are no internships applied for at the moment,
+  "No applications at the moment" will be shown.
+
 ### Deleting an application of internship : `delete`
 
 Deletes the specified application from the list of internships applied
@@ -114,6 +142,17 @@ Format: `delete INDEX`
 
 Examples:
 * `delete 2` Deletes the 2nd internship application in the list of applications.
+
+### Search for an application : `find`
+Searches the list of internships applied by keyword (status, role, company)
+
+Format: `find KEYWORD`
+
+Searches for the application with the specified `KEYWORD`.
+The keyword refers to the status, role or company that the user intends to look for.
+
+Examples:
+`find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google
 
 ### Clearing all entries : `clear`
 
@@ -145,3 +184,4 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 2`                              
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
 **Exit**   | `exit` 
+**List** |`list`

@@ -5,7 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueApplicationList;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -15,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueApplicationList applications;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        applications = new UniqueApplicationList();
     }
 
     public AddressBook() {}
@@ -40,6 +45,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
+     * Replaces the contents of the person list with {@code applications}.
+     * {@code applications} must not contain duplicate applications.
+     */
+    public void setApplications(List<InternshipApplication> applications) {
+        this.applications.setApplications(applications);
+    }
+
+    /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
@@ -53,7 +66,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setApplications(newData.getInternshipList());
+    }
+
+    /// application-level operations
+    /**
+     * Returns true if an internship application with the same identity
+     * as {@code internshipApplication} exists in the address book.
+     */
+    public boolean hasApplication(InternshipApplication application) {
+        requireNonNull(application);
+        return applications.contains(application);
     }
 
     //// person-level operations
@@ -67,6 +90,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds an internship application to the tracker.
+     * The application must not already exist in the tracker.
+     */
+    public void addApplication(InternshipApplication application) {
+        applications.add(application);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -74,6 +105,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
     }
 
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedApplication}.
+     * {@code target} must exist in the address book.
+     * The application identity of {@code editedApplication}
+     * must not be the same as another existing application in the address book.
+     */
+    public void setApplication(InternshipApplication target, InternshipApplication editedApplication) {
+        requireNonNull(editedApplication);
+
+        applications.setApplication(target, editedApplication);
+    }
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -93,12 +135,25 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Adds a contact to the internship application.
+     * {@code key} must exist in the list of applications.
+     */
+    public void addContactToInternship(Person p, Contact c) {
+        p.setContact(c);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return applications.asUnmodifiableObservableList().size() + " applications";
         // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<InternshipApplication> getInternshipList() {
+        return applications.asUnmodifiableObservableList();
     }
 
     @Override
@@ -110,11 +165,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && applications.equals(((AddressBook) other).applications));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return applications.hashCode();
     }
 }

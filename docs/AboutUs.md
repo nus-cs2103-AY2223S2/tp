@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lee Jia Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jiasheng59.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jiasheng59)]
+[[portfolio](team/jiasheng59.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: `Find` and `Help` feature
 
 ### Lai Hui Qi
 
@@ -29,24 +29,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: `clear`, `delete` and `exit` feature
 
-### Johnny Doe
+### Benjamin Wee 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/benjamin-wee.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/benjamin-wee)] [[portfolio](team/benjamin-wee.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: `list` feature
+
+### Lau Zhan Ming
+
+<img src="images/zm-l.png" width="200px">
+
+[[github](http://github.com/zm-l)]
+[[portfolio](team/zm-l.md)]
+
+* Role: Developer
+* Responsibilities: `Add` internship applications entry
 
 ### Lok Jian Ming
 
