@@ -56,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         person.getParcels().stream()
                 .sorted(Comparator.comparing(parcel -> parcel.parcelName))
-                .forEach(parcel -> parcels.getChildren().add(new Label(parcel.parcelName + " ")));
+                .forEach(parcel -> parcels.getChildren().add(new Label(parcel.parcelName)));
         deliveryStatus.setText(person.getDeliveryStatus().toString());
         deliveryStatus.getStyleClass().add(person.getDeliveryStatus().name());
     }

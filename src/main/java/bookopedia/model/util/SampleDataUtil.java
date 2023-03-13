@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import bookopedia.model.AddressBook;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.ReadOnlyAddressBook;
 import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Address;
@@ -21,13 +22,13 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getParcelSet("lazada1")),
+                getParcelSet("lazada1"), DeliveryStatus.DONE),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getParcelSet("lazada1", "lazada2")),
+                getParcelSet("lazada2", "lazada3"), DeliveryStatus.OTW),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getParcelSet("shopee")),
+                getParcelSet("shopee"), DeliveryStatus.FAILED),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getParcelSet("alibaba")),
