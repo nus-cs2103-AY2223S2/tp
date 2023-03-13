@@ -12,13 +12,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.DoctorContainsKeywordsPredicate;
+import seedu.address.model.person.DoctorFilter;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -127,7 +130,8 @@ public class CommandTestUtil {
 
         Doctor doctor = model.getFilteredDoctorList().get(targetIndex.getZeroBased());
         final String[] splitName = doctor.getName().fullName.split("\\s+");
-        model.updateFilteredDoctorList(new DoctorContainsKeywordsPredicate(new DoctorFilter(splitName[0], "", "", "", "", new HashSet<>())));
+        model.updateFilteredDoctorList(new DoctorContainsKeywordsPredicate(new DoctorFilter(splitName[0], "",
+                "", "", "", new HashSet<>())));
 
         assertEquals(1, model.getFilteredDoctorList().size());
     }

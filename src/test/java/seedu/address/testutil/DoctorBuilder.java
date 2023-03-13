@@ -4,7 +4,12 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.*;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Specialty;
+import seedu.address.model.person.Yoe;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

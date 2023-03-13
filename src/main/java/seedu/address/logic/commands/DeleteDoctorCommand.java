@@ -33,7 +33,7 @@ public class DeleteDoctorCommand extends Command {
         List<Doctor> lastShownList = model.getFilteredDoctorList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
         }
 
         Doctor doctorToDelete = lastShownList.get(targetIndex.getZeroBased());
