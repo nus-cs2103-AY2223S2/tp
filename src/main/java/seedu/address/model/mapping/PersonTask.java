@@ -33,7 +33,9 @@ public class PersonTask implements Relationship<PersonTask> {
     public Id getTaskId() {
         return taskId;
     }
-
+    public boolean hasSameId(PersonTask obj) {
+        return equals(obj);
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -63,4 +65,5 @@ public class PersonTask implements Relationship<PersonTask> {
     public String toString() {
         return String.format("Person Id: %1$s\nAssigned Task Id: %2$s", personId, taskId);
     }
+
 }
