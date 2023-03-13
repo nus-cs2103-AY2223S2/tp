@@ -320,7 +320,7 @@ public class ParserUtil {
     public static GroupName parseGroupName(String name) throws ParseException {
         requireNonNull(name);
         if (!GroupName.isValidName(name)) {
-            throw new ParseException(GroupName.MESSAGE_CONSTRAINT);
+            throw new ParseException(GroupName.MESSAGE_CONSTRAINTS);
         }
         return new GroupName(name);
     }

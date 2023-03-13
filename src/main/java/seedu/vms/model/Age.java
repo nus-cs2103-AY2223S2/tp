@@ -17,7 +17,7 @@ public class Age implements Comparable<Age> {
     public static final String STRING_MIN = "MIN";
     public static final String STRING_MAX = "MAX";
 
-    public static final String MESSAGE_CONSTRAINT = "Age must be a positive integer";
+    public static final String MESSAGE_CONSTRAINTS = "Age must be a positive integer";
 
     private final int value;
 
@@ -29,7 +29,7 @@ public class Age implements Comparable<Age> {
      * @throws IllegalArgumentException if {@code value < 0}.
      */
     public Age(int value) {
-        AppUtil.checkArgument(isValid(value), MESSAGE_CONSTRAINT);
+        AppUtil.checkArgument(isValid(value), MESSAGE_CONSTRAINTS);
         this.value = getAgeValue(value);
     }
 
