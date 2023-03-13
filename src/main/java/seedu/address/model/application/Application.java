@@ -7,6 +7,7 @@ import java.util.Objects;
 /**
  * Represents an Application in the internship book.
  * Guarantees: details are present and not null, field values are validated, immutable.
+ * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public class Application {
     private final Role role;
@@ -76,7 +77,7 @@ public class Application {
                 .append(getCompanyName())
                 .append("; Company's email: ")
                 .append(getCompanyEmail())
-                .append("; Status: ")
+                .append("; Application status: ")
                 .append(getStatus());
 
         return builder.toString();

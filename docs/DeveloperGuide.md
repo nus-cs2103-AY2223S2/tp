@@ -257,44 +257,75 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a student going to or am currently applying for internships
+* has a need to manage a significant number of internship applications
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage internship applications faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                   | So that I can…​                                                                         |
+| ------ |--------------------------------------------|------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *` | new or forgetful user                      | see usage instructions                         | refer to instructions when I first start using sprINT or when I forget how to use it    |
+| `* * *` | user                                       | view all application entries                   | look through all of them easily                                                         |
+| `* * *` | user                                       | add a new application entry                    |                                                                                         |
+| `* *`  | user                                       | edit an new application entry                  | update progress of an internship application or amend mistakes in the entry I have made |
+| `* *`  | user                                       | find application entry to a specific company   | keep track of the positions I have applied to at this company more easily               |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** refers to `sprINT` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Add an application entry**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User provides application details (role applied, company name, company email and status).
+2. sprINT creates the application entry and shows the updated list of application entries.
 
     Use case ends.
+
+**Extensions**
+
+* 1a. User did not provide details for mandatory fields.
+  * 1a1. sprINT displays an error message that shows fields that are missing.
+  * 1a2. sprINT prompts User to try again.
+  
+    Use case resumes at step 1.
+        
+* 1b. Error occurred when parsing arguments for certain fields.
+  * 1b1. sprINT displays an error message that shows the first incorrect field value entered.
+  * 1b2. sprINT prompts User to try again.
+    
+    Use case resumes at step 1.
+        
+* 1c. Application already exists in the database.
+  * 1c1. sprINT displays an error message that informs User of a duplicate application entry.
+  * 1c2. sprINT prompts User to try again.
+        
+    Use case resumes at step 1.
+
+---
+
+**Use case 2: Edit an application entry**
+
+**MSS**
+
+1. User requests to list all application entries.
+2. sprINT displays a list of all application entries.
+3. User requests to edit a specific application entry in the list.
+4. sprINT updates the application entry and shows updated list of entries.
+
+   Use case ends.
 
 **Extensions**
 
@@ -302,26 +333,83 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given index is invalid (e.g. not an integer or out of bound).
+  * 3a1. sprINT shows an error message.
+  
+    Use case resumes at step 2.
+  
+* 3b. No index is given.
+  * 3b1. sprINT displays an error message.
+  
+    Use case resumes at step 2.
 
-    * 3a1. AddressBook shows an error message.
+---
+
+**Use case 3: Delete an application entry**
+
+**MSS**
+
+1. User requests to list all application entries.
+2. sprINT displays a list of all application entries.
+3. User requests to delete a specific application entry in the list.
+4. sprINT updates the application entry and displays updated list of entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid (e.g. not an integer or out of bound).
+    * 3a1. sprINT shows an error message.
 
       Use case resumes at step 2.
+
+* 3b. No index is given.
+    * 3b1. sprINT displays an error message.
+
+      Use case resumes at step 2.
+
+___
+
+**Use case 4: Find applications for a specified company**
+
+**MSS**
+
+1. User requests to find applications using the company name as the keyword.
+2. sprINT displays the filtered list of entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keyword is given.
+  * sprINT displays an error message.
+
+    Use case resumes at step 1.
+
+* 2a. No matching applications are found and the filtered list is empty.
+  
+  Use case resumes at step 2.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Should take less than 500MB of memory while in operation.
+4. Should be able to view all (up to 1500) application entries on the homepage interface without noticeable lags.
+5. Will not perform any automated tasks e.g., send periodic reminders. Hence, sprINT will not have a server component.
 
 *{More to be added}*
 
 ### Glossary
 
+* **GUI**: Graphical User Interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 

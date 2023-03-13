@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Noah's Project Portfolio Page
+title: Jiaxin's Project Portfolio Page
 ---
 
 ### Project: sprINT
@@ -11,7 +11,7 @@ of a Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=noahxinjie&breakdown=true)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=yaojiax)
 
 * **Project management**:
   * to be added soon
@@ -30,4 +30,4 @@ Given below are my contributions to the project.
 
 * **Community**:
   * to be added soon
-
+  

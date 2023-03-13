@@ -21,6 +21,7 @@ import seedu.address.model.application.exceptions.DuplicateApplicationException;
  *
  * @see Application#equals(Object)
  */
+
 public class UniqueApplicationList implements Iterable<Application> {
     private final ObservableList<Application> internalList = FXCollections.observableArrayList();
     private final ObservableList<Application> internalUnmodifiableList =

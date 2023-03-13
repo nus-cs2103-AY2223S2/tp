@@ -8,7 +8,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.application.Application;
 
 /**
- * The API of the Model component.
+ * The API of the ApplicationModel component.
+ * This class should replace (i.e. be renamed to) Model eventually.
+ * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public interface ApplicationModel {
     /** {@code Predicate} that always evaluate to true */

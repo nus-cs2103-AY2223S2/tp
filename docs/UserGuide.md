@@ -5,10 +5,10 @@ title: sprINT User Guide
 
 Welcome to **sprINT's User Guide**. sprINT  is a **desktop application** for managing internship applications,
 optimized for use via a Command Line Interface (CLI) while still incorporating the benefits of a Graphical User
-Interface (GUI). 
+Interface (GUI).
 
 The app is optimized greatly for *fast typers*. If you can type fast, sprINT will be of great assistance in
-your internship hunt! 
+your internship hunt!
 
 * Table of Contents
 {:toc}
@@ -32,7 +32,7 @@ your internship hunt!
 
    * `list` : Lists all contacts.
 
-   * `add r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested d/01-01-2023` : Adds an 
+   * `add r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested d/01-01-2023` : Adds an
    application for Software Engineer Intern position @ Goggle that I'm interested in. Deadline of application is 1st of
    January.
 
@@ -64,7 +64,7 @@ your internship hunt!
 * Parameters can be in any order.<br>
   e.g. if the command specifies `r/ROLE c/COMPANY_NAME`, `c/COMPANY_NAME r/ROLE` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `r/SWE Intern r/Software Intern`, only `r/Software Intern` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -72,11 +72,11 @@ your internship hunt!
 
 </div>
 
-### Viewing help : `help`
+### Viewing help : `help` `[coming in v1.2]`
 
-Shows a message explaning how to access the help page.
+Shows a message with a link to the help page.
 
-![help message](images/helpMessage.png)
+<!--  ![help message](images/helpMessage.png)  -->
 
 Format: `help`
 
@@ -97,46 +97,45 @@ Examples:
 * `add r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com s/Applied j/Conversion to full time in 12 months`
 
 
-### Listing all persons : `list`
+### Listing all internship applications : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all internship applications.
 
 Format: `list`
 
-### Editing a person : `edit`
+Example:
+* `list` Returns the current list of internship applications tracked by sprINT.
 
-Edits an existing person in the address book.
+### Editing an internship : `edit`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Edits an existing internship application to be tracked.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Format: `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/EMAIL] [s/STATUS] [j/JOB_DESCRIPTION] [d/DEADLINE] [t/TAG]…​`
+
+* Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed application list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing job description, deadline and tags, the existing corresponding values of the these fields in the application will be removed i.e. adding of tags is not cumulative.
+* You can remove all the application’s job description, deadline and tags by typing `j/` `d/` `t/` without
+    specifying any values after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 r/Cloud Engineer e/goggleHR@example.com` Edits the role and email address of the 1st application to be `Cloud Engineer` and `goggleHR@gmail.com` respectively.
+*  `edit 2 s/Rejected t/` Edits the status of the 2nd application to be `Rejected` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Finding internship applications by company name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds internship applications with company names that contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. e.g. `goggle` will match `Goggle`.
+* Only the company name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find Goggle` returns internship applications for `Goggle` and `Goggle LLC`.
+* `find Goggle Mata` returns internship applications for `Goggle LLC`, `Mata Platforms`.<br>
 
 ### Deleting an application : `delete` `[coming in v1.2]`
 
@@ -152,9 +151,9 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd application in the internship book.
 * `find Google` followed by `delete 1` deletes the 1st application in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all entries : `clear` `[coming soon]`
 
-Clears all entries from the address book.
+Clears all entries from the internship book.
 
 Format: `clear`
 
