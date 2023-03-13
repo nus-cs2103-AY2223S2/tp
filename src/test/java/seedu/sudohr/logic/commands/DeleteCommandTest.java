@@ -31,7 +31,7 @@ public class DeleteCommandTest {
         Employee personToDelete = model.getFilteredEmployeeList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
         expectedModel.deleteEmployee(personToDelete);
@@ -54,7 +54,7 @@ public class DeleteCommandTest {
         Employee personToDelete = model.getFilteredEmployeeList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
         expectedModel.deleteEmployee(personToDelete);

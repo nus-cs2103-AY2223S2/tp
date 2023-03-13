@@ -11,18 +11,18 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.employee.Employee;
 
 /**
- * Deletes a person identified using it's displayed index from the sudohr book.
+ * Deletes an employee identified using it's displayed index from the sudohr book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the employee identified by the index number used in the displayed employee list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Employee: %1$s";
+    public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Deleted Employee: %1$s";
 
     private final Index targetIndex;
 
@@ -39,9 +39,9 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Employee personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteEmployee(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Employee employeeToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteEmployee(employeeToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete));
     }
 
     @Override
