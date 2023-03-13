@@ -35,6 +35,10 @@ public class MasterDeckParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+
+    public Command parseCommand(String userInput, is)
+
+
     /**
      * Parses user input into command for execution when no deck is selected.
      *

@@ -25,12 +25,12 @@ import seedu.address.model.review.Review;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private MasterDeck masterDeck;
+    private final MasterDeck masterDeck;
     private final UserPrefs userPrefs;
-    private FilteredList<Deck> filteredDecks;
-    private Optional<Deck> selectedDeck = Optional.empty();
-    private Optional<Review> currReview = Optional.empty();
-    private FilteredList<Card> filteredCards;
+    private final FilteredList<Deck> filteredDecks;
+    private final FilteredList<Card> filteredCards;
+    private Deck selectedDeck;
+    private Review currReview;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -50,9 +50,7 @@ public class ModelManager implements Model {
         this(new MasterDeck(), new UserPrefs());
     }
 
-
-
-    //=========== UserPrefs ==================================================================================
+    /* UserPrefs */
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -87,7 +85,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(masterDeckFilePath);
     }
 
-    //=========== PowerDeck ================================================================================
+    /* MasterDeck Operations */
 
     @Override
     public void setMasterDeck(ReadOnlyMasterDeck deck) {
@@ -98,6 +96,8 @@ public class ModelManager implements Model {
     public ReadOnlyMasterDeck getMasterDeck() {
         return masterDeck;
     }
+
+    /* PowerCard Operations */
 
     @Override
     public boolean hasCard(Card card) {
@@ -118,11 +118,10 @@ public class ModelManager implements Model {
     @Override
     public void setCard(Card target, Card editedCard) {
         requireAllNonNull(target, editedCard);
-
         masterDeck.setCard(target, editedCard);
     }
 
-    //=========== Filtered Card/Deck List Accessors =============================================================
+    /* Filtered Card/Deck List Accessors */
 
     /**
      * Returns an unmodifiable view of the list of {@code Card} backed by the internal list of
@@ -163,7 +162,8 @@ public class ModelManager implements Model {
     }
 
 
-    /* NEWLY ADDED COMMANDS TO SUPPORT DECKS */
+    /* PowerDeck Operations */
+
     @Override
     public void updateFilteredDeckList(Predicate<Deck> predicate) {
         requireNonNull(predicate);
@@ -190,28 +190,32 @@ public class ModelManager implements Model {
     @Override
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
-        selectedDeck = Optional.of(filteredDecks.get(zeroBasesIdx));
+        selectedDeck = filteredDecks.get(zeroBasesIdx);
     }
 
     @Override
     public void unselectDeck() {
-        this.selectedDeck = Optional.empty();
+        this.selectedDeck = null;
         updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
     @Override
     public Optional<Deck> getSelectedDeck() {
-        return selectedDeck;
+        return Optional.ofNullable(selectedDeck);
     }
 
     @Override
     public String getSelectedDeckName() {
-        return selectedDeck.get().getDeckName();
+        return Optional.ofNullable(selectedDeck)
+                .map(Deck::getDeckName)
+                .orElse("None");
     }
+
+    /* Review Operations */
 
     /**
      * Starts a new review session based on deckIndex selected
-     * @param deckIndex
+     * @param deckIndex Index of the deck
      */
     public void reviewDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
@@ -219,23 +223,25 @@ public class ModelManager implements Model {
         List<Card> cardList = new FilteredList<>(
                 masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
         );
-        currReview = Optional.of(new Review(deckToReview, cardList));
-    };
+        currReview = new Review(deckToReview, cardList);
+    }
 
     @Override
     public Optional<Review> getReview() {
-        return currReview;
+        return Optional.ofNullable(currReview);
     };
 
     @Override
     public void endReview() {
-        currReview = Optional.empty();
+        currReview = null;
         // Todo: set predicate to showing all cards again?
     }
 
     @Override
     public String getReviewDeckName() {
-        return currReview.map(rev -> rev.getDeckName()).orElse(null);
+        return Optional.ofNullable(currReview)
+                .map(Review::getDeckName)
+                .orElse("None");
     }
 
 }
