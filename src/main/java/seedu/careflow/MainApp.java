@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.stage.Stage;
 import seedu.careflow.commons.core.Config;
 import seedu.careflow.commons.core.LogsCenter;
@@ -46,11 +47,17 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
+    private static HostServices hostServices;
+
     protected Ui ui;
     protected CareFlowLogic logic;
     protected CareFlowStorage storage;
     protected CareFlowModel model;
     protected Config config;
+
+    public static HostServices getStaticHostServices() {
+        return hostServices;
+    }
 
     @Override
     public void init() throws Exception {
@@ -190,6 +197,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        hostServices = getHostServices();
         logger.info("Starting CareFlow " + MainApp.VERSION);
         ui.start(primaryStage);
     }

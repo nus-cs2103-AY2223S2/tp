@@ -5,10 +5,12 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
+import seedu.careflow.MainApp;
 import seedu.careflow.commons.core.LogsCenter;
 
 /**
@@ -23,7 +25,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
-    private Button copyButton;
+    private Button openButton;
 
     @FXML
     private Label helpMessage;
@@ -106,5 +108,10 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+    @FXML
+    private void openUrl() {
+        final Hyperlink URL = new Hyperlink(USERGUIDE_URL);
+        MainApp.getStaticHostServices().showDocument(URL.getText());
     }
 }
