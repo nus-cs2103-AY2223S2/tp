@@ -247,9 +247,6 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        builder.append("; Tasks: ")
-                .append(getTaskList().toString());
-
         return builder.toString();
     }
 
