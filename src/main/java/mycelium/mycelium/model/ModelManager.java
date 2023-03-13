@@ -32,6 +32,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Project> filteredProjects;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -151,8 +152,8 @@ public class ModelManager implements Model {
             addressBook.removeClient(client);
         } catch (ItemNotFoundException e) {
             logger.warning(String.format(
-                    "Requested deletion for client with name %s not found in address book, ignoring...",
-                    client.getName()));
+                "Requested deletion for client with name %s not found in address book, ignoring...",
+                client.getName()));
         }
     }
 
@@ -227,10 +228,10 @@ public class ModelManager implements Model {
         }
         ModelManager that = (ModelManager) o;
         return Objects.equals(addressBook, that.addressBook)
-                && Objects.equals(userPrefs, that.userPrefs)
-                && Objects.equals(filteredPersons, that.filteredPersons)
-                && Objects.equals(filteredClients, that.filteredClients)
-                && Objects.equals(filteredProjects, that.filteredProjects);
+            && Objects.equals(userPrefs, that.userPrefs)
+            && Objects.equals(filteredPersons, that.filteredPersons)
+            && Objects.equals(filteredClients, that.filteredClients)
+            && Objects.equals(filteredProjects, that.filteredProjects);
     }
 
     @Override

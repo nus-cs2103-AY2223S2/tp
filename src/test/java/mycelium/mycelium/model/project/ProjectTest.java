@@ -1,11 +1,10 @@
 package mycelium.mycelium.model.project;
 
-import static mycelium.mycelium.testutil.Assert.assertDatesAlmostEqual;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Optional;
 
@@ -33,9 +32,9 @@ public class ProjectTest {
             Map.entry("same name with diff description",
                 Pair.of(defaultProject, new ProjectBuilder().withDescription("Different description").build())),
             Map.entry("same name with diff acceptedOn",
-                Pair.of(defaultProject, new ProjectBuilder().withAcceptedOn(new Date(0)).build())),
+                Pair.of(defaultProject, new ProjectBuilder().withAcceptedOn(LocalDate.now()).build())),
             Map.entry("same name with diff deadline",
-                Pair.of(defaultProject, new ProjectBuilder().withDeadline(new Date(0)).build()))
+                Pair.of(defaultProject, new ProjectBuilder().withDeadline(LocalDate.now()).build()))
         );
         sameCases.forEach((desc, tt) -> {
             assertTrue(tt.first.isSame(tt.second), "While testing case: " + desc);
@@ -80,9 +79,9 @@ public class ProjectTest {
             Map.entry("same name with diff description",
                 Pair.of(defaultProject, new ProjectBuilder().withDescription("Different description").build())),
             Map.entry("same name with diff acceptedOn",
-                Pair.of(defaultProject, new ProjectBuilder().withAcceptedOn(new Date()).build())),
+                Pair.of(defaultProject, new ProjectBuilder().withAcceptedOn(LocalDate.now()).build())),
             Map.entry("same name with diff deadline",
-                Pair.of(defaultProject, new ProjectBuilder().withDeadline(new Date()).build()))
+                Pair.of(defaultProject, new ProjectBuilder().withDeadline(LocalDate.now()).build()))
         );
         notEqualCases.forEach((desc, tt) -> {
             assertFalse(tt.first.equals(tt.second), "While testing case: " + desc);
@@ -96,7 +95,7 @@ public class ProjectTest {
         assertEquals(project.getClientEmail(), new Email("chungus@chungus.org"));
         assertEquals(project.getSource(), Optional.empty());
         assertEquals(project.getDescription(), Optional.empty());
-        assertDatesAlmostEqual(project.getAcceptedOn(), new Date());
+        assertEquals(project.getAcceptedOn(), LocalDate.now());
         assertEquals(project.getDeadline(), Optional.empty());
     }
 }

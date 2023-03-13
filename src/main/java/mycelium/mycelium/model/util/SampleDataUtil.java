@@ -1,7 +1,7 @@
 package mycelium.mycelium.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -52,7 +52,7 @@ public class SampleDataUtil {
                 new Email("johndoe@gmail.com"),
                 Optional.ofNullable("fiver"),
                 Optional.ofNullable("Create the next google AKA bing"),
-                new Date(),
+                LocalDate.now(),
                 Optional.empty()
             ),
             new Project(
@@ -61,8 +61,8 @@ public class SampleDataUtil {
                 new Email("EluidKipchoge@gmail.com"),
                 Optional.ofNullable("Behind the alley"),
                 Optional.ofNullable("University on the streets"),
-                new Date(),
-                Optional.ofNullable(new Date())
+                LocalDate.now(),
+                Optional.ofNullable(LocalDate.now())
             ),
             new Project(
                 "Build Skynet",
@@ -70,7 +70,7 @@ public class SampleDataUtil {
                 new Email("VladPutin@hotmale.com"),
                 Optional.ofNullable("Russia"),
                 Optional.ofNullable("Conquer the world"),
-                new Date(),
+                LocalDate.now(),
                 Optional.empty()
             )
         };
@@ -92,8 +92,8 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+            .map(Tag::new)
+            .collect(Collectors.toSet());
     }
 
 }

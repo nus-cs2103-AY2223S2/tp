@@ -9,7 +9,7 @@ import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_PROJECT_STATUS;
 import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_SOURCE;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import mycelium.mycelium.logic.commands.AddProjectCommand;
@@ -46,7 +46,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
         // The project's status and acceptedOn date take default values.
         ProjectStatus projectStatus = ProjectStatus.NOT_STARTED; // TODO actually parse this
-        Date acceptedOn = new Date(); // TODO parse this shit
+        LocalDate acceptedOn = LocalDate.now(); // TODO parse this shit
 
         Optional<String> source = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_SOURCE),
@@ -54,7 +54,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Optional<String> description = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION),
             ParserUtil::parseNonEmptyString);
-        Optional<Date> deadline = Optional.empty(); // TODO parse this shit
+        Optional<LocalDate> deadline = Optional.empty(); // TODO parse this shit
 
         Project project = new Project(name, projectStatus, clientEmail, source, description, acceptedOn, deadline);
 

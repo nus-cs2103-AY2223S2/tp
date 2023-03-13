@@ -57,7 +57,8 @@ class JsonAdaptedClient {
 
     /**
      * Throws an {@code IllegalValueException} with the given message if the given boolean is true.
-     * @param check The boolean to be checked.
+     *
+     * @param check         The boolean to be checked.
      * @param attributeName The name of the attribute being checked.
      * @throws IllegalValueException if the given boolean is true.
      */
@@ -69,7 +70,8 @@ class JsonAdaptedClient {
 
     /**
      * Throws an {@code IllegalValueException} with the given message if the boolean is true.
-     * @param check The boolean to be checked.
+     *
+     * @param check   The boolean to be checked.
      * @param message The error message to be displayed if the check fails.
      * @throws IllegalValueException if the given boolean is true.
      */
@@ -103,12 +105,11 @@ class JsonAdaptedClient {
         }
         final Phone modelMobileNumber = new Phone(mobileNumber);
         return new Client(modelName,
-                modelEmail,
-                Optional.ofNullable(modelYearOfBirth),
-                Optional.ofNullable(source),
-                Optional.ofNullable(modelMobileNumber));
+            modelEmail,
+            Optional.ofNullable(modelYearOfBirth),
+            Optional.ofNullable(source),
+            Optional.ofNullable(modelMobileNumber));
     }
-
 
 
 }
