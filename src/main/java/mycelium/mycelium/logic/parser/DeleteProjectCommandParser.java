@@ -28,18 +28,14 @@ public class DeleteProjectCommandParser implements Parser<DeleteProjectCommand> 
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteProjectCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE));
         }
 
-
         String targetProjectName = ParserUtil.parseNonEmptyString(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         return new DeleteProjectCommand(targetProjectName);
-
-
     }
 }

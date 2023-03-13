@@ -30,16 +30,15 @@ public class DeleteClientCommandParser implements Parser<DeleteClientCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteClientCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_EMAIL);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_EMAIL);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE));
         }
 
-
         Email targetEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+
         return new DeleteClientCommand(targetEmail);
     }
 }
