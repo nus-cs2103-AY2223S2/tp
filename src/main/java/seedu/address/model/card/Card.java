@@ -56,8 +56,11 @@ public class Card {
         return deck;
     }
 
-    public void changeDeck(Optional<Deck> newDeck) {
+    public void setDeck(Optional<Deck> newDeck) {
         this.deck = newDeck;
+    }
+    public String getDeckName() {
+        return this.deck.get().getDeckName();
     }
 
     /**

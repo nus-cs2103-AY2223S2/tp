@@ -112,4 +112,5 @@ public interface Model {
     void selectDeck(Index idx);
 
     void unselectDeck();
+    String getSelectedDeckName();
 }

@@ -198,4 +198,9 @@ public class ModelManager implements Model {
     public Optional<Deck> getSelectedDeck() {
         return selectedDeck;
     }
+
+    @Override
+    public String getSelectedDeckName() {
+        return selectedDeck.get().getDeckName();
+    }
 }

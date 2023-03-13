@@ -49,7 +49,7 @@ public class AddCommand extends Command {
         if (model.hasCard(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CARD);
         }
-        toAdd.changeDeck(selectedDeck);
+        toAdd.setDeck(selectedDeck);
         model.addCard(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

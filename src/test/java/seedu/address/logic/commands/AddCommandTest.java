@@ -37,8 +37,6 @@ public class AddCommandTest {
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Card validCard = new PersonBuilder().build();
-        System.out.println(validCard.getDeck().get().getDeckName());
-        System.out.println(modelStub.getSelectedDeck().get().getDeckName());
         CommandResult commandResult = new AddCommand(validCard).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCard), commandResult.getFeedbackToUser());
@@ -50,7 +48,6 @@ public class AddCommandTest {
         Card validCard = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validCard);
         ModelStub modelStub = new ModelStubWithPerson(validCard);
-
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CARD, () -> addCommand.execute(modelStub));
     }
 
@@ -200,6 +197,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public String getSelectedDeckName() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
