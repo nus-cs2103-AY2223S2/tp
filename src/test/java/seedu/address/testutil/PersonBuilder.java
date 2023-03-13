@@ -3,12 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-<<<<<<< Updated upstream
 import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.group.Group;
-=======
-import seedu.address.model.event.PersonEventList;
->>>>>>> Stashed changes
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
