@@ -1,7 +1,14 @@
 package vimification.taskui;
 
+import java.io.IOException;
 
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 // import javafx.scene.control.MenuItem;
 // import javafx.scene.control.TextInputControl;
 // import javafx.scene.input.KeyCombination;
@@ -10,105 +17,84 @@ import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import vimification.logic.Logic;
 
-
 /**
  * The Main Window. Provides the basic application layout containing a menu bar and space where
  * other JavaFX elements can be placed.
  */
-public class MainWindow extends UiPart<Stage> {
+public class MainWindow extends VBox {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "Main.fxml";
 
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
-    // private ResultDisplay resultDisplay;
-    // private HelpWindow helpWindow;
+
+    @FXML
+    private VBox leftComponent;
+
+    @FXML
+    private VBox rightComponent;
+
+    @FXML
+    private VBox textBoxComponent;
+
+    @FXML
+    private TextField textBox;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
-        super(FXML, primaryStage);
+    public MainWindow() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Main.fxml"));
+            fxmlLoader.setController(this);
+            fxmlLoader.setRoot(this);
+            fxmlLoader.load();
 
-        // Set dependencies
-        this.primaryStage = primaryStage;
-        this.logic = logic;
+            this.setOnKeyPressed(event -> {
+                if (event.getText().equals(":")) {
+                    textBoxComponent.setVisible(true);
+                    textBox.requestFocus();
+                }
+            });
 
-        // Configure the UI
-        // setWindowDefaultSize(logic.getGuiSettings());
+            textBoxComponent.setOnKeyPressed(event -> {
+                if (event.getCode().equals(KeyCode.ESCAPE)) {
+                    textBoxComponent.setVisible(false);
+                    this.requestFocus();
+                    System.out.println("You escaped");
+                }
+            });
+
+            textBox.setOnKeyPressed(event -> {
+                if (event.getCode().equals(KeyCode.ENTER)) {
+                    textBoxComponent.setVisible(false);
+                    this.requestFocus();
+                    String commandString = textBox.getText();
+                    System.out.println("Your command is " + commandString);
+
+                    // TODO : Create a Parser to parse the command and create a Driver to run it.
+                    if (commandString.equals(":wq!")) {
+                        Platform.exit();
+                    }
+                }
+            });
+
+            // Set up the ":" key listener to show/hide the text box component
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    /**
-     * Fills up all the placeholders of this window.
-     */
-    void fillInnerParts() {
-        // taskListPanel = new TaskListPanel();
-
-        // personListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-
-        // resultDisplay = new ResultDisplay();
-        // resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        // StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        // statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        // CommandBox commandBox = new CommandBox(this::executeCommand);
-        // commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-    }
-
-    /**
-     * Closes the application.
-     */
     @FXML
-    private void handleExit() {
-        // GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(),
-        // primaryStage.getHeight(),
-        // (int) primaryStage.getX(), (int) primaryStage.getY());
-        // logic.setGuiSettings(guiSettings);
-        // helpWindow.hide();
-        // primaryStage.hide();
+    public void initialize() {
+        textBoxComponent.setVisible(false);
     }
 
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
-    }
-
-    /**
-     * Executes the command and returns the result.
-     *
-     * @see vimification.logic.Logic#execute(String)
-     */
-    private void executeCommand(String commandText) {
-        // throws CommandException, ParseException {
-        // try {
-        // CommandResult commandResult = logic.execute(commandText);
-        // logger.info("Result: " + commandResult.getFeedbackToUser());
-        // resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-        // if (commandResult.isShowHelp()) {
-        // handleHelp();
-        // }
-
-        // if (commandResult.isExit()) {
-        // handleExit();
-        // }
-
-        // return commandResult;
-        // } catch (CommandException | ParseException e) {
-        // logger.info("Invalid command: " + commandText);
-        // resultDisplay.setFeedbackToUser(e.getMessage());
-        // throw e;
-        // }
-    }
-
-    void show() {
-        primaryStage.show();
-    }
 }
