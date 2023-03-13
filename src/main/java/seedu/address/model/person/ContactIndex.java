@@ -7,7 +7,7 @@ import seedu.address.model.person.exceptions.InvalidContactIndexException;
 /**
  * Represents the index of the person in EduMate
  */
-public class ContactIndex {
+public class ContactIndex implements Comparable<ContactIndex> {
 
     private final int contactIndex;
 
@@ -50,5 +50,10 @@ public class ContactIndex {
     @Override
     public String toString() {
         return String.valueOf(contactIndex);
+    }
+
+    @Override
+    public int compareTo(ContactIndex o) {
+        return this.getContactIndex() - o.getContactIndex();
     }
 }
