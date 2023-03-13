@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import arb.commons.util.StringUtil;
-import arb.model.client.Client;
 
 /**
  * Tests that a {@code Project}'s {@code Title} matches any of the keywords given.

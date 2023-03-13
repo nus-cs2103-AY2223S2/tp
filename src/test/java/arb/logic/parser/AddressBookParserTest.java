@@ -22,6 +22,7 @@ import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import arb.logic.commands.client.FindClientCommand;
 import arb.logic.commands.client.ListClientCommand;
+import arb.logic.commands.project.DeleteProjectCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
 import arb.model.client.NameContainsKeywordsPredicate;
@@ -47,10 +48,17 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_deleteClient() throws Exception {
         DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
                 DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new DeleteClientCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_deleteProject() throws Exception {
+        DeleteProjectCommand command = (DeleteProjectCommand) parser.parseCommand(
+                DeleteProjectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteProjectCommand(INDEX_FIRST), command);
     }
 
     @Test
