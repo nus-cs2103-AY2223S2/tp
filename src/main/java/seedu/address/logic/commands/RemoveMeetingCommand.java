@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
 /**
  * Removes a meeting by specified index from specified person
  */
-public class RemoveMeetingCommand extends Command{
+public class RemoveMeetingCommand extends Command {
     public static final String COMMAND_WORD = "meetingRemove";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes a meeting by specified index number from the person identified"
@@ -37,12 +37,12 @@ public class RemoveMeetingCommand extends Command{
     }
 
     /**
-     * Executes meetingRemove command
-     * @param model {@code Model} which the command should operate on.
-     * @return CommandResult Object
-     * @throws CommandException when index of person or meeting specified
-     * is out of range or invalid
-     */
+    * Executes meetingRemove command
+    * @param model {@code Model} which the command should operate on.
+    * @return CommandResult Object
+    * @throws CommandException when index of person or meeting specified
+    * is out of range or invalid
+    */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
