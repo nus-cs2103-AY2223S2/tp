@@ -9,7 +9,7 @@ import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ReadOnlyAddressBook;
-import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.project.Project;
 
 /**
@@ -34,9 +34,9 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns an unmodifiable view of the filtered list of persons
+     * Returns an unmodifiable view of the filtered list of clients
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Client> getFilteredClientList();
 
     /**
      * Returns an unmodifiable view of the filtered list of projects
