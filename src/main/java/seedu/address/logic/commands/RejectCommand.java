@@ -6,12 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
-import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.NamePhoneNumberPredicate;
 import seedu.address.model.person.Person;
 
@@ -65,7 +63,8 @@ public class RejectCommand extends Command {
      */
     private boolean canRejectApplicant(Model model, Person personToReject) throws CommandException {
         if (!model.rejectPerson(personToReject)) {
-            throw new CommandException(String.format(MESSAGE_PERSON_CANNOT_BE_REJECTED, personToReject.getName().fullName));
+            throw new CommandException(String.format(MESSAGE_PERSON_CANNOT_BE_REJECTED,
+                    personToReject.getName().fullName));
         }
         return true;
     }

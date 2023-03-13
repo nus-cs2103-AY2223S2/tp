@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class InterviewDateTime {
     private final LocalDateTime dateTime;
-    public static final String EMPTY_DATE_TIME = "";
+    public final static String EMPTY_DATE_TIME = "";
     public InterviewDateTime(String dateTime) throws ParseException {
         this.dateTime = DateTimeParser.parseDateTime(dateTime);
     }
