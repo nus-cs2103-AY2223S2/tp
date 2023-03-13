@@ -67,15 +67,17 @@ public class EditRoutineCommandParser implements Parser<EditRoutineCommand> {
                 && argMultimap.getValue(PREFIX_EXERCISE).isPresent()) {
             String exerciseNumber = argMultimap.getValue(PREFIX_EXERCISE_NUMBER).get();
             String exerciseName = argMultimap.getValue(PREFIX_EXERCISE).get();
-            Exercise exercise = new Exercise(exerciseName);
             EditRoutineDescriptor currEditRoutineDescriptor = new EditRoutineDescriptor(editRoutineDescriptor);
             try {
+                Exercise exercise = new Exercise(exerciseName);
                 Index exerciseNumberIndex = ParserUtil.parseIndex(exerciseNumber);
                 currEditRoutineDescriptor.setExercise(exercise);
                 currEditRoutineDescriptor.setExerciseIndex(exerciseNumberIndex);
             } catch (ParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX,
                         EditRoutineCommand.MESSAGE_USAGE), pe);
+            } catch (IllegalArgumentException pe) {
+                throw new ParseException(Exercise.MESSAGE_CONSTRAINTS, pe);
             }
             return currEditRoutineDescriptor;
         } else {

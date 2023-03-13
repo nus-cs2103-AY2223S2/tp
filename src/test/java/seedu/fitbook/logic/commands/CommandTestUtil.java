@@ -7,6 +7,7 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EXERCISE;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EXERCISE_NUMBER;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -25,6 +26,7 @@ import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
 import seedu.fitbook.testutil.routine.EditRoutineDescriptorBuilder;
 
@@ -102,29 +104,32 @@ public class CommandTestUtil {
     }
 
     // For Routine
-    public static final String VALID_ROUTINE_CARDIO = "Cardio";
-    public static final String VALID_ROUTINE_STRENGTH = "Strength";
+    public static final String VALID_ROUTINE_NAME_CARDIO = "Cardio";
+    public static final String VALID_ROUTINE_NAME_STRENGTH = "Strength";
     public static final String VALID_EXERCISE_PUSHUP = "3x10 Push Ups";
     public static final String VALID_EXERCISE_SITUP = "4x15 Sit ups";
+    public static final String VALID_EXERCISE_INDEX = "1";
 
-    public static final String NAME_DESC_ROUTINE_CARDIO = " " + PREFIX_ROUTINE + VALID_ROUTINE_CARDIO;
-    public static final String NAME_DESC_ROUTINE_STRENGTH = " " + PREFIX_ROUTINE + VALID_ROUTINE_STRENGTH;
-    public static final String EXERCISE_DESC_CARDIO = " " + PREFIX_EXERCISE + VALID_EXERCISE_PUSHUP;
+    public static final String NAME_DESC_ROUTINE_CARDIO = " " + PREFIX_ROUTINE + VALID_ROUTINE_NAME_CARDIO;
+    public static final String NAME_DESC_ROUTINE_STRENGTH = " " + PREFIX_ROUTINE + VALID_ROUTINE_NAME_STRENGTH;
+    public static final String EXERCISE_DESC_PUSHUP = " " + PREFIX_EXERCISE + VALID_EXERCISE_PUSHUP;
     public static final String EXERCISE_DESC_SITUP = " " + PREFIX_EXERCISE + VALID_EXERCISE_SITUP;
+    public static final String EXERCISE_DESC_INDEX = " " + PREFIX_EXERCISE_NUMBER + VALID_EXERCISE_INDEX;
 
     public static final String INVALID_ROUTINE_NAME_DESC =
             " " + PREFIX_ROUTINE + "HIIT$"; // '$' not allowed in routine names.
     public static final String INVALID_EXERCISE_NAME_DESC =
             " " + PREFIX_EXERCISE + "Situps@"; // '@' not allowed in exercise.
+    public static final String INVALID_EXERCISE_INDEX_DESC =
+            " " + PREFIX_EXERCISE_NUMBER + "3@"; // '@' not allowed in exercise.
 
     public static final EditRoutineCommand.EditRoutineDescriptor DESC_CARDIO;
     public static final EditRoutineCommand.EditRoutineDescriptor DESC_STRENGTH;
 
     static {
-        DESC_CARDIO = new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_CARDIO)
-                .withExercises(VALID_EXERCISE_PUSHUP).build();
-        DESC_STRENGTH = new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_STRENGTH)
-                .withExercises(VALID_EXERCISE_PUSHUP, VALID_EXERCISE_SITUP).build();
+        DESC_CARDIO = new EditRoutineDescriptorBuilder().withExercisesIndex(VALID_EXERCISE_INDEX)
+                .withExercise(VALID_EXERCISE_PUSHUP).build();
+        DESC_STRENGTH = new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_NAME_CARDIO).build();
     }
 
     /**
@@ -171,13 +176,28 @@ public class CommandTestUtil {
     }
     /**
      * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s FitBook.
      */
     public static void showClientAtIndex(FitBookModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
 
         Client client = model.getFilteredClientList().get(targetIndex.getZeroBased());
         final String[] splitName = client.getName().fullName.split("\\s+");
+        model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredClientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the routine at the given {@code targetIndex} in the
+     * {@code model}'s FitBook.
+     */
+    public static void showRoutineAtIndex(FitBookModel model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredRoutineList().size());
+
+        Routine routine = model.getFilteredRoutineList().get(targetIndex.getZeroBased());
+        final String[] splitName = routine.getRoutineName().routineName.split("\\s+");
+        //TODO: When find function is up. Do this.
         model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());

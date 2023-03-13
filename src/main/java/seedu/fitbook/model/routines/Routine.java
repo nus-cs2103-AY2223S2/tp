@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * Represents a Routine in the FitBook.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated.
  */
 public class Routine {
 
@@ -49,7 +49,8 @@ public class Routine {
         }
 
         Routine otherRoutine = (Routine) other;
-        return otherRoutine.getRoutineName().equals(getRoutineName());
+        return otherRoutine.getRoutineName().equals(getRoutineName())
+                && otherRoutine.getExercises().equals(getExercises());
     }
 
     /**

@@ -6,13 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.fitbook.testutil.Assert.assertThrows;
-<<<<<<< HEAD
 import static seedu.fitbook.testutil.client.TypicalClients.ALICE;
 import static seedu.fitbook.testutil.client.TypicalClients.BOB;
-=======
-import static seedu.fitbook.testutil.TypicalClients.ALICE;
-import static seedu.fitbook.testutil.TypicalClients.BOB;
->>>>>>> master
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,10 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.model.client.exceptions.ClientNotFoundException;
 import seedu.fitbook.model.client.exceptions.DuplicateClientException;
-<<<<<<< HEAD
 import seedu.fitbook.testutil.client.ClientBuilder;
-=======
->>>>>>> master
 
 public class UniqueClientListTest {
 

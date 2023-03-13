@@ -3,17 +3,10 @@ package seedu.fitbook.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.fitbook.testutil.Assert.assertThrows;
-<<<<<<< HEAD
 import static seedu.fitbook.testutil.client.TypicalClients.ALICE;
 import static seedu.fitbook.testutil.client.TypicalClients.HOON;
 import static seedu.fitbook.testutil.client.TypicalClients.IDA;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
-=======
-import static seedu.fitbook.testutil.TypicalClients.ALICE;
-import static seedu.fitbook.testutil.TypicalClients.HOON;
-import static seedu.fitbook.testutil.TypicalClients.IDA;
-import static seedu.fitbook.testutil.TypicalClients.getTypicalFitBook;
->>>>>>> master
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -59,7 +52,7 @@ public class JsonFitBookStorageTest {
 
     @Test
     public void readFitBook_invalidClientFitBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readFitBook("invalidRoutineFitBook.json"));
+        assertThrows(DataConversionException.class, () -> readFitBook("invalidClientFitBook.json"));
     }
 
     @Test

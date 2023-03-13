@@ -1,4 +1,4 @@
-package seedu.fitbook.logic.commands;
+package seedu.fitbook.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,12 +15,16 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.fitbook.commons.core.GuiSettings;
+import seedu.fitbook.logic.commands.AddCommand;
+import seedu.fitbook.logic.commands.CommandResult;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.ReadOnlyFitBook;
+import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
 import seedu.fitbook.model.ReadOnlyUserPrefs;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.testutil.client.ClientBuilder;
 
 public class AddCommandTest {
@@ -145,6 +149,47 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setFitBookExerciseRoutine(ReadOnlyFitBookExerciseRoutine exerciseRoutine) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyFitBookExerciseRoutine getFitBookExerciseRoutine() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        // Routine not used here.
+        @Override
+        public boolean hasRoutine(Routine routine) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteRoutine(Routine target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addRoutine(Routine routine) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRoutine(Routine target, Routine editedRoutine) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Routine> getFilteredRoutineList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredRoutineList(Predicate<Routine> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -2,7 +2,7 @@
 @font-face {
     font-family: 'Intel';
     font-weight: bold;
-    src: url('../font/Intel-VariableFont_sInt,wght.ttf');
+    src: url('../font/Inter-VariableFont_slnt,wght.ttf');
 }
 
 @font-face {
@@ -261,6 +261,16 @@
     -fx-text-fill: black;
 }
 
+
+.menu-item:focused {
+    -fx-background-color: derive(#F88017, 60%);
+    -fx-background-radius: 2;
+}
+
+.menu-item:focused .label{
+    -fx-text-fill: white;
+    -fx-background-color: derive(#F88017, 60%);
+}
 
 /*
  * Metro style Push Button

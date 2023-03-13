@@ -35,7 +35,9 @@ public class RoutineName {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidRoutineName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX)
+                && !test.trim().isEmpty()
+                && !test.isEmpty();
     }
 
 

@@ -1,17 +1,16 @@
 package seedu.fitbook.testutil.routine;
 
-import seedu.fitbook.model.FitBookExerciseRoutine;
-import seedu.fitbook.model.routines.Routine;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EXERCISE_PUSHUP;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EXERCISE_SITUP;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_NAME_CARDIO;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_NAME_STRENGTH;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EXERCISE_PUSHUP;
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EXERCISE_SITUP;
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_CARDIO;
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_STRENGTH;
-
+import seedu.fitbook.model.FitBookExerciseRoutine;
+import seedu.fitbook.model.routines.Routine;
 
 /**
  * A utility class containing a list of {@code Routine} objects to be used in tests.
@@ -32,9 +31,9 @@ public class TypicalRoutines {
             .withExercises("3x10 Push ups", "4x5 Dumbbell curls", "2x100 Pull ups").build();
 
     // Manually added - Routine's details found in {@code CommandTestUtil}
-    public static final Routine CARDIO = new RoutineBuilder().withRoutineName(VALID_ROUTINE_CARDIO)
+    public static final Routine CARDIO = new RoutineBuilder().withRoutineName(VALID_ROUTINE_NAME_CARDIO)
             .withExercises(VALID_EXERCISE_PUSHUP).build();
-    public static final Routine BOB = new RoutineBuilder().withRoutineName(VALID_ROUTINE_STRENGTH)
+    public static final Routine STR = new RoutineBuilder().withRoutineName(VALID_ROUTINE_NAME_STRENGTH)
             .withExercises(VALID_EXERCISE_PUSHUP, VALID_EXERCISE_SITUP).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

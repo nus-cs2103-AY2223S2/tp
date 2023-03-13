@@ -1,4 +1,4 @@
-package seedu.fitbook.logic.commands;
+package seedu.fitbook.logic.commands.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -9,12 +9,14 @@ import static seedu.fitbook.testutil.client.TypicalClients.CARL;
 import static seedu.fitbook.testutil.client.TypicalClients.ELLE;
 import static seedu.fitbook.testutil.client.TypicalClients.FIONA;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
+import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.fitbook.logic.commands.FindCommand;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
@@ -24,8 +26,10 @@ import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the FitBookModel) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(), new UserPrefs());
-    private FitBookModel expectedFitBookModel = new FitBookModelManager(getTypicalFitBook(), new UserPrefs());
+    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(),
+            getTypicalFitBookExerciseRoutine(), new UserPrefs());
+    private FitBookModel expectedFitBookModel = new FitBookModelManager(getTypicalFitBook(),
+            getTypicalFitBookExerciseRoutine(), new UserPrefs());
 
     @Test
     public void equals() {
