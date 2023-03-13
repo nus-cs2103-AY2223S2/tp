@@ -3,7 +3,7 @@ package trackr.logic.parser;
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class DeleteTaskCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteTaskCommand(INDEX_FIRST_TASK));
+        assertParseSuccess(parser, "1", new DeleteTaskCommand(INDEX_FIRST_OBJECT));
     }
 
     @Test

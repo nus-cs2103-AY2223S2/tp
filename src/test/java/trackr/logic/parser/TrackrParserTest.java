@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static trackr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static trackr.testutil.Assert.assertThrows;
+import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,8 +29,8 @@ import trackr.logic.commands.ListCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.person.NameContainsKeywordsPredicate;
 import trackr.model.person.Person;
-import trackr.model.task.TaskNameContainsKeywordsPredicate;
 import trackr.model.task.Task;
+import trackr.model.task.TaskNameContainsKeywordsPredicate;
 import trackr.testutil.EditPersonDescriptorBuilder;
 import trackr.testutil.PersonBuilder;
 import trackr.testutil.PersonUtil;
@@ -80,15 +80,15 @@ public class TrackrParserTest {
     @Test
     public void parseCommand_deleteTask() throws Exception {
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
-                DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
-        assertEquals(new DeleteTaskCommand(INDEX_FIRST_TASK), command);
+                DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_OBJECT.getOneBased());
+        assertEquals(new DeleteTaskCommand(INDEX_FIRST_OBJECT), command);
     }
 
     @Test
     public void parseCommand_deleteTaskShortcut() throws Exception {
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
-                DeleteTaskCommand.COMMAND_WORD_SHORTCUT + " " + INDEX_FIRST_TASK.getOneBased());
-        assertEquals(new DeleteTaskCommand(INDEX_FIRST_TASK), command);
+                DeleteTaskCommand.COMMAND_WORD_SHORTCUT + " " + INDEX_FIRST_OBJECT.getOneBased());
+        assertEquals(new DeleteTaskCommand(INDEX_FIRST_OBJECT), command);
     }
 
     @Test

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static trackr.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
+import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -29,8 +29,8 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredTaskList_success() {
-        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
+        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_OBJECT);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
@@ -50,10 +50,10 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_validIndexFilteredTaskList_success() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        showTaskAtIndex(model, INDEX_FIRST_OBJECT);
 
-        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
+        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_OBJECT);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
@@ -66,9 +66,9 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredTaskList_throwsCommandException() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        showTaskAtIndex(model, INDEX_FIRST_OBJECT);
 
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
+        Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of task list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskList().getTaskList().size());
 
@@ -79,14 +79,14 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void equals() {
-        DeleteTaskCommand deleteTaskFirstCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
-        DeleteTaskCommand deleteTaskSecondCommand = new DeleteTaskCommand(INDEX_SECOND_TASK);
+        DeleteTaskCommand deleteTaskFirstCommand = new DeleteTaskCommand(INDEX_FIRST_OBJECT);
+        DeleteTaskCommand deleteTaskSecondCommand = new DeleteTaskCommand(INDEX_SECOND_OBJECT);
 
         // same object -> returns true
         assertTrue(deleteTaskFirstCommand.equals(deleteTaskFirstCommand));
 
         // same values -> returns true
-        DeleteTaskCommand deleteTaskFirstCommandCopy = new DeleteTaskCommand(INDEX_FIRST_TASK);
+        DeleteTaskCommand deleteTaskFirstCommandCopy = new DeleteTaskCommand(INDEX_FIRST_OBJECT);
         assertTrue(deleteTaskFirstCommand.equals(deleteTaskFirstCommandCopy));
 
         // different types -> returns false
