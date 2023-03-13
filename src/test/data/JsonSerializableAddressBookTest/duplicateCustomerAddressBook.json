@@ -1,5 +1,6 @@
 {
   "customers": [ {
+    "customerType": "INDIVIDUAL",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
@@ -7,6 +8,7 @@
     "tagged": [ "friends" ],
     "points": 0
   }, {
+    "customerType": "INDIVIDUAL",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",

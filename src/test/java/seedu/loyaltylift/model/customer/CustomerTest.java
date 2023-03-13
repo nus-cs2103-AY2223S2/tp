@@ -1,6 +1,7 @@
 package seedu.loyaltylift.model.customer;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -87,5 +88,9 @@ public class CustomerTest {
         // different tags -> returns false
         editedAlice = new CustomerBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different customer type -> returns false
+        editedAlice = new CustomerBuilder(ALICE).withCustomerType(CustomerType.ENTERPRISE).build();
+        assertNotEquals(ALICE, editedAlice);
     }
 }

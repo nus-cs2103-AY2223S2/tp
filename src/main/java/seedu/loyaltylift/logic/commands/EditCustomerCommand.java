@@ -21,6 +21,7 @@ import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.customer.Address;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
@@ -46,7 +47,7 @@ public class EditCustomerCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_CUSTOMER_SUCCESS = "Edited Customer: %1$s";
+    public static final String MESSAGE_EDIT_CUSTOMER_SUCCESS = "Edited Customer: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the address book.";
 
@@ -99,8 +100,10 @@ public class EditCustomerCommand extends Command {
         Email updatedEmail = editCustomerDescriptor.getEmail().orElse(customerToEdit.getEmail());
         Address updatedAddress = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
+        CustomerType updatedCustomerType =
+                editCustomerDescriptor.getCustomerType().orElse(customerToEdit.getCustomerType());
 
-        return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Customer(updatedCustomerType, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -131,6 +134,7 @@ public class EditCustomerCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private CustomerType customerType;
 
         public EditCustomerDescriptor() {}
 
@@ -144,13 +148,14 @@ public class EditCustomerCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setCustomerType(toCopy.customerType);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, customerType);
         }
 
         public void setName(Name name) {
@@ -202,6 +207,14 @@ public class EditCustomerCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setCustomerType(CustomerType customerType) {
+            this.customerType = customerType;
+        }
+
+        public Optional<CustomerType> getCustomerType() {
+            return Optional.ofNullable(customerType);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -221,7 +234,8 @@ public class EditCustomerCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getCustomerType().equals(e.getCustomerType());
         }
     }
 }

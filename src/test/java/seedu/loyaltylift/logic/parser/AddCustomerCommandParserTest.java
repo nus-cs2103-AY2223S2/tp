@@ -3,9 +3,11 @@ package seedu.loyaltylift.logic.parser;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.CUSTOMER_TYPE_DESC_INDIVIDUAL;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.INVALID_CUSTOMER_TYPE;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -34,6 +36,7 @@ import org.junit.jupiter.api.Test;
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.model.customer.Address;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
@@ -78,7 +81,14 @@ public class AddCustomerCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Customer expectedCustomer = new CustomerBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+        assertParseSuccess(parser,
+                NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + CUSTOMER_TYPE_DESC_INDIVIDUAL,
+                new AddCustomerCommand(expectedCustomer));
+
+        // no customer type, defaults to individual
+        expectedCustomer = new CustomerBuilder(AMY).build();
+        assertParseSuccess(parser,
+                NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND,
                 new AddCustomerCommand(expectedCustomer));
     }
 
@@ -137,5 +147,10 @@ public class AddCustomerCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCustomerCommand.MESSAGE_USAGE));
+
+        // invalid customer type
+        assertParseFailure(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_CUSTOMER_TYPE,
+                CustomerType.MESSAGE_FAIL_CONVERSION);
     }
 }

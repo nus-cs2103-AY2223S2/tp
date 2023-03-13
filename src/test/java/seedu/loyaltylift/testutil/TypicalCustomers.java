@@ -17,6 +17,7 @@ import java.util.List;
 
 import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 
 /**
  * A utility class containing a list of {@code Customer} objects to be used in tests.
@@ -55,6 +56,15 @@ public class TypicalCustomers {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    // Manually added - Enterprises
+    public static final Customer CHOCOLATE_FACTORY = new CustomerBuilder().withName("The Chocolate Factory")
+            .withPhone("69920123").withEmail("chocofactory@enterprise.com").withAddress("30 Chocolate Street, #01-02")
+            .withCustomerType(CustomerType.ENTERPRISE).build();
+
+    public static final Customer SLY_FOX = new CustomerBuilder().withName("The Sly Fox")
+            .withPhone("60012421").withEmail("slyfox@enterprise.com").withAddress("30 Wolf Street, #01-33")
+            .withCustomerType(CustomerType.ENTERPRISE).build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalCustomers() {} // prevents instantiation
@@ -71,6 +81,7 @@ public class TypicalCustomers {
     }
 
     public static List<Customer> getTypicalCustomers() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(
+                Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, CHOCOLATE_FACTORY, SLY_FOX));
     }
 }

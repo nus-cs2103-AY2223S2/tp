@@ -1,6 +1,7 @@
 {
   "_comment": "AddressBook save file which contains the same Customer values as in TypicalCustomers#getTypicalAddressBook()",
   "customers" : [ {
+    "customerType": "INDIVIDUAL",
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -8,6 +9,7 @@
     "tagged" : [ "friends" ],
     "points": 0
   }, {
+    "customerType": "INDIVIDUAL",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
@@ -15,6 +17,7 @@
     "tagged" : [ "owesMoney", "friends" ],
     "points": 0
   }, {
+    "customerType": "INDIVIDUAL",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
@@ -22,6 +25,7 @@
     "tagged" : [ ],
     "points": 0
   }, {
+    "customerType": "INDIVIDUAL",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
@@ -29,6 +33,7 @@
     "tagged" : [ "friends" ],
     "points": 0
   }, {
+    "customerType": "INDIVIDUAL",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
@@ -36,6 +41,7 @@
     "tagged" : [ ],
     "points": 0
   }, {
+    "customerType": "INDIVIDUAL",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
@@ -43,11 +49,29 @@
     "tagged" : [ ],
     "points": 0
   }, {
+    "customerType": "INDIVIDUAL",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ],
+    "points": 0
+  }, {
+    "customerType": "ENTERPRISE",
+    "name" : "The Chocolate Factory",
+    "phone" : "69920123",
+    "email" : "chocofactory@enterprise.com",
+    "address" : "30 Chocolate Street, #01-02",
+    "tagged" : [ ],
+    "points": 0
+  },
+  {
+    "customerType": "ENTERPRISE",
+    "name": "The Sly Fox",
+    "phone": "60012421",
+    "email": "slyfox@enterprise.com",
+    "address": "30 Wolf Street, #01-33",
+    "tagged": [],
     "points": 0
   } ]
 }

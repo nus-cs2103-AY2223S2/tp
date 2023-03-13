@@ -71,14 +71,14 @@ public class SetPointsCommand extends Command {
      */
     private Customer createEditedCustomer(Customer customerToEdit) {
         assert customerToEdit != null;
-
+        CustomerType customerType = customerToEdit.getCustomerType();
         Name name = customerToEdit.getName();
         Phone phone = customerToEdit.getPhone();
         Email email = customerToEdit.getEmail();
         Address address = customerToEdit.getAddress();
         Set<Tag> tags = customerToEdit.getTags();
 
-        return new Customer(name, phone, email, address, tags, this.points);
+        return new Customer(customerType, name, phone, email, address, tags, this.points);
     }
 
     /**
