@@ -45,7 +45,7 @@ public class ReviewTaskCommand extends Command {
         requireAllNonNull(model, officeConnectModel);
 
         ObservableList<Task> taskList = officeConnectModel.getTaskModelManager()
-                .getFilteredItemList()
+                .getReadOnlyRepository().getReadOnlyRepository()
                 .filtered(predicate);
         if (taskList.size() != 1) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK);
@@ -80,5 +80,12 @@ public class ReviewTaskCommand extends Command {
                 .getFilteredItemList()
                 .filtered(persontask -> persontask.getTaskId().equals(tId));
         return assignedPersonList;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ReviewTaskCommand // instanceof handles nulls
+                && this.predicate.equals(((ReviewTaskCommand) other).predicate)); // state check
     }
 }

@@ -92,9 +92,6 @@ public class RepositoryModelManager<T extends Relationship<T>> {
 
     //=========== Filtered Person List Accessors =============================================================
 
-    public ObservableList<T> getObservableList() {
-        return internalUnmodifiableList;
-    }
 
     public ObservableList<T> getFilteredItemList() {
         return itemFilteredList;

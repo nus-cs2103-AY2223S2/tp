@@ -89,4 +89,11 @@ public class ReviewCommand extends Command {
                 .filtered(persontask -> persontask.getPersonId().equals(pId));
         return assignedTaskList;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ReviewCommand // instanceof handles nulls
+                && this.predicate.equals(((ReviewCommand) other).predicate)); // state check
+    }
 }
