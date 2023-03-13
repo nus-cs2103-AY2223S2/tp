@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.department.UniqueDepartmentList;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.UniquePersonList;
 
 /**
@@ -48,7 +48,7 @@ public class SudoHr implements ReadOnlySudoHr {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
+    public void setPersons(List<Employee> persons) {
         this.persons.setPersons(persons);
     }
 
@@ -70,12 +70,12 @@ public class SudoHr implements ReadOnlySudoHr {
         setDepartments(newData.getDepartmentList());
     }
 
-    //=========== Person-Level Operations ==============================================================================
+    //=========== Employee-Level Operations ==============================================================================
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the sudohr book.
      */
-    public boolean hasPerson(Person person) {
+    public boolean hasPerson(Employee person) {
         requireNonNull(person);
         return persons.contains(person);
     }
@@ -84,7 +84,7 @@ public class SudoHr implements ReadOnlySudoHr {
      * Adds a person to the sudohr book.
      * The person must not already exist in the sudohr book.
      */
-    public void addPerson(Person p) {
+    public void addPerson(Employee p) {
         persons.add(p);
     }
 
@@ -93,7 +93,7 @@ public class SudoHr implements ReadOnlySudoHr {
      * {@code target} must exist in the sudohr book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the sudohr book.
      */
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Employee target, Employee editedPerson) {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
@@ -103,7 +103,7 @@ public class SudoHr implements ReadOnlySudoHr {
      * Removes {@code key} from this {@code SudoHr}.
      * {@code key} must exist in the sudohr book.
      */
-    public void removePerson(Person key) {
+    public void removePerson(Employee key) {
         persons.remove(key);
     }
 
@@ -157,7 +157,7 @@ public class SudoHr implements ReadOnlySudoHr {
      * @param p The employee to add
      * @param d The department to add the employee to
      */
-    public void addEmployeeToDepartment(Person p, Department d) {
+    public void addEmployeeToDepartment(Employee p, Department d) {
         requireNonNull(p);
         requireNonNull(d);
 
@@ -169,7 +169,7 @@ public class SudoHr implements ReadOnlySudoHr {
      * @param p The employee to remove
      * @param d The department to remove the employee fro
      */
-    public void removeEmployeeFromDepartment(Person p, Department d) {
+    public void removeEmployeeFromDepartment(Employee p, Department d) {
         requireNonNull(p);
         requireNonNull(d);
 
@@ -189,7 +189,7 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public ObservableList<Employee> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
 

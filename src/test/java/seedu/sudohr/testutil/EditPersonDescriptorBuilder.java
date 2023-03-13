@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 import seedu.sudohr.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.sudohr.model.employee.Address;
 import seedu.sudohr.model.employee.Email;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.Name;
-import seedu.sudohr.model.employee.Person;
 import seedu.sudohr.model.employee.Phone;
 import seedu.sudohr.model.tag.Tag;
 
@@ -31,7 +31,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Employee person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setId(person.getId());
         descriptor.setName(person.getName());

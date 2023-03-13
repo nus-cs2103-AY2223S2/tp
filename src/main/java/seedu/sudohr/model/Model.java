@@ -7,14 +7,14 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Employee> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -54,40 +54,40 @@ public interface Model {
     /** Returns the SudoHr */
     ReadOnlySudoHr getSudoHr();
 
-    //=========== Person-Level Operations ==============================================================================
+    //=========== Employee-Level Operations ==============================================================================
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the sudohr book.
      */
-    boolean hasPerson(Person person);
+    boolean hasPerson(Employee person);
 
     /**
      * Deletes the given person.
      * The person must exist in the sudohr book.
      */
-    void deletePerson(Person target);
+    void deletePerson(Employee target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the sudohr book.
      */
-    void addPerson(Person person);
+    void addPerson(Employee person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the sudohr book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the sudohr book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setPerson(Employee target, Employee editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Employee> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonList(Predicate<Employee> predicate);
 
     //=========== Department-Level Operations ==========================================================================
 
@@ -122,14 +122,14 @@ public interface Model {
      * @param p The employee to add
      * @param d The department to add the employee to
      */
-    void addEmployeeToDepartment(Person p, Department d);
+    void addEmployeeToDepartment(Employee p, Department d);
 
     /**
      * Removes a given employee from a given department
      * @param p The employee to remove
      * @param d The department to remove the employee fro
      */
-    void removeEmployeeFromDepartment(Person p, Department d);
+    void removeEmployeeFromDepartment(Employee p, Department d);
 
     /** Returns an unmodifiable view of the filtered department list */
     ObservableList<Department> getFilteredDepartmentList();

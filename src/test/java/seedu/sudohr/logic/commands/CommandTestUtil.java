@@ -20,8 +20,8 @@ import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
-import seedu.sudohr.model.employee.Person;
 import seedu.sudohr.testutil.EditDepartmentDescriptorBuilder;
 import seedu.sudohr.testutil.EditPersonDescriptorBuilder;
 
@@ -135,7 +135,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         SudoHr expectedSudoHr = new SudoHr(actualModel.getSudoHr());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Employee> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedSudoHr, actualModel.getSudoHr());
@@ -148,7 +148,7 @@ public class CommandTestUtil {
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Employee person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 

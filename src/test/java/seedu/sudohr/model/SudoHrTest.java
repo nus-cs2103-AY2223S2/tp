@@ -28,7 +28,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.exceptions.DuplicatePersonException;
 import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.PersonBuilder;
@@ -42,7 +42,7 @@ public class SudoHrTest {
         assertEquals(Collections.emptyList(), sudoHr.getPersonList());
     }
 
-    //// Person tests
+    //// Employee tests
 
     @Test
     public void resetData_null_throwsNullPointerException() {
@@ -59,9 +59,9 @@ public class SudoHrTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Employee editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        List<Employee> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Department> newDepartments = Arrays.asList();
         SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
 
@@ -87,7 +87,7 @@ public class SudoHrTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         sudoHr.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Employee editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(sudoHr.hasPerson(editedAlice));
     }
@@ -103,7 +103,7 @@ public class SudoHrTest {
     public void resetData_withDuplicateDepartments_throwsDuplicateDepartmentException() {
         // Two persons with the same identity fields
         Department editedHumanResources = new DepartmentBuilder(HUMAN_RESOURCES).withDepartmentName("Sales").build();
-        List<Person> newPersons = Arrays.asList(ALICE, BENSON, CARL, GEORGE, HOON, IDA);
+        List<Employee> newPersons = Arrays.asList(ALICE, BENSON, CARL, GEORGE, HOON, IDA);
         List<Department> newDepartments = Arrays.asList(editedHumanResources, SALES);
 
         SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
@@ -144,16 +144,16 @@ public class SudoHrTest {
      * A stub ReadOnlySudoHr whose persons and departments list can violate interface constraints.
      */
     private static class SudoHrStub implements ReadOnlySudoHr {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Employee> persons = FXCollections.observableArrayList();
         private final ObservableList<Department> departments = FXCollections.observableArrayList();
 
-        SudoHrStub(Collection<Person> persons, Collection<Department> departments) {
+        SudoHrStub(Collection<Employee> persons, Collection<Department> departments) {
             this.persons.setAll(persons);
             this.departments.setAll(departments);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
+        public ObservableList<Employee> getPersonList() {
             return persons;
         }
 

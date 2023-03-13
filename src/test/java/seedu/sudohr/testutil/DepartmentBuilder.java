@@ -6,7 +6,7 @@ import java.util.Set;
 
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * A utility class to help with building Department objects.
@@ -17,7 +17,7 @@ public class DepartmentBuilder {
     public static final String DEFAULT_NAME = "Human Resources";
 
     private DepartmentName name;
-    private Set<Person> employees;
+    private Set<Employee> employees;
 
     /**
      * Creates a {@code DepartmentBuilder} with the default details.
@@ -44,10 +44,10 @@ public class DepartmentBuilder {
     }
 
     /**
-     * Parses the {@code employees} into a {@code Set<Person>} and set it to the {@code Department} that we are
+     * Parses the {@code employees} into a {@code Set<Employee>} and set it to the {@code Department} that we are
      * building.
      */
-    public DepartmentBuilder withEmployees(Person ... employees) {
+    public DepartmentBuilder withEmployees(Employee... employees) {
         this.employees.addAll(Arrays.asList(employees));
         return this;
     }

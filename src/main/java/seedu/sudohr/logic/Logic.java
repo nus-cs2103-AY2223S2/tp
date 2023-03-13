@@ -8,7 +8,7 @@ import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.ReadOnlySudoHr;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * API of the Logic component
@@ -31,7 +31,7 @@ public interface Logic {
     ReadOnlySudoHr getSudoHr();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Employee> getFilteredPersonList();
 
     /**
      * Returns the user prefs' sudohr book file path.

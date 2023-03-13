@@ -10,10 +10,10 @@ import java.util.Set;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * Represents a Person in the sudohr book.
+ * Represents a Employee in the sudohr book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Employee {
 
     // Identity fields
     private final Id id;
@@ -28,7 +28,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Id id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Employee(Id id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(id, name, phone, email, address, tags);
         this.id = id;
         this.name = name;
@@ -69,7 +69,7 @@ public class Person {
     /**
      * Returns true if both persons have the same id.
      */
-    public boolean isSamePerson(Person otherPerson) {
+    public boolean isSamePerson(Employee otherPerson) {
         if (otherPerson == this) {
             return true;
         }
@@ -88,11 +88,11 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Employee)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
+        Employee otherPerson = (Employee) other;
         return otherPerson.getId().equals(getId())
                 && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
@@ -106,12 +106,12 @@ public class Person {
      * email, phone, id. Name is excluded since several people can share the same names.
      * This warns the HR personnel of a possible human error in tagging of data.
      */
-    public boolean clashes(Person otherPerson) {
+    public boolean clashes(Employee otherPerson) {
         if (otherPerson == this) {
             return true;
         }
 
-        if (!(otherPerson instanceof Person)) {
+        if (!(otherPerson instanceof Employee)) {
             return false;
         }
 

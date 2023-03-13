@@ -15,9 +15,9 @@ import seedu.sudohr.logic.commands.AddCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.employee.Address;
 import seedu.sudohr.model.employee.Email;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.Name;
-import seedu.sudohr.model.employee.Person;
 import seedu.sudohr.model.employee.Phone;
 import seedu.sudohr.model.tag.Tag;
 
@@ -49,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(id, name, phone, email, address, tagList);
+        Employee person = new Employee(id, name, phone, email, address, tagList);
 
         return new AddCommand(person);
     }

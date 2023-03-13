@@ -10,7 +10,7 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * Adds a person to the sudohr book.
@@ -39,12 +39,12 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the sudohr book";
 
-    private final Person toAdd;
+    private final Employee toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Employee}
      */
-    public AddCommand(Person person) {
+    public AddCommand(Employee person) {
         requireNonNull(person);
         toAdd = person;
     }

@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.sudohr.commons.core.LogsCenter;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * Panel containing the list of persons.
@@ -18,23 +18,23 @@ public class PersonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Employee> personListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Employee> personList) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Employee} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<Employee> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
+        protected void updateItem(Employee person, boolean empty) {
             super.updateItem(person, empty);
 
             if (empty || person == null) {

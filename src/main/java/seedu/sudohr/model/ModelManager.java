@@ -13,7 +13,7 @@ import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * Represents the in-memory model of the sudohr book data.
@@ -23,7 +23,7 @@ public class ModelManager implements Model {
 
     private final SudoHr sudoHr;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Employee> filteredPersons;
     private final FilteredList<Department> filteredDepartments;
 
     /**
@@ -92,45 +92,45 @@ public class ModelManager implements Model {
         return sudoHr;
     }
 
-    //=========== Person-Level Operations ==============================================================================
+    //=========== Employee-Level Operations ==============================================================================
 
     @Override
-    public boolean hasPerson(Person person) {
+    public boolean hasPerson(Employee person) {
         requireNonNull(person);
         return sudoHr.hasPerson(person);
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deletePerson(Employee target) {
         sudoHr.removePerson(target);
     }
 
     @Override
-    public void addPerson(Person person) {
+    public void addPerson(Employee person) {
         sudoHr.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Employee target, Employee editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         sudoHr.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Employee List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Employee} backed by the internal list of
      * {@code versionedSudoHr}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Employee> getFilteredPersonList() {
         return filteredPersons;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
@@ -164,12 +164,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addEmployeeToDepartment(Person p, Department d) {
+    public void addEmployeeToDepartment(Employee p, Department d) {
         sudoHr.addEmployeeToDepartment(p, d);
     }
 
     @Override
-    public void removeEmployeeFromDepartment(Person p, Department d) {
+    public void removeEmployeeFromDepartment(Employee p, Department d) {
         sudoHr.removeEmployeeFromDepartment(p, d);
     }
 

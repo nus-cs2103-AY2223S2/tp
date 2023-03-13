@@ -1,7 +1,7 @@
 package seedu.sudohr.testutil;
 
 import seedu.sudohr.model.SudoHr;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -21,9 +21,9 @@ public class AddressBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code SudoHr} that we are building.
+     * Adds a new {@code Employee} to the {@code SudoHr} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
+    public AddressBookBuilder withPerson(Employee person) {
         sudoHr.addPerson(person);
         return this;
     }

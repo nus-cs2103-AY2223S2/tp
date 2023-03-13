@@ -23,8 +23,8 @@ import seedu.sudohr.logic.commands.FindCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
 import seedu.sudohr.logic.commands.ListCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
-import seedu.sudohr.model.employee.Person;
 import seedu.sudohr.testutil.EditPersonDescriptorBuilder;
 import seedu.sudohr.testutil.PersonBuilder;
 import seedu.sudohr.testutil.PersonUtil;
@@ -35,7 +35,7 @@ public class SudoHrParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
+        Employee person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
@@ -55,7 +55,7 @@ public class SudoHrParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
+        Employee person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));

@@ -12,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Employee}.
  */
 class JsonAdaptedDepartment {
 
@@ -47,12 +47,12 @@ class JsonAdaptedDepartment {
     }
 
     /**
-     * Converts this Jackson-friendly adapted department object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted department object into the model's {@code Employee} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Department toModelType() throws IllegalValueException {
-        final List<Person> departmentEmployees = new ArrayList<>();
+        final List<Employee> departmentEmployees = new ArrayList<>();
         for (JsonAdaptedPerson employee : employees) {
             departmentEmployees.add(employee.toModelType());
         }
@@ -67,7 +67,7 @@ class JsonAdaptedDepartment {
 
         final DepartmentName departmentName = new DepartmentName(name);
 
-        final Set<Person> modelEmployees = new HashSet<>(departmentEmployees);
+        final Set<Employee> modelEmployees = new HashSet<>(departmentEmployees);
 
         return new Department(departmentName, modelEmployees);
     }

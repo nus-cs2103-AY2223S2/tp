@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's sudohr in the sudohr book.
+ * Represents a Employee's sudohr in the sudohr book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {

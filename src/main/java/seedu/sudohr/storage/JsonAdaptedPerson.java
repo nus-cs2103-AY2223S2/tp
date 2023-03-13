@@ -12,18 +12,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.employee.Address;
 import seedu.sudohr.model.employee.Email;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.Name;
-import seedu.sudohr.model.employee.Person;
 import seedu.sudohr.model.employee.Phone;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Employee}.
  */
 class JsonAdaptedPerson {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Employee's %s field is missing!";
 
     private final String id;
     private final String name;
@@ -51,9 +51,9 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Employee} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedPerson(Employee source) {
         id = source.getId().value;
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -65,11 +65,11 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code Employee} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Employee toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -118,7 +118,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Employee(modelId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

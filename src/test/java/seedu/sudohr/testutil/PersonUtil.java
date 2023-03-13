@@ -11,25 +11,25 @@ import java.util.Set;
 
 import seedu.sudohr.logic.commands.AddCommand;
 import seedu.sudohr.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Employee.
  */
 public class PersonUtil {
 
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
+    public static String getAddCommand(Employee person) {
         return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Employee person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_ID + person.getId().value + " ");
         sb.append(PREFIX_NAME + person.getName().fullName + " ");

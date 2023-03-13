@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.testutil.PersonBuilder;
 
 /**
@@ -27,7 +27,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Employee validPerson = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
         expectedModel.addPerson(validPerson);
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getSudoHr().getPersonList().get(0);
+        Employee personInList = model.getSudoHr().getPersonList().get(0);
         assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

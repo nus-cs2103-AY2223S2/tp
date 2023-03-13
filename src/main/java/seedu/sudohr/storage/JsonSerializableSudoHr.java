@@ -12,7 +12,7 @@ import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * An Immutable SudoHr that is serializable to JSON format.
@@ -56,7 +56,7 @@ class JsonSerializableSudoHr {
         SudoHr sudoHr = new SudoHr();
 
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
+            Employee person = jsonAdaptedPerson.toModelType();
             if (sudoHr.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }

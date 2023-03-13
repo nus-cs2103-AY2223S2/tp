@@ -27,7 +27,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.UserPrefs;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.storage.JsonSudoHrStorage;
 import seedu.sudohr.storage.JsonUserPrefsStorage;
 import seedu.sudohr.storage.StorageManager;
@@ -82,7 +82,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + ID_DESC_AMY + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Employee expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

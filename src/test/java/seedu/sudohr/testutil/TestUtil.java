@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.model.Model;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * A utility class for test cases.
@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
+    public static Employee getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
     }
 }

@@ -22,7 +22,7 @@ import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.testutil.DepartmentBuilder;
 
 public class AddDepartmentCommandTest {
@@ -114,7 +114,7 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addPerson(Employee person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -129,27 +129,27 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasPerson(Employee person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deletePerson(Employee target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setPerson(Employee target, Employee editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Employee> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<Employee> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -179,12 +179,12 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public void addEmployeeToDepartment(Person p, Department d) {
+        public void addEmployeeToDepartment(Employee p, Department d) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void removeEmployeeFromDepartment(Person p, Department d) {
+        public void removeEmployeeFromDepartment(Employee p, Department d) {
             throw new AssertionError("This method should not be called.");
         }
 
