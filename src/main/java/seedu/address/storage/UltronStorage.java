@@ -1,11 +1,11 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyUltron;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ReadOnlyUltron;
 
 /**
  * Represents a storage for {@link seedu.address.model.Ultron}.
@@ -30,16 +30,16 @@ public interface UltronStorage {
      */
     Optional<ReadOnlyUltron> readUltron(Path filePath) throws DataConversionException, IOException;
 
-    /**
+    /*
      * Saves the given {@link ReadOnlyUltron} to the storage.
-     * @param Ultron cannot be null.
+     * @param ultron cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveUltron(ReadOnlyUltron Ultron) throws IOException;
+    void saveUltron(ReadOnlyUltron ultron) throws IOException;
 
     /**
      * @see #saveUltron(ReadOnlyUltron)
      */
-    void saveUltron(ReadOnlyUltron Ultron, Path filePath) throws IOException;
+    void saveUltron(ReadOnlyUltron ultron, Path filePath) throws IOException;
 
 }

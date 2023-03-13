@@ -1,16 +1,17 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Ultron;
-import seedu.address.model.ReadOnlyUltron;
-import seedu.address.model.opening.Opening;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyUltron;
+import seedu.address.model.Ultron;
+import seedu.address.model.opening.Opening;
 
 /**
  * An Immutable Ultron that is serializable to JSON format.
@@ -45,15 +46,15 @@ class JsonSerializableUltron {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Ultron toModelType() throws IllegalValueException {
-        Ultron Ultron = new Ultron();
+        Ultron ultron = new Ultron();
         for (JsonAdaptedOpening jsonAdaptedopening : openings) {
             Opening opening = jsonAdaptedopening.toModelType();
-            if (Ultron.hasOpening(opening)) {
+            if (ultron.hasOpening(opening)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_OPENING);
             }
-            Ultron.addOpening(opening);
+            ultron.addOpening(opening);
         }
-        return Ultron;
+        return ultron;
     }
 
 }
