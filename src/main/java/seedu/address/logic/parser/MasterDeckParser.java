@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +22,6 @@ import seedu.address.logic.commands.ReviewCommand;
 import seedu.address.logic.commands.SelectDeckCommand;
 import seedu.address.logic.commands.UnselectDeckCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.deck.Deck;
 
 /**
  * Parses user input.
