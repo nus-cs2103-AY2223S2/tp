@@ -65,7 +65,7 @@ Shows a message explaining how to access the user guide.
 Format: `help`
 
 
-### Add person: `add`
+### Add delivery: `add`
 
 Adds a person to deliver to.
 
@@ -77,7 +77,7 @@ Examples:
 
 ### Add parcel to a delivery: `add_pc`
 
-Adds a parcel to an existing person to deliver to.
+Adds a parcel to an existing delivery.
 
 Format: `add_pc INDEX pc/PARCEL`
 
