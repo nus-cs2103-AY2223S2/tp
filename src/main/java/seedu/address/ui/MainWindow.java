@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -17,6 +18,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.policy.Policy;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -49,7 +51,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane clientListPanelPlaceholder;
 
-    @FXML // TODO: Populate with policies
+    @FXML
     private StackPane policyListPanelPlaceholder;
 
     @FXML
@@ -67,7 +69,6 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.selectedClient = logic.getFilteredClientList().get(0);
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -120,20 +121,15 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        // Populate client list
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        // Populate client label with dummy and display information
-        Client dummyClient = logic.getFilteredClientList().get(0);
-        ClientCard dummyClientCard = new ClientCard(dummyClient, 1);
-        clientLabel.getChildren().add(dummyClientCard.getRoot());
+        // Populate client label with first client in client list
+        // DEBUG: WILL CAUSE ERROR IF CLIENT LIST IS EMPTY
 
-        // TODO: Populate Policy List Panel and Client Label
-        // For now, emulate with clientlist
-//        policyListPanel = new ClientListPanel(logic.getFilteredClientList());
-//        policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
-        policyListPanel = new PolicyListPanel(selectedClient.getPolicyList());
-        System.out.println(selectedClient.getPolicyList());
+        // Populate policy list of selected client
+        policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
         policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -165,11 +161,17 @@ public class MainWindow extends UiPart<Stage> {
         if (targetClient == null) {
             throw new CommandException("Selection Error: No client selected");
         }
-        selectedClient = targetClient;
+        logic.updateSelectedClient(targetClient);
         ClientCard selectedClientCard = new ClientCard(targetClient,
                 logic.getFilteredClientList().indexOf(targetClient) + 1);
-        clientLabel.getChildren().remove(0);
+
+        if (clientLabel.getChildren().size() > 0) {
+            clientLabel.getChildren().remove(0);
+        }
         clientLabel.getChildren().add(selectedClientCard.getRoot());
+
+        ObservableList<Policy> policyList = targetClient.getFilteredPolicyList();
+        policyListPanel.updatePolicyList(policyList);
     }
 
     /**

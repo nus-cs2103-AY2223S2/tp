@@ -23,11 +23,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
+
     {
         clients = new UniqueClientList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Clients in the {@code toBeCopied}
@@ -91,6 +93,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeClient(Client key) {
         clients.remove(key);
+    }
+
+    public Client getFirstClient() {
+        if (clients.size() == 0) {
+            return null;
+        }
+        return clients.asUnmodifiableObservableList().get(0);
     }
 
     //// util methods

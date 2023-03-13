@@ -10,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.policy.Policy;
 
+/**
+ * Panel containing the list of clients.
+ */
 public class PolicyListPanel extends UiPart<Region> {
     private static final String FXML = "PolicyListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PolicyListPanel.class);
@@ -22,6 +25,14 @@ public class PolicyListPanel extends UiPart<Region> {
      */
     public PolicyListPanel(ObservableList<Policy> policyList) {
         super(FXML);
+        policyListView.setItems(policyList);
+        policyListView.setCellFactory(listView -> new PolicyListViewCell());
+    }
+
+    /**
+     * Updates a {@code PolicyListPanel} with the given {@code ObservableList}
+     */
+    public void updatePolicyList(ObservableList<Policy> policyList) {
         policyListView.setItems(policyList);
         policyListView.setCellFactory(listView -> new PolicyListViewCell());
     }
