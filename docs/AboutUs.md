@@ -9,51 +9,38 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### TRUONG MINH DUONG
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhongli5712.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Zhongli5712)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: new courses
 
-### Jane Doe
+### LEE YI
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/leeyi45.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/leeyi45)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: display and storage
 
-### Johnny Doe
+### LIAO ZE LI, JACQUES
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jugsliao.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jugsliao)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: add tutors
 
-### James Doe
+### JETHRO SIM SHENG YANG
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gekhro.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/gekhro)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: add students
