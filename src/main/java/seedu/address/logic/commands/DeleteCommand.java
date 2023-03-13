@@ -24,10 +24,6 @@ public class DeleteCommand extends Command {
             + "Parameters: NAME\n"
             + "Example: " + COMMAND_WORD + " John Doe";
 
-
-
-
-
     private final NameContainsKeywordsPredicate predicate;
 
 
