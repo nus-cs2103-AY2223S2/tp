@@ -123,7 +123,7 @@ Examples:
 
 Finds persons stored in address book based on the given keywords for the respective fields.
 
-Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE]…​ [t/TAG]…​`
+Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]`
 
 * The search for keyword(s) is case-insensitive. 
   * e.g `find n/hans` will match `find n/Hans`
