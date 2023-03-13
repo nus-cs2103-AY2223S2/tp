@@ -17,6 +17,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The theme that the UI should change to (null if no change). */
+    private final String theme;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +27,17 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.theme = null;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, String theme) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.theme = theme;
     }
 
     /**
@@ -38,12 +52,20 @@ public class CommandResult {
         return feedbackToUser;
     }
 
+    public String getTheme() {
+        return theme;
+    }
+
     public boolean isShowHelp() {
         return showHelp;
     }
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isChangeTheme() {
+        return theme != null;
     }
 
     @Override
