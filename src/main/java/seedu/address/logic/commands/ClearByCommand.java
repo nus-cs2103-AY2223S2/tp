@@ -10,8 +10,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.person.Status;
 import seedu.address.ui.ConfirmationDialog;
 
 /**
@@ -52,7 +52,7 @@ public class ClearByCommand extends Command {
 
     private CompanyName companyName = null;
     private JobTitle jobTitle = null;
-    private Status status = null;
+    private InternshipStatus status = null;
     private String param;
     private ConfirmationDialog confirmationDialog;
 
@@ -79,9 +79,9 @@ public class ClearByCommand extends Command {
     /**
      * Creates an ClearByCommand to delete all the relevant {@code status} internship
      */
-    public ClearByCommand(Status status) {
+    public ClearByCommand(InternshipStatus status) {
         this.status = status;
-        param = status.fullName;
+        param = status.toString();
         paramType = ParamType.STATUS;
     }
 

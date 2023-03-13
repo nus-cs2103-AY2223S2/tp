@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.ClearByCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.person.Status;
 
 /**
  * Parses input arguments and creates a new ClearByCommand object
@@ -53,7 +53,7 @@ public class ClearByCommandParser {
 
             return new ClearByCommand(jobTitle);
         } else if (prefix.equals(PREFIX_STATUS)) {
-            Status status = ParserUtil.parseStatus(
+            InternshipStatus status = ParserUtil.parseInternshipStatus(
                     argMultimap.getValue(PREFIX_STATUS).orElse(null));
 
             return new ClearByCommand(status);

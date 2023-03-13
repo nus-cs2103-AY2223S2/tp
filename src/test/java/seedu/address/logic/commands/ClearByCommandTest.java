@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.person.Status;
 
 public class ClearByCommandTest {
     @Test
     public void equals() {
         ClearByCommand clearByFirstCommand = new ClearByCommand(new CompanyName("Company 1"));
         ClearByCommand clearBySecondCommand = new ClearByCommand(new JobTitle("Developer"));
-        ClearByCommand clearByThirdCommand = new ClearByCommand(new Status("PENDING"));
+        ClearByCommand clearByThirdCommand = new ClearByCommand(InternshipStatus.PENDING);
 
         // same object -> returns true
         assertTrue(clearByFirstCommand.equals(clearByFirstCommand));
