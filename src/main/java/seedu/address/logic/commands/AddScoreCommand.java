@@ -15,13 +15,13 @@ import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
 
 /**
- * Adds a score to a person identified using it's display index in the address book.
+ * Adds a score to a person identified using it's displayed index in the student list.
  */
 public class AddScoreCommand extends Command {
 
     public static final String COMMAND_WORD = "addScore";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a score detail to the student. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a score detail to the specified student. \n"
             + "Parameters: INDEX (must be a positive number) "
             + PREFIX_SCORE_LABEL + "LABEL "
             + PREFIX_SCORE_VALUE + "VALUE "
