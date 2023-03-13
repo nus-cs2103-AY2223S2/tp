@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Performance {
     public final String value;
-    public final String NULL_PERFORMANCE = "None yet!";
+    public static final String NULL_PERFORMANCE = "None yet!";
 
     /**
      * Accepts remark that is not empty
