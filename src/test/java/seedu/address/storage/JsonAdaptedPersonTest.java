@@ -13,6 +13,8 @@
 //import org.junit.jupiter.api.Test;
 //
 //import seedu.address.commons.exceptions.IllegalValueException;
+//import seedu.address.model.contact.Contact;
+//import seedu.address.model.contact.Phone;
 //import seedu.address.model.person.Address;
 //import seedu.address.model.person.Name;
 //
@@ -22,6 +24,7 @@
 //    private static final String INVALID_ADDRESS = " ";
 //    private static final String INVALID_EMAIL = "example.com";
 //    private static final String INVALID_TAG = "#friend";
+//    private static final List<String> INVALID_CONTACT = Arrays.asList(INVALID_PHONE, INVALID_EMAIL);
 //
 //    private static final String VALID_NAME = BENSON.getName().toString();
 //    private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -31,6 +34,8 @@
 //            .map(JsonAdaptedTag::new)
 //            .collect(Collectors.toList());
 //    private static final List<String> VALID_CONTACT = Arrays.asList(VALID_PHONE, VALID_EMAIL);
+//    private static final List<String> INVALID_CONTACT_PHONE = Arrays.asList(INVALID_PHONE, VALID_EMAIL);
+//    private static final List<String> INVALID_CONTACT_EMAIL = Arrays.asList(VALID_PHONE, INVALID_EMAIL);
 //
 //    @Test
 //    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -82,4 +87,30 @@
 //        assertThrows(IllegalValueException.class, person::toModelType);
 //    }
 //
+//    @Test
+//    public void toModelType_invalidContact_throwsIllegalValueException() {
+//        JsonAdaptedPerson person =
+//                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+//                        INVALID_CONTACT);
+//        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Contact.class.getSimpleName());
+//        assertThrows(IllegalValueException.class, person::toModelType);
+//    }
+//
+//    @Test
+//    public void toModelType_invalidContactPhone_throwsIllegalValueException() {
+//        JsonAdaptedPerson person =
+//                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+//                        INVALID_CONTACT_PHONE);
+//        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+//        assertThrows(IllegalValueException.class, person::toModelType);
+//    }
+//
+//    @Test
+//    public void toModelType_invalidContactEmail_throwsIllegalValueException() {
+//        JsonAdaptedPerson person =
+//                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+//                        INVALID_CONTACT_EMAIL);
+//        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+//        assertThrows(IllegalValueException.class, person::toModelType);
+//    }
 //}

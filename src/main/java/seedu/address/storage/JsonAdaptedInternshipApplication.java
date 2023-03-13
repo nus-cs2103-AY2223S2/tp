@@ -1,10 +1,19 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Phone;
+import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
+import seedu.address.model.person.JobTitle;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.person.InternshipApplication}.
@@ -14,6 +23,7 @@ public class JsonAdaptedInternshipApplication {
 
     private final String companyName;
     private final String jobTitle;
+    private final List<String> contact = new ArrayList<>();
     private final String status;
 
     /**
@@ -22,9 +32,13 @@ public class JsonAdaptedInternshipApplication {
     @JsonCreator
     public JsonAdaptedInternshipApplication(@JsonProperty("companyName") String companyName,
                                             @JsonProperty("jobTitle") String jobTitle,
-                                            @JsonProperty("status") String status) {
+                                            @JsonProperty("status") String status,
+                                            @JsonProperty("contact") List<String> contact) {
         this.companyName = companyName;
         this.jobTitle = jobTitle;
+        if (contact != null) {
+            this.contact.addAll(contact);
+        }
         this.status = status;
     }
 
@@ -34,6 +48,10 @@ public class JsonAdaptedInternshipApplication {
     public JsonAdaptedInternshipApplication(InternshipApplication source) {
         companyName = source.getCompanyName().fullName;
         jobTitle = source.getJobTitle().fullName;
+        if (source.getContact() != null) {
+            contact.add(source.getContact().getPhone().value);
+            contact.add(source.getContact().getEmail().value);
+        }
         status = source.getStatus().name();
     }
 
@@ -70,6 +88,22 @@ public class JsonAdaptedInternshipApplication {
             throw new IllegalValueException(InternshipStatus.MESSAGE_CONSTRAINTS);
         }
         final InternshipStatus modelStatus = InternshipStatus.valueOf(status);
-        return new InternshipApplication(modelCompanyName, modelJobTitle, modelStatus);
+
+        if (contact.size() == 2) {
+            if (!Phone.isValidPhone(contact.get(0))) {
+                throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+            }
+            final Phone modelPhone = new Phone(contact.get(0));
+
+            if (!Email.isValidEmail(contact.get(1))) {
+                throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            }
+            final Email modelEmail = new Email(contact.get(1));
+            final Contact modelContact = new Contact(modelPhone, modelEmail);
+
+            return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus);
+        } else {
+            return new InternshipApplication(modelCompanyName, modelJobTitle, modelStatus);
+        }
     }
 }

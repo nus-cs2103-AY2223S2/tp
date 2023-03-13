@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.InternshipApplication;
 
 /**
@@ -55,6 +56,15 @@ public class PersonCard extends UiPart<Region> {
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
         internshipStatus.setText(application.getStatus().name());
+        Contact companyContact = application.getContact();
+        if (companyContact != null) {
+            email.setText(companyContact.getEmail().value);
+            phone.setText(companyContact.getPhone().value);
+            email.setVisible(true);
+            phone.setVisible(true);
+            email.setManaged(true);
+            phone.setManaged(true);
+        }
     }
 
     @Override

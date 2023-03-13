@@ -29,6 +29,8 @@
       </HBox>
       <Label fx:id="jobTitle" styleClass="cell_small_label" text="\$jobTitle" />
       <Label fx:id="internshipStatus" styleClass="cell_small_label" text="\$internshipStatus" />
+      <Label fx:id="phone" styleClass="cell_small_label" visible="false" managed="false" />
+      <Label fx:id="email" styleClass="cell_small_label" visible="false" managed="false" />
     </VBox>
   </GridPane>
 </HBox>

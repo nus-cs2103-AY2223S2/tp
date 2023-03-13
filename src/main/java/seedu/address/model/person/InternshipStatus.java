@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
+/**
+ * Represents the possible statuses for an internship application.
+ */
 public enum InternshipStatus {
     NA,
     PENDING,
@@ -13,6 +13,11 @@ public enum InternshipStatus {
     public static final String MESSAGE_CONSTRAINTS =
             "Status can only be of one of the following five types: NA, PENDING, RECEIVED, REJECTED or NO";
 
+    /**
+     * Checks whether the String passed is a valid application status
+     * @param test String to check
+     * @return Boolean indicating whether the String is a valid status
+     */
     public static boolean isValidStatus(String test) {
         InternshipStatus[] internshipStatuses = InternshipStatus.values();
         for (InternshipStatus internshipStatus : internshipStatuses) {

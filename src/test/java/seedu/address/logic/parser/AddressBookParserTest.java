@@ -14,6 +14,7 @@
 //import org.junit.jupiter.api.Test;
 //
 //import seedu.address.logic.commands.AddCommand;
+//import seedu.address.logic.commands.AddContactCommand;
 //import seedu.address.logic.commands.ClearCommand;
 //import seedu.address.logic.commands.DeleteCommand;
 //import seedu.address.logic.commands.EditCommand;
@@ -23,27 +24,23 @@
 //import seedu.address.logic.commands.HelpCommand;
 //import seedu.address.logic.commands.ListCommand;
 //import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.person.CompanyName;
-//import seedu.address.model.person.InternshipApplication;
-//import seedu.address.model.person.JobTitle;
+//import seedu.address.model.contact.Contact;
 //import seedu.address.model.person.NameContainsKeywordsPredicate;
 //import seedu.address.model.person.Person;
+//import seedu.address.testutil.ContactBuilder;
+//import seedu.address.testutil.ContactUtil;
 //import seedu.address.testutil.EditPersonDescriptorBuilder;
 //import seedu.address.testutil.PersonBuilder;
 //import seedu.address.testutil.PersonUtil;
-//
 //public class AddressBookParserTest {
 //
 //    private final AddressBookParser parser = new AddressBookParser();
 //
 //    @Test
 //    public void parseCommand_add() throws Exception {
-//        CompanyName c = new CompanyName("LinkedIn");
-//        JobTitle j = new JobTitle("Data Scientist");
-//        InternshipApplication expectedApplication = new InternshipApplication(c, j);
 //        Person person = new PersonBuilder().build();
 //        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-//        assertEquals(new AddCommand(expectedApplication), command);
+//        assertEquals(new AddCommand(person), command);
 //    }
 //
 //    @Test
@@ -95,9 +92,18 @@
 //    }
 //
 //    @Test
+//    public void parseCommand_addContact() throws Exception {
+//        Contact contact = new ContactBuilder().build();
+//        System.out.println(ContactUtil.getAddContactCommand(contact));
+//        AddContactCommand command = (AddContactCommand) parser.parseCommand(
+//          ContactUtil.getAddContactCommand(contact));
+//        assertEquals(new AddContactCommand(INDEX_FIRST_PERSON, contact), command);
+//    }
+//
+//    @Test
 //    public void parseCommand_unrecognisedInput_throwsParseException() {
 //        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE),
-//        () -> parser.parseCommand(""));
+//          () -> parser.parseCommand(""));
 //    }
 //
 //    @Test
