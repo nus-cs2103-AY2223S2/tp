@@ -153,7 +153,7 @@ The `master` branch represents stable released versions of the **EduMate** softw
 
 <div markdown="span" class="alert alert-danger">
 
-:warning::warning::warning: You must not merge a PR into the branch if it fails some tests.
+:warning::warning: You must not merge a PR into the branch if it fails some tests.
 
 </div>
 
@@ -169,7 +169,7 @@ Once you've made changes to your branch, create a Pull Request (PR) on the upstr
 
 <div markdown="span" class="alert alert-danger">
 
-:warning::warning::warning: You must not review and merge your own PR. Instead, wait for somebody else to review it for you. In this way, we can cross-check each others' code, leading to fewer errors.
+:warning::warning: You must not review and merge your own PR. Instead, wait for somebody else to review it for you. In this way, we can cross-check each others' code, leading to fewer errors.
 
 </div>
 
@@ -548,7 +548,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 <div markdown="span" class="alert alert-danger">
 
-:warning::warning::warning:  Use `alert-danger` to _**strongly**_ warn the user about performing a certain action
+:warning::warning:  Use `alert-danger` to _**strongly**_ warn the user about performing a certain action
 
 </div>
 
