@@ -1,0 +1,20 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPatients#getTypicalPatientist()",
+  "persons" : [ {
+    "name" : "Adam Sandler",
+    "phone" : "94351253",
+    "email" : "adam@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "Block1WardA" ],
+    "status" : "Doing fine",
+    "id" : "G73829173B"
+  }, {
+    "name" : "Bob Choo",
+    "phone" : "22222222",
+    "email" : "bob@example.com",
+    "address" : "Block 123, Bobby Street 3",
+    "tagged" : [ "Block2WardA" ],
+    "status" : "Feeling dizzy",
+    "id" : "Y78932734N"
+  }]
+}
