@@ -45,20 +45,17 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         Command command;
+
         Optional<Deck> selectedDeck = this.model.getSelectedDeck();
         Optional<Review> currReview = this.model.getReview();
 
-//        if (currReview != null) {
-//            command = masterDeckParser.parseCommandWhenReviewing(commandText);
-//        } else if (selectedDeck.isPresent()) {
-//            command = masterDeckParser.parseCommandWhenDeckSelected(commandText);
-//        } else {
-//            command = masterDeckParser.parseCommandWhenDeckNotSelected(commandText);
-//        }
-
-        currReview.
-
-        masterDeckParser.parseCommand(commandText, selectedDeck.isPresent(), currReview.isPresent());
+        if (currReview.isPresent()) {
+            command = masterDeckParser.parseCommandWhenReviewing(commandText);
+        } else if (selectedDeck.isPresent()) {
+            command = masterDeckParser.parseCommandWhenDeckSelected(commandText);
+        } else {
+            command = masterDeckParser.parseCommandWhenDeckNotSelected(commandText);
+        }
 
         CommandResult commandResult = command.execute(model);
 

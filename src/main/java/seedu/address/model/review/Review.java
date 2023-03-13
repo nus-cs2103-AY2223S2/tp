@@ -92,6 +92,7 @@ public class Review {
     /**
      * Returns the string to be displayed of the current card
      * depending on if the card is flipped
+     *
      * @return Question or (Question and Answer) of current card.
      */
     public String displayOnCard() {
