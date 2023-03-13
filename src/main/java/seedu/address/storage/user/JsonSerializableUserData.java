@@ -30,7 +30,7 @@ public class JsonSerializableUserData {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableUserData(ReadOnlyUserData source) {
-        this.user = new JsonAdaptedUser(source.getUser().getValue());
+        this.user = new JsonAdaptedUser(source.getData().getValue());
     }
 
     /**

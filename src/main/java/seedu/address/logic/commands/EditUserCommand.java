@@ -45,7 +45,7 @@ public class EditUserCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ReadOnlyObjectProperty<User> userWrapper = model.getUserData().getUser();
+        ReadOnlyObjectProperty<User> userWrapper = model.getUserData().getData();
 
         User user = userWrapper.getValue();
         User editedUser = createEditedUser(user, editUserDescriptor);

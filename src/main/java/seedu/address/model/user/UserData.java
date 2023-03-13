@@ -51,7 +51,7 @@ public class UserData implements ReadOnlyUserData {
     public void resetData(ReadOnlyUserData newData) {
         requireNonNull(newData);
 
-        setUser(newData.getUser().getValue());
+        setUser(newData.getData().getValue());
     }
 
     //// util methods
@@ -62,7 +62,7 @@ public class UserData implements ReadOnlyUserData {
     //}
 
     @Override
-    public ReadOnlyObjectProperty<User> getUser() {
+    public ReadOnlyObjectProperty<User> getData() {
         return this.user.getReadOnlyProperty();
     }
 

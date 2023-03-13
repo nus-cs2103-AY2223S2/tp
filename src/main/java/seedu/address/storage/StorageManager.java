@@ -11,8 +11,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.storage.addressbook.AddressBookStorage;
-import seedu.address.storage.user.UserDataStorage;
+import seedu.address.storage.addressbook.JsonAddressBookStorage;
+import seedu.address.storage.user.JsonUserDataStorage;
 import seedu.address.storage.userpref.UserPrefsStorage;
 
 /**
@@ -21,15 +21,15 @@ import seedu.address.storage.userpref.UserPrefsStorage;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private JsonAddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
-    private UserDataStorage userDataStorage;
+    private JsonUserDataStorage userDataStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
-                          UserDataStorage userDataStorage) {
+    public StorageManager(JsonAddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          JsonUserDataStorage userDataStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.userDataStorage = userDataStorage;
@@ -57,58 +57,58 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+        return addressBookStorage.getFilePath();
     }
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+        return readAddressBook(addressBookStorage.getFilePath());
     }
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return addressBookStorage.readData(filePath);
     }
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+        saveAddressBook(addressBook, addressBookStorage.getFilePath());
     }
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        addressBookStorage.saveData(addressBook, filePath);
     }
 
     // ================ User Data methods ==============================
 
     @Override
     public Path getUserDataFilePath() {
-        return this.userDataStorage.getUserDataFilePath();
+        return this.userDataStorage.getFilePath();
     }
 
     @Override
     public Optional<ReadOnlyUserData> readUserData() throws DataConversionException, IOException {
-        return readUserData(this.userDataStorage.getUserDataFilePath());
+        return readUserData(this.userDataStorage.getFilePath());
     }
 
     @Override
     public Optional<ReadOnlyUserData> readUserData(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return this.userDataStorage.readUserData(filePath);
+        return this.userDataStorage.readData(filePath);
     }
 
     @Override
     public void saveUserData(ReadOnlyUserData userData) throws IOException {
-        saveUserData(userData, this.userDataStorage.getUserDataFilePath());
+        saveUserData(userData, this.userDataStorage.getFilePath());
     }
 
     @Override
     public void saveUserData(ReadOnlyUserData userData, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        this.userDataStorage.saveUserData(userData, filePath);
+        this.userDataStorage.saveData(userData, filePath);
     }
 
 }

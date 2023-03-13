@@ -12,6 +12,7 @@ public interface ReadOnlyUserData extends ReadOnlyData {
      * Returns an unmodifiable view of the user's data.
      * The only item in the array is the user.
      */
-    ReadOnlyObjectProperty<User> getUser();
+    @Override
+    ReadOnlyObjectProperty<User> getData();
 
 }

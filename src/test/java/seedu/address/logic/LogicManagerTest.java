@@ -30,7 +30,6 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.addressbook.JsonAddressBookStorage;
 import seedu.address.storage.user.JsonUserDataStorage;
-import seedu.address.storage.user.UserDataStorage;
 import seedu.address.storage.userpref.JsonUserPrefsStorage;
 import seedu.address.testutil.PersonBuilder;
 
@@ -48,7 +47,7 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        UserDataStorage userDataStorage = new JsonUserDataStorage(temporaryFolder.resolve("userData.json"));
+        JsonUserDataStorage userDataStorage = new JsonUserDataStorage(temporaryFolder.resolve("userData.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, userDataStorage);
         logic = new LogicManager(model, storage);
     }
@@ -78,7 +77,8 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        UserDataStorage userDataStorage = new JsonUserDataStorage(temporaryFolder.resolve("ioExceptionUserData.json"));
+        JsonUserDataStorage userDataStorage = new JsonUserDataStorage(
+                temporaryFolder.resolve("ioExceptionUserData.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, userDataStorage);
         logic = new LogicManager(model, storage);
 
@@ -159,7 +159,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveData(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
