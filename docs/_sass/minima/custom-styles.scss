@@ -40,3 +40,6 @@ h4 {
   }
 }
 
+.alert-info {
+  @include alert-variant(#626873, #626873, #EEEEEE);
+}
