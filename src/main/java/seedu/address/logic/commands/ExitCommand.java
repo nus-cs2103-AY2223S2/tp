@@ -18,6 +18,10 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        if (model.getFilteredInternshipList().size() == 0) {
+            return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        }
+
         ConfirmationDialog confirmationDialog = new ConfirmationDialog(EXIT_CONFIRMATION);
 
         if (confirmationDialog.getConfirmationStatus()) {

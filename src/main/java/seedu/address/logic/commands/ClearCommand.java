@@ -15,11 +15,16 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_CONFIRMATION = "Are you sure you want to clear all the entries? ";
     public static final String MESSAGE_SUCCESS = "All internship application has been cleared!";
     public static final String MESSAGE_FAILED = "Clear command is not executed!";
+    public static final String MESSAGE_NULL = "There is nothing to clear!";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
+        if (model.getFilteredInternshipList().size() == 0) {
+            return new CommandResult(MESSAGE_NULL);
+        }
 
         ConfirmationDialog confirmationDialog = new ConfirmationDialog(MESSAGE_CONFIRMATION);
 

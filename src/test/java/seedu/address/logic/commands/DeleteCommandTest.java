@@ -36,7 +36,9 @@ public class DeleteCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteInternship(personToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        CommandResult deleteMessage = deleteCommand.getResultString(model, true, personToDelete);
+
+        assertCommandSuccess(deleteMessage, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -60,7 +62,9 @@ public class DeleteCommandTest {
         expectedModel.deleteInternship(personToDelete);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        CommandResult deleteMessage = deleteCommand.getResultString(model, true, personToDelete);
+
+        assertCommandSuccess(deleteMessage, model, expectedMessage, expectedModel);
     }
 
     @Test

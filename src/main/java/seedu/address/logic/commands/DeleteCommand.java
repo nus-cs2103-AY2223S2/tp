@@ -27,13 +27,26 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_APPLICATION_SUCCESS = "Deleted Application: %1$s";
     public static final String MESSAGE_DELETE_APPLICATION_FAILED = "Application: %1$s Not Deleted";
-
+    public static final String MESSAGE_DELETE_EXECUTE_ERROR = "Delete command executed but no result!";
     public static final String MESSAGE_DELETE_CONFIRMATION = "Are you sure you want to delete this: application-%1$s";
 
     private final Index targetIndex;
 
+    private CommandResult resultMessage;
+
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        this.resultMessage = new CommandResult(MESSAGE_DELETE_EXECUTE_ERROR);
+    }
+
+    public CommandResult getResultString(Model model, boolean confirm, Person internshipToDelete) {
+        if (confirm) {
+            model.deleteInternship(internshipToDelete);
+            resultMessage = new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, internshipToDelete));
+        } else {
+            resultMessage = new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_FAILED, internshipToDelete));
+        }
+        return resultMessage;
     }
 
     @Override
@@ -47,13 +60,10 @@ public class DeleteCommand extends Command {
 
         Person internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        ConfirmationDialog confirmationDialog = new ConfirmationDialog((String.format(MESSAGE_DELETE_CONFIRMATION, internshipToDelete.getName())));
+        ConfirmationDialog confirmationDialog = new ConfirmationDialog((
+                String.format(MESSAGE_DELETE_CONFIRMATION, internshipToDelete.getName())));
 
-        if (confirmationDialog.getConfirmationStatus()) {
-            model.deleteInternship(internshipToDelete);
-            return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, internshipToDelete));
-        }
-        return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_FAILED, internshipToDelete));
+        return getResultString(model, confirmationDialog.getConfirmationStatus(), internshipToDelete);
     }
 
     @Override
