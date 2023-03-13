@@ -11,6 +11,9 @@ import taa.model.Model;
 import taa.model.student.Attendance;
 import taa.model.student.Student;
 
+/**
+ * Marks the attendance of an existing student in the address book.
+ */
 public class MarkAttendanceCommand extends Command {
     public static final String COMMAND_WORD = "markAtd";
     public static final String SUCCESS_MSG = "Attendance marked successfully!";
@@ -19,12 +22,6 @@ public class MarkAttendanceCommand extends Command {
     private final Index index;
     private final int week;
 
-
-    /**
-     * Constructor for MarkAttendanceCommand
-     * @param index index of student
-     * @param week week to mark
-     */
     public MarkAttendanceCommand(Index index, int week) {
         this.index = index;
         this.week = week;
