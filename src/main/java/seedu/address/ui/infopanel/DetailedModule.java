@@ -7,8 +7,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
-import seedu.address.ui.PersonCard;
-import seedu.address.ui.PersonListPanel;
+
+import java.util.Comparator;
 
 /**
  * DetailedModule controller for showing module details at DetailedInfoPanel.
@@ -22,9 +22,12 @@ public class DetailedModule extends DetailedInfo {
 
     public DetailedModule(Person protagonist) {
         super(FXML);
-        ObservableList<Module> list = FXCollections.observableArrayList(protagonist.getModules());
-        moduleListView.setItems(list);
-        moduleListView.setCellFactory(listView -> new PersonListPanel.ModuleListViewCell());
+        ObservableList<Module> modules = FXCollections.observableArrayList();
+        protagonist.getModules().stream()
+                .sorted(Comparator.comparing((Module module) -> module.moduleName).reversed())
+                .forEach(module -> modules.add(module));
+        moduleListView.setItems(modules);
+        moduleListView.setCellFactory(listView -> new ModuleListViewCell());
     }
 
     /**

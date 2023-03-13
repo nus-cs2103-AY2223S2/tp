@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Module}.
  */
 public class ModuleCard extends UiPart<Region> {
 
@@ -26,29 +26,15 @@ public class ModuleCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane skills;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ModuleCard} with the given {@code Module} and index to display.
      */
     public ModuleCard(Module module, int displayedIndex) {
         super(FXML);
         this.module = module;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getSkills().stream()
-                .sorted(Comparator.comparing(skill -> skill.skillName))
-                .forEach(skill -> skills.getChildren().add(new Label(skill.skillName)));
+        name.setText(module.moduleName);
     }
 
     @Override
@@ -59,13 +45,13 @@ public class ModuleCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ModuleCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        ModuleCard card = (ModuleCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && module.equals(card.module);
     }
 }

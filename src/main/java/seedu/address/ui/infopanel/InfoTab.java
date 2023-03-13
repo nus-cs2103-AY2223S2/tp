@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class InfoTab extends UiPart<Region> {
 
     private static final String FXML = "InfoTab.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(InfoTab.class);
 
     private DetailedInfo detailedInfo;
 
