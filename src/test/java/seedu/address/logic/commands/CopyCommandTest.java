@@ -6,12 +6,15 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 
 public class CopyCommandTest {
 
@@ -19,7 +22,18 @@ public class CopyCommandTest {
     private final Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_copyValidIndex_success() {
+    @EnabledIfSystemProperty(named = "java.awt.headless", matches = "true")
+    public void execute_copyValidIndexInHeadless_success() {
+        CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_PERSON);
+        Person personToCopy = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        String expectedMessage = CopyCommand.MESSAGE_NO_CLIPBOARD_FOUND + copyCommand.getInformation(personToCopy);
+
+        assertCommandSuccess(copyCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    @DisabledIfSystemProperty(named = "java.awt.headless", matches = "true")
+    public void execute_copyValidIndexNotInHeadless_success() {
         CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_PERSON);
 
         assertCommandSuccess(copyCommand, model, CopyCommand.MESSAGE_COPY_SUCCESS, expectedModel);

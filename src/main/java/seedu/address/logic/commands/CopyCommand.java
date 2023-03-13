@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -27,6 +28,9 @@ public class CopyCommand extends Command {
 
     public static final String MESSAGE_COPY_SUCCESS = "Successfully copied information to clipboard!";
 
+    public static final String MESSAGE_NO_CLIPBOARD_FOUND = "Clipboard does not exist in your environment! "
+            + "Displaying information for you:\n\n";
+
     private final Index targetIndex;
 
     public CopyCommand(Index targetIndex) {
@@ -42,8 +46,12 @@ public class CopyCommand extends Command {
         }
         Person personToCopy = lastShownList.get(targetIndex.getZeroBased());
         String informationToCopy = getInformation(personToCopy);
-        copyToClipboard(informationToCopy);
-        return new CommandResult(MESSAGE_COPY_SUCCESS);
+        try {
+            copyToClipboard(informationToCopy);
+            return new CommandResult(MESSAGE_COPY_SUCCESS);
+        } catch (HeadlessException e) {
+            return new CommandResult(MESSAGE_NO_CLIPBOARD_FOUND + informationToCopy);
+        }
     }
 
     @Override
