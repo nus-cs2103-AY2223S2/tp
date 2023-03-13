@@ -56,10 +56,10 @@ Example:
 
 Assign a task to a person
 
-Format: `assign  t/{TASK_ID} n/{MEMBER_NAME}`
+Format: `assign  t/{TASK_ID} i/{MEMBER_ID}`
 
 Examples:
-*  `assign t/1 n/John Doe`
+*  `assign t/1 i/3`
 
 
 ### Delete a person: `delete`

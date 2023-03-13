@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
@@ -67,6 +68,16 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
+     * Returns true if a task exists in the address book.
+     */
+    boolean hasTaskIndex(Index taskIndex);
+
+    /**
+     * Returns true if a person exists in the address book.
+     */
+    boolean hasPersonIndex(Index personIndex);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -90,6 +101,13 @@ public interface Model {
      * @param person
      */
     void addTask(DeadlineTask person);
+
+    /**
+     * Assign a task to a person.
+     * @param taskIndex
+     * @param personIndex
+     */
+    void assignTask(Index taskIndex, Index personIndex);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
