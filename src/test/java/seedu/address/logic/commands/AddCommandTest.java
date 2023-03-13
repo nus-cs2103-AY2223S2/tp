@@ -182,11 +182,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addRecurringEvent(Person personToEdit, RecurringEvent eventToAdd) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void updateFilteredGroupList(Predicate<Group> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -204,6 +199,16 @@ public class AddCommandTest {
         @Override
         public void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent,
                                      IsolatedEvent editedIsolatedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addRecurringEvent(Person personToEdit, RecurringEvent eventToAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteRecurringEvent(Person personToEdit, RecurringEvent event) {
             throw new AssertionError("This method should not be called.");
         }
     }
