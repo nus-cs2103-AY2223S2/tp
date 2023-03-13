@@ -11,6 +11,8 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
+
+
 /**
  * Panel containing the list of persons.
  */
@@ -30,6 +32,7 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        nameCard.setText("Welcome to ExecutivePro v1.2");
 
     }
 
