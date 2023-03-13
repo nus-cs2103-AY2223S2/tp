@@ -3,12 +3,14 @@
 
 ![Ui](docs/images/Ui.png)
 
-# tuition center admin managing system (TCAMS)
-Tuition center admin managing system (TCAMS) is a **desktop application designed for admins working at tuition center managing courses, tutors and students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TCAMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+# tuition center admin managing system (TMS)
+Tutor managing system (TMS) is a **desktop application designed for private tutors managing students, optimized for 
+use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 
 ## Target User
-- Has a need to manage a significant number of tutors and tutees
+- Has a need to manage a significant number of tutees
 - Prefer desktop apps over other types
 - Can type fast
 - Prefers typing to mouse interactions
@@ -16,7 +18,7 @@ Tuition center admin managing system (TCAMS) is a **desktop application designed
 
 
 ## Value Proposition
-Manage tutors and tutees faster than a typical mouse/GUI driven app.
+Manage tutees faster than a typical mouse/GUI driven app.
 
 
 ## Acknowledgements:  
