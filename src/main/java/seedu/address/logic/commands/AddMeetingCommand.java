@@ -4,8 +4,12 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
+import static seedu.address.model.meeting.DateTime.DATE_FORMAT;
+import static seedu.address.model.meeting.DateTime.TIME_FORMAT;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,10 +34,15 @@ public class AddMeetingCommand extends Command {
         + "Parameters: "
         + PREFIX_MEETING_TITLE + "MEETING "
         + PREFIX_PERSON + "NAME "
-        + PREFIX_DATE + "DATE\n"
+        + PREFIX_DATE + DATE_FORMAT + " " + TIME_FORMAT + " "
+        + PREFIX_LOCATION + "LOCATION "
+        + PREFIX_DESCRIPTION + "DESCRIPTION "
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_MEETING_TITLE + "Meeting with John "
-        + PREFIX_PERSON + "John Doe " + PREFIX_DATE + "2020-10-10";
+        + PREFIX_PERSON + "John Doe "
+        + PREFIX_DATE + "02/02/2022 12:00 "
+        + PREFIX_LOCATION + "Zoom "
+        + PREFIX_DESCRIPTION + "Discuss about the project";
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
 
@@ -44,7 +53,6 @@ public class AddMeetingCommand extends Command {
     private final Set<Name> attendeeNames = new HashSet<>();
     private final Location location;
     private final Description description;
-
 
     /**
      * A more straightforward way to create an AddMeetingCommand to add a {@code Meeting} class.
@@ -73,7 +81,6 @@ public class AddMeetingCommand extends Command {
         this.attendeeNames.addAll(attendees);
         this.location = location;
         this.description = description;
-
     }
 
     @Override
