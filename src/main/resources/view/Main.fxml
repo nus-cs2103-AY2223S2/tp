@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="root" alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Main Screen"/>
+    <HBox>
+        <VBox fx:id="leftComponent" prefHeight="500.0" prefWidth="300.0">
+            <Label text="Task List Component"/>
+        </VBox>
+        <VBox fx:id="rightComponent" prefHeight="500.0" prefWidth="700.0">
+            <Label text="Detailed Task Component"/>
+        </VBox>
+    </HBox>
+    <VBox fx:id="textBoxComponent" prefHeight="50.0" visible="false">
+        <TextField fx:id="textBox"/>
+    </VBox>
+</VBox>
