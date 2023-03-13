@@ -95,8 +95,8 @@ Find people according to a particular attribute. Eg. name(n) or address(a)
 Format: `find ATTRIBUTE KEYWORD [MORE_KEYWORDS]`
 
 
-* The search is case-sensitive. e.g panadol will match pANAdol
-* The order of the keywords does matters. e.g. panadol will match medicine panadol 
+* The search is case-insensitive. e.g panadol will match pANAdol
+* The order of the keywords does matters. e.g. "panadol" will match "medicine panadol"
 * Only the provided attribute will be search (a or n)
 
 
