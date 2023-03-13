@@ -14,7 +14,6 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.person.Person;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A group is considered unique by comparing using {@code Group#isSameGroup(Group)}. As such, adding and updating of
  * groups uses Group#isSameGroup(Group) for equality so as to ensure that the group being added or updated is
  * unique in terms of identity in the UniqueGroupList. However, the removal of a group uses Group#equals(Object) so
@@ -104,6 +103,7 @@ public class UniqueGroupList implements Iterable<Group> {
                 || (other instanceof UniqueGroupList // instanceof handles nulls
                 && internalList.equals(((UniqueGroupList) other).internalList));
     }
+
 
     @Override
     public int hashCode() {
