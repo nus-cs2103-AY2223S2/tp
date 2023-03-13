@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for UploadCommand.
@@ -34,7 +32,8 @@ class UploadCommandTest {
 
     private static final Path INVALID_FILE_PATH = Paths.get("invalid/file/path.txt");
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager();
+    private Model expectedModel = new ModelManager();
 
     @Test
     public void execute_validPathMessage_success() {
@@ -42,7 +41,7 @@ class UploadCommandTest {
         Path destPath = DESTINATION_FOLDER_PATH;
         UploadCommand uploadCommand = new UploadCommand(sourcePath, destPath);
         String expectedMessage = "File " + sourcePath.getFileName() + " successfully added to CLIpboard";
-        assertCommandSuccess(uploadCommand, model, expectedMessage, model);
+        assertCommandSuccess(uploadCommand, model, expectedMessage, expectedModel);
 
         //delete test.txt from destination folder
         File toDelete = new File(DESTINATION_FOLDER_PATH + "/test.txt");
