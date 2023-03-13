@@ -52,9 +52,9 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.eventTagName.toString()))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.eventTagName.toString())));
+        person.getEventSet().stream()
+                .sorted(Comparator.comparing(tag -> tag.getName().toString()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getName().toString())));
     }
 
     @Override

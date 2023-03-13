@@ -5,13 +5,13 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EVENT_TAG_DESC_CARNIVAL;
-import static seedu.address.logic.commands.CommandTestUtil.EVENT_TAG_DESC_SPORTS_DAY;
+import static seedu.address.logic.commands.CommandTestUtil.EVENT_SET_DESC_CARNIVAL;
+import static seedu.address.logic.commands.CommandTestUtil.EVENT_SET_DESC_SPORTS_DAY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_SET_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -19,17 +19,23 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_INDEX_TAG_CARNIVAL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_INDEX_TAG_SPORTS_DAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_SET;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_NO_EVENT;
+import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_SECOND_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,9 +48,10 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
+
 public class EditCommandParserTest {
 
-    private static final String EVENT_TAG_EMPTY = " " + PREFIX_EVENT_TAG;
+    private static final String EVENT_SET_EMPTY = " " + PREFIX_EVENT_SET;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -84,7 +91,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, ParserUtil.MESSAGE_INVALID_INDEX); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_EVENT_SET_DESC, ParserUtil.MESSAGE_INVALID_INDEX); // invalid tag
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -101,14 +108,16 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EVENT_TAG_DESC_SPORTS_DAY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + EVENT_TAG_DESC_CARNIVAL;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EVENT_SET_DESC_SPORTS_DAY
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + EVENT_SET_DESC_CARNIVAL;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withEventIndexTags(VALID_EVENT_INDEX_TAG_SPORTS_DAY, VALID_EVENT_INDEX_TAG_CARNIVAL)
-                .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+                .withEventSet().build();
+        Set<Index> indexSet = new HashSet<>();
+        indexSet.add(INDEX_THIRD_EVENT);
+        indexSet.add(INDEX_SECOND_EVENT);
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor, Optional.of(indexSet));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -120,7 +129,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor, Optional.empty());
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -131,32 +140,31 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor, Optional.empty());
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(targetIndex, descriptor, Optional.empty());
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(targetIndex, descriptor, Optional.empty());
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(targetIndex, descriptor, Optional.empty());
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // event tags
-        userInput = targetIndex.getOneBased() + EVENT_TAG_DESC_CARNIVAL;
-        descriptor = new EditPersonDescriptorBuilder().withEventIndexTags(VALID_EVENT_INDEX_TAG_CARNIVAL)
-                .build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        // event sets
+        userInput = targetIndex.getOneBased() + EVENT_SET_DESC_CARNIVAL;
+        descriptor = new EditPersonDescriptorBuilder().withEventSet().build();
+        expectedCommand = new EditCommand(targetIndex, descriptor, Optional.of(INDEX_SET_SECOND_EVENT));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -164,14 +172,16 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + EVENT_TAG_DESC_CARNIVAL + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + EVENT_TAG_DESC_CARNIVAL
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + EVENT_TAG_DESC_SPORTS_DAY;
+                + EVENT_SET_DESC_CARNIVAL + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + EVENT_SET_DESC_CARNIVAL
+                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + EVENT_SET_DESC_SPORTS_DAY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withEventIndexTags(VALID_EVENT_INDEX_TAG_CARNIVAL, VALID_EVENT_INDEX_TAG_SPORTS_DAY)
-                .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+                .withEventSet().build();
+        Set<Index> indexSet = new HashSet<>();
+        indexSet.add(INDEX_SECOND_EVENT);
+        indexSet.add(INDEX_THIRD_EVENT);
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor, Optional.of(indexSet));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -182,7 +192,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor, Optional.empty());
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
@@ -190,17 +200,17 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(targetIndex, descriptor, Optional.empty());
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_resetTags_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + EVENT_TAG_EMPTY;
+        String userInput = targetIndex.getOneBased() + EVENT_SET_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withEventIndexTags().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withEventSet().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor, Optional.of(INDEX_SET_NO_EVENT));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

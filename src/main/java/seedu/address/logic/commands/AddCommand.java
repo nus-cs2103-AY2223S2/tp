@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_SET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -14,11 +14,9 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.EventTag;
 
 
 /**
@@ -34,14 +32,14 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_EVENT_TAG + "EVENT INDEX]...\n"
+            + "[" + PREFIX_EVENT_SET + "EVENT INDEX]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_EVENT_TAG + " 1"
-            + PREFIX_EVENT_TAG + " 2";
+            + PREFIX_EVENT_SET + " 1"
+            + PREFIX_EVENT_SET + " 2";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_SUCCESS_ADD_EVENT = "New person added : %1$s to the event";
@@ -67,17 +65,19 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         if (!eventIndexList.isEmpty()) {
-            Set<EventTag> eventTagSet = new HashSet<>();
+            Set<Event> eventSet = new HashSet<>();
             List<Event> lastShownList = model.getFilteredEventList();
             for (Index eventIndex: eventIndexList) {
                 if (eventIndex.getZeroBased() >= lastShownList.size()) {
                     throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
                 }
                 Event eventToAdd = lastShownList.get(eventIndex.getZeroBased());
-                eventTagSet.add(ParserUtil.parseEventTag(eventToAdd));
+                if (!eventSet.contains(eventToAdd)) {
+                    eventSet.add(eventToAdd);
+                }
             }
             Person personWithEvent = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(),
-                    toAdd.getAddress(), eventTagSet);
+                    toAdd.getAddress(), eventSet);
             model.addPerson(personWithEvent);
             return new CommandResult(String.format(MESSAGE_SUCCESS_ADD_EVENT, personWithEvent));
         } else {

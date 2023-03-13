@@ -4,12 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_SET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -17,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Event;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -32,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_EVENT_TAG);
+                        PREFIX_ADDRESS, PREFIX_EVENT_SET);
 
         Index index;
 
@@ -55,27 +57,42 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseIndexTagsForEdit(argMultimap.getAllValues(PREFIX_EVENT_TAG)).ifPresent(editPersonDescriptor::setEventTags);
+
+        Optional<Set<Index>> eventIndexSet = parseIndexForEdit(argMultimap.getAllValues(PREFIX_EVENT_SET));
+        parseEventForEdit(argMultimap.getAllValues(PREFIX_EVENT_SET)).ifPresent(editPersonDescriptor::setEventSet);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editPersonDescriptor, eventIndexSet);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Index>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> index} into a {@code Set<Index>} if {@code index} is non-empty.
+     * If {@code index} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Index>} containing zero index.
      */
-    private Optional<Set<Index>> parseIndexTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Index>> parseIndexForEdit(Collection<String> index) throws ParseException {
+        assert index != null;
 
-        if (tags.isEmpty()) {
+        if (index.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        Collection<String> tagSet = index.size() == 1 && index.contains("") ? Collections.emptySet() : index;
         return Optional.of(ParserUtil.parseEventIndexTags(tagSet));
+    }
+
+    /**
+     * Serves as a function to check whether prefix_event_tag is called
+     */
+    private Optional<Set<Event>> parseEventForEdit(Collection<String> event) {
+        assert event != null;
+
+        if (event.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = event.size() == 1 && event.contains("") ? Collections.emptySet() : event;
+        return Optional.of(new HashSet<>());
     }
 }

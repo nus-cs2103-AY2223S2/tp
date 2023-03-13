@@ -6,11 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_SET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.CARNIVAL;
+import static seedu.address.testutil.TypicalEvents.SPORTS_DAY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,9 +44,9 @@ public class CommandTestUtil {
     public static final String VALID_EVENT_TAG_CARNIVAL = "Carnival";
     public static final String VALID_EVENT_TAG_SPORTS_DAY = "20th Sports Day @ Sports Hub";
     public static final String VALID_EVENT_TAG_WEDDING_DINNER = "Wedding Dinner";
-    public static final String VALID_EVENT_INDEX_TAG_CARNIVAL = "2";
-    public static final String VALID_EVENT_INDEX_TAG_SPORTS_DAY = "3";
-    public static final String VALID_EVENT_INDEX_TAG_WEDDING_DINNER = "1";
+    public static final String VALID_EVENT_INDEX_CARNIVAL = "2";
+    public static final String VALID_EVENT_INDEX_SPORTS_DAY = "3";
+    public static final String VALID_EVENT_INDEX_WEDDING_DINNER = "1";
 
 
     public static final String VALID_EVENT_NAME_CARNIVAL = "Carnival";
@@ -62,10 +64,10 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String EVENT_TAG_DESC_CARNIVAL = " " + PREFIX_EVENT_TAG + VALID_EVENT_INDEX_TAG_CARNIVAL;
-    public static final String EVENT_TAG_DESC_SPORTS_DAY = " " + PREFIX_EVENT_TAG + VALID_EVENT_INDEX_TAG_SPORTS_DAY;
-    public static final String EVENT_TAG_DESC_WEDDING_DINNER = " " + PREFIX_EVENT_TAG
-            + VALID_EVENT_INDEX_TAG_WEDDING_DINNER;
+    public static final String EVENT_SET_DESC_CARNIVAL = " " + PREFIX_EVENT_SET + VALID_EVENT_INDEX_CARNIVAL;
+    public static final String EVENT_SET_DESC_SPORTS_DAY = " " + PREFIX_EVENT_SET + VALID_EVENT_INDEX_SPORTS_DAY;
+    public static final String EVENT_SET_DESC_WEDDING_DINNER = " " + PREFIX_EVENT_SET
+            + VALID_EVENT_INDEX_WEDDING_DINNER;
 
     public static final String EVENT_NAME_DESC_CARNIVAL = " " + PREFIX_EVENT_NAME + VALID_EVENT_NAME_CARNIVAL;
     public static final String EVENT_NAME_DESC_SPORTS_DAY = " " + PREFIX_EVENT_NAME + VALID_EVENT_NAME_SPORTS_DAY;
@@ -81,7 +83,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_EVENT_TAG + "hubby*"; // tags should be numeric
+    public static final String INVALID_EVENT_SET_DESC = " " + PREFIX_EVENT_SET + "hubby*"; // tags should be numeric
 
     // Event names not allowed to start with punctuations
     public static final String INVALID_EVENT_NAME_DESC = " " + PREFIX_EVENT_NAME + "'20TH' Company anniversary";
@@ -99,11 +101,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags().withEventIndexTags(VALID_EVENT_INDEX_TAG_CARNIVAL).build();
+                .withEventSet(CARNIVAL).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags().withEventIndexTags(VALID_EVENT_INDEX_TAG_SPORTS_DAY, VALID_EVENT_INDEX_TAG_CARNIVAL)
-                .build();
+                .withEventSet(SPORTS_DAY).build();
     }
 
     /**

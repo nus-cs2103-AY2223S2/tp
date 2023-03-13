@@ -10,13 +10,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.DateTime;
-import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.EventTag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -96,18 +94,6 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
-    }
-
-
-    /**
-     * Parses a {@code Event eventTag} into a {@code EventTag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     */
-    public static EventTag parseEventTag(Event eventTag) {
-        requireNonNull(eventTag);
-        EventName eventName = eventTag.getName();
-        return new EventTag(eventName);
     }
 
     /**

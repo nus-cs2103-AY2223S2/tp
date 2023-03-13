@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.EventTag;
+import seedu.address.model.event.Event;
 
 /**
  * Represents a Person in the address book.
@@ -21,18 +21,18 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<EventTag> tags = new HashSet<>();
+    private final Set<Event> eventSet = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<EventTag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Event> eventSets) {
+        requireAllNonNull(name, phone, email, address, eventSets);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.eventSet.addAll(eventSets);
     }
 
     public Name getName() {
@@ -52,12 +52,10 @@ public class Person {
     }
 
     /**
-     * Returns a mutable tag set
+     * Returns a mutable event set
      */
-    //temporarily change to mutable
-    public Set<EventTag> getTags() {
-        return tags;
-        //return Collections.unmodifiableSet(tags);
+    public Set<Event> getEventSet() {
+        return eventSet;
     }
 
     /**
@@ -73,9 +71,6 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
-    public boolean isTagExist(String eventName) {
-        return tags.contains(eventName);
-    }
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -96,13 +91,13 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getEventSet().equals(getEventSet());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, eventSet);
     }
 
     @Override
@@ -116,10 +111,10 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<EventTag> tags = getTags();
-        if (!tags.isEmpty()) {
+        Set<Event> eventSet = getEventSet();
+        if (!eventSet.isEmpty()) {
             builder.append("; Event Tags: ");
-            tags.forEach(builder::append);
+            eventSet.forEach(builder::append);
         }
         return builder.toString();
     }

@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_WEDDING_DINNER;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.WEDDING_DINNER;
 import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_NO_EVENT;
@@ -56,7 +56,7 @@ public class AddCommandTest {
     @Test
     public void execute_personWithEventAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().withTags(VALID_EVENT_TAG_WEDDING_DINNER).build();
+        Person validPerson = new PersonBuilder().withEventSet(WEDDING_DINNER).build();
 
         CommandResult commandResult = new AddCommand(validPerson, INDEX_SET_FIRST_EVENT).execute(modelStub);
 
@@ -78,7 +78,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePersonWithEvent_throwsCommandException() {
-        Person validPerson = new PersonBuilder().withTags(VALID_EVENT_TAG_WEDDING_DINNER).build();
+        Person validPerson = new PersonBuilder().withEventSet(WEDDING_DINNER).build();
         AddCommand addCommand = new AddCommand(validPerson, INDEX_SET_FIRST_EVENT);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 

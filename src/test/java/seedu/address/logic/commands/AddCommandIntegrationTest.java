@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_CARNIVAL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.CARNIVAL;
 import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_NO_EVENT;
 import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_SECOND_EVENT;
@@ -44,7 +44,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPersonWithEvent_success() {
-        Person validPerson = new PersonBuilder().withTags(VALID_EVENT_TAG_CARNIVAL).build();
+        Person validPerson = new PersonBuilder().withEventSet(CARNIVAL).build();
 
         AddCommand addCommand = new AddCommand(validPerson, INDEX_SET_SECOND_EVENT);
 
