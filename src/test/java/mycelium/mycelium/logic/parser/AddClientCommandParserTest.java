@@ -16,7 +16,7 @@ public class AddClientCommandParserTest {
     // TODO I noticed the argument tokenizer takes the LAST instance of a
     // prefix, not the first. We must add this to the user guide or something.
     @Test
-    public void invalidInput() {
+    public void parse_invalidInput_throwsParseException() {
         // Just a silly little check, so that we can use -cn and -e verbatim in
         // our test cases instead of relying on this variable.
         assertEquals(CliSyntax.PREFIX_CLIENT_NAME.getPrefix(), "-cn ");
@@ -57,7 +57,7 @@ public class AddClientCommandParserTest {
     }
 
     @Test
-    public void validInput() throws ParseException {
+    public void parse_validInput_success() throws ParseException {
         assertEquals(CliSyntax.PREFIX_CLIENT_NAME.getPrefix(), "-cn ");
         assertEquals(CliSyntax.PREFIX_CLIENT_EMAIL.getPrefix(), "-e ");
 
