@@ -1,10 +1,10 @@
 package seedu.calidr.model.task;
 
+import java.time.LocalDateTime;
+
 import seedu.calidr.model.task.params.EventDateTimes;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
-
-import java.time.LocalDateTime;
 
 /**
  * Represents an event - a task with specific start and end

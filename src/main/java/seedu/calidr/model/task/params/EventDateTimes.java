@@ -1,10 +1,10 @@
 package seedu.calidr.model.task.params;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import static seedu.calidr.commons.util.AppUtil.checkArgument;
 import static seedu.calidr.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents the two date-times associated with an Event.
@@ -48,6 +48,9 @@ public class EventDateTimes {
         return (!isOver(end) && end.isAfter(start));
     }
 
+    /**
+     * Returns the string representation of the EventDateTimes object.
+     */
     public String toString() {
         DateTimeFormatter formatToPrint = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
         return "from: " + fromDateTime.format(formatToPrint)

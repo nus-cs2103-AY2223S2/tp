@@ -3,16 +3,13 @@ package seedu.calidr.model.task;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 /**
  * Represents a task with the title of the task and
  * the status of the task - whether it is done.
  */
 public abstract class Task {
 
-    private final Title title;
+    private Title title;
     private boolean isDone;
     private Priority priority;
 
@@ -44,8 +41,8 @@ public abstract class Task {
         this.priority = priority;
     }
 
-    public Title getTitle() {
-        return this.title;
+    public String getTitle() {
+        return this.title.value;
     }
 
     public void mark() {

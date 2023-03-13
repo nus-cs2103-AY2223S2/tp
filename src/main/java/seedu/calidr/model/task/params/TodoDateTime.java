@@ -35,6 +35,9 @@ public class TodoDateTime {
         return test.isBefore(LocalDateTime.now());
     }
 
+    /**
+     * Returns the String representation of the TodoDateTime object.
+     */
     public String toString() {
         DateTimeFormatter formatToPrint = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
         return "by: " + value.format(formatToPrint);

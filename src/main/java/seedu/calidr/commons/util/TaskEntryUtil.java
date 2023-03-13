@@ -37,7 +37,7 @@ public final class TaskEntryUtil {
             interval = new Interval();
         }
 
-        taskEntry.setTitle(task.getDescription());
+        taskEntry.setTitle(task.getTitle());
         taskEntry.setInterval(interval);
         taskEntry.setPriority(task.getPriority());
         taskEntry.setIsDone(task.isDone());

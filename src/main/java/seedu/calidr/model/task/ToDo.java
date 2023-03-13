@@ -1,10 +1,10 @@
 package seedu.calidr.model.task;
 
+import java.time.LocalDateTime;
+
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
-
-import java.time.LocalDateTime;
 
 /**
  * Represents a deadline - a task that should be completed within
