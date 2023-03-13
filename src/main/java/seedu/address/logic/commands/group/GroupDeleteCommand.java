@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 
 /**
- * Deletes a group to the address book.
+ * Deletes a group from the address book.
  */
 public class GroupDeleteCommand extends GroupCommand {
     public static final String SUB_COMMAND_WORD = "delete";

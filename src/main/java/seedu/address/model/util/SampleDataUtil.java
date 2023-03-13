@@ -27,11 +27,11 @@ public class SampleDataUtil {
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends"),
-                getGroupSet()),
+                getGroupSet("CS2103", "CS2101")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours"),
-                getGroupSet()),
+                getGroupSet("CS2101")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family"),
@@ -49,7 +49,7 @@ public class SampleDataUtil {
 
     public static Group[] getSampleGroups() {
         return new Group[] {
-            new Group("Friends"),
+            new Group("CS2101"),
             new Group("CS2103")
         };
     }

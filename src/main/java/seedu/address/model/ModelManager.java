@@ -139,6 +139,7 @@ public class ModelManager implements Model {
     public void deleteGroup(Group group) {
         requireNonNull(group);
         addressBook.deleteGroup(group);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
