@@ -9,12 +9,36 @@ import seedu.address.model.person.Person;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = "Test";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters a contact.\n"
+            + "Parameters: "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "DESCRIPTION "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Examples:\n" + COMMAND_WORD + " "
+            + PREFIX_NAME + "John Doe\n"
+            + COMMAND_WORD + " "
+            + PREFIX_PHONE + "98765432\n"
+            + COMMAND_WORD + " "
+            + PREFIX_EMAIL + "johnd@example.com\n"
+            + COMMAND_WORD + " "
+            + PREFIX_ADDRESS + "My favourite TA\n"
+            + COMMAND_WORD + " "
+            + PREFIX_TAG + "Friends "
+            + PREFIX_TAG + "Family";
+
+
 
     public static final String MESSAGE_SUCCESS = "%1$s contact matches the tag!";
 

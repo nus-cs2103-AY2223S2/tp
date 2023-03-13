@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.ContactContainsAddressPredicate;
+import seedu.address.model.person.ContactContainsDescriptionPredicate;
 import seedu.address.model.person.ContactContainsEmailPredicate;
 import seedu.address.model.person.ContactContainsPhoneNumberPredicate;
 import seedu.address.model.person.ContactContainsTagPredicate;
@@ -40,11 +40,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)) {
+        if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        if (!isAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)) {
+        if (!isAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
@@ -65,12 +65,14 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             String emailAddr = email.toString();
             return new FilterCommand(new ContactContainsEmailPredicate(emailAddr));
         } else if (prefix.getPrefix().equals("d/")) {
-            Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-            String fullAddress = address.toString();
-            return new FilterCommand(new ContactContainsAddressPredicate(fullAddress));
-        } else {
+            Address description = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+            String fullDescription = description.toString();
+            return new FilterCommand(new ContactContainsDescriptionPredicate(fullDescription));
+        } else if (prefix.getPrefix().equals("t/")) {
             Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             return new FilterCommand(new ContactContainsTagPredicate(tagSet));
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
     }
 
