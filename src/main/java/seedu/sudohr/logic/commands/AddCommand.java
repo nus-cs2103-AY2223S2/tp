@@ -13,7 +13,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.person.Person;
 
 /**
- * Adds a person to the sudohr book.
+ * Adds a person to SudoHR.
  */
 public class AddCommand extends Command {
 

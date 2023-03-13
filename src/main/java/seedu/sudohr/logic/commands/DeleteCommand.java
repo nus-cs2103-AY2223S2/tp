@@ -11,7 +11,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the sudohr book.
+ * Deletes a person identified using it's displayed index from SudoHR.
  */
 public class DeleteCommand extends Command {
 
