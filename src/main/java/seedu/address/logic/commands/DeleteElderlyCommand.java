@@ -6,7 +6,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
@@ -34,14 +33,13 @@ public class DeleteElderlyCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        try {
-            requireNonNull(model);
-            Elderly elderlyToDelete = model.getElderly(targetNric);
-            model.deleteElderly(elderlyToDelete);
-            return new CommandResult(String.format(MESSAGE_DELETE_ELDERLY_SUCCESS, elderlyToDelete));
-        } catch (PersonNotFoundException e) {
+        requireNonNull(model);
+        Elderly elderlyToDelete = model.getElderly(targetNric);
+        if (elderlyToDelete == null) {
             throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
         }
+        model.deleteElderly(elderlyToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_ELDERLY_SUCCESS, elderlyToDelete));
     }
 
     @Override
