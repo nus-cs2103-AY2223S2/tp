@@ -41,7 +41,7 @@ public interface Logic {
     void setCurrentTab(String tab);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CoDoc file path.
      */
     Path getCodocFilePath();
 

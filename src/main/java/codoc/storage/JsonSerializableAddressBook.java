@@ -41,7 +41,7 @@ class JsonSerializableCodoc {
     }
 
     /**
-     * Converts this address book into the model's {@code Codoc} object.
+     * Converts this CoDoc into the model's {@code Codoc} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

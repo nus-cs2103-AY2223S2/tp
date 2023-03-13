@@ -4,7 +4,7 @@ import static codoc.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a Person's email in CoDoc.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
@@ -36,7 +36,7 @@ public class Email {
     /**
      * Constructs an {@code Email}.
      *
-     * @param email A valid email address.
+     * @param email A valid email linkedin.
      */
     public Email(String email) {
         requireNonNull(email);

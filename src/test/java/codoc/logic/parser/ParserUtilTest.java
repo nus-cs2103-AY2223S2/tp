@@ -14,22 +14,22 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import codoc.logic.parser.exceptions.ParseException;
-import codoc.model.person.Address;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
+import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.skill.Skill;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_GITHUB = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_LINKEDIN = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "Àpython";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_GITHUB = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_LINKEDIN = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "C++";
     private static final String VALID_SKILL_2 = "javascript";
@@ -98,21 +98,21 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseLinkedin_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinkedin(INVALID_LINKEDIN));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseLinkedin_validValueWithoutWhitespace_returnsLinkedin() throws Exception {
+        Linkedin expectedLinkedin = new Linkedin(VALID_LINKEDIN);
+        assertEquals(expectedLinkedin, ParserUtil.parseLinkedin(VALID_LINKEDIN));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseLinkedin_validValueWithWhitespace_returnsTrimmedLinkedin() throws Exception {
+        String linkedinWithWhitespace = WHITESPACE + VALID_LINKEDIN + WHITESPACE;
+        Linkedin expectedLinkedin = new Linkedin(VALID_LINKEDIN);
+        assertEquals(expectedLinkedin, ParserUtil.parseLinkedin(linkedinWithWhitespace));
     }
 
     @Test

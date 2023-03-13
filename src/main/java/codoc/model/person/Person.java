@@ -11,7 +11,7 @@ import codoc.model.module.Module;
 import codoc.model.skill.Skill;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in CoDoc.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -22,19 +22,19 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Linkedin linkedin;
     private final Set<Skill> skills = new HashSet<>();
     private final Set<Module> modules = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Github github, Email email, Address address, Set<Skill> skills, Set<Module> modules) {
-        requireAllNonNull(name, github, email, address, skills, modules);
+    public Person(Name name, Github github, Email email, Linkedin linkedin, Set<Skill> skills, Set<Module> modules) {
+        requireAllNonNull(name, github, email, linkedin, skills, modules);
         this.name = name;
         this.github = github;
         this.email = email;
-        this.address = address;
+        this.linkedin = linkedin;
         this.skills.addAll(skills);
         this.modules.addAll(modules);
     }
@@ -42,12 +42,12 @@ public class Person {
     /**
      * Overloaded constructor to be remove once Mod is fully implemented.
      */
-    public Person(Name name, Github github, Email email, Address address, Set<Skill> skills) {
-        requireAllNonNull(name, github, email, address, skills);
+    public Person(Name name, Github github, Email email, Linkedin linkedin, Set<Skill> skills) {
+        requireAllNonNull(name, github, email, linkedin, skills);
         this.name = name;
         this.github = github;
         this.email = email;
-        this.address = address;
+        this.linkedin = linkedin;
         this.skills.addAll(skills);
         this.modules.addAll(modules);
     }
@@ -64,8 +64,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Linkedin getLinkedin() {
+        return linkedin;
     }
 
     /**
@@ -114,7 +114,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getGithub().equals(getGithub())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getLinkedin().equals(getLinkedin())
                 && otherPerson.getSkills().equals(getSkills())
                 && otherPerson.getModules().equals(getModules());
     }
@@ -122,7 +122,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, github, email, address, skills, modules);
+        return Objects.hash(name, github, email, linkedin, skills, modules);
     }
 
     @Override
@@ -133,8 +133,8 @@ public class Person {
                 .append(getGithub())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Linkedin: ")
+                .append(getLinkedin());
 
         Set<Skill> skills = getSkills();
         if (!skills.isEmpty()) {

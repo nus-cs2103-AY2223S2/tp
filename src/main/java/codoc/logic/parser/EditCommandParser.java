@@ -1,8 +1,8 @@
 package codoc.logic.parser;
 
-import static codoc.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static codoc.logic.parser.CliSyntax.PREFIX_MODULE;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -36,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(
                         args,
                         PREFIX_NAME,
-                        PREFIX_GITHUB, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_GITHUB, PREFIX_EMAIL, PREFIX_LINKEDIN,
                         PREFIX_SKILL,
                         PREFIX_MODULE
                 );
@@ -51,8 +51,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_LINKEDIN).isPresent()) {
+            editPersonDescriptor.setLinkedin(ParserUtil.parseLinkedin(argMultimap.getValue(PREFIX_LINKEDIN).get()));
         }
         parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL)).ifPresent(editPersonDescriptor::setSkills);
         parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(editPersonDescriptor::setModules);

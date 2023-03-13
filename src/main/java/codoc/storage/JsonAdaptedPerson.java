@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import codoc.commons.exceptions.IllegalValueException;
 import codoc.model.module.Module;
-import codoc.model.person.Address;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
+import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
@@ -28,7 +28,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String github;
     private final String email;
-    private final String address;
+    private final String linkedin;
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
@@ -38,13 +38,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("github") String github,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("email") String email, @JsonProperty("linkedin") String linkedin,
             @JsonProperty("skills") List<JsonAdaptedSkill> skills,
             @JsonProperty("modules") List<JsonAdaptedModule> modules) {
         this.name = name;
         this.github = github;
         this.email = email;
-        this.address = address;
+        this.linkedin = linkedin;
         if (skills != null) {
             this.skills.addAll(skills);
         }
@@ -60,7 +60,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         github = source.getGithub().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        linkedin = source.getLinkedin().value;
         skills.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
@@ -104,14 +104,14 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address != null && !Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (linkedin != null && !Linkedin.isValidLinkedin(linkedin)) {
+            throw new IllegalValueException(Linkedin.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Linkedin modelLinkedin = new Linkedin(linkedin);
 
         final Set<Skill> modelSkills = new HashSet<>(personSkills);
         final Set<Module> modelModules = new HashSet<>(personModules);
-        return new Person(modelName, modelGithub, modelEmail, modelAddress, modelSkills, modelModules);
+        return new Person(modelName, modelGithub, modelEmail, modelLinkedin, modelSkills, modelModules);
     }
 
 }

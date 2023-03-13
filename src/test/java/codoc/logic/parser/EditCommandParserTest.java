@@ -1,11 +1,11 @@
 //package codoc.logic.parser;
 //
 //import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static codoc.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-//import static codoc.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+//import static codoc.logic.commands.CommandTestUtil.LINKEDIN_DESC_AMY;
+//import static codoc.logic.commands.CommandTestUtil.LINKEDIN_DESC_BOB;
 //import static codoc.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 //import static codoc.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-//import static codoc.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+//import static codoc.logic.commands.CommandTestUtil.INVALID_LINKEDIN_DESC;
 //import static codoc.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 //import static codoc.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 //import static codoc.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
@@ -15,8 +15,8 @@
 //import static codoc.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
 //import static codoc.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
 //import static codoc.logic.commands.CommandTestUtil.SKILL_DESC_PYTHON;
-//import static codoc.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-//import static codoc.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+//import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_AMY;
+//import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_BOB;
 //import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 //import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 //import static codoc.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -36,7 +36,7 @@
 //import codoc.commons.core.index.Index;
 //import codoc.logic.commands.EditCommand;
 //import codoc.logic.commands.EditCommand.EditPersonDescriptor;
-//import codoc.model.person.Address;
+//import codoc.model.person.Linkedin;
 //import codoc.model.person.Email;
 //import codoc.model.person.Name;
 //import codoc.model.person.Github;
@@ -84,7 +84,7 @@
 //        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
 //        assertParseFailure(parser, "1" + INVALID_GITHUB_DESC, Github.MESSAGE_CONSTRAINTS); // invalid github
 //        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-//        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+//        assertParseFailure(parser, "1" + INVALID_LINKEDIN_DESC, Linkedin.MESSAGE_CONSTRAINTS); // invalid linkedin
 //        assertParseFailure(parser, "1" + INVALID_SKILL_DESC, Skill.MESSAGE_CONSTRAINTS); // invalid skill
 //
 //        // invalid github followed by valid email
@@ -104,7 +104,7 @@
 //                Skill.MESSAGE_CONSTRAINTS);
 //
 //        // multiple invalid values, but only the first invalid value is captured
-//        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY +
+//        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_LINKEDIN_AMY +
 //        VALID_GITHUB_AMY,
 //                Name.MESSAGE_CONSTRAINTS);
 //    }
@@ -113,10 +113,10 @@
 //    public void parse_allFieldsSpecified_success() {
 //        Index targetIndex = INDEX_SECOND_PERSON;
 //        String userInput = targetIndex.getOneBased() + GITHUB_DESC_BOB + SKILL_DESC_JAVA
-//                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_PYTHON;
+//                + EMAIL_DESC_AMY + LINKEDIN_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_PYTHON;
 //
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-//                .withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+//                .withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_AMY)
 //                .withSkills(VALID_SKILL_JAVA, VALID_SKILL_PYTHON).build();
 //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 //
@@ -156,9 +156,9 @@
 //        expectedCommand = new EditCommand(targetIndex, descriptor);
 //        assertParseSuccess(parser, userInput, expectedCommand);
 //
-//        // address
-//        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-//        descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+//        // linkedin
+//        userInput = targetIndex.getOneBased() + LINKEDIN_DESC_AMY;
+//        descriptor = new EditPersonDescriptorBuilder().withLinkedin(VALID_LINKEDIN_AMY).build();
 //        expectedCommand = new EditCommand(targetIndex, descriptor);
 //        assertParseSuccess(parser, userInput, expectedCommand);
 //
@@ -172,12 +172,12 @@
 //    @Test
 //    public void parse_multipleRepeatedFields_acceptsLast() {
 //        Index targetIndex = INDEX_FIRST_PERSON;
-//        String userInput = targetIndex.getOneBased() + GITHUB_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-//                + SKILL_DESC_PYTHON + GITHUB_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + SKILL_DESC_PYTHON
-//                + GITHUB_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + SKILL_DESC_JAVA;
+//        String userInput = targetIndex.getOneBased() + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + EMAIL_DESC_AMY
+//                + SKILL_DESC_PYTHON + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + EMAIL_DESC_AMY + SKILL_DESC_PYTHON
+//                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + EMAIL_DESC_BOB + SKILL_DESC_JAVA;
 //
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withGithub(VALID_GITHUB_BOB)
-//                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_PYTHON,
+//                .withEmail(VALID_EMAIL_BOB).withLinkedin(VALID_LINKEDIN_BOB).withSkills(VALID_SKILL_PYTHON,
 //                        VALID_SKILL_JAVA)
 //                .build();
 //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -195,10 +195,10 @@
 //        assertParseSuccess(parser, userInput, expectedCommand);
 //
 //        // other valid values specified
-//        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_GITHUB_DESC + ADDRESS_DESC_BOB
+//        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_GITHUB_DESC + LINKEDIN_DESC_BOB
 //                + GITHUB_DESC_BOB;
 //        descriptor = new EditPersonDescriptorBuilder().withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_BOB)
-//                .withAddress(VALID_ADDRESS_BOB).build();
+//                .withLinkedin(VALID_LINKEDIN_BOB).build();
 //        expectedCommand = new EditCommand(targetIndex, descriptor);
 //        assertParseSuccess(parser, userInput, expectedCommand);
 //    }

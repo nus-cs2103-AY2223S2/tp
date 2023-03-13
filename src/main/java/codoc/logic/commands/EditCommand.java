@@ -1,8 +1,8 @@
 package codoc.logic.commands;
 
-import static codoc.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static codoc.logic.parser.CliSyntax.PREFIX_MODULE;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -19,15 +19,15 @@ import codoc.commons.util.CollectionUtil;
 import codoc.logic.commands.exceptions.CommandException;
 import codoc.model.Model;
 import codoc.model.module.Module;
-import codoc.model.person.Address;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
+import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in CoDoc.
  */
 public class EditCommand extends Command {
 
@@ -39,7 +39,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_LINKEDIN + "LINKEDIN] "
             + "[" + PREFIX_SKILL + "SKILL]... "
             + "[" + PREFIX_MODULE + "MODULE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -48,7 +48,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in CoDoc.";
 
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -89,11 +89,11 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Github updatedGithub = editPersonDescriptor.getGithub().orElse(personToEdit.getGithub());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Linkedin updatedLinkedin = editPersonDescriptor.getLinkedin().orElse(personToEdit.getLinkedin());
         Set<Skill> updatedSkills = editPersonDescriptor.getSkills().orElse(personToEdit.getSkills());
         Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
 
-        return new Person(updatedName, updatedGithub, updatedEmail, updatedAddress, updatedSkills, updatedModules);
+        return new Person(updatedName, updatedGithub, updatedEmail, updatedLinkedin, updatedSkills, updatedModules);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class EditCommand extends Command {
         private Name name;
         private Github github;
         private Email email;
-        private Address address;
+        private Linkedin linkedin;
         private Set<Skill> skills;
         private Set<Module> modules;
 
@@ -135,7 +135,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setGithub(toCopy.github);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setLinkedin(toCopy.linkedin);
             setSkills(toCopy.skills);
             setModules(toCopy.modules);
         }
@@ -144,7 +144,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, github, email, address, skills, modules);
+            return CollectionUtil.isAnyNonNull(name, github, email, linkedin, skills, modules);
         }
 
         public void setName(Name name) {
@@ -171,12 +171,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setLinkedin(Linkedin linkedin) {
+            this.linkedin = linkedin;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Linkedin> getLinkedin() {
+            return Optional.ofNullable(linkedin);
         }
 
         /**
@@ -230,7 +230,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getGithub().equals(e.getGithub())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getLinkedin().equals(e.getLinkedin())
                     && getSkills().equals(e.getSkills())
                     && getModules().equals(e.getModules());
         }

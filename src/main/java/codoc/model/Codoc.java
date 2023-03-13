@@ -9,7 +9,7 @@ import codoc.model.person.UniquePersonList;
 import javafx.collections.ObservableList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the Codoc level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class Codoc implements ReadOnlyCodoc {
@@ -59,7 +59,7 @@ public class Codoc implements ReadOnlyCodoc {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in CoDoc.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -67,8 +67,8 @@ public class Codoc implements ReadOnlyCodoc {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to CoDoc.
+     * The person must not already exist in CoDoc.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -76,8 +76,8 @@ public class Codoc implements ReadOnlyCodoc {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in CoDoc.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in CoDoc.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -87,7 +87,7 @@ public class Codoc implements ReadOnlyCodoc {
 
     /**
      * Removes {@code key} from this {@code Codoc}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in CoDoc.
      */
     public void removePerson(Person key) {
         persons.remove(key);

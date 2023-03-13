@@ -14,7 +14,7 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
+Class Linkedin
 Class Email
 Class Name
 Class Github
@@ -39,12 +39,12 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Github
 Person *--> Email
-Person *--> Address
+Person *--> Linkedin
 Person *--> "*" Skill
 
 Name -[hidden]right-> Github
-Github -[hidden]right-> Address
-Address -[hidden]right-> Email
+Github -[hidden]right-> Linkedin
+Linkedin -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Person
 @enduml

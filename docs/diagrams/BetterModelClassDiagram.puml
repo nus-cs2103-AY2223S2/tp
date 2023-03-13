@@ -17,5 +17,5 @@ Person -up-> "*" Skill
 Person *--> Name
 Person *--> Github
 Person *--> Email
-Person *--> Address
+Person *--> Linkedin
 @enduml

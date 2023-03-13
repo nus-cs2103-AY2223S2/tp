@@ -4,44 +4,44 @@
     "name" : "Alice Pauline",
     "github" : "alice-Pauline",
     "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
+    "linkedin" : "123, Jurong West Ave 6, #08-111",
     "skills" : [ "python" ]
   }, {
     "name" : "Benson Meier",
     "github" : "bensonmeier",
     "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
+    "linkedin" : "311, Clementi Ave 2, #02-25",
     "skills" : [ "java", "python" ],
     "modules" : ["AY2223S1 CS1101S", "AY2223S1 CS1231S"]
   }, {
     "name" : "Carl Kurz",
     "github" : "Carl-Kurz",
     "email" : "heinz@example.com",
-    "address" : "wall street",
+    "linkedin" : "wall street",
     "skills" : [ ]
   }, {
     "name" : "Daniel Meier",
     "github" : "d4nielMeier",
     "email" : "cornelia@example.com",
-    "address" : "10th street",
+    "linkedin" : "10th street",
     "skills" : [ "python" ]
   }, {
     "name" : "Elle Meyer",
     "github" : "Elle-meyer",
     "email" : "werner@example.com",
-    "address" : "michegan ave",
+    "linkedin" : "michegan ave",
     "skills" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "github" : "F1onaKunz",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
+    "linkedin" : "little tokyo",
     "skills" : [ ]
   }, {
     "name" : "George Best",
     "github" : "george-b3st",
     "email" : "anna@example.com",
-    "address" : "4th street",
+    "linkedin" : "4th street",
     "skills" : [ ]
   } ]
 }

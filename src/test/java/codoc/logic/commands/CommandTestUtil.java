@@ -1,8 +1,8 @@
 package codoc.logic.commands;
 
-import static codoc.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.testutil.Assert.assertThrows;
@@ -32,8 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_GITHUB_BOB = "bob-456";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_LINKEDIN_AMY = "Block 312, Amy Street 1";
+    public static final String VALID_LINKEDIN_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_SKILL_JAVA = "java";
     public static final String VALID_SKILL_CSHARP = "C#";
 
@@ -43,8 +43,8 @@ public class CommandTestUtil {
     public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String LINKEDIN_DESC_AMY = " " + PREFIX_LINKEDIN + VALID_LINKEDIN_AMY;
+    public static final String LINKEDIN_DESC_BOB = " " + PREFIX_LINKEDIN + VALID_LINKEDIN_BOB;
     public static final String SKILL_DESC_PYTHON = " " + PREFIX_SKILL + VALID_SKILL_CSHARP;
     public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL + VALID_SKILL_JAVA;
 
@@ -52,7 +52,7 @@ public class CommandTestUtil {
     public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB + "-bob"; // GitHub usernames cannot start
     // with '-'
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_LINKEDIN_DESC = " " + PREFIX_LINKEDIN; // empty string not allowed for linkedins
     public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL + "hubbyü"; // '*' not allowed in skills
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -63,10 +63,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withGithub(VALID_GITHUB_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withGithub(VALID_GITHUB_AMY).withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_AMY)
                 .withSkills(VALID_SKILL_CSHARP).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_BOB).withLinkedin(VALID_LINKEDIN_BOB)
                 .withSkills(VALID_SKILL_JAVA, VALID_SKILL_CSHARP).build();
     }
 
@@ -97,7 +97,7 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br> - a {@code CommandException} is thrown <br> - the
-     * CommandException message matches {@code expectedMessage} <br> - the address book, filtered person list and
+     * CommandException message matches {@code expectedMessage} <br> - CoDoc, filtered person list and
      * selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
@@ -113,7 +113,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s CoDoc.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());

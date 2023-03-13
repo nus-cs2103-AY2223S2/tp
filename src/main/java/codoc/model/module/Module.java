@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import codoc.commons.util.AppUtil;
 
 /**
- * Represents a Module in the address book.
+ * Represents a Module in CoDoc.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModuleName(String)}
  */
 public class Module {

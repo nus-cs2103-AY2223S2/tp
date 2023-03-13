@@ -3,7 +3,7 @@ package codoc.model.person;
 import static codoc.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's GitHub username in the address book. Guarantees: immutable; is valid as declared in
+ * Represents a Person's GitHub username in CoDoc. Guarantees: immutable; is valid as declared in
  * {@link #isValidGithub(String)}
  */
 public class Github {

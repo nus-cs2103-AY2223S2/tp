@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of CoDoc data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyCodoc codoc, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(codoc, userPrefs);
 
-        logger.fine("Initializing with address book: " + codoc + " and user prefs " + userPrefs);
+        logger.fine("Initializing with CoDoc: " + codoc + " and user prefs " + userPrefs);
 
         this.codoc = new Codoc(codoc);
         this.userPrefs = new UserPrefs(userPrefs);

@@ -35,17 +35,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CoDoc file path.
      */
     Path getCodocFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' CoDoc file path.
      */
     void setCodocFilePath(Path codocFilePath);
 
     /**
-     * Replaces address book data with the data in {@code codoc}.
+     * Replaces CoDoc data with the data in {@code codoc}.
      */
     void setCodoc(ReadOnlyCodoc codoc);
 
@@ -53,26 +53,26 @@ public interface Model {
     ReadOnlyCodoc getCodoc();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in CoDoc.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in CoDoc.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in CoDoc.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in CoDoc.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in CoDoc.
      */
     void setPerson(Person target, Person editedPerson);
 

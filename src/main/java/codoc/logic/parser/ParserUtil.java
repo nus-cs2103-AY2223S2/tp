@@ -10,9 +10,9 @@ import codoc.commons.core.index.Index;
 import codoc.commons.util.StringUtil;
 import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.module.Module;
-import codoc.model.person.Address;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
+import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.skill.Skill;
 
@@ -70,20 +70,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String linkedin} into an {@code Linkedin}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code linkedin} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        if (address != null) {
-            String trimmedAddress = address.trim();
-            if (!Address.isValidAddress(trimmedAddress)) {
-                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Linkedin parseLinkedin(String linkedin) throws ParseException {
+        if (linkedin != null) {
+            String trimmedLinkedin = linkedin.trim();
+            if (!Linkedin.isValidLinkedin(trimmedLinkedin)) {
+                throw new ParseException(Linkedin.MESSAGE_CONSTRAINTS);
             }
-            return new Address(trimmedAddress);
+            return new Linkedin(trimmedLinkedin);
         }
-        return new Address(null);
+        return new Linkedin(null);
     }
 
     /**

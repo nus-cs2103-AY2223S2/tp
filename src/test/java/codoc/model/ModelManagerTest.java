@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setCodocFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setCodocFilePath(Paths.get("linkedin/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setCodocFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setCodocFilePath(Paths.get("new/linkedin/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -67,7 +67,7 @@ public class ModelManagerTest {
 
     @Test
     public void setCodocFilePath_validPath_setsCodocFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("linkedin/book/file/path");
         modelManager.setCodocFilePath(path);
         assertEquals(path, modelManager.getCodocFilePath());
     }

@@ -1,8 +1,8 @@
 package codoc.model.person;
 
-import static codoc.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static codoc.testutil.Assert.assertThrows;
@@ -33,7 +33,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA).build();
+                .withLinkedin(VALID_LINKEDIN_BOB).withSkills(VALID_SKILL_JAVA).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -80,8 +80,8 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        // different linkedin -> returns false
+        editedAlice = new PersonBuilder(ALICE).withLinkedin(VALID_LINKEDIN_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different skills -> returns false

@@ -42,7 +42,7 @@ public class UniquePersonListTest {
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
         Person editedAlice =
-                new PersonBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(
+                new PersonBuilder(ALICE).withLinkedin(CommandTestUtil.VALID_LINKEDIN_BOB).withSkills(
                         CommandTestUtil.VALID_SKILL_JAVA)
                         .build();
         assertTrue(uniquePersonList.contains(editedAlice));
@@ -87,7 +87,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice =
-                new PersonBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(
+                new PersonBuilder(ALICE).withLinkedin(CommandTestUtil.VALID_LINKEDIN_BOB).withSkills(
                         CommandTestUtil.VALID_SKILL_JAVA)
                         .build();
         uniquePersonList.setPerson(ALICE, editedAlice);

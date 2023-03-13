@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import codoc.model.module.Module;
-import codoc.model.person.Address;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
+import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
@@ -20,12 +20,12 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_GITHUB = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LINKEDIN = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Github github;
     private Email email;
-    private Address address;
+    private Linkedin linkedin;
     private Set<Skill> skills;
     private Set<Module> mods;
 
@@ -36,7 +36,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         github = new Github(DEFAULT_GITHUB);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        linkedin = new Linkedin(DEFAULT_LINKEDIN);
         skills = new HashSet<>();
         mods = new HashSet<>();
     }
@@ -48,7 +48,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         github = personToCopy.getGithub();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        linkedin = personToCopy.getLinkedin();
         skills = new HashSet<>(personToCopy.getSkills());
         mods = new HashSet<>(personToCopy.getModules());
     }
@@ -78,10 +78,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Linkedin} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withLinkedin(String linkedin) {
+        this.linkedin = new Linkedin(linkedin);
         return this;
     }
 
@@ -102,7 +102,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, github, email, address, skills, mods);
+        return new Person(name, github, email, linkedin, skills, mods);
     }
 
 }

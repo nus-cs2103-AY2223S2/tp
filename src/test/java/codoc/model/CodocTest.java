@@ -46,7 +46,7 @@ public class CodocTest {
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice =
-                new PersonBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(
+                new PersonBuilder(ALICE).withLinkedin(CommandTestUtil.VALID_LINKEDIN_BOB).withSkills(
                         CommandTestUtil.VALID_SKILL_JAVA)
                         .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
@@ -75,7 +75,7 @@ public class CodocTest {
     public void hasPerson_personWithSameIdentityFieldsInCodoc_returnsTrue() {
         codoc.addPerson(ALICE);
         Person editedAlice =
-                new PersonBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(
+                new PersonBuilder(ALICE).withLinkedin(CommandTestUtil.VALID_LINKEDIN_BOB).withSkills(
                         CommandTestUtil.VALID_SKILL_JAVA)
                         .build();
         assertTrue(codoc.hasPerson(editedAlice));

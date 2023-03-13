@@ -1,8 +1,8 @@
 package codoc.testutil;
 
-import static codoc.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 
@@ -33,7 +33,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_GITHUB + person.getGithub().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_LINKEDIN + person.getLinkedin().value + " ");
         person.getSkills().stream().forEach(
             s -> sb.append(PREFIX_SKILL + s.skillName + " ")
         );
@@ -48,7 +48,7 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getGithub().ifPresent(github -> sb.append(PREFIX_GITHUB).append(github.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getLinkedin().ifPresent(linkedin -> sb.append(PREFIX_LINKEDIN).append(linkedin.value).append(" "));
         if (descriptor.getSkills().isPresent()) {
             Set<Skill> skills = descriptor.getSkills().get();
             if (skills.isEmpty()) {

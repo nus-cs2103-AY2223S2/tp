@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import codoc.logic.commands.EditCommand.EditPersonDescriptor;
-import codoc.model.person.Address;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
+import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
@@ -35,7 +35,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setGithub(person.getGithub());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setLinkedin(person.getLinkedin());
         descriptor.setSkills(person.getSkills());
     }
 
@@ -64,10 +64,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Linkedin} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withLinkedin(String linkedin) {
+        descriptor.setLinkedin(new Linkedin(linkedin));
         return this;
     }
 

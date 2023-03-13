@@ -11,7 +11,7 @@ import codoc.model.Model;
 import codoc.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from CoDoc.
  */
 public class DeleteCommand extends Command {
 
