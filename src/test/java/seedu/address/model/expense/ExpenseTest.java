@@ -59,4 +59,16 @@ public class ExpenseTest {
         expense.setDate(null);
         assertEquals(null, expense.getDate());
     }
+
+    @Test
+    public void equals() {
+        Expense expense2 = new Expense("test", 1.0, null, new MiscellaneousCategory());
+        assertEquals(expense, expense2);
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Expense expense2 = new Expense("test", 1.0, null, new MiscellaneousCategory());
+        assertEquals(expense.hashCode(), expense2.hashCode());
+    }
 }
