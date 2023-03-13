@@ -27,7 +27,6 @@ import seedu.address.model.person.Person;
 /**
  * Edits the details of an existing meeting in the address book.
  */
-
 public class EditMeetingsCommand extends Command {
 
     public static final String COMMAND_WORD = "editm";
@@ -92,10 +91,10 @@ public class EditMeetingsCommand extends Command {
     private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
         assert meetingToEdit != null;
 
+        Set<Person> updatedAttendees = editMeetingDescriptor.getAttendees().orElse(meetingToEdit.getAttendees());
         Title updatedTitle = editMeetingDescriptor.getTitle().orElse(meetingToEdit.getTitle());
         DateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
         Location updatedLocation = editMeetingDescriptor.getLocation().orElse(meetingToEdit.getLocation());
-        Set<Person> updatedAttendees = editMeetingDescriptor.getAttendees().orElse(meetingToEdit.getAttendees());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
 
         return new Meeting(updatedTitle, updatedDateTime, updatedAttendees, updatedLocation, updatedDescription);
@@ -124,23 +123,22 @@ public class EditMeetingsCommand extends Command {
      * corresponding field value of the meeting.
      */
     public static class EditMeetingDescriptor {
+        private Set<Person> attendees;
         private Title title;
         private DateTime dateTime;
         private Location location;
-        private Set<Person> attendees;
         private Description description;
 
         public EditMeetingDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
+            setAttendees(toCopy.attendees);
             setTitle(toCopy.title);
             setDateTime(toCopy.dateTime);
             setLocation(toCopy.location);
-            setAttendees(toCopy.attendees);
             setDescription(toCopy.description);
         }
 
@@ -148,7 +146,7 @@ public class EditMeetingsCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, dateTime, location, attendees, description);
+            return CollectionUtil.isAnyNonNull(attendees, title, dateTime, location, description);
         }
 
         public void setTitle(Title title) {
