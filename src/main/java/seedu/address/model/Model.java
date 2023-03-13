@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.contact.Contact;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
 

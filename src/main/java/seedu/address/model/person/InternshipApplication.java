@@ -21,7 +21,7 @@ public class InternshipApplication {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
-    private static Contact contact;
+    private final Contact contact;
 
     /**
      * Every field must be present and not null.
@@ -30,6 +30,7 @@ public class InternshipApplication {
         requireAllNonNull(name, job);
         this.companyName = name;
         this.jobTitle = job;
+        this.contact = null;
     }
 
     /**

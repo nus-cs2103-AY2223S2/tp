@@ -14,9 +14,9 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
 
- /**
- * Parses input arguments and creates a new AddContactCommand object
- */
+/**
+* Parses input arguments and creates a new AddContactCommand object
+*/
 public class AddContactCommandParser implements Parser<AddContactCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddContactCommand
