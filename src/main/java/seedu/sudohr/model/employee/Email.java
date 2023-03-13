@@ -1,10 +1,10 @@
-package seedu.sudohr.model.person;
+package seedu.sudohr.model.employee;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's email in the sudohr book.
+ * Represents a Employee's email in the sudohr book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {

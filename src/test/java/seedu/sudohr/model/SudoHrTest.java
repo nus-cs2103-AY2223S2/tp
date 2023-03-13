@@ -32,10 +32,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
-import seedu.sudohr.model.person.Person;
-import seedu.sudohr.model.person.exceptions.DuplicateEmailException;
-import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
-import seedu.sudohr.model.person.exceptions.DuplicatePhoneNumberException;
+import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
+import seedu.sudohr.model.employee.exceptions.DuplicatePhoneNumberException;
 import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.PersonBuilder;
 
@@ -45,10 +45,10 @@ public class SudoHrTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), sudoHr.getPersonList());
+        assertEquals(Collections.emptyList(), sudoHr.getEmployeeList());
     }
 
-    //// Person tests
+    //// Employee tests
 
     @Test
     public void resetData_null_throwsNullPointerException() {
@@ -65,32 +65,32 @@ public class SudoHrTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // adding two person with the exact same fields
-        Person editedAlice = new PersonBuilder(ALICE).build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        Employee editedAlice = new PersonBuilder(ALICE).build();
+        List<Employee> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Department> newDepartments = Arrays.asList();
         SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
 
-        assertThrows(DuplicatePersonException.class, () -> sudoHr.resetData(newData));
+        assertThrows(DuplicateEmployeeException.class, () -> sudoHr.resetData(newData));
     }
 
     @Test
     public void resetData_withDuplicateId_throwsDuplicatePersonException() {
         // adding two persons with only id matching
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
-        List<Person> newPersons = Arrays.asList(BOB, editedAlice);
+        List<Employee> newPersons = Arrays.asList(BOB, editedAlice);
         List<Department> newDepartments = Arrays.asList();
         SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
 
-        assertThrows(DuplicatePersonException.class, () -> sudoHr.resetData(newData));
+        assertThrows(DuplicateEmployeeException.class, () -> sudoHr.resetData(newData));
     }
 
     @Test
     public void resetData_withDuplicateEmail_throwsDuplicateEmailException() {
         // adding two persons with only email matching
-        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+        Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .build();
-        List<Person> newPersons = Arrays.asList(BOB, editedAlice);
+        List<Employee> newPersons = Arrays.asList(BOB, editedAlice);
         List<Department> newDepartments = Arrays.asList();
         SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
 
@@ -100,9 +100,9 @@ public class SudoHrTest {
     @Test
     public void resetData_withDuplicatePhoneNumber_throwsDuplicatePhoneNumberException() {
         // adding two persons with only phone number matching
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+        Employee editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
                 .build();
-        List<Person> newPersons = Arrays.asList(BOB, editedAlice);
+        List<Employee> newPersons = Arrays.asList(BOB, editedAlice);
         List<Department> newDepartments = Arrays.asList();
         SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
 
@@ -112,10 +112,10 @@ public class SudoHrTest {
     @Test
     public void resetData_withDuplicateEmailPhoneNumber_throwsDuplicatePhoneNumberException() {
         // adding two persons with only phone number matching
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+        Employee editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB)
                 .build();
-        List<Person> newPersons = Arrays.asList(BOB, editedAlice);
+        List<Employee> newPersons = Arrays.asList(BOB, editedAlice);
         List<Department> newDepartments = Arrays.asList();
         SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
 
@@ -124,26 +124,26 @@ public class SudoHrTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> sudoHr.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> sudoHr.hasEmployee(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(sudoHr.hasPerson(ALICE));
+        assertFalse(sudoHr.hasEmployee(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        sudoHr.addPerson(ALICE);
-        assertTrue(sudoHr.hasPerson(ALICE));
+        sudoHr.addEmployee(ALICE);
+        assertTrue(sudoHr.hasEmployee(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdInAddressBook_returnsTrue() {
-        sudoHr.addPerson(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        sudoHr.addEmployee(BOB);
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
-        assertTrue(sudoHr.hasPerson(editedAlice));
+        assertTrue(sudoHr.hasEmployee(editedAlice));
     }
 
     @Test
@@ -158,24 +158,24 @@ public class SudoHrTest {
 
     @Test
     public void hasClashingEmail_personWithSameIdInAddressBook_returnsFalse() {
-        sudoHr.addPerson(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        sudoHr.addEmployee(BOB);
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertFalse(sudoHr.hasClashingEmail(editedAlice));
     }
 
     @Test
     public void hasClashingEmail_personWithDifferentIdInAddressBook_returnsTrue() {
-        sudoHr.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        sudoHr.addEmployee(ALICE);
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertTrue(sudoHr.hasClashingEmail(editedAlice));
     }
 
     @Test
     public void hasClashingEmail_personWithSameEmailOnlyInAddressBook_returnsTrue() {
-        sudoHr.addPerson(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+        sudoHr.addEmployee(BOB);
+        Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .build();
         assertTrue(sudoHr.hasClashingEmail(editedAlice));
     }
@@ -192,31 +192,31 @@ public class SudoHrTest {
 
     @Test
     public void hasClashingPhoneNumber_personWithSameIdInAddressBook_returnsFalse() {
-        sudoHr.addPerson(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        sudoHr.addEmployee(BOB);
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertFalse(sudoHr.hasClashingPhoneNumber(editedAlice));
     }
 
     @Test
     public void hasClashingPhoneNumber_personWithDifferentIdInAddressBook_returnsTrue() {
-        sudoHr.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        sudoHr.addEmployee(ALICE);
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertTrue(sudoHr.hasClashingPhoneNumber(editedAlice));
     }
 
     @Test
     public void hasClashingPhoneNumber_personWithSamePhoneNumberOnlyInAddressBook_returnsTrue() {
-        sudoHr.addPerson(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+        sudoHr.addEmployee(BOB);
+        Employee editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
                 .build();
         assertTrue(sudoHr.hasClashingPhoneNumber(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> sudoHr.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> sudoHr.getEmployeeList().remove(0));
     }
 
     //// Department tests
@@ -225,7 +225,7 @@ public class SudoHrTest {
     public void resetData_withDuplicateDepartments_throwsDuplicateDepartmentException() {
         // Two persons with the same identity fields
         Department editedHumanResources = new DepartmentBuilder(HUMAN_RESOURCES).withDepartmentName("Sales").build();
-        List<Person> newPersons = Arrays.asList(ALICE, BENSON, CARL, GEORGE, HOON, IDA);
+        List<Employee> newPersons = Arrays.asList(ALICE, BENSON, CARL, GEORGE, HOON, IDA);
         List<Department> newDepartments = Arrays.asList(editedHumanResources, SALES);
 
         SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
@@ -266,16 +266,16 @@ public class SudoHrTest {
      * A stub ReadOnlySudoHr whose persons and departments list can violate interface constraints.
      */
     private static class SudoHrStub implements ReadOnlySudoHr {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Employee> persons = FXCollections.observableArrayList();
         private final ObservableList<Department> departments = FXCollections.observableArrayList();
 
-        SudoHrStub(Collection<Person> persons, Collection<Department> departments) {
+        SudoHrStub(Collection<Employee> persons, Collection<Department> departments) {
             this.persons.setAll(persons);
             this.departments.setAll(departments);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
+        public ObservableList<Employee> getEmployeeList() {
             return persons;
         }
 

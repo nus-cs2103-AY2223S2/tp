@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.*;
-import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 import static seedu.sudohr.testutil.TypicalPersons.*;
 
@@ -15,8 +15,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.core.GuiSettings;
-import seedu.sudohr.model.person.NameContainsKeywordsPredicate;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.testutil.AddressBookBuilder;
 import seedu.sudohr.testutil.PersonBuilder;
 
@@ -76,26 +76,26 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasEmployee(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+        assertFalse(modelManager.hasEmployee(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+        modelManager.addEmployee(ALICE);
+        assertTrue(modelManager.hasEmployee(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdInAddressBook_returnsTrue() {
-        modelManager.addPerson(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        modelManager.addEmployee(BOB);
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
-        assertTrue(modelManager.hasPerson(editedAlice));
+        assertTrue(modelManager.hasEmployee(editedAlice));
     }
 
     @Test
@@ -110,24 +110,24 @@ public class ModelManagerTest {
 
     @Test
     public void hasClashingEmail_personWithSameIdInAddressBook_returnsFalse() {
-        modelManager.addPerson(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        modelManager.addEmployee(BOB);
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertFalse(modelManager.hasClashingEmail(editedAlice));
     }
 
     @Test
     public void hasClashingEmail_personWithDifferentIdInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        modelManager.addEmployee(ALICE);
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertTrue(modelManager.hasClashingEmail(editedAlice));
     }
 
     @Test
     public void hasClashingEmail_personWithSameEmailOnlyInAddressBook_returnsTrue() {
-        modelManager.addPerson(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+        modelManager.addEmployee(BOB);
+        Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .build();
         assertTrue(modelManager.hasClashingEmail(editedAlice));
     }
@@ -144,31 +144,31 @@ public class ModelManagerTest {
 
     @Test
     public void hasClashingPhoneNumber_personWithSameIdInAddressBook_returnsFalse() {
-        modelManager.addPerson(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        modelManager.addEmployee(BOB);
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertFalse(modelManager.hasClashingPhoneNumber(editedAlice));
     }
 
     @Test
     public void hasClashingPhoneNumber_personWithDifferentIdInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        modelManager.addEmployee(ALICE);
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertTrue(modelManager.hasClashingPhoneNumber(editedAlice));
     }
 
     @Test
     public void hasClashingPhoneNumber_personWithSamePhoneNumberOnlyInAddressBook_returnsTrue() {
-        modelManager.addPerson(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+        modelManager.addEmployee(BOB);
+        Employee editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
                 .build();
         assertTrue(modelManager.hasClashingPhoneNumber(editedAlice));
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEmployeeList().remove(0));
     }
 
     @Test
@@ -196,11 +196,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredEmployeeList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(sudoHr, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

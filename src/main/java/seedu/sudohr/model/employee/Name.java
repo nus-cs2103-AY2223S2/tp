@@ -1,10 +1,10 @@
-package seedu.sudohr.model.person;
+package seedu.sudohr.model.employee;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's name in the sudohr book.
+ * Represents a Employee's name in the sudohr book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

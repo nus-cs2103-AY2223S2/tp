@@ -7,14 +7,14 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Employee> PREDICATE_SHOW_ALL_EMPLOYEES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -54,50 +54,51 @@ public interface Model {
     /** Returns the SudoHr */
     ReadOnlySudoHr getSudoHr();
 
-    //=========== Person-Level Operations ==============================================================================
+    //=========== Employee-Level Operations ===========================================
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in SudoHR.
+     * Returns true if an employee with the same identity as {@code person} exists in SudoHR.
      */
-    boolean hasPerson(Person person);
+    boolean hasEmployee(Employee employee);
 
     /**
      * Returns true if a person shares the same email with a different {@code person} (different id).
      */
-    boolean hasClashingEmail(Person person);
+    boolean hasClashingEmail(Employee person);
 
     /**
      * Returns true if a person shares the same phone number with a different {@code person} (different id).
      */
-    boolean hasClashingPhoneNumber(Person person);
+    boolean hasClashingPhoneNumber(Employee person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the sudohr book.
+     * Deletes the given employee.
+     * The person must exist in SudoHR.
      */
-    void deletePerson(Person target);
+    void deleteEmployee(Employee target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the sudohr book.
+     * Adds the given employee.
+     * {@code employee} must not already exist in the sudohr book.
      */
-    void addPerson(Person person);
+    void addEmployee(Employee employee);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given employee {@code target} with {@code editedEmployee}.
      * {@code target} must exist in the sudohr book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the sudohr book.
+     * The employee identity of {@code editedEmployee} must not be the same as another existing
+     * employee in the sudohr book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setEmployee(Employee target, Employee editedEmployee);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered employee list */
+    ObservableList<Employee> getFilteredEmployeeList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered employee list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredEmployeeList(Predicate<Employee> predicate);
 
     //=========== Department-Level Operations ==========================================================================
 
@@ -115,9 +116,10 @@ public interface Model {
     void addDepartment(Department d);
 
     /**
-     * Replaces the given department {@code target} in the list with {@code editedPerson}.
+     * Replaces the given department {@code target} in the list with {@code editedDepartment}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The department identity of {@code editedDepartment} must not be the same as another existing
+     * department in the address book.
      */
     void setDepartment(Department target, Department editedDepartment);
 
@@ -132,14 +134,14 @@ public interface Model {
      * @param p The employee to add
      * @param d The department to add the employee to
      */
-    void addEmployeeToDepartment(Person p, Department d);
+    void addEmployeeToDepartment(Employee p, Department d);
 
     /**
      * Removes a given employee from a given department
      * @param p The employee to remove
      * @param d The department to remove the employee fro
      */
-    void removeEmployeeFromDepartment(Person p, Department d);
+    void removeEmployeeFromDepartment(Employee p, Department d);
 
     /** Returns an unmodifiable view of the filtered department list */
     ObservableList<Department> getFilteredDepartmentList();

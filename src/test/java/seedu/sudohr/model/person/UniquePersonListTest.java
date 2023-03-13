@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -20,15 +19,18 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.model.person.exceptions.DuplicateEmailException;
-import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
-import seedu.sudohr.model.person.exceptions.DuplicatePhoneNumberException;
-import seedu.sudohr.model.person.exceptions.PersonNotFoundException;
+import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.UniqueEmployeeList;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
+import seedu.sudohr.model.employee.exceptions.DuplicatePhoneNumberException;
+import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
+
 import seedu.sudohr.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniqueEmployeeList uniquePersonList = new UniqueEmployeeList();
 
     /** duplicated person checks **/
     @Test
@@ -51,7 +53,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdOnlyInList_returnsTrue() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
@@ -59,7 +61,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameFieldsButIdInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertFalse(uniquePersonList.contains(editedAlice));
     }
 
@@ -87,7 +89,7 @@ public class UniquePersonListTest {
     @Test
     public void sharesPhoneNumber_personWithSameIdOnlyInList_returnsFalse() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertFalse(uniquePersonList.sharesPhoneNumber(editedAlice));
     }
 
@@ -96,7 +98,7 @@ public class UniquePersonListTest {
     @Test
     public void sharesPhoneNumber_personWithSameFieldsButIdInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertTrue(uniquePersonList.sharesPhoneNumber(editedAlice));
     }
 
@@ -105,7 +107,7 @@ public class UniquePersonListTest {
     @Test
     public void sharesPhoneNumber_personWithSameEmailOnlyInList_returnsTrue() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertTrue(uniquePersonList.sharesPhoneNumber(editedAlice));
     }
 
@@ -114,7 +116,7 @@ public class UniquePersonListTest {
     @Test
     public void sharesPhoneNumber_personWithSameEmailAndIdOnlyInList_returnsFalse() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withPhone(VALID_PHONE_BOB)
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withPhone(VALID_PHONE_BOB)
                 .build();
         assertFalse(uniquePersonList.sharesPhoneNumber(editedAlice));
     }
@@ -143,7 +145,7 @@ public class UniquePersonListTest {
     @Test
     public void sharesEmail_personWithSameIdOnlyInList_returnsFalse() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertFalse(uniquePersonList.sharesEmail(editedAlice));
     }
 
@@ -152,7 +154,7 @@ public class UniquePersonListTest {
     @Test
     public void sharesEmail_personWithSameFieldsButIdInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertTrue(uniquePersonList.sharesEmail(editedAlice));
     }
 
@@ -161,7 +163,7 @@ public class UniquePersonListTest {
     @Test
     public void sharesEmail_personWithSameEmailOnlyInList_returnsTrue() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertTrue(uniquePersonList.sharesEmail(editedAlice));
     }
 
@@ -170,7 +172,7 @@ public class UniquePersonListTest {
     @Test
     public void sharesEmail_personWithSameEmailAndIdOnlyInList_returnsFalse() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .build();
         assertFalse(uniquePersonList.sharesEmail(editedAlice));
     }
@@ -184,27 +186,27 @@ public class UniquePersonListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+        assertThrows(DuplicateEmployeeException.class, () -> uniquePersonList.add(ALICE));
     }
 
     @Test
     public void add_personWithSameId_throwsDuplicatePersonException() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(editedAlice));
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        assertThrows(DuplicateEmployeeException.class, () -> uniquePersonList.add(editedAlice));
     }
 
     @Test
     public void add_differentPersonWithSamePhoneNumber_throwsDuplicatePhoneNumberException() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertThrows(DuplicatePhoneNumberException.class, () -> uniquePersonList.add(editedAlice));
     }
 
     @Test
     public void add_differentPersonWithSameEmail_throwsDuplicateEmailException() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertThrows(DuplicateEmailException.class, () -> uniquePersonList.add(editedAlice));
     }
 
@@ -212,17 +214,17 @@ public class UniquePersonListTest {
     @Test
     public void add_PersonWithSameIdEmailPhone_throwsDuplicatePersonException() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .build();
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(editedAlice));
+        assertThrows(DuplicateEmployeeException.class, () -> uniquePersonList.add(editedAlice));
     }
 
     // first error accounted is that of duplicate phone
     @Test
     public void add_PersonWithSameEmailPhone_throwsDuplicatePhoneNumberException() {
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+        Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .build();
         assertThrows(DuplicatePhoneNumberException.class, () -> uniquePersonList.add(editedAlice));
@@ -232,24 +234,24 @@ public class UniquePersonListTest {
     /** Tests editing of a person **/
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setEmployee(null, ALICE));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setEmployee(ALICE, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+        assertThrows(EmployeeNotFoundException.class, () -> uniquePersonList.setEmployee(ALICE, ALICE));
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
         uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        uniquePersonList.setEmployee(ALICE, ALICE);
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
         expectedUniquePersonList.add(ALICE);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -257,10 +259,10 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentityOnly_success() {
         uniquePersonList.add(BOB);
-        Person newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        Employee newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
-        uniquePersonList.setPerson(BOB, newBob);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        uniquePersonList.setEmployee(BOB, newBob);
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
         expectedUniquePersonList.add(newBob);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -268,10 +270,10 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentityAndEmailOnly_success() {
         uniquePersonList.add(BOB);
-        Person newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
+        Employee newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .build();
-        uniquePersonList.setPerson(BOB, newBob);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        uniquePersonList.setEmployee(BOB, newBob);
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
         expectedUniquePersonList.add(newBob);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -279,8 +281,8 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        uniquePersonList.setEmployee(ALICE, BOB);
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
         expectedUniquePersonList.add(BOB);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -289,7 +291,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonAlreadyExists_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateEmployeeException.class, () -> uniquePersonList.setEmployee(ALICE, BOB));
     }
 
     // edited person now has unique phone number that does not exist in SudoHR
@@ -297,9 +299,9 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonNewPhoneIsUnique_success() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
-        Person newBob = new PersonBuilder().withPhone(VALID_PHONE_AMY)
+        Employee newBob = new PersonBuilder().withPhone(VALID_PHONE_AMY)
                 .build();
-        uniquePersonList.setPerson(BOB, newBob);
+        uniquePersonList.setEmployee(BOB, newBob);
     }
 
     // edited person now has phone number that already exists in SudoHR
@@ -324,51 +326,51 @@ public class UniquePersonListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+        assertThrows(EmployeeNotFoundException.class, () -> uniquePersonList.remove(ALICE));
     }
 
     @Test
     public void remove_existingPerson_removesPerson() {
         uniquePersonList.add(ALICE);
         uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     /** Testt setting of persons with a provided list **/
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setEmployees((UniqueEmployeeList) null));
     }
 
     @Test
     public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
         uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
         expectedUniquePersonList.add(BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
+        uniquePersonList.setEmployees(expectedUniquePersonList);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Person>) null));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setEmployees((List<Employee>) null));
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniquePersonList.add(ALICE);
-        List<Person> personList = Collections.singletonList(BOB);
-        uniquePersonList.setPersons(personList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        List<Employee> personList = Collections.singletonList(BOB);
+        uniquePersonList.setEmployees(personList);
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
         expectedUniquePersonList.add(BOB);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+        List<Employee> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
+        assertThrows(DuplicateEmployeeException.class, () -> uniquePersonList.setEmployees(listWithDuplicatePersons));
     }
 
     @Test

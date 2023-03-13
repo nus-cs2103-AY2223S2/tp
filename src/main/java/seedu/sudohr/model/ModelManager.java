@@ -13,7 +13,7 @@ import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * Represents the in-memory model of the sudohr book data.
@@ -23,7 +23,7 @@ public class ModelManager implements Model {
 
     private final SudoHr sudoHr;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Employee> filteredEmployees;
     private final FilteredList<Department> filteredDepartments;
 
     /**
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        filteredPersons = new FilteredList<>(this.sudoHr.getPersonList());
+        filteredEmployees = new FilteredList<>(this.sudoHr.getEmployeeList());
         filteredDepartments = new FilteredList<>(this.sudoHr.getDepartmentList());
     }
 
@@ -92,59 +92,59 @@ public class ModelManager implements Model {
         return sudoHr;
     }
 
-    //=========== Person-Level Operations ==============================================================================
+    //=========== Employee-Level Operations ========================
 
     @Override
-    public boolean hasPerson(Person person) {
+    public boolean hasEmployee(Employee person) {
         requireNonNull(person);
-        return sudoHr.hasPerson(person);
+        return sudoHr.hasEmployee(person);
     }
 
     @Override
-    public boolean hasClashingEmail(Person person) {
+    public boolean hasClashingEmail(Employee person) {
         requireNonNull(person);
         return sudoHr.hasClashingEmail(person);
     }
 
     @Override
-    public boolean hasClashingPhoneNumber(Person person) {
+    public boolean hasClashingPhoneNumber(Employee person) {
         requireNonNull(person);
         return sudoHr.hasClashingPhoneNumber(person);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        sudoHr.removePerson(target);
+    public void deleteEmployee(Employee target) {
+        sudoHr.removeEmployee(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        sudoHr.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addEmployee(Employee employee) {
+        sudoHr.addEmployee(employee);
+        updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setEmployee(Employee target, Employee editedEmployee) {
+        requireAllNonNull(target, editedEmployee);
 
-        sudoHr.setPerson(target, editedPerson);
+        sudoHr.setEmployee(target, editedEmployee);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Employee List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Employee} backed by the internal list of
      * {@code versionedSudoHr}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Employee> getFilteredEmployeeList() {
+        return filteredEmployees;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredEmployees.setPredicate(predicate);
     }
 
     //=========== Department-Level Operations ==========================================================================
@@ -176,12 +176,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addEmployeeToDepartment(Person p, Department d) {
+    public void addEmployeeToDepartment(Employee p, Department d) {
         sudoHr.addEmployeeToDepartment(p, d);
     }
 
     @Override
-    public void removeEmployeeFromDepartment(Person p, Department d) {
+    public void removeEmployeeFromDepartment(Employee p, Department d) {
         sudoHr.removeEmployeeFromDepartment(p, d);
     }
 
@@ -218,7 +218,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return sudoHr.equals(other.sudoHr)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredEmployees.equals(other.filteredEmployees);
     }
 
 }

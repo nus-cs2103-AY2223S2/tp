@@ -1,7 +1,7 @@
-package seedu.sudohr.model.person.exceptions;
+package seedu.sudohr.model.employee.exceptions;
 
 /**
- * Signals that the operation will result in duplicate emails for different persons
+ * Signals that the operation will result in duplicate emails for different employees
  */
 public class DuplicateEmailException extends RuntimeException {
     public DuplicateEmailException() {
