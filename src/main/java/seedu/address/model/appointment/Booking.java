@@ -1,27 +1,30 @@
 package seedu.address.model.appointment;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+import seedu.address.logic.parser.exceptions.ParseException;
 
+import java.text.SimpleDateFormat;
+
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Booking {
-    private static final String MESSAGE_CONSTRAINTS = "Appointment booking should be of the format DD-MM-YYYY";
+    public static final String MESSAGE_CONSTRAINTS = "Appointment booking should be of the format DD-MM-YYYY HH:MM";
     private final String date;
 
     public Booking(String date) {
-        requireAllNonNull(date);
+        requireNonNull(date);
         checkArgument(isValidBooking(date), MESSAGE_CONSTRAINTS);
         this.date = date;
     }
-    public boolean isValidBooking(String date) {
+    public static boolean isValidBooking(String someDate) {
         try {
-            LocalDate.parse(date);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+            simpleDateFormat.parse(someDate);
             return true;
-        } catch (DateTimeParseException e) {
+        } catch (java.text.ParseException e) { //
             return false;
         }
     }
 
+    public String getBookingDate() { return date; }
 }
