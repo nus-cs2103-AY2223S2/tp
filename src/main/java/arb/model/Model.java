@@ -160,4 +160,6 @@ public interface Model {
      * Updates the comparator of the sorted project list to filter by the given {@code comparator}.
      */
     void updateSortedProjectList(Comparator<Project> comparator);
+
+    void markProject(Project projectToMark);
 }

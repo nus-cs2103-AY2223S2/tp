@@ -41,6 +41,7 @@ public class AddClientCommandTest {
         CommandResult commandResult = new AddClientCommand(validClient).execute(modelStub, ListType.CLIENT);
 
         assertEquals(String.format(AddClientCommand.MESSAGE_SUCCESS, validClient), commandResult.getFeedbackToUser());
+        // assertEquals(ListType.CLIENT, commandResult.getListType());
         assertEquals(Arrays.asList(validClient), modelStub.clientsAdded);
     }
 
@@ -159,6 +160,11 @@ public class AddClientCommandTest {
 
         @Override
         public void setProject(Project target, Project editedProject) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markProject(Project target) {
             throw new AssertionError("This method should not be called.");
         }
 

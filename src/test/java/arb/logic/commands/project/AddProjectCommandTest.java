@@ -154,6 +154,10 @@ public class AddProjectCommandTest {
         }
 
         @Override
+        public void markProject(Project target) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void setClient(Client target, Client editedClient) {
             throw new AssertionError("This method should not be called.");
         }

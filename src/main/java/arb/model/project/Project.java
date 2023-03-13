@@ -47,6 +47,10 @@ public class Project {
         return status;
     }
 
+    public void markAsDone() {
+        this.status.setTrue();
+    }
+
     /**
      * Returns true if both projects have the same title.
      * This defines a weaker notion of equality between two projects.

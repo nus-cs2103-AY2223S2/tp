@@ -27,7 +27,7 @@ public class AddClientCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newClient_success() {
+    public void executeSuccess_newClient_withCurrentListTypeClient() {
         Client validClient = new ClientBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -36,6 +36,18 @@ public class AddClientCommandIntegrationTest {
         assertCommandSuccess(new AddClientCommand(validClient), ListType.CLIENT, ListType.CLIENT, model,
                 String.format(AddClientCommand.MESSAGE_SUCCESS, validClient), expectedModel);
     }
+
+    @Test
+    public void executeSuccess_newClient_withCurrentListTypeProject() {
+        Client validClient = new ClientBuilder().build();
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.addClient(validClient);
+
+        assertCommandSuccess(new AddClientCommand(validClient), ListType.PROJECT, ListType.CLIENT, model,
+                String.format(AddClientCommand.MESSAGE_SUCCESS, validClient), expectedModel);
+    }
+
 
     @Test
     public void execute_duplicateClient_throwsCommandException() {

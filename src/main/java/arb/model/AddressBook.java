@@ -143,6 +143,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.remove(key);
     }
 
+    public void markProject(Project project) {
+        projects.markAsDone(project);
+    }
+
     //// util methods
 
     @Override
