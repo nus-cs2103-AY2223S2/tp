@@ -29,7 +29,7 @@ public class DeleteScoreCommand extends Command {
     private final Index scoreIndex;
 
     /**
-     * Creates a DeleteScoreCommand to delete the specified task from a specified person
+     * Creates a DeleteScoreCommand to delete the specified score from a specified person
      */
     public DeleteScoreCommand(Index studentIndex, Index scoreIndex) {
         this.studentIndex = studentIndex;
