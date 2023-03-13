@@ -89,7 +89,7 @@ Format: `delete i/NRIC`
 
 Examples: `delete i/T0012345A` to delete patient with NRIC T0012345A from patient records system
 
-### Locating person by name or address: `find`
+### Find persons by name or address: `find`
 
 Find people according to a particular attribute. Eg. name(n) or address(a)
 Format: `find ATTRIBUTE KEYWORD [MORE_KEYWORDS]`
@@ -98,11 +98,13 @@ Format: `find ATTRIBUTE KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g panadol will match pANAdol
 * The order of the keywords does matters. e.g. "panadol" will match "medicine panadol"
 * Only the provided attribute will be search (a or n)
+* Can input multiple keywords for a given attribute and all matching persons will be returned
 
 
 Examples:
-* `find n john` returns `john` and `John Doe` 
-* `find a serangoon` returns `john` and `John Doe` who both stay in serangoon
+* `find n john` returns `John Lim` and `John Doe` 
+* `find a serangoon` returns `Alice Tan` and `John Doe` who both stay in serangoon
+*  `find a ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio` or  `serangoon`
 
 ### Get a person: `get`
 Get a person from the records system.

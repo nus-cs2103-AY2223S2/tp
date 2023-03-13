@@ -20,8 +20,8 @@ public class FindCommand extends Command {
             + " contain any of the specified keywords (case-insensitive) and displays them as a list with"
             + " index numbers. Attribute is specified with n or a representing name and address respectively\n"
             + "Parameters: ATTRIBUTE KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " n"  + " alice bob charlie" + "\n"
-            + "Example: " + COMMAND_WORD + " a"  + " 30 serangoon";
+            + "Example: " + COMMAND_WORD + " n" + " alice bob charlie" + "\n"
+            + "Example: " + COMMAND_WORD + " a" + " 30 serangoon";
 
     private final Predicate<Person> predicate;
 
