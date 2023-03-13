@@ -18,13 +18,13 @@ import seedu.address.model.score.ScoreValue;
 
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddScoreCommand object
  */
 public class AddScoreCommandParser implements Parser<AddScoreCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddScoreCommand
+     * and returns an AddScoreCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddScoreCommand parse(String args) throws ParseException {

@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a score identified using it's displayed index a specified person's score list.
  */
 public class DeleteScoreCommand extends Command {
 
@@ -29,7 +29,7 @@ public class DeleteScoreCommand extends Command {
     private final Index scoreIndex;
 
     /**
-     * Creates an deleteScoreCommand to add the specified {@code Person}
+     * Creates a DeleteScoreCommand to delete the specified task from a specified person
      */
     public DeleteScoreCommand(Index studentIndex, Index scoreIndex) {
         this.studentIndex = studentIndex;
@@ -59,11 +59,10 @@ public class DeleteScoreCommand extends Command {
                 personToDeleteScore.getName(), scoreToDelete));
     }
 
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
+                || (other instanceof DeleteScoreCommand // instanceof handles nulls
                 && studentIndex.equals(((DeleteScoreCommand) other).studentIndex)
                 && scoreIndex.equals(((DeleteScoreCommand) other).scoreIndex)); // state check
     }
