@@ -1,6 +1,5 @@
 package seedu.fitbook.storage.routine;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.fitbook.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -10,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.commons.exceptions.IllegalValueException;
 import seedu.fitbook.commons.util.JsonUtil;
-import seedu.fitbook.model.FitBookExerciseRoutine;
-import seedu.fitbook.testutil.routine.TypicalRoutines;
 
 public class JsonSerializableFitBookExerciseRoutineTest {
 
