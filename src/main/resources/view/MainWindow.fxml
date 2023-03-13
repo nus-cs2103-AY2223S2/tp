@@ -24,8 +24,6 @@
       </stylesheets>
 
       <VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" prefHeight="18.0" prefWidth="580.0" VBox.vgrow="NEVER" />
         <MenuBar fx:id="menuBar" prefHeight="31.0" prefWidth="340.0" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
