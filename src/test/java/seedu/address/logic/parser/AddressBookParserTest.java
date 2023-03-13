@@ -4,8 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_FREQUENCY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_PREMIUM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalPolicies.AMY_POLICY;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,10 +47,10 @@ public class AddressBookParserTest {
     }
     @Test
     public void parseCommand_addPolicy() throws Exception {
-        final String policyName = "Health insurance";
+        final String policyStub = POLICY_NAME_AMY + POLICY_DATE_AMY + POLICY_PREMIUM_AMY + POLICY_FREQUENCY_AMY;
         AddPolicyCommand command = (AddPolicyCommand) parser.parseCommand(
-                AddPolicyCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " " + policyName);
-        assertEquals(new AddPolicyCommand(INDEX_FIRST_CLIENT, policyName), command);
+                AddPolicyCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " " + policyStub);
+        assertEquals(new AddPolicyCommand(INDEX_FIRST_CLIENT, AMY_POLICY), command);
     }
 
     @Test

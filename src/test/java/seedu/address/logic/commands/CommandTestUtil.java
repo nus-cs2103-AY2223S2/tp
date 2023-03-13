@@ -6,6 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_FREQUENCY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_PREMIUM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -38,6 +42,12 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_POLICY_NAME_AMY = "Life Insurance";
     public static final String VALID_POLICY_NAME_BOB = "Health Insurance";
+    public static final String VALID_POLICY_DATE_AMY = "01.01.2020";
+    public static final String VALID_POLICY_DATE_BOB = "03.03.2023";
+    public static final String VALID_POLICY_PREMIUM_AMY = "1000";
+    public static final String VALID_POLICY_PREMIUM_BOB = "2000";
+    public static final String VALID_POLICY_FREQUENCY_AMY = "monthly";
+    public static final String VALID_POLICY_FREQUENCY_BOB = "quarterly";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -48,6 +58,14 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String POLICY_NAME_AMY = " " + PREFIX_POLICY_NAME + VALID_POLICY_NAME_AMY;
+    public static final String POLICY_NAME_BOB = " " + PREFIX_POLICY_NAME + VALID_POLICY_NAME_BOB;
+    public static final String POLICY_DATE_AMY = " " + PREFIX_POLICY_START_DATE + VALID_POLICY_DATE_AMY;
+    public static final String POLICY_DATE_BOB = " " + PREFIX_POLICY_START_DATE + VALID_POLICY_DATE_BOB;
+    public static final String POLICY_PREMIUM_AMY = " " + PREFIX_POLICY_PREMIUM + VALID_POLICY_PREMIUM_AMY;
+    public static final String POLICY_PREMIUM_BOB = " " + PREFIX_POLICY_PREMIUM + VALID_POLICY_PREMIUM_BOB;
+    public static final String POLICY_FREQUENCY_AMY = " " + PREFIX_POLICY_FREQUENCY + VALID_POLICY_FREQUENCY_AMY;
+    public static final String POLICY_FREQUENCY_BOB = " " + PREFIX_POLICY_FREQUENCY + VALID_POLICY_FREQUENCY_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
