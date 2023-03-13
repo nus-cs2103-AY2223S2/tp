@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.commons.core.index.Index;
 import mycelium.mycelium.commons.util.StringUtil;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
@@ -138,18 +139,18 @@ public class ParserUtil {
 
     public static ProjectStatus parseProjectStatus(String projectStatus) throws ParseException {
         requireNonNull(projectStatus);
-        String trimmedProjectStatus = projectStatus.trim();
+       /* String trimmedProjectStatus = projectStatus.trim();
         if (!ProjectStatus.isValidProjectStatus(trimmedProjectStatus)) {
             throw new ParseException(ProjectStatus.MESSAGE_CONSTRAINTS);
-        }
-        return new ProjectStatus(trimmedProjectStatus);
+        }*/
+        return ProjectStatus.NOT_STARTED;
     }
 
-    public static String parseSource(String source) throws ParseException {
+    public static String parseNonEmptyString(String source) throws ParseException {
         requireNonNull(source);
         String trimmedSource = source.trim();
-        if (!Source.isValidSource(trimmedSource)) {
-            throw new ParseException(Source.MESSAGE_CONSTRAINTS);
+        if (source.isEmpty()) {
+            throw new ParseException(Messages.MESSAGE_EMPTY_SOURCE);
         }
         return trimmedSource;
     }
