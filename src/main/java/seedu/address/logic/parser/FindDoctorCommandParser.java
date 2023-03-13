@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YOE;
 
@@ -29,11 +29,11 @@ public class FindDoctorCommandParser implements Parser<FindDoctorCommand> {
     public FindDoctorCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SPECIALITY, PREFIX_YOE,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SPECIALTY, PREFIX_YOE,
                         PREFIX_TAG);
 
         if (!hasAtLeastOnePrefix(argMultimap, PREFIX_NAME, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_SPECIALITY, PREFIX_YOE, PREFIX_TAG)
+                PREFIX_EMAIL, PREFIX_SPECIALTY, PREFIX_YOE, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDoctorCommand.MESSAGE_USAGE));
         }
@@ -41,7 +41,7 @@ public class FindDoctorCommandParser implements Parser<FindDoctorCommand> {
         String name = argMultimap.getValue(PREFIX_NAME).orElse("").trim();
         String phone = argMultimap.getValue(PREFIX_PHONE).orElse("").trim();
         String email = argMultimap.getValue(PREFIX_EMAIL).orElse("").trim();
-        String specialty = argMultimap.getValue(PREFIX_SPECIALITY).orElse("").trim();
+        String specialty = argMultimap.getValue(PREFIX_SPECIALTY).orElse("").trim();
         String yoe = argMultimap.getValue(PREFIX_YOE).orElse("").trim();
         Set<String> tagList = argMultimap.getAllValues(PREFIX_TAG)
                 .stream().map(tag -> tag.toLowerCase().trim()).collect(Collectors.toSet());
