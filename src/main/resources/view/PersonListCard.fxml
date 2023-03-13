@@ -28,6 +28,8 @@
         <Label fx:id="companyName" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <Label fx:id="jobTitle" styleClass="cell_small_label" text="\$jobTitle" />
+      <Label fx:id="phone" styleClass="cell_small_label" visible="false" />
+      <Label fx:id="email" styleClass="cell_small_label" visible="false" />
     </VBox>
   </GridPane>
 </HBox>
