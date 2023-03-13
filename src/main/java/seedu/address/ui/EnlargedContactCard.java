@@ -23,7 +23,7 @@ public class EnlargedContactCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Doctor doctor;
+    public Doctor doctor;
 
     @javafx.fxml.FXML
     private VBox enlargedContactCard;
@@ -41,16 +41,27 @@ public class EnlargedContactCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code EnlargedContactCard} with the given {@code Doctor}
+     * Creates a {@code EnlargedContactCard} with the given {@code Doctor}.
      */
     public EnlargedContactCard(Doctor doctor) {
         super(FXML);
+        updateSelectedDoctor(doctor);
+    }
+
+    /**
+     * Updates the information shown on the {@code EnlargedContactCard}
+     * with that of the given {@code Doctor}.
+     *
+     * @param doctor the given {@code Doctor}
+     */
+    public void updateSelectedDoctor(Doctor doctor) {
         this.doctor = doctor;
         name.setText(doctor.getName().fullName);
         phone.setText(doctor.getPhone().value);
         email.setText(doctor.getEmail().value);
         specialty.setText(doctor.getSpecialty().specialty);
         yearsOfExperience.setText(doctor.getYoe().value);
+        tags.getChildren().clear();
         doctor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

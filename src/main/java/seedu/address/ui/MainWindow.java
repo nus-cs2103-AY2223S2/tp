@@ -117,6 +117,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // TODO: Change EnlargedContactCard to show nothing if doctor list is empty
+        // TODO: Separation of Concerns here does not seem strong
         Doctor initDoctor = new DoctorStub();
         if (!logic.getFilteredDoctorList().isEmpty()) {
             initDoctor = logic.getFilteredDoctorList().get(0);
@@ -124,7 +125,7 @@ public class MainWindow extends UiPart<Stage> {
         enlargedContactCard = new EnlargedContactCard(initDoctor);
         enlargedContactCardPlaceholder.getChildren().add(enlargedContactCard.getRoot());
 
-        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());
+        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList(), enlargedContactCard);
         personListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
