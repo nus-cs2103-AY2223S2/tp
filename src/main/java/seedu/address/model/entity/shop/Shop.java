@@ -8,10 +8,10 @@ import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
 import seedu.address.model.exception.VehicleNotFoundException;
-import seedu.address.model.service.Appointment;
 import seedu.address.model.service.Part;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
+import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.service.exception.PartNotFoundException;
 
 /**
@@ -23,6 +23,9 @@ public abstract class Shop extends Entity {
     private final List<Vehicle> vehicles;
     private final PartMap partMap;
 
+    /**
+     * Constructor for class Shop.
+     */
     public Shop() {
         this.customers = new ArrayList<>();
         this.appointments = new ArrayList<>();

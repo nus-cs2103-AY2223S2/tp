@@ -15,12 +15,11 @@ import java.util.stream.Stream;
  */
 public class StringUtil {
 
+    public static final String NEWLINE = System.lineSeparator();
     private static final List<Character> WS = List.of(' ',
             '\n',
             '\t',
             '\r');
-
-    public static final String NEWLINE = System.lineSeparator();
 
     private StringUtil() {
     }
