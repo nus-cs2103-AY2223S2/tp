@@ -44,6 +44,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
+     * Replaces the contents of the person list with {@code applications}.
+     * {@code applications} must not contain duplicate applications.
+     */
+    public void setApplications(List<InternshipApplication> applications) {
+        this.applications.setApplications(applications);
+    }
+
+    /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
@@ -57,7 +65,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setApplications(newData.getInternshipList());
     }
 
     /// application-level operations
@@ -96,6 +104,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
     }
 
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedApplication}.
+     * {@code target} must exist in the address book.
+     * The application identity of {@code editedApplication}
+     * must not be the same as another existing application in the address book.
+     */
+    public void setApplication(InternshipApplication target, InternshipApplication editedApplication) {
+        requireNonNull(editedApplication);
+
+        applications.setApplication(target, editedApplication);
+    }
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.

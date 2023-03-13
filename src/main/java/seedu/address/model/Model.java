@@ -84,7 +84,13 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
-
+    /**
+     * Replaces the given person {@code target} with {@code editedApplication}.
+     * {@code target} must exist in the address book.
+     * The application identity of {@code editedApplication} must not be the
+     * same as another existing application in the address book.
+     */
+    void setApplication(InternshipApplication target, InternshipApplication editedApplication);
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.

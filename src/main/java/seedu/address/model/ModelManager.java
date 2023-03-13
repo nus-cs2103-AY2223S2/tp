@@ -120,6 +120,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setApplication(InternshipApplication target, InternshipApplication editedApplication) {
+        requireAllNonNull(target, editedApplication);
+
+        addressBook.setApplication(target, editedApplication);
+    }
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 

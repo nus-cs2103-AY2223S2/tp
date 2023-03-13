@@ -81,7 +81,7 @@ public class UniqueApplicationList implements Iterable<InternshipApplication> {
         }
     }
 
-    public void setPersons(UniqueApplicationList replacement) {
+    public void setApplications(UniqueApplicationList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -90,7 +90,7 @@ public class UniqueApplicationList implements Iterable<InternshipApplication> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<InternshipApplication> applications) {
+    public void setApplications(List<InternshipApplication> applications) {
         requireAllNonNull(applications);
         if (!applicationsAreUnique(applications)) {
             throw new DuplicatePersonException();
