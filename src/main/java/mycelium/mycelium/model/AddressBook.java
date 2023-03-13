@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.UniquePersonList;
 import mycelium.mycelium.model.project.Project;
@@ -19,13 +20,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueList<Project> projects;
+    private final UniqueList<Client> clients;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
      * sometimes used to avoid duplication
      * between constructors. See
      * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
      * Note that non-static init blocks are not recommended to use. There are other
      * ways to avoid duplication
      * among constructors.
@@ -33,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         projects = new UniqueList<>();
+        clients = new UniqueList<>();
     }
 
     public AddressBook() {
@@ -55,7 +57,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
-
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setClients(List<Client> clients) {
+        this.clients.setItems(clients);
+    }
     /**
      * Replaces the contents of the project list with {@code projects}.
      * {@code projects} must not contain duplicate projects.
@@ -71,6 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setClients(newData.getClientList());
         setProjects(newData.getProjectList());
     }
 
@@ -127,6 +136,23 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    public boolean hasClient(Client client) {
+        return clients.contains(client);
+    }
+
+    public void removeClient(Client client) {
+        clients.remove(client);
+    }
+
+    public void addClient(Client client) {
+        clients.add(client);
+    }
+
+    @Override
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
+    }
+
     public boolean hasProject(Project project) {
         return projects.contains(project);
     }
@@ -153,11 +179,12 @@ public class AddressBook implements ReadOnlyAddressBook {
             return false;
         }
         AddressBook that = (AddressBook) o;
-        return Objects.equals(persons, that.persons) && Objects.equals(projects, that.projects);
+        return Objects.equals(persons, that.persons) && Objects.equals(projects, that.projects)
+                && Objects.equals(clients, that.clients);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(persons, projects);
+        return Objects.hash(persons, projects, clients);
     }
 }
