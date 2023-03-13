@@ -22,16 +22,23 @@ public class TypicalTasks {
 
     public static final Task ALICE = new SimpleTaskBuilder().withName("Alice Pauline")
             .withDescription("Alice's description")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withEffort(2)
+            .build();
     public static final Task BENSON = new SimpleTaskBuilder().withName("Benson Meier")
             .withDescription("Benson's description")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withEffort(4)
+            .build();
     public static final Task CARL = new SimpleTaskBuilder().withName("Carl Kurz")
             .withDescription("Carl's description")
+            .withEffort(3)
             .build();
     public static final Task DANIEL = new SimpleTaskBuilder().withName("Daniel Meier")
             .withDescription("Daniel's description")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withEffort(6)
+            .build();
     public static final Task ELLE = new SimpleTaskBuilder().withName("Elle Meyer")
             .withDescription("Elle's description")
             .build();

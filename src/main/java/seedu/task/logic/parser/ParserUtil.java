@@ -153,16 +153,13 @@ public class ParserUtil {
     }
 
     public static Effort parseEffort(String effort) throws ParseException {
-        if (Objects.isNull(effort)) {
-            return new Effort();
-        } else {
-            String trimmedEffort = effort.trim();
-            try {
-                long duration = Long.parseLong(trimmedEffort);
-                return new Effort(duration);
-            } catch (NumberFormatException e) {
-                throw new ParseException(Effort.MESSAGE_CONSTRAINTS);
-            }
+        requireNonNull(effort);
+        String trimmedEffort = effort.trim();
+        try {
+            long duration = Long.parseLong(trimmedEffort);
+            return new Effort(duration);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Effort.MESSAGE_CONSTRAINTS);
         }
     }
 

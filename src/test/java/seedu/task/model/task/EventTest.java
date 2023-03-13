@@ -24,7 +24,7 @@ public class EventTest {
     }
 
     @Test
-    public void isSameDeadline() {
+    public void isSameEvent() {
         // same object -> returns true
         assertTrue(MEETING.isSameTask(MEETING));
 
@@ -32,8 +32,12 @@ public class EventTest {
         assertFalse(MEETING.isSameTask(null));
 
         // same name, all other attributes different -> returns true
-        Task editedMeeting = new EventBuilder(MEETING).withDescription("Meeting description 2")
-                .withTags("Reminder2").withFrom("2023-01-01 1900").withTo("2023-01-02 1900").build();
+        Task editedMeeting = new EventBuilder(MEETING)
+                .withDescription("Meeting description 2")
+                .withTags("Reminder2").withFrom("2023-01-01 1900")
+                .withTo("2023-01-02 1900")
+                .withEffort(10)
+                .build();
         assertTrue(MEETING.isSameTask(editedMeeting));
 
         // different name, all other attributes same -> returns false
@@ -48,6 +52,10 @@ public class EventTest {
         String nameWithTrailingSpaces = "Study" + " ";
         editedStudy = new EventBuilder(STUDY).withName(nameWithTrailingSpaces).build();
         assertFalse(STUDY.isSameTask(editedStudy));
+
+        // same name, different effort -> return true
+        editedMeeting = new EventBuilder(MEETING).withEffort(10).build();
+        assertTrue(MEETING.isSameTask(editedMeeting));
     }
 
     @Test
@@ -78,6 +86,10 @@ public class EventTest {
 
         // different tags -> returns false
         editedMeeting = new EventBuilder(MEETING).withTags("Important").build();
+        assertFalse(MEETING.equals(editedMeeting));
+
+        // different effort -> return false
+        editedMeeting = new EventBuilder(MEETING).withEffort(10).build();
         assertFalse(MEETING.equals(editedMeeting));
     }
 

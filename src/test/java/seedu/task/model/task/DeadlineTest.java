@@ -48,6 +48,15 @@ public class DeadlineTest {
         String nameWithTrailingSpaces = "Assignment" + " ";
         editedAssignment = new DeadlineBuilder(ASSIGNMENT).withName(nameWithTrailingSpaces).build();
         assertFalse(ASSIGNMENT.isSameTask(editedAssignment));
+
+        // different effort, all other attributes same -> return true
+        editedAssignment = new DeadlineBuilder(ASSIGNMENT).withEffort(3).build();
+        assertTrue(ASSIGNMENT.isSameTask(editedAssignment));
+
+        // all attributes same, different instance -> return true
+        Task copyAssignment1 = new DeadlineBuilder().build();
+        Task copyAssignment2 = new DeadlineBuilder().build();
+        assertTrue(copyAssignment1.isSameTask(copyAssignment2));
     }
 
     @Test
@@ -79,6 +88,15 @@ public class DeadlineTest {
         // different tags -> returns false
         editedReturn = new DeadlineBuilder(RETURN_BOOK).withTags("Important").build();
         assertFalse(RETURN_BOOK.equals(editedReturn));
+
+        // different effort, all other attributes same -> return false
+        editedReturn = new DeadlineBuilder(ASSIGNMENT).withEffort(3).build();
+        assertTrue(ASSIGNMENT.isSameTask(editedReturn));
+
+        // all attributes same, different instance -> return true
+        Task copyReturn1 = new DeadlineBuilder().build();
+        Task copyReturn2 = new DeadlineBuilder().build();
+        assertTrue(copyReturn1.isSameTask(copyReturn2));
     }
 
     @Test

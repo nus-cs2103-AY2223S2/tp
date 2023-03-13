@@ -2,6 +2,8 @@ package seedu.task.model.task;
 
 import seedu.task.model.task.exceptions.InvalidEffortException;
 
+import java.util.Objects;
+
 /**
  * Represent a Task's required effort in the task book.
  */
@@ -27,5 +29,19 @@ public class Effort {
     @Override
     public String toString() {
         return String.valueOf(this.effort);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Effort)) {
+            return false;
+        }
+
+        Effort otherEffort = (Effort) other;
+        return Objects.equals(otherEffort.effort, this.effort);
     }
 }

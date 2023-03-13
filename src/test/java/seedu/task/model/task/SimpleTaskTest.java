@@ -9,6 +9,7 @@ import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalTasks.ALICE;
 import static seedu.task.testutil.TypicalTasks.BOB;
+import static seedu.task.testutil.TypicalTasks.ELLE;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -81,6 +82,15 @@ public class SimpleTaskTest {
 
         // different tags -> returns false
         editedAlice = new SimpleTaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // same effort -> return true
+        Task editedElle1 = new SimpleTaskBuilder(ELLE).withEffort(5).build();
+        Task editedElle2 = new SimpleTaskBuilder(ELLE).withEffort(5).build();
+        assertTrue(editedElle1.equals(editedElle2));
+
+        // different effort -> return false
+        editedAlice = new SimpleTaskBuilder(ALICE).withEffort(1).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

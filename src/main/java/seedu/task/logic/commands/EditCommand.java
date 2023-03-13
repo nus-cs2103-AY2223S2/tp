@@ -18,7 +18,11 @@ import seedu.task.commons.util.CollectionUtil;
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
 import seedu.task.model.tag.Tag;
-import seedu.task.model.task.*;
+import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
+import seedu.task.model.task.Name;
+import seedu.task.model.task.SimpleTask;
+import seedu.task.model.task.Task;
 
 /**
  * Edits the details of an existing task in the task book.
@@ -129,13 +133,14 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
+            setEffort(toCopy.effort);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, tags);
+            return CollectionUtil.isAnyNonNull(name, description, tags, effort);
         }
 
         public void setName(Name name) {

@@ -17,7 +17,14 @@ import java.util.stream.Stream;
 import seedu.task.logic.commands.AddCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.tag.Tag;
-import seedu.task.model.task.*;
+import seedu.task.model.task.Date;
+import seedu.task.model.task.Deadline;
+import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
+import seedu.task.model.task.Event;
+import seedu.task.model.task.Name;
+import seedu.task.model.task.SimpleTask;
+import seedu.task.model.task.Task;
 
 
 /**
@@ -43,7 +50,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Effort effort = ParserUtil.parseEffort(argMultimap.getValue(PREFIX_EFFORT).get());
+
+        Effort effort = new Effort();
+        if (arePrefixesPresent(argMultimap, PREFIX_EFFORT)) {
+            effort = ParserUtil.parseEffort(argMultimap.getValue(PREFIX_EFFORT).get());
+        }
 
         List<Task> taskList;
         // auto-convert to deadline if deadline prefix exists.

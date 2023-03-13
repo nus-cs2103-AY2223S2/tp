@@ -84,7 +84,8 @@ public abstract class Task implements Comparable<Task> {
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getDescription().equals(getDescription())
-                && otherTask.getTags().equals(getTags());
+                && otherTask.getTags().equals(getTags())
+                && otherTask.getEffort().equals(getEffort());
     }
 
     @Override

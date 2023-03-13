@@ -71,6 +71,7 @@ public class SimpleTaskBuilder {
         this.effort = new Effort(e);
         return this;
     }
+
     public Task build() {
         return new SimpleTask(name, description, tags, effort);
     }
