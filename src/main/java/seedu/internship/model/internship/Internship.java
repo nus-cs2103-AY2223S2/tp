@@ -9,6 +9,10 @@ import java.util.Set;
 
 import seedu.internship.model.tag.Tag;
 
+/**
+ * Represents an Internship in the internship catalogue.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Internship {
 
     private final Position position;

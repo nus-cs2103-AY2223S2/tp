@@ -1,5 +1,10 @@
 package seedu.internship.ui;
 
+import static java.util.Objects.isNull;
+
+import java.util.Comparator;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -8,12 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import seedu.internship.commons.core.LogsCenter;
 import seedu.internship.model.internship.Internship;
-
-import java.util.Comparator;
-import java.util.logging.Logger;
-
-import static java.util.Objects.isNull;
-import static java.util.Objects.requireNonNull;
 
 /**
  * A panel to display detailed information about an internship.
@@ -56,6 +55,9 @@ public class InternshipInfoPanel extends UiPart<Region> {
 
     }
 
+    /**
+     * Updates the {@code InternshipInfoPanel} displaying all information of an Internship.
+     */
     public void updateInfoPanel(Internship internship) {
         if (!isNull(internship)) {
             position.setText(internship.getPosition().positionName);

@@ -1,11 +1,11 @@
 package seedu.internship.model;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.internship.commons.core.GuiSettings;
 import seedu.internship.model.internship.Internship;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given internship {@code target} with {@code editedInternship}.
      * {@code target} must exist in the internship.
-     * The internship content of {@code editedInternship} must not be the same as another existing internship in the internship catalogue.
+     * The internship content of {@code editedInternship} must not be the same as another existing internship in the
+     * internship catalogue.
      */
     void setInternship(Internship target, Internship editedInternship);
 

@@ -90,7 +90,7 @@
 #internshipList {
     -fx-border-width: 0 1 0 0;
     -fx-border-color: rgb(188, 188, 188);
-    
+
 }
 
 .list-view {
@@ -410,7 +410,7 @@
     -fx-padding: 0 10 0 10;
     /* -fx-border-width: 0 0 1 0;
     -fx-border-color: black; */
-    
+
 }
 
 .info-panel-h2 {

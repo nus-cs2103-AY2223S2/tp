@@ -1,15 +1,18 @@
 package seedu.internship.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
 import seedu.internship.model.internship.Internship;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * View the details selected internship in the internship catalogue.
+ */
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
@@ -37,7 +40,8 @@ public class ViewCommand extends Command {
         }
 
         Internship internshipToView = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView.getPosition(), internshipToView.getCompany()), internshipToView);
+        return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView.getPosition(),
+                internshipToView.getCompany()), internshipToView);
     }
 
     @Override

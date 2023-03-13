@@ -57,7 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        InternshipCatalogueStorage internshipCatalogueStorage = new JsonInternshipCatalogueStorage(userPrefs.getInternshipCatalogueFilePath());
+        InternshipCatalogueStorage internshipCatalogueStorage = new JsonInternshipCatalogueStorage(
+                userPrefs.getInternshipCatalogueFilePath());
         storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage);
 
         initLogging(config);
@@ -70,9 +71,10 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s internship catalogue and {@code userPrefs}. <br>
-     * The data from the sample internship catalogue will be used instead if {@code storage}'s internship catalogue is not found,
-     * or an empty internship catalogue will be used instead if errors occur when reading {@code storage}'s internship catalogue.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s internship catalogue and {@code userPrefs}.
+     * The data from the sample internship catalogue will be used instead if {@code storage}'s internship catalogue is
+     * not found, or an empty internship catalogue will be used instead if errors occur when reading {@code storage}'s
+     * internship catalogue.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyInternshipCatalogue> internshipCatalogueOptional;
@@ -183,4 +185,3 @@ public class MainApp extends Application {
         }
     }
 }
-

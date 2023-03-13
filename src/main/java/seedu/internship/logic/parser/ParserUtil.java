@@ -90,9 +90,9 @@ public class ParserUtil {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         // No need ot check valid descripiton , as anything an be in description
-//        if (!Description.isValidDescription(trimmedDescription)) {
-//            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
-//        }
+        // if (!Description.isValidDescription(trimmedDescription)) {
+        //   throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        // }
         return new Description(trimmedDescription);
     }
 

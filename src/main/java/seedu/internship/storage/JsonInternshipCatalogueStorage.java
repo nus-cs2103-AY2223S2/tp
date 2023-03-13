@@ -68,7 +68,8 @@ public class JsonInternshipCatalogueStorage implements InternshipCatalogueStorag
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue, Path filePath) throws IOException {
+    public void saveInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue, Path filePath)
+            throws IOException {
         requireNonNull(internshipCatalogue);
         requireNonNull(filePath);
 

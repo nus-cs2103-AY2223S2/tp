@@ -59,7 +59,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyInternshipCatalogue> readInternshipCatalogue(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyInternshipCatalogue> readInternshipCatalogue(Path filePath) throws DataConversionException,
+            IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return internshipCatalogueStorage.readInternshipCatalogue(filePath);
     }
@@ -70,7 +71,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue, Path filePath) throws IOException {
+    public void saveInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue, Path filePath) throws
+            IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         internshipCatalogueStorage.saveInternshipCatalogue(internshipCatalogue, filePath);
     }

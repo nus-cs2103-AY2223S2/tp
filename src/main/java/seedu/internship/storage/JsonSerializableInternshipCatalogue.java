@@ -37,7 +37,8 @@ public class JsonSerializableInternshipCatalogue {
      * @param source future changes to this will not affect the created {@code JsonSerializableInternshipCatalogue}.
      */
     public JsonSerializableInternshipCatalogue(ReadOnlyInternshipCatalogue source) {
-        internships.addAll(source.getInternshipList().stream().map(JsonAdaptedInternship::new).collect(Collectors.toList()));
+        internships.addAll(source.getInternshipList().stream().map(JsonAdaptedInternship::new)
+                .collect(Collectors.toList()));
     }
 
     /**

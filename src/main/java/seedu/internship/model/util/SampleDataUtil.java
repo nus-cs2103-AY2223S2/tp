@@ -19,22 +19,22 @@ import seedu.internship.model.tag.Tag;
 public class SampleDataUtil {
     public static Internship[] getSampleInternships() {
         return new Internship[] {
-                new Internship(new Position("Machine Learning"), new Company("Tiktok"),
+            new Internship(new Position("Machine Learning"), new Company("Tiktok"),
                         new Status(0), new Description("This is a dummy internship"),
                         getTagSet("important")),
-                new Internship(new Position("Software Engineer"), new Company("Grab"),
+            new Internship(new Position("Software Engineer"), new Company("Grab"),
                         new Status(1), new Description("This is a dummy internship"),
                         getTagSet("fun")),
-                new Internship(new Position("Data Analytics"), new Company("Google"),
+            new Internship(new Position("Data Analytics"), new Company("Google"),
                         new Status(2), new Description("This is a dummy internship"),
                         getTagSet("important")),
-                new Internship(new Position("Machine Learning"), new Company("GovTech"),
+            new Internship(new Position("Machine Learning"), new Company("GovTech"),
                         new Status(3), new Description("This is a dummy internship"),
                         getTagSet("important")),
-                new Internship(new Position("Software Engineer"), new Company("GovTech"),
+            new Internship(new Position("Software Engineer"), new Company("GovTech"),
                         new Status(3), new Description("This is a dummy internship"),
                         getTagSet("interesting")),
-                new Internship(new Position("Software Testing"), new Company("Razor"),
+            new Internship(new Position("Software Testing"), new Company("Razor"),
                         new Status(0), new Description("This is a dummy internship"),
                         getTagSet("fun")),
         };

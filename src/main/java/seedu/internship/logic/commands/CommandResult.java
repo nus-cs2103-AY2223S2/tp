@@ -1,10 +1,10 @@
 package seedu.internship.logic.commands;
 
-import seedu.internship.model.internship.Internship;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import seedu.internship.model.internship.Internship;
 
 /**
  * Represents the result of a command execution.

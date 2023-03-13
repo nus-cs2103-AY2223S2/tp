@@ -73,7 +73,8 @@ public class JsonAdaptedInternship {
         }
 
         if (positionName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Position.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Position.class.getSimpleName()));
         }
         if (!Position.isValidPosition(positionName)) {
             throw new IllegalValueException(Position.MESSAGE_CONSTRAINTS);
@@ -97,7 +98,8 @@ public class JsonAdaptedInternship {
         final Status modelStatusId = new Status(Integer.valueOf(statusId));
 
         if (messageDescription == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(messageDescription)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);

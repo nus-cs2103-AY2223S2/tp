@@ -28,7 +28,8 @@ public interface InternshipCatalogueStorage {
     /**
      * @see #getInternshipCatalogueFilePath()
      */
-    Optional<ReadOnlyInternshipCatalogue> readInternshipCatalogue(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyInternshipCatalogue> readInternshipCatalogue(Path filePath) throws DataConversionException,
+            IOException;
 
     /**
      * Saves the given {@link ReadOnlyInternshipCatalogue} to the storage.
