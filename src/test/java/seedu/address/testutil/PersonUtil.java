@@ -4,7 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 
 import java.util.Set;
 
@@ -35,7 +35,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getSkills().stream().forEach(
-            s -> sb.append(PREFIX_SKILL + s.skillName + " ")
+            s -> sb.append(PREFIX_SKILL_ADD + s.skillName + " ")
         );
         return sb.toString();
     }
@@ -52,9 +52,9 @@ public class PersonUtil {
         if (descriptor.getSkills().isPresent()) {
             Set<Skill> skills = descriptor.getSkills().get();
             if (skills.isEmpty()) {
-                sb.append(PREFIX_SKILL);
+                sb.append(PREFIX_SKILL_ADD);
             } else {
-                skills.forEach(s -> sb.append(PREFIX_SKILL).append(s.skillName).append(" "));
+                skills.forEach(s -> sb.append(PREFIX_SKILL_ADD).append(s.skillName).append(" "));
             }
         }
         return sb.toString();

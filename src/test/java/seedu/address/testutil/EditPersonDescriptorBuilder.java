@@ -36,7 +36,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-        descriptor.setSkills(person.getSkills());
+        descriptor.addSkills(person.getSkills());
     }
 
     /**
@@ -77,7 +77,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withSkills(String... skills) {
         Set<Skill> skillSet = Stream.of(skills).map(Skill::new).collect(Collectors.toSet());
-        descriptor.setSkills(skillSet);
+        descriptor.addSkills(skillSet);
         return this;
     }
 
