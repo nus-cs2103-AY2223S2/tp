@@ -14,7 +14,6 @@ import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Description;
-import seedu.internship.model.internship.Id;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
@@ -44,9 +43,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Id id = new Id("0");
-        // pass id as 0 for now
-        Internship internship = new Internship(position, company, id, status, description, tagList);
+
+        Internship internship = new Internship(position, company, status, description, tagList);
 
         return new AddCommand(internship);
     }

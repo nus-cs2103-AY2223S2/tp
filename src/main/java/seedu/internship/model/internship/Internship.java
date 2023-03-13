@@ -13,7 +13,6 @@ public class Internship {
 
     private final Position position;
     private final Company company;
-    private final Id id;
     private final Status status;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
@@ -21,11 +20,10 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Position position, Company company, Id id, Status status, Description description, Set<Tag> tags) {
-        requireAllNonNull(position, company, id, status, description, tags);
+    public Internship(Position position, Company company, Status status, Description description, Set<Tag> tags) {
+        requireAllNonNull(position, company, status, description, tags);
         this.position = position;
         this.company = company;
-        this.id = id;
         this.status = status;
         this.description = description;
         this.tags.addAll(tags);
@@ -37,10 +35,6 @@ public class Internship {
 
     public Company getCompany() {
         return company;
-    }
-
-    public Id getId() {
-        return id;
     }
 
     public Status getStatus() {
@@ -90,7 +84,6 @@ public class Internship {
         Internship otherInternship = (Internship) other;
         return otherInternship.getPosition().equals(getPosition())
                 && otherInternship.getCompany().equals(getCompany())
-                && otherInternship.getId().equals(getId())
                 && otherInternship.getStatus().equals(getStatus())
                 && otherInternship.getDescription().equals(getDescription())
                 && otherInternship.getTags().equals(getTags());
@@ -99,7 +92,7 @@ public class Internship {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(position, company, id, status, description, tags);
+        return Objects.hash(position, company, status, description, tags);
     }
 
     @Override
@@ -108,8 +101,6 @@ public class Internship {
         builder.append(getPosition())
                 .append("; Company: ")
                 .append(getCompany())
-                .append("; Id: ")
-                .append(getId())
                 .append("; Status: ")
                 .append(getStatus())
                 .append("; Description")

@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.internship.commons.exceptions.IllegalValueException;
 import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Description;
-import seedu.internship.model.internship.Id;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
@@ -106,7 +105,7 @@ public class JsonAdaptedInternship {
         final Description modelMessageDescription = new Description(messageDescription);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelPositionName, modelCompanyName, new Id("1"), modelStatusId, modelMessageDescription, modelTags);
+        return new Internship(modelPositionName, modelCompanyName, modelStatusId, modelMessageDescription, modelTags);
     }
 
 }

@@ -8,7 +8,6 @@ import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
 import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Description;
-import seedu.internship.model.internship.Id;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
@@ -21,22 +20,22 @@ public class SampleDataUtil {
     public static Internship[] getSampleInternships() {
         return new Internship[] {
                 new Internship(new Position("Machine Learning"), new Company("Tiktok"),
-                        new Id("10"), new Status(0), new Description("This is a dummy internship"),
+                        new Status(0), new Description("This is a dummy internship"),
                         getTagSet("important")),
                 new Internship(new Position("Software Engineer"), new Company("Grab"),
-                        new Id("11"), new Status(1), new Description("This is a dummy internship"),
+                        new Status(1), new Description("This is a dummy internship"),
                         getTagSet("fun")),
                 new Internship(new Position("Data Analytics"), new Company("Google"),
-                        new Id("12"), new Status(2), new Description("This is a dummy internship"),
+                        new Status(2), new Description("This is a dummy internship"),
                         getTagSet("important")),
                 new Internship(new Position("Machine Learning"), new Company("GovTech"),
-                        new Id("13"), new Status(3), new Description("This is a dummy internship"),
+                        new Status(3), new Description("This is a dummy internship"),
                         getTagSet("important")),
                 new Internship(new Position("Software Engineer"), new Company("GovTech"),
-                        new Id("14"), new Status(3), new Description("This is a dummy internship"),
+                        new Status(3), new Description("This is a dummy internship"),
                         getTagSet("interesting")),
                 new Internship(new Position("Software Testing"), new Company("Razor"),
-                        new Id("15"), new Status(0), new Description("This is a dummy internship"),
+                        new Status(0), new Description("This is a dummy internship"),
                         getTagSet("fun")),
         };
     }
