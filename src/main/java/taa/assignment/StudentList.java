@@ -2,6 +2,8 @@ package taa.assignment;
 
 import java.util.ArrayList;
 
+import taa.model.student.Student;
+
 /**
  * Student list
  */
@@ -9,12 +11,12 @@ public class StudentList {
     private ArrayList<Student> students = new ArrayList<>();
 
     /**
-     * Fake data.
+     * Creates a new StudentList instance.
+     *
+     * @param students An ArrayList of students to be added.
      */
-    public StudentList() { // fake data
-        for (int i = 0; i < 10; i++) {
-            students.add(new Student(i));
-        }
+    public StudentList(ArrayList<Student> students) {
+        this.students = students;
     }
 
     public ArrayList<Student> getStudents() {
