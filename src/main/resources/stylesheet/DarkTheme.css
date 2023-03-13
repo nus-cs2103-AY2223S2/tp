@@ -104,11 +104,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #758E9B;
+    -fx-background-color: derive(#758E9B, 20%)
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #758E9B;
+    -fx-background-color: derive(#758E9B, 40%)
 }
 
 .list-cell:filled:selected {
@@ -381,6 +381,17 @@
 
 #resultDisplay .content {
     -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 25%);
+    -fx-background-radius: 0;
+}
+
+#drugList {
+    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
+}
+#patientList {
+    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
+}
+#detailDisplay {
+    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
     -fx-background-radius: 0;
 }
 
