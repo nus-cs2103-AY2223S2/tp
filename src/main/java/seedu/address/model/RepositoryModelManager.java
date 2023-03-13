@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.LogsCenter;
@@ -17,6 +18,7 @@ public class RepositoryModelManager<T extends Relationship<T>> {
     private static final Logger logger = LogsCenter.getLogger(RepositoryModelManager.class);
     private final Repository<T> repo;
     private final FilteredList<T> itemFilteredList;
+    private final ObservableList<T> internalUnmodifiableList;
 
     /**
      * Initializes an empty RepositoryModelManager
@@ -25,7 +27,8 @@ public class RepositoryModelManager<T extends Relationship<T>> {
 
         logger.fine("Initializing with repo: ");
         this.repo = Repository.of(new Repository<T>());
-        itemFilteredList = new FilteredList<>(this.repo.getReadOnlyRepository());
+        this.itemFilteredList = new FilteredList<>(this.repo.getReadOnlyRepository());
+        this.internalUnmodifiableList = FXCollections.unmodifiableObservableList(itemFilteredList);
     }
 
     /**
@@ -38,6 +41,8 @@ public class RepositoryModelManager<T extends Relationship<T>> {
 
         this.repo = Repository.of(repo);
         itemFilteredList = new FilteredList<>(this.repo.getReadOnlyRepository());
+        this.internalUnmodifiableList = FXCollections.unmodifiableObservableList(itemFilteredList);
+
     }
 
     public void setRepository(Repository<T> repo) {
@@ -87,14 +92,13 @@ public class RepositoryModelManager<T extends Relationship<T>> {
 
     //=========== Filtered Person List Accessors =============================================================
 
+    public ObservableList<T> getObservableList() {
+        return internalUnmodifiableList;
+    }
+
     public ObservableList<T> getFilteredItemList() {
         return itemFilteredList;
     }
-
-    public void printList() {
-        itemFilteredList.stream().map(x -> x.toString()).forEach(System.out::println);
-    }
-
 
     public FilteredList<T> getFilteredItemList(Predicate<T> predicate) {
         updateFilteredItemList(predicate);

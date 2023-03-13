@@ -48,6 +48,7 @@ public class ReviewCommand extends Command {
         requireAllNonNull(model, officeConnectModel);
 
         List<Person> personList = model.getFilteredPersonList();
+
         if (personIndex.getZeroBased() >= personList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
@@ -56,19 +57,30 @@ public class ReviewCommand extends Command {
         Id pId = person.getId();
         Name name = person.getName();
 
-        RepositoryModelManager<PersonTask> personTaskModelManager = officeConnectModel.getPersonTaskModelManager();
-        ObservableList<PersonTask> assignedTaskList = personTaskModelManager
-                .getFilteredItemList()
-                .filtered(persontask -> persontask.getPersonId().equals(pId));
+        ObservableList<PersonTask> assignedTaskList = getAssignedTaskList(officeConnectModel, pId);
 
-        RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
-        taskModelManager.updateFilteredItemList(task -> assignedTaskList.stream()
-                .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
+        displayAssignedTaskAndPerson(model, officeConnectModel, assignedTaskList);
 
         if(assignedTaskList.isEmpty()) {
             return new CommandResult(String.format(MESSAGE_NO_TASK_ASSIGNED, name));
         } else {
             return new CommandResult(String.format(MESSAGE_TASK_ASSIGNED, name));
         }
+    }
+
+    private static void displayAssignedTaskAndPerson(Model model, OfficeConnectModel officeConnectModel, ObservableList<PersonTask> assignedTaskList) {
+        RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
+        model.updateFilteredPersonList(assignedPerson -> assignedTaskList.stream()
+                .anyMatch(personTask -> personTask.getPersonId().equals(assignedPerson.getId())));
+        taskModelManager.updateFilteredItemList(task -> assignedTaskList.stream()
+                .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
+    }
+
+    private static ObservableList<PersonTask> getAssignedTaskList(OfficeConnectModel officeConnectModel, Id pId) {
+        RepositoryModelManager<PersonTask> personTaskModelManager = officeConnectModel.getPersonTaskModelManager();
+        ObservableList<PersonTask> assignedTaskList = personTaskModelManager
+                .getFilteredItemList()
+                .filtered(persontask -> persontask.getPersonId().equals(pId));
+        return assignedTaskList;
     }
 }

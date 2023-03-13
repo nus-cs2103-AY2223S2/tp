@@ -48,6 +48,9 @@ public class AddressBookParser {
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
 
+        case ReviewTaskCommand.COMMAND_WORD:
+            return new ReviewTaskCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
@@ -62,6 +65,9 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case ListAllCommand.COMMAND_WORD:
+            return new ListAllCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
