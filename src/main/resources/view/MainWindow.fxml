@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root height="650.0" minHeight="650.0" minWidth="850.0" onCloseRequest="#handleExit" title="Vaccination Management System" type="javafx.stage.Stage" width="850.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root height="650.0" minHeight="650.0" minWidth="860.0" onCloseRequest="#handleExit" title="Vaccination Management System" type="javafx.stage.Stage" width="860.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/vms_icon_32.png" />
   </icons>
@@ -42,11 +42,11 @@
                <padding>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </padding></VBox>
-            <HBox spacing="5.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="TOP_CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
 
-              <VBox minWidth="340" prefWidth="340" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
-                <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+              <VBox maxWidth="-Infinity" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
+                <StackPane fx:id="patientListPanelPlaceholder" prefWidth="410.0" VBox.vgrow="ALWAYS" />
               </VBox>
                   <VBox maxWidth="-Infinity" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="NEVER">
                      <children>

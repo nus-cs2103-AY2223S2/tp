@@ -122,8 +122,19 @@
   -fx-text-fill: rgb(224, 152, 19);
 }
 
+.card-id-holder {
+  -fx-background-color: rgb(224, 152, 19);
+  -fx-background-radius: 2;
+}
+
+.label.card-sub-title {
+  -fx-font-weight: bold;
+  -fx-font-size: 11;
+}
+
 .label.card-attribute-label {
     -fx-font-size: 11;
+    -fx-text-fill: #707070;
 }
 
 /* ===== Tag related styles ================================================ */
