@@ -1,11 +1,11 @@
 {
   "persons": [ {
-    "name": "Valid Person",
-    "address": "4th street",
+    "question": "Valid Person",
+    "answer": "4th street",
     "deck" : "Default"
   }, {
-    "name": "Person With Invalid Phone Field",
-    "address": "4th street",
+    "question": "Person With Invalid Phone Field",
+    "answer": "4th street",
     "deck" : "Default"
   } ]
 }

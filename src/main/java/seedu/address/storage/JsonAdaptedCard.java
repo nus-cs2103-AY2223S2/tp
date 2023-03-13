@@ -19,23 +19,23 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Card}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedCard {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Card's %s field is missing!";
 
-    private final String name;
-    private final String address;
+    private final String question;
+    private final String answer;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String deck;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given card details.
+     * Constructs a {@code JsonAdaptedCard} with the given card details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("deck") String deck) {
-        this.name = name;
-        this.address = address;
+    public JsonAdaptedCard(@JsonProperty("question") String question, @JsonProperty("answer") String address,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("deck") String deck) {
+        this.question = question;
+        this.answer = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -45,9 +45,9 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Card} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Card source) {
-        name = source.getQuestion().question;
-        address = source.getAddress().answer;
+    public JsonAdaptedCard(Card source) {
+        question = source.getQuestion().question;
+        answer = source.getAddress().answer;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -65,23 +65,23 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        if (name == null) {
+        if (question == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName())
             );
         }
-        if (!Question.isValidQuestion(name)) {
+        if (!Question.isValidQuestion(question)) {
             throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
         }
-        final Question modelQuestion = new Question(name);
+        final Question modelQuestion = new Question(question);
 
-        if (address == null) {
+        if (answer == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName()));
         }
-        if (!Answer.isValidAnswer(address)) {
+        if (!Answer.isValidAnswer(answer)) {
             throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
         }
-        final Answer modelAnswer = new Answer(address);
+        final Answer modelAnswer = new Answer(answer);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Deck modelDeck = new Deck(deck);
