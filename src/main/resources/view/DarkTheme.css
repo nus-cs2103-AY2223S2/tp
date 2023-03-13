@@ -180,10 +180,6 @@
     -fx-background-color: #424d5f;
 }
 
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-}
-
 .list-cell .label {
     -fx-text-fill: white;
 }
