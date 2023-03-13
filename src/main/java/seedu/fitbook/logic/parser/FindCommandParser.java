@@ -1,7 +1,6 @@
 package seedu.fitbook.logic.parser;
 
 import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.fitbook.commons.core.Messages.MESSAGE_NO_ARGS;
 
 import java.util.Arrays;
 
