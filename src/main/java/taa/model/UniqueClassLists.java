@@ -9,21 +9,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import taa.commons.util.CollectionUtil;
 import taa.model.student.Student;
-import taa.model.student.UniqueStudentList;
 import taa.model.student.exceptions.DuplicateStudentException;
 import taa.model.student.exceptions.StudentNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A student is considered unique by comparing using {@code Student#isSamePerson(Student)}.
- * As such, adding and updating of persons uses Student#isSamePerson(Student) for equality
- * so as to ensure that the student being added or updated is unique in terms of identity
- * in the UniqueStudentList. However, the removal of a student uses Student#equals(Object) so
- * as to ensure that the student with exactly the same fields will be removed.
- *
- * Supports a minimal set of list operations.
- *
- * @see Student#isSameStudent(Student)
+ * Represents a list of classes under the same tutor.
  */
 public class UniqueClassLists implements Iterable<ClassList> {
 
@@ -52,6 +42,17 @@ public class UniqueClassLists implements Iterable<ClassList> {
     }
 
     /**
+     * Removes the equivalent student from the list.
+     * The student must exist in the list.
+     */
+    public void remove(Student toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new StudentNotFoundException();
+        }
+    }
+
+    /**
      * Replaces the student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the list.
      * The student identity of {@code editedStudent} must not be the same as another existing student in the list.
@@ -72,16 +73,9 @@ public class UniqueClassLists implements Iterable<ClassList> {
     }
 
     /**
-     * Removes the equivalent student from the list.
-     * The student must exist in the list.
+     * Replaces the contents of this list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void remove(Student toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new StudentNotFoundException();
-        }
-    }
-
     public void setClassLists(taa.model.UniqueClassLists replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -98,6 +92,20 @@ public class UniqueClassLists implements Iterable<ClassList> {
         }
 
         internalList.setAll(classLists);
+    }
+
+    /**
+     * Returns true if {@code students} contains only unique students.
+     */
+    private boolean classListsAreUnqiue(List<ClassList> classLists) {
+        for (int i = 0; i < classLists.size() - 1; i++) {
+            for (int j = i + 1; j < classLists.size(); j++) {
+                if (classLists.get(i).isSameClassList(classLists.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -122,20 +130,6 @@ public class UniqueClassLists implements Iterable<ClassList> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code students} contains only unique students.
-     */
-    private boolean classListsAreUnqiue(List<ClassList> classLists) {
-        for (int i = 0; i < classLists.size() - 1; i++) {
-            for (int j = i + 1; j < classLists.size(); j++) {
-                if (classLists.get(i).isSameClassList(classLists.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
 }
