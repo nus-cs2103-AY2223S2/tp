@@ -24,7 +24,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_MOD = "CS!!0!S";
     private static final String INVALID_SKILL = "Àpython";
-
+    private static final String invalidMod = "CS1010";
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
@@ -32,8 +32,8 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedSkill> VALID_SKILLS = BENSON.getSkills().stream()
             .map(JsonAdaptedSkill::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedMods> VALID_MODS = BENSON.getMods().stream()
-            .map(JsonAdaptedMods::new)
+    private static final List<JsonAdaptedModule> VALID_MODS = BENSON.getModules().stream()
+            .map(JsonAdaptedModule::new)
             .collect(Collectors.toList());
 
     @Test
@@ -98,8 +98,8 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidSkills_throwsIllegalValueException() {
         List<JsonAdaptedSkill> invalidSkills = new ArrayList<>(VALID_SKILLS);
         invalidSkills.add(new JsonAdaptedSkill(INVALID_SKILL));
-        List<JsonAdaptedMods> invalidMods = new ArrayList<>(VALID_MODS);
-        invalidMods.add(new JsonAdaptedMods(INVALID_MOD));
+        List<JsonAdaptedModule> invalidMods = new ArrayList<>(VALID_MODS);
+        invalidMods.add(new JsonAdaptedModule(INVALID_MOD));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         invalidSkills, invalidMods);

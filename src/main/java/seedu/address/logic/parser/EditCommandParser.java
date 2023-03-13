@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -15,6 +16,7 @@ import java.util.Set;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Module;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -30,7 +32,15 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SKILL);
+                ArgumentTokenizer.tokenize(
+                        args,
+                        PREFIX_NAME,
+                        PREFIX_PHONE,
+                        PREFIX_EMAIL,
+                        PREFIX_ADDRESS,
+                        PREFIX_SKILL,
+                        PREFIX_MODULE
+                );
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -46,6 +56,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL)).ifPresent(editPersonDescriptor::setSkills);
+        parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(editPersonDescriptor::setModules);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -68,5 +79,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> skillSet = skills.size() == 1 && skills.contains("") ? Collections.emptySet() : skills;
         return Optional.of(ParserUtil.parseSkills(skillSet));
     }
+    private Optional<Set<Module>> parseModulesForEdit(Collection<String> modules) throws ParseException {
+        assert modules != null;
 
+        if (modules.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> moduleList = modules.size() == 1 && modules.contains("") ? Collections.emptySet() : modules;
+        return Optional.of(ParserUtil.parseModules(moduleList));
+    }
 }
