@@ -29,7 +29,7 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
 import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.model.employee.exceptions.DuplicatePersonException;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.PersonBuilder;
 
@@ -65,7 +65,7 @@ public class SudoHrTest {
         List<Department> newDepartments = Arrays.asList();
         SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
 
-        assertThrows(DuplicatePersonException.class, () -> sudoHr.resetData(newData));
+        assertThrows(DuplicateEmployeeException.class, () -> sudoHr.resetData(newData));
     }
 
     @Test

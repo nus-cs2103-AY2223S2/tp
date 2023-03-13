@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.UniqueEmployeeList;
-import seedu.sudohr.model.employee.exceptions.DuplicatePersonException;
-import seedu.sudohr.model.employee.exceptions.PersonNotFoundException;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
+import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.sudohr.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -57,7 +57,7 @@ public class UniquePersonListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+        assertThrows(DuplicateEmployeeException.class, () -> uniquePersonList.add(ALICE));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setEmployee(ALICE, ALICE));
+        assertThrows(EmployeeNotFoundException.class, () -> uniquePersonList.setEmployee(ALICE, ALICE));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setEmployee(ALICE, BOB));
+        assertThrows(DuplicateEmployeeException.class, () -> uniquePersonList.setEmployee(ALICE, BOB));
     }
 
     @Test
@@ -118,7 +118,7 @@ public class UniquePersonListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+        assertThrows(EmployeeNotFoundException.class, () -> uniquePersonList.remove(ALICE));
     }
 
     @Test
@@ -161,7 +161,7 @@ public class UniquePersonListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Employee> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setEmployees(listWithDuplicatePersons));
+        assertThrows(DuplicateEmployeeException.class, () -> uniquePersonList.setEmployees(listWithDuplicatePersons));
     }
 
     @Test
