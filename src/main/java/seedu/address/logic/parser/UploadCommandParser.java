@@ -13,6 +13,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class UploadCommandParser implements Parser<UploadCommand> {
 
+    public static final String DESTINATION_FILEPATH = "./data";
+
     /**
      * Parses the given {@code String} of arguments in the context of the UploadCommand
      * and returns an UploadCommand object for execution.
@@ -24,7 +26,7 @@ public class UploadCommandParser implements Parser<UploadCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UploadCommand.MESSAGE_USAGE));
         }
 
-        Path path = Paths.get(trimmedArgs);
-        return new UploadCommand(path);
+        Path sourcePath = Paths.get(trimmedArgs);
+        return new UploadCommand(sourcePath, Paths.get(DESTINATION_FILEPATH));
     }
 }
