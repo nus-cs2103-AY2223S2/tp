@@ -22,6 +22,11 @@ public class MarkAttendanceCommand extends Command {
     private final Index index;
     private final int week;
 
+    /**
+     * Constructor for MarkAttendanceCommand
+     * @param index index of student to update
+     * @param week week to update
+     */
     public MarkAttendanceCommand(Index index, int week) {
         this.index = index;
         this.week = week;
