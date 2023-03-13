@@ -12,10 +12,16 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
+    public static final String SHOWING_HELP_MESSAGE = "New here? "
+            + "Type 'help' into the command for more instructions.";
+
+    public static final String HELP_CATEGORIES = "Help categories available: \n"
+            + "help tutorial\n"
+            + "help lab\n"
+            + "help consultation";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        return new CommandResult(HELP_CATEGORIES);
     }
 }
