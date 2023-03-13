@@ -3,11 +3,7 @@ package seedu.loyaltylift.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.loyaltylift.model.customer.Address;
-import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.model.customer.Email;
-import seedu.loyaltylift.model.customer.Name;
-import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.customer.*;
 import seedu.loyaltylift.model.tag.Tag;
 import seedu.loyaltylift.model.util.SampleDataUtil;
 
@@ -20,12 +16,14 @@ public class CustomerBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final Integer DEFAULT_POINTS = 0;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Points points;
 
     /**
      * Creates a {@code CustomerBuilder} with the default details.
@@ -36,6 +34,7 @@ public class CustomerBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        points = new Points(DEFAULT_POINTS);
     }
 
     /**
@@ -47,6 +46,7 @@ public class CustomerBuilder {
         email = customerToCopy.getEmail();
         address = customerToCopy.getAddress();
         tags = new HashSet<>(customerToCopy.getTags());
+        points = customerToCopy.getPoints();
     }
 
     /**
@@ -86,6 +86,14 @@ public class CustomerBuilder {
      */
     public CustomerBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Points} of the {@code Customer} that we are building.
+     */
+    public CustomerBuilder withPoints(Integer points) {
+        this.points = new Points(points);
         return this;
     }
 
