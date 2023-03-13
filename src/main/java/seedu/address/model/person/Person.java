@@ -21,6 +21,9 @@ public class Person {
     private final Email email;
     private final TelegramHandle telegramHandle;
 
+    // Indexing fields
+    private final ContactIndex contactIndex;
+
     // Data fields
     private final Address address;
     private final GroupTagSet groupTags = new GroupTagSet();
@@ -30,13 +33,14 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, TelegramHandle telegramHandle,
-                  Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
-        requireAllNonNull(name, phone, email, address, telegramHandle, groupTags, moduleTags);
+                  ContactIndex contactIndex, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
+        requireAllNonNull(name, phone, email, address, telegramHandle, contactIndex, groupTags, moduleTags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.telegramHandle = telegramHandle;
+        this.contactIndex = contactIndex;
         this.groupTags.addAll(groupTags);
         this.moduleTags.addAll(moduleTags);
     }
@@ -59,6 +63,10 @@ public class Person {
 
     public TelegramHandle getTelegramHandle() {
         return telegramHandle;
+    }
+
+    public ContactIndex getContactIndex() {
+        return contactIndex;
     }
 
     /**
@@ -153,6 +161,7 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append(" [Index : " + String.valueOf(contactIndex) + "]")
                 .append("\nPhone: ")
                 .append(getPhone())
                 .append("\nEmail: ")

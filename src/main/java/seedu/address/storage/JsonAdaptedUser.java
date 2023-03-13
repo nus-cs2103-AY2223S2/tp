@@ -9,14 +9,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.TelegramHandle;
-import seedu.address.model.person.User;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
+
+import javax.imageio.stream.MemoryCacheImageInputStream;
 
 /**
  * Jackson-friendly version of {@link User}.
@@ -30,9 +27,10 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
     public JsonAdaptedUser(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("telegramHandle") String telegramHandle,
+                             @JsonProperty("index") Integer index,
                              @JsonProperty("groups") List<JsonAdaptedGroupTag> tagged,
                              @JsonProperty("modules") List<JsonAdaptedModuleTag> modules) {
-        super(name, phone, email, address, telegramHandle, tagged, modules);
+        super(name, phone, email, address, telegramHandle, index, tagged, modules);
     }
 
     /**
@@ -101,9 +99,15 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
         }
         final TelegramHandle modelTelegramHandle = new TelegramHandle(telegramHandle);
 
+        if (contactIndex == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ContactIndex.class.getSimpleName()));
+        }
+        final ContactIndex modelContactIndex = new ContactIndex(contactIndex);
         final Set<GroupTag> modelGroupTags = new HashSet<>(userGroupTags);
         final Set<ModuleTag> modelModuleTags = new HashSet<>(userModuleTags);
         return new User(modelName, modelPhone, modelEmail,
-                modelAddress, modelTelegramHandle, modelGroupTags, modelModuleTags);
+                modelAddress, modelTelegramHandle, modelContactIndex,
+                modelGroupTags, modelModuleTags);
     }
 }
