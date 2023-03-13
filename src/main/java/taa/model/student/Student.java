@@ -19,6 +19,8 @@ public class Student {
     private final Name name;
     private final int id;
 
+    private final Attendance atd;
+
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
@@ -29,6 +31,7 @@ public class Student {
         CollectionUtil.requireAllNonNull(name, tags);
         this.id = ++lastId;
         this.name = name;
+        this.atd = new Attendance();
         this.tags.addAll(tags);
     }
 
@@ -37,6 +40,14 @@ public class Student {
     }
     public Name getName() {
         return name;
+    }
+
+    public int getNumWeeksPresent() {
+        return this.atd.getNumWeeksPresent();
+    }
+
+    public Attendance getAtd() {
+        return this.atd;
     }
 
     /**

@@ -15,6 +15,7 @@ import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -113,6 +114,8 @@ public class EditCommand extends Command {
         private Name name;
         private Set<Tag> tags;
 
+        private Attendance attendance;
+
         public EditStudentDescriptor() {}
 
         /**
@@ -122,6 +125,7 @@ public class EditCommand extends Command {
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setTags(toCopy.tags);
+            setAttendance(toCopy.attendance);
         }
 
         /**
@@ -137,6 +141,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setAttendance(Attendance attendance) {
+            this.attendance = attendance;
+        }
+
+        public Optional<Attendance> getAttendance() {
+            return Optional.ofNullable(this.attendance);
         }
 
         /**

@@ -9,6 +9,7 @@ import java.util.Set;
 import taa.commons.core.index.Index;
 import taa.commons.util.StringUtil;
 import taa.logic.parser.exceptions.ParseException;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.tag.Tag;
 
@@ -45,6 +46,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String week} into an int
+     * @param week String value of week
+     * @return int value of week if valid
+     * @throws ParseException if the given {@code week} is invalid
+     */
+    public static int parseWeek(String week) throws ParseException {
+        requireNonNull(week);
+        String trimmedWeek = week.trim();
+        if (!Attendance.isValidWeek(trimmedWeek)) {
+            throw new ParseException(Attendance.errorMsg);
+        }
+        return Attendance.convertToIntegerWeek(trimmedWeek);
     }
 
     /**
