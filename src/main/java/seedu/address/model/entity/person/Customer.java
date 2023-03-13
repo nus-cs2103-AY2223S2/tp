@@ -14,18 +14,26 @@ import seedu.address.model.tag.Tag;
  */
 public class Customer extends Person {
 
-    private static int incrementalId = 0;
-    private int id;
-    private final Set<Integer> vehicleIds;
+    private final int id;
+    private final Set<Integer> vehicleIds = new HashSet<>();
     // Service History
 
     /**
      * {@inheritDoc}
      */
-    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Customer(int id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
-        this.vehicleIds = new HashSet<>();
-        id = ++incrementalId;
+        this.id = id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Customer(int id, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                    Set<Integer> vehicleIds) {
+        super(name, phone, email, address, tags);
+        this.id = id;
+        this.vehicleIds.addAll(vehicleIds);
     }
 
     /**

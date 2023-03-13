@@ -2,8 +2,9 @@ package seedu.address.model.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.entity.person.Technician;
@@ -12,13 +13,12 @@ import seedu.address.model.entity.person.Technician;
  * The Service class contains information about what task to be performed on the vehicle.
  */
 public class Service {
-    private static int incrementalID = 0;
     private final int id;
     private final LocalDate entryDate;
     private List<Part> requiredParts;
     private String description;
     private LocalDate estimatedFinishDate;
-    private List<Technician> assignedTechnicians;
+    private final Set<Integer> assignedToIds = new HashSet<>();
     private boolean isComplete = false;
 
     /**
@@ -26,20 +26,34 @@ public class Service {
      *
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      */
-    public Service(int estimatedDaysRequired) {
-        this.id = ++incrementalID;
+    public Service(int id, int estimatedDaysRequired) {
+        this.id = id;
         entryDate = LocalDate.now();
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
-        this.requiredParts = new ArrayList<>();
-        this.assignedTechnicians = new ArrayList<>();
+        requiredParts = new ArrayList<Part>();
+    }
+
+    /**
+     *  This method is the constructor for a Service.
+     *
+     * @param vehicle The vehicle that requires servicing.
+     * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
+     * @param assignedToIds The list of staffs ids that this service is assigned to.
+     */
+    public Service(int id, int estimatedDaysRequired, Set<Integer> assignedToIds) {
+        this.id = id;
+        entryDate = LocalDate.now();
+        estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
+        requiredParts = new ArrayList<Part>();
+        this.assignedToIds.addAll(assignedToIds);
     }
 
     /**
      * This method is the constructor for a Service.
      * By default, this method estimates the amount of time needed to be 7 whole days (not working days).
      */
-    public Service() {
-        this(7);
+    public Service(int id) {
+        this(id, 7);
     }
 
     /**
@@ -77,9 +91,9 @@ public class Service {
     }
 
     /**
-     * This method returns the list of parts needed to perform this Service.
+     * This method returns the list of requiredParts needed to perform this Service.
      *
-     * @return a list of parts needed to repair this.
+     * @return a list of requiredParts needed to repair this.
      */
     public List<Part> getRequiredParts() {
         return requiredParts;
@@ -106,7 +120,7 @@ public class Service {
 
     /**
      * This method returns the bill of this service.
-     * Currently only returns the parts cost. Assumes that only use one part.
+     * Currently only returns the requiredParts cost. Assumes that only use one part.
      * Does not charge Technician cost etc.
      * @return The cost of this service.
      */
@@ -150,12 +164,12 @@ public class Service {
     }
 
     /**
-     * This method returns the list of technicians assigned to this task.
+     * This method returns the list of technician ids assigned to this task.
      *
-     * @return the list of technicians assigned to this task.
+     * @return the list of technician ids assigned to this task.
      */
-    public List<Technician> getAssignedTechnicians() {
-        return assignedTechnicians;
+    public List<Integer> getAssignedToIds() {
+        return new ArrayList<>(this.assignedToIds);
     }
 
     /**
@@ -164,7 +178,7 @@ public class Service {
      * @param technician The technician assigned to this service.
      */
     public void assignTechnician(Technician technician) {
-        assignedTechnicians.add(technician);
+        this.assignedToIds.add(technician.getId());
     }
 
     /**
@@ -173,7 +187,7 @@ public class Service {
      * @param technician The technician to be removed from this service.
      */
     public void removeTechnician(Technician technician) {
-        assignedTechnicians.remove(technician);
+        this.assignedToIds.remove(technician.getId());
     }
 
     /**
@@ -203,8 +217,8 @@ public class Service {
         if (parts.length() > 0) {
             parts = parts.substring(1);
         }
-        String technicians = this.getAssignedTechnicians().stream()
-                .map(Objects::toString)
+        String technicians = this.getAssignedToIds().stream()
+                .map(Object::toString)
                 .reduce("", (a, b) -> a + "\n" + b);
         if (technicians.length() > 0) {
             technicians = technicians.substring(1);

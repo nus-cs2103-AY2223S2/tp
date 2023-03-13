@@ -1,7 +1,9 @@
 package seedu.address.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.service.Service;
@@ -18,7 +20,7 @@ public class Vehicle {
     private String color;
     private String brand;
     private VehicleType type;
-    private List<Service> services;
+    private final Set<Integer> serviceIds = new HashSet<>();
 
     /**
      * This enum allows us to specify vehicle type without creating respective classes.
@@ -44,7 +46,23 @@ public class Vehicle {
         this.color = color;
         this.brand = brand;
         this.type = type;
-        this.services = new ArrayList<>();
+    }
+
+    /**
+     * This method is the constructor for the Vehicle class.
+     * @param plateNumber The Vehicle Registration Number (VRN) of the vehicle.
+     * @param color This is the color of the vehicle.
+     * @param brand This is the brand of the vehicle (i.e. KIA).
+     * @param type What vehicle type this vehicle is (i.e. Bike)
+     * @param serviceIds The list of service id this vehicle had/has
+     */
+    public Vehicle(String plateNumber, String color, String brand, VehicleType type, Set<Integer> serviceIds) {
+        id = ++incrementalID;
+        this.plateNumber = plateNumber;
+        this.color = color;
+        this.brand = brand;
+        this.type = type;
+        this.serviceIds.addAll(serviceIds);
     }
 
     /**
@@ -144,8 +162,8 @@ public class Vehicle {
      *
      * @return List of services
      */
-    public List<Service> getServices() {
-        return services;
+    public List<Integer> getServiceIds() {
+        return new ArrayList<>(this.serviceIds);
     }
 
     /**
@@ -154,7 +172,7 @@ public class Vehicle {
      * @param service the service to be added.
      */
     public void addService(Service service) {
-        this.services.add(service);
+        this.serviceIds.add(service.getId());
     }
 
     /**
@@ -163,7 +181,7 @@ public class Vehicle {
      * @param service the service to be removed.
      */
     public void removeService(Service service) {
-        this.services.remove(service);
+        this.serviceIds.remove(service.getId());
     }
 
     @Override
@@ -175,7 +193,8 @@ public class Vehicle {
                 .append(String.format("%nColor: %s", this.getColor()))
                 .append(String.format("%nBrand: %s", this.getBrand()))
                 .append(String.format("%nType: %s", this.getType()))
-                .append(String.format("%nServices Required: %n%s", StringUtil.indent(this.getServices().toString(), 2)))
+                .append(String.format("%nServices Required: %n%s",
+                        StringUtil.indent(this.getServiceIds().toString(), 2)))
                 .toString();
     }
 }
