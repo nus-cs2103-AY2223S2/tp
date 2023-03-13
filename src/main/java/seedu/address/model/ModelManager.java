@@ -120,15 +120,6 @@ public class ModelManager implements Model {
         addressBook.deleteEventFromPersonList(eventToDelete);
     }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
     @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -147,6 +138,16 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
