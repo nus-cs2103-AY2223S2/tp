@@ -25,6 +25,7 @@ public abstract class GuiUnitTest {
         if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
             System.loadLibrary("WindowsCodecs");
         }
+        setHeadlessTestModeToTrue();
 
     }
 
@@ -41,6 +42,16 @@ public abstract class GuiUnitTest {
     protected <T extends Node> T getChildNode(Node rootNode, String query) {
         Optional<T> node = fxRobot.from(rootNode).lookup(query).tryQuery();
         return node.orElse(null);
+    }
+
+    //@@author eugenetangkj-reused
+    //Reused from https://github.com/AY2223S1-CS2103T-W17-4/tp/blob/master/src/test/java/seedu/phu/ui/GuiUnitTest.java
+    private static void setHeadlessTestModeToTrue() {
+        System.setProperty("testfx.robot", "glass");
+        System.setProperty("testfx.headless", "true");
+        System.setProperty("prism.order", "sw");
+        System.setProperty("prism.text", "t2k");
+        System.setProperty("java.awt.headless", "true");
     }
 
 
