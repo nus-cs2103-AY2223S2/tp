@@ -31,7 +31,7 @@ public class Person {
     private final Address address;
     private final Phone parentPhone;
     private final Set<Tag> tags = new HashSet<>();
-    private final TaskList taskList = new TaskList();
+    private final TaskList taskList;
     private final ScoreList scoreList;
 
     /**
@@ -45,21 +45,23 @@ public class Person {
         this.address = address;
         this.parentPhone = parentPhone;
         this.tags.addAll(tags);
+        this.taskList = new TaskList();
         this.scoreList = new ScoreList();
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Phone parentPhone,
-                  Set<Tag> tags, ScoreList scoreList) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Phone parentPhone, Set<Tag> tags,
+                  TaskList taskList, ScoreList scoreList) {
+        requireAllNonNull(name, phone, email, address, tags, taskList, scoreList);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.parentPhone = parentPhone;
         this.tags.addAll(tags);
+        this.taskList = taskList;
         this.scoreList = scoreList;
     }
 
@@ -89,6 +91,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
+    public ObservableList<Task> getTaskListAsObservableList() {
+        return taskList.asUnmodifiableObservableList();
     }
 
     /**
@@ -155,11 +165,11 @@ public class Person {
         scoreList.add(score);
     }
 
-    public ObservableList<Score> getScoreList() {
+    public ObservableList<Score> getScoreListAsObservableList() {
         return scoreList.asUnmodifiableObservableList();
     }
 
-    public ScoreList scoreList() {
+    public ScoreList getScoreList() {
         return scoreList;
     }
     /**
@@ -186,7 +196,7 @@ public class Person {
      * {@code versionedAddressBook}
      */
     public ObservableList<Score> getFilteredScoreList() {
-        FilteredList<Score> filteredScores = new FilteredList<>(this.getScoreList());
+        FilteredList<Score> filteredScores = new FilteredList<>(this.getScoreListAsObservableList());
         return filteredScores;
     }
 
@@ -236,6 +246,10 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append("; Tasks: ")
+                .append(getTaskList().toString());
+
         return builder.toString();
     }
 

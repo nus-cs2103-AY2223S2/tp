@@ -12,6 +12,12 @@ import seedu.address.model.person.Name;
  */
 public class Task {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Name of tasks should only contain alphanumeric characters and spaces, and it should not be blank";
+
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
+
     // Identity field(s)
     public final Name taskName;
 
@@ -64,6 +70,14 @@ public class Task {
                 && otherTask.getName().equals(getName());
     }
 
+    /**
+     * Returns true if a given string is a valid task name.
+     */
+    public static boolean isValidTaskName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -76,9 +90,7 @@ public class Task {
         return Objects.hash(taskName, isDone);
     }
 
-    /**
-     * Format state as text for viewing.
-     */
+    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
