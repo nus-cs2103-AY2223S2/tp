@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Undoes the last modification command from ModCheck
@@ -23,7 +23,7 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (! model.hasUndoableCommand()) {
+        if (!model.hasUndoableCommand()) {
             throw new CommandException(MESSAGE_NO_UNDOABLE_COMMAND);
         }
         String returnMessage = model.executeUndo();

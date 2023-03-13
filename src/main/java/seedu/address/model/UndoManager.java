@@ -1,10 +1,8 @@
 package seedu.address.model;
 
-import javafx.util.Pair;
-
 import java.util.LinkedList;
 
-import static java.util.Objects.requireNonNull;
+import javafx.util.Pair;
 
 
 /**

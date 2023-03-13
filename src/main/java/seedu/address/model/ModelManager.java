@@ -143,6 +143,10 @@ public class ModelManager implements Model {
         return undoManager.hasUndoableCommand();
     }
 
+    /**
+     * Undoes the changes made by the last modification command used.
+     * @return The string representation of the last modification command used.
+     */
     public String executeUndo() {
         Pair<AddressBook, String> previousHistory = undoManager.getPreviousHistory();
         this.addressBook.resetData(previousHistory.getKey());
