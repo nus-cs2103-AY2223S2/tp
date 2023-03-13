@@ -15,7 +15,7 @@ public class PatientIdNumber {
      * Following 5 characters must be digits.
      * Last character must be a letter.
      */
-    public static final String VALIDATION_REGEX = "^[\\p{Alpha}]{1}[\\d]*[\\p{Alpha}]{1}$";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}]*";
 
     private final String idNumber;
 
