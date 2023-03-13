@@ -65,15 +65,25 @@ Shows a message explaining how to access the user guide.
 Format: `help`
 
 
-### Adding a person: `add`
+### Add person: `add`
 
 Adds a person to deliver to.
 
 Format: `add n/NAME a/ADDRESS [p/PHONE_NUMBER] [e/EMAIL] [pc/PARCEL]…​`
 
 Examples:
-* `add n/Yusof a/Yusof Ishak House, #04-420 e/yusof@gmail.com pc/lazada#123 pc/lazada#456`
-* `add n/Linus a/Utown, #01-01 pc/shopee#234`
+* `add n/Yusof a/Yusof Ishak House, #04-420 e/yusof@gmail.com pc/lazada123 pc/lazada456`
+* `add n/Linus a/Utown, #01-01 pc/shopee234`
+
+### Add parcel to a delivery: `add_pc`
+
+Adds a parcel to an existing person to deliver to.
+
+Format: `add_pc INDEX pc/PARCEL`
+
+Examples:
+* `add 1 pc/shopee234` Adds parcel shopee234 to 1st delivery.
+* `add 2 pc/lazada456` Adds parcel lazada456 to 2nd delivery.
 
 ### Listing all deliveries : `list`
 

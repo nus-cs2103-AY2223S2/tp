@@ -26,8 +26,8 @@ public class AddCommand extends Command {
             + CliSyntax.PREFIX_PHONE + "98765432 "
             + CliSyntax.PREFIX_EMAIL + "johnd@example.com "
             + CliSyntax.PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + CliSyntax.PREFIX_PARCEL + "shopee#12 "
-            + CliSyntax.PREFIX_PARCEL + "lazada#4 ";
+            + CliSyntax.PREFIX_PARCEL + "shopee12 "
+            + CliSyntax.PREFIX_PARCEL + "lazada4 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
