@@ -61,7 +61,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedDoctor jsonAdaptedDoctor : doctors) {
             Doctor doctor = jsonAdaptedDoctor.toModelType();
             if (addressBook.hasDoctor(doctor)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_DOCTOR);
             }
             addressBook.addDoctor(doctor);
         }
