@@ -40,6 +40,7 @@ public class Lab extends Event {
 
     /**
      * Gets the list of students
+     *
      * @return students
      */
     public List<Person> getStudents() {
@@ -48,6 +49,7 @@ public class Lab extends Event {
 
     /**
      * Adds a specific student into the list of students
+     *
      * @param student
      */
     public void addStudent(Person student) {
@@ -56,6 +58,7 @@ public class Lab extends Event {
 
     /**
      * Removes a specific student from the list of students
+     *
      * @param student
      */
     public void removeStudent(Person student) {
@@ -64,6 +67,7 @@ public class Lab extends Event {
 
     /**
      * Removes student based on his 0 based index in the list of students
+     *
      * @param index
      */
     public void removeIndexStudent(int index) {
@@ -72,6 +76,7 @@ public class Lab extends Event {
 
     /**
      * Get the total number of students enrolled in the event
+     *
      * @return
      */
     public int countStudents() {
@@ -80,6 +85,7 @@ public class Lab extends Event {
 
     /**
      * Gets the date of the event
+     *
      * @return localdate
      */
     public LocalDate getDate() {
@@ -88,6 +94,7 @@ public class Lab extends Event {
 
     /**
      * Changes the date of the event
+     *
      * @param date
      */
     public void changeDate(LocalDate date) {
