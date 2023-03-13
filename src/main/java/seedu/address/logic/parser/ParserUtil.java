@@ -169,9 +169,6 @@ public class ParserUtil {
     public static MedicalCondition parseMedicalCond(String medicalCondition) throws ParseException {
         requireNonNull(medicalCondition);
         String trimmed = medicalCondition.trim();
-        if (!Tag.isValidTagName(trimmed)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
         return new MedicalCondition(medicalCondition);
     }
 }

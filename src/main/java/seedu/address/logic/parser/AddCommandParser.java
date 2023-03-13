@@ -53,11 +53,11 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Optional<String> medicalString = argMultimap.getValue(PREFIX_MEDICAL);
         if (medicalString.isEmpty()) {
-            Person person = new Person(name, phone, email, address, tagList);
+            Person person = new Person(name, phone, email, address, age, tagList);
             return new AddCommand(person);
         } else {
             MedicalCondition medicalCondition = ParserUtil.parseMedicalCond(medicalString.get());
-            Person person = new Person(name, phone, email, address, tagList, medicalCondition);
+            Person person = new Person(name, phone, email, address, age, tagList, medicalCondition);
             return new AddCommand(person);
         }
     }
