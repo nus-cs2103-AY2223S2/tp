@@ -92,6 +92,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetProjectList() {
+        addressBook.setProjects(new ArrayList<Project>());
+    }
+
+    @Override
     public void resetClientList() {
         addressBook.setClients(new ArrayList<Client>());
     }

@@ -114,6 +114,11 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public void resetProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void resetClientList() {
             throw new AssertionError("This method should not be called.");
         }
