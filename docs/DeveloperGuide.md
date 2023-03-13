@@ -257,71 +257,159 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Hospital administrative staff, Doctors
+* has a need to manage a significant number of patient/doctor data
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage patient/doctor details faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                  | I want to …​                                      | So that …​                                              |
+| -------- |--------------------------| ---                                                     |----------------------------------------------------------- |
+| `* * *`  | healthcare provider | access a dashboard to keep track of my patients' information, medical history, and appointment schedules | I can provide better care. |
+|          | healthcare provider | view bed availability in real-time | I can make informed decisions about patient admission and discharge. |
+| `* * *`  | healthcare provider      | update patient information and medical history after each appointment | I have a complete and accurate record of the patient's health.          |
+|          | healthcare provider      | generate and send prescription orders to the pharmacy directly from the application | I can streamline the process for my patients.                           |
+|          | healthcare provider      | access real-time data on the patient's vital signs and monitor the patient's health remotely | I can quickly respond to changes in the patient's health.               |
+|          | healthcare provider      | access and update my own schedule and availability through the application | I can manage my workload and provide better care for my patients.       | 
+|          | healthcare provider      | view and manage patient waiting times | I can minimize wait times and improve patient satisfaction.             |
+| `* * *`  | healthcare provider      | access a directory of specialist doctors and referral information | I can quickly and easily connect my patients with the right care.       |
+|          | healthcare provider      | provide virtual consultations and appointments through the application | I can reach more patients and provide better access to care.            |
+|          | healthcare provider      | access a library of patient education materials and resources | I can provide better information and support to my patients.            |
+|          | healthcare provider      | view and manage patient waitlists and triage patient needs | I can prioritize the most urgent cases and provide better access to care. |
+|          | healthcare provider      | access and view patient insurance information and make necessary updates | I can accurately bill patients and manage healthcare costs. |
+|          | healthcare provider      | send appointment confirmations and reminders to patients | they can arrive prepared for their appointments. |
+|          | healthcare administrator | access analytics and metrics on patient engagement, appointment booking, and resource utilization | I can make data-driven decisions to improve the hospital's operations. |
+|          | healthcare administrator | access real-time data on hospital utilization and resource allocation | I can optimize the hospital's operations and improve patient outcomes. |
+| `* * *`  | healthcare administrator | access patients' records on the go/at home any time when it's necessary to provide admin support anytime. | |
+|          | healthcare administrator | manage the hospital staff and workload better using the app | there are sufficient people during each shift. |
+|          | patient | chat 1-to-1 with my doctor | I can seek advice on my medical condition without having to visit the doctor's office. |
+|          | patient | retrieve my invoices and pay my bills through the application | I can manage my healthcare expenses more efficiently. |
+|          | patient | receive reminders for appointments and medication | I don't forget important events related to my healthcare. |
+|          | patient | provide feedback and rate my experience with the hospital and its services | the hospital can continuously improve its offerings. |
+|          | patient | access my test results and medical records through the application | I can keep track of my health history. |
+|          | patient | create an account | I can easily book appointments and keep track of my medical information. |
+|          | patient | view and manage my medical history and health records | I can keep track of my health status and history. |
+|          | patient | communicate with my healthcare team and provide updates on my health status | I can receive better care and improve my health outcomes. |
+|          | patient | view the hospital's facilities and services and make informed decisions about which hospital to visit for my medical needs. | |
+|          | patient | provide consent for my medical information to be shared with other healthcare providers as needed, | I can receive coordinated care from a team of specialists. | 
+|          | patient | schedule and reschedule appointments through the application | I can easily manage my schedule. |
+|          | patient | provide emergency contact information through the application | my healthcare providers can quickly reach out to my designated emergency contacts in case of an emergency. |
+|          | patient | request and receive referrals for specialist consultations through the application | I can receive the best care for my medical needs. |
+|          | patient | view and manage my lab results and diagnostic reports through the application | I can keep track of my health status. |
+|          | tech illiterate patient | navigate through the app easily without help. | |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `MediConnect (MC)`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add patient’s information**
+
+**Actor: Healthcare administrator** 
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User chooses to add patient’s information..
+2. MC requests for details of the information.
+3. User enters the requested details.
+4. MC displays the new patient information..
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. MC detects an error in the entered data.
 
-  Use case ends.
+  * 3a1. MC requests for the correct data.
 
-* 3a. The given index is invalid.
+  * 3a2. User enters new data. 
+  
+    Steps 3a1-3a2 are repeated until the data entered are correct.
 
-    * 3a1. AddressBook shows an error message.
+    Use case resumes from step 4.
 
-      Use case resumes at step 2.
+**Use case: UC02 - Add doctor’s information**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+
+1. User chooses to add doctor’s information..
+2. MC requests for details of the information.
+3. User enters the requested details.
+4. MC displays the new doctor’s information..
+   
+    Use case ends.
+
+**Extensions**
+
+* 3a. MC detects an error in the entered data. 
+
+  * 3a1. MC requests for the correct data. 
+  
+  * 3a2. User enters new data. 
+  
+    Steps 3a1-3a2 are repeated until the data entered are correct.
+    
+    Use case resumes from step 4.
+
+**Use case: UC03 - Retrieve patient’s information**
+
+**Actor: Doctor**
+
+**MSS**
+
+1. User chooses to retrieve patient’s information..
+2. MC retrieves the patient’s information
+3. MC displays the patient information that was retrieved..
+   Use case ends.
+
+**Extensions**
+
+* 3a. MC detects an error in the entered data. 
+  
+  * 3a1. MC requests for the correct data.
+  
+  * 3a2. User enters new data. 
+  
+    Steps 3a1-3a2 are repeated until the data entered are correct. 
+  
+    Use case resumes from step 4. 
+  
+* 3b. User request an unassigned patient’s information 
+  
+  * 3b1. MC denies the request. 
+    
+    Use case ends.
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Users cannot view information of unassigned patients
+2. System should be backward compatible with data produced by earlier versions of the system;
+3. Requires Java 11
+4. The system should be usable by a novice who is tech illiterate
+5. **Any other noteworthy points:** Confidential information is hidden, requires access rights
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Patient**: Define as a customer of the hospital and only has read-access
+* **Doctor**: Define as staff of the hospital and only has read-access
+* **Administrator**: Define as admin staff of the hospital and has write-access
 
 --------------------------------------------------------------------------------------------------------------------
 
