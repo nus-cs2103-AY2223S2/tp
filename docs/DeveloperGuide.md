@@ -102,22 +102,14 @@ This guide is intended primarily for developers who want to work on the **EduMat
 ## **Using the Guide**
 ### **What Do the Emojis Mean**
 
-| Emoji                | GFMD form              | What does it mean                           |
-|----------------------|------------------------|---------------------------------------------|
-| :sparkles:           | `:sparkles:`           | Completed feature                           |
-| :construction:       | `:construction:`       | Feature under construction                  |
-| :question:           | `:question:`           | Frequently asked question (FAQ)             |
-| :heavy_check_mark:   | `:heavy_check_mark:`   | What the developer should do                |
-| :warning:            | `:warning:`            | Warning to the developer                    |
-| :no_entry:           | `:no_entry:`           | Strong warning to the developer             |
-| :bulb:               | `:bulb:`               | Tip for the developer                       |
-| :information_source: | `:information_source:` | Information for the developer               |
-| :goal_net:           | `:goal_net:`           | Error handling                              |
-| :art:                | `:art:`                | Consideration made for code cleanliness     |
-| :computer:           | `:computer:`           | Consideration made for developer experience |
-| :children_crossing:  | `:children_crossing:`  | Consideration made for user experience      |
-| :zap:                | `:zap:`                | Consideration made for performance          |
-| :seedling:           | `:seedling:`           | Consideration made for future development   |
+| Emoji                | GFMD form              | What does it mean                                                   |
+|----------------------|------------------------|---------------------------------------------------------------------|
+| :construction:       | `:construction:`       | Feature under construction                                          |
+| :question:           | `:question:`           | Frequently asked question (FAQ)                                     |
+| :heavy_check_mark:   | `:heavy_check_mark:`   | What the developer should do                                        |
+| :warning:            | `:warning:`            | Warning to the developer, number of warning signs show the severity |
+| :bulb:               | `:bulb:`               | Tip for the developer                                               |
+| :information_source: | `:information_source:` | Information for the developer                                       |
 
 ---
 
@@ -161,7 +153,7 @@ The `master` branch represents stable released versions of the **EduMate** softw
 
 <div markdown="span" class="alert alert-danger">
 
-:no_entry: You must not merge a PR into the branch if it fails some tests.
+:warning::warning::warning: You must not merge a PR into the branch if it fails some tests.
 
 </div>
 
@@ -177,7 +169,7 @@ Once you've made changes to your branch, create a Pull Request (PR) on the upstr
 
 <div markdown="span" class="alert alert-danger">
 
-:no_entry: You must not review and merge your own PR. Instead, wait for somebody else to review it for you. In this way, we can cross-check each others' code, leading to fewer errors.
+:warning::warning::warning: You must not review and merge your own PR. Instead, wait for somebody else to review it for you. In this way, we can cross-check each others' code, leading to fewer errors.
 
 </div>
 
@@ -245,9 +237,9 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
  | Groups          | NS, CCA                                 |
  | Modules         | CS3242, BT3101, CS1010E, CS3219, CE3165 |
 
-<div markdown="span" class="alert alert-secondary">
+<div markdown="span" class="alert alert-info">
 
-:seedling: These names were chosen so that we can easily extract more information such as Location (as coordinates) for use in future features.
+:information_source: These names were chosen so that we can easily extract more information such as Location (as coordinates) for use in future features.
 
 </div>
 
@@ -534,13 +526,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 :bulb: Use `alert-primary` to show tips for the developer
 
-</div>
-
-<div markdown="span" class="alert alert-secondary">
-
-:art: :computer: :children_crossing: :zap: :seedling: Use `alert-secondary` to show the developer what consideration has been made
-
-</div>
+</div>  
 
 <div markdown="span" class="alert alert-success">
 
@@ -562,13 +548,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 <div markdown="span" class="alert alert-danger">
 
-:no_entry: Use `alert-danger` to _**strongly**_ warn the user about performing a certain action
-
-</div>
-
-<div markdown="span" class="alert alert-light">
-
-:sparkles: Use `alert-light` to indicate a completed feature
+:warning::warning::warning:  Use `alert-danger` to _**strongly**_ warn the user about performing a certain action
 
 </div>
 
