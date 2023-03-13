@@ -7,7 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.IndexNumber;
+import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -110,10 +112,15 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
+
+        if ( (otherPerson instanceof Student) || (otherPerson instanceof Parent) ) {
+            return otherPerson != null
+                    && otherPerson.getStudentClass().equals(getStudentClass())
+                    && otherPerson.getIndexNumber().equals(getIndexNumber());
+        }
         //Need to rethink what constitutes same student
         return otherPerson != null
-                && otherPerson.getStudentClass().equals(getStudentClass())
-                && otherPerson.getIndexNumber().equals(getIndexNumber());
+                && otherPerson.getName().equals(getName());
     }
 
     /**
