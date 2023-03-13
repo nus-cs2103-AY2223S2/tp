@@ -65,7 +65,14 @@ public class Project {
 
     @Override
     public String toString() {
-        return getTitle() + ", due by: " + getDeadline();
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getTitle());
+
+        if (isDeadlinePresent()) {
+            builder.append(", due by: ").append(getDeadline());
+        }
+
+        return builder.toString();
     }
 
     @Override
