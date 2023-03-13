@@ -15,8 +15,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.ModuleTag;
+import seedu.address.model.tag.Tag;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -39,7 +40,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("moduleTagged") List<JsonAdaptedModuleTag> moduleTagged ) {
+            @JsonProperty("moduleTagged") List<JsonAdaptedModuleTag> moduleTagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -76,7 +77,7 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         final List<ModuleTag> moduleTags = new ArrayList<>();
-        for(JsonAdaptedModuleTag tag : moduleTagged) {
+        for (JsonAdaptedModuleTag tag : moduleTagged) {
             moduleTags.add(tag.toModelType());
         }
         for (JsonAdaptedTag tag : tagged) {
@@ -117,7 +118,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<ModuleTag> modelModuleTags = new HashSet<>(moduleTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,modelModuleTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelModuleTags);
     }
 
 }

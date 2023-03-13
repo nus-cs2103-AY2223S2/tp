@@ -63,7 +63,9 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Set<ModuleTag> getModuleTags() { return Collections.unmodifiableSet(moduleTags); }
+    public Set<ModuleTag> getModuleTags() {
+        return Collections.unmodifiableSet(moduleTags);
+    }
 
     /**
      * Returns true if both persons have the same name.
