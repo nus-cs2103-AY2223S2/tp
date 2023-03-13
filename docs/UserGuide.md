@@ -197,6 +197,6 @@ Paidlancers data are saved in the hard disk automatically exiting the program. T
 |       [View Event List](#list-all-events)       |                 `list`                 |                                 `list`                                 |
 |       [Delete an Event](#delete-an-event)       |               `delete INDEX`               |                               `delete 2`                               |
 |       [Edit an Event](#edit-an-event)       |               `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`               |                               `edit 2 r/100`                               |
-|
+
 
 [Back to top](#)
