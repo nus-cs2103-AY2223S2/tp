@@ -75,11 +75,13 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         editModules(argMultimap, editPersonDescriptor);
 
-        if (editPersonDescriptor.getSkills().isEmpty() && originalEditPersonDescriptor.getSkills().isPresent()) {
+        if (editPersonDescriptor.getSkills().isEmpty() && originalEditPersonDescriptor.getSkills().isPresent()
+                && argMultimap.getValue(PREFIX_SKILL_DELETE).isEmpty()) {
             throw new ParseException(EditCommand.MESSAGE_SKILL_DOES_NOT_EXIST);
         }
 
-        if (editPersonDescriptor.getModules().isEmpty() && originalEditPersonDescriptor.getModules().isPresent()) {
+        if (editPersonDescriptor.getModules().isEmpty() && originalEditPersonDescriptor.getModules().isPresent()
+                && argMultimap.getValue(PREFIX_MOD_DELETE).isEmpty()) {
             throw new ParseException(EditCommand.MESSAGE_MOD_DOES_NOT_EXIST);
         }
 

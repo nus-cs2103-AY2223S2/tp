@@ -67,7 +67,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_INCORRECT_OLD_NEW_SKILL_PREFIX =
             "To update existing skills, the prefixes so/ and sn/ must be present";
     public static final String MESSAGE_INCORRECT_OLD_NEW_MOD_PREFIX =
-            "To update existing modules, the prefixes so/ and sn/ must be present";
+            "To update existing modules, the prefixes mo/ and mn/ must be present";
     public static final String MESSAGE_UNEQUAL_OLD_NEW_SKILLS =
             "The number of old skills not equal to number of new skills";
     public static final String MESSAGE_UNEQUAL_OLD_NEW_MODS =
@@ -91,7 +91,7 @@ public class EditCommand extends Command {
         Person personToEdit = model.getProtagonist();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (personToEdit.equals(editedPerson) || (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson))) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -151,7 +151,7 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * @param person
+         * @param person The person that we want to edit.
          */
         public EditPersonDescriptor(Person person) {
             this.name = person.getName();
@@ -243,7 +243,9 @@ public class EditCommand extends Command {
          * A defensive copy of {@code skills} is used internally.
          */
         public void deleteSkills(Set<Skill> skills) {
-            if (skills != null && this.skills != null) {
+            if (skills != null && skills.size() == 0) {
+                this.skills = skills;
+            } else if (skills != null && this.skills != null) {
                 deleteSkillsHelper(skills);
             }
         }
@@ -321,7 +323,9 @@ public class EditCommand extends Command {
          * A defensive copy of {@code modules} is used internally.
          */
         public void deleteMods(Set<Module> modules) {
-            if (modules != null && this.modules != null) {
+            if (modules != null && modules.size() == 0) {
+                this.modules = modules;
+            } else if (modules != null && this.modules != null) {
                 deleteModsHelper(modules);
             }
         }

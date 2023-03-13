@@ -2,11 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -28,14 +24,15 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
+    public static final String VALID_PHONE_AMY = "85355255";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
+    public static final String VALID_EMAIL_AMY = "amy@gmail.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
+    public static final String VALID_ADDRESS_AMY = "123, Jurong West Ave 6, #08-111";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_SKILL_JAVA = "java";
     public static final String VALID_SKILL_CSHARP = "C#";
+    public static final String VALID_MODULE_AY2223S2_CS2103T = "AY2223S2 CS2103T";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,14 +42,26 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String SKILL_DESC_PYTHON = " " + PREFIX_SKILL_ADD + VALID_SKILL_CSHARP;
+    public static final String SKILL_ADD_DESC_CSHARP = " " + PREFIX_SKILL_ADD + VALID_SKILL_CSHARP;
+    public static final String SKILL_ADD_DESC_JAVA = " " + PREFIX_SKILL_ADD + VALID_SKILL_JAVA;
+    public static final String SKILL_OLD_DESC_CSHARP = " " + PREFIX_SKILL_OLD + VALID_SKILL_CSHARP;
+    public static final String SKILL_NEW_DESC_CSHARP = " " + PREFIX_SKILL_NEW + VALID_SKILL_CSHARP;
+
     public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL_ADD + VALID_SKILL_JAVA;
+    public static final String MOD_ADD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_ADD + VALID_MODULE_AY2223S2_CS2103T;
+    public static final String MOD_OLD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_OLD + VALID_MODULE_AY2223S2_CS2103T;
+    public static final String MOD_NEW_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_NEW + VALID_MODULE_AY2223S2_CS2103T;
+
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL_ADD + "hubbyü"; // '*' not allowed in skills
+    public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL_ADD + "hubbyü"; // 'ü' not allowed in skills
+    public static final String INVALID_MOD_DESC = " " + PREFIX_MOD_ADD + "AY22D3S2 CS2102"; // D must be replaced by number
+    public static final String INVALID_MOD_SEM_DESC = " " + PREFIX_MOD_ADD + "AY2223S3 CS2102"; // last number following S must be replaced by 1 or 2
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

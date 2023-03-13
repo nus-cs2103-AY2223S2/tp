@@ -12,6 +12,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.skill.Skill;
 import seedu.address.model.util.SampleDataUtil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AY2223S2_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_CSHARP;
+
 /**
  * A utility class to help with building Person objects.
  */
@@ -21,6 +24,10 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final Skill DEFAULT_SKILL = new Skill(VALID_SKILL_CSHARP);
+    public static final Module DEFAULT_MODULE = new Module(VALID_MODULE_AY2223S2_CS2103T);
+
+
 
     private Name name;
     private Phone phone;
@@ -38,7 +45,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         skills = new HashSet<>();
+        skills.add(DEFAULT_SKILL);
         mods = new HashSet<>();
+        mods.add(DEFAULT_MODULE);
     }
 
     /**
@@ -78,6 +87,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code modules} into a {@code Set<Module>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModules(String ... modules) {
+        this.mods = SampleDataUtil.getModuleSet(modules);
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
@@ -102,6 +119,21 @@ public class PersonBuilder {
     }
 
     public Person build() {
+        return new Person(name, phone, email, address, skills, mods);
+    }
+
+    public Person buildEditedPerson() {
+        name = new Name("Test name");
+        phone = new Phone("987654321");
+        email = new Email("test@gmail.com");
+        address = new Address("Bishan Street 21 #07-90");
+        skills = new HashSet<>();
+        skills.add(DEFAULT_SKILL);
+        skills.add(new Skill("Solidity"));
+        mods = new HashSet<>();
+        mods.add(DEFAULT_MODULE);
+        mods.add(new Module("AY2122S1 GEA1000"));
+
         return new Person(name, phone, email, address, skills, mods);
     }
 

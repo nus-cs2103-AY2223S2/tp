@@ -1,17 +1,14 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
-
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.skill.Skill;
+import seedu.address.model.module.Module;
+
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Person.
@@ -37,6 +34,9 @@ public class PersonUtil {
         person.getSkills().stream().forEach(
             s -> sb.append(PREFIX_SKILL_ADD + s.skillName + " ")
         );
+        person.getModules().stream().forEach(
+                m -> sb.append(PREFIX_MOD_ADD + m.moduleName + " ")
+        );
         return sb.toString();
     }
 
@@ -55,6 +55,14 @@ public class PersonUtil {
                 sb.append(PREFIX_SKILL_ADD);
             } else {
                 skills.forEach(s -> sb.append(PREFIX_SKILL_ADD).append(s.skillName).append(" "));
+            }
+        }
+        if (descriptor.getModules().isPresent()) {
+            Set<Module> modules = descriptor.getModules().get();
+            if (modules.isEmpty()) {
+                sb.append(PREFIX_MOD_ADD);
+            } else {
+                modules.forEach(m -> sb.append(PREFIX_MOD_ADD).append(m.moduleName).append(" "));
             }
         }
         return sb.toString();

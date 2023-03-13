@@ -1,29 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_PYTHON;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_CSHARP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -45,39 +23,39 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withSkills(VALID_SKILL_CSHARP).build();
+        Person expectedPerson = new PersonBuilder(BOB).withSkills(VALID_SKILL_CSHARP).withModules(VALID_MODULE_AY2223S2_CS2103T).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T, new AddCommand(expectedPerson));
 
         // multiple skills - all accepted
         Person expectedPersonMultipleSkills = new PersonBuilder(BOB).withSkills(VALID_SKILL_CSHARP, VALID_SKILL_JAVA)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + SKILL_DESC_JAVA + SKILL_DESC_PYTHON, new AddCommand(expectedPersonMultipleSkills));
+                + SKILL_DESC_JAVA + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T, new AddCommand(expectedPersonMultipleSkills));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero skills
-        Person expectedPerson = new PersonBuilder(AMY).withSkills().build();
+        Person expectedPerson = new PersonBuilder(AMY).withSkills().withModules().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
@@ -103,19 +81,19 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + SKILL_DESC_JAVA + SKILL_DESC_PYTHON, Name.MESSAGE_CONSTRAINTS);
+                + SKILL_DESC_JAVA + SKILL_ADD_DESC_CSHARP, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + SKILL_DESC_JAVA + SKILL_DESC_PYTHON, Phone.MESSAGE_CONSTRAINTS);
+                + SKILL_DESC_JAVA + SKILL_ADD_DESC_CSHARP, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + SKILL_DESC_JAVA + SKILL_DESC_PYTHON, Email.MESSAGE_CONSTRAINTS);
+                + SKILL_DESC_JAVA + SKILL_ADD_DESC_CSHARP, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + SKILL_DESC_JAVA + SKILL_DESC_PYTHON, Address.MESSAGE_CONSTRAINTS);
+                + SKILL_DESC_JAVA + SKILL_ADD_DESC_CSHARP, Address.MESSAGE_CONSTRAINTS);
 
         // invalid skill
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -127,7 +105,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_JAVA + SKILL_DESC_PYTHON,
+                + ADDRESS_DESC_BOB + SKILL_DESC_JAVA + SKILL_ADD_DESC_CSHARP,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
