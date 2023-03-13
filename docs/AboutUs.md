@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About Us
+title: John Doe's Project Portfolio Page
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jrmckh.png" width="200px">
 
 [[github](http://github.com/JrmCkh)]
-[[portfolio](team/bigheartsmallbrain.md)]
+[[portfolio](team/jermckh.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
