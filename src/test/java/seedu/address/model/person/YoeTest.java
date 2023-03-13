@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -7,6 +8,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class YoeTest {
+    @Test
+    public void constructor_validYoe_success() {
+        Yoe yoe = new Yoe("00005");
+        assertEquals("5", yoe.value);
+    }
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -37,5 +43,6 @@ public class YoeTest {
         // valid yoe numbers
         assertTrue(Yoe.isValidYoe("91")); // exactly 2 numbers
         assertTrue(Yoe.isValidYoe("1")); // exactly 1 numbers
+        assertTrue(Yoe.isValidYoe("000012")); // leading 0s with 2 digits
     }
 }

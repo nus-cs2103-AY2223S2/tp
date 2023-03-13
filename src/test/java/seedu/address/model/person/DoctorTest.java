@@ -81,6 +81,14 @@ public class DoctorTest {
         editedAlice = new DoctorBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different specialty -> returns false
+        editedAlice = new DoctorBuilder(ALICE).withSpecialty(VALID_SPECIALTY_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different yoe -> returns false
+        editedAlice = new DoctorBuilder(ALICE).withYoe(VALID_YOE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different tags -> returns false
         editedAlice = new DoctorBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
