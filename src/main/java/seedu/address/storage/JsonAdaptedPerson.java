@@ -160,7 +160,8 @@ class JsonAdaptedPerson {
         final Occupation modelOccupation = new Occupation(occupation);
 
         if (jobTitle == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, JobTitle.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    JobTitle.class.getSimpleName()));
         }
         if (!JobTitle.isValidJobTitle(jobTitle)) {
             throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
