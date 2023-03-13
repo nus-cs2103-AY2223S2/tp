@@ -19,6 +19,7 @@ public class Company {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String companyName;
+    public String value;
 
     /**
      * Constructs a {@code Company}.
@@ -37,7 +38,6 @@ public class Company {
     public static boolean isValidCompanyName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {
