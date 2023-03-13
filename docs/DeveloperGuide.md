@@ -39,7 +39,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
     
 
 <aside>
-💡 **Tip:** Optionally, you can follow the guide *[[se-edu/guides] Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html)* to find how to use the CheckStyle within IDEA e.g., to report problems *as* you write code.
+💡 Tip: Optionally, you can follow the guide *[[se-edu/guides] Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html)* to find how to use the CheckStyle within IDEA e.g., to report problems *as* you write code.
 
 </aside>
 
@@ -139,6 +139,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
         Use case resumes at step 2.
         
 
+
 ### **Use case: List all job listings**
 
 **MSS**
@@ -151,6 +152,7 @@ Use case ends.
 
 - 2a. The list is empty.
 Use case ends.
+
 
 ### **Use case: Add a new job listing**
 
@@ -187,6 +189,7 @@ Use case ends.
         
         Use case resumes at step 1.
         
+
 
 ### **Use case: Update a job listing**
 
@@ -230,6 +233,7 @@ Use case ends.
         
         Use case resumes at step 2.
         
+
 
 ### **Use case: Find a job listing**
 
