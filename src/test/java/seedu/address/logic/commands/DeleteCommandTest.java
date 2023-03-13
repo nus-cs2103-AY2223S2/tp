@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -95,6 +94,20 @@ public class DeleteCommandTest {
     public void execute_validFilteredList_throwsCommandException() {
         List<Person> personsToDelete = model.getFilteredPersonList();
         assertTrue(personsToDelete.size() > 1);
+    }
+
+    @Test
+    public void execute_invalidNameListSizeOne_throwsCommandException() {
+        Person person = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Collections.singletonList("Alice")));
+        assertEquals(1, model.getFilteredPersonList().size());
+
+        NameContainsKeywordsPredicate predicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("Testname"));
+        String invalidName = "Testname";
+        model.updateFilteredPersonList(predicate);
+        DeleteCommand deleteCommand = new DeleteCommand(predicate, invalidName);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_NAME);
     }
 
 
