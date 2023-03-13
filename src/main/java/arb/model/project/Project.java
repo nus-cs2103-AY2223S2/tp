@@ -32,8 +32,7 @@ public class Project {
     }
 
     /**
-     * Checks if this project has a deadline.
-     * @return True if this project has a deadline, false otherwise.
+     * Returns true if this project has a deadline.
      */
     public boolean isDeadlinePresent() {
         return deadline.isPresent();

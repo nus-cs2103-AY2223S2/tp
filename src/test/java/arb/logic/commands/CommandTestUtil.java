@@ -39,8 +39,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_SKY_PAINTING = "Sky Painting";
     public static final String VALID_TITLE_OIL_PAINTING = "Oil Painting";
-    public static final String VALID_DEADLINE_SKY_PAINTING = "2023-02-02";
-    public static final String VALID_DEADLINE_OIL_PAINTING = "2023-05-05";
+    public static final String VALID_DEADLINE_SKY_PAINTING = "6pm 2023-02-02";
+    public static final String VALID_DEADLINE_OIL_PAINTING = "midnight 2023-05-05";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -64,7 +64,7 @@ public class CommandTestUtil {
     public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME
             + "watercolour painting&"; // '&' not allowed in titles
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
-            + "2023-07-02&"; // '&' not allowed in deadlines
+            + "ocean"; // 'ocean' is not able to be parsed into a date
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

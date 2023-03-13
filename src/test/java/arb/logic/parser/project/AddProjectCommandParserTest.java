@@ -18,6 +18,7 @@ import static arb.testutil.TypicalProjects.SKY_PAINTING;
 import org.junit.jupiter.api.Test;
 
 import arb.logic.commands.project.AddProjectCommand;
+import arb.model.project.Deadline;
 import arb.model.project.Project;
 import arb.model.project.Title;
 import arb.testutil.ProjectBuilder;
@@ -70,7 +71,7 @@ public class AddProjectCommandParserTest {
         assertParseFailure(parser, INVALID_TITLE_DESC + DEADLINE_DESC_SKY_PAINTING, Title.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
-        //assertParseFailure(parser, TITLE_DESC_SKY_PAINTING + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_SKY_PAINTING + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_TITLE_DESC + INVALID_DEADLINE_DESC,
