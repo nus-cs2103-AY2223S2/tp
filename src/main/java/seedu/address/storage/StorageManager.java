@@ -17,14 +17,14 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private PetPalStorage PetPalStorage;
+    private PetPalStorage petPalStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code PetPalStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(PetPalStorage PetPalStorage, UserPrefsStorage userPrefsStorage) {
-        this.PetPalStorage = PetPalStorage;
+    public StorageManager(PetPalStorage petPalStorage, UserPrefsStorage userPrefsStorage) {
+        this.petPalStorage = petPalStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,29 +50,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getPetPalFilePath() {
-        return PetPalStorage.getPetPalFilePath();
+        return petPalStorage.getPetPalFilePath();
     }
 
     @Override
     public Optional<ReadOnlyPetPal> readPetPal() throws DataConversionException, IOException {
-        return readPetPal(PetPalStorage.getPetPalFilePath());
+        return readPetPal(petPalStorage.getPetPalFilePath());
     }
 
     @Override
     public Optional<ReadOnlyPetPal> readPetPal(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return PetPalStorage.readPetPal(filePath);
+        return petPalStorage.readPetPal(filePath);
     }
 
     @Override
-    public void savePetPal(ReadOnlyPetPal PetPal) throws IOException {
-        savePetPal(PetPal, PetPalStorage.getPetPalFilePath());
+    public void savePetPal(ReadOnlyPetPal petPal) throws IOException {
+        savePetPal(petPal, petPalStorage.getPetPalFilePath());
     }
 
     @Override
-    public void savePetPal(ReadOnlyPetPal PetPal, Path filePath) throws IOException {
+    public void savePetPal(ReadOnlyPetPal petPal, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        PetPalStorage.savePetPal(PetPal, filePath);
+        petPalStorage.savePetPal(petPal, filePath);
     }
 
 }

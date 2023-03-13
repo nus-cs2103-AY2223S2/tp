@@ -37,7 +37,9 @@ public class Pet {
         this.address = address;
         this.tags.addAll(tags);
     }
-    public OwnerName getOwnerName() { return ownerName; }
+    public OwnerName getOwnerName() {
+        return ownerName;
+    }
 
     public Name getName() {
         return name;
@@ -91,7 +93,7 @@ public class Pet {
         }
 
         Pet otherPet = (Pet) other;
-        return  otherPet.getOwnerName().equals(getOwnerName())
+        return otherPet.getOwnerName().equals(getOwnerName())
                 && otherPet.getName().equals(getName())
                 && otherPet.getPhone().equals(getPhone())
                 && otherPet.getEmail().equals(getEmail())

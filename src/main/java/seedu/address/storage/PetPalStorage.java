@@ -32,14 +32,14 @@ public interface PetPalStorage {
 
     /**
      * Saves the given {@link ReadOnlyPetPal} to the storage.
-     * @param PetPal cannot be null.
+     * @param petPal cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void savePetPal(ReadOnlyPetPal PetPal) throws IOException;
+    void savePetPal(ReadOnlyPetPal petPal) throws IOException;
 
     /**
      * @see #savePetPal(ReadOnlyPetPal)
      */
-    void savePetPal(ReadOnlyPetPal PetPal, Path filePath) throws IOException;
+    void savePetPal(ReadOnlyPetPal petPal, Path filePath) throws IOException;
 
 }

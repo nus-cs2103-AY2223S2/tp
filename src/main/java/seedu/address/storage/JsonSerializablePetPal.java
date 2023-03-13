@@ -46,15 +46,15 @@ class JsonSerializablePetPal {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public PetPal toModelType() throws IllegalValueException {
-        PetPal PetPal = new PetPal();
+        PetPal petPal = new PetPal();
         for (JsonAdaptedPet jsonAdaptedPet : pets) {
             Pet pet = jsonAdaptedPet.toModelType();
-            if (PetPal.hasPet(pet)) {
+            if (petPal.hasPet(pet)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PET);
             }
-            PetPal.addPet(pet);
+            petPal.addPet(pet);
         }
-        return PetPal;
+        return petPal;
     }
 
 }

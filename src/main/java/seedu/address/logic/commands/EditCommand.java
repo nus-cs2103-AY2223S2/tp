@@ -19,7 +19,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.pet.*;
+import seedu.address.model.pet.Address;
+import seedu.address.model.pet.Email;
+import seedu.address.model.pet.Name;
+import seedu.address.model.pet.OwnerName;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -71,7 +76,7 @@ public class EditCommand extends Command {
         }
 
         Pet petToEdit = lastShownList.get(index.getZeroBased());
-        Pet editedPet= createEditedPet(petToEdit, editPetDescriptor);
+        Pet editedPet = createEditedPet(petToEdit, editPetDescriptor);
 
         if (!petToEdit.isSamePet(editedPet) && model.hasPet(editedPet)) {
             throw new CommandException(MESSAGE_DUPLICATE_PET);
@@ -151,9 +156,13 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
-        public void setOwnerName(OwnerName ownerName) { this.ownerName = ownerName; }
+        public void setOwnerName(OwnerName ownerName) {
+            this.ownerName = ownerName;
+        }
 
-        public Optional<OwnerName> getOwnerName() { return Optional.ofNullable(ownerName); }
+        public Optional<OwnerName> getOwnerName() {
+            return Optional.ofNullable(ownerName);
+        }
 
         public void setName(Name name) {
             this.name = name;
