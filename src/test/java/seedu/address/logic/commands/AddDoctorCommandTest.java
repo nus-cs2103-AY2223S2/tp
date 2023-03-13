@@ -1,7 +1,19 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -12,15 +24,8 @@ import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.DoctorBuilder;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
+import javafx.collections.ObservableList;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class AddDoctorCommandTest {
 
@@ -31,7 +36,8 @@ public class AddDoctorCommandTest {
 
     @Test
     public void execute_doctorAcceptedByModel_addSuccessful() throws Exception {
-        AddDoctorCommandTest.ModelStubAcceptingDoctorAdded modelStub = new AddDoctorCommandTest.ModelStubAcceptingDoctorAdded();
+        AddDoctorCommandTest.ModelStubAcceptingDoctorAdded modelStub = new AddDoctorCommandTest
+                .ModelStubAcceptingDoctorAdded();
         Doctor validDoctor = new DoctorBuilder().build();
 
         CommandResult commandResult = new AddDoctorCommand(validDoctor).execute(modelStub);
@@ -46,7 +52,8 @@ public class AddDoctorCommandTest {
         AddDoctorCommand addDoctorCommand = new AddDoctorCommand(validDoctor);
         AddDoctorCommandTest.ModelStub modelStub = new AddDoctorCommandTest.ModelStubWithDoctor(validDoctor);
 
-        assertThrows(CommandException.class, AddDoctorCommand.MESSAGE_DUPLICATE_DOCTOR, () -> addDoctorCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddDoctorCommand.MESSAGE_DUPLICATE_DOCTOR,
+                () -> addDoctorCommand.execute(modelStub));
     }
 
     @Test
@@ -167,7 +174,7 @@ public class AddDoctorCommandTest {
         }
 
         @Override
-        public void updateFilteredDoctorList(Predicate<Doctor> predicate) {
+        public void updateFilteredDoctorList(Predicate<? extends Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

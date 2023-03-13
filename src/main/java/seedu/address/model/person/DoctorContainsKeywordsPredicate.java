@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Doctor's fields} matches the {@code DoctorFilter} given.
  */
-public class DoctorContainsKeywordsPredicate implements Predicate<Doctor>  {
+public class DoctorContainsKeywordsPredicate implements Predicate<Person> {
 
     private final DoctorFilter doctorFilter;
 
@@ -14,10 +14,6 @@ public class DoctorContainsKeywordsPredicate implements Predicate<Doctor>  {
     }
 
     @Override
-    public boolean test(Doctor doctor) {
-        return doctorFilter.isMatch(doctor);
-    }
-
     public boolean test(Person person) {
         return (person instanceof Doctor) && doctorFilter.isMatch((Doctor) person);
     }
