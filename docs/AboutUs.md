@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lin Chieh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/euph00.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/euph00)]
 
-* Role: Project Advisor
+* Role: Team member
+* Responsibilities: ??
 
-### Jane Doe
+### Zheng Ze
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pzhengze.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/pzhengze)]
+[[portfolio](team/pzhengze.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team member
+* Responsibilities: ??
 
-### Johnny Doe
+### Lucas
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lukkesreysandeur.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/lukkesreysandeur)]
+[[portfolio](team/lukkesreysandeur.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team member
+* Responsibilities: ??
 
-### Jean Doe
+### Glenn Ong JunJie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glennongjunjie.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/GlennOngJunJie)]
+[[portfolio](team/glennongjunjie.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team Member
+* Responsibilities: ??
 
-### James Doe
+### Shin Jin
 
-<img src="images/johndoe.png" width="200px">
+<img src="Desktop/NUS/Y2S2/CS2103T/tp/docs/images/jinnieshin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jinnieshin)]
+[[portfolio](team/jinnieshin.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team member
+* Responsibilities: ??

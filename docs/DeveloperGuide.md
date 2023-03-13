@@ -257,57 +257,314 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* has a need to manage a significant amount of data
+  * this can be in the form of patients and staff, and tracking personnel assignment in wards
+* uses desktop/PC apps as a standard at the workplace
+* can type fast and are comfortable with CLI
+  * not necessarily a prerequisite to use the app
+  * users that are required to use the app on a daily basis will become familiar with commands and CLI quickly
+* has limited space for the PC
+  * mobile workstations used in hospitals have limited space and can be decluttered by removing need for a mouse
+* has a need to have access to both fine-grained detail and the big picture in the facility
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage patient and staff data more efficiently than GUI app, given constraints
+on workstation space. This app has a higher skill cap than GUI apps, but is more rewarding as users
+familiar with the system can work faster and eliminate the need for an unwieldly mouse that they have
+no space for.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                   | I want to …​                                                                            | So that I can…​                                                                                            |
+|----------|-------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| `* * *`  | new user                                  | see usage instructions                                                                  | refer to instructions when I forget how to use the app                                                     |
+| `* * *`  | ward admin processing patients            | add and delete a patient                                                                | inpro and outpro the patients as they are hospitalised and discharged                                      |
+| `* * *`  | ward doctor attending to patient          | add and delete new instructions and prescriptions for a patient                         | have a convenient record to access when treating patients                                                  |
+| `* * *`  | ward admin recording manpower assignments | add and delete new doctor/nurse from the ward                                           | have a convenient record of which staff handles each ward                                                  |
+| `*`      | ward doctor getting ready for shift       | add and delete events from my personal duty schedule                                    | track my schedule from the centralised system and easily access records of patients as I check my schedule |
+| `*`      | lab assistant                             | add test results to a patient's information                                             | easily update the medical staff with the information they need for treatment                               |
+| `* * *`  | ward nurse/doctor                         | view and edit todo list for each patient                                                | have a reliable reference for tasks I need to facilitate for each patient                                  |
+| `* *`    | ward nurse/doctor administering medicine  | see a list of medical allergies of the patient on the patient's main page               | be reminded of which medicines cannot be prescribed at a glance                                            |
+| `* * *`  | user unfamiliar with the hospital         | list all patients the system                                                            | find a particular patient without knowing their full name or ID                                            |
+| `* * *`  | user                                      | list all patients in a particular ward                                                  | easily tell how many people are in the ward and the identities of patients in a ward                       |
+| `* *`    | user looking for a patient                | search for patient by name                                                              | look up a patient without knowing his/her ID number                                                        |
+| `* *`    | user looking for a patient                | search for patient by ID                                                                | look up a patient without knowing his/her name                                                             |
+| `* * *`  | pharmacist issuing medication             | view prescription of patients                                                           | dispense medication while knowing the most updated list of medicine                                        |
+| `* *`    | ward nurse/doctor moving a patient        | view important notes about a patient, such as being a fall risk                         | be reminded about each patient's unique needs                                                              |
+| `* *`    | ward doctor in an emergency               | view the patient's status code on the patient's main page                               | know at a glance during an emergency if the patient has a Do Not Resuscitate order                         |
+| `* *`    | user liasing with family members          | update the patient's status code                                                        | update the treatment/resuscitation requirements as the patient or family instructs                         |
+| `* *`    | user                                      | view a patient's Next of Kin contacts                                                   | update the family members of the patient should issues arise                                               |
+| `* *`    | ward admin registering NOK's contact      | edit a patient's Next of Kin contacts                                                   | change the contact number to call in an emergency should there be a need                                   |
+| `* * *`  | user                                      | list all staff members                                                                  | have a high level view of manpower allocation                                                              |
+| `* * *`  | user unfamiliar with the hospital         | list all ward names                                                                     | have a high level view of the facility's wards                                                             |
+| `* *`    | doctor treating a patient                 | update list of medical allergies of a patient                                           | have the most recent information in the system and be assured it is correct                                |
+| `* * *`  | ward admin                                | move patients between wards                                                             | keep the system up to date as patients get transferred around                                              |
+| `* * *`  | doctor treating a patient                 | view and edit the full status page of a patient                                         | keep record of a comprehensive description of the patient for reference when making complicated decisions  |
+| `* *`    | doctor treating a patient                 | view and edit the care priority status of each patient displayed on patient's main page | tell at a glance which patient needs more attention at a glance in emergencies                             |
 
-*{More to be added}*
+
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Patientist` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: See usage instructions**
+
+**Actor: New user**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests for instructions
+2.  Patientist lists down instructions of how to use Patientist
+
+    Use case ends.
+___
+**Use case: Add a patient**
+
+**Actor: Ward admin**
+
+**MSS**
+
+1.  Ward admin chooses to add a patient.
+2.  Patientist requests for details of the patient to be added.
+3.  Ward admin enters the requested details.
+4.  Patientist requests for confirmation.
+5.  Ward admin confirms.
+6.  Patientist adds the patient and displays the details of the patient.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Any of the requested details are missing.
+    * 2a1. Patientist requests for the missing details.
+    * 2a2. Ward admin enters the requested details.
+    Steps 2a1-2a2 are repeated until all details are collected.  
+    Use case resumes from step 4.
 
+      Use case ends.
+
+* 3a. Any of the requested details are in wrong format.
+    * 3a1. Patientist shows an error message indicating the details with wrong format.
+    * 3a2. Patientist requests for the corrected details.
+    * 3a3. Ward admin enters the requested details.
+    Steps 3a1-3a3 are repeated until all details have correct format.  
+    Use case resumes from step 4.
+
+      Use case ends
+  
+* *a. At any time, Ward admin chooses to cancel the addition of patient.
+    * a1. Patientist requests to confirm the cancellation.
+    * a2. Ward admin confirms the cancellation.
+
+      Use case ends.
+___
+**Use case: Delete a patient**
+
+**Actor: Ward admin**
+
+**MSS**
+
+1.  Ward admin chooses to delete a patient.
+2.  Patientist requests for the name of the patient to be deleted.
+3.  Ward admin enters the name of the patient to be deleted.
+4.  Patientist shows the list of patients with the entered name.
+5.  Ward admin enters the index number of the patient to be deleted.
+6.  Patientist requests for confirmation.
+7.  Ward admin confirms.
+8.  Patientist deletes the patient and shows a message indicating deletion.
+
+    Use case ends.
+
+**Extensions**
+
+* *a. At any time, Ward admin chooses to cancel the deletion of patient.
+    * a1. Patientist requests to confirm the cancellation.
+    * a2. Ward admin confirms the cancellation.
+
+      Use case ends.
+___
+**Use case: Add a new instruction or prescription to a patient**
+
+**Actor: Ward doctor**
+
+**MSS**
+
+1. Ward doctor <u>searches for a patient</u>.
+2. Ward doctor chooses to add instruction or prescription to the selected patient.
+3. Patientist requests for the content of the instruction or prescription.
+4. Ward doctor enters an instruction or prescription.
+5. Patientist adds the instruction or prescription to the details of the patient.
+
+    Use case ends.
+___
+**Use case: Delete an instructions or a prescription of a patient**
+
+**Actor: Ward doctor**
+
+**MSS**
+
+1. Ward doctor <u>searches for a patient</u>. 
+2. Ward doctor chooses an instruction or a prescription to be deleted.
+3. Patientist requests to confirm the deletion.
+4. Ward doctor confirms the deletion.
+5. Patientist deletes the instruction or prescription from the details of the patient.
+
+    Use case ends.
+___
+**Use case: Add a new doctor/nurse to the ward**
+
+**Actor: Ward admin**
+
+**MSS**
+
+1. Ward admin <u>searches for a patient</u>.
+2. Ward admin chooses to assign a new doctor/nurse to the patient.
+3. Patientist requests for the name of doctor/nurse to be added.
+4. Ward admin enters the name of the doctor/nurse.
+5. Patientist adds the doctor/nurse to the patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 5a. The doctor/nurse with the entered name does not exist.  
   Use case ends.
+___
+**Use case: Delete a doctor/nurse from the ward**
 
-* 3a. The given index is invalid.
+**Actor: Ward admin**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. Ward admin <u>searches for a patient</u>.
+2. Ward admin chooses to delete a doctor/nurse from the patient.
+3. Patientist asks for the name of doctor/nurse to be deleted.
+4. Ward admin enters the name of the doctor/nurse.
+5. Patientist requests to confirm the deletion.
+6. Ward admin confirms the deletion.
+7. Patientist deletes the doctor/nurse from the patient.
 
+**Extensions**
+
+* *a. At any time, Ward admin chooses to cancel the deletion of patient.
+    * a1. Patientist requests to confirm the cancellation.
+    * a2. Ward admin confirms the cancellation.
+
+    Use case ends.
+___
+**Use case: View todo list for a patient**
+
+**Actor: Ward doctor/nurse**
+
+**MSS**
+
+1. Ward doctor/nurse <u>searches for a patient</u>.
+2. Ward doctor/nurse chooses to view the todo list of the patient.
+3. Patientist shows the patient.
+
+Use case ends.
+___
+**Use case: Edit todo list for a patient**
+
+**Actor: Ward doctor/nurse**
+
+**MSS**
+
+1. Ward doctor/nurse chooses to <u>view todo list for a patient</u>.
+2. Ward doctor/nurse chooses a task to edit from todo list of the patient.
+3. Patientist asks for how to edit the task.
+4. Ward doctor/nurse enters the new content of the task.
+5. Patientist saves the changed content of the task to the todo list of the patient.
+
+    Use case ends.
+___
+**Use case: List all patient in the system**
+
+**Actor: User unfamiliar with the hospital**
+
+**MSS**
+
+1. User chooses to list all patients in the system
+2. Patientist shows the list of all patients in the system.
+
+    Use case ends.
+___
+**Use case: List all patient in a particular ward**
+
+**Actor: User**
+
+**MSS**
+
+1. User chooses to list all patients in a particular ward.
+2. Patientist shows the list of all patients in the ward.
+
+   Use case ends.
+___
+**Use case: Search for a patient by name**
+
+**Actor: User**
+
+**MSS**
+
+1. User chooses to search for a patient by name.
+2. Patientist requests for the name of the patient.
+3. User enters the name of the patient.
+4. Patientist shows the details of the patient.
+
+   Use case ends.
+___
+**Use case: Search for a patient by ID**
+
+**Actor: User**
+
+**MSS**
+
+1. User chooses to search for a patient by ID.
+2. Patientist requests for the ID of the patient.
+3. User enters the ID of the patient.
+4. Patientist shows the details of the patient.
+
+   Use case ends.
+___
+**Use case: List all staff members in the system**
+
+**Actor: User**
+
+**MSS**
+
+1. User chooses to list all staff members in the system.
+2. Patientist shows the list of all staff members in the system.
+
+   Use case ends.
+___
+**Use case: List all ward names in the system**
+
+**Actor: User**
+
+**MSS**
+
+1. User chooses to list all ward names in the system.
+2. Patientist shows the list of all ward names in the system.
+
+   Use case ends.
+___
+**Use case: Move patients between wards**
+
+**Actor: Ward admin**
+
+**MSS**
+
+1. Ward admin chooses to move a patient to another ward.
+2. Patientist requests for the name of the patient and ward to be moved.
+3. Ward admin enters the name of the patient and ward to be moved.
+4. Patientist moves the patient to the new ward.
+5. Patientist shows the updated state of the patient.
+
+   Use case ends.
+___
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -315,13 +572,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  A first time user should be able to easily find help to learn how to use the app.
+5.  Should not take longer than a second to retrieve patient information.
+6.  Should be lightweight and be able to run on any computer with decently recent hardware.
+7.  Should be reliable and able to perform without failure in the majority of use cases during a month.
+8.  Should be available to be accessed by medical staff 24/7/365.
+9.  Should be easily troubleshot in the event of a failure.
+10. Comply with all data protection laws of Singapore (PDPA).
+11. Should follow Singapore localisation.
+12. Should be easily scaled with different number of users.
+13. Patient data should be secure from unauthorised users.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **System**: The whole hospital system that uses Patientist.
+* **User**: All people who have access to Patientist such as ward admin, ward doctor, and ward nurse.
 
 --------------------------------------------------------------------------------------------------------------------
 
