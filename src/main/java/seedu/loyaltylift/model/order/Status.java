@@ -2,9 +2,6 @@ package seedu.loyaltylift.model.order;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.util.AppUtil.checkArgument;
-
-import seedu.loyaltylift.model.customer.CustomerType;
-
 /**
  * Represents an Order's status in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidStatus(StatusValue)}

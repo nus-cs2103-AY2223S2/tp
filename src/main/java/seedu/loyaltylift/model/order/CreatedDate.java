@@ -21,7 +21,7 @@ public class CreatedDate {
     /**
      * Constructs a {@code CreatedDate}.
      *
-     * @param address A valid date.
+     * @param date A valid date.
      */
     public CreatedDate(Date date) {
         requireNonNull(date);

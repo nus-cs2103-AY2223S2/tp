@@ -1,12 +1,7 @@
 package seedu.loyaltylift.logic.parser;
 
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_CUSTOMER_TYPE;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.loyaltylift.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -14,10 +9,10 @@ import java.util.stream.Stream;
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
-import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 

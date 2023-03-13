@@ -3,10 +3,7 @@ package seedu.loyaltylift.logic.parser;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.loyaltylift.commons.core.index.Index;
-import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
 import seedu.loyaltylift.logic.commands.DeleteOrderCommand;
-import seedu.loyaltylift.logic.parser.Parser;
-import seedu.loyaltylift.logic.parser.ParserUtil;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 
 /**
