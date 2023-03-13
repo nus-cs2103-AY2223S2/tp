@@ -5,43 +5,59 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "Wedding Dinner" ]
+    "eventSet" : [ {
+      "eventName" : "Wedding Dinner",
+      "startDateTime" : "01-01-2024 19:00",
+      "endDateTime" : "01-01-2024 22:00"
+    } ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "Wedding Dinner", "Carnival" ]
+    "eventSet" : [ {
+      "eventName" : "Wedding Dinner",
+      "startDateTime" : "01-01-2024 19:00",
+      "endDateTime" : "01-01-2024 22:00"
+    }, {
+      "eventName" : "Carnival",
+      "startDateTime" : "17-07-2023 12:00",
+      "endDateTime" : "21-07-2023 22:00"
+    } ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tagged" : [ ]
+    "eventSet" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "Wedding Dinner" ]
+    "eventSet" : [ {
+      "eventName" : "Wedding Dinner",
+      "startDateTime" : "01-01-2024 19:00",
+      "endDateTime" : "01-01-2024 22:00"
+    } ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "eventSet" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "eventSet" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tagged" : [ ]
+    "eventSet" : [ ]
   } ],
   "events" : [ {
     "eventName" : "Wedding Dinner",
