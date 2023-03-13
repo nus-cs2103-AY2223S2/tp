@@ -26,6 +26,7 @@ import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.ParentName;
 import seedu.address.model.person.student.StudentClass;
 import seedu.address.model.person.student.Test;
+import seedu.address.model.person.Class;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -245,18 +246,18 @@ public class ParserUtil {
 
     /**
      * Parses sc to StudentClass
-     * @param sc
-     * @return a StudentClass
+     * @param sc The name of the student class
+     * @return a Class
      * @throws ParseException
      */
 
-    public static StudentClass parseStudentClass(String sc) throws ParseException {
+    public static Class parseStudentClass(String sc) throws ParseException {
         requireNonNull(sc);
         String trimmedSc = sc.trim();
-        if (!StudentClass.isValidStudentClass(trimmedSc)) {
-            throw new ParseException(StudentClass.MESSAGE_CONSTRAINTS);
+        if (!Class.isValidClass(trimmedSc)) {
+            throw new ParseException(Class.MESSAGE_CONSTRAINTS);
         }
-        return new StudentClass(trimmedSc);
+        return Class.of(trimmedSc);
     }
 
     /**

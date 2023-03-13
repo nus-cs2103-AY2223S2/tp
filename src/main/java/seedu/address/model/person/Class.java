@@ -20,7 +20,7 @@ import seedu.address.model.person.student.UniqueStudentList;
  */
 public class Class {
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Class name must contain letters and/or digits with no spaces in between";
     private static final List<Class> classes = new ArrayList<>();
 
@@ -32,10 +32,39 @@ public class Class {
      * Constructs a {@code Class}.
      *
      * @param className A valid class name.
+     * @return The class with the given name.
+     */
+    public static Class of(String className) {
+        try {
+            return new Class(className);
+        } catch (DuplicateClassException e) {
+            return getClass(className);
+        }
+    }
+
+    /**
+     * Constructs a {@code Class}.
+     *
+     * @param className A valid class name.
+     * @param students A list of students in the class.
+     * @param parents A list of parents in the class.
+     * @return The class with the given name.
+     */
+    public static Class of(String className, UniqueStudentList students, UniqueParentList parents) {
+        try {
+            return new Class(className, students, parents);
+        } catch (DuplicateClassException e) {
+            return getClass(className);
+        }
+    }
+    /**
+     * Constructs a {@code Class}.
+     *
+     * @param className A valid class name.
      * @param students A list of students in the class.
      * @param parents A list of parents in the class.
      */
-    public Class(String className,
+    private Class(String className,
                  UniqueStudentList students,
                  UniqueParentList parents) throws DuplicateClassException {
         requireNonNull(className);
@@ -54,7 +83,7 @@ public class Class {
      *
      * @param className A valid class name.
      */
-    public Class(String className) throws DuplicateClassException {
+    private Class(String className) throws DuplicateClassException {
         requireNonNull(className);
         checkArgument(isValidClass(className), MESSAGE_CONSTRAINTS);
         this.className = className;
@@ -71,17 +100,8 @@ public class Class {
      *
      * @param className Test string to be checked.
      */
-    private boolean isValidClass(String className) {
+    public static boolean isValidClass(String className) {
         return className.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Get the name of the class.
-     *
-     * @return The name of the class.
-     */
-    public String getClassName() {
-        return className;
     }
 
     /**
@@ -90,7 +110,7 @@ public class Class {
      * @param className The name of the class to be retrieved.
      * @return The class with the given name.
      */
-    public Class getClass(String className) {
+    public static Class getClass(String className) {
         for (Class c : classes) {
             if (c.getClassName().equals(className)) {
                 return c;
@@ -146,6 +166,15 @@ public class Class {
             allParents.setParents(c.getParents());
         }
         return allParents;
+    }
+
+    /**
+     * Get the name of the class.
+     *
+     * @return The name of the class.
+     */
+    public String getClassName() {
+        return className;
     }
 
     /**
