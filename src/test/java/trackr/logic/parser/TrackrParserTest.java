@@ -6,7 +6,6 @@ import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static trackr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,18 +17,21 @@ import trackr.logic.commands.AddCommand;
 import trackr.logic.commands.AddTaskCommand;
 import trackr.logic.commands.ClearCommand;
 import trackr.logic.commands.DeleteCommand;
+import trackr.logic.commands.DeleteTaskCommand;
 import trackr.logic.commands.EditCommand;
 import trackr.logic.commands.EditCommand.EditPersonDescriptor;
 import trackr.logic.commands.EditTaskCommand;
 import trackr.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindCommand;
+import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
 import trackr.logic.commands.ListCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.person.NameContainsKeywordsPredicate;
 import trackr.model.person.Person;
 import trackr.model.task.Task;
+import trackr.model.task.TaskNameContainsKeywordsPredicate;
 import trackr.testutil.EditPersonDescriptorBuilder;
 import trackr.testutil.EditTaskDescriptorBuilder;
 import trackr.testutil.PersonBuilder;
@@ -73,8 +75,22 @@ public class TrackrParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_OBJECT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_OBJECT), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTask() throws Exception {
+        DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
+                DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_OBJECT.getOneBased());
+        assertEquals(new DeleteTaskCommand(INDEX_FIRST_OBJECT), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTaskShortcut() throws Exception {
+        DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
+                DeleteTaskCommand.COMMAND_WORD_SHORTCUT + " " + INDEX_FIRST_OBJECT.getOneBased());
+        assertEquals(new DeleteTaskCommand(INDEX_FIRST_OBJECT), command);
     }
 
     @Test
@@ -82,8 +98,8 @@ public class TrackrParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_OBJECT.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_OBJECT, descriptor), command);
     }
 
     @Test
@@ -121,6 +137,24 @@ public class TrackrParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findTask() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
+                FindTaskCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindTaskCommand(new TaskNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findTaskShortcut() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
+                FindTaskCommand.COMMAND_WORD_SHORTCUT
+                        + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindTaskCommand(new TaskNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

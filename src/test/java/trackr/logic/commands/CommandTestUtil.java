@@ -160,6 +160,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -175,8 +176,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered task list
-     * to show only the task at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered task list to show only the task at the given {@code targetIndex} in the
      * {@code model}'s task list.
      */
     public static void showTaskAtIndex(Model model, Index targetIndex) {
@@ -184,8 +184,7 @@ public class CommandTestUtil {
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
         final String[] splitTaskName = task.getTaskName().fullTaskName.split("\\s+");
-        model.updateFilteredTaskList(
-                new TaskNameContainsKeywordsPredicate(Arrays.asList(splitTaskName[0])));
+        model.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(splitTaskName[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());
     }
