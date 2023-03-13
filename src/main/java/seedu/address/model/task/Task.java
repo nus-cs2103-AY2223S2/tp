@@ -10,7 +10,6 @@ public class Task {
     protected boolean isDone;
     private final TaskDescription description;
 
-
     /**
      * The constructor of the Task that takes in description of the task.
      */

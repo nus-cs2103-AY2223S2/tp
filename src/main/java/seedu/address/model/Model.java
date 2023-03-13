@@ -92,6 +92,18 @@ public interface Model {
     void addTask(DeadlineTask person);
 
     /**
+     * Marks the given task {@code task} as done.
+     * {@code task} must exist in the address book.
+     */
+    void markTask(Task task);
+
+    /**
+     * Unmarks the given task {@code task} as not done.
+     * {@code task} must exist in the address book.
+     */
+    void unmarkTask(Task task);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
