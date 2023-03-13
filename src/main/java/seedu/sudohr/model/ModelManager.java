@@ -23,7 +23,7 @@ public class ModelManager implements Model {
 
     private final SudoHr sudoHr;
     private final UserPrefs userPrefs;
-    private final FilteredList<Employee> filteredPersons;
+    private final FilteredList<Employee> filteredEmployees;
     private final FilteredList<Department> filteredDepartments;
 
     /**
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        filteredPersons = new FilteredList<>(this.sudoHr.getPersonList());
+        filteredEmployees = new FilteredList<>(this.sudoHr.getPersonList());
         filteredDepartments = new FilteredList<>(this.sudoHr.getDepartmentList());
     }
 
@@ -126,13 +126,13 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Employee> getFilteredEmployeeList() {
-        return filteredPersons;
+        return filteredEmployees;
     }
 
     @Override
     public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredEmployees.setPredicate(predicate);
     }
 
     //=========== Department-Level Operations ==========================================================================
@@ -206,7 +206,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return sudoHr.equals(other.sudoHr)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredEmployees.equals(other.filteredEmployees);
     }
 
 }
