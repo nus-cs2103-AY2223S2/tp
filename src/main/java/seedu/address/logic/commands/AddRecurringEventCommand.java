@@ -8,35 +8,35 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.person.Person;
 
-
 /**
- * Command class for AddIsolatedEventCommand.
+ * Command class for AddRecurringEventCommand.
  */
-public class AddIsolatedEventCommand extends Command {
-    public static final String COMMAND_WORD = "event_create";
-    public static final String MESSAGE_SUCCESS = "New recurring event added: %1$s";
+public class AddRecurringEventCommand extends Command {
 
+    public static final String COMMAND_WORD = "event_create_recur";
+    public static final String MESSAGE_SUCCESS = "New isolated event added: %1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Add an isolated event into the isolated event list"
-            + "by the index number used in the last person listing.\n "
-            + "Parameters: event name, start date and end date (must be in the format of dd/MM/yyyy HH:mm) "
-            + "ie/[EVENT_NAME] f/[START_DATE] t/[END_DATE] \n"
-            + "Example: " + COMMAND_WORD + " ie/biking" + " f/09/03/2023 14:00" + " t/09/03/2023 15:00";
+            + ": Add a recurring event into the recurring event list"
+            + "by the index number used in the last person listing. "
+            + "Existing remark will be overwritten by the input.\n"
+            + "Parameters: event name, week of the day, start time and end time (must be in the format HH:mm) "
+            + "e/[EVENT_NAME] d/[DAY_OF_WEEK] f/[START_TIME] t/[END_TIME] \n"
+            + "Example: " + COMMAND_WORD + "1" + " re/biking" + "d/Monday" + " f/14:00" + " t/15:00";
 
-    public final IsolatedEvent eventToAdd;
+
+    public final RecurringEvent eventToAdd;
     public final Index index;
 
+
     /**
-     * Constructor for AddIsolatedEventCommand Object.
-     * @param index
+     * Constructor for AddRecurringEventCommand
      * @param eventToAdd
+     * @param index
      */
-    public AddIsolatedEventCommand(Index index, IsolatedEvent eventToAdd) {
-        requireNonNull(index);
-        requireNonNull(eventToAdd);
+    public AddRecurringEventCommand(Index index, RecurringEvent eventToAdd) {
         this.eventToAdd = eventToAdd;
         this.index = index;
     }
@@ -51,9 +51,10 @@ public class AddIsolatedEventCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        model.addIsolatedEvent(personToEdit, eventToAdd);
+        model.addRecurringEvent(personToEdit, eventToAdd);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd) + " to "
                 + personToEdit.getName());
+
     }
 }

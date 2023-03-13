@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ISOEVENT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -16,10 +17,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddIsolatedEventCommand;
+import seedu.address.logic.commands.AddRecurringEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteIsolatedEventCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditIsolatedEventCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -74,12 +78,36 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_recurringEvent() throws Exception {
+        AddRecurringEventCommand command = (AddRecurringEventCommand) parser.parseCommand(
+                AddRecurringEventCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + "re/biking" + " " + "d/MONDAY" + " " + "f/14:00" + " " + "t/15:00");
+        assertTrue(command.COMMAND_WORD == "event_create_recur");
+    }
+    @Test
+    public void parseCommand_deleteIsolatedEvent() throws Exception {
+        DeleteIsolatedEventCommand command = (DeleteIsolatedEventCommand) parser.parseCommand(
+                DeleteIsolatedEventCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + INDEX_FIRST_PERSON.getOneBased());
+        assertTrue(command.COMMAND_WORD == "ie_delete");
+
+    }
+
+    @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editIsolatedEvent() throws Exception {
+        EditIsolatedEventCommand command = (EditIsolatedEventCommand) parser.parseCommand(
+                EditIsolatedEventCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ISOEVENT + "biking");
+        assertTrue(command.COMMAND_WORD == "ie_edit");
     }
 
     @Test

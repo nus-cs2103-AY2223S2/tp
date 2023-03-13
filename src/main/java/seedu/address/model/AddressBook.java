@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Person;
@@ -88,6 +89,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addIsolatedEvent(Person person, IsolatedEvent event) {
         person.addIsolatedEvent(event);
+    }
+
+    public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
+        personToEdit.getIsolatedEventList().deleteIsolatedEvent(event);
+    }
+
+    public void setIsolatedEvent(Person person, IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
+        requireNonNull(editedEvent);
+        person.getIsolatedEventList().edit(originalEvent, editedEvent);
+    }
+
+    public void addRecurringEvent(Person person, RecurringEvent event) {
+        person.addRecurringEvent(event);
     }
 
     /**
@@ -194,4 +208,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return Objects.hash(persons, groups);
     }
+
 }

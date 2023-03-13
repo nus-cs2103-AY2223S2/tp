@@ -8,15 +8,14 @@ import java.time.format.DateTimeFormatter;
  */
 public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
 
-    public static final String VALIDATION_REGEX_EVENTNAME = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String MESSAGE_CONSTRAINTS_EVENTNAME =
             "Event name should only contain alphanumeric characters and spaces, and it should not be blank";
     public static final String MESSAGE_CONSTRAINTS_DATE =
             "Date should be in the format: dd/MM/yyyy HH:mm";
 
-    private final String eventName;
-    private final LocalDateTime startDate;
-    private final LocalDateTime endDate;
+    private String eventName;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     /**
      * Constructor for IsolatedEvent class.
@@ -31,8 +30,29 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
         this.endDate = endDate;
     }
 
+    public LocalDateTime getStartDate() {
+        return this.startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return this.endDate;
+    }
+
+    public String getEventName() {
+        return this.eventName;
+    }
+
     @Override
     public int compareTo(IsolatedEvent o) { //TODO: Add implementation for compareTo
+
+        LocalDateTime oStart = o.getStartDate();
+        LocalDateTime oEnd = o.getEndDate();
+
+        if (this.startDate.isBefore(oStart) && (this.endDate.isBefore(oStart) || this.endDate.equals(oStart))) {
+            return -1;
+        } else if (this.startDate.isAfter(oStart) && (this.startDate.isAfter(oEnd) || this.startDate.equals(oEnd))) {
+            return 1;
+        }
         return 0;
     }
 
@@ -54,10 +74,6 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
         }
 
         return true;
-    }
-
-    public static boolean isValidEventName(String eventName) {
-        return eventName.matches(VALIDATION_REGEX_EVENTNAME);
     }
 
     @Override

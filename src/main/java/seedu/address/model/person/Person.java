@@ -9,6 +9,8 @@ import java.util.Set;
 
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
 import seedu.address.model.group.exceptions.PersonNotInGroupException;
@@ -29,7 +31,9 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final IsolatedEventList isolatedEventList = new IsolatedEventList();
+    private final RecurringEventList recurringEventList = new RecurringEventList();
     private Set<Group> groups = new HashSet<>();
+
 
     /**
      * Every field must be present and not null.
@@ -91,6 +95,14 @@ public class Person {
 
     public IsolatedEventList getIsolatedEventList() {
         return isolatedEventList;
+    }
+
+    public void addRecurringEvent(RecurringEvent event) {
+        recurringEventList.insert(event);
+    }
+
+    public RecurringEventList getRecurringEventList() {
+        return recurringEventList;
     }
 
     /**
@@ -175,5 +187,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }

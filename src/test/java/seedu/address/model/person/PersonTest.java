@@ -12,13 +12,16 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
 import seedu.address.model.group.exceptions.PersonNotInGroupException;
@@ -96,6 +99,18 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void addRecurringEvent() {
+        Person person = new PersonBuilder().build();
+        DayOfWeek dayOfWeek = DayOfWeek.MONDAY;
+        LocalTime start = LocalTime.parse("12:00");
+        LocalTime end = LocalTime.parse("15:00");
+        RecurringEvent recurringEvent = new RecurringEvent("biking", dayOfWeek, start, end);
+
+        person.addRecurringEvent(recurringEvent);
+        assertTrue(person.getRecurringEventList().contain(recurringEvent));
     }
 
     @Test
