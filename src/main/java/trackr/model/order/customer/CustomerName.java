@@ -3,6 +3,10 @@ package trackr.model.order.customer;
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Customer's Name
+ * Guaruntees: immutable; is valid as declared in {@link #isValidCustomerName(String)}
+ */
 public class CustomerName {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -51,5 +55,5 @@ public class CustomerName {
     public int hashCode() {
         return fullName.hashCode();
     }
-    
+
 }

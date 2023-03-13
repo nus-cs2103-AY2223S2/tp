@@ -25,6 +25,9 @@ public class OrderDeadline {
 
     public final LocalDate orderDeadline;
 
+    /**
+     * Constructs a {@codde OrderDeadline}.
+     */
     public OrderDeadline(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidOrderDeadline(deadline), MESSAGE_CONSTRAINTS);
@@ -32,6 +35,11 @@ public class OrderDeadline {
         orderDeadline = LocalDate.parse(deadline, dtf);
     }
 
+    /**
+     * Returns true if a given string is a valid deadline,
+     * meaning string is of the format "dd/MM/yyyy" and
+     * the parsed date is today's date or after today's date.
+     */
     public static boolean isValidOrderDeadline(String test) {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
@@ -44,7 +52,7 @@ public class OrderDeadline {
             return false;
         }
     }
-    
+
     /**
      * Returns the deadline stored in "dd/MM/yyyy" format for json storage.
      * @return A string representation of the deadline.

@@ -3,6 +3,10 @@ package trackr.model.order.customer;
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the Customer's Phone Number
+ * Guaruntees: immutable; is valid as declared in {@link #isValidCustomerPhone(String)}
+ */
 public class CustomerPhone {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";

@@ -3,6 +3,10 @@ package trackr.model.order.customer;
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Customer's Address
+ * Guaruntees: immutable; is valid as declared in {@link #isValidCustomerAddress(String)}
+ */
 public class CustomerAddress {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
@@ -49,5 +53,5 @@ public class CustomerAddress {
     public int hashCode() {
         return value.hashCode();
     }
-    
+
 }

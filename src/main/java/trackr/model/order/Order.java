@@ -6,6 +6,10 @@ import java.util.Objects;
 
 import trackr.model.order.customer.Customer;
 
+/**
+ * Represents an Order in the order list.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Order {
 
     //Data fields
@@ -16,6 +20,9 @@ public class Order {
     //Customer
     private final Customer customer;
 
+    /**
+     * Every field must be present and not null
+     */
     public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus , Customer customer) {
         requireAllNonNull(orderName, orderDeadline, orderStatus, customer);
         this.orderName = orderName;
@@ -39,18 +46,25 @@ public class Order {
     public Customer getCustomer() {
         return customer;
     }
-
+    /**
+     * Returns true if both orders have the same name and deadline
+     * This defines a weaker notion of equality between two orders.
+     */
     public boolean isSameOrder(Order otherOrder) {
         if (otherOrder == this) {
             return true;
         }
 
-        return otherOrder!= null
+        return otherOrder != null
                 && otherOrder.getCustomer().equals(this.getCustomer())
                 && otherOrder.getOrderName().equals(this.getOrderName())
                 && otherOrder.getOrderDeadline().equals(this.getOrderDeadline());
     }
 
+    /**
+     * Returns true if both orders have the same name, deadline and status.
+     * This defines a stronger notion of equality between two orders.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -63,7 +77,7 @@ public class Order {
 
         Order otherOrder = (Order) other;
 
-        return otherOrder!= null
+        return otherOrder != null
                 && otherOrder.getCustomer().equals(this.getCustomer())
                 && otherOrder.getOrderName().equals(this.getOrderName())
                 && otherOrder.getOrderDeadline().equals(this.getOrderDeadline())
@@ -88,5 +102,5 @@ public class Order {
                 .append(getCustomer());
         return builder.toString();
     }
-    
+
 }

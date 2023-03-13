@@ -3,10 +3,15 @@ package trackr.model.order;
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Order's status in the order list.
+ * Guaruntees: immutable; is valid as declared in {@link #isValidOrdeStatus(String)}
+ */
 public class OrderStatus {
-    
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Order status should only be `N` or `n` for Not Delivered, `I` or `i` for In Progress, or `D` or `d` for Delivered";
+            "Order status should only be `N` or `n` for Not Delivered, `I` or `i` for In Progress,"
+            + " or `D` or `d` for Delivered";
 
     /*
      * The first character of the task status must not be a whitespace,
@@ -23,7 +28,9 @@ public class OrderStatus {
         //Order status defaulted to false
         orderStatus = "N";
     }
-
+    /**
+     * Constructs a {@code OrderStatus}.
+     */
     public OrderStatus(String status) {
         requireNonNull(status);
         checkArgument(isValidOrderStatus(status), MESSAGE_CONSTRAINTS);
