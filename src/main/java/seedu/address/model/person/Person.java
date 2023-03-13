@@ -55,7 +55,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Class sc, IndexNumber indexNumber) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Class sc,
+                  IndexNumber indexNumber) {
         requireAllNonNull(name, phone, email, address, tags, sc, indexNumber);
         this.name = name;
         this.phone = phone;
@@ -86,8 +87,12 @@ public class Person {
     public Comment getComment() {
         return comment;
     }
-    public Class getStudentClass() { return sc; }
-    public IndexNumber getIndexNumber() { return indexNumber; }
+    public Class getStudentClass() {
+        return sc;
+    }
+    public IndexNumber getIndexNumber() {
+        return indexNumber;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
