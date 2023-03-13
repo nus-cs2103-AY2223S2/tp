@@ -8,6 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditRoleDescriptor;
 import seedu.address.model.job.Address;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
+import seedu.address.model.job.JobDescription;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
@@ -38,6 +39,7 @@ public class EditRoleDescriptorBuilder {
         descriptor.setPhone(role.getPhone());
         descriptor.setEmail(role.getEmail());
         descriptor.setAddress(role.getAddress());
+        descriptor.setJobDescription(role.getJobDescription());
         descriptor.setTags(role.getTags());
         descriptor.setSalary(role.getSalary());
         descriptor.setDeadline(role.getDeadline());
@@ -75,6 +77,13 @@ public class EditRoleDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code JobDescription} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditRoleDescriptorBuilder withJobDescription(String jd) {
+        descriptor.setJobDescription(new JobDescription(jd));
+        return this;
+    }
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditRoleDescriptor}
      * that we are building.

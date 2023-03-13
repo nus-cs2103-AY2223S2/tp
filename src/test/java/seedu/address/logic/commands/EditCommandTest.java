@@ -44,7 +44,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setRole(model.getFilteredRoleList().get(0), editedRole);
-
+        System.out.println(expectedModel.getFilteredRoleList().get(0));
+        System.out.println(editedRole);
+        System.out.println(expectedMessage);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

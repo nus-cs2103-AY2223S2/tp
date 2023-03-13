@@ -22,6 +22,7 @@ public class Role {
 
     // Data fields
     private final Address address;
+    private final JobDescription jobDescription;
     private final Set<Tag> tags = new HashSet<>();
     private final Salary salary;
     private final Deadline deadline;
@@ -29,12 +30,14 @@ public class Role {
     /**
      * Every field must be present and not null.
      */
-    public Role(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Salary salary, Deadline deadline) {
-        requireAllNonNull(name, phone, email, address, tags, salary, deadline);
+    public Role(Name name, Phone phone, Email email, Address address, JobDescription jd, Set<Tag> tags,
+                Salary salary, Deadline deadline) {
+        requireAllNonNull(name, phone, email, address, jd, tags, salary, deadline);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.jobDescription = jd;
         this.tags.addAll(tags);
         this.salary = salary;
         this.deadline = deadline;
@@ -54,6 +57,10 @@ public class Role {
 
     public Address getAddress() {
         return address;
+    }
+
+    public JobDescription getJobDescription() {
+        return jobDescription;
     }
 
     /**
@@ -104,6 +111,7 @@ public class Role {
                 && otherRole.getPhone().equals(getPhone())
                 && otherRole.getEmail().equals(getEmail())
                 && otherRole.getAddress().equals(getAddress())
+                && otherRole.getJobDescription().equals(getJobDescription())
                 && otherRole.getTags().equals(getTags())
                 && otherRole.getSalary().equals(getSalary())
                 && otherRole.getDeadline().equals(getDeadline());
@@ -112,7 +120,7 @@ public class Role {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, salary, deadline);
+        return Objects.hash(name, phone, email, address, jobDescription, tags, salary, deadline);
     }
 
     @Override
@@ -124,7 +132,9 @@ public class Role {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Job Description: ")
+                .append(getJobDescription());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

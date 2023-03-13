@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.job.Address;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
+import seedu.address.model.job.JobDescription;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
@@ -30,6 +31,7 @@ class JsonAdaptedRole {
     private final String phone;
     private final String email;
     private final String address;
+    private final String jobDescription;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String salary;
     private final String deadline;
@@ -38,14 +40,17 @@ class JsonAdaptedRole {
      * Constructs a {@code JsonAdaptedRole} with the given role details.
      */
     @JsonCreator
+
     public JsonAdaptedRole(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                           @JsonProperty("email") String email, @JsonProperty("address") String address,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("salary") String salary,
-                           @JsonProperty("deadline") String deadline) {
+                @JsonProperty("email") String email, @JsonProperty("address") String address,
+                @JsonProperty("JobDescription") String jd, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                @JsonProperty("salary") String salary, @JsonProperty("deadline") String deadline) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.jobDescription = jd;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -61,6 +66,7 @@ class JsonAdaptedRole {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        jobDescription = source.getJobDescription().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -111,6 +117,17 @@ class JsonAdaptedRole {
         }
         final Address modelAddress = new Address(address);
 
+        if (jobDescription == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    JobDescription.class.getSimpleName()));
+        }
+        if (!JobDescription.isValidJobDescription(jobDescription)) {
+            throw new IllegalValueException(JobDescription.MESSAGE_CONSTRAINTS);
+        }
+        final JobDescription modelJobDescription = new JobDescription(jobDescription);
+
+        final Set<Tag> modelTags = new HashSet<>(roleTags);
+
         if (salary == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Salary.class.getSimpleName()));
         }
@@ -128,8 +145,8 @@ class JsonAdaptedRole {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
-        final Set<Tag> modelTags = new HashSet<>(roleTags);
-        return new Role(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSalary, modelDeadline);
+        return new Role(modelName, modelPhone, modelEmail, modelAddress, modelJobDescription, modelTags,
+                modelSalary, modelDeadline);
     }
 
 }

@@ -8,10 +8,11 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.commands.exceptions.exceptions.ParseException;
 import seedu.address.model.job.Address;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
+import seedu.address.model.job.JobDescription;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Salary;
@@ -80,6 +81,21 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String jd} into an {@code JobDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code JobDescription} is invalid.
+     */
+    public static JobDescription parseJobDescription(String jd) throws ParseException {
+        requireNonNull(jd);
+        String trimmedJobDescription = jd.trim();
+        if (!JobDescription.isValidJobDescription(trimmedJobDescription)) {
+            throw new ParseException(JobDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new JobDescription(trimmedJobDescription);
     }
 
     /**

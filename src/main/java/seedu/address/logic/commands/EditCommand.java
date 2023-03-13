@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.job.Address;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
+import seedu.address.model.job.JobDescription;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
@@ -46,12 +48,14 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CONTACT + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_JOBDESCRIPTION + "JOBDESCRIPTION] "
             + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_CONTACT + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"
+            + PREFIX_JOBDESCRIPTION + "Software Engineer @ Jane Street"
             + PREFIX_SALARY + "4000 "
             + PREFIX_DEADLINE + "2023-10-20";
 
@@ -106,10 +110,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editRoleDescriptor.getPhone().orElse(roleToEdit.getPhone());
         Email updatedEmail = editRoleDescriptor.getEmail().orElse(roleToEdit.getEmail());
         Address updatedAddress = editRoleDescriptor.getAddress().orElse(roleToEdit.getAddress());
+        JobDescription updatedJd = editRoleDescriptor.getJobDescription().orElse(roleToEdit.getJobDescription());
         Set<Tag> updatedTags = editRoleDescriptor.getTags().orElse(roleToEdit.getTags());
         Salary updatedSalary = editRoleDescriptor.getSalary().orElse(roleToEdit.getSalary());
         Deadline updatedDeadline = editRoleDescriptor.getDeadline().orElse(roleToEdit.getDeadline());
-        return new Role(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+        return new Role(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedJd, updatedTags,
                 updatedSalary, updatedDeadline);
     }
 
@@ -140,6 +145,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private JobDescription jd;
         private Set<Tag> tags;
         private Salary salary;
         private Deadline deadline;
@@ -156,6 +162,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setJobDescription(toCopy.jd);
             setTags(toCopy.tags);
             setSalary(toCopy.salary);
             setDeadline(toCopy.deadline);
@@ -198,6 +205,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setJobDescription(JobDescription jd) {
+            this.jd = jd;
+        }
+
+        public Optional<JobDescription> getJobDescription() {
+            return Optional.ofNullable(jd);
         }
 
         /**
@@ -252,6 +267,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getJobDescription().equals(e.getJobDescription())
                     && getTags().equals(e.getTags())
                     && getSalary().equals(e.getSalary())
                     && getDeadline().equals(e.getDeadline());

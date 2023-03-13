@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -20,23 +21,25 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a role to the Techtrack. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a role to TechTrack. "
             + "Parameters: "
             + PREFIX_ROLE + "ROLE "
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_JOBDESCRIPTION + "JOB DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + PREFIX_SALARY + "SALARY"
-            + PREFIX_DEADLINE + "DEADLINE"
+            + PREFIX_SALARY + "SALARY "
+            + PREFIX_DEADLINE + "DEADLINE "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ROLE + "Google "
+            + PREFIX_ROLE + "Software Engineer, Google "
             + PREFIX_CONTACT + "98765432 "
             + PREFIX_EMAIL + "google@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_JOBDESCRIPTION + "Data Engineering team - penultimate students preferred "
             + PREFIX_TAG + "Tech "
-            + PREFIX_SALARY + "4000"
-            + PREFIX_DEADLINE + "2023-10-20";
+            + PREFIX_SALARY + "4000 "
+            + PREFIX_DEADLINE + "2023-10-20 ";
 
     public static final String MESSAGE_SUCCESS = "New role added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This role already exists in the Techtrack.";
