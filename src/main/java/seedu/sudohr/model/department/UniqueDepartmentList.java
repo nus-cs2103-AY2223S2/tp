@@ -46,6 +46,20 @@ public class UniqueDepartmentList implements Iterable<Department> {
     }
 
     /**
+     * Returns a department that has the given name
+     * @param name the department name
+     * @return the corresponding department
+     */
+    public Department getDepartment(DepartmentName name) {
+        for (Department department: internalList) {
+            if (department.getName().equals(name)) {
+                return department;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Replaces the department {@code target} in the list with {@code editedDepartment}.
      * {@code target} must exist in the list.
      * The department identity of {@code editedDepartment} must not be the same as another existing department in the

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.department.UniqueDepartmentList;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.model.person.UniquePersonList;
@@ -134,8 +135,17 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Adds a department to SudoHR.
-     * The department must not already exist SudoHR.
+     * Returns the department with the given name.
+     * @param name The department name to find.
+     * @return The corresponding department.
+     */
+    public Department getDepartment(DepartmentName name) {
+        return departments.getDepartment(name);
+    }
+
+    /**
+     * Adds a department to the address book.
+     * The department must not already exist in the address book.
      */
     public void addDepartment(Department d) {
         departments.add(d);

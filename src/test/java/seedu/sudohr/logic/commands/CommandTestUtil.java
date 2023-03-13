@@ -19,8 +19,10 @@ import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.SudoHr;
+import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.person.NameContainsKeywordsPredicate;
 import seedu.sudohr.model.person.Person;
+import seedu.sudohr.testutil.EditDepartmentDescriptorBuilder;
 import seedu.sudohr.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -79,6 +81,9 @@ public class CommandTestUtil {
     // '&' not allowed in names
     public static final String INVALID_DEPARTMENT_NAME_DESC = " " + PREFIX_DEPARTMENT_NAME + "Engineering&";
 
+    public static final EditDepartmentCommand.EditDepartmentDescriptor DESC_DEPARTMENT_ENGINEERING;
+    public static final EditDepartmentCommand.EditDepartmentDescriptor DESC_DEPARTMENT_HUMAN_RESOURCES;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withId(VALID_ID_AMY)
                 .withName(VALID_NAME_AMY)
@@ -88,6 +93,10 @@ public class CommandTestUtil {
                 .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_DEPARTMENT_ENGINEERING = new EditDepartmentDescriptorBuilder()
+                .withName(new DepartmentName(VALID_DEPARTMENT_NAME_ENGINEERING)).build();
+        DESC_DEPARTMENT_HUMAN_RESOURCES = new EditDepartmentDescriptorBuilder()
+                .withName(new DepartmentName(VALID_DEPARTMENT_NAME_HUMAN_RESOURCES)).build();
     }
 
     /**
