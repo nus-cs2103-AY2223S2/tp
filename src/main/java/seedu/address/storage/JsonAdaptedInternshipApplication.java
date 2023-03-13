@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.*;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.person.InternshipApplication}.
@@ -17,14 +14,18 @@ public class JsonAdaptedInternshipApplication {
 
     private final String companyName;
     private final String jobTitle;
+    private final String status;
+
     /**
      * Constructs a {@code JsonAdaptedInternshipApplication} with the given InternshipApplication details.
      */
     @JsonCreator
     public JsonAdaptedInternshipApplication(@JsonProperty("companyName") String companyName,
-                                            @JsonProperty("jobTitle") String jobTitle) {
+                                            @JsonProperty("jobTitle") String jobTitle,
+                                            @JsonProperty("status") String status) {
         this.companyName = companyName;
         this.jobTitle = jobTitle;
+        this.status = status;
     }
 
     /**
@@ -33,6 +34,7 @@ public class JsonAdaptedInternshipApplication {
     public JsonAdaptedInternshipApplication(InternshipApplication source) {
         companyName = source.getCompanyName().fullName;
         jobTitle = source.getJobTitle().fullName;
+        status = source.getStatus().name();
     }
 
     /**
@@ -56,9 +58,18 @@ public class JsonAdaptedInternshipApplication {
                                                             JobTitle.class.getSimpleName()));
         }
         if (!JobTitle.isValidJobTitle(jobTitle)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
         }
         final JobTitle modelJobTitle = new JobTitle(jobTitle);
-        return new InternshipApplication(modelCompanyName, modelJobTitle);
+
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    InternshipStatus.class.getSimpleName()));
+        }
+        if (!InternshipStatus.isValidStatus(status)) {
+            throw new IllegalValueException(InternshipStatus.MESSAGE_CONSTRAINTS);
+        }
+        final InternshipStatus modelStatus = InternshipStatus.valueOf(status);
+        return new InternshipApplication(modelCompanyName, modelJobTitle, modelStatus);
     }
 }

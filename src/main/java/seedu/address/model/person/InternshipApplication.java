@@ -17,6 +17,7 @@ public class InternshipApplication {
     // Identity fields
     private final CompanyName companyName;
     private final JobTitle jobTitle;
+    private final InternshipStatus status;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -28,6 +29,17 @@ public class InternshipApplication {
         requireAllNonNull(name, job);
         this.companyName = name;
         this.jobTitle = job;
+        this.status = InternshipStatus.NA;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public InternshipApplication(CompanyName name, JobTitle job, InternshipStatus status) {
+        requireAllNonNull(name, job, status);
+        this.companyName = name;
+        this.jobTitle = job;
+        this.status = status;
     }
 
     public CompanyName getCompanyName() {
@@ -35,6 +47,9 @@ public class InternshipApplication {
     }
     public JobTitle getJobTitle() {
         return jobTitle;
+    }
+    public InternshipStatus getStatus() {
+        return status;
     }
 
     /**
@@ -46,8 +61,8 @@ public class InternshipApplication {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both internship applications have the same company name and job title.
+     * This defines a weaker notion of equality between two internship applications.
      */
     public boolean isSameApplication(InternshipApplication otherApplication) {
         if (otherApplication == this) {
@@ -60,8 +75,8 @@ public class InternshipApplication {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both internship applications have the same identity and data fields.
+     * This defines a stronger notion of equality between two internship applications.
      */
     @Override
     public boolean equals(Object other) {
@@ -75,7 +90,8 @@ public class InternshipApplication {
 
         InternshipApplication otherApplication = (InternshipApplication) other;
         return otherApplication.getCompanyName().equals(getCompanyName())
-                && otherApplication.getJobTitle().equals(getJobTitle());
+                && otherApplication.getJobTitle().equals(getJobTitle())
+                && otherApplication.getStatus().equals(getStatus());
     }
 
     @Override
@@ -89,7 +105,9 @@ public class InternshipApplication {
         final StringBuilder builder = new StringBuilder();
         builder.append(getCompanyName())
                 .append("; Job Title: ")
-                .append(getJobTitle());
+                .append(getJobTitle())
+                .append("; Status: ")
+                .append(getStatus());;
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

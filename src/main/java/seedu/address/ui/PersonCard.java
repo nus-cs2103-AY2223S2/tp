@@ -42,6 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label internshipStatus;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -52,6 +54,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
+        internshipStatus.setText(application.getStatus().name());
     }
 
     @Override
