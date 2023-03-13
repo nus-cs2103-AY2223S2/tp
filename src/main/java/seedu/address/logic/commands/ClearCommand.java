@@ -17,6 +17,21 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_FAILED = "Clear command is not executed!";
     public static final String MESSAGE_NULL = "There is nothing to clear!";
 
+    private CommandResult resultMessage;
+
+    /**
+     * Clears the {@code model} data and returns result message with respect to the user's action to {@code confirm}.
+     */
+    public CommandResult getResultString(Model model, boolean confirm) {
+
+        if (confirm) {
+            model.setInternEase(new AddressBook());
+            resultMessage = new CommandResult(MESSAGE_SUCCESS);
+        } else {
+            resultMessage = new CommandResult(MESSAGE_FAILED);
+        }
+        return resultMessage;
+    }
 
     @Override
     public CommandResult execute(Model model) {
@@ -28,10 +43,6 @@ public class ClearCommand extends Command {
 
         ConfirmationDialog confirmationDialog = new ConfirmationDialog(MESSAGE_CONFIRMATION);
 
-        if (confirmationDialog.getConfirmationStatus()) {
-            model.setInternEase(new AddressBook());
-            return new CommandResult(MESSAGE_SUCCESS);
-        }
-        return new CommandResult(MESSAGE_FAILED);
+        return getResultString(model, confirmationDialog.getConfirmationStatus());
     }
 }

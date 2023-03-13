@@ -1,3 +1,4 @@
+
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,6 +25,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 /**
  * Contains helper methods for testing commands.
  */
+
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
@@ -85,16 +87,19 @@ public class CommandTestUtil {
         }
     }
 
+    /*
     /**
      * Compares the given {@code result}, confirms that <br>
      * - the {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(CommandResult result, Model actualModel, CommandResult expectedCommandResult,
-                                            Model expectedModel) {
+    /*
+    public static void assertCommandSuccess(CommandResult result, Model actualModel,
+        CommandResult expectedCommandResult, Model expectedModel) {
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
     }
+    */
 
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
@@ -106,15 +111,18 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
+    /*
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(CommandResult, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
+    /*
     public static void assertCommandSuccess(CommandResult result, Model actualModel, String expectedMessage,
                                             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(result, actualModel, expectedCommandResult, expectedModel);
     }
+     */
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -147,3 +155,4 @@ public class CommandTestUtil {
     }
 
 }
+

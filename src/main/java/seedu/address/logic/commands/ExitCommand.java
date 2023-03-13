@@ -16,18 +16,25 @@ public class ExitCommand extends Command {
 
     public static final String MESSAGE_STAY_ACKNOWLEDGEMENT = "So glad that you're still here!";
 
+    private CommandResult resultMessage;
+
+    /**
+     * Returns result message with respect to the user's action to {@code confirm}.
+     */
+    public CommandResult getResultString(boolean confirm) {
+        if (confirm) {
+            resultMessage = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        } else {
+            resultMessage = new CommandResult(MESSAGE_STAY_ACKNOWLEDGEMENT);
+        }
+        return resultMessage;
+    }
+
     @Override
     public CommandResult execute(Model model) {
-        if (model.getFilteredInternshipList().size() == 0) {
-            return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
-        }
-
         ConfirmationDialog confirmationDialog = new ConfirmationDialog(EXIT_CONFIRMATION);
 
-        if (confirmationDialog.getConfirmationStatus()) {
-            return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
-        }
-        return new CommandResult(MESSAGE_STAY_ACKNOWLEDGEMENT);
+        return getResultString(confirmationDialog.getConfirmationStatus());
     }
 
 }

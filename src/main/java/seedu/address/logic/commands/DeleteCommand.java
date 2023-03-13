@@ -34,11 +34,18 @@ public class DeleteCommand extends Command {
 
     private CommandResult resultMessage;
 
+    /**
+     * Creates an DeleteCommand to delete the specified {@code targetIndex} internship
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.resultMessage = new CommandResult(MESSAGE_DELETE_EXECUTE_ERROR);
     }
 
+    /**
+     * Deletes {@code internshipToDelete} from the {@code model} data and returns result message with respect to
+     * the user's action to {@code confirm}.
+     */
     public CommandResult getResultString(Model model, boolean confirm, Person internshipToDelete) {
         if (confirm) {
             model.deleteInternship(internshipToDelete);
