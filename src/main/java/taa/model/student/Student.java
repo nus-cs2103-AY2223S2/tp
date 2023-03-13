@@ -14,8 +14,10 @@ import taa.model.tag.Tag;
  */
 public class Student {
 
+    private static int lastId = 0;
     // Identity fields
     private final Name name;
+    private final int id;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -25,10 +27,14 @@ public class Student {
      */
     public Student(Name name, Set<Tag> tags) {
         CollectionUtil.requireAllNonNull(name, tags);
+        this.id = ++lastId;
         this.name = name;
         this.tags.addAll(tags);
     }
 
+    public int getId() {
+        return this.id;
+    }
     public Name getName() {
         return name;
     }
