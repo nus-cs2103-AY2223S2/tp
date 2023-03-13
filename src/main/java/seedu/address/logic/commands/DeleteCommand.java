@@ -11,18 +11,18 @@ import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a pet identified using it's displayed index from the pet list.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the pet identified by the index number used in the displayed pet list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PET_SUCCESS = "Deleted Pet: %1$s";
 
     private final Index targetIndex;
 
@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
 
         Pet petToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePet(petToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, petToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PET_SUCCESS, petToDelete));
     }
 
     @Override

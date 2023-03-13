@@ -23,7 +23,7 @@ import seedu.address.model.pet.*;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing pet in the address book.
+ * Edits the details of an existing pet in the pet list.
  */
 public class EditCommand extends Command {
 
@@ -42,9 +42,9 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_Pet_SUCCESS = "Edited Pet: %1$s";
+    public static final String MESSAGE_EDIT_PET_SUCCESS = "Edited Pet: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_Pet = "This pet already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the pet list.";
 
     private final Index index;
     private final EditPetDescriptor editPetDescriptor;
@@ -74,12 +74,12 @@ public class EditCommand extends Command {
         Pet editedPet= createEditedPet(petToEdit, editPetDescriptor);
 
         if (!petToEdit.isSamePet(editedPet) && model.hasPet(editedPet)) {
-            throw new CommandException(MESSAGE_DUPLICATE_Pet);
+            throw new CommandException(MESSAGE_DUPLICATE_PET);
         }
 
         model.setPet(petToEdit, editedPet);
         model.updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
-        return new CommandResult(String.format(MESSAGE_EDIT_Pet_SUCCESS, editedPet));
+        return new CommandResult(String.format(MESSAGE_EDIT_PET_SUCCESS, editedPet));
     }
 
     /**

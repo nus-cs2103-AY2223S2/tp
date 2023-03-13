@@ -6,7 +6,7 @@ import seedu.address.model.PetPal;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the pet list.
  */
 public class ClearCommand extends Command {
 
