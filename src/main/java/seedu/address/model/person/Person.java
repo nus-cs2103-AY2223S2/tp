@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.score.Score;
 import seedu.address.model.score.ScoreList;
 import seedu.address.model.tag.Tag;
@@ -138,7 +139,6 @@ public class Person {
         scoreList.add(score);
     }
 
-
     public ObservableList<Score> getScoreList() {
         return scoreList.asUnmodifiableObservableList();
     }
@@ -165,7 +165,14 @@ public class Person {
         scoreList.remove(key);
     }
 
-
+    /**
+     * Returns an unmodifiable view of the list of {@code Score} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    public ObservableList<Score> getFilteredScoreList() {
+        FilteredList<Score> filteredScores = new FilteredList<>(this.getScoreList());
+        return filteredScores;
+    }
 
     /**
      * Returns true if both persons have the same identity and data fields.
