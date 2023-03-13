@@ -30,7 +30,7 @@ public class AddCommandIntegrationTest {
         Employee validPerson = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addEmployee(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);

@@ -7,7 +7,7 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -72,7 +72,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Employee> lastShownList = model.getFilteredPersonList();
+        List<Employee> lastShownList = model.getFilteredEmployeeList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -81,12 +81,12 @@ public class EditCommand extends Command {
         Employee personToEdit = lastShownList.get(index.getZeroBased());
         Employee editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!personToEdit.isSamePerson(editedPerson) && model.hasEmployee(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setEmployee(personToEdit, editedPerson);
+        model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

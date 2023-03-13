@@ -111,7 +111,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Employee person) {
+        public void addEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -126,27 +126,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Employee person) {
+        public boolean hasEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Employee target) {
+        public void deleteEmployee(Employee target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Employee target, Employee editedPerson) {
+        public void setEmployee(Employee target, Employee editedEmployee) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Employee> getFilteredPersonList() {
+        public ObservableList<Employee> getFilteredEmployeeList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Employee> predicate) {
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -208,9 +208,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Employee person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasEmployee(Employee employee) {
+            requireNonNull(employee);
+            return this.person.isSamePerson(employee);
         }
     }
 
@@ -221,15 +221,15 @@ public class AddCommandTest {
         final ArrayList<Employee> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Employee person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasEmployee(Employee employee) {
+            requireNonNull(employee);
+            return personsAdded.stream().anyMatch(employee::isSamePerson);
         }
 
         @Override
-        public void addPerson(Employee person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addEmployee(Employee employee) {
+            requireNonNull(employee);
+            personsAdded.add(employee);
         }
 
         @Override

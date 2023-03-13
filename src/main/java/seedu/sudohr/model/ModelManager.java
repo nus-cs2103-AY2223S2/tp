@@ -95,27 +95,27 @@ public class ModelManager implements Model {
     //=========== Employee-Level Operations ==============================================================================
 
     @Override
-    public boolean hasPerson(Employee person) {
-        requireNonNull(person);
-        return sudoHr.hasPerson(person);
+    public boolean hasEmployee(Employee employee) {
+        requireNonNull(employee);
+        return sudoHr.hasPerson(employee);
     }
 
     @Override
-    public void deletePerson(Employee target) {
+    public void deleteEmployee(Employee target) {
         sudoHr.removePerson(target);
     }
 
     @Override
-    public void addPerson(Employee person) {
-        sudoHr.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addEmployee(Employee employee) {
+        sudoHr.addPerson(employee);
+        updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
     }
 
     @Override
-    public void setPerson(Employee target, Employee editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setEmployee(Employee target, Employee editedEmployee) {
+        requireAllNonNull(target, editedEmployee);
 
-        sudoHr.setPerson(target, editedPerson);
+        sudoHr.setPerson(target, editedEmployee);
     }
 
     //=========== Filtered Employee List Accessors =============================================================
@@ -125,12 +125,12 @@ public class ModelManager implements Model {
      * {@code versionedSudoHr}
      */
     @Override
-    public ObservableList<Employee> getFilteredPersonList() {
+    public ObservableList<Employee> getFilteredEmployeeList() {
         return filteredPersons;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Employee> predicate) {
+    public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }

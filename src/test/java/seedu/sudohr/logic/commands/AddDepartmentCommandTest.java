@@ -114,7 +114,7 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public void addPerson(Employee person) {
+        public void addEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -129,27 +129,27 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Employee person) {
+        public boolean hasEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Employee target) {
+        public void deleteEmployee(Employee target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Employee target, Employee editedPerson) {
+        public void setEmployee(Employee target, Employee editedEmployee) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Employee> getFilteredPersonList() {
+        public ObservableList<Employee> getFilteredEmployeeList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Employee> predicate) {
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
