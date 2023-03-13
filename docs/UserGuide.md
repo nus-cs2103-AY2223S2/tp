@@ -42,7 +42,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 ## Features <a name="features"></a>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 
 ### Notes about command format:
 - Words enclosed by `<>` are the parameters to be supplied by the user.<br>
