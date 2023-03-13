@@ -23,7 +23,7 @@ public class FindCommandNew extends CommandNew {
 
     public FindCommandNew(CompanyOrPositionContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
-    } 
+    }
 
     @Override
     public CommandResultNew execute(ModelNew model) {

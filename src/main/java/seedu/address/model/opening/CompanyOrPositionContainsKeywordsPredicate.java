@@ -18,7 +18,7 @@ public class CompanyOrPositionContainsKeywordsPredicate implements Predicate<Ope
     @Override
     public boolean test(Opening opening) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(opening.getPosition().fullPosition, keyword) 
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(opening.getPosition().fullPosition, keyword)
                         || StringUtil.containsWordIgnoreCase(opening.getCompany().fullCompany, keyword));
     }
 
