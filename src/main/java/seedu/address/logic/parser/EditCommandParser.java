@@ -17,6 +17,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -69,8 +70,25 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL_ADD)).ifPresent(editPersonDescriptor::addSkills);
-        parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL_DELETE)).ifPresent(editPersonDescriptor::deleteSkills);
 
+        if (argMultimap.getValue(PREFIX_SKILL_DELETE).isPresent()) {
+            parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL_DELETE))
+                    .ifPresent(editPersonDescriptor::deleteSkills);
+        }
+
+        if (argMultimap.getValue(PREFIX_SKILL_OLD).isPresent()
+                && argMultimap.getValue(PREFIX_SKILL_NEW).isPresent()) {
+            List<String> oldSkills = argMultimap.getAllValues(PREFIX_SKILL_OLD);
+            List<String> newSkills = argMultimap.getAllValues(PREFIX_SKILL_NEW);
+            parseSkillsForUpdate(oldSkills, newSkills, editPersonDescriptor);
+        } else if (argMultimap.getValue(PREFIX_SKILL_OLD).isPresent()
+                || argMultimap.getValue(PREFIX_SKILL_NEW).isPresent()) {
+            throw new ParseException(EditCommand.MESSAGE_INCORRECT_OLD_NEW_PREFIX);
+        }
+
+        if (editPersonDescriptor.getSkills().isEmpty()) {
+            throw new ParseException(EditCommand.MESSAGE_SKILL_DOES_NOT_EXIST);
+        }
         if (editPersonDescriptor.equals(originalEditPersonDescriptor)) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -91,6 +109,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> skillSet = skills.size() == 1 && skills.contains("") ? Collections.emptySet() : skills;
         return Optional.of(ParserUtil.parseSkills(skillSet));
+    }
+
+    private void parseSkillsForUpdate(List<String> oldSkills, List<String> newSkills,
+                                      EditPersonDescriptor editPersonDescriptor) throws ParseException {
+        if (newSkills.size() == oldSkills.size()) {
+            Optional<Set<Skill>> setOfOldSkills = parseSkillsForEdit(oldSkills);
+            Optional<Set<Skill>> setOfNewSkills = parseSkillsForEdit(newSkills);
+            if (setOfOldSkills.isPresent() && setOfNewSkills.isPresent()) {
+                editPersonDescriptor.updateSkills(setOfOldSkills.get(), setOfNewSkills.get());
+            }
+        } else {
+            throw new ParseException("The number of old skills not equal to number of new skills");
+        }
     }
 
 }

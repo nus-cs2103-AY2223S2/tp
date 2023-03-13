@@ -3,9 +3,16 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_ADD;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NEW;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_OLD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_NEW;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -38,15 +45,21 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_SKILL_ADD + "SKILL]...\n"
+            + "[" + PREFIX_SKILL_ADD + "SKILL] "
+            + "[" + PREFIX_SKILL_DELETE + "SKILL] "
+            + "[" + PREFIX_SKILL_OLD + "SKILL " + PREFIX_SKILL_NEW + "SKILL]...\n"
             + "Example: " + COMMAND_WORD
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "The person was not edited.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
+    public static final String MESSAGE_DUPLICATE_PERSON =
+            "This person already exists in the address book.";
+    public static final String MESSAGE_SKILL_DOES_NOT_EXIST =
+            "There is a skill you are trying to delete/update that does not exist";
+    public static final String MESSAGE_INCORRECT_OLD_NEW_PREFIX =
+            "To update existing skills, the prefixes so/ and sn/ must be present";
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
@@ -195,10 +208,8 @@ public class EditCommand extends Command {
                 set.addAll(this.skills);
                 set.addAll(skills);
                 this.skills = set;
-            } else if (skills != null && this.skills == null) {
-                this.skills = skills;
             } else {
-                this.skills = null;
+                this.skills = skills;
             }
         }
 
@@ -207,17 +218,60 @@ public class EditCommand extends Command {
          * A defensive copy of {@code skills} is used internally.
          */
         public void deleteSkills(Set<Skill> skills) {
-            Set<Skill> set = new HashSet<>();
             if (skills != null && this.skills != null) {
+                deleteSkillsHelper(skills);
+            }
+        }
+
+        private void deleteSkillsHelper(Set<Skill> skills) {
+            if (hasSkills(skills)) {
+                Set<Skill> result = new HashSet<>();
                 for (Skill s : this.skills) {
                     if (!skills.contains(s)) {
-                        set.add(s);
+                        result.add(s);
                     }
                 }
-                this.skills = set;
+                this.skills = result;
             } else {
                 this.skills = null;
             }
+        }
+
+        /**
+         * Updates {@code skills} from this object's {@code skills}.
+         * A defensive copy of {@code skills} is used internally.
+         */
+        public void updateSkills(Set<Skill> oldSkills, Set<Skill> newSkills) {
+            if (oldSkills != null && newSkills != null && this.skills != null) {
+                updateSkillsHelper(oldSkills, newSkills);
+            }
+        }
+
+        private void updateSkillsHelper(Set<Skill> oldSkills, Set<Skill> newSkills) {
+            if (hasSkills(oldSkills)) {
+                Set<Skill> result = new HashSet<>();
+                for (Skill s : this.skills) {
+                    if (oldSkills.contains(s)) {
+                        Skill newSkill = newSkills.iterator().next();
+                        result.add(newSkill);
+                        newSkills.remove(newSkill);
+                    } else {
+                        result.add(s);
+                    }
+                }
+                this.skills = result;
+            } else {
+                this.skills = null;
+            }
+        }
+
+        private boolean hasSkills(Set<Skill> oldSkills) {
+            for (Skill s : oldSkills) {
+                if (!this.skills.contains(s)) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         /**
