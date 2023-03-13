@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import taa.commons.core.GuiSettings;
-import taa.model.AddressBook;
+import taa.model.ClassList;
 import taa.model.ReadOnlyAddressBook;
 import taa.model.UserPrefs;
 import taa.testutil.TypicalPersons;
@@ -52,12 +52,12 @@ public class StorageManagerTest {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonClassListStorageTest} class.
          */
-        AddressBook original = TypicalPersons.getTypicalAddressBook();
+        ClassList original = TypicalPersons.getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        assertEquals(original, new ClassList(retrieved));
     }
 
     @Test

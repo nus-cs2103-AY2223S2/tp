@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import taa.assignment.Assignment;
+import taa.assignment.AssignmentList;
 import taa.model.student.Student;
 import taa.model.student.UniqueStudentList;
 
@@ -12,9 +14,11 @@ import taa.model.student.UniqueStudentList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ClassList implements ReadOnlyAddressBook {
 
-    private final UniqueStudentList students;
+    private UniqueStudentList students;
+    private AssignmentList assignments;
+    private int classId;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,15 +28,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
+        assignments = new AssignmentList();
         students = new UniqueStudentList();
+        classId = 1;
     }
 
-    public AddressBook() {}
+    public ClassList() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an ClassList using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ClassList(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,11 +54,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ClassList} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setStudents(newData.getStudentList());
     }
 
@@ -87,7 +92,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ClassList}.
      * {@code key} must exist in the address book.
      */
     public void removeStudent(Student key) {
@@ -110,8 +115,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && students.equals(((AddressBook) other).students));
+                || (other instanceof ClassList // instanceof handles nulls
+                && students.equals(((ClassList) other).students));
     }
 
     @Override

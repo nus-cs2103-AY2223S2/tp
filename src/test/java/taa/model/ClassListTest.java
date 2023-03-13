@@ -20,25 +20,25 @@ import taa.testutil.Assert;
 import taa.testutil.PersonBuilder;
 import taa.testutil.TypicalPersons;
 
-public class AddressBookTest {
+public class ClassListTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ClassList classList = new ClassList();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getStudentList());
+        assertEquals(Collections.emptyList(), classList.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        Assert.assertThrows(NullPointerException.class, () -> classList.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = TypicalPersons.getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        ClassList newData = TypicalPersons.getTypicalAddressBook();
+        classList.resetData(newData);
+        assertEquals(newData, classList);
     }
 
     @Test
@@ -49,36 +49,36 @@ public class AddressBookTest {
         List<Student> newStudents = Arrays.asList(TypicalPersons.ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newStudents);
 
-        Assert.assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+        Assert.assertThrows(DuplicateStudentException.class, () -> classList.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
+        Assert.assertThrows(NullPointerException.class, () -> classList.hasStudent(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasStudent(TypicalPersons.ALICE));
+        assertFalse(classList.hasStudent(TypicalPersons.ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addStudent(TypicalPersons.ALICE);
-        assertTrue(addressBook.hasStudent(TypicalPersons.ALICE));
+        classList.addStudent(TypicalPersons.ALICE);
+        assertTrue(classList.hasStudent(TypicalPersons.ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addStudent(TypicalPersons.ALICE);
+        classList.addStudent(TypicalPersons.ALICE);
         Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasStudent(editedAlice));
+        assertTrue(classList.hasStudent(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
+        Assert.assertThrows(UnsupportedOperationException.class, () -> classList.getStudentList().remove(0));
     }
 
     /**

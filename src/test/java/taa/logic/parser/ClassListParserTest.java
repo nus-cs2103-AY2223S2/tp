@@ -27,7 +27,7 @@ import taa.testutil.PersonBuilder;
 import taa.testutil.PersonUtil;
 import taa.testutil.TypicalIndexes;
 
-public class AddressBookParserTest {
+public class ClassListParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 

@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import taa.model.AddressBook;
+import taa.model.ClassList;
 import taa.model.ReadOnlyAddressBook;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ClassList} with sample data.
  */
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
@@ -32,7 +32,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+        ClassList sampleAb = new ClassList();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }
