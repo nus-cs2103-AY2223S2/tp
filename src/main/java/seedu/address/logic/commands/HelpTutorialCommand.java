@@ -13,5 +13,4 @@ public class HelpTutorialCommand extends HelpCommand {
     public CommandResult execute(Model model) {
         return new CommandResult(TUTORIAL_SYNTAX);
     }
-    
 }
