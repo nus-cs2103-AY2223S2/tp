@@ -6,9 +6,9 @@ import java.util.Objects;
 import com.calendarfx.model.Interval;
 
 import seedu.calidr.model.TaskEntry;
-import seedu.calidr.model.task.Deadline;
 import seedu.calidr.model.task.Event;
 import seedu.calidr.model.task.Task;
+import seedu.calidr.model.task.ToDo;
 
 /**
  * Task to TaskEntry converter.
@@ -29,9 +29,9 @@ public final class TaskEntryUtil {
         if (task instanceof Event) {
             Event event = (Event) task;
             interval = new Interval(event.getFrom(), event.getTo());
-        } else if (task instanceof Deadline) {
-            Deadline deadline = (Deadline) task;
-            LocalDateTime etdt = deadline.getBy();
+        } else if (task instanceof ToDo) {
+            ToDo toDo = (ToDo) task;
+            LocalDateTime etdt = toDo.getBy();
             interval = new Interval(etdt, etdt.plusHours(1));
         } else {
             interval = new Interval();
