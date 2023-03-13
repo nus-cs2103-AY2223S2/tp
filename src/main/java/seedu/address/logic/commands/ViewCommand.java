@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import java.util.List;
 import java.util.Optional;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 
 
@@ -20,13 +20,13 @@ public class ViewCommand extends Command {
             + "view n/<name> : Allows you to view profile for the specific person"
             + "view : Shows your own profile instead";
     private final Optional<String> name;
-    private final Optional<Index> index;
+    private final Optional<ContactIndex> index;
 
     /**
      * Creates a View Command with the person's name and index.
      * @param index
      */
-    public ViewCommand(String name, Index index) {
+    public ViewCommand(String name, ContactIndex index) {
         this.name = Optional.ofNullable(name);
         this.index = Optional.ofNullable(index);
     }
@@ -42,7 +42,7 @@ public class ViewCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         Optional<Person> person = retrievePerson(model);
         if (person.isEmpty()) {
-            return new CommandResult("No such name found!", false, false,
+            return new CommandResult("No such person found!", false, false,
                     model.getUser(), true);
         }
         Person contact = person.get();
@@ -57,7 +57,10 @@ public class ViewCommand extends Command {
     public Optional<Person> retrievePerson(Model model) {
         List<Person> personList = model.getFilteredPersonList();
         if (index.isPresent()) {
-            return Optional.ofNullable(personList.get(this.index.get().getZeroBased()));
+            return Optional.ofNullable(personList
+                    .stream()
+                    .filter(person -> person.getContactIndex().equals(index.get()))
+                    .findFirst().orElseGet(() -> null));
         }
         return name.map(contact -> personList.stream()
                 .filter(friend -> friend.getName().toString().equals(contact))
@@ -65,7 +68,7 @@ public class ViewCommand extends Command {
                 .orElseGet(() -> Optional.ofNullable(model.getUser()));
     }
 
-    public Optional<Index> getIndex() {
+    public Optional<ContactIndex> getIndex() {
         return index;
     }
 

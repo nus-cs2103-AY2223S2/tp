@@ -2,10 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
+import seedu.address.model.person.ContactIndex;
 
 
 /**
@@ -33,12 +32,12 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             return new ViewCommand(name, null);
         }
         // show user by querying index
-        Index index;
+        ContactIndex index;
         if (!argumentMultimap.getPreamble().isEmpty()) {
             try {
-                index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
+                index = new ContactIndex(Integer.parseInt(argumentMultimap.getPreamble()));
                 return new ViewCommand(null, index);
-            } catch (ParseException pe) {
+            } catch (Exception e) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.USAGE));
             }
         }

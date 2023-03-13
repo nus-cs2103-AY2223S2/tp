@@ -56,7 +56,6 @@ public class EditCommandTest {
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
-        System.out.println(lastPerson);
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(NAME_BEN).withPhone(PHONE_BEN)
                 .withGroupTags(VALID_GROUP_1).build();
@@ -77,7 +76,6 @@ public class EditCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        System.out.println(editedPerson);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new EduMate(model.getEduMate()), new UserPrefs());

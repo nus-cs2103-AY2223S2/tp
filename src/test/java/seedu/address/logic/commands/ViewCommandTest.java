@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.ContactIndex;
 
 
 public class ViewCommandTest {
@@ -27,15 +28,15 @@ public class ViewCommandTest {
 
     @Test
     public void execute_byIndex_correctPersonQueried() throws CommandException {
-        ViewCommand command1 = new ViewCommand(null, Index.fromZeroBased(1));
+        ViewCommand command1 = new ViewCommand(null, new ContactIndex(2));
         CommandResult commandResult1 = command1.execute(model);
         assertEquals(ANG, commandResult1.getDisplayPerson());
 
-        ViewCommand command2 = new ViewCommand(null, Index.fromZeroBased(2));
+        ViewCommand command2 = new ViewCommand(null, new ContactIndex(3));
         CommandResult commandResult2 = command2.execute(model);
         assertEquals(BART, commandResult2.getDisplayPerson());
 
-        ViewCommand command3 = new ViewCommand(null, Index.fromZeroBased(3));
+        ViewCommand command3 = new ViewCommand(null, new ContactIndex(4));
         CommandResult commandResult3 = command3.execute(model);
         assertEquals(CLARK, commandResult3.getDisplayPerson());
     }
@@ -88,9 +89,9 @@ public class ViewCommandTest {
         CommandResult result2 = command2.execute(model);
         CommandResult result3 = command3.execute(model);
 
-        assertEquals("No such name found!", result1.getFeedbackToUser());
-        assertEquals("No such name found!", result2.getFeedbackToUser());
-        assertEquals("No such name found!", result3.getFeedbackToUser());
+        assertEquals("No such person found!", result1.getFeedbackToUser());
+        assertEquals("No such person found!", result2.getFeedbackToUser());
+        assertEquals("No such person found!", result3.getFeedbackToUser());
     }
 
     @Test
@@ -105,17 +106,17 @@ public class ViewCommandTest {
     @Test
     public void compare_viewCommandInequality_false() {
         ViewCommand command1 = new ViewCommand("Lisa Meitner", null);
-        ViewCommand command2 = new ViewCommand("Lisa Meitner", Index.fromZeroBased(1));
+        ViewCommand command2 = new ViewCommand("Lisa Meitner", new ContactIndex(1));
         assertNotEquals(command1, command2);
 
-        ViewCommand command3 = new ViewCommand(null, Index.fromZeroBased(1));
+        ViewCommand command3 = new ViewCommand(null, new ContactIndex(1));
         ViewCommand command4 = new ViewCommand(null, null);
         assertNotEquals(command3, command1);
         assertNotEquals(command3, command2);
         assertNotEquals(command3, command4);
 
         ViewCommand command5 = new ViewCommand("Marie Curie", null);
-        ViewCommand command6 = new ViewCommand(null, Index.fromZeroBased(2));
+        ViewCommand command6 = new ViewCommand(null, new ContactIndex(2));
         assertNotEquals(command5, command1);
         assertNotEquals(command5, command1);
         assertNotEquals(command6, command2);
