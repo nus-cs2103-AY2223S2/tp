@@ -27,7 +27,7 @@ MyLib is a **desktop app for managing bookmarks, optimized for use via a Command
 
    * `list` : Lists all Bookmarks.
 
-   * `add t/The Odyssey a/Homer s/Reading g/Epic poetry t/Literature class readings` : Adds a bookmark for the book `The Odessey` to the Library.
+   * `add n/The Odyssey a/Homer s/Reading g/Epic poetry t/Literature class readings` : Adds a bookmark for the book `The Odessey` to the Library.
 
    * `delete 3` : Deletes the 3rd Bookmark shown in the current list.
 
