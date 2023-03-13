@@ -48,7 +48,7 @@ public class MasterDeckParserTest {
     @Test
     public void parseCommand_edit() throws Exception { // edit in the future as deck needs to be selected
         // Card card = new PersonBuilder().build();
-        // EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(card).build();
+        // EditCardDescriptor descriptor = new EditPersonDescriptorBuilder(card).build();
         // EditCommand command = (EditCommand) parser.parseCommandWhenDeckNotSelected(EditCommand.COMMAND_WORD
         //        + " " + INDEX_FIRST_PERSON.getOneBased() + " "
         //        + PersonUtil.getEditPersonDescriptorDetails(descriptor));
