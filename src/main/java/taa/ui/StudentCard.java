@@ -49,7 +49,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        attendance.setText("Attendance: xx/xx");
+        attendance.setText(String.format("Attendance: %d/12", this.student.getNumWeeksPresent()));
         assignment.setText("Latest assignment submission: xxx");
         groups.setText("Groups: Group xxx");
         student.getTags().stream()

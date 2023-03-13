@@ -13,6 +13,7 @@ import taa.logic.commands.ExitCommand;
 import taa.logic.commands.FindCommand;
 import taa.logic.commands.HelpCommand;
 import taa.logic.commands.ListCommand;
+import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.commands.RemarkCommand;
 import taa.logic.parser.exceptions.ParseException;
 
@@ -46,10 +47,14 @@ public class AddressBookParser {
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommand();
 
+        case MarkAttendanceCommand.COMMAND_WORD:
+            return new MarkAttendanceParser().parse(arguments);
+
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
+            System.out.println(arguments);
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
