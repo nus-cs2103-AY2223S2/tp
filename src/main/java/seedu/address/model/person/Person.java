@@ -22,7 +22,7 @@ public class Person {
 
     // Data fields
     private final Address address; // venue
-    private final Teacher teacher;
+    private final Teacher teacher; // teacher (should be optional)
     private final Deadline deadline; // deadline (should be optional)
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
@@ -109,7 +109,8 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getRemark().equals(getRemark())
-                && otherPerson.getDeadline().equals(getDeadline());
+                && otherPerson.getDeadline().equals(getDeadline())
+                && otherPerson.getTeacher().equals(getTeacher());
     }
 
     @Override
@@ -131,7 +132,9 @@ public class Person {
                 .append("; Remark: ")
                 .append(getRemark())
                 .append("; Deadline: ")
-                .append(getDeadline());
+                .append(getDeadline())
+                .append("; Teacher: ")
+                .append(getTeacher());
 
 
         Set<Tag> tags = getTags();
