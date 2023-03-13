@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Age;
-
 import seedu.address.model.tag.Tag;
 
 /**

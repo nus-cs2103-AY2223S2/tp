@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
