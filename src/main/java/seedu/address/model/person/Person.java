@@ -52,12 +52,12 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
     public Company getCompany() {
         return company;
+    }
+
+    public Address getAddress() {
+        return address;
     }
 
     public Remark getRemark() {
@@ -103,15 +103,15 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getCompany().equals(getCompany())
+                && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, company, tags);
+        return Objects.hash(name, phone, email, company, address, tags);
     }
 
     @Override
@@ -122,10 +122,10 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
                 .append("; Company: ")
                 .append(getCompany())
+                .append("; Address: ")
+                .append(getAddress())
                 .append(" Remark: ")
                 .append(getRemark());
 
