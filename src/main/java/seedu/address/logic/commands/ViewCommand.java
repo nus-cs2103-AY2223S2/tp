@@ -19,7 +19,7 @@ public class ViewCommand extends Command1{
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_INTERNSHIP_SUCCESS = "Viewing Internship %1$s\nDescription: %2$s";
+    public static final String MESSAGE_VIEW_INTERNSHIP_SUCCESS = "Viewing Internship %1$s at %2$s";
 
     private final Index targetIndex;
 
@@ -37,7 +37,7 @@ public class ViewCommand extends Command1{
         }
 
         Internship internshipToView = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView, internshipToView.getDescription()));
+        return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView.getPosition(), internshipToView.getCompany()), internshipToView);
     }
 
     @Override
