@@ -113,7 +113,7 @@ public interface Model {
      * Updates the filter of the filtered doctor list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredDoctorList(Predicate<? extends Person> predicate);
+    void updateFilteredDoctorList(Predicate<Doctor> predicate);
 
 
     /**
