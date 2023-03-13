@@ -147,6 +147,34 @@ public class AddCommandTest {
         public void updateFilteredClientList(Predicate<Client> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        //todo
+        @Override
+        public void commit() {
+
+        }
+
+        @Override
+        public boolean canUndo() {
+            return false;
+        }
+
+        //todo
+        @Override
+        public void undo() {
+
+        }
+
+        @Override
+        public boolean canRedo() {
+            return false;
+        }
+
+        //todo
+        @Override
+        public void redo() {
+
+        }
     }
 
     /**

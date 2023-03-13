@@ -14,6 +14,11 @@ public class TypicalPolicies {
             .withStartDate("01.02.2023")
             .withPremium("80.50")
             .withFrequency("monthly").build();
+
+    public static final Policy AMY_POLICY = new PolicyBuilder().withPolicyName("Life Insurance")
+            .withStartDate("01.01.2020")
+            .withPremium("1000")
+            .withFrequency("monthly").build();
     public static final Policy LIFE = new PolicyBuilder().withPolicyName("Life")
             .withStartDate("02.03.2023")
             .withPremium("98.20")

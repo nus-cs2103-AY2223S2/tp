@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.policy.CustomDate;
@@ -15,22 +14,24 @@ import seedu.address.model.client.policy.Premium;
  * Jackson-friendly version of {@Link Policy}
  */
 public class JsonAdaptedPolicy {
-    private final String name;
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Policy's %s field is missing!";
+    private final String policyName;
     private final String startDate;
     private final String premium;
     private final String frequency;
 
     /**
      * Constructs a {@code JsonAdaptedPolicy} with the given policy details.
-     * @param name The name of the policy.
+     * @param policyName The name of the policy.
      * @param startDate The starting date of the policy.
      * @param premium The value of the policy.
      * @param frequency The duration of the policy.
      */
     @JsonCreator
-    public JsonAdaptedPolicy(@JsonProperty("name") String name, @JsonProperty("startDate") String startDate,
+    public JsonAdaptedPolicy(@JsonProperty("policyName") String policyName, @JsonProperty("startDate") String startDate,
                              @JsonProperty("premium") String premium, @JsonProperty("frequency") String frequency) {
-        this.name = name;
+        this.policyName = policyName;
         this.startDate = startDate;
         this.premium = premium;
         this.frequency = frequency;
@@ -41,7 +42,7 @@ public class JsonAdaptedPolicy {
      * @param source The policy that we are interested in.
      */
     public JsonAdaptedPolicy(Policy source) {
-        name = source.getPolicyName().toString(); // does this break Law of Demeter?
+        policyName = source.getPolicyName().toString(); // does this break Law of Demeter?
         startDate = source.getStartDate().toString();
         premium = source.getPremium().toString();
         frequency = source.getFrequency().toString();
@@ -53,38 +54,69 @@ public class JsonAdaptedPolicy {
 
 
     /* Need to see how this works ... based on tracing tag, this seems to get
-    * called only when you update it? that is from object->Json*/
+    * called only when you update it? that is from object->Json
+    */
+    /*
     @JsonValue
     public String getPolicy() {
+        String policy = policyName + ", "
         StringBuilder policy = new StringBuilder("[");
-        policy.append(name);
+        policy.append(policyName);
         policy.append(", ");
         policy.append(startDate);
         policy.append(", ");
         policy.append(premium);
         policy.append(", ");
         policy.append(frequency);
-        policy.append();
-        /* how to better add tags here ?" */
+        /* how to better add tags here ?"
         policy.append("]");
         return policy.toString();
-    }
+    } */
 
+    /**
+     * Converts this Jackson-friendly adapted policy object into the model's {@code Policy} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted policy.
+     */
     public Policy toModelType() throws IllegalValueException {
-        if (!PolicyName.isValidName(name)) {
+        if (policyName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PolicyName.class.getSimpleName()));
+        }
+        if (!PolicyName.isValidName(policyName)) {
             throw new IllegalValueException(PolicyName.MESSAGE_CONSTRAINTS);
         }
+        final PolicyName modelPolicyName = new PolicyName(policyName);
+
+        if (startDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CustomDate.class.getSimpleName()));
+        }
+
         if (!CustomDate.isValidDate(startDate)) {
             throw new IllegalValueException(CustomDate.MESSAGE_CONSTRAINTS);
+        }
+        final CustomDate modelStartDate = new CustomDate(startDate);
+
+        if (premium == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Premium.class.getSimpleName()));
         }
         if (!Premium.isValidPremium(premium)) {
             throw new IllegalValueException(Premium.MESSAGE_CONSTRAINTS);
         }
+        final Premium modelPremium = new Premium(premium);
+
+        if (frequency == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Frequency.class.getSimpleName()));
+        }
         if (!Frequency.isValidFrequency(frequency)) {
             throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
         }
-        return new Policy(new PolicyName(name), new CustomDate(startDate),
-                new Premium(premium), new Frequency(frequency));
+        final Frequency modelFrequency = new Frequency(frequency);
+
+        return new Policy(modelPolicyName, modelStartDate, modelPremium, modelFrequency);
     }
 
 }

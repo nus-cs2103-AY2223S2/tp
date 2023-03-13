@@ -49,7 +49,7 @@ class JsonAdaptedClient {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (policies != null)  {
+        if (policies != null) {
             this.policies.addAll(policies);
         }
     }
@@ -65,7 +65,7 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        policies.addAll(StreamSupport.stream(source.getPolicies().spliterator(), false)
+        policies.addAll(StreamSupport.stream(source.getPolicyList().spliterator(), false)
                 .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList())); // is it considered breaking Law of Demeter?
     }
@@ -127,7 +127,7 @@ class JsonAdaptedClient {
             modelPolicies.add(policy);
         }
 
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelPolicies, modelTags);
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies);
     }
 
 }

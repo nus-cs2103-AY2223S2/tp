@@ -24,6 +24,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,7 +101,8 @@ public class EditCommand extends Command {
         //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        UniquePolicyList policyList = clientToEdit.getPolicyList(); // To change policyList you must use EditPolicy
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList);
     }
 
     @Override

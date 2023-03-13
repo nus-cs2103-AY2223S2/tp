@@ -24,7 +24,7 @@ public class JsonAdaptedClientTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String INVALID_POLICY = //; a policy with invalid frequency
+    //private static final String INVALID_POLICY = //; a policy with invalid frequency
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -122,7 +122,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_invalidPolicies_throwsIllegalValueException() {
         List<JsonAdaptedPolicy> invalidPolicies = new ArrayList<>(VALID_POLICIES);
-        invalidPolicies.add(new JsonAdaptedPolicy())
+        invalidPolicies.add(new JsonAdaptedPolicy());
     }
 
 

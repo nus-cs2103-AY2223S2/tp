@@ -12,7 +12,7 @@ import seedu.address.model.client.policy.Premium;
 public class PolicyBuilder {
 
     public static final String DEFAULT_POLICYNAME = "Health";
-    public static final String DEFAULT_DATE = "01/01/2023";
+    public static final String DEFAULT_DATE = "01.01.2023";
     public static final String DEFAULT_PREMIUM = "80.69";
     public static final String DEFAULT_FREQUENCY = "monthly";
 
