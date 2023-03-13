@@ -6,8 +6,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import seedu.calidr.model.task.Priority;
 import seedu.calidr.model.task.Task;
+import seedu.calidr.model.task.params.Priority;
 
 /**
  * Custom CalendarFX entry representing a Calidr Task. This contains all the required

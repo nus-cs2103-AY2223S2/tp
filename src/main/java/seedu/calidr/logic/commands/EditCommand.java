@@ -131,11 +131,12 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-
-        private Remark remark;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        private Remark remark;
+
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -154,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, remark);
         }
 
         public void setName(Name name) {
@@ -189,12 +190,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setRemark(Remark remark) {
-            this.remark = remark;
-        }
-
         public Optional<Remark> getRemark() {
             return Optional.ofNullable(remark);
+        }
+
+        public void setRemark(Remark remark) {
+            this.remark = remark;
         }
 
         /**
