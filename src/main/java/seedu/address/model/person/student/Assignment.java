@@ -10,7 +10,6 @@ public class Assignment {
     protected final String assignmentName;
     protected LocalDate deadline;
     protected final int weightage;
-    protected final int maxScore;
     protected int score;
 
     /**
@@ -19,13 +18,11 @@ public class Assignment {
      * @param assignmentName Assignment name.
      * @param deadline Due date for the assignment.
      * @param weightage Weightage of the assignment.
-     * @param maxScore Maximum score attainable for the assignment.
      */
-    public Assignment(String assignmentName, LocalDate deadline, int weightage, int maxScore, int score) {
+    public Assignment(String assignmentName, LocalDate deadline, int weightage, int score) {
         this.assignmentName = assignmentName;
         this.deadline = deadline;
         this.weightage = weightage;
-        this.maxScore = maxScore;
         this.score = score;
     }
 
@@ -38,12 +35,12 @@ public class Assignment {
             return false;
         }
         Assignment that = (Assignment) o;
-        return weightage == that.weightage && maxScore == that.maxScore && assignmentName.equals(that.assignmentName)
+        return weightage == that.weightage && assignmentName.equals(that.assignmentName)
                 && Objects.equals(deadline, that.deadline);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(assignmentName, deadline, weightage, maxScore);
+        return Objects.hash(assignmentName, deadline, weightage);
     }
 }

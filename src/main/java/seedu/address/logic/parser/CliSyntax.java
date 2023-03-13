@@ -7,6 +7,7 @@ public class CliSyntax {
     /* Prefix definitions */
     public static final Prefix PREFIX_ADD = new Prefix("add");
     public static final Prefix PREFIX_DELETE = new Prefix("delete");
+    public static final Prefix PREFIX_GRADE = new Prefix("grade");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_AGE = new Prefix("ageS/");
     public static final Prefix PREFIX_ATTENDANCE = new Prefix("att/");
@@ -27,4 +28,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_SEX = new Prefix("s/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_TEST = new Prefix("test/");
+    public static final Prefix PREFIX_SCORE = new Prefix("score/");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("deadline/");
+    public static final Prefix PREFIX_WEIGHTAGE = new Prefix("weightage/");
+    public static final Prefix PREFIX_HOMEWORKDONE = new Prefix("hwdone/");
+
 }

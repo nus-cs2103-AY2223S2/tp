@@ -62,6 +62,10 @@ public class StudentCard extends UiPart<Region> {
     private Label className;
     @FXML
     private Label comment;
+    @FXML
+    private FlowPane tests;
+    @FXML
+    private FlowPane homework;
 
 
     /**
@@ -82,6 +86,42 @@ public class StudentCard extends UiPart<Region> {
         //image.setText(student.getImage().value);
         cca.setText(student.getCca().value);
         comment.setText(student.getComment().value);
+        student.getTest().stream()
+                        .sorted(Comparator.comparing(test -> test.getName()))
+                        .forEach(test -> {
+                            tests.getChildren().add(new Label(" Test Name: "));
+                            tests.getChildren().add(new Label(test.getName()));
+                            tests.getChildren().add(new Label(" Score: "));
+                            tests.getChildren().add(new Label(Integer.toString(test.getScore())));
+                            tests.getChildren().add(new Label(" Weightage: "));
+                            tests.getChildren().add(new Label(Integer.toString(test.getWeightage())));
+                            tests.getChildren().add(new Label(" Deadline: "));
+                            if (test.getDeadline() != null) {
+                                tests.getChildren().add(new Label(test.getDeadline().toString()));
+                            } else {
+                                tests.getChildren().add(new Label("No Deadline"));
+                            }
+
+                        });
+        student.getHomework().stream()
+                .sorted(Comparator.comparing(hw -> hw.getName()))
+                .forEach(hw -> {
+                    homework.getChildren().add(new Label(" Homework Name: "));
+                    homework.getChildren().add(new Label(hw.getName()));
+                    homework.getChildren().add(new Label(" Score: "));
+                    homework.getChildren().add(new Label(Integer.toString(hw.getScore())));
+                    homework.getChildren().add(new Label(" Weightage: "));
+                    homework.getChildren().add(new Label(Integer.toString(hw.getWeightage())));
+                    homework.getChildren().add(new Label(" Deadline: "));
+                    if (hw.getDeadline() != null) {
+                        homework.getChildren().add(new Label(hw.getDeadline().toString()));
+                    } else {
+                        homework.getChildren().add(new Label("No Deadline"));
+                    }
+                    homework.getChildren().add(new Label(" Is Done: "));
+                    homework.getChildren().add(new Label(Boolean.toString(hw.getIsDone())));
+
+                });
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
