@@ -26,10 +26,11 @@ public class StringUtil {
     public static boolean containsWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
+
         boolean contains = false;
 
         String preppedWord = word;
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+//        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
 
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = {preppedSentence};
