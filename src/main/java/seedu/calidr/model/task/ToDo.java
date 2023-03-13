@@ -2,64 +2,57 @@ package seedu.calidr.model.task;
 
 import java.time.LocalDateTime;
 
+import seedu.calidr.model.task.params.Priority;
+import seedu.calidr.model.task.params.Title;
+import seedu.calidr.model.task.params.TodoDateTime;
+
 /**
  * Represents a deadline - a task that should be completed within
  * a particular date and time.
  */
 public class ToDo extends Task {
 
-    private final LocalDateTime by;
+    private final TodoDateTime byDateTime;
 
     /**
-     * Creates a Deadline object with the given description and MEDIUM priority.
+     * Creates a ToDo object with the given details and MEDIUM priority.
      *
-     * @param description The description of the ToDo.
+     * @param title The title of the ToDo.
+     * @param by The deadline date-time of the ToDo.
      */
-    public ToDo(String description, LocalDateTime by) {
-        super(description);
+    public ToDo(Title title, TodoDateTime by) {
+        super(title);
 
         assert by != null;
 
-        this.by = by;
+        this.byDateTime = by;
     }
 
     /**
-     * Creates a Deadline object with the given description and priority.
+     * Creates a ToDo with the given details.
      *
-     * @param description The description of the Deadline.
-     * @param priority The priority associated with the Deadline.
+     * @param title The title of the ToDo.
+     * @param by The deadline date-time of the ToDo.
+     * @param priority The priority of the ToDo.
      */
-    public ToDo(String description, LocalDateTime by, Priority priority) {
-        super(description, priority);
+    public ToDo(Title title, TodoDateTime by, Priority priority) {
+        super(title, priority);
 
         assert by != null;
 
-        this.by = by;
+        this.byDateTime = by;
     }
 
     public LocalDateTime getBy() {
-        return by;
-    }
-
-
-    /**
-     * Gets the String representation of the deadline to be stored in the text file.
-     *
-     * @return The String representation of the deadline to be stored in the text file.
-     */
-    @Override
-    public String getFileRepresentation() {
-        String mark = (super.isDone()) ? "X" : " ";
-
-        return "D" + "~" + this.getPriority() + "~" + mark + "~" + this.getDescription() + "~" + this.by;
+        return this.byDateTime.value;
     }
 
     @Override
     public String toString() {
 
-        return "[D]" + super.toString()
-                + " (by: "
-                + Task.getDateTimeString(this.by)
+        return "[T]" + super.toString()
+                + " ("
+                + byDateTime.toString()
                 + ")";
     }
 }

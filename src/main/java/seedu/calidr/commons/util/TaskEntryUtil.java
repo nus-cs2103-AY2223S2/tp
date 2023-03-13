@@ -8,9 +8,9 @@ import com.calendarfx.model.Interval;
 
 import seedu.calidr.model.TaskEntry;
 import seedu.calidr.model.task.Event;
-import seedu.calidr.model.task.Priority;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.ToDo;
+import seedu.calidr.model.task.params.Priority;
 
 /**
  * Task to TaskEntry converter.
@@ -44,7 +44,6 @@ public final class TaskEntryUtil {
         } else {
             interval = new Interval();
         }
-
         taskEntry.setTitle(toCustomString(task));
         taskEntry.setInterval(interval);
         taskEntry.setPriority(task.getPriority());
@@ -57,7 +56,7 @@ public final class TaskEntryUtil {
     private static String toCustomString(Task task) {
         String tick = task.isDone() ? "✓" : "  ";
         return String.format("%s\t[%s] {%s}",
-                task.getDescription(),
+                task.getTitle(),
                 tick,
                 PRIORITY_SHORT.getOrDefault(task.getPriority(), "M")
         );
