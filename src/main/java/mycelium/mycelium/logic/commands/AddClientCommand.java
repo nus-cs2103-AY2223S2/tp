@@ -3,6 +3,8 @@ package mycelium.mycelium.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.Model;
@@ -12,7 +14,6 @@ import mycelium.mycelium.model.client.Client;
  * Adds a new client to Mycelium.
  */
 public class AddClientCommand extends Command {
-
 
     public static final String COMMAND_ACRONYM = "c";
     public static final String MESSAGE_USAGE = COMMAND_ACRONYM + ": Adds a client to Mycelium. "
@@ -56,5 +57,22 @@ public class AddClientCommand extends Command {
 
         model.addClient(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AddClientCommand that = (AddClientCommand) o;
+        return toAdd.isSame(that.toAdd);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 }
