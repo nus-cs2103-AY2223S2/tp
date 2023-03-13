@@ -13,6 +13,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.score.Date;
+import seedu.address.model.score.Label;
+import seedu.address.model.score.ScoreValue;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -153,4 +156,51 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    //=========== Score ================================================================================
+    /**
+     * Parses a {@code String label} into an {@code Label}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Label} is invalid.
+     */
+    public static Label parseScoreLabel(String label) throws ParseException {
+        requireNonNull(label);
+        String trimmedLabel = label.trim();
+        if (!Label.isValidLabel(trimmedLabel)) {
+            throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+        }
+        return new Label(trimmedLabel);
+    }
+
+    /**
+     * Parses a {@code Double value} into an {@code ScoreValue}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ScoreValue} is invalid.
+     */
+    public static ScoreValue parseScoreValue(String value) throws ParseException {
+        requireNonNull(value);
+        String trimmedValue = value.trim();
+        if (!ScoreValue.isValidScoreValue(trimmedValue)) {
+            throw new ParseException(ScoreValue.MESSAGE_CONSTRAINTS);
+        }
+        return new ScoreValue(trimmedValue);
+    }
+
+    /**
+     * Parses a {@code LocalDate date} into an {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Date} is invalid.
+     */
+    public static Date parseScoreDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
+    }
+
 }

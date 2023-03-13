@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.score.Score;
 import seedu.address.model.score.ScoreList;
 import seedu.address.model.tag.Tag;
@@ -30,7 +32,7 @@ public class Person {
     private final Phone parentPhone;
     private final Set<Tag> tags = new HashSet<>();
     private final TaskList taskList;
-    private final ScoreList scoreList = new ScoreList();
+    private final ScoreList scoreList;
 
     /**
      * Every field must be present and not null.
@@ -44,14 +46,15 @@ public class Person {
         this.parentPhone = parentPhone;
         this.tags.addAll(tags);
         this.taskList = new TaskList();
+        this.scoreList = new ScoreList();
     }
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Phone parentPhone, Set<Tag> tags,
-                  TaskList taskList) {
-        requireAllNonNull(name, phone, email, address, tags, taskList);
+                  TaskList taskList, ScoreList scoreList) {
+        requireAllNonNull(name, phone, email, address, tags, taskList, scoreList);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -59,6 +62,7 @@ public class Person {
         this.parentPhone = parentPhone;
         this.tags.addAll(tags);
         this.taskList = taskList;
+        this.scoreList = scoreList;
     }
 
     public Name getName() {
@@ -91,6 +95,10 @@ public class Person {
 
     public TaskList getTaskList() {
         return taskList;
+    }
+
+    public ObservableList<Task> getTaskListAsObservableList() {
+        return taskList.asUnmodifiableObservableList();
     }
 
     /**
@@ -141,6 +149,15 @@ public class Person {
         taskList.remove(key);
     }
 
+    //=========== Score ================================================================================
+    /**
+     * Returns true if a score with the same identity as {@code score} exists in the person.
+     */
+    public boolean hasScore(Score score) {
+        requireNonNull(score);
+        return scoreList.contains(score);
+    }
+
     /**
      * Returns true if a score with the same identity as {@code score} exists in the address book.
      */
@@ -148,6 +165,13 @@ public class Person {
         scoreList.add(score);
     }
 
+    public ObservableList<Score> getScoreListAsObservableList() {
+        return scoreList.asUnmodifiableObservableList();
+    }
+
+    public ScoreList getScoreList() {
+        return scoreList;
+    }
     /**
      * Replaces the given score {@code target} in the list with {@code editedScore}.
      * {@code target} must exist in the list.
@@ -167,7 +191,14 @@ public class Person {
         scoreList.remove(key);
     }
 
-
+    /**
+     * Returns an unmodifiable view of the list of {@code Score} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    public ObservableList<Score> getFilteredScoreList() {
+        FilteredList<Score> filteredScores = new FilteredList<>(this.getScoreListAsObservableList());
+        return filteredScores;
+    }
 
     /**
      * Returns true if both persons have the same identity and data fields.

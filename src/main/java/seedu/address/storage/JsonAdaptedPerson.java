@@ -15,15 +15,19 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.score.Score;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
 
+    public static final String MESSAGE_DUPLICATE_SCORE = "Score list contains duplicate score(s).";
+    public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s).";
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
@@ -34,6 +38,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedTask> taskList = new ArrayList<>();
 
+    private final List<JsonAdaptedScore> scores = new ArrayList<>();
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -42,18 +47,22 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("parentPhone") String parentPhone,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("taskList") List<JsonAdaptedTask> taskList) {
+            @JsonProperty("taskList") List<JsonAdaptedTask> taskList,
+            @JsonProperty("scores") List<JsonAdaptedScore> scores) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.parentPhone = parentPhone;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-
         if (taskList != null) {
             this.taskList.addAll(taskList);
+        }
+        if (scores != null) {
+            this.scores.addAll(scores);
         }
     }
 
@@ -69,8 +78,11 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        taskList.addAll(source.getTaskList().asUnmodifiableObservableList().stream()
+        taskList.addAll(source.getTaskListAsObservableList().stream()
                 .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
+        scores.addAll(source.getScoreListAsObservableList().stream()
+                .map(JsonAdaptedScore::new)
                 .collect(Collectors.toList()));
     }
 
@@ -83,11 +95,6 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
-        }
-
-        final List<Task> personTasks = new ArrayList<>();
-        for (JsonAdaptedTask task : taskList) {
-            personTasks.add(task.toModelType());
         }
 
         if (name == null) {
@@ -132,10 +139,24 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final TaskList modelTasks = new TaskList();
-        modelTasks.setTasks(personTasks);
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelTags);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelTags, modelTasks);
+        for (JsonAdaptedTask jsonAdaptedTask : taskList) {
+            Task task = jsonAdaptedTask.toModelType();
+            if (person.hasTask(task)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            person.addTask(task);
+        }
+
+        for (JsonAdaptedScore jsonAdaptedScore : scores) {
+            Score score = jsonAdaptedScore.toModelType();
+            if (person.hasScore(score)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SCORE);
+            }
+            person.addScore(score);
+        }
+
+        return person;
     }
-
 }

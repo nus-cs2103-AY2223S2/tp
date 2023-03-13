@@ -14,7 +14,7 @@ public class ScoreBuilder {
     public static final String DEFAULT_DATE = "2023-03-09";
 
     private Label label;
-    private ScoreValue score;
+    private ScoreValue value;
     private Date date;
 
 
@@ -23,7 +23,7 @@ public class ScoreBuilder {
      */
     public ScoreBuilder() {
         label = new Label(DEFAULT_LABEL);
-        score = new ScoreValue(DEFAULT_SCORE_VALUE);
+        value = new ScoreValue(DEFAULT_SCORE_VALUE);
         date = new Date(DEFAULT_DATE);
     }
 
@@ -32,7 +32,7 @@ public class ScoreBuilder {
      */
     public ScoreBuilder(Score scoreToCopy) {
         label = scoreToCopy.getLabel();
-        score = scoreToCopy.getValue();
+        value = scoreToCopy.getValue();
         date = scoreToCopy.getDate();
     }
 
@@ -47,8 +47,8 @@ public class ScoreBuilder {
     /**
      * Sets the {@code ScoreValue} of the {@code Score} that we are building.
      */
-    public ScoreBuilder withScore(String score) {
-        this.score = new ScoreValue(score);
+    public ScoreBuilder withValue(String score) {
+        this.value = new ScoreValue(score);
         return this;
     }
 
@@ -62,6 +62,6 @@ public class ScoreBuilder {
 
 
     public Score build() {
-        return new Score(label, score, date);
+        return new Score(label, value, date);
     }
 }

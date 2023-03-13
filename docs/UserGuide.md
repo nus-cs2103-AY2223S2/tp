@@ -180,6 +180,31 @@ Examples:
 * `find Betsy` followed by `deleteTasks 1 6` deletes the sixth task of the 1st student in the results of the 
 `find` command.
 
+### Adding a score for a student: `addScore`
+
+Adds a score to a specific student.
+
+Format: `addScore INDEX l/Label v/Value d/Date  `
+
+Examples:
+
+* `addScore 2 l/Midterm Math Paper v/99.5 d/2023-03-02`
+
+### Deleting a score of a student: `deleteScore`
+
+Deletes a score of a student.
+
+Format: `deleteScore INDEX_OF_STUDENT INDEX_OF_SCORE `
+
+* Deletes a score of a student at the specified `INDEX_0F_SCORE`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+* `listStudents` followed by `deleteScore 2 1` deletes first score of the 2nd student in the student list.
+* `find Betsy` followed by `deleteScore 1 2` deletes second score of the 1st student in the results of the `find` command.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
