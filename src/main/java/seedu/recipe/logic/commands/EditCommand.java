@@ -34,12 +34,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_INGREDIENT + "INGREDIENT] "
             + "[" + PREFIX_STEP + "STEP]...";
-            /*
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DESCRIPTION + "... "
-            + PREFIX_INGREDIENT + "... "
-            + PREFIX_STEP + "...";
-             */
+
 
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -88,12 +83,15 @@ public class EditCommand extends Command {
     private static Recipe createEditedRecipe(Recipe recipeToEdit, EditRecipeDescriptor editRecipeDescriptor) {
         assert recipeToEdit != null;
 
-        Title updatedTitle = editRecipeDescriptor.getTitle().orElse(recipeToEdit.getTitle());
-        Description updatedDesc = editRecipeDescriptor.getDesc().orElse(recipeToEdit.getDesc());
+        Title updatedTitle = editRecipeDescriptor.getTitle()
+                .orElse(recipeToEdit.getTitle());
+        Description updatedDesc = editRecipeDescriptor.getDesc()
+                .orElse(recipeToEdit.getDesc());
         Set<Ingredient> updatedIngredients = editRecipeDescriptor.getIngredients()
                 .orElse(recipeToEdit.getIngredients());
-        Set<Step> updatedSteps = editRecipeDescriptor.getSteps().orElse(recipeToEdit.getSteps());
-
+        Set<Step> updatedSteps = editRecipeDescriptor.getSteps()
+                .orElse(recipeToEdit.getSteps());
+                
         return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps);
     }
 

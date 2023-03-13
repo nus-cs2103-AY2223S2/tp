@@ -1,18 +1,17 @@
 package seedu.recipe.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.HashSet;
 
-import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.ReadOnlyRecipeBook;
-import seedu.recipe.model.recipe.Title;
-import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.recipe.Description;
 import seedu.recipe.model.recipe.Ingredient;
-
+import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.Title;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -21,9 +20,13 @@ import seedu.recipe.model.tag.Tag;
 public class SampleDataUtil {
     public static Recipe[] getSampleRecipes() {
         return new Recipe[] {
-            new Recipe(new Title("Corndogs"), new Description("Awesome cheap corndogs"), 
-            new HashSet<Ingredient>(Arrays.asList(new Ingredient("eggs"), new Ingredient("flour"))), 
-            new HashSet<Step>(Arrays.asList(new Step("Test1"), new Step("Test2"))))
+            new Recipe(new Title("Corndogs"), new Description("Awesome cheap corndogs"),
+                    new HashSet<Ingredient>(Arrays.asList(
+                            new Ingredient("eggs"),
+                            new Ingredient("flour"))),
+                    new HashSet<Step>(Arrays.asList(
+                            new Step("Test1"),
+                            new Step("Test2"))))
         };
     }
 

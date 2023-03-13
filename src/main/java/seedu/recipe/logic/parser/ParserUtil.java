@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.ArrayList;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.StringUtil;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Description;
-import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Title;
 import seedu.recipe.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -82,7 +82,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String ingredients} into an {@code ArrayList<Ingredient>}. Ingredients are separated by a comma ","
+     * Parses a {@code String ingredients} into an {@code ArrayList<Ingredient>}.
+     * Ingredients are separated by a comma ","
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code ingredients} is invalid.

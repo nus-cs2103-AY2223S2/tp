@@ -6,7 +6,6 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
-//import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -32,29 +31,34 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STEP, PREFIX_TITLE, PREFIX_INGREDIENT, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_STEP, PREFIX_TITLE,
+                        PREFIX_INGREDIENT, PREFIX_DESCRIPTION);
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditRecipeDescriptor editPersonDescriptor = new EditRecipeDescriptor();
         if (argMultimap.getValue(PREFIX_STEP).isPresent()) {
-            editPersonDescriptor.setSteps(ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP)));
+            editPersonDescriptor.setSteps(ParserUtil
+                    .parseSteps(argMultimap.getAllValues(PREFIX_STEP)));
         }
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
-            editPersonDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
+            editPersonDescriptor.setTitle(ParserUtil
+                    .parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
         if (argMultimap.getValue(PREFIX_INGREDIENT).isPresent()) {
             editPersonDescriptor
                     .setIngredients(ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT)));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editPersonDescriptor.setDesc(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            editPersonDescriptor.setDesc(ParserUtil
+                    .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         // parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

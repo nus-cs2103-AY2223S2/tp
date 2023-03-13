@@ -85,5 +85,4 @@ public interface Model {
      */
     void updateFilteredRecipeList(Predicate<Recipe> predicate);
 
-
 }
