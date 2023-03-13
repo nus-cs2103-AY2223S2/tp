@@ -81,14 +81,19 @@ public class UniqueStudentList implements Iterable<Student> {
         }
     }
 
-    public void setStudents(UniqueStudentList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
+    /**
+     * Append the list of students to the list of students
+     * @param list
+     * @return
+     */
     public UniqueStudentList appendList(UniqueStudentList list) {
         this.internalList.addAll(list.internalList);
         return this;
+    }
+
+    public void setStudents(UniqueStudentList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
     /**

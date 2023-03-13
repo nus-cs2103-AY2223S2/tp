@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import taa.assignment.Assignment;
 import taa.assignment.AssignmentList;
 import taa.model.student.Student;
 import taa.model.student.UniqueStudentList;
