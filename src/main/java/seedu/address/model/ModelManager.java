@@ -4,10 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-<<<<<<< HEAD
-=======
 import java.util.List;
->>>>>>> 6a6a23fb7fcb68c336e3033d2292d262dbd1e9e4
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -32,13 +29,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     private FilteredList<Deck> filteredDecks;
-<<<<<<< HEAD
     private Optional<Deck> selectedDeck = Optional.empty();
-=======
-    private Deck selectedDeck = null; // null when not selected, to switch to Optional<Deck> later on
     private Optional<Review> currReview = Optional.empty();
 
->>>>>>> 6a6a23fb7fcb68c336e3033d2292d262dbd1e9e4
     private FilteredList<Card> filteredCards;
 
     /**
@@ -214,11 +207,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-<<<<<<< HEAD
     public String getSelectedDeckName() {
         return selectedDeck.get().getDeckName();
     }
-=======
+
+    /**
+     * Starts a new review session based on deckIndex selected
+     * @param deckIndex
+     */
     public void reviewDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         Deck deckToReview = filteredDecks.get(zeroBasesIdx);
@@ -243,5 +239,4 @@ public class ModelManager implements Model {
         return currReview.map(rev -> rev.getDeckName()).orElse(null);
     }
 
->>>>>>> 6a6a23fb7fcb68c336e3033d2292d262dbd1e9e4
 }
