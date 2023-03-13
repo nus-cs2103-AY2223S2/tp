@@ -89,6 +89,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered vaccination type map. */
     ObservableMap<String, VaxType> getFilteredVaxTypeMap();
 
+    /** Returns an unmodifiable view of the filtered appointment map. */
+    ObservableMap<String, Appointment> getFilteredAppointmentMap();
+
     /**
      * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

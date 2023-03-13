@@ -175,6 +175,13 @@ public class ModelManager implements Model {
         return vaxTypeManager;
     }
 
+    // =========== Filtered Appointment Map Accessors ==========================================================
+
+    @Override
+    public ObservableMap<String, Appointment> getFilteredAppointmentMap() {
+        return appointmentManager.asUnmodifiableObservableMap();
+    }
+
     // =========== Misc methods ================================================================================
 
     @Override
