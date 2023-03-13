@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
-import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 

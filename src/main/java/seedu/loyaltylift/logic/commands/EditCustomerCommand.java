@@ -19,11 +19,11 @@ import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.commons.util.CollectionUtil;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
-import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
-import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 

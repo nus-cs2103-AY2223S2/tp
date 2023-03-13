@@ -6,6 +6,8 @@ import static seedu.loyaltylift.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.loyaltylift.model.attribute.Name;
+
 public class NameTest {
 
     @Test
