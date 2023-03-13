@@ -57,7 +57,7 @@ public class DeleteTaskCommand extends Command {
         }
 
         Task taskToDelete = personTaskList.get(taskIndex.getZeroBased());
-        model.deleteTaskFromPerson(personToDeleteTask, taskToDelete);
+        personToDeleteTask.removeTask(taskToDelete);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
                 personToDeleteTask.getName(), taskToDelete.getName()));

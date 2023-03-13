@@ -55,11 +55,11 @@ public class AddTaskCommand extends Command {
 
         Person personToAddTaskTo = lastShownList.get(targetIndex.getZeroBased());
 
-        if (model.personHasTask(personToAddTaskTo, taskToAdd)) {
+        if (personToAddTaskTo.hasTask(taskToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        model.addTaskToPerson(personToAddTaskTo, taskToAdd);
+        personToAddTaskTo.addTask(taskToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,
                 personToAddTaskTo.getName(), taskToAdd.getName()));
