@@ -49,9 +49,9 @@ public class TypicalPersons {
             .withGroupTags("NUS")
             .withModuleTags("CS2103", "CE2003", "CS2105", "IE4102", "SC3206", "CS2106").build();
 
-    public static final Person DAKOTA = new PersonBuilder().withName("Dakota Windsor")
-            .withAddress("Dakota").withEmail("dakotawindsor@gmail.com")
-            .withPhone("86263617").withTelegramHandle("@dakotawindsor")
+    public static final Person DAKOTA = new PersonBuilder().withName("Dakota Dunman")
+            .withAddress("Dakota").withEmail("dakotadunman@gmail.com")
+            .withPhone("86263617").withTelegramHandle("@dakotadunman")
             .withGroupTags("CCA")
             .withModuleTags("GE2102", "QF3101", "LLJ5203", "CS2104", "ST2132", "CM3261").build();
 

@@ -30,15 +30,15 @@ public class CommandTestUtil {
             put("telegramHandle", "@linusrichards");
         }};
 
-    public static final String NAME_ALEX = "Alex Quentin";
+    public static final String NAME_ALEX = "Alex Quinn";
     public static final String NAME_BEN = "Benjamin Khoo";
     public static final String PHONE_ALEX = "94587551";
     public static final String PHONE_BEN = "92552446";
-    public static final String EMAIL_ALEX = "alexquentin@gmail.com";
+    public static final String EMAIL_ALEX = "alexquinn@gmail.com";
     public static final String EMAIL_BEN = "benjaminkhoo@gmail.com";
     public static final String ADDRESS_ALEX = "Queenstown";
     public static final String ADDRESS_BEN = "Bencoolen";
-    public static final String TELEGRAM_HANDLE_ALEX = "@alexquentin";
+    public static final String TELEGRAM_HANDLE_ALEX = "@alexquinn";
     public static final String TELEGRAM_HANDLE_BEN = "@benjaminkhoo";
     public static final String VALID_GROUP_1 = "Groupmate";
     public static final String VALID_GROUP_2 = "TA";

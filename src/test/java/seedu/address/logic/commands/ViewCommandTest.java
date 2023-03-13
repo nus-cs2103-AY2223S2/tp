@@ -42,7 +42,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_byName_correctPersonQueried() throws CommandException {
-        ViewCommand command1 = new ViewCommand("Dakota Windsor", null);
+        ViewCommand command1 = new ViewCommand("Dakota Dunman", null);
         ViewCommand command2 = new ViewCommand("Edward Richards", null);
         ViewCommand command3 = new ViewCommand("Ford Canning", null);
 
