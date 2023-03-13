@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.category.MiscellaneousCategory;
+import seedu.address.model.category.UserDefinedCategory;
+
 public class ExpenseTest {
 
-    private final Expense expense = new Expense("test", 1.0, null, "test");
+    private final Expense expense = new Expense("test", 1.0, null, new MiscellaneousCategory());
 
     @Test
     public void getName() {
@@ -25,18 +28,18 @@ public class ExpenseTest {
 
     @Test
     public void getCategory() {
-        assertEquals("test", expense.getCategory());
+        assertEquals(new MiscellaneousCategory(), expense.getCategory());
     }
 
     @Test
     public void toStringTest() {
-        assertEquals("Expense{name='test', amount=1.0, date=null, category='test'}", expense.toString());
+        assertEquals("Expense{name='test', amount=1.0, date=null, category='Miscellaneous'}", expense.toString());
     }
 
     @Test
     public void setCategory() {
-        expense.setCategory("test2");
-        assertEquals("test2", expense.getCategory());
+        expense.setCategory(new UserDefinedCategory("new", "bleh"));
+        assertEquals(new UserDefinedCategory("new", "bleh"), expense.getCategory());
     }
 
     @Test
@@ -55,5 +58,17 @@ public class ExpenseTest {
     public void setDate() {
         expense.setDate(null);
         assertEquals(null, expense.getDate());
+    }
+
+    @Test
+    public void equals() {
+        Expense expense2 = new Expense("test", 1.0, null, new MiscellaneousCategory());
+        assertEquals(expense, expense2);
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Expense expense2 = new Expense("test", 1.0, null, new MiscellaneousCategory());
+        assertEquals(expense.hashCode(), expense2.hashCode());
     }
 }

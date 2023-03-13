@@ -2,20 +2,24 @@ package seedu.address.model.expense;
 
 import java.util.Date;
 
+import seedu.address.model.category.Category;
+
 /**
  * Represents an Expense in the address book.
  * Guarantees: details are present and not null, field values are validated,
  * immutable.
- * TODO: Change Category to Category class
  * @author shirsho-12
  * @version 1.0
  */
 public class Expense {
+
+    public static final String MESSAGE_CONSTRAINTS = "Expense names should be alphanumeric";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
     private String name;
     private double amount;
     private Date date;
-    // TODO: Change to Category class
-    private String category;
+    private Category category;
 
     /**
      * Constructor for Expense class.
@@ -24,7 +28,7 @@ public class Expense {
      * @param date     Date of the expense
      * @param category Category of the expense
      */
-    public Expense(String name, double amount, Date date, String category) {
+    public Expense(String name, double amount, Date date, Category category) {
         this.name = name;
         this.amount = amount;
         this.date = date;
@@ -43,7 +47,7 @@ public class Expense {
         return date;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
@@ -55,6 +59,14 @@ public class Expense {
                 + ", date=" + date
                 + ", category='" + category + '\''
                 + '}';
+    }
+
+    public static boolean isValidCategory(Category category) {
+        return Category.isValidCategoryName(category.getCategoryName());
+    }
+
+    public static boolean isValidName(String name) {
+        return name.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -107,7 +119,7 @@ public class Expense {
         this.date = date;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 }
