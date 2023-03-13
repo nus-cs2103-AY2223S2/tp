@@ -139,6 +139,7 @@ public class EditCommand extends Command {
         private Email email;
         private StudentId studentId;
         private Set<ModuleCode> modules;
+        private Remark remark;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -193,6 +194,14 @@ public class EditCommand extends Command {
 
         public Optional<StudentId> getStudentId() {
             return Optional.ofNullable(studentId);
+        }
+
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         /**
