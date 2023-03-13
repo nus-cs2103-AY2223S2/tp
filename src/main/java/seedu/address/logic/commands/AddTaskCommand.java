@@ -13,20 +13,20 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 /**
- * Adds a task to a person identified using it's displayed index in the address book.
+ * Adds a task to a person identified using it's displayed index in the student list.
  */
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addTask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a task to the person identified by the index number in the displayed address book.\n"
-            + " Parameters: INDEX_OF_PERSON (must be positive integers) "
+            + ": Adds a task to the student identified by the index number in the displayed student list.\n"
+            + " Parameters: INDEX_OF_STUDENT (must be a positive integer) "
             + PREFIX_TASK_TITLE + "TASK_TITLE\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TASK_TITLE + "Complete E Math Paper 1";
 
-    public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added for %1$s: %2$s";
+    public static final String MESSAGE_ADD_TASK_SUCCESS = "Added task for %1$s: %2$s";
 
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in this student's task list";
 

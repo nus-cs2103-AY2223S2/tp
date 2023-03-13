@@ -15,13 +15,13 @@ import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
 
 /**
- * Adds a person to the address book.
+ * Adds a score to a person identified using it's displayed index in the student list.
  */
 public class AddScoreCommand extends Command {
 
     public static final String COMMAND_WORD = "addScore";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a score detail to the student. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a score detail to the specified student. \n"
             + "Parameters: INDEX (must be a positive number) "
             + PREFIX_SCORE_LABEL + "LABEL "
             + PREFIX_SCORE_VALUE + "VALUE "
@@ -32,13 +32,13 @@ public class AddScoreCommand extends Command {
             + PREFIX_SCORE_DATE + "2012-08-09 ";
 
     public static final String MESSAGE_SUCCESS = "Added score to Student %1$s: %2$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This score already exists";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This score already exists in this student's score list";
 
     private final Index index;
     private final Score toAdd;
 
     /**
-     * Creates an AddScoreCommand to add the specified {@code Person}
+     * Creates an AddScoreCommand to add the specified {@code Score} to a person
      */
     public AddScoreCommand(Index index, Score score) {
         requireNonNull(index);

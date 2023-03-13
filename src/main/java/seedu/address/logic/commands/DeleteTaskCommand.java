@@ -57,7 +57,16 @@ public class DeleteTaskCommand extends Command {
 
         Task taskToDelete = personTaskList.get(taskIndex.getZeroBased());
         personToDeleteTask.removeTask(taskToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
                 personToDeleteTask.getName(), taskToDelete.getName()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteTaskCommand // instanceof handles nulls
+                && studentIndex.equals(((DeleteTaskCommand) other).studentIndex)
+                && taskIndex.equals(((DeleteTaskCommand) other).taskIndex)); // state check;
     }
 }
