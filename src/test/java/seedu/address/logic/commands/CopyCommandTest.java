@@ -22,17 +22,18 @@ public class CopyCommandTest {
     private final Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
     @Test
-    @EnabledIfSystemProperty(named = "java.awt.headless", matches = "true")
+    @DisabledIfSystemProperty(named = "java.awt.headless", matches = "false")
     public void execute_copyValidIndexInHeadless_success() {
         CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_PERSON);
         Person personToCopy = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        String actualMessage = CopyCommand.MESSAGE_NO_CLIPBOARD_FOUND + copyCommand.getInformation(personToCopy);
         String expectedMessage = CopyCommand.MESSAGE_NO_CLIPBOARD_FOUND + copyCommand.getInformation(personToCopy);
 
         assertCommandSuccess(copyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    @DisabledIfSystemProperty(named = "java.awt.headless", matches = "true")
+    @EnabledIfSystemProperty(named = "java.awt.headless", matches = "false")
     public void execute_copyValidIndexNotInHeadless_success() {
         CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_PERSON);
 
