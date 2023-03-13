@@ -5,6 +5,9 @@ import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.logic.commands.CommandResult;
+
 
 import static java.util.Objects.requireNonNull;
 
@@ -19,13 +22,13 @@ public class AddClientCommand extends Command{
             + "Parameters: "
             + CliSyntax.PREFIX_CLIENT_NAME + "CLIENT NAME "
             + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
-            + CliSyntax.PREFIX_CLIENT_SOURCE + "CLIENT SOURCE "
+            + CliSyntax.PREFIX_SOURCE + "CLIENT SOURCE "
             + CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER + "MOBILE NUMBER "
             + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "YEAR OF BIRTH"
             + "Example: " + COMMAND_ACRONYM + " "
             + CliSyntax.PREFIX_CLIENT_NAME + "Alice Baker "
             + CliSyntax.PREFIX_CLIENT_EMAIL + "alice_baker@bakers.com "
-            + CliSyntax.PREFIX_CLIENT_SOURCE + "Fiverr "
+            + CliSyntax.PREFIX_SOURCE + "Fiverr "
             + CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER + "98765432 "
             + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "2000";
 
@@ -42,7 +45,7 @@ public class AddClientCommand extends Command{
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasClient(toAdd)) {
@@ -50,6 +53,6 @@ public class AddClientCommand extends Command{
         }
 
         model.addClient(toAdd);
-        return new CommandResult(MESSAGE_SUCCESS, toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

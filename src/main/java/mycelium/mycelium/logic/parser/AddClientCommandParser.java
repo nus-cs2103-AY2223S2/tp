@@ -16,6 +16,8 @@ import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.client.YearOfBirth;
+import mycelium.mycelium.model.client.Client;
 
 
 

@@ -16,6 +16,7 @@ import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.tag.Tag;
+import mycelium.mycelium.model.client.YearOfBirth;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
