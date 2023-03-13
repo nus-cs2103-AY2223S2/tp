@@ -364,13 +364,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User enters the wrong command.
-   * 1a1. System displays that the command is invalid and to try again.
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
 
       Use case resumes at step 2.
 
-* 1b. User enters an invalid index.
-   * 1b1. System displays that the index is invalid and to try again.
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
 
       Use case resumes at step 2.
 
@@ -447,30 +447,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User <u>lists events (UC4)</u>.
-2. User <u>lists contacts (UC5)</u>.
-3. User requests to link a specified event and contact.
-4. System links them and displays the event's and contact's information.
+2. User requests to link a specified event and contact.
+3. System links them and displays the event's and contact's information.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. User enters the wrong command.
-   * 3a1. System displays that the command is invalid and to try again.
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
 
       Use case resumes at step 3.
 
-* 3b. User enters an invalid index.
-   * 3b1. System displays that the index is invalid and to try again.
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
 
       Use case resumes at step 3.
 
-* 3c. User enters an invalid contact information
-   * 3c1. System displays that the contact information is invalid and to try again.
+* 2c. User enters an invalid contact information
+   * 2c1. System displays that the contact information is invalid and to try again.
 
       Use case resumes at step 3.
 
-* 4a. The event has a contact linked already.
+* 3a. The event has a contact linked already.
    * 4a1. System replaces the previous contact with the new contact.
 
       Use case ends.
@@ -497,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC7 - Tag a rate to an Event**
+<!-- **Use case: UC7 - Tag a rate to an Event**
 
 **MSS**
 
@@ -527,9 +526,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The event has a rate tagging already.
    * 3a1. System replaces the previous rate with the new rate.
 
-      Use case ends.
+      Use case ends. -->
 
-**Use case: UC8 - Add Contact**
+**Use case: UC7 - Add Contact**
 
 **MSS**
 
@@ -550,7 +549,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC9 - Add Date to Event**
+**Use case: UC8 - Add Date to Event**
 
 **MSS**
 
@@ -581,6 +580,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 3a1. System replaces the previous date with the new date.
 
       Use case ends.
+      
+**Use case: UC9 - Edit Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to edit a specified event in the list.
+3. System updates the event with the edit and displays information of the event edited.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User enters an invalid argument format.
+   * 2c1. System displays that the format is invalid and to try again.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
