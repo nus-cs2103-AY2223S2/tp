@@ -124,8 +124,8 @@ public interface Model {
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
-
-    /** Returns an unmodifiable view of the meetings list 
+    /**
+     * Returns an unmodifiable view of the meetings list
      * Adds the given meeting.
      * {@code meeting} must not already exist in the meeting list.
      */

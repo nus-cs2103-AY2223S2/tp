@@ -85,6 +85,11 @@ public class AddMeetingCommandTest {
         }
 
         @Override
+        public void updateFilteredMeetingList(Predicate<Meeting> meetingPredicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path getAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
@@ -154,6 +159,12 @@ public class AddMeetingCommandTest {
         public ObservableList<Meeting> getMeetingsList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setMeeting(Meeting target, Meeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
