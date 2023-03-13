@@ -98,6 +98,8 @@ public class ModelManager implements Model {
         this.addressBook.resetData(addressBook);
     }
 
+    // =========== Person ================================================================================
+
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -139,6 +141,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Client ==================================================================================
     @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
@@ -178,6 +181,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
     }
+
+    //=========== Project ====================================================================================
 
     public boolean hasProject(Project project) {
         return addressBook.hasProject(project);

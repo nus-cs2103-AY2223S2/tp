@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import mycelium.mycelium.model.AddressBook;
 import mycelium.mycelium.model.ReadOnlyAddressBook;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Address;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
@@ -41,6 +43,47 @@ public class SampleDataUtil {
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
+        };
+    }
+
+    public static Client[] getSampleClients() {
+        return new Client[]{
+            new Client(
+                new Name("Alex Yeoh"),
+                new Email("alexyeoh@example.com"),
+                Optional.ofNullable(new YearOfBirth("1998")),
+                Optional.ofNullable("www.fiverr.com"),
+                Optional.ofNullable(new Phone("87438807"))),
+            new Client(
+                new Name("Bernice Yu"),
+                new Email("berniceyu@example.com"),
+                Optional.ofNullable(new YearOfBirth("1972")),
+                Optional.ofNullable("www.upwork.com"),
+                Optional.ofNullable(new Phone("99272758"))),
+            new Client(
+                new Name("Charlotte Oliveiro"),
+                new Email("charlotte@example.com"),
+                Optional.ofNullable(new YearOfBirth("1999")),
+                Optional.ofNullable("www.guru.com"),
+                Optional.ofNullable(new Phone("91234567"))),
+            new Client(
+                new Name("David Li"),
+                new Email("lidavid@example.com"),
+                Optional.ofNullable(new YearOfBirth("1998")),
+                Optional.ofNullable("www.fiverr.com"),
+                Optional.ofNullable(new Phone("91031282"))),
+            new Client(
+                new Name("Irfan Ibrahim"),
+                new Email("irfan@example.com"),
+                Optional.ofNullable(new YearOfBirth("1964")),
+                Optional.ofNullable("www.linkedin.com"),
+                Optional.ofNullable(new Phone("92492021"))),
+            new Client(
+                new Name("Roy Balakrishnan"),
+                new Email("royb@example.com"),
+                Optional.ofNullable(new YearOfBirth("2001")),
+                Optional.ofNullable("www.simplyhired.com"),
+                Optional.ofNullable(new Phone("92624417")))
         };
     }
 
@@ -83,6 +126,9 @@ public class SampleDataUtil {
         }
         for (Project sampleProject : getSampleProjects()) {
             sampleAb.addProject(sampleProject);
+        }
+        for (Client sampleClient : getSampleClients()) {
+            sampleAb.addClient(sampleClient);
         }
         return sampleAb;
     }
