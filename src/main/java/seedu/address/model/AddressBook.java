@@ -90,6 +90,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         person.addIsolatedEvent(event);
     }
 
+    public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
+        personToEdit.getIsolatedEventList().deleteIsolatedEvent(event);
+    }
+
+    public void setIsolatedEvent(Person person, IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
+        requireNonNull(editedEvent);
+        person.getIsolatedEventList().edit(originalEvent, editedEvent);
+    }
+
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -194,4 +203,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return Objects.hash(persons, groups);
     }
+
 }

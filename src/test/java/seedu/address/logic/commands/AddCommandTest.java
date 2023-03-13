@@ -189,6 +189,17 @@ public class AddCommandTest {
         public void addIsolatedEvent(Person index, IsolatedEvent eventToAdd) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent,
+                                     IsolatedEvent editedIsolatedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
