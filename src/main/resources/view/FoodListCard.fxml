@@ -63,6 +63,9 @@
                      <minWidth>
                         <Region fx:constant="USE_PREF_SIZE" />
                      </minWidth>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Label>
                      <Label fx:id="unit" styleClass="cell_small_label" text="\$unit" />
                </children>
