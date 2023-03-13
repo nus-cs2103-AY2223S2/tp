@@ -6,9 +6,9 @@ import java.util.Set;
 import codoc.model.module.Module;
 import codoc.model.person.Address;
 import codoc.model.person.Email;
+import codoc.model.person.Github;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
-import codoc.model.person.Phone;
 import codoc.model.skill.Skill;
 import codoc.model.util.SampleDataUtil;
 
@@ -18,12 +18,12 @@ import codoc.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_GITHUB = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private Github github;
     private Email email;
     private Address address;
     private Set<Skill> skills;
@@ -34,7 +34,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        github = new Github(DEFAULT_GITHUB);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         skills = new HashSet<>();
@@ -46,7 +46,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
+        github = personToCopy.getGithub();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         skills = new HashSet<>(personToCopy.getSkills());
@@ -56,7 +56,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code mods} into a {@code Set<Mod>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withMods(String... mods) {
+    public PersonBuilder withMods(String ... mods) {
         this.mods = SampleDataUtil.getModuleSet(mods);
         return this;
     }
@@ -72,7 +72,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withSkills(String... skills) {
+    public PersonBuilder withSkills(String ... skills) {
         this.skills = SampleDataUtil.getSkillSet(skills);
         return this;
     }
@@ -86,10 +86,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Github} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withGithub(String github) {
+        this.github = new Github(github);
         return this;
     }
 
@@ -102,7 +102,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, skills, mods);
+        return new Person(name, github, email, address, skills, mods);
     }
 
 }

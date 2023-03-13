@@ -4,12 +4,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import codoc.logic.commands.EditCommand;
+import codoc.logic.commands.EditCommand.EditPersonDescriptor;
 import codoc.model.person.Address;
 import codoc.model.person.Email;
+import codoc.model.person.Github;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
-import codoc.model.person.Phone;
 import codoc.model.skill.Skill;
 
 /**
@@ -17,23 +17,23 @@ import codoc.model.skill.Skill;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditCommand.EditPersonDescriptor descriptor;
+    private EditPersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor = new EditPersonDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditPersonDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
+        this.descriptor = new EditPersonDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
+        descriptor.setGithub(person.getGithub());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setSkills(person.getSkills());
@@ -48,10 +48,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Github} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditPersonDescriptorBuilder withGithub(String github) {
+        descriptor.setGithub(new Github(github));
         return this;
     }
 
@@ -72,8 +72,8 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code EditPersonDescriptor} that we are
-     * building.
+     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
      */
     public EditPersonDescriptorBuilder withSkills(String... skills) {
         Set<Skill> skillSet = Stream.of(skills).map(Skill::new).collect(Collectors.toSet());
@@ -81,7 +81,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditPersonDescriptor build() {
+    public EditPersonDescriptor build() {
         return descriptor;
     }
 }

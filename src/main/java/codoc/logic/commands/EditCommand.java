@@ -1,5 +1,11 @@
 package codoc.logic.commands;
 
+import static codoc.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static codoc.logic.parser.CliSyntax.PREFIX_MODULE;
+import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
@@ -11,14 +17,13 @@ import java.util.Set;
 
 import codoc.commons.util.CollectionUtil;
 import codoc.logic.commands.exceptions.CommandException;
-import codoc.logic.parser.CliSyntax;
 import codoc.model.Model;
 import codoc.model.module.Module;
 import codoc.model.person.Address;
 import codoc.model.person.Email;
+import codoc.model.person.Github;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
-import codoc.model.person.Phone;
 import codoc.model.skill.Skill;
 
 /**
@@ -31,15 +36,15 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person in the view panel "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + "[" + CliSyntax.PREFIX_NAME + "NAME] "
-            + "[" + CliSyntax.PREFIX_PHONE + "PHONE] "
-            + "[" + CliSyntax.PREFIX_EMAIL + "EMAIL] "
-            + "[" + CliSyntax.PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + CliSyntax.PREFIX_SKILL + "SKILL]... "
-            + "[" + CliSyntax.PREFIX_MODULE + "MODULE]...\n"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_GITHUB + "GITHUB] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_SKILL + "SKILL]... "
+            + "[" + PREFIX_MODULE + "MODULE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + CliSyntax.PREFIX_PHONE + "91234567 "
-            + CliSyntax.PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_GITHUB + "91234567 "
+            + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -82,13 +87,13 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Github updatedGithub = editPersonDescriptor.getGithub().orElse(personToEdit.getGithub());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Skill> updatedSkills = editPersonDescriptor.getSkills().orElse(personToEdit.getSkills());
         Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedSkills, updatedModules);
+        return new Person(updatedName, updatedGithub, updatedEmail, updatedAddress, updatedSkills, updatedModules);
     }
 
     @Override
@@ -114,7 +119,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
+        private Github github;
         private Email email;
         private Address address;
         private Set<Skill> skills;
@@ -128,7 +133,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setGithub(toCopy.github);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setSkills(toCopy.skills);
@@ -139,7 +144,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, skills, modules);
+            return CollectionUtil.isAnyNonNull(name, github, email, address, skills, modules);
         }
 
         public void setName(Name name) {
@@ -150,12 +155,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setGithub(Github github) {
+            this.github = github;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Github> getGithub() {
+            return Optional.ofNullable(github);
         }
 
         public void setEmail(Email email) {
@@ -223,7 +228,7 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
+                    && getGithub().equals(e.getGithub())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getSkills().equals(e.getSkills())

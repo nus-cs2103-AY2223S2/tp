@@ -13,9 +13,9 @@ import codoc.commons.exceptions.IllegalValueException;
 import codoc.model.module.Module;
 import codoc.model.person.Address;
 import codoc.model.person.Email;
+import codoc.model.person.Github;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
-import codoc.model.person.Phone;
 import codoc.model.skill.Skill;
 
 /**
@@ -26,7 +26,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String github;
     private final String email;
     private final String address;
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
@@ -37,12 +37,12 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("github") String github,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("skills") List<JsonAdaptedSkill> skills,
             @JsonProperty("modules") List<JsonAdaptedModule> modules) {
         this.name = name;
-        this.phone = phone;
+        this.github = github;
         this.email = email;
         this.address = address;
         if (skills != null) {
@@ -58,7 +58,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        github = source.getGithub().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         skills.addAll(source.getSkills().stream()
@@ -91,10 +91,10 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone != null && !Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (github != null && !Github.isValidGithub(github)) {
+            throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Github modelGithub = new Github(github);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -111,7 +111,7 @@ class JsonAdaptedPerson {
 
         final Set<Skill> modelSkills = new HashSet<>(personSkills);
         final Set<Module> modelModules = new HashSet<>(personModules);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelSkills, modelModules);
+        return new Person(modelName, modelGithub, modelEmail, modelAddress, modelSkills, modelModules);
     }
 
 }

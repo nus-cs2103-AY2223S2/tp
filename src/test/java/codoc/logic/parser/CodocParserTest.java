@@ -1,5 +1,7 @@
 package codoc.logic.parser;
 
+import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static codoc.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static codoc.testutil.Assert.assertThrows;
 import static codoc.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +13,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import codoc.commons.core.Messages;
 import codoc.logic.commands.AddCommand;
 import codoc.logic.commands.ClearCommand;
 import codoc.logic.commands.DeleteCommand;
@@ -86,14 +87,12 @@ public class CodocParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+            -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, Messages.MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
-                "unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

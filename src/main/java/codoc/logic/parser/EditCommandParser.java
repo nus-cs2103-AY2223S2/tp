@@ -1,5 +1,11 @@
 package codoc.logic.parser;
 
+import static codoc.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static codoc.logic.parser.CliSyntax.PREFIX_MODULE;
+import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -29,31 +35,27 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args,
-                        CliSyntax.PREFIX_NAME,
-                        CliSyntax.PREFIX_PHONE,
-                        CliSyntax.PREFIX_EMAIL,
-                        CliSyntax.PREFIX_ADDRESS,
-                        CliSyntax.PREFIX_SKILL,
-                        CliSyntax.PREFIX_MODULE
+                        PREFIX_NAME,
+                        PREFIX_GITHUB, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_SKILL,
+                        PREFIX_MODULE
                 );
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get()));
+        if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
+            editPersonDescriptor.setGithub(ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get()));
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(
-                    CliSyntax.PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseSkillsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_SKILL)).ifPresent(editPersonDescriptor::setSkills);
-        parseModulesForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_MODULE)).ifPresent(
-                editPersonDescriptor::setModules);
+        parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL)).ifPresent(editPersonDescriptor::setSkills);
+        parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(editPersonDescriptor::setModules);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -76,7 +78,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> skillSet = skills.size() == 1 && skills.contains("") ? Collections.emptySet() : skills;
         return Optional.of(ParserUtil.parseSkills(skillSet));
     }
-
     private Optional<Set<Module>> parseModulesForEdit(Collection<String> modules) throws ParseException {
         assert modules != null;
 

@@ -12,8 +12,8 @@ import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.module.Module;
 import codoc.model.person.Address;
 import codoc.model.person.Email;
+import codoc.model.person.Github;
 import codoc.model.person.Name;
-import codoc.model.person.Phone;
 import codoc.model.skill.Skill;
 
 
@@ -53,20 +53,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String github} into a {@code Github}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code github} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        if (phone != null) {
-            String trimmedPhone = phone.trim();
-            if (!Phone.isValidPhone(trimmedPhone)) {
-                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Github parseGithub(String github) throws ParseException {
+        if (github != null) {
+            String trimmedGithub = github.trim();
+            if (!Github.isValidGithub(trimmedGithub)) {
+                throw new ParseException(Github.MESSAGE_CONSTRAINTS);
             }
-            return new Phone(trimmedPhone);
+            return new Github(trimmedGithub);
         }
-        return new Phone(null);
+        return new Github(null);
     }
 
     /**

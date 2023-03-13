@@ -1,5 +1,6 @@
 package codoc.logic.parser;
 
+import static codoc.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static codoc.testutil.Assert.assertThrows;
 import static codoc.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,25 +11,24 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.Address;
 import codoc.model.person.Email;
+import codoc.model.person.Github;
 import codoc.model.person.Name;
-import codoc.model.person.Phone;
 import codoc.model.skill.Skill;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_GITHUB = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "Àpython";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_GITHUB = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "C++";
@@ -43,7 +43,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, ParserUtil.MESSAGE_INVALID_INDEX, ()
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
                 -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
@@ -69,32 +69,32 @@ public class ParserUtilTest {
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
         Name expectedName = new Name(VALID_NAME);
-        Assertions.assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_NAME);
-        Assertions.assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseGithub_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGithub(INVALID_GITHUB));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseGithub_validValueWithoutWhitespace_returnsGithub() throws Exception {
+        Github expectedGithub = new Github(VALID_GITHUB);
+        assertEquals(expectedGithub, ParserUtil.parseGithub(VALID_GITHUB));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseGithub_validValueWithWhitespace_returnsTrimmedGithub() throws Exception {
+        String githubWithWhitespace = WHITESPACE + VALID_GITHUB + WHITESPACE;
+        Github expectedGithub = new Github(VALID_GITHUB);
+        assertEquals(expectedGithub, ParserUtil.parseGithub(githubWithWhitespace));
     }
 
     @Test
@@ -128,14 +128,14 @@ public class ParserUtilTest {
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
         Email expectedEmail = new Email(VALID_EMAIL);
-        Assertions.assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
-        Assertions.assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
     @Test
@@ -151,14 +151,14 @@ public class ParserUtilTest {
     @Test
     public void parseSkill_validValueWithoutWhitespace_returnsSkill() throws Exception {
         Skill expectedSkill = new Skill(VALID_SKILL_1);
-        Assertions.assertEquals(expectedSkill, ParserUtil.parseSkill(VALID_SKILL_1));
+        assertEquals(expectedSkill, ParserUtil.parseSkill(VALID_SKILL_1));
     }
 
     @Test
     public void parseSkill_validValueWithWhitespace_returnsTrimmedSkill() throws Exception {
         String skillWithWhitespace = WHITESPACE + VALID_SKILL_1 + WHITESPACE;
         Skill expectedSkill = new Skill(VALID_SKILL_1);
-        Assertions.assertEquals(expectedSkill, ParserUtil.parseSkill(skillWithWhitespace));
+        assertEquals(expectedSkill, ParserUtil.parseSkill(skillWithWhitespace));
     }
 
     @Test

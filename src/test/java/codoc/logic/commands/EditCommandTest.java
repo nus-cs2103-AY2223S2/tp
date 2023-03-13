@@ -1,38 +1,38 @@
-//package seedu.address.logic.commands;
+//package codoc.logic.commands;
 //
 //import static org.junit.jupiter.api.Assertions.assertFalse;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static commands.logic.codoc.CommandTestUtil.DESC_AMY;
-//import static commands.logic.codoc.CommandTestUtil.DESC_BOB;
-//import static commands.logic.codoc.CommandTestUtil.VALID_NAME_BOB;
-//import static commands.logic.codoc.CommandTestUtil.VALID_PHONE_BOB;
-//import static commands.logic.codoc.CommandTestUtil.VALID_SKILL_JAVA;
-//import static commands.logic.codoc.CommandTestUtil.assertCommandFailure;
-//import static commands.logic.codoc.CommandTestUtil.assertCommandSuccess;
-//import static commands.logic.codoc.CommandTestUtil.showPersonAtIndex;
-//import static testutil.codoc.TypicalIndexes.INDEX_FIRST_PERSON;
-//import static testutil.codoc.TypicalIndexes.INDEX_SECOND_PERSON;
-//import static testutil.codoc.TypicalPersons.getTypicalCodoc;
+//import static codoc.logic.commands.CommandTestUtil.DESC_AMY;
+//import static codoc.logic.commands.CommandTestUtil.DESC_BOB;
+//import static codoc.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+//import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+//import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
+//import static codoc.logic.commands.CommandTestUtil.assertCommandFailure;
+//import static codoc.logic.commands.CommandTestUtil.assertCommandSuccess;
+//import static codoc.logic.commands.CommandTestUtil.showPersonAtIndex;
+//import static codoc.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+//import static codoc.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+//import static codoc.testutil.TypicalPersons.getTypicalAddressBook;
 //
 //import org.junit.jupiter.api.Test;
 //
-//import core.commons.codoc.Messages;
-//import index.core.commons.codoc.Index;
-//import commands.logic.codoc.EditCommand.EditPersonDescriptor;
-//import model.codoc.Codoc;
-//import model.codoc.Model;
-//import model.codoc.ModelManager;
-//import model.codoc.UserPrefs;
-//import person.model.codoc.Person;
-//import testutil.codoc.EditPersonDescriptorBuilder;
-//import testutil.codoc.PersonBuilder;
+//import codoc.commons.core.Messages;
+//import codoc.commons.core.index.Index;
+//import codoc.logic.commands.EditCommand.EditPersonDescriptor;
+//import codoc.model.AddressBook;
+//import codoc.model.Model;
+//import codoc.model.ModelManager;
+//import codoc.model.UserPrefs;
+//import codoc.model.person.Person;
+//import codoc.testutil.EditPersonDescriptorBuilder;
+//import codoc.testutil.PersonBuilder;
 //
 ///**
 // * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
 // */
 //public class EditCommandTest {
 //
-//    private Model model = new ModelManager(getTypicalCodoc(), new UserPrefs());
+//    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 //
 //    @Test
 //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@
 //
 //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
-//        Model expectedModel = new ModelManager(new Codoc(model.getCodoc()), new UserPrefs());
+//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 //        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 //
 //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -54,16 +54,16 @@
 //        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 //
 //        PersonBuilder personInList = new PersonBuilder(lastPerson);
-//        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+//        Person editedPerson = personInList.withName(VALID_NAME_BOB).withGithub(VALID_GITHUB_BOB)
 //                .withSkills(VALID_SKILL_JAVA).build();
 //
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-//                .withPhone(VALID_PHONE_BOB).withSkills(VALID_SKILL_JAVA).build();
+//                .withGithub(VALID_GITHUB_BOB).withSkills(VALID_SKILL_JAVA).build();
 //        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 //
 //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
-//        Model expectedModel = new ModelManager(new Codoc(model.getCodoc()), new UserPrefs());
+//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 //        expectedModel.setPerson(lastPerson, editedPerson);
 //
 //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@
 //
 //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
-//        Model expectedModel = new ModelManager(new Codoc(model.getCodoc()), new UserPrefs());
+//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 //
 //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 //    }
@@ -92,7 +92,7 @@
 //
 //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
-//        Model expectedModel = new ModelManager(new Codoc(model.getCodoc()), new UserPrefs());
+//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 //        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 //
 //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -112,7 +112,7 @@
 //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
 //
 //        // edit person in filtered list into a duplicate in address book
-//        Person personInList = model.getCodoc().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+//        Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 //        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
 //                new EditPersonDescriptorBuilder(personInList).build());
 //
@@ -137,7 +137,7 @@
 //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
 //        Index outOfBoundIndex = INDEX_SECOND_PERSON;
 //        // ensures that outOfBoundIndex is still in bounds of address book list
-//        assertTrue(outOfBoundIndex.getZeroBased() < model.getCodoc().getPersonList().size());
+//        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 //
 //        EditCommand editCommand = new EditCommand(outOfBoundIndex,
 //                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
