@@ -2,7 +2,6 @@ package seedu.patientist.model.person;
 
 import java.util.function.Predicate;
 
-import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.tag.Tag;
 
 /**
