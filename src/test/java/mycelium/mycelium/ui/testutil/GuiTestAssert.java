@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import guitests.guihandles.ProjectListCardHandle;
 import mycelium.mycelium.model.project.Project;
 
+import java.util.Date;
+
 /**
  * A set of assertion methods useful for writing GUI tests.
  */
@@ -32,11 +34,7 @@ public class GuiTestAssert {
         assertEquals(expectedProject.getClientEmail().value, actualCard.getClientEmail());
         assertEquals(expectedProject.getSource().orElse("Unknown"), actualCard.getSource());
         assertEquals(expectedProject.getAcceptedOn().toString(), actualCard.getAcceptedOn());
-        if (expectedProject.getDeadline().isEmpty()) {
-            assertEquals("No Deadline", actualCard.getDeadline());
-        } else {
-            assertEquals(expectedProject.getDeadline().toString(), actualCard.getDeadline());
-        }
+        assertEquals(expectedProject.getDeadline().map(Date::toString).orElse("No Deadline"), actualCard.getDeadline());
         assertEquals(expectedProject.getDescription().orElse("No description given"), actualCard.getDescription());
     }
 }
