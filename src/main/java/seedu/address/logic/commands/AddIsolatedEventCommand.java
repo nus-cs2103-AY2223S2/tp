@@ -35,6 +35,8 @@ public class AddIsolatedEventCommand extends Command {
      * @param eventToAdd
      */
     public AddIsolatedEventCommand(Index index, IsolatedEvent eventToAdd) {
+        requireNonNull(index);
+        requireNonNull(eventToAdd);
         this.eventToAdd = eventToAdd;
         this.index = index;
     }

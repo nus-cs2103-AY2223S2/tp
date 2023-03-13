@@ -239,18 +239,32 @@ Examples:
 * 'event create e/CS2101 Presentation f/28/02/2023 16:00 t/28/02/2023 18:00'
 * 'event create recurring e/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00'
 
-### Delete an event: `event_delete`
+### Deleting an event:
+### 1) Delete an isolated event: `ie_delete`
 
-Deletes an existing event from the address book.
+Deletes an existing isolated event from person's isolated event list in the address book.
 
-Format: `event_delete e/EVENT_NAME`
+Format: `ie_delete [INDEX OF PERSON] [INDEX OF EVENT]}`
 
 * Deletes an event with the specified event name `EVENT_NAME`
 * The event name cannot be empty and must be an existing event
 
 Examples:
-* event delete e/CS2103T Weekly Meeting
-* event delete e/CS2101 Presentation
+* ie_delete 1 1
+
+### Editing an event: 
+### 1) Edit an isolated event: `ie_edit`
+
+Edit an existing isolated event from person's isolated event list in the address book.
+
+Format: `ie_delete [INDEX OF PERSON] [INDEX OF EVENT] ie/NAME f/START_DATE t/END_DATE`
+
+* Deletes an event with the specified event name `EVENT_NAME`
+* The event name cannot be empty and must be an existing event
+
+Examples:
+* ie_edit 1 1 ie/Biking
+* ie_edit 1 1 f/09/03/2023 15:00
 
 ### List all events: `event list`  [coming soon]
 
@@ -306,22 +320,24 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
-**Group create** | `group create g/GROUP_NAME`
-**Group delete** | `group delete g/GROUP_NAME`
-**Group add** | `group add n/NAME g/GROUP_NAME`
-**Group remove** | `group remove n/NAME g/GROUP_NAME`
-**Group list** | `group list`
-**Group find** | `group find g/GROUP_NAME`
-**Event create** | `event create e/EVENT_NAME f/START_DATE t/END DATE`<br>`event create recurring e/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
-**Event delete** | `event delete e/EVENT_NAME`
-**Event list**| [coming soon]
-**Event find**| `event find e/EVENT_NAME`
+| Action                    | Format, Examples                                                                                                                                                      |
+|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**                 | `clear`                                                                                                                                                               |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**                  | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**                  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**                  | `list`                                                                                                                                                                |
+| **Help**                  | `help`                                                                                                                                                                |
+| **Group create**          | `group create g/GROUP_NAME`                                                                                                                                           |
+| **Group delete**          | `group delete g/GROUP_NAME`                                                                                                                                           |
+| **Group add**             | `group add n/NAME g/GROUP_NAME`                                                                                                                                       |
+| **Group remove**          | `group remove n/NAME g/GROUP_NAME`                                                                                                                                    |
+| **Group list**            | `group list`                                                                                                                                                          |
+| **Group find**            | `group find g/GROUP_NAME`                                                                                                                                             |
+| **Event create**          | `event_create e/EVENT_NAME f/START_DATE t/END DATE`<br> e.g.,`event create recurring e/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                              |
+| **Isolated Event create** | `event_create ie/EVENT_NAME f/START_DATE t/END_DATE`                                                                                                                  |
+| **Isolated event delete** | `ie_delete [PERSON_INDEX] [EVENT_INDEX]`                                                                                                                              |
+| **Isolated Event update** | `ie_edit [PERSON_INDEX] [EVENT_INDEX] [ie/NAME] [f/START_DATE] [t/END_DATE]`                                                                                          |
+| **Event list**            | [coming soon]                                                                                                                                                         |
+| **Event find**            | `event find e/EVENT_NAME`                                                                                                                                             |

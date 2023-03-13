@@ -135,4 +135,9 @@ public interface Model {
      * @param eventToAdd
      */
     void addRecurringEvent(Person personToEdit, RecurringEvent eventToAdd);
+
+    void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event);
+
+    void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent, IsolatedEvent editedIsolatedEvent);
+
 }
