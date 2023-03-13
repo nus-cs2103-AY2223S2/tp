@@ -28,18 +28,18 @@ public class ExpenseTest {
 
     @Test
     public void getCategory() {
-        assertEquals("test", expense.getCategory());
+        assertEquals(new MiscellaneousCategory(), expense.getCategory());
     }
 
     @Test
     public void toStringTest() {
-        assertEquals("Expense{name='test', amount=1.0, date=null, category='test'}", expense.toString());
+        assertEquals("Expense{name='test', amount=1.0, date=null, category='Miscellaneous'}", expense.toString());
     }
 
     @Test
     public void setCategory() {
-        expense.setCategory(new UserDefinedCategory(null, null));
-        assertEquals(new UserDefinedCategory(null, null), expense.getCategory());
+        expense.setCategory(new UserDefinedCategory("new", "bleh"));
+        assertEquals(new UserDefinedCategory("new", "bleh"), expense.getCategory());
     }
 
     @Test
