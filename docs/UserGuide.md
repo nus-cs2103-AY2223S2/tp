@@ -44,13 +44,11 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 <div class="alert alert-info">
 
-### Notes about command format:
-
+### Notes about command format:<br>
 - Words enclosed by `<>` are the parameters to be supplied by the user.<br>
    - E.g. in `add /m <code> /c <credits> /y <year-semester> /g <grade> /t <tag>...`, `<code>`, `<credits>`, `<year-semester>`, `<grade>`, `<tag>` are parameters which can be used as `add /m CS2103T /c 4 /y Y2S2 /g A+ /t University Level Requirements /t Computer Science Foundation`
 - Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `delete all`) will be ignored.
 - Parameters encapsulated in between brackets ('()') are optional.
-
 </div>
 
 ### MODTrek supports the following features:
