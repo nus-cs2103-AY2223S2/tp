@@ -257,54 +257,60 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of tutees
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage tutees faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                            | So that I can…​                                         |
+|----------|--------------------------------------------|-----------------------------------------|---------------------------------------------------------|
+| `* * *`  | tutor user managing students               | add students                            | add students that I am tutoring                         |
+| `* * *`  | tutor user  managing students              | delete students                         | remove students that I no longer tutor                  |
+| `* * *`  | tutor user managing students               | list students                           | display all students that are tutored by me             |
+| `* * *`  | user                                       | save my work locally                    | come back to view or edit it in the future              |
+| `* * *`  | user                                       | hide private contact details            | minimize chance of someone else seeing them by accident |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TMS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a student**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User is prompted to enter student’s details.
+2. Student is added to the list of students.
+   Use case ends.
 
-    Use case ends.
+**Use case: Delete a student**
 
-**Extensions**
+**MSS:**
 
+1. User requests to list students. 
+2. System shows a list of students.
+3. User requests to edit a specific student in the list.
+4. System prompts the user to choose an attribute to edit.
+5. User chooses an attribute to edit and inputs new information about the student.
+   Use case ends.
+
+**Extensions:**
+
+Extensions:
 * 2a. The list is empty.
-
   Use case ends.
-
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. System shows an error message.
 
       Use case resumes at step 2.
 
@@ -312,16 +318,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should be standalone on Windows, Linux, and OS-X platforms, requiring only Java '11' or above to be installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be usable without an installer. 
+5. GUI Should work well (i.e., should not cause any resolution-related inconveniences to the user) for 
+   1. standard screen resolutions 1920x1080 and higher, and, 
+   2. for screen scales 100% and 125%. 
+6. GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for 
+   1. resolutions 1280x720 and higher, and, 
+   2. for screen scales 150%. 
+7. The application should be packed into a JAR file or include jar file and other files into one zip file. 
+8. The product size should not exceed 100MB.
+
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **TMS**: Tutee managing system.
+* **CLI**: command line interface. 
+* **GUI**: graphical user interface. 
+* **JAR**: Java ARchive.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
