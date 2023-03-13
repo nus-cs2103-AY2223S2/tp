@@ -58,18 +58,41 @@ public class TaskStatusTest {
     @Test
     public void toStringTest() {
         TaskStatus done = new TaskStatus("D");
-        assertEquals("D", done.toString());
+        assertEquals("Done", done.toString());
 
         TaskStatus notDone = new TaskStatus("N");
-        assertEquals("N", notDone.toString());
+        assertEquals("Not Done", notDone.toString());
     }
 
     @Test
-    public void toJsonStringTest() {
+    public void toJsonString() {
         TaskStatus done = new TaskStatus("D");
         assertEquals("D", done.toJsonString());
 
         TaskStatus notDone = new TaskStatus("N");
         assertEquals("N", notDone.toJsonString());
+    }
+
+    @Test
+    public void equals() {
+        TaskStatus done = new TaskStatus("D");
+        TaskStatus notDone = new TaskStatus("N");
+
+        assertTrue(done.equals(done)); //same object
+        assertTrue(done.equals(new TaskStatus("d"))); //both are done
+
+        assertFalse(done.equals(null)); //null
+        assertFalse(done.equals(notDone)); //done vs not done
+        assertFalse(done.equals("N")); //different types
+    }
+
+    @Test
+    public void hashCodeTest() {
+        TaskStatus done = new TaskStatus("d");
+        TaskStatus notDone = new TaskStatus("n");
+
+        // Hashcode 1231 in Java represents true while 1237 represents false
+        assertEquals(1231, done.hashCode());
+        assertEquals(1237, notDone.hashCode());
     }
 }

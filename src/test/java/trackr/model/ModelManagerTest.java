@@ -164,9 +164,24 @@ public class ModelManagerTest {
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
+        // different addressBook and different taskList -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentTaskList, userPrefs)));
+
+        // different filteredPersonList and different filteredTaskList -> returns false
+        personKeywords = ALICE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
+        taskKeywords = BUY_FLOUR_N.getTaskName().fullTaskName.split("\\s+");
+        modelManager.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(taskKeywords)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setTrackrFilePath(Paths.get("differentFilePath"));
+
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, differentUserPrefs)));
     }
 }

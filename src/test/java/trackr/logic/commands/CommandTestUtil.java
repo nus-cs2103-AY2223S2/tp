@@ -3,9 +3,11 @@ package trackr.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 import static trackr.testutil.Assert.assertThrows;
 
@@ -22,6 +24,7 @@ import trackr.model.person.Person;
 import trackr.model.task.Task;
 import trackr.model.task.TaskNameContainsKeywordsPredicate;
 import trackr.testutil.EditPersonDescriptorBuilder;
+import trackr.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -76,8 +79,44 @@ public class CommandTestUtil {
     public static final String VALID_TASK_NAME_BUY_FLOUR = "Buy Flour";
 
     public static final String VALID_TASK_DEADLINE_2100 = "01/01/2100";
+    public static final String VALID_TASK_DEADLINE_2024 = "01/01/2024";
     public static final String VALID_TASK_STATUS_DONE = "D";
     public static final String VALID_TASK_STATUS_NOT_DONE = "N";
+
+    public static final String TASK_NAME_DESC_SORT_INVENTORY =
+            " " + PREFIX_NAME + VALID_TASK_NAME_SORT_INVENTORY;
+    public static final String TASK_NAME_DESC_BUY_FLOUR =
+            " " + PREFIX_NAME + VALID_TASK_NAME_BUY_FLOUR;
+    public static final String TASK_DEADLINE_DESC_2100 =
+            " " + PREFIX_DEADLINE + VALID_TASK_DEADLINE_2100;
+    public static final String TASK_DEADLINE_DESC_2024 =
+            " " + PREFIX_DEADLINE + VALID_TASK_DEADLINE_2024;
+    public static final String TASK_STATUS_DESC_DONE =
+            " " + PREFIX_STATUS + VALID_TASK_STATUS_DONE;
+    public static final String TASK_STATUS_DESC_NOT_DONE =
+            " " + PREFIX_STATUS + VALID_TASK_STATUS_NOT_DONE;
+
+    public static final String INVALID_TASK_NAME_DESC =
+            " " + PREFIX_NAME + "Buy eggs & flour"; // '&' not allowed in names
+    public static final String INVALID_TASK_DEADLINE_DESC =
+            " " + PREFIX_DEADLINE + "aa/01/2025"; // alphabets not allowed in deadlines
+    public static final String INVALID_TASK_STATUS_DESC =
+            " " + PREFIX_STATUS + "d2"; // status can only be d / D / n / N
+
+    public static final EditTaskCommand.EditTaskDescriptor DESC_SORT_INVENTORY;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_BUY_FLOUR;
+
+    static {
+        DESC_SORT_INVENTORY = new EditTaskDescriptorBuilder()
+                .withTaskName(VALID_TASK_NAME_SORT_INVENTORY)
+                .withTaskDeadline(VALID_TASK_DEADLINE_2024)
+                .withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
+
+        DESC_BUY_FLOUR = new EditTaskDescriptorBuilder()
+                .withTaskName(VALID_TASK_NAME_BUY_FLOUR)
+                .withTaskDeadline(VALID_TASK_DEADLINE_2100)
+                .withTaskStatus(VALID_TASK_STATUS_DONE).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
