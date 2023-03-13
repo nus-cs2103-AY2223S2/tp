@@ -61,5 +61,5 @@ public class EventDateTimes {
                 && fromDateTime.equals(((EventDateTimes) other).fromDateTime)
                 && toDateTime.equals(((EventDateTimes) other).toDateTime)); // state check
     }
-    
+
 }

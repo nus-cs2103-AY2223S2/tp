@@ -13,7 +13,7 @@ public class TodoDateTime {
 
     public static final String MESSAGE_CONSTRAINTS = "The deadline date-time cannot be before the current time.";
 
-    public final LocalDateTime byDateTime;
+    public final LocalDateTime value;
 
     /**
      * Constructs a {@code TodoDateTime}.
@@ -24,7 +24,7 @@ public class TodoDateTime {
         requireNonNull(dateTime);
         checkArgument(!isOver(dateTime), MESSAGE_CONSTRAINTS);
 
-        byDateTime = dateTime;
+        value = dateTime;
 
     }
 
@@ -37,19 +37,19 @@ public class TodoDateTime {
 
     public String toString() {
         DateTimeFormatter formatToPrint = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
-        return "by: " + byDateTime.format(formatToPrint);
+        return "by: " + value.format(formatToPrint);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TodoDateTime // instanceof handles nulls
-                && byDateTime.equals(((TodoDateTime) other).byDateTime)); // state check
+                && value.equals(((TodoDateTime) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return byDateTime.hashCode();
+        return value.hashCode();
     }
 
 }
