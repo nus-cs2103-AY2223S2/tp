@@ -12,17 +12,17 @@ public class Policy {
 
     // fields
     private final PolicyName name;
-    private final CustomDate startdate;
+    private final CustomDate startDate;
     private final Premium premium;
     private final Frequency frequency;
 
     /**
      * Every field must be present and not null.
      */
-    public Policy(PolicyName name, CustomDate startdate, Premium premium, Frequency frequency) {
-        requireAllNonNull(name, startdate, premium, frequency);
+    public Policy(PolicyName name, CustomDate startDate, Premium premium, Frequency frequency) {
+        requireAllNonNull(name, startDate, premium, frequency);
         this.name = name;
-        this.startdate = startdate;
+        this.startDate = startDate;
         this.premium = premium;
         this.frequency = frequency;
     }
@@ -32,7 +32,7 @@ public class Policy {
     }
 
     public CustomDate getStartDate() {
-        return startdate;
+        return startDate;
     }
 
     public Premium getPremium() {
@@ -80,7 +80,7 @@ public class Policy {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, startdate, premium, frequency);
+        return Objects.hash(name, startDate, premium, frequency);
     }
 
     @Override

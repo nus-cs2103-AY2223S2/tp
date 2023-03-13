@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.client.policy.Policy;
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,18 +24,21 @@ public class Client {
 
     // Data fields
     private final Address address;
+    private final UniquePolicyList policies;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Address address, UniquePolicyList policies,
+                  Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.policies = policies;
     }
 
     public Name getName() {
@@ -52,6 +57,9 @@ public class Client {
         return address;
     }
 
+    public UniquePolicyList getPolicies() {
+        return policies;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -93,13 +101,14 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
+                && otherClient.getPolicies().equals(getPolicies())
                 && otherClient.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, policies, tags);
     }
 
     @Override
@@ -113,6 +122,11 @@ public class Client {
                 .append("; Address: ")
                 .append(getAddress());
 
+        UniquePolicyList policies = getPolicies();
+        if (!policies.isEmpty()) { // how to check if its empty?
+            builder.append("; Policies: ");
+            policies.forEach(builder::append);
+        }
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");

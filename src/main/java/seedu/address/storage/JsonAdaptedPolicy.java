@@ -1,29 +1,48 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.client.policy.CustomDate;
+import seedu.address.model.client.policy.Frequency;
+import seedu.address.model.client.policy.Policy;
+import seedu.address.model.client.policy.PolicyName;
+import seedu.address.model.client.policy.Premium;
 
 /**
  * Jackson-friendly version of {@Link Policy}
  */
 public class JsonAdaptedPolicy {
-    private final String policyName;
+    private final String name;
     private final String startDate;
     private final String premium;
     private final String frequency;
 
-    // What is this for? Similar to Tag but what's the purpose?
+    /**
+     * Constructs a {@code JsonAdaptedPolicy} with the given policy details.
+     * @param name The name of the policy.
+     * @param startDate The starting date of the policy.
+     * @param premium The value of the policy.
+     * @param frequency The duration of the policy.
+     */
     @JsonCreator
-    public JsonAdaptedPolicy(String policyName) {
-        this.policyName = policyName;
+    public JsonAdaptedPolicy(@JsonProperty("name") String name, @JsonProperty("startDate") String startDate,
+                             @JsonProperty("premium") String premium, @JsonProperty("frequency") String frequency) {
+        this.name = name;
+        this.startDate = startDate;
+        this.premium = premium;
+        this.frequency = frequency;
     }
 
+    /**
+     * Coverts a given {@code Policy} into this class for Jackson use.
+     * @param source The policy that we are interested in.
+     */
     public JsonAdaptedPolicy(Policy source) {
-        policyName = source.getPolicyName();// Need tell Yuze to make this field in Policy to be public, similar to tag
-        startDate = source.getStartDate().format(Policy.DATE_FORMAT); //tell yuze make this
+        name = source.getPolicyName().toString(); // does this break Law of Demeter?
+        startDate = source.getStartDate().toString();
         premium = source.getPremium().toString();
         frequency = source.getFrequency().toString();
     }
@@ -38,7 +57,7 @@ public class JsonAdaptedPolicy {
     @JsonValue
     public String getPolicy() {
         StringBuilder policy = new StringBuilder("[");
-        policy.append(policyName);
+        policy.append(name);
         policy.append(", ");
         policy.append(startDate);
         policy.append(", ");
@@ -51,12 +70,21 @@ public class JsonAdaptedPolicy {
         return policy.toString();
     }
 
-    public Policy toModelPolicy() throws IllegalValueException {
-        /* Just need to check constraints for all of the values... */
-        if (!Policy.isValidPolicyName(policyName)) {
-            throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS); // Does policy have message constraints?
+    public Policy toModelType() throws IllegalValueException {
+        if (!PolicyName.isValidName(name)) {
+            throw new IllegalValueException(PolicyName.MESSAGE_CONSTRAINTS);
         }
-        return new Policy(policyName);
+        if (!CustomDate.isValidDate(startDate)) {
+            throw new IllegalValueException(CustomDate.MESSAGE_CONSTRAINTS);
+        }
+        if (!Premium.isValidPremium(premium)) {
+            throw new IllegalValueException(Premium.MESSAGE_CONSTRAINTS);
+        }
+        if (!Frequency.isValidFrequency(frequency)) {
+            throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
+        }
+        return new Policy(new PolicyName(name), new CustomDate(startDate),
+                new Premium(premium), new Frequency(frequency));
     }
 
 }
