@@ -13,6 +13,7 @@ import seedu.calidr.model.person.Address;
 import seedu.calidr.model.person.Email;
 import seedu.calidr.model.person.Name;
 import seedu.calidr.model.person.Phone;
+import seedu.calidr.model.person.Remark;
 import seedu.calidr.model.tag.Tag;
 
 /**
@@ -93,6 +94,17 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String remark} into an {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Remark parseRemark(String remark) {
+        requireNonNull(remark);
+
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
     }
 
     /**
