@@ -7,16 +7,16 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 # TABLE OF CONTENT
 
 [FEATURES](#features)
-1. [Add student](#addStudent)
-2. [Delete student](#deleteStudent)
-3. [List student](#listStudent)
+1. [Add student](#add)
+2. [Delete student](#delete)
+3. [List student](#list)
 4. [Local save](#save)
 5. [Local load](#load)
 6. [Exit program](#exit)
 
 # FEATURES <a name="features"></a>
 
-## Add student <a name="addStudent"></a>
+## Add student <a name="add"></a>
 
 Adds a student to the managing system.
 
@@ -26,7 +26,7 @@ Examples:
 
 * ```add student n/John Doe p/98765432 e/johnd@example.com s/math c/AdvanceJCMath sch/Monday 2pm - 5pm``` 
 
-## Delete student <a name="deleteStudent"></a>
+## Delete student <a name="delete"></a>
 
 Removes a student from the managing system.
 
@@ -37,7 +37,7 @@ Examples:
 * ```delete 1```
 
 
-## List students <a name="listStudent"></a>
+## List students <a name="list"></a>
 
 Lists students in the managing system.
 
