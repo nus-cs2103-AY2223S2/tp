@@ -4,8 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_FREQUENCY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_PREMIUM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalPolicies.AMY_POLICY;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +19,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPolicyCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -38,6 +44,13 @@ public class AddressBookParserTest {
         Client client = new ClientBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(ClientUtil.getAddCommand(client));
         assertEquals(new AddCommand(client), command);
+    }
+    @Test
+    public void parseCommand_addPolicy() throws Exception {
+        final String policyStub = POLICY_NAME_AMY + POLICY_DATE_AMY + POLICY_PREMIUM_AMY + POLICY_FREQUENCY_AMY;
+        AddPolicyCommand command = (AddPolicyCommand) parser.parseCommand(
+                AddPolicyCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " " + policyStub);
+        assertEquals(new AddPolicyCommand(INDEX_FIRST_CLIENT, AMY_POLICY), command);
     }
 
     @Test

@@ -87,11 +87,11 @@ public class Policy {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getPolicyName())
-                .append("; Policy: ")
-                .append(getStartDate())
                 .append("; Start Date: ")
-                .append(getPremium())
+                .append(getStartDate())
                 .append("; Premium: ")
+                .append(getPremium())
+                .append("; Frequency: ")
                 .append(getFrequency());
 
         return builder.toString();
