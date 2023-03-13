@@ -3,6 +3,7 @@ package seedu.fitbook.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.fitbook.logic.commands.Command;
+import seedu.fitbook.logic.parser.Parser;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -15,7 +16,7 @@ public class CommandParserTestUtil {
      * equals to {@code expectedCommand}.
      */
     public static void assertParseSuccess(Parser<? extends Command> parser, String userInput,
-            Command expectedCommand) {
+                                          Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
             assertEquals(expectedCommand, command);

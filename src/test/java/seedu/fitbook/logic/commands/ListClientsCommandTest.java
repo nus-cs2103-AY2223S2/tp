@@ -1,7 +1,6 @@
 package seedu.fitbook.logic.commands;
 
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.fitbook.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.fitbook.testutil.TypicalClients.getTypicalFitBook;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -28,12 +27,12 @@ public class ListClientsCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListClientsCommand(), model, ListClientsCommand.MESSAGE_SUCCESS, expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccess(new ListClientsCommand(), model, ListClientsCommand.MESSAGE_SUCCESS, expectedFitBookModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showClientAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListClientsCommand(), model, ListClientsCommand.MESSAGE_SUCCESS, expectedFitBookModel);
+        CommandTestUtil.showClientAtIndex(model, INDEX_FIRST_PERSON);
+        CommandTestUtil.assertCommandSuccess(new ListClientsCommand(), model, ListClientsCommand.MESSAGE_SUCCESS, expectedFitBookModel);
     }
 }

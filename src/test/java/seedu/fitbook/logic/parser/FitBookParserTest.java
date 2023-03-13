@@ -24,7 +24,7 @@ import seedu.fitbook.logic.commands.HelpCommand;
 import seedu.fitbook.logic.commands.ListClientsCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.client.FindContainsKeywordsPredicate;
 import seedu.fitbook.testutil.ClientBuilder;
 import seedu.fitbook.testutil.ClientUtil;
 import seedu.fitbook.testutil.EditClientDescriptorBuilder;
@@ -73,7 +73,7 @@ public class FitBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new FindContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

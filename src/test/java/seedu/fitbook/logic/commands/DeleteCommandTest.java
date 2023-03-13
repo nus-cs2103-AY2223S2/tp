@@ -2,9 +2,7 @@ package seedu.fitbook.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.fitbook.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.fitbook.testutil.TypicalClients.getTypicalFitBook;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -36,7 +34,7 @@ public class DeleteCommandTest {
         FitBookModelManager expectedFitBookModel = new FitBookModelManager(model.getFitBook(), new UserPrefs());
         expectedFitBookModel.deleteClient(clientToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedFitBookModel);
     }
 
     @Test
@@ -44,12 +42,12 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showClientAtIndex(model, INDEX_FIRST_PERSON);
+        CommandTestUtil.showClientAtIndex(model, INDEX_FIRST_PERSON);
 
         Client clientToDelete = model.getFilteredClientList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
@@ -60,12 +58,12 @@ public class DeleteCommandTest {
         expectedFitBookModel.deleteClient(clientToDelete);
         showNoClient(expectedFitBookModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedFitBookModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showClientAtIndex(model, INDEX_FIRST_PERSON);
+        CommandTestUtil.showClientAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -73,7 +71,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

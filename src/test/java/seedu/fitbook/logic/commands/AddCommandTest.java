@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.fitbook.commons.core.GuiSettings;
+import seedu.fitbook.logic.commands.AddCommand;
+import seedu.fitbook.logic.commands.CommandResult;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.FitBookModel;

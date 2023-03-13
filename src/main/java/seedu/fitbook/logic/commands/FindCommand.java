@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.model.FitBookModel;
-import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.client.FindContainsKeywordsPredicate;
 
 /**
  * Finds and lists all clients in address book whose name contains any of the argument keywords.
@@ -14,14 +14,14 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose details matches or contains "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: KEYWORD/S\n"
+            + "Example: " + COMMAND_WORD + " alex or " + COMMAND_WORD + " 91234567";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final FindContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(FindContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

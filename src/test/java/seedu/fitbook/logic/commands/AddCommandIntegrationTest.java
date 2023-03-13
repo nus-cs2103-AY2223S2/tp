@@ -1,6 +1,5 @@
 package seedu.fitbook.logic.commands;
 
-import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fitbook.testutil.TypicalClients.getTypicalFitBook;
 
@@ -32,14 +31,14 @@ public class AddCommandIntegrationTest {
         FitBookModel expectedFitBookModel = new FitBookModelManager(model.getFitBook(), new UserPrefs());
         expectedFitBookModel.addClient(validClient);
 
-        assertCommandSuccess(new AddCommand(validClient), model,
+        CommandTestUtil.assertCommandSuccess(new AddCommand(validClient), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validClient), expectedFitBookModel);
     }
 
     @Test
     public void execute_duplicateClient_throwsCommandException() {
         Client clientInList = model.getFitBook().getClientList().get(0);
-        assertCommandFailure(new AddCommand(clientInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandTestUtil.assertCommandFailure(new AddCommand(clientInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }
