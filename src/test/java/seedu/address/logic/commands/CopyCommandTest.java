@@ -6,8 +6,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
-import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+import org.junit.jupiter.api.condition.DisabledIf;
+import org.junit.jupiter.api.condition.EnabledIf;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,7 +22,7 @@ public class CopyCommandTest {
     private final Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
     @Test
-    @EnabledIfSystemProperty(named = "java.awt.headless", matches = "false")
+    @EnabledIf(value = "java.awt.GraphicsEnvironment.isHeadless")
     public void execute_copyValidIndexInHeadless_success() {
         CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_PERSON);
         Person personToCopy = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -32,7 +32,7 @@ public class CopyCommandTest {
     }
 
     @Test
-    @DisabledIfSystemProperty(named = "java.awt.headless", matches = "false")
+    @DisabledIf(value = "java.awt.GraphicsEnvironment.isHeadless")
     public void execute_copyValidIndexNotInHeadless_success() {
         CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_PERSON);
 
