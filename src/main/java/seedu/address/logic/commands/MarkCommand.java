@@ -43,5 +43,5 @@ public class MarkCommand extends Command {
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
         model.markTask(taskToMark);
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
-    }    
+    }  
 }

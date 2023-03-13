@@ -37,7 +37,7 @@ public class MarkCommandTest {
     public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex);
-    
+
         assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 }

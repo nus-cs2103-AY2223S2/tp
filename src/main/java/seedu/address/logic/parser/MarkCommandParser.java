@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new MarkCommand object.
  */
 public class MarkCommandParser implements Parser<MarkCommand> {
-    
+
     /**
      * Parses the given {@code String} of arguments in the context of the MarkCommand
      * and returns a MarkCommand object for execution.

@@ -38,7 +38,7 @@ public class Task {
 
     /**
      * Returns whether task is done or not.
-     * 
+     *
      * @return Boolean value of whether task is done.
      */
     public boolean isDone() {
