@@ -2,16 +2,20 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox id="infoPane" fx:id="infoPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="TOP_CENTER">
          <children>
-            <StackPane fx:id="profilePic" prefHeight="33.0" prefWidth="200.0" />
-            <Label fx:id="name" alignment="CENTER" text="Label" />
-            <Label fx:id="identity" alignment="CENTER" text="Label" />
+            <StackPane fx:id="profilePic" maxWidth="340" minHeight="100" minWidth="340" />
+            <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 32;" text="Label" textAlignment="CENTER">
+               <font>
+                  <Font name="Segoe UI" size="32.0" />
+               </font></Label>
+            <Label fx:id="identity" alignment="CENTER" text="" />
          </children>
       </VBox>
-      <StackPane fx:id="detailedInfoPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+      <StackPane fx:id="detailedInfoPlaceholder" minWidth="340" />
    </children>
 </VBox>

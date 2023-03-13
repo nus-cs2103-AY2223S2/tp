@@ -4,8 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.ui.PersonListPanel;
 import seedu.address.ui.UiPart;
+
+import java.util.logging.Logger;
 
 /**
  * Panel containing detailed information about a person.
@@ -13,6 +17,7 @@ import seedu.address.ui.UiPart;
 public class InfoTab extends UiPart<Region> {
 
     private static final String FXML = "InfoTab.fxml";
+    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     private DetailedInfo detailedInfo;
 
@@ -35,7 +40,7 @@ public class InfoTab extends UiPart<Region> {
             if (tab.equals("c")) {
                 detailedInfo = new DetailedContact();
             } else if (tab.equals("m")) {
-                detailedInfo = new DetailedModule();
+                detailedInfo = new DetailedModule(protagonist);
             } else {
                 detailedInfo = new DetailedSkill();
             }
