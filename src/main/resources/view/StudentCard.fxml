@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.shape.Circle?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER" prefHeight="50.0" prefWidth="85.0">
         <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
@@ -72,6 +72,15 @@
             <HBox>
                 <Text text = "Comments:    " fill="burlywood" />
                 <Label fx:id="comment" styleClass="cell_small_label" text="\$cca" />
+            </HBox>
+            <HBox>
+                <Text text = "Tests:    " fill="burlywood" />
+                <FlowPane fx:id="tests" />
+            </HBox>
+
+            <HBox>
+                <Text text = "Homework:    " fill="burlywood" />
+                <FlowPane fx:id="homework" styleClass="cell_small_label"/>
             </HBox>
         </VBox>
     </GridPane>

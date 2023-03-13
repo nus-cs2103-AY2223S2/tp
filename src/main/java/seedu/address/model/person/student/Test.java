@@ -14,11 +14,10 @@ public class Test extends Assignment {
      * @param assignmentName Test name.
      * @param deadline Due date for the test.
      * @param weightage Weightage of the test.
-     * @param maxScore Maximum score attainable for the test.
      * @param score Score attained for the test.
      */
-    public Test(String assignmentName, LocalDate deadline, int weightage, int maxScore, int score) {
-        super(assignmentName, deadline, weightage, maxScore, score);
+    public Test(String assignmentName, LocalDate deadline, int weightage, int score) {
+        super(assignmentName, deadline, weightage, score);
     }
     /**
      * Returns true if a given string is a valid email.
@@ -39,13 +38,21 @@ public class Test extends Assignment {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Test// instanceof handles nulls
-                && super.score == ((Test) other).score); // state check
+                && super.assignmentName.equals(((Test) other).assignmentName)); // state check
     }
 
 
-
+    public String getName() {
+        return super.assignmentName;
+    }
     public int getScore() {
         return super.score;
+    }
+    public int getWeightage() {
+        return super.weightage;
+    }
+    public LocalDate getDeadline() {
+        return super.deadline;
     }
 
     public void setScore(int score) {

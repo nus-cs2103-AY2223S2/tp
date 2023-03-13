@@ -113,7 +113,7 @@ public class Person {
             return true;
         }
 
-        if ( (otherPerson instanceof Student) || (otherPerson instanceof Parent) ) {
+        if ((otherPerson instanceof Student) || (otherPerson instanceof Parent)) {
             return otherPerson != null
                     && otherPerson.getStudentClass().equals(getStudentClass())
                     && otherPerson.getIndexNumber().equals(getIndexNumber());

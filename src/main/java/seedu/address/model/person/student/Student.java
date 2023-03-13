@@ -1,5 +1,7 @@
 package seedu.address.model.person.student;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -26,8 +28,8 @@ public class Student extends Person {
     private final Cca cca;
     private final Class sc;
     private Attendance attendance;
-    private Homework homework;
-    private Test test;
+    private Set<Homework> homework = new HashSet<>();
+    private Set<Test> test = new HashSet<>();
     private Comment comment;
 
     /**
@@ -51,7 +53,7 @@ public class Student extends Person {
      */
     public Student(Name name, Class sc, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age,
                    Image image, Email email, Phone phone, Cca cca, Address address, Attendance attendance,
-                   Homework homework, Test test, Set<Tag> tags, Comment comment) {
+                   Set<Homework> homework, Set<Test> test, Set<Tag> tags, Comment comment) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
@@ -61,8 +63,8 @@ public class Student extends Person {
         this.cca = cca;
         this.sc = sc;
         this.attendance = attendance;
-        this.homework = homework;
-        this.test = test;
+        this.homework.addAll(homework);
+        this.test.addAll(test);
         this.comment = comment;
     }
 
@@ -143,17 +145,16 @@ public class Student extends Person {
      *
      * @return Homework information.
      */
-    public Homework getHomework() {
-        return homework;
+    public Set<Homework> getHomework() {
+        return Collections.unmodifiableSet(homework);
     }
-
     /**
      * A method that returns information about the test the Student took.
      *
      * @return Test information related to the Student.
      */
-    public Test getTest() {
-        return test;
+    public Set<Test> getTest() {
+        return Collections.unmodifiableSet(test);
     }
 
     /**
