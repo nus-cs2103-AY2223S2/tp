@@ -302,7 +302,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 
 **Extensions**
 
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
   <br/><br/>
 
@@ -316,7 +316,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 
 **Extensions**
 
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
   <br/><br/>
 
@@ -330,7 +330,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 
 **Extensions**
 
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
   <br/><br/>
 
@@ -344,7 +344,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 
 **Extensions**
 
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
   <br/><br/>
 
@@ -358,7 +358,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 
 **Extensions**
 
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
   <br/><br/>
 
@@ -375,7 +375,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 **Extensions**
 
 - 3a. The given name already exists in AutoM8.
-    - 3a1. AutoM8 shows an error message.  
+    - 3a1. AutoM8 shows an error message.
       Use case resumes at step 2.
       <br/><br/>
 
@@ -392,7 +392,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 **Extensions**
 
 - 3a. The given plate number already exists in AutoM8.
-    - 3a1. AutoM8 shows an error message.  
+    - 3a1. AutoM8 shows an error message.
       Use case resumes at step 2.
       <br/><br/>
 
@@ -409,7 +409,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 **Extensions**
 
 - 3a. The given customer already has an appointment in AutoM8.
-    - 3a1. AutoM8 shows an error message.  
+    - 3a1. AutoM8 shows an error message.
       Use case resumes at step 2.
       <br/><br/>
 
@@ -426,7 +426,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 **Extensions**
 
 - 3a. The given vehicle plate number already has a service assigned in AutoM8.
-    - 3a1. AutoM8 shows an error message.  
+    - 3a1. AutoM8 shows an error message.
       Use case resumes at step 2.
       <br/><br/>
 
@@ -443,7 +443,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 **Extensions**
 
 - 3a. The specified spare part name already exist in the list.
-    - 3a1. AutoM8 shows an error message.  
+    - 3a1. AutoM8 shows an error message.
       Use case resumes at step 2.
       <br/><br/>
 
@@ -461,7 +461,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case ends.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
@@ -482,7 +482,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case ends.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
@@ -503,7 +503,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case ends.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
@@ -519,12 +519,12 @@ AutoM8 provides the necessary features that support the management of customer, 
 2. AutoM8 shows a list of appointments.
 3. User requests to edit an appointment on the list.
 4. User inputs the updated information.
-5. AutoM8 updates the the appointment details.
+5. AutoM8 updates the appointment details.
 
    Use case end.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
@@ -545,7 +545,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case end.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
@@ -564,7 +564,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case ends.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
@@ -583,7 +583,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case ends.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
@@ -602,7 +602,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case ends.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
@@ -621,7 +621,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case ends.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
@@ -641,7 +641,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case ends.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. No fields are specified.
     - 3a1. AutoM8 displays an error message.
@@ -661,7 +661,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case end.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
@@ -682,7 +682,7 @@ AutoM8 provides the necessary features that support the management of customer, 
    Use case end.
 
 **Extensions**
-- 2a. The list is empty.  
+- 2a. The list is empty.
   Use case ends.
 - 3a. The provided index is invalid.
     - 3a1. AutoM8 displays an error message.
