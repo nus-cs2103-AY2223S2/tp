@@ -2,41 +2,276 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+# **Table of Contents**
+1. [Introduction](#1-introduction)
+   * [Software Overview](#software-overview)
+   * [Intended Audience](#intended-audience)
+   * [Using the Guide](#using-the-guide)
+   * [Content Overview](#content-overview)
+   * [About Us](#about-us)
+   * [Getting Help](#getting-help)
+   * [Core Technologies](#core-technologies)
+   * [Acknowledgements](#acknowledgements)
+   * [Version Control](#version-control)
+   * [Issue Tracker](#issue-tracker)
+2. [Development Environment](#2-development-environment)
+3. [Tips](#3-tips)
+   * [Sample Data](#sample-data)
+4. [Design](#4-design)
+   * [Architecture](#architecture)
+     * [Main Components of the Architecture](#main-components-of-the-architecture)
+     * [How the Architecture Components Interact with Each Other](#how-the-architecture-components-interact-with-each-other)
+   * [UI Component](#ui-component)
+   * [Model Component](#model-component)
+   * [Tag](#tag)
+       * [Group Tag](#group-tag)
+       * [Module Tag](#module-tag)
+   * [Person](#person)
+       * [Name](#name)
+       * [Address](#address)
+       * [Phone](#phone)
+       * [Email](#email)
+       * [Telegram Handle](#telegram-handle)
+       * [Group Tag Set](#group-tag-set)
+       * [Module Tag Set](#module-tag-set)
+   * [Utils](#utils)
+       * [Sample Data Util](#sample-data-util)
+   * [Logic Component](#logic-component)
+   * [Commands](#commands)
+       * [Add Command](#add-command)
+       * [Edit Command](#edit-command)
+       * [Delete Command](#delete-command)
+       * [Tag Command](#tag-command)
+       * [User Command](#user-command)
+       * [Find Command](#find-command)
+       * [Sort Command](#sort-command)
+       * [List Command](#list-command)
+       * [Exit Command](#exit-command)
+   * [Parsers](#parsers)
+       * [Argument Multimap](#argument-multimap)
+       * [Prefix](#prefix)
+       * [Add Command Parser](#add-command-parser)
+       * [Edit Command Parser](#edit-command-parser)
+       * [Find Command Parser](#find-command-parser)
+       * [Tag Command Parser](#tag-command-parser)
+       * [Sort Command Parser](#sort-command-parser)
+   * [Storage Component](#storage-component)
+   * [Commons Component](#common-classes)
+5. [Testing](#5-testing)
+   * [Unit Tests](#unit-tests)
+   * [Testing Models](#testing-models)
+   * [Testing Commands](#testing-commands)
+   * [Testing Parsers](#testing-parsers)
+   * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
+   * [Create Code Coverage Report](#create-code-coverage-report)
+   * [Read Code Coverage Report](#read-code-coverage-report)
+   * [Continuous Integration](#continuous-integration)
+6. [Documentation](#6-documentation)
+   * [Using PlantUML](#using-plantuml)
+7. [Appendix](#7-appendix)
+   * [Project Requirements](#project-requirements)
+   * [Product Scope](#product-scope)
+     * [Target User Profile](#target-user-profile)
+     * [Value Proposition](#value-proposition)
+   * [Use Cases](#use-cases)
+   * [Non-Functional Requirements](#non-functional-requirements)
+   * [Instructions for Manual Testing](#instructions-for-manual-testing)
+   * [Glossary](#glossary)
+   * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 
---------------------------------------------------------------------------------------------------------------------
+# **1. Introduction**
 
-## **Acknowledgements**
+---
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+## **Software Overview**
+EduMate is a desktop app designed for NUS students to manage their academic and social lives. It is optimized for use through a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). If you type quickly, eduMate can complete contact and module management tasks faster than traditional GUI apps.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Setting up, getting started**
+## **Intended Audience**
+This guide is intended primarily for developers who want to work on the **EduMate** Software code base at [https://github.com/AY2223S2-CS2103T-W14-2/tp](https://github.com/AY2223S2-CS2103T-W14-2/tp).
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+<div markdown="span" class="alert alert-info">
 
---------------------------------------------------------------------------------------------------------------------
+:information_source: To get started, you'll want to set up your [Development Environment](#2-development-environment) and make sure you understand the branching strategy described in the [Version Control](#version-control) section and how to make a pull request. Thorough [testing](#5-testing) is expected for all pull requests, such that all testable methods are amply tested.
 
-## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+---
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+## **Using the Guide**
+### **What Do the Emojis Mean**
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+| Emoji                | GFMD form              | What does it mean                           |
+|----------------------|------------------------|---------------------------------------------|
+| :sparkles:           | `:sparkles:`           | Completed feature                           |
+| :construction:       | `:construction:`       | Feature under construction                  |
+| :question:           | `:question:`           | Frequently asked question (FAQ)             |
+| :heavy_check_mark:   | `:heavy_check_mark:`   | What the developer should do                |
+| :warning:            | `:warning:`            | Warning to the developer                    |
+| :no_entry:           | `:no_entry:`           | Strong warning to the developer             |
+| :bulb:               | `:bulb:`               | Tip for the developer                       |
+| :information_source: | `:information_source:` | Information for the developer               |
+| :goal_net:           | `:goal_net:`           | Error handling                              |
+| :art:                | `:art:`                | Consideration made for code cleanliness     |
+| :computer:           | `:computer:`           | Consideration made for developer experience |
+| :children_crossing:  | `:children_crossing:`  | Consideration made for user experience      |
+| :zap:                | `:zap:`                | Consideration made for performance          |
+| :seedling:           | `:seedling:`           | Consideration made for future development   |
+
+---
+
+## **Content Overview**
+Here is a brief overview of the guide's content, so that it is easier for you to understand the software and our development workflow:
+
+* [**Development Environment**](#2-development-environment) - what you need to do before you can start writing code
+* [**Tips**](#3-tips) - useful tips that make the developmental process easier
+* [**Design**](#4-design) - how **EduMate** is currently implemented
+* [**Testing**](#5-testing) - expectations and workflow for the testing process
+* [**Documentation**](#6-documentation) - expectations and workflow for the documentation process
+* [**Appendix**](#7-appendix) - additional information you may find useful
+
+---
+
+## **About Us**
+Please refer to the [About Us](AboutUs.md) page for information about the developers.
+
+---
+
+## **Getting Help**
+To be filled
+
+---
+
+## **Core Technologies**
+To be filled
+
+---
+
+## **Acknowledgements**
+* This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
+* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5).
+
+---
+
+## **Version Control**
+### **The `master` Branch**
+
+The `master` branch represents stable released versions of the **EduMate** software. It is expected that this version always works as expected.
+
+<div markdown="span" class="alert alert-danger">
+
+:no_entry: You must not merge a PR into the branch if it fails some tests.
+
+</div>
+
+<div markdown="span" class="alert alert-success">
+
+:heavy_check_mark: Instead, you should fork from this master branch into your own repo and work on new features on a branch off your own repo. Your `master` branch should always be synced with the upstream `master` branch.
+
+</div>
+
+### **How to Make a Pull Request**
+
+Once you've made changes to your branch, create a Pull Request (PR) on the upstream `master` branch and link the PR with any relevant issues and milestones.
+
+<div markdown="span" class="alert alert-danger">
+
+:no_entry: You must not review and merge your own PR. Instead, wait for somebody else to review it for you. In this way, we can cross-check each others' code, leading to fewer errors.
+
+</div>
+
+---
+
+## **Issue Tracker**
+
+We use GitHub Issues as our issue tracker, and here is how to use the issue labels:
+
+| Issue Label Name               | Description                                                             |
+|--------------------------------|-------------------------------------------------------------------------|
+| `deliverables.Individual`      | Individual submission requirements (for the module)                     |
+| `deliverables.Team`            | Team submission requirements (for the module)                           |
+| `documentation.DeveloperGuide` | Improvements or additions to the Developer Guide                        |
+| `documentation.UserGuide`      | Improvements or additions to the User Guide                             |
+| `modify`                       | Existing feature needs to be modified                                   |
+| `new`                          | New feature needs to be implemented                                     |
+| `priority.High`                | The task needs to be completed immediately                              |
+| `priority.Medium`              | The task needs to be completed in the near future                       |
+| `priority.Low`                 | The task can be postponed                                               |
+| `severity.High`                | The bug needs to be fixed immediately                                   |
+| `severity.Medium`              | The bug needs to be fixed in the near future                            |
+| `severity.Low`                 | The bug can be fixed later                                              |
+| `type.Bug`                     | Something is not working and needs to be fixed                          |
+| `type.Discuss`                 | Something needs to be discussed with the rest of the team               |
+| `type.Investigate`             | Something needs to be investigated, but is not a bug                    |
+| `type.Task`                    | Something needs to be done                                              |
+| `type.Story`                   | A feature which addresses a user story                                  |
+| `type.Epic`                    | A big feature which can be broken down into smaller stories e.g. search |
+| `type.Testing`                 | Test cases need to be written                                           |
+
+# **2. Development Environment**
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: Refer to the guide [_Setting up and getting started_](SettingUp.md) to know what you need to do before you can start writing code.
+
+</div>
+
+# **3. Tips**
+
+---
+
+## **Sample Data**
+
+Sample data for **EduMate** can be found [here](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/util/sampleData.txt). It is a set of 100 persons with procedurally-generated fields.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: Each row represents a person's information, with the `|` separating the different fields.
+
+In order, they are: `name|phone|email|address|telegram|groups|modules`. Note that groups and modules are separated by a space.
+
+</div>
+
+For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CCA|CS3242 BT3101 CS1010E CS3219 CE3165` provides information for a person with the following details:
+
+| Field           | Value                                   |
+|-----------------|-----------------------------------------|
+| Name            | Bee Shan                                |
+| Phone           | 81121128                                |
+| Email           | beeshan@gmail.com                       |
+ | Address         | 200 Bishan Road                         |
+ | Telegram Handle | @beeshan                                |
+ | Groups          | NS, CCA                                 |
+ | Modules         | CS3242, BT3101, CS1010E, CS3219, CE3165 |
+
+<div markdown="span" class="alert alert-secondary">
+
+:seedling: These names were chosen so that we can easily extract more information such as Location (as coordinates) for use in future features.
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:warning: Try not to alter this data too much, as some persons (like Albert Park) are used in testing.
+
+</div>
+
+# **4. Design**
+
+---
+
+## **Architecture**
+
+|    <img src="images/ArchitectureDiagram.png" style="width:40%; margin:0 25%">     |
+|:---------------------------------------------------------------------------------:|
+| _Figure 4.1.1_ *Architecture Diagram* explaining the high-level design of the App |
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+### **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -50,11 +285,14 @@ The rest of the App consists of four components.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
-**How the architecture components interact with each other**
+### **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+
+| <img src="images/ArchitectureSequenceDiagram.png" style="width:90vw"> |
+|:---------------------------------------------------------------------:|
+|     _Figure 4.1.2_ *Sequence Diagram* for the command `delete 1`      |
 
 Each of the four main components (also shown in the diagram above),
 
@@ -63,19 +301,25 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+| <img src="images/ComponentManagers.png" style="width:40%; margin: 0 25%"> |
+|:-------------------------------------------------------------------------:|
+|           _Figure 4.1.3_ *Class Diagram* for Component Managers           |
 
 The sections below give more details of each component.
 
-### UI component
+---
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+## **UI Component**
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+| <img src="images/UiClassDiagram.png" style="width:90vw">  |
+|:---------------------------------------------------------:|
+|     _Figure 4.2.1_ *Class Diagram* for UI Components      |
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -84,40 +328,17 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+{to be filled by Zichen}
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+---
 
-Here's a (partial) class diagram of the `Logic` component:
+## **Model Component**
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `EduMateParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-
-<img src="images/ParserClasses.png" width="600"/>
-
-How the parsing works:
-* When called upon to parse a user command, the `EduMateParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduMateParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-
-### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
-
-<img src="images/ModelClassDiagram.png" width="450" />
-
+| <img src="images/ModelClassDiagram.png" style="width:90vw"> |
+|:-----------------------------------------------------------:|
+|     _Figure 4.3.1_ *Class Diagram* for Model Components     |
 
 The `Model` component,
 
@@ -126,136 +347,256 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `EduMate`, which `Person` references. This allows `EduMate` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+### **Tag**
+#### **Group Tag**
+#### **Module Tag**
+### **Person**
+#### **Name**
+#### **Address**
+#### **Phone**
+#### **Email**
+#### **Telegram Handle**
+#### **Group Tag Set**
+#### **Module Tag Set**
+### **Utils**
+#### **Sample Data Util**
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+---
+
+## **Logic Component**
+
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+
+Here's a (partial) class diagram of the `Logic` component:
+
+| <img src="images/LogicClassDiagram.png" style="width:90vw"> |
+|:-----------------------------------------------------------:|
+|     _Figure 4.4.1_ *Class Diagram* for Logic Components     |
+
+How the `Logic` component works:
+1. When `Logic` is called upon to execute a command, it uses the `EduMateParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+### **Commands**
+#### **Add Command**
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("add n/Bart...")` API call.
+
+| <img src="images/AddSequenceDiagram.png" style="width:90vw">  |
+|:-------------------------------------------------------------:|
+| _Figure 4.4.2_ *Sequence Diagram* for a typical `add` command |
+
+|  <img src="images/AddParserSequenceDiagram.png" style="width:90vw">   |
+|:---------------------------------------------------------------------:|
+| _Figure 4.4.2a_ *Sequence Diagram* for parsing `AddCommand` arguments |
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
+#### **Edit Command**
 
-### Storage component
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("edit 1...")` API call.
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+| <img src="images/EditSequenceDiagram.png" style="width:90vw">  |
+|:--------------------------------------------------------------:|
+| _Figure 4.4.3_ *Sequence Diagram* for a typical `edit` command |
 
-<img src="images/StorageClassDiagram.png" width="550" />
+|  <img src="images/EditParserSequenceDiagram.png" style="width:90vw">   |
+|:----------------------------------------------------------------------:|
+| _Figure 4.4.3a_ *Sequence Diagram* for parsing `EditCommand` arguments |
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### **Delete Command**
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+
+|  <img src="images/DeleteSequenceDiagram.png" style="width:90vw">  |
+|:-----------------------------------------------------------------:|
+| _Figure 4.4.4a_ *Sequence Diagram* for a typical `delete` command |
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### **Tag Command**
+
+{to be filled by Kenny}
+
+#### **User Command**
+
+{to be filled by Russell}
+
+#### **Find Command**
+
+{to be filled by Sean}
+
+#### **Sort Command**
+
+{to be filled by Hafeez}
+
+#### **List Command**
+
+{to be filled}
+
+#### **Exit Command**
+
+{to be filled}
+
+### **Parsers**
+
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+
+| <img src="images/ParserClasses.png" style="width:90vw"> |
+|:-------------------------------------------------------:|
+|  _Figure 4.4.x_ *Class Diagram* for Parser Components   |
+
+How the parsing works:
+* When called upon to parse a user command, the `EduMateParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduMateParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+#### **Argument Multimap**
+
+{to be filled}
+
+#### **Prefix**
+
+{to be filled}
+
+---
+
+## **Storage Component**
+
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+| <img src="images/StorageClassDiagram.png" style="width:90vw"> |
+|:-------------------------------------------------------------:|
+|     _Figure 4.5.1_ *Class Diagram* for Storage Components     |
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `EduMateStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+---
 
-Classes used by multiple components are in the `seedu.edumate.commons` package.
+## **Common Classes**
 
---------------------------------------------------------------------------------------------------------------------
+Classes used by multiple components are in the `seedu.address.commons` package.
 
-## **Implementation**
+# **5. Testing**
 
-This section describes some noteworthy details on how certain features are implemented.
+---
 
-### \[Proposed\] Undo/redo feature
+## **Unit Tests**
 
-#### Proposed Implementation
+{to be filled}
 
-The proposed undo/redo mechanism is facilitated by `VersionedEduMate`. It extends `EduMate` with an undo/redo history, stored internally as an `eduMateStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+### **Testing Models**
+{to be filled}
+### **Testing Commands**
+{to be filled}
+### **Testing Parsers**
+{to be filled}
 
-* `VersionedEduMate#commit()` — Saves the current address book state in its history.
-* `VersionedEduMate#undo()` — Restores the previous address book state from its history.
-* `VersionedEduMate#redo()` — Restores a previously undone address book state from its history.
+---
 
-These operations are exposed in the `Model` interface as `Model#commitEduMate()`, `Model#undoEduMate()` and `Model#redoEduMate()` respectively.
+## **Measuring Coverage of Integration Tests**
+{to be filled}
+### **Create Code Coverage Report**
+{to be filled}
+### **Read Code Coverage Report**
+{to be filled}
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+---
 
-Step 1. The user launches the application for the first time. The `VersionedEduMate` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+## **Continuous Integration**
+{to be filled}
 
-![UndoRedoState0](images/UndoRedoState0.png)
+# **6. Documentation**
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitEduMate()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `eduMateStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+---
 
-![UndoRedoState1](images/UndoRedoState1.png)
+## **Useful Text Boxes**
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitEduMate()`, causing another modified address book state to be saved into the `eduMateStateList`.
+<div markdown="span" class="alert alert-primary">
 
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitEduMate()`, so the address book state will not be saved into the `eduMateStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoEduMate()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial EduMate state, then there are no previous EduMate states to restore. The `undo` command uses `Model#canUndoEduMate()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+:bulb: Use `alert-primary` to show tips for the developer
 
 </div>
 
-The following sequence diagram shows how the undo operation works:
+<div markdown="span" class="alert alert-secondary">
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+:art: :computer: :children_crossing: :zap: :seedling: Use `alert-secondary` to show the developer what consideration has been made
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoEduMate()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+<div markdown="span" class="alert alert-success">
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `eduMateStateList.size() - 1`, pointing to the latest address book state, then there are no undone EduMate states to restore. The `redo` command uses `Model#canRedoEduMate()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+:heavy_check_mark: Use `alert-success` to tell the developer what should be done
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitEduMate()`, `Model#undoEduMate()` or `Model#redoEduMate()`. Thus, the `eduMateStateList` remains unchanged.
+<div markdown="span" class="alert alert-info">
 
-![UndoRedoState4](images/UndoRedoState4.png)
+:information_source: Use `alert-info` to show information for the developer
 
-Step 6. The user executes `clear`, which calls `Model#commitEduMate()`. Since the `currentStatePointer` is not pointing at the end of the `eduMateStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+</div>
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<div markdown="span" class="alert alert-warning">
 
-The following activity diagram summarizes what happens when a user executes a new command:
+:warning: Use `alert-warning` to warn the user about performing a certain action
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+</div>
 
-#### Design considerations:
+<div markdown="span" class="alert alert-danger">
 
-**Aspect: How undo & redo executes:**
+:no_entry: Use `alert-danger` to _**strongly**_ warn the user about performing a certain action
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+</div>
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+<div markdown="span" class="alert alert-light">
 
-_{more aspects and alternatives to be added}_
+:sparkles: Use `alert-light` to indicate a completed feature
 
-### \[Proposed\] Data archiving
+</div>
 
-_{Explain here how the data archiving feature will be implemented}_
+<div markdown="span" class="alert alert-dark">
 
+:construction: Use `alert-dark` to indicate a feature under development
 
---------------------------------------------------------------------------------------------------------------------
+</div>
 
-## **Documentation, logging, testing, configuration, dev-ops**
+---
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+## **Using PlantUML**
 
---------------------------------------------------------------------------------------------------------------------
+<div markdown="span" class="alert alert-primary">
 
-## **Appendix: Requirements**
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
-### Product scope
+</div>
 
-**Target user profile**:
+# **7. Appendix**
+
+---
+
+## **Project Requirements**
+
+### **Product Scope**
+
+#### **Target user profile**
 
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
@@ -264,25 +605,26 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * is an NUS student
 
-**Value proposition**: help NUS students maintain both their social and academic life by lowering the barriers to meet up and make new friends within modules.
+#### **Value proposition**
 
+Help NUS students maintain both their social and academic life by lowering the barriers to meet up and make new friends within modules.
 
-### User stories
+### **User Stories**
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
 | Priority | As a …​   | I want to …​                                           | So that I can…​                              |
-|------|-----------|--------------------------------------------------------|----------------------------------------------|
-| `***` | student   | view all my modules in one place                       | be more organised in my work                 |
-| `***` | user      | use this app quickly with the command line             | quickly plan my modules                      |
-| `***` | user      | view my personal information                           | share it to whoever needs it                 |
-| `***` | user      | update my profile                                      | personalise my experience                    |
-| `***` | user      | add module tags to new contacts                        | track what modules my friends are taking     |
-| `***` | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules |
-| `***` | user      | filter my contacts based on module tag                 | find friends taking the same module as me    |
-| `**` | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends     |
+|----------|-----------|--------------------------------------------------------|----------------------------------------------|
+| `***`    | student   | view all my modules in one place                       | be more organised in my work                 |
+| `***`    | user      | use this app quickly with the command line             | quickly plan my modules                      |
+| `***`    | user      | view my personal information                           | share it to whoever needs it                 |
+| `***`    | user      | update my profile                                      | personalise my experience                    |
+| `***`    | user      | add module tags to new contacts                        | track what modules my friends are taking     |
+| `***`    | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules |
+| `***`    | user      | filter my contacts based on module tag                 | find friends taking the same module as me    |
+| `**`     | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends     |
 
-### Use cases
+### **Use Cases**
 
 (For all use cases below, the **System** is the `EduMate` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -293,13 +635,13 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 1. User requests to list contacts.
 2. EduMate shows a list of all contacts.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-   Use case ends.
+  Use case ends.
 
 **Use case: UC02 - Add a contact**
 
@@ -308,18 +650,18 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 1. User requests to add a person to the contact list with their details.
 2. EduMate shows the list of contacts with the newly added person.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given details are invalid.
     * 1a1. EduMate shows an error message.
-    
-    Use case resumes at step 1
+
+  Use case resumes at step 1
 * 1b. The person already exists in the contact list.
     * 1b1. EduMate shows an error message.
-    
-    Use case resumes at step 1
+
+  Use case resumes at step 1
 
 **Use case: UC03 - Edit a contact**
 
@@ -328,108 +670,108 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 1. User requests to edit a person's details with new information.
 2. EduMate edits the person's information.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
-    
-    Use case resumes at step 1.
+
+  Use case resumes at step 1.
 * 1b. The given details are invalid.
     * 1b1. EduMate shows an error message.
-  
-    Use case resumes at step 1.
+
+  Use case resumes at step 1.
 
 **Use case: UC04 - Delete a contact**
 
 1. User requests to delete a person from the contact list.
 2. EduMate deletes the person from the contact list.
-    
-    Use case ends.
+
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
 
 **Use case: UC05 - Tag a module to a contact**
 
 1. User requests to add a module tag to a contact.
 2. EduMate tags the module to the contact.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
-    
-    Use case resumes at step 1.
+
+  Use case resumes at step 1.
 
 * 1b. The given details is invalid.
     * 1b1. EduMate shows an error message.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
 
 **Use case: UC06 - Untag a module from a contact**
 
 1. User requests to remove a module tag from a contact.
 2. EduMate untags the module from the contact.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
 
 * 1b. The given details is invalid.
     * 1b1. EduMate shows an error message.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
 
 **Use case: UC07 - Tag a group to a contact**
 
 1. User requests to add a group tag to a contact.
 2. EduMate tags the group to the contact.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
 
 * 1b. The given details is invalid.
     * 1b1. EduMate shows an error message.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
 
 **Use case: UC08 - Untag a group from a contact**
 
 1. User requests to remove a group tag from a contact.
 2. EduMate untags the group from the contact.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
 
 * 1b. The given details is invalid.
     * 1b1. EduMate shows an error message.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
 
 **Use case: UC09 - Find contacts based on search criteria**
 
@@ -437,7 +779,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2. User requests to find contacts based on search criteria.
 3. EduMate shows a list of contacts satisfying the search criteria.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -446,7 +788,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 * 3a. The filtered list is empty.
 
-    Use case ends
+  Use case ends
 
 **Use case: UC10 - Sort contacts based on matching modules**
 
@@ -454,45 +796,40 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2. User requests to sort contacts.
 3. EduMate shows a list of contacts sorted by their number of shared modules.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 3a. The sorted list is empty.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: UC11 - View user profile**
 
 1. User requests to view their user profile.
 2. EduMate shows the user information.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. User information is empty.
 
-    Use case ends.
+  Use case ends.
 
+### **Non-Functional Requirements**
 
-### Non-Functional Requirements
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Any user action should be parsed and executed within 1 second.
+5. Each person should be able to hold up to 10 group and module tags without a noticeable sluggishness in performance for typical usage.
+6. The product does not require internet connection to function.
+7. The code should be open source.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should consistently execute commands within 1 second.
+---
 
-*{More to be added}*
-
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Instructions for manual testing**
+## **Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -501,7 +838,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### **Launch and shutdown**
 
 1. Initial launch
 
@@ -514,9 +851,9 @@ testers are expected to do more *exploratory* testing.
     * 2a. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     * 2b. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
-### Deleting a person
+### **Deleting a person**
 
 1. Deleting a person while all persons are being shown
 
@@ -532,8 +869,32 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 
-### Saving data
+### **Saving data**
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   * 1a. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+---
+
+## **Glossary**
+
+* **Command Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
+* **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **NUS**: National University of Singapore
+* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Pull Request (PR)**: An event that takes place in software development when a contributor/developer is ready to begin the process of merging new code changes with the main project repository
+* **Repo (Repository)**: A storage location for software packages, mainly residing on GitHub
+
+---
+
+## **Documentation, logging, testing, configuration, dev-ops**
+
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
+
+---

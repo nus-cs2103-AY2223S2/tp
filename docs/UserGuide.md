@@ -199,9 +199,9 @@ Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 * Words matching the first part of the string will be matched e.g. Han will match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
-Example of usage: 
+Example of usage:
 * `find m/CS2103T CS2109S` returns all persons with modules CS2103T or CS2109S
-* `find n/John Doe` returns all persons with names John or Doe 
+* `find n/John Doe` returns all persons with names John or Doe
 * `find p/9093` returns all persons with phone numbers starting with 9093
 Expected outcome:
 ```
