@@ -160,6 +160,14 @@
     -fx-padding: 18 0 -6 18;
 }
 
+.heading_label {
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4A4A4A;
+    -fx-padding: 12 0 -4 18;
+}
+
 /*Input field*/
 .stack-pane {
     -fx-background-color: white;
