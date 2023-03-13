@@ -50,6 +50,24 @@ public class Parent extends Person {
     }
 
     /**
+     * A method that returns the Student's Index Number.
+     *
+     * @return Student's Index Number.
+     */
+    public IndexNumber getIndexNumber() {
+        return indexNumber;
+    }
+
+    /**
+     * A method that returns the Student's class.
+     *
+     * @return Student's class.
+     */
+    public Class getStudentClass() {
+        return sc;
+    }
+
+    /**
      * A method that returns the Age of parent / NOK.
      *
      * @return Parent / NOK age.

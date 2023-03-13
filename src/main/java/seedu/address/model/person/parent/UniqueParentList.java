@@ -10,6 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.Class;
+import seedu.address.model.person.student.IndexNumber;
+import seedu.address.model.person.student.ParentName;
 
 /**
  * Represents a parent list containing Parent objects of Student objects in the same class / cca.
@@ -25,6 +28,21 @@ public class UniqueParentList implements Iterable<Parent> {
     public boolean contains(Parent toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    public Parent getParent(ParentName parentName, IndexNumber indexNumber, Class sc) {
+        requireNonNull(parentName);
+        for(Parent p : internalUnmodifiableList) {
+            //System.out.println(parentName.toString());
+            //System.out.println(p.getName().toString());
+            if (parentName.toString().equals(p.getName().toString())) {
+                if ( (indexNumber.equals(p.getIndexNumber())) && (sc.equals(p.getClass())) ) {
+                    return p;
+                }
+            }
+            return p;
+        }
+        return null;
     }
 
     /**
@@ -84,7 +102,6 @@ public class UniqueParentList implements Iterable<Parent> {
         if (!parentsAreUnique(parents)) {
             throw new DuplicatePersonException();
         }
-
         internalList.setAll(parents);
     }
 

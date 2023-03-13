@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Class;
@@ -14,6 +16,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
+import seedu.address.model.person.parent.Parent;
+import seedu.address.model.person.parent.Relationship;
+import seedu.address.model.person.parent.UniqueParentList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,7 +35,10 @@ public class Student extends Person {
     private Attendance attendance;
     private Set<Homework> homework = new HashSet<>();
     private Set<Test> test = new HashSet<>();
+    private Set<Tag> tags;
     private Comment comment;
+
+    private Parent parent;
 
     /**
      * Returns a Student object that stores information about the student particulars.
@@ -57,7 +65,6 @@ public class Student extends Person {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
-        this.parentName = parentName;
         this.age = age;
         this.image = image;
         this.cca = cca;
@@ -66,6 +73,10 @@ public class Student extends Person {
         this.homework.addAll(homework);
         this.test.addAll(test);
         this.comment = comment;
+        this.tags = tags;
+        //this.parentName = parentName;
+        this.parent = setParent(parentName, indexNumber, sc);
+        this.parentName = new ParentName(this.parent.getName().toString());
     }
 
     /**
@@ -93,6 +104,24 @@ public class Student extends Person {
      */
     public ParentName getParentName() {
         return parentName;
+    }
+
+    /**
+     * A method that checks if a parent exists, if it exists, it will be binded to the student, otherwise, it will
+     * prompt the user to create a new parent.
+     *
+     * @param parentName Parent name that is used to check if a Parent exists already.
+     * @return Parent object that could be gotten from the UniqueParentList if exists or prompts the user to create
+     * a New Parent object.
+     */
+    private Parent setParent(ParentName parentName, IndexNumber indexNumber, Class sc) {
+        UniqueParentList parents = Class.getAllParents();
+        Parent parent = parents.getParent(parentName, indexNumber, sc);
+        if (parent == null) {
+            parent = new Parent(sc, indexNumber, new Name("BASETEST"), new Relationship("BASETEST"), new Age("5"),
+                    new Image("TESTING"), new Email("test@hotmail.com"), this.getPhone(), this.getAddress(), this.tags);
+        }
+        return parent;
     }
 
     /**
