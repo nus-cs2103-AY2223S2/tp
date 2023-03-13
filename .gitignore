@@ -21,5 +21,5 @@ src/test/data/sandbox/
 .DS_Store
 docs/_site/
 
-#Compiled class files
+#Compile class files
 *.class
