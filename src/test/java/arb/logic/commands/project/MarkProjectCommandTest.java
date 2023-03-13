@@ -8,6 +8,7 @@ import static arb.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import arb.testutil.ProjectBuilder;
 import org.junit.jupiter.api.Test;
 
 import arb.commons.core.Messages;
@@ -29,11 +30,12 @@ class MarkProjectCommandTest {
     @Test
     void execute_validIndexUnfilteredList_success() {
         Project projectToMark = model.getFilteredProjectList().get(INDEX_FIRST_CLIENT.getZeroBased());
+        Project projectToMarkCopy = new ProjectBuilder(projectToMark).build();
         MarkProjectCommand markProjectCommand = new MarkProjectCommand(INDEX_FIRST_CLIENT);
         String expectedMessage = String.format(MarkProjectCommand.MESSAGE_MARK_PROJECT_SUCCESS, projectToMark);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        projectToMark.markAsDone();
-        expectedModel.setProject(projectToMark, projectToMark);
+        projectToMarkCopy.markAsDone();
+        expectedModel.setProject(projectToMark, projectToMarkCopy);
         assertCommandSuccess(markProjectCommand, ListType.PROJECT, ListType.PROJECT, model, expectedMessage,
                 expectedModel);
     }
@@ -64,7 +66,7 @@ class MarkProjectCommandTest {
         // null -> returns false
         assertFalse(markFirstCommand.equals(null));
 
-        // different client -> returns false
+        // different project -> returns false
         assertFalse(markFirstCommand.equals(markSecondCommand));
     }
 }
