@@ -98,8 +98,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editRecipeDescriptor.getEmail().orElse(recipeToEdit.getEmail());
         Address updatedAddress = editRecipeDescriptor.getAddress().orElse(recipeToEdit.getAddress());
         Set<Tag> updatedTags = editRecipeDescriptor.getTags().orElse(recipeToEdit.getTags());
-
-        return new Recipe(updatedName, updatedIngredient, updatedEmail, updatedAddress, updatedTags);
+        return new Recipe(updatedName, updatedIngredient, updatedEmail, updatedAddress, updatedTags, null);
     }
 
     @Override

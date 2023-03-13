@@ -23,17 +23,19 @@ public class Recipe {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Step step;
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, Ingredient ingredient, Email email, Address address, Set<Tag> tags) {
+    public Recipe(Name name, Ingredient ingredient, Email email, Address address, Set<Tag> tags, Step step) {
         requireAllNonNull(name, ingredient, email, address, tags);
         this.name = name;
         this.ingredient = ingredient;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.step = step;
     }
 
     public Name getName() {
@@ -60,6 +62,9 @@ public class Recipe {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Step getStep() {
+        return step;
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
