@@ -15,7 +15,6 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
-import seedu.address.model.person.student.StudentClass;
 
 /**
  * A StudentCommentCommand class for comment "student CLASSNAME comment"
