@@ -147,8 +147,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
             setRemark(toCopy.remark);
+            setTags(toCopy.tags);
         }
 
         /**
@@ -230,15 +230,12 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            System.out.println(getRemark());
-            System.out.println(e.getRemark());
-
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
-                    && getRemark().equals(e.getRemark());
+                    && getRemark().equals(e.getRemark())
+                    && getTags().equals(e.getTags());
         }
     }
 }
