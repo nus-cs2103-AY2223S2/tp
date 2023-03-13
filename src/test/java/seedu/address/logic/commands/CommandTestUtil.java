@@ -57,10 +57,22 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
+    public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+
+    public static final String COMPANY_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_AMY;
+    public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
+    public static final String INDUSTRY_DESC_AMY = " " + PREFIX_INDUSTRY + VALID_INDUSTRY_AMY;
+    public static final String INDUSTRY_DESC_BOB = " " + PREFIX_INDUSTRY + VALID_INDUSTRY_BOB;
+    public static final String OCCUPATION_DESC_AMY = " " + PREFIX_OCCUPATION + VALID_OCCUPATION_AMY;
+    public static final String OCCUPATION_DESC_BOB = " " + PREFIX_OCCUPATION + VALID_OCCUPATION_BOB;
+    public static final String JOBTITLE_DESC_AMY = " " + PREFIX_JOBTITLE + VALID_JOBTITLE_AMY;
+    public static final String JOBTITLE_DESC_BOB = " " + PREFIX_JOBTITLE + VALID_JOBTITLE_BOB;
+
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
