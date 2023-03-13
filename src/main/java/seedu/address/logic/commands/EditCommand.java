@@ -52,19 +52,17 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "Existing values will be overwritten by the input values. "
+            + "To edit timing, both start and end time must be included.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_RATE + "RATE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TIMING_START + "TIMING] "
-            + "[" + PREFIX_TIMING_END + "TIMING] "
+            + "[" + PREFIX_TIMING_START + "START_TIME] "
+            + "[" + PREFIX_TIMING_END + "END_TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_TIMING_START + "12-03-2023 11:00"
-            + PREFIX_TIMING_END + "13-03-2023 11:00"
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_PHONE + "91234567 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -255,6 +253,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getRate().equals(e.getRate())
                     && getAddress().equals(e.getAddress())
+                    && getTiming().equals(e.getTiming())
                     && getTags().equals(e.getTags());
         }
     }

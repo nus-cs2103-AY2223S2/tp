@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_START;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -31,7 +33,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATE, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATE,
+                        PREFIX_ADDRESS, PREFIX_TIMING_START, PREFIX_TIMING_END, PREFIX_TAG);
 
         Index index;
 
@@ -50,6 +53,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_TIMING_START).isPresent()
+                && argMultimap.getValue(PREFIX_TIMING_END).isPresent()) {
+            editPersonDescriptor.setTiming(ParserUtil.parseTiming(argMultimap.getValue(PREFIX_TIMING_START).get(),
+                    argMultimap.getValue(PREFIX_TIMING_END).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
