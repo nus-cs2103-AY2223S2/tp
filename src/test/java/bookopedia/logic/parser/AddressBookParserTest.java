@@ -11,13 +11,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import bookopedia.logic.commands.*;
-import bookopedia.model.parcel.Parcel;
 import org.junit.jupiter.api.Test;
 
+import bookopedia.logic.commands.AddCommand;
+import bookopedia.logic.commands.AddParcelCommand;
+import bookopedia.logic.commands.ClearCommand;
+import bookopedia.logic.commands.DeleteCommand;
+import bookopedia.logic.commands.EditCommand;
 import bookopedia.logic.commands.EditCommand.EditPersonDescriptor;
+import bookopedia.logic.commands.ExitCommand;
+import bookopedia.logic.commands.FindCommand;
+import bookopedia.logic.commands.HelpCommand;
+import bookopedia.logic.commands.ListCommand;
+import bookopedia.logic.commands.MarkCommand;
+import bookopedia.logic.commands.ViewCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.DeliveryStatus;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.NameContainsKeywordsPredicate;
 import bookopedia.model.person.Person;
 import bookopedia.testutil.EditPersonDescriptorBuilder;
