@@ -114,12 +114,12 @@ public class AddMeetingCommand extends Command {
      * @return boolean value
      */
     private boolean hasClash(Meeting meetingToCheck, Person personUnderInspection) {
-       ArrayList<Meeting> currentMeetings = personUnderInspection.getMeetings();
-       for (Meeting meeting: currentMeetings) {
-           if (meetingToCheck.checkTimeClash(meeting)) {
-               return true;
-           }
-       }
-       return false;
+        ArrayList<Meeting> currentMeetings = personUnderInspection.getMeetings();
+        for (Meeting meeting: currentMeetings) {
+            if (meetingToCheck.checkTimeClash(meeting)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
