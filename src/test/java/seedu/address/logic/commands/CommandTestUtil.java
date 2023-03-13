@@ -30,6 +30,7 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.EditElderlyDescriptorBuilder;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditVolunteerDescriptorBuilder;
 
 /**
@@ -129,8 +130,15 @@ public class CommandTestUtil {
                 .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
                 .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
 
-        DESC_PERSON_AMY = new EditPersonDescriptor(DESC_ELDERLY_AMY);
-        DESC_PERSON_BOB = new EditPersonDescriptor(DESC_ELDERLY_BOB);
+        DESC_PERSON_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY)
+                .withTags(VALID_TAG_STRONG).build();
+
+        DESC_PERSON_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
+                .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
     }
 
     /**
