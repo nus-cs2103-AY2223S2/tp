@@ -7,8 +7,8 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Remark {
-    public final String value;
     public static final String NULL_REMARK = "None yet!";
+    public final String value;
 
     /**
      * Accepts remark that is not empty
