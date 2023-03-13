@@ -3,7 +3,6 @@ package seedu.fitbook.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.fitbook.logic.commands.Command;
-import seedu.fitbook.logic.parser.Parser;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 
 /**
