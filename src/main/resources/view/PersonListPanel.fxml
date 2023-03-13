@@ -8,5 +8,5 @@
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="personListView" HBox.hgrow="ALWAYS" />
-  <Label fx:id="nameCard" styleClass="cell_small_label" style="-fx-text-fill: white" />
+  <Label fx:id="nameCard" styleClass="cell_small_label" />
 </HBox>

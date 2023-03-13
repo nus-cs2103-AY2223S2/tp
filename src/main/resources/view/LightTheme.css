@@ -123,13 +123,13 @@
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #fefafb;
+    -fx-text-fill: #010504;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #fefafb;
+    -fx-text-fill: #010504;
 }
 
 .stack-pane {
@@ -316,7 +316,7 @@
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
 }
-####
+
 #commandTextField {
     -fx-background-color: transparent #c7c7c7 transparent #c7c7c7;
     -fx-background-insets: 0;
