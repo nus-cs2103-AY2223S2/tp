@@ -13,10 +13,11 @@ import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
 
 /**
  * A list of employees that enforces uniqueness between its elements and does not allow nulls.
- * An employee is considered unique by comparing using {@code Employee#isSameEmployee(Employee)}. As such, adding and updating of
- * employees uses Employee#isSameEmployee(Employee) for equality so as to ensure that the employee being added or updated is
- * unique in terms of identity in the UniqueEmployeeList. However, the removal of an employee uses Employee#equals(Object) so
- * as to ensure that the employee with exactly the same fields will be removed.
+ * An employee is considered unique by comparing using {@code Employee#isSameEmployee(Employee)}.
+ * As such, adding and updating of employees uses Employee#isSameEmployee(Employee) for equality
+ * so as to ensure that the employee being added or updated is
+ * unique in terms of identity in the UniqueEmployeeList. However, the removal of an employee
+ * uses Employee#equals(Object) so as to ensure that the employee with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

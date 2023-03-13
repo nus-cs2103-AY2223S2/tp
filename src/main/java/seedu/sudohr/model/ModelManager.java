@@ -92,7 +92,7 @@ public class ModelManager implements Model {
         return sudoHr;
     }
 
-    //=========== Employee-Level Operations ==============================================================================
+    //=========== Employee-Level Operations ========================
 
     @Override
     public boolean hasEmployee(Employee employee) {

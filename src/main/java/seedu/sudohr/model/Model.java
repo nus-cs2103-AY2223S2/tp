@@ -54,7 +54,7 @@ public interface Model {
     /** Returns the SudoHr */
     ReadOnlySudoHr getSudoHr();
 
-    //=========== Employee-Level Operations ==============================================================================
+    //=========== Employee-Level Operations ===========================================
 
     /**
      * Returns true if an employee with the same identity as {@code employee} exists in the sudohr book.
@@ -76,7 +76,8 @@ public interface Model {
     /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.
      * {@code target} must exist in the sudohr book.
-     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the sudohr book.
+     * The employee identity of {@code editedEmployee} must not be the same as another existing
+     * employee in the sudohr book.
      */
     void setEmployee(Employee target, Employee editedEmployee);
 
@@ -107,7 +108,8 @@ public interface Model {
     /**
      * Replaces the given department {@code target} in the list with {@code editedDepartment}.
      * {@code target} must exist in the address book.
-     * The department identity of {@code editedDepartment} must not be the same as another existing department in the address book.
+     * The department identity of {@code editedDepartment} must not be the same as another existing
+     * department in the address book.
      */
     void setDepartment(Department target, Department editedDepartment);
 

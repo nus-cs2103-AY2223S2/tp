@@ -70,7 +70,7 @@ public class SudoHr implements ReadOnlySudoHr {
         setDepartments(newData.getDepartmentList());
     }
 
-    //=========== Employee-Level Operations ==============================================================================
+    //=========== Employee-Level Operations ============================
 
     /**
      * Returns true if a employee with the same identity as {@code employee} exists in the sudohr book.
@@ -91,7 +91,8 @@ public class SudoHr implements ReadOnlySudoHr {
     /**
      * Replaces the given employee {@code target} in the list with {@code editedEmployee}.
      * {@code target} must exist in the sudohr book.
-     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the sudohr book.
+     * The employee identity of {@code editedEmployee} must not be the same as
+     * another existing employee in the sudohr book.
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
