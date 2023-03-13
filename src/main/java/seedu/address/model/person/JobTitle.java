@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's jobTitle in the address book.
+ * Represents a Person's value in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidJobTitle(String)}
  */
 public class JobTitle {
@@ -18,7 +18,7 @@ public class JobTitle {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String jobTitle;
+    public final String value;
 
     /**
      * Constructs a {@code JobTitle}.
@@ -28,11 +28,11 @@ public class JobTitle {
     public JobTitle(String jobTitle) {
         requireNonNull(jobTitle);
         checkArgument(isValidJobTitle(jobTitle), MESSAGE_CONSTRAINTS);
-        this.jobTitle = jobTitle;
+        this.value = jobTitle;
     }
 
     /**
-     * Returns true if a given string is a valid jobTitle.
+     * Returns true if a given string is a valid value.
      */
     public static boolean isValidJobTitle(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -40,19 +40,19 @@ public class JobTitle {
 
     @Override
     public String toString() {
-        return jobTitle;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof JobTitle // instanceof handles nulls
-                && jobTitle.equals(((JobTitle) other).jobTitle)); // state check
+                && value.equals(((JobTitle) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return jobTitle.hashCode();
+        return value.hashCode();
     }
 
 }

@@ -76,13 +76,13 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        gender = source.getGender().gender;
+        gender = source.getGender().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        company = source.getCompany().companyName;
-        industry = source.getIndustry().industry;
-        occupation = source.getOccupation().occupation;
-        jobTitle = source.getJobTitle().jobTitle;
+        company = source.getCompany().value;
+        industry = source.getIndustry().value;
+        occupation = source.getOccupation().value;
+        jobTitle = source.getJobTitle().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()

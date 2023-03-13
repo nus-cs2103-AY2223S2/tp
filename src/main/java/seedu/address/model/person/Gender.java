@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's gender in the address book.
+ * Represents a Person's value in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
 public class Gender {
@@ -15,7 +15,7 @@ public class Gender {
     /* The input should be "male" or "female" */
     public static final String VALIDATION_REGEX = ".*\\bmale\\b|.*\\bfemale\\b";
 
-    public final String gender;
+    public final String value;
 
     /**
      * Constructs a {@code Gender}.
@@ -25,11 +25,11 @@ public class Gender {
     public Gender(String gender) {
         requireNonNull(gender);
         checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
-        this.gender = gender;
+        this.value = gender;
     }
 
     /**
-     * Returns true if a given string is a valid gender.
+     * Returns true if a given string is a valid value.
      */
     public static boolean isValidGender(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -37,19 +37,19 @@ public class Gender {
 
     @Override
     public String toString() {
-        return gender;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Gender // instanceof handles nulls
-                && gender.equals(((Gender) other).gender)); // state check
+                && value.equals(((Gender) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return gender.hashCode();
+        return value.hashCode();
     }
 
 }
