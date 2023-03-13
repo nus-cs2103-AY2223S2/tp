@@ -23,10 +23,9 @@ $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
-$primary:       $blue;
-$secondary:     $gray-400;
+$primary:       $blue !default;
+$secondary:     $gray-400 !default;
 $success:       $green !default;
-$info:          #393E46;
 $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         $gray-100 !default;
@@ -36,7 +35,6 @@ $theme-colors: (
   "primary":    $primary,
   "secondary":  $secondary,
   "success":    $success,
-  "info":       $info,
   "warning":    $warning,
   "danger":     $danger,
   "light":      $light,
