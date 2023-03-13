@@ -1,11 +1,14 @@
 package taa.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import taa.model.ClassList;
 import taa.model.ReadOnlyAddressBook;
+import taa.model.Tutor;
+import taa.model.UniqueClassLists;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -36,7 +39,10 @@ public class SampleDataUtil {
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }
-        return sampleAb;
+        UniqueClassLists classLists = new UniqueClassLists();
+        classLists.add(sampleAb);
+        Tutor tutor = new Tutor(new Name("James"), new HashSet<>(), classLists);
+        return tutor;
     }
 
     /**

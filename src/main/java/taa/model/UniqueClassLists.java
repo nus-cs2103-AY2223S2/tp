@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import taa.commons.util.CollectionUtil;
 import taa.model.student.Student;
+import taa.model.student.UniqueStudentList;
 import taa.model.student.exceptions.DuplicateStudentException;
 import taa.model.student.exceptions.StudentNotFoundException;
 
@@ -136,5 +137,6 @@ public class UniqueClassLists implements Iterable<ClassList> {
         }
         return true;
     }
+
 }
 

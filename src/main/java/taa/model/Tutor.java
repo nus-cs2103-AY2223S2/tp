@@ -1,8 +1,10 @@
 package taa.model;
 
+import javafx.collections.ObservableList;
 import taa.commons.util.CollectionUtil;
 import taa.model.student.Name;
 import taa.model.student.Student;
+import taa.model.student.UniqueStudentList;
 import taa.model.tag.Tag;
 
 import java.util.Collections;
@@ -10,7 +12,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Tutor {
+public class Tutor implements ReadOnlyAddressBook {
     private static int lastId = 0;
     // Identity fields
     private final Name name;
@@ -85,4 +87,17 @@ public class Tutor {
         }
         return builder.toString();
     }
+
+    private UniqueStudentList getAllStudents() {
+        UniqueStudentList students = new UniqueStudentList();
+        for (ClassList classList: this.classLists) {
+            students.appendList(classList.getUniqueStudentList());
+        }
+        return students;
+    }
+
+    public ObservableList<Student> getStudentList() {
+        return this.getAllStudents().asUnmodifiableObservableList();
+    }
+
 }

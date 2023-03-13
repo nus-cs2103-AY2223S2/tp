@@ -20,7 +20,7 @@ public class ClassList implements ReadOnlyAddressBook {
     private AssignmentList assignments;
     private int classId;
     private static int lastId = 0;
-
+    private int studentCount = 0;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -96,8 +96,16 @@ public class ClassList implements ReadOnlyAddressBook {
      */
     public void addStudent(Student p) {
         students.add(p);
+        this.studentCount += 1;
     }
 
+    public int getStudentCount() {
+        return this.studentCount;
+    }
+
+    public UniqueStudentList getUniqueStudentList() {
+        return this.students;
+    }
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the address book.
@@ -116,6 +124,7 @@ public class ClassList implements ReadOnlyAddressBook {
      */
     public void removeStudent(Student key) {
         students.remove(key);
+        this.studentCount -= 1;
     }
 
     //// util methods
