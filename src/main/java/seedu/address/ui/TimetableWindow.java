@@ -1,24 +1,25 @@
 package seedu.address.ui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
 
 /**
  * Controller for a timetable page
  */
-public class TimetableWindow extends UiPart<Stage> {
+public class TimetableWindow extends UiPart<Stage> implements Initializable {
 
     private static final String FXML = "TimetableWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -26,8 +27,15 @@ public class TimetableWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    //private jobListPanel jobListPanel;
     private ResultDisplay resultDisplay;
+
+    @FXML
+    private TreeView<String> listOfMonthsPlaceholder;
+
+    @FXML
+    private StackPane monthlyDeliveryJobListPanelPlaceholder;
+
+
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
@@ -51,6 +59,23 @@ public class TimetableWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
     }
 
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        TreeItem<String> year = new TreeItem<String>(String.format("Year"));
+
+        for (int i = 1; i < 13; i++) {
+            TreeItem<String> month = new TreeItem<String>(String.format("Month %d", i));
+            TreeItem<String> jobListInMonth = new TreeItem<String>();
+            month.getChildren().add(month);
+            year.getChildren().add(month);
+        }
+
+        listOfMonthsPlaceholder.setShowRoot(false);
+        listOfMonthsPlaceholder.setRoot(year);
+
+
+    }
+
     /**
      * Shows the help window.
      * @throws IllegalStateException
@@ -70,7 +95,7 @@ public class TimetableWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing timetable page of job list.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -100,8 +125,9 @@ public class TimetableWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        //jobListPanel = new jobListPanel(logic.getFilteredjobList());
-        //jobListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+        //MonthlyDeliveryJobListPanel monthPanel = new MonthlyDeliveryJobListPanel();
+        //monthlyDeliveryJobListPanelPlaceholder.getChildren().add(monthPanel.getRoot());
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -109,8 +135,8 @@ public class TimetableWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        //  CommandBox commandBox = new CommandBox(this::executeCommand);
+        //commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -132,23 +158,11 @@ public class TimetableWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         primaryStage.hide();
     }
-    /**
-     * Executes the command and returns the result.
-     *
-     * @see seedu.address.logic.Logic#execute(String)
-     */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            return commandResult;
-        } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
-            throw e;
-        }
+    @FXML
+    private void selectItem() {
+
     }
+
 }
 
