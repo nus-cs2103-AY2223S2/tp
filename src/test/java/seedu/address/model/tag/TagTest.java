@@ -25,7 +25,7 @@ public class TagTest {
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
         assertFalse(Tag.isValidTagName("")); // empty string
         assertFalse(Tag.isValidTagName("Tag_That_Has_More_Than_20_Characters")); // more than 30 characters
-        assertFalse(Tag.isValidTagName("Tag_That_Has More_Than_20_Characters")); // more than 30 characters
+        assertFalse(Tag.isValidTagName("aaaaaaaaaaaaaaaaaaaa aaaaaaaaaa")); // 31 characters with spaces
         assertFalse(Tag.isValidTagName("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")); //31 characters
 
         //Valid Tag Names
