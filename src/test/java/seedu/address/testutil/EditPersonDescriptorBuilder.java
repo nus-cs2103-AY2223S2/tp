@@ -38,7 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-       // descriptor.setWebsite(person.getWebsite());
+        // descriptor.setWebsite(person.getWebsite());
     }
 
     /**
