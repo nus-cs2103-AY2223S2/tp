@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
@@ -34,13 +34,13 @@ public class AddMeetingCommand extends Command {
         + "Parameters: "
         + PREFIX_MEETING_TITLE + "MEETING "
         + PREFIX_PERSON + "NAME "
-        + PREFIX_DATE + DATE_FORMAT + " " + TIME_FORMAT + " "
+        + PREFIX_DATETIME + DATE_FORMAT + " " + TIME_FORMAT + " "
         + PREFIX_LOCATION + "LOCATION "
         + PREFIX_DESCRIPTION + "DESCRIPTION "
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_MEETING_TITLE + "Meeting with John "
         + PREFIX_PERSON + "John Doe "
-        + PREFIX_DATE + "02/02/2022 12:00 "
+        + PREFIX_DATETIME + "02/02/2022 12:00 "
         + PREFIX_LOCATION + "Zoom "
         + PREFIX_DESCRIPTION + "Discuss about the project";
 

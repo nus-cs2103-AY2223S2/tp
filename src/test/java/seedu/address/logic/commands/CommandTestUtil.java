@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
@@ -72,7 +72,7 @@ public class CommandTestUtil {
     public static final String MEETING_TITLE_DESC = " " + PREFIX_MEETING_TITLE + VALID_MEETING_TITLE;
     public static final String MEETING_PERSON_ALICE_DESC = " " + PREFIX_PERSON + "Alice Pauline";
     public static final String MEETING_PERSON_BENSON_DESC = " " + PREFIX_PERSON + "Benson Meier";
-    public static final String MEETING_DATETIME_DESC = " " + PREFIX_DATE + VALID_MEETING_DATETIME;
+    public static final String MEETING_DATETIME_DESC = " " + PREFIX_DATETIME + VALID_MEETING_DATETIME;
     public static final String MEETING_LOCATION_DESC = " " + PREFIX_LOCATION + VALID_MEETING_LOCATION;
     public static final String MEETING_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + VALID_MEETING_DESCRIPTION;
 
