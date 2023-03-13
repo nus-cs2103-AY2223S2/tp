@@ -13,6 +13,8 @@ import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
+import seedu.patientist.model.person.patient.PatientIdNumber;
+import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -48,6 +50,23 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String id} into a {@code PatientIdNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @param pid The string to be converted.
+     * @return PatientIdNumber.
+     *
+     * @throws ParseException id the given {@code pid} is invalid.
+     */
+    public static PatientIdNumber parsePid(String pid) throws ParseException {
+        requireNonNull(pid);
+        String trimmedPid = pid.trim();
+        if (!PatientIdNumber.isValidPid(trimmedPid)) {
+            throw new ParseException(PatientIdNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new PatientIdNumber(trimmedPid);
     }
 
     /**
@@ -93,6 +112,19 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code PatientStatusDetails}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static PatientStatusDetails parseStatus(String status) {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+
+        return new PatientStatusDetails(trimmedStatus);
     }
 
     /**

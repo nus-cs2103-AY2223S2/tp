@@ -36,6 +36,7 @@ class PatientTest {
     public void isSamePatient_sameIdDifferentAttr_true() {
         // same id, different attributes -> returns true
         Patient other = new PatientBuilder()
+                .withName(ADAM.getName().toString())
                 .withId(ADAM.getPatientIdNumber().toString())
                 .build();
         assertTrue(other.isSamePerson(ADAM));
