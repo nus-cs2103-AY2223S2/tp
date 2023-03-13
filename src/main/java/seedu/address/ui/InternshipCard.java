@@ -1,12 +1,21 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.internship.Internship;
 
 /**
@@ -26,6 +35,9 @@ public class InternshipCard extends UiPart<Region> {
 
     public final Internship internship;
 
+    private ArrayList<String> internshipCardInformation = new ArrayList<String>();
+
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -35,11 +47,12 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label role;
     @FXML
-    private Label status;
-    @FXML
     private Label date;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label statusLabel;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -47,14 +60,40 @@ public class InternshipCard extends UiPart<Region> {
     public InternshipCard(Internship internship, int displayedIndex) {
         super(FXML);
         this.internship = internship;
+        //Add Id
         id.setText(displayedIndex + ". ");
+        internshipCardInformation.add(id.getText());
+
+        //Add Company Name
         companyName.setText(internship.getCompanyName().fullCompanyName);
+        internshipCardInformation.add(companyName.getText());
+
+        //Add Role
         role.setText(internship.getRole().fullRole);
-        status.setText(internship.getStatus().toString());
+        internshipCardInformation.add(role.getText());
+
+
+        //Add Date
         date.setText(internship.getDate().fullDate);
+        internshipCardInformation.add(date.getText());
+
+        //Add Tags
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        ObservableList<Node> listNodes = tags.getChildren();
+        listNodes.forEach(node -> internshipCardInformation.add(((Label) node).getText()));
+
+
+        //Set up status label
+        String statusString = internship.getStatus().toString();
+        HashMap<String, Color> colorMap = setupColours();
+        Color statusColor = colorMap.get(statusString);
+        statusLabel.setText(statusString.toUpperCase());
+        statusLabel.setBackground(new Background(new BackgroundFill(
+                statusColor, new CornerRadii(10), new Insets(-5))));
+        internshipCardInformation.add(statusLabel.getText());
     }
 
     @Override
@@ -73,5 +112,31 @@ public class InternshipCard extends UiPart<Region> {
         InternshipCard card = (InternshipCard) other;
         return id.getText().equals(card.id.getText())
                 && internship.equals(card.internship);
+    }
+
+
+    /**
+     * Initialises the colours associated with the status label.
+     *
+     * @return a hashmap containing the colors associated with each status type
+     */
+    public HashMap<String, Color> setupColours() {
+        //Hashmap that stores the colours associated with each status
+        HashMap<String, Color> colorMap = new HashMap<String, Color>();
+        colorMap.put("New", Color.rgb(250, 155, 68, 1.0));
+        colorMap.put("Applied", Color.rgb(68, 170, 250, 1.0));
+        colorMap.put("Assessment", Color.rgb(250, 68, 155, 1.0));
+        colorMap.put("Interview", Color.rgb(126, 68, 250, 1.0));
+        colorMap.put("Offered", Color.rgb(42, 174, 79, 1.0));
+        colorMap.put("Rejected", Color.rgb(250, 68, 68, 1.0));
+        return colorMap;
+    }
+
+
+    /**
+     * Gets the list that stores the string information of the internship card
+     */
+    public ArrayList<String> getInternshipCardInformation() {
+        return this.internshipCardInformation;
     }
 }
