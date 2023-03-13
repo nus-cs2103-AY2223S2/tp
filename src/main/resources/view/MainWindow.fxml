@@ -10,7 +10,6 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -23,7 +22,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@LightTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -38,13 +37,13 @@
         </MenuBar>
         <HBox prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: transparent;">
           <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="101.0" style="-fx-background-color: #1d1d1d;" text="TrAcker">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="101.0" style="-fx-background-color: #1d1d1d; -fx-text-fill: #3c64b1;" text="TrAcker">
               <HBox.margin>
                 <Insets />
               </HBox.margin>
             </Label>
 
-            <StackPane fx:id="commandBoxPlaceholder" prefHeight="12.0" prefWidth="341.0" style="-fx-border-color: #64CFD8; -fx-border-radius: 16px;" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+            <StackPane fx:id="commandBoxPlaceholder" prefHeight="12.0" prefWidth="341.0" style="-fx-border-color: #643FDB; -fx-border-radius: 16px;" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
@@ -59,7 +58,7 @@
         </StackPane>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
         <HBox VBox.vgrow="ALWAYS">
-          <TabPane HBox.hgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+          <TabPane tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <tabs>
               <Tab text="Students">
                 <content>

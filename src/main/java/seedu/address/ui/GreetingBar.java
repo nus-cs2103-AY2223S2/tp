@@ -34,7 +34,7 @@ public class GreetingBar extends UiPart<Region> {
             size = personList.size();
         }
 
-        String greetingText = "Hello, you have " + size + " tasks undone";
+        String greetingText = "You have " + size + " tasks undone";
         greetings.setText(greetingText);
     }
 }
