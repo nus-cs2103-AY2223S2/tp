@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.List;
@@ -152,8 +151,8 @@ public class AddressBook implements ReadOnlyAddressBook {
                         editedEventSet.add(eventToCheck);
                     }
                 }
-                Person editedPerson = new Person(personToCheck.getName(), personToCheck.getPhone(), personToCheck.getEmail(),
-                        personToCheck.getAddress(), editedEventSet);
+                Person editedPerson = new Person(personToCheck.getName(), personToCheck.getPhone(),
+                        personToCheck.getEmail(), personToCheck.getAddress(), editedEventSet);
                 persons.setPerson(personToCheck, editedPerson);
             }
         }
