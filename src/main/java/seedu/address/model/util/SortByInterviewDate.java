@@ -15,7 +15,10 @@ public class SortByInterviewDate implements Comparator<Person> {
         if (p1.getStatus() != Status.SHORTLISTED || p2.getStatus() != Status.SHORTLISTED) {
             return 0;
         } else {
-            return p1.getInterviewDateTime().getDateTime().compareTo(p2.getInterviewDateTime().getDateTime());
+            return p1.getInterviewDateTime().get()
+                    .getDateTime()
+                    .compareTo(p2.getInterviewDateTime().get()
+                            .getDateTime());
         }
     }
 }

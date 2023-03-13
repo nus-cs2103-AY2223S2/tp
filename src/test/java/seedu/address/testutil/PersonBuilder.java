@@ -57,7 +57,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         status = personToCopy.getStatus();
-        interviewDateTime = Optional.ofNullable(personToCopy.getInterviewDateTime());
+        interviewDateTime = personToCopy.getInterviewDateTime();
         tags = new HashSet<>(personToCopy.getNotes());
     }
 

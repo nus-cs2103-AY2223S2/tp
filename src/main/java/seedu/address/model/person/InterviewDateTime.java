@@ -11,6 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class InterviewDateTime {
     public static final String MESSAGE_CONSTRAINTS = "Interview date time not in valid format!";
+    public static final String EMPTY_DATE_TIME = "";
 
     private final LocalDateTime dateTime;
 

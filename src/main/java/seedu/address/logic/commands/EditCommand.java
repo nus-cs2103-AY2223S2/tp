@@ -101,7 +101,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Status updatedStatus = personToEdit.getStatus(); //User not allowed to edit applicant status directly
         //TODO: command to edit interview date time
-        InterviewDateTime interviewDateTime = personToEdit.getInterviewDateTime();
+        InterviewDateTime interviewDateTime = personToEdit.getInterviewDateTime().orElse(null);
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getNotes());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
