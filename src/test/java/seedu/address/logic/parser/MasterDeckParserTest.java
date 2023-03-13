@@ -20,9 +20,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.QuestionContainsKeywordsPredicate;
 
-public class AddressBookParserTest {
+public class MasterDeckParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final MasterDeckParser parser = new MasterDeckParser();
 
     @Test
     public void parseCommand_add() throws Exception { // edit in the future as deck needs to be selected

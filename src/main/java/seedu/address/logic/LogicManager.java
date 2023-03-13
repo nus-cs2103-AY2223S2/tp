@@ -10,7 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.MasterDeckParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMasterDeck;
@@ -27,7 +27,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final MasterDeckParser masterDeckParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,7 +35,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        masterDeckParser = new MasterDeckParser();
     }
 
     @Override
@@ -46,9 +46,9 @@ public class LogicManager implements Logic {
         Command command;
         Deck selectedDeck = this.model.getSelectedDeck();
         if (selectedDeck != null) {
-            command = addressBookParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
+            command = masterDeckParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
         } else {
-            command = addressBookParser.parseCommandWhenDeckNotSelected(commandText);
+            command = masterDeckParser.parseCommandWhenDeckNotSelected(commandText);
         }
         commandResult = command.execute(model);
 
