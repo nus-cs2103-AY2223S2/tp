@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YOE;
 
@@ -27,7 +27,7 @@ public class FindDoctorCommand extends Command {
             + "(" + PREFIX_NAME + "NAME) "
             + "(" + PREFIX_PHONE + "PHONE) "
             + "(" + PREFIX_EMAIL + "EMAIL) "
-            + "(" + PREFIX_SPECIALITY + "SPECIALITY) "
+            + "(" + PREFIX_SPECIALTY + "SPECIALITY) "
             + "(" + PREFIX_YOE + "YEARS OF EXPERIENCE) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "At least one of the parameters must be present. \n"
@@ -44,7 +44,7 @@ public class FindDoctorCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredDoctorList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }

@@ -23,7 +23,7 @@ Docédex is a **desktop application for managing doctors and patients within hos
 5. Enter `java -jar docedex.jar` in the command terminal
    1. You should notice the GUI of the application pop up.<br>
    ![Ui](images/Ui.png)
-   
+
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`list-doc`** and pressing Enter will display all doctors stored in Docedex.<br>
    1. Some example commands you can try:
 
@@ -32,7 +32,7 @@ Docédex is a **desktop application for managing doctors and patients within hos
       * `add-doc n/John Doe p/98765432` : Adds a doctor contact named `John Doe` to Docedex.
 
       * `del-doc 3` : Deletes the doctor with the associated ID of 3.
-      
+
       * `find-doc Gabriel` : Finds all doctors contacts that have the keyword 'Gabriel'
 
       * `exit` : Exits the app.
