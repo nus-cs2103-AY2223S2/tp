@@ -3,30 +3,37 @@
   "tasks" : [ {
     "name" : "Alice Pauline",
     "description" : "Alice's description",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "effort": 2
   }, {
     "name" : "Benson Meier",
     "description" : "Benson's description",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "effort": 4
   }, {
     "name" : "Carl Kurz",
     "description" : "Carl's description",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "effort": 3
   }, {
     "name" : "Daniel Meier",
     "description" : "Daniel's description",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "effort": 6
   }, {
     "name" : "Elle Meyer",
     "description" : "Elle's description",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "effort": 2
   }, {
     "name" : "Fiona Kunz",
     "description" : "Fiona's description",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "effort": 2
   }, {
     "name" : "George Best",
     "description" : "George's description",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "effort": 2
   } ]
 }

@@ -19,6 +19,7 @@ import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_EFFORT;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
@@ -99,7 +100,7 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + " " + PREFIX_NAME + "Return Book "
                 + PREFIX_DESCRIPTION + "Return book description " + PREFIX_TAG + "Reminder "
-                + PREFIX_DEADLINE + "2023-01-01 1800", new AddCommand(expectedDeadline));
+                + PREFIX_DEADLINE + "2023-01-01 1800 " + PREFIX_EFFORT + "1", new AddCommand(expectedDeadline));
     }
 
     @Test
@@ -114,7 +115,8 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + " " + PREFIX_NAME + "Meeting "
                 + PREFIX_DESCRIPTION + "Meeting description " + PREFIX_TAG + "Reminder "
-                + PREFIX_FROM + "2023-01-01 1800 " + PREFIX_TO + "2023-01-02 1800", new AddCommand(expectedEvent));
+                + PREFIX_FROM + "2023-01-01 1800 " + PREFIX_TO + "2023-01-02 1800 " + PREFIX_EFFORT + "5",
+                new AddCommand(expectedEvent));
     }
 
     @Test

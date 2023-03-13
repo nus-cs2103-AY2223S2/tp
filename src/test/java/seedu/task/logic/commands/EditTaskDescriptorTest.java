@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
+import static seedu.task.logic.commands.CommandTestUtil.VALID_EFFORT;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -14,6 +15,45 @@ import seedu.task.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.task.testutil.EditTaskDescriptorBuilder;
 
 public class EditTaskDescriptorTest {
+
+    @Test
+    public void isAnyFieldEdited_none_returnsFalse() {
+        EditTaskDescriptor emptyDesc = new EditTaskDescriptor();
+        assertFalse(emptyDesc.isAnyFieldEdited());
+    }
+
+    @Test
+    public void isAnyFieldEdited_changed_returnsTrue() {
+        EditTaskDescriptor bobDesc = new EditTaskDescriptor(DESC_BOB);
+        assertTrue(bobDesc.isAnyFieldEdited());
+
+        EditTaskDescriptor amyDesc = new EditTaskDescriptor(DESC_AMY);
+        assertTrue(amyDesc.isAnyFieldEdited());
+
+        // edit only name -> return True
+        EditTaskDescriptor customDesc = new EditTaskDescriptorBuilder()
+                .withName("TAN")
+                .build();
+        assertTrue(customDesc.isAnyFieldEdited());
+
+        // edit only description -> return True
+        customDesc = new EditTaskDescriptorBuilder()
+                .withDescription("owes money")
+                .build();
+        assertTrue(customDesc.isAnyFieldEdited());
+
+        // edit only tags -> return True
+        customDesc = new EditTaskDescriptorBuilder()
+                .withTags("friend")
+                .build();
+        assertTrue(customDesc.isAnyFieldEdited());
+
+        // edit only effort -> return True
+        customDesc = new EditTaskDescriptorBuilder()
+                .withEffort(5)
+                .build();
+        assertTrue(customDesc.isAnyFieldEdited());
+    }
 
     @Test
     public void equals() {
@@ -43,6 +83,10 @@ public class EditTaskDescriptorTest {
 
         // different tags -> returns false
         editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different effort -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withEffort(VALID_EFFORT).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

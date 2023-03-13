@@ -1,8 +1,8 @@
 package seedu.task.model.task;
 
-import seedu.task.model.task.exceptions.InvalidEffortException;
-
 import java.util.Objects;
+
+import seedu.task.model.task.exceptions.InvalidEffortException;
 
 /**
  * Represent a Task's required effort in the task book.
@@ -11,6 +11,10 @@ public class Effort {
     public static final String MESSAGE_CONSTRAINTS = "Effort must be valid";
     private long effort;
 
+    /**
+     * Creates an effort instance which is an abstraction on the estimated effort required to complete a task.
+     * @param effort
+     */
     public Effort(long effort) {
         if (effort < 0) {
             throw new InvalidEffortException();
@@ -28,7 +32,8 @@ public class Effort {
 
     @Override
     public String toString() {
-        return String.valueOf(this.effort);
+        String str = "" + this.effort;
+        return str;
     }
 
     @Override

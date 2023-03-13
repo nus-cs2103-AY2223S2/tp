@@ -2,7 +2,11 @@ package seedu.task.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import seedu.task.commons.core.index.Index;
 import seedu.task.commons.core.index.IndexList;
@@ -13,6 +17,7 @@ import seedu.task.model.task.Date;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Effort;
 import seedu.task.model.task.Name;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -152,6 +157,12 @@ public class ParserUtil {
         return new Date(trimmedDate);
     }
 
+    /**
+     * Parses a {@code String Effort} into a {@code Effort}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Effort} is invalid.
+     */
     public static Effort parseEffort(String effort) throws ParseException {
         requireNonNull(effort);
         String trimmedEffort = effort.trim();

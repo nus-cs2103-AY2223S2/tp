@@ -67,11 +67,15 @@ public class TaskBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Task task = new SimpleTaskBuilder().build();
+        // tests for empty effort field
+        Task task = new SimpleTaskBuilder().buildDefault();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_TASK, descriptor), command);
+
+        assertTrue(new EditCommand(INDEX_FIRST_TASK, descriptor).equals(command));
+
+        // TODO: add tests for non-empty effort field
     }
 
     @Test

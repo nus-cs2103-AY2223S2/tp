@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.task.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.Task;
 
@@ -33,6 +34,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setName(task.getName());
         descriptor.setDescription(task.getDescription());
         descriptor.setTags(task.getTags());
+        descriptor.setEffort(task.getEffort());
     }
 
     /**
@@ -58,6 +60,14 @@ public class EditTaskDescriptorBuilder {
     public EditTaskDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Effort} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withEffort(long e) {
+        descriptor.setEffort(new Effort(e));
         return this;
     }
 

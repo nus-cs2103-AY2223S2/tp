@@ -101,7 +101,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @param effort An effort estimating the amount of work required to complete task
      * @return
      */
-    public List<Task> addDeadlines(Set<Name> nameList, Description description, Set<Tag> tagList, Date deadline, Effort effort) {
+    public List<Task> addDeadlines(Set<Name> nameList, Description description,
+                                   Set<Tag> tagList, Date deadline, Effort effort) {
         List<Task> taskList = new ArrayList<>();
         for (Name cur: nameList) {
             taskList.add(new Deadline(cur, description, tagList, deadline, effort));
@@ -119,7 +120,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @param effort An effort estimating the amount of work required to complete task
      * @return
      */
-    public List<Task> addEvents(Set<Name> nameList, Description description, Set<Tag> tagList, Date from, Date to, Effort effort) {
+    public List<Task> addEvents(Set<Name> nameList, Description description, Set<Tag> tagList,
+                                Date from, Date to, Effort effort) {
         List<Task> taskList = new ArrayList<>();
         for (Name cur: nameList) {
             taskList.add(new Event(cur, description, tagList, from, to, effort));

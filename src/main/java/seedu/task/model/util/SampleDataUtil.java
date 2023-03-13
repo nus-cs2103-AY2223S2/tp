@@ -7,7 +7,11 @@ import java.util.stream.Collectors;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.TaskBook;
 import seedu.task.model.tag.Tag;
-import seedu.task.model.task.*;
+import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
+import seedu.task.model.task.Name;
+import seedu.task.model.task.SimpleTask;
+import seedu.task.model.task.Task;
 
 
 /**
@@ -27,7 +31,7 @@ public class SampleDataUtil {
             new SimpleTask(new Name("Task I"), new Description("I's description"),
                 getTagSet("CS2103T"), new Effort(10)),
             new SimpleTask(new Name("Task R"), new Description("R's description"),
-                getTagSet("CS2101"), new Effort (2))
+                getTagSet("CS2101"), new Effort(2))
         };
     }
 
