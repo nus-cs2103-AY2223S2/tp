@@ -2,7 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
@@ -131,6 +133,29 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeEvent(Event key) {
         events.remove(key);
+    }
+
+    /**
+     * Removes {@code eventToDelete} from this {@code AddressBook}.
+     * {@code eventToDelete} must exist in the address book.
+     */
+    public void deleteEventFromPersonList(Event eventToDelete) {
+        requireNonNull(eventToDelete);
+        for (Person personToCheck: getPersonList()) {
+            if (personToCheck.getEventSet().contains(eventToDelete)) {
+                // Person needs to have the event tag deleted
+                Set<Event> editedEventSet = new HashSet<>();
+                for (Event eventToCheck : personToCheck.getEventSet()) {
+                    if (!eventToCheck.equals(eventToDelete)) {
+                        // Event tags that are not deleted will not be removed
+                        editedEventSet.add(eventToCheck);
+                    }
+                }
+                Person editedPerson = new Person(personToCheck.getName(), personToCheck.getPhone(),
+                        personToCheck.getEmail(), personToCheck.getAddress(), editedEventSet);
+                persons.setPerson(personToCheck, editedPerson);
+            }
+        }
     }
 
     //// util methods

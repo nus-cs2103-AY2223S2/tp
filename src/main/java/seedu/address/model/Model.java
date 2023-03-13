@@ -80,6 +80,12 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Deletes the given event {@code eventToDelete} from all persons in the list.
+     * {@code eventToDelete} must exist in the address book.
+     */
+    void deleteEventFromPersonList(Event eventToDelete);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

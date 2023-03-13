@@ -115,6 +115,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteEventFromPersonList(Event eventToDelete) {
+        requireNonNull(eventToDelete);
+        addressBook.deleteEventFromPersonList(eventToDelete);
+    }
+
+    @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return addressBook.hasEvent(event);
@@ -141,6 +147,7 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
+
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
