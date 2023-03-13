@@ -10,84 +10,68 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="800" minWidth="900" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="800" minWidth="900" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png"/>
+    <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css"/>
-        <URL value="@Extensions.css"/>
+        <URL value="@LightTheme.css" />
+        <URL value="@Extensions.css" />
       </stylesheets>
 
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
+            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
         <HBox prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: transparent;">
           <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="101.0"
-                   style="-fx-background-color: #1d1d1d;" text="TrAcker">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="101.0" style="-fx-background-color: #1d1d1d; -fx-text-fill: #3c64b1;" text="TrAcker">
               <HBox.margin>
-                <Insets/>
+                <Insets />
               </HBox.margin>
             </Label>
 
-            <StackPane fx:id="commandBoxPlaceholder" prefHeight="12.0" prefWidth="341.0"
-                       style="-fx-border-color: #64CFD8; -fx-border-radius: 16px;"
-                       styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+            <StackPane fx:id="commandBoxPlaceholder" prefHeight="12.0" prefWidth="341.0" style="-fx-border-color: #643FDB; -fx-border-radius: 16px;" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
               <padding>
-                <Insets bottom="5" left="10" right="10" top="5"/>
+                <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
             </StackPane>
           </children>
         </HBox>
-        <StackPane fx:id="greetingBarPlaceholder" VBox.vgrow="NEVER"/>
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
-                   styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="greetingBarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5"/>
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
         <HBox VBox.vgrow="ALWAYS">
-          <TabPane prefHeight="800.0" prefWidth="1500.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+          <TabPane tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <tabs>
               <Tab text="Students">
                 <content>
-                  <AnchorPane minWidth="1400.0" VBox.vgrow="ALWAYS">
-                    <children>
-                      <VBox fx:id="personList" minHeight="774.0" minWidth="1400.0"
-                            prefHeight="774.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                        <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                      <VBox fx:id="personList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                        <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                       </VBox>
-                    </children>
-                  </AnchorPane>
                 </content>
               </Tab>
               <Tab text="Events (Tutorials, Labs, Consultations)">
                 <content>
-                  <AnchorPane minWidth="1400.0" VBox.vgrow="ALWAYS">
-                    <children>
-                      <VBox fx:id="eventList" minHeight="774.0" minWidth="1400.0"
-                            prefHeight="774.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                        <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                      <VBox fx:id="eventList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                        <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                       </VBox>
-                    </children>
-                  </AnchorPane>
                 </content>
               </Tab>
             </tabs>
