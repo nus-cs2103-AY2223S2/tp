@@ -37,6 +37,15 @@ public class Task {
     }
 
     /**
+     * Returns whether task is done or not.
+     * 
+     * @return Boolean value of whether task is done.
+     */
+    public boolean isDone() {
+        return isDone;
+    }
+
+    /**
      * Changes status of current task as done by assigning isDone as true.
      */
     public String mark() {
