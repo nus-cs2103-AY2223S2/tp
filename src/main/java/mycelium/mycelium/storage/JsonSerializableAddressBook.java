@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import mycelium.mycelium.commons.exceptions.IllegalValueException;
 import mycelium.mycelium.model.AddressBook;
 import mycelium.mycelium.model.ReadOnlyAddressBook;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.project.Project;
 
@@ -21,9 +22,11 @@ import mycelium.mycelium.model.project.Project;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
     public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedClient> clients = new ArrayList<>();
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
     /**
@@ -33,6 +36,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("projects") List<JsonAdaptedProject> projects) {
         this.persons.addAll(persons);
+        this.clients.addAll(clients);
         this.projects.addAll(projects);
     }
 
@@ -43,6 +47,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
         projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
     }
 
@@ -59,6 +64,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+        for (JsonAdaptedClient jsonAdaptedClient : clients) {
+            Client client = jsonAdaptedClient.toModelType();
+            if (addressBook.hasClient(client)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
+            }
+            addressBook.addClient(client);
         }
         for (JsonAdaptedProject jsonAdaptedProject : projects) {
             Project project = jsonAdaptedProject.toModelType();
