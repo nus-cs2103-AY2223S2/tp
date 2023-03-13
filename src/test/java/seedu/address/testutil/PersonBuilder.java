@@ -100,6 +100,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code Person} object.
+     */
     public Person build() {
         return new Person(name, phone, email, address, tags)
             .withSocialMedia(socialMedia);
