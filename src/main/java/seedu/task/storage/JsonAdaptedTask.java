@@ -43,14 +43,14 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("description") String description,
+    public JsonAdaptedTask(@JsonProperty("name") String name,
+                           @JsonProperty("description") String description,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                            @JsonProperty("deadline") String deadline,
                            @JsonProperty("from") String from,
                            @JsonProperty("to") String to,
-                           @JsonProperty("effort") Long effort)
+                           @JsonProperty("effort") Long effort,
                            @JsonProperty("alertWindow") String alertWindow) {
-                           
         this.name = name;
         this.description = description;
         if (tagged != null) {
@@ -63,9 +63,7 @@ class JsonAdaptedTask {
             this.from = from;
             this.to = to;
         }
-        
         this.effort = effort;
-        
         if (alertWindow != null) {
             this.alertWindow = alertWindow;
         }
@@ -89,9 +87,7 @@ class JsonAdaptedTask {
             from = tmp.getFrom().getValue();
             to = tmp.getTo().getValue();
         }
-        
         effort = source.getEffort().getEffort();
-        
         alertWindow = String.valueOf(source.getAlertWindow().toHours());
 
     }

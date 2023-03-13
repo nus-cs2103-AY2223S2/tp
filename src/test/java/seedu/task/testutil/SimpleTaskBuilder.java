@@ -75,6 +75,8 @@ public class SimpleTaskBuilder {
      */
     public SimpleTaskBuilder withEffort(long e) {
         this.effort = new Effort(e);
+        return this;
+    }
 
     /**
      * Sets the {@code alertWindow} of the {@code Task} that we are building.

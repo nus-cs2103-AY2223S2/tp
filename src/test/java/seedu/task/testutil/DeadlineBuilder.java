@@ -89,7 +89,7 @@ public class DeadlineBuilder {
         return this;
     }
 
-   /**
+    /**
      * Sets the {@code alertWindow} of the {@code Deadline} that we are building.
      */
     public DeadlineBuilder withAlertWindow(String alertWindow) {

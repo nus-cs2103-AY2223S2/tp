@@ -154,13 +154,13 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullAlertWindow_stillSucceed() throws Exception {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, null);
+                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, EMPTY_WINDOW);
         JsonAdaptedTask task1 =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, EMPTY_WINDOW);
+                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, EMPTY_WINDOW);
         JsonAdaptedTask task2 =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_WINDOW);
+                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
         assertEquals(task2.toModelType(), task.toModelType());
         assertEquals(task2.toModelType(), task1.toModelType());
     }
@@ -180,7 +180,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidEffort_throwsInvalidEffortException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, EMPTY_DATE, EMPTY_DATE, EMPTY_DATE,
-                        INVALID_EFFORT);
+                        INVALID_EFFORT, VALID_WINDOW);
         assertThrows(InvalidEffortException.class, task::toModelType);
     }
 
