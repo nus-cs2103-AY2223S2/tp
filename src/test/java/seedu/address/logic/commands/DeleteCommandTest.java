@@ -2,9 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonWithNric;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -56,10 +55,10 @@ public class DeleteCommandTest {
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
     @Test
-    public void execute_NricDoesNotExist_throwsCommandException() {
+    public void execute_nricDoesNotExist_throwsCommandException() {
         Nric nric = new Nric("T0000000A");
         DeleteCommand deleteCommand = new DeleteCommand(nric);
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NRIC_DOES_NOT_EXIST );
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NRIC_DOES_NOT_EXIST);
     }
 
     @Test
