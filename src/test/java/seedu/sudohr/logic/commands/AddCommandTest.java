@@ -15,6 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
@@ -52,11 +58,61 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_duplicateIdOnly_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        Person sameIdPerson = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND)
+                .build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(sameIdPerson);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateEmailOnly_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        Person sameEmail = new PersonBuilder().withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_FRIEND)
+                .build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(sameEmail);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EMAIL, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicatePhoneNumberOnly_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        Person samePhone = new PersonBuilder().withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND)
+                .build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(samePhone);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PHONE, () -> addCommand.execute(modelStub));
+    }
+
+    // duplicate phone should be identified first
+    @Test
+    public void execute_differentIdOnly_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        Person diffId = new PersonBuilder().withId(VALID_ID_BOB).build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(diffId);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PHONE, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
+        // note default ID for person builder is "0777"
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
+        Person differentBob = new PersonBuilder().withName("BOB").withId(VALID_ID_BOB).build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addDifferentBobCommand = new AddCommand(differentBob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
@@ -71,12 +127,16 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // same person id -> returns false
+        // Note: strict equality across every field
         assertFalse(addAliceCommand.equals(addBobCommand));
+
+        // different person id -> returns false
+        assertFalse(addDifferentBobCommand.equals(addAliceCommand));
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all of its methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -216,6 +276,18 @@ public class AddCommandTest {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
+
+        @Override
+        public boolean hasClashingEmail(Person person) {
+            requireNonNull(person);
+            return this.person.emailClashes(person);
+        }
+
+        @Override
+        public boolean hasClashingPhoneNumber(Person person) {
+            requireNonNull(person);
+            return this.person.phoneClashes(person);
+        }
     }
 
     /**
@@ -228,6 +300,18 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
+        }
+
+        @Override
+        public boolean hasClashingEmail(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::emailClashes);
+        }
+
+        @Override
+        public boolean hasClashingPhoneNumber(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::phoneClashes);
         }
 
         @Override
