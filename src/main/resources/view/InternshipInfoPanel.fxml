@@ -22,7 +22,7 @@
       <!--            &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
       <!--            <Region fx:constant="USE_PREF_SIZE" />-->
       <!--         </minHeight>-->
-      
+
             </Label>
             <Separator fx:id="separator" prefWidth="200.0" />
             <Label fx:id="company" styleClass="info-panel-h2" text="Sample sample sample">
