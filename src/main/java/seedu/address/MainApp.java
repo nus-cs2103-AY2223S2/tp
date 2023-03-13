@@ -15,10 +15,8 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -71,29 +69,10 @@ public class MainApp extends Application {
     private void initializeAppManagers(
             UserPrefsStorage userPrefsStorage, UserPrefs userPrefs, PairStorage pairStorage,
             ElderlyStorage elderlyStorage, VolunteerStorage volunteerStorage) {
-
         storage = new StorageManager(pairStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
-        model = initModelManager(storage, userPrefs);
+        model = new ModelManager(storage, userPrefs);
         logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
-    }
-
-    /**
-     * Returns a {@code ModelManager} with the data from {@code AppStorage} and {@code userPrefs}. <br>
-     * An empty application will be used instead if errors occur when reading {@code storage}.
-     */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        FriendlyLink applicationCache = new FriendlyLink();
-        try {
-            storage.readPair(applicationCache);
-            storage.readElderly(applicationCache);
-            storage.readVolunteer(applicationCache);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty FriendlyLink");
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty FriendlyLink");
-        }
-        return new ModelManager(applicationCache, userPrefs);
     }
 
     private void initLogging(Config config) {

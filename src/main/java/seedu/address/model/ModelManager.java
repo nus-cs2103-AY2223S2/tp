@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -11,38 +12,61 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
+import seedu.address.storage.Storage;
 
 /**
  * Represents the in-memory model of the FriendlyLink data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
-    private final FriendlyLink friendlyLink;
-    private final UserPrefs userPrefs;
-    private final FilteredList<Elderly> filteredElderly;
-    private final FilteredList<Volunteer> filteredVolunteers;
-    private final FilteredList<Pair> filteredPairs;
+    private FriendlyLink friendlyLink;
+    private UserPrefs userPrefs;
+    private FilteredList<Elderly> filteredElderly;
+    private FilteredList<Volunteer> filteredVolunteers;
+    private FilteredList<Pair> filteredPairs;
 
     /**
-     * Initializes a ModelManager with the given friendlyLink and userPrefs.
+     * Constructs a ModelManager with the given friendlyLink and userPrefs.
      */
     public ModelManager(ReadOnlyFriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(friendlyLink, userPrefs);
-        logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
-        this.friendlyLink = new FriendlyLink(friendlyLink);
-        this.userPrefs = new UserPrefs(userPrefs);
-        filteredElderly = new FilteredList<>(this.friendlyLink.getElderlyList());
-        filteredVolunteers = new FilteredList<>(this.friendlyLink.getVolunteerList());
-        filteredPairs = new FilteredList<>(this.friendlyLink.getPairList());
+        init(new FriendlyLink(friendlyLink), userPrefs);
+    }
+
+    /**
+     * Constructs a {@code ModelManager} with the data from {@code Storage} and {@code userPrefs}. <br>
+     * An empty application will be used instead if errors occur when reading {@code storage}.
+     *
+     * @param storage Storage to retrieve data from.
+     * @param userPrefs User preferences.
+     */
+    public ModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(storage, userPrefs);
+        try {
+            init(storage.read(), userPrefs);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty FriendlyLink");
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty FriendlyLink");
+        }
     }
 
     public ModelManager() {
         this(new FriendlyLink(), new UserPrefs());
+    }
+
+    private void init(FriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
+        logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
+        this.friendlyLink = friendlyLink;
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredElderly = new FilteredList<>(friendlyLink.getElderlyList());
+        filteredVolunteers = new FilteredList<>(friendlyLink.getVolunteerList());
+        filteredPairs = new FilteredList<>(friendlyLink.getPairList());
     }
 
     //=========== UserPrefs ==================================================================================
