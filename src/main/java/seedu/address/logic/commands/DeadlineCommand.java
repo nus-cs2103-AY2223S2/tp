@@ -58,7 +58,8 @@ public class DeadlineCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getType(), personToEdit.getTimeSlot(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getRemark(), deadline);
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getRemark(), deadline,
+                personToEdit.getTeacher());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -41,8 +43,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = new Remark("None.");
         Deadline deadline = new Deadline("None.");
+        Teacher teacher = new Teacher("None.");
 
-        Person person = new Person(name, type, timeSlot, address, tagList, remark, deadline);
+        Person person = new Person(name, type, timeSlot, address, tagList, remark, deadline, teacher);
 
         return new AddCommand(person);
     }

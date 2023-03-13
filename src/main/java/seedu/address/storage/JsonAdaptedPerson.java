@@ -27,6 +27,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String remark;
     private final String deadline;
+    private final String teacher;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -35,7 +36,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("type") String type,
             @JsonProperty("timeSlot") String timeSlot, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark,
-            @JsonProperty("deadline") String deadline) {
+            @JsonProperty("deadline") String deadline, @JsonProperty("teacher") String teacher) {
         this.name = name;
         this.type = type;
         this.timeSlot = timeSlot;
@@ -45,6 +46,7 @@ class JsonAdaptedPerson {
         }
         this.remark = remark;
         this.deadline = deadline;
+        this.teacher = teacher;
     }
 
     /**
@@ -60,6 +62,7 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         remark = source.getRemark().value;
         deadline = source.getDeadline().value;
+        teacher = source.getTeacher().value;
     }
 
     /**
@@ -112,7 +115,8 @@ class JsonAdaptedPerson {
         }
         final Remark modelRemark = new Remark(remark);
         final Deadline modelDeadline = new Deadline(deadline);
-        return new Person(modelName, modelType, modelTimeSlot, modelAddress, modelTags, modelRemark, modelDeadline);
+        final Teacher modelTeacher = new Teacher(teacher);
+        return new Person(modelName, modelType, modelTimeSlot, modelAddress, modelTags, modelRemark, modelDeadline, modelTeacher);
     }
 
 }

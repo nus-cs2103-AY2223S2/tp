@@ -22,7 +22,7 @@ public class Person {
 
     // Data fields
     private final Address address; // venue
-    //private final Teacher teacher
+    private final Teacher teacher;
     private final Deadline deadline; // deadline (should be optional)
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
@@ -31,7 +31,7 @@ public class Person {
      * name, type, timeSlot, address and tags fields are compulsory when inputting a new Person.
      */
     public Person(Name name, Type type, TimeSlot timeSlot, Address address, Set<Tag> tags, Remark remark,
-                  Deadline deadline) {
+                  Deadline deadline, Teacher teacher) {
         requireAllNonNull(name, type, timeSlot, address, tags);
         this.name = name;
         this.type = type;
@@ -40,6 +40,7 @@ public class Person {
         this.tags.addAll(tags);
         this.remark = remark;
         this.deadline = deadline;
+        this.teacher = teacher;
     }
 
     public Name getName() {
@@ -61,6 +62,10 @@ public class Person {
     public Remark getRemark() {return remark; }
 
     public Deadline getDeadline() {return deadline;}
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
