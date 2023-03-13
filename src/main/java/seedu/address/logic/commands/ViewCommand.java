@@ -64,4 +64,26 @@ public class ViewCommand extends Command {
                 .findFirst())
                 .orElseGet(() -> Optional.ofNullable(model.getUser()));
     }
+
+    public Optional<Index> getIndex() {
+        return index;
+    }
+
+    public Optional<String> getName() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof ViewCommand) {
+            ViewCommand otherCommand = (ViewCommand) other;
+            return otherCommand.getIndex().equals(getIndex())
+                    && otherCommand.getName().equals(getName());
+        } else {
+            return false;
+        }
+    }
 }
