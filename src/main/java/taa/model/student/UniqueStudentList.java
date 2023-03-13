@@ -87,10 +87,8 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     public UniqueStudentList appendList(UniqueStudentList list) {
-        UniqueStudentList newList = new UniqueStudentList();
-        newList.internalList.addAll(list.internalList);
-        newList.internalList.addAll(this.internalList);
-        return newList;
+        this.internalList.addAll(list.internalList);
+        return this;
     }
 
     /**
