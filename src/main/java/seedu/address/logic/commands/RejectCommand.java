@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_PERSON_CANNOT_BE_REJECTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NamePhoneNumberPredicate;
 import seedu.address.model.person.Person;
@@ -35,7 +37,7 @@ public class RejectCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         List<Person> personList = model.getFilteredPersonList();
@@ -46,12 +48,30 @@ public class RejectCommand extends Command {
         }
 
         Person personToReject = personList.get(0);
-        if (model.rejectPerson(personToReject)) {
-            model.refreshListWithPredicate(predicate);
-            return new CommandResult("Successfully rejected " + personToReject.getName().fullName);
-        } else {
-            return new CommandResult(personToReject.getName().fullName + " cannot be rejected!");
+
+        /* this if-statement will check whether the applicant can be rejected.
+        If applicant cannot be rejected, CommandException will be thrown */
+        if (canRejectApplicant(model, personToReject)) {
+            rejectApplicant(model, personToReject);
         }
+        return new CommandResult("Successfully rejected " + personToReject.getName());
+    }
+
+    /**
+     * Checks whether applicant can be rejected
+     * @throws CommandException if applicant is already rejected
+     */
+    private boolean canRejectApplicant(Model model, Person personToReject) throws CommandException {
+        if (!model.rejectPerson(personToReject)) {
+            throw new CommandException(String.format(MESSAGE_PERSON_CANNOT_BE_REJECTED,
+                    personToReject.getName().fullName));
+        }
+        return true;
+    }
+
+    private void rejectApplicant(Model model, Person personToReject) {
+        personToReject.rejectPerson();
+        model.refreshListWithPredicate(predicate);
     }
 
     @Override

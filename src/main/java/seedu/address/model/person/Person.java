@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -70,20 +69,50 @@ public class Person {
     }
 
     /**
-     * Returns the interview dateTime for the applicant if present, else throws {@code NoSuchElementException}
+     * Returns the {@code Optional<InterviewDateTime>} for the applicant.
      * @return Interview date of the applicant.
-     * @throws NoSuchElementException Thrown when no interview date is present.
      */
-    public InterviewDateTime getInterviewDateTime() throws NoSuchElementException {
-        return interviewDateTime.orElseThrow();
+    public Optional<InterviewDateTime> getInterviewDateTime() {
+        return interviewDateTime;
+    }
+
+    /**
+     * Sets Status for applicants.
+     * @param status new Status for the applicant.
+     */
+    private void setStatus(Status status) {
+        this.status = status;
+    }
+
+    /**
+     * Advances status of applicants, according to application cycle
+     */
+    public void advancePerson() {
+        switch (this.status) {
+        case APPLIED:
+            setStatus(Status.SHORTLISTED);
+            break;
+        case SHORTLISTED:
+            setStatus(Status.ACCEPTED);
+            break;
+        default:
+            throw new AssertionError("This person's application status cannot be advanced!");
+        }
+    }
+
+    /**
+     * Changes the status of the applicant to Rejected
+     */
+    public void rejectPerson() {
+        this.status = Status.REJECTED;
     }
 
     /**
      * Sets interview dateTime for shortlisted applicants.
      * @param interviewDateTime Interview dateTime for the applicant.
      */
-    public void setInterviewDateTime(InterviewDateTime interviewDateTime) {
-        this.interviewDateTime = Optional.of(interviewDateTime);
+    public void setInterviewDateTime(Optional<InterviewDateTime> interviewDateTime) {
+        this.interviewDateTime = interviewDateTime;
     }
 
     /**
@@ -102,28 +131,15 @@ public class Person {
     /**
      * Returns true if the person status can be advanced otherwise false.
      */
-    public boolean advanceStatus() {
-        switch (this.status) {
-        case APPLIED:
-            this.status = Status.SHORTLISTED;
-            return true;
-        case SHORTLISTED:
-            this.status = Status.ACCEPTED;
-            return true;
-        default:
-            return false;
-        }
+    public boolean canAdvance() {
+        return this.status != Status.REJECTED && this.status != Status.ACCEPTED;
     }
 
     /**
      * Returns true if the person status can be rejected otherwise false.
      */
-    public boolean rejectStatus() {
-        if (this.status == status.REJECTED) {
-            return false;
-        } else {
-            return true;
-        }
+    public boolean canReject() {
+        return this.status != Status.REJECTED;
     }
 
     /**
@@ -145,13 +161,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getNotes().equals(getNotes());
+                && otherPerson.getNotes().equals(getNotes())
+                && otherPerson.getStatus().equals(getStatus())
+                && otherPerson.getInterviewDateTime().equals(getInterviewDateTime());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, notes);
+        return Objects.hash(name, phone, email, address, notes, status, interviewDateTime);
     }
 
     @Override
@@ -163,7 +181,11 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Status: ")
+                .append(getStatus())
+                .append("; Interview Date: ")
+                .append(getInterviewDateTime());
 
         Set<Tag> tags = getNotes();
         if (!tags.isEmpty()) {

@@ -8,10 +8,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Person's interview date and time in the address book.
- * Guarantees: interview's date and time are valid
  */
 public class InterviewDateTime {
-    private static LocalDateTime dateTime;
+    public static final String EMPTY_DATE_TIME = "";
+    private final LocalDateTime dateTime;
     public InterviewDateTime(String dateTime) throws ParseException {
         this.dateTime = DateTimeParser.parseDateTime(dateTime);
     }

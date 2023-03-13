@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -129,10 +130,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static InterviewDateTime parseDateTime(String dateTime) throws ParseException {
+    public static Optional<InterviewDateTime> parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
-        InterviewDateTime interviewDateTime = new InterviewDateTime(trimmedDateTime);
-        return interviewDateTime;
+        if (trimmedDateTime.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(new InterviewDateTime(trimmedDateTime));
+        }
     }
 }

@@ -103,7 +103,7 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean advancePerson(Person toAdvance) {
         requireNonNull(toAdvance);
-        return toAdvance.advanceStatus();
+        return toAdvance.canAdvance();
     }
 
     /**
@@ -112,7 +112,7 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean rejectPerson(Person toReject) {
         requireNonNull(toReject);
-        return toReject.rejectStatus();
+        return toReject.canReject();
     }
 
     /**
