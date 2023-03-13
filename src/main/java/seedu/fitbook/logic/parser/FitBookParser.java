@@ -62,6 +62,7 @@ public class FitBookParser {
 
         case ListClientsCommand.COMMAND_WORD:
             return new ListClientsCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

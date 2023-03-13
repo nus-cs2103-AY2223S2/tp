@@ -13,13 +13,13 @@ import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 
 /**
- * Exports the client list into a csv file.
+ * Exports the client details into a csv file.
  */
 public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
     public static final String MESSAGE_SUCCESS = "File has been exported.";
-    public static final String MESSAGE_FAILURE = "File could not be exported. Check if the csv file is opened in the "
+    public static final String MESSAGE_FAILURE = "File could not be exported. Ensure the csv file is not opened in the "
             + "background ";
     public static final String CSV_EXTENSION = ".csv";
     public static final String FILE_NAME = "FitBook";
