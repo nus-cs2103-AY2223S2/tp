@@ -16,7 +16,7 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="105.0" prefWidth="80.0" spacing="5.0">
+        <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="105.0" prefWidth="80.0" spacing="3.0">
             <padding>
                 <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
             </padding>
@@ -29,7 +29,6 @@
                 </Label>
                 <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
             </HBox>
-            <FlowPane fx:id="tags" />
          <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="88.0" spacing="5.0">
             <children>
                <Label fx:id="id111" styleClass="cell_small_label_constants" text="Expiry: ">
@@ -39,7 +38,14 @@
                </Label>
                <Label fx:id="expiryDate" styleClass="cell_small_label" text="\$expiryDate" />
             </children>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <padding>
+               <Insets bottom="5.0" />
+            </padding>
          </HBox>
+            <FlowPane fx:id="tags" />
         </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1">
          <children>
