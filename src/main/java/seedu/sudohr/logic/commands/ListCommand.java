@@ -6,13 +6,13 @@ import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import seedu.sudohr.model.Model;
 
 /**
- * Lists all persons in the sudohr book to the user.
+ * Lists all employees in the SudoHr to the user.
  */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all employees";
 
 
     @Override

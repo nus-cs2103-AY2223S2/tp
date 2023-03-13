@@ -10,7 +10,7 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.sudohr.logic.commands.AddCommand;
-import seedu.sudohr.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.sudohr.logic.commands.EditCommand.EditEmployeeDescriptor;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.tag.Tag;
 
@@ -43,9 +43,9 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditEmployeeDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditEmployeeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getId().ifPresent(id -> sb.append(PREFIX_ID).append(id.value).append(" "));
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));

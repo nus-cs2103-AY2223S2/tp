@@ -4,7 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.sudohr.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.sudohr.logic.commands.EditCommand;
+import seedu.sudohr.logic.commands.EditCommand.EditEmployeeDescriptor;
 import seedu.sudohr.model.employee.Address;
 import seedu.sudohr.model.employee.Email;
 import seedu.sudohr.model.employee.Employee;
@@ -14,25 +15,25 @@ import seedu.sudohr.model.employee.Phone;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditEmployeeDescriptor objects.
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditEmployeeDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditEmployeeDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditEmployeeDescriptor descriptor) {
+        this.descriptor = new EditEmployeeDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditEmployeeDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Employee person) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditEmployeeDescriptor();
         descriptor.setId(person.getId());
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
@@ -42,7 +43,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code id} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code id} of the {@code EditEmployeeDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withId(String id) {
         descriptor.setId(new Id(id));
@@ -50,7 +51,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditEmployeeDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -58,7 +59,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditEmployeeDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -66,7 +67,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditEmployeeDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -74,7 +75,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditEmployeeDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -82,7 +83,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditEmployeeDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
@@ -91,7 +92,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditCommand.EditEmployeeDescriptor build() {
         return descriptor;
     }
 }

@@ -55,18 +55,18 @@ public class EditCommand extends Command {
     // TODO DUPLICATED IDENTITY FIELDS
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditEmployeeDescriptor editEmployeeDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the employee in the filtered employee list to edit
+     * @param editEmployeeDescriptor details to edit the employee with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditEmployeeDescriptor editEmployeeDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editEmployeeDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editEmployeeDescriptor = new EditEmployeeDescriptor(editEmployeeDescriptor);
     }
 
     @Override
@@ -78,31 +78,31 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Employee personToEdit = lastShownList.get(index.getZeroBased());
-        Employee editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Employee employeeToEdit = lastShownList.get(index.getZeroBased());
+        Employee editedEmployee = createEditedEmployee(employeeToEdit, editEmployeeDescriptor);
 
-        if (!personToEdit.isSameEmployee(editedPerson) && model.hasEmployee(editedPerson)) {
+        if (!employeeToEdit.isSameEmployee(editedEmployee) && model.hasEmployee(editedEmployee)) {
             throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
         }
 
-        model.setEmployee(personToEdit, editedPerson);
+        model.setEmployee(employeeToEdit, editedEmployee);
         model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
-        return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee));
     }
 
     /**
-     * Creates and returns a {@code Employee} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Employee} with the details of {@code employeeToEdit}
+     * edited with {@code editEmployeeDescriptor}.
      */
-    private static Employee createEditedPerson(Employee personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Employee createEditedEmployee(Employee employeeToEdit, EditEmployeeDescriptor editEmployeeDescriptor) {
+        assert employeeToEdit != null;
 
-        Id updatedId = editPersonDescriptor.getId().orElse(personToEdit.getId());
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Id updatedId = editEmployeeDescriptor.getId().orElse(employeeToEdit.getId());
+        Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());
+        Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
+        Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
+        Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
+        Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
         return new Employee(updatedId, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -122,14 +122,14 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editEmployeeDescriptor.equals(e.editEmployeeDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the employee with. Each non-empty field value will replace the
+     * corresponding field value of the employee.
      */
-    public static class EditPersonDescriptor {
+    public static class EditEmployeeDescriptor {
         private Id id;
         private Name name;
         private Phone phone;
@@ -137,13 +137,13 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditEmployeeDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditEmployeeDescriptor(EditEmployeeDescriptor toCopy) {
             setId(toCopy.id);
             setName(toCopy.name);
             setPhone(toCopy.phone);
@@ -224,12 +224,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditEmployeeDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditEmployeeDescriptor e = (EditEmployeeDescriptor) other;
 
             return getId().equals(e.getId())
                     && getName().equals(e.getName())
