@@ -20,6 +20,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.util.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditPersonDescriptor;
 import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
@@ -102,6 +103,8 @@ public class CommandTestUtil {
 
     public static final EditVolunteerDescriptor DESC_VOLUNTEER_AMY;
     public static final EditVolunteerDescriptor DESC_VOLUNTEER_BOB;
+    public static final EditPersonDescriptor DESC_PERSON_AMY;
+    public static final EditPersonDescriptor DESC_PERSON_BOB;
 
     static {
         DESC_ELDERLY_AMY = new EditElderlyDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -123,6 +126,9 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
                 .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
+
+        DESC_PERSON_AMY = new EditPersonDescriptor(DESC_ELDERLY_AMY);
+        DESC_PERSON_BOB = new EditPersonDescriptor(DESC_ELDERLY_BOB);
     }
 
     /**

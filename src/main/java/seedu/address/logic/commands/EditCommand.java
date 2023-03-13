@@ -71,7 +71,10 @@ public class EditCommand extends Command {
         requireNonNull(model);
 
         Elderly elderlyToEdit = model.getElderly(nric);
-
+        Volunteer volunteerToEdit = model.getVolunteer(nric);
+        if (volunteerToEdit == null && elderlyToEdit == null) {
+            throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
+        }
         if (elderlyToEdit != null) {
             Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(
                     elderlyToEdit,
@@ -85,11 +88,6 @@ public class EditCommand extends Command {
             model.updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
             return new CommandResult(String.format(
                     EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly));
-        }
-
-        Volunteer volunteerToEdit = model.getVolunteer(nric);
-        if (volunteerToEdit == null) {
-            throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
         }
         Volunteer editedVolunteer = EditVolunteerDescriptor.createEditedVolunteer(
                 volunteerToEdit,
