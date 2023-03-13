@@ -15,7 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.testutil.EditElderlyDescriptorBuilder;
 public class EditElderlyDescriptorTest {
 
