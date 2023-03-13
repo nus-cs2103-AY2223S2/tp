@@ -14,6 +14,7 @@ import seedu.address.model.person.BusinessSize;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Company;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -107,6 +108,19 @@ public class ParserUtil {
             throw new ParseException(BusinessSize.MESSAGE_CONSTRAINTS);
         }
         return new BusinessSize(businessSize);
+    }
+
+    /**
+     * Parses a {@code String Company} into an {@code Company}.
+     *
+     * @throws ParseException if the given {@code Company} is invalid.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        if (!BusinessSize.isValidBusinessSize(company)) {
+            throw new ParseException(BusinessSize.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(company);
     }
 
     /**

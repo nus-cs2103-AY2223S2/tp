@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BusinessSize;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -31,6 +32,8 @@ class JsonAdaptedPerson {
     private final String address;
 
     private final String businessSize;
+
+    private final String company;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -39,12 +42,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("businessSize") String businessSize, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("businessSize") String businessSize, @JsonProperty("company") String company,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.businessSize = businessSize;
+        this.company = company;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,6 +64,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         businessSize = source.getBusinessSize().value;
+        company = source.getCompany().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -116,8 +122,17 @@ class JsonAdaptedPerson {
         }
         final BusinessSize modelBusinessSize = new BusinessSize(businessSize);
 
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    BusinessSize.class.getSimpleName()));
+        }
+        if (!Company.isValidCompany(company)) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
+        }
+        final Company modelCompany = new Company(company);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBusinessSize, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBusinessSize, modelCompany, modelTags);
     }
 
 }
