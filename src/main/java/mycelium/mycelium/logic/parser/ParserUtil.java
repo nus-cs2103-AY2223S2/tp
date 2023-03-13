@@ -164,7 +164,16 @@ public class ParserUtil {
         return trimmedSource;
     }
 
-    // Performs a map operation.
+    /**
+     * Performs a map operation.
+     *
+     * @param src The raw input to pass, which may be an {@code Optional.empty()}
+     * @param f The parsing function to use against the raw input
+     * @param <T> Type of the raw input
+     * @param <U> Type of the parsed result
+     * @return The parsed result, wrapped in an {@code Optional}
+     * @throws ParseException If the parsing function throws it.
+     */
     public static <T, U> Optional<U> parseOptionalWith(Optional<T> src, ParserFn<T, U> f) throws ParseException {
         return src.isPresent() ? Optional.of(f.parse(src.get())) : Optional.empty();
     }

@@ -53,23 +53,17 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         String name = ParserUtil.parseNonEmptyString(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         Email clientEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
 
-
         // The project's status and acceptedOn date take default values.
-        ProjectStatus
-            projectStatus =
-            ParserUtil.parseProjectStatus(argMultimap.getValue(PREFIX_PROJECT_STATUS)
-                .get()); // TODO actually parse this
+        ProjectStatus projectStatus = ProjectStatus.NOT_STARTED; // TODO actually parse this
         Date acceptedOn = new Date(); // TODO parse this shit
 
-        Optional<String>
-            source =
-            ParserUtil.parseOptionalWith(argMultimap.getValue(PREFIX_SOURCE), ParserUtil::parseNonEmptyString);
-        Optional<String>
-            description =
-            ParserUtil.parseOptionalWith(argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION),
-                ParserUtil::parseNonEmptyString);
+        Optional<String> source = ParserUtil.parseOptionalWith(
+            argMultimap.getValue(PREFIX_SOURCE),
+            ParserUtil::parseNonEmptyString);
+        Optional<String> description = ParserUtil.parseOptionalWith(
+            argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION),
+            ParserUtil::parseNonEmptyString);
         Optional<Date> deadline = Optional.empty(); // TODO parse this shit
-
 
         Project project = new Project(name, projectStatus, clientEmail, source, description, acceptedOn, deadline);
 
