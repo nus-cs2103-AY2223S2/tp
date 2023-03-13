@@ -30,7 +30,6 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
-    // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
@@ -80,10 +79,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
-    /**
-     * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
-     */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
 
@@ -110,9 +105,9 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    /**
-     * Fills up all the placeholders of this window.
-     */
+    // /**
+    //  * Fills up all the placeholders of this window.
+    //  */
     // void fillInnerParts() {
     //     personListPanel = new PersonListPanel(logic.getFilteredPersonList());
     //     personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());

@@ -1,15 +1,10 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 /**
@@ -41,7 +36,6 @@ public class TaskCard extends UiPart<Region> {
     private Label personAssigned;
     @FXML
     private Label personRole;
-    
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
