@@ -63,5 +63,34 @@
     "remark" : "",
     "performance": "1",
     "tagged" : [ ]
+  } ],
+  "tutorials" : [ {
+    "name": "Tutorial 1",
+    "date": "05/02/2023",
+    "students": [
+    ],
+    "attachments": [],
+    "notes": []
+  }, {
+    "name": "Tutorial 2",
+    "date": "10/02/2023",
+    "students": [
+    ],
+    "attachments": [],
+    "notes": []
+  }, {
+    "name": "Tutorial 3",
+    "date": "10/02/2023",
+    "students": [
+    ],
+    "attachments": [],
+    "notes": []
+  }, {
+    "name": "Tutorial 4",
+    "date": "10/02/2023",
+    "students": [
+    ],
+    "attachments": [],
+    "notes": []
   } ]
 }

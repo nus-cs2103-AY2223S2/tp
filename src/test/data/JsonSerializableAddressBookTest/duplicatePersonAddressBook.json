@@ -16,5 +16,23 @@
     "address": "4th street",
     "remark" : "",
     "performance": "1"
-  } ]
+  } ],
+  "tutorials": [
+    {
+      "name": "Tutorial 1",
+      "date": "05/02/2023",
+      "students": [
+      ],
+      "attachments": [],
+      "notes": []
+    },
+    {
+      "name": "Tutorial 1",
+      "date": "05/02/2023",
+      "students": [
+      ],
+      "attachments": [],
+      "notes": []
+    }
+  ]
 }

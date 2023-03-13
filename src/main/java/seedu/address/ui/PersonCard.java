@@ -13,7 +13,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -62,11 +62,10 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
 
-        //Retrieve the image url from the person object, but it is slow
+        //Retrieve the image url from the person object, but it is too slow
         /*
         Image studentImage =
                 new Image(person.getPhoto().photoFilePath);
-
         for (int i = 1; i < numberOfStudents; i++) {
             //Set the retrieved image url height and width
             ImageView profile = new ImageView();

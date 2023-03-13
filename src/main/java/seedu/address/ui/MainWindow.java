@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -22,7 +23,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
+import seedu.address.model.event.Tutorial;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,12 +37,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private Scene scene;
 
     // Independent Ui parts residing in this Ui container
     private GreetingBar greetingBar;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private EventListPanel eventListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -56,12 +59,16 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane eventListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
 
-
+    @FXML
+    private StackPane eventDisplayPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -126,8 +133,11 @@ public class MainWindow extends UiPart<Stage> {
         greetingBar = new GreetingBar(logic.getFilteredPersonList());
         greetingBarPlaceholder.getChildren().add(greetingBar.getRoot());
 
-        personListPanel = new PersonListPanel(filterPersonList(logic.getFilteredPersonList()));
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        eventListPanel = new EventListPanel(filterTutorialList(logic.getFilteredTutorialList()));
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -143,27 +153,29 @@ public class MainWindow extends UiPart<Stage> {
      * Filters the observable list into three columns.The first element goes to the left list,
      * the second element goes to the middle list, the third element goes to the right list,
      * the fourth element then goes back to the left list and so on.
-     * @param personList
+     * @param tutorialList
      * @return List of ObservableList
      */
-    List<ObservableList<Person>> filterPersonList(ObservableList<Person> personList) {
+    List<ObservableList<Tutorial>> filterTutorialList(ObservableList<Tutorial> tutorialList) {
         int skip = 3;
         //Store all the filtered lists into a single list
-        List<ObservableList<Person>> filteredList = new ArrayList<>();
+        List<ObservableList<Tutorial>> filteredList = new ArrayList<>();
 
         //If nothing to filter, return empty list
-        if (personList.size() == 0) {
+        if (tutorialList.size() == 0) {
             return filteredList;
         }
 
+        int terminate = Math.min(tutorialList.size(), 3);
+
         //Filter according to which list it belongs
-        for (int j = 0; j < 3; j++) {
-            int size = personList.size() - j;
+        for (int j = 0; j < terminate; j++) {
+            int size = tutorialList.size() - j;
             int limit = size / skip + Math.min(size % skip, 1);
 
-            ObservableList<Person> subList = Stream.iterate(j, i -> i + skip)
+            ObservableList<Tutorial> subList = Stream.iterate(j, i -> i + skip)
                     .limit(limit)
-                    .map(personList::get)
+                    .map(tutorialList::get)
                     .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
             filteredList.add(subList);
