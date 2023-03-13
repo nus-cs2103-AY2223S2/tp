@@ -82,6 +82,14 @@ public class AddressBookTest {
     public void getClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getClientList().remove(0));
     }
+    @Test
+    void testHashCode() {
+        AddressBook addressBook1 = new AddressBook();
+        addressBook1.addClient(ALICE);
+        AddressBook addressBook2 = new AddressBook();
+        addressBook2.addClient(ALICE);
+        assertEquals(addressBook1.hashCode(), addressBook2.hashCode());
+    }
 
     /**
      * A stub ReadOnlyAddressBook whose clients list can violate interface constraints.
