@@ -18,11 +18,15 @@ import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.component.CalendarComponent;
 import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.component.VToDo;
+import net.fortuna.ical4j.model.property.DateProperty;
 import net.fortuna.ical4j.model.property.Status;
 import seedu.calidr.model.task.Event;
-import seedu.calidr.model.task.Priority;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.ToDo;
+import seedu.calidr.model.task.params.EventDateTimes;
+import seedu.calidr.model.task.params.Priority;
+import seedu.calidr.model.task.params.Title;
+import seedu.calidr.model.task.params.TodoDateTime;
 import seedu.calidr.model.tasklist.TaskList;
 
 /**
@@ -68,14 +72,14 @@ public class CalendarStorage {
             var vevent = new VEvent(
                 event.getFrom(),
                 event.getTo(),
-                event.getDescription());
+                event.getTitle());
             return vevent;
         } else if (t instanceof ToDo) {
             var todo = (ToDo) t;
 
-            var vtodo = new VToDo(todo.getBy(), todo.getDescription());
+            var vtodo = new VToDo(todo.getBy(), todo.getTitle());
 
-            vtodo.add(new net.fortuna.ical4j.model.property.Priority(appToIcsPriority(todo.getPriority())));
+            vtodo.add(new net.fortuna.ical4j.model.property.Priority(convertPriority(todo.getPriority())));
 
             if (todo.isDone()) {
                 vtodo.add(new Status(Status.VALUE_COMPLETED));
@@ -88,58 +92,76 @@ public class CalendarStorage {
     private Optional<Task> componentToTask(CalendarComponent component) {
         if (component instanceof VEvent) {
             var vevent = (VEvent) component;
-            var dtend = vevent.getEndDate();
-            var dtstart = vevent.getStartDate();
+            var dtend = vevent.getEndDate().map(this::convertDateField);
+            var dtstart = vevent.getStartDate().map(this::convertDateField);
             var summary = vevent.getSummary();
+            var priority = vevent.getPriority().map(this::convertPriorityField);
 
-            return
+            var event =
                 dtend.flatMap(dtEnd ->
                 dtstart.flatMap(dtStart ->
-                summary.map(value -> new Event(
-                    value.getValue(),
-                    LocalDateTime.from(dtStart.getDate()),
-                    LocalDateTime.from(dtEnd.getDate()))
+                summary.map(summ -> new Event(
+                    new Title(summ.getValue()),
+                    new EventDateTimes(
+                        LocalDateTime.from(dtStart),
+                        LocalDateTime.from(dtEnd)
+                    ))
                 )));
+
+            event.ifPresent(e ->
+                e.setPriority(priority.orElse(Priority.MEDIUM))
+            );
+
+            return event.map(id -> id);
         } else if (component instanceof VToDo) {
             var vtodo = (VToDo) component;
             var summary = vtodo.getSummary();
             var isDone = vtodo.getStatus();
-            var priority = vtodo.getPriority();
-            var by = vtodo.getStartDate();
+            var priority = vtodo.getPriority().map(this::convertPriorityField);
+            var by = vtodo.getStartDate().map(this::convertDateField);
 
-            if (!summary.isPresent() || !by.isPresent()) {
-                return Optional.empty();
-            }
+            var todo =
+                by.flatMap(byd ->
+                summary.map(summ -> new ToDo(
+                    new Title(summ.getValue()),
+                    new TodoDateTime(byd))
+                ));
 
-            var todo = new ToDo(
-                summary.get().getValue(),
-                LocalDateTime.from(by.get().getDate())
+            todo.ifPresent(t ->
+                t.setDone(isDone
+                    .filter(c -> Status.VALUE_COMPLETED.equals(c.getValue()))
+                    .isPresent())
             );
-            todo.setDone(isDone
-                .filter(
-                    c -> Status.VALUE_COMPLETED.equals(c.getValue()))
-                .isPresent());
-            priority.flatMap(p -> icsToAppPriority(p.getLevel()))
-                .ifPresent(todo::setPriority);
-            return Optional.of(todo);
+
+            todo.ifPresent(e ->
+                e.setPriority(priority.orElse(Priority.MEDIUM))
+            );
+
+
+            return todo.map(id -> id);
         }
         return Optional.empty();
     }
 
-    private Optional<Priority> icsToAppPriority(int prio) {
+    private LocalDateTime convertDateField(DateProperty<?> field) {
+        return LocalDateTime.from(field.getDate());
+    }
+
+    private Priority convertPriorityField(net.fortuna.ical4j.model.property.Priority priority) {
+        int prio = priority.getLevel();
         switch (prio) {
         case VALUE_HIGH:
-            return Optional.of(Priority.HIGH);
+            return Priority.HIGH;
         case VALUE_MEDIUM:
-            return Optional.of(Priority.MEDIUM);
+            return Priority.MEDIUM;
         case VALUE_LOW:
-            return Optional.of(Priority.LOW);
+            return Priority.LOW;
         default:
-            return Optional.empty();
+            return Priority.MEDIUM;
         }
     }
 
-    private int appToIcsPriority(Priority prio) {
+    private int convertPriority(Priority prio) {
         switch (prio) {
         case HIGH:
             return VALUE_HIGH;
