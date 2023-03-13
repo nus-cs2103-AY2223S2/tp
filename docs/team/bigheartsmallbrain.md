@@ -1,5 +1,5 @@
 ---
-layout:
+layout: page
 title: Zhang Yuquan's Project Portfolio Page
 ---
 
