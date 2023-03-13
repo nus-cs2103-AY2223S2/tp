@@ -20,8 +20,8 @@ import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.NameContainsKeywordsPredicate;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
 import seedu.sudohr.testutil.EditDepartmentDescriptorBuilder;
 import seedu.sudohr.testutil.EditPersonDescriptorBuilder;
 
@@ -67,8 +67,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditEmployeeDescriptor DESC_AMY;
+    public static final EditCommand.EditEmployeeDescriptor DESC_BOB;
 
     public static final String VALID_DEPARTMENT_NAME_HUMAN_RESOURCES = "Human Resources";
     public static final String VALID_DEPARTMENT_NAME_ENGINEERING = "Engineering";
@@ -135,24 +135,24 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         SudoHr expectedSudoHr = new SudoHr(actualModel.getSudoHr());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Employee> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEmployeeList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedSudoHr, actualModel.getSudoHr());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredEmployeeList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s sudohr book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEmployeeList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Employee person = model.getFilteredEmployeeList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredEmployeeList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredEmployeeList().size());
     }
 
 }

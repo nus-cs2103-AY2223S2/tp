@@ -17,8 +17,8 @@ public class JsonAdaptedDepartmentTest {
     private static final String INVALID_DEPARTMENT_NAME = "@Engineering";
 
     private static final String VALID_NAME = ENGINEERING.getName().toString();
-    private static final List<JsonAdaptedPerson> VALID_EMPLOYEES = ENGINEERING.getEmployees().stream()
-            .map(JsonAdaptedPerson::new)
+    private static final List<JsonAdaptedEmployee> VALID_EMPLOYEES = ENGINEERING.getEmployees().stream()
+            .map(JsonAdaptedEmployee::new)
             .collect(Collectors.toList());
 
     @Test

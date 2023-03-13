@@ -16,10 +16,10 @@ import java.util.List;
 
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Employee} objects to be used in tests.
  */
 public class TypicalDepartments {
 
@@ -39,8 +39,8 @@ public class TypicalDepartments {
      */
     public static SudoHr getTypicalSudoHr() {
         SudoHr sh = new SudoHr();
-        for (Person person : TypicalPersons.getTypicalPersons()) {
-            sh.addPerson(person);
+        for (Employee person : TypicalPersons.getTypicalPersons()) {
+            sh.addEmployee(person);
         }
 
         for (Department department : getTypicalDepartments()) {

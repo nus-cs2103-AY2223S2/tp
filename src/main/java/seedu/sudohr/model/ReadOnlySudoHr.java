@@ -2,7 +2,7 @@ package seedu.sudohr.model;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * Unmodifiable view of an sudohr book
@@ -10,10 +10,10 @@ import seedu.sudohr.model.person.Person;
 public interface ReadOnlySudoHr {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the employee list.
+     * This list will not contain any duplicate employees.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Employee> getEmployeeList();
 
     /**
      * Returns an unmodifiable view of the departments list.

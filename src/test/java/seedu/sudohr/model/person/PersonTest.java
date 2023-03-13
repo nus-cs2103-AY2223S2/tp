@@ -15,49 +15,50 @@ import static seedu.sudohr.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.testutil.PersonBuilder;
 
 public class PersonTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
+        Employee person = new PersonBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
     }
 
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameEmployee(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameEmployee(null));
 
         // same id, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB)
+        Employee editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameEmployee(editedAlice));
 
         // different id, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameEmployee(editedAlice));
 
         // id has preceding 0s, all other attributes same -> returns true
         String idWithPrecedingZeroes = "00" + VALID_ID_BOB;
-        Person editedBob = new PersonBuilder(BOB).withId(idWithPrecedingZeroes).build();
-        assertTrue(BOB.isSamePerson(editedBob));
+        Employee editedBob = new PersonBuilder(BOB).withId(idWithPrecedingZeroes).build();
+        assertTrue(BOB.isSameEmployee(editedBob));
 
         // id has trailing 0s, all other attributes same -> returns false
         String idWithTrailingZeroes = VALID_ID_BOB + "00";
         editedBob = new PersonBuilder(BOB).withId(idWithTrailingZeroes).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertFalse(BOB.isSameEmployee(editedBob));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Employee aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -73,7 +74,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(BOB));
 
         // different id -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different name -> returns false
@@ -100,7 +101,7 @@ public class PersonTest {
     @Test
     public void clashes() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Employee aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.clashes(aliceCopy));
 
         // same object -> returns true
@@ -113,7 +114,7 @@ public class PersonTest {
         assertFalse(ALICE.clashes(BOB));
 
         // only same id -> returns true
-        Person editedBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        Employee editedBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertTrue(BOB.clashes(editedBob));
 
         // only same email -> returns true

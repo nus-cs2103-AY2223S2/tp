@@ -1,4 +1,4 @@
-package seedu.sudohr.model.person;
+package seedu.sudohr.model.employee;
 
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,10 +10,10 @@ import java.util.Set;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * Represents a Person in the sudohr book.
+ * Represents a Employee in the sudohr book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Employee {
 
     // Identity fields
     private final Id id;
@@ -28,7 +28,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Id id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Employee(Id id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(id, name, phone, email, address, tags);
         this.id = id;
         this.name = name;
@@ -67,20 +67,20 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same id.
+     * Returns true if both employees have the same id.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameEmployee(Employee otherEmployee) {
+        if (otherEmployee == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getId().equals(getId());
+        return otherEmployee != null
+                && otherEmployee.getId().equals(getId());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both employees have the same identity and data fields.
+     * This defines a stronger notion of equality between two employees.
      */
     @Override
     public boolean equals(Object other) {
@@ -88,17 +88,17 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Employee)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getId().equals(getId())
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Employee otherEmployee = (Employee) other;
+        return otherEmployee.getId().equals(getId())
+                && otherEmployee.getName().equals(getName())
+                && otherEmployee.getPhone().equals(getPhone())
+                && otherEmployee.getEmail().equals(getEmail())
+                && otherEmployee.getAddress().equals(getAddress())
+                && otherEmployee.getTags().equals(getTags());
     }
 
     /**
@@ -106,18 +106,18 @@ public class Person {
      * email, phone, id. Name is excluded since several people can share the same names.
      * This warns the HR personnel of a possible human error in tagging of data.
      */
-    public boolean clashes(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean clashes(Employee otherEmployee) {
+        if (otherEmployee == this) {
             return true;
         }
 
-        if (!(otherPerson instanceof Person)) {
+        if (!(otherEmployee instanceof Employee)) {
             return false;
         }
 
-        return otherPerson.getId().equals(getId())
-                || otherPerson.getPhone().equals(getPhone())
-                || otherPerson.getEmail().equals(getEmail());
+        return otherEmployee.getId().equals(getId())
+                || otherEmployee.getPhone().equals(getPhone())
+                || otherEmployee.getEmail().equals(getEmail());
     }
 
     @Override
