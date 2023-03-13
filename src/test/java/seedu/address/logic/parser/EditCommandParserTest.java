@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EVENT_SET_DESC_CARNIVAL;
 import static seedu.address.logic.commands.CommandTestUtil.EVENT_SET_DESC_SPORTS_DAY;
+import static seedu.address.logic.commands.CommandTestUtil.EVENT_SET_DESC_WEDDING_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_SET_DESC;
@@ -27,6 +28,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_NO_EVENT;
 import static seedu.address.testutil.TypicalIndexSets.INDEX_SET_SECOND_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -161,10 +163,19 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor, Optional.empty());
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // event sets
+        // event set
         userInput = targetIndex.getOneBased() + EVENT_SET_DESC_CARNIVAL;
         descriptor = new EditPersonDescriptorBuilder().withEventSet().build();
         expectedCommand = new EditCommand(targetIndex, descriptor, Optional.of(INDEX_SET_SECOND_EVENT));
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // multiple events in event set
+        userInput = targetIndex.getOneBased() + EVENT_SET_DESC_CARNIVAL + EVENT_SET_DESC_WEDDING_DINNER;
+        descriptor = new EditPersonDescriptorBuilder().withEventSet().build();
+        Set<Index> indexSet = new HashSet<>();
+        indexSet.add(INDEX_SECOND_EVENT);
+        indexSet.add(INDEX_FIRST_EVENT);
+        expectedCommand = new EditCommand(targetIndex, descriptor, Optional.of(indexSet));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
