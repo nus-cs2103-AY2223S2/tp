@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.score.Score;
 
 /**
  * An UI component that displays information of a {@code Score}.
@@ -21,7 +21,7 @@ public class ScoreCard extends UiPart<Region> {
      *      AddressBook level 4</a>
      */
 
-    public final Person score;
+    public final Score score;
 
     @FXML
     private HBox cardPane;
@@ -37,12 +37,13 @@ public class ScoreCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Task} and index to display.
      */
-    public ScoreCard(Person score, int displayedIndex) {
+    public ScoreCard(Score score, int displayedIndex) {
         super(FXML);
         this.score = score;
         id.setText(displayedIndex + ". ");
-        title.setText(score.getName().fullName + ": ");
-        scoreValue.setText(score.getPhone().value.substring(0, 2));
+        title.setText(score.scoreLabel + ": ");
+        scoreValue.setText(score.scoreValue.toString() + " ");
+        date.setText(score.scoreDate.toString());
     }
 
     @Override
