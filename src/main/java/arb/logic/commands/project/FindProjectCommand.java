@@ -32,7 +32,6 @@ public class FindProjectCommand extends Command {
     public CommandResult execute(Model model, ListType currentListBeingShown) {
         requireNonNull(model);
         model.updateFilteredProjectList(predicate);
-        //model.updateSortedProjctList(); //will update once sorting is merged
         return new CommandResult(
                 String.format(Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW, model.getFilteredProjectList().size()),
                 ListType.PROJECT);
