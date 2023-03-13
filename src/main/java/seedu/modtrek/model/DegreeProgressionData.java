@@ -20,7 +20,8 @@ public class DegreeProgressionData {
             "IT_PROFESSIONALISM", 12,
             "MATHEMATICS_AND_SCIENCES", 16,
             "UNRESTRICTED_ELECTIVES", 40);
-    private int currentCredit = 0;
+    private int completedCredit = 0;
+    private int plannedCredit = 0; // Includes Incomplete Modules
     private HashMap<String, Integer> completedRequirementCredits = new HashMap<>();
     private float cumulativePoints = 0;
     private float gpa;
@@ -43,34 +44,40 @@ public class DegreeProgressionData {
         return data;
     }
 
-    public int getCurrentCredit() {
-        return currentCredit;
+    public int getCompletedCredit() {
+        return completedCredit;
+    }
+
+    public int getPlannedCredit() {
+        return plannedCredit;
     }
 
     public Map<String, Integer> getCompletedRequirementCredits() {
         return completedRequirementCredits;
     }
 
-    public float getGpa() {
-        return gpa;
+    public double getGpa() {
+        // Rounded to 2 dp
+        return (double) Math.round(gpa * 100) / 100;
     }
 
     private void computeModule(Module module) {
+        int credit = Integer.valueOf(module.getCredit().toString());
         if (module.isComplete()) {
-            int credit = Integer.valueOf(module.getCredit().toString());
             module.getTags().forEach((tag) -> {
                 completedRequirementCredits.merge(tag.toString(),
                         credit, (oldValue, newValue) -> {
                             return oldValue + newValue;
                         });
             });
-            currentCredit += credit;
+            completedCredit += credit;
             cumulativePoints += credit * module.getGrade().toPoints();
         }
+        plannedCredit += credit;
     }
 
     private void computeGpa() {
-        this.gpa = cumulativePoints / currentCredit;
+        this.gpa = cumulativePoints / completedCredit;
     }
 
 }
