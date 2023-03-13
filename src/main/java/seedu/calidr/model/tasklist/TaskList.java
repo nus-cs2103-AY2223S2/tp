@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.calidr.exception.CalidrException;
 import seedu.calidr.exception.CalidrInvalidArgumentException;
-import seedu.calidr.model.ReadOnlyAddressBook;
 import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.task.Priority;
 import seedu.calidr.model.task.Task;
@@ -102,6 +101,15 @@ public class TaskList implements ReadOnlyTaskList {
     }
 
     /**
+     * Adds a given Task to the list of Tasks.
+     *
+     * @param task     The Task to be added to the list of Tasks.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    /**
      * Deletes a Task from the list of Tasks.
      *
      * @param taskNumber The number to indicate which Task is to be deleted.
@@ -182,10 +190,34 @@ public class TaskList implements ReadOnlyTaskList {
         return observableList(tasks);
     }
 
+    /**
+     * Resets the existing data of this {@code TaskList} with {@code newData}.
+     * @param newData The new data to update the task list.
+     */
     public void resetData(ReadOnlyTaskList newData) {
         requireNonNull(newData);
 
-        this.tasks = newData.getTaskList();
+        tasks = newData.getTaskList();
     }
 
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
+     * @param task The task to check.
+     * @return true if task already exists in the task list and false otherwise.
+     */
+    public boolean hasTask(Task task) {
+        // stub
+        return false;
+    }
+
+
+    public void removeTask(Task target) {
+        tasks.remove(target);
+    }
+
+    public void setTask(Task target, Task editedTask) {
+        // stub
+        tasks.remove(target);
+        tasks.add(editedTask);
+    }
 }
