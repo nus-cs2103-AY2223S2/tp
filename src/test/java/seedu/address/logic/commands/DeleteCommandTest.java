@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -9,7 +10,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -91,23 +91,38 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validFilteredList_throwsCommandException() {
-        List<Person> personsToDelete = model.getFilteredPersonList();
-        assertTrue(personsToDelete.size() > 1);
-    }
-
-    @Test
-    public void execute_invalidNameListSizeOne_throwsCommandException() {
-        Person person = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Collections.singletonList("Alice")));
-        assertEquals(1, model.getFilteredPersonList().size());
+    public void execute_invalidName_throwsCommandException() {
 
         NameContainsKeywordsPredicate predicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("Testname"));
-        String invalidName = "Testname";
-        model.updateFilteredPersonList(predicate);
-        DeleteCommand deleteCommand = new DeleteCommand(predicate, invalidName);
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Collections.singletonList("Testname")));
+        DeleteCommand deleteCommand = new DeleteCommand(predicate, "Testname");
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_NAME);
+    }
+
+    @Test
+    public void execute_multipleName_throwsCommandException() {
+        NameContainsKeywordsPredicate predicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("John"));
+        model.updateFilteredPersonList(predicate);
+        DeleteCommand deleteCommand = new DeleteCommand(predicate, "John");
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_NAME);
+    }
+
+    @Test
+    public void execute_multipleNameSuccess_throwCommandException() {
+        Person personToDelete = model.getFilteredPersonList().get(9);
+        NameContainsKeywordsPredicate predicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("John"));
+        model.updateFilteredPersonList(predicate);
+        DeleteCommand deleteCommand = new DeleteCommand(predicate, "John Sena");
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                personToDelete.getName().toString());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
 

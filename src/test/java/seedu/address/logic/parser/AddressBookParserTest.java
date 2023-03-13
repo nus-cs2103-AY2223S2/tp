@@ -57,7 +57,7 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + "Alice");
+                DeleteCommand.COMMAND_WORD + " " + " n/Alice");
 
         NameContainsKeywordsPredicate predicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));

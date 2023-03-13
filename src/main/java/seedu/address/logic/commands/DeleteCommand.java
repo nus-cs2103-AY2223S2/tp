@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
@@ -21,16 +22,18 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by their name in the displayed person list.\n"
-            + "Parameters: NAME\n"
-            + "Example: " + COMMAND_WORD + " John Doe";
+            + "Parameters: "
+            + PREFIX_NAME + "NAME\n"
+            + "Example: " + COMMAND_WORD + " n/John Doe";
 
     private final NameContainsKeywordsPredicate predicate;
 
 
     /**
-     *  Constructor for DeleteCommand
+     * Constructor for DeleteCommand
+     *
      * @param predicate name after the deleteCommand
-     * @param name person name
+     * @param name      person name
      */
     public DeleteCommand(NameContainsKeywordsPredicate predicate, String name) {
         requireNonNull(predicate);
@@ -46,14 +49,12 @@ public class DeleteCommand extends Command {
 
         if (personsToDelete.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_NAME);
-        } else if (personsToDelete.size() == 1) {
-            if (personsToDelete.get(0).getName().toString().equals(name.trim())) {
-                Person deletedPerson = personsToDelete.get(0);
-                model.deletePerson(deletedPerson);
-                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, name));
-            } else {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_NAME);
-            }
+        } else if (personsToDelete.size() == 1 && personsToDelete.get(0).getName().toString().equals(name.trim())) {
+
+            Person deletedPerson = personsToDelete.get(0);
+            model.deletePerson(deletedPerson);
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, name));
+
         } else {
             int index = 0;
             for (int i = 0; i < personsToDelete.size(); i++) {
@@ -71,7 +72,6 @@ public class DeleteCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_NAME);
             }
         }
-
     }
 
     @Override

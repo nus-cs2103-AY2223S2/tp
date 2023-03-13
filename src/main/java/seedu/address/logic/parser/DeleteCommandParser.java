@@ -1,11 +1,18 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -13,9 +20,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  */
 public class DeleteCommandParser implements Parser<DeleteCommand> {
 
-    //@@author chatGPT-reused
-    // Reused from chatGPT
-    // with minor modifications
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
@@ -23,37 +28,39 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            //System.out.println(args);
 
             if (args.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
 
-            String[] nameKeywords = args.trim().split("\\s+");
+            ArgumentMultimap argMultimap =
+                    ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
+                            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-            if (nameKeywords.length == 0) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                    || !argMultimap.getPreamble().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
 
-            for (String keyword : nameKeywords) {
-                if (!isAlphabet(keyword)) {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-                }
-            }
+            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
-            return new DeleteCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)), args.trim());
+            //@@author chatGPT-reused
+            // Reused from chatGPT
+            // with minor modifications
+            String[] nameKeywords = name.toString().trim().split("\\s+");
+
+            return new DeleteCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
+                    name.toString().trim());
         } catch (ParseException pe) {
             throw pe;
-
-        } catch (Exception e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), e);
         }
+
     }
-    private boolean isAlphabet(String name) {
-        return name.chars().allMatch(Character::isLetter);
+
+
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

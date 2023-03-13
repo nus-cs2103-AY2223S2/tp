@@ -25,14 +25,19 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
+    public void parse_emptyArgs_throwsParseException() {
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+    @Test
     public void parse_validArgs_returnsDeleteCommand() {
         NameContainsKeywordsPredicate predicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertParseSuccess(parser, "Alice", new DeleteCommand(predicate, "Alice"));
+        assertParseSuccess(parser, " n/Alice", new DeleteCommand(predicate, "Alice"));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "1", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
+
 }
