@@ -17,31 +17,43 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final Gender gender;
     private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Address address;
     private final Company company;
+    private final Industry industry;
+    private final Occupation occupation;
+    private final JobTitle jobTitle;
     private final Set<Tag> tags = new HashSet<>();
 
     private final Remark remark;
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Company company, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags, remark);
+    public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
+                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags, remark);
         this.name = name;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.company = company;
+        this.industry = industry;
+        this.occupation = occupation;
+        this.jobTitle = jobTitle;
         this.tags.addAll(tags);
         this.remark = remark;
     }
 
     public Name getName() {
         return name;
+    }
+    public Gender getGender() {
+        return gender;
     }
 
     public Phone getPhone() {
@@ -54,6 +66,15 @@ public class Person {
 
     public Company getCompany() {
         return company;
+    }
+    public Industry getIndustry() {
+        return industry;
+    }
+    public Occupation getOccupation() {
+        return occupation;
+    }
+    public JobTitle getJobTitle() {
+        return jobTitle;
     }
 
     public Address getAddress() {
@@ -102,8 +123,12 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getGender().equals(getGender())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getCompany().equals(getCompany())
+                && otherPerson.getIndustry().equals(getIndustry())
+                && otherPerson.getOccupation().equals(getOccupation())
+                && otherPerson.getJobTitle().equals(getJobTitle())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -111,7 +136,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, company, address, tags);
+        return Objects.hash(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags);
     }
 
     @Override
@@ -120,10 +145,18 @@ public class Person {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
+                .append("; Gender: ")
+                .append(getGender())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Company: ")
                 .append(getCompany())
+                .append("; Industry: ")
+                .append(getIndustry())
+                .append("; Occupation: ")
+                .append(getOccupation())
+                .append("; Job Title: ")
+                .append(getJobTitle())
                 .append("; Address: ")
                 .append(getAddress())
                 .append(" Remark: ")
