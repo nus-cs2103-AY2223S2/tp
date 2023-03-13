@@ -82,6 +82,24 @@ Examples:
 *  `edit 1 c/Goggle e/johndoe@example.com` Edits the company and email address of the 1st opening to be `Goggle` and `johndoe@example.com` respectively.
 *  `edit 2 c/Shopee d/` Edits the company of the 2nd opening to be `Shopee` and clears all existing `KEYDATE`.
 
+### Locating openings by name: `find`
+
+Finds openings whose NAME_OF_COMPANY contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `google` will match `Google`
+* The order of the keywords does not matter. e.g. `Goldman Sachs` will match `Sachs Goldman`
+* Only the name is searched.
+* Only full words will be matched e.g. `Amaz` will not match `Amazon`
+* Openings with NAME_OF_COMPANY matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `google amazon meta` will return `Google`, `Meta`, `Amazon Web Services`
+
+Examples:
+* `find Google` returns `google` and `Google Cloud`
+* `find bank america` returns `Bank of America`, `Bank of Singapore`<br>
+  <!--![result for 'find alex david'](images/findAlexDavidResult.png)-->
+
 ### Deleting an opening : `delete`
 
 Deletes an opening from the list.
