@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.InternshipApplication;
 import seedu.address.ui.ConfirmationDialog;
 
 /**
@@ -46,7 +46,7 @@ public class DeleteCommand extends Command {
      * Deletes {@code internshipToDelete} from the {@code model} data and returns result message with respect to
      * the user's action to {@code confirm}.
      */
-    public CommandResult getResultString(Model model, boolean confirm, Person internshipToDelete) {
+    public CommandResult getResultString(Model model, boolean confirm, InternshipApplication internshipToDelete) {
         if (confirm) {
             model.deleteInternship(internshipToDelete);
             resultMessage = new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, internshipToDelete));
@@ -59,16 +59,16 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<InternshipApplication> lastShownList = model.getFilteredInternshipList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
         }
 
-        Person internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
+        InternshipApplication internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         ConfirmationDialog confirmationDialog = new ConfirmationDialog((
-                String.format(MESSAGE_DELETE_CONFIRMATION, internshipToDelete.getName())));
+                String.format(MESSAGE_DELETE_CONFIRMATION, internshipToDelete.getCompanyName())));
 
         return getResultString(model, confirmationDialog.getConfirmationStatus(), internshipToDelete);
     }

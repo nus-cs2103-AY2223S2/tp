@@ -18,6 +18,7 @@ public class InternshipApplication {
     // Identity fields
     private final CompanyName companyName;
     private final JobTitle jobTitle;
+    private final Status status = null;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -48,6 +49,9 @@ public class InternshipApplication {
     }
     public JobTitle getJobTitle() {
         return jobTitle;
+    }
+    public Status getStatus() {
+        return status;
     }
 
     /**

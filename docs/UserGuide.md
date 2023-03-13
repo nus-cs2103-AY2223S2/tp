@@ -143,6 +143,20 @@ Format: `delete INDEX`
 Examples:
 * `delete 2` Deletes the 2nd internship application in the list of applications.
 
+### Clearing entries with keyword: `clear_by`
+
+Clear all relevant entries from the internship tracker with specific keyword
+
+Format: `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
+
+* Clears all application with the specified keyword - COMPANY_NAME, JOB_TITLE or STATUS.
+* Three types of clear_by features are provided, but can only execute independently.
+
+Examples:
+* `clear_by n/Meta` Clears all application with COMPANY_NAME as Meta.
+* `clear_by j/Software engineer` Clears all application with JOB_TITLE as Software Engineer.
+* `clear_by s/REJECTED` Clears all rejected application (with STATUS as REJECTED).
+
 ### Search for an application : `find`
 Searches the list of internships applied by keyword (status, role, company)
 
@@ -181,6 +195,7 @@ Action | Format, Examples
 --------|------------------
 **Add Contact** | `add_contact INDEX p/PHONE NUMBER e/EMAIL` <br> e.g., `add_contact INDEX p/87654321 e/abc@gmail.com`
 **Clear**  | `clear`                             
+**Clear_by**  | `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`                              
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
 **Exit**   | `exit` 

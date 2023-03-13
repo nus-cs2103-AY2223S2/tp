@@ -389,8 +389,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to clear all the data in the application.
-2.  InternEase clears all the internship application entries, shows an empty list of internship application data and displays a success message.
+1. User requests to clear all the data in the application.
+2. InternEase clears all the internship application entries, shows an empty list of internship application data and displays a success message.
 
     Use case ends.
 
@@ -449,6 +449,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC11 Clear relevant internship application entries by keyword**
+
+**MSS**
+
+1. User requests to view the list of internship applications.
+2. InternEase shows the internship application list with their attributes specified.
+3. User requests to clear all the relevant entries with specific keyword and its attribute.
+4. InternEase requests confirmation from user.
+5. InternEase updates the application status of the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 2a. The provided attribute is invalid.
+    * 2a1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 2a2. User enters a new command.
+
+      Steps 2a1 to 2a2 are repeated until a valid attribute is provided. Use case resumes at step 4.
 
 ### Non-Functional Requirements
 
