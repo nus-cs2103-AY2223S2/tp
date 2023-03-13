@@ -17,7 +17,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditElderlyCommand;
 import seedu.address.logic.commands.util.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Nric;
@@ -26,7 +25,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments for editing.
  */
-public abstract class EditCommandParser implements Parser <EditCommand> {
+public class EditCommandParser implements Parser <EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -39,12 +38,11 @@ public abstract class EditCommandParser implements Parser <EditCommand> {
                         PREFIX_NRIC_ELDERLY, PREFIX_AGE, PREFIX_TAG);
 
         Nric nric;
-
         try {
             nric = ParserUtil.parseNric(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditElderlyCommand.MESSAGE_USAGE), pe);
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -63,10 +61,6 @@ public abstract class EditCommandParser implements Parser <EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(
                     ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-        if (argMultimap.getValue(PREFIX_NRIC_ELDERLY).isPresent()) {
-            editPersonDescriptor.setNric(
-                    ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_ELDERLY).get()));
         }
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
             editPersonDescriptor.setAge(

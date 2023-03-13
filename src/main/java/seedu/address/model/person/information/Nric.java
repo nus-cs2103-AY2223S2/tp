@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Nric {
     public static final String MESSAGE_CONSTRAINTS =
             "NRIC should follow the valid format, and should be 9 characters long";
-    public static final String VALIDATION_REGEX = "^[STFG]\\d{7}[A-Z]$";
+    public static final String VALIDATION_REGEX = "^[STFGstfg]\\d{7}[A-Za-z]$";
     public final String value;
 
     /**
@@ -21,7 +21,7 @@ public class Nric {
     public Nric(String nric) {
         requireNonNull(nric);
         checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);
-        value = nric;
+        value = nric.toUpperCase();
     }
 
     /**

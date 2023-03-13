@@ -13,9 +13,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.logic.commands.util.EditPersonDescriptor;
-import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -27,7 +25,7 @@ import seedu.address.model.person.information.Nric;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit_elderly";
+    public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the elderly/volunteer identified "
             + "by the NRIC of the elderly/volunteer. "
@@ -67,12 +65,13 @@ public class EditCommand extends Command {
         }
 
         requireNonNull(model);
+
         Elderly elderlyToEdit = model.getElderly(nric);
 
         if (elderlyToEdit != null) {
-            Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(
+            Elderly editedElderly = EditPersonDescriptor.createEditedElderly(
                     elderlyToEdit,
-                    (EditElderlyDescriptor) editPersonDescriptor
+                    editPersonDescriptor
             );
             if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
                 throw new CommandException(Messages.MESSAGE_DUPLICATE_ELDERLY);
@@ -88,9 +87,9 @@ public class EditCommand extends Command {
         if (volunteerToEdit == null) {
             throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
         }
-        Volunteer editedVolunteer = EditVolunteerDescriptor.createEditedVolunteer(
+        Volunteer editedVolunteer = EditPersonDescriptor.createEditedVolunteer(
                 volunteerToEdit,
-                (EditVolunteerDescriptor) editPersonDescriptor
+                editPersonDescriptor
         );
         if (!volunteerToEdit.isSamePerson(editedVolunteer) && model.hasVolunteer(editedVolunteer)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_VOLUNTEER);
