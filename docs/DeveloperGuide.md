@@ -59,7 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -259,7 +259,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * NUS undergraduate students from the School of Computing 
 * Tech-savvy and able to type fast
 * Comfortable using CLI apps
-* Has to manage a large number of different expense types
+* Has to manage a large number of different general consumption and professional recurring expenses 
 
 **Value proposition**:
 * Easy-to-use and allows students to log their daily expenses quickly and efficiently via a CLI
@@ -277,7 +277,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS Computing Student | Delete an expense category                                            | Remove categories that I no longer need                                       |
 | `* * *`  | NUS Computing Student | List all categories                                                   | See all my categories at a glance                                             |
 | `* * *`  | NUS Computing Student | Log an expense in a single command                                    | Keep track of expenses in the system                                          |
-| `* * *`  | NUS Computing Student | List all expenses in total                                            | See all my expenses at a glance                                               |
+| `* * *`  | NUS Computing Student | List all expenses in total                                            | Get an overview of my expenses                                                |
 | `* * *`  | NUS Computing Student | List all expenses by category                                         | Analyse my expenses in each category                                          |
 | `* * *`  | NUS Computing Student | Delete an expense                                                     | Remove expenses which I have keyed in incorrectly                             |
 | `* * *`  | NUS Computing Student | See a summary of my expenses                                          | Analyse and correct my spending habits                                        |
@@ -435,7 +435,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1b. The given cateogry is invalid.
+* 1b. The given category is invalid.
 
     * 1b1. FastTrack displays an error message.
 
