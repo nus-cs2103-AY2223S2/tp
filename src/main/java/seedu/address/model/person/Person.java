@@ -33,11 +33,10 @@ public class Person {
     private final IsolatedEventList isolatedEventList = new IsolatedEventList();
     private final RecurringEventList recurringEventList = new RecurringEventList();
     private Set<Group> groups = new HashSet<>();
-
-
     /**
      * Every field must be present and not null.
      */
+
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Group> groups,
                   IsolatedEventList isolatedEventList) {
         requireAllNonNull(name, phone, email, address, tags, groups, isolatedEventList);
