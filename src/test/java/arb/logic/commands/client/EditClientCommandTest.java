@@ -155,6 +155,13 @@ public class EditClientCommandTest {
     }
 
     @Test
+    public void execute_currentListShownProject_failure() {
+        Index validIndex = INDEX_FIRST;
+        assertCommandFailure(new EditClientCommand(validIndex, DESC_BOB),
+                        ListType.PROJECT, model, Messages.MESSAGE_INVALID_LIST_CLIENT);
+    }
+
+    @Test
     public void equals() {
         final EditClientCommand standardCommand = new EditClientCommand(INDEX_FIRST, DESC_AMY);
 
