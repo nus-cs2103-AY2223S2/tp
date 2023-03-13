@@ -228,7 +228,7 @@ Format: `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`
 * `EVENT_NAME`, `START_DATE` and `END_DATE` cannot be left empty
 
 #### 2) Weekly Recurring Event
-Format: `event_create recurring e/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
+Format: `event_create_recur re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
 
 * Creates a recurring event with the specified name `EVENT_NAME`
 * The format `DAY_OF_WEEK` accepts the input `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday`

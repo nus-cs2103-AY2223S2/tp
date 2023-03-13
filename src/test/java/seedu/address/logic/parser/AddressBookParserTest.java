@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddIsolatedEventCommand;
+import seedu.address.logic.commands.AddRecurringEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteIsolatedEventCommand;
@@ -66,11 +67,19 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_recurringEvent() throws Exception {
+        AddRecurringEventCommand command = (AddRecurringEventCommand) parser.parseCommand(
+                AddRecurringEventCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + "re/biking" + " " + "d/MONDAY" + " " + "f/14:00" + " " + "t/15:00");
+        assertTrue(command.COMMAND_WORD == "event_create_recur");
+    }
+    @Test
     public void parseCommand_deleteIsolatedEvent() throws Exception {
         DeleteIsolatedEventCommand command = (DeleteIsolatedEventCommand) parser.parseCommand(
                 DeleteIsolatedEventCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                         + INDEX_FIRST_PERSON.getOneBased());
         assertTrue(command.COMMAND_WORD == "ie_delete");
+
     }
 
     @Test

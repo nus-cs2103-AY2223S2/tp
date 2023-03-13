@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 
@@ -195,7 +196,6 @@ class GroupCreateCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
         public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
             throw new AssertionError("This method should not be called.");
         }
@@ -203,6 +203,12 @@ class GroupCreateCommandTest {
         @Override
         public void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent,
                                      IsolatedEvent editedIsolatedEvent) {
+
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addRecurringEvent(Person personToEdit, RecurringEvent eventToAdd) {
             throw new AssertionError("This method should not be called.");
         }
     }
