@@ -6,7 +6,9 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueApplicationList;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -16,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueApplicationList applications;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        applications = new UniqueApplicationList();
     }
 
     public AddressBook() {}
@@ -57,6 +61,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
     }
 
+    /// application-level operations
+    /**
+     * Returns true if an internship application with the same identity
+     * as {@code internshipApplication} exists in the address book.
+     */
+    public boolean hasApplication(InternshipApplication application) {
+        requireNonNull(application);
+        return applications.contains(application);
+    }
+
     //// person-level operations
 
     /**
@@ -65,6 +79,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Adds an internship application to the tracker.
+     * The application must not already exist in the tracker.
+     */
+    public void addApplication(InternshipApplication application) {
+        applications.add(application);
     }
 
     /**
@@ -106,8 +128,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return applications.asUnmodifiableObservableList().size() + " applications";
         // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<InternshipApplication> getInternshipList() {
+        return applications.asUnmodifiableObservableList();
     }
 
     @Override
@@ -119,11 +146,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && applications.equals(((AddressBook) other).applications));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return applications.hashCode();
     }
 }

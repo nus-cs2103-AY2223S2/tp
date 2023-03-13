@@ -9,10 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Phone;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +35,36 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String companyName} into a {@code CompanyName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code companyName} is invalid.
+     */
+    public static CompanyName parseCompanyName(String companyName) throws ParseException {
+        requireNonNull(companyName);
+        String trimmedName = companyName.trim();
+        if (!CompanyName.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new CompanyName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String jobTitle} into a {@code JobTitle}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code jobTitle} is invalid.
+     */
+    public static JobTitle parseJobTitle(String jobTitle) throws ParseException {
+        requireNonNull(jobTitle);
+        String trimmedJobTitle = jobTitle.trim();
+        if (!JobTitle.isValidJobTitle(trimmedJobTitle)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new JobTitle(trimmedJobTitle);
     }
 
     /**

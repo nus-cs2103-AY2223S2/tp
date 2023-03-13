@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_CONFIRMATION = "Are you sure that you want to clear all the entries? ";
+    // public static final String MESSAGE_CONFIRMATION = "Are you sure that you want to clear all the entries? ";
     public static final String MESSAGE_SUCCESS = "All internship application has been cleared!";
 
 
