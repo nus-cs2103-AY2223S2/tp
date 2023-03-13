@@ -23,7 +23,7 @@ public class EnlargedContactCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Doctor doctor;
+    private Doctor selectedDoctor;
 
     @javafx.fxml.FXML
     private VBox enlargedContactCard;
@@ -41,17 +41,28 @@ public class EnlargedContactCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code EnlargedContactCard} with the given {@code Doctor}
+     * Creates a {@code EnlargedContactCard} with the given {@code Doctor}.
      */
-    public EnlargedContactCard(Doctor doctor) {
+    public EnlargedContactCard(Doctor selectedDoctor) {
         super(FXML);
-        this.doctor = doctor;
-        name.setText(doctor.getName().fullName);
-        phone.setText(doctor.getPhone().value);
-        email.setText(doctor.getEmail().value);
-        specialty.setText(doctor.getSpecialty().specialty);
-        yearsOfExperience.setText(doctor.getYoe().value);
-        doctor.getTags().stream()
+        updateSelectedDoctor(selectedDoctor);
+    }
+
+    /**
+     * Updates the information shown on the {@code EnlargedContactCard}
+     * with that of the given {@code Doctor}.
+     *
+     * @param selectedDoctor the given {@code Doctor}
+     */
+    public void updateSelectedDoctor(Doctor selectedDoctor) {
+        this.selectedDoctor = selectedDoctor;
+        name.setText(selectedDoctor.getName().fullName);
+        phone.setText(selectedDoctor.getPhone().value);
+        email.setText(selectedDoctor.getEmail().value);
+        specialty.setText(selectedDoctor.getSpecialty().specialty);
+        yearsOfExperience.setText(selectedDoctor.getYoe().value);
+        tags.getChildren().clear();
+        selectedDoctor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -70,6 +81,6 @@ public class EnlargedContactCard extends UiPart<Region> {
 
         // state check
         EnlargedContactCard card = (EnlargedContactCard) other;
-        return doctor.equals(card.doctor);
+        return selectedDoctor.equals(card.selectedDoctor);
     }
 }
