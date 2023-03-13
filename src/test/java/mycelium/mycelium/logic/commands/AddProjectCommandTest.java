@@ -54,16 +54,16 @@ public class AddProjectCommandTest {
         Project bing = new ProjectBuilder().withName("Bing").build();
         Project bard = new ProjectBuilder().withName("Bard").build();
 
-        AddProjectCommand addBind = new AddProjectCommand(bing);
+        AddProjectCommand addBing = new AddProjectCommand(bing);
         AddProjectCommand addBard = new AddProjectCommand(bard);
 
         Map<String, Pair<AddProjectCommand, AddProjectCommand>> equalTests = Map.of(
             "same object",
-            Pair.of(addBind, addBind),
+            Pair.of(addBing, addBing),
             "same fields, different object",
-            Pair.of(addBind, new AddProjectCommand(bing)),
+            Pair.of(addBing, new AddProjectCommand(bing)),
             "same name, different fields",
-            Pair.of(addBind,
+            Pair.of(addBing,
                 new AddProjectCommand(new ProjectBuilder().withName("Bing")
                     .withClientEmail("hogriders@coc.org")
                     .build()))
@@ -74,9 +74,9 @@ public class AddProjectCommandTest {
         });
 
         Map<String, Pair<AddProjectCommand, Object>> unequalTests = Map.of(
-            "different name", Pair.of(addBind, addBard),
-            "null", Pair.of(addBind, null),
-            "different type", Pair.of(addBind, 1)
+            "different name", Pair.of(addBing, addBard),
+            "null", Pair.of(addBing, null),
+            "different type", Pair.of(addBing, 1)
         );
 
         unequalTests.forEach((desc, tt) -> {
