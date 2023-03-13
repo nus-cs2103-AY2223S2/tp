@@ -35,7 +35,8 @@ public class Meeting {
         this.start = LocalDateTime.MIN;
         this.end = LocalDateTime.MIN;
     }
-    
+
+    /**
      * Checks if there are timing clashes between this meeting and m
      * Returns true if timings do clash, false otherwise
      *

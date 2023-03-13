@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -39,6 +40,12 @@ public class AddMeetingCommand extends Command {
         this.meeting = meeting;
     }
 
+    /**
+     * Executes meetingAdd command.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult Object
+     * @throws CommandException when index specified is invalid or out of range
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -48,6 +55,12 @@ public class AddMeetingCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
+        if (hasClash(meeting, personToEdit)) {
+            String meetingClash = "Meeting specified clashes with other meetings!";
+            throw new CommandException(meetingClash);
+        }
+
         personToEdit.getMeetings().add(meeting);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
@@ -59,6 +72,13 @@ public class AddMeetingCommand extends Command {
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
+    /**
+     * Checks if any 2 AddMeetingCommand are the same. This is done
+     * by checking if both Meeting objects are assigned to the same person
+     * and have same day, start and end time.
+     * @param other
+     * @return
+     */
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -86,10 +106,20 @@ public class AddMeetingCommand extends Command {
         return String.format(MESSAGE_ADD_MEETING_SUCCESS, personToEdit);
     }
 
-    /*private boolean checkClash(Meeting meetingToCheck, Person personUnderInspection) {
+    /**
+     * Checks if meeting provided clashes with other meetings that the person
+     * has
+     * @param meetingToCheck Meeting object provided
+     * @param personUnderInspection Person the Meeting object is being assigned to
+     * @return boolean value
+     */
+    private boolean hasClash(Meeting meetingToCheck, Person personUnderInspection) {
        ArrayList<Meeting> currentMeetings = personUnderInspection.getMeetings();
        for (Meeting meeting: currentMeetings) {
-
+           if (meetingToCheck.checkTimeClash(meeting)) {
+               return true;
+           }
        }
-    }*/
+       return false;
+    }
 }
