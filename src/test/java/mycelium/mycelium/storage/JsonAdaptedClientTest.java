@@ -18,7 +18,6 @@ public class JsonAdaptedClientTest {
     private static final String INVALID_MOBILE_NUMBER = "+651234";
     private static final String INVALID_EMAIL = "12312113";
     private static final String INVALID_YEAR_OF_BIRTH = "123";
-    // TODO INVALID_SOURCE
     private static final String VALID_NAME = WEST.getName().toString();
     private static final String VALID_EMAIL = WEST.getEmail().toString();
     private static final String VALID_YEAR_OF_BIRTH = WEST.getYearOfBirth().get().value;

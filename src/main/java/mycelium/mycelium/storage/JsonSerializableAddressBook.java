@@ -22,7 +22,7 @@ import mycelium.mycelium.model.project.Project;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "Persons list contains duplicate client(s).";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
     public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
