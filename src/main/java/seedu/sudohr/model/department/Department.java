@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 
 /**
  * Represents a Department in SudoHR.

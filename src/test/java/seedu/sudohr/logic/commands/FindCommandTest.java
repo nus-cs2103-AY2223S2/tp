@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
-import seedu.sudohr.model.person.NameContainsKeywordsPredicate;
+import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

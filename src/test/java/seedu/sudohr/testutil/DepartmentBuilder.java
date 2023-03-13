@@ -6,7 +6,7 @@ import java.util.Set;
 
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 
 /**
  * A utility class to help with building Department objects.

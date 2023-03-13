@@ -1,4 +1,4 @@
-package seedu.sudohr.model.person;
+package seedu.sudohr.model.employee;
 
 import java.util.List;
 import java.util.function.Predicate;

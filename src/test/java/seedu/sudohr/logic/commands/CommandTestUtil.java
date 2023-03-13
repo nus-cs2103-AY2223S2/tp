@@ -20,8 +20,8 @@ import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.NameContainsKeywordsPredicate;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
+import seedu.sudohr.model.employee.Person;
 import seedu.sudohr.testutil.EditDepartmentDescriptorBuilder;
 import seedu.sudohr.testutil.EditPersonDescriptorBuilder;
 

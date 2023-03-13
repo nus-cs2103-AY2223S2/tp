@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.exceptions.IllegalValueException;
-import seedu.sudohr.model.person.Address;
-import seedu.sudohr.model.person.Email;
-import seedu.sudohr.model.person.Id;
-import seedu.sudohr.model.person.Name;
-import seedu.sudohr.model.person.Phone;
+import seedu.sudohr.model.employee.Address;
+import seedu.sudohr.model.employee.Email;
+import seedu.sudohr.model.employee.Id;
+import seedu.sudohr.model.employee.Name;
+import seedu.sudohr.model.employee.Phone;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_ID = "D123";

@@ -16,7 +16,7 @@ import java.util.List;
 
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

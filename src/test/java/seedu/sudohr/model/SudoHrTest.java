@@ -28,8 +28,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
-import seedu.sudohr.model.person.Person;
-import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
+import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.exceptions.DuplicatePersonException;
 import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.PersonBuilder;
 

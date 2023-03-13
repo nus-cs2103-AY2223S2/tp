@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.model.Model;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 
 /**
  * A utility class for test cases.

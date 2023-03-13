@@ -11,7 +11,7 @@ import java.util.Set;
 
 import seedu.sudohr.logic.commands.AddCommand;
 import seedu.sudohr.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 import seedu.sudohr.model.tag.Tag;
 
 /**

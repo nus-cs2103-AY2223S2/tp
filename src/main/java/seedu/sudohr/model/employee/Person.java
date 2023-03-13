@@ -1,4 +1,4 @@
-package seedu.sudohr.model.person;
+package seedu.sudohr.model.employee;
 
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 

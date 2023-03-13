@@ -2,7 +2,7 @@ package seedu.sudohr.model;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 
 /**
  * Unmodifiable view of an sudohr book

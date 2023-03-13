@@ -1,7 +1,7 @@
 package seedu.sudohr.testutil;
 
 import seedu.sudohr.model.SudoHr;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 
 /**
  * A utility class to help with building Addressbook objects.

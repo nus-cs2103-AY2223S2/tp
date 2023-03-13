@@ -42,11 +42,11 @@ import org.junit.jupiter.api.Test;
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.EditCommand;
 import seedu.sudohr.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.sudohr.model.person.Address;
-import seedu.sudohr.model.person.Email;
-import seedu.sudohr.model.person.Id;
-import seedu.sudohr.model.person.Name;
-import seedu.sudohr.model.person.Phone;
+import seedu.sudohr.model.employee.Address;
+import seedu.sudohr.model.employee.Email;
+import seedu.sudohr.model.employee.Id;
+import seedu.sudohr.model.employee.Name;
+import seedu.sudohr.model.employee.Phone;
 import seedu.sudohr.model.tag.Tag;
 import seedu.sudohr.testutil.EditPersonDescriptorBuilder;
 

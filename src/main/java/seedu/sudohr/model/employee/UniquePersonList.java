@@ -1,4 +1,4 @@
-package seedu.sudohr.model.person;
+package seedu.sudohr.model.employee;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
-import seedu.sudohr.model.person.exceptions.PersonNotFoundException;
+import seedu.sudohr.model.employee.exceptions.DuplicatePersonException;
+import seedu.sudohr.model.employee.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.

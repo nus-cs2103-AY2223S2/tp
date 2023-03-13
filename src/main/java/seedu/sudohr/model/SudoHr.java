@@ -8,8 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.department.UniqueDepartmentList;
-import seedu.sudohr.model.person.Person;
-import seedu.sudohr.model.person.UniquePersonList;
+import seedu.sudohr.model.employee.Person;
+import seedu.sudohr.model.employee.UniquePersonList;
 
 /**
  * Wraps all data at the sudohr-book level

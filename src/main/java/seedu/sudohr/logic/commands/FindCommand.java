@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.model.Model;
-import seedu.sudohr.model.person.NameContainsKeywordsPredicate;
+import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in sudohr book whose name contains any of the argument keywords.

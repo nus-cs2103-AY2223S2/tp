@@ -8,7 +8,7 @@ import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the sudohr book.

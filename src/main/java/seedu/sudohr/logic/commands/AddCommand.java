@@ -10,7 +10,7 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 
 /**
  * Adds a person to the sudohr book.

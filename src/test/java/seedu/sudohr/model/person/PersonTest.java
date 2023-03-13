@@ -15,6 +15,7 @@ import static seedu.sudohr.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.sudohr.model.employee.Person;
 import seedu.sudohr.testutil.PersonBuilder;
 
 public class PersonTest {

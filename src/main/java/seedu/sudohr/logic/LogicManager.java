@@ -14,7 +14,7 @@ import seedu.sudohr.logic.parser.SudoHrParser;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 import seedu.sudohr.storage.Storage;
 
 /**

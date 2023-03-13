@@ -22,7 +22,7 @@ import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Person;
 import seedu.sudohr.testutil.PersonBuilder;
 
 public class AddCommandTest {
