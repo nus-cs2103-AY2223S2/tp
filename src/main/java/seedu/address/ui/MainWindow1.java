@@ -31,6 +31,7 @@ public class MainWindow1 extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private InternshipListPanel internshipListPanel;
+    private InternshipInfoPanel internshipInfoPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,13 +45,18 @@ public class MainWindow1 extends UiPart<Stage> {
     private StackPane internshipListPanelPlaceholder;
 
     @FXML
+    private StackPane internshipInfoPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
 
+
+
     /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code MainWindow1} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow1(Stage primaryStage, Logic1 logic) {
         super(FXML, primaryStage);
@@ -112,6 +118,9 @@ public class MainWindow1 extends UiPart<Stage> {
         internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList());
         internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
 
+        internshipInfoPanel = new InternshipInfoPanel();
+        internshipInfoPanelPlaceholder.getChildren().add(internshipInfoPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -167,6 +176,10 @@ public class MainWindow1 extends UiPart<Stage> {
         return internshipListPanel;
     }
 
+    public InternshipInfoPanel getInternshipInfoPanel() {
+        return internshipInfoPanel;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -177,6 +190,7 @@ public class MainWindow1 extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            internshipInfoPanel.updateInfoPanel(null);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
