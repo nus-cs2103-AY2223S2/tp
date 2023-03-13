@@ -5,6 +5,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.logic.commands.AddTaskCommand;
+import trackr.logic.commands.EditTaskCommand;
 import trackr.model.task.Task;
 
 /**
@@ -37,17 +38,15 @@ public class TaskUtil {
         return sb.toString();
     }
 
-    //to be added when EditTaskCommand has been added
     //Returns the part of command string for the given {@code EditTaskDescriptor}'s details.
-    /*
-    public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
+    public static String getEditTaskDescriptorDetails(EditTaskCommand.EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getTaskName().ifPresent(name -> sb.append(PREFIX_NAME).append(taskName.fullTaskName).append(" "));
-        descriptor.getTaskDeadline().ifPresent(phone -> sb.append(PREFIX_DEADLINE)
+        descriptor.getTaskName().ifPresent(taskName -> sb.append(PREFIX_NAME)
+                .append(taskName.fullTaskName).append(" "));
+        descriptor.getTaskDeadline().ifPresent(taskDeadline -> sb.append(PREFIX_DEADLINE)
                 .append(taskDeadline.toJsonString()).append(" "));
-        descriptor.getTaskStatus().ifPresent(email -> sb.append(PREFIX_STATUS)
-                .append(taskStatus.toString()).append(" "));
+        descriptor.getTaskStatus().ifPresent(taskStatus -> sb.append(PREFIX_STATUS)
+                .append(taskStatus.toJsonString()).append(" "));
         return sb.toString();
     }
-    */
 }
