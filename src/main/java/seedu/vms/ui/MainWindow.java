@@ -17,8 +17,10 @@ import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
+import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.ui.appointment.AppointmentCard;
 import seedu.vms.ui.vaccination.VaxTypeCard;
 
 /**
@@ -37,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ListViewPanel<IdData<Patient>> patientListPanel;
     private ListViewPanel<VaxType> vaxTypeListPanel;
+    private ListViewPanel<Appointment> appointmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -46,6 +49,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML private StackPane patientListPanelPlaceholder;
     @FXML private StackPane vaxTypeListPanelPlaceholder;
+    @FXML private StackPane appointmentListPanelPlaceholder;
 
     @FXML private StackPane resultDisplayPlaceholder;
 
@@ -120,6 +124,11 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getFilteredVaxTypeMap(),
                 vaxType -> new VaxTypeCard(vaxType).getRoot());
         vaxTypeListPanelPlaceholder.getChildren().add(vaxTypeListPanel);
+
+        appointmentListPanel = new ListViewPanel<>(
+                logic.getFilteredAppointmentMap(),
+                appointment -> new AppointmentCard(appointment).getRoot());
+        appointmentListPanelPlaceholder.getChildren().add(vaxTypeListPanel);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

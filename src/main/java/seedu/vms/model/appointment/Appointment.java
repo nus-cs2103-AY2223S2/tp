@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * Represents an Appointment in the vaccine management system.
  */
-public class Appointment {
+public class Appointment implements Comparable<Appointment> {
     private LocalDateTime appointmentTime;
     private final String patientId;
 
@@ -70,6 +70,11 @@ public class Appointment {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(appointmentTime, patientId);
+    }
+
+    @Override
+    public int compareTo(Appointment other) {
+        return patientId.compareTo(other.patientId);
     }
 
     @Override

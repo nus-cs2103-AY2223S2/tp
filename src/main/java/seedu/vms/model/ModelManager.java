@@ -182,6 +182,11 @@ public class ModelManager implements Model {
         return appointmentManager.asUnmodifiableObservableMap();
     }
 
+    @Override
+    public AppointmentManager getAppointmentManager() {
+        return appointmentManager;
+    }
+
     // =========== Misc methods ================================================================================
 
     @Override

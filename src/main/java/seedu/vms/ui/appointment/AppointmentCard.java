@@ -27,7 +27,7 @@ public class AppointmentCard extends UiPart<Region> {
      */
     public AppointmentCard(Appointment appointment) {
         super(FXML_FILE);
-        titleLabel.setText("1");
+        titleLabel.setText(appointment.getPatient());
         appointmentTime.setText(appointment.getAppointmentTime().toString());
     }
 }

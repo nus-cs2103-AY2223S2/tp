@@ -7,6 +7,7 @@ import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.appointment.Appointment;
+import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
@@ -106,6 +107,9 @@ public interface Model {
 
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
+
+    /** Returns the {@code AppointmentManager} the model is using. */
+    AppointmentManager getAppointmentManager();
 
     /** Performs the specified action of the {@code VaxTypeManager} that the model is using. */
     VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
