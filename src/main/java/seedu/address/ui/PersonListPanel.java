@@ -29,6 +29,9 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
+    /**
+     * Updates {@code PersonListPanel} with the sorted {@code ObservableList}.
+     */
     public void updateListPanel(ObservableList<Person> filteredPersonList) {
         personListView.setItems(filteredPersonList);
         personListView.setCellFactory(listView -> new PersonListViewCell());

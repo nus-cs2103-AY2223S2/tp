@@ -1,10 +1,14 @@
 package seedu.address.model.util;
 
+import java.util.Comparator;
+
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Status;
 
-import java.util.Comparator;
-
+/**
+ * Comparator that compares the interview date between shortlisted applicants.
+ * Does not change the ordering between non-shortlisted applicants.
+ */
 public class SortByInterviewDate implements Comparator<Person> {
     @Override
     public int compare(Person p1, Person p2) {

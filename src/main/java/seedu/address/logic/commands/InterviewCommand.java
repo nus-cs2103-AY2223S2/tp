@@ -9,11 +9,13 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Status;
 import seedu.address.model.util.SortByInterviewDate;
 
-
+/**
+ * Filters out all shortlisted applicants and sorts them based on interview date
+ */
 public class InterviewCommand extends Command {
     public static final String COMMAND_WORD = "interview";
 
-    public static final Predicate<Person> shortlistedPredicate = person -> (person.getStatus() == Status.SHORTLISTED);
+    public static final Predicate<Person> SHORTLISTED_PREDICATE = person -> (person.getStatus() == Status.SHORTLISTED);
 
     public static final String MESSAGE_SUCCESS_FORMAT = "Listed all shortlisted applicants!";
 
@@ -21,7 +23,7 @@ public class InterviewCommand extends Command {
      * Returns a filtered list of applicants with SHORTLISTED status and sorts by earliest interview date
      */
     public String getSuccessMessage(Model model) {
-        model.updateFilteredPersonList(shortlistedPredicate);
+        model.updateFilteredPersonList(SHORTLISTED_PREDICATE);
         model.sortFilteredPersonList(new SortByInterviewDate());
         return MESSAGE_SUCCESS_FORMAT;
     }

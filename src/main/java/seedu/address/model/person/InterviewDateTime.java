@@ -19,6 +19,12 @@ public class InterviewDateTime {
         this.dateTime = DateTimeParser.parseDateTime(dateTime);
     }
 
+    /**
+     * method to create InterviewDateTime, used in converting from json
+     * @param dateTime String form of dateTime or empty string
+     * @return null if empty String, InterviewDateTime object otherwise
+     * @throws ParseException if dateTime String cannot be parsed
+     */
     public static InterviewDateTime createInterviewDateTime(String dateTime) throws ParseException {
         if (dateTime.equals("")) {
             return null;
@@ -31,6 +37,10 @@ public class InterviewDateTime {
         return dateTime;
     }
 
+    /**
+     * Returns if a given dateTime string is valid
+     * Use before invoking createInterviewDateTime to ensure it does not throw ParseException
+     */
     public static boolean isValidDateTime(String dateTime) {
         try {
             DateTimeParser.parseDateTime(dateTime);
