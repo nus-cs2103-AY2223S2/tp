@@ -8,7 +8,6 @@ import static arb.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import arb.testutil.ProjectBuilder;
 import org.junit.jupiter.api.Test;
 
 import arb.commons.core.Messages;
@@ -18,6 +17,7 @@ import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
 import arb.model.project.Project;
+import arb.testutil.ProjectBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
