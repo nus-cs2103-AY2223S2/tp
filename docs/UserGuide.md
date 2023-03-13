@@ -1,3 +1,4 @@
+<a id="top"></a>
 ---
 layout: page
 title: CareFlow User Guide
@@ -44,6 +45,7 @@ If you are a receptionist for a GP clinic and you can type fast, Careflow can ge
 * Words in UPPER CASE are the parameters to be supplied by the user.
 e.g. in add -n NAME, NAME is a parameter which can be used as add -n John Doe.
 
+[Back to top](#top)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -58,6 +60,8 @@ e.g. in add -n NAME, NAME is a parameter which can be used as add -n John Doe.
 
 </div>
 
+[Back to top](#top)
+
 ### View help : `g help`
 Shows all valid command formats and their functionalities.
 
@@ -65,6 +69,7 @@ Shows all valid command formats and their functionalities.
 
 Format: `g help`
 
+[Back to top](#top)
 
 ### Add a Patient record:  `p add`
 Adds a patient to the list of patients.
@@ -75,6 +80,7 @@ Examples:
 * `add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C `
 * `add -n Betsy Crowe -ph 92478963 -em betsycrowe@example.com -ad Sambal Street, Block 72, #04-12 -dob 01-01-2001 -g female -ic T8837191D -da Aspirin -ec 12345678`
 
+[Back to top](#top)
 
 ### List all Patient records : `p list`
 
@@ -82,6 +88,7 @@ Shows a list of all patients in the CareFlow system in alphabetical order.
 
 Format: `p list`
 
+[Back to top](#top)
 
 ### Clear all Patient records : `p clear`
 
@@ -89,6 +96,7 @@ Clears all records for patients.
 
 Format: `p clear`
 
+[Back to top](#top)
 
 ### Retrieve a Patient record by name: `p find`
 Finds patients whose names contain any of the given keywords.
@@ -110,6 +118,8 @@ Format: `p delete -ic PATIENT_NRIC`
 Examples:
 * `p delete -ic T1234567B`
 
+[Back to top](#top)
+
 ### Delete a Patient record by index: `p delete`
 Deletes the person at the specified INDEX.
 * The index refers to the index number shown in the displayed person list.
@@ -119,6 +129,8 @@ Format: `p delete -in PATIENT_INDEX`
 
 Example:
 * list followed by p delete -in 2 will delete the 2nd person in the patient list.
+
+[Back to top](#top)
 
 ### Update a patient by name: `p update`
 
@@ -131,6 +143,8 @@ Example:
 * p update Bety -n Betsy Crower -da Aspirin Edits the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively.
 
 
+[Back to top](#top)
+
 ### Add a Drug entry: `d add`
 Adds a drug entry to the list of drugs.
 Format: `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT`
@@ -139,11 +153,15 @@ Examples:
 * `d add -tn Panadol -ai Paracetamol, sodium - dir Adults and children above 12 years old, 1-2 capsules - pur treat fever, headache, toothache, rheumatic and muscle pains -se dizziness, fatigue -sc 500`
 
 
+[Back to top](#top)
+
 ### List all Drug entries: `d list`
 Shows a list of all drug entries in the CareFlow system in alphabetical order.
 
 Format: `d list`
 
+
+[Back to top](#top)
 
 ### Retrieve a Drug entry by TRADE_NAME: `d find`
 Finds drug(s) whose trade_name contains any of the given keywords.
@@ -153,6 +171,8 @@ Format: `d find -tn TRADE_NAME`
 * Only the trade name is searched.
 
 
+[Back to top](#top)
+
 ### Delete a Drug entry by TRADE_NAME: `d delete`
 Deletes the specified drug entry that matches the trade name keyword from the drug list.
 
@@ -161,6 +181,8 @@ Format: `d delete -tn TRADE_NAME`
 Examples:
 * `d delete -tn Panadol Flu Max`
 
+
+[Back to top](#top)
 
 ### Delete a Drug entry by INDEX : `d delete`
 Deletes the specified drug entry from the drug list based on the index of the drug list.
@@ -172,11 +194,15 @@ Examples:
 * This deletes the 7th drug entry in the most recently shown list
 
 
+[Back to top](#top)
+
 ### Clear all Drug entries : `d clear`
 Clears all entries for drugs.
 
 Format: `d clear`
 
+
+[Back to top](#top)
 
 ### Update storage count of a Drug entry: `d update`
 Updates the storage count of specified drug entry based on trade name keyword from drug list.
@@ -193,15 +219,21 @@ Examples:
   * This **increases** storage count of the drug entry with trade name matching "Tylenol PM" by **50**
 
 
+[Back to top](#top)
+
 ### Exit the program : `g exit`
 Exits the program.
 
 Format: `g exit`
 
 
+[Back to top](#top)
+
 ### Saving the data
 
 CareFlow data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Back to top](#top)
 
 ### Editing the data file
 
@@ -210,6 +242,8 @@ All CareFlow data is saved as a JSON file `[JAR file location]/data/careflow.jso
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CareFlow will discard all data and start with an empty data file at the next run.
 </div>
+
+[Back to top](#top)
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -221,6 +255,8 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
+
+[Back to top](#top)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -244,4 +280,6 @@ _Details coming soon ..._
 | **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                   |
 | **Update drug storage count** | `d update -tn TRADE_NAME -sc +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -sc +90`                                                                                                                                                          |
 | **Exit**                      | `g exit`                                                                                                                                                                                                                                       |
+
+[Back to top](#top)
 
