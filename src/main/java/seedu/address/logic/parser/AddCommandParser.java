@@ -52,8 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Performance performance = new Performance();  // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, remark, performance, tagList);
-
+        Person person = new Person(name, phone, email, photo, address, remark, performance, tagList);
         return new AddCommand(person);
     }
 
