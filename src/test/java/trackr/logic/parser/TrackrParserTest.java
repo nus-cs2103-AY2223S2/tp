@@ -20,6 +20,8 @@ import trackr.logic.commands.DeleteCommand;
 import trackr.logic.commands.DeleteTaskCommand;
 import trackr.logic.commands.EditCommand;
 import trackr.logic.commands.EditCommand.EditPersonDescriptor;
+import trackr.logic.commands.EditTaskCommand;
+import trackr.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindCommand;
 import trackr.logic.commands.FindTaskCommand;
@@ -31,6 +33,7 @@ import trackr.model.person.Person;
 import trackr.model.task.Task;
 import trackr.model.task.TaskNameContainsKeywordsPredicate;
 import trackr.testutil.EditPersonDescriptorBuilder;
+import trackr.testutil.EditTaskDescriptorBuilder;
 import trackr.testutil.PersonBuilder;
 import trackr.testutil.PersonUtil;
 import trackr.testutil.TaskBuilder;
@@ -100,6 +103,29 @@ public class TrackrParserTest {
     }
 
     @Test
+    public void parseCommand_editTask() throws Exception {
+        Task task = new TaskBuilder().build();
+        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
+        EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
+                EditTaskCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST_OBJECT.getOneBased()
+                        + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
+        assertEquals(new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editTaskShortcut() throws Exception {
+        Task task = new TaskBuilder().build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
+        EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
+                EditTaskCommand.COMMAND_WORD_SHORTCUT + " "
+                        + INDEX_FIRST_OBJECT.getOneBased()
+                        + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
+        assertEquals(new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor), command);
+    }
+
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
@@ -146,7 +172,7 @@ public class TrackrParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test
