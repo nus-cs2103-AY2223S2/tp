@@ -181,7 +181,6 @@ public class ModelManager implements Model {
         requireNonNull(meeting);
         return addressBook.hasMeeting(meeting);
     }
-    
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);

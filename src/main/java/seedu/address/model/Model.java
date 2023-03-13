@@ -16,7 +16,6 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
-    
     /**
      * {@code Predicate} that always evaluate to true
      */
