@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
 
@@ -27,6 +28,8 @@ public class DeleteClientCommandTest {
         Client client = new ClientBuilder().build();
         model.addClient(client);
 
+        assertTrue(model.hasClient(client));
+
         DeleteClientCommand cmd = new DeleteClientCommand(client.getEmail());
         CommandResult res = cmd.execute(model);
 
@@ -35,7 +38,7 @@ public class DeleteClientCommandTest {
     }
 
     @Test
-    public void execute_nonExistentEmail_throwsClientNotFoundException() {
+    public void execute_nonExistentEmail_throwsCommandException() {
         DeleteClientCommand cmd = new DeleteClientCommand(new Email("hogriders@coc.org"));
 
         assertThrows(CommandException.class, () -> cmd.execute(model));
