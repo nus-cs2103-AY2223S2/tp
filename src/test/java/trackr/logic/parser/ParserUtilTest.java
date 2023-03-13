@@ -9,6 +9,7 @@ import static trackr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,9 @@ import trackr.model.person.Email;
 import trackr.model.person.Name;
 import trackr.model.person.Phone;
 import trackr.model.tag.Tag;
+import trackr.model.task.TaskDeadline;
+import trackr.model.task.TaskName;
+import trackr.model.task.TaskStatus;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -27,12 +31,20 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
+    private static final String INVALID_TASK_NAME = "S@rt Inventory";
+    private static final String INVALID_TASK_DEADLINE = "35/13/2023";
+    private static final String INVALID_TASK_STATUS = "done";
+
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+
+    private static final String VALID_TASK_NAME = "Sort Inventory";
+    private static final String VALID_TASK_DEADLINE = "01/01/2024";
+    private static final String VALID_TASK_STATUS = "D";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +204,75 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    //=====================Test parser util methods that are related to task==================
+    @Test
+    public void parseTaskName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskName((String) null));
+    }
+
+    @Test
+    public void parseTaskName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskName(INVALID_TASK_NAME));
+    }
+
+    @Test
+    public void parseTaskName_validValueWithoutWhitespace_returnsTaskName() throws Exception {
+        TaskName expectedTaskName = new TaskName(VALID_TASK_NAME);
+        assertEquals(expectedTaskName, ParserUtil.parseTaskName(VALID_TASK_NAME));
+    }
+
+    @Test
+    public void parseTaskName_validValueWithWhitespace_returnsTrimmedTaskName() throws Exception {
+        String taskNameWithWhitespace = WHITESPACE + VALID_TASK_NAME + WHITESPACE;
+        TaskName expectedTaskName = new TaskName(VALID_TASK_NAME);
+        assertEquals(expectedTaskName, ParserUtil.parseTaskName(taskNameWithWhitespace));
+    }
+
+    @Test
+    public void parseTaskDeadline_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskDeadline((String) null));
+    }
+
+    @Test
+    public void parseTaskDeadline_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskDeadline(INVALID_TASK_DEADLINE));
+    }
+
+    @Test
+    public void parseTaskDeadline_validValueWithoutWhitespace_returnsTaskDeadline() throws Exception {
+        TaskDeadline expectedTaskDeadline = new TaskDeadline(VALID_TASK_DEADLINE);
+        assertEquals(expectedTaskDeadline, ParserUtil.parseTaskDeadline(VALID_TASK_DEADLINE));
+    }
+
+    @Test
+    public void parseTaskDeadline_validValueWithWhitespace_returnsTrimmedTaskDeadline() throws Exception {
+        String taskDeadlineWithWhitespace = WHITESPACE + VALID_TASK_DEADLINE + WHITESPACE;
+        TaskDeadline expectedTaskDeadline = new TaskDeadline(VALID_TASK_DEADLINE);
+        assertEquals(expectedTaskDeadline, ParserUtil.parseTaskDeadline(taskDeadlineWithWhitespace));
+    }
+
+    @Test
+    public void parseTaskStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskStatus((Optional<String>) null));
+    }
+
+    @Test
+    public void parseTaskStatus_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskStatus(Optional.ofNullable(INVALID_TASK_STATUS)));
+    }
+
+    @Test
+    public void parseTaskStatus_validValueWithoutWhitespace_returnsTaskStatus() throws Exception {
+        TaskStatus expectedTaskStatus = new TaskStatus(VALID_TASK_STATUS);
+        assertEquals(expectedTaskStatus, ParserUtil.parseTaskStatus(Optional.ofNullable(VALID_TASK_STATUS)));
+    }
+
+    @Test
+    public void parseTaskStatus_validValueWithWhitespace_returnsTrimmedTaskStatus() throws Exception {
+        Optional<String> taskStatusWithWhitespace = Optional.of(WHITESPACE + VALID_TASK_STATUS + WHITESPACE);
+        TaskStatus expectedTaskStatus = new TaskStatus(VALID_TASK_STATUS);
+        assertEquals(expectedTaskStatus, ParserUtil.parseTaskStatus(taskStatusWithWhitespace));
     }
 }

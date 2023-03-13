@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.AddCommand;
+import trackr.logic.commands.AddTaskCommand;
 import trackr.logic.commands.ClearCommand;
 import trackr.logic.commands.DeleteCommand;
 import trackr.logic.commands.EditCommand;
@@ -25,19 +26,38 @@ import trackr.logic.commands.ListCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.person.NameContainsKeywordsPredicate;
 import trackr.model.person.Person;
+import trackr.model.task.Task;
 import trackr.testutil.EditPersonDescriptorBuilder;
 import trackr.testutil.PersonBuilder;
 import trackr.testutil.PersonUtil;
+import trackr.testutil.TaskBuilder;
+import trackr.testutil.TaskUtil;
 
-public class AddressBookParserTest {
+public class TrackrParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TrackrParser parser = new TrackrParser();
 
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addTask() throws Exception {
+        Task task = new TaskBuilder().build();
+        AddTaskCommand command = (AddTaskCommand) parser.parseCommand(
+                TaskUtil.getAddTaskCommand(task));
+        assertEquals(new AddTaskCommand(task), command);
+    }
+
+    @Test
+    public void parseCommand_addTaskShortcut() throws Exception {
+        Task task = new TaskBuilder().build();
+        AddTaskCommand command = (AddTaskCommand) parser.parseCommand(
+                TaskUtil.getAddTaskCommandShortcut(task));
+        assertEquals(new AddTaskCommand(task), command);
     }
 
     @Test

@@ -12,10 +12,14 @@ import trackr.model.task.Task;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     // ================================================= User Prefs =================================================
@@ -57,7 +61,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -84,11 +90,14 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
@@ -100,7 +109,9 @@ public interface Model {
      */
     void setTaskList(ReadOnlyTaskList taskList);
 
-    /** Returns the TaskList */
+    /**
+     * Returns the TaskList
+     */
     ReadOnlyTaskList getTaskList();
 
     /**
@@ -127,11 +138,14 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
-    /** Returns an unmodifiable view of the filtered task list */
+    /**
+     * Returns an unmodifiable view of the filtered task list
+     */
     ObservableList<Task> getFilteredTaskList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);

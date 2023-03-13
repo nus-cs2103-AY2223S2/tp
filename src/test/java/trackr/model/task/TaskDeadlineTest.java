@@ -64,14 +64,30 @@ public class TaskDeadlineTest {
     public void toStringTest() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String todayDate = LocalDate.now().format(dtf);
+
         DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd LLLL yyyy");
         String expectedDate = LocalDate.now().format(dtf2);
+
         assertEquals(expectedDate, new TaskDeadline(todayDate).toString());
     }
 
     @Test
-    public void toJsonStringTest() {
+    public void toJsonString() {
         String expectedDate = "10/10/2023";
         assertEquals(expectedDate, new TaskDeadline(expectedDate).toJsonString());
     }
+
+    @Test
+    public void equals() {
+        TaskDeadline taskDeadline = new TaskDeadline("01/01/2024");
+        TaskDeadline differentDeadline = new TaskDeadline("15/07/2025");
+
+        assertTrue(taskDeadline.equals(taskDeadline)); //same object
+        assertTrue(taskDeadline.equals(new TaskDeadline("01/01/2024"))); //same deadline
+
+        assertFalse(taskDeadline.equals(null)); //null
+        assertFalse(taskDeadline.equals(differentDeadline)); //different deadlines
+        assertFalse(taskDeadline.equals(1)); //different type
+    }
+
 }
