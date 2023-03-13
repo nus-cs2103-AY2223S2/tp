@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -82,7 +83,10 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
-        undoManager.addToHistory(this.addressBook);
+        //setAddressBook is currently only used to clear the addressBook, so this method is temporarily set to
+        // show clear. Note that in future implementations if setAddressBook is used for other purposes, this method
+        // will need to be edited.
+        undoManager.addToHistory(this.addressBook, "Clear");
     }
 
     @Override
@@ -99,14 +103,14 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
-        undoManager.addToHistory(this.addressBook);
+        undoManager.addToHistory(this.addressBook, String.format("Delete %1$s", target));
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        undoManager.addToHistory(this.addressBook);
+        undoManager.addToHistory(this.addressBook, String.format("Add %1$s", person));
     }
 
     @Override
@@ -114,7 +118,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
-        undoManager.addToHistory(this.addressBook);
+        undoManager.addToHistory(this.addressBook, String.format("Edit %1$s", editedPerson));
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -139,9 +143,11 @@ public class ModelManager implements Model {
         return undoManager.hasUndoableCommand();
     }
 
-    public void executeUndo() {
-        this.addressBook.resetData(undoManager.getHistory());
+    public String executeUndo() {
+        Pair<AddressBook, String> previousHistory = undoManager.getPreviousHistory();
+        this.addressBook.resetData(previousHistory.getKey());
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return previousHistory.getValue();
     }
 
     @Override

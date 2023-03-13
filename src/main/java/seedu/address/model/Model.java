@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 
@@ -95,6 +96,6 @@ public interface Model {
      * Undoes the changes made by the last modification command used
      * @return The string representation of the last modification command used
      */
-    void executeUndo();
+    String executeUndo();
 
 }

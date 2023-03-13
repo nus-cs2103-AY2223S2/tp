@@ -1,16 +1,19 @@
 package seedu.address.model;
 
+import javafx.util.Pair;
+
 import java.util.LinkedList;
 
 import static java.util.Objects.requireNonNull;
 
 
 /**
- * Saves an archive of past ModCheck states, used to implement the Undo Command.
+ * Saves snapshots of past ModCheck states, used to implement the Undo Command.
  */
 public class UndoManager {
     private final int maxSavedHistory;
-    private LinkedList<AddressBook> history;
+    private LinkedList<AddressBook> addressBookHistory;
+    private LinkedList<String> commandHistory;
     //VersionTracker at 0 if ModCheck at most recent history (no undo commands), increments by 1 for each undo command
     private int versionTracker;
 
@@ -22,41 +25,60 @@ public class UndoManager {
      */
     public UndoManager(AddressBook startState, int maxSavedHistory) {
         this.maxSavedHistory = maxSavedHistory;
-        history = new LinkedList<>();
-        history.add(new AddressBook(startState));
+        addressBookHistory = new LinkedList<>();
+        addressBookHistory.add(new AddressBook(startState));
+        commandHistory = new LinkedList<>();
+        commandHistory.add("");
         versionTracker = 0;
     }
 
-    public UndoManager resetHistory(AddressBook startState) {
-        return new UndoManager(startState, this.maxSavedHistory);
-    }
-
-    public void addToHistory(AddressBook ab) {
+    /**
+     * Adds a copy of an address book to ModCheck saved history.
+     * @param ab The address book to be added to ModCheck's history.
+     */
+    public void addToHistory(AddressBook ab, String command) {
         // For the case where changes are made after undoing, UndoManager will no longer track the overwritten changes
         if (versionTracker != 0) {
             deleteUntrackedHead();
         }
-        if (history.size() == maxSavedHistory) {
-            history.removeLast();
+        if (addressBookHistory.size() == maxSavedHistory) {
+            addressBookHistory.removeLast();
+            commandHistory.removeLast();
         }
         //a copy of addressBook argument has to be created as ModelManager edits the AddressBook in place
-        history.offerFirst(new AddressBook(ab));
+        addressBookHistory.offerFirst(new AddressBook(ab));
+        commandHistory.offerFirst(command);
     }
 
+    /**
+     * Deletes an untracked head from the model manager.
+     * This is for changes made after undoing to be tracked unambiguously.
+     */
     public void deleteUntrackedHead() {
         for (int i = 0; i < versionTracker; i++) {
-            history.pollFirst();
+            addressBookHistory.pollFirst();
+            commandHistory.pollFirst();
         }
         versionTracker = 0;
     }
 
+    /**
+     * Returns true if model has a command that can be undone, false otherwise
+     */
     public boolean hasUndoableCommand() {
-        return versionTracker != history.size() - 1;
+        return versionTracker != addressBookHistory.size() - 1;
     }
 
-    public AddressBook getHistory() {
+    /**
+     * Returns an AddressBook containing a saved state of ModCheck.
+     * Calling this method multiple times will return earlier saved states of ModCheck, to facilitate chained undoes.
+     * @return An AddressBook containing an earlier saved state of ModCheck
+     */
+    public Pair<AddressBook, String> getPreviousHistory() {
         versionTracker++;
-        return history.get(versionTracker);
+        //Note that when implementing undo, commandHistory and addressBookHistory is off by one
+        //ie: The most recent change command will lead to the second most recent address book state
+        return new Pair<>(addressBookHistory.get(versionTracker), commandHistory.get(versionTracker - 1));
     }
 
 }

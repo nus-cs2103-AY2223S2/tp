@@ -16,7 +16,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
  */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
-    public static final String MESSAGE_SUCCESS = "Successfully undone command %1$s";
+    public static final String MESSAGE_SUCCESS = "Successfully undone command:\n%1$s";
     public static final String MESSAGE_NO_UNDOABLE_COMMAND = "No command to undo!";
 
 
@@ -26,7 +26,8 @@ public class UndoCommand extends Command {
         if (! model.hasUndoableCommand()) {
             throw new CommandException(MESSAGE_NO_UNDOABLE_COMMAND);
         }
-        model.executeUndo();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, "UNKNOWN"));
+        String returnMessage = model.executeUndo();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, returnMessage));
     }
 }
+
