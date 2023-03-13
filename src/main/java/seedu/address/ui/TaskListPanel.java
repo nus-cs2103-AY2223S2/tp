@@ -2,10 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableStringValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,8 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 
 /**
  * Panel containing the list of tasks.

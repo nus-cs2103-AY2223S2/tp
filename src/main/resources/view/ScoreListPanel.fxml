@@ -11,12 +11,12 @@
     <Label fx:id="title" styleClass="title_label" text="Score List" />
     <HBox>
         <ListView fx:id="scoreListView" VBox.vgrow="ALWAYS"/>
-        <LineChart fx:id="scoreChart" prefWidth="30" prefHeight="30">
+        <LineChart fx:id="scoreChart" prefWidth="30" prefHeight="30" HBox.hgrow="ALWAYS">
             <xAxis>
-                <NumberAxis fx:id="xAxis" side="BOTTOM" />
+                <NumberAxis fx:id="xAxis" side="BOTTOM"/>
             </xAxis>
             <yAxis>
-                <NumberAxis fx:id="yAxis" side="LEFT" />
+                <NumberAxis fx:id="yAxis" side="LEFT"/>
             </yAxis>
         </LineChart>
     </HBox>

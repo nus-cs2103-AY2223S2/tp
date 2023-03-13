@@ -11,8 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-import seedu.address.model.score.Score;
-import seedu.address.model.task.Task;
 
 /**
  * Panel containing the list of scores.
