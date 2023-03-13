@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     //PLACEHOLDER FOR DECKLIST
-    private PersonListPanel deckListPanel;
+    private DeckListPanel deckListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -118,8 +118,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        deckListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        deckListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        deckListPanel = new DeckListPanel(logic.getFilteredDeckList());
+        deckListPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -173,6 +173,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+    public DeckListPanel getDeckListPanel() {
+        return deckListPanel;
     }
 
     /**
