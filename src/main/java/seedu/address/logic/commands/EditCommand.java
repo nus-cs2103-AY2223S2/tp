@@ -114,7 +114,17 @@ public class EditCommand extends Command {
         private String startTime;
         private String endTime;
 
-        public EditEventDescriptor(EditEventDescriptor editEventDescriptor) {}
+        public EditEventDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public EditEventDescriptor(EditEventDescriptor toCopy) {
+            setName(toCopy.name);
+            setStartTime(toCopy.startTime);
+            setEndTime(toCopy.endTime);
+        }
 
         /**
          * Returns true if at least one field is edited.
