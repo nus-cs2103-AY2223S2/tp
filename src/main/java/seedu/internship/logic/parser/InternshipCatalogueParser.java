@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.commands.DeleteCommand;
+import seedu.internship.logic.commands.ExitCommand;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.ListCommand;
 import seedu.internship.logic.commands.ViewCommand;
@@ -34,7 +35,6 @@ public class InternshipCatalogueParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            // Help Command needs to be implemented
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
@@ -49,6 +49,10 @@ public class InternshipCatalogueParser {
             return new ListCommand();
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
