@@ -2,15 +2,14 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.score.Score;
 
 /**
  * Panel containing the list of scores.
@@ -19,29 +18,40 @@ import seedu.address.model.person.Person;
 public class ScoreListPanel extends UiPart<Region> {
     private static final String FXML = "ScoreListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ScoreListPanel.class);
-    private final NumberAxis xAxis = new NumberAxis();
-    private final NumberAxis yAxis = new NumberAxis();
 
     @FXML
-    private ListView<Person> scoreListView;
+    private ListView<Score> scoreListView;
     @FXML
-    private LineChart<Number, Number> scoreChart;
+    private Label name;
 
     /**
      * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
      */
-    public ScoreListPanel(ObservableList<Person> scoreList) {
+    public ScoreListPanel(Person person) {
         super(FXML);
-        scoreListView.setItems(scoreList);
+
+        name.setText("No student being checked now");
+
+        if (person != null) {
+            scoreListView.setItems(person.getScoreList().getInternalList());
+        }
         scoreListView.setCellFactory(listView -> new ScoreListPanel.ScoreListViewCell());
+
+        if (person != null) {
+            if (person.getScoreList().getInternalList().size() != 0) {
+                name.setText("Score history for " + person.getName().fullName);
+            } else {
+                name.setText("No score history found for " + person.getName().fullName);
+            }
+        }
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Score} using a {@code ScoreCard}.
      */
-    class ScoreListViewCell extends ListCell<Person> {
+    class ScoreListViewCell extends ListCell<Score> {
         @Override
-        protected void updateItem(Person score, boolean empty) {
+        protected void updateItem(Score score, boolean empty) {
             super.updateItem(score, empty);
 
             if (empty || score == null) {

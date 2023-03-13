@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * An UI component that displays information of a {@code Task}.
@@ -23,7 +23,7 @@ public class TaskCard extends UiPart<Region> {
      *      AddressBook level 4</a>
      */
 
-    public final Person task;
+    public final Task task;
 
     @FXML
     private HBox cardPane;
@@ -40,12 +40,19 @@ public class TaskCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Task} and index to display.
      */
-    public TaskCard(Person task, int displayedIndex) {
+    public TaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getName().fullName);
-        isDone.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+
+        //Since the mark/unmark functions are not implemented, both condition will show as checked.
+        //Will need to update after the respective functions complete.
+        if (task.getDone()) {
+            isDone.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+        } else {
+            isDone.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+        }
     }
 
     @Override

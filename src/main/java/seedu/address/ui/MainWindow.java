@@ -130,10 +130,10 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
+        taskListPanel = new TaskListPanel(logic.findCheckedPerson());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        scoreListPanel = new ScoreListPanel(logic.getFilteredPersonList());
+        scoreListPanel = new ScoreListPanel(logic.findCheckedPerson());
         scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
     }
 
@@ -195,6 +195,12 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            taskListPanel = new TaskListPanel(logic.findCheckedPerson());
+            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+            scoreListPanel = new ScoreListPanel(logic.findCheckedPerson());
+            scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
