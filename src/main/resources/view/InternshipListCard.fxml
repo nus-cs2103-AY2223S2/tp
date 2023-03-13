@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.14286477225167" minWidth="5.714271136692588" prefWidth="24.571431023733965" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0000145775931" minWidth="10.0" prefWidth="277.7142832619803" />
+        </columnConstraints>
+          <Label fx:id="id" styleClass="cell_big_label" text="\$id">
+              <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+              </minWidth>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+          </Label>
+      <HBox GridPane.columnIndex="1">
+         <children>
+                <Label fx:id="company" style="-fx-font-weight:bold" styleClass="cell_big_label" text="\$company">
+               <padding>
+                  <Insets left="5.0" right="2.0" />
+               </padding>
+            </Label>
+                <Label fx:id="position" styleClass="cell_big_label" text="\$position">
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+      <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+               <FlowPane fx:id="tags" />
+               <Label fx:id="status" styleClass="cell_small_label" text="\$status">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      </rowConstraints>
+    </GridPane>
+   <padding>
+      <Insets bottom="5.0" top="5.0" />
+   </padding>
+</HBox>
