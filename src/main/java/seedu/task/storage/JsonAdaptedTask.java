@@ -1,5 +1,6 @@
 package seedu.task.storage;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -36,6 +37,7 @@ class JsonAdaptedTask {
     private String from = "";
     private String to = "";
     private long effort;
+    private String alertWindow = "";
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
@@ -46,7 +48,9 @@ class JsonAdaptedTask {
                            @JsonProperty("deadline") String deadline,
                            @JsonProperty("from") String from,
                            @JsonProperty("to") String to,
-                           @JsonProperty("effort") Long effort) {
+                           @JsonProperty("effort") Long effort)
+                           @JsonProperty("alertWindow") String alertWindow) {
+                           
         this.name = name;
         this.description = description;
         if (tagged != null) {
@@ -59,7 +63,13 @@ class JsonAdaptedTask {
             this.from = from;
             this.to = to;
         }
+        
         this.effort = effort;
+        
+        if (alertWindow != null) {
+            this.alertWindow = alertWindow;
+        }
+
     }
 
     /**
@@ -79,7 +89,11 @@ class JsonAdaptedTask {
             from = tmp.getFrom().getValue();
             to = tmp.getTo().getValue();
         }
+        
         effort = source.getEffort().getEffort();
+        
+        alertWindow = String.valueOf(source.getAlertWindow().toHours());
+
     }
 
     /**
@@ -118,6 +132,9 @@ class JsonAdaptedTask {
         if (!deadline.equals("") && !Date.isValidDate(deadline)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
+        if (alertWindow == null || alertWindow.isBlank()) {
+            alertWindow = "24";
+        }
         // if either from or to are non-empty check formatting
         if (!from.equals("") || !to.equals("")) {
             // if either of them are empty AND
@@ -134,14 +151,23 @@ class JsonAdaptedTask {
 
         if (Date.isValidDate(deadline)) {
             Date modelDeadline = new Date(deadline);
-            return new Deadline(modelName, modelDescription, modelTags, modelDeadline, modelEffort);
+            Deadline deadline = new Deadline(modelName, modelDescription, modelTags, modelDeadline, modelEffort);
+            deadline.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
+            return deadline;
+
         }
         if (Date.isValidDate(from) && Date.isValidDate(to)) {
             Date modelFrom = new Date(from);
             Date modelTo = new Date(to);
-            return new Event(modelName, modelDescription, modelTags, modelFrom, modelTo, modelEffort);
+
+            Event event = new Event(modelName, modelDescription, modelTags, modelFrom, modelTo, modelEffort);
+            event.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
+            return event;
         }
-        return new SimpleTask(modelName, modelDescription, modelTags, modelEffort);
+        SimpleTask simpleTask = new SimpleTask(modelName, modelDescription, modelTags, modelEffort);
+        simpleTask.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
+        return simpleTask;
+
     }
 
 }

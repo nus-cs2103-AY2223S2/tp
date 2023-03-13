@@ -25,6 +25,7 @@ import seedu.task.model.task.Name;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_TIME = "Timeframe is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndexList} into an {@code IndexList} and returns it. Leading and trailing whitespaces
@@ -55,6 +56,18 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code hours} into an {@code hours} and returns it.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static int parseTimeFrame(String hours) throws ParseException {
+        String trimmedHours = hours.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedHours)) {
+            throw new ParseException(MESSAGE_INVALID_TIME);
+        }
+        return Integer.parseInt(trimmedHours);
     }
 
     /**

@@ -2,6 +2,7 @@ package seedu.task.model.task;
 
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
@@ -56,6 +57,18 @@ public class Event extends Task {
                 && otherTask.getFrom().equals(getFrom())
                 && otherTask.getTo().equals(getTo())
                 && otherTask.getEffort().equals(getEffort());
+    }
+
+    /**
+     * Returns true if {@code to} or {@code from} is within the {@code alertWindow} from the current time.
+     */
+    @Override
+    public boolean isComingUp() {
+        boolean isToAfterNow = this.to.value.isAfter(LocalDateTime.now());
+        boolean isToBeforeAlert = this.to.value.minus(alertWindow).isBefore(LocalDateTime.now());
+        boolean isFromAfterNow = this.from.value.isAfter(LocalDateTime.now());
+        boolean isFromBeforeAlert = this.from.value.minus(alertWindow).isBefore(LocalDateTime.now());
+        return (isFromAfterNow && isFromBeforeAlert) || (isToAfterNow && isToBeforeAlert);
     }
 
     @Override

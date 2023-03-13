@@ -7,9 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Deadline;
 import seedu.task.model.task.Event;
 import seedu.task.model.task.Task;
+
 
 /**
  * An UI component that displays information of a {@code Task}.
@@ -64,7 +66,43 @@ public class TaskCard extends UiPart<Region> {
         }
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(this::makeLabel);
+    }
+
+    /**
+     * Returns a color code to be used for the corresponding tag name.
+     * This process is deterministic.
+     *
+     * @return String color code chosen.
+     */
+    public String chooseColor(String tagName) {
+        String[] arr = new String[] {
+            // Color examples courtesy of https://sashamaps.net/docs/resources/20-colors/.
+            "#e6194b", "#3cb44b", "#ffe119", "#4363d8", "#f58231",
+            "#911eb4", "#46f0f0", "#f032e6", "#bcf60c", "#fabebe",
+            "#008080", "#e6beff", "#9a6324", "#fffac8", "#800000",
+            "#aaffc3", "#808000", "#ffd8b1", "#808080", "#ffffff"
+        };
+        int pos = Math.abs(tagName.hashCode() % arr.length);
+        return arr[pos];
+    }
+
+    /**
+     * Chooses a color to be used to display tags based on the hashcode of the tag's name.
+     *
+     * @param tag to choose color based on.
+     */
+    public void makeLabel(Tag tag) {
+        Label newLabel = new Label(tag.tagName);
+        String str = chooseColor(tag.tagName);
+
+        newLabel.setStyle("-fx-text-fill: black;\n"
+                + "-fx-background-color: " + str + ";\n"
+                + "-fx-padding: 1 3 1 3;\n"
+                + "-fx-border-radius: 2;\n"
+                + "-fx-background-radius: 2;\n"
+                + "-fx-font-size: 11;");
+        tags.getChildren().add(newLabel);
     }
 
     @Override

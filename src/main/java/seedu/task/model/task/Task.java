@@ -2,6 +2,7 @@ package seedu.task.model.task;
 
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Duration;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -18,6 +19,7 @@ public abstract class Task implements Comparable<Task> {
     // Identity fields
     protected Name name;
     protected Description description;
+    protected Duration alertWindow;
 
     // Data fields
     protected final Set<Tag> tags = new HashSet<>();
@@ -32,6 +34,7 @@ public abstract class Task implements Comparable<Task> {
         this.description = description;
         this.tags.addAll(tags);
         this.effort = effort;
+        this.alertWindow = Duration.ofHours(24);
     }
 
     public Name getName() {
@@ -40,6 +43,14 @@ public abstract class Task implements Comparable<Task> {
 
     public Description getDescription() {
         return description;
+    }
+
+    public Duration getAlertWindow() {
+        return alertWindow;
+    }
+
+    public void setAlertWindow(Duration newAlertWindow) {
+        this.alertWindow = newAlertWindow;
     }
 
     /**
@@ -87,6 +98,11 @@ public abstract class Task implements Comparable<Task> {
                 && otherTask.getTags().equals(getTags())
                 && otherTask.getEffort().equals(getEffort());
     }
+
+    /**
+     * Returns true if end time of task is before {@code alertTime}.
+     */
+    public abstract boolean isComingUp();
 
     @Override
     public int hashCode() {

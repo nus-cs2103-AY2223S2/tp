@@ -3,6 +3,7 @@ package seedu.task.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.task.logic.parser.ParserUtil.MESSAGE_INVALID_TIME;
 import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
@@ -48,6 +49,26 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_TASK, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseTimeFrame_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimeFrame("10 a"));
+    }
+
+    @Test
+    public void parseTimeFrame_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_TIME, ()
+                -> ParserUtil.parseTimeFrame(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseTimeFrame_validInput_success() throws Exception {
+        // No whitespaces
+        assertEquals(1, ParserUtil.parseTimeFrame("1"));
+
+        // Leading and trailing whitespaces
+        assertEquals(1, ParserUtil.parseTimeFrame("  1  "));
     }
 
     @Test

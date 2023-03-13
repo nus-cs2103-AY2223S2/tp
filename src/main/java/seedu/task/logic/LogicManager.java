@@ -14,6 +14,7 @@ import seedu.task.logic.parser.TaskBookParser;
 import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.Model;
 import seedu.task.model.ReadOnlyTaskBook;
+import seedu.task.model.task.StartupTaskWithinTimelinePredicate;
 import seedu.task.model.task.Task;
 import seedu.task.storage.Storage;
 
@@ -62,6 +63,12 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return model.getFilteredTaskList();
+    }
+
+    @Override
+    public ObservableList<Task> getAlertTaskList() {
+        model.updateAlertTaskList(new StartupTaskWithinTimelinePredicate());
+        return model.getAlertTaskList();
     }
 
     @Override
