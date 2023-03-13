@@ -18,6 +18,7 @@ public class ContactContainsAddressPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         // perform filtering based on address
         String currentAddress = person.getAddress().toString();
+
         return (currentAddress.equals(this.address) ? true : false);
     }
 
