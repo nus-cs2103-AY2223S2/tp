@@ -26,18 +26,20 @@ public class Person {
     private final Address address;
     private Status status;
     private final Set<Tag> notes = new HashSet<>();
-    private Optional<InterviewDateTime> interviewDateTime = Optional.empty();
+    private Optional<InterviewDateTime> interviewDateTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Status status, Set<Tag> notes) {
+    public Person(Name name, Phone phone, Email email, Address address, Status status,
+                  InterviewDateTime interviewDateTime, Set<Tag> notes) {
         requireAllNonNull(name, phone, email, address, notes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.status = status;
+        this.interviewDateTime = Optional.ofNullable(interviewDateTime);
         this.notes.addAll(notes);
     }
 
@@ -76,6 +78,10 @@ public class Person {
      */
     public InterviewDateTime getInterviewDateTime() throws NoSuchElementException {
         return interviewDateTime.orElseThrow();
+    }
+
+    public String getInterviewDateTimeString() {
+        return interviewDateTime.map(InterviewDateTime::toString).orElse("");
     }
 
     /**
@@ -119,11 +125,7 @@ public class Person {
      * Returns true if the person status can be rejected otherwise false.
      */
     public boolean rejectStatus() {
-        if (this.status == status.REJECTED) {
-            return false;
-        } else {
-            return true;
-        }
+        return this.status != Status.REJECTED;
     }
 
     /**

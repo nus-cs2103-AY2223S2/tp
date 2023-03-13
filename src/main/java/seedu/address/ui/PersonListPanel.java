@@ -29,6 +29,11 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
+    public void updateListPanel(ObservableList<Person> filteredPersonList) {
+        personListView.setItems(filteredPersonList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
