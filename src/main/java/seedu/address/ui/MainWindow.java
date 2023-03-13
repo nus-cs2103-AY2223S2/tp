@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DoctorStub;
 
 /**
@@ -115,7 +116,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        enlargedContactCard = new EnlargedContactCard(new DoctorStub());
+        // TODO: Change EnlargedContactCard to show nothing if doctor list is empty
+        Doctor initDoctor = new DoctorStub();
+        if (!logic.getFilteredDoctorList().isEmpty()) {
+            initDoctor = logic.getFilteredDoctorList().get(0);
+        }
+        enlargedContactCard = new EnlargedContactCard(initDoctor);
         enlargedContactCardPlaceholder.getChildren().add(enlargedContactCard.getRoot());
 
         doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());
