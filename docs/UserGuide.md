@@ -113,7 +113,7 @@ Examples:
 
 Sets a customer's reward points.
 
-Format: `setpoints INDEX POINTS`
+Format: `setpoints INDEX pt/POINTS`
 
 * Sets the points of the customer at the specified `INDEX` to `POINTS`.
 * Customers by default, have 0 points initially.
@@ -123,8 +123,8 @@ Format: `setpoints INDEX POINTS`
 * The points **must be a positive integer** 1, 2, 3, ​​…
 
 Examples:
-* `listc` followed by `setpoints 2 100` sets the 2nd customer points as 100.
-* `findc Betsy` followed by `setpoints 1 300` sets the 1st customer points as 300 in the results of the `findc` command.
+* `listc` followed by `setpoints 2 pt/100` sets the 2nd customer points as 100.
+* `findc Betsy` followed by `setpoints 1 pt/300` sets the 1st customer points as 300 in the results of the `findc` command.
 
 ### Adding points for a customer / Removing points from a customer : `addpoints`
 
