@@ -51,7 +51,7 @@ public class ClientListCard extends UiPart<Region> {
         name.setText(client.getName().toString());
         email.setText(client.getEmail().toString());
         yearOfBirth.setText(client.getYearOfBirth().map(YearOfBirth::toString).orElse("No year of birth").toString());
-        source.setText(client.getSource().orElse("No source").toString());
+        source.setText(client.getSource().orElse("No source"));
         mobileNumber.setText(client.getMobileNumber().map(Phone::toString).orElse("No mobile number").toString());
     }
 
