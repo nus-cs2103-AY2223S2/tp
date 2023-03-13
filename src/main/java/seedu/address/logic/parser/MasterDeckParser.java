@@ -27,7 +27,7 @@ import seedu.address.model.deck.Deck;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class MasterDeckParser {
 
     /**
      * Used for initial separation of command word and args.

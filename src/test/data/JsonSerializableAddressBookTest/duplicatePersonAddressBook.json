@@ -1,12 +1,12 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
-    "address": "123, Jurong West Ave 6, #08-111",
+    "question": "Alice Pauline",
+    "answer": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
     "deck" : "Default"
   }, {
-    "name": "Alice Pauline",
-    "address": "4th street",
+    "question": "Alice Pauline",
+    "answer": "4th street",
     "deck" : "Default"
   } ]
 }

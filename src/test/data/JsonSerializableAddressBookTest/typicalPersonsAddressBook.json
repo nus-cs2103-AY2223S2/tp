@@ -1,38 +1,38 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
-    "name" : "Alice Pauline",
-    "address" : "123, Jurong West Ave 6, #08-111",
+    "question": "Alice Pauline",
+    "answer": "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
     "deck" : "Default"
   }, {
-    "name" : "Benson Meier",
-    "address" : "311, Clementi Ave 2, #02-25",
+    "question": "Benson Meier",
+    "answer": "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
     "deck" : "Default"
   }, {
-    "name" : "Carl Kurz",
-    "address" : "wall street",
+    "question": "Carl Kurz",
+    "answer": "wall street",
     "tagged" : [ ],
     "deck" : "Default"
   }, {
-    "name" : "Daniel Meier",
-    "address" : "10th street",
+    "question": "Daniel Meier",
+    "answer": "10th street",
     "tagged" : [ "friends" ],
     "deck" : "Default"
   }, {
-    "name" : "Elle Meyer",
-    "address" : "michegan ave",
+    "question": "Elle Meyer",
+    "answer": "michegan ave",
     "tagged" : [ ],
     "deck" : "Default"
   }, {
-    "name" : "Fiona Kunz",
-    "address" : "little tokyo",
+    "question": "Fiona Kunz",
+    "answer": "little tokyo",
     "tagged" : [ ],
     "deck" : "Default"
   }, {
-    "name" : "George Best",
-    "address" : "4th street",
+    "question": "George Best",
+    "answer": "4th street",
     "tagged" : [ ],
     "deck" : "Default"
   } ]
