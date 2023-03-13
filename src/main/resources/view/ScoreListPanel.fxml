@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.HBox?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: white; -fx-background-radius: 10; ">
+    <Label fx:id="title" styleClass="title_label" text="Score List" />
+    <HBox>
+        <ListView fx:id="scoreListView" VBox.vgrow="ALWAYS"/>
+        <LineChart fx:id="scoreChart" prefWidth="30" prefHeight="30" HBox.hgrow="ALWAYS">
+            <xAxis>
+                <NumberAxis fx:id="xAxis" side="BOTTOM"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT"/>
+            </yAxis>
+        </LineChart>
+    </HBox>
+</VBox>
