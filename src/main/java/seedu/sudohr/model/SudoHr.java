@@ -9,15 +9,15 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.department.UniqueDepartmentList;
 import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.model.employee.UniquePersonList;
+import seedu.sudohr.model.employee.UniqueEmployeeList;
 
 /**
  * Wraps all data at the sudohr-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameEmployee comparison)
  */
 public class SudoHr implements ReadOnlySudoHr {
 
-    private final UniquePersonList persons;
+    private final UniqueEmployeeList persons;
     private final UniqueDepartmentList departments;
 
     /*
@@ -28,7 +28,7 @@ public class SudoHr implements ReadOnlySudoHr {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueEmployeeList();
         departments = new UniqueDepartmentList();
     }
 
@@ -49,7 +49,7 @@ public class SudoHr implements ReadOnlySudoHr {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Employee> persons) {
-        this.persons.setPersons(persons);
+        this.persons.setEmployees(persons);
     }
 
     /**
@@ -96,7 +96,7 @@ public class SudoHr implements ReadOnlySudoHr {
     public void setPerson(Employee target, Employee editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        persons.setEmployee(target, editedPerson);
     }
 
     /**

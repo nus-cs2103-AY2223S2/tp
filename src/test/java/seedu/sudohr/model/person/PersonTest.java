@@ -29,30 +29,30 @@ public class PersonTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameEmployee(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameEmployee(null));
 
         // same id, all other attributes different -> returns true
         Employee editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameEmployee(editedAlice));
 
         // different id, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameEmployee(editedAlice));
 
         // id has preceding 0s, all other attributes same -> returns true
         String idWithPrecedingZeroes = "00" + VALID_ID_BOB;
         Employee editedBob = new PersonBuilder(BOB).withId(idWithPrecedingZeroes).build();
-        assertTrue(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSameEmployee(editedBob));
 
         // id has trailing 0s, all other attributes same -> returns false
         String idWithTrailingZeroes = VALID_ID_BOB + "00";
         editedBob = new PersonBuilder(BOB).withId(idWithTrailingZeroes).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertFalse(BOB.isSameEmployee(editedBob));
     }
 
     @Test

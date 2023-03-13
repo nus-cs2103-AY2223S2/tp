@@ -81,7 +81,7 @@ public class EditCommand extends Command {
         Employee personToEdit = lastShownList.get(index.getZeroBased());
         Employee editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasEmployee(editedPerson)) {
+        if (!personToEdit.isSameEmployee(editedPerson) && model.hasEmployee(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

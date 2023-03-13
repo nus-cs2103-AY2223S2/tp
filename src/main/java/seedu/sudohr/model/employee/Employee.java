@@ -67,20 +67,20 @@ public class Employee {
     }
 
     /**
-     * Returns true if both persons have the same id.
+     * Returns true if both employees have the same id.
      */
-    public boolean isSamePerson(Employee otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameEmployee(Employee otherEmployee) {
+        if (otherEmployee == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getId().equals(getId());
+        return otherEmployee != null
+                && otherEmployee.getId().equals(getId());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both employees have the same identity and data fields.
+     * This defines a stronger notion of equality between two employees.
      */
     @Override
     public boolean equals(Object other) {
@@ -92,13 +92,13 @@ public class Employee {
             return false;
         }
 
-        Employee otherPerson = (Employee) other;
-        return otherPerson.getId().equals(getId())
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Employee otherEmployee = (Employee) other;
+        return otherEmployee.getId().equals(getId())
+                && otherEmployee.getName().equals(getName())
+                && otherEmployee.getPhone().equals(getPhone())
+                && otherEmployee.getEmail().equals(getEmail())
+                && otherEmployee.getAddress().equals(getAddress())
+                && otherEmployee.getTags().equals(getTags());
     }
 
     /**
@@ -106,18 +106,18 @@ public class Employee {
      * email, phone, id. Name is excluded since several people can share the same names.
      * This warns the HR personnel of a possible human error in tagging of data.
      */
-    public boolean clashes(Employee otherPerson) {
-        if (otherPerson == this) {
+    public boolean clashes(Employee otherEmployee) {
+        if (otherEmployee == this) {
             return true;
         }
 
-        if (!(otherPerson instanceof Employee)) {
+        if (!(otherEmployee instanceof Employee)) {
             return false;
         }
 
-        return otherPerson.getId().equals(getId())
-                || otherPerson.getPhone().equals(getPhone())
-                || otherPerson.getEmail().equals(getEmail());
+        return otherEmployee.getId().equals(getId())
+                || otherEmployee.getPhone().equals(getPhone())
+                || otherEmployee.getEmail().equals(getEmail());
     }
 
     @Override
