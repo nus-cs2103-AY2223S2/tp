@@ -10,6 +10,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -72,8 +73,13 @@ public class EditStatusCommand extends Command {
 
         CompanyName companyName = internshipApplication.getCompanyName();
         JobTitle jobTitle = internshipApplication.getJobTitle();
+        Contact contact = internshipApplication.getContact();
 
-        return new InternshipApplication(companyName, jobTitle, status);
+        if (contact != null) {
+            return new InternshipApplication(companyName, jobTitle, contact, status);
+        } else {
+            return new InternshipApplication(companyName, jobTitle, status);
+        }
     }
 
     @Override
