@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.client.policy.Policy;
 import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
@@ -54,8 +56,9 @@ public class Client {
     public Address getAddress() {
         return address;
     }
-    public UniquePolicyList getPolicyList() {
-        return policyList;
+
+    public ObservableList<Policy> getPolicyList() {
+        return policyList.asUnmodifiableObservableList();
     }
 
 

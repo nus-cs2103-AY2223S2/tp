@@ -33,12 +33,11 @@ public class MainWindow extends UiPart<Stage> {
     private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
-    // DEBUG: added policyListPanel to show selected client's policies
-    // TODO: Change ClientListPanel -> PolicyListPanel
-    private ClientListPanel policyListPanel;
+    private Client selectedClient;
+    private PolicyListPanel policyListPanel;
     private ResultDisplay resultDisplay;
 
-    @FXML // DEBUG: added client label to show selected client's information.
+    @FXML
     private StackPane clientLabel;
 
     @FXML
@@ -68,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.selectedClient = logic.getFilteredClientList().get(0);
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -130,7 +130,10 @@ public class MainWindow extends UiPart<Stage> {
 
         // TODO: Populate Policy List Panel and Client Label
         // For now, emulate with clientlist
-        policyListPanel = new ClientListPanel(logic.getFilteredClientList());
+//        policyListPanel = new ClientListPanel(logic.getFilteredClientList());
+//        policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+        policyListPanel = new PolicyListPanel(selectedClient.getPolicyList());
+        System.out.println(selectedClient.getPolicyList());
         policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -159,10 +162,10 @@ public class MainWindow extends UiPart<Stage> {
      * Selects a client based on user input.
      */
     public void handleSelect(Client targetClient) throws CommandException {
-        // TODO: Select command functionality
         if (targetClient == null) {
             throw new CommandException("Selection Error: No client selected");
         }
+        selectedClient = targetClient;
         ClientCard selectedClientCard = new ClientCard(targetClient,
                 logic.getFilteredClientList().indexOf(targetClient) + 1);
         clientLabel.getChildren().remove(0);
