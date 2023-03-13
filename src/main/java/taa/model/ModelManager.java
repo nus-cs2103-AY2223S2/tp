@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import taa.assignment.AssignmentList;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
 import taa.commons.util.CollectionUtil;
@@ -22,6 +23,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+
+    private final AssignmentList assignmentList = new AssignmentList();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -147,4 +150,20 @@ public class ModelManager implements Model {
                 && filteredStudents.equals(other.filteredStudents);
     }
 
+    //=========== AssignmentList Helpers =============================================================
+
+    @Override
+    public void addAssignment(String assignmentName) {
+        assignmentList.add(assignmentName, filteredStudents);
+    }
+
+    @Override
+    public void deleteAssignment(String assignmentName) {
+        assignmentList.delete(assignmentName);
+    }
+
+    @Override
+    public void grade(String assignmentName, int studentId, int marks) {
+        assignmentList.grade(assignmentName, studentId, marks);
+    }
 }

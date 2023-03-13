@@ -3,6 +3,9 @@ package taa.assignment;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.collections.transformation.FilteredList;
+import taa.model.student.Student;
+
 /**
  * List of assignments
  */
@@ -14,7 +17,7 @@ public class AssignmentList {
      * @param assignmentName
      * @param sl
      */
-    public void add(String assignmentName, StudentList sl) {
+    public void add(String assignmentName, FilteredList<Student> sl) {
         if (assignmentMap.containsKey(assignmentName)) {
             System.out.println("Duplicate assignment name: " + assignmentName);
         } else {

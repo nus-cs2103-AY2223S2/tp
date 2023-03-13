@@ -3,8 +3,8 @@ package taa.assignment;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.collections.transformation.FilteredList;
 import taa.model.student.Student;
-
 
 /**
  * Assignment class.
@@ -19,9 +19,9 @@ public class Assignment {
      * @param name name of the assignment
      * @param sl   the list of students from classlist.
      */
-    public Assignment(String name, StudentList sl) {
+    public Assignment(String name, FilteredList<Student> sl) {
         this.name = name;
-        for (Student stu : sl.getStudents()) {
+        for (Student stu : sl) {
             Submission sub = new Submission(stu.getId());
             submissions.add(sub);
             submissionMap.put(stu.getId(), sub);
