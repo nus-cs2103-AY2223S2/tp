@@ -19,7 +19,6 @@ public class Occupation {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String occupation;
-    public String value;
 
     /**
      * Constructs a {@code Occupation}.

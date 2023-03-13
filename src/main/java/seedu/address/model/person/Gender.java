@@ -16,7 +16,6 @@ public class Gender {
     public static final String VALIDATION_REGEX = ".*\\bmale\\b|.*\\bfemale\\b";
 
     public final String gender;
-    public String value;
 
     /**
      * Constructs a {@code Gender}.

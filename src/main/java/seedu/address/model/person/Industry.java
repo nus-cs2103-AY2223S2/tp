@@ -19,7 +19,6 @@ public class Industry {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String industry;
-    public String value;
 
     /**
      * Constructs a {@code Industry}.

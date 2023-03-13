@@ -19,7 +19,6 @@ public class JobTitle {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String jobTitle;
-    public String value;
 
     /**
      * Constructs a {@code JobTitle}.
