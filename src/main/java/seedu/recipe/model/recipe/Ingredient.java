@@ -16,12 +16,12 @@ public class Ingredient {
     /**
      * Constructs a {@code Ingredient}.
      *
-     * @param phone A valid phone number.
+     * @param ingredient A valid ingredient number.
      */
-    public Ingredient(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+    public Ingredient(String ingredient) {
+        requireNonNull(ingredient);
+        checkArgument(isValidPhone(ingredient), MESSAGE_CONSTRAINTS);
+        value = ingredient;
     }
 
     /**

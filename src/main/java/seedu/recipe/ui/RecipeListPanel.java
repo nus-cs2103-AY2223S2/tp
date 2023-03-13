@@ -13,26 +13,26 @@ import seedu.recipe.model.recipe.Recipe;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class RecipeListPanel extends UiPart<Region> {
+    private static final String FXML = "RecipeListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(RecipeListPanel.class);
 
     @FXML
-    private ListView<Recipe> personListView;
+    private ListView<Recipe> recipeListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code RecipeListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Recipe> recipeList) {
+    public RecipeListPanel(ObservableList<Recipe> recipeList) {
         super(FXML);
-        personListView.setItems(recipeList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        recipeListView.setItems(recipeList);
+        recipeListView.setCellFactory(listView -> new RecipeListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Recipe} using a {@code RecipeCard}.
      */
-    class PersonListViewCell extends ListCell<Recipe> {
+    class RecipeListViewCell extends ListCell<Recipe> {
         @Override
         protected void updateItem(Recipe recipe, boolean empty) {
             super.updateItem(recipe, empty);
