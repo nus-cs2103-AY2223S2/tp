@@ -89,6 +89,18 @@ Format: `delete EMPLOYEE_ID`
 Examples:
 `delete 2` deletes the employee with EMPLOYEE_ID 2 in ExecutivePro.
 
+### Changing the UI theme : `theme`
+
+Applies the specified theme to ExecutivePro's UI (either `dark` or `light`).
+
+Format: `theme THEME_NAME`
+
+* Applies the theme with the specified `THEME_NAME` to ExecutivePro's UI.
+* `THEME_NAME` is either `dark` (white text on dark background) or `light` (black text on white background).
+
+Examples:
+`theme light` applies the Light theme to ExecutivePro's UI.
+
 
 ### Exiting the program : `exit`
 
