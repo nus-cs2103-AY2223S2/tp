@@ -52,10 +52,11 @@ public class LogicManager implements Logic {
         if (currReview != null) {
             command = masterDeckParser.parseCommandWhenReviewing(commandText);
         } else if (selectedDeck.isPresent()) {
-            command = masterDeckParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
+            command = masterDeckParser.parseCommandWhenDeckSelected(commandText);
         } else {
             command = masterDeckParser.parseCommandWhenDeckNotSelected(commandText);
         }
+
         commandResult = command.execute(model);
 
         try {

@@ -27,11 +27,9 @@ public class ModelManager implements Model {
 
     private MasterDeck masterDeck;
     private final UserPrefs userPrefs;
-
     private FilteredList<Deck> filteredDecks;
     private Optional<Deck> selectedDeck = Optional.empty();
     private Optional<Review> currReview = Optional.empty();
-
     private FilteredList<Card> filteredCards;
 
     /**
@@ -197,7 +195,7 @@ public class ModelManager implements Model {
 
     @Override
     public void unselectDeck() {
-        this.selectedDeck = null;
+        this.selectedDeck = Optional.empty();
         updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
     }
 
@@ -225,13 +223,14 @@ public class ModelManager implements Model {
     };
 
     @Override
-    public Review getReview() {
-        return currReview.orElse(null);
+    public Optional<Review> getReview() {
+        return currReview;
     };
 
     @Override
     public void endReview() {
         currReview = Optional.empty();
+        // Todo: set predicate to showing all cards again?
     }
 
     @Override
