@@ -1,13 +1,13 @@
 package codoc.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static codoc.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static codoc.testutil.TypicalPersons.CARL;
 import static codoc.testutil.TypicalPersons.ELLE;
 import static codoc.testutil.TypicalPersons.FIONA;
-import static codoc.testutil.TypicalPersons.getTypicalAddressBook;
+import static codoc.testutil.TypicalPersons.getTypicalCodoc;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import codoc.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCodoc(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalCodoc(), new UserPrefs());
 
     @Test
     public void equals() {

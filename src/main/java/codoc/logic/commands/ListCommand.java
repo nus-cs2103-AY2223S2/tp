@@ -1,7 +1,7 @@
 package codoc.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static codoc.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import codoc.model.Model;
 

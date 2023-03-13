@@ -1,9 +1,9 @@
 package codoc.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static codoc.testutil.Assert.assertThrows;
 import static codoc.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,11 +14,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import codoc.logic.parser.exceptions.ParseException;
+import codoc.model.person.Address;
 import codoc.model.person.Email;
 import codoc.model.person.Name;
-import codoc.model.skill.Skill;
-import codoc.model.person.Address;
 import codoc.model.person.Phone;
+import codoc.model.skill.Skill;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

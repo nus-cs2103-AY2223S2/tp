@@ -4,18 +4,18 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import codoc.model.person.Name;
-import codoc.model.skill.Skill;
-import codoc.model.AddressBook;
-import codoc.model.ReadOnlyAddressBook;
+import codoc.model.Codoc;
+import codoc.model.ReadOnlyCodoc;
 import codoc.model.module.Module;
 import codoc.model.person.Address;
 import codoc.model.person.Email;
+import codoc.model.person.Name;
 import codoc.model.person.Person;
 import codoc.model.person.Phone;
+import codoc.model.skill.Skill;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Codoc} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -48,8 +48,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyCodoc getSampleCodoc() {
+        Codoc sampleAb = new Codoc();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

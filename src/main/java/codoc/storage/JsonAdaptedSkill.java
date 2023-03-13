@@ -3,8 +3,8 @@ package codoc.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import codoc.model.skill.Skill;
 import codoc.commons.exceptions.IllegalValueException;
+import codoc.model.skill.Skill;
 
 /**
  * Jackson-friendly version of {@link Skill}.

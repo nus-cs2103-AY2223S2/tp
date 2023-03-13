@@ -1,8 +1,8 @@
 package codoc.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static codoc.testutil.Assert.assertThrows;
 import static codoc.testutil.TypicalPersons.BENSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import codoc.commons.exceptions.IllegalValueException;
+import codoc.model.person.Address;
 import codoc.model.person.Email;
 import codoc.model.person.Name;
-import codoc.model.person.Address;
 import codoc.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
@@ -54,7 +54,8 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_SKILLS, VALID_MODS);
-        String expectedMessage = String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT,
+                Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -80,7 +81,8 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
                 VALID_SKILLS, VALID_MODS);
-        String expectedMessage = String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        String expectedMessage = String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT,
+                Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

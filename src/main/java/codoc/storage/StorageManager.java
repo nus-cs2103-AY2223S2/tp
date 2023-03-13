@@ -7,24 +7,24 @@ import java.util.logging.Logger;
 
 import codoc.commons.core.LogsCenter;
 import codoc.commons.exceptions.DataConversionException;
+import codoc.model.ReadOnlyCodoc;
 import codoc.model.ReadOnlyUserPrefs;
 import codoc.model.UserPrefs;
-import codoc.model.ReadOnlyAddressBook;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Codoc data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private CodocStorage codocStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code CodocStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(CodocStorage codocStorage, UserPrefsStorage userPrefsStorage) {
+        this.codocStorage = codocStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Codoc methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getCodocFilePath() {
+        return codocStorage.getCodocFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyCodoc> readCodoc() throws DataConversionException, IOException {
+        return readCodoc(codocStorage.getCodocFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyCodoc> readCodoc(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return codocStorage.readCodoc(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveCodoc(ReadOnlyCodoc codoc) throws IOException {
+        saveCodoc(codoc, codocStorage.getCodocFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveCodoc(ReadOnlyCodoc codoc, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        codocStorage.saveCodoc(codoc, filePath);
     }
 
 }

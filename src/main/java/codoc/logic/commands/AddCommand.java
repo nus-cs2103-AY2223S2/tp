@@ -2,8 +2,8 @@ package codoc.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import codoc.logic.parser.CliSyntax;
 import codoc.logic.commands.exceptions.CommandException;
+import codoc.logic.parser.CliSyntax;
 import codoc.model.Model;
 import codoc.model.person.Person;
 

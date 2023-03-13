@@ -19,8 +19,9 @@ import codoc.model.skill.Skill;
 public class EditCommandParser implements Parser<EditCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditCommand and returns an EditCommand object
+     * for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
@@ -47,10 +48,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get()));
+            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(
+                    CliSyntax.PREFIX_ADDRESS).get()));
         }
         parseSkillsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_SKILL)).ifPresent(editPersonDescriptor::setSkills);
-        parseModulesForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_MODULE)).ifPresent(editPersonDescriptor::setModules);
+        parseModulesForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_MODULE)).ifPresent(
+                editPersonDescriptor::setModules);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -60,9 +63,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> skills} into a {@code Set<Skill>} if {@code skills} is non-empty.
-     * If {@code skills} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Skill>} containing zero skills.
+     * Parses {@code Collection<String> skills} into a {@code Set<Skill>} if {@code skills} is non-empty. If
+     * {@code skills} contain only one element which is an empty string, it will be parsed into a {@code Set<Skill>}
+     * containing zero skills.
      */
     private Optional<Set<Skill>> parseSkillsForEdit(Collection<String> skills) throws ParseException {
         assert skills != null;
@@ -73,6 +76,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> skillSet = skills.size() == 1 && skills.contains("") ? Collections.emptySet() : skills;
         return Optional.of(ParserUtil.parseSkills(skillSet));
     }
+
     private Optional<Set<Module>> parseModulesForEdit(Collection<String> modules) throws ParseException {
         assert modules != null;
 

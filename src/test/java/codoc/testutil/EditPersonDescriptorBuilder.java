@@ -72,8 +72,8 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
+     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code EditPersonDescriptor} that we are
+     * building.
      */
     public EditPersonDescriptorBuilder withSkills(String... skills) {
         Set<Skill> skillSet = Stream.of(skills).map(Skill::new).collect(Collectors.toSet());

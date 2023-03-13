@@ -1,7 +1,7 @@
 package codoc.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static codoc.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import codoc.logic.parser.CliSyntax;
 import codoc.commons.util.CollectionUtil;
 import codoc.logic.commands.exceptions.CommandException;
+import codoc.logic.parser.CliSyntax;
 import codoc.model.Model;
 import codoc.model.module.Module;
 import codoc.model.person.Address;

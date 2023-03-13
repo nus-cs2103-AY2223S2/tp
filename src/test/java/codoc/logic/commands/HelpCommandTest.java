@@ -1,7 +1,5 @@
 package codoc.logic.commands;
 
-import static codoc.logic.commands.CommandTestUtil.assertCommandSuccess;
-
 import org.junit.jupiter.api.Test;
 
 import codoc.model.Model;

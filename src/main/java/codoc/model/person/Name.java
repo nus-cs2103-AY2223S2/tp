@@ -1,7 +1,7 @@
 package codoc.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static codoc.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's name in the address book.

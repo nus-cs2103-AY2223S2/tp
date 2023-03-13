@@ -1,10 +1,10 @@
 package codoc.logic.commands;
 
+import static codoc.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static codoc.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,13 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import codoc.commons.core.GuiSettings;
 import codoc.logic.commands.exceptions.CommandException;
+import codoc.model.Codoc;
 import codoc.model.Model;
+import codoc.model.ReadOnlyCodoc;
 import codoc.model.ReadOnlyUserPrefs;
 import codoc.model.person.Person;
-import javafx.collections.ObservableList;
-import codoc.model.AddressBook;
-import codoc.model.ReadOnlyAddressBook;
 import codoc.testutil.PersonBuilder;
+import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getCodocFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setCodocFilePath(Path codocFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setCodoc(ReadOnlyCodoc newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyCodoc getCodoc() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -206,8 +206,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyCodoc getCodoc() {
+            return new Codoc();
         }
     }
 

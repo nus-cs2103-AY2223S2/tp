@@ -19,7 +19,7 @@ import codoc.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class CodocParser {
 
     /**
      * Used for initial separation of command word and args.

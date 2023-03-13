@@ -4,18 +4,18 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import codoc.commons.core.GuiSettings;
 import codoc.commons.core.LogsCenter;
 import codoc.logic.commands.Command;
 import codoc.logic.commands.CommandResult;
 import codoc.logic.commands.exceptions.CommandException;
-import codoc.logic.parser.AddressBookParser;
+import codoc.logic.parser.CodocParser;
 import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.Model;
-import codoc.model.ReadOnlyAddressBook;
+import codoc.model.ReadOnlyCodoc;
 import codoc.model.person.Person;
 import codoc.storage.Storage;
+import javafx.collections.ObservableList;
 
 /**
  * The main LogicManager of the app.
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final CodocParser codocParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        codocParser = new CodocParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = codocParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveCodoc(model.getCodoc());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyCodoc getCodoc() {
+        return model.getCodoc();
     }
 
     @Override
@@ -80,8 +80,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getCodocFilePath() {
+        return model.getCodocFilePath();
     }
 
     @Override

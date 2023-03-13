@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import codoc.logic.commands.CommandTestUtil;
+import codoc.model.Codoc;
 import codoc.model.person.Person;
-import codoc.model.AddressBook;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -39,12 +39,16 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(CommandTestUtil.VALID_NAME_AMY).withPhone(CommandTestUtil.VALID_PHONE_AMY)
-            .withEmail(CommandTestUtil.VALID_EMAIL_AMY).withAddress(CommandTestUtil.VALID_ADDRESS_AMY).withSkills(CommandTestUtil.VALID_SKILL_CSHARP).build();
-    public static final Person BOB = new PersonBuilder().withName(CommandTestUtil.VALID_NAME_BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
-            .withEmail(CommandTestUtil.VALID_EMAIL_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(CommandTestUtil.VALID_SKILL_JAVA,
-                    CommandTestUtil.VALID_SKILL_CSHARP)
-            .build();
+    public static final Person AMY =
+            new PersonBuilder().withName(CommandTestUtil.VALID_NAME_AMY).withPhone(CommandTestUtil.VALID_PHONE_AMY)
+                    .withEmail(CommandTestUtil.VALID_EMAIL_AMY).withAddress(
+                            CommandTestUtil.VALID_ADDRESS_AMY).withSkills(CommandTestUtil.VALID_SKILL_CSHARP).build();
+    public static final Person BOB =
+            new PersonBuilder().withName(CommandTestUtil.VALID_NAME_BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
+                    .withEmail(CommandTestUtil.VALID_EMAIL_BOB).withAddress(
+                            CommandTestUtil.VALID_ADDRESS_BOB).withSkills(CommandTestUtil.VALID_SKILL_JAVA,
+                            CommandTestUtil.VALID_SKILL_CSHARP)
+                    .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -52,10 +56,10 @@ public class TypicalPersons {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code Codoc} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Codoc getTypicalCodoc() {
+        Codoc ab = new Codoc();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }

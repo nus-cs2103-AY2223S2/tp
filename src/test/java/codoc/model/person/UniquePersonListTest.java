@@ -1,11 +1,11 @@
 package codoc.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static codoc.testutil.Assert.assertThrows;
 import static codoc.testutil.TypicalPersons.ALICE;
 import static codoc.testutil.TypicalPersons.BOB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -41,8 +41,10 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(CommandTestUtil.VALID_SKILL_JAVA)
-                .build();
+        Person editedAlice =
+                new PersonBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(
+                        CommandTestUtil.VALID_SKILL_JAVA)
+                        .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
@@ -84,8 +86,10 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(CommandTestUtil.VALID_SKILL_JAVA)
-                .build();
+        Person editedAlice =
+                new PersonBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(
+                        CommandTestUtil.VALID_SKILL_JAVA)
+                        .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);
@@ -164,6 +168,6 @@ public class UniquePersonListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+                -> uniquePersonList.asUnmodifiableObservableList().remove(0));
     }
 }

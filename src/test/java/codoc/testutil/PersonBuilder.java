@@ -4,13 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import codoc.model.module.Module;
+import codoc.model.person.Address;
 import codoc.model.person.Email;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
 import codoc.model.person.Phone;
 import codoc.model.skill.Skill;
 import codoc.model.util.SampleDataUtil;
-import codoc.model.person.Address;
 
 /**
  * A utility class to help with building Person objects.
@@ -56,7 +56,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code mods} into a {@code Set<Mod>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withMods(String ... mods) {
+    public PersonBuilder withMods(String... mods) {
         this.mods = SampleDataUtil.getModuleSet(mods);
         return this;
     }
@@ -72,7 +72,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withSkills(String ... skills) {
+    public PersonBuilder withSkills(String... skills) {
         this.skills = SampleDataUtil.getSkillSet(skills);
         return this;
     }

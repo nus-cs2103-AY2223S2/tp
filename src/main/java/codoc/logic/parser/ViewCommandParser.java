@@ -1,11 +1,11 @@
 package codoc.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static java.util.Objects.requireNonNull;
 
+import codoc.commons.core.index.Index;
 import codoc.logic.commands.ViewCommand;
 import codoc.logic.parser.exceptions.ParseException;
-import codoc.commons.core.index.Index;
 
 /**
  * Parses input arguments and creates a new ViewCommand object

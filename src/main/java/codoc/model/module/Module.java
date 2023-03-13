@@ -1,7 +1,6 @@
 package codoc.model.module;
 
 import static java.util.Objects.requireNonNull;
-import static codoc.commons.util.AppUtil.checkArgument;
 
 import codoc.commons.util.AppUtil;
 

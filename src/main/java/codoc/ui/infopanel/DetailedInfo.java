@@ -1,7 +1,7 @@
 package codoc.ui.infopanel;
 
-import javafx.scene.layout.Region;
 import codoc.ui.UiPart;
+import javafx.scene.layout.Region;
 
 /**
  * Represents DetailedInfoPanel which is the lower part of the InfoPanel.

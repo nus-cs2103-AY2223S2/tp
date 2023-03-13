@@ -1,7 +1,5 @@
 package codoc.model.person;
 
-import static codoc.commons.util.AppUtil.checkArgument;
-
 import codoc.commons.util.AppUtil;
 
 /**

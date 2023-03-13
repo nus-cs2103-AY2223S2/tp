@@ -1,13 +1,13 @@
 package codoc.ui;
 
 import codoc.logic.Logic;
+import codoc.logic.commands.CommandResult;
+import codoc.logic.commands.exceptions.CommandException;
+import codoc.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import codoc.logic.commands.CommandResult;
-import codoc.logic.commands.exceptions.CommandException;
-import codoc.logic.parser.exceptions.ParseException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

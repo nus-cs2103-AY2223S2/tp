@@ -1,7 +1,7 @@
 package codoc.model.skill;
 
-import static java.util.Objects.requireNonNull;
 import static codoc.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Skill in the address book.

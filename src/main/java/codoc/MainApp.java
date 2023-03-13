@@ -13,23 +13,23 @@ import codoc.commons.util.ConfigUtil;
 import codoc.commons.util.StringUtil;
 import codoc.logic.Logic;
 import codoc.logic.LogicManager;
-import codoc.model.AddressBook;
+import codoc.model.Codoc;
 import codoc.model.Model;
 import codoc.model.ModelManager;
-import codoc.model.ReadOnlyAddressBook;
+import codoc.model.ReadOnlyCodoc;
 import codoc.model.ReadOnlyUserPrefs;
 import codoc.model.UserPrefs;
 import codoc.model.util.SampleDataUtil;
-import codoc.storage.AddressBookStorage;
-import codoc.storage.JsonAddressBookStorage;
+import codoc.storage.CodocStorage;
+import codoc.storage.JsonCodocStorage;
 import codoc.storage.JsonUserPrefsStorage;
 import codoc.storage.Storage;
 import codoc.storage.StorageManager;
 import codoc.storage.UserPrefsStorage;
+import codoc.ui.Ui;
 import codoc.ui.UiManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import codoc.ui.Ui;
 
 /**
  * Runs the application.
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing CoDoc ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        CodocStorage codocStorage = new JsonCodocStorage(userPrefs.getCodocFilePath());
+        storage = new StorageManager(codocStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,20 +74,20 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyCodoc> codocOptional;
+        ReadOnlyCodoc initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            codocOptional = storage.readCodoc();
+            if (!codocOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Codoc");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = codocOptional.orElseGet(SampleDataUtil::getSampleCodoc);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty Codoc");
+            initialData = new Codoc();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty Codoc");
+            initialData = new Codoc();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Codoc");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Codoc " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

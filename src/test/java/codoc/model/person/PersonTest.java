@@ -1,10 +1,10 @@
 package codoc.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static codoc.testutil.Assert.assertThrows;
 import static codoc.testutil.TypicalPersons.ALICE;
 import static codoc.testutil.TypicalPersons.BOB;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,8 +28,11 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_EMAIL_BOB)
-                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(CommandTestUtil.VALID_SKILL_JAVA).build();
+        Person editedAlice =
+                new PersonBuilder(ALICE).withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(
+                        CommandTestUtil.VALID_EMAIL_BOB)
+                        .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withSkills(
+                                CommandTestUtil.VALID_SKILL_JAVA).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false

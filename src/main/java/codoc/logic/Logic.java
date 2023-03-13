@@ -2,14 +2,14 @@ package codoc.logic;
 
 import java.nio.file.Path;
 
-import codoc.model.Model;
-import javafx.collections.ObservableList;
 import codoc.commons.core.GuiSettings;
 import codoc.logic.commands.CommandResult;
 import codoc.logic.commands.exceptions.CommandException;
 import codoc.logic.parser.exceptions.ParseException;
-import codoc.model.ReadOnlyAddressBook;
+import codoc.model.Model;
+import codoc.model.ReadOnlyCodoc;
 import codoc.model.person.Person;
+import javafx.collections.ObservableList;
 
 /**
  * API of the Logic component
@@ -25,11 +25,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Codoc.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getCodoc()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyCodoc getCodoc();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -43,7 +43,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getCodocFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

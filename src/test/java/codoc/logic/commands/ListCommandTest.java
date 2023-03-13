@@ -1,8 +1,7 @@
 package codoc.logic.commands;
 
-import static codoc.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static codoc.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static codoc.testutil.TypicalPersons.getTypicalAddressBook;
+import static codoc.testutil.TypicalPersons.getTypicalCodoc;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,8 +20,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalCodoc(), new UserPrefs());
+        expectedModel = new ModelManager(model.getCodoc(), new UserPrefs());
     }
 
     @Test

@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import codoc.commons.exceptions.IllegalValueException;
+import codoc.model.module.Module;
+import codoc.model.person.Address;
 import codoc.model.person.Email;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
-import codoc.model.skill.Skill;
-import codoc.model.module.Module;
-import codoc.model.person.Address;
 import codoc.model.person.Phone;
+import codoc.model.skill.Skill;
 
 /**
  * Jackson-friendly version of {@link Person}.

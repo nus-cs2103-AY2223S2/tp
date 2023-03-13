@@ -3,9 +3,9 @@ package codoc.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import codoc.commons.core.GuiSettings;
 import codoc.model.person.Person;
+import javafx.collections.ObservableList;
 
 /**
  * The API of the Model component.
@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getCodocFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setCodocFilePath(Path codocFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code codoc}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setCodoc(ReadOnlyCodoc codoc);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Codoc */
+    ReadOnlyCodoc getCodoc();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

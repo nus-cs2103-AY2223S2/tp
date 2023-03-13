@@ -1,9 +1,8 @@
 package codoc.commons.util;
 
+import static codoc.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static codoc.commons.util.CollectionUtil.requireAllNonNull;
-import static codoc.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -83,16 +82,16 @@ public class CollectionUtilTest {
     }
 
     /**
-     * Asserts that {@code CollectionUtil#requireAllNonNull(Object...)} throw {@code NullPointerException}
-     * if {@code objects} or any element of {@code objects} is null.
+     * Asserts that {@code CollectionUtil#requireAllNonNull(Object...)} throw {@code NullPointerException} if
+     * {@code objects} or any element of {@code objects} is null.
      */
     private void assertNullPointerExceptionThrown(Object... objects) {
         assertThrows(NullPointerException.class, () -> CollectionUtil.requireAllNonNull(objects));
     }
 
     /**
-     * Asserts that {@code CollectionUtil#requireAllNonNull(Collection<?>)} throw {@code NullPointerException}
-     * if {@code collection} or any element of {@code collection} is null.
+     * Asserts that {@code CollectionUtil#requireAllNonNull(Collection<?>)} throw {@code NullPointerException} if
+     * {@code collection} or any element of {@code collection} is null.
      */
     private void assertNullPointerExceptionThrown(Collection<?> collection) {
         assertThrows(NullPointerException.class, () -> CollectionUtil.requireAllNonNull(collection));

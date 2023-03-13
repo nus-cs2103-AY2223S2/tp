@@ -2,7 +2,7 @@ package codoc.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import codoc.model.AddressBook;
+import codoc.model.Codoc;
 import codoc.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setCodoc(new Codoc());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
