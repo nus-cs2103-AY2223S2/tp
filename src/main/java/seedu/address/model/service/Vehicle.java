@@ -22,14 +22,6 @@ public class Vehicle {
     private final Set<Integer> serviceIds = new HashSet<>();
 
     /**
-     * This enum allows us to specify vehicle type without creating respective classes.
-     */
-    public enum VehicleType {
-        MOTORBIKE,
-        CAR
-    }
-
-    /**
      * This method is the constructor for the Vehicle class.
      *
      * @param ownerId     Id of customer that owns the vehicle
