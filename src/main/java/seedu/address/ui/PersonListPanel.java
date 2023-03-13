@@ -2,12 +2,12 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 
 /**
@@ -17,15 +17,18 @@ public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
+    private Logic logic;
+
     @FXML
     private ListView<Person> personListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(Logic logic) {
         super(FXML);
-        personListView.setItems(personList);
+        this.logic = logic;
+        personListView.setItems(logic.getFilteredPersonList());
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
@@ -45,5 +48,4 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
