@@ -9,8 +9,8 @@ import static seedu.recipe.commons.util.AppUtil.checkArgument;
 public class Ingredient {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Ingredient numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Ingredient contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
     public final String value;
 
     /**
@@ -20,14 +20,14 @@ public class Ingredient {
      */
     public Ingredient(String ingredient) {
         requireNonNull(ingredient);
-        checkArgument(isValidPhone(ingredient), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidIngredient(ingredient), MESSAGE_CONSTRAINTS);
         value = ingredient;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidPhone(String test) {
+    public static boolean isValidIngredient(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

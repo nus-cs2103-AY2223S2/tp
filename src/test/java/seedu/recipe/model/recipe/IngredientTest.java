@@ -22,19 +22,19 @@ public class IngredientTest {
     @Test
     public void isValidPhone() {
         // null phone number
-        assertThrows(NullPointerException.class, () -> Ingredient.isValidPhone(null));
+        assertThrows(NullPointerException.class, () -> Ingredient.isValidIngredient(null));
 
         // invalid phone numbers
-        assertFalse(Ingredient.isValidPhone("")); // empty string
-        assertFalse(Ingredient.isValidPhone(" ")); // spaces only
-        assertFalse(Ingredient.isValidPhone("91")); // less than 3 numbers
-        assertFalse(Ingredient.isValidPhone("phone")); // non-numeric
-        assertFalse(Ingredient.isValidPhone("9011p041")); // alphabets within digits
-        assertFalse(Ingredient.isValidPhone("9312 1534")); // spaces within digits
+        assertFalse(Ingredient.isValidIngredient("")); // empty string
+        assertFalse(Ingredient.isValidIngredient(" ")); // spaces only
+        assertFalse(Ingredient.isValidIngredient("91")); // less than 3 numbers
+        assertFalse(Ingredient.isValidIngredient("phone")); // non-numeric
+        assertFalse(Ingredient.isValidIngredient("9011p041")); // alphabets within digits
+        assertFalse(Ingredient.isValidIngredient("9312 1534")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(Ingredient.isValidPhone("911")); // exactly 3 numbers
-        assertTrue(Ingredient.isValidPhone("93121534"));
-        assertTrue(Ingredient.isValidPhone("124293842033123")); // long phone numbers
+        assertTrue(Ingredient.isValidIngredient("911")); // exactly 3 numbers
+        assertTrue(Ingredient.isValidIngredient("93121534"));
+        assertTrue(Ingredient.isValidIngredient("124293842033123")); // long phone numbers
     }
 }

@@ -10,11 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
-import seedu.recipe.model.recipe.Address;
-import seedu.recipe.model.recipe.Email;
-import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Name;
-import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.*;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -29,14 +25,14 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-
+    private final String step;
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given recipe details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("step") String step) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +40,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.step = step;
     }
 
     /**
@@ -57,6 +54,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        step = source.getStep().description;
     }
 
     /**
@@ -82,7 +80,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Ingredient.class.getSimpleName()));
         }
-        if (!Ingredient.isValidPhone(phone)) {
+        if (!Ingredient.isValidIngredient(phone)) {
             throw new IllegalValueException(Ingredient.MESSAGE_CONSTRAINTS);
         }
         final Ingredient modelIngredient = new Ingredient(phone);
@@ -103,8 +101,16 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (step == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Step.class.getSimpleName()));
+        }
+        if (!Step.isValidStep(step)) {
+            throw new IllegalValueException(Step.MESSAGE_CONSTRAINTS);
+        }
+        final Step modelStep = new Step(step);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Recipe(modelName, modelIngredient, modelEmail, modelAddress, modelTags);
+        return new Recipe(modelName, modelIngredient, modelEmail, modelAddress, modelTags, modelStep);
     }
 
 }

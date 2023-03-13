@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.StringUtil;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.model.recipe.Address;
-import seedu.recipe.model.recipe.Email;
-import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Name;
+import seedu.recipe.model.recipe.*;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -59,7 +56,7 @@ public class ParserUtil {
     public static Ingredient parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Ingredient.isValidPhone(trimmedPhone)) {
+        if (!Ingredient.isValidIngredient(trimmedPhone)) {
             throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
         }
         return new Ingredient(trimmedPhone);
@@ -120,5 +117,13 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Step parseStep(String step) throws ParseException {
+        String trimmedStep = step.trim();
+        if (!Step.isValidStep(trimmedStep)) {
+            throw new ParseException(Step.MESSAGE_CONSTRAINTS);
+        }
+        return new Step(step);
     }
 }
