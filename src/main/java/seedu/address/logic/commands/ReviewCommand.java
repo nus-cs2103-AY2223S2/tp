@@ -1,43 +1,46 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.OfficeConnectModel;
+import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.mapping.PersonTask;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsExactKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.shared.Id;
 import seedu.address.model.task.Task;
 
-import java.util.List;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
+
 
 /**
  * Reviews the list of tasks assigned to a specific person
  */
 public class ReviewCommand extends Command {
     public static final String COMMAND_WORD = "review";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Review tasks assigned to a person."
-            + "Parameters "
-            + PREFIX_PERSON_INDEX + "PERSON INDEX ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Review task/s assigned to a person."
+            + "Parameters: PERSON_NAME \n"
+            + "Example: " + COMMAND_WORD + " John Cena";
 
     public static final String MESSAGE_TASK_ASSIGNED = "%1$s has been assigned to the following tasks:";
     public static final String MESSAGE_NO_TASK_ASSIGNED = "%1$s does not have any assigned tasks.";
 
-    private final Index personIndex;
+    private final NameContainsExactKeywordsPredicate predicate;
 
     /**
      * Creates Review object with given personIndex
      */
-    public ReviewCommand(Index personIndex) {
-        requireAllNonNull(personIndex);
+    public ReviewCommand(NameContainsExactKeywordsPredicate predicate) {
+        requireAllNonNull(predicate);
 
-        this.personIndex = personIndex;
+        this.predicate = predicate;
     }
 
     /**
@@ -47,13 +50,15 @@ public class ReviewCommand extends Command {
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
         requireAllNonNull(model, officeConnectModel);
 
-        List<Person> personList = model.getFilteredPersonList();
+        List<Person> personList = model.getAddressBook()
+                .getPersonList()
+                .filtered(predicate);
 
-        if (personIndex.getZeroBased() >= personList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (personList.size() != 1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON);
         }
 
-        Person person = personList.get(personIndex.getZeroBased());
+        Person person = personList.get(0);
         Id pId = person.getId();
         Name name = person.getName();
 
@@ -61,14 +66,15 @@ public class ReviewCommand extends Command {
 
         displayAssignedTaskAndPerson(model, officeConnectModel, assignedTaskList);
 
-        if(assignedTaskList.isEmpty()) {
+        if (assignedTaskList.isEmpty()) {
             return new CommandResult(String.format(MESSAGE_NO_TASK_ASSIGNED, name));
         } else {
             return new CommandResult(String.format(MESSAGE_TASK_ASSIGNED, name));
         }
     }
 
-    private static void displayAssignedTaskAndPerson(Model model, OfficeConnectModel officeConnectModel, ObservableList<PersonTask> assignedTaskList) {
+    private static void displayAssignedTaskAndPerson(Model model, OfficeConnectModel officeConnectModel,
+                                                     ObservableList<PersonTask> assignedTaskList) {
         RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
         model.updateFilteredPersonList(assignedPerson -> assignedTaskList.stream()
                 .anyMatch(personTask -> personTask.getPersonId().equals(assignedPerson.getId())));

@@ -1,21 +1,18 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ReviewCommand;
-import seedu.address.logic.commands.ReviewTaskCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
+import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import seedu.address.logic.commands.ReviewTaskCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.SubjectContainsExactKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ReviewTaskCommand object
  */
-public class ReviewTaskCommandParser implements Parser<ReviewTaskCommand>{
+public class ReviewTaskCommandParser implements Parser<ReviewTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ReviewTaskCommand
      * and returns an ReviewTaskCommand object for execution.
@@ -23,20 +20,17 @@ public class ReviewTaskCommandParser implements Parser<ReviewTaskCommand>{
      */
     @Override
     public ReviewTaskCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TASK_INDEX);
+        String trimmedArgs = args.trim();
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TASK_INDEX) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReviewTaskCommand.MESSAGE_USAGE));
-        }
-
-        try {
-            Index taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK_INDEX).get());
-            return new ReviewTaskCommand(taskIndex);
-        } catch (ParseException pe) {
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReviewTaskCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReviewTaskCommand.MESSAGE_USAGE));
         }
+
+        String[] subjectKeywords = trimmedArgs.split("\\s+");
+
+        return new ReviewTaskCommand(new SubjectContainsExactKeywordsPredicate(Arrays.asList(subjectKeywords)));
+
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
