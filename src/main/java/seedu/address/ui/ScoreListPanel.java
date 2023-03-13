@@ -2,11 +2,13 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
 import seedu.address.model.task.Task;
 
@@ -19,30 +21,30 @@ public class ScoreListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ScoreListPanel.class);
 
     @FXML
-    private ListView<Score> scoreListView;
+    private ListView<Person> scoreListView;
 
     /**
      * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
      */
-    public ScoreListPanel() {
+    public ScoreListPanel(ObservableList<Person> scoreList) {
         super(FXML);
-        // scoreListView.setItems(taskList);
-        // scoreListView.setCellFactory(listView -> new TaskListViewCell());
+        scoreListView.setItems(scoreList);
+        scoreListView.setCellFactory(listView -> new ScoreListPanel.ScoreListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Score} using a {@code ScoreCard}.
      */
-    class ScoreListViewCell extends ListCell<Score> {
+    class ScoreListViewCell extends ListCell<Person> {
         @Override
-        protected void updateItem(Score score, boolean empty) {
+        protected void updateItem(Person score, boolean empty) {
             super.updateItem(score, empty);
 
             if (empty || score == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                // setGraphic(new ScoreCard(task, getIndex() + 1).getRoot());
+                setGraphic(new ScoreCard(score, getIndex() + 1).getRoot());
             }
         }
     }

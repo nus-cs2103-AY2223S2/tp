@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        scoreListPanel = new ScoreListPanel();
+        scoreListPanel = new ScoreListPanel(logic.getFilteredPersonList());
         scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
     }
 
