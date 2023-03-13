@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.ModelNew;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.opening.CompanyOrPositionContainsKeywordsPredicate;
 
 /**
  * Finds and lists all openings in address book whose name contains any of the argument keywords.
@@ -19,11 +19,11 @@ public class FindCommandNew extends CommandNew {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final CompanyOrPositionContainsKeywordsPredicate predicate;
 
-    public FindCommandNew(NameContainsKeywordsPredicate predicate) {
+    public FindCommandNew(CompanyOrPositionContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
-    }
+    } 
 
     @Override
     public CommandResultNew execute(ModelNew model) {
