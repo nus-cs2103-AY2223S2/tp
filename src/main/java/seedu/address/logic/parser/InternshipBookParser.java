@@ -9,13 +9,12 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddApplicationCommand;
 import seedu.address.logic.commands.ApplicationCommand;
-//import seedu.address.logic.commands.DeleteApplicationCommand;
+import seedu.address.logic.commands.DeleteApplicationCommand;
 import seedu.address.logic.commands.EditApplicationCommand;
 import seedu.address.logic.commands.HelpApplicationCommand;
 import seedu.address.logic.commands.FindApplicationCommand;
 import seedu.address.logic.commands.ListApplicationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-//Uncomment the corresponding import statement once you've implemented your own feature.
 
 /**
  * Parses user input.
@@ -62,12 +61,8 @@ public class InternshipBookParser {
         case EditApplicationCommand.COMMAND_WORD:
             return new EditApplicationCommandParser().parse(arguments);
 
-        /*
         case DeleteApplicationCommand.COMMAND_WORD:
             return new DeleteApplicationCommandParser().parse(arguments);
-
-        Same as for import statements, uncomment the corresponding part when you're done.
-         */
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
