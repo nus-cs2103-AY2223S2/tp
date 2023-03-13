@@ -1,5 +1,6 @@
 package seedu.task.testutil;
 
+import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ public class DeadlineBuilder {
     private Description description;
     private Set<Tag> tags;
     private Date deadline;
+    private Duration alertWindow;
 
     /**
      * Creates a {@code DeadlineBuilder} with the default details.
@@ -74,6 +76,15 @@ public class DeadlineBuilder {
         this.deadline = new Date(deadline);
         return this;
     }
+
+    /**
+     * Sets the {@code alertWindow} of the {@code Deadline} that we are building.
+     */
+    public DeadlineBuilder withAlertWindow(String alertWindow) {
+        this.alertWindow = Duration.ofHours(Long.valueOf(alertWindow));
+        return this;
+    }
+
 
     public Deadline build() {
         return new Deadline(name, description, tags, deadline);

@@ -7,6 +7,9 @@ import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalEvents.MEETING;
 import static seedu.task.testutil.TypicalEvents.STUDY;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -79,6 +82,41 @@ public class EventTest {
         // different tags -> returns false
         editedMeeting = new EventBuilder(MEETING).withTags("Important").build();
         assertFalse(MEETING.equals(editedMeeting));
+    }
+
+    @Test
+    public void isComingUp_success() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        String invalidFromTime = now.minus(Duration.ofHours(1)).format(formatter);
+        String validTime = now.plus(Duration.ofHours(5)).format(formatter);
+        String invalidTime = now.plus(Duration.ofHours(50)).format(formatter);
+        //test if the from is coming up but the to is not
+        Task fromComingUpEvent = new EventBuilder().withFrom(validTime)
+                .withTo(invalidTime).withAlertWindow("6").build();
+
+        //test if the to is coming up but the from is past//before
+        Task toComingUpEvent = new EventBuilder().withFrom(invalidFromTime)
+                        .withTo(validTime).withAlertWindow("6").build();
+        assertTrue(fromComingUpEvent.isComingUp());
+        assertTrue(toComingUpEvent.isComingUp());
+    }
+
+    @Test
+    public void isComingUp_failure() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        String invalidFromTime = now.minus(Duration.ofHours(1)).format(formatter);
+        String farTime = now.minus(Duration.ofHours(60)).format(formatter);
+        // Test for both from and to being before call
+        Task overdueEvent = new EventBuilder().withFrom(invalidFromTime)
+                .withTo(invalidFromTime).withAlertWindow("6").build();
+        //Both further than alertwindow
+        Task farAwayEvent = new EventBuilder().withFrom(farTime)
+                        .withTo(farTime).withAlertWindow("6").build();
+
+        assertFalse(overdueEvent.isComingUp());
+        assertFalse(farAwayEvent.isComingUp());
     }
 
     @Test

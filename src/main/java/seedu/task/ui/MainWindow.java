@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private AlertWindow alertWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        alertWindow = new AlertWindow(logic);
+        handleAlert();
     }
 
     public Stage getPrimaryStage() {
@@ -147,6 +150,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the alert window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAlert() {
+        if (!alertWindow.isShowing()) {
+            alertWindow.show();
+            alertWindow.fillInnerParts();
+        } else {
+            alertWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -180,6 +196,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowAlert()) {
+                handleAlert();
             }
 
             if (commandResult.isExit()) {

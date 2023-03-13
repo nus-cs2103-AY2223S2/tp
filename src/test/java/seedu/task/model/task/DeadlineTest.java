@@ -7,6 +7,9 @@ import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalDeadlines.ASSIGNMENT;
 import static seedu.task.testutil.TypicalDeadlines.RETURN_BOOK;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -79,6 +82,34 @@ public class DeadlineTest {
         // different tags -> returns false
         editedReturn = new DeadlineBuilder(RETURN_BOOK).withTags("Important").build();
         assertFalse(RETURN_BOOK.equals(editedReturn));
+    }
+
+    @Test
+    public void isComingUp_success() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        String validTime = now.plus(Duration.ofHours(5)).format(formatter);
+        //test if the deadline is coming up
+        Task deadlineComingUp = new DeadlineBuilder().withDate(validTime)
+                        .withAlertWindow("6").build();
+        assertTrue(deadlineComingUp.isComingUp());
+    }
+
+    @Test
+    public void isComingUp_failure() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        String invalidFromTime = now.minus(Duration.ofHours(1)).format(formatter);
+        String farTime = now.minus(Duration.ofHours(60)).format(formatter);
+        // Test for overdue deadline
+        Task overdueDeadline = new DeadlineBuilder().withDate(invalidFromTime)
+                .withAlertWindow("6").build();
+        //deadline further than alertwindow
+        Task farAwayEvent = new DeadlineBuilder().withDate(farTime)
+                .withAlertWindow("6").build();
+
+        assertFalse(overdueDeadline.isComingUp());
+        assertFalse(farAwayEvent.isComingUp());
     }
 
     @Test

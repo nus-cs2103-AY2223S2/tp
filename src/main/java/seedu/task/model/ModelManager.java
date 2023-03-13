@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final TaskBook taskBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> alertTasks;
 
     /**
      * Initializes a ModelManager with the given taskBook and userPrefs.
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
         this.taskBook = new TaskBook(taskBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
+        alertTasks = new FilteredList<>(this.taskBook.getTaskList());
     }
 
     public ModelManager() {
@@ -128,10 +130,25 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedTaskBook}
+     */
+    @Override
+    public ObservableList<Task> getAlertTaskList() {
+        return alertTasks;
+    }
+
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateAlertTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        alertTasks.setPredicate(predicate);
     }
 
     @Override
@@ -150,7 +167,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return taskBook.equals(other.taskBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && alertTasks.equals(other.alertTasks);
     }
 
 }
