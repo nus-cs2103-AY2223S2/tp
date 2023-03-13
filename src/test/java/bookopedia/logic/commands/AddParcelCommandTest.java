@@ -1,26 +1,24 @@
 package bookopedia.logic.commands;
 
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
 
-import bookopedia.commons.core.Messages;
-import bookopedia.model.parcel.Parcel;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import bookopedia.commons.core.Messages;
 import bookopedia.commons.core.index.Index;
 import bookopedia.model.AddressBook;
 import bookopedia.model.Model;
 import bookopedia.model.ModelManager;
 import bookopedia.model.UserPrefs;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Person;
-import bookopedia.testutil.PersonBuilder;
-
-import java.util.HashSet;
-import java.util.Set;
-
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddParcelCommand.
@@ -36,7 +34,8 @@ public class AddParcelCommandTest {
         Parcel newParcel = new Parcel(VALID_PARCEL_LAZADA);
         AddParcelCommand addParcelCommand = new AddParcelCommand(INDEX_FIRST_PERSON, newParcel);
 
-        String expectedMessage = String.format(AddParcelCommand.MESSAGE_SUCCESS, newParcel, personToAddParcel.getName());
+        String expectedMessage = String.format(AddParcelCommand.MESSAGE_SUCCESS, newParcel,
+                personToAddParcel.getName());
 
         final Set<Parcel> updatedParcels = new HashSet<>();
         for (Parcel parcel : personToAddParcel.getParcels()) {

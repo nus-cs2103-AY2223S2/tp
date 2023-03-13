@@ -1,18 +1,20 @@
 package bookopedia.logic.parser;
 
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static bookopedia.logic.commands.CommandTestUtil.*;
+import static bookopedia.logic.commands.CommandTestUtil.INVALID_PARCEL_DESC;
+import static bookopedia.logic.commands.CommandTestUtil.PARCEL_DESC_LAZADA;
+import static bookopedia.logic.commands.CommandTestUtil.PARCEL_DESC_SHOPEE;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
 import static bookopedia.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static bookopedia.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static bookopedia.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
-import bookopedia.logic.commands.EditCommand;
-import bookopedia.model.parcel.Parcel;
-import bookopedia.testutil.EditPersonDescriptorBuilder;
 import org.junit.jupiter.api.Test;
 
-import bookopedia.logic.commands.AddParcelCommand;
 import bookopedia.commons.core.index.Index;
+import bookopedia.logic.commands.AddParcelCommand;
+import bookopedia.model.parcel.Parcel;
+
 
 public class AddParcelCommandParserTest {
 
