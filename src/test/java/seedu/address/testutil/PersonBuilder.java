@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.card.Answer;
@@ -21,7 +22,7 @@ public class PersonBuilder {
     private Question question;
     private Answer answer;
     private Set<Tag> tags;
-    private Deck deck;
+    private Optional<Deck> deck;
 
 
     /**
@@ -31,7 +32,7 @@ public class PersonBuilder {
         question = new Question(DEFAULT_NAME);
         answer = new Answer(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        deck = new Deck(DEFAULT_DECK);
+        deck = Optional.of(new Deck(DEFAULT_DECK));
     }
 
     /**
@@ -72,7 +73,7 @@ public class PersonBuilder {
      * Sets the {@code Deck} of the {@code Card} that we are building.
      */
     public PersonBuilder withDeck(String deckName) {
-        this.deck = new Deck(deckName);
+        this.deck = Optional.of(new Deck(DEFAULT_DECK));
         return this;
     }
 

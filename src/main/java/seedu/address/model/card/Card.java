@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.deck.Deck;
@@ -22,12 +23,12 @@ public class Card {
     // Data fields
     private final Answer answer;
     private final Set<Tag> tags = new HashSet<>();
-    private final Deck deck;
+    private Optional<Deck> deck;
 
     /**
      * Every field must be present and not null.
      */
-    public Card(Question question, Answer answer, Set<Tag> tags, Deck deck) {
+    public Card(Question question, Answer answer, Set<Tag> tags, Optional<Deck> deck) {
         requireAllNonNull(question, answer, tags);
         this.question = question;
         this.answer = answer;
@@ -51,8 +52,12 @@ public class Card {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Deck getDeck() {
+    public Optional<Deck> getDeck() {
         return deck;
+    }
+
+    public void changeDeck(Optional<Deck> newDeck) {
+        this.deck = newDeck;
     }
 
     /**

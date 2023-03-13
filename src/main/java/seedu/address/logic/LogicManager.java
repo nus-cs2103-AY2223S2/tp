@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -44,8 +45,8 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command;
-        Deck selectedDeck = this.model.getSelectedDeck();
-        if (selectedDeck != null) {
+        Optional<Deck> selectedDeck = this.model.getSelectedDeck();
+        if (selectedDeck.isPresent()) {
             command = addressBookParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
         } else {
             command = addressBookParser.parseCommandWhenDeckNotSelected(commandText);

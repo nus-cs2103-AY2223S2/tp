@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,8 @@ public class AddCommandTest {
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Card validCard = new PersonBuilder().build();
-
+        System.out.println(validCard.getDeck().get().getDeckName());
+        System.out.println(modelStub.getSelectedDeck().get().getDeckName());
         CommandResult commandResult = new AddCommand(validCard).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCard), commandResult.getFeedbackToUser());
@@ -162,8 +164,8 @@ public class AddCommandTest {
 
         /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
         @Override
-        public Deck getSelectedDeck() {
-            throw new AssertionError("This method should not be called.");
+        public Optional<Deck> getSelectedDeck() {
+            return Optional.of(new Deck("Default"));
         }
 
         @Override
@@ -223,7 +225,6 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Card> personsAdded = new ArrayList<>();
-
         @Override
         public boolean hasCard(Card card) {
             requireNonNull(card);
