@@ -35,9 +35,7 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        System.out.println(tagList);
         Set<Language> langList = ParserUtil.parseLanguages(argMultimap.getAllValues(PREFIX_LANGUAGE));
-        System.out.println(langList);
 
         return new ListCommand(new TagContainsKeywordsPredicate(tagList),
                 new LanguageContainsKeywordsPredicate(langList), areKeywordsPresent);

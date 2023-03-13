@@ -36,7 +36,6 @@ public class ListCommandParserTest {
         testTags.add(new Tag("friend"));
 
         testLanguages.add(new Language("python"));
-        System.out.println(testLanguages);
 
         // no leading and trailing whitespaces
         expectedListCommand =
