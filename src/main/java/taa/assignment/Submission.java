@@ -1,4 +1,4 @@
-package seedu.address.assignment;
+package taa.assignment;
 
 /**
  * An assignment submission
