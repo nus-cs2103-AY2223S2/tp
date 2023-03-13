@@ -54,6 +54,7 @@ public class ReviewTaskCommand extends Command{
         Id tId = task.getId();
         Subject subject = task.getSubject();
 
+
         RepositoryModelManager<PersonTask> personTaskModelManager = officeConnectModel.getPersonTaskModelManager();
         ObservableList<PersonTask> assignedPersonList = personTaskModelManager
                 .getFilteredItemList()
