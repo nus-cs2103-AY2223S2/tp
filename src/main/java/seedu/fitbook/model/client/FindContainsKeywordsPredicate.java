@@ -22,32 +22,32 @@ public class FindContainsKeywordsPredicate implements Predicate<Client> {
         boolean testClient = false;
         Iterator<Appointment> appIterator = client.getAppointments().iterator();
         Iterator<Tag> tagIterator = client.getTags().iterator();
-        if (keywords.stream().anyMatch(keyword -> StringUtil.
-                containsWordIgnoreCase(client.getName().fullName, keyword))) {
+        if (keywords.stream().anyMatch(keyword -> StringUtil
+                .containsWordIgnoreCase(client.getName().fullName, keyword))) {
             testClient = true;
-        } else if (keywords.stream().anyMatch(keyword -> StringUtil.
-                containsWordIgnoreCase(client.getPhone().value, keyword))) {
+        } else if (keywords.stream().anyMatch(keyword -> StringUtil
+                .containsWordIgnoreCase(client.getPhone().value, keyword))) {
             testClient = true;
-        } else if (keywords.stream().anyMatch(keyword -> StringUtil.
-                containsWordIgnoreCase(client.getEmail().value, keyword))) {
+        } else if (keywords.stream().anyMatch(keyword -> StringUtil
+                .containsWordIgnoreCase(client.getEmail().value, keyword))) {
             testClient = true;
-        } else if (keywords.stream().anyMatch(keyword -> StringUtil.
-                containsWordIgnoreCase(client.getAddress().value, keyword))) {
+        } else if (keywords.stream().anyMatch(keyword -> StringUtil
+                .containsWordIgnoreCase(client.getAddress().value, keyword))) {
             testClient = true;
-        } else if (keywords.stream().anyMatch(keyword -> StringUtil.
-                containsWordIgnoreCase(client.getCalorie().value, keyword))) {
+        } else if (keywords.stream().anyMatch(keyword -> StringUtil
+                .containsWordIgnoreCase(client.getCalorie().value, keyword))) {
             testClient = true;
-        } else if (keywords.stream().anyMatch(keyword -> StringUtil.
-                containsWordIgnoreCase(client.getWeight().value, keyword))) {
+        } else if (keywords.stream().anyMatch(keyword -> StringUtil
+                .containsWordIgnoreCase(client.getWeight().value, keyword))) {
             testClient = true;
-        } else if (keywords.stream().anyMatch(keyword -> StringUtil.
-                containsWordIgnoreCase(client.getGender().value, keyword))) {
+        } else if (keywords.stream().anyMatch(keyword -> StringUtil
+                .containsWordIgnoreCase(client.getGender().value, keyword))) {
             testClient = true;
         } else {
             while (appIterator.hasNext()) {
                 Appointment appointment = appIterator.next();
-                if (keywords.stream().anyMatch(keyword -> StringUtil.
-                        containsWordIgnoreCase(appointment.appointmentTime, keyword))) {
+                if (keywords.stream().anyMatch(keyword -> StringUtil
+                        .containsWordIgnoreCase(appointment.appointmentTime, keyword))) {
                     testClient = true;
                     break;
                 }
@@ -55,8 +55,8 @@ public class FindContainsKeywordsPredicate implements Predicate<Client> {
 
             while (tagIterator.hasNext()) {
                 Tag tag = tagIterator.next();
-                if (keywords.stream().anyMatch(keyword -> StringUtil.
-                        containsWordIgnoreCase(tag.tagName, keyword))) {
+                if (keywords.stream().anyMatch(keyword -> StringUtil
+                        .containsWordIgnoreCase(tag.tagName, keyword))) {
                     testClient = true;
                     break;
                 }

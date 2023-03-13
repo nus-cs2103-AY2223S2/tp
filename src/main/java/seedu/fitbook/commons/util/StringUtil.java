@@ -30,20 +30,15 @@ public class StringUtil {
 
         String preppedWord = word;
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-//        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = {preppedSentence};
-//        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         if (Arrays.stream(wordsInPreppedSentence).anyMatch(preppedWord::equalsIgnoreCase)) {
             contains = true;
         } else if (preppedSentence.toLowerCase().contains(preppedWord.toLowerCase())) {
             contains = true;
         }
-
-//        return Arrays.stream(wordsInPreppedSentence)
-//                .anyMatch(preppedWord::equalsIgnoreCase);
         return contains;
     }
 
