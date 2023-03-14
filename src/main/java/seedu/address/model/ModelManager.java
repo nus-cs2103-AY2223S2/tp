@@ -113,7 +113,11 @@ public class ModelManager implements Model {
     @Override
     public void addCard(Card card) {
         masterDeck.addCard(card);
-        updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
+
+        // only update filteredCardList if a deck is selected
+        Optional.ofNullable(selectedDeck)
+                .map(CardInDeckPredicate::new)
+                .ifPresent(this::updateFilteredCardList);
     }
 
     @Override
@@ -192,6 +196,8 @@ public class ModelManager implements Model {
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         selectedDeck = filteredDecks.get(zeroBasesIdx);
+
+        assert selectedDeck != null : "selectedDeck cannot be null here";
         updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
 
