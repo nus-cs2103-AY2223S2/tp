@@ -186,6 +186,9 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
 * Words in `UPPER_CASE` are arguments you are meant to fill in.<br>
   e.g. in `view n/NAME`, you can fill in the `NAME` argument like `view n/Tan Kah Kee`.
 
+* We use `z/` to denote any prefix.<br>
+  e.g. `z/FIELD` could mean `n/FIELD` or `a/FIELD`.
+
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [g/GROUP]` can be used as `n/Tan Kah Kee g/Friend` or as `n/Tan Kah Kee`.
 
@@ -205,7 +208,7 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
 
 <div markdown="block" class="alert alert-danger">
 
-**:danger: Invalid Command Formats**<br>
+**:warning: Invalid Command Formats**<br>
 
 * Indices must be positive numbers.<br>
   e.g. `delete one` is not an accepted command.
@@ -360,20 +363,20 @@ Formats:
 
 What you should see:<br>
 
-|                                `view`                                |
-|:--------------------------------------------------------------------:|
-| <img src='images/userprofile.png' style="width:50vw; margin:0 15vw"> |
-|              User's own profile displayed on the panel               |
+|                               `view`                               |
+|:------------------------------------------------------------------:|
+| <img src='images/userprofile.png' style="width:50%; margin:0 15%"> |
+|             User's own profile displayed on the panel              |
 
 |                                     `view 5`                                     |
 |:--------------------------------------------------------------------------------:|
-|   <img src='images/fifthPersonProfile.png' style="width:50vw; margin:0 15vw">    |
+|    <img src='images/fifthPersonProfile.png' style="width:50%; margin:0 15%">     |
 | The profile of the 5th person indexed by EduMate will be displayed on the panel. |
 
-|                        `view n/Charles Windsor`                         |
-|:-----------------------------------------------------------------------:|
-| <img src='images/charlesWindsor.png' style="width:50vw; margin:0 15vw"> |
-|     The profile of Charles Windsor will be displayed on the panel.      |
+|                       `view n/Charles Windsor`                        |
+|:---------------------------------------------------------------------:|
+| <img src='images/charlesWindsor.png' style="width:50%; margin:0 15%"> |
+|    The profile of Charles Windsor will be displayed on the panel.     |
 
 Examples:
 
@@ -386,29 +389,34 @@ When to use:
 *
 
 Formats:
-*
+* `edit INDEX [z/FIELD]…​`: Edits the fields for the contact at index `INDEX`.
+* `edit [z/FIELD]…​`: Edits your user profile.
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
 Examples:
+* `edit 3 n/Wen Qing` changes the name of the third contact to `Wen Qing`.
+* `edit 6 p/89229358 t/@wenqing` changes the phone number and telegram handle of the sixth contact.
+* `edit a/Bedok` updates your address to `Bedok`.
 
 ### Delete a contact `delete`
 
-Edits the profile of a contact.
+Removes a contact from EduMate.
 
 When to use:
 *
 
 Formats:
-*
+* `delete INDEX`: Deletes the contact at index `INDEX`.
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
 Examples:
+* `delete 5` removes the fifth contact from EduMate.
 
 ### Add or remove a label from a contact `tag`
 
@@ -436,7 +444,7 @@ When to use:
 *
 
 Formats:
-* `find PREFIX/KEYWORD [MORE_KEYWORDS]`
+* `find z/KEYWORD [MORE_KEYWORDS]…​`
 
 What you should see:<br>
 {GUI}<br>
@@ -460,19 +468,39 @@ Examples:
 
 ### Sort contacts based on your criteria `sort`
 
-Edits the profile of a contact.
+Sorts persons based on certain criteria. For example, you can sort the contacts by name (in alphabetical order).
 
 When to use:
 *
 
 Formats:
-*
+* `sort`: Sorts the contacts by their indices.
+* `sort z/a`: Sorts the contacts by their `z` attribute **in ascending order**
+* `sort z/d`: Sorts the contacts by their `z` attribute **in descending order**
+* `sort z/`: Sorts the contacts by their `z` attribute based on our **default ordering**
+* `sort z1/ z2/`: Sorts the contacts by their `z1` attribute, and breaks ties using their `z2` attribute
+* `sort [z/]…​`: Sorts the contacts by multiple attributes
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: How we sort the attributes:
+
+* The `NAME`, `EMAIL`, `ADDRESS`, `PHONE` and `TELEGRAM` attributes are sorted by alphabetical order, and is default in **ascending** order.
+* For `GROUP`, we sort the contacts based on the number of groups the contact belongs to. By default, we sort in **descending order**.<br>
+  e.g. if Alex has 2 groups (TA, NS), and Ben has one group (TA), Alex will be placed before Ben in the default ordering.
+* For `MODULE`, we sort the contacts based on the number of common modules they share with you. By default, we sort in **descending order**.<br>
+  e.g. if Alex has 2 modules (CS1101S, CS1231S), Ben has one module (CS1101S), and you have 2 modules(CS1231S, MA2001), Alex has 1 module in common with you (CS1231S) and Ben has 0 modules in common with you. As such, Alex will be placed before Ben in the default ordering.
+
+</div>
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
 Examples:
+* `sort n/d` sorts by name in descending order
+* `sort m/a` sorts by the number of modules they have in common with you (in ascending order)
+* `sort t/` sorts by Telegram handle in its default ordering (ascending)
 
 ## Storage Commands
 
