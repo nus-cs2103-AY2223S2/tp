@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.deck.Deck;
 
+/**
+ * Deletes a deck identified using its displayed index from the deck list.
+ */
 public class DeleteDeckCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteDeck";
@@ -37,7 +40,7 @@ public class DeleteDeckCommand extends Command {
         List<Deck> deckList = model.getFilteredDeckList();
 
         if (deckIndex.getZeroBased() >= deckList.size()) {
-           throw new CommandException(Messages.MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
         }
 
         Deck targetDeck = deckList.get(deckIndex.getZeroBased());

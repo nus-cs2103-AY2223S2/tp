@@ -152,9 +152,9 @@ public class MasterDeck implements ReadOnlyMasterDeck {
      */
     public void removeDeck(Deck key) {
         ArrayList<Card> remCards = new ArrayList<>();
-        for(Card c : cards) {
+        for (Card c : cards) {
             Deck targetDeck = c.getDeck().isPresent() ? c.getDeck().get() : new Deck("");
-            if(targetDeck.getDeckName().equals(key.getDeckName())) {
+            if (targetDeck.getDeckName().equals(key.getDeckName())) {
                 remCards.add(c);
             }
         }
