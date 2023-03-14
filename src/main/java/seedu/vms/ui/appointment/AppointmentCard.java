@@ -1,6 +1,7 @@
 package seedu.vms.ui.appointment;
 
 import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
