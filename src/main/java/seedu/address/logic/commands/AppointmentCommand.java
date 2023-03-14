@@ -10,6 +10,7 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class AppointmentCommand extends Command {
 
@@ -53,8 +54,14 @@ public class AppointmentCommand extends Command {
             appointmentPatient.addPatientAppointment(appointment);
         } catch (DuplicateAppointmentException e) {
         }
-        String s = appointmentPatient.patientAppointmentstoString();
-        return new CommandResult(String.format(fullSuccessMessage(appointment) + s, appointment));
+        // String s = appointmentPatient.patientAppointmentstoString();
+        Person editedPatient = new Person(appointmentPatient.getName(), appointmentPatient.getPhone(),
+                appointmentPatient.getEmail(), appointmentPatient.getAddress(), appointmentPatient.getTags(),
+                appointmentPatient.getPatientAppointments());
+
+        model.setPerson(appointmentPatient, editedPatient);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(fullSuccessMessage(appointment), appointment));
     }
 
     public String getPatientName(Appointment appointment) {
