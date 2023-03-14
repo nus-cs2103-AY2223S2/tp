@@ -1,93 +1,88 @@
 package trackr.model.order;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static trackr.testutil.Assert.assertThrows;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_NAME_CHOCOLATE_COOKIES;
+import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_NOT_DONE;
+import static trackr.testutil.TypicalOrders.CHEESE_CAKES;
+import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES;
 
 import org.junit.jupiter.api.Test;
+
+import trackr.testutil.OrderBuilder;
 
 public class OrderTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new OrderDeadline(null));
-    }
+    public void isSameOrder() {
+        // same object -> returns true
+        assertTrue(CHOCOLATE_COOKIES.isSameOrder(CHOCOLATE_COOKIES));
 
-    @Test
-    public void constructor_wrongFormat_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new OrderDeadline("2023/01/01"));
-    }
+        // null -> returns false
+        assertFalse(CHOCOLATE_COOKIES.isSameOrder(null));
 
-    @Test
-    public void constructor_dateNotInCalendar_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new OrderDeadline("35/14/2023"));
-    }
+        // same name, same deadline all other attributes different -> returns true
+        Order editedTask = new OrderBuilder(CHOCOLATE_COOKIES)
+                .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE).build();
+        assertTrue(CHOCOLATE_COOKIES.isSameOrder(editedTask));
 
-    @Test
-    public void constructor_notDate_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new OrderDeadline("Not a Date"));
-    }
+        // different name, all other attributes same -> returns false
+        editedTask = new OrderBuilder(CHOCOLATE_COOKIES)
+                .withOrderName("CHEESE CAKE").build();
+        assertFalse(CHOCOLATE_COOKIES.isSameOrder(editedTask));
 
-    @Test
-    public void isValidOrderDeadline() {
-        // null order deadline
-        assertThrows(NullPointerException.class, () -> OrderDeadline.isValidOrderDeadline(null));
+        // different deadline, all other attributes same -> returns false
+        editedTask = new OrderBuilder(CHOCOLATE_COOKIES)
+                .withOrderDeadline("02/01/2024").build();
+        assertFalse(CHOCOLATE_COOKIES.isSameOrder(editedTask));
 
-        // invalid order deadline
+        // name differs in case, all other attributes same -> returns false
+        Order editedChocolateCookies = new OrderBuilder(CHOCOLATE_COOKIES)
+                .withOrderName(VALID_ORDER_NAME_CHOCOLATE_COOKIES.toLowerCase()).build();
+        assertFalse(CHOCOLATE_COOKIES.isSameOrder(editedChocolateCookies));
 
-        String wrongFormatDate = "2024-01-01";
-        assertFalse(OrderDeadline.isValidOrderDeadline(wrongFormatDate)); //deadline is in the wrong format
-
-        String invalidDate = "35/14/2024";
-        assertFalse(OrderDeadline.isValidOrderDeadline(invalidDate)); //deadline is an invalid date in the calendar
-
-        String notADate = "Not a Date";
-        assertFalse(OrderDeadline.isValidOrderDeadline(notADate)); // deadline is not a date
-
-        // valid order deadline
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String todayDate = LocalDate.now().format(dtf);
-        String tomorrow = LocalDate.now().plusDays(1).format(dtf);
-        String futureDate = LocalDate.now().plusMonths(7).plusDays(21).format(dtf);
-        String pastDate = LocalDate.now().minusMonths(7).minusDays(10).format(dtf);
-        assertTrue(OrderDeadline.isValidOrderDeadline(todayDate)); // today's date
-        assertTrue(OrderDeadline.isValidOrderDeadline(tomorrow)); // tomorrow's date
-        assertTrue(OrderDeadline.isValidOrderDeadline(futureDate)); // future date
-        assertTrue(OrderDeadline.isValidOrderDeadline(pastDate)); // past date
-    }
-
-    @Test
-    public void toStringTest() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String todayDate = LocalDate.now().format(dtf);
-
-        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-        String expectedDate = LocalDate.now().format(dtf2);
-
-        assertEquals(expectedDate, new OrderDeadline(todayDate).toString());
-    }
-
-    @Test
-    public void toJsonString() {
-        String expectedDate = "10/10/2023";
-        assertEquals(expectedDate, new OrderDeadline(expectedDate).toJsonString());
+        // name has trailing spaces, all other attributes same -> returns false
+        String taskNameWithTrailingSpaces = VALID_ORDER_NAME_CHOCOLATE_COOKIES + " ";
+        editedChocolateCookies = new OrderBuilder(CHOCOLATE_COOKIES)
+                .withOrderName(taskNameWithTrailingSpaces).build();
+        assertFalse(CHOCOLATE_COOKIES.isSameOrder(editedChocolateCookies));
     }
 
     @Test
     public void equals() {
-        OrderDeadline orderDeadline = new OrderDeadline("01/01/2024");
-        OrderDeadline differentDeadline = new OrderDeadline("15/07/2025");
+        // same values -> returns true
+        Order aliceCopy = new OrderBuilder(CHOCOLATE_COOKIES).build();
+        assertTrue(CHOCOLATE_COOKIES.equals(aliceCopy));
 
-        assertTrue(orderDeadline.equals(orderDeadline)); //same object
-        assertTrue(orderDeadline.equals(new OrderDeadline("01/01/2024"))); //same deadline
+        // same object -> returns true
+        assertTrue(CHOCOLATE_COOKIES.equals(CHOCOLATE_COOKIES));
 
-        assertFalse(orderDeadline.equals(null)); //null
-        assertFalse(orderDeadline.equals(differentDeadline)); //different deadlines
-        assertFalse(orderDeadline.equals(1)); //different type
+        // null -> returns false
+        assertFalse(CHOCOLATE_COOKIES.equals(null));
+
+        // different type -> returns false
+        assertFalse(CHOCOLATE_COOKIES.equals(5));
+
+        // different person -> returns false
+        assertFalse(CHOCOLATE_COOKIES.equals(CHEESE_CAKES));
+
+        // different name -> returns false
+        Order editedAlice = new OrderBuilder(CHOCOLATE_COOKIES).withOrderName("CHEESE CAKES").build();
+        assertFalse(CHOCOLATE_COOKIES.equals(editedAlice));
+
+        // different phone -> returns false
+        editedAlice = new OrderBuilder(CHOCOLATE_COOKIES).withOrderDeadline("02/02/2025").build();
+        assertFalse(CHOCOLATE_COOKIES.equals(editedAlice));
+
+        // different email -> returns false
+        editedAlice = new OrderBuilder(CHOCOLATE_COOKIES).withOrderQuantity("444").build();
+        assertFalse(CHOCOLATE_COOKIES.equals(editedAlice));
+
+        // different address -> returns false
+        editedAlice = new OrderBuilder(CHOCOLATE_COOKIES).withOrderStatus("I").build();
+        assertFalse(CHOCOLATE_COOKIES.equals(editedAlice));
+
+        assertTrue(CHOCOLATE_COOKIES.toString().equals(CHOCOLATE_COOKIES.toString()));
     }
 
 }

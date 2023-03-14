@@ -5,6 +5,7 @@ import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_NAME;
 import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_PHONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_DEADLINE_2100;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_NAME_CHOCOLATE_COOKIES;
+import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_THREE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_NOT_DONE;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class TypicalOrders {
     public static final Order CHEESE_CAKES = new OrderBuilder().withOrderName("Cheese Cakes")
             .withOrderDeadline("01/01/2024")
             .withOrderStatus("N")
+            .withOrderQuantity("3")
             .withCustomerName("John Doe")
             .withCustomerPhone("98765432")
             .withCustomerAddress("123 Main Street").build();
@@ -30,6 +32,7 @@ public class TypicalOrders {
     public static final Order DONUTS = new OrderBuilder().withOrderName("Donuts")
             .withOrderDeadline("12/12/2024")
             .withOrderStatus("N")
+            .withOrderQuantity("10")
             .withCustomerName("Mary Jane")
             .withCustomerPhone("12345678")
             .withCustomerAddress("321 Jurong Street").build();
@@ -37,6 +40,7 @@ public class TypicalOrders {
     public static final Order VANILLA_CAKE = new OrderBuilder().withOrderName("Vanilla Cake")
             .withOrderDeadline("31/12/2024")
             .withOrderStatus("N")
+            .withOrderQuantity("100")
             .withCustomerName("Alex Lim")
             .withCustomerPhone("24681357")
             .withCustomerAddress("456 Bedok Street").build();
@@ -44,6 +48,7 @@ public class TypicalOrders {
     public static final Order CHOCOLATE_COOKIES = new OrderBuilder().withOrderName(VALID_ORDER_NAME_CHOCOLATE_COOKIES)
             .withOrderDeadline(VALID_ORDER_DEADLINE_2100)
             .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
+            .withOrderQuantity(VALID_ORDER_QUANTITY_THREE)
             .withCustomerName(VALID_CUSTOMER_NAME)
             .withCustomerPhone(VALID_CUSTOMER_PHONE)
             .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
