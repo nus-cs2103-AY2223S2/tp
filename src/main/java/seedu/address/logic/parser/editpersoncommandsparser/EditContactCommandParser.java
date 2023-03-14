@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.editpersoncommandsparser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Optional;
 
@@ -35,7 +34,8 @@ public class EditContactCommandParser extends EditPersonCommandParser implements
     }
 
     @Override
-    public String getMessageUsage() {
+    protected String getMessageUsage() {
         return EditContactCommand.MESSAGE_USAGE;
     }
 }
+

@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import seedu.address.model.ReadOnlyUserData;
-import seedu.address.model.person.Person;
 
 /**
  * Wraps all data at the UserData level
