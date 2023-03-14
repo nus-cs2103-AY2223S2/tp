@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import bookopedia.logic.commands.AddCommand;
+import bookopedia.logic.commands.AddParcelCommand;
 import bookopedia.logic.commands.ClearCommand;
 import bookopedia.logic.commands.DeleteCommand;
 import bookopedia.logic.commands.EditCommand;
@@ -26,6 +27,7 @@ import bookopedia.logic.commands.MarkCommand;
 import bookopedia.logic.commands.ViewCommand;
 import bookopedia.logic.parser.exceptions.ParseException;
 import bookopedia.model.DeliveryStatus;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.NameContainsKeywordsPredicate;
 import bookopedia.model.person.Person;
 import bookopedia.testutil.EditPersonDescriptorBuilder;
@@ -89,6 +91,14 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_addParcel() throws Exception {
+        AddParcelCommand command = (AddParcelCommand) parser.parseCommand(AddParcelCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + CliSyntax.PREFIX_PARCEL + "lazada");
+        Parcel newParcel = new Parcel("lazada");
+        assertEquals(new AddParcelCommand(INDEX_FIRST_PERSON, newParcel), command);
     }
 
     @Test

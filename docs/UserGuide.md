@@ -43,12 +43,12 @@ This enables delivery riders to be able to quickly plan their deliveries by typi
   e.g `n/NAME [e/EMAIL]` can be used as `n/John Doe e/jd@gmail.com` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[pc/PARCEL]…​` can be used as ` ` (i.e. 0 times), `pc/shopee`, `pc/shopee pc/lazada` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/oldName n/newName`, only `n/newName` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -65,15 +65,25 @@ Shows a message explaining how to access the user guide.
 Format: `help`
 
 
-### Adding a person: `add`
+### Add delivery: `add`
 
 Adds a person to deliver to.
 
-Format: `add n/NAME a/ADDRESS [p/PHONE_NUMBER] [e/EMAIL]`
+Format: `add n/NAME a/ADDRESS [p/PHONE_NUMBER] [e/EMAIL] [pc/PARCEL]…​`
 
 Examples:
-* `add n/Yusof a/Yusof Ishak House, #04-420 e/yusof@gmail.com`
-* `add n/Linus a/Utown, #01-01 p/91234567`
+* `add n/Yusof a/Yusof Ishak House, #04-420 e/yusof@gmail.com pc/lazada123 pc/lazada456`
+* `add n/Linus a/Utown, #01-01 pc/shopee234`
+
+### Add parcel to a delivery: `add_pc`
+
+Adds a parcel to an existing delivery at the specified `INDEX`. The index refers to the index number shown in the displayed delivery list. The index **must be a positive integer** 1, 2, 3, …​
+
+Format: `add_pc INDEX pc/PARCEL`
+
+Examples:
+* `add 1 pc/shopee234` Adds parcel shopee234 to 1st delivery.
+* `add 2 pc/lazada456` Adds parcel lazada456 to 2nd delivery.
 
 ### Listing all deliveries : `list`
 
@@ -114,18 +124,18 @@ Examples:
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [pc/PARCEL]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing parcels, the existing parcels of the person will be removed i.e adding of parcels is not cumulative.
-* You can remove all the person’s parcels by typing `t/` without
+* You can remove all the person’s parcels by typing `pc/` without
     specifying any parcels after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing parcels.
+*  `edit 2 n/Betsy Crower pc/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing parcels.
 
 ### Locating persons by name: `find`
 

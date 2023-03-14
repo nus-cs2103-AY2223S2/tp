@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import bookopedia.logic.commands.AddCommand;
+import bookopedia.logic.commands.AddParcelCommand;
 import bookopedia.logic.commands.ClearCommand;
 import bookopedia.logic.commands.Command;
 import bookopedia.logic.commands.DeleteCommand;
@@ -48,6 +49,9 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddParcelCommand.COMMAND_WORD:
+            return new AddParcelCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
