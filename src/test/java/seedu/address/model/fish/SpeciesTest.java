@@ -28,7 +28,7 @@ public class SpeciesTest {
         assertFalse(Species.isValidSpecies("")); // empty string
 
         // valid species
-        assertTrue(Species.isValidSpecies("Guppy")); 
+        assertTrue(Species.isValidSpecies("Guppy"));
         assertTrue(Species.isValidSpecies("Tetra"));
         assertTrue(Species.isValidSpecies("Betta"));
     }
