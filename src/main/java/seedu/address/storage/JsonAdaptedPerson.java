@@ -14,6 +14,7 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -33,6 +34,7 @@ public abstract class JsonAdaptedPerson {
     private final String nric;
     private final String age;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedAvailableDate> availableDates = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,7 +43,9 @@ public abstract class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("nric") String nric, @JsonProperty("age") String age,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("tagged") List<JsonAdaptedAvailableDate> availableDates) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +54,9 @@ public abstract class JsonAdaptedPerson {
         this.age = age;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (availableDates != null) {
+            this.availableDates.addAll(availableDates);
         }
     }
 
@@ -65,6 +72,10 @@ public abstract class JsonAdaptedPerson {
         age = source.getAge().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+
+        availableDates.addAll(source.getAvailableDates().stream()
+                .map(JsonAdaptedAvailableDate::new)
                 .collect(Collectors.toList()));
     }
 
@@ -134,6 +145,14 @@ public abstract class JsonAdaptedPerson {
             personTags.add(tag.toModelType(friendlyLink));
         }
         return new HashSet<>(personTags);
+    }
+
+    protected Set<AvailableDate> getAvailableDateSet() throws IllegalValueException {
+        final List<AvailableDate> personAvailableDates = new ArrayList<>();
+        for (JsonAdaptedAvailableDate date : availableDates) {
+            personAvailableDates.add(date.toModelType());
+        }
+        return new HashSet<>(personAvailableDates);
     }
 
 

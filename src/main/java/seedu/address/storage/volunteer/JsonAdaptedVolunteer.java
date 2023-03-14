@@ -16,6 +16,7 @@ import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.storage.JsonAdaptedAvailableDate;
 import seedu.address.storage.JsonAdaptedPerson;
 import seedu.address.storage.JsonAdaptedTag;
 import seedu.address.storage.JsonSerializable;
@@ -33,9 +34,10 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
     public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("nric") String nric, @JsonProperty("age") String age,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("availableDates") List<JsonAdaptedAvailableDate> dates) {
 
-        super(name, phone, email, address, nric, age, tagged);
+        super(name, phone, email, address, nric, age, tagged, dates);
     }
 
     /**

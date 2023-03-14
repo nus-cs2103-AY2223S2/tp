@@ -43,6 +43,8 @@ public class JsonAdaptedElderlyTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+    private static final List<JsonAdaptedAvailableDate> VALID_DATES = BENSON.getAvailableDates()
+            .stream().map(JsonAdaptedAvailableDate::new).collect(Collectors.toList());
 
     private static final FriendlyLink appTestCache = new FriendlyLink();
 
@@ -57,7 +59,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS);
+                        VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -66,7 +68,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -75,7 +77,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -84,7 +86,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -93,7 +95,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, INVALID_EMAIL,
-                VALID_ADDRESS, VALID_NRIC, VALID_RISK, VALID_AGE, VALID_TAGS);
+                VALID_ADDRESS, VALID_NRIC, VALID_RISK, VALID_AGE, VALID_TAGS, VALID_DATES);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -102,7 +104,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -112,7 +114,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS);
+                        VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -121,7 +123,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-                VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -131,7 +133,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        INVALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS);
+                        INVALID_NRIC, VALID_AGE, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Nric.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -140,7 +142,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullNric_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                null, VALID_AGE, VALID_RISK, VALID_TAGS);
+                null, VALID_AGE, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -150,7 +152,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, INVALID_AGE, VALID_RISK, VALID_TAGS);
+                        VALID_NRIC, INVALID_AGE, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Age.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -159,7 +161,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullAge_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, null, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, null, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -169,7 +171,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, INVALID_RISK, VALID_TAGS);
+                        VALID_NRIC, VALID_AGE, INVALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = RiskLevel.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -178,7 +180,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullRiskLevel_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, null, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, null, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, RiskLevel.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -190,7 +192,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, VALID_RISK, invalidTags);
+                        VALID_NRIC, VALID_AGE, VALID_RISK, invalidTags, VALID_DATES);
         assertThrows(IllegalValueException.class, () -> elderly.toModelType(appTestCache));
     }
 
