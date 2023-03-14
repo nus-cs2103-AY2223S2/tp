@@ -5,25 +5,19 @@ import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
 import taa.logic.commands.EditCommand;
-import taa.logic.commands.MarkAttendanceCommand;
+import taa.logic.commands.UnmarkAttendanceCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Attendance;
-import taa.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new MarkAttendanceCommand object
+ * Parses input arguments and creates a new UnmarkAttendanceCommand object
  */
-public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
+public class UnmarkAttendanceParser implements Parser<UnmarkAttendanceCommand> {
     @Override
-    public MarkAttendanceCommand parse(String userInput) throws ParseException {
+    public UnmarkAttendanceCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_TAG, PREFIX_WEEK);
@@ -46,21 +40,6 @@ public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
             throw new ParseException(Attendance.errorMsg);
         }
 
-        return new MarkAttendanceCommand(index, Index.fromOneBased(week));
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        return new UnmarkAttendanceCommand(index, Index.fromOneBased(week));
     }
 }

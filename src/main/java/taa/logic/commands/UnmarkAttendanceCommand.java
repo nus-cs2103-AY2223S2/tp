@@ -12,22 +12,21 @@ import taa.model.student.Attendance;
 import taa.model.student.Student;
 
 /**
- * Marks the attendance of an existing student in the address book.
+ * Unmarks the attendance of an existing student in the address book.
  */
-public class MarkAttendanceCommand extends Command {
-    public static final String COMMAND_WORD = "markAtd";
-    public static final String SUCCESS_MSG = "Attendance marked successfully!";
+public class UnmarkAttendanceCommand extends Command {
+    public static final String COMMAND_WORD = "unmarkAtd";
+    public static final String SUCCESS_MSG = "Attendance unmarked successfully!";
     public static final String MESSAGE_DUPLICATE_MARKING = "This student's attendance has already been marked.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
     private final Index index;
     private final Index week;
 
     /**
-     * Constructor for MarkAttendanceCommand
+     * Constructor for UnarkAttendanceCommand
      * @param index index of student to update
      * @param week week to update
      */
-    public MarkAttendanceCommand(Index index, Index week) {
+    public UnmarkAttendanceCommand(Index index, Index week) {
         this.index = index;
         this.week = week;
     }
@@ -50,10 +49,8 @@ public class MarkAttendanceCommand extends Command {
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Attendance studentAtd = studentToEdit.getAtd();
-        if (studentAtd.isMarkedWeek(this.week.getZeroBased())) {
-            return new CommandResult(MESSAGE_DUPLICATE_MARKING);
-        }
-        studentAtd.markAttendance(this.week.getZeroBased());
+
+        studentAtd.unmarkAttendance(this.week.getZeroBased());
 
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(SUCCESS_MSG);
