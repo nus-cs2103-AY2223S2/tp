@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
-import static seedu.address.testutil.TypicalElderly.AMY;
+import static seedu.address.testutil.TypicalElderly.ALICE;
 import static seedu.address.testutil.TypicalElderly.CHARLIE;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPairs.PAIR2;
@@ -32,15 +32,15 @@ public class PairTest {
         assertFalse(PAIR1.isSamePair(null));
 
         // same nric, all other attributes different -> returns true
-        Elderly editedAmy = new ElderlyBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE).build();
-        Pair editedPair1 = new PairBuilder(PAIR1).withElderly(editedAmy).build();
+        Elderly editedAlice = new ElderlyBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE).build();
+        Pair editedPair1 = new PairBuilder(PAIR1).withElderly(editedAlice).build();
         assertTrue(PAIR1.isSamePair(editedPair1));
         // TODO: check that a different name returns true if nric is the same.
 
         // different nric, all other attributes same -> returns false
-        editedAmy = new ElderlyBuilder(AMY).withNric(VALID_NRIC_BOB).build();
-        editedPair1 = new PairBuilder(PAIR1).withElderly(editedAmy).build();
+        editedAlice = new ElderlyBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
+        editedPair1 = new PairBuilder(PAIR1).withElderly(editedAlice).build();
         assertFalse(PAIR1.isSamePair(editedPair1));
     }
 

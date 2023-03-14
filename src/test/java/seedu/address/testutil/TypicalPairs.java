@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalElderly.AMY;
-import static seedu.address.testutil.TypicalElderly.BOB;
-import static seedu.address.testutil.TypicalElderly.CHARLIE;
+import static seedu.address.testutil.TypicalElderly.ALICE;
+import static seedu.address.testutil.TypicalElderly.BENSON;
+import static seedu.address.testutil.TypicalElderly.CARL;
 import static seedu.address.testutil.TypicalVolunteers.DANIEL;
 import static seedu.address.testutil.TypicalVolunteers.ELLE;
 
@@ -13,15 +13,15 @@ import java.util.List;
 import seedu.address.model.pair.Pair;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Pair} objects to be used in tests.
  */
 public class TypicalPairs {
 
-    public static final Pair PAIR1 = new PairBuilder().withElderly(AMY)
+    public static final Pair PAIR1 = new PairBuilder().withElderly(ALICE)
             .withVolunteer(ELLE).build();
-    public static final Pair PAIR2 = new PairBuilder().withElderly(CHARLIE)
+    public static final Pair PAIR2 = new PairBuilder().withElderly(CARL)
             .withVolunteer(DANIEL).build();
-    public static final Pair PAIR3 = new PairBuilder().withElderly(BOB)
+    public static final Pair PAIR3 = new PairBuilder().withElderly(BENSON)
             .withVolunteer(ELLE).build();
 
     private TypicalPairs() {} // prevents instantiation

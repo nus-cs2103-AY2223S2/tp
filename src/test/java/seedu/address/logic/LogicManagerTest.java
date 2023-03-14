@@ -87,7 +87,7 @@ public class LogicManagerTest {
                 new JsonPairIoExceptionThrowingStub(
                         temporaryFolder.resolve("ioExceptionFriendlyLink.json"));
         JsonElderlyStorage elderlyStorage =
-                new JsonElderlyStorage(
+                new JsonElderlyIoExceptionThrowingStub(
                         temporaryFolder.resolve("ioExceptionElderly.json"));
         JsonVolunteerStorage volunteerStorage =
                 new JsonVolunteerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionVolunteer.json"));
@@ -116,6 +116,11 @@ public class LogicManagerTest {
     @Test
     public void getFilteredElderlyList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredElderlyList().remove(0));
+    }
+
+    @Test
+    public void getFilteredPairList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPairList().remove(0));
     }
 
     /**
