@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MeetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.location.Location;
 import seedu.address.model.location.LocationUtil;
+import seedu.address.model.person.ContactIndex;
 
 /**
  * Parses input arguments and creates a new MeetCommand object
@@ -51,7 +51,7 @@ public class MeetCommandParser implements Parser<MeetCommand> {
                 .filter(x -> !x.isEmpty())
                 .collect(Collectors.toList());
 
-        Set<Index> indices =
+        Set<ContactIndex> indices =
                 ParserUtil.parseIndices(indexArray);
         return new MeetCommand(indices, locationHashSet);
     }

@@ -16,16 +16,20 @@
       "CS2104",
       "CS2105",
       "CS2106"
-    ]
+    ],
+    "index": 0
   },
   "persons": [
     {
-      "name": "Kang Cheng Lim",
-      "email": "kangchenglim@gmail.com",
-      "telegramHandle": "@kangchenglim",
-      "address": "Cheng Lim",
-      "groups": [],
-      "phone": "99539453",
+      "name": "Joo Rong",
+      "email": "joorong@gmail.com",
+      "telegramHandle": "@joorong",
+      "address": "Jurong East",
+      "groups": [
+        "NS"
+      ],
+      "phone": "94044861",
+      "index": 65,
       "modules": [
         "CS2100",
         "DSAIS1101"

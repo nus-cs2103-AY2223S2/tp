@@ -16,26 +16,27 @@
       "CS2104",
       "CS2105",
       "CS2106"
-    ]
+    ],
+    "index": 0
   },
   "persons": [
     {
-      "name": "Steven Tan",
-      "email": "steventan@gmail.com",
-      "telegramHandle": "@steventan",
-      "address": "Stevens",
+      "name": "Dakota Dunman",
+      "email": "dakotadunman@gmail.com",
+      "telegramHandle": "@dakotadunman",
+      "address": "Dakota",
       "groups": [
-        "Study",
-        "TA"
+        "CCA"
       ],
       "phone": "3895as4665",
+      "index": 62,
       "modules": [
-        "CE2134",
-        "CS2100",
-        "GEC1009",
-        "MUA3225",
-        "LAD2007",
-        "BT2101"
+        "GE2102",
+        "QF3101",
+        "LLJ5203",
+        "CS2104",
+        "ST2132",
+        "CM3261"
       ]
     }
   ]

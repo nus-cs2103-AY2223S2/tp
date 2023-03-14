@@ -16,18 +16,20 @@
       "CS2104",
       "CS2105",
       "CS2106"
-    ]
+    ],
+    "index": 0
   },
   "persons": [
     {
-      "name": "Alex Quentin",
-      "email": "alexquentin@gmail.com",
-      "telegramHandle": "@alexquentin",
-      "address": "Queenstown",
+      "name": "Amirah Tan",
+      "email": "amirahtan@gmail.com",
+      "telegramHandle": "@amirahtan",
+      "address": "Tanah Merah",
       "groups": [
         "Groupmate"
       ],
-      "phone": "91219456",
+      "phone": "91965624",
+      "index": 33,
       "modules": [
         "CS2100",
         "DSAIS1101"

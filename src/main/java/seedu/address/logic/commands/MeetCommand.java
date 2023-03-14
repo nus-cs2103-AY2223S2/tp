@@ -5,14 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.location.DistanceUtil;
 import seedu.address.model.location.Location;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 
 /**
@@ -29,16 +31,16 @@ public class MeetCommand extends Command {
             String.format("%s/%s/%s", EAT_COMMAND_WORD, STUDY_COMMAND_WORD, MEET_COMMAND_WORD)
                     + ": Recommends locations to eat/study/meet based on the indices of the people.";
 
-    private final Set<Index> indices;
+    private final Set<ContactIndex> indices;
     private final Collection<Location> locations;
-    private int numberOfRecommendations;
+    private final int numberOfRecommendations;
 
     /**
      * Constructor for a {@code MeetCommand}.
      * @param indices The indices of people we want to meet.
      * @param locations The potential locations to meet.
      */
-    public MeetCommand(Set<Index> indices, Collection<Location> locations) {
+    public MeetCommand(Set<ContactIndex> indices, Collection<Location> locations) {
         this.indices = indices;
         this.locations = locations;
         this.numberOfRecommendations = DEFAULT_NUMBER_OF_RECOMMENDATIONS;
@@ -50,7 +52,8 @@ public class MeetCommand extends Command {
      * @param locations The potential locations to meet.
      * @param numberOfRecommendations The maximum search result size.
      */
-    public MeetCommand(Set<Index> indices, Collection<Location> locations, int numberOfRecommendations) {
+    public MeetCommand(
+            Set<ContactIndex> indices, Collection<Location> locations, int numberOfRecommendations) {
         this.indices = indices;
         this.locations = locations;
         this.numberOfRecommendations = numberOfRecommendations;
@@ -60,12 +63,14 @@ public class MeetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> lastShownList = model.getFilteredPersonList();
+        IndexHandler indexHandler = new IndexHandler(model);
+
         List<Location> locationsOfPersons = new ArrayList<>();
         locationsOfPersons.add(model.getUser().getAddress().getValue());
 
-        for (Index index : indices) {
-            locationsOfPersons.add(getPersonFromIndex(index, lastShownList).getAddress().getValue());
+        for (ContactIndex contactIndex : indices) {
+            locationsOfPersons
+                    .add(getPersonFromContactIndex(contactIndex, indexHandler).getAddress().getValue());
         }
 
         List<? extends Location> recommendations = giveRecommendations(locationsOfPersons);
@@ -82,17 +87,17 @@ public class MeetCommand extends Command {
 
     /**
      * Retrieves the person from the list of persons.
-     * @param index The zero-based index of the wanted person.
-     * @param lastShownList The most recent state of the {@code EduMate}.
+     * @param contactIndex The zero-based index of the wanted person.
+     * @param indexHandler The person-getter.
      * @return The {@code Person} at the specified index.
      * @throws CommandException If an error occurs during command execution.
      */
-    private Person getPersonFromIndex(Index index, List<? extends Person> lastShownList) throws CommandException {
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+    private Person getPersonFromContactIndex(
+            ContactIndex contactIndex, IndexHandler indexHandler) throws CommandException {
+        Optional<Person> targetPerson = indexHandler.getPersonByIndex(contactIndex);
 
-        return lastShownList.get(index.getZeroBased());
+        return targetPerson.orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
     }
 
     /**

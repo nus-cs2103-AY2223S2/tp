@@ -7,17 +7,17 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.location.LocationUtil;
+import seedu.address.model.person.ContactIndex;
 
 class MeetCommandTest {
 
     // 6 is EDWARD and 8 is GEORGE, both in Kent Ridge
-    private static final Set<Index> INDICES =
-            Set.of(Index.fromOneBased(6), Index.fromOneBased(8));
+    private static final Set<ContactIndex> INDICES =
+            Set.of(new ContactIndex(6), new ContactIndex(8));
     private static final MeetCommand MEET_COMMAND =
             new MeetCommand(INDICES, LocationUtil.MEET_LOCATIONS, 3);
     private static final MeetCommand STUDY_COMMAND =

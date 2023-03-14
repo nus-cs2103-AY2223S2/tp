@@ -16,25 +16,27 @@
       "CS2104",
       "CS2105",
       "CS2106"
-    ]
+    ],
+    "index": 0
   },
   "persons": [
     {
-      "name": "Tan Kah Kee",
-      "email": "tankahkee@gmail.com",
-      "telegramHandle": "@tankahkee",
+      "name": "Adam Tan",
+      "email": "adamtan@gmail.com",
+      "telegramHandle": "@adamtan",
       "address": "Tan Kah Kee",
       "groups": [
         "TA"
       ],
       "phone": "23",
+      "index": 82,
       "modules": [
-        "DSA2102",
-        "CS2106",
-        "CS2113",
-        "CS4230",
-        "CS2101",
-        "CS2105"
+        "IE2141",
+        "CE2183",
+        "LAV2201",
+        "BT2103",
+        "LAK3201",
+        "CS2101"
       ]
     }
   ]

@@ -16,25 +16,27 @@
       "CS2104",
       "CS2105",
       "CS2106"
-    ]
+    ],
+    "index": 0
   },
   "persons": [
     {
-      "name": "Tae Seung",
-      "email": "taeseung@gmail.com",
-      "telegramHandle": "@taeseung",
-      "address": "Tai Seng",
+      "name": "Amirah Tan",
+      "email": "amirahtan@gmail.com",
+      "telegramHandle": "@amirahtan",
+      "address": "Tanah Merah",
       "groups": [
-        "CCA"
+        "Groupmate"
       ],
       "phone": "3895as4665",
+      "index": 33,
       "modules": [
-        "CS2101",
-        "CS2103",
-        "CS2113T",
-        "BT2102",
-        "CS2030",
-        "ECA5313"
+        "CS2104",
+        "CS2102",
+        "IS2101",
+        "CS4347",
+        "CS2108",
+        "BT2101"
       ]
     }
   ]

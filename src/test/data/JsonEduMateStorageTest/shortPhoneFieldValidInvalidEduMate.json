@@ -16,25 +16,27 @@
       "CS2104",
       "CS2105",
       "CS2106"
-    ]
+    ],
+    "index": 0
   },
   "persons": [
     {
-      "name": "Ju Kun",
-      "email": "jukun@gmail.com",
-      "telegramHandle": "@jukun",
-      "address": "Joo Koon",
+      "name": "Quincy Dawson",
+      "email": "quincydawson@gmail.com",
+      "telegramHandle": "@quincydawson",
+      "address": "Queenstown",
       "groups": [
         "Groupmate"
       ],
       "phone": "23",
+      "index": 67,
       "modules": [
+        "CE2183",
+        "CS2105",
+        "BT2102",
         "CS2101",
-        "DSA2101",
-        "BN3301",
-        "CS2106",
-        "CS2108",
-        "CS2107"
+        "CE2407A",
+        "CS2113"
       ]
     }
   ]

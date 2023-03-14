@@ -16,26 +16,28 @@
       "CS2104",
       "CS2105",
       "CS2106"
-    ]
+    ],
+    "index": 0
   },
   "persons": [
     {
       "name": "Goon Se-Rang",
-      "email": "gwonserang@gmail.com",
-      "telegramHandle": "@gwonserang",
-      "address": "Serangoon",
+      "email": "kishantharunika@gmail.com",
+      "telegramHandle": "@kishantharunika",
+      "address": "Bishan",
       "groups": [
-        "NUS",
+        "NS",
         "CCA"
       ],
-      "phone": "85214638",
+      "phone": "95377101",
+      "index": 2,
       "modules": [
-        "CS2106",
+        "CS3281",
         "CS2102",
-        "BT4012",
-        "PL3287A",
-        "CE6999",
-        "CE5611QB"
+        "CS2107",
+        "CS2108",
+        "CS2103",
+        "CS2105"
       ]
     }
   ]

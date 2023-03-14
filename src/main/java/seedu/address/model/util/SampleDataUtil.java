@@ -18,6 +18,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -104,6 +105,7 @@ public class SampleDataUtil {
                 new Email("linusrichards@gmail.com"),
                 new Address("National University of Singapore"),
                 new TelegramHandle("@linusrichards"),
+                new ContactIndex(0),
                 getGroupTagSet(),
                 getModuleTagSetFromUnsplitted("CS2100 CS2101 CS2102 CS2103 CS2104 CS2105")
         );
@@ -116,23 +118,24 @@ public class SampleDataUtil {
     private static Person getSamplePerson(String personData) {
         List<String> personDataList = Stream.of(personData.split("\\|"))
                 .map(String::trim)
-                .limit(7) // Maximum of 7 fields
+                .limit(8) // Maximum of 8 fields
                 .collect(Collectors.toList());
 
-        if (personDataList.size() != 7) {
+        if (personDataList.size() != 8) {
             return null;
         }
 
-        Name name = new Name(personDataList.get(0));
-        Phone phone = new Phone(personDataList.get(1));
-        Email email = new Email(personDataList.get(2));
-        Address address = new Address(personDataList.get(3));
-        TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(4));
-        Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(5));
-        Set<ModuleTag> moduleTagSet = getModuleTagSetFromUnsplitted(personDataList.get(6));
+        ContactIndex contactIndex = new ContactIndex(Integer.parseInt(personDataList.get(0)));
+        Name name = new Name(personDataList.get(1));
+        Phone phone = new Phone(personDataList.get(2));
+        Email email = new Email(personDataList.get(3));
+        Address address = new Address(personDataList.get(4));
+        TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(5));
+        Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(6));
+        Set<ModuleTag> moduleTagSet = getModuleTagSetFromUnsplitted(personDataList.get(7));
 
         return new Person(name, phone, email, address,
-                telegramHandle, groupTagSet, moduleTagSet);
+                telegramHandle, contactIndex, groupTagSet, moduleTagSet);
     }
 
     /**

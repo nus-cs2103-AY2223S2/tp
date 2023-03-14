@@ -16,43 +16,46 @@
       "CS2104",
       "CS2105",
       "CS2106"
-    ]
+    ],
+    "index": 0
   },
   "persons": [
     {
-      "name": "Muhammad Matariah",
-      "email": "muhammadmatariah@gmail.com",
-      "telegramHandle": "@muhammadmatariah",
-      "address": "Mattar",
+      "name": "Nee Soon",
+      "email": "neesoon@gmail.com",
+      "telegramHandle": "@neesoon",
+      "address": "Yishun",
       "groups": [
-        "TA"
+        "NS"
       ],
-      "phone": "96513347",
+      "phone": "83322492",
+      "index": 68,
       "modules": [
-        "CS2101",
-        "CS2104",
-        "CS3233",
-        "CS2107",
-        "MA3205",
-        "CS2103"
+        "CS2105",
+        "BT2201",
+        "CS2103",
+        "CS2030",
+        "CE2155",
+        "CS2106"
       ]
     },
     {
-      "name": "Muhammad Matariah",
-      "email": "muhammadmatariah@gmail.com",
-      "telegramHandle": "@muhammadmatariah",
-      "address": "Mattar",
+      "name": "Nee Soon",
+      "email": "neesoon@gmail.com",
+      "telegramHandle": "@neesoon",
+      "address": "Yishun",
       "groups": [
-        "TA"
+        "NS"
       ],
-      "phone": "96513347",
+      "phone": "83322492",
+      "index": 68,
       "modules": [
-        "CS2101",
-        "CS2104",
-        "CS3233",
-        "CS2107",
-        "MA3205",
-        "CS2103"
+        "CS2105",
+        "BT2201",
+        "CS2103",
+        "CS2030",
+        "CE2155",
+        "CS2106"
       ]
     }
   ]

@@ -6,10 +6,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -25,31 +25,29 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * Parses {@code Collection<String> tags} into a {@code Set<Index>}.
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        String trimmedIndex = oneBasedIndex.trim();
+    public static Set<ContactIndex> parseIndices(Collection<String> indices) throws ParseException {
+        requireNonNull(indices);
+        final Set<ContactIndex> indexSet = new HashSet<>();
+        for (String index : indices) {
+            indexSet.add(parseContactIndex(index));
+        }
+        return indexSet;
+    }
+
+    /**
+     * Returns a ContactIndex from the string index.
+     */
+    public static ContactIndex parseContactIndex(String contactIndex) throws ParseException {
+        String trimmedIndex = contactIndex.trim();
         if (trimmedIndex.isEmpty()) {
             return null;
         }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Index>}.
-     */
-    public static Set<Index> parseIndices(Collection<String> indices) throws ParseException {
-        requireNonNull(indices);
-        final Set<Index> indexSet = new HashSet<>();
-        for (String index : indices) {
-            indexSet.add(parseIndex(index));
-        }
-        return indexSet;
+        return new ContactIndex(Integer.parseInt(trimmedIndex));
     }
 
     /**

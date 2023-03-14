@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -38,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setContactIndex(person.getContactIndex());
         descriptor.setGroupTags(person.getImmutableGroupTags());
         descriptor.setTelegramHandle(person.getTelegramHandle());
         descriptor.setModuleTags(person.getImmutableModuleTags());
@@ -80,6 +82,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withTelegramHandle(String telegramHandle) {
         descriptor.setTelegramHandle(new TelegramHandle(telegramHandle));
+        return this;
+    }
+
+    /**
+     * Sets the {@code ContactIndex} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withContactIndex(Integer index) {
+        descriptor.setContactIndex(new ContactIndex(index));
         return this;
     }
 

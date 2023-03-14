@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     protected final String email;
     protected final String address;
     protected final String telegramHandle;
+    protected final Integer index;
     protected final List<JsonAdaptedGroupTag> groups = new ArrayList<>();
     protected final List<JsonAdaptedModuleTag> modules = new ArrayList<>();
 
@@ -41,6 +43,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("telegramHandle") String telegramHandle,
+            @JsonProperty("index") int index,
             @JsonProperty("groups") List<JsonAdaptedGroupTag> groups,
             @JsonProperty("modules") List<JsonAdaptedModuleTag> modules) {
         this.name = name;
@@ -48,6 +51,7 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.telegramHandle = telegramHandle;
+        this.index = index;
         if (groups != null) {
             this.groups.addAll(groups);
         }
@@ -65,6 +69,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().getValue();
         address = source.getAddress().getValue().getName();
         telegramHandle = source.getTelegramHandle().getValue();
+        index = source.getContactIndex().getValue();
         groups.addAll(source.getImmutableGroupTags().stream()
                 .map(JsonAdaptedGroupTag::new)
                 .collect(Collectors.toList()));
@@ -125,11 +130,17 @@ class JsonAdaptedPerson {
         if (!TelegramHandle.isValidTelegramHandle(telegramHandle)) {
             throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
+
+        if (index == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ContactIndex.class.getSimpleName()));
+        }
+        final ContactIndex modelContactIndex = new ContactIndex(index);
         final TelegramHandle modelTelegramHandle = new TelegramHandle(telegramHandle);
         final Set<GroupTag> modelGroupTags = new HashSet<>(personGroupTags);
         final Set<ModuleTag> modelModuleTags = new HashSet<>(personModuleTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelTelegramHandle, modelGroupTags, modelModuleTags);
+                modelTelegramHandle, modelContactIndex, modelGroupTags, modelModuleTags);
     }
 
 }

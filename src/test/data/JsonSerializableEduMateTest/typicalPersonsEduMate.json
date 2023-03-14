@@ -16,7 +16,8 @@
       "CS2104",
       "CS2105",
       "CS2106"
-    ]
+    ],
+    "index": 0
   },
   "persons": [
     {
@@ -28,6 +29,7 @@
         "TA"
       ],
       "phone": "89760441",
+      "index": 57,
       "modules": [
         "CS2105",
         "CS2104",
@@ -46,6 +48,7 @@
         "Study"
       ],
       "phone": "86203169",
+      "index": 95,
       "modules": [
         "CS2108",
         "GEN2061",
@@ -64,6 +67,7 @@
         "CCA"
       ],
       "phone": "82630347",
+      "index": 20,
       "modules": [
         "CE2183",
         "CS2108",
@@ -82,6 +86,7 @@
         "NUS"
       ],
       "phone": "81342028",
+      "index": 94,
       "modules": [
         "CS2103",
         "CE2003",
@@ -100,6 +105,7 @@
         "CCA"
       ],
       "phone": "86263617",
+      "index": 62,
       "modules": [
         "GE2102",
         "QF3101",
@@ -118,6 +124,7 @@
         "CCA"
       ],
       "phone": "92463693",
+      "index": 83,
       "modules": [
         "CS2105",
         "CS2309",
@@ -136,6 +143,7 @@
         "TA"
       ],
       "phone": "88032666",
+      "index": 76,
       "modules": [
         "CS2101",
         "CS2103",
@@ -154,6 +162,7 @@
         "CCA"
       ],
       "phone": "98796811",
+      "index": 100,
       "modules": [
         "CS4249",
         "CS2105",
@@ -172,6 +181,7 @@
         "Groupmate"
       ],
       "phone": "91345682",
+      "index": 97,
       "modules": [
         "MA2101",
         "CS2104",
@@ -191,6 +201,7 @@
         "TA"
       ],
       "phone": "93175044",
+      "index": 90,
       "modules": [
         "CE5315",
         "CS2109S",
@@ -209,6 +220,7 @@
         "Groupmate"
       ],
       "phone": "84709651",
+      "index": 7,
       "modules": [
         "CS2101",
         "DSA2101",
@@ -227,6 +239,7 @@
         "NUS"
       ],
       "phone": "99997496",
+      "index": 53,
       "modules": [
         "IS2101",
         "CS2030S",
@@ -245,6 +258,7 @@
         "Groupmate"
       ],
       "phone": "83340546",
+      "index": 11,
       "modules": [
         "BT2102",
         "CS2113T",
@@ -263,6 +277,7 @@
         "CCA"
       ],
       "phone": "93816073",
+      "index": 63,
       "modules": [
         "CS2103",
         "CS2104",
@@ -281,6 +296,7 @@
         "CCA"
       ],
       "phone": "92574283",
+      "index": 52,
       "modules": [
         "NGN2001E",
         "CS3203",
