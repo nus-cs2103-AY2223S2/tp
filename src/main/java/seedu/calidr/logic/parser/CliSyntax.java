@@ -14,4 +14,10 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
 
+    //=================For Calidr===========================================================
+    public static final Prefix PREFIX_TITLE = new Prefix("t/");
+    public static final Prefix PREFIX_BY = new Prefix("by/");
+    public static final Prefix PREFIX_FROM = new Prefix("from/");
+    public static final Prefix PREFIX_TO = new Prefix("to/");
+
 }
