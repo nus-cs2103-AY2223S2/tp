@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 
 /**
@@ -20,31 +20,31 @@ import trackr.model.task.Task;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final SupplierList supplierList;
     private final TaskList taskList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Supplier> filteredSuppliers;
     private final FilteredList<Task> filteredTasks;
 
     /**
-     * Initializes a ModelManager with the given addressBook, taskList and userPrefs.
+     * Initializes a ModelManager with the given supplier list, taskList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, taskList, userPrefs);
+    public ModelManager(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(supplierList, taskList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook
+        logger.fine("Initializing with supplier list: " + supplierList
                 + " and task list: " + taskList
                 + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.supplierList = new SupplierList(supplierList);
         this.taskList = new TaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredSuppliers = new FilteredList<>(this.supplierList.getSupplierList());
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new TaskList(), new UserPrefs());
+        this(new SupplierList(), new TaskList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -82,57 +82,57 @@ public class ModelManager implements Model {
         userPrefs.setTrackrFilePath(trackrFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== AddressBook - Supplier ==============================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setSupplierList(ReadOnlySupplierList supplierList) {
+        this.supplierList.resetData(supplierList);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlySupplierList getSupplierList() {
+        return supplierList;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasSupplier(Supplier supplier) {
+        requireNonNull(supplier);
+        return supplierList.hasSupplier(supplier);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteSupplier(Supplier target) {
+        supplierList.removeSupplier(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addSupplier(Supplier supplier) {
+        supplierList.addSupplier(supplier);
+        updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setSupplier(Supplier target, Supplier editedSupplier) {
+        requireAllNonNull(target, editedSupplier);
 
-        addressBook.setPerson(target, editedPerson);
+        supplierList.setSupplier(target, editedSupplier);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Supplier List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Supplier} backed by the internal list of
+     * {@code versionedSupplierList}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Supplier> getFilteredSupplierList() {
+        return filteredSuppliers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredSuppliers.setPredicate(predicate);
     }
 
     //=========== TaskList ===================================================================================
@@ -204,10 +204,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return supplierList.equals(other.supplierList)
                 && taskList.equals(other.taskList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+                && filteredSuppliers.equals(other.filteredSuppliers)
                 && filteredTasks.equals(other.filteredTasks);
     }
 

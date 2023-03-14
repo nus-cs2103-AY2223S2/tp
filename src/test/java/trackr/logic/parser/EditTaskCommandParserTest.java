@@ -28,9 +28,10 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.EditTaskCommand;
 import trackr.model.task.TaskDeadline;
+import trackr.model.task.TaskDescriptor;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
-import trackr.testutil.EditTaskDescriptorBuilder;
+import trackr.testutil.TaskDescriptorBuilder;
 
 public class EditTaskCommandParserTest {
 
@@ -104,8 +105,8 @@ public class EditTaskCommandParserTest {
         String userInput = targetIndex.getOneBased() + TASK_NAME_DESC_SORT_INVENTORY
                 + TASK_DEADLINE_DESC_2024 + TASK_STATUS_DESC_NOT_DONE;
 
-        EditTaskCommand.EditTaskDescriptor descriptor =
-                new EditTaskDescriptorBuilder()
+        TaskDescriptor descriptor =
+                new TaskDescriptorBuilder()
                         .withTaskName(VALID_TASK_NAME_SORT_INVENTORY)
                         .withTaskDeadline(VALID_TASK_DEADLINE_2024)
                         .withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
@@ -121,8 +122,8 @@ public class EditTaskCommandParserTest {
         String userInput = targetIndex.getOneBased()
                 + TASK_NAME_DESC_SORT_INVENTORY + TASK_DEADLINE_DESC_2100;
 
-        EditTaskCommand.EditTaskDescriptor descriptor =
-                new EditTaskDescriptorBuilder()
+        TaskDescriptor descriptor =
+                new TaskDescriptorBuilder()
                         .withTaskName(VALID_TASK_NAME_SORT_INVENTORY)
                         .withTaskDeadline(VALID_TASK_DEADLINE_2100).build();
         EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
@@ -131,7 +132,7 @@ public class EditTaskCommandParserTest {
         //name and status
         userInput = targetIndex.getOneBased() + TASK_NAME_DESC_BUY_FLOUR
                 + TASK_STATUS_DESC_NOT_DONE;
-        descriptor = new EditTaskDescriptorBuilder().withTaskName(VALID_TASK_NAME_BUY_FLOUR)
+        descriptor = new TaskDescriptorBuilder().withTaskName(VALID_TASK_NAME_BUY_FLOUR)
                 .withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
         expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -142,21 +143,21 @@ public class EditTaskCommandParserTest {
         // task name
         Index targetIndex = INDEX_THIRD_OBJECT;
         String userInput = targetIndex.getOneBased() + TASK_NAME_DESC_SORT_INVENTORY;
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+        TaskDescriptor descriptor = new TaskDescriptorBuilder()
                 .withTaskName(VALID_TASK_NAME_SORT_INVENTORY).build();
         EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // task deadline
         userInput = targetIndex.getOneBased() + TASK_DEADLINE_DESC_2024;
-        descriptor = new EditTaskDescriptorBuilder()
+        descriptor = new TaskDescriptorBuilder()
                 .withTaskDeadline(VALID_TASK_DEADLINE_2024).build();
         expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // task status
         userInput = targetIndex.getOneBased() + TASK_STATUS_DESC_NOT_DONE;
-        descriptor = new EditTaskDescriptorBuilder()
+        descriptor = new TaskDescriptorBuilder()
                 .withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
         expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -171,8 +172,8 @@ public class EditTaskCommandParserTest {
                 + TASK_STATUS_DESC_NOT_DONE + TASK_NAME_DESC_BUY_FLOUR
                 + TASK_DEADLINE_DESC_2100 + TASK_STATUS_DESC_DONE;
 
-        EditTaskCommand.EditTaskDescriptor descriptor =
-                new EditTaskDescriptorBuilder()
+        TaskDescriptor descriptor =
+                new TaskDescriptorBuilder()
                         .withTaskName(VALID_TASK_NAME_BUY_FLOUR)
                         .withTaskDeadline(VALID_TASK_DEADLINE_2100)
                         .withTaskStatus(VALID_TASK_STATUS_DONE).build();
@@ -187,20 +188,20 @@ public class EditTaskCommandParserTest {
         // invalid task name followed by valid task name
         Index targetIndex = INDEX_FIRST_OBJECT;
         String userInput = targetIndex.getOneBased() + INVALID_TASK_NAME_DESC + TASK_NAME_DESC_BUY_FLOUR;
-        EditTaskCommand.EditTaskDescriptor descriptor =
-                new EditTaskDescriptorBuilder().withTaskName(VALID_TASK_NAME_BUY_FLOUR).build();
+        TaskDescriptor descriptor =
+                new TaskDescriptorBuilder().withTaskName(VALID_TASK_NAME_BUY_FLOUR).build();
         EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // invalid task deadline followed by valid task deadline
         userInput = targetIndex.getOneBased() + INVALID_TASK_DEADLINE_DESC + TASK_DEADLINE_DESC_2100;
-        descriptor = new EditTaskDescriptorBuilder().withTaskDeadline(VALID_TASK_DEADLINE_2100).build();
+        descriptor = new TaskDescriptorBuilder().withTaskDeadline(VALID_TASK_DEADLINE_2100).build();
         expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // invalid task status followed by valid task status
         userInput = targetIndex.getOneBased() + INVALID_TASK_STATUS_DESC + TASK_STATUS_DESC_NOT_DONE;
-        descriptor = new EditTaskDescriptorBuilder().withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
+        descriptor = new TaskDescriptorBuilder().withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
         expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -209,7 +210,7 @@ public class EditTaskCommandParserTest {
         userInput = targetIndex.getOneBased()
                 + INVALID_TASK_NAME_DESC + TASK_STATUS_DESC_NOT_DONE
                 + TASK_DEADLINE_DESC_2100 + TASK_NAME_DESC_BUY_FLOUR;
-        descriptor = new EditTaskDescriptorBuilder()
+        descriptor = new TaskDescriptorBuilder()
                 .withTaskName(VALID_TASK_NAME_BUY_FLOUR)
                 .withTaskDeadline(VALID_TASK_DEADLINE_2100)
                 .withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
@@ -220,7 +221,7 @@ public class EditTaskCommandParserTest {
         userInput = targetIndex.getOneBased()
                 + TASK_NAME_DESC_BUY_FLOUR + INVALID_TASK_DEADLINE_DESC
                 + TASK_STATUS_DESC_NOT_DONE + TASK_DEADLINE_DESC_2100;
-        descriptor = new EditTaskDescriptorBuilder()
+        descriptor = new TaskDescriptorBuilder()
                 .withTaskName(VALID_TASK_NAME_BUY_FLOUR)
                 .withTaskDeadline(VALID_TASK_DEADLINE_2100)
                 .withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
@@ -231,7 +232,7 @@ public class EditTaskCommandParserTest {
         userInput = targetIndex.getOneBased()
                 + INVALID_TASK_STATUS_DESC + TASK_NAME_DESC_BUY_FLOUR
                 + TASK_STATUS_DESC_NOT_DONE + TASK_DEADLINE_DESC_2100;
-        descriptor = new EditTaskDescriptorBuilder()
+        descriptor = new TaskDescriptorBuilder()
                 .withTaskName(VALID_TASK_NAME_BUY_FLOUR)
                 .withTaskDeadline(VALID_TASK_DEADLINE_2100)
                 .withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
@@ -245,7 +246,7 @@ public class EditTaskCommandParserTest {
         Index targetIndex = INDEX_FIRST_OBJECT;
         String userInput = targetIndex.getOneBased() + TASK_STATUS_DESC_DONE
                 + TASK_DEADLINE_DESC_2100 + TASK_NAME_DESC_BUY_FLOUR;
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+        TaskDescriptor descriptor = new TaskDescriptorBuilder()
                 .withTaskStatus(VALID_TASK_STATUS_DONE)
                 .withTaskDeadline(VALID_TASK_DEADLINE_2100)
                 .withTaskName(VALID_TASK_NAME_BUY_FLOUR).build();
@@ -255,7 +256,7 @@ public class EditTaskCommandParserTest {
         //task deadline, task status, task name
         userInput = targetIndex.getOneBased() + TASK_DEADLINE_DESC_2024
                 + TASK_STATUS_DESC_NOT_DONE + TASK_NAME_DESC_BUY_FLOUR;
-        descriptor = new EditTaskDescriptorBuilder()
+        descriptor = new TaskDescriptorBuilder()
                 .withTaskDeadline(VALID_TASK_DEADLINE_2024)
                 .withTaskStatus(VALID_TASK_STATUS_NOT_DONE)
                 .withTaskName(VALID_TASK_NAME_BUY_FLOUR).build();

@@ -20,6 +20,10 @@ public class TypicalTasks {
             .withTaskDeadline("01/01/2024")
             .withTaskStatus("N").build();
 
+    public static final Task THROW_EXPIRED_N = new TaskBuilder().withTaskName("Throw Expired Food")
+            .withTaskDeadline("01/01/2024")
+            .withTaskStatus("D").build();
+
     public static final Task BUY_EGGS_D = new TaskBuilder().withTaskName("Buy 5kg of Eggs")
             .withTaskDeadline("11/10/2023")
             .withTaskStatus("D").build();
@@ -54,6 +58,6 @@ public class TypicalTasks {
 
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(
-                Arrays.asList(SORT_INVENTORY_N, BUY_EGGS_D));
+                Arrays.asList(SORT_INVENTORY_N, THROW_EXPIRED_N, BUY_EGGS_D));
     }
 }

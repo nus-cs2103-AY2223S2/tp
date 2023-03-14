@@ -15,10 +15,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.person.Address;
-import trackr.model.person.Email;
-import trackr.model.person.Name;
-import trackr.model.person.Phone;
+import trackr.model.supplier.Address;
+import trackr.model.supplier.Email;
+import trackr.model.supplier.Name;
+import trackr.model.supplier.Phone;
 import trackr.model.tag.Tag;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
