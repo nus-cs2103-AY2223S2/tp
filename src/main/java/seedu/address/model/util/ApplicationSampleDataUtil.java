@@ -33,7 +33,7 @@ public class ApplicationSampleDataUtil {
             new Application(new Role("Junior Trader Analyst"),
                     new CompanyName("Hudson River Trading"),
                     new CompanyEmail("hrthires@hrt.com"),
-                    new Status("accepted")),
+                    new Status("offered")),
             new Application(new Role("Data Analyst Intern"),
                     new CompanyName("Bloomberg"),
                     new CompanyEmail("bloomberghires@bloomberg.com"),

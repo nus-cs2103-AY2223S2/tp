@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ApplicationMainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "ApplicationMainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
