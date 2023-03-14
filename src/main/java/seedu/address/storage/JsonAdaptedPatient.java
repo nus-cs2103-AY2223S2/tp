@@ -52,7 +52,6 @@ class JsonAdaptedPatient {
      *                               the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
-        Status modelStatus;
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -66,7 +65,7 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NRIC.class.getSimpleName()));
         }
         if (!NRIC.isValidNRIC(nric)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(NRIC.MESSAGE_CONSTRAINTS);
         }
         final NRIC modelNric = new NRIC(nric);
 
@@ -74,18 +73,10 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
         if (!Status.isValidStatus(status)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
 
-        if (status == "RED") {
-            modelStatus = Status.RED;
-        } else if (status == "GREEN") {
-            modelStatus = Status.GREEN;
-        } else if (status == "YELLOW") {
-            modelStatus = Status.YELLOW;
-        } else {
-            modelStatus = Status.GRAY;
-        }
+        final Status modelStatus = Status.valueOf(status);
 
 
         return new Patient(modelNric, modelName, modelStatus);
