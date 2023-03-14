@@ -88,6 +88,8 @@ public interface Model {
      */
     ObservableList<Student> getFilteredStudentList();
 
+    ObservableList<Student> getFilteredClassList();
+
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      *

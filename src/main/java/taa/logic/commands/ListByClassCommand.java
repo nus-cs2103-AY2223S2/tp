@@ -16,6 +16,10 @@ public class ListByClassCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all students in class";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all students in the specified class\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " 2";
+
     private final ClassIdMatchesPredicate predicate;
 
     public ListByClassCommand(ClassIdMatchesPredicate predicate) {

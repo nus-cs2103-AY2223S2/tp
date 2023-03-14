@@ -23,7 +23,7 @@ public class ListByClassCommandParser implements Parser<ListByClassCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ListByClassCommand.MESSAGE_USAGE));
         }
         int num = Integer.parseInt(trimmedArgs);
         return new ListByClassCommand(new ClassIdMatchesPredicate(num));

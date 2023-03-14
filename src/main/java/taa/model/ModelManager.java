@@ -15,6 +15,7 @@ import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
 import taa.commons.util.CollectionUtil;
 import taa.model.student.Name;
+import taa.model.student.SameStudentPredicate;
 import taa.model.student.Student;
 
 /**
@@ -41,7 +42,8 @@ public class ModelManager implements Model {
 
         this.classList = new ClassList(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.tutor = new Tutor(new Name("James"), new HashSet<>(), new UniqueClassLists(this.classList));
+        UniqueClassLists temp = new UniqueClassLists(this.classList);
+        this.tutor = new Tutor(new Name("James"), new HashSet<>(), temp);
         filteredStudents = new FilteredList<>(this.classList.getStudentList());
         filteredClassLists = new FilteredList<ClassList>(this.tutor.getClassList());
     }
@@ -138,6 +140,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Student> getFilteredClassList() {
+        return filteredStudents;
+    }
+
+    @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
@@ -146,7 +153,13 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredClassLists(Predicate<ClassList> predicate) {
         requireNonNull(predicate);
-        filteredClassLists.setPredicate(predicate);
+        //filteredClassLists.setPredicate(predicate);
+        FilteredList<ClassList> filtered = filteredClassLists.filtered(predicate);
+        if (filtered.size() > 0) {
+            filteredStudents.setPredicate(new SameStudentPredicate(filtered.get(0)));
+        } else {
+            filteredStudents.setPredicate(p->false);
+        }
     }
 
     @Override
