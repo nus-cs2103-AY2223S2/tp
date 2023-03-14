@@ -2,7 +2,6 @@ package vimification.taskui;
 
 import java.io.IOException;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,13 +52,9 @@ public class MainWindow extends VBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
+            setFocusTraversable(true); // Important
 
-            this.setOnKeyPressed(event -> {
-                if (event.getText().equals(":")) {
-                    textBoxComponent.setVisible(true);
-                    textBox.requestFocus();
-                }
-            });
+            // keyListener();
 
             textBoxComponent.setOnKeyPressed(event -> {
                 if (event.getCode().equals(KeyCode.ESCAPE)) {
@@ -93,9 +88,17 @@ public class MainWindow extends VBox {
         return primaryStage;
     }
 
+    /**
+     * Listener for handling all keyboard events to Vimification.
+     * 
+     * @param event
+     */
     @FXML
-    private void handleKeyPressed(KeyEvent ke) {
-        System.out.println("Key Pressed: " + ke.getCode());
+    private void handleKeyPressed(KeyEvent event) {
+        if (event.getText().equals(":")) {
+            textBoxComponent.setVisible(true);
+            textBox.requestFocus();
+        }
     }
 
     @FXML
