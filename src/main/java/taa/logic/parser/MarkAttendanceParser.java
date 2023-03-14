@@ -12,7 +12,6 @@ import java.util.Set;
 
 import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
-import taa.logic.commands.EditStudentCommand;
 import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Attendance;
@@ -35,7 +34,7 @@ public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditStudentCommand.MESSAGE_USAGE), pe);
+                    MarkAttendanceCommand.MESSAGE_USAGE), pe);
         }
 
         if (argMultimap.getValue(PREFIX_WEEK).isPresent()) {
