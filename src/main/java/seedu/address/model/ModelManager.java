@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
 
 /**
@@ -21,6 +22,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<InternshipApplication> filteredInternships;
     private final FilteredList<Person> filteredPersons;
 
     /**
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
     }
 
     public ModelManager() {
@@ -78,13 +81,19 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setInternEase(ReadOnlyAddressBook internEase) {
+        this.addressBook.resetData(internEase);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
+    }
+
+    @Override
+    public boolean hasApplication(InternshipApplication application) {
+        requireNonNull(application);
+        return addressBook.hasApplication(application);
     }
 
     @Override
@@ -99,11 +108,28 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteInternship(InternshipApplication application) {
+        addressBook.removeApplication(application);
+    }
+
+    @Override
+    public void addApplication(InternshipApplication application) {
+        addressBook.addApplication(application);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    @Override
+    public void setApplication(InternshipApplication target, InternshipApplication editedApplication) {
+        requireAllNonNull(target, editedApplication);
+
+        addressBook.setApplication(target, editedApplication);
+    }
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -117,6 +143,17 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
+    @Override
+    public ObservableList<InternshipApplication> getFilteredInternshipList() {
+        return filteredInternships;
+    }
+
+    @Override
+    public void updateFilteredInternshipList(Predicate<InternshipApplication> predicate) {
+        requireNonNull(predicate);
+        filteredInternships.setPredicate(predicate);
+    }
+
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
@@ -142,6 +179,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
+
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
