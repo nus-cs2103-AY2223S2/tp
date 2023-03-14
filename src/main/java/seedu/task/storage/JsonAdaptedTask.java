@@ -39,6 +39,7 @@ class JsonAdaptedTask {
     private long effort;
     private String alertWindow = "";
 
+
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
@@ -89,7 +90,6 @@ class JsonAdaptedTask {
         }
         effort = source.getEffort().getEffort();
         alertWindow = String.valueOf(source.getAlertWindow().toHours());
-
     }
 
     /**
@@ -146,6 +146,7 @@ class JsonAdaptedTask {
         final Effort modelEffort = new Effort(this.effort);
 
         if (Date.isValidDate(deadline)) {
+            // Deadline
             Date modelDeadline = new Date(deadline);
             Deadline deadline = new Deadline(modelName, modelDescription, modelTags, modelDeadline, modelEffort);
             deadline.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
@@ -153,6 +154,7 @@ class JsonAdaptedTask {
 
         }
         if (Date.isValidDate(from) && Date.isValidDate(to)) {
+            // Event
             Date modelFrom = new Date(from);
             Date modelTo = new Date(to);
 
@@ -160,6 +162,8 @@ class JsonAdaptedTask {
             event.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
             return event;
         }
+
+        // Simple Task
         SimpleTask simpleTask = new SimpleTask(modelName, modelDescription, modelTags, modelEffort);
         simpleTask.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
         return simpleTask;

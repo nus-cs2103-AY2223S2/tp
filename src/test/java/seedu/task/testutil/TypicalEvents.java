@@ -37,6 +37,21 @@ public class TypicalEvents {
             .withEffort(2)
             .build();
 
+    public static final Event EXAM = new EventBuilder().withName("EXAM")
+            .withDescription("CS2103T")
+            .withTags("Important", "Study")
+            .withFrom("2023-04-26 0900")
+            .withTo("2023-04-26 1700")
+            .withEffort(5)
+            .build();
+
+    public static final Event SLEEPOVER = new EventBuilder().withName("SLEEPOVER")
+            .withDescription("with friends")
+            .withTags("leisure")
+            .withFrom("2023-04-25 0900")
+            .withTo("2023-04-30 1700")
+            .withEffort(1)
+            .build();
 
     private TypicalEvents() {} // prevents instantiation
 

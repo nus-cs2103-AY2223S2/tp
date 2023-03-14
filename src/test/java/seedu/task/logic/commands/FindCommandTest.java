@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.task.testutil.TypicalDeadlines.ASSIGNMENT;
-import static seedu.task.testutil.TypicalDeadlines.PROJECT;
 import static seedu.task.testutil.TypicalDeadlines.RETURN_BOOK;
 import static seedu.task.testutil.TypicalDeadlines.getTypicalDeadlineBook;
 import static seedu.task.testutil.TypicalEvents.MEETING;
@@ -110,13 +109,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_findDeadline_oneTaskFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
         DeadlineDateContainsKeywordsPredicate predicate = prepareDeadlinePredicate("2023-01-01");
         FindCommand command = new FindCommand(predicate);
         expectedDeadlineModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, deadlineModel, expectedMessage, expectedDeadlineModel);
         model.getFilteredTaskList().stream().forEach(task -> System.out.println(task.getName()));
-        assertEquals(Arrays.asList(RETURN_BOOK, ASSIGNMENT, PROJECT), deadlineModel.getFilteredTaskList());
+        assertEquals(Arrays.asList(RETURN_BOOK, ASSIGNMENT), deadlineModel.getFilteredTaskList());
     }
 
     @Test

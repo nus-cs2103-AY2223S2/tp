@@ -145,6 +145,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void plan(int value) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }

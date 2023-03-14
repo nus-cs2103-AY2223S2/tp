@@ -26,7 +26,10 @@ public abstract class Task implements Comparable<Task> {
     protected Effort effort;
 
     /**
-     * Every field must be present and not null.
+     * Name, Description and Tag must be present and not null.
+     * Effort may or may not be null. If null, default value will be used.
+     * alertWindow is generated with default values.
+     * plannedDate will always be initialised with a placeholder value, indicating that value is not ready.
      */
     public Task(Name name, Description description, Set<Tag> tags, Effort effort) {
         requireAllNonNull(name, description, tags);
@@ -77,6 +80,12 @@ public abstract class Task implements Comparable<Task> {
         return otherTask != null
                 && otherTask.getName().equals(getName());
     }
+
+    public abstract boolean isSimpleTask();
+
+    public abstract boolean isDeadline();
+
+    public abstract boolean isEvent();
 
     /**
      * Returns true if both tasks have the same identity and data fields.

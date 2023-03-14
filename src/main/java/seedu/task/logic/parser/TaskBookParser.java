@@ -16,6 +16,7 @@ import seedu.task.logic.commands.ExitCommand;
 import seedu.task.logic.commands.FindCommand;
 import seedu.task.logic.commands.HelpCommand;
 import seedu.task.logic.commands.ListCommand;
+import seedu.task.logic.commands.PlanCommand;
 import seedu.task.logic.commands.SortCommand;
 import seedu.task.logic.commands.StatsCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
@@ -79,6 +80,9 @@ public class TaskBookParser {
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommand();
+
+        case PlanCommand.COMMAND_WORD:
+            return new PlanCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

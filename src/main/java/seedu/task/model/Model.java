@@ -82,6 +82,8 @@ public interface Model {
      */
     void sortTask();
 
+    void plan(int workload);
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 

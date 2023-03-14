@@ -18,6 +18,21 @@ public class SimpleTask extends Task {
     }
 
     @Override
+    public boolean isSimpleTask() {
+        return true;
+    }
+
+    @Override
+    public boolean isDeadline() {
+        return false;
+    }
+
+    @Override
+    public boolean isEvent() {
+        return false;
+    }
+
+    @Override
     public boolean isComingUp() {
         return false;
     }

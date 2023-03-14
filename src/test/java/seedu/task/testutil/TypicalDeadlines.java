@@ -30,7 +30,7 @@ public class TypicalDeadlines {
     public static final Deadline PROJECT = new DeadlineBuilder().withName("Project")
             .withDescription("Project description")
             .withTags("Important")
-            .withDate("2023-01-01 1800")
+            .withDate("2023-06-01 1800")
             .withEffort(5)
             .build();
 

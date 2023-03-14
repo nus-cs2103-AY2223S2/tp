@@ -30,6 +30,21 @@ public class Deadline extends Task {
         return this.deadline;
     }
 
+    @Override
+    public boolean isSimpleTask() {
+        return false;
+    }
+
+    @Override
+    public boolean isDeadline() {
+        return true;
+    }
+
+    @Override
+    public boolean isEvent() {
+        return false;
+    }
+
     /**
      * Returns true if both deadlines have the same identity and data fields.
      * This defines a stronger notion of equality between two deadlines.

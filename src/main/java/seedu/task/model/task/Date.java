@@ -115,6 +115,10 @@ public class Date implements Comparable<Date> {
         return year + "-" + month + "-" + day + " " + hour + minute;
     }
 
+    public LocalDate getDate() {
+        return this.value.toLocalDate();
+    }
+
     /**
      * Compares the date using the LocalDateTime compareTo.
      *

@@ -3,6 +3,7 @@ package seedu.task.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,6 +29,17 @@ public class UniqueTaskList implements Iterable<Task> {
     private final ObservableList<Task> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
 
+    public SimpleTaskList filterSimpleTasks(LocalDate d) {
+        return new SimpleTaskList(this.internalList, d);
+    }
+
+    public DeadlineList filterDeadlines(LocalDate d) {
+        return new DeadlineList(this.internalList, d);
+    }
+
+    public EventList filterEvents(LocalDate d) {
+        return new EventList(this.internalList, d);
+    }
     /**
      * Returns true if the list contains an equivalent task as the given argument.
      */
