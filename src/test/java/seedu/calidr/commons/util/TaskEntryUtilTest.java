@@ -21,7 +21,7 @@ class TaskEntryUtilTest {
 
         assertEquals(deadlineEntry.getTitle(), TODO1.getTitle());
         assertEquals(deadlineEntry.getInterval().getStartDateTime(), TODO1.getBy());
-        assertEquals(deadlineEntry.getInterval().getEndDateTime(), TODO1.getBy().plusHours(1));
+        assertEquals(deadlineEntry.getInterval().getEndDateTime(), TODO1.getBy().value.plusHours(1));
         assertEquals(deadlineEntry.getPriority(), TODO1.getPriority());
         assertEquals(deadlineEntry.getIsDone(), TODO1.isDone());
 
@@ -33,8 +33,8 @@ class TaskEntryUtilTest {
         TaskEntry eventEntry = TaskEntryUtil.convert(EVENT1);
 
         assertEquals(eventEntry.getTitle(), EVENT1.getTitle() + "\t[  ] {M}");
-        assertEquals(eventEntry.getInterval().getStartDateTime(), EVENT1.getFrom());
-        assertEquals(eventEntry.getInterval().getEndDateTime(), EVENT1.getTo());
+        assertEquals(eventEntry.getInterval().getStartDateTime(), EVENT1.getEventDateTimes().from);
+        assertEquals(eventEntry.getInterval().getEndDateTime(), EVENT1.getEventDateTimes().to);
         assertEquals(eventEntry.getPriority(), EVENT1.getPriority());
         assertEquals(eventEntry.getIsDone(), EVENT1.isDone());
     }
