@@ -30,12 +30,13 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
+    //TODO descriptor.setAddress, descriptor.setEmail, descriptor.setPhone, descriptor.setBirthday
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setPhone(person.getPhone().get());
+        descriptor.setEmail(person.getEmail().get());
+        descriptor.setAddress(person.getAddress().get());
         descriptor.setTags(person.getTags());
     }
 

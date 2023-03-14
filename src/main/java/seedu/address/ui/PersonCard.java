@@ -58,13 +58,24 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        if (person.getPhone().isPresent()) {
+            phone.setText(person.getPhone().get().toString());
+        } else {
+            phone.setText("");
+        }
+        if (person.getEmail().isPresent()) {
+            email.setText(person.getEmail().get().toString());
+        } else {
+            email.setText("");
+        }
+        if (person.getAddress().isPresent()) {
+            address.setText(person.getAddress().get().toString());
+        } else {
+            address.setText("");
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
         if (person.getBirthday().isPresent()) {
             birthday.setText(person.getBirthday().get().toString());
         } else {
