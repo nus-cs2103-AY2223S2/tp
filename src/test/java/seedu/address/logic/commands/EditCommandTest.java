@@ -37,8 +37,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditCommandTest {
     private static final EditPersonDescriptor EDIT_PERSON_DESCRIPTOR = new EditPersonDescriptor();
-
-    private Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
