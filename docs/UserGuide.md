@@ -72,17 +72,28 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to ModCheck.
+Adds a person contact details to ModCheck.
 
-Format: `add n/<NAME> d/<DESCRIPTION> e/<EMAIL> p/<CONTACT> t/<tags>…`
+Compulsory Fields:
+* `n/` : name of the person
+* `d/` : description of the person
+* `e/` : email 
+* `p/` : phone number
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of modules (including 0)
+Additional Fields:
+* `t/` : tags 
+* `m/` : module codes
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+
+A person can have any number of tags or modules (including 0)
+
+The order of the fields is not important.
 </div>
 
 Examples:
-* `add n/Messi d/helpful e/leomessi@psg.com p/98101010`
-* `add n/CRonaldo d/smart friendly e/SIUUUUUU@gmail.com p/98070707 t/Prof`
+* `add n/John d/Important friend e/leomessi@psg.com p/98101010`
+* `add n/Gray d/Coolest Prof ever e/SIUUUUUU@gmail.com p/98070707 t/Prof m/CS2103 m/CS3230`
 
 ### Listing all persons : `list`
 
