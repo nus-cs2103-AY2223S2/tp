@@ -24,7 +24,7 @@ public class AddMeetingCommand extends Command {
             + "A new meeting will not be added if there are clashes with"
             + "other meetings on the day or period specified.\n"
             + "Parameters: [INDEX] m/ [DATE START] [DATE END]\n"
-            + "Example: " + COMMAND_WORD + "1 m/ 30-03-2020 20:10 22:10";
+            + "Example: " + COMMAND_WORD + " 1 m/ 30-03-2020 20:10 22:10";
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting to Person: %1$s";
 
     private final Index index;
