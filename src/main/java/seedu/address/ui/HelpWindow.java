@@ -15,7 +15,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://docs.google.com/document/d/1nTsxXRuQh8OzcsR_LoAR6xX_pkw0IuO5HKIqznkDMzE/edit?usp=sharing";
+    public static final String USERGUIDE_URL =
+            "https://docs.google.com/document/d/1nTsxXRuQh8OzcsR_LoAR6xX_pkw0IuO5HKIqznkDMzE/edit?usp=sharing";
     public static final String HELP_MESSAGE_COMMAND = "Features:\n"
             + "help\n"
             + "   - Accesses this help guide\n"
