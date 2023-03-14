@@ -12,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.IndexHandler;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -76,23 +77,14 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Returns an optional person which is found by contact index.
-     * @param index contact index of the friend.
-     * @param model
-     * @return
-     */
-    public Optional<Person> findPersonByIndex(ContactIndex index, Model model) {
-        List<Person> personList = model.getFilteredPersonList();
-        return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
-    }
-    /**
      * Edits person at the given index
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
     protected CommandResult editPerson(Model model) throws CommandException {
-        Optional<Person> personToEditOption = findPersonByIndex(contactIndex, model);
+        IndexHandler indexHandler = new IndexHandler(model);
+        Optional<Person> personToEditOption = indexHandler.getPersonByIndex(contactIndex);
 
         if (personToEditOption.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

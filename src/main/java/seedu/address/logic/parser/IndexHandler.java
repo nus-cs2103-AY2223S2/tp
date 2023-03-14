@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
@@ -32,6 +33,11 @@ public class IndexHandler {
                         .anyMatch(person -> person.getContactIndex().equals(new ContactIndex(integer)))).max();
         Integer availableIndex = takenIndices.getAsInt() + 1;
         return new ContactIndex(availableIndex);
+    }
+
+    public Optional<Person> getPersonByIndex(ContactIndex index) {
+        List<Person> personList = model.getFilteredPersonList();
+        return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
     }
 
     public Model getModel() {
