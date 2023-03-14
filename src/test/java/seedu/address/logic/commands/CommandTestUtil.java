@@ -52,7 +52,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_LAST_FED_DATE_DESC = " " + PREFIX_LAST_FED_DATE + "11 Mar 2000"; //not dd/mm/yyyy
-    public static final String INVALID_SPECIES_DESC = " " + PREFIX_SPECIES + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_SPECIES_DESC = " " + PREFIX_SPECIES + "guppy!"; // '!' not allowed in species
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
