@@ -29,6 +29,8 @@ public class RecipeDetailsPanel extends UiPart<Region> {
     @FXML
     private Label stepsTitle;
 
+    private Recipe currentShowingRecipe;
+
 
 
     /**
@@ -38,8 +40,13 @@ public class RecipeDetailsPanel extends UiPart<Region> {
         super(FXML);
     }
 
+    public Recipe getCurrentShowingRecipe() {
+        return currentShowingRecipe;
+    }
+
     public void setRecipeDetails(Recipe recipe) {
         if (recipe != null) {
+            currentShowingRecipe = recipe;
             recipeTitle.setText(recipe.getTitle().toString());
             recipeDesc.setText(recipe.getDesc().toString());
             steps.getChildren().clear();
@@ -56,5 +63,6 @@ public class RecipeDetailsPanel extends UiPart<Region> {
         recipeTitle.setText(null);
         recipeDesc.setText(null);
         stepsTitle.setText(null);
+        steps.getChildren().clear();
     }
 }

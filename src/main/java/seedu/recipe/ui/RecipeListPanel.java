@@ -45,7 +45,6 @@ public class RecipeListPanel extends UiPart<Region> {
         recipeListView.setCellFactory(listView -> new RecipeListViewCell());
     }
 
-
     private void updateDetailsIfChanged(ObservableList<Recipe> recipeList) {
         recipeList.addListener(new ListChangeListener<Recipe>() {
             @Override
@@ -64,10 +63,19 @@ public class RecipeListPanel extends UiPart<Region> {
                             recipeListView.getSelectionModel().select(0);
                             recipeListView.getFocusModel().focus(0);
                         }
+                        setRecipeDetailsPanel(recipeList);
                     }
                 }
             }
         });
+    }
+
+    public void setRecipeDetailsPanel(ObservableList<Recipe> patientList) {
+        if (!patientList.isEmpty()) {
+            recipeDetailsPanel.setRecipeDetails(patientList.get(0));
+        } else {
+            recipeDetailsPanel.setEmptyRecipeDetails();
+        }
     }
 
     /**
