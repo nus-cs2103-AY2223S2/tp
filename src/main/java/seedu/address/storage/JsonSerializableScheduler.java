@@ -12,13 +12,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Event;
-import seedu.address.model.person.Person;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableScheduler {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate event(s).";
 
@@ -28,7 +27,7 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("events") List<JsonAdaptedEvent> events) {
+    public JsonSerializableScheduler(@JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.events.addAll(events);
     }
 
@@ -37,7 +36,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableScheduler(ReadOnlyAddressBook source) {
         events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
