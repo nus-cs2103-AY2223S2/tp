@@ -130,7 +130,8 @@ class JsonAdaptedEmployee {
         final Department modelDepartment = new Department(department);
 
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
-        return new Employee(modelName, modelEmployeeId, modelPhone, modelEmail, modelAddress, modelDepartment, modelTags);
+        return new Employee(modelName, modelEmployeeId, modelPhone, modelEmail,
+                modelAddress, modelDepartment, modelTags);
     }
 
 }

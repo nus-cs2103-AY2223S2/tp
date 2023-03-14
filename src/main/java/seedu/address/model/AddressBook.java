@@ -77,7 +77,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given employee {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The employee identity of {@code editedPerson} must not be the same as another existing employee in the address book.
+     * The employee identity of {@code editedPerson} must not be the same as another
+     * existing employee in the address book.
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
