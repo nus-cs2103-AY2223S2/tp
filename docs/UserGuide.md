@@ -211,15 +211,17 @@ Format: `listtask`
 Lists all the tasks in OfficeConnect.
 
 ## Assigning a Task to a Person: `assign`
-Format: `assign /task INDEX /person INDEX`
+Format: `assign ti/ INDEX pi/ INDEX`
 
 Assigns the task at specified index to the person at specified index.
 The index refers to the index number shown in the displayed person/task list.
 The index must be a positive integer 1, 2, 3...
 
 Examples:
-- `assign /task 2 /person 3` assigns task 2 to person 3.
+- `assign ti/ 2 pi/ 3` assigns task 2 to person 3.
 
+## Review tasks assigned to a Person: `review`
+Format: `review pi/ INDEX`
 
 ### Archiving data files `[coming in v1.3]`
 
