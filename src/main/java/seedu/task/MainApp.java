@@ -22,8 +22,10 @@ import seedu.task.model.ReadOnlyUserPrefs;
 import seedu.task.model.TaskBook;
 import seedu.task.model.UserPrefs;
 import seedu.task.model.util.SampleDataUtil;
+import seedu.task.storage.JsonPlannerStorage;
 import seedu.task.storage.JsonTaskBookStorage;
 import seedu.task.storage.JsonUserPrefsStorage;
+import seedu.task.storage.PlannerStorage;
 import seedu.task.storage.Storage;
 import seedu.task.storage.StorageManager;
 import seedu.task.storage.TaskBookStorage;
@@ -58,6 +60,7 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
         storage = new StorageManager(taskBookStorage, userPrefsStorage);
+        PlannerStorage plannerStorage = new JsonPlannerStorage(userPrefs.getPlannerFilePath());
 
         initLogging(config);
 

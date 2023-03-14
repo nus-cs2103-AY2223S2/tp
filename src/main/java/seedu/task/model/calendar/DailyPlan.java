@@ -2,6 +2,7 @@ package seedu.task.model.calendar;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import seedu.task.model.task.Event;
 import seedu.task.model.task.EventList;
@@ -13,7 +14,7 @@ import seedu.task.model.task.Task;
  */
 public class DailyPlan {
     private ArrayList<Task> taskList = new ArrayList<Task>();
-    private final long desiredWorkload;
+    private long desiredWorkload;
     private long currentWorkload;
     private LocalDate date;
 
@@ -25,6 +26,20 @@ public class DailyPlan {
     public DailyPlan(int workload, LocalDate date) {
         this.desiredWorkload = workload;
         this.currentWorkload = 0;
+        this.date = date;
+    }
+
+    /**
+     * Constructor used when reading values from JSON
+     * @param taskList
+     * @param desiredWorkload
+     * @param currentWorkload
+     * @param date
+     */
+    public DailyPlan(ArrayList<Task> taskList, long desiredWorkload, long currentWorkload, LocalDate date) {
+        this.taskList = taskList;
+        this.desiredWorkload = desiredWorkload;
+        this.currentWorkload = currentWorkload;
         this.date = date;
     }
 
@@ -52,16 +67,26 @@ public class DailyPlan {
         taskList.add(t);
     }
 
+    public long getDesiredWorkload() {
+        return this.desiredWorkload;
+    }
     public long getCurrentWorkload() {
         return this.currentWorkload;
     }
 
+    public List<Task> getTasks() {
+        return this.taskList;
+    }
     /**
      * Calculates the remaining amount of effort user can allocate to for this day
      * @return effort leftover (can be negative if overloaded)
      */
     public long getSpareTime() {
         return this.desiredWorkload - this.currentWorkload;
+    }
+
+    public LocalDate getDate() {
+        return this.date;
     }
 
     /**
