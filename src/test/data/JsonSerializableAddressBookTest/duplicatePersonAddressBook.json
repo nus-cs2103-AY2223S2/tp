@@ -4,11 +4,19 @@
     "phone": "94351253",
     "address": "123, Jurong West Ave 6, #08-111",
     "payRate": "90",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "session": {
+      "startDateTime": "17-03-2022 13:00",
+      "endDateTime": "17-03-2022 14:00"
+    }
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "address": "4th street",
-    "payRate": "90"
+    "payRate": "90",
+    "session": {
+      "startDateTime": "17-03-2022 13:00",
+      "endDateTime": "17-03-2022 14:00"
+    }
   } ]
 }
