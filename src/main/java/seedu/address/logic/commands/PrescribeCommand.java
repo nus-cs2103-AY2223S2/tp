@@ -13,7 +13,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the medication of an existing person in the address book.
  */
 public class PrescribeCommand extends Command {
 
@@ -28,21 +28,23 @@ public class PrescribeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "m/ paracetamol";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Medication: %2$s";
-
     public static final String MESSAGE_ADD_PRESCRIBE_SUCCESS = "Added medication to Person: %1$s";
     public static final String MESSAGE_DELETE_PRESCRIBE_SUCCESS = "Removed medication from Person: %1$s";
-
 
     public final Index index;
     private final Medication medication;
 
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param medication to be changed to
+     */
     public PrescribeCommand(Index index, Medication medication) {
         requireAllNonNull(index, medication);
 
         this.index = index;
         this.medication = medication;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -64,7 +66,7 @@ public class PrescribeCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the remark is added to or removed from
+     * the medication is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
