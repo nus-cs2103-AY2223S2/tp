@@ -33,7 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PATIENT, PREFIX_STARTTIME, PREFIX_ENDTIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_PATIENT, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_VACCINATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
