@@ -46,8 +46,8 @@ public class JsonTrackerStorage implements TrackerStorage {
     public Optional<ReadOnlyTracker> readTracker(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableTracker> jsonTracker
-                = JsonUtil.readJsonFile(filePath, JsonSerializableTracker.class);
+        Optional<JsonSerializableTracker> jsonTracker =
+                JsonUtil.readJsonFile(filePath, JsonSerializableTracker.class);
         if (!jsonTracker.isPresent()) {
             return Optional.empty();
         }
