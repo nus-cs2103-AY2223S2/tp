@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -68,6 +69,7 @@ public class AssignTaskCommand extends Command {
         Person personToAssign = lastShownPersonList.get(toAssignMember.getZeroBased());
 
         model.assignTask(toAssignTask, toAssignMember);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         String taskString = taskToAssign.toString();
         String personString = personToAssign.getName().toString();
         return new CommandResult(String.format(MESSAGE_SUCCESS, personString, taskString));
