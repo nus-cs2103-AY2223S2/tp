@@ -99,19 +99,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPet(Pet person) {
-        petPal.addPet(person);
+    public void addPet(Pet pet) {
+        petPal.addPet(pet);
         updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
     }
 
     @Override
-    public void setPet(Pet target, Pet editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPet(Pet target, Pet editedPet) {
+        requireAllNonNull(target, editedPet);
 
-        petPal.setPet(target, editedPerson);
+        petPal.setPet(target, editedPet);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Pet List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of

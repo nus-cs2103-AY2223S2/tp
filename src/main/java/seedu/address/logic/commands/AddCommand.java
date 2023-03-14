@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,17 +22,19 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a pet to the address book. "
             + "Parameters: "
             + PREFIX_OWNER_NAME + "OWNER_NAME "
-            + PREFIX_NAME + "NAME "
+            + PREFIX_NAME + "PET_NAME "
             + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_OWNER_NAME + "Alice "
-            + PREFIX_NAME + "John Doe "
+            + PREFIX_NAME + "Doggo "
             + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "example@gmail.com"
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "Dog "
+            + PREFIX_TAG + "Chihuahua";
 
     public static final String MESSAGE_SUCCESS = "New pet added: %1$s";
     public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the address book";
