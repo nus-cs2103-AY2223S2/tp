@@ -8,7 +8,7 @@ import seedu.address.model.flight.Flight;
 import seedu.address.model.plane.Plane;
 
 /**
- * The command that links a plane to a flight in the address book.
+ * The command that links a plane to a flight in the Wingman app.
  */
 public class LinkPlaneCommand implements Command {
     /**

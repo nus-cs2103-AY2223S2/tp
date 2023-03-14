@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.flight.Flight;
 
 /**
- * The command that unlinks a plane from a flight in the address book.
+ * The command that unlinks a plane from a flight in the Wingman app.
  */
 public class UnlinkPlaneCommand implements Command {
     /**

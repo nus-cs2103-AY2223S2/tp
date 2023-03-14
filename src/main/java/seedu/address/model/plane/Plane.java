@@ -63,6 +63,7 @@ public class Plane implements Item {
         return this.age;
     }
 
+    @Override
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s: %s", UUID_STRING, id),

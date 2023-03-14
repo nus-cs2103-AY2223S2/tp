@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.plane.Plane;
 
 /**
- * The command that adds a plane to the address book.
+ * The command that adds a plane to the Wingman app.
  */
 public class AddPlaneCommand implements Command {
     /**
