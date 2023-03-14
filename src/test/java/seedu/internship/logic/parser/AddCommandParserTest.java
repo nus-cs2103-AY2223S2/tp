@@ -1,140 +1,118 @@
 package seedu.internship.logic.parser;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.internship.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.internship.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.internship.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.internship.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.internship.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.internship.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.internship.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.internship.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.internship.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.internship.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.internship.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.internship.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.internship.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.internship.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.internship.logic.commands.CommandTestUtil.*;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_FUN;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.internship.testutil.TypicalPersons.AMY;
-import static seedu.internship.testutil.TypicalPersons.BOB;
-
+import static seedu.internship.testutil.TypicalInternships.SE1;
+import static seedu.internship.testutil.TypicalInternships.ML1;
 import org.junit.jupiter.api.Test;
 
-import seedu.internship.model.person.Address;
-import seedu.internship.model.person.Email;
-import seedu.internship.model.person.Name;
-import seedu.internship.model.person.Person;
-import seedu.internship.model.person.Phone;
+import seedu.internship.logic.commands.AddCommand;
+import seedu.internship.logic.commands.CommandTestUtil;
+import seedu.internship.model.internship.*;
 import seedu.internship.model.tag.Tag;
-import seedu.internship.testutil.PersonBuilder;
+import seedu.internship.testutil.InternshipBuilder;
+
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Internship expectedInternship = new InternshipBuilder(SE1).withTags(VALID_TAG_FUN).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1
+                + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1, new AddCommand(expectedInternship));
 
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple positions - last position accepted
+        assertParseSuccess(parser, POSITION_DESC_ML1 + POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1
+                + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1, new AddCommand(expectedInternship));
 
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple companies - last company accepted
+        assertParseSuccess(parser, POSITION_DESC_SE1 + COMPANY_DESC_ML1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1
+                + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1, new AddCommand(expectedInternship));
 
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple statuses - last status accepted
+        assertParseSuccess(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_ML1 + STATUS_DESC_SE1
+                + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1, new AddCommand(expectedInternship));
 
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple descriptions - last address accepted
+        assertParseSuccess(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1
+                + DESCRIPTION_DESC_ML1 + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1, new AddCommand(expectedInternship));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Internship expectedInternshipMultipleTags = new InternshipBuilder(SE1).withTags(VALID_TAG_FUN, VALID_TAG_IMPORTANT)
                 .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+        assertParseSuccess(parser,POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1
+                + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1 + TAG_DESC_ML1 , new AddCommand(expectedInternshipMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+        Internship expectedInternship = new InternshipBuilder(ML1).withTags().build();
+        assertParseSuccess(parser, POSITION_DESC_ML1 + COMPANY_DESC_ML1 + STATUS_DESC_ML1 + DESCRIPTION_DESC_ML1,
+                new AddCommand(expectedInternship));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+        // missing position prefix
+        assertParseFailure(parser, VALID_POSITION_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1,
                 expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+        // missing company prefix
+        assertParseFailure(parser, POSITION_DESC_SE1 + VALID_COMPANY_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1,
                 expectedMessage);
 
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
+        // missing status prefix
+        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + VALID_STATUS_SE1 + DESCRIPTION_DESC_SE1,
                 expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
+        // missing description prefix
+        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + VALID_DESCRIPTION_SE1,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, VALID_POSITION_SE1 + VALID_COMPANY_SE1 + VALID_STATUS_SE1 + VALID_DESCRIPTION_SE1,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+        // invalid position
+        assertParseFailure(parser, INVALID_POSITION_DESC + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1
+                + TAG_DESC_ML1 + TAG_DESC_SE1, Position.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+        // invalid company
+        assertParseFailure(parser, POSITION_DESC_SE1 + INVALID_COMPANY_DESC + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1
+                + TAG_DESC_ML1 + TAG_DESC_SE1, Company.MESSAGE_CONSTRAINTS);
 
-        // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+        // invalid status
+        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + INVALID_STATUS_DESC + DESCRIPTION_DESC_SE1
+                + TAG_DESC_ML1 + TAG_DESC_SE1, Status.MESSAGE_CONSTRAINTS);
 
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+        // invalid description
+        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + INVALID_DESCRIPTION_DESC
+                + TAG_DESC_ML1 + TAG_DESC_SE1, Description.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1
+                + INVALID_TAG_DESC + TAG_DESC_SE1, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_POSITION_DESC + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + INVALID_DESCRIPTION_DESC,
+                Position.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1
+                        + TAG_DESC_ML1 + TAG_DESC_SE1,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
