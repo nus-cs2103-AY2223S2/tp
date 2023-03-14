@@ -60,21 +60,26 @@ public class AddCommandParserTest {
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_DOG, new AddCommand(expectedPet));
 
         // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_DOG, new AddCommand(expectedPet));
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + NAME_DESC_DOG + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_DOG, new AddCommand(expectedPet));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
+        assertParseSuccess(parser, NAME_DESC_BOB + NAME_DESC_DOG + PHONE_DESC_BOB
+                + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_DOG, new AddCommand(expectedPet));
 
         // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_BOB + NAME_DESC_DOG + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + TAG_DESC_DOG, new AddCommand(expectedPet));
 
         // multiple tags - all accepted
-        Pet expectedPetMultipleTags = new PetBuilder(EXAMPLE_DOG).withTags(VALID_TAG_DOG, VALID_TAG_CAT)
+        Pet expectedPetMultipleTags = new PetBuilder(EXAMPLE_DOG)
+                .withTags(VALID_TAG_DOG, VALID_TAG_CAT)
                 .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+
+        assertParseSuccess(parser, NAME_DESC_BOB + NAME_DESC_DOG + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_CAT + TAG_DESC_DOG, new AddCommand(expectedPetMultipleTags));
     }
 
