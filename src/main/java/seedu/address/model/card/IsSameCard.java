@@ -5,9 +5,9 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Card}'s {@code Question} is in the given deck.
  */
-public class isSameCard implements Predicate<Card> {
+public class IsSameCard implements Predicate<Card> {
     private final Card card;
-    public isSameCard(Card card) {
+    public IsSameCard(Card card) {
         this.card = card;
     }
 
@@ -19,8 +19,8 @@ public class isSameCard implements Predicate<Card> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof isSameCard // instanceof handles nulls
-                && card.equals(((isSameCard) other).card)); // state check
+                || (other instanceof IsSameCard // instanceof handles nulls
+                && card.equals(((IsSameCard) other).card)); // state check
     }
 
 }

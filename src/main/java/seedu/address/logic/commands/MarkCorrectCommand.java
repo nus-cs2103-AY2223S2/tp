@@ -11,7 +11,8 @@ public class MarkCorrectCommand extends Command {
 
     public static final String COMMAND_WORD = "'";
 
-    public static final String MESSAGE_SUCCESS = "Nicely! Showing next flashcard.\nEnter [ to flip card and show answer!";
+    public static final String MESSAGE_SUCCESS = "Nicely! Showing next flashcard."
+            + "\nEnter [ to flip card and show answer!";
 
 
     @Override

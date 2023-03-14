@@ -11,7 +11,8 @@ public class MarkWrongCommand extends Command {
 
     public static final String COMMAND_WORD = ";";
 
-    public static final String MESSAGE_SUCCESS = "You'll get it next time! Showing next flashcard.\nEnter [ to flip card and show answer!";
+    public static final String MESSAGE_SUCCESS = "You'll get it next time! Showing next flashcard."
+            + "\nEnter [ to flip card and show answer!";
 
 
     @Override

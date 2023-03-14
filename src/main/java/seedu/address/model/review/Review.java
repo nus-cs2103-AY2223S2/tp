@@ -51,7 +51,7 @@ public class Review {
     }
 
     /**
-     * Move to the next card.
+     * Move to the next card to be under review.
      */
     public void goToNextCard() {
         currCard.setAsUnflipped(); // always unflip current card before moving to next
@@ -65,7 +65,7 @@ public class Review {
     }
 
     /**
-     * Move back to previous card.
+     * Move back to previous card to be under review.
      */
     public void goToPrevCard() {
         currCard.setAsUnflipped();
@@ -81,11 +81,19 @@ public class Review {
         return currCard;
     }
 
+    /**
+     * Marks the current card as correct in the scoreList
+     * by setting the respective index in scoreList as true.
+     */
     public void markCurrCardAsCorrect() {
         scoreList.set(currCardNum - 1, true);
         goToNextCard();
     }
 
+    /**
+     * Marks the current card as wrong in the scoreList
+     * by setting the respective index in scoreList as false.
+     */
     public void markCurrCardAsWrong() {
         scoreList.set(currCardNum - 1, false);
         goToNextCard();
@@ -102,21 +110,4 @@ public class Review {
     public boolean isFlipped() {
         return currCard.isFlipped();
     }
-
-    /*
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getQuestion())
-                .append("; Answer: ")
-                .append(getAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
-    }
-     */
 }

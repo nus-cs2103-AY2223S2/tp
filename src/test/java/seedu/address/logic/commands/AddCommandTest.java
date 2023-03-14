@@ -231,6 +231,27 @@ public class AddCommandTest {
         public void flipCard() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void markWrong() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markCorrect() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void goToPrevCard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void goToNextCard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
