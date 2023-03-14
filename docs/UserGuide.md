@@ -14,16 +14,16 @@ Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assi
 _Details coming soon ..._
 
 ## Feature summary
-1. [Attendance](#Attendance)
+1. [Attendance](#attendance)
    * mark
    * unmark
-2. [Assignments](#Assignments)
+2. [Assignments](#assignments)
    * add
    * delete
    * grade
    * ungrade
    * exit
-3. [Class List](#Class-List)
+3. [Class List](#class-list)
    * create
    * rand_grp
    * add
