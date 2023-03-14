@@ -7,10 +7,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.fitbook.logic.commands.AddCommand;
+import seedu.fitbook.logic.commands.AddRoutineCommand;
 import seedu.fitbook.logic.commands.ClearCommand;
 import seedu.fitbook.logic.commands.Command;
 import seedu.fitbook.logic.commands.DeleteCommand;
 import seedu.fitbook.logic.commands.EditCommand;
+import seedu.fitbook.logic.commands.EditRoutineCommand;
 import seedu.fitbook.logic.commands.ExitCommand;
 import seedu.fitbook.logic.commands.FindCommand;
 import seedu.fitbook.logic.commands.HelpCommand;
@@ -44,11 +46,17 @@ public class FitBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case AddRoutineCommand.COMMAND_WORD:
+            return new AddRoutineCommandParser().parse(arguments);
+
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case EditRoutineCommand.COMMAND_WORD:
+            return new EditRoutineCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);

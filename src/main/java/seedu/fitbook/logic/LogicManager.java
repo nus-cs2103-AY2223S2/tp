@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final FitBookModel model;
     private final Storage storage;
-    private final FitBookParser addressBookParser;
+    private final FitBookParser fitBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code FitBookModel} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(FitBookModel model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new FitBookParser();
+        fitBookParser = new FitBookParser();
     }
 
     @Override
@@ -42,11 +42,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = fitBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
             storage.saveFitBook(model.getFitBook());
+            storage.saveFitBookExerciseRoutine(model.getFitBookExerciseRoutine());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
