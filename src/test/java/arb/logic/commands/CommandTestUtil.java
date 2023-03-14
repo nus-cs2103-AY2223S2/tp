@@ -151,9 +151,10 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered client list to show only the client at the given {@code targetIndex}
+     * in the {@code model}'s address book.
      */
     public static void showClientAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
@@ -166,15 +167,15 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the project at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered project list to show only the project at the given {@code targetIndex}
+     * in the {@code model}'s address book.
      */
     public static void showProjectAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
 
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
-        final String[] splitName = project.getTitle().fullTitle.split("\\s+");
-        model.updateFilteredProjectList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitTitle = project.getTitle().fullTitle.split("\\s+");
+        model.updateFilteredProjectList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredProjectList().size());
     }

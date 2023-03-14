@@ -49,6 +49,13 @@ class MarkProjectCommandTest {
     }
 
     @Test
+    public void execute_currentListShownClient_failure() {
+        Index validIndex = INDEX_FIRST;
+        assertCommandFailure(new MarkProjectCommand(validIndex), ListType.CLIENT,
+                model, Messages.MESSAGE_INVALID_LIST_PROJECT);
+    }
+
+    @Test
     public void equals() {
         MarkProjectCommand markFirstCommand = new MarkProjectCommand(INDEX_FIRST);
         MarkProjectCommand markSecondCommand = new MarkProjectCommand(INDEX_SECOND);

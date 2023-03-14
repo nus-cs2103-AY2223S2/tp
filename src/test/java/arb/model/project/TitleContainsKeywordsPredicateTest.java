@@ -27,8 +27,8 @@ public class TitleContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TitleContainsKeywordsPredicate firstPredicateCopy = new TitleContainsKeywordsPredicate(
-                firstPredicateKeywordList);
+        TitleContainsKeywordsPredicate firstPredicateCopy =
+                new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,36 +44,35 @@ public class TitleContainsKeywordsPredicateTest {
     @Test
     public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
-        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(
-                Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new ProjectBuilder().withTitle("Alice Bob").build()));
+        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.singletonList("Sky"));
+        assertTrue(predicate.test(new ProjectBuilder().withTitle("Sky Painting").build()));
 
         // Multiple keywords
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new ProjectBuilder().withTitle("Alice Bob").build()));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Sky", "Painting"));
+        assertTrue(predicate.test(new ProjectBuilder().withTitle("Sky Painting").build()));
 
         // Only one matching keyword
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new ProjectBuilder().withTitle("Alice Carol").build()));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Sky", "Oil"));
+        assertTrue(predicate.test(new ProjectBuilder().withTitle("Sky Painting").build()));
 
         // Mixed-case keywords
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new ProjectBuilder().withTitle("Alice Bob").build()));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("sKy", "PaiNTing"));
+        assertTrue(predicate.test(new ProjectBuilder().withTitle("Sky Painting").build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_titleDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new ProjectBuilder().withTitle("Alice").build()));
+        assertFalse(predicate.test(new ProjectBuilder().withTitle("Sky Painting").build()));
 
         // Non-matching keyword
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new ProjectBuilder().withTitle("Alice Bob").build()));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Oil"));
+        assertFalse(predicate.test(new ProjectBuilder().withTitle("Sky Painting").build()));
 
-        // Keywords match phone, email and address, but does not match name
+        // Keywords match deadline but does not match title
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("2000-01-01"));
-        assertFalse(predicate.test(new ProjectBuilder().withTitle("Alice").withDeadline("2000-01-01").build()));
+        assertFalse(predicate.test(new ProjectBuilder().withTitle("Sky Painting").withDeadline("2000-01-01")
+                .build()));
     }
-
 }

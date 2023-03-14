@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import arb.commons.core.index.Index;
 import arb.logic.commands.project.EditProjectCommand;
+import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
 import arb.model.project.Deadline;
 import arb.model.project.Title;
 import arb.testutil.EditProjectDescriptorBuilder;
@@ -81,7 +82,7 @@ public class EditProjectCommandParserTest {
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING
                 + TITLE_DESC_SKY_PAINTING;
 
-        EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withTitle(VALID_TITLE_SKY_PAINTING)
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
                 .build();
@@ -95,7 +96,7 @@ public class EditProjectCommandParserTest {
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING;
 
-        EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
                 .build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
@@ -108,7 +109,7 @@ public class EditProjectCommandParserTest {
         // title
         Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_SKY_PAINTING;
-        EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withTitle(VALID_TITLE_SKY_PAINTING).build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -127,7 +128,7 @@ public class EditProjectCommandParserTest {
                 + DEADLINE_DESC_SKY_PAINTING
                 + DEADLINE_DESC_OIL_PAINTING;
 
-        EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
                 .build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
@@ -140,7 +141,7 @@ public class EditProjectCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_DEADLINE_DESC + DEADLINE_DESC_OIL_PAINTING;
-        EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING).build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
