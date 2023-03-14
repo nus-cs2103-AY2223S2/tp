@@ -17,7 +17,8 @@ public class EditStudentDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditStudentCommand.EditStudentDescriptor descriptorWithSameValues = new EditStudentCommand.EditStudentDescriptor(DESC_AMY);
+        EditStudentCommand.EditStudentDescriptor descriptorWithSameValues = new EditStudentCommand
+                .EditStudentDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true

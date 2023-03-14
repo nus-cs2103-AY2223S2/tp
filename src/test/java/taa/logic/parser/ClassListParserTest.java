@@ -10,8 +10,14 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import taa.commons.core.Messages;
-import taa.logic.commands.*;
+import taa.logic.commands.AddStudentCommand;
+import taa.logic.commands.ClearCommand;
 import taa.logic.commands.DeleteStudentCommand;
+import taa.logic.commands.EditStudentCommand;
+import taa.logic.commands.ExitCommand;
+import taa.logic.commands.FindCommand;
+import taa.logic.commands.HelpCommand;
+import taa.logic.commands.ListCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.NameContainsKeywordsPredicate;
 import taa.model.student.Student;

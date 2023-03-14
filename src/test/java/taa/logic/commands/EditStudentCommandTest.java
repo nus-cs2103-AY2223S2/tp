@@ -121,7 +121,9 @@ public class EditStudentCommandTest {
                 .withName(CommandTestUtil.VALID_NAME_BOB).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editStudentCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editStudentCommand,
+                model,
+                Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -138,7 +140,9 @@ public class EditStudentCommandTest {
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
-        CommandTestUtil.assertCommandFailure(editStudentCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editStudentCommand,
+                model,
+                Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -149,7 +153,9 @@ public class EditStudentCommandTest {
         // same values -> returns true
         EditStudentCommand.EditStudentDescriptor copyDescriptor = new EditStudentCommand
                 .EditStudentDescriptor(CommandTestUtil.DESC_AMY);
-        EditStudentCommand commandWithSameValues = new EditStudentCommand(TypicalIndexes.INDEX_FIRST_PERSON, copyDescriptor);
+        EditStudentCommand commandWithSameValues = new EditStudentCommand(
+                TypicalIndexes.INDEX_FIRST_PERSON,
+                copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
