@@ -10,8 +10,8 @@ import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 
 /**
- * Represents a Card in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a Review session that is currently underway.
+ * Guarantees: details are present and not null, field values are validated.
  */
 public class Review {
 
@@ -38,6 +38,10 @@ public class Review {
         scoreList = new ArrayList<>(Arrays.asList(new Boolean[this.cardList.size()]));
     }
 
+    public Card getCurrCard() {
+        return currCard;
+    }
+
     public Deck getDeck() {
         return deck;
     }
@@ -46,6 +50,22 @@ public class Review {
         return deck.getDeckName();
     }
 
+    public void flipCard() {
+        currCard.setAsFlipped();
+    }
+
+    public void unflipCard() {
+        currCard.setAsUnflipped();
+    }
+
+    public boolean isFlipped() {
+        return currCard.isFlipped();
+    }
+
+    /**
+     * Returns the sum of the total score on the current scoreList.
+     * @return current total score of review.
+     */
     public Integer getTotalScore() {
         return scoreList.stream().map(bool -> bool ? 1 : 0).mapToInt(a -> a).sum();
     }
@@ -77,10 +97,6 @@ public class Review {
         }
     }
 
-    public Card getCurrCard() {
-        return currCard;
-    }
-
     /**
      * Marks the current card as correct in the scoreList
      * by setting the respective index in scoreList as true.
@@ -97,17 +113,5 @@ public class Review {
     public void markCurrCardAsWrong() {
         scoreList.set(currCardNum - 1, false);
         goToNextCard();
-    }
-
-    public void flipCard() {
-        currCard.setAsFlipped();
-    }
-
-    public void unflipCard() {
-        currCard.setAsUnflipped();
-    }
-
-    public boolean isFlipped() {
-        return currCard.isFlipped();
     }
 }

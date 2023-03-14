@@ -15,7 +15,6 @@ public class FlipCardCommand extends Command {
             + "\nTo mark correct enter :"
             + "\nTo mark wrong enter '";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

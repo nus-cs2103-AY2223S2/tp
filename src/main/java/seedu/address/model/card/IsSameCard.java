@@ -3,7 +3,7 @@ package seedu.address.model.card;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Card}'s {@code Question} is in the given deck.
+ * Tests that a {@code Card} is the same as the given {@code Card}.
  */
 public class IsSameCard implements Predicate<Card> {
     private final Card card;
