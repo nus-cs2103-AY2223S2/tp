@@ -1,17 +1,19 @@
 package seedu.recipe.model.recipe;
 
+import seedu.recipe.model.recipe.exceptions.RecipeIngredientUnitMissingException;
 import seedu.recipe.model.recipe.unit.IngredientAmountUnit;
 
 import javax.swing.text.html.Option;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 public class RecipeIngredient extends Ingredient {
 
     private final double amount;
     private Optional<IngredientAmountUnit> unit = Optional.empty();
-    private Optional<HashSet<Ingredient>> substitutions = Optional.empty();
+    private HashSet<Ingredient> substitutions = new HashSet<>();
 
     public RecipeIngredient(String name, double amount){
         super(name);
@@ -23,19 +25,19 @@ public class RecipeIngredient extends Ingredient {
     }
 
     public IngredientAmountUnit getUnit() {
-        return unit.get();
+        return unit.orElseThrow(RecipeIngredientUnitMissingException::new);
     }
 
     public HashSet<Ingredient> getSubstitutions() {
-        return substitutions.get();
+        return substitutions;
     }
 
-    public void setUnit(Optional<IngredientAmountUnit> unit) {
-        this.unit = unit;
+    public void setUnit(IngredientAmountUnit unit) {
+        this.unit = Optional.of(unit);
     }
 
-    public void setSubstitutions(Optional<HashSet<Ingredient>> substitutions) {
-        this.substitutions = substitutions;
+    public void setSubstitutions(Ingredient... substitutions) {
+        this.substitutions.addAll(Set.of(substitutions));
     }
 
     @Override

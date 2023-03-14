@@ -151,7 +151,7 @@ public class Recipe {
 
         if (!steps.isEmpty()) {
             builder.append("; Steps: ");
-            for (int i = 1; i < steps.size(); i++) {
+            for (int i = 1; i <= steps.size(); i++) {
                 builder.append(String.format("%s. %s, ", i, steps.get(i)));
             }
         }

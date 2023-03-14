@@ -23,20 +23,24 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_STEP);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION, PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STEP)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Ingredient ingredient = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Step step = ParserUtil.parseStep(argMultimap.getValue(PREFIX_STEP).get());
-        Recipe recipe = new Recipe(name, ingredient, email, address, tagList, step);
+        Recipe recipe = new Recipe(name);
+
+        // 1. Parse Duration
+        argMultimap.getValue(PREFIX_DURATION).ifPresent(durationString -> {
+            ParserUtil.parse
+        });
+        // 2. Parse Portion
+        // 3. Parse Tags
+        // 4. Parse Ingredients
+        // 5. Parse Steps
 
         return new AddCommand(recipe);
     }
