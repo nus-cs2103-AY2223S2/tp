@@ -38,7 +38,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
     // Independent Ui parts residing in this Ui container
     private ListViewPanel<IdData<Patient>> patientListPanel;
     private ListViewPanel<VaxType> vaxTypeListPanel;
-    private ListViewPanel<Appointment> appointmentListPanel;
+    private ListViewPanel<IdData<Appointment>> appointmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -82,6 +82,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
         resultDisplay.refresh();
         patientListPanel.refresh();
         vaxTypeListPanel.refresh();
+        appointmentListPanel.refresh();
     }
 
 
@@ -135,7 +136,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
 
         appointmentListPanel = new ListViewPanel<>(
                 logic.getFilteredAppointmentMap(),
-                appointment -> new AppointmentCard(appointment).getRoot());
+                data -> new AppointmentCard(data).getRoot());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel);
 
         resultDisplay = new ResultDisplay();

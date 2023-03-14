@@ -21,6 +21,7 @@ import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.appointment.Appointment;
+import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
@@ -163,6 +164,18 @@ public class AddCommandTest {
         @Override
         public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getFilteredAppointmentMap'");
+        }
+
+        @Override
+        public AppointmentManager getAppointmentManager() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getAppointmentManager'");
         }
     }
 

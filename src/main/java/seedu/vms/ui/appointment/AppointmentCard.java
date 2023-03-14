@@ -3,7 +3,7 @@ package seedu.vms.ui.appointment;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-
+import seedu.vms.model.IdData;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.ui.UiPart;
 
@@ -23,12 +23,12 @@ public class AppointmentCard extends UiPart<Region> {
     /**
      * Constructs a {@code AppointmentCard}.
      *
-     * @param appointment - the appointment to display.
+     * @param data - the appointment to display.
      */
-    public AppointmentCard(Appointment appointment) {
+    public AppointmentCard(IdData<Appointment> data) {
         super(FXML_FILE);
-        titleLabel.setText(appointment.getPatient());
-        appointmentTime.setText(appointment.getAppointmentTime().toString());
+        titleLabel.setText(data.getValue().getPatient());
+        appointmentTime.setText(data.getValue().getAppointmentTime().toString());
     }
 }
 

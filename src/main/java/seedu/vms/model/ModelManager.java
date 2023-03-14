@@ -32,6 +32,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     private final FilteredIdDataMap<Patient> filteredPatientMap;
+    private final FilteredIdDataMap<Appointment> filteredAppointmentMap;
 
     /**
      * Initializes a ModelManager with the given patientManager and userPrefs.
@@ -47,6 +48,7 @@ public class ModelManager implements Model {
         filteredPatientMap = new FilteredIdDataMap<>(this.patientManager.getMapView());
 
         appointmentManager = new AppointmentManager();
+        filteredAppointmentMap = new FilteredIdDataMap<>(appointmentManager.getMapView());
         this.vaxTypeManager = vaxTypeManager;
     }
 
@@ -178,8 +180,8 @@ public class ModelManager implements Model {
     // =========== Filtered Appointment Map Accessors ==========================================================
 
     @Override
-    public ObservableMap<String, Appointment> getFilteredAppointmentMap() {
-        return appointmentManager.asUnmodifiableObservableMap();
+    public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
+        return filteredAppointmentMap.asUnmodifiableObservableMap();
     }
 
     @Override

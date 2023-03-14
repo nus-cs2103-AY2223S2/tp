@@ -91,7 +91,7 @@ public interface Model {
     ObservableMap<String, VaxType> getFilteredVaxTypeMap();
 
     /** Returns an unmodifiable view of the filtered appointment map. */
-    ObservableMap<String, Appointment> getFilteredAppointmentMap();
+    ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap();
 
     /**
      * Updates the filter of the filtered patient list to filter by the given {@code predicate}.

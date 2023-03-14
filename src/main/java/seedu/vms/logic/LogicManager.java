@@ -144,7 +144,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableMap<String, Appointment> getFilteredAppointmentMap() {
+    public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
         return model.getFilteredAppointmentMap();
     }
 

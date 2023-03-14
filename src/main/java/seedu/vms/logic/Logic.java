@@ -48,7 +48,7 @@ public interface Logic {
     ObservableMap<String, VaxType> getFilteredVaxTypeMap();
 
     /** Returns an unmodifiable view of the filtered map of Appointments. */
-    ObservableMap<String, Appointment> getFilteredAppointmentMap();
+    ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap();
 
     /**
      * Returns the user prefs' patient manager file path.
