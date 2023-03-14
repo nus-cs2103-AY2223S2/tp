@@ -20,6 +20,7 @@ import trackr.logic.commands.FindCommand;
 import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
 import trackr.logic.commands.ListCommand;
+import trackr.logic.commands.ListTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
 
 /**
@@ -86,6 +87,10 @@ public class TrackrParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListTaskCommand.COMMAND_WORD:
+        case ListTaskCommand.COMMAND_WORD_SHORTCUT:
+            return new ListTaskCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

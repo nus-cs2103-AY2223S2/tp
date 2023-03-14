@@ -27,6 +27,7 @@ import trackr.logic.commands.FindCommand;
 import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
 import trackr.logic.commands.ListCommand;
+import trackr.logic.commands.ListTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.person.NameContainsKeywordsPredicate;
 import trackr.model.person.Person;
@@ -184,6 +185,18 @@ public class TrackrParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_listTask() throws Exception {
+        assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD) instanceof ListTaskCommand);
+        assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD + " 3") instanceof ListTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_listTaskShortCut() throws Exception {
+        assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD_SHORTCUT) instanceof ListTaskCommand);
+        assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD_SHORTCUT + " 3") instanceof ListTaskCommand);
     }
 
     @Test
