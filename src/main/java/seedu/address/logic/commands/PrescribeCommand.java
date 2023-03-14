@@ -19,6 +19,8 @@ public class PrescribeCommand extends Command {
 
     public static final String COMMAND_WORD = "prescribe";
 
+    //@@author Jeffry Lum-reused
+    //Reused from https://nus-cs2103-ay2223s2.github.io/tp/tutorials/AddRemark.html
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Changes current medication information of the person identified "
             + "by the index number used in the last person listing. "
@@ -45,6 +47,8 @@ public class PrescribeCommand extends Command {
         this.medication = medication;
     }
 
+    //@@author Jeffry Lum-reused
+    //Reused from https://nus-cs2103-ay2223s2.github.io/tp/tutorials/AddRemark.html
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();

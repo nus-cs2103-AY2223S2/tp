@@ -15,6 +15,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
  */
 public class PrescribeCommandParser implements Parser<PrescribeCommand> {
 
+    //@@author Jeffry Lum-reused
+    //Reused from https://nus-cs2103-ay2223s2.github.io/tp/tutorials/AddRemark.html
     /**
      * Parses the given {@code String} of arguments in the context of the PrescribeCommand
      * and returns an PrescribeCommand object for execution.
