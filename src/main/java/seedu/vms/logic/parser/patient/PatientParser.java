@@ -19,7 +19,6 @@ public class PatientParser extends FeatureParser {
 
     public static final String FEATURE_NAME = "patient";
 
-
     @Override
     public Command parseCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
