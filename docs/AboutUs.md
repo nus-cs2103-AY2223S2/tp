@@ -36,19 +36,19 @@ You can reach us at these emails :
 
 ### Sze Jian Cheng
 
-<img src="images/JC.png" width="200px">
+<img src="images/szejiancheng.png" width="200px">
 
 [[github](http://github.com/szejiancheng)] [[portfolio](https://github.com/szejiancheng?tab=repositories)]
 
 * Role: coder
 * Responsibilities: UML diagrams, implementation, and providing snacks
 
-### Jean Doe
+### Muhammad Fahim Tajwar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fahim-tazz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/fahim-tazz)]
+[[portfolio](team/fahim-tazz.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: coder
+* Responsibilities: Developer Guide, software design, implementation

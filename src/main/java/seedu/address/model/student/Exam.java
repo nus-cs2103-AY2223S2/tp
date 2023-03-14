@@ -17,8 +17,8 @@ public class Exam {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
     private final double weightage;
-    private final ExamStatus status;
-    private final Grade grade;
+    private ExamStatus status;
+    private Grade grade;
 
     /**
      * The status of the exam.
@@ -147,6 +147,28 @@ public class Exam {
             throw new UnsupportedOperationException("Exam is not finished and does not have a grade.");
         }
         return grade;
+    }
+
+    /**
+     * Updates the grade of the exam, while also updating the completion status of the exam
+     *
+     * @param grade The grade attained in the exam
+     */
+    public void updateGrade(Grade grade) {
+        this.grade = grade;
+        this.status = ExamStatus.Finished;
+    }
+
+    /**
+     * Updates the status of the exam to Absent
+     *
+     * @throws UnsupportedOperationException when marking a finished exam as absent
+     */
+    public void markAsAbsent() {
+        if (this.status.equals(ExamStatus.Finished)) {
+            throw new UnsupportedOperationException("Exam is already completed!");
+        }
+        this.status = ExamStatus.Absent;
     }
 
     /**

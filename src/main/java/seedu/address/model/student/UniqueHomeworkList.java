@@ -48,7 +48,7 @@ public class UniqueHomeworkList implements Iterable<Homework> {
     public void add(Homework toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateHomeworkException();
+            throw new DuplicateEntryException();
         }
         internalList.add(toAdd);
         internalList.sort(Comparator.comparing(Homework::getDeadline));
@@ -64,11 +64,11 @@ public class UniqueHomeworkList implements Iterable<Homework> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new HomeworkNotFoundException();
+            throw new EntryNotFoundException();
         }
 
         if (!target.isSameHomework(editedHomework) && contains(editedHomework)) {
-            throw new DuplicateHomeworkException();
+            throw new DuplicateEntryException();
         }
 
         internalList.set(index, editedHomework);
@@ -83,7 +83,7 @@ public class UniqueHomeworkList implements Iterable<Homework> {
     public void remove(Homework toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new HomeworkNotFoundException();
+            throw new EntryNotFoundException();
         }
     }
 
@@ -107,7 +107,7 @@ public class UniqueHomeworkList implements Iterable<Homework> {
     public void setHomeworks(List<Homework> homeworks) {
         requireAllNonNull(homeworks);
         if (!homeworksAreUnique(homeworks)) {
-            throw new DuplicateHomeworkException();
+            throw new DuplicateEntryException();
         }
 
         internalList.setAll(homeworks);

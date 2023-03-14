@@ -107,6 +107,21 @@ public class Student {
         return lessonsList.asUnmodifiableObservableList();
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Returns an immutable Exams list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of exams
+     */
+    public List<Exam> getExamList() {
+        return examList.asUnmodifiableObservableList();
+    }
+
+    //HOMEWORK########################################################################################
+
+>>>>>>> e12494710c327c58aa3165b7ac6e0c273e091475
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -276,6 +291,8 @@ public class Student {
         return Collections.unmodifiableList(filteredLessonsList);
     }
 
+<<<<<<< HEAD
+=======
     //Exams########################################################################################
 
     /**
@@ -350,6 +367,7 @@ public class Student {
 
 
     //UTIL########################################################################################
+>>>>>>> e12494710c327c58aa3165b7ac6e0c273e091475
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

@@ -10,8 +10,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
 import seedu.address.model.tag.Tag;
@@ -93,10 +91,9 @@ public class Student {
      *
      * @return list of homework
      */
-    public ObservableList<Homework> getHomeworkList() {
+    public List<Homework> getHomeworkList() {
         return homeworkList.asUnmodifiableObservableList();
     }
-
     /**
      * Returns an immutable lessons list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -106,6 +103,18 @@ public class Student {
     public List<Lesson> getLessonsList() {
         return lessonsList.asUnmodifiableObservableList();
     }
+
+    /**
+     * Returns an immutable Exams list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of exams
+     */
+    public List<Exam> getExamList() {
+        return examList.asUnmodifiableObservableList();
+    }
+
+    //HOMEWORK########################################################################################
 
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
@@ -434,10 +443,5 @@ public class Student {
 
     public boolean hasLesson() {
         return this.lessonsList.hasLesson();
-    }
-
-
-    public ObservableList<PieChart.Data> getHomeworkPieChartData() {
-        return homeworkList.getHomeworkPieChartData();
     }
 }
