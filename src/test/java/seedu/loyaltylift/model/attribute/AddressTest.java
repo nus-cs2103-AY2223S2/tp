@@ -6,8 +6,6 @@ import static seedu.loyaltylift.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.model.attribute.Address;
-
 public class AddressTest {
 
     @Test

@@ -1,7 +1,12 @@
 package seedu.loyaltylift.logic.parser;
 
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.loyaltylift.logic.parser.CliSyntax.*;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_CUSTOMER_TYPE;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
