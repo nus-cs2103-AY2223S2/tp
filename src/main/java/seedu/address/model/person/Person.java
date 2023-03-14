@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.note.Note;
 
 /**
  * Represents a Person in the address book.
@@ -24,13 +24,13 @@ public class Person {
     // Data fields
     private final Address address;
     private Status status;
-    private final Set<Tag> notes = new HashSet<>();
+    private final Set<Note> notes = new HashSet<>();
     private Optional<InterviewDateTime> interviewDateTime = Optional.empty();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Status status, Set<Tag> notes) {
+    public Person(Name name, Phone phone, Email email, Address address, Status status, Set<Note> notes) {
         requireAllNonNull(name, phone, email, address, notes);
         this.name = name;
         this.phone = phone;
@@ -61,10 +61,10 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable note set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getNotes() {
+    public Set<Note> getNotes() {
         return Collections.unmodifiableSet(notes);
     }
 
@@ -187,10 +187,10 @@ public class Person {
                 .append("; Interview Date: ")
                 .append(getInterviewDateTime());
 
-        Set<Tag> tags = getNotes();
-        if (!tags.isEmpty()) {
+        Set<Note> notes = getNotes();
+        if (!notes.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            notes.forEach(builder::append);
         }
         return builder.toString();
     }

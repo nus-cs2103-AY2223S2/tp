@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -29,7 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedNote> notes = new ArrayList<>();
     private final String status;
 
     /**
@@ -38,14 +38,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("status") String status, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("status") String status, @JsonProperty("notes") List<JsonAdaptedNote> notes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.status = status;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (notes != null) {
+            this.notes.addAll(notes);
         }
     }
 
@@ -58,8 +58,8 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         status = source.getStatus().name();
-        tagged.addAll(source.getNotes().stream()
-                .map(JsonAdaptedTag::new)
+        notes.addAll(source.getNotes().stream()
+                .map(JsonAdaptedNote::new)
                 .collect(Collectors.toList()));
     }
 
@@ -69,9 +69,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<Note> personNotes = new ArrayList<>();
+        for (JsonAdaptedNote note : notes) {
+            personNotes.add(note.toModelType());
         }
 
         if (name == null) {
@@ -114,8 +114,8 @@ class JsonAdaptedPerson {
         }
         final Status modelStatus = Status.valueOf(status);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, modelTags);
+        final Set<Note> modelNotes = new HashSet<>(personNotes);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, modelNotes);
     }
 
 }
