@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import trackr.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Task}'s {@code TaskName} matches any of the keywords given.
+ * Tests that a {@code Task}'s {@code TaskName}, {@code TaskDeadline}, {@code TaskStatus} matches the keywords given.
  */
 public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Predicate<Task> {
     private List<String> taskNameKeywords;

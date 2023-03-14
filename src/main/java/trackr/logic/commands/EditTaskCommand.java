@@ -43,17 +43,17 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
 
     private final Index index;
-    private final TaskDescriptor taskDescriptor;
+    private final TaskDescriptor editTaskDescriptor;
 
     /**
      * @param index of the task in the filtered task list to edit
-     * @param taskDescriptor details to edit the task with
+     * @param editTaskDescriptor details to edit the task with
      */
-    public EditTaskCommand(Index index, TaskDescriptor taskDescriptor) {
-        requireAllNonNull(index, taskDescriptor);
+    public EditTaskCommand(Index index, TaskDescriptor editTaskDescriptor) {
+        requireAllNonNull(index, editTaskDescriptor);
 
         this.index = index;
-        this.taskDescriptor = new TaskDescriptor(taskDescriptor);
+        this.editTaskDescriptor = new TaskDescriptor(editTaskDescriptor);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class EditTaskCommand extends Command {
         }
 
         Task taskToEdit = lastShownTaskList.get(index.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, taskDescriptor);
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -109,6 +109,6 @@ public class EditTaskCommand extends Command {
         // state check
         EditTaskCommand e = (EditTaskCommand) other;
         return index.equals(e.index)
-                && taskDescriptor.equals(e.taskDescriptor);
+                && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
 }
