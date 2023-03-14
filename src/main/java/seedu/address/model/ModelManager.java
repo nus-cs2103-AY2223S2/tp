@@ -275,8 +275,11 @@ public class ModelManager implements Model {
     public void endReview() {
         currReview.flipAllCards();
         currReview = null;
-        selectedDeck = null;
-        updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+        if (selectedDeck != null) {
+            updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
+        } else {
+            updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+        }
     }
 
     @Override
