@@ -77,7 +77,6 @@
                 <Text text = "Tests:    " fill="burlywood" />
                 <FlowPane fx:id="tests" />
             </HBox>
-
             <HBox>
                 <Text text = "Homework:    " fill="burlywood" />
                 <FlowPane fx:id="homework" styleClass="cell_small_label"/>

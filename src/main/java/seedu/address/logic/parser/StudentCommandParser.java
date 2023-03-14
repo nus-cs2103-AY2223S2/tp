@@ -184,14 +184,14 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public StudentDeleteCommand deleteCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
-        try {
+            if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
+            || !argMultimap.getPreamble().isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentDeleteCommand.MESSAGE_USAGE));
+            }
             Class sc = ParserUtil.parseStudentClass(studentClass);
             IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
             return new StudentDeleteCommand(indexNumber, sc);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
-        }
     }
 
     /**
