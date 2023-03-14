@@ -10,7 +10,7 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 Given below are my contributions to the project.
 
 
-* **New Feature**: 
+* **New Feature**:
 
 * [**Code contributed**](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=daytona65&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=false&zFR=false)
 
