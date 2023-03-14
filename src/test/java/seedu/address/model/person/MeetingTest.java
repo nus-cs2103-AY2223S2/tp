@@ -18,31 +18,93 @@ public class MeetingTest {
     }
 
     @Test
-    public void testCheckTimeClash() throws Exception {
+    public void checkTimeClash_startEndSameTime_returnsTrue() throws Exception {
         Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
-        //start and end at the same time
         Meeting m2 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
-        //end at m1.start
-        Meeting m3 = generateMeeting(2000, 10, 23, 22, 0, 2000, 10, 23, 23, 0);
-        //ends in between m1.start and m1.end
-        Meeting m4 = generateMeeting(2000, 10, 23, 22, 0, 2000, 10, 24, 0, 0);
-        //starts at the same time as m1
-        Meeting m5 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 30);
-        //starts in between m1.start and m1.end
-        Meeting m6 = generateMeeting(2000, 10, 23, 23, 30, 2000, 10, 23, 23, 45);
-        //starts at m1.end
-        Meeting m7 = generateMeeting(2000, 10, 24, 0, 15, 2000, 10, 24, 0, 45);
-        //start and end before m1.start
-        Meeting m8 = generateMeeting(2000, 10, 23, 22, 0, 2000, 10, 23, 22, 45);
-        //start and end after m1.end
-        Meeting m9 = generateMeeting(2000, 10, 24, 12, 0, 2000, 10, 24, 13, 0);
         assertTrue(m1.checkTimeClash(m2));
-        assertTrue(m1.checkTimeClash(m3));
-        assertTrue(m1.checkTimeClash(m4));
-        assertTrue(m1.checkTimeClash(m5));
+    }
+
+    @Test
+    public void checkTimeClash_EndAtOtherStart_returnsTrue() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m2 = generateMeeting(2000, 10, 23, 22, 0, 2000, 10, 23, 23, 0);
+        assertTrue(m1.checkTimeClash(m2));
+    }
+
+    @Test
+    public void checkTimeClash_EndBetweenOtherMeeting_returnsTrue() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m2 = generateMeeting(2000, 10, 23, 22, 0, 2000, 10, 24, 0, 0);
+        assertTrue(m1.checkTimeClash(m2));
+    }
+
+    @Test
+    public void checkTimeClash_StartSameTime_returnsTrue() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m2 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 30);
+        assertTrue(m1.checkTimeClash(m2));
+    }
+
+    @Test
+    public void checkTimeClash_StartBetweenOtherMeeting_returnsTrue() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m6 = generateMeeting(2000, 10, 23, 23, 30, 2000, 10, 23, 23, 45);
         assertTrue(m1.checkTimeClash(m6));
+    }
+
+    @Test
+    public void checkTimeClash_StartAtOtherEnd_returnsTrue() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m7 = generateMeeting(2000, 10, 24, 0, 15, 2000, 10, 24, 0, 45);
         assertTrue(m1.checkTimeClash(m7));
-        assertFalse(m1.checkTimeClash(m8));
-        assertFalse(m1.checkTimeClash(m9));
+    }
+
+    @Test
+    public void checkTimeClash_StartEndBeforeOtherMeeting_returnsFalse() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m2 = generateMeeting(2000, 10, 23, 22, 0, 2000, 10, 23, 22, 45);
+        assertFalse(m1.checkTimeClash(m2));
+    }
+
+    @Test
+    public void checkTimeClash_StartEndAfterOtherMeeting_returnsFalse() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m2 = generateMeeting(2000, 10, 24, 12, 0, 2000, 10, 24, 13, 0);
+        assertFalse(m1.checkTimeClash(m2));
+    }
+
+    @Test
+    public void checkEquals_SameObject_returnsTrue() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m2 = m1;
+        assertTrue(m1.equals(m2));
+    }
+
+    @Test
+    public void checkEquals_SameStartAndEndDifferentObject_returnsTrue() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m2 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        assertTrue(m1.equals(m2));
+    }
+
+    @Test
+    public void checkEquals_SameStartDifferentEnd_returnsFalse() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m2 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 10, 15);
+        assertFalse(m1.equals(m2));
+    }
+
+    @Test
+    public void checkEquals_SameEndDifferentStart_returnsFalse() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m2 = generateMeeting(2000, 10, 23, 20, 0, 2000, 10, 24, 0, 15);
+        assertFalse(m1.equals(m2));
+    }
+
+    @Test
+    public void checkEquals_DifferentStartAndEnd_returnsFalse() throws Exception {
+        Meeting m1 = generateMeeting(2000, 10, 23, 23, 0, 2000, 10, 24, 0, 15);
+        Meeting m2 = generateMeeting(2000, 10, 23, 20, 0, 2000, 10, 24, 15, 15);
+        assertFalse(m1.equals(m2));
     }
 }
