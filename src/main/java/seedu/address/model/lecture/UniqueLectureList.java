@@ -7,64 +7,57 @@ import seedu.address.model.lecture.exceptions.DuplicateLectureException;
 import seedu.address.model.lecture.exceptions.LectureNotFoundException;
 
 /**
- * A list of lectures that enforces uniqueness between its elements and does not allow nulls.
- * A lecture is considered unique by comparing using {@code Lecture#isSameLecture(Lecture)}. As such, adding and
- * updating of lectures uses Lecture#isSameLecture(Lecture) for equality so as to ensure that the lecture being added or
- * updated is unique in terms of code in the UniqueLectureList. However, the removal of a lecture uses
- * Lecture#equals(Object) so as to ensure that the lecture with exactly the same fields will be removed.
+ * A list of lectures that enforces uniqueness between its elements and does not allow nulls.<p>
  *
- * Supports a minimal set of list operations.
+ * A lecture is considered unique by comparing using {@code Lecture#isSameLecture(Lecture)}. As such, adding and
+ * updating of lectures uses {@code Lecture#isSameLecture(Lecture)} for equality so as to ensure that the lecture being
+ * added or updated is unique in terms of name in the {@code UniqueLectureList}.<p>
+ *
+ * However, the removal of a lecture uses {@code Lecture#equals(Object)} so as to ensure that the lecture with exactly
+ * the same fields will be removed.<p>
+ *
+ * Supports a minimal set of list operations.<p>
  *
  * @see Lecture#isSameLecture(Lecture)
  */
 public class UniqueLectureList extends UniqueDataList<Lecture> {
 
+    /**
+     * Constructs a {@code UniqueLectureList}.
+     */
     public UniqueLectureList() {
         super((a, b) -> a.isSameLecture(b), DuplicateLectureException::new, LectureNotFoundException::new);
     }
 
     /**
-     * Returns true if the list contains an equivalent lecture as the given argument.
-     */
-    @Override
-    public boolean contains(Lecture toCheck) {
-        return super.contains(toCheck);
-    }
-
-    /**
-     * Adds a lecture to the list.
-     * The lecture must not already exist in the list.
-     */
-    @Override
-    public void add(Lecture toAdd) {
-        super.add(toAdd);
-    }
-
-    /**
-     * Replaces the lecture {@code target} in the list with {@code editedLecture}.
-     * {@code target} must exist in the list.
-     * The name of {@code editedLecture} must not be the same as another existing lecture in the list.
+     * Replaces the lecture {@code target} in the list with {@code editedLecture}.<p>
+     * {@code target} must exist in the list.<p>
+     * {@code editedLecture} must not have the same name as another existing lecture in the list.
+     *
+     * @param target The lecture to be replaced.
+     * @param editedLecture The lecture that will replace.
+     * @throws LectureNotFoundException Indicates that {@code target} does not exist in the list.
+     * @throws DuplicateLectureException Indicates that {@code editedLecture} is the same as another existing
+     *                                   lecture in the list.
      */
     public void setLecture(Lecture target, Lecture editedLecture) {
         super.setData(target, editedLecture);
     }
 
     /**
-     * Removes the equivalent lecture from the list.
-     * The lecture must exist in the list.
+     * Replaces the content of this list with {@code replacement}.
+     *
+     * @param replacement The list containing the lecture that will replace.
      */
-    @Override
-    public void remove(Lecture toRemove) {
-        super.remove(toRemove);
-    }
-
     public void setLectures(UniqueLectureList replacement) {
         super.setAllData(replacement);
     }
 
     /**
-     * Replaces the contents of this list with {@code lectures}.
+     * Replaces the contents of this list with {@code lectures}.<p>
      * {@code lectures} must not contain duplicate lectures.
+     *
+     * @param lectures The list containing the lectures that will replace.
      */
     public void setLectures(List<Lecture> lectures) {
         super.setAllData(lectures);
