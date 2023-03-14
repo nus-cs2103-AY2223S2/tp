@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.pet;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.pet.NameContainsKeywordsPredicate;
 import seedu.address.testutil.PetBuilder;
 
 public class NameContainsKeywordsPredicateTest {
