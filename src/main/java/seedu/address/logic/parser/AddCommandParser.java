@@ -45,7 +45,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(Prefix.ADDRESS).get());
         TelegramHandle telegramHandle = ParserUtil
                 .parseTelegramHandle(argMultimap.getValue(Prefix.TELEGRAM_HANDLE).get());
-        ContactIndex placeholderContactIndex = new ContactIndex(1000);
+        ContactIndex placeholderContactIndex = new ContactIndex(Integer.MAX_VALUE);
         Set<GroupTag> groupTagList = ParserUtil.parseGroupTags(argMultimap.getAllValues(Prefix.GROUP_TAG));
         Set<ModuleTag> moduleTagList = ParserUtil.parseModuleTags(argMultimap.getAllValues(Prefix.MODULE_TAG));
         Person person = new Person(name, phone, email, address, telegramHandle, placeholderContactIndex,

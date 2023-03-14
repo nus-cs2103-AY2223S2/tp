@@ -22,7 +22,7 @@ public class Person {
     private final TelegramHandle telegramHandle;
 
     // Indexing fields
-    private final ContactIndex contactIndex;
+    private ContactIndex contactIndex;
 
     // Data fields
     private final Address address;
@@ -112,6 +112,10 @@ public class Person {
      */
     public void setCommonModules(Set<ModuleTag> userModules) {
         moduleTags.setCommonModules(userModules);
+    }
+
+    public void setContactIndex(ContactIndex contactIndex) {
+        this.contactIndex = contactIndex;
     }
 
     /**
