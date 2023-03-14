@@ -43,7 +43,6 @@ public class ClientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         policyList = new UniquePolicyList();
-        policyList.add(DEFAULT_POLICY);
     }
 
     /**

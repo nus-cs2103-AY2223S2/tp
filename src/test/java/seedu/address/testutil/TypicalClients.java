@@ -28,7 +28,7 @@ public class TypicalClients {
             .withPhone("94351253")
             .withTags("friends")
             .withPolicyList(
-                    new PolicyBuilder().withPolicyName("Fire Insurance").withStartDate("31.1.2023")
+                    new PolicyBuilder().withPolicyName("Fire Insurance").withStartDate("31.01.2023")
                             .withPremium("1000").withFrequency("monthly").build(),
                     new PolicyBuilder().withPolicyName("Water Insurance").withStartDate("11.11.2023")
                             .withPremium("2000").withFrequency("monthly").build()
@@ -38,7 +38,7 @@ public class TypicalClients {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
             .withPolicyList(
-                    new PolicyBuilder().withPolicyName("Health Insurance").withStartDate("31.1.2023")
+                    new PolicyBuilder().withPolicyName("Health Insurance").withStartDate("31.01.2023")
                             .withPremium("1000").withFrequency("weekly").build()
             ).build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
