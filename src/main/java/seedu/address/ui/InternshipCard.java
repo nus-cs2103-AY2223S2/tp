@@ -20,6 +20,13 @@ import javafx.scene.paint.Color;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Status;
 
+import static seedu.address.model.internship.Status.NEW;
+import static seedu.address.model.internship.Status.APPLIED;
+import static seedu.address.model.internship.Status.ASSESSMENT;
+import static seedu.address.model.internship.Status.INTERVIEW;
+import static seedu.address.model.internship.Status.OFFERED;
+import static seedu.address.model.internship.Status.REJECTED;
+
 /**
  * An UI component that displays information of a {@code Internship}.
  */
@@ -127,12 +134,12 @@ public class InternshipCard extends UiPart<Region> {
     public HashMap<String, Color> setupColours() {
         //Hashmap that stores the colours associated with each status
         HashMap<String, Color> colorMap = new HashMap<String, Color>();
-        colorMap.put("New", Color.rgb(250, 155, 68, 1.0));
-        colorMap.put("Applied", Color.rgb(68, 170, 250, 1.0));
-        colorMap.put("Assessment", Color.rgb(250, 68, 155, 1.0));
-        colorMap.put("Interview", Color.rgb(126, 68, 250, 1.0));
-        colorMap.put("Offered", Color.rgb(42, 174, 79, 1.0));
-        colorMap.put("Rejected", Color.rgb(250, 68, 68, 1.0));
+        colorMap.put(NEW, Color.rgb(250, 155, 68, 1.0));
+        colorMap.put(APPLIED, Color.rgb(68, 170, 250, 1.0));
+        colorMap.put(ASSESSMENT, Color.rgb(250, 68, 155, 1.0));
+        colorMap.put(INTERVIEW, Color.rgb(126, 68, 250, 1.0));
+        colorMap.put(OFFERED, Color.rgb(42, 174, 79, 1.0));
+        colorMap.put(REJECTED, Color.rgb(250, 68, 68, 1.0));
         return colorMap;
     }
 
@@ -147,22 +154,22 @@ public class InternshipCard extends UiPart<Region> {
     public String getDateLabel(Status status) {
         String dateLabel;
         switch (status.toString()) {
-        case "New":
+        case NEW:
             dateLabel = "Date Added: ";
             break;
-        case "Applied":
+        case APPLIED:
             dateLabel = "Date Applied: ";
             break;
-        case "Assessment":
+        case ASSESSMENT:
             dateLabel = "Date of Assessment: ";
             break;
-        case "Interview":
+        case INTERVIEW:
             dateLabel = "Date of Interview: ";
             break;
-        case "Offered":
+        case OFFERED:
             dateLabel = "Date of Notice of Offer: ";
             break;
-        case "Rejected":
+        case REJECTED:
             dateLabel = "Date of Notice of Rejection: ";
             break;
         default:

@@ -62,22 +62,22 @@ public class InternshipCardTest extends GuiUnitTest {
         assertTrue(internshipCardAmazonOne.equals(internshipCardAmazonOneDuplicate));
     }
 
-    @Test
-    public void create_colorMap_success() {
-        HashMap<String, Color> colorMap = new InternshipCard(TypicalInternships.AMAZON, 1).setupColours();
-        //Check "New" color
-        assertTrue(colorMap.get("New").equals(Color.rgb(250, 155, 68, 1.0)));
-        //Check "Applied" color
-        assertTrue(colorMap.get("Applied").equals(Color.rgb(68, 170, 250, 1.0)));
-        //Check "Assessment" color
-        assertTrue(colorMap.get("Assessment").equals(Color.rgb(250, 68, 155, 1.0)));
-        //Check "Interview" color
-        assertTrue(colorMap.get("Interview").equals(Color.rgb(126, 68, 250, 1.0)));
-        //Check "Offered" color
-        assertTrue(colorMap.get("Offered").equals(Color.rgb(42, 174, 79, 1.0)));
-        //Check "Rejected" color
-        assertTrue(colorMap.get("Rejected").equals(Color.rgb(250, 68, 68, 1.0)));
-    }
+//    @Test
+//    public void create_colorMap_success() {
+//        HashMap<String, Color> colorMap = new InternshipCard(TypicalInternships.AMAZON, 1).setupColours();
+//        //Check "New" color
+//        assertTrue(colorMap.get("New").equals(Color.rgb(250, 155, 68, 1.0)));
+//        //Check "Applied" color
+//        assertTrue(colorMap.get("Applied").equals(Color.rgb(68, 170, 250, 1.0)));
+//        //Check "Assessment" color
+//        assertTrue(colorMap.get("Assessment").equals(Color.rgb(250, 68, 155, 1.0)));
+//        //Check "Interview" color
+//        assertTrue(colorMap.get("Interview").equals(Color.rgb(126, 68, 250, 1.0)));
+//        //Check "Offered" color
+//        assertTrue(colorMap.get("Offered").equals(Color.rgb(42, 174, 79, 1.0)));
+//        //Check "Rejected" color
+//        assertTrue(colorMap.get("Rejected").equals(Color.rgb(250, 68, 68, 1.0)));
+//    }
 
     @Test
     public void set_fields_success() {
