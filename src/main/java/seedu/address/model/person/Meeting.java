@@ -79,7 +79,7 @@ public class Meeting {
             return false;
         }
         Meeting mt = (Meeting) o;
-        return mt.start.equals(this.start) && mt.end == this.end;
+        return mt.start.isEqual(this.start) && mt.end.isEqual(this.end);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class Meeting {
     }
 
     public boolean isEmpty() {
-        return this.start.equals(LocalDateTime.MIN)
-                && this.end.equals(LocalDateTime.MIN);
+        return this.start.isEqual(LocalDateTime.MIN)
+            && this.end.isEqual(LocalDateTime.MIN);
     }
 }

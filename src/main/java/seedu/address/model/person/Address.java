@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.person.Region.Regions;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -18,6 +20,7 @@ public class Address {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
+    private Regions region; // Not final to allow user to edit region directly if detection fails
 
     /**
      * Constructs an {@code Address}.
@@ -28,6 +31,7 @@ public class Address {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
+        region = Region.getRegionFromAddress(address);
     }
 
     /**
@@ -54,4 +58,7 @@ public class Address {
         return value.hashCode();
     }
 
+    public String getRegionString() {
+        return region.getDisplayString();
+    }
 }
