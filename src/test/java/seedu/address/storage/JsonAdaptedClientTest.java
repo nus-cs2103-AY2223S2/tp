@@ -45,7 +45,8 @@ public class JsonAdaptedClientTest {
             BENSON.getPolicyList().spliterator(), false).map(JsonAdaptedPolicy::new)
             .collect(Collectors.toList());
 
-    public void toModelType_validClientDetails_returnsClient() throws Exception {
+    @Test
+    public void toModelType_validClientDetails_returnsClient() throws IllegalValueException {
         JsonAdaptedClient client = new JsonAdaptedClient(BENSON);
         assertEquals(BENSON, client.toModelType());
     }
@@ -126,7 +127,6 @@ public class JsonAdaptedClientTest {
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags, VALID_POLICIES);
         assertThrows(IllegalValueException.class, client::toModelType);
     }
-
     /*
     Don't really need this because invalidPolicies is dependent on InvalidPolicy
     @Test
