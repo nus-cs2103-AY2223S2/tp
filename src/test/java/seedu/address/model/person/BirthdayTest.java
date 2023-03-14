@@ -9,7 +9,8 @@ public class BirthdayTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Birthday(null));
+        String s = null;
+        assertThrows(NullPointerException.class, () -> new Birthday(s));
     }
 
     @Test
