@@ -105,7 +105,7 @@ public class ParserUtil {
     public static Medication parseMedication(String medication) throws ParseException {
         requireNonNull(medication);
         String trimmedMedication = medication.trim();
-        if (!Medication.isValidMedication(medication)) {
+        if (!Medication.isValidMedication(trimmedMedication)) {
             throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
         }
         return new Medication(trimmedMedication);
