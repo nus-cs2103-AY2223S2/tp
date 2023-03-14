@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
 
-public class HelpConsultationCommand extends HelpCommand{
+/**
+ * Help instruction for Consultation command
+ */
+public class HelpConsultationCommand extends HelpCommand {
 
     public static final String COMMAND_WORD = "help consultation";
 
