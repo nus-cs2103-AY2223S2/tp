@@ -15,12 +15,12 @@ import seedu.address.model.entity.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    //    split to become >> private final UniqueCustomerList customers;
-    //    split to become >> private final UniqueStaffList staff;
-    //    private final UniquePartsList parts;
-    //    private final UniqueServiceList services;
-    //    private final UniqueAppointmentList appointments;
-    //    private final UniqueGarage garage;
+    private final Object customers; // UniqueCustomerList customers;
+    private final Object staff; // UniqueStaffList staff;
+    private final Object parts; // UniquePartsList parts;
+    private final Object services; // UniqueServiceList services;
+    private final Object appointments; // UniqueAppointmentList appointments;
+    private final Object garage; // UniqueGarage garage;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,6 +31,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        customers = null;
+        staff = null;
+        parts = null;
+        services = null;
+        appointments = null;
+        garage = null;
     }
 
     public AddressBook() {}

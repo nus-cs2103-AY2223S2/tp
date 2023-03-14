@@ -12,6 +12,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.service.Part;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +26,12 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Person> filteredCustomers;
+    private final FilteredList<Person> filteredStaff;
+    private final FilteredList<Service> filteredServices;
+    private final FilteredList<Vehicle> filteredVehicles;
+    private final FilteredList<Part> filteredParts;
+    private final FilteredList<Appointment> filteredAppointment;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +44,13 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        filteredCustomers = null;
+        filteredStaff = null;
+        filteredServices = null; // new FilteredList<>(this.addressBook.getPersonList());
+        filteredVehicles = null; // new FilteredList<>(this.addressBook.getPersonList());
+        filteredParts = null; // new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointment = null; // new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -87,6 +104,7 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    // PERSONS
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -107,7 +125,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
