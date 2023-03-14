@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.library.commons.core.Messages;
 import seedu.library.model.Model;
-import seedu.library.model.bookmark.NameContainsKeywordsPredicate;
+import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
 
 /**
  * Finds and lists all bookmarks in library whose title contains any of the argument keywords.
@@ -17,11 +17,11 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all bookmarks whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " Ranker's Chainsaw Solo";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final TitleContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(TitleContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
