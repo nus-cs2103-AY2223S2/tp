@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.commons.core.GuiSettings;
-import seedu.fitbook.model.client.FindContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
 import seedu.fitbook.testutil.FitBookBuilder;
 
 public class FitBookModelManagerTest {
@@ -118,7 +118,7 @@ public class FitBookModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredClientList(new FindContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new FitBookModelManager(fitBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

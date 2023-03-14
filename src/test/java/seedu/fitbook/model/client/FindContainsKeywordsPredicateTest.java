@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
 import seedu.fitbook.testutil.ClientBuilder;
 
 public class FindContainsKeywordsPredicateTest {
@@ -18,14 +19,14 @@ public class FindContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        FindContainsKeywordsPredicate firstPredicate = new FindContainsKeywordsPredicate(firstPredicateKeywordList);
-        FindContainsKeywordsPredicate secondPredicate = new FindContainsKeywordsPredicate(secondPredicateKeywordList);
+        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        FindContainsKeywordsPredicate firstPredicateCopy = new FindContainsKeywordsPredicate(firstPredicateKeywordList);
+        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,26 +42,26 @@ public class FindContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        FindContainsKeywordsPredicate predicate = new FindContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new ClientBuilder().withName("Alice Bob").build()));
 
         // Mixed-case keywords
-        predicate = new FindContainsKeywordsPredicate(Arrays.asList("aLIce bOB"));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce bOB"));
         assertTrue(predicate.test(new ClientBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        FindContainsKeywordsPredicate predicate = new FindContainsKeywordsPredicate(Collections.emptyList());
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ClientBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new FindContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new ClientBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email, calorie and address, but does not match name
-        predicate = new FindContainsKeywordsPredicate(Arrays.asList("Alice 91234567"));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice 91234567"));
         assertFalse(predicate.test(new ClientBuilder().withName("Alice").build()));
     }
 }
