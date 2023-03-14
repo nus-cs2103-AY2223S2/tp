@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About Us
+title: John Doe's Project Portfolio Page
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
@@ -9,51 +9,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ho Yin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lhy-hoyin.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/lhy-hoyin)]
+[[portfolio](team/lhy-hoyin.md)]
 
 * Role: Project Advisor
+* Responsibilities: Data
 
-### Jane Doe
+### Jeremy
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jrmckh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/JrmCkh)]
+[[portfolio](team/jermckh.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Yu Quan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bigheartsmallbrain.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/BigheartSmallbrain)]
+[[portfolio](team/bigheartsmallbrain.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Anthony
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/anthonynmh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/anthonynmh)]
+[[portfolio](team/anthonynmh.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
