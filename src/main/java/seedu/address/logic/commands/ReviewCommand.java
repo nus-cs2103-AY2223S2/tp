@@ -23,6 +23,7 @@ public class ReviewCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Deck to be reviewed: %1$s\nEnter [ to flip card and show answer!";
     public static final String MESSAGE_INVALID_DECK_DISPLAYED_INDEX = "Deck index provided is invalid";
+    public static final String MESSAGE_EMPTY_DECK = "The deck you chose to review is empty";
     private final Index deckIndex;
 
     /**
@@ -41,6 +42,8 @@ public class ReviewCommand extends Command {
         boolean isIndexOutOfBound = deckIndex.getZeroBased() >= deckList.size();
         if (isIndexOutOfBound) {
             throw new CommandException(MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
+        } else if (model.getDeckSize(deckIndex.getZeroBased()) == 0) {
+            throw new CommandException(MESSAGE_EMPTY_DECK);
         }
 
         model.reviewDeck(deckIndex);

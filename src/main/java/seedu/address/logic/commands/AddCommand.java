@@ -10,7 +10,6 @@ import java.util.Optional;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.card.Card;
-import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.deck.Deck;
 
 /**

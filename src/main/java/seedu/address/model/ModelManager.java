@@ -217,6 +217,14 @@ public class ModelManager implements Model {
                 .orElse("None");
     }
 
+    @Override
+    public int getDeckSize(int deckIndex) {
+        Deck deck = filteredDecks.get(deckIndex);
+        return new FilteredList<>(
+                masterDeck.getCardList(), new CardInDeckPredicate(deck)
+        ).size();
+    }
+
     /* ==================================== Review Operations ==================================== */
 
     /**
