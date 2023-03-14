@@ -52,7 +52,7 @@ Examples
 
 ### Unmark attendance: `unmark`
 Unmarks the attendance of a student for that week<br>
-Format: `unmark {student_number} {week_number}`<br>
+Format: `unmark {student_number} w/{week_number}`<br>
 Examples
 * `unmarkAtd 1 w/1`
 * `unmarkAtd 2 w/1`
