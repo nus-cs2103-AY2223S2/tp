@@ -24,11 +24,12 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.FriendlyLinkBuilder;
+import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.TypicalElderly;
 
 public class ModelManagerTest {
 
-    private ModelManager modelManager = new ModelManager();
+    private ModelManager modelManager = new ModelManagerBuilder().build();
 
     @Test
     public void constructor() {
@@ -214,8 +215,14 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(friendlyLink, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(friendlyLink, userPrefs);
+        modelManager = new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .withUserPrefs(userPrefs)
+                .build();
+        ModelManager modelManagerCopy = new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .withUserPrefs(userPrefs)
+                .build();
         assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
@@ -228,17 +235,26 @@ public class ModelManagerTest {
         assertNotEquals(5, modelManager);
 
         // different friendlyLink -> returns false
-        assertNotEquals(modelManager, new ModelManager(differentFriendlyLink, userPrefs));
+        assertNotEquals(modelManager, new ModelManagerBuilder()
+                .withFriendlyLink(differentFriendlyLink)
+                .withUserPrefs(userPrefs)
+                .build());
 
         // different filteredElderlyList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredElderlyList(new NameContainsKeywordsPredicate<>(Arrays.asList(keywords)));
-        assertNotEquals(modelManager, new ModelManager(friendlyLink, userPrefs));
+        assertNotEquals(modelManager, new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .withUserPrefs(userPrefs)
+                .build());
 
         // different filteredVolunteerList -> returns false
         keywords = DANIEL.getName().fullName.split("\\s+");
         modelManager.updateFilteredVolunteerList(new NameContainsKeywordsPredicate<>(Arrays.asList(keywords)));
-        assertNotEquals(modelManager, new ModelManager(friendlyLink, userPrefs));
+        assertNotEquals(modelManager, new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .withUserPrefs(userPrefs)
+                .build());
 
         // TODO: different filteredPairList -> returns false
 
@@ -251,6 +267,9 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setPairFilePath(Paths.get("differentFilePath"));
-        assertNotEquals(modelManager, new ModelManager(friendlyLink, differentUserPrefs));
+        assertNotEquals(modelManager, new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .withUserPrefs(differentUserPrefs)
+                .build());
     }
 }

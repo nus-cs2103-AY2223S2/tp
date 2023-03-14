@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showElderlyAtIndex;
-import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
+import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
@@ -21,20 +21,18 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
-import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Elderly;
 import seedu.address.testutil.EditElderlyDescriptorBuilder;
 import seedu.address.testutil.ElderlyBuilder;
+import seedu.address.testutil.ModelManagerBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditElderlyCommand.
  */
 public class EditElderlyCommandTest {
 
-    private final Model model = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
+    private final Model model = getTypicalModelManager();
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredElderlyList_success() {
@@ -45,7 +43,9 @@ public class EditElderlyCommandTest {
         String expectedMessage = String.format(EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS,
                 editedElderly);
 
-        Model expectedModel = new ModelManager(new FriendlyLink(model.getFriendlyLink()), new UserPrefs());
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(model.getFriendlyLink())
+                .build();
         expectedModel.setElderly(model.getFilteredElderlyList().get(0), editedElderly);
 
         assertCommandSuccess(editElderlyCommand, model, expectedMessage, expectedModel);
@@ -69,7 +69,9 @@ public class EditElderlyCommandTest {
         String expectedMessage = String.format(EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS,
                 editedElderly);
 
-        Model expectedModel = new ModelManager(new FriendlyLink(model.getFriendlyLink()), new UserPrefs());
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(model.getFriendlyLink())
+                .build();
         expectedModel.setElderly(lastElderly, editedElderly);
 
         assertCommandSuccess(editElderlyCommand, model, expectedMessage, expectedModel);
@@ -98,7 +100,9 @@ public class EditElderlyCommandTest {
         String expectedMessage = String.format(EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS,
                 editedElderly);
 
-        Model expectedModel = new ModelManager(new FriendlyLink(model.getFriendlyLink()), new UserPrefs());
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(model.getFriendlyLink())
+                .build();
         expectedModel.setElderly(model.getFilteredElderlyList().get(0), editedElderly);
 
         assertCommandSuccess(editElderlyCommand, model, expectedMessage, expectedModel);

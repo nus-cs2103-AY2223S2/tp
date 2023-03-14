@@ -31,21 +31,6 @@ public class ModelManager implements Model {
     private FilteredList<Pair> filteredPairs;
 
     /**
-     * Constructs a ModelManager with the default friendlyLink and userPrefs.
-     */
-    public ModelManager() {
-        init(new FriendlyLink(), new UserPrefs());
-    }
-
-    /**
-     * Constructs a ModelManager with the given friendlyLink and userPrefs.
-     */
-    public ModelManager(ReadOnlyFriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(friendlyLink, userPrefs);
-        init(new FriendlyLink(friendlyLink), userPrefs);
-    }
-
-    /**
      * Constructs a {@code ModelManager} with the data from {@code Storage} and {@code userPrefs}. <br>
      * An empty application will be used instead if errors occur when reading {@code storage}.
      *

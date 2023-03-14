@@ -3,15 +3,14 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showElderlyAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.showVolunteerAtIndex;
-import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
+import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.address.testutil.ModelManagerBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -23,8 +22,10 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
-        expectedModel = new ModelManager(model.getFriendlyLink(), new UserPrefs());
+        model = getTypicalModelManager();
+        expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(model.getFriendlyLink())
+                .build();
     }
 
     @Test

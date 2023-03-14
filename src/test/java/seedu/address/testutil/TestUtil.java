@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -113,5 +114,14 @@ public class TestUtil {
             fl.addPair(pair);
         }
         return fl;
+    }
+
+    /**
+     * Returns a {@code ModelManager} with the typical FriendlyLink.
+     */
+    public static ModelManager getTypicalModelManager() {
+        return new ModelManagerBuilder()
+                .withFriendlyLink(getTypicalFriendlyLink())
+                .build();
     }
 }
