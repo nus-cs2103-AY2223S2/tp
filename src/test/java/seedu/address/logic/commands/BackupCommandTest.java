@@ -18,7 +18,7 @@ public class BackupCommandTest {
     }
 
     @Test
-    public void execute_indexOutOfRange_throwsParseException() {
+    public void parser_indexOutOfRange_throwsParseException() {
         String invalidArgs11 = "backup 11";
         String invalidArgs0 = "backup 0";
         assertThrows(ParseException.class,
