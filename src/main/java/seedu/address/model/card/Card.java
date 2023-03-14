@@ -24,6 +24,7 @@ public class Card {
     private final Answer answer;
     private final Set<Tag> tags = new HashSet<>();
     private Optional<Deck> deck;
+    private boolean isFlipped = true;
 
     /**
      * Every field must be present and not null.
@@ -71,6 +72,27 @@ public class Card {
 
         return otherCard != null
                 && otherCard.getQuestion().equals(getQuestion());
+    }
+
+    /**
+     * Returns true if the card is flipped.
+     */
+    public boolean isFlipped() {
+        return isFlipped;
+    }
+
+    /**
+     * Sets card as flipped.
+     */
+    public void setAsFlipped() {
+        this.isFlipped = true;
+    }
+
+    /**
+     * Sets card as unflipped.
+     */
+    public void setAsUnflipped() {
+        this.isFlipped = false;
     }
 
     /**

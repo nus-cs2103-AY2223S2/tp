@@ -16,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.CardInDeckPredicate;
+import seedu.address.model.card.IsSameCardPredicate;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
 
@@ -195,7 +196,6 @@ public class ModelManager implements Model {
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         selectedDeck = filteredDecks.get(zeroBasesIdx);
-
         assert selectedDeck != null : "selectedDeck cannot be null here";
         updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
@@ -218,12 +218,21 @@ public class ModelManager implements Model {
                 .orElse("None");
     }
 
+    @Override
+    public int getDeckSize(int deckIndex) {
+        Deck deck = filteredDecks.get(deckIndex);
+        return new FilteredList<>(
+                masterDeck.getCardList(), new CardInDeckPredicate(deck)
+        ).size();
+    }
+
     /* ==================================== Review Operations ==================================== */
 
     /**
      * Starts a new review session based on deckIndex selected
      * @param deckIndex Index of the deck
      */
+    @Override
     public void reviewDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         Deck deckToReview = filteredDecks.get(zeroBasesIdx);
@@ -231,6 +240,31 @@ public class ModelManager implements Model {
                 masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
         );
         currReview = new Review(deckToReview, cardList);
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public void markCorrect() {
+        this.currReview.markCurrCardAsCorrect();
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public void markWrong() {
+        this.currReview.markCurrCardAsWrong();
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public void goToPrevCard() {
+        this.currReview.goToPrevCard();
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public void goToNextCard() {
+        this.currReview.goToNextCard();
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
 
     @Override
@@ -240,7 +274,13 @@ public class ModelManager implements Model {
 
     @Override
     public void endReview() {
+        currReview.flipAllCards();
         currReview = null;
+        if (selectedDeck != null) {
+            updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
+        } else {
+            updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+        }
     }
 
     @Override
@@ -250,7 +290,9 @@ public class ModelManager implements Model {
                 .orElse("None");
     }
 
+    @Override
     public void flipCard() {
         Optional.ofNullable(currReview).ifPresent(Review::flipCard);
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
 }

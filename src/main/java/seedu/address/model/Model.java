@@ -119,7 +119,10 @@ public interface Model {
     void selectDeck(Index idx);
 
     void unselectDeck();
+
     String getSelectedDeckName();
+
+    int getDeckSize(int deckIndex);
 
     void reviewDeck(Index idx);
 
@@ -130,4 +133,12 @@ public interface Model {
     String getReviewDeckName();
 
     void flipCard();
+
+    void markWrong();
+
+    void markCorrect();
+
+    void goToPrevCard();
+
+    void goToNextCard();
 }

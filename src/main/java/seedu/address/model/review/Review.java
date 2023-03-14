@@ -2,23 +2,24 @@ package seedu.address.model.review;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 
 /**
- * Represents a Card in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a Review session that is currently underway.
+ * Guarantees: details are present and not null, field values are validated.
  */
 public class Review {
 
     private final Deck deck;
     private List<Card> cardList;
-    private int currScore = 0;
-    private int currCardNum = 0;
+    private List<Boolean> scoreList;
+    private int currCardNum = 1; // 1-Indexed
     private Card currCard;
-    private boolean isFlipped = false;
 
     /**
      * Every field must be present and not null.
@@ -26,9 +27,19 @@ public class Review {
     public Review(Deck deck, List<Card> cardList) {
         requireNonNull(deck);
         this.deck = deck;
-
         this.cardList = cardList;
+        unflipAllCards();
         //TODO write a shuffle based on user statistics
+
+        // initialise first card
+        currCard = this.cardList.get(currCardNum - 1);
+
+        // initialise scoreList
+        scoreList = new ArrayList<>(Arrays.asList(new Boolean[this.cardList.size()]));
+    }
+
+    public Card getCurrCard() {
+        return currCard;
     }
 
     public Deck getDeck() {
@@ -39,84 +50,77 @@ public class Review {
         return deck.getDeckName();
     }
 
-    public Integer getCurrScore() {
-        return currScore;
+    public void flipCard() {
+        currCard.setAsFlipped();
     }
 
-    public void incrementCurrScore() {
-        currScore++;
+    public void unflipCard() {
+        currCard.setAsUnflipped();
+    }
+
+    public boolean isFlipped() {
+        return currCard.isFlipped();
     }
 
     /**
-     * Move to the next card.
+     * Returns the sum of the total score on the current scoreList.
+     * @return current total score of review.
+     */
+    public Integer getTotalScore() {
+        return scoreList.stream().map(bool -> bool ? 1 : 0).mapToInt(a -> a).sum();
+    }
+
+    /**
+     * Move to the next card to be under review.
      */
     public void goToNextCard() {
-        isFlipped = false;
+        currCard.setAsUnflipped(); // always unflip current card before moving to next
         currCardNum++;
         if (currCardNum > cardList.size()) {
             currCardNum--; //TODO throw exception
         } else {
-            this.currCard = cardList.get(currCardNum - 1);
+            currCard = cardList.get(currCardNum - 1);
+            currCard.setAsUnflipped();
         }
     }
 
     /**
-     * Move back to previous card.
+     * Move back to previous card to be under review.
      */
     public void goToPrevCard() {
-        isFlipped = false;
+        currCard.setAsUnflipped();
         currCardNum--;
         if (currCardNum <= 0) {
             currCardNum++; //TODO throw exception
         } else {
-            this.currCard = cardList.get(currCardNum - 1);
+            currCard = cardList.get(currCardNum - 1);
         }
-    }
-
-    public Card getCurrCard() {
-        return currCard;
-    }
-
-    public void markCurrCardAsCorrect() {
-        currScore++; //TODO implement tracking of individual card correctness.
-    }
-
-    public void flipCard() {
-        isFlipped = true;
-    }
-
-    public boolean isFlipped() {
-        return isFlipped;
     }
 
     /**
-     * Returns the string to be displayed of the current card
-     * depending on if the card is flipped
-     *
-     * @return Question or (Question and Answer) of current card.
+     * Marks the current card as correct in the scoreList
+     * by setting the respective index in scoreList as true.
      */
-    public String displayOnCard() {
-        if (isFlipped) {
-            return currCard.getQuestion() + "\n" + currCard.getAnswer();
-        } else {
-            return currCard.getQuestion().toString();
-        }
+    public void markCurrCardAsCorrect() {
+        scoreList.set(currCardNum - 1, true);
+        goToNextCard();
     }
 
-    /*
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getQuestion())
-                .append("; Answer: ")
-                .append(getAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
-    }
+    /**
+     * Marks the current card as wrong in the scoreList
+     * by setting the respective index in scoreList as false.
      */
+    public void markCurrCardAsWrong() {
+        scoreList.set(currCardNum - 1, false);
+        goToNextCard();
+    }
+
+    public void unflipAllCards() {
+        cardList.stream().forEach(Card::setAsUnflipped);
+    }
+
+    public void flipAllCards() {
+        cardList.stream().forEach(Card::setAsFlipped);
+    }
+
 }

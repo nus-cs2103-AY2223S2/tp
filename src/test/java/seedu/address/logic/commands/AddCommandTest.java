@@ -190,7 +190,7 @@ public class AddCommandTest {
 
         @Override
         public void removeDeck(Deck key) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -207,6 +207,12 @@ public class AddCommandTest {
         public String getSelectedDeckName() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int getDeckSize(int deckIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         public Optional<Review> getReview() {
             throw new AssertionError("This method should not be called.");
@@ -231,6 +237,27 @@ public class AddCommandTest {
         public void flipCard() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void markWrong() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markCorrect() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void goToPrevCard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void goToNextCard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
