@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.task.model.calendar.DailyPlan;
+import seedu.task.model.task.Date;
 
 /**
  * Wraps all data at the planner level
@@ -50,6 +51,15 @@ public class Planner implements ReadOnlyPlanner {
     @Override
     public List<DailyPlan> getDailyPlanList() {
         return plansList;
+    }
+
+    public DailyPlan getDailyPlanOn(Date date) {
+        for (int i = 0; i < 30; i++) {
+            if (plansList.get(i).getDate().isEqual(date.getDate())) {
+                return plansList.get(i);
+            }
+        }
+        return null;
     }
 
     //TODO: implement methods for toString, equals, hashCode

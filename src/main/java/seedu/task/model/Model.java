@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.task.commons.core.GuiSettings;
+import seedu.task.model.task.Date;
 import seedu.task.model.task.Task;
 
 /**
@@ -108,4 +109,6 @@ public interface Model {
      * Returns the Planner
      */
     ReadOnlyPlanner getPlanner();
+
+    void schedule(Date date);
 }

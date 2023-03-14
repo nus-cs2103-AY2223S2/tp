@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.task.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Task}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Task}'s {@code Name} matches all of the keywords given.
  */
 public class NameContainsAllKeywordsPredicate implements Predicate<Task> {
     private final List<String> keyphrases;
