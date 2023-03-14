@@ -3,7 +3,29 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
+           xmlns:fx="http://javafx.com/fxml/1">
+  <Pane maxWidth="1.7976931348623157E308" prefHeight="${resultPane.parent.height}" StackPane.alignment="CENTER">
+    <children>
+      <HBox fx:id="resultPane" maxWidth="1.7976931348623157E308" prefHeight="${resultPane.parent.height}"
+            prefWidth="${resultPane.parent.width}">
+        <children>
+          <TextArea fx:id="resultDisplay" editable="false" wrapText="true" HBox.hgrow="ALWAYS"
+                    maxHeight="110.0" styleClass="result-display"/>
+          <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true"
+                     HBox.hgrow="NEVER">
+            <image>
+              <Image url="@../images/FitnessG.png"/>
+            </image>
+          </ImageView>
+        </children>
+      </HBox>
+    </children>
+  </Pane>
 </StackPane>
