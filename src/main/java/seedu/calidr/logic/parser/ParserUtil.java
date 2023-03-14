@@ -157,6 +157,14 @@ public class ParserUtil {
         return new Title(trimmedTitle);
     }
 
+    /**
+     * Parses a {@code String dateTimeText} into a {@code LocalDateTime} object.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param dateTimeText The string containing the date and time.
+     * @return A {@code LocalDateTime} object representing the given date and time.
+     * @throws ParseException if the given {@code dateTimeText} is invalid.
+     */
     public static LocalDateTime parseDateTime(String dateTimeText) throws ParseException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("To");
 

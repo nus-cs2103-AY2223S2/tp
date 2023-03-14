@@ -115,6 +115,10 @@ public class EditTaskCommand extends Command {
         }
     }
 
+    /**
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
+     */
     public static class EditTaskDescriptor {
         private Title title;
         private TodoDateTime byDateTime;
@@ -123,6 +127,9 @@ public class EditTaskCommand extends Command {
 
         public EditTaskDescriptor() {}
 
+        /**
+         * Copy constructor.
+         */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setBy(toCopy.byDateTime);
@@ -163,6 +170,12 @@ public class EditTaskCommand extends Command {
         private Title title;
         private TodoDateTime byDateTime;
 
+        /**
+         * Creates a new {@code EditTodoDescriptor} object with the
+         * same title and byDateTime as the template given.
+         *
+         * @param toCopy The {@code EditTaskDescriptor} to copy from
+         */
         public EditTodoDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setBy(toCopy.byDateTime);
@@ -231,6 +244,12 @@ public class EditTaskCommand extends Command {
         private LocalDateTime fromDateTime;
         private LocalDateTime toDateTime;
 
+        /**
+         * Creates a new {@code EditEventDescriptor} object with the
+         * same title, fromDateTime, toDateTime as the template given.
+         *
+         * @param toCopy The {@code EditTaskDescriptor} to copy from
+         */
         public EditEventDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setFromDateTime(toCopy.fromDateTime);
@@ -262,7 +281,9 @@ public class EditTaskCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        public void setFromDateTime(LocalDateTime fromDateTime) { this.fromDateTime = fromDateTime; }
+        public void setFromDateTime(LocalDateTime fromDateTime) {
+            this.fromDateTime = fromDateTime;
+        }
 
         public Optional<LocalDateTime> getFromDateTime() {
             return Optional.ofNullable(fromDateTime);

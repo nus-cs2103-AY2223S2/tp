@@ -13,6 +13,9 @@ import seedu.calidr.logic.commands.EditTaskCommand;
 import seedu.calidr.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new EditTaskCommand object
+ */
 public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditTaskCommand
