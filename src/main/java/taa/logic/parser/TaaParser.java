@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import taa.commons.core.Messages;
 import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.ClearCommand;
+import taa.logic.commands.Command;
 import taa.logic.commands.CreateClassCommand;
 import taa.logic.commands.DeleteStudentCommand;
 import taa.logic.commands.EditStudentCommand;
