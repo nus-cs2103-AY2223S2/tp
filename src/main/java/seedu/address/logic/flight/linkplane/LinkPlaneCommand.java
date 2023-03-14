@@ -4,8 +4,8 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.plane.Plane;
 import seedu.address.model.flight.Flight;
+import seedu.address.model.plane.Plane;
 
 /**
  * The command that links a plane to a flight in the address book.
@@ -50,7 +50,7 @@ public class LinkPlaneCommand implements Command {
 
         // TODO: add exception when flight id or plane id is invalid
         model.linkPlane(flight, plane);
-        return new CommandResult("Linked plane: " + plane.getId() +
-                " to flight: " + flight.getId());
+        return new CommandResult("Linked plane: " + plane.getId()
+                + " to flight: " + flight.getId());
     }
 }
