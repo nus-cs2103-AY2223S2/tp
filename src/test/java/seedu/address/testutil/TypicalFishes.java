@@ -24,29 +24,29 @@ import seedu.address.model.fish.Fish;
 public class TypicalFishes {
 
     public static final Fish ALICE = new FishBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withSpecies("alice@example.com")
+            .withAddress("123, Jurong West Ave 6, #08-111").withSpecies("Guppy")
             .withLastFedDate("06/06/2003")
             .withTags("friends").build();
     public static final Fish BENSON = new FishBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withSpecies("johnd@example.com").withLastFedDate("06/07/2003")
+            .withSpecies("Tetra").withLastFedDate("06/07/2003")
             .withTags("owesMoney", "friends").build();
     public static final Fish CARL = new FishBuilder().withName("Carl Kurz").withLastFedDate("08/06/2003")
-            .withSpecies("heinz@example.com").withAddress("wall street").build();
+            .withSpecies("Beta").withAddress("wall street").build();
     public static final Fish DANIEL = new FishBuilder().withName("Daniel Meier").withLastFedDate("09/06/2003")
-            .withSpecies("cornelia@example.com").withAddress("10th street").withTags("friends").build();
+            .withSpecies("Parrot").withAddress("10th street").withTags("friends").build();
     public static final Fish ELLE = new FishBuilder().withName("Elle Meyer").withLastFedDate("10/06/2003")
-            .withSpecies("werner@example.com").withAddress("michegan ave").build();
+            .withSpecies("Arowana").withAddress("michegan ave").build();
     public static final Fish FIONA = new FishBuilder().withName("Fiona Kunz").withLastFedDate("11/06/2003")
-            .withSpecies("lydia@example.com").withAddress("little tokyo").build();
+            .withSpecies("Fighting").withAddress("little tokyo").build();
     public static final Fish GEORGE = new FishBuilder().withName("George Best").withLastFedDate("12/06/2003")
-            .withSpecies("anna@example.com").withAddress("4th street").build();
+            .withSpecies("Beta").withAddress("4th street").build();
 
     // Manually added
     public static final Fish HOON = new FishBuilder().withName("Hoon Meier").withLastFedDate("01/01/2000")
-            .withSpecies("stefan@example.com").withAddress("little india").build();
+            .withSpecies("Guppy").withAddress("little india").build();
     public static final Fish IDA = new FishBuilder().withName("Ida Mueller").withLastFedDate("01/01/2000")
-            .withSpecies("hans@example.com").withAddress("chicago ave").build();
+            .withSpecies("Tetra").withAddress("chicago ave").build();
 
     // Manually added - Fish's details found in {@code CommandTestUtil}
     public static final Fish AMY = new FishBuilder().withName(VALID_NAME_AMY).withLastFedDate(VALID_LAST_FED_DATE_AMY)
