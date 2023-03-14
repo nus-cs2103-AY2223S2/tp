@@ -56,21 +56,30 @@ public class Person {
     /**
      * Constructor for a person with a given LeadStatus.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
+    public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
+                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags,
                      LeadStatus status) {
-        requireAllNonNull(name, phone, email, address, tags, remark);
+        requireAllNonNull(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags, remark,
+                status);
         this.name = name;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.company = company;
+        this.industry = industry;
+        this.occupation = occupation;
+        this.jobTitle = jobTitle;
         this.tags.addAll(tags);
         this.remark = remark;
         this.status = status;
+
     }
 
     public Name getName() {
         return name;
     }
+
     public Gender getGender() {
         return gender;
     }
@@ -86,12 +95,15 @@ public class Person {
     public Company getCompany() {
         return company;
     }
+
     public Industry getIndustry() {
         return industry;
     }
+
     public Occupation getOccupation() {
         return occupation;
     }
+
     public JobTitle getJobTitle() {
         return jobTitle;
     }
