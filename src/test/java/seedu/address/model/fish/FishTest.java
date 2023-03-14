@@ -32,8 +32,8 @@ public class FishTest {
         assertFalse(ALICE.isSameFish(null));
 
         // same name, all other attributes different -> returns true
-        Fish editedAlice = new FishBuilder(ALICE).withLastFedDate(VALID_LAST_FED_DATE_BOB).withSpecies(VALID_SPECIES_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Fish editedAlice = new FishBuilder(ALICE).withLastFedDate(VALID_LAST_FED_DATE_BOB)
+                .withSpecies(VALID_SPECIES_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameFish(editedAlice));
 
         // different name, all other attributes same -> returns false
