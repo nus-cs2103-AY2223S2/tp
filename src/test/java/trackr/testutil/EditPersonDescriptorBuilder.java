@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import trackr.logic.commands.EditCommand.EditPersonDescriptor;
-import trackr.model.person.Address;
-import trackr.model.person.Email;
-import trackr.model.person.Name;
-import trackr.model.person.Person;
-import trackr.model.person.Phone;
+import trackr.model.supplier.Address;
+import trackr.model.supplier.Email;
+import trackr.model.supplier.Name;
+import trackr.model.supplier.Phone;
+import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
 
 /**
@@ -30,7 +30,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Supplier person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());

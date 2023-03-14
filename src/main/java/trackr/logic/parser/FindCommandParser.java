@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import trackr.logic.commands.FindCommand;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.person.NameContainsKeywordsPredicate;
+import trackr.model.supplier.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

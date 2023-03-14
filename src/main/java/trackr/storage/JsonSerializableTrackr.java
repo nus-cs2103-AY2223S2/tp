@@ -13,7 +13,7 @@ import trackr.model.AddressBook;
 import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.TaskList;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 
 /**
@@ -45,7 +45,7 @@ class JsonSerializableTrackr {
      * @param sourceTask future changes to this will not affect the created {@code JsonSerializableTrackr}.
      */
     public JsonSerializableTrackr(ReadOnlyAddressBook sourcePerson, ReadOnlyTaskList sourceTask) {
-        persons.addAll(sourcePerson.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(sourcePerson.getSupplierList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         tasks.addAll(sourceTask.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
@@ -57,11 +57,11 @@ class JsonSerializableTrackr {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            Supplier person = jsonAdaptedPerson.toModelType();
+            if (addressBook.hasSupplier(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            addressBook.addSupplier(person);
         }
         return addressBook;
     }

@@ -21,7 +21,7 @@ import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.TaskList;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.testutil.TaskBuilder;
 
@@ -113,7 +113,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addPerson(Supplier person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -128,27 +128,27 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasPerson(Supplier person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deletePerson(Supplier target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setPerson(Supplier target, Supplier editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Supplier> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<Supplier> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

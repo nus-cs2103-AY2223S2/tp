@@ -10,7 +10,7 @@ import java.util.Set;
 
 import trackr.logic.commands.AddCommand;
 import trackr.logic.commands.EditCommand.EditPersonDescriptor;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
 
 /**
@@ -21,14 +21,14 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
+    public static String getAddCommand(Supplier person) {
         return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Supplier person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");

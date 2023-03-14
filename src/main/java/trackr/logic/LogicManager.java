@@ -15,7 +15,7 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.storage.Storage;
 
@@ -62,8 +62,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Supplier> getFilteredPersonList() {
+        return model.getFilteredSupplierList();
     }
 
     @Override

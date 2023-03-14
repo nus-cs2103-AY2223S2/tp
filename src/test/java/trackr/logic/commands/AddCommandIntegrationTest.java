@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.testutil.PersonBuilder;
 
 /**
@@ -28,7 +28,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Supplier validPerson = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
         expectedModel.addPerson(validPerson);
@@ -39,7 +39,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
+        Supplier personInList = model.getAddressBook().getPersonList().get(0);
         assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

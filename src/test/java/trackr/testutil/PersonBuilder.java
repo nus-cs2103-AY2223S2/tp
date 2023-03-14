@@ -3,11 +3,11 @@ package trackr.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import trackr.model.person.Address;
-import trackr.model.person.Email;
-import trackr.model.person.Name;
-import trackr.model.person.Person;
-import trackr.model.person.Phone;
+import trackr.model.supplier.Address;
+import trackr.model.supplier.Email;
+import trackr.model.supplier.Name;
+import trackr.model.supplier.Phone;
+import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
 import trackr.model.util.SampleDataUtil;
 
@@ -41,7 +41,7 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
+    public PersonBuilder(Supplier personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
@@ -89,8 +89,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    public Supplier build() {
+        return new Supplier(name, phone, email, address, tags);
     }
 
 }

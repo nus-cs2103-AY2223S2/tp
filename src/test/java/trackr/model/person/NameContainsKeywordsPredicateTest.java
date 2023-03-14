@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {

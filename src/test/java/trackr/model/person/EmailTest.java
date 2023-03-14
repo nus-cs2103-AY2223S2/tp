@@ -6,6 +6,8 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.model.supplier.Email;
+
 public class EmailTest {
 
     @Test

@@ -46,6 +46,7 @@ public class TrackrParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
+        case AddCommand.COMMAND_WORD_SHORTCUT:
             return new AddCommandParser().parse(arguments);
 
         case AddTaskCommand.COMMAND_WORD:

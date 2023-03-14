@@ -29,7 +29,7 @@ import trackr.model.ModelManager;
 import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.UserPrefs;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.storage.JsonTrackrStorage;
 import trackr.storage.JsonUserPrefsStorage;
@@ -85,7 +85,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Supplier expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -117,7 +117,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList() {
-        ObservableList<Person> expected = model.getFilteredPersonList();
+        ObservableList<Supplier> expected = model.getFilteredPersonList();
         assertEquals(expected, logic.getFilteredPersonList());
     }
 

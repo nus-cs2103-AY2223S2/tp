@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.EditCommand;
 import trackr.logic.commands.EditCommand.EditPersonDescriptor;
-import trackr.model.person.Address;
-import trackr.model.person.Email;
-import trackr.model.person.Name;
-import trackr.model.person.Phone;
+import trackr.model.supplier.Address;
+import trackr.model.supplier.Email;
+import trackr.model.supplier.Name;
+import trackr.model.supplier.Phone;
 import trackr.model.tag.Tag;
 import trackr.testutil.EditPersonDescriptorBuilder;
 

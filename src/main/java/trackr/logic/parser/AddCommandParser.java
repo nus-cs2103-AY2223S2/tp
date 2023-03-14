@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import trackr.logic.commands.AddCommand;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.person.Address;
-import trackr.model.person.Email;
-import trackr.model.person.Name;
-import trackr.model.person.Person;
-import trackr.model.person.Phone;
+import trackr.model.supplier.Address;
+import trackr.model.supplier.Email;
+import trackr.model.supplier.Name;
+import trackr.model.supplier.Phone;
+import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
 
 /**
@@ -45,7 +45,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Supplier person = new Supplier(name, phone, email, address, tagList);
 
         return new AddCommand(person);
     }

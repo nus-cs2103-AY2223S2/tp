@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 
 /**
@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final TaskList taskList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Supplier> filteredPersons;
     private final FilteredList<Task> filteredTasks;
 
     /**
@@ -39,7 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.taskList = new TaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.addressBook.getSupplierList());
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
     }
 
@@ -82,7 +82,7 @@ public class ModelManager implements Model {
         userPrefs.setTrackrFilePath(trackrFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== AddressBook - Supplier ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -95,42 +95,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
+    public boolean hasSupplier(Supplier person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return addressBook.hasSupplier(person);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteSupplier(Supplier target) {
+        addressBook.removeSupplier(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addSupplier(Supplier person) {
+        addressBook.addSupplier(person);
+        updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
+    public void setSupplier(Supplier target, Supplier editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setSupplier(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Supplier List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Supplier> getFilteredSupplierList() {
         return filteredPersons;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }

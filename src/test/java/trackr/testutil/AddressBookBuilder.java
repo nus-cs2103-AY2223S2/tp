@@ -1,7 +1,7 @@
 package trackr.testutil;
 
 import trackr.model.AddressBook;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -23,7 +23,7 @@ public class AddressBookBuilder {
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
+    public AddressBookBuilder withPerson(Supplier person) {
         addressBook.addPerson(person);
         return this;
     }

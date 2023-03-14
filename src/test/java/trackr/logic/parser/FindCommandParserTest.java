@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.FindCommand;
-import trackr.model.person.NameContainsKeywordsPredicate;
+import trackr.model.supplier.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

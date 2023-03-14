@@ -24,8 +24,8 @@ import trackr.logic.commands.FindCommand;
 import trackr.logic.commands.HelpCommand;
 import trackr.logic.commands.ListCommand;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.person.NameContainsKeywordsPredicate;
-import trackr.model.person.Person;
+import trackr.model.supplier.NameContainsKeywordsPredicate;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.testutil.EditPersonDescriptorBuilder;
 import trackr.testutil.PersonBuilder;
@@ -39,7 +39,7 @@ public class TrackrParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
+        Supplier person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
@@ -75,7 +75,7 @@ public class TrackrParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
+        Supplier person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));

@@ -18,7 +18,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.GuiSettings;
-import trackr.model.person.NameContainsKeywordsPredicate;
+import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.task.TaskNameContainsKeywordsPredicate;
 import trackr.testutil.AddressBookBuilder;
 import trackr.testutil.TaskListBuilder;

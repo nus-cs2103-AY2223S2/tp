@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
-import trackr.model.person.NameContainsKeywordsPredicate;
+import trackr.model.supplier.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

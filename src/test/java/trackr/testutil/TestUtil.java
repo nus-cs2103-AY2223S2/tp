@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import trackr.commons.core.index.Index;
 import trackr.model.Model;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 
 /**
  * A utility class for test cases.
@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
+    public static Supplier getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
     }
 }

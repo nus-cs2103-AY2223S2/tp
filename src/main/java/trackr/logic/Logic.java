@@ -9,7 +9,7 @@ import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 
 /**
@@ -33,7 +33,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Supplier> getFilteredPersonList();
 
     /**
      * Returns the TaskList.

@@ -8,7 +8,7 @@ import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -33,14 +33,14 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Supplier> lastShownList = model.getFilteredSupplierList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
+        Supplier personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteSupplier(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
