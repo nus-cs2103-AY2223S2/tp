@@ -281,56 +281,76 @@ Example: `m/CS2107`
 
 Shows a message explaining how to access the help page.
 
-When to use:
-*
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
+* you want to end the program
+* you are done using the application
+
+</div>
 
 Formats:
 * `exit`
-  <br>
-  What you should see:<br>
+
+What you should see:<br>
   {Explanation}
 
 Examples:
+* `exit`
 
 ### View help window `help`
 
 Shows a message explaining how to access the help page.
 
-When to use:
-*
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
+* you are unsure of how to use the application
+* you need a refresher of how to use the commands
+
+</div>
 
 Formats:
-*
+* `help`
 
 What you should see:<br>
 ![help message](images/helpMessage.png)<br>
 {Explanation}
 
 Examples:
+* `help`
 
 ### List all contacts `list`
 
-Shows a message explaining how to access the help page.
+Lists all the contacts currently stored within EduMate.
 
-When to use:
-*
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
+* you want to see all your contacts
+
+</div>
 
 Formats:
 * `list`
-  <br>
 
 What you should see:<br>
 {GUI}
 {Explanation}
 
 Examples:
+* `list`
 
 ### Add a contact `add`
 
 Adds a contact to the EduMate.
 
-When to use:
-*
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
+* you want to add a new contact into the EduMate.
+
+</div>
 
 Formats:
 * `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`: {fill in}
@@ -340,7 +360,7 @@ What you should see:<br>
 {Explanation}
 
 Examples:
-* `add n/Wen Li p/89229358 a/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107` adds a contact with the following details:
+* `add n/Wen Li p/89229358 a/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
     * Name: `Wen Li`
     * Phone number: `89229358`
     * Address: `Boon Lay`
@@ -353,8 +373,13 @@ Examples:
 
 You can use the view command to look up their current information, or their contact's information on the Panel to the right.
 
-When to use:
-*
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
+* you want to view a contact's full details
+* you are unsure of the person's index when using other command
+
+</div>
 
 Formats:
 * `view`: Views your profile.
@@ -385,8 +410,12 @@ Examples:
 
 Edits the profile of a contact.
 
-When to use:
-*
+<div markdown="block" class="alert alert-info">
+
+You can use this command if:
+* you want to quickly edit a particular field of a particular contact
+
+</div>
 
 Formats:
 * `edit INDEX [z/FIELD]…​`: Edits the fields for the contact at index `INDEX`.
@@ -397,16 +426,20 @@ What you should see:<br>
 {Explanation}
 
 Examples:
-* `edit 3 n/Wen Qing` changes the name of the third contact to `Wen Qing`.
-* `edit 6 p/89229358 t/@wenqing` changes the phone number and telegram handle of the sixth contact.
-* `edit a/Bedok` updates your address to `Bedok`.
+* `edit 3 n/Wen Qing`: Changes the name of the third contact to `Wen Qing`.
+* `edit 6 p/89229358 t/@wenqing`: Changes the phone number and telegram handle of the sixth contact.
+* `edit a/Bedok`: Updates your address to `Bedok`.
 
 ### Delete a contact `delete`
 
 Removes a contact from EduMate.
 
-When to use:
-*
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
+* you no longer want to keep a contact in EduMate.
+
+</div>
 
 Formats:
 * `delete INDEX`: Deletes the contact at index `INDEX`.
@@ -416,14 +449,18 @@ What you should see:<br>
 {Explanation}
 
 Examples:
-* `delete 5` removes the fifth contact from EduMate.
+* `delete 5`: Removes the fifth contact from EduMate.
 
 ### Add or remove a label from a contact `tag`
 
 Edits the profile of a contact.
 
-When to use:
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
 *
+
+</div>
 
 Formats:
 *
@@ -440,8 +477,12 @@ Examples:
 
 Finds persons whose specified fields contain any of the given keywords.
 
-When to use:
-*
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
+* {fill in}
+
+</div>
 
 Formats:
 * `find z/KEYWORD [MORE_KEYWORDS]…​`
@@ -462,16 +503,20 @@ What you should see:<br>
 </div>
 
 Examples:
-* `find m/CS2103T CS2109S` returns all persons with modules CS2103T or CS2109S
-* `find n/Edward Richards` returns all persons with names Edward or Richards
-* `find p/9093` returns all persons with phone numbers starting with 9093
+* `find m/CS2103T CS2109S`: Returns all persons with modules CS2103T or CS2109S
+* `find n/Edward Richards`: Returns all persons with names Edward or Richards
+* `find p/9093`: Returns all persons with phone numbers starting with 9093
 
 ### Sort contacts based on your criteria `sort`
 
 Sorts persons based on certain criteria. For example, you can sort the contacts by name (in alphabetical order).
 
-When to use:
-*
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
+* you want to 
+
+</div>
 
 Formats:
 * `sort`: Sorts the contacts by their indices.
@@ -498,34 +543,43 @@ What you should see:<br>
 {Explanation}
 
 Examples:
-* `sort n/d` sorts by name in descending order
-* `sort m/a` sorts by the number of modules they have in common with you (in ascending order)
-* `sort t/` sorts by Telegram handle in its default ordering (ascending)
+* `sort n/d`: Sorts by name in descending order
+* `sort m/a`: Sorts by the number of modules they have in common with you (in ascending order)
+* `sort t/`: Sorts by Telegram handle in its default ordering (ascending)
 
 ## Storage Commands
 
 ### Save a copy of EduMate `save`
 
-Edits the profile of a contact.
+Saves the EduMate into a file with a name of your choice.
 
-When to use:
-*
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
+* You want to create backups of your EduMate
+
+</div>
 
 Formats:
-*
+* `save FILENAME`: Saves the EduMate into a file at `FILENAME.json`.
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
 Examples:
+* `save backup`: Saves the EduMate in the `backup.json` file.
 
 ### Load a copy of EduMate `load`
 
 Edits the profile of a contact.
 
-When to use:
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
 *
+
+</div>
 
 Formats:
 *
@@ -542,8 +596,12 @@ Examples:
 
 Edits the profile of a contact.
 
-When to use:
+<div markdown="block" class="alert alert-info">
+
+You can use this command if:
 *
+
+</div>
 
 Formats:
 *
@@ -560,8 +618,12 @@ Examples:
 
 Edits the profile of a contact.
 
-When to use:
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
 *
+
+</div>
 
 Formats:
 *
@@ -578,8 +640,12 @@ Examples:
 
 Edits the profile of a contact.
 
-When to use:
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
 *
+
+</div>
 
 Formats:
 *
@@ -594,8 +660,12 @@ Examples:
 
 Edits the profile of a contact.
 
-When to use:
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can use this command if:
 *
+
+</div>
 
 Formats:
 *
