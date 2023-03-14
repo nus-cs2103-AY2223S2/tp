@@ -80,14 +80,6 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     private List<String> split(List<String> ls) throws ParseException {
-        //check if should throw this ParseException
-        for (String str : ls) {
-            if (str.isEmpty()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
-        }
-
         return ls.stream()
                 .map(str -> str.split("\\s+"))
                 .flatMap(arr -> Arrays.asList(arr).stream())
