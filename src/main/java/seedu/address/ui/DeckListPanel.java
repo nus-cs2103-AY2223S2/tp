@@ -15,7 +15,7 @@ import seedu.address.model.deck.Deck;
  */
 public class DeckListPanel extends UiPart<Region> {
     private static final String FXML = "DeckListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(DeckListPanel.class);
 
     @FXML
     private ListView<Deck> deckListView;
