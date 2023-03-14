@@ -8,11 +8,15 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.logic.commands.exceptions.exceptions.ParseException;
+import seedu.address.model.job.Address;
+import seedu.address.model.job.Deadline;
+import seedu.address.model.job.Email;
+import seedu.address.model.job.JobDescription;
+import seedu.address.model.job.Name;
+import seedu.address.model.job.Phone;
+import seedu.address.model.job.Salary;
+import seedu.address.model.job.Website;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -81,6 +85,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String jd} into an {@code JobDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code JobDescription} is invalid.
+     */
+    public static JobDescription parseJobDescription(String jd) throws ParseException {
+        requireNonNull(jd);
+        String trimmedJobDescription = jd.trim();
+        if (!JobDescription.isValidJobDescription(trimmedJobDescription)) {
+            throw new ParseException(JobDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new JobDescription(trimmedJobDescription);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -111,6 +130,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String Website} into a {@code Website}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Website parseWebsite(String website) throws ParseException {
+        requireNonNull(website);
+        String trimmedWebsite = website.trim();
+        if (!Website.isValidWebsite(trimmedWebsite)) {
+            throw new ParseException(Website.MESSAGE_CONSTRAINTS);
+        }
+        return new Website(trimmedWebsite);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -121,4 +155,35 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String Salary} into an {@code Salary}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Salary parseSalary(String salary) throws ParseException {
+        requireNonNull(salary);
+        String trimmedSalary = salary.trim();
+        if (!Salary.isValidSalary(trimmedSalary)) {
+            throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
+        }
+        return new Salary(trimmedSalary);
+    }
+
+    /**
+     * Parses a {@code String Date} into an {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Deadline parseDateline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.getMessageConstraint());
+        }
+        return new Deadline(trimmedDeadline);
+    }
+
 }

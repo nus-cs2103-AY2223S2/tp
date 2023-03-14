@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Pan Zai Ming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pzaiming.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/pzaiming)]
 [[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
+* Responsibilities: Development + Documentation
+
+### Dylan Sng Jie An
+
+<img src="images/dsja612.png" width="200px">
+
+[[github](https://github.com/dsja612)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Development + Documentation
+
+### Adriel Kee
+
+<img src="images/amoonguss1.png" width="200px">
+
+[[github](http://github.com/amoonguss1)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Coding, UI
 * Responsibilities: Data
 
-### Jean Doe
+### Ryan Qiu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryanqiu1.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/ryanqiu1)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Coding, UI
 
-### James Doe
+### UnwilledTangent / Sean Tin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/unwilledtangent.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/UnwilledTangent)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Software Developer
 * Responsibilities: UI
