@@ -124,12 +124,22 @@ Purges all data from the database
 
 Format: `clearAll`
 
-###Save data: `save`
-Save the data to different save files
+###Backup data: `backup`
+Backs up the data to different indexes
 
-Format: `save FILE_NO`
+Format: `backup INDEX_NO`
 
-Example: `save 3` saves the data to the 3rd slot
+Examples:
+* `backup 3` backups the data to the 3rd slot
+
+Tip: INDEX_NO can only be an integer between 1 and 10
+
+###Load data: `load`
+Loads the data from different slots
+
+Format: `load INDEX_NO`
+
+Example: `load 3` loads the data from the 3rd slot
 
 ###Help menu:
 Help function lists out all the commands available, along with a brief description
@@ -141,6 +151,8 @@ Format: `help`
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+
 
 
 --------------------------------------------------------------------------------------------------------------------
