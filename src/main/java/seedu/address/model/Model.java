@@ -107,6 +107,12 @@ public interface Model {
      * Returns true if a deck with the same name as {@code deck} exists.
      */
     boolean hasDeck(Deck deck);
+    /**
+     * Replaces the given deck {@code target} with {@code editedDeck}.
+     * {@code target} must exist.
+     * The deck name of {@code editedDeck} must not be the same as another existing deck.
+     */
+    void setDeck(Deck target, Deck editedDeck);
 
     void removeDeck(Deck key);
 

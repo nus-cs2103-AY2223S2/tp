@@ -16,7 +16,7 @@ public class AddDeckCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new deck "
             + "Parameters: "
-            + PREFIX_DECK + "NAME\n"
+            + PREFIX_DECK + "DECK NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DECK + "LAK1201";
 
