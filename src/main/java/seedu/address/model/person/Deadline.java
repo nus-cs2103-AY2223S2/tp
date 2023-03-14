@@ -7,8 +7,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Module's deadline.
  */
 public class Deadline {
+    public static final String VALIDATION_REGEX = "[^\\d].*";
 
     public final String value;
+
+    /**
+     * Returns if a given string is a valid timeSlot.
+     */
+    public static boolean isValidDeadline(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
 
     /**
      * Constructs an {@code Deadline}.
@@ -21,10 +29,12 @@ public class Deadline {
         value = deadline;
     }
 
+
     @Override
     public String toString() {
         return value;
     }
+
 
     @Override
     public boolean equals(Object other) {

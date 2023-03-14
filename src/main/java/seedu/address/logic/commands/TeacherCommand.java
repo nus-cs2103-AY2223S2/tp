@@ -59,7 +59,7 @@ public class TeacherCommand extends Command {
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getType(), personToEdit.getTimeSlot(),
                 personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getRemark(),
-                personToEdit.getDeadline(), personToEdit.getTeacher());
+                personToEdit.getDeadline(), teacher);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
