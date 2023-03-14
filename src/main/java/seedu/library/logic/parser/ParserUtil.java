@@ -11,7 +11,7 @@ import seedu.library.commons.util.StringUtil;
 import seedu.library.logic.parser.exceptions.ParseException;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Phone;
+import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 
@@ -51,18 +51,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String progress} into a {@code Progess}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code progress} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Progress parseProgress(String progress) throws ParseException {
+        requireNonNull(progress);
+        String trimmedProgress = progress.trim();
+        if (!Progress.isValidProgress(trimmedPhone)) {
+            throw new ParseException(Progress.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Progress(trimmedProgress);
     }
 
     /**
