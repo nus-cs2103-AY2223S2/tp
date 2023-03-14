@@ -5,7 +5,10 @@ import java.nio.file.Path;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.FileUtil;
+import seedu.vms.commons.util.JsonUtil;
 import seedu.vms.model.appointment.AppointmentManager;
+
+import static java.util.Objects.requireNonNull;
 
 
 /**
@@ -17,9 +20,9 @@ public class JsonAppointmentStorage implements AppointmentStorage {
 
 
     @Override
-    public AppointmentManager loadUserAppointments() throws IOException {
+    public AppointmentManager loadAppointments() throws IOException {
         try {
-            return AppointmentLoader.load(USER_APPOINTMENT_PATH);
+            return JsonUtil.deserializeFromFile(USER_APPOINTMENT_PATH, JsonSerializableAppointmentManager.class).toModelType();
         } catch (IllegalValueException illValEx) {
             throw new IOException(illValEx.getMessage());
         }
@@ -27,18 +30,10 @@ public class JsonAppointmentStorage implements AppointmentStorage {
 
 
     @Override
-    public AppointmentManager loadDefaultAppointments() throws RuntimeException {
-        try {
-            return AppointmentLoader.load();
-        } catch (Throwable ex) {
-            throw new RuntimeException("Unable to load defaults", ex);
-        }
-    }
-
-
-    @Override
     public void saveAppointments(AppointmentManager manager) throws IOException {
+        requireNonNull(manager);
+
         FileUtil.createIfMissing(USER_APPOINTMENT_PATH);
-        AppointmentLoader.fromModelType(manager).write(USER_APPOINTMENT_PATH);
+        JsonUtil.serializeToFile(USER_APPOINTMENT_PATH, new JsonSerializableAppointmentManager(manager));
     }
 }

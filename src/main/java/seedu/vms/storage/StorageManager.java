@@ -106,14 +106,8 @@ public class StorageManager implements Storage {
     // ================ Appointment methods ===========================
 
     @Override
-    public AppointmentManager loadDefaultAppointments() throws RuntimeException {
-        logger.fine("Attempting to load default appointments");
-        return appointmentStorage.loadDefaultAppointments();
-    }
-
-    @Override
-    public AppointmentManager loadUserAppointments() throws IOException {
-        return appointmentStorage.loadUserAppointments();
+    public AppointmentManager loadAppointments() throws IOException {
+        return appointmentStorage.loadAppointments();
     }
 
     @Override

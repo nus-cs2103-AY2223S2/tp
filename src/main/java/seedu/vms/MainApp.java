@@ -106,10 +106,9 @@ public class MainApp extends Application {
 
         AppointmentManager appointmentManager = new AppointmentManager();
         try {
-            appointmentManager = storage.loadUserAppointments();
+            appointmentManager = storage.loadAppointments();
         } catch (IOException ioEx) {
-            logger.warning("Unable to load appointments, default will be loaded, problem: " + ioEx.getMessage());
-            appointmentManager = storage.loadDefaultAppointments();
+            logger.warning("Unable to load appointments" + ioEx.getMessage());
         } catch (RuntimeException rte) {
             // not suppose to happen but initialize as empty
         }

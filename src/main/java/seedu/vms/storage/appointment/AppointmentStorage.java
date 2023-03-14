@@ -13,16 +13,7 @@ public interface AppointmentStorage {
      *
      * @throws IOException if an I/O error occurs.
      */
-    public AppointmentManager loadUserAppointments() throws IOException;
-
-
-    /**
-     * Loads the {@code AppointmentManager} as defined in the application
-     * resources.
-     *
-     * @throws RuntimeException if an error occurs.
-     */
-    public AppointmentManager loadDefaultAppointments() throws RuntimeException;
+    public AppointmentManager loadAppointments() throws IOException;
 
 
     /**
