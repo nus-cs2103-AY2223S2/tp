@@ -1,14 +1,14 @@
 package trackr.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static trackr.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static trackr.commons.core.Messages.MESSAGE_INVALID_SUPPLIER_DISPLAYED_INDEX;
 import static trackr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static trackr.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalPersons.AMY;
+import static trackr.testutil.TypicalSuppliers.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -19,22 +19,22 @@ import org.junit.jupiter.api.io.TempDir;
 
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
-import trackr.logic.commands.AddCommand;
+import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.ListCommand;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelManager;
-import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.UserPrefs;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.storage.JsonTrackrStorage;
 import trackr.storage.JsonUserPrefsStorage;
 import trackr.storage.StorageManager;
-import trackr.testutil.PersonBuilder;
+import trackr.testutil.SupplierBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -62,8 +62,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deleteCommand = "delete_supplier 9";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_SUPPLIER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -83,18 +83,18 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addSupplierCommand = AddSupplierCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Supplier expectedSupplier = new SupplierBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addSupplier(expectedSupplier);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addSupplierCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredSupplierList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredSupplierList().remove(0));
     }
 
 
@@ -104,9 +104,9 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getAddressBook() {
-        ReadOnlyAddressBook expected = model.getAddressBook();
-        assertEquals(expected, logic.getAddressBook());
+    public void getSupplierList() {
+        ReadOnlySupplierList expected = model.getSupplierList();
+        assertEquals(expected, logic.getSupplierList());
     }
 
     @Test
@@ -116,9 +116,9 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList() {
-        ObservableList<Person> expected = model.getFilteredPersonList();
-        assertEquals(expected, logic.getFilteredPersonList());
+    public void getFilteredSupplierList() {
+        ObservableList<Supplier> expected = model.getFilteredSupplierList();
+        assertEquals(expected, logic.getFilteredSupplierList());
     }
 
     @Test
@@ -176,7 +176,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -202,7 +202,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList, Path filePath)
+        public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList, Path filePath)
                 throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
