@@ -8,7 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 
 import seedu.address.logic.commands.CommandResult;
@@ -30,23 +33,27 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_NAME + "NAME "
             + PREFIX_INDEXNUMBER + "INDEX NUMBER "
             + PREFIX_SEX + "SEX "
+            + PREFIX_PARENTNAME + "NOK NAME "
+            + PREFIX_PHONEPARENT + "NOK CONTACT NUMBER "
+            + PREFIX_RELATIONSHIP + "NOK RELATIONSHIP TO STUDENT "
             + "["
-            + PREFIX_PARENTNAME + "PARENT NAME "
             + PREFIX_AGE + "AGE "
             + PREFIX_IMAGESTUDENT + "IMAGE STUDENT "
             + PREFIX_EMAILSTUDENT + "EMAIL STUDENT "
-            + PREFIX_PHONESTUDENT + "PHONE STUDENT "
+            + PREFIX_PHONE + "PHONE STUDENT "
             + PREFIX_CCA + "CCA "
             + "]\n"
             + "Example: " + "student 1A " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tan Ah Cow "
             + PREFIX_INDEXNUMBER + "13 "
             + PREFIX_SEX + "M "
-            + PREFIX_PARENTNAME + "Tan Ah Choi "
+            + PREFIX_PARENTNAME + "Tan Ah Niu "
+            + PREFIX_PHONEPARENT + "91234567 "
+            + PREFIX_RELATIONSHIP + "Father "
             + PREFIX_AGE + "14 "
             + PREFIX_IMAGESTUDENT + "C:// "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
-            + PREFIX_PHONESTUDENT + "91234567 "
+            + PREFIX_PHONE + "91234567 "
             + PREFIX_CCA + "Captain Ball";
 
     public static final String MESSAGE_SUCCESS = "New student added:";

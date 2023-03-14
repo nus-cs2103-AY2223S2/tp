@@ -14,9 +14,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
-import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
-import seedu.address.model.person.parent.UniqueParentList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,7 +23,6 @@ import seedu.address.model.tag.Tag;
 public class Student extends Person {
     private final IndexNumber indexNumber;
     private final Sex sex;
-    private final ParentName parentName;
     private final Age age;
     private final Image image;
     private final Cca cca;
@@ -35,8 +32,9 @@ public class Student extends Person {
     private Set<Test> test = new HashSet<>();
     private Set<Tag> tags;
     private Comment comment;
-
-    private Parent parent;
+    protected Phone parentNumber;
+    protected Name parentName;
+    protected Relationship rls;
 
     /**
      * Returns a Student object that stores information about the student particulars.
@@ -45,7 +43,9 @@ public class Student extends Person {
      * @param sc Student's class.
      * @param indexNumber Student's index number.
      * @param sex Student's gender.
-     * @param parentName Student's parent's / NOK(next-of-kin)'s name.
+     * @param parentName Student's Parent / NOK name.
+     * @param parentPhone Student's Parent / NOK contact number.
+     * @param rls Parent / NOK relationship to student.
      * @param age Student's age.
      * @param image Student's image.
      * @param email Student's email address.
@@ -57,9 +57,9 @@ public class Student extends Person {
      * @param test Tests student took.
      * @param tags Tag given to student.
      */
-    public Student(Name name, Class sc, IndexNumber indexNumber, Sex sex, ParentName parentName, Age age,
-                   Image image, Email email, Phone phone, Cca cca, Address address, Attendance attendance,
-                   Set<Homework> homework, Set<Test> test, Set<Tag> tags, Comment comment) {
+    public Student(Name name, Class sc, IndexNumber indexNumber, Sex sex, Name parentName, Phone parentPhone,
+                   Relationship rls, Age age, Image image, Email email, Phone phone, Cca cca, Address address,
+                   Attendance attendance, Set<Homework> homework, Set<Test> test, Set<Tag> tags, Comment comment) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
@@ -72,9 +72,36 @@ public class Student extends Person {
         this.test.addAll(test);
         this.comment = comment;
         this.tags = tags;
-        //this.parentName = parentName;
-        this.parent = setParent(parentName, indexNumber, sc);
-        this.parentName = new ParentName(this.parent.getName().toString());
+        this.parentName = parentName;
+        this.parentNumber = parentPhone;
+        this.rls = rls;
+    }
+
+    /**
+     * A method that returns the Parent / NOK name.
+     *
+     * @return Parent / NOK name.
+     */
+    public Name getParentName() {
+        return this.parentName;
+    }
+
+    /**
+     * A method that returns the relationship of the Parent / NOK to student.
+     *
+     * @return Relationship of the Parent / NOK to student.
+     */
+    public Relationship getRls() {
+        return this.rls;
+    }
+
+    /**
+     * A method that returns the Student's Parent / NOK contact number.
+     *
+     * @return Parent / NOK contact number.
+     */
+    public Phone getParentNumber() {
+        return this.parentNumber;
     }
 
     /**
@@ -93,32 +120,6 @@ public class Student extends Person {
      */
     public Sex getSex() {
         return sex;
-    }
-
-    /**
-     * A method that returns the Student's Parent / NOK Name.
-     *
-     * @return Parent / NOK name.
-     */
-    public ParentName getParentName() {
-        return parentName;
-    }
-
-    /**
-     * A method that checks if a parent exists, if it exists, it will be binded to the student, otherwise, it will
-     * prompt the user to create a new parent.
-     *
-     * @param parentName Parent name that is used to check if a Parent exists already.
-     * @return Parent object from the UniqueParentList if exists or prompts the user to create a new Parent object.
-     */
-    private Parent setParent(ParentName parentName, IndexNumber indexNumber, Class sc) {
-        UniqueParentList parents = Class.getAllParents();
-        Parent parent = parents.getParent(parentName, indexNumber, sc);
-        if (parent == null) {
-            parent = new Parent(sc, indexNumber, new Name("BASETEST"), new Relationship("BASETEST"), new Age("5"),
-                    new Image("TESTING"), new Email("test@hotmail.com"), this.getPhone(), this.getAddress(), this.tags);
-        }
-        return parent;
     }
 
     /**
@@ -225,8 +226,6 @@ public class Student extends Person {
                 .append(getIndexNumber())
                 .append("; Sex: ")
                 .append(getSex())
-                .append("; Parent Name: ")
-                .append(getParentName())
                 .append("; Student Age: ")
                 .append(getAge())
                 .append("; Image Path: ")

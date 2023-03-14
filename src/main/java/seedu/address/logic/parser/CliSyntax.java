@@ -22,7 +22,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_INDEXNUMBER = new Prefix("in/");
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_PARENTNAME = new Prefix("pn/");
-    public static final Prefix PREFIX_PHONESTUDENT = new Prefix("phS/");
+    public static final Prefix PREFIX_PHONEPARENT = new Prefix("pnP/");
+    public static final Prefix PREFIX_PHONESTUDENT = new Prefix("pnS/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_RELATIONSHIP = new Prefix("rls/");
     public static final Prefix PREFIX_SEX = new Prefix("s/");

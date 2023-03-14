@@ -49,7 +49,11 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label parentPhoneNumber;
+    @FXML
     private Label parentName;
+    @FXML
+    private Label rls;
     @FXML
     private Label age;
     // @FXML
@@ -81,7 +85,9 @@ public class StudentCard extends UiPart<Region> {
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
         email.setText(student.getEmail().value);
-        parentName.setText(student.getParentName().value);
+        parentName.setText(student.getParentName().fullName);
+        parentPhoneNumber.setText(student.getParentNumber().value);
+        rls.setText(student.getRls().toString());
         age.setText(student.getAge().value);
         //image.setText(student.getImage().value);
         cca.setText(student.getCca().value);

@@ -18,7 +18,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -47,6 +50,7 @@ import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
+import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.person.student.Attendance;
 import seedu.address.model.person.student.Cca;
 import seedu.address.model.person.student.Homework;
@@ -82,19 +86,20 @@ public class StudentCommandParser implements Parser<StudentCommand> {
 
         ArgumentMultimap argMultimapAdd =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_ADD, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
-                        PREFIX_PARENTNAME, PREFIX_AGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
-                        PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK,
-                        PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE);
+                        PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_AGE, PREFIX_IMAGESTUDENT,
+                        PREFIX_EMAILSTUDENT, PREFIX_PHONE, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE,
+                        PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE);
 
         ArgumentMultimap argMultimapDelete =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_DELETE, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
-                        PREFIX_PARENTNAME, PREFIX_AGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
-                        PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK);
+                        PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_AGE, PREFIX_IMAGESTUDENT,
+                        PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE,
+                        PREFIX_HOMEWORK);
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_COMMENTCOMMAND, PREFIX_COMMENT, PREFIX_ADD,
-                        PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
-                        PREFIX_PARENTNAME, PREFIX_AGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
+                        PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME, PREFIX_PHONEPARENT,
+                        PREFIX_RELATIONSHIP, PREFIX_AGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
                         PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK);
         ArgumentMultimap argMultimapGrade =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_GRADE, PREFIX_INDEXNUMBER, PREFIX_TEST,
@@ -122,7 +127,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      * @throws ParseException
      */
     private StudentAddCommand addCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME,
+                PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP)
                 || !argMultimap.getPreamble().isEmpty()
                 || studentClass.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentAddCommand.MESSAGE_USAGE));
@@ -131,11 +137,13 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
         Sex sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
-        ParentName parentName = ParserUtil.parseParentName(argMultimap.getValue(PREFIX_PARENTNAME).get());
+        Name parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENTNAME).get());
+        Phone parentNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
+        Relationship rls = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
         Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_AGE).get()));
         Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGESTUDENT).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAILSTUDENT).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONESTUDENT).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Cca cca = ParserUtil.parseCca(argMultimap.getValue(PREFIX_CCA).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Attendance attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
@@ -152,9 +160,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         homeworkSet.add(homework);
         Set<Test> testSet = new HashSet<>();
         testSet.add(test);
-        Student student = new Student(name, sc, indexNumber, sex, parentName, age, image, email, phone, cca, address,
-                attendance, homeworkSet, testSet, tagList, comment);
-
+        Student student = new Student(name, sc, indexNumber, sex, parentName, parentNumber, rls,
+                age, image, email, phone, cca, address, attendance, homeworkSet, testSet, tagList, comment);
         return new StudentAddCommand(student);
     }
 

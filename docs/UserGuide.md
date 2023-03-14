@@ -142,21 +142,21 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 * For all following features that are related to `students`, start first by typing `student <CLASS>` before adding the respective command for the feature.
   <a name="addstudent"/>
 
-### Adding a person: `add`
+### Adding a Student: `add`
 
 Adds a student to the database
 
-Format: `add <NAME> <INDEX_NUMBER> <SEX> <PARENT_NAME/NOK_NAME> [age/<AGE> img/<ABSOLUTE_PATH_TO_IMAGE> em/<EMAIL_ADDRESS> ph/<PHONE_NUMBER> cca/<CCA>]`
+Format: `add n/<NAME> in/<INDEX_NUMBER> s/<SEX> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<RELATIONSHIP> [age/<AGE> img/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> p/<PHONE_NUMBER> cca/<CCA>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `student 1A add TanAhCow 03 m TanAhNiu` <br>
+* `student 1A add n/TanAhCow in/03 s/m pn/TanAhNiu pnP/91234567 rls/Father` <br>
 
   *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
-* `student 1B add Mary Goh 23 f Goh Siew Mai age/15 img/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg em/marygoh@gmail.com ph/65656565 cca/Chess Club`
+* `student 1B add n/Mary Goh in/23 s/F pn/Goh Siew Mai pnP/91234567 rls/Mother age/15 imgS/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg eS/marygoh@gmail.com p/65656565 cca/Chess Club`
 
 Note: <br>
 User is able to leave the following categories unfilled by simply leaving a space
