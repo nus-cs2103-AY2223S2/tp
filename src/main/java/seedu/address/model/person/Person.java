@@ -23,18 +23,21 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Department department;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, EmployeeId employeeId, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, employeeId, phone, email, address, tags);
+    public Person(Name name, EmployeeId employeeId, Phone phone, Email email, Address address,
+                  Department department, Set<Tag> tags) {
+        requireAllNonNull(name, employeeId, phone, email, address, department, tags);
         this.name = name;
         this.employeeId = employeeId;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.department = department;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +59,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Department getDepartment() {
+        return department;
     }
 
     /**
@@ -112,13 +119,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getDepartment().equals(getDepartment())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, employeeId, phone, email, address, tags);
+        return Objects.hash(name, employeeId, phone, email, address, department, tags);
     }
 
     @Override
@@ -132,7 +140,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Department: ")
+                .append(getDepartment());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

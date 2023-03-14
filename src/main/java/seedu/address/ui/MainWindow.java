@@ -163,6 +163,26 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Changes the CSS theme.
+     */
+    @FXML
+    private void handleChangeTheme(String theme) {
+        if (theme.equals("light")) {
+            String lightThemeUrl = getClass().getResource("/view/LightTheme.css").toExternalForm();
+            String lightExtensionsUrl = getClass().getResource("/view/LightExtensions.css").toExternalForm();
+            primaryStage.getScene().getStylesheets().setAll();
+            primaryStage.getScene().getStylesheets().add(lightThemeUrl);
+            primaryStage.getScene().getStylesheets().add(lightExtensionsUrl);
+        } else if (theme.equals("dark")) {
+            String darkThemeUrl = getClass().getResource("/view/DarkTheme.css").toExternalForm();
+            String darkExtensionsUrl = getClass().getResource("/view/DarkExtensions.css").toExternalForm();
+            primaryStage.getScene().getStylesheets().setAll();
+            primaryStage.getScene().getStylesheets().add(darkThemeUrl);
+            primaryStage.getScene().getStylesheets().add(darkExtensionsUrl);
+        }
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -184,6 +204,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if(commandResult.isChangeTheme()) {
+                handleChangeTheme(commandResult.getTheme());
             }
 
             return commandResult;
