@@ -22,7 +22,7 @@ public class Customer {
 
     // Data fields
     private final Address address;
-    private final boolean marked;
+    private final Marked marked;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -35,7 +35,7 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.marked = false;
+        this.marked = new Marked(false);
     }
 
     public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean marked) {
@@ -45,7 +45,7 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.marked = marked;
+        this.marked = new Marked(marked);
     }
 
     public Name getName() {
@@ -64,7 +64,7 @@ public class Customer {
         return address;
     }
 
-    public boolean getMarked() { return marked;}
+    public Marked getMarked() { return marked;}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
