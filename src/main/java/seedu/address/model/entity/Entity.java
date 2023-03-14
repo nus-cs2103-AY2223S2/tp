@@ -1,6 +1,7 @@
 package seedu.address.model.entity;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,14 +15,14 @@ import seedu.address.model.tag.Tag;
 public abstract class Entity {
     // Identity fields
     private final Name name;
-    private final Set<Tag> tags;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Entity(Name name, Set<Tag> tags) {
         this.name = name;
-        this.tags = tags;
+        this.tags.addAll(tags);
     }
 
 
