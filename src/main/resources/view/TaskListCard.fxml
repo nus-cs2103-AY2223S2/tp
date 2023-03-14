@@ -8,15 +8,16 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane prefHeight="105.0" prefWidth="2753.0" HBox.hgrow="ALWAYS">
+  <GridPane prefHeight="105.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="105.0" prefWidth="1493.0" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="105.0" prefWidth="1613.0" GridPane.columnIndex="0">
       <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
+        <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
         <Label fx:id="id" styleClass="cell_big_label">
@@ -25,18 +26,22 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="taskDesc" styleClass="cell_big_label" text="\$taskDesc" />
-            <Region prefHeight="17.0" prefWidth="200.0" />
-         <Label fx:id="personAssigned" styleClass="cell_small_label" text="Assigned To : $personAssigned" />
+        <Label fx:id="taskDesc" prefHeight="26.0" prefWidth="437.0" style="-fx-font-size: 20px;" styleClass="cell_big_label" text="\$taskDesc">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label prefHeight="19.0" prefWidth="91.0" style="-fx-font-size: 15px;" text="Assigned to: " />
+         <Label fx:id="personAssigned" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$personAssigned" />
             <VBox.margin>
                <Insets bottom="10.0" />
             </VBox.margin>
       </HBox>
-         <HBox alignment="CENTER_LEFT" spacing="5">
+         <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" spacing="5">
             <children>
-            <Label fx:id="taskDeadline" styleClass="cell_small_label" text="Due by : $taskDeadline" />
-               <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="117.0" />
-            <Label fx:id="personRole" styleClass="cell_small_label" text="\$personRole" />
+               <Label prefHeight="17.0" prefWidth="77.0" style="-fx-font-size: 15px;" text="        Due By: " />
+            <Label fx:id="taskDeadline" prefHeight="17.0" prefWidth="80.0" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$taskDeadline" />
+               <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="479.0" />
+            <Label fx:id="personRole" maxWidth="91.0" prefHeight="27.0" prefWidth="59.0" style="-fx-background-color: #A98B3E; padding: 10px; -fx-background-radius: 15%; -fx-label-padding: 5px;" styleClass="cell_small_label" text="\$personRole" />
             </children>
          </HBox>
     </VBox>
