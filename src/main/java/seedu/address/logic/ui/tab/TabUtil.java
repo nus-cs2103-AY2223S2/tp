@@ -48,4 +48,18 @@ public class TabUtil {
             selectedTabInfo.setValue(tabInfoList.get(index.getZeroBased()));
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof TabUtil)) {
+            return false;
+        }
+
+        TabUtil that = (TabUtil) other;
+        return tabInfoList.equals(that.tabInfoList)
+                && Objects.equals(selectedTabInfo.get(), that.selectedTabInfo.get());
+    }
 }
