@@ -97,7 +97,6 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + TANK_DESC + NAME_DESC_AMY + LAST_FED_DATE_DESC_AMY
                 + SPECIES_DESC_AMY + ADDRESS_DESC_AMY;
         Fish expectedFish = new FishBuilder(AMY).withTags().build();
-        
         ModelManager expectedModel = new ModelManager();
 
         // Manually sets tanklist
