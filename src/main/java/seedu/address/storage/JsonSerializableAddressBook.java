@@ -53,6 +53,11 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addCard(card);
+
+            boolean isUnique = !card.getDeck().map(addressBook::hasDeck).get();
+            if (isUnique) {
+                card.getDeck().ifPresent(addressBook::addDeck);
+            }
         }
         return addressBook;
     }

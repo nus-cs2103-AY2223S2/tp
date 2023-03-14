@@ -2,10 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DECK;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditDeckCommand;
+import seedu.address.logic.commands.SelectDeckCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.deck.Deck;
 
@@ -21,19 +21,19 @@ public class EditDeckCommandParser implements Parser<EditDeckCommand> {
      */
     public EditDeckCommand parse(String args) throws ParseException {
         requireNonNull(args);
-
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DECK);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            String i = String.valueOf(args.charAt(1));
+            index = ParserUtil.parseIndex(i);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditDeckCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SelectDeckCommand.MESSAGE_USAGE), pe);
         }
 
-        Deck editedDeck = ParserUtil.parseDeck(argMultimap.getValue(PREFIX_DECK).get());
+        Deck editedDeck = ParserUtil.parseDeck(args.substring(2));
 
         return new EditDeckCommand(index, editedDeck);
     }

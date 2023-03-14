@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddDeckCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteDeckCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditDeckCommand;
 import seedu.address.logic.commands.EndReviewCommand;
@@ -60,6 +61,9 @@ public class MasterDeckParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+
+        case DeleteDeckCommand.COMMAND_WORD:
+            return new DeleteDeckCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
@@ -118,6 +122,9 @@ public class MasterDeckParser {
 
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -189,6 +196,9 @@ public class MasterDeckParser {
 
         case NextCardCommand.COMMAND_WORD:
             return new NextCardCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
