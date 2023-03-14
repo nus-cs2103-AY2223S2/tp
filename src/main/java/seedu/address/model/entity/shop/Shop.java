@@ -7,10 +7,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyShop;
-import seedu.address.model.entity.person.Customer;
-import seedu.address.model.entity.person.Technician;
-import seedu.address.model.entity.person.UniqueCustomerList;
-import seedu.address.model.entity.person.UniqueTechnicianList;
+import seedu.address.model.entity.person.*;
 import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
 import seedu.address.model.service.Part;
 import seedu.address.model.service.PartMap;
@@ -172,7 +169,7 @@ public class Shop implements ReadOnlyShop {
     }
 
     /**
-     * Checks if customer is registered
+     * Adds vehicle to the shop and to customer's vehicle ids
      *
      * @param customerId Customer ID to check
      */
@@ -180,6 +177,17 @@ public class Shop implements ReadOnlyShop {
         return this.getCustomerList().stream()
                 .anyMatch(c -> c.getId() == customerId);
     }
+
+    /**
+     * Returns true if a customer with the same id or identity as {@code customer}
+     * exists in the autom8 system.
+     */
+    public boolean hasCustomer(Customer customer) {
+        requireNonNull(customer);
+        return customers.contains(customer);
+    }
+
+
     /**
      * Replaces the contents of the customer list with {@code customers}.
      * {@code customers} must not contain duplicate customers.
@@ -282,6 +290,15 @@ public class Shop implements ReadOnlyShop {
     }
 
     /**
+     * Adds vehicle to the shop
+     *
+     * @param vehicle    Vehicle to be added
+     */
+    public void addVehicle(Vehicle vehicle) {
+        this.vehicles.add(vehicle);
+    }
+
+    /**
      * Checks if vehicle is in the shop
      *
      * @param vehicleId Vehicle ID to check
@@ -289,6 +306,15 @@ public class Shop implements ReadOnlyShop {
     public boolean hasVehicle(int vehicleId) {
         return this.getVehicleList().stream()
                 .anyMatch(v -> v.getId() == vehicleId);
+    }
+
+    /**
+     * Returns true if a vehicle with the same plate number as {@code vehicle}
+     * exists in the autom8 system.
+     */
+    public boolean hasVehicle(Vehicle vehicle) {
+        requireNonNull(vehicle);
+        return vehicles.contains(vehicle);
     }
 
     /**
@@ -359,4 +385,6 @@ public class Shop implements ReadOnlyShop {
     //    public int hashCode() {
     //        return persons.hashCode();
     //    }
+
+    //// Others
 }
