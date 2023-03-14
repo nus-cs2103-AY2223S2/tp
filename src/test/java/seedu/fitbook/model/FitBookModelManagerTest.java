@@ -17,7 +17,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.commons.core.GuiSettings;
-import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
 import seedu.fitbook.testutil.client.FitBookBuilder;
 import seedu.fitbook.testutil.routine.FitBookExerciseRoutineBuilder;
 

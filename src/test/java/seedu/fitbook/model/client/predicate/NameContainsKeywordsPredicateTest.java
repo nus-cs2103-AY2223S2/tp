@@ -1,4 +1,4 @@
-package seedu.fitbook.model.client;
+package seedu.fitbook.model.client.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -44,16 +44,8 @@ public class NameContainsKeywordsPredicateTest {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new ClientBuilder().withName("Alice Bob").build()));
 
-        // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new ClientBuilder().withName("Alice Bob").build()));
-
-        // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new ClientBuilder().withName("Alice Carol").build()));
-
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce bOB"));
         assertTrue(predicate.test(new ClientBuilder().withName("Alice Bob").build()));
     }
 
@@ -68,9 +60,7 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ClientBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email, calorie and address, but does not match name
-        predicate =
-                new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street", "1200"));
-        assertFalse(predicate.test(new ClientBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").withCalorie("1200").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice 91234567"));
+        assertFalse(predicate.test(new ClientBuilder().withName("Alice").build()));
     }
 }

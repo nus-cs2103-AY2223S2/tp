@@ -20,7 +20,7 @@ import seedu.fitbook.logic.commands.FindCommand;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
-import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the FitBookModel) for {@code FindCommand}.

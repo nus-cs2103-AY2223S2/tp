@@ -2,14 +2,6 @@ package seedu.fitbook.logic.commands.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.fitbook.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.fitbook.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.fitbook.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
@@ -20,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.ClearCommand;
+import seedu.fitbook.logic.commands.CommandTestUtil;
 import seedu.fitbook.logic.commands.EditCommand;
 import seedu.fitbook.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.fitbook.model.FitBook;
@@ -51,7 +44,7 @@ public class EditCommandTest {
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
         expectedFitBookModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
     }
 
     @Test
@@ -60,11 +53,11 @@ public class EditCommandTest {
         Client lastClient = model.getFilteredClientList().get(indexLastClient.getZeroBased());
 
         ClientBuilder clientInList = new ClientBuilder(lastClient);
-        Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Client editedClient = clientInList.withName(CommandTestUtil.VALID_NAME_BOB)
+                .withPhone(CommandTestUtil.VALID_PHONE_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
 
-        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
+                .withPhone(CommandTestUtil.VALID_PHONE_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastClient, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedClient);
@@ -73,7 +66,7 @@ public class EditCommandTest {
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
         expectedFitBookModel.setClient(lastClient, editedClient);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
     }
 
     @Test
@@ -86,17 +79,17 @@ public class EditCommandTest {
         FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()),
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
     }
 
     @Test
     public void execute_filteredList_success() {
-        showClientAtIndex(model, INDEX_FIRST_PERSON);
+        CommandTestUtil.showClientAtIndex(model, INDEX_FIRST_PERSON);
 
         Client clientInFilteredList = model.getFilteredClientList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Client editedClient = new ClientBuilder(clientInFilteredList).withName(VALID_NAME_BOB).build();
+        Client editedClient = new ClientBuilder(clientInFilteredList).withName(CommandTestUtil.VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditClientDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedClient);
 
@@ -104,7 +97,7 @@ public class EditCommandTest {
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
         expectedFitBookModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedFitBookModel);
     }
 
     @Test
@@ -113,28 +106,29 @@ public class EditCommandTest {
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(firstClient).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
     public void execute_duplicateClientFilteredList_failure() {
-        showClientAtIndex(model, INDEX_FIRST_PERSON);
+        CommandTestUtil.showClientAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit client in filtered list into a duplicate in FitBook
         Client clientInList = model.getFitBook().getClientList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditClientDescriptorBuilder(clientInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
     public void execute_invalidClientIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
-        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
+                .withName(CommandTestUtil.VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     /**
@@ -143,23 +137,23 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidClientIndexFilteredList_failure() {
-        showClientAtIndex(model, INDEX_FIRST_PERSON);
+        CommandTestUtil.showClientAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of FitBook list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFitBook().getClientList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditClientDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, CommandTestUtil.DESC_AMY);
 
         // same values -> returns true
-        EditClientDescriptor copyDescriptor = new EditClientDescriptor(DESC_AMY);
+        EditClientDescriptor copyDescriptor = new EditClientDescriptor(CommandTestUtil.DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -173,10 +167,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, CommandTestUtil.DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, CommandTestUtil.DESC_BOB)));
     }
 
 }

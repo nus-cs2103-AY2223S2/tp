@@ -25,7 +25,7 @@ import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineNameContainsKeywordsPredicate;
 import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
