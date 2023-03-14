@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import taa.commons.core.Messages;
 import taa.model.ClassIdMatchesPredicate;
 import taa.model.Model;
-import taa.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Lists all persons in the address book to the user.

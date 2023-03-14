@@ -58,6 +58,11 @@ public class UniqueClassLists implements Iterable<ClassList> {
         }
     }
 
+    /**
+     * Adds a student to a class.
+     * @param student The student to be added.
+     * @param className The name of the class that the student joins.
+     */
     public void addStudent(Student student, String className) {
         for (ClassList lst: this.internalList) {
             if (lst.getClassId().equals(className)) {

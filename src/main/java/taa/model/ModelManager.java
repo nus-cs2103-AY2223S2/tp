@@ -1,7 +1,6 @@
 package taa.model;
 
 import static java.util.Objects.requireNonNull;
-import static taa.model.util.SampleDataUtil.getSampleAddressBook;
 
 import java.nio.file.Path;
 import java.util.HashSet;
@@ -52,7 +51,15 @@ public class ModelManager implements Model {
         this(new ClassList(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    /**
+     * Check whether the tutor already has the class.
+     * @param classList the class name to be checked.
+     * @return Boolean variable indicating whether it's contained.
+     */
+    public boolean hasClassList(ClassList classList) {
+        requireNonNull(classList);
+        return tutor.containsClassList(classList);
+    }
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -103,11 +110,6 @@ public class ModelManager implements Model {
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return classList.hasStudent(student);
-    }
-
-    public boolean hasClassList(ClassList classList) {
-        requireNonNull(classList);
-        return tutor.containsClassList(classList);
     }
 
     @Override

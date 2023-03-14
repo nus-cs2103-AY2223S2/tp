@@ -1,13 +1,9 @@
 package taa.logic.parser;
 
-import java.util.Arrays;
-
 import taa.commons.core.Messages;
-import taa.logic.commands.FindCommand;
 import taa.logic.commands.ListByClassCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.ClassIdMatchesPredicate;
-import taa.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

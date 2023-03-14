@@ -23,14 +23,10 @@ public class ClassList implements ReadOnlyAddressBook {
     private int classId;
     private int studentCount = 0;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+    /**
+     * Creates a class list instance with the given class name.
+     * @param name the name of the class.
      */
-
     public ClassList(String name) {
         assignments = new AssignmentList();
         students = new UniqueStudentList();
@@ -38,6 +34,9 @@ public class ClassList implements ReadOnlyAddressBook {
         this.className = name;
     }
 
+    /**
+     * Creates a class list instance with a default name.
+     */
     public ClassList() {
         assignments = new AssignmentList();
         students = new UniqueStudentList();

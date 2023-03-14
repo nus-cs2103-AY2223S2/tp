@@ -1,9 +1,7 @@
 package taa.model.student;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-import taa.commons.util.StringUtil;
 import taa.model.ClassList;
 
 /**
