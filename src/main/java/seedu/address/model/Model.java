@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -110,6 +111,10 @@ public interface Model {
     ObservableList<DeliveryJob> getDeliveryJobList();
 
     void updateFilteredDeliveryJobList(Predicate<DeliveryJob> predicate);
+    void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter);
+    ObservableList<DeliveryJob> getSortedDeliveryJobList();
+
+
 
     // NOTIFICATION =========================================
 

@@ -4,9 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -26,11 +31,13 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<DeliveryJob> filteredDeliveryJobs;
+    private final List<DeliveryJob> sortedDeliveryJobs;
+
     private final ObservableList<Reminder> reminderList;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
-     *
      * @param addressBook
      * @param deliveryJobSystem
      * @param userPrefs
@@ -46,6 +53,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredDeliveryJobs = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
+        this.sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
         this.reminderList = this.addressBook.getReminderList();
     }
 
@@ -193,6 +201,17 @@ public class ModelManager implements Model {
         requireAllNonNull(predicate);
         filteredDeliveryJobs.setPredicate(predicate);
     }
+
+    @Override
+    public void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter) {
+        Collections.sort(sortedDeliveryJobs, sorter);
+    }
+
+    @Override
+    public ObservableList<DeliveryJob> getSortedDeliveryJobList() {
+        return FXCollections.observableArrayList(sortedDeliveryJobs);
+    }
+
     //=========== ReminderList Accessors =============================================================
 
     @Override
