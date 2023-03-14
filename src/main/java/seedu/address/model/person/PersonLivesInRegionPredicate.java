@@ -11,6 +11,11 @@ public class PersonLivesInRegionPredicate implements Predicate<Person> {
 
     private Regions targetRegion;
 
+    /**
+     * Constructs a new predicate that tests for the target region <p>
+     * Returned predicate will evaluate to {@code True} if person lives in {@code targetRegions}. False Otherwise.
+     * @param targetRegions target region that predicate will return {@code True} for
+     */
     public PersonLivesInRegionPredicate(Regions targetRegions) {
         this.targetRegion = targetRegions;
     }
