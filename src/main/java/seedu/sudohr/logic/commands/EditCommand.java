@@ -83,15 +83,15 @@ public class EditCommand extends Command {
         Employee employeeToEdit = lastShownList.get(index.getZeroBased());
         Employee editedEmployee = createEditedEmployee(employeeToEdit, editEmployeeDescriptor);
 
-        if (!employeeToEdit.isSameEmployee(editedEmployee) && model.hasEmployee(editedEmployee)) {
+        if (model.hasEmployee(editedEmployee, employeeToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
         }
 
-        if (!employeeToEdit.isSameEmployee(editedEmployee) && model.hasClashingPhoneNumber(editedEmployee)) {
+        if (model.hasClashingPhoneNumber(editedEmployee, employeeToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_PHONE);
         }
 
-        if (!employeeToEdit.isSameEmployee(editedEmployee) && model.hasClashingEmail(editedEmployee)) {
+        if (model.hasClashingEmail(editedEmployee, employeeToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
         }
 

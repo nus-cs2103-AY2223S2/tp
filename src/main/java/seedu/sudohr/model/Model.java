@@ -62,14 +62,32 @@ public interface Model {
     boolean hasEmployee(Employee employee);
 
     /**
+     * Returns true if an employee with the same identity as {@code person} exists in SudoHR,
+     * excluding the specified person/
+     */
+    boolean hasEmployee(Employee employee, Employee excludeFromCheck);
+
+    /**
      * Returns true if a person shares the same email with a different {@code person} (different id).
      */
     boolean hasClashingEmail(Employee person);
 
     /**
+     * Returns true if a person shares the same email with a different {@code person} (different id),
+     * excluding the specified person.
+     */
+    boolean hasClashingEmail(Employee person, Employee excludeFromCheck);
+
+    /**
      * Returns true if a person shares the same phone number with a different {@code person} (different id).
      */
     boolean hasClashingPhoneNumber(Employee person);
+
+    /**
+     * Returns true if a person shares the same phone number with a different {@code person} (different id),
+     * excluding the specified person.
+     */
+    boolean hasClashingPhoneNumber(Employee person, Employee excludeFromCheck);
 
     /**
      * Deletes the given employee.

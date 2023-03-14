@@ -193,12 +193,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasEmployee(Employee employee, Employee excludeFromCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasClashingEmail(Employee person)  {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public boolean hasClashingEmail(Employee employee, Employee excludeFromCheck) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasClashingPhoneNumber(Employee person)  {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public boolean hasClashingPhoneNumber(Employee employee, Employee excludeFromCheck) {
             throw new AssertionError("This method should not be called.");
         }
 

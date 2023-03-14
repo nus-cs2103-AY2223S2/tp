@@ -101,15 +101,36 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasEmployee(Employee person, Employee excludeFromCheck) {
+        requireNonNull(person);
+        requireAllNonNull(excludeFromCheck);
+        return sudoHr.hasEmployee(person, excludeFromCheck);
+    }
+
+    @Override
     public boolean hasClashingEmail(Employee person) {
         requireNonNull(person);
         return sudoHr.hasClashingEmail(person);
     }
 
     @Override
+    public boolean hasClashingEmail(Employee person, Employee excludeFromCheck) {
+        requireNonNull(person);
+        requireNonNull(excludeFromCheck);
+        return sudoHr.hasClashingEmail(person, excludeFromCheck);
+    }
+
+    @Override
     public boolean hasClashingPhoneNumber(Employee person) {
         requireNonNull(person);
         return sudoHr.hasClashingPhoneNumber(person);
+    }
+
+    @Override
+    public boolean hasClashingPhoneNumber(Employee person, Employee excludeFromCheck) {
+        requireNonNull(person);
+        requireNonNull(excludeFromCheck);
+        return sudoHr.hasClashingPhoneNumber(person, excludeFromCheck);
     }
 
     @Override

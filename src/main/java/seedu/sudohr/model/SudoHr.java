@@ -81,6 +81,16 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in SudoHR,
+     * excluding the specified person
+     */
+    public boolean hasEmployee(Employee employee, Employee excludeFromCheck) {
+        requireNonNull(employee);
+        requireNonNull(excludeFromCheck);
+        return employees.contains(employee, excludeFromCheck);
+    }
+
+    /**
      * Returns true if a person shares the same email with a different {@code person} (different id).
      */
     public boolean hasClashingEmail(Employee person) {
@@ -89,11 +99,31 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
+     * Returns true if a person shares the same email with a different {@code person} (different id),
+     * excluding the specified person
+     */
+    public boolean hasClashingEmail(Employee person, Employee excludeFromCheck) {
+        requireNonNull(person);
+        requireNonNull(excludeFromCheck);
+        return employees.sharesEmail(person, excludeFromCheck);
+    }
+
+    /**
      * Returns true if a person shares the same phone number with a different {@code person} (different id).
      */
     public boolean hasClashingPhoneNumber(Employee person) {
         requireNonNull(person);
         return employees.sharesPhoneNumber(person);
+    }
+
+    /**
+     * Returns true if a person shares the same phone number with a different {@code person} (different id),
+     * excluding the specified person
+     */
+    public boolean hasClashingPhoneNumber(Employee person, Employee excludeFromCheck) {
+        requireNonNull(person);
+        requireNonNull(excludeFromCheck);
+        return employees.sharesPhoneNumber(person, excludeFromCheck);
     }
 
     /**
