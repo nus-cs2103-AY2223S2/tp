@@ -36,10 +36,10 @@ public final class TaskEntryUtil {
         Interval interval;
         if (task instanceof Event) {
             Event event = (Event) task;
-            interval = new Interval(event.getFrom(), event.getTo());
+            interval = new Interval(event.getEventDateTimes().from, event.getEventDateTimes().to);
         } else if (task instanceof ToDo) {
             ToDo toDo = (ToDo) task;
-            LocalDateTime etdt = toDo.getBy();
+            LocalDateTime etdt = toDo.getBy().value;
             interval = new Interval(etdt, etdt.plusHours(1));
         } else {
             interval = new Interval();
