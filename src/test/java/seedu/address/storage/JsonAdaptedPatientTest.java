@@ -22,7 +22,7 @@ public class JsonAdaptedPatientTest {
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPatient person = new JsonAdaptedPatient(INVALID_NAME, "NRIC JSONADAPTEDPATIENTTEST", "GRAY");
+        JsonAdaptedPatient person = new JsonAdaptedPatient(INVALID_NAME, "NRIC", "GRAY");
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

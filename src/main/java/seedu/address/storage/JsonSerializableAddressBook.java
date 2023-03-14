@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        patients.addAll(source.getPatientList().stream().map(source1 -> new JsonAdaptedPatient(source1)).collect(Collectors.toList()));
+        patients.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
     }
 
     /**
@@ -45,7 +45,6 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
@@ -55,7 +54,6 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPatient(patient);
         }
-
         return addressBook;
     }
 

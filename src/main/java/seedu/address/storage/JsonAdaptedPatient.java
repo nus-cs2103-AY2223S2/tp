@@ -5,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.NRIC;
 import seedu.address.model.patient.Status;
+
 
 /**
  * Jackson-friendly version of {@link Patient}.
@@ -37,7 +38,7 @@ class JsonAdaptedPatient {
      */
     public JsonAdaptedPatient(Patient source) {
         name = source.getName().fullName;
-        nric = source.getNRIC().value;
+        nric = source.getNric().value;
         status = source.getStatus().value;
 
     }
@@ -50,7 +51,6 @@ class JsonAdaptedPatient {
      *                               the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
-        Status modelStatus;
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -61,29 +61,21 @@ class JsonAdaptedPatient {
         final Name modelName = new Name(name);
 
         if (nric == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NRIC.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
         }
-        if (!NRIC.isValidNRIC(nric)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
-        final NRIC modelNric = new NRIC(nric);
+        final Nric modelNric = new Nric(nric);
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
         if (!Status.isValidStatus(status)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
 
-        if (status == "RED") {
-            modelStatus = Status.RED;
-        } else if (status == "GREEN") {
-            modelStatus = Status.GREEN;
-        } else if (status == "YELLOW") {
-            modelStatus = Status.YELLOW;
-        } else {
-            modelStatus = Status.GRAY;
-        }
+        final Status modelStatus = new Status(status);
 
 
         return new Patient(modelNric, modelName, modelStatus);

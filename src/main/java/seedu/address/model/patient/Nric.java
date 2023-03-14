@@ -4,11 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Patient's NRIC in MedInfo.
- * Guarantees: immutable; is valid as declared in {@link #isValidNRIC(String)}
+ * Represents a Patient's Nric in MedInfo.
+ * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
  */
-public class NRIC {
-    public static final String MESSAGE_CONSTRAINTS = "NRICs should only begin with either the letter S, T, F or G, followed by 7 numbers, then ending with a letter, and it should not be blank";
+public class Nric {
+    public static final String MESSAGE_CONSTRAINTS = "NRICs should only begin with either the letter "
+            + "S, T, F or G, followed by 7 numbers, then ending with a letter, and it should not be blank";
 
     /**
      * The National Registry Identification Number (NRIC) of Singapore
@@ -22,20 +23,20 @@ public class NRIC {
     public final String value;
 
     /**
-     * Constructs an {@code NRIC}.
+     * Constructs an {@code Nric}.
      *
-     * @param nric A valid nric.
+     * @param nric A valid NRIC.
      */
-    public NRIC(String nric) {
+    public Nric(String nric) {
         requireNonNull(nric);
-        checkArgument(isValidNRIC(nric), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);
         value = nric;
     }
 
     /**
-     * Returns true if a given string is a valid nric.
+     * Returns true if a given string is a valid NRIC.
      */
-    public static boolean isValidNRIC(String test) {
+    public static boolean isValidNric(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -47,8 +48,8 @@ public class NRIC {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NRIC // instanceof handles nulls
-                        && value.equals(((NRIC) other).value)); // state check
+                || (other instanceof Nric // instanceof handles nulls
+                        && value.equals(((Nric) other).value)); // state check
     }
 
     @Override

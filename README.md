@@ -5,7 +5,7 @@
 * This is **a hospital patient management system**.<br>
   Example usages:
   * Inpro of patients
-  * Access medical records of patients 
+  * Access medical records of patients
 * The patient management system (called `MedInfo`) can be used for managing patient records.
   * It is to digitise hospital patient management data through a CLI app with a GUI to display patient information, medical records or necessary financial records.
   * It is to computerise the Front Office Management of Hospital to develop software which is user friendly, simple, fast, and cost–effective.

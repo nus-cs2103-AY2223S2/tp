@@ -27,7 +27,7 @@ public class PersonUtil {
     public static String getPersonDetails(Patient patient) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + patient.getName().fullName + " ");
-        sb.append(PREFIX_NRIC + patient.getNRIC().value + " ");
+        sb.append(PREFIX_NRIC + patient.getNric().value + " ");
         return sb.toString();
     }
 
@@ -37,7 +37,7 @@ public class PersonUtil {
     public static String getEditPersonDescriptorDetails(EditCommand.EditPatientDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getNRIC().ifPresent(nric -> sb.append(PREFIX_NRIC).append(nric.value).append(" "));
+        descriptor.getNric().ifPresent(nric -> sb.append(PREFIX_NRIC).append(nric.value).append(" "));
         return sb.toString();
     }
 }

@@ -12,29 +12,36 @@ import java.util.Objects;
 public class Patient {
 
     // Identity fields
-    private final NRIC nric;
+    private final Nric nric;
     private final Name name;
 
     // Data fields
-    private Status status = Status.GRAY;
+    private Status status = new Status("GRAY");
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(NRIC nric, Name name) {
+    public Patient(Nric nric, Name name) {
         requireAllNonNull(nric, name);
         this.nric = nric;
         this.name = name;
     }
 
-    public Patient(NRIC nric, Name name, Status status) {
+    /**
+     * Constructs a {@code Patient}.
+     *
+     * @param nric Input NRIC.
+     * @param name Input Name.
+     * @param status Input Status.
+     */
+    public Patient(Nric nric, Name name, Status status) {
         requireAllNonNull(nric, name, status);
         this.nric = nric;
         this.name = name;
         this.status = status;
     }
 
-    public NRIC getNRIC() {
+    public Nric getNric() {
         return nric;
     }
 
@@ -48,7 +55,7 @@ public class Patient {
 
     public void setStatus(Status newStatus) {
         requireAllNonNull(status);
-        this.status = newStatus;
+        status = newStatus;
     }
 
     /**
@@ -61,7 +68,7 @@ public class Patient {
         }
 
         return otherPatient != null
-                && otherPatient.getNRIC().equals(getNRIC())
+                && otherPatient.getNric().equals(getNric())
                 && otherPatient.getName().equals(getName());
     }
 
@@ -80,7 +87,7 @@ public class Patient {
         }
 
         Patient otherPatient = (Patient) other;
-        return otherPatient.getNRIC().equals(getNRIC())
+        return otherPatient.getNric().equals(getNric())
                 && otherPatient.getName().equals(getName())
                 && otherPatient.getStatus().equals(getStatus());
     }
@@ -94,7 +101,7 @@ public class Patient {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getNRIC())
+        builder.append(getNric())
                 .append("; Name: ")
                 .append(getName())
                 .append("; Status: ")

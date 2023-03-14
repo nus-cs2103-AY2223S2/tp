@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.patient.NRIC;
 import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Status;
 
 /**
@@ -21,7 +21,7 @@ public class ParserUtil {
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
      * and trailing whitespaces will be
      * trimmed.
-     * 
+     *
      * @throws ParseException if the specified index is invalid (not non-zero
      *                        unsigned integer).
      */
@@ -34,18 +34,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nric} into a {@code NRIC}.
+     * Parses a {@code String nric} into a {@code Nric}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code nric} is invalid.
      */
-    public static NRIC parseNRIC(String nric) throws ParseException {
+    public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
-        String trimmedNRIC = nric.trim();
-        if (!NRIC.isValidNRIC(trimmedNRIC)) {
-            throw new ParseException(NRIC.MESSAGE_CONSTRAINTS);
+        String trimmedNric = nric.trim();
+        if (!Nric.isValidNric(trimmedNric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
-        return new NRIC(trimmedNRIC);
+        return new Nric(trimmedNric);
     }
 
     /**
@@ -75,6 +75,6 @@ public class ParserUtil {
         if (!Status.isValidStatus(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
-        return Status.valueOf(trimmedStatus);
+        return new Status(trimmedStatus);
     }
 }

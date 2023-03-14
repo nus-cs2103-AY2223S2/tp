@@ -2,8 +2,10 @@ package seedu.address.model.util;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.patient.*;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Status;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -11,12 +13,12 @@ import seedu.address.model.patient.Patient;
 public class SampleDataUtil {
     public static Patient[] getSamplePatients() {
         return new Patient[] {
-                new Patient(new NRIC("S1234567A"), new Name("Alex Yeoh")),
-                new Patient(new NRIC("S0000000A"), new Name("Bernice Yu")),
-                new Patient(new NRIC("S0000001A"), new Name("Charlotte Oliveiro"), Status.GRAY),
-                new Patient(new NRIC("S0000002A"), new Name("David Li"), Status.GREEN),
-                new Patient(new NRIC("S0000003A"), new Name("Irfan Ibrahim"), Status.YELLOW),
-                new Patient(new NRIC("S0000004A"), new Name("Roy Balakrishnan"), Status.RED)
+            new Patient(new Nric("S1234567A"), new Name("Alex Yeoh")),
+            new Patient(new Nric("S0000000A"), new Name("Bernice Yu")),
+            new Patient(new Nric("S0000001A"), new Name("Charlotte Oliveiro"), new Status("GRAY")),
+            new Patient(new Nric("S0000002A"), new Name("David Li"), new Status("GREEN")),
+            new Patient(new Nric("S0000003A"), new Name("Irfan Ibrahim"), new Status("YELLOW")),
+            new Patient(new Nric("S0000004A"), new Name("Roy Balakrishnan"), new Status("RED"))
         };
     }
 
