@@ -3,6 +3,7 @@ package seedu.careflow.ui;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -172,7 +173,7 @@ public class MainWindow extends UiPart<Stage> {
         drugListPanel = new DrugListPanel(logic.getFilteredDrugList());
         drugListPanelPlaceholder.getChildren().add(drugListPanel.getRoot());
 
-        drugPieChartPanel = new DrugPieChartPanel(logic.getFilteredDrugList());
+        drugPieChartPanel = new DrugPieChartPanel(logic.getFilteredDrugList(), logic);
         drugPieChartPanelPlaceholder.getChildren().add(drugPieChartPanel.getRoot());
 
         hospitalRecordlistPanel = new HospitalListPanel(logic.getHospitalList());
