@@ -139,7 +139,7 @@ Examples:
 - `rand_grp cs2103t-t14 2` returns: Group 1: Alex, John; Group 2: Bonnie, Clyde
 - `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
 
-### Adding a student: `add_student` 
+### Adding a student: `add_student`
 Adds a student to a given class list.
 
 Format: `add_student n/STUDENT_NAME cl/CLASS_NAME`
@@ -165,7 +165,7 @@ Examples:
 him to the class "Lab_L11"
 
 
-### Deleting a student: `delete_student` 
+### Deleting a student: `delete_student`
 Deletes a student from the active class list.
 
 Format: `delete_student STUDENT_INDEX`

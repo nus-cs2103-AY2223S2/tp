@@ -35,7 +35,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
-        ClassList sampleAb = new ClassList();
+        ClassList sampleAb = new ClassList("T01");
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }
