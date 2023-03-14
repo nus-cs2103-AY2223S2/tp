@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -9,12 +10,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ListingBook;
 import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.listing.TitleContainsKeywordsPredicate;
 import seedu.address.model.listing.Listing;
 
 /**
@@ -86,6 +90,20 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedListingBook, actualModel.getListingBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredListingList());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the listing at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showListingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredListingList().size());
+
+        Listing listing = model.getFilteredListingList().get(targetIndex.getZeroBased());
+        final String[] splitName = listing.getTitle().fullTitle.split("\\s+");
+        model.updateFilteredListingList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredListingList().size());
     }
 
 }
