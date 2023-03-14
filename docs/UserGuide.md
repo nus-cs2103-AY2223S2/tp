@@ -197,17 +197,16 @@ Examples:
 
 Lists all meetings scheduled for the day from address book
 
-### Locate person by region : `region find`
+### List by region : `listRegion`
 
-Finds a person from address book by region
+Lists all persons living in a given region
 
 Required information:
-* Region person is residing in
+* Region to search for
 * Region specified should be a valid region
 
 Examples:
 * `find Central` Finds people from Central region in the address book
-* `find NorthEast 3` Displays person indexed at 3 in the address book if that person resides in North-East region
 
 ### Clearing all entries : `clear`
 
