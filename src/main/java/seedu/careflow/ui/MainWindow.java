@@ -3,7 +3,6 @@ package seedu.careflow.ui;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;

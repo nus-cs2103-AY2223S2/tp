@@ -1,7 +1,6 @@
 package seedu.careflow.ui;
 import java.text.DecimalFormat;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
