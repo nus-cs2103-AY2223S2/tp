@@ -13,6 +13,10 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
 
@@ -27,23 +31,15 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    //private jobListPanel jobListPanel;
     private ResultDisplay resultDisplay;
-
-    @FXML
-    private TreeView<String> listOfMonthsPlaceholder;
-
-    @FXML
-    private StackPane monthlyDeliveryJobListPanelPlaceholder;
-
-
-    @FXML
-    private StackPane commandBoxPlaceholder;
     @FXML
     private StackPane jobListPanelPlaceholder;
     @FXML
-    private StackPane resultDisplayPlaceholder;
-    @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TreeView monthDeliveryJobListTreeView;
 
     /**
      * Creates a {@code JobWindow} with the given {@code Stage} and {@code Logic}.
@@ -59,43 +55,26 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         setWindowDefaultSize(logic.getGuiSettings());
     }
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        TreeItem<String> year = new TreeItem<String>(String.format("Year"));
-
-        for (int i = 1; i < 13; i++) {
-            TreeItem<String> month = new TreeItem<String>(String.format("Month %d", i));
-            TreeItem<String> jobListInMonth = new TreeItem<String>();
-            month.getChildren().add(month);
-            year.getChildren().add(month);
-        }
-
-        listOfMonthsPlaceholder.setShowRoot(false);
-        listOfMonthsPlaceholder.setRoot(year);
-
-
-    }
-
     /**
      * Shows the help window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *
+     * @throws IllegalStateException <ul>
+     *                                       <li>
+     *                                           if this method is called on a thread other than the JavaFX Application Thread.
+     *                                       </li>
+     *                                       <li>
+     *                                           if this method is called during animation or layout processing.
+     *                                       </li>
+     *                                       <li>
+     *                                           if this method is called on the primary stage.
+     *                                       </li>
+     *                                       <li>
+     *                                           if {@code dialogStage} is already showing.
+     *                                       </li>
+     *                                   </ul>
      */
     public void show() {
-        logger.fine("Showing timetable page of job list.");
+        logger.fine("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -125,18 +104,17 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        //MonthlyDeliveryJobListPanel monthPanel = new MonthlyDeliveryJobListPanel();
-        //monthlyDeliveryJobListPanelPlaceholder.getChildren().add(monthPanel.getRoot());
+        //jobListPanel = new jobListPanel(logic.getFilteredjobList());
+        //jobListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
 
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+     //   resultDisplay = new ResultDisplay();
+       // resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        //  CommandBox commandBox = new CommandBox(this::executeCommand);
-        //commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    //    CommandBox commandBox = new CommandBox(this::executeCommand);
+      //  commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -151,6 +129,22 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         }
     }
 
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        TreeItem<String> year = new TreeItem<String>(String.format("Year"));
+        monthDeliveryJobListTreeView.setRoot(year);
+
+        for (int i = 1; i < 13; i++) {
+            TreeItem<String> month = new TreeItem<String>(String.format("Month %d", i));
+         //   month.getChildren().add(month);
+            year.getChildren().add(month);
+        }
+
+        monthDeliveryJobListTreeView.setShowRoot(false);
+
+    }
+
+
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
@@ -158,11 +152,4 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         logic.setGuiSettings(guiSettings);
         primaryStage.hide();
     }
-
-    @FXML
-    private void selectItem() {
-
-    }
-
 }
-

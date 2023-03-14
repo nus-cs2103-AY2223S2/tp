@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="400" minWidth="450" onCloseRequest="#handleExit" title="Timetable" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Timetable" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <icons>
       <Image url="@/images/clock.png" />
    </icons>
@@ -21,18 +21,14 @@
          </stylesheets>
 
          <VBox>
-            <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-               <padding>
-                  <Insets bottom="5" left="10" right="10" top="5" />
-               </padding>
-            </StackPane>
 
 
-            <VBox fx:id="personList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10" left="10" right="10" top="10" />
                </padding>
-               <TreeView fx:id="listOfMonthsPlaceholder" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="301.0" prefWidth="320.0" />
+               <TreeView fx:id="monthDeliveryJobListTreeView" prefHeight="250.0" prefWidth="318.0" />
+               <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
 
             <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
