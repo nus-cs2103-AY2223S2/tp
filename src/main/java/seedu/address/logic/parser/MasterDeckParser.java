@@ -119,6 +119,9 @@ public class MasterDeckParser {
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
 
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -146,6 +149,9 @@ public class MasterDeckParser {
 
         case FlipCommand.COMMAND_WORD:
             return new FlipCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
