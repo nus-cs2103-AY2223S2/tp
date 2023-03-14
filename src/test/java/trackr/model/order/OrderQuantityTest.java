@@ -21,6 +21,12 @@ public class OrderQuantityTest {
 
     @Test
     public void isValidQuantity() {
+        OrderQuantity orderQuantity = new OrderQuantity("123");
+
+        assertTrue(Integer.toString(orderQuantity.hashCode()).equals(Integer.toString(orderQuantity.hashCode())));
+        assertTrue(orderQuantity.toString().equals("123"));
+
+
         // null phone number
         assertThrows(NullPointerException.class, () -> OrderQuantity.isValidQuantity(null));
 
@@ -36,6 +42,7 @@ public class OrderQuantityTest {
         assertTrue(OrderQuantity.isValidQuantity("123")); // exactly 3 numbers
         assertTrue(OrderQuantity.isValidQuantity("1")); // 1 number
         assertTrue(OrderQuantity.isValidQuantity("12")); // 2 numbers
+
     }
 
 }

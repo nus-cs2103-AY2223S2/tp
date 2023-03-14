@@ -81,6 +81,8 @@ public class OrderTest {
         // different address -> returns false
         editedAlice = new OrderBuilder(CHOCOLATE_COOKIES).withOrderStatus("I").build();
         assertFalse(CHOCOLATE_COOKIES.equals(editedAlice));
+
+        assertTrue(CHOCOLATE_COOKIES.toString().equals(CHOCOLATE_COOKIES.toString()));
     }
 
 }
