@@ -55,6 +55,12 @@ public class EmployeeId {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Gets the current employee ID as an integer.
+     */
+    public int getEmployeeId() {
+        return Integer.parseInt(value);
+    }
 
     /**
      * Sets the current employee count and thus next employee ID.

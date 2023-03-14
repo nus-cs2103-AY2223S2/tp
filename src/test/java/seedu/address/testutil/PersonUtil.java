@@ -41,7 +41,7 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditEmployeeDescriptor}'s details.
      */
     public static String getEditPersonDescriptorDetails(EditCommand.EditEmployeeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();

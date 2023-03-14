@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "employees": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "employeeId": "2",
     "phone": "9482424",
