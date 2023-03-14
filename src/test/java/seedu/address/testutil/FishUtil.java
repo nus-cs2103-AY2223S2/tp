@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 
@@ -34,7 +34,7 @@ public class FishUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TANK + VALID_TANK_INDEX + " ");
         sb.append(PREFIX_NAME + fish.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + fish.getPhone().value + " ");
+        sb.append(PREFIX_LAST_FED_DATE + fish.getLastFedDate().value + " ");
         sb.append(PREFIX_EMAIL + fish.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + fish.getAddress().value + " ");
         fish.getTags().stream().forEach(
@@ -49,7 +49,8 @@ public class FishUtil {
     public static String getEditFishDescriptorDetails(EditFishDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
+        descriptor.getLastFedDate().ifPresent(lastFedDate -> sb.append(PREFIX_LAST_FED_DATE).append(lastFedDate.value)
+                .append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {

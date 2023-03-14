@@ -13,11 +13,18 @@ import seedu.address.model.tank.TankName;
  * A utility class containing a list of {@code Tank} objects to be used in tests.
  */
 public class TypicalTanks {
+    public static final Tank TANK_A = new TankBuilder().withTankName("Tank A").build();
+    public static final Tank TANK_B = new TankBuilder().withTankName("Tank B").build();
+    public static final Tank TANK_C = new TankBuilder().withTankName("Tank C").build();
+
+    //To be added later in test class JsonTankListStorageTest
+    public static final Tank TANK_D = new TankBuilder().withTankName("Tank D").build();
+    public static final Tank TANK_E = new TankBuilder().withTankName("Tank E").build();
 
     private TypicalTanks() {} // prevents instantiation
 
     /**
-     * Returns an {@code TankList} with all the typical tasks.
+     * Returns an {@code TankList} with all the typical tanks.
      */
     public static TankList getTypicalTankList() {
         TankList tl = new TankList();
@@ -31,5 +38,20 @@ public class TypicalTanks {
         Tank tankOne = new Tank(new TankName("Saltwater Tank 1"), new AddressBook());
         Tank tankTwo = new Tank(new TankName("Freshwater Tank 3"), new AddressBook());
         return new ArrayList<>(Arrays.asList(tankOne, tankTwo));
+    }
+
+    /**
+     * Returns an {@code TankList} with all the typical tanks (version 2).
+     * Used in JsonSerializableTankListTest and JsonTankListStorageTest
+     */
+    public static TankList getTypicalTankListVersionTwo() {
+        TankList tl = new TankList();
+        for (Tank task : getTypicalTanksVersionTwo()) {
+            tl.addTank(task);
+        }
+        return tl;
+    }
+    public static List<Tank> getTypicalTanksVersionTwo() {
+        return new ArrayList<>(Arrays.asList(TANK_A, TANK_B, TANK_C));
     }
 }

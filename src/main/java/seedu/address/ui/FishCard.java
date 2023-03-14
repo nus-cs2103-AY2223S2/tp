@@ -15,6 +15,9 @@ import seedu.address.model.fish.Fish;
 public class FishCard extends UiPart<Region> {
 
     private static final String FXML = "FishListCard.fxml";
+    private static final String NAME_HEADER = "Name: ";
+    private static final String LAST_FED_DATE_HEADER = "Last fed on: ";
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,7 +36,7 @@ public class FishCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label lastFedDate;
     @FXML
     private Label address;
     @FXML
@@ -48,8 +51,10 @@ public class FishCard extends UiPart<Region> {
         super(FXML);
         this.fish = fish;
         id.setText(displayedIndex + ". ");
-        name.setText(fish.getName().fullName);
-        phone.setText(fish.getPhone().value);
+        String nameLabelToBeSet = NAME_HEADER + fish.getName().fullName;
+        name.setText(nameLabelToBeSet);
+        String lastFedDateLabelToBeSet = LAST_FED_DATE_HEADER + fish.getLastFedDate().value;
+        lastFedDate.setText(lastFedDateLabelToBeSet);
         address.setText(fish.getAddress().value);
         email.setText(fish.getEmail().value);
         fish.getTags().stream()

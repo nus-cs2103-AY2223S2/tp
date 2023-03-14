@@ -10,7 +10,7 @@ With Fish Ahoy!, users can:
 * Keep track of individual fishes
 * Keep track of their fish tanks
 * Keep track of fish maintenance tasks
-  
+
 See our documentation: **[Fish Ahoy! Product Website](https://ay2223s2-cs2103t-t17-4.github.io/tp/)**.
 
 ## Acknowledgements

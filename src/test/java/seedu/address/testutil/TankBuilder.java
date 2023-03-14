@@ -8,7 +8,6 @@ import seedu.address.model.tank.TankName;
  * A utility class to help with building Tank objects.
  */
 public class TankBuilder {
-
     public static final String DEFAULT_NAME = "Coral Tank 2";
 
     private TankName tankName;
@@ -23,15 +22,15 @@ public class TankBuilder {
     /**
      * Initializes the TankBuilder with the data of {@code tankToCopy}.
      */
-    public TankBuilder(Tank tank) {
-        tankName = tank.getTankName();
+    public TankBuilder(Tank tankToCopy) {
+        tankName = tankToCopy.getTankName();
     }
 
     /**
      * Sets the {@code Name} of the {@code Tank} that we are building.
      */
-    public TankBuilder withTankName(String tankName) {
-        this.tankName = new TankName(tankName);
+    public TankBuilder withTankName(String name) {
+        this.tankName = new TankName(name);
         return this;
     }
 

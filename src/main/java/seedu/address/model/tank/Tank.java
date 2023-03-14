@@ -56,12 +56,12 @@ public class Tank {
             return true;
         }
 
-        if (!(other instanceof seedu.address.model.task.Task)) {
+        if (!(other instanceof seedu.address.model.tank.Tank)) {
             return false;
         }
 
-        seedu.address.model.task.Task otherTask = (seedu.address.model.task.Task) other;
-        return otherTask.getDescription().equals(name);
+        seedu.address.model.tank.Tank otherTank = (seedu.address.model.tank.Tank) other;
+        return otherTank.getTankName().equals(name);
     }
 
     @Override

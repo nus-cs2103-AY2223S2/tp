@@ -12,7 +12,7 @@ import seedu.address.model.task.Task;
 public class TaskCard extends UiPart<Region> {
     private static final String FXML = "TaskListCard.fxml";
 
-    public final seedu.address.model.task.Task task;
+    public final Task task;
 
     @FXML
     private HBox taskCardPane;

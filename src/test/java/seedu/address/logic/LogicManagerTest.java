@@ -5,8 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FISH_DISPLAYED
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.LAST_FED_DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TANK_DESC;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFishes.AMY;
@@ -31,6 +31,7 @@ import seedu.address.model.TankList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.fish.Fish;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonTankListStorage;
 import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -51,7 +52,9 @@ public class LogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage);
+        JsonTankListStorage tankListStorage = new JsonTankListStorage(temporaryFolder.resolve("tankList.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                taskListStorage, tankListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -69,8 +72,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListCommand.COMMAND_WORD + " fishes";
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS_FISHES, model);
     }
 
     @Test
@@ -81,7 +84,9 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage);
+        JsonTankListStorage tankListStorage = new JsonTankListStorage(temporaryFolder.resolve("tankList.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                taskListStorage, tankListStorage);
         // Initializes Tanks
         TankList tankList = new TankList();
         tankList.setTanks(getTypicalTanks());
@@ -89,8 +94,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + TANK_DESC + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + TANK_DESC + NAME_DESC_AMY + LAST_FED_DATE_DESC_AMY
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Fish expectedFish = new FishBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
 
