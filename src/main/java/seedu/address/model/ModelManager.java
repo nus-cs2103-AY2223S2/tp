@@ -40,21 +40,17 @@ public class ModelManager implements Model {
     public ModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(storage, userPrefs);
         try {
-            init(storage.read(), userPrefs);
+            friendlyLink = storage.read();
+            logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
+            this.userPrefs = new UserPrefs(userPrefs);
+            filteredElderly = new FilteredList<>(friendlyLink.getElderlyList());
+            filteredVolunteers = new FilteredList<>(friendlyLink.getVolunteerList());
+            filteredPairs = new FilteredList<>(friendlyLink.getPairList());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty FriendlyLink");
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty FriendlyLink");
         }
-    }
-
-    private void init(FriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
-        logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
-        this.friendlyLink = friendlyLink;
-        this.userPrefs = new UserPrefs(userPrefs);
-        filteredElderly = new FilteredList<>(friendlyLink.getElderlyList());
-        filteredVolunteers = new FilteredList<>(friendlyLink.getVolunteerList());
-        filteredPairs = new FilteredList<>(friendlyLink.getPairList());
     }
 
     //=========== UserPrefs ==================================================================================
