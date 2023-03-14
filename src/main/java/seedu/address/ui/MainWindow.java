@@ -16,6 +16,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.DoctorStub;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,7 +33,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private EnlargedContactCard enlargedContactCard;
+    private DoctorListPanel doctorListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -40,6 +43,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane enlargedContactCardPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -110,8 +116,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        // TODO: Change EnlargedContactCard to show nothing if doctor list is empty
+        // TODO: Separation of Concerns here does not seem strong
+        Doctor initDoctor = new DoctorStub();
+        if (!logic.getFilteredDoctorList().isEmpty()) {
+            initDoctor = logic.getFilteredDoctorList().get(0);
+        }
+        enlargedContactCard = new EnlargedContactCard(initDoctor);
+        enlargedContactCardPlaceholder.getChildren().add(enlargedContactCard.getRoot());
+
+        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList(), enlargedContactCard);
+        personListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +178,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public DoctorListPanel getPersonListPanel() {
+        return doctorListPanel;
     }
 
     /**

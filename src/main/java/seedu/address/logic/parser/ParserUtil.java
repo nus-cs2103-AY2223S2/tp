@@ -9,10 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Specialty;
+import seedu.address.model.person.Yoe;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -66,21 +67,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -93,6 +79,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String speciality} into an {@code Speciality}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code speciality} is invalid.
+     */
+    public static Specialty parseSpecialty(String speciality) throws ParseException {
+        requireNonNull(speciality);
+        String trimmedSpeciality = speciality.trim();
+        if (!Specialty.isValidSpecialty(trimmedSpeciality)) {
+            throw new ParseException(Specialty.MESSAGE_CONSTRAINTS);
+        }
+        return new Specialty(trimmedSpeciality);
+    }
+
+    /**
+     * Parses a {@code String yoe} into an {@code Yoe}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code yoe} is invalid.
+     */
+    public static Yoe parseYoe(String yoe) throws ParseException {
+        requireNonNull(yoe);
+        String trimmedYoe = yoe.trim();
+        if (!Yoe.isValidYoe(trimmedYoe)) {
+            throw new ParseException(Yoe.MESSAGE_CONSTRAINTS);
+        }
+        return new Yoe(trimmedYoe);
     }
 
     /**
