@@ -26,11 +26,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the SupplierList.
      *
-     * @see trackr.model.Model#getAddressBook()
+     * @see trackr.model.Model#getSupplierList()
      */
-    ReadOnlySupplierList getAddressBook();
+    ReadOnlySupplierList getSupplierList();
 
     /** Returns an unmodifiable view of the filtered list of suppliers */
     ObservableList<Supplier> getFilteredSupplierList();

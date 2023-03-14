@@ -25,31 +25,31 @@ import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.testutil.SupplierBuilder;
 
-public class AddCommandTest {
+public class AddSupplierCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullSupplier_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddSupplierCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Supplier validPerson = new SupplierBuilder().build();
+    public void execute_supplierAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingSupplierAdded modelStub = new ModelStubAcceptingSupplierAdded();
+        Supplier validSupplier = new SupplierBuilder().build();
 
-        CommandResult commandResult = new AddSupplierCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddSupplierCommand(validSupplier).execute(modelStub);
 
-        assertEquals(String.format(AddSupplierCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validSupplier), modelStub.suppliersAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Supplier validPerson = new SupplierBuilder().build();
-        AddSupplierCommand addCommand = new AddSupplierCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateSupplier_throwsCommandException() {
+        Supplier validSupplier = new SupplierBuilder().build();
+        AddSupplierCommand addSupplierCommand = new AddSupplierCommand(validSupplier);
+        ModelStub modelStub = new ModelStubWithSupplier(validSupplier);
 
-        assertThrows(CommandException.class, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER, () -> addSupplierCommand.execute(modelStub));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different Supplier -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -111,22 +111,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addSupplier(Supplier person) {
+        public void addSupplier(Supplier Supplier) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlySupplierList newData) {
+        public void setSupplierList(ReadOnlySupplierList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlySupplierList getAddressBook() {
+        public ReadOnlySupplierList getSupplierList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasSupplier(Supplier person) {
+        public boolean hasSupplier(Supplier Supplier) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -136,7 +136,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setSupplier(Supplier target, Supplier editedPerson) {
+        public void setSupplier(Supplier target, Supplier editedSupplier) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -192,43 +192,43 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single Supplier.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Supplier person;
+    private class ModelStubWithSupplier extends ModelStub {
+        private final Supplier Supplier;
 
-        ModelStubWithPerson(Supplier person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithSupplier(Supplier Supplier) {
+            requireNonNull(Supplier);
+            this.Supplier = Supplier;
         }
 
         @Override
-        public boolean hasSupplier(Supplier person) {
-            requireNonNull(person);
-            return this.person.isSameSupplier(person);
+        public boolean hasSupplier(Supplier Supplier) {
+            requireNonNull(Supplier);
+            return this.Supplier.isSameSupplier(Supplier);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the Supplier being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Supplier> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingSupplierAdded extends ModelStub {
+        final ArrayList<Supplier> suppliersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasSupplier(Supplier person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSameSupplier);
+        public boolean hasSupplier(Supplier supplier) {
+            requireNonNull(supplier);
+            return suppliersAdded.stream().anyMatch(supplier::isSameSupplier);
         }
 
         @Override
-        public void addSupplier(Supplier person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addSupplier(Supplier supplier) {
+            requireNonNull(supplier);
+            suppliersAdded.add(supplier);
         }
 
         @Override
-        public ReadOnlySupplierList getAddressBook() {
+        public ReadOnlySupplierList getSupplierList() {
             return new SupplierList();
         }
     }

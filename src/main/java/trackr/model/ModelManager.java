@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private final SupplierList supplierList;
     private final TaskList taskList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Supplier> filteredPersons;
+    private final FilteredList<Supplier> filteredSuppliers;
     private final FilteredList<Task> filteredTasks;
 
     /**
@@ -39,7 +39,7 @@ public class ModelManager implements Model {
         this.supplierList = new SupplierList(supplierList);
         this.taskList = new TaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.supplierList.getSupplierList());
+        filteredSuppliers = new FilteredList<>(this.supplierList.getSupplierList());
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
     }
 
@@ -126,13 +126,13 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Supplier> getFilteredSupplierList() {
-        return filteredPersons;
+        return filteredSuppliers;
     }
 
     @Override
     public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredSuppliers.setPredicate(predicate);
     }
 
     //=========== TaskList ===================================================================================
@@ -207,7 +207,7 @@ public class ModelManager implements Model {
         return supplierList.equals(other.supplierList)
                 && taskList.equals(other.taskList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+                && filteredSuppliers.equals(other.filteredSuppliers)
                 && filteredTasks.equals(other.filteredTasks);
     }
 

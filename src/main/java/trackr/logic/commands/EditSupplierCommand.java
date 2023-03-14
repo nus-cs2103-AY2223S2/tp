@@ -27,7 +27,7 @@ import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
 
 /**
- * Edits the details of an existing supplier in the address book.
+ * Edits the details of an existing supplier in the supplier list.
  */
 public class EditSupplierCommand extends Command {
 

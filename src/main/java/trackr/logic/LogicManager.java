@@ -57,7 +57,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlySupplierList getAddressBook() {
+    public ReadOnlySupplierList getSupplierList() {
         return model.getSupplierList();
     }
 

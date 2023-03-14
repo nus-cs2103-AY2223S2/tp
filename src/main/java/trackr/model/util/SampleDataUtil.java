@@ -30,19 +30,19 @@ public class SampleDataUtil {
                 getTagSet("flour")),
             new Supplier(new Name("Kim Guan Guan Coffee"), new Phone("99272758"), new Email("info@kimguanguan.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("coffee beans", "tea mix")),
+                getTagSet("coffee")),
             new Supplier(new Name("N Supplies"), new Phone("93210283"), new Email("sales@nsupplies.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("general goods", "halal")),
+                getTagSet("halal")),
             new Supplier(new Name("Teck Leong Pte Ltd"), new Phone("91031282"), new Email("teckleong@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("confectionery")),
             new Supplier(new Name("Chip Seng"), new Phone("92492021"), new Email("chipseng@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("best brown sugar")),
+                getTagSet("sugar")),
             new Supplier(new Name("Roy Selva"), new Phone("92624417"), new Email("roys@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("delivery driver"))
+                getTagSet("driver"))
         };
     }
 
