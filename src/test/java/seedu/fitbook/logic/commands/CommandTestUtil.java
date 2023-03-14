@@ -124,9 +124,9 @@ public class CommandTestUtil {
 
     static {
         DESC_CARDIO = new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_CARDIO)
-                .withExercises(VALID_EXERCISE_PUSHUP).build();
+                .withExercise(VALID_EXERCISE_PUSHUP).build();
         DESC_STRENGTH = new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_STRENGTH)
-                .withExercises(VALID_EXERCISE_PUSHUP, VALID_EXERCISE_SITUP).build();
+                .withExercise(VALID_EXERCISE_PUSHUP).build();
     }
 
     /**
@@ -173,7 +173,7 @@ public class CommandTestUtil {
     }
     /**
      * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s FitBook.
      */
     public static void showClientAtIndex(FitBookModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
@@ -184,12 +184,16 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredClientList().size());
     }
+    /**
+     * Updates {@code model}'s filtered list to show only the Routine at the given {@code targetIndex} in the
+     * {@code model}'s FitBook.
+     */
     public static void showRoutineAtIndex(FitBookModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredRoutineList().size());
 
         Routine routine = model.getFilteredRoutineList().get(targetIndex.getZeroBased());
-        final String[] splitName = routine.getRoutineName().routineName.split("\\s+");
-        model.updateFilteredRoutineList(new RoutineNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitRoutineName = routine.getRoutineName().routineName.split("\\s+");
+        model.updateFilteredRoutineList(new RoutineNameContainsKeywordsPredicate(Arrays.asList(splitRoutineName[0])));
 
         assertEquals(1, model.getFilteredRoutineList().size());
     }

@@ -36,7 +36,7 @@ public class DeleteRoutineCommand extends Command {
         List<Routine> lastShownList = model.getFilteredRoutineList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ROUTINE_DISPLAYED_INDEX);
         }
 
         Routine routineToDelete = lastShownList.get(targetIndex.getZeroBased());

@@ -4,13 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.fitbook.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.fitbook.logic.commands.CommandTestUtil.showRoutineAtIndex;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_ROUTINE;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_ROUTINE;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
-import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +17,6 @@ import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
-import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Routine;
 
 /**
@@ -56,7 +52,7 @@ public class DeleteRoutineCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showClientAtIndex(model, INDEX_FIRST_ROUTINE);
+        showRoutineAtIndex(model, INDEX_FIRST_ROUTINE);
 
         Routine routineToDelete = model.getFilteredRoutineList().get(INDEX_FIRST_ROUTINE.getZeroBased());
         DeleteRoutineCommand deleteRoutineCommand = new DeleteRoutineCommand(INDEX_FIRST_ROUTINE);
@@ -80,7 +76,6 @@ public class DeleteRoutineCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFitBookExerciseRoutine().getRoutineList().size());
 
         DeleteRoutineCommand deleteRoutineCommand = new DeleteRoutineCommand(outOfBoundIndex);
-
         assertCommandFailure(deleteRoutineCommand, model, Messages.MESSAGE_INVALID_ROUTINE_DISPLAYED_INDEX);
     }
 
@@ -93,7 +88,7 @@ public class DeleteRoutineCommandTest {
         assertTrue(deleteFirstRoutineCommand.equals(deleteFirstRoutineCommand));
 
         // same values -> returns true
-        DeleteRoutineCommand deleteFirstRoutineCommandCopy = new DeleteRoutineCommand(INDEX_FIRST_PERSON);
+        DeleteRoutineCommand deleteFirstRoutineCommandCopy = new DeleteRoutineCommand(INDEX_FIRST_ROUTINE);
         assertTrue(deleteFirstRoutineCommand.equals(deleteFirstRoutineCommandCopy));
 
         // different types -> returns false

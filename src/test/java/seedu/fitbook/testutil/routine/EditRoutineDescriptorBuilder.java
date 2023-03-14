@@ -1,20 +1,18 @@
-
 package seedu.fitbook.testutil.routine;
 
+import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.EditRoutineCommand.EditRoutineDescriptor;
 import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineName;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-
 /**
  * A utility class to help with building EditClientDescriptor objects.
  */
 public class EditRoutineDescriptorBuilder {
+
+    private static final String DEFAULT_EXERCISE = "Plank";
+    private static final int DEFAULT_EXERCISE_INDEX = 1;
 
     private EditRoutineDescriptor descriptor;
 
@@ -32,7 +30,8 @@ public class EditRoutineDescriptorBuilder {
     public EditRoutineDescriptorBuilder(Routine routine) {
         descriptor = new EditRoutineDescriptor();
         descriptor.setRoutineName(routine.getRoutineName());
-        descriptor.setExercise((Exercise) routine.getExercises());
+        descriptor.setExerciseIndex(Index.fromOneBased(DEFAULT_EXERCISE_INDEX));
+        descriptor.setExercise(new Exercise(DEFAULT_EXERCISE));
     }
 
     /**
@@ -44,12 +43,20 @@ public class EditRoutineDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code exercises} into a {@code Set<Exercise>} and set it to the {@code EditRoutineDescriptor}
-     * that we are building.
+     * Sets the {@code Index} of the {@code EditRoutineDescriptor} that we are building.
      */
-    public EditRoutineDescriptorBuilder withExercises(String... exercises) {
-        List<Exercise> exerciseList = Stream.of(exercises).map(Exercise::new).collect(Collectors.toList());
-        descriptor.setExercise(exerciseList);
+    public EditRoutineDescriptorBuilder withExercisesIndex(String index) {
+        Index currIndex = Index.fromOneBased(Integer.parseInt(index));
+        descriptor.setExerciseIndex(currIndex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Exercise} of the {@code EditRoutineDescriptor} that we are building.
+     */
+    public EditRoutineDescriptorBuilder withExercise(String exercise) {
+        Exercise newExercise = new Exercise(exercise);
+        descriptor.setExercise(newExercise);
         return this;
     }
 

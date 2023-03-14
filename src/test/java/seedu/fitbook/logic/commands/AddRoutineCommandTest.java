@@ -49,7 +49,8 @@ public class AddRoutineCommandTest {
         AddRoutineCommand addRoutineCommand = new AddRoutineCommand(validRoutine);
         FitBookModelStub modelStub = new FitBookModelStubWithRoutine(validRoutine);
 
-        assertThrows(CommandException.class, AddRoutineCommand.MESSAGE_DUPLICATE_ROUTINE, () -> addRoutineCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddRoutineCommand.MESSAGE_DUPLICATE_ROUTINE, () ->
+                addRoutineCommand.execute(modelStub));
     }
 
     @Test

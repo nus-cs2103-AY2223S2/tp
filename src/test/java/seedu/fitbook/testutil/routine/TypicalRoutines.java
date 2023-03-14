@@ -1,16 +1,16 @@
 package seedu.fitbook.testutil.routine;
 
-import seedu.fitbook.model.FitBookExerciseRoutine;
-import seedu.fitbook.model.routines.Routine;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EXERCISE_PUSHUP;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EXERCISE_SITUP;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_CARDIO;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_STRENGTH;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EXERCISE_PUSHUP;
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EXERCISE_SITUP;
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_CARDIO;
-import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_STRENGTH;
+import seedu.fitbook.model.FitBookExerciseRoutine;
+import seedu.fitbook.model.routines.Routine;
 
 
 /**

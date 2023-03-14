@@ -3,12 +3,10 @@ package seedu.fitbook.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.fitbook.testutil.Assert.assertThrows;
-
 import static seedu.fitbook.testutil.client.TypicalClients.ALICE;
 import static seedu.fitbook.testutil.client.TypicalClients.HOON;
 import static seedu.fitbook.testutil.client.TypicalClients.IDA;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
-
 
 import java.io.IOException;
 import java.nio.file.Path;

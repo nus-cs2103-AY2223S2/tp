@@ -1,12 +1,13 @@
 package seedu.fitbook.testutil.routine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.util.SampleExerciseRoutineDataUtil;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A utility class to help with building Routine objects.

@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fitbook.commons.core.Messages.MESSAGE_ROUTINES_LISTED_OVERVIEW;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.fitbook.testutil.client.TypicalClients.CARL;
-import static seedu.fitbook.testutil.client.TypicalClients.ELLE;
-import static seedu.fitbook.testutil.client.TypicalClients.FIONA;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
 import static seedu.fitbook.testutil.routine.TypicalRoutines.JUMP;
+import static seedu.fitbook.testutil.routine.TypicalRoutines.STRENGTH;
 import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
 import java.util.Arrays;
@@ -69,13 +67,13 @@ public class FindRoutineCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleClientsFound() {
-        String expectedMessage = String.format(MESSAGE_ROUTINES_LISTED_OVERVIEW, 3);
-        RoutineNameContainsKeywordsPredicate predicate = preparePredicate("Jumps");
+    public void execute_multipleKeywords_multipleRoutinesFound() {
+        String expectedMessage = String.format(MESSAGE_ROUTINES_LISTED_OVERVIEW, 2);
+        RoutineNameContainsKeywordsPredicate predicate = preparePredicate("Jumps Strength");
         FindRoutineCommand command = new FindRoutineCommand(predicate);
         expectedFitBookModel.updateFilteredRoutineList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedFitBookModel);
-        assertEquals(Arrays.asList(JUMP), model.getFilteredRoutineList());
+        assertEquals(Arrays.asList(JUMP, STRENGTH), model.getFilteredRoutineList());
     }
 
     /**

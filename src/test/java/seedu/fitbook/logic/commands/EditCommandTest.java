@@ -10,9 +10,9 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fitbook.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
 import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
 import org.junit.jupiter.api.Test;

@@ -3,9 +3,7 @@ package seedu.fitbook.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.fitbook.storage.JsonAdaptedClient.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.fitbook.testutil.Assert.assertThrows;
-
 import static seedu.fitbook.testutil.client.TypicalClients.BENSON;
-
 
 import java.util.ArrayList;
 import java.util.List;

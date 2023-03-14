@@ -11,9 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.fitbook.commons.exceptions.IllegalValueException;
 import seedu.fitbook.commons.util.JsonUtil;
 import seedu.fitbook.model.FitBook;
-
 import seedu.fitbook.testutil.client.TypicalClients;
-
 
 public class JsonSerializableFitBookTest {
 

@@ -1,13 +1,5 @@
 package seedu.fitbook.testutil.routine;
 
-import seedu.fitbook.logic.commands.AddCommand;
-import seedu.fitbook.logic.commands.EditCommand.EditClientDescriptor;
-import seedu.fitbook.model.client.Appointment;
-import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.tag.Tag;
-
-import java.util.Set;
-
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_CALORIE;
@@ -17,6 +9,14 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_WEIGHT;
+
+import java.util.Set;
+
+import seedu.fitbook.logic.commands.AddCommand;
+import seedu.fitbook.logic.commands.EditCommand.EditClientDescriptor;
+import seedu.fitbook.model.client.Appointment;
+import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.tag.Tag;
 
 /**
  * A utility class for Client.

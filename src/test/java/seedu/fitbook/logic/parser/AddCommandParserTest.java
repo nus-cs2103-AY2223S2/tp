@@ -104,8 +104,8 @@ public class AddCommandParserTest {
 
         // multiple weight - last weight accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + CALORIE_DESC_AMY + CALORIE_DESC_BOB + APPOINTMENT_DESC_DATE_ONE
-                        + WEIGHT_DESC_AMY + WEIGHT_DESC_BOB + GENDER_DESC_BOB,
+                        + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + CALORIE_DESC_AMY + CALORIE_DESC_BOB
+                        + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_AMY + WEIGHT_DESC_BOB + GENDER_DESC_BOB,
                 new AddCommand(expectedClient));
 
         // multiple tags - all accepted
@@ -205,8 +205,8 @@ public class AddCommandParserTest {
 
         // invalid appointment
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + WEIGHT_DESC_BOB + GENDER_DESC_BOB + TAG_DESC_HUSBAND + INVALID_APPOINTMENT_DESC + VALID_CALORIE_BOB,
-                Appointment.MESSAGE_CONSTRAINTS);
+                        + WEIGHT_DESC_BOB + GENDER_DESC_BOB + TAG_DESC_HUSBAND + INVALID_APPOINTMENT_DESC
+                        + VALID_CALORIE_BOB, Appointment.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
