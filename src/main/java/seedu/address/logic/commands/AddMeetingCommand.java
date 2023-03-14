@@ -100,7 +100,7 @@ public class AddMeetingCommand extends Command {
         if (model.hasMeeting(meetingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
-
+        model.addMeeting(meetingToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToAdd));
     }
 
