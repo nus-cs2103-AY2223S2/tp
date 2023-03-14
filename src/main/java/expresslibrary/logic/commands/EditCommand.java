@@ -1,6 +1,11 @@
 package expresslibrary.logic.commands;
 
-import static expresslibrary.logic.parser.CliSyntax.*;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_BOOK;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_NAME;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_PHONE;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_TAG;
 import static expresslibrary.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 

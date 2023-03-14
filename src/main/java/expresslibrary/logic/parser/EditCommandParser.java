@@ -1,7 +1,12 @@
 package expresslibrary.logic.parser;
 
 import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static expresslibrary.logic.parser.CliSyntax.*;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_BOOK;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_NAME;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_PHONE;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -28,7 +33,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_BOOK, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_BOOK, PREFIX_TAG);
 
         Index index;
 
