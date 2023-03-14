@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -96,9 +98,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Remark updatedRemark = personToEdit.getRemark();
         Deadline updatedDeadline = personToEdit.getDeadline();
+        Teacher updatedTeacher = personToEdit.getTeacher();
 
         return new Person(updatedName, updatedType, updatedTimeSlot, updatedAddress, updatedTags, updatedRemark,
-                updatedDeadline);
+                updatedDeadline, updatedTeacher);
     }
 
     @Override
