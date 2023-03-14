@@ -50,6 +50,10 @@ public class Project {
         this.status.setTrue();
     }
 
+    public void unmarkAsDone() {
+        this.status.setFalse();
+    }
+
     /**
      * Returns true if both projects have the same title.
      * This defines a weaker notion of equality between two projects.
