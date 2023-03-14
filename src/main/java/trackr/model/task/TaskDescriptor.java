@@ -26,7 +26,7 @@ public class TaskDescriptor {
     /**
      * Returns true if at least one field is edited.
      */
-    public boolean isAnyFieldEdited() {
+    public boolean isAnyFieldNonNull() {
         return CollectionUtil.isAnyNonNull(taskName, taskDeadline, taskStatus);
     }
 

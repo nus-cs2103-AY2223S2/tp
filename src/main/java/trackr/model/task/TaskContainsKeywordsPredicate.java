@@ -34,7 +34,7 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
     }
 
     public boolean isAnyFieldPresent() {
-        return isAnyFieldEdited() || taskNameKeywords != null;
+        return isAnyFieldNonNull() || taskNameKeywords != null;
     }
 
     @Override

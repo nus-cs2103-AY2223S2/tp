@@ -50,7 +50,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
                     ParserUtil.parseTaskStatus(argMultimap.getValue(PREFIX_STATUS)));
         }
 
-        if (!editTaskDescriptor.isAnyFieldEdited()) {
+        if (!editTaskDescriptor.isAnyFieldNonNull()) {
             throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
         }
 
