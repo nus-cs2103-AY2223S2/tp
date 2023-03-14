@@ -6,7 +6,10 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.UniqueCustomerList;
 import seedu.address.model.entity.person.UniquePersonList;
+import seedu.address.model.entity.person.UniqueTechnicianList;
+import seedu.address.model.service.UniqueVehicleList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,12 +18,14 @@ import seedu.address.model.entity.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final Object customers; // UniqueCustomerList customers;
-    private final Object staff; // UniqueStaffList staff;
+    // Yet to migrate from persons to customer and technicians
+    private final UniqueCustomerList customers; // UniqueCustomerList customers;
+    private final UniqueTechnicianList technicians; // UniqueStaffList staff;
     private final Object parts; // UniquePartsList parts;
     private final Object services; // UniqueServiceList services;
     private final Object appointments; // UniqueAppointmentList appointments;
-    private final Object garage; // UniqueGarage garage;
+    //    private final Object garage; // UniqueGarage garage;
+    private final UniqueVehicleList vehicles;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,12 +36,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        customers = null;
-        staff = null;
+        customers = new UniqueCustomerList();
+        technicians = new UniqueTechnicianList();
         parts = null;
         services = null;
         appointments = null;
-        garage = null;
+        // garage = null;
+        vehicles = new UniqueVehicleList();
     }
 
     public AddressBook() {}

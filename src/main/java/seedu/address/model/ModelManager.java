@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.service.Part;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
@@ -27,7 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> filteredCustomers;
-    private final FilteredList<Person> filteredStaff;
+    private final FilteredList<Technician> filteredTechnicians;
     private final FilteredList<Service> filteredServices;
     private final FilteredList<Vehicle> filteredVehicles;
     private final FilteredList<Part> filteredParts;
@@ -46,7 +47,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
         filteredCustomers = null;
-        filteredStaff = null;
+        filteredTechnicians = null;
         filteredServices = null; // new FilteredList<>(this.addressBook.getPersonList());
         filteredVehicles = null; // new FilteredList<>(this.addressBook.getPersonList());
         filteredParts = null; // new FilteredList<>(this.addressBook.getPersonList());
