@@ -58,19 +58,6 @@ public class Task {
     }
 
     /**
-     * Supplies the name of the person assigned to the current task when requested.
-     * @return name of the person
-     */
-    public String getPersonName() {
-        return this.personName;
-    }
-
-    public String getDeadlineDate() {
-        return this.deadlineDate.toString();
-    }
-
-
-    /**
      * Changes status of current task as done by assigning isDone as true.
      */
     public String mark() {
