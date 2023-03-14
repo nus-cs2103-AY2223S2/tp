@@ -13,7 +13,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Booking {
-    
+
     public static final String MESSAGE_CONSTRAINTS = "Appointment booking should adhere to the following conventions: \n" +
             "1. Format should be DD-MM-YYYY HH:mm\n" +
             "2.'DD' and 'MM' values should be valid for the calendar\n" +
@@ -60,5 +60,6 @@ public class Booking {
         }
     }*/
 
-    public String getBookingDate() { return date; }
+    @Override
+    public String toString() { return date; }
 }

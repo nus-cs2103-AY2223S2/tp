@@ -4,11 +4,10 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.*;
 
 import seedu.address.model.person.*;
+import seedu.address.model.appointment.Booking;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;

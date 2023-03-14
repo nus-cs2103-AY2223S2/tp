@@ -3,9 +3,13 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Name;
+import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
+import seedu.address.model.person.*;
+
+import java.util.List;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class AppointmentCommand extends Command {
 
@@ -35,9 +39,22 @@ public class AppointmentCommand extends Command {
         if (model.hasAppointment(appointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
-
-        model.bookAppointment(appointment);
-        return new CommandResult(String.format(fullSuccessMessage(appointment), appointment));
+        Name patientNameAppointment = appointment.getName();
+        List<Person> patients = model.getFilteredPersonList();
+        Person appointmentPatient = null;
+        for (Person patient : patients) {
+            Name otherPatientNameAppointment = patient.getName();
+            if (patientNameAppointment.equals(otherPatientNameAppointment)) {
+                appointmentPatient = patient;
+            }
+        }
+        try {
+            model.bookAppointment(appointment);
+            appointmentPatient.addPatientAppointment(appointment);
+        } catch (DuplicateAppointmentException e) {
+        }
+        String s = appointmentPatient.patientAppointmentstoString();
+        return new CommandResult(String.format(fullSuccessMessage(appointment) + s, appointment));
     }
 
     public String getPatientName(Appointment appointment) {

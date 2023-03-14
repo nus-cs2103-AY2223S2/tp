@@ -119,6 +119,7 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    /*
     @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
@@ -129,6 +130,7 @@ public class ModelManager implements Model {
         addressBook.bookAppointment(appointment);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+    */
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -164,6 +166,18 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public void bookAppointment(Appointment appointment) {
+        addressBook.bookAppointment(appointment);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
 }

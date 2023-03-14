@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.UniqueAppointmentList;
+import seedu.address.model.appointment.HospitalAppointmentList;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -18,7 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueAppointmentList appointments;
+    private final HospitalAppointmentList appointments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,7 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        appointments = new UniqueAppointmentList();
+        appointments = new HospitalAppointmentList();
     }
 
     public AddressBook() {}
@@ -106,12 +106,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     // appointment-level operations
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        return appointments.contains(appointment);
+        return appointments.isADuplicateAppointment(appointment);
     }
 
     public void bookAppointment(Appointment appointment) {
         appointments.bookAppointment(appointment);
     }
+
     //// util methods
 
     @Override

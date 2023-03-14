@@ -91,4 +91,5 @@ public interface Model {
     boolean hasAppointment(Appointment appointment);
 
     void bookAppointment(Appointment appointment);
+
 }
