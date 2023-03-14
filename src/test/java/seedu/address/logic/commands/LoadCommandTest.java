@@ -18,7 +18,7 @@ import seedu.address.model.UserPrefs;
 
 public class LoadCommandTest {
 
-    private static final Path PATH = Paths.get("src", "test", "data", "edumate.json");
+    private static final Path PATH = Paths.get("src", "test", "data", "SampleData", "fullSampleData.json");
     private static final Path DIFF_PATH = Paths.get("src", "test", "data", "different.json");
     private static final LoadCommand LOAD_COMMAND = new LoadCommand(PATH);
     private static final LoadCommand DIFF_COMMAND = new LoadCommand(DIFF_PATH);

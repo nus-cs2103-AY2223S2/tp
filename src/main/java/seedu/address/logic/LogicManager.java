@@ -13,7 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.EduMateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.EduMate;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.person.Person;
@@ -25,6 +24,8 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    public static final String FILE_GET_ERROR_MESSAGE = "File not found. Aborting action.";
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -53,7 +54,9 @@ public class LogicManager implements Logic {
             if (commandResult.isSave()) {
                 storage.saveEduMate(model.getEduMate(), filePath);
             } else if (commandResult.isLoad()) {
-                ReadOnlyEduMate readOnlyEduMate = storage.readEduMate(filePath).orElseGet(EduMate::new);
+                ReadOnlyEduMate readOnlyEduMate =
+                        storage.readEduMate(filePath)
+                                .orElseThrow(() -> new CommandException(FILE_GET_ERROR_MESSAGE));
                 model.setEduMate(readOnlyEduMate);
             }
             storage.saveEduMate(model.getEduMate());
