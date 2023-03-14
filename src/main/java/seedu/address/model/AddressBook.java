@@ -8,10 +8,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
-import seedu.address.model.entity.person.UniqueCustomerList;
 import seedu.address.model.entity.person.UniquePersonList;
-import seedu.address.model.entity.person.UniqueTechnicianList;
-import seedu.address.model.service.UniqueVehicleList;
+import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
+import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.service.Vehicle;
 
 /**
@@ -21,14 +20,14 @@ import seedu.address.model.service.Vehicle;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    // Yet to migrate from persons to customer and technicians
-    private final UniqueCustomerList customers; // UniqueCustomerList customers;
-    private final UniqueTechnicianList technicians; // UniqueStaffList staff;
+    private final Shop shop;
+    // Merge below into Shop
+    //    private final UniqueCustomerList customers; // UniqueCustomerList customers;
+    //    private final UniqueTechnicianList technicians; // UniqueStaffList staff;
+    //    private final Object services; // UniqueServiceList services;
+    //    private final Object appointments; // UniqueAppointmentList appointments;
+    //    private final UniqueVehicleList vehicles;
     private final Object parts; // UniquePartsList parts;
-    private final Object services; // UniqueServiceList services;
-    private final Object appointments; // UniqueAppointmentList appointments;
-    //    private final Object garage; // UniqueGarage garage;
-    private final UniqueVehicleList vehicles;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -39,13 +38,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        customers = new UniqueCustomerList();
-        technicians = new UniqueTechnicianList();
+        //        customers = new UniqueCustomerList();
+        //        technicians = new UniqueTechnicianList();
+        //        services = null;
+        //        appointments = null;
+        //        vehicles = new UniqueVehicleList();
         parts = null;
-        services = null;
-        appointments = null;
-        // garage = null;
-        vehicles = new UniqueVehicleList();
+        shop = new Shop();
     }
 
     public AddressBook() {}
@@ -128,7 +127,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasCustomer(Customer person) {
         requireNonNull(person);
-        return customers.contains(person);
+        return shop.hasCustomer(person.getId());
     }
 
     /**
@@ -136,7 +135,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addCustomer(Customer p) {
-        customers.add(p);
+        shop.addCustomer(p);
     }
 
     /**
@@ -145,8 +144,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     public void setCustomer(Customer target, Customer editedPerson) {
-        requireNonNull(editedPerson);
-        customers.setCustomer(target, editedPerson);
+        shop.setCustomer(target, editedPerson);
     }
 
     /**
@@ -154,7 +152,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeCustomer(Customer key) {
-        customers.remove(key);
+        shop.removeCustomer(key);
     }
 
     /**
@@ -162,12 +160,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setCustomers(List<Customer> persons) {
-        customers.setCustomers(persons);
+        shop.setCustomers(persons);
     }
 
     @Override
     public ObservableList<Customer> getCustomerList() {
-        return customers.asUnmodifiableObservableList();
+        return shop.getCustomerList();
     }
 
     // --------------------------------------------------
@@ -178,7 +176,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasTechnician(Technician person) {
         requireNonNull(person);
-        return technicians.contains(person);
+        return shop.hasTechnician(person);
     }
 
     /**
@@ -186,7 +184,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addTechnician(Technician p) {
-        technicians.add(p);
+        shop.addTechnician(p);
     }
 
     /**
@@ -195,8 +193,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     public void setTechnician(Technician target, Technician editedPerson) {
-        requireNonNull(editedPerson);
-        technicians.setTechnician(target, editedPerson);
+        shop.setTechnician(target, editedPerson);
     }
 
     /**
@@ -204,7 +201,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeTechnician(Technician key) {
-        technicians.remove(key);
+
+        shop.removeTechnician(key);
     }
 
     /**
@@ -212,31 +210,37 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setTechnicians(List<Technician> persons) {
-        technicians.setTechnicians(persons);
+        shop.setTechnicians(persons);
     }
 
     @Override
     public ObservableList<Technician> getTechnicianList() {
-        return technicians.asUnmodifiableObservableList();
+        return shop.getTechnicianList();
     }
 
     // --------------------------------------------------
     //// vehicle-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Checks if vehicle is in the shop
+     *
+     * @param vehicleId Vehicle ID to check
      */
-    public boolean hasVehicle(Vehicle vehicle) {
-        requireNonNull(vehicle);
-        return vehicles.contains(vehicle);
+    public boolean hasVehicle(int vehicleId) {
+        //        requireNonNull(vehicle);
+        //        return vehicles.contains(vehicle);
+        return shop.hasVehicle(vehicleId);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds vehicle to the shop
+     *
+     * @param customerId Id of vehicle's owner
+     * @param vehicle    Vehicle to be added
+     * @throws PersonNotFoundException Customer not registered with the shop
      */
-    public void addVehicle(Vehicle v) {
-        vehicles.add(v);
+    public void addVehicle(int customerId, Vehicle vehicle) throws PersonNotFoundException {
+        shop.addVehicle(customerId, vehicle);
     }
 
     /**
@@ -245,8 +249,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     public void setVehicle(Vehicle target, Vehicle editedVehicle) {
-        requireNonNull(editedVehicle);
-        vehicles.setVehicle(target, editedVehicle);
+        shop.setVehicle(target, editedVehicle);
     }
 
     /**
@@ -254,7 +257,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeVehicle(Vehicle key) {
-        vehicles.remove(key);
+        shop.removeVehicle(key);
     }
 
     /**
@@ -262,12 +265,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code vehicle} must not contain duplicate vehicle.
      */
     public void setVehicles(List<Vehicle> vehicles) {
-        this.vehicles.setVehicles(vehicles);
+        shop.setVehicles(vehicles);
     }
 
     @Override
     public ObservableList<Vehicle> getVehicleList() {
-        return vehicles.asUnmodifiableObservableList();
+        return shop.getVehicleList();
     }
 
     // --------------------------------------------------

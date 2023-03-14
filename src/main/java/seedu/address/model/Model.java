@@ -22,7 +22,7 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = nused -> true;
+    Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
     Predicate<Technician> PREDICATE_SHOW_ALL_TECHNICIANS = unused -> true;
     Predicate<Part> PREDICATE_SHOW_ALL_PARTS = unused -> true;
     Predicate<Service> PREDICATE_SHOW_ALL_SERVICES = unused -> true;

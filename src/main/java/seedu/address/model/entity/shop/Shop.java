@@ -25,7 +25,7 @@ import seedu.address.model.service.exception.VehicleNotFoundException;
 /**
  * A Shop is an entity that usually buy sells things.
  */
-public abstract class Shop implements ReadOnlyShop {
+public class Shop implements ReadOnlyShop {
     private final UniqueCustomerList customers = new UniqueCustomerList();
     private final UniqueVehicleList vehicles = new UniqueVehicleList();
     private final UniqueTechnicianList technicians = new UniqueTechnicianList();
@@ -52,95 +52,8 @@ public abstract class Shop implements ReadOnlyShop {
         resetData(toBeCopied);
     }
 
-    //// Get operations
-
-    @Override
-    public ObservableList<Customer> getCustomerList() {
-        return this.customers.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Vehicle> getVehicleList() {
-        return this.vehicles.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Technician> getTechnicianList() {
-        return this.technicians.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Service> getServiceList() {
-        return this.services.asUnmodifiableObservableList();
-    }
-
-    /**
-     * Get part map
-     *
-     * @return part map
-     */
-    public PartMap getPartMap() {
-        return this.partMap;
-    }
-
-    /**
-     * Get appointment list
-     *
-     * @return List of appointments
-     */
-    public List<Appointment> getAppointments() {
-        return this.appointments;
-    }
-
-    //// Add operations
-
-    /**
-     * Adds customer to the shop
-     *
-     * @param customer Customer to be added
-     */
-    public void addCustomer(Customer customer) {
-        this.customers.add(customer);
-    }
-
-    /**
-     * Checks if customer is registered
-     *
-     * @param customerId Customer ID to check
-     */
-    public boolean hasCustomer(int customerId) {
-        return this.getCustomerList().stream()
-                .anyMatch(c -> c.getId() == customerId);
-    }
-
-    /**
-     * Adds vehicle to the shop
-     *
-     * @param customerId Id of vehicle's owner
-     * @param vehicle    Vehicle to be added
-     * @throws PersonNotFoundException Customer not registered with the shop
-     */
-    public void addVehicle(int customerId, Vehicle vehicle) throws PersonNotFoundException {
-        for (var customer : customers) {
-            if (customer.getId() == customerId) {
-                customer.addVehicle(vehicle);
-                this.getVehicleList().add(vehicle);
-                return;
-            }
-        }
-        throw new PersonNotFoundException();
-    }
-
-    /**
-     * Checks if vehicle is in the shop
-     *
-     * @param vehicleId Vehicle ID to check
-     */
-    public boolean hasVehicle(int vehicleId) {
-        return this.getVehicleList().stream()
-                .anyMatch(v -> v.getId() == vehicleId);
-    }
-
+    // --------------------------------------------------
+    //// Service-level operations
     /**
      * Adds service to a vehicle
      *
@@ -167,6 +80,42 @@ public abstract class Shop implements ReadOnlyShop {
         return this.getServiceList()
                 .stream()
                 .anyMatch(s -> s.getId() == serviceId);
+    }
+
+    @Override
+    public ObservableList<Service> getServiceList() {
+        return this.services.asUnmodifiableObservableList();
+    }
+
+    // --------------------------------------------------
+    //// Appointment-level operations
+    /**
+     * Get appointment list
+     *
+     * @return List of appointments
+     */
+    public List<Appointment> getAppointments() {
+        return this.appointments;
+    }
+
+    /**
+     * Adds appointment to the appointment list
+     *
+     * @param appointment Appointment to be added
+     */
+    public void addAppointment(Appointment appointment) {
+        this.getAppointments().add(appointment);
+    }
+
+    // --------------------------------------------------
+    //// part-level operations
+    /**
+     * Get part map
+     *
+     * @return part map
+     */
+    public PartMap getPartMap() {
+        return this.partMap;
     }
 
     /**
@@ -197,23 +146,136 @@ public abstract class Shop implements ReadOnlyShop {
         return this.partMap.contains(partName);
     }
 
+    // --------------------------------------------------
+    //// customer-level operations
+
     /**
-     * Adds appointment to the appointment list
+     * Adds customer to the shop
      *
-     * @param appointment Appointment to be added
+     * @param customer Customer to be added
      */
-    public void addAppointment(Appointment appointment) {
-        this.getAppointments().add(appointment);
+    public void addCustomer(Customer customer) {
+        this.customers.add(customer);
     }
 
-    //// Edit, Update, Overwrite operations
-
+    /**
+     * Checks if customer is registered
+     *
+     * @param customerId Customer ID to check
+     */
+    public boolean hasCustomer(int customerId) {
+        return this.getCustomerList().stream()
+                .anyMatch(c -> c.getId() == customerId);
+    }
     /**
      * Replaces the contents of the customer list with {@code customers}.
      * {@code customers} must not contain duplicate customers.
      */
     public void setCustomers(List<Customer> customers) {
         this.customers.setCustomers(customers);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setCustomer(Customer target, Customer editedPerson) {
+        requireNonNull(editedPerson);
+        customers.setCustomer(target, editedPerson);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeCustomer(Customer key) {
+        customers.remove(key);
+    }
+
+    @Override
+    public ObservableList<Customer> getCustomerList() {
+        return this.customers.asUnmodifiableObservableList();
+    }
+
+    // --------------------------------------------------
+    //// technician-level operations
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasTechnician(Technician person) {
+        requireNonNull(person);
+        return technicians.contains(person);
+    }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addTechnician(Technician p) {
+        technicians.add(p);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setTechnician(Technician target, Technician editedPerson) {
+        requireNonNull(editedPerson);
+        technicians.setTechnician(target, editedPerson);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTechnician(Technician key) {
+        technicians.remove(key);
+    }
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setTechnicians(List<Technician> persons) {
+        technicians.setTechnicians(persons);
+    }
+
+    @Override
+    public ObservableList<Technician> getTechnicianList() {
+        return this.technicians.asUnmodifiableObservableList();
+    }
+
+    // --------------------------------------------------
+    //// Vehicle-level operations
+
+    /**
+     * Adds vehicle to the shop
+     *
+     * @param customerId Id of vehicle's owner
+     * @param vehicle    Vehicle to be added
+     * @throws PersonNotFoundException Customer not registered with the shop
+     */
+    public void addVehicle(int customerId, Vehicle vehicle) throws PersonNotFoundException {
+        for (var customer : customers) {
+            if (customer.getId() == customerId) {
+                customer.addVehicle(vehicle);
+                this.getVehicleList().add(vehicle);
+                return;
+            }
+        }
+        throw new PersonNotFoundException();
+    }
+
+    /**
+     * Checks if vehicle is in the shop
+     *
+     * @param vehicleId Vehicle ID to check
+     */
+    public boolean hasVehicle(int vehicleId) {
+        return this.getVehicleList().stream()
+                .anyMatch(v -> v.getId() == vehicleId);
     }
 
     /**
@@ -225,12 +287,30 @@ public abstract class Shop implements ReadOnlyShop {
     }
 
     /**
-     * Replaces the contents of the technician list with {@code technicians}.
-     * {@code technicians} must not contain duplicate technicians.
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setTechnicians(List<Technician> technicians) {
-        this.technicians.setTechnicians(technicians);
+    public void setVehicle(Vehicle target, Vehicle editedVehicle) {
+        requireNonNull(editedVehicle);
+        vehicles.setVehicle(target, editedVehicle);
     }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeVehicle(Vehicle key) {
+        vehicles.remove(key);
+    }
+
+
+    @Override
+    public ObservableList<Vehicle> getVehicleList() {
+        return this.vehicles.asUnmodifiableObservableList();
+    }
+
+    // --------------------------------------------------
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
