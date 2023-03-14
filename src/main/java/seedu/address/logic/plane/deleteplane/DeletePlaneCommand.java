@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.plane.Plane;
 
 /**
- * The command that deletes a plane from the address book.
+ * The command that deletes a plane from the Wingman app.
  */
 public class DeletePlaneCommand implements Command {
     /**
