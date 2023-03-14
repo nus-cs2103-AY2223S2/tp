@@ -21,6 +21,11 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SampleCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UntagCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.ContainsKeywordsPredicate;
@@ -127,6 +132,49 @@ public class EduMateParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD) instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " index") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD
+                + " " + Prefix.MODULE_TAG + "d") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD
+                + " " + Prefix.GROUP_TAG + "d") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD
+                + " " + Prefix.MODULE_TAG + "a") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD
+                + " " + Prefix.GROUP_TAG + "a") instanceof SortCommand);
+    }
+
+    @Test
+    public void parseCommand_tag() throws Exception {
+        assertTrue(parser.parseCommand(TagCommand.COMMAND_WORD
+                + " " + Prefix.MODULE_TAG + "CS2103T") instanceof TagCommand);
+        assertTrue(parser.parseCommand(TagCommand.COMMAND_WORD
+                + " 3 " + Prefix.MODULE_TAG + "CS2103T") instanceof TagCommand);
+    }
+
+    @Test
+    public void parseCommand_untag() throws Exception {
+        assertTrue(parser.parseCommand(UntagCommand.COMMAND_WORD
+                + " " + Prefix.MODULE_TAG + "CS2103T") instanceof UntagCommand);
+        assertTrue(parser.parseCommand(UntagCommand.COMMAND_WORD
+                + " 3 " + Prefix.MODULE_TAG + "CS2103T") instanceof UntagCommand);
+    }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        assertTrue(parser.parseCommand(ViewCommand.COMMAND_WORD) instanceof ViewCommand);
+        assertTrue(parser.parseCommand(ViewCommand.COMMAND_WORD + " 3") instanceof ViewCommand);
+        assertTrue(parser.parseCommand(ViewCommand.COMMAND_WORD
+                + " " + Prefix.NAME + "Amy Bee") instanceof ViewCommand);
+    }
+
+    @Test
+    public void parseCommand_sample() throws Exception {
+        assertTrue((parser.parseCommand(SampleCommand.COMMAND_WORD + " 25") instanceof SampleCommand));
     }
 
     @Test
