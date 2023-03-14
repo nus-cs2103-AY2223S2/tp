@@ -135,6 +135,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    public void handleDetails(PersonListPanel personListPanel) {
+        DetailsPopup detailsStage = new DetailsPopup(personListPanel);
+    }
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -177,6 +181,10 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isShowDetails()) {
+                handleDetails(personListPanel);
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
