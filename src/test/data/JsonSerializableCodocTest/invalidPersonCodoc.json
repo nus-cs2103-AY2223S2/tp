@@ -1,0 +1,8 @@
+{
+  "persons": [ {
+    "name": "Hans Muster",
+    "github": "9482424",
+    "email": "invalid@email!3e",
+    "linkedin": "linkedin.com/in/hans"
+  } ]
+}

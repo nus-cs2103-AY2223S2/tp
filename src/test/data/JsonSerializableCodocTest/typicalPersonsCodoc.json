@@ -1,0 +1,53 @@
+{
+  "_comment": "Codoc save file which contains the same Person values as in TypicalPersons#getTypicalCodoc()",
+  "persons" : [ {
+    "name" : "Alice Pauline",
+    "github" : "alice-Pauline",
+    "email" : "alice@example.com",
+    "linkedin" : "linkedin.com/in/alice",
+    "skills" : [ "python" ],
+    "modules" : [ ]
+  }, {
+    "name" : "Benson Meier",
+    "github" : "bensonmeier",
+    "email" : "johnd@example.com",
+    "linkedin" : "linkedin.com/in/alice",
+    "skills" : [ "java", "python" ],
+    "modules" : ["AY2223S1 CS1101S", "AY2223S1 CS1231S"]
+  }, {
+    "name" : "Carl Kurz",
+    "github" : "Carl-Kurz",
+    "email" : "heinz@example.com",
+    "linkedin" : "linkedin.com/in/carl123",
+    "skills" : [ ],
+    "modules" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "github" : "d4nielMeier",
+    "email" : "cornelia@example.com",
+    "linkedin" : "linkedin.com/in/daniel-Meier",
+    "skills" : [ "python" ],
+    "modules" : [ "AY2223S2 CS2109S" ]
+  }, {
+    "name" : "Elle Meyer",
+    "github" : "Elle-meyer",
+    "email" : "werner@example.com",
+    "linkedin" : "linkedin.com/in/elle101",
+    "skills" : [ ],
+    "modules" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "github" : "F1onaKunz",
+    "email" : "lydia@example.com",
+    "linkedin" : "linkedin.com/in/FIONA-kunz",
+    "skills" : [ ],
+    "modules" : [ ]
+  }, {
+    "name" : "George Best",
+    "github" : "george-b3st",
+    "email" : "anna@example.com",
+    "linkedin" : "linkedin.com/in/GeorGe123",
+    "skills" : [ ],
+    "modules" : [ ]
+  } ]
+}

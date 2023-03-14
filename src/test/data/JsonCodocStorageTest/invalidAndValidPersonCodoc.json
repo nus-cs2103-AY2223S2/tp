@@ -1,0 +1,13 @@
+{
+  "persons": [ {
+    "name": "Valid Person",
+    "github": "9482424",
+    "email": "hans@example.com",
+    "linkedin": "linkedin.com/in/hans"
+  }, {
+    "name": "Person With Invalid Github Field",
+    "github": "948as--df2424",
+    "email": "hans@example.com",
+    "linkedin": "linkedin.com/in/hans"
+  } ]
+}
