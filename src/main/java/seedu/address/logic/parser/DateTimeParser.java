@@ -37,6 +37,6 @@ public class DateTimeParser {
      * @return String output of the datetime.
      */
     public static String datetimeFormatter(LocalDateTime datetime) {
-        return datetime.format(DateTimeFormatter.ofPattern("DD-MM-YYYY HH:mm"));
+        return datetime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
     }
 }
