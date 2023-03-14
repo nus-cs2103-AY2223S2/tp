@@ -13,18 +13,18 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <HBox prefWidth="100">
+        <HBox prefWidth="100" alignment="CENTER_LEFT">
             <padding>
                 <Insets top="0" right="10" bottom="0" left="10" />
             </padding>
             <ImageView fx:id="isDone" fitWidth="30" fitHeight="30" style="-fx-padding: 0 0 4 0"/>
-            <Label fx:id="id" styleClass="cell_big_label" style="-fx-padding: 0 0 0 20">
+            <Label fx:id="id" styleClass="cell_middle_label" style="-fx-padding: 0 0 0 20">
                 <minWidth>
                     <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE" />
                 </minWidth>
             </Label>
-            <Label fx:id="taskName" text="\$first" styleClass="cell_big_label" />
+            <Label fx:id="taskName" text="\$first" styleClass="cell_middle_label" />
         </HBox>
     </GridPane>
 </HBox>
