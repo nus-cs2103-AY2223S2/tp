@@ -5,9 +5,9 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.awt.GraphicsEnvironment;
+
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIf;
-import org.junit.jupiter.api.condition.EnabledIf;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,21 +22,18 @@ public class CopyCommandTest {
     private final Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
     @Test
-    @EnabledIf(value = "java.awt.GraphicsEnvironment.isHeadless")
-    public void execute_copyValidIndexInHeadless_success() {
-        CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_PERSON);
-        Person personToCopy = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        String expectedMessage = CopyCommand.MESSAGE_NO_CLIPBOARD_FOUND + copyCommand.getInformation(personToCopy);
+    public void execute_copyValidIndex_success() {
+        if (GraphicsEnvironment.isHeadless()) {
+            CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_PERSON);
+            Person personToCopy = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+            String expectedMessage = CopyCommand.MESSAGE_NO_CLIPBOARD_FOUND + copyCommand.getInformation(personToCopy);
 
-        assertCommandSuccess(copyCommand, model, expectedMessage, expectedModel);
-    }
+            assertCommandSuccess(copyCommand, model, expectedMessage, expectedModel);
+        } else {
+            CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_PERSON);
 
-    @Test
-    @DisabledIf(value = "java.awt.GraphicsEnvironment.isHeadless")
-    public void execute_copyValidIndexNotInHeadless_success() {
-        CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_PERSON);
-
-        assertCommandSuccess(copyCommand, model, CopyCommand.MESSAGE_COPY_SUCCESS, expectedModel);
+            assertCommandSuccess(copyCommand, model, CopyCommand.MESSAGE_COPY_SUCCESS, expectedModel);
+        }
     }
 
     @Test
