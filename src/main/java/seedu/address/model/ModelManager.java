@@ -191,6 +191,7 @@ public class ModelManager implements Model {
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         selectedDeck = filteredDecks.get(zeroBasesIdx);
+        updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
 
     @Override
