@@ -21,6 +21,12 @@ public class UniqueClassLists implements Iterable<ClassList> {
     private final ObservableList<ClassList> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    public UniqueClassLists(ClassList classList) {
+        this.internalList.add(classList);
+    }
+
+    public UniqueClassLists() {
+    }
     /**
      * Returns true if the list contains an equivalent student as the given argument.
      */

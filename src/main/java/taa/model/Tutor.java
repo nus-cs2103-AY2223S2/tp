@@ -103,4 +103,8 @@ public class Tutor implements ReadOnlyAddressBook {
         return this.getAllStudents().asUnmodifiableObservableList();
     }
 
+    public ObservableList<ClassList> getClassList() {
+        return classLists.asUnmodifiableObservableList();
+    }
+
 }

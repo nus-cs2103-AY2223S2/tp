@@ -1,8 +1,10 @@
 package taa.model;
 
 import static java.util.Objects.requireNonNull;
+import static taa.model.util.SampleDataUtil.getSampleAddressBook;
 
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +14,7 @@ import taa.assignment.AssignmentList;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
 import taa.commons.util.CollectionUtil;
+import taa.model.student.Name;
 import taa.model.student.Student;
 
 /**
@@ -22,7 +25,9 @@ public class ModelManager implements Model {
 
     private final ClassList classList;
     private final UserPrefs userPrefs;
+    private final Tutor tutor;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<ClassList> filteredClassLists;
 
     private final AssignmentList assignmentList = new AssignmentList();
 
@@ -36,7 +41,9 @@ public class ModelManager implements Model {
 
         this.classList = new ClassList(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.tutor = new Tutor(new Name("James"), new HashSet<>(), new UniqueClassLists(this.classList));
         filteredStudents = new FilteredList<>(this.classList.getStudentList());
+        filteredClassLists = new FilteredList<ClassList>(this.tutor.getClassList());
     }
 
     public ModelManager() {
@@ -134,6 +141,12 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredClassLists(Predicate<ClassList> predicate) {
+        requireNonNull(predicate);
+        filteredClassLists.setPredicate(predicate);
     }
 
     @Override

@@ -4,18 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import taa.commons.core.Messages;
-import taa.logic.commands.AddStudentCommand;
-import taa.logic.commands.ClearCommand;
-import taa.logic.commands.Command;
-import taa.logic.commands.DeleteStudentCommand;
-import taa.logic.commands.EditStudentCommand;
-import taa.logic.commands.ExitCommand;
-import taa.logic.commands.FindCommand;
-import taa.logic.commands.HelpCommand;
-import taa.logic.commands.ListCommand;
-import taa.logic.commands.MarkAttendanceCommand;
-import taa.logic.commands.RemarkCommand;
-import taa.logic.commands.UnmarkAttendanceCommand;
+import taa.logic.commands.*;
 import taa.logic.parser.exceptions.ParseException;
 
 /**
@@ -77,6 +66,9 @@ public class TaaParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ListByClassCommand.COMMAND_WORD:
+            return new ListByClassCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

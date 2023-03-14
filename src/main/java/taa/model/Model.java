@@ -95,6 +95,8 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
+    void updateFilteredClassLists(Predicate<ClassList> predicate);
+
     void addAssignment(String assignmentName);
 
     void deleteAssignment(String assignmentName);
