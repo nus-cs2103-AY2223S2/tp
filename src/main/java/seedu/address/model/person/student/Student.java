@@ -21,6 +21,10 @@ import seedu.address.model.tag.Tag;
  * Represents a Student object extends from Person class.
  */
 public class Student extends Person {
+
+    protected Phone parentNumber;
+    protected Name parentName;
+    protected Relationship rls;
     private final IndexNumber indexNumber;
     private final Sex sex;
     private final Age age;
@@ -32,9 +36,6 @@ public class Student extends Person {
     private Set<Test> test = new HashSet<>();
     private Set<Tag> tags;
     private Comment comment;
-    protected Phone parentNumber;
-    protected Name parentName;
-    protected Relationship rls;
 
     /**
      * Returns a Student object that stores information about the student particulars.

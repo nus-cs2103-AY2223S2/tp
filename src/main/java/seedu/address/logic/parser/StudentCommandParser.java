@@ -55,7 +55,6 @@ import seedu.address.model.person.student.Attendance;
 import seedu.address.model.person.student.Cca;
 import seedu.address.model.person.student.Homework;
 import seedu.address.model.person.student.IndexNumber;
-import seedu.address.model.person.student.ParentName;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.Test;
 import seedu.address.model.tag.Tag;
