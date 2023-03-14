@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import arb.logic.commands.CommandTestUtil;
 import arb.logic.commands.ExitCommand;
 import arb.logic.commands.HelpCommand;
 import arb.logic.commands.client.AddClientCommand;
@@ -22,13 +23,16 @@ import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import arb.logic.commands.client.FindClientCommand;
 import arb.logic.commands.client.ListClientCommand;
+import arb.logic.commands.client.SortClientCommand;
 import arb.logic.commands.project.AddProjectCommand;
 import arb.logic.commands.project.ClearProjectCommand;
+import arb.logic.commands.project.DeleteProjectCommand;
 import arb.logic.commands.project.EditProjectCommand;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
 import arb.logic.commands.project.FindProjectCommand;
 import arb.logic.commands.project.ListProjectCommand;
 import arb.logic.commands.project.MarkProjectCommand;
+import arb.logic.commands.project.SortProjectCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
 import arb.model.client.NameContainsKeywordsPredicate;
@@ -40,6 +44,7 @@ import arb.testutil.EditClientDescriptorBuilder;
 import arb.testutil.EditProjectDescriptorBuilder;
 import arb.testutil.ProjectBuilder;
 import arb.testutil.ProjectUtil;
+import arb.testutil.TypicalProjectSortingOptions;
 
 public class AddressBookParserTest {
 
@@ -80,22 +85,19 @@ public class AddressBookParserTest {
         assertEquals(new DeleteClientCommand(INDEX_FIRST), command);
     }
 
-    /*
     @Test
     public void parseCommand_deleteProject() throws Exception {
         DeleteProjectCommand command = (DeleteProjectCommand) parser.parseCommand(
-        DeleteProjecttCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+                DeleteProjectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new DeleteProjectCommand(INDEX_FIRST), command);
     }
-     */
 
     @Test
     public void parseCommand_editClient() throws Exception {
         Client client = new ClientBuilder().build();
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
-        EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD
-                + " " + INDEX_FIRST.getOneBased() + " "
-                + ClientUtil.getEditClientDescriptorDetails(descriptor));
+        EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
         assertEquals(new EditClientCommand(INDEX_FIRST, descriptor), command);
     }
 
@@ -130,6 +132,19 @@ public class AddressBookParserTest {
         FindProjectCommand command = (FindProjectCommand) parser.parseCommand(
                 FindProjectCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindProjectCommand(new TitleContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_sortClient() throws Exception {
+        assertTrue(parser.parseCommand(SortClientCommand.COMMAND_WORD) instanceof SortClientCommand);
+        assertTrue(parser.parseCommand(SortClientCommand.COMMAND_WORD + " 3") instanceof SortClientCommand);
+    }
+
+    @Test
+    public void parseCommand_sortProject() throws Exception {
+        SortProjectCommand sortProjectCommand = (SortProjectCommand) parser.parseCommand(
+                SortProjectCommand.COMMAND_WORD + CommandTestUtil.SORTING_OPTION_DESC);
+        assertEquals(new SortProjectCommand(TypicalProjectSortingOptions.BY_DEADLINE), sortProjectCommand);
     }
 
     @Test

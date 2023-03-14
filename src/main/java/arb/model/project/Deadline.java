@@ -15,7 +15,7 @@ import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
  * Represents a Project's deadline date in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline must be in a recognisable format, e.g. DD/MM/YYYY or \'3pm tomorrow\'.";
@@ -63,6 +63,11 @@ public class Deadline {
         return other == this // short circuit if same object
                 || (other instanceof Deadline) // handles null
                 && dueDate.equals(((Deadline) other).dueDate); // checks date
+    }
+
+    @Override
+    public int compareTo(Deadline otherDeadline) {
+        return this.dueDate.compareTo(otherDeadline.dueDate);
     }
 
     @Override

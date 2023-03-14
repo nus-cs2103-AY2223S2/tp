@@ -18,8 +18,10 @@ public class TitleContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TitleContainsKeywordsPredicate firstPredicate = new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
-        TitleContainsKeywordsPredicate secondPredicate = new TitleContainsKeywordsPredicate(secondPredicateKeywordList);
+        TitleContainsKeywordsPredicate firstPredicate = new TitleContainsKeywordsPredicate(
+                firstPredicateKeywordList);
+        TitleContainsKeywordsPredicate secondPredicate = new TitleContainsKeywordsPredicate(
+                secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
@@ -40,7 +42,7 @@ public class TitleContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
         TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.singletonList("Sky"));
         assertTrue(predicate.test(new ProjectBuilder().withTitle("Sky Painting").build()));
@@ -59,7 +61,7 @@ public class TitleContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_titleDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ProjectBuilder().withTitle("Sky Painting").build()));
@@ -69,8 +71,8 @@ public class TitleContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ProjectBuilder().withTitle("Sky Painting").build()));
 
         // Keywords match deadline but does not match title
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("3pm"));
-        assertFalse(predicate.test(new ProjectBuilder().withTitle("Sky Painting").withDeadline("3pm 2023-03-03")
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("2000-01-01"));
+        assertFalse(predicate.test(new ProjectBuilder().withTitle("Sky Painting").withDeadline("2000-01-01")
                 .build()));
     }
 }

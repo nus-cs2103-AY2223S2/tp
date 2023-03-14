@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import arb.commons.core.index.Index;
+import arb.commons.core.sorting.ProjectSortingOption;
 import arb.commons.util.StringUtil;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Email;
@@ -34,6 +35,20 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code sortingOption} into an {@code ProjectSortingOption} and returns it. Leading and
+     * trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code sortingOption} is invalid.
+     */
+    public static ProjectSortingOption parseSortingOption(String sortingOption) throws ParseException {
+        String trimmedSortingOption = sortingOption.trim();
+        String lowercaseTrimmedSortingOption = trimmedSortingOption.toLowerCase();
+        if (!ProjectSortingOption.isValidSortingOption(lowercaseTrimmedSortingOption)) {
+            throw new ParseException(ProjectSortingOption.MESSAGE_CONSTRAINTS);
+        }
+        return ProjectSortingOption.getSortingOption(lowercaseTrimmedSortingOption);
     }
 
     /**

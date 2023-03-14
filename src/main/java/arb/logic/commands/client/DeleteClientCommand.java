@@ -14,11 +14,11 @@ import arb.model.Model;
 import arb.model.client.Client;
 
 /**
- * Deletes a client identified using it's displayed index from the address book.
+ * Deletes a client identified using its displayed index from the address book.
  */
 public class DeleteClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete-client";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the client identified by the index number used in the displayed client list.\n"
@@ -29,6 +29,9 @@ public class DeleteClientCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteClientCommand to delete the specified {@code Client}
+     */
     public DeleteClientCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -36,10 +39,14 @@ public class DeleteClientCommand extends Command {
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
         requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredClientList();
+        List<Client> lastShownList = model.getSortedClientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        }
+
+        if (currentListBeingShown != ListType.CLIENT) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LIST_CLIENT);
         }
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());

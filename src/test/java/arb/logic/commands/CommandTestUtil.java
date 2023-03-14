@@ -3,6 +3,7 @@ package arb.logic.commands;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.PREFIX_OPTION;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static arb.testutil.Assert.assertThrows;
@@ -46,6 +47,9 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_SKY_PAINTING = "6pm 2023-02-02";
     public static final String VALID_DEADLINE_OIL_PAINTING = "midnight 2023-05-05";
 
+    public static final String VALID_SORTING_OPTION_DEADLINE = "deadline";
+    public static final String VALID_SORTING_OPTION_TITLE = "name";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -60,6 +64,8 @@ public class CommandTestUtil {
     public static final String DEADLINE_DESC_SKY_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_SKY_PAINTING;
     public static final String DEADLINE_DESC_OIL_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_OIL_PAINTING;
 
+    public static final String SORTING_OPTION_DESC = " " + PREFIX_OPTION + VALID_SORTING_OPTION_DEADLINE;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -69,6 +75,9 @@ public class CommandTestUtil {
             + "watercolour painting&"; // '&' not allowed in titles
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
             + "ocean"; // 'ocean' is not able to be parsed into a date
+
+    public static final String INVALID_SORTING_OPTION_DESC = " " + PREFIX_OPTION
+            + "deadline&"; // does not match 'deadline' or 'name'
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -114,7 +123,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, ListType, ListType, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}, {@code currentListBeingShown} and {@code listToBeShown}.
      */
     public static void assertCommandSuccess(Command command, ListType currentListBeingShown, ListType listToBeShown,

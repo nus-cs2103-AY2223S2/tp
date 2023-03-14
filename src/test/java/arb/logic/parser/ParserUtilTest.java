@@ -3,6 +3,7 @@ package arb.logic.parser;
 import static arb.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST;
+import static arb.testutil.TypicalProjectSortingOptions.BY_DEADLINE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -29,6 +30,7 @@ public class ParserUtilTest {
 
     private static final String INVALID_TITLE = "Sk! P@inting";
     private static final String INVALID_DEADLINE = "ocean";
+    private static final String INVALID_SORTING_OPTION = "sky";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -38,6 +40,7 @@ public class ParserUtilTest {
 
     private static final String VALID_TITLE = "Sky Painting";
     private static final String VALID_DEADLINE = "3pm today";
+    private static final String VALID_SORTING_OPTION = "deadline";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -220,5 +223,26 @@ public class ParserUtilTest {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
+    }
+
+    @Test
+    public void parseSortingOption_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortingOption((String) null));
+    }
+
+    @Test
+    public void parseSortingOption_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSortingOption(INVALID_SORTING_OPTION));
+    }
+
+    @Test
+    public void parseSortingOption_validValueWithoutWhitespace_returnsSortingOption() throws Exception {
+        assertEquals(BY_DEADLINE, ParserUtil.parseSortingOption(VALID_SORTING_OPTION));
+    }
+
+    @Test
+    public void parseSortingOption_validValueWithWhitespace_returnsSortingOption() throws Exception {
+        String sortingOptionWithWhitespace = WHITESPACE + VALID_SORTING_OPTION + WHITESPACE;
+        assertEquals(BY_DEADLINE, ParserUtil.parseSortingOption(sortingOptionWithWhitespace));
     }
 }

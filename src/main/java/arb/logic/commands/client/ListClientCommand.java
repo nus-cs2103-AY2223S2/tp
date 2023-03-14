@@ -1,5 +1,6 @@
 package arb.logic.commands.client;
 
+import static arb.model.Model.CLIENT_NO_COMPARATOR;
 import static arb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static java.util.Objects.requireNonNull;
 
@@ -21,6 +22,7 @@ public class ListClientCommand extends Command {
     public CommandResult execute(Model model, ListType currentListBeingShown) {
         requireNonNull(model);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        model.updateSortedClientList(CLIENT_NO_COMPARATOR);
         return new CommandResult(MESSAGE_SUCCESS, ListType.CLIENT);
     }
 }
