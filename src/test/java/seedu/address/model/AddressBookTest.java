@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPets.ALICE;
-import static seedu.address.testutil.TypicalPets.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,23 +24,23 @@ import seedu.address.testutil.PetBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final PetPal petPal = new PetPal();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPetList());
+        assertEquals(Collections.emptyList(), petPal.getPetList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> petPal.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        PetPal newData = getTypicalPetPal();
+        petPal.resetData(newData);
+        assertEquals(newData, petPal);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Pet> newPets = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPets);
+        PetPalStub newData = new PetPalStub(newPets);
 
-        assertThrows(DuplicatePetException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePetException.class, () -> petPal.resetData(newData));
     }
 
     @Test
     public void hasPet_nullPet_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPet(null));
+        assertThrows(NullPointerException.class, () -> petPal.hasPet(null));
     }
 
     @Test
     public void hasPet_PetNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPet(ALICE));
+        assertFalse(petPal.hasPet(ALICE));
     }
 
     @Test
     public void hasPet_PetInAddressBook_returnsTrue() {
-        addressBook.addPet(ALICE);
-        assertTrue(addressBook.hasPet(ALICE));
+        petPal.addPet(ALICE);
+        assertTrue(petPal.hasPet(ALICE));
     }
 
     @Test
     public void hasPet_PetWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPet(ALICE);
+        petPal.addPet(ALICE);
         Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPet(editedAlice));
+        assertTrue(petPal.hasPet(editedAlice));
     }
 
     @Test
     public void getPetList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPetList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> petPal.getPetList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose Pets list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class PetPalStub implements ReadOnlyPetPal {
         private final ObservableList<Pet> Pets = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Pet> Pets) {
+        PetPalStub(Collection<Pet> Pets) {
             this.Pets.setAll(Pets);
         }
 
