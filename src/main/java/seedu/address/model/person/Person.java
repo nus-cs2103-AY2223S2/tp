@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -30,13 +31,16 @@ public abstract class Person {
     private final Nric nric;
     private final Age age;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<AvailableDate> availableDates = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Nric nric, Age age, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+                  Nric nric, Age age, Set<Tag> tags, Set<AvailableDate> availableDates) {
+
+        requireAllNonNull(name, phone, email, address, tags, availableDates);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +48,7 @@ public abstract class Person {
         this.nric = nric;
         this.age = age;
         this.tags.addAll(tags);
+        this.availableDates.addAll(availableDates);
     }
 
     public Name getName() {
@@ -76,6 +81,9 @@ public abstract class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+    public Set<AvailableDate> getAvailableDates() {
+        return Collections.unmodifiableSet(availableDates);
     }
 
     /**
@@ -112,7 +120,8 @@ public abstract class Person {
                 && otherPerson.getAddress().equals(address)
                 && otherPerson.getNric().equals(nric)
                 && otherPerson.getAge().equals(age)
-                && otherPerson.getTags().equals(tags);
+                && otherPerson.getTags().equals(tags)
+                && otherPerson.getAvailableDates().equals(availableDates);
     }
 
 }

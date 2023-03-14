@@ -1,10 +1,12 @@
 package seedu.address.model.person;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -20,9 +22,17 @@ public class Volunteer extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Volunteer(Name name, Phone phone, Email email,
-                     Address address, Nric nric, Age age, Set<Tag> tags) {
-        super(name, phone, email, address, nric, age, tags);
+    public Volunteer(Name name, Phone phone, Email email, Address address,
+            Nric nric, Age age, Set<Tag> tags, Set<AvailableDate> dateAvailabilities) {
+        super(name, phone, email, address, nric, age, tags, dateAvailabilities);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Volunteer(Name name, Phone phone, Email email, Address address,
+                     Nric nric, Age age, Set<Tag> tags) {
+        this(name, phone, email, address, nric, age, tags, new HashSet<>());
     }
 
     @Override
