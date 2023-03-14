@@ -38,7 +38,9 @@ public class TaskPredicateBuilder {
      * Sets the {@code TaskNameKeywords} of the {@code TaskContainsKeywordsPredicate} that we are building.
      */
     public TaskPredicateBuilder withTaskNameKeywords(List<String> taskNameKeywords) {
-        taskPredicate.setTaskNameKeywords(taskNameKeywords);
+        if (taskNameKeywords != null) {
+            taskPredicate.setTaskNameKeywords(taskNameKeywords);
+        }
         return this;
     }
 
@@ -46,7 +48,9 @@ public class TaskPredicateBuilder {
      * Sets the {@code TaskName} of the {@code TaskContainsKeywordsPredicate} that we are building.
      */
     public TaskPredicateBuilder withTaskName(String taskName) {
-        taskPredicate.setTaskName(new TaskName(taskName));
+        if (taskName != null) {
+            taskPredicate.setTaskName(new TaskName(taskName));
+        }
         return this;
     }
 
@@ -54,7 +58,9 @@ public class TaskPredicateBuilder {
      * Sets the {@code TaskDeadline} of the {@code TaskContainsKeywordsPredicate} that we are building.
      */
     public TaskPredicateBuilder withTaskDeadline(String taskDeadline) {
-        taskPredicate.setTaskDeadline(new TaskDeadline(taskDeadline));
+        if (taskDeadline != null) {
+            taskPredicate.setTaskDeadline(new TaskDeadline(taskDeadline));
+        }
         return this;
     }
 
@@ -62,7 +68,9 @@ public class TaskPredicateBuilder {
      * Sets the {@code TaskStatus} of the {@code TaskContainsKeywordsPredicate} that we are building.
      */
     public TaskPredicateBuilder withTaskStatus(String taskStatus) {
-        taskPredicate.setTaskStatus(new TaskStatus(taskStatus));
+        if (taskStatus != null) {
+            taskPredicate.setTaskStatus(new TaskStatus(taskStatus));
+        }
         return this;
     }
 

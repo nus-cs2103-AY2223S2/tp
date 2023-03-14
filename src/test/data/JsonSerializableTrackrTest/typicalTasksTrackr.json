@@ -6,6 +6,10 @@
     "taskDeadline": "01/01/2024",
     "taskStatus": "N"
   }, {
+    "taskName": "Throw Expired Food",
+    "taskDeadline": "01/01/2024",
+    "taskStatus": "D"
+  }, {
     "taskName": "Buy 5kg of Eggs",
     "taskDeadline": "11/10/2023",
     "taskStatus": "D"
