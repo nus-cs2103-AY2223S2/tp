@@ -87,5 +87,4 @@ public class DrugListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
