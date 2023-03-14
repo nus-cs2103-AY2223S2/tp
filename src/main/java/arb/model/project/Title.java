@@ -53,7 +53,7 @@ public class Title implements Comparable<Title> {
 
     @Override
     public int compareTo(Title otherTitle) {
-        return this.title.compareTo(otherTitle.title);
+        return this.fullTitle.compareTo(otherTitle.fullTitle);
     }
 
     @Override
