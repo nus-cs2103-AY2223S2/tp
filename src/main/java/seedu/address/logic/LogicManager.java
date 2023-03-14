@@ -59,12 +59,6 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model, officeConnectModel);
 
-        // example
-        // UUID randId = UUID.randomUUID();
-        // Task task3 =  new Task(new Subject("Task 3 plus"), new Content("Content3"), new Status(false),
-        //     new Id(randId.toString()));
-        // officeConnectModel.getTaskModelManager().addItem(task3);
-
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveTaskBook(officeConnectModel.getTaskModelManager().getReadOnlyRepository());
@@ -85,6 +79,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+    @Override
+    public OfficeConnectModel getOfficeConnectModel() {
+        return officeConnectModel;
     }
 
     @Override

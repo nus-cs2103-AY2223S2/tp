@@ -28,6 +28,7 @@ public class Status {
     public boolean isValue() {
         return value;
     }
+
     /**
      * Returns true if a given string is a valid status.
      */

@@ -24,4 +24,8 @@ public class ItemStub implements Relationship<ItemStub> {
             && otherItem.value.equals(value);
     }
 
+    @Override
+    public boolean hasSameId(ItemStub otherItem) {
+        return isSame(otherItem);
+    }
 }

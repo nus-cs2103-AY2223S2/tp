@@ -109,6 +109,7 @@ public class CommandTestUtil {
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
+            System.out.println(ce.getMessage());
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
@@ -121,6 +122,42 @@ public class CommandTestUtil {
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     * - the {@code actualOfficeConnectModel} matches {@code expectedOfficeConnectModel}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
+                                            Model expectedModel, OfficeConnectModel actualOfficeConnectModel,
+                                            OfficeConnectModel expectedOfficeConnectModel) {
+        try {
+            CommandResult result = command.execute(actualModel, actualOfficeConnectModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+            RepositoryModelManager<Task> actualModelTaskModelManager =
+                    actualOfficeConnectModel.getTaskModelManager();
+            RepositoryModelManager<Task> expectedModelTaskModelManager =
+                    expectedOfficeConnectModel.getTaskModelManager();
+            assertEquals(actualModelTaskModelManager, expectedModelTaskModelManager);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult,
+     *                                                      Model, OfficeConnectModel, OfficeConnectModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel, OfficeConnectModel actualOfficeConnectModel,
+                                            OfficeConnectModel expectedOfficeConnectModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel,
+                actualOfficeConnectModel, expectedOfficeConnectModel);
     }
 
     /**
