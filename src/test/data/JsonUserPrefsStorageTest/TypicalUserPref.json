@@ -7,5 +7,6 @@
       "y" : 100
     }
   },
-  "fitBookFilePath" : "fitbook.json"
+  "fitBookFilePath" : "fitbook.json",
+  "fitBookExerciseRoutineFilePath" : "exerciseroutine.json"
 }

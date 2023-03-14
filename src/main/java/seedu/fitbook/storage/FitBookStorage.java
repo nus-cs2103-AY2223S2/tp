@@ -32,10 +32,10 @@ public interface FitBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyFitBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param fitBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveFitBook(ReadOnlyFitBook addressBook) throws IOException;
+    void saveFitBook(ReadOnlyFitBook fitBook) throws IOException;
 
     /**
      * @see #saveFitBook(ReadOnlyFitBook)
