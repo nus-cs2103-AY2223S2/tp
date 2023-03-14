@@ -9,7 +9,7 @@ import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 
 /**
- * Finds and lists all clients in address book whose name contains any of the argument keywords.
+ * Finds and lists all clients in FitBook whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
