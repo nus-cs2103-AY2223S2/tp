@@ -1,10 +1,11 @@
 package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a module's code in the tracker.
- * Guarantees: immutable.
+ * Represents a module's code in the tracker.<p>
+ * Guarantees: immutable, is valid as declared in {@link #isValidCode(String)}.
  */
 public class ModuleCode {
 
@@ -23,13 +24,18 @@ public class ModuleCode {
      */
     public ModuleCode(String code) {
         requireNonNull(code);
+        checkArgument(isValidCode(code), MESSAGE_CONSTRAINTS);
         this.code = code;
     }
 
     /**
-     * Returns true if a given string is a valid module code.
+     * Returns true if {@code test} is a valid module code.
+     *
+     * @param test The string to check if it is a valid module code.
+     * @return True if {@code test} is a valid module code. Otherwise, false.
      */
     public static boolean isValidCode(String test) {
+        requireNonNull(test);
         return test.matches(VALIDATION_REGEX);
     }
 

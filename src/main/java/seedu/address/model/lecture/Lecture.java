@@ -14,9 +14,11 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.video.UniqueVideoList;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.exceptions.DuplicateVideoException;
+import seedu.address.model.video.exceptions.VideoNotFoundException;
 
 /**
- * Represents a lecture of a module that is in the tracker..
+ * Represents a lecture of a module.<p>
  * Guarantees: details are present and not null, field values are validated, immutable with the exception of video list.
  */
 public class Lecture implements ReadOnlyLecture {
@@ -46,6 +48,7 @@ public class Lecture implements ReadOnlyLecture {
      */
     public Lecture(LectureName name, Set<Tag> tags, List<Video> videos) {
         requireAllNonNull(name, tags, videos);
+
         this.name = name;
         this.tags.addAll(tags);
         this.videos.setVideos(videos);
@@ -94,15 +97,24 @@ public class Lecture implements ReadOnlyLecture {
     /**
      * Adds a video to the lecture.
      * The video must not already exist in the lecture.
+     *
+     * @param video The video to add.
+     * @throws DuplicateVideoException Indicates that {@code video} already exist in the module.
      */
     public void addVideo(Video video) {
         videos.add(video);
     }
 
     /**
-     * Replaces the given video {@code target} in the list with {@code editedVideo}.
-     * {@code target} must exist in the lecture.
-     * The video of {@code editedVideo} must not be the same as another existing video in the lecture.
+     * Replaces the given video {@code target} in the list with {@code editedVideo}.<p>
+     * {@code target} must exist in the lecture.<p>
+     * {@code editedVideo} must not have the same name as another existing video in the lecture.
+     *
+     * @param target The video to be replaced.
+     * @param editedVideo The video that will replace.
+     * @throws VideoNotFoundException Indicates that {@code target} does not exist in the lecture.
+     * @throws DuplicateVideoException Indicates that {@code editedVideo} is the same as another existing
+     *                                 video in the lecture.
      */
     public void setVideo(Video target, Video editedVideo) {
         requireNonNull(editedVideo);
@@ -111,17 +123,22 @@ public class Lecture implements ReadOnlyLecture {
     }
 
     /**
-     * Removes {@code key} from this {@code Lecture}.
+     * Removes the given video {@code key} from this {@code Lecture}.<p>
      * {@code key} must exist in the lecture.
-     * @param key
+     *
+     * @param key The video to be removed.
+     * @throws VideoNotFoundException Indicates that the video does not exist in the lecture.
      */
     public void removeVideo(Video key) {
         videos.remove(key);
     }
 
     /**
-     * Returns true if both lectures have the same fields.
+     * Returns true if both lectures have the same fields.<p>
      * This defines a stronger notion of equality between two lectures.
+     *
+     * @param other The lecture to check if it is equivalent to this lecture.
+     * @return True if both lectures have the same fields. Otherwise, false.
      */
     @Override
     public boolean equals(Object other) {

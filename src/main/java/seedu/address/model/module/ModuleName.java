@@ -3,7 +3,7 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a module's name in the tracker.
+ * Represents a module's name in the tracker.<p>
  * Guarantees: immutable.
  */
 public class ModuleName {
@@ -23,7 +23,7 @@ public class ModuleName {
     /**
      * Returns true if the name is empty. Otherwise, returns false.
      *
-     * @return true if the name is empty. Otherwise, false.
+     * @return True if the name is empty. Otherwise, false.
      */
     public boolean isEmpty() {
         return name.isEmpty();
