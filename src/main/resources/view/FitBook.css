@@ -93,7 +93,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Intel";
+    -fx-font-family: "Inter";
     -fx-text-fill: black;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -150,13 +150,13 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Intel";
+    -fx-font-family: "Inter";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Intel";
+    -fx-font-family: "Inter";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
@@ -176,7 +176,7 @@
 /*result display*/
 .result-display {
     -fx-background-color: derive(#F88017, 90%);
-    -fx-font-family: "Intel";
+    -fx-font-family: "Inter";
     -fx-font-size: 12pt;
     -fx-background-radius: 10;
     -fx-text-fill: black;
@@ -199,7 +199,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Intel";
+    -fx-font-family: "Inter";
     -fx-text-fill: white;
     -fx-padding: 2px;
     -fx-pref-height: 30px;
@@ -401,7 +401,7 @@
     -fx-border-right: none;
     -fx-border-width: 0 0 2 0;
     -fx-border-radius: 10;
-    -fx-font-family: "Intel";
+    -fx-font-family: "Inter";
     -fx-font-size: 12pt;
     -fx-text-fill: black;
 }
