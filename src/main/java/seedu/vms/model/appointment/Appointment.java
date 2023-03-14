@@ -5,46 +5,48 @@ import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import seedu.vms.commons.core.index.Index;
+import seedu.vms.model.GroupName;
+
 /**
  * Represents an Appointment in the vaccine management system.
  */
-public class Appointment {
-    private LocalDateTime appointmentTime;
-    private final String patientId;
+public class Appointment implements Comparable<Appointment> {
+    private final Index patientId;
+    private final LocalDateTime startTime;
+    private final LocalDateTime endTime;
+    private final GroupName vaccine;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(LocalDateTime appointmentTime, String patient) {
-        requireAllNonNull(appointmentTime, patient);
-        this.appointmentTime = appointmentTime;
-        this.patientId = patient;
-    }
-
-    public String getPatient() {
-        return patientId;
+    public Appointment(Index patientId, LocalDateTime startTime, LocalDateTime endTime, GroupName vaccine) {
+        requireAllNonNull(patientId, startTime, endTime, vaccine);
+        this.patientId = patientId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.vaccine = vaccine;
     }
 
     public LocalDateTime getAppointmentTime() {
-        return appointmentTime;
+        return startTime;
     }
 
-    public boolean setAppointmentTime(LocalDateTime appointmentTime) {
-        requireAllNonNull(appointmentTime);
-        this.appointmentTime = appointmentTime;
-        return true;
+    public LocalDateTime getAppointmentEndTime() {
+        return endTime;
     }
 
-    /**
-     * Returns true if both appointments have the same patient.
-     * This defines a weaker notion of equality between two patients.
-     */
-    public boolean isSamePatient(String otherPatientId) {
-        if (otherPatientId == patientId) {
-            return true;
-        }
+    public GroupName getVaccination() {
+        return vaccine;
+    }
 
-        return otherPatientId != null && otherPatientId.equals(patientId);
+    public int getPatient() {
+        return patientId.getOneBased();
+    }
+
+    @Override
+    public int compareTo(Appointment other) {
+        return startTime.compareTo(other.startTime);
     }
 
     /**
@@ -62,20 +64,22 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return otherAppointment.getPatient().equals(getPatient())
-                && otherAppointment.getAppointmentTime().equals(getAppointmentTime());
+        return otherAppointment.getPatient() == (getPatient())
+                && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
+                && otherAppointment.getAppointmentEndTime().equals(getAppointmentEndTime())
+                && otherAppointment.getVaccination().equals(getVaccination());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(appointmentTime, patientId);
+        return Objects.hash(patientId, startTime, endTime, vaccine);
     }
 
     @Override
     public String toString() {
-        return patientId
+        return getPatient()
                 + " has an appointment at "
-                + appointmentTime;
+                + startTime;
     }
 }
