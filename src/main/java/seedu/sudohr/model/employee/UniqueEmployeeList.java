@@ -194,7 +194,7 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     }
 
     /**
-     * Returns if two UniqueEmployeeList are equals by checking the contents of the lists.
+     * Returns if two lists are equal by checking the contents of the lists.
      * @param other the list to check against
      * @return a boolean value indicating equality.
      */

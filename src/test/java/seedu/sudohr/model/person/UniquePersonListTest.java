@@ -16,7 +16,6 @@ import java.util.*;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.UniqueEmployeeList;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
@@ -492,7 +491,7 @@ public class UniquePersonListTest {
     }
 
 
-    // edited person change to duplicated phone number as someone SudoHR
+    // edited person change to duplicated phone number shared with someone SudoHR
     @Test
     public void setPerson_editedPersonDuplicatedPhoneNumber_throwsDuplicatePhoneNumberException() {
         uniquePersonList.add(AMY);
@@ -503,7 +502,7 @@ public class UniquePersonListTest {
         assertThrows(DuplicatePhoneNumberException.class, () -> uniquePersonList.setEmployee(BOB, newBob));
     }
 
-    // edited person changed to duplicated phone number and email as someone in SudoHR
+    // edited person changed to duplicated phone number and email shared with someone in SudoHR
     @Test
     public void setPerson_editedPersonChangeEmailPhone_throwsDuplicatePhoneNumberException() {
         uniquePersonList.add(AMY);
