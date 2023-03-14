@@ -41,6 +41,9 @@ public class PersonCard extends UiPart<Region> {
 
     @FXML
     private Label medicalCondition;
+
+    @FXML
+    private Label age;
     @FXML
     private FlowPane tags;
 
@@ -51,7 +54,13 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName + person.getAge().toString());
+        name.setText(person.getName().fullName);
+        if (person.getAge() == null) {
+            age.setText("");
+        } else {
+            String s = person.getAge().toString();
+            age.setText(s);
+        }
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);

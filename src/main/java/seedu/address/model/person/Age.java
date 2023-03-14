@@ -12,7 +12,7 @@ public class Age {
             "Person's age should be integer (non-integer not allowed for this version)";
 
     // treat age also as a string
-    public final String age;
+    private String age;
 
     /**
      * Constructs a {@code Name}.
@@ -20,8 +20,6 @@ public class Age {
      * @param age A valid age.
      */
     public Age(String age) {
-        requireNonNull(age);
-        checkArgument(isValidAge(age), MESSAGE_CONSTRAINTS);
         this.age = age;
     }
 
@@ -40,12 +38,13 @@ public class Age {
             return false;
         }
     }
-
+    public String getAge() {
+        return age;
+    }
     @Override
     public String toString() {
         return age == "" ? "" : "(age: " + age + ")";
     }
-
     @Override
     public int hashCode() {
         return age.hashCode();

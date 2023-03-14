@@ -106,20 +106,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code int age} into an {@code Age}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code age} is invalid.
-     */
-    public static Age parseAge(String age) throws ParseException {
-        requireNonNull(age);
-        if (!Age.isValidAge(age)) {
-            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
-        }
-        return new Age(age);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -170,5 +156,19 @@ public class ParserUtil {
         requireNonNull(medicalCondition);
         String trimmed = medicalCondition.trim();
         return new MedicalCondition(medicalCondition);
+    }
+
+    /**
+     * Parses a {@code int age} into an {@code Age}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code age} is invalid.
+     */
+    public static Age parseAge(String age) throws ParseException {
+        requireNonNull(age);
+        if (!Age.isValidAge(age)) {
+            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+        }
+        return new Age(age);
     }
 }

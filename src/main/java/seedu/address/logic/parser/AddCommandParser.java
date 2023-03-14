@@ -48,17 +48,28 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
+        Optional<String> medicalAge = argMultimap.getValue(PREFIX_AGE);
         Optional<String> medicalString = argMultimap.getValue(PREFIX_MEDICAL);
         if (medicalString.isEmpty()) {
-            Person person = new Person(name, phone, email, address, age, tagList);
-            return new AddCommand(person);
+            if (medicalAge.isEmpty()) {
+                Person person = new Person(name, phone, email, address, tagList);
+                return new AddCommand(person);
+            } else {
+                Age age = ParserUtil.parseAge(medicalAge.get().toString());
+                Person person = new Person(name, phone, email, address, age, tagList);
+                return new AddCommand(person);
+            }
         } else {
             MedicalCondition medicalCondition = ParserUtil.parseMedicalCond(medicalString.get());
-            Person person = new Person(name, phone, email, address, age, tagList, medicalCondition);
-            return new AddCommand(person);
+            if (medicalAge.isEmpty()) {
+                Person person = new Person(name, phone, email, address, tagList, medicalCondition);
+                return new AddCommand(person);
+            } else {
+                Age age = ParserUtil.parseAge(medicalAge.get().toString());
+                Person person = new Person(name, phone, email, address, age, tagList, medicalCondition);
+                return new AddCommand(person);
+            }
         }
     }
 

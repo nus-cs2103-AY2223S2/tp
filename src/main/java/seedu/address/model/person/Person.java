@@ -22,13 +22,12 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Age age;
     private final Set<Tag> tags = new HashSet<>();
 
     private MedicalCondition medicalCondition;
-
+    private Age age;
     /**
-     * Every field must be present and not null, medical condition will be created without any tag
+     * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -38,11 +37,24 @@ public class Person {
         this.address = address;
         this.age = new Age("");
         this.tags.addAll(tags);
+        this.medicalCondition = new MedicalCondition("");
     }
 
     /**
-     * Every field must be present and not null.
+     * Every filed must be present and not null
      */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  MedicalCondition medicalCondition) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = age;
+        this.tags.addAll(tags);
+        this.medicalCondition = medicalCondition;
+    }
+
     public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -69,21 +81,6 @@ public class Person {
         this.medicalCondition = medicalCondition;
     }
 
-    /**
-     * Every filed must be present and not null
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
-                  MedicalCondition medicalCondition) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.age = age;
-        this.tags.addAll(tags);
-        this.medicalCondition = medicalCondition;
-    }
-
     public Name getName() {
         return name;
     }
@@ -96,12 +93,12 @@ public class Person {
         return email;
     }
 
-    public Age getAge() {
-        return age;
-    }
-
     public Address getAddress() {
         return address;
+    }
+
+    public Age getAge() {
+        return age;
     }
 
     public MedicalCondition getMedicalCondition() {

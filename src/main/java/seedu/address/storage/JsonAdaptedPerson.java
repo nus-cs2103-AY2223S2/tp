@@ -30,8 +30,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private String age = null;
-    private String medicalCondition = null;
+    private String medicalCondition;
+    private String age;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -47,21 +47,29 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+
         if (age != null) {
             this.age = age;
         } else {
             this.age = "";
         }
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
         if (medicalCondition != null) {
             this.medicalCondition = medicalCondition;
-        } else {
-            this.medicalCondition = "";
         }
     }
-
+    public JsonAdaptedPerson(String name, String phone, String email, String address, List<JsonAdaptedTag> tagged) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+    }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
@@ -71,15 +79,12 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-
-        if (source.getAge().age != null) {
-            age = source.getAge().age;
+        if (source.getAge().getAge() != null) {
+            age = source.getAge().getAge();
         }
-
         if (source.getMedicalCondition().getValue() != null) {
             medicalCondition = source.getMedicalCondition().getValue();
         }
-
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -128,12 +133,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Age modelAge = new Age(age);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-
+        final Age modelAge = new Age(age);
         final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
-
 
         if (age != null && medicalCondition != null) {
             return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelMedical);
