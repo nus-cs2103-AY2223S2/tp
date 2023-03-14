@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.core.index.Index;
+
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentBuilder;
