@@ -1,8 +1,10 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
@@ -15,21 +17,20 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Optional<Phone> phone;
-    private final Email email;
+    private final Optional<Email> email;
 
     // Data fields
-    private final Address address;
+    private final Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-//        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = Optional.ofNullable(phone);
-        this.email = email;
-        this.address = address;
+        this.email = Optional.ofNullable(email);
+        this.address = Optional.ofNullable(address);
         this.tags.addAll(tags);
     }
 
@@ -42,11 +43,11 @@ public class Person {
     }
 
     public Email getEmail() {
-        return email;
+        return email.orElse(null);
     }
 
     public Address getAddress() {
-        return address;
+        return address.orElse(null);
     }
 
     /**
@@ -101,13 +102,13 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        String phone = getPhone().toString() == "" ? "" : String.format("; Phone: %s", getPhone().toString());
+        String email = getEmail().toString() == "" ? "" : String.format(" Email: %s;", getEmail().toString());
+        String address = getAddress().toString() == "" ? "" : String.format(" Address: %s;", getAddress().toString());
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(phone)
+                .append(email)
+                .append(address);
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
