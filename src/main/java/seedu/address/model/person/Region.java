@@ -26,7 +26,7 @@ public class Region {
          */
         public String getDisplayString() {
             String allCapsRegion = this.toString();
-            String capitaliseFirstLetter = allCapsRegion.substring(0,1).toUpperCase()
+            String capitaliseFirstLetter = allCapsRegion.substring(0, 1).toUpperCase()
                     + allCapsRegion.substring(1).toLowerCase();
             return "Region: " + capitaliseFirstLetter;
         }
@@ -60,7 +60,7 @@ public class Region {
 
         THOMSON(Regions.CENTRAL), MARYMOUNT(Regions.CENTRAL), SIN_MING(Regions.CENTRAL),
         ANG_MO_KIO(Regions.CENTRAL), BISHAN(Regions.CENTRAL), SERANGOON_GARDENS(Regions.CENTRAL),
-        MACRITCHIE(Regions.CENTRAL), TOA_PAYOH(Regions.CENTRAL), GEYLANG(Regions.CENTRAL), 
+        MACRITCHIE(Regions.CENTRAL), TOA_PAYOH(Regions.CENTRAL), GEYLANG(Regions.CENTRAL),
         ALJUNIED(Regions.CENTRAL);
 
         private final Regions townRegion;
@@ -112,7 +112,7 @@ public class Region {
     /**
      * Returns the detected region based on the address <p>
      * Goes through all towns and attempts to find a match of a town name in the address.
-     * If the town name cannot be found, it returns {@code Regions.UNKNOWN} 
+     * If the town name cannot be found, it returns {@code Regions.UNKNOWN}
      * @param address address that we find to get the region from
      * @return detected region if there is one, {@code Regions.UNKNOWN} if no town is found
      */

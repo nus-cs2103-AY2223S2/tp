@@ -20,7 +20,7 @@ public class Address {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
-    public Regions region;
+    private Regions region; // Not final to allow user to edit region directly if detection fails
 
     /**
      * Constructs an {@code Address}.
