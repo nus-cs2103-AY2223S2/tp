@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import taa.commons.core.GuiSettings;
 import taa.logic.commands.exceptions.CommandException;
-import taa.model.AddressBook;
+import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.ReadOnlyAddressBook;
 import taa.model.ReadOnlyUserPrefs;
@@ -203,7 +203,7 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+            return new ClassList();
         }
     }
 

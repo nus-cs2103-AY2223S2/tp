@@ -1,17 +1,20 @@
 package taa.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import taa.model.AddressBook;
+import taa.model.ClassList;
 import taa.model.ReadOnlyAddressBook;
+import taa.model.Tutor;
+import taa.model.UniqueClassLists;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ClassList} with sample data.
  */
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
@@ -32,11 +35,14 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+        ClassList sampleAb = new ClassList();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }
-        return sampleAb;
+        UniqueClassLists classLists = new UniqueClassLists();
+        classLists.add(sampleAb);
+        Tutor tutor = new Tutor(new Name("James"), new HashSet<>(), classLists);
+        return tutor;
     }
 
     /**

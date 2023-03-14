@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import taa.model.AddressBook;
+import taa.model.ClassList;
 import taa.model.student.Student;
 
 /**
@@ -41,10 +41,10 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code ClassList} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static ClassList getTypicalAddressBook() {
+        ClassList ab = new ClassList();
         for (Student student : getTypicalPersons()) {
             ab.addStudent(student);
         }

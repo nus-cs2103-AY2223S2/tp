@@ -20,27 +20,27 @@ import taa.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ClassList classList;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
 
     private final AssignmentList assignmentList = new AssignmentList();
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given classList and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         CollectionUtil.requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.classList = new ClassList(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredStudents = new FilteredList<>(this.classList.getStudentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ClassList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -78,32 +78,32 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ClassList ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.classList.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return classList;
     }
 
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return addressBook.hasStudent(student);
+        return classList.hasStudent(student);
     }
 
     @Override
     public void deleteStudent(Student target) {
-        addressBook.removeStudent(target);
+        classList.removeStudent(target);
     }
 
     @Override
     public void addStudent(Student student) {
-        addressBook.addStudent(student);
+        classList.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
@@ -111,7 +111,7 @@ public class ModelManager implements Model {
     public void setStudent(Student target, Student editedStudent) {
         CollectionUtil.requireAllNonNull(target, editedStudent);
 
-        addressBook.setStudent(target, editedStudent);
+        classList.setStudent(target, editedStudent);
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -145,7 +145,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return classList.equals(other.classList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents);
     }

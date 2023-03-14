@@ -9,12 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import taa.commons.exceptions.IllegalValueException;
-import taa.model.AddressBook;
+import taa.model.ClassList;
 import taa.model.ReadOnlyAddressBook;
 import taa.model.student.Student;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable ClassList that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
@@ -41,20 +41,20 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code ClassList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public ClassList toModelType() throws IllegalValueException {
+        ClassList classList = new ClassList();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (addressBook.hasStudent(student)) {
+            if (classList.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            addressBook.addStudent(student);
+            classList.addStudent(student);
         }
-        return addressBook;
+        return classList;
     }
 
 }

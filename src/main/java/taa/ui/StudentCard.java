@@ -21,7 +21,7 @@ public class StudentCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on ClassList level 4</a>
      */
 
     public final Student student;
@@ -39,6 +39,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label groups;
     @FXML
+    private Label classes;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,6 +54,7 @@ public class StudentCard extends UiPart<Region> {
         attendance.setText(String.format("Attendance: %d/12", this.student.getNumWeeksPresent()));
         assignment.setText("Latest assignment submission: xxx");
         groups.setText("Groups: Group xxx");
+        classes.setText("Classes: Class xxx");
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

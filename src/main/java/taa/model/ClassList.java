@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import taa.assignment.AssignmentList;
 import taa.model.student.Student;
 import taa.model.student.UniqueStudentList;
 
@@ -12,9 +13,14 @@ import taa.model.student.UniqueStudentList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ClassList implements ReadOnlyAddressBook {
 
-    private final UniqueStudentList students;
+    private static int lastId = 0;
+
+    private UniqueStudentList students;
+    private AssignmentList assignments;
+    private int classId;
+    private int studentCount = 0;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,20 +30,40 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
+        assignments = new AssignmentList();
         students = new UniqueStudentList();
+        this.classId = ++lastId;
     }
 
-    public AddressBook() {}
+    public ClassList() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an ClassList using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ClassList(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
     //// list overwrite operations
+
+    /**
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameClassList(ClassList otherClassList) {
+        if (otherClassList == this) {
+            return true;
+        }
+
+        return otherClassList != null
+                && otherClassList.getClassId() == (getClassId());
+    }
+
+    public int getClassId() {
+        return this.classId;
+    }
+
 
     /**
      * Replaces the contents of the student list with {@code students}.
@@ -48,11 +74,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ClassList} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setStudents(newData.getStudentList());
     }
 
@@ -72,8 +97,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addStudent(Student p) {
         students.add(p);
+        this.studentCount += 1;
     }
 
+    public int getStudentCount() {
+        return this.studentCount;
+    }
+
+    public UniqueStudentList getUniqueStudentList() {
+        return this.students;
+    }
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the address book.
@@ -87,11 +120,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ClassList}.
      * {@code key} must exist in the address book.
      */
     public void removeStudent(Student key) {
         students.remove(key);
+        this.studentCount -= 1;
     }
 
     //// util methods
@@ -110,8 +144,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && students.equals(((AddressBook) other).students));
+                || (other instanceof ClassList // instanceof handles nulls
+                && students.equals(((ClassList) other).students));
     }
 
     @Override

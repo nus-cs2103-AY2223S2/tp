@@ -25,7 +25,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         Assertions.assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new ClassList(), new ClassList(modelManager.getAddressBook()));
     }
 
     @Test
@@ -94,15 +94,15 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder()
+        ClassList classList = new AddressBookBuilder()
                 .withPerson(TypicalPersons.ALICE)
                 .withPerson(TypicalPersons.BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        ClassList differentClassList = new ClassList();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(classList, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(classList, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,13 +114,13 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different classList -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentClassList, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = TypicalPersons.ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(classList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
@@ -128,6 +128,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(classList, differentUserPrefs)));
     }
 }

@@ -29,6 +29,7 @@ public class UniqueStudentList implements Iterable<Student> {
     private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+
     /**
      * Returns true if the list contains an equivalent student as the given argument.
      */
@@ -78,6 +79,16 @@ public class UniqueStudentList implements Iterable<Student> {
         if (!internalList.remove(toRemove)) {
             throw new StudentNotFoundException();
         }
+    }
+
+    /**
+     * Append the list of students to the list of students
+     * @param list
+     * @return
+     */
+    public UniqueStudentList appendList(UniqueStudentList list) {
+        this.internalList.addAll(list.internalList);
+        return this;
     }
 
     public void setStudents(UniqueStudentList replacement) {
