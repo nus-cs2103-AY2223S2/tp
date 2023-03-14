@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameAndPhoneContainsKeywordsPredicate;
@@ -64,14 +66,10 @@ public class FindCommand extends Command {
             return false;
         }
         FindCommand otherCmd = (FindCommand) other;
-        boolean sameNamePredicate = (namePredicate == null) ? otherCmd.namePredicate == null
-                : namePredicate.equals(((FindCommand) other).namePredicate);
-        boolean samePhonePredicate = (phonePredicate == null) ? otherCmd.phonePredicate == null
-                : phonePredicate.equals(((FindCommand) other).phonePredicate);
-        boolean sameNamePhonePredicate = (nameAndPhoneContainsKeywordsPredicate == null)
-                ? otherCmd.nameAndPhoneContainsKeywordsPredicate == null
-                : nameAndPhoneContainsKeywordsPredicate
-                .equals(((FindCommand) other).nameAndPhoneContainsKeywordsPredicate);
+        boolean sameNamePredicate = Objects.equals(namePredicate, otherCmd.namePredicate);
+        boolean samePhonePredicate = Objects.equals(phonePredicate, otherCmd.phonePredicate);
+        boolean sameNamePhonePredicate = Objects.equals(nameAndPhoneContainsKeywordsPredicate,
+                otherCmd.nameAndPhoneContainsKeywordsPredicate);
         return sameNamePredicate && samePhonePredicate && sameNamePhonePredicate;
     }
 }
