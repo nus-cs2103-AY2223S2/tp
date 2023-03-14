@@ -14,6 +14,7 @@ import seedu.address.model.fish.Email;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tank.TankName;
 import seedu.address.model.task.Description;
 
 /**
@@ -136,5 +137,20 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String} into an {@code TankName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code fullTankName} is invalid.
+     */
+    public static TankName parseTankName(String fullTankName) throws ParseException {
+        requireNonNull(fullTankName);
+        String trimmedDescription = fullTankName.trim();
+        if (!Description.isValidDescription(fullTankName)) {
+            throw new ParseException(TankName.MESSAGE_CONSTRAINTS);
+        }
+        return new TankName(trimmedDescription);
     }
 }

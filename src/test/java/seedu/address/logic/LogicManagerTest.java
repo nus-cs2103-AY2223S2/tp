@@ -29,6 +29,7 @@ import seedu.address.model.TankList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.fish.Fish;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonTankListStorage;
 import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -49,7 +50,9 @@ public class LogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage);
+        JsonTankListStorage tankListStorage = new JsonTankListStorage(temporaryFolder.resolve("tankList.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                taskListStorage, tankListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -79,7 +82,9 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage);
+        JsonTankListStorage tankListStorage = new JsonTankListStorage(temporaryFolder.resolve("tankList.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                taskListStorage, tankListStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
