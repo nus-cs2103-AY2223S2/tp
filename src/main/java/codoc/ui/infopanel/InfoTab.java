@@ -2,10 +2,13 @@ package codoc.ui.infopanel;
 
 import codoc.model.person.Person;
 import codoc.ui.UiPart;
+import codoc.commons.core.LogsCenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+
+import java.util.logging.Logger;
 
 /**
  * Panel containing detailed information about a person.
@@ -13,6 +16,7 @@ import javafx.scene.layout.StackPane;
 public class InfoTab extends UiPart<Region> {
 
     private static final String FXML = "InfoTab.fxml";
+    private final Logger logger = LogsCenter.getLogger(InfoTab.class);
 
     private DetailedInfo detailedInfo;
 
@@ -33,11 +37,11 @@ public class InfoTab extends UiPart<Region> {
         super(FXML);
         if (tab != null) {
             if (tab.equals("c")) {
-                detailedInfo = new DetailedContact();
+                detailedInfo = new DetailedContact(protagonist);
             } else if (tab.equals("m")) {
-                detailedInfo = new DetailedModule();
+                detailedInfo = new DetailedModule(protagonist);
             } else {
-                detailedInfo = new DetailedSkill();
+                detailedInfo = new DetailedSkill(protagonist);
             }
         }
 
