@@ -62,7 +62,19 @@ public class LogicManager implements Logic {
         }
         isExecuting = true;
         String commandText = commandQueue.poll();
-        new Thread(() -> parseCommand(commandText)).start();
+        new Thread(() -> attemptProcess(
+                () -> parseCommand(commandText))).start();
+    }
+
+
+    private void attemptProcess(Runnable process) {
+        try {
+            process.run();
+        } catch (Throwable deathEx) {
+            completeExecution(List.of(new CommandResult(
+                    deathEx.toString(),
+                    CommandResult.State.DEATH)));
+        }
     }
 
 
@@ -110,10 +122,11 @@ public class LogicManager implements Logic {
     }
 
 
-    private void completeExecution(List<CommandResult> results, Optional<Command> followUp) {
+    private synchronized void completeExecution(List<CommandResult> results, Optional<Command> followUp) {
         onExecutionComplete.accept(results);
         if (followUp.isPresent()) {
-            new Thread(() -> execute(followUp.get())).start();
+            new Thread(() -> attemptProcess(
+                    () -> execute(followUp.get()))).start();
             return;
         }
         isExecuting = false;

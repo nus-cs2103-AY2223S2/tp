@@ -102,6 +102,10 @@
   -fx-background-color: -fx-control-inner-background;
 }
 
+.result-message-death-color {
+  -fx-text-fill: #7721d2;
+}
+
 .result-message-error-color {
   -fx-text-fill: #d22121;
 }
