@@ -50,7 +50,7 @@ public class EduMateParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        assertEquals(new DeleteCommand(new ContactIndex(INDEX_FIRST_PERSON.getOneBased())), command);
     }
     @Test
     public void parseCommand_edit() throws Exception {

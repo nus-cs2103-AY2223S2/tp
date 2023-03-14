@@ -14,7 +14,6 @@ import static seedu.address.testutil.TypicalUser.LINUS;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -127,7 +126,7 @@ public class ViewCommandTest {
     public void compare_otherCommandInequality_false() {
         ViewCommand viewCommand = new ViewCommand("Lisa Meitner", null);
         AddCommand addCommand = new AddCommand(ALBERT);
-        DeleteCommand deleteCommand = new DeleteCommand(Index.fromZeroBased(1));
+        DeleteCommand deleteCommand = new DeleteCommand(new ContactIndex(1));
         assertNotEquals(addCommand, viewCommand);
         assertNotEquals(deleteCommand, viewCommand);
 
