@@ -31,7 +31,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new SupplierList(), new SupplierList(modelManager.getAddressBook()));
         assertEquals(new TaskList(), new TaskList(modelManager.getTaskList()));
     }
 
@@ -122,8 +122,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withSupplier(ALICE).withSupplier(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        SupplierList addressBook = new AddressBookBuilder().withSupplier(ALICE).withSupplier(BENSON).build();
+        SupplierList differentAddressBook = new SupplierList();
         TaskList taskList = new TaskListBuilder().withTask(SORT_INVENTORY_N).withTask(BUY_FLOUR_N).build();
         TaskList differentTaskList = new TaskList();
         UserPrefs userPrefs = new UserPrefs();

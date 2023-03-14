@@ -4,13 +4,13 @@ import javafx.collections.ObservableList;
 import trackr.model.supplier.Supplier;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an supplier list.
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlySupplierList {
 
     /**
      * Returns an unmodifiable view of the Supplier list.
-     * This list will not contain any duplicate persons.
+     * This list will not contain any duplicate suppliers.
      */
     ObservableList<Supplier> getSupplierList();
 

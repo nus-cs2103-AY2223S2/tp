@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import trackr.model.AddressBook;
+import trackr.model.SupplierList;
 import trackr.model.supplier.Supplier;
 
 /**
@@ -62,8 +62,8 @@ public class TypicalSuppliers {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static SupplierList getTypicalAddressBook() {
+        SupplierList ab = new SupplierList();
         for (Supplier person : getTypicalSuppliers()) {
             ab.addSupplier(person);
         }

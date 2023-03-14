@@ -17,7 +17,7 @@ import java.util.List;
 
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.exceptions.CommandException;
-import trackr.model.AddressBook;
+import trackr.model.SupplierList;
 import trackr.model.Model;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.supplier.Supplier;
@@ -62,8 +62,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditSupplierCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditSupplierCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -153,7 +153,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        SupplierList expectedAddressBook = new SupplierList(actualModel.getAddressBook());
         List<Supplier> expectedFilteredList = new ArrayList<>(actualModel.getFilteredSupplierList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));

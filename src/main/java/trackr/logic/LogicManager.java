@@ -13,7 +13,7 @@ import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.TrackrParser;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
-import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
@@ -57,12 +57,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlySupplierList getAddressBook() {
         return model.getAddressBook();
     }
 
     @Override
-    public ObservableList<Supplier> getFilteredPersonList() {
+    public ObservableList<Supplier> getFilteredSupplierList() {
         return model.getFilteredSupplierList();
     }
 

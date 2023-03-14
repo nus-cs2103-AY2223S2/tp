@@ -9,10 +9,10 @@ import trackr.model.supplier.Supplier;
 import trackr.model.supplier.UniqueSupplierList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the supplier-list level
+ * Duplicates are not allowed (by .isSameSupplier comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class SupplierList implements ReadOnlySupplierList {
 
     private final UniqueSupplierList suppliers;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         suppliers = new UniqueSupplierList();
     }
 
-    public AddressBook() {}
+    public SupplierList() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an supplier list using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public SupplierList(ReadOnlySupplierList toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -41,16 +41,16 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the supplier list with {@code supplier}.
-     * {@code supplier} must not contain duplicate persons.
+     * {@code supplier} must not contain duplicate suppliers.
      */
     public void setSuppliers(List<Supplier> persons) {
         this.suppliers.setSuppliers(persons);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code SupplierList} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlySupplierList newData) {
         requireNonNull(newData);
 
         setSuppliers(newData.getSupplierList());
@@ -59,35 +59,35 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code supplier} exists in the supplier list.
      */
-    public boolean hasSupplier(Supplier person) {
-        requireNonNull(person);
-        return suppliers.contains(person);
+    public boolean hasSupplier(Supplier supplier) {
+        requireNonNull(supplier);
+        return suppliers.contains(supplier);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a supplier to the supplier list.
+     * The supplier must not already exist in the supplier list.
      */
     public void addSupplier(Supplier p) {
         suppliers.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given person {@code target} in the list with {@code editedSupplier}.
+     * {@code target} must exist in the supplier list.
+     * The supplier identity of {@code editedSupplier} must not be the same as another existing supplier in the address book.
      */
-    public void setSupplier(Supplier target, Supplier editedPerson) {
-        requireNonNull(editedPerson);
+    public void setSupplier(Supplier target, Supplier editedSupplier) {
+        requireNonNull(editedSupplier);
 
-        suppliers.setSupplier(target, editedPerson);
+        suppliers.setSupplier(target, editedSupplier);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code SupplierList}.
+     * {@code key} must exist in the supplier list.
      */
     public void removeSupplier(Supplier key) {
         suppliers.remove(key);
@@ -97,7 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return suppliers.asUnmodifiableObservableList().size() + " persons";
+        return suppliers.asUnmodifiableObservableList().size() + " suppliers";
         // TODO: refine later
     }
 
@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && suppliers.equals(((AddressBook) other).suppliers));
+                || (other instanceof SupplierList // instanceof handles nulls
+                && suppliers.equals(((SupplierList) other).suppliers));
     }
 
     @Override

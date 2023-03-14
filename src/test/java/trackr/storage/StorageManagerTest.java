@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import trackr.commons.core.GuiSettings;
-import trackr.model.AddressBook;
+import trackr.model.SupplierList;
 import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.TaskList;
@@ -57,11 +57,11 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook originalAddressBook = getTypicalAddressBook();
+        SupplierList originalAddressBook = getTypicalAddressBook();
         TaskList originalTaskList = getTypicalTaskList();
         storageManager.saveTrackr(originalAddressBook, originalTaskList);
         ReadOnlyAddressBook retrievedAddressBook = storageManager.readAddressBook().get();
-        assertEquals(originalAddressBook, new AddressBook(retrievedAddressBook));
+        assertEquals(originalAddressBook, new SupplierList(retrievedAddressBook));
         ReadOnlyTaskList retrievedTaskList = storageManager.readTaskList().get();
         assertEquals(originalTaskList, new TaskList(retrievedTaskList));
     }

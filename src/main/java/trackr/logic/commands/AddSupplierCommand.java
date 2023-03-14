@@ -14,7 +14,7 @@ import trackr.model.supplier.Supplier;
 /**
  * Adds a supplier to Trackr.
  */
-public class AddCommand extends Command {
+public class AddSupplierCommand extends Command {
 
     public static final String COMMAND_WORD = "add_supplier";
     public static final String COMMAND_WORD_SHORTCUT = "add_s";
@@ -34,17 +34,17 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "wheat "
             + PREFIX_TAG + "eggs";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New supplier added: %1$s";
+    public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplier already exists in the address book";
 
     private final Supplier toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddSupplierCommand to add the specified {@code supplier}
      */
-    public AddCommand(Supplier person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddSupplierCommand(Supplier supplier) {
+        requireNonNull(supplier);
+        toAdd = supplier;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasSupplier(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
         }
 
         model.addSupplier(toAdd);
@@ -62,7 +62,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddSupplierCommand // instanceof handles nulls
+                && toAdd.equals(((AddSupplierCommand) other).toAdd));
     }
 }

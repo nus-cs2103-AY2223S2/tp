@@ -1,6 +1,6 @@
 package trackr.testutil;
 
-import trackr.model.AddressBook;
+import trackr.model.SupplierList;
 import trackr.model.supplier.Supplier;
 
 /**
@@ -10,13 +10,13 @@ import trackr.model.supplier.Supplier;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private SupplierList addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new SupplierList();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(SupplierList addressBook) {
         this.addressBook = addressBook;
     }
 
@@ -28,7 +28,7 @@ public class AddressBookBuilder {
         return this;
     }
 
-    public AddressBook build() {
+    public SupplierList build() {
         return addressBook;
     }
 }

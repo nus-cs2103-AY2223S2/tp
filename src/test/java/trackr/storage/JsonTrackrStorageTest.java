@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import trackr.commons.exceptions.DataConversionException;
-import trackr.model.AddressBook;
+import trackr.model.SupplierList;
 import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.TaskList;
@@ -86,7 +86,7 @@ public class JsonTrackrStorageTest {
     @Test
     public void readAndSaveTrackr_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempTrackr.json");
-        AddressBook originalAddressBook = getTypicalAddressBook();
+        SupplierList originalAddressBook = getTypicalAddressBook();
         TaskList originalTaskList = getTypicalTaskList();
         JsonTrackrStorage jsonTrackrStorage = new JsonTrackrStorage(filePath);
 
@@ -94,7 +94,7 @@ public class JsonTrackrStorageTest {
         jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, filePath);
         ReadOnlyAddressBook readBackAddressBook = jsonTrackrStorage.readAddressBook(filePath).get();
         ReadOnlyTaskList readBackTaskList = jsonTrackrStorage.readTaskList(filePath).get();
-        assertEquals(originalAddressBook, new AddressBook(readBackAddressBook));
+        assertEquals(originalAddressBook, new SupplierList(readBackAddressBook));
         assertEquals(originalTaskList, new TaskList(readBackTaskList));
 
         // Modify data, overwrite exiting file, and read back
@@ -102,7 +102,7 @@ public class JsonTrackrStorageTest {
         originalAddressBook.removeSupplier(ALICE);
         jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, filePath);
         readBackAddressBook = jsonTrackrStorage.readAddressBook(filePath).get();
-        assertEquals(originalAddressBook, new AddressBook(readBackAddressBook));
+        assertEquals(originalAddressBook, new SupplierList(readBackAddressBook));
 
         originalTaskList.addTask(BUY_FLOUR_N);
         originalTaskList.removeTask(SORT_INVENTORY_N);
@@ -114,7 +114,7 @@ public class JsonTrackrStorageTest {
         originalAddressBook.addSupplier(IDA);
         jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList); // file path not specified
         readBackAddressBook = jsonTrackrStorage.readAddressBook().get(); // file path not specified
-        assertEquals(originalAddressBook, new AddressBook(readBackAddressBook));
+        assertEquals(originalAddressBook, new SupplierList(readBackAddressBook));
 
         originalTaskList.addTask(CLEAN_TOOLS_N);
         jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList); // file path not specified
@@ -142,6 +142,6 @@ public class JsonTrackrStorageTest {
 
     @Test
     public void saveTrackr_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveTrackr(new AddressBook(), new TaskList(), null));
+        assertThrows(NullPointerException.class, () -> saveTrackr(new SupplierList(), new TaskList(), null));
     }
 }

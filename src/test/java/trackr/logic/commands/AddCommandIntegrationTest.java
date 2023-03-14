@@ -33,14 +33,14 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
         expectedModel.addSupplier(validPerson);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddSupplierCommand(validPerson), model,
+                String.format(AddSupplierCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Supplier personInList = model.getAddressBook().getSupplierList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddSupplierCommand(personInList), model, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER);
     }
 
 }

@@ -10,7 +10,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import trackr.logic.commands.AddCommand;
+import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
@@ -20,23 +20,23 @@ import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddSupplierCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddSupplierCommand
+     * and returns an AddSupplierCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddSupplierCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSupplierCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -45,9 +45,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Supplier person = new Supplier(name, phone, email, address, tagList);
+        Supplier supplier = new Supplier(name, phone, email, address, tagList);
 
-        return new AddCommand(person);
+        return new AddSupplierCommand(supplier);
     }
 
     /**

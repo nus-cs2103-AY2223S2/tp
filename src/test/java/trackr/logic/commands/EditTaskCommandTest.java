@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.EditTaskCommand.EditTaskDescriptor;
-import trackr.model.AddressBook;
+import trackr.model.SupplierList;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.TaskList;
@@ -44,7 +44,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new SupplierList(model.getAddressBook()),
                 new TaskList(model.getTaskList()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
@@ -69,7 +69,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new SupplierList(model.getAddressBook()),
                 new TaskList(model.getTaskList()), new UserPrefs());
         expectedModel.setTask(lastTask, editedTask);
 
@@ -83,7 +83,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new SupplierList(model.getAddressBook()),
                 new TaskList(model.getTaskList()), new UserPrefs());
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
@@ -100,7 +100,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new SupplierList(model.getAddressBook()),
                 new TaskList(model.getTaskList()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 

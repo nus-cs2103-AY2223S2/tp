@@ -13,14 +13,14 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.AddCommand;
+import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.AddTaskCommand;
 import trackr.logic.commands.ClearCommand;
-import trackr.logic.commands.DeleteCommand;
-import trackr.logic.commands.EditCommand;
-import trackr.logic.commands.EditCommand.EditPersonDescriptor;
+import trackr.logic.commands.DeleteSupplierCommand;
+import trackr.logic.commands.EditSupplierCommand;
+import trackr.logic.commands.EditSupplierCommand.EditPersonDescriptor;
 import trackr.logic.commands.ExitCommand;
-import trackr.logic.commands.FindCommand;
+import trackr.logic.commands.FindSupplierCommand;
 import trackr.logic.commands.HelpCommand;
 import trackr.logic.commands.ListCommand;
 import trackr.logic.parser.exceptions.ParseException;
@@ -40,8 +40,8 @@ public class TrackrParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Supplier person = new SupplierBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(SupplierUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        AddSupplierCommand command = (AddSupplierCommand) parser.parseCommand(SupplierUtil.getAddCommand(person));
+        assertEquals(new AddSupplierCommand(person), command);
     }
 
     @Test
@@ -68,18 +68,18 @@ public class TrackrParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeleteSupplierCommand command = (DeleteSupplierCommand) parser.parseCommand(
+                DeleteSupplierCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteSupplierCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Supplier person = new SupplierBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditSupplierCommand command = (EditSupplierCommand) parser.parseCommand(EditSupplierCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + SupplierUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditSupplierCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
@@ -91,9 +91,9 @@ public class TrackrParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindSupplierCommand command = (FindSupplierCommand) parser.parseCommand(
+                FindSupplierCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindSupplierCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

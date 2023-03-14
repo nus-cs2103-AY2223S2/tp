@@ -19,14 +19,14 @@ import org.junit.jupiter.api.io.TempDir;
 
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
-import trackr.logic.commands.AddCommand;
+import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.ListCommand;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelManager;
-import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.UserPrefs;
 import trackr.model.supplier.Supplier;
@@ -83,7 +83,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddSupplierCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Supplier expectedPerson = new SupplierBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
@@ -94,7 +94,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredSupplierList().remove(0));
     }
 
 
@@ -105,7 +105,7 @@ public class LogicManagerTest {
 
     @Test
     public void getAddressBook() {
-        ReadOnlyAddressBook expected = model.getAddressBook();
+        ReadOnlySupplierList expected = model.getAddressBook();
         assertEquals(expected, logic.getAddressBook());
     }
 
@@ -116,9 +116,9 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList() {
+    public void getFilteredSupplierList() {
         ObservableList<Supplier> expected = model.getFilteredSupplierList();
-        assertEquals(expected, logic.getFilteredPersonList());
+        assertEquals(expected, logic.getFilteredSupplierList());
     }
 
     @Test
@@ -202,7 +202,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList, Path filePath)
+        public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList, Path filePath)
                 throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }

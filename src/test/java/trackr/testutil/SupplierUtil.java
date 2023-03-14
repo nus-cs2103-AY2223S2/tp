@@ -8,8 +8,8 @@ import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import trackr.logic.commands.AddCommand;
-import trackr.logic.commands.EditCommand.EditPersonDescriptor;
+import trackr.logic.commands.AddSupplierCommand;
+import trackr.logic.commands.EditSupplierCommand.EditPersonDescriptor;
 import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
 
@@ -22,7 +22,7 @@ public class SupplierUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Supplier person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+        return AddSupplierCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**

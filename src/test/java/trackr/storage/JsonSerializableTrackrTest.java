@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.commons.exceptions.IllegalValueException;
 import trackr.commons.util.JsonUtil;
-import trackr.model.AddressBook;
+import trackr.model.SupplierList;
 import trackr.model.TaskList;
 import trackr.testutil.TypicalSuppliers;
 import trackr.testutil.TypicalTasks;
@@ -29,8 +29,8 @@ public class JsonSerializableTrackrTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableTrackr.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalSuppliers.getTypicalAddressBook();
+        SupplierList addressBookFromFile = dataFromFile.toModelType();
+        SupplierList typicalPersonsAddressBook = TypicalSuppliers.getTypicalAddressBook();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

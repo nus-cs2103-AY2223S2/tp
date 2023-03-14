@@ -27,14 +27,15 @@ import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing supplier in the address book.
  */
-public class EditCommand extends Command {
+public class EditSupplierCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit_supplier";
+    public static final String COMMAND_WORD_SHORTCUT = "edit_s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the supplier identified "
+            + "by the index number used in the displayed supplier list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -46,23 +47,23 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_SUPPLIER_SUCCESS = "Edited Supplier: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplier already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditSupplierDescriptor editSupplierDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the supplier in the filtered supplier list to edit
+     * @param editSupplierDescriptor details to edit the supplier with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditSupplierCommand(Index index, EditSupplierDescriptor editSupplierDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editSupplierDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editSupplierDescriptor = new EditSupplierDescriptor(editSupplierDescriptor);
     }
 
     @Override
@@ -71,33 +72,33 @@ public class EditCommand extends Command {
         List<Supplier> lastShownList = model.getFilteredSupplierList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_SUPPLIER_DISPLAYED_INDEX);
         }
 
-        Supplier personToEdit = lastShownList.get(index.getZeroBased());
-        Supplier editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Supplier supplierToEdit = lastShownList.get(index.getZeroBased());
+        Supplier editedSupplier = createEditedSupplier(supplierToEdit, editSupplierDescriptor);
 
-        if (!personToEdit.isSameSupplier(editedPerson) && model.hasSupplier(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!supplierToEdit.isSameSupplier(editedSupplier) && model.hasSupplier(editedSupplier)) {
+            throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
         }
 
-        model.setSupplier(personToEdit, editedPerson);
+        model.setSupplier(supplierToEdit, editedSupplier);
         model.updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_SUPPLIER_SUCCESS, editedSupplier));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Supplier} with the details of {@code supplierToEdit}
+     * edited with {@code editSupplierDescriptor}.
      */
-    private static Supplier createEditedPerson(Supplier personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Supplier createEditedSupplier(Supplier supplierToEdit, EditSupplierDescriptor editSupplierDescriptor) {
+        assert supplierToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editSupplierDescriptor.getName().orElse(supplierToEdit.getName());
+        Phone updatedPhone = editSupplierDescriptor.getPhone().orElse(supplierToEdit.getPhone());
+        Email updatedEmail = editSupplierDescriptor.getEmail().orElse(supplierToEdit.getEmail());
+        Address updatedAddress = editSupplierDescriptor.getAddress().orElse(supplierToEdit.getAddress());
+        Set<Tag> updatedTags = editSupplierDescriptor.getTags().orElse(supplierToEdit.getTags());
 
         return new Supplier(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -110,34 +111,34 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditSupplierCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditSupplierCommand e = (EditSupplierCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editSupplierDescriptor.equals(e.editSupplierDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the supplier with. Each non-empty field value will replace the
+     * corresponding field value of the supplier.
      */
-    public static class EditPersonDescriptor {
+    public static class EditSupplierDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditSupplierDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditSupplierDescriptor(EditSupplierDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -209,12 +210,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditSupplierDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditSupplierDescriptor e = (EditSupplierDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

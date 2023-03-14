@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import trackr.model.AddressBook;
+import trackr.model.SupplierList;
 import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.TaskList;
@@ -47,7 +47,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+        SupplierList sampleAb = new SupplierList();
         for (Supplier samplePerson : getSamplePersons()) {
             sampleAb.addSupplier(samplePerson);
         }

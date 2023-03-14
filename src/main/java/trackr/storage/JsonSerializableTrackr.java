@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import trackr.commons.exceptions.IllegalValueException;
-import trackr.model.AddressBook;
+import trackr.model.SupplierList;
 import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.TaskList;
@@ -58,8 +58,8 @@ class JsonSerializableTrackr {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public SupplierList toModelType() throws IllegalValueException {
+        SupplierList addressBook = new SupplierList();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Supplier person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasSupplier(person)) {

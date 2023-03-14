@@ -15,10 +15,10 @@ import trackr.commons.util.ConfigUtil;
 import trackr.commons.util.StringUtil;
 import trackr.logic.Logic;
 import trackr.logic.LogicManager;
-import trackr.model.AddressBook;
+import trackr.model.SupplierList;
 import trackr.model.Model;
 import trackr.model.ModelManager;
-import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.TaskList;
@@ -76,9 +76,9 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlySupplierList> addressBookOptional;
         Optional<ReadOnlyTaskList> taskListOptional;
-        ReadOnlyAddressBook initialAddressBook;
+        ReadOnlySupplierList initialAddressBook;
         ReadOnlyTaskList initialTaskList;
 
         try {
@@ -89,10 +89,10 @@ public class MainApp extends Application {
             initialAddressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialAddressBook = new AddressBook();
+            initialAddressBook = new SupplierList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialAddressBook = new AddressBook();
+            initialAddressBook = new SupplierList();
         }
 
         try {
