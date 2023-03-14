@@ -1,22 +1,33 @@
-package seedu.address.model.person;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.event.Event;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-
-import java.util.Iterator;
-import java.util.List;
+package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
+
+/**
+ * A list of events that enforces uniqueness between its elements and does not allow nulls.
+ * A event is considered unique by comparing using {@code Event#isSameEvent(Event)}. As such, adding and updating of
+ * persons uses Event#isSameEvent(Event) for equality so as to ensure that the event being added or updated is
+ * unique in terms of identity in the UniqueEventList. However, the removal of a event uses Event#equals(Object) so
+ * as to ensure that the event with exactly the same fields will be removed.
+ * as to ensure that the event with exactly the same fields will be removed.
+ * <p>
+ * Supports a minimal set of list operations.
+ *
+ * @see Event#isSameEvent(Event)
+ */
 public class UniqueEventList implements Iterable<Event> {
 
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent event as the given argument.
@@ -27,13 +38,13 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a event to the list.
+     * The event must not already exist in the list.
      */
     public void add(Event toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateEventException();
         }
         internalList.add(toAdd);
     }
@@ -48,11 +59,11 @@ public class UniqueEventList implements Iterable<Event> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new EventNotFoundException();
         }
 
         if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateEventException();
         }
 
         internalList.set(index, editedEvent);
@@ -65,7 +76,7 @@ public class UniqueEventList implements Iterable<Event> {
     public void remove(Event toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new EventNotFoundException();
         }
     }
 
@@ -78,10 +89,10 @@ public class UniqueEventList implements Iterable<Event> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setEvents (List<Event> events) {
+    public void setEvents(List<Event> events) {
         requireAllNonNull(events);
         if (!eventsAreUnique(events)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateEventException();
         }
 
         internalList.setAll(events);
@@ -102,8 +113,8 @@ public class UniqueEventList implements Iterable<Event> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueEventList // instanceof handles nulls
-                && internalList.equals(((UniqueEventList) other).internalList));
+            || (other instanceof UniqueEventList // instanceof handles nulls
+            && internalList.equals(((UniqueEventList) other).internalList));
     }
 
     @Override
@@ -124,5 +135,4 @@ public class UniqueEventList implements Iterable<Event> {
         }
         return true;
     }
-
 }

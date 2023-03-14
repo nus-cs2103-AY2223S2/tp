@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliEventSyntax.*;
+import static seedu.address.logic.parser.CliEventSyntax.PREFIX_END;
+import static seedu.address.logic.parser.CliEventSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliEventSyntax.PREFIX_START;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.List;
@@ -23,15 +25,15 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_START + "STARTTIME] "
-            + "[" + PREFIX_END + "ENDTIME] "
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_START + "2025-10-01 "
-            + PREFIX_END + "2025-10-02";
+        + "by the index number used in the displayed person list. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_START + "STARTTIME] "
+        + "[" + PREFIX_END + "ENDTIME] "
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_START + "2025-10-01 "
+        + PREFIX_END + "2025-10-02";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -41,13 +43,8 @@ public class EditCommand extends Command {
     private final EditEventDescriptor editEventDescriptor;
 
     /**
-<<<<<<< HEAD
-     * @param index                of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
-=======
-     * @param index of the person in the filtered person list to edit
+     * @param index               of the person in the filtered person list to edit
      * @param editEventDescriptor details to edit the event with
->>>>>>> upstream/master
      */
     public EditCommand(Index index, EditEventDescriptor editEventDescriptor) {
         requireNonNull(index);
@@ -55,6 +52,20 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editEventDescriptor = new EditEventDescriptor(editEventDescriptor);
+    }
+
+    /**
+     * Creates and returns a {@code Event} with the details of {@code eventToEdit}
+     * edited with {@code editEventDescriptor}.
+     */
+    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
+        assert eventToEdit != null;
+
+        Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
+        String updatedStartTime = editEventDescriptor.getParsedStartTime().orElse(eventToEdit.getParsedStartTime());
+        String updatedEndTime = editEventDescriptor.getParsedEndTime().orElse(eventToEdit.getParsedEndTime());
+
+        return new Event(updatedName, updatedStartTime, updatedEndTime);
     }
 
     @Override
@@ -78,20 +89,6 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
-    /**
-     * Creates and returns a {@code Event} with the details of {@code eventToEdit}
-     * edited with {@code editEventDescriptor}.
-     */
-    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
-        assert eventToEdit != null;
-
-        Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
-        String updatedStartTime = editEventDescriptor.getParsedStartTime().orElse(eventToEdit.getParsedStartTime());
-        String updatedEndTime = editEventDescriptor.getParsedEndTime().orElse(eventToEdit.getParsedEndTime());
-
-        return new Event(updatedName, updatedStartTime, updatedEndTime);
-    }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -107,7 +104,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editEventDescriptor.equals(e.editEventDescriptor);
+            && editEventDescriptor.equals(e.editEventDescriptor);
     }
 
     /**
@@ -119,7 +116,8 @@ public class EditCommand extends Command {
         private String startTime;
         private String endTime;
 
-        public EditEventDescriptor() {}
+        public EditEventDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -138,12 +136,12 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, startTime, endTime);
         }
 
-        public void setName(Name name) {
-            this.name = name;
-        }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public void setStartTime(String startTime) {
@@ -178,8 +176,8 @@ public class EditCommand extends Command {
             EditEventDescriptor e = (EditEventDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getParsedStartTime().equals(e.getParsedStartTime())
-                    && getParsedEndTime().equals(e.getParsedEndTime());
+                && getParsedStartTime().equals(e.getParsedStartTime())
+                && getParsedEndTime().equals(e.getParsedEndTime());
         }
     }
 }

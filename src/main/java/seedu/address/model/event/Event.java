@@ -1,16 +1,20 @@
 package seedu.address.model.event;
 
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 
-import java.time.LocalDate;
-
+/**
+ * Represents an Event in the scheduler.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Event {
 
     private Name name;
     private String startTime;
     private String endTime;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Event(Name name, String startTime, String endTime) {
         this.name = name;
         this.startTime = startTime;
@@ -39,7 +43,7 @@ public class Event {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName());
+            && otherEvent.getName().equals(getName());
     }
 
     @Override
@@ -54,7 +58,7 @@ public class Event {
 
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
-                && otherEvent.getParsedStartTime().equals(getParsedStartTime())
-                && otherEvent.getParsedEndTime().equals(getParsedEndTime());
+            && otherEvent.getParsedStartTime().equals(getParsedStartTime())
+            && otherEvent.getParsedEndTime().equals(getParsedEndTime());
     }
 }

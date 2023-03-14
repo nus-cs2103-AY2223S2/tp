@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliEventSyntax.*;
+import static seedu.address.logic.parser.CliEventSyntax.PREFIX_END;
+import static seedu.address.logic.parser.CliEventSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliEventSyntax.PREFIX_START;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -17,12 +19,13 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START, PREFIX_END);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START, PREFIX_END);
 
         Index index;
 
@@ -49,5 +52,4 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         return new EditCommand(index, editEventDescriptor);
     }
-
 }
