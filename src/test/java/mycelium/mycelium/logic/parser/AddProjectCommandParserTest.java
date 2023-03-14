@@ -1,5 +1,7 @@
 package mycelium.mycelium.logic.parser;
 
+import static mycelium.mycelium.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static mycelium.mycelium.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Map;
@@ -7,8 +9,12 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.AddProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.person.Name;
+import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.testutil.Pair;
 import mycelium.mycelium.testutil.ProjectBuilder;
 
@@ -33,18 +39,15 @@ public class AddProjectCommandParserTest {
 
             Map.entry("prefixes are not separated", "-pn-e"),
             Map.entry("no name nor email", "-pn -e"),
-            Map.entry("no name nor email (whitespace)", "-pn  -e "),
-            Map.entry("email, but no name", "-pn -e jamal@hogriders.org"),
             Map.entry("name, but no email", "-pn Bing -e"),
-            Map.entry("name, but email is whitespace", "-pn Bing -e "),
-            Map.entry("email, but name is whitespace", "-pn  -e jamal@hogriders.org"),
             Map.entry("name and email not separated", "-pnBing-ejamal@hogriders.org")
         );
         tests.forEach((desc, tt) -> {
             String input = " " + tt;
-            Assertions.assertThrows(ParseException.class, ()
-                    -> new AddProjectCommandParser().parse(input),
-                "While testing case: " + desc);
+            assertParseFailure(new AddProjectCommandParser(), input, String.format(
+                Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                AddProjectCommand.MESSAGE_USAGE
+            ), "While testing case: " + desc);
         });
     }
 
@@ -55,23 +58,38 @@ public class AddProjectCommandParserTest {
 
         String basic = "-pn Bing -e jamal@hogriders.org ";
         // For each of the following cases, we expect the parser to throw an exception.
-        Map<String, String> tests = Map.ofEntries(
-            Map.entry("invalid email", "-pn Bing -e foobar"),
+        Map<String, Pair<String, String>> tests = Map.ofEntries(
+            Map.entry("invalid name (whitespace)",
+                Pair.of("-pn  -e jamal@hogriders.org", Name.MESSAGE_CONSTRAINTS)),
+            Map.entry("invalid email (whitespace)",
+                Pair.of("-pn Bing -e ", Email.MESSAGE_CONSTRAINTS)),
+            Map.entry("invalid email",
+                Pair.of("-pn Bing -e foobar", Email.MESSAGE_CONSTRAINTS)),
             // NOTE: no restrictions on project name (except being non-empty), so no test case for that
 
-            Map.entry("invalid acceptedOn (not even a date)", basic + "-ad notadate"),
-            Map.entry("invalid acceptedOn (wrong date format)", basic + "-ad 2020-01-01"),
-            Map.entry("invalid acceptedOn (date but with time)", basic + "-ad 2020-01-01 12:00"),
+            Map.entry("invalid acceptedOn (not even a date)",
+                Pair.of(basic + "-ad notadate", Messages.MESSAGE_INVALID_DATE)),
+            Map.entry("invalid acceptedOn (wrong date format)",
+                Pair.of(basic + "-ad 2020-01-01", Messages.MESSAGE_INVALID_DATE)),
+            Map.entry("invalid acceptedOn (date but with time)",
+                Pair.of(basic + "-ad 2020-01-01 12:00", Messages.MESSAGE_INVALID_DATE)),
 
-            Map.entry("invalid deadline (not even a date)", basic + "-dd notadate"),
-            Map.entry("invalid deadline (wrong date format)", basic + "-dd 2020-01-01"),
-            Map.entry("invalid deadline (date but with time)", basic + "-dd 2020-01-01 12:00"),
+            Map.entry("invalid deadline (not even a date)",
+                Pair.of(basic + "-dd notadate", Messages.MESSAGE_INVALID_DATE)),
+            Map.entry("invalid deadline (wrong date format)",
+                Pair.of(basic + "-dd 2020-01-01", Messages.MESSAGE_INVALID_DATE)),
+            Map.entry("invalid deadline (date but with time)",
+                Pair.of(basic + "-dd 2020/01/01 12:00", Messages.MESSAGE_INVALID_DATE)),
 
-            Map.entry("invalid source (empty)", basic + "-src "),
-            Map.entry("invalid description (empty)", basic + "-d "),
+            Map.entry("invalid source (empty)",
+                Pair.of(basic + "-src ", Messages.MESSAGE_EMPTY_STR)),
+            Map.entry("invalid description (empty)",
+                Pair.of(basic + "-d ", Messages.MESSAGE_EMPTY_STR)),
 
-            Map.entry("invalid status (empty)", basic + "-s "),
-            Map.entry("invalid status (not a valid status)", basic + "-s foobar")
+            Map.entry("invalid status (empty)",
+                Pair.of(basic + "-s ", ProjectStatus.MESSAGE_CONSTRAINTS)),
+            Map.entry("invalid status (wrong words)",
+                Pair.of(basic + "-s hog_riders", ProjectStatus.MESSAGE_CONSTRAINTS))
         );
         tests.forEach((desc, tt) -> {
             String input = " " + tt;
@@ -93,16 +111,20 @@ public class AddProjectCommandParserTest {
 
         // For each of the following cases, we expect the parser to return the correct command.
         Map<String, Pair<String, AddProjectCommand>> tests = Map.ofEntries(
-            Map.entry("name first, email second", Pair.of("-pn Bing -e jamal@hogriders.org", addBing)),
-            Map.entry("email first, name second", Pair.of("-e jamal@hogriders.org -pn Bing", addBing)),
-            Map.entry("trailing whitespace", Pair.of("-pn Bing -e jamal@hogriders.org  ", addBing)),
+            Map.entry("name first, email second",
+                Pair.of("-pn Bing -e jamal@hogriders.org", addBing)),
+            Map.entry("email first, name second",
+                Pair.of("-e jamal@hogriders.org -pn Bing", addBing)),
+            Map.entry("trailing whitespace",
+                Pair.of("-pn Bing -e jamal@hogriders.org  ", addBing)),
 
             Map.entry("multiple words in project name",
                 Pair.of("-pn Microsoft Bing -e jamal@hogriders.org", addMicrosoftBing)),
 
             Map.entry("multiple names",
                 Pair.of("-e jamal@hogriders.org -pn Bing -pn Microsoft Bing", addMicrosoftBing)),
-            Map.entry("multiple emails", Pair.of("-pn Bing -e jamar@hogriders.org -e jamal@hogriders.org", addBing)),
+            Map.entry("multiple emails",
+                Pair.of("-pn Bing -e jamar@hogriders.org -e jamal@hogriders.org", addBing)),
             Map.entry("multiple names and emails",
                 Pair.of("-pn Bing -pn Microsoft Bing -e jamar@hogriders.org -e jamal@hogriders.org", addMicrosoftBing)),
 
@@ -115,7 +137,7 @@ public class AddProjectCommandParserTest {
         for (String desc : tests.keySet()) {
             String input = " " + tests.get(desc).first;
             AddProjectCommand expected = tests.get(desc).second;
-            assertEquals(expected, new AddProjectCommandParser().parse(input),
+            assertParseSuccess(new AddProjectCommandParser(), input, expected,
                 "While testing case: " + desc);
         }
     }
