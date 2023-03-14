@@ -55,6 +55,9 @@ public class Person {
         this.medicalCondition = medicalCondition;
     }
 
+    /**
+     * Every filed must be present and not null
+     */
     public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
