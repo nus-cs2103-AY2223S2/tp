@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCUPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS_ASSIGN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -24,6 +25,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.status.LeadStatus;
+import seedu.address.model.person.status.LeadStatusName;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -95,6 +98,13 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final LeadStatus VALID_LEAD_STATUS_UNCONTACTED;
+    public static final LeadStatus VALID_LEAD_STATUS_WORKING;
+
+    public static final String VALID_LEAD_STATUS_LABEL = " " + PREFIX_STATUS_ASSIGN + "Qualified";
+    public static final LeadStatus VALID_LEAD_STATUS_LABEL_QUALIFIED; // for the lead status in line above
+    public static final String INVALID_LEAD_STATUS_LABEL = " " + PREFIX_STATUS_ASSIGN + "Contacted"; // is not defined
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withGender(VALID_GENDER_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
@@ -104,6 +114,10 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withCompany(VALID_COMPANY_BOB)
                 .withIndustry(VALID_INDUSTRY_BOB).withOccupation(VALID_OCCUPATION_BOB).withJobTitle(VALID_JOBTITLE_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        VALID_LEAD_STATUS_UNCONTACTED = new LeadStatus(LeadStatusName.UNCONTACTED.getLabel());
+        VALID_LEAD_STATUS_WORKING = new LeadStatus(LeadStatusName.WORKING.getLabel());
+        VALID_LEAD_STATUS_LABEL_QUALIFIED = new LeadStatus(LeadStatusName.QUALIFIED.getLabel());
     }
 
     /**

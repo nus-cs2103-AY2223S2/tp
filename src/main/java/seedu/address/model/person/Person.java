@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.status.LeadStatus;
+import seedu.address.model.person.status.LeadStatusName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,8 +32,9 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     private final Remark remark;
+    private final LeadStatus status;
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. By default, the LeadStatus is "Uncontacted".
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
                   Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags) {
@@ -47,6 +50,22 @@ public class Person {
         this.jobTitle = jobTitle;
         this.tags.addAll(tags);
         this.remark = remark;
+        this.status = new LeadStatus(LeadStatusName.UNCONTACTED.getLabel());
+    }
+
+    /**
+     * Constructor for a person with a given LeadStatus.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
+                     LeadStatus status) {
+        requireAllNonNull(name, phone, email, address, tags, remark);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.remark = remark;
+        this.status = status;
     }
 
     public Name getName() {
@@ -83,6 +102,10 @@ public class Person {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public LeadStatus getStatus() {
+        return status;
     }
 
     /**
