@@ -166,13 +166,13 @@ public class MainWindow extends UiPart<Stage> {
         //make the tabPane fill its parent VBox
         VBox.setVgrow(tabPane, Priority.ALWAYS);
 
-        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList(), logic);
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
-        drugListPanel = new DrugListPanel(logic.getFilteredDrugList());
+        drugListPanel = new DrugListPanel(logic.getFilteredDrugList(), logic);
         drugListPanelPlaceholder.getChildren().add(drugListPanel.getRoot());
 
-        drugPieChartPanel = new DrugPieChartPanel(logic.getFilteredDrugList());
+        drugPieChartPanel = new DrugPieChartPanel(logic.getFilteredDrugList(), logic);
         drugPieChartPanelPlaceholder.getChildren().add(drugPieChartPanel.getRoot());
 
         hospitalRecordlistPanel = new HospitalListPanel(logic.getHospitalList());

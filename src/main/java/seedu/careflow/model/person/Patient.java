@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Represents a Patient in the patient record
+ * Represents a Patient in the patient recordn
  */
 public class Patient {
     // Identity fields

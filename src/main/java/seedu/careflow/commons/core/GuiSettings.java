@@ -51,7 +51,9 @@ public class GuiSettings implements Serializable {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
     }
 
-    public String getTheme() {return theme;}
+    public String getTheme() {
+        return theme;
+    }
 
     @Override
     public boolean equals(Object other) {

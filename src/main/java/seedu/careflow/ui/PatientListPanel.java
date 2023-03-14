@@ -1,10 +1,12 @@
 package seedu.careflow.ui;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import seedu.careflow.logic.CareFlowLogic;
 import seedu.careflow.model.person.Patient;
 
 /**
@@ -33,25 +35,36 @@ public class PatientListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
-    public PatientListPanel(ObservableList<Patient> patientList) {
+    public PatientListPanel(ObservableList<Patient> patientList, CareFlowLogic logic) {
         super(FXML);
         // PERSON LIST
         patientListView.setItems(patientList);
         patientListView.setCellFactory(listView -> new PatientListViewCell());
         displayPatientDetail();
+        logic.getFilteredPatientList().addListener(new ListChangeListener<Patient>() {
+            @Override
+            public void onChanged(Change<? extends Patient> c) {
+                Patient selectedPatient = patientListView.getSelectionModel().getSelectedItem();
+                setPatientDetailDisplay(selectedPatient);
+            }
+        });
     }
 
     private void displayPatientDetail() {
         patientListView.setOnMouseClicked(event -> {
             Patient selectedPatient = patientListView.getSelectionModel().getSelectedItem();
-            selectedName.setText(selectedPatient.getName().fullName);
-            selectedPhone.setText("Tel: " + selectedPatient.getPhone().value);
-            selectedAddress.setText("Address: " + selectedPatient.getAddress().value);
-            selectedEmail.setText("Email: " + selectedPatient.getEmail().value);
-            selectedBirthDate.setText("Date of Birth: " + selectedPatient.getBirthDate().value);
-            selectedGender.setText("Gender: " + selectedPatient.getGender().value);
-            selectedIc.setText("Ic: " + selectedPatient.getIc().value);
+            setPatientDetailDisplay(selectedPatient);
         });
+    }
+
+    private void setPatientDetailDisplay(Patient selectedPatient) {
+        selectedName.setText(selectedPatient.getName().fullName);
+        selectedPhone.setText("Tel: " + selectedPatient.getPhone().value);
+        selectedAddress.setText("Address: " + selectedPatient.getAddress().value);
+        selectedEmail.setText("Email: " + selectedPatient.getEmail().value);
+        selectedBirthDate.setText("Date of Birth: " + selectedPatient.getBirthDate().value);
+        selectedGender.setText("Gender: " + selectedPatient.getGender().value);
+        selectedIc.setText("Ic: " + selectedPatient.getIc().value);
     }
 
     /**

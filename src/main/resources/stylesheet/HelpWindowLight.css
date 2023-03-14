@@ -1,3 +1,7 @@
+.root {
+    -fx-font-family: sans-serif, Helvetica, Arial;
+}
+
 #openButton, #helpMessage {
 -fx-text-fill: black;
 }
@@ -15,5 +19,5 @@
 }
 
 #helpMessageContainer {
--fx-background-color: derive(#f0f0f0, 20%);
+    -fx-background-color: derive(#f0f0f0, 20%);
 }
