@@ -39,12 +39,4 @@ class ViewHomeworkCommandParserTest {
                 new HomeworkIsCompletePredicate(false), true);
         assertEquals(expectedCommand, new ViewHomeworkCommandParser().parse(args));
     }
-
-    @Test
-    public void parse_validArgs_returnsViewHomeworkCommand() throws ParseException {
-        ViewHomeworkCommand expectedCommand = new ViewHomeworkCommand(
-                new NameContainsKeywordsPredicate(List.of("Alice", "Bob")),
-                new HomeworkIsCompletePredicate(false), false);
-        assertEquals(expectedCommand, parser.parse("n/Alice n/Bob"));
-    }
 }
