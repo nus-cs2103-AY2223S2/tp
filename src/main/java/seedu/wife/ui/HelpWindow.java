@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
+import seedu.wife.commons.core.HelpMenu;
 import seedu.wife.commons.core.LogsCenter;
 
 /**
@@ -34,7 +35,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        helpMessage.setText(HelpMenu.displayHelpMenu());
     }
 
     /**
