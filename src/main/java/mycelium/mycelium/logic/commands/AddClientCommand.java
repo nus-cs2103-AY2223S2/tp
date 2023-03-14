@@ -19,9 +19,10 @@ public class AddClientCommand extends Command {
     public static final String MESSAGE_USAGE =
         COMMAND_ACRONYM + ": Adds a client to Mycelium.\n"
 
-            + "Arguments: "
+            + "Compulsory Arguments: "
             + CliSyntax.PREFIX_CLIENT_NAME + "CLIENT NAME "
-            + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
+            + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL\n"
+            + "Optional Arguments: "
             + CliSyntax.PREFIX_SOURCE + "CLIENT SOURCE "
             + CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER + "MOBILE NUMBER "
             + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "YEAR OF BIRTH\n"

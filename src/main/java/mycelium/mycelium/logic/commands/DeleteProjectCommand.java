@@ -20,7 +20,7 @@ public class DeleteProjectCommand extends Command {
         COMMAND_ACRONYM
             + ": Deletes the project with the given project name.\n"
 
-            + "Arguments: "
+            + "Compulsory Argument: "
             + CliSyntax.PREFIX_PROJECT_NAME + " PROJECT NAME\n"
 
             + "Example: "
