@@ -20,9 +20,16 @@ public class DeleteRecurringEventParser implements Parser<DeleteRecurringEventCo
         Index eventIndex;
 
         try {
-            String trimmedInput = userInput.trim();
-            personIndex = ParserUtil.parseIndex(String.valueOf(trimmedInput.charAt(0)));
-            eventIndex = ParserUtil.parseIndex(String.valueOf(trimmedInput.charAt(2)));
+            String split [] = userInput.split(" ", 3);
+
+            if (split.length < 3) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        DeleteRecurringEventCommand.MESSAGE_USAGE));
+            }
+
+            personIndex = ParserUtil.parseIndex(split[1]);
+            eventIndex = ParserUtil.parseIndex(split[2]);
+
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteRecurringEventCommand.MESSAGE_USAGE), ive);

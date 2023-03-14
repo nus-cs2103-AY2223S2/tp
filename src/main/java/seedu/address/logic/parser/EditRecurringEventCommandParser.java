@@ -28,12 +28,16 @@ public class EditRecurringEventCommandParser implements Parser<EditRecurringEven
         try {
             String inputWithBothIndex = argMultimap.getPreamble().trim();
 
-            if (inputWithBothIndex.length() > 3) {
+            String splitIndex[] = inputWithBothIndex.split(" ", 2);
+
+            if (splitIndex.length < 2) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         EditRecurringEventCommand.MESSAGE_USAGE));
             }
-            personIndex = ParserUtil.parseIndex(String.valueOf(inputWithBothIndex.charAt(0)));
-            eventIndex = ParserUtil.parseIndex(String.valueOf(inputWithBothIndex.charAt(2)));
+
+            personIndex = ParserUtil.parseIndex(splitIndex[0]);
+            eventIndex = ParserUtil.parseIndex(splitIndex[1]);
+
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditRecurringEventCommand.MESSAGE_USAGE));
