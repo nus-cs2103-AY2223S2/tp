@@ -52,48 +52,48 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuestion((String) null));
     }
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseQuestion(INVALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
         Question expectedQuestion = new Question(VALID_NAME);
-        assertEquals(expectedQuestion, ParserUtil.parseName(VALID_NAME));
+        assertEquals(expectedQuestion, ParserUtil.parseQuestion(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Question expectedQuestion = new Question(VALID_NAME);
-        assertEquals(expectedQuestion, ParserUtil.parseName(nameWithWhitespace));
+        assertEquals(expectedQuestion, ParserUtil.parseQuestion(nameWithWhitespace));
     }
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAnswer((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAnswer(INVALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         Answer expectedAnswer = new Answer(VALID_ADDRESS);
-        assertEquals(expectedAnswer, ParserUtil.parseAddress(VALID_ADDRESS));
+        assertEquals(expectedAnswer, ParserUtil.parseAnswer(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Answer expectedAnswer = new Answer(VALID_ADDRESS);
-        assertEquals(expectedAnswer, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedAnswer, ParserUtil.parseAnswer(addressWithWhitespace));
     }
 
     @Test

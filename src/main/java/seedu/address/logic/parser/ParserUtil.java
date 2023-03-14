@@ -35,33 +35,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Question}.
+     * Parses a {@code String question} into a {@code Question}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Question parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Question.isValidQuestion(trimmedName)) {
+    public static Question parseQuestion(String question) throws ParseException {
+        requireNonNull(question);
+        String trimmedQuestion = question.trim();
+        if (!Question.isValidQuestion(trimmedQuestion)) {
             throw new ParseException(Question.MESSAGE_CONSTRAINTS);
         }
-        return new Question(trimmedName);
+        return new Question(trimmedQuestion);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Answer}.
+     * Parses a {@code String answer} into an {@code Answer}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Answer parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Answer.isValidAnswer(trimmedAddress)) {
+    public static Answer parseAnswer(String answer) throws ParseException {
+        requireNonNull(answer);
+        String trimmedAnswer = answer.trim();
+        if (!Answer.isValidAnswer(trimmedAnswer)) {
             throw new ParseException(Answer.MESSAGE_CONSTRAINTS);
         }
-        return new Answer(trimmedAddress);
+        return new Answer(trimmedAnswer);
     }
 
     /**

@@ -24,7 +24,7 @@ import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing card in the address book.
+ * Edits the details of an existing card in the selected deck.
  */
 public class EditCommand extends Command {
 
@@ -39,23 +39,23 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Card: %1$s";
+    public static final String MESSAGE_EDIT_CARD_SUCCESS = "Edited Card: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This card already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CARD = "This card already exists in the master deck.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditCardDescriptor editCardDescriptor;
 
     /**
-     * @param index of the card in the filtered card list to edit
-     * @param editPersonDescriptor details to edit the card with
+     * @param index of the card in the selected deck to edit
+     * @param editCardDescriptor details to edit the card with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditCardDescriptor editCardDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editCardDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editCardDescriptor = new EditCardDescriptor(editCardDescriptor);
     }
 
     @Override
@@ -64,32 +64,32 @@ public class EditCommand extends Command {
         List<Card> lastShownList = model.getFilteredCardList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
         }
 
         Card cardToEdit = lastShownList.get(index.getZeroBased());
-        Card editedCard = createEditedPerson(cardToEdit, editPersonDescriptor);
+        Card editedCard = createEditedCard(cardToEdit, editCardDescriptor);
 
         if (!cardToEdit.isSameCard(editedCard) && model.hasCard(editedCard)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_CARD);
         }
 
         model.setCard(cardToEdit, editedCard);
         model.updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedCard));
+        return new CommandResult(String.format(MESSAGE_EDIT_CARD_SUCCESS, editedCard));
     }
 
     /**
      * Creates and returns a {@code Card} with the details of {@code cardToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editCardDescriptor}.
      */
-    private static Card createEditedPerson(Card cardToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Card createEditedCard(Card cardToEdit, EditCardDescriptor editCardDescriptor) {
         assert cardToEdit != null;
 
-        Question updatedQuestion = editPersonDescriptor.getName().orElse(cardToEdit.getQuestion());
-        Answer updatedAnswer = editPersonDescriptor.getAddress().orElse(cardToEdit.getAnswer());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(cardToEdit.getTags());
-        Optional<Deck> updatedDeck = editPersonDescriptor.getDeck().orElse(Optional.of(cardToEdit.getDeck().get()));
+        Question updatedQuestion = editCardDescriptor.getQuestion().orElse(cardToEdit.getQuestion());
+        Answer updatedAnswer = editCardDescriptor.getAnswer().orElse(cardToEdit.getAnswer());
+        Set<Tag> updatedTags = editCardDescriptor.getTags().orElse(cardToEdit.getTags());
+        Optional<Deck> updatedDeck = editCardDescriptor.getDeck().orElse(Optional.of(cardToEdit.getDeck().get()));
 
         return new Card(updatedQuestion, updatedAnswer, updatedTags, updatedDeck);
     }
@@ -109,28 +109,28 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editCardDescriptor.equals(e.editCardDescriptor);
     }
 
     /**
      * Stores the details to edit the card with. Each non-empty field value will replace the
      * corresponding field value of the card.
      */
-    public static class EditPersonDescriptor {
+    public static class EditCardDescriptor {
         private Question question;
         private Answer answer;
         private Set<Tag> tags;
         private Optional<Deck> deck;
 
-        public EditPersonDescriptor() {}
+        public EditCardDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.question);
-            setAddress(toCopy.answer);
+        public EditCardDescriptor(EditCardDescriptor toCopy) {
+            setQuestion(toCopy.question);
+            setAnswer(toCopy.answer);
             setTags(toCopy.tags);
             setDeck(toCopy.deck);
         }
@@ -142,19 +142,19 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(question, answer, tags);
         }
 
-        public void setName(Question question) {
+        public void setQuestion(Question question) {
             this.question = question;
         }
 
-        public Optional<Question> getName() {
+        public Optional<Question> getQuestion() {
             return Optional.ofNullable(question);
         }
 
-        public void setAddress(Answer answer) {
+        public void setAnswer(Answer answer) {
             this.answer = answer;
         }
 
-        public Optional<Answer> getAddress() {
+        public Optional<Answer> getAnswer() {
             return Optional.ofNullable(answer);
         }
         public void setDeck(Optional<Deck> deck) {
@@ -189,15 +189,15 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditCardDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditCardDescriptor e = (EditCardDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getAddress().equals(e.getAddress())
+            return getQuestion().equals(e.getQuestion())
+                    && getAnswer().equals(e.getAnswer())
                     && getTags().equals(e.getTags());
         }
     }

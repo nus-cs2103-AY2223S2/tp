@@ -31,7 +31,7 @@ public class DeleteCommandTest {
         Card cardToDelete = model.getFilteredCardList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, cardToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CARD_SUCCESS, cardToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
         expectedModel.deleteCard(cardToDelete);
@@ -44,7 +44,7 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCardList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class DeleteCommandTest {
         Card cardToDelete = model.getFilteredCardList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, cardToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CARD_SUCCESS, cardToDelete);
 
         Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
         expectedModel.deleteCard(cardToDelete);
@@ -73,7 +73,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
     }
 
     @Test
