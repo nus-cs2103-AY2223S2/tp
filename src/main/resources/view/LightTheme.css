@@ -99,6 +99,7 @@
 
 .table-view:focused .table-row-cell:filled:focused:selected {
     -fx-background-color: #5A5A5A;
+    -fx-border-color: transparent;
 }
 
 .table-row-cell:odd {
