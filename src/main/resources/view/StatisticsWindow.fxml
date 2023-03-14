@@ -16,7 +16,7 @@
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@HelpWindow.css" />
+                <URL value="@StatisticsWindow.css" />
             </stylesheets>
 
             <HBox alignment="CENTER" fx:id="statsMessageContainer">

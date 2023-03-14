@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
@@ -12,6 +13,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.stats.TotalJobs;
 import seedu.address.ui.main.ResultDisplay;
 
 /**
@@ -50,7 +53,7 @@ public class StatisticsWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-        statsMessage.setText(STATISTICS);
+        //statsMessage.setText(STATISTICS);
     }
 
     /**
@@ -102,6 +105,8 @@ public class StatisticsWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        ObservableList<DeliveryJob> list =  logic.getFilteredDeliveryJobList();
+        statsMessage.setText(STATISTICS + "\n" + new TotalJobs(list.size()));
         //jobListPanel = new jobListPanel(logic.getFilteredjobList());
         //jobListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
 
