@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Patient {
 
     // Identity fields
-    private final NRIC nric;
+    private final Nric nric;
     private final Name name;
 
     // Data fields
@@ -21,20 +21,27 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
-    public Patient(NRIC nric, Name name) {
+    public Patient(Nric nric, Name name) {
         requireAllNonNull(nric, name);
         this.nric = nric;
         this.name = name;
     }
 
-    public Patient(NRIC nric, Name name, Status status) {
+    /**
+     * Constructs a {@code Patient}.
+     *
+     * @param nric Input NRIC.
+     * @param name Input Name.
+     * @param status Input Status.
+     */
+    public Patient(Nric nric, Name name, Status status) {
         requireAllNonNull(nric, name, status);
         this.nric = nric;
         this.name = name;
         this.status = status;
     }
 
-    public NRIC getNric() {
+    public Nric getNric() {
         return nric;
     }
 

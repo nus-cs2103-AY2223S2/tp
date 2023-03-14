@@ -13,8 +13,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.NRIC;
 import seedu.address.model.patient.Status;
 
 
@@ -83,7 +83,7 @@ public class EditCommand extends Command {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse((Name) patientToEdit.getName());
-        NRIC updatedNric = editPatientDescriptor.getNric().orElse((NRIC) patientToEdit.getNric());
+        Nric updatedNric = editPatientDescriptor.getNric().orElse((Nric) patientToEdit.getNric());
         Status updatedStatus = editPatientDescriptor.getStatus().orElse((Status) patientToEdit.getStatus());
 
         return new Patient(updatedNric, updatedName, updatedStatus);
@@ -114,7 +114,7 @@ public class EditCommand extends Command {
      */
     public static class EditPatientDescriptor {
         private Name name;
-        private NRIC nric;
+        private Nric nric;
         private Status status;
 
         public EditPatientDescriptor() {
@@ -142,7 +142,7 @@ public class EditCommand extends Command {
             this.name = name;
         }
 
-        public void setNric(NRIC nric) {
+        public void setNric(Nric nric) {
             this.nric = nric;
         }
 
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public Optional<NRIC> getNric() {
+        public Optional<Nric> getNric() {
             return Optional.ofNullable(nric);
         }
 

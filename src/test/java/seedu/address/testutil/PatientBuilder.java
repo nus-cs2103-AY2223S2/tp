@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.patient.NRIC;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 
@@ -12,14 +12,14 @@ public class PatientBuilder {
     public static final String DEFAULT_NRIC = "T1234567A";
     public static final String DEFAULT_NAME = "Alex Smith";
 
-    private NRIC nric;
+    private Nric nric;
     private Name name;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PatientBuilder() {
-        nric = new NRIC(DEFAULT_NRIC);
+        nric = new Nric(DEFAULT_NRIC);
         name = new Name(DEFAULT_NAME);
     }
 
@@ -40,10 +40,10 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code NRIC} of the {@code Patient} that we are building.
+     * Sets the {@code Nric} of the {@code Patient} that we are building.
      */
     public PatientBuilder withNRIC(String nric) {
-        this.nric = new NRIC(nric);
+        this.nric = new Nric(nric);
         return this;
     }
 
