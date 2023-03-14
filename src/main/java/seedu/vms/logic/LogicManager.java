@@ -19,6 +19,7 @@ import seedu.vms.logic.parser.VmsParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
+import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
@@ -140,6 +141,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
         return model.getFilteredVaxTypeMap();
+    }
+
+    @Override
+    public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
+        return model.getFilteredAppointmentMap();
     }
 
     @Override

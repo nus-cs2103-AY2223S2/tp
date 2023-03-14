@@ -7,10 +7,11 @@ import seedu.vms.model.StorageModel;
  * Duplicates are not allowed (by .isSameAppointment comparison)
  */
 public class AppointmentManager extends StorageModel<Appointment> implements ReadOnlyAppointmentManager {
+
     public AppointmentManager() {}
 
     /**
-     * Creates an AppointmentManager using the Appointments in the {@code toBeCopied}
+     * Creates an PatientManager using the Patients in the {@code toBeCopied}
      */
     public AppointmentManager(ReadOnlyAppointmentManager toBeCopied) {
         super(toBeCopied);

@@ -15,9 +15,6 @@
    </columnConstraints>
    <rowConstraints>
       <RowConstraints vgrow="SOMETIMES" />
-      <RowConstraints vgrow="SOMETIMES" />
-      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
-      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
       <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
