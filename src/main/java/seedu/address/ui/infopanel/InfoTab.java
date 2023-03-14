@@ -38,11 +38,11 @@ public class InfoTab extends UiPart<Region> {
         super(FXML);
         if (tab != null) {
             if (tab.equals("c")) {
-                detailedInfo = new DetailedContact();
+                detailedInfo = new DetailedContact(protagonist);
             } else if (tab.equals("m")) {
                 detailedInfo = new DetailedModule(protagonist);
             } else {
-                detailedInfo = new DetailedSkill();
+                detailedInfo = new DetailedSkill(protagonist);
             }
         }
 
