@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.task.model.calendar.MonthlyPlan;
 import seedu.task.model.task.exceptions.DuplicateTaskException;
 import seedu.task.model.task.exceptions.TaskNotFoundException;
 
@@ -29,17 +30,6 @@ public class UniqueTaskList implements Iterable<Task> {
     private final ObservableList<Task> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
 
-    public SimpleTaskList filterSimpleTasks(LocalDate d) {
-        return new SimpleTaskList(this.internalList, d);
-    }
-
-    public DeadlineList filterDeadlines(LocalDate d) {
-        return new DeadlineList(this.internalList, d);
-    }
-
-    public EventList filterEvents(LocalDate d) {
-        return new EventList(this.internalList, d);
-    }
     /**
      * Returns true if the list contains an equivalent task as the given argument.
      */
@@ -124,6 +114,22 @@ public class UniqueTaskList implements Iterable<Task> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Main algorithm that supports the planning function
+     * @param workload amount of effort user wants to put in per day in the workplan.
+     */
+    public void plan(int workload) {
+        LocalDate currentDate = java.time.LocalDate.now();
+        SimpleTaskList simpleTasks = filterSimpleTasks(currentDate);
+        EventList events = filterEvents(currentDate);
+        DeadlineList deadlines = filterDeadlines(currentDate);
+
+        MonthlyPlan plan = new MonthlyPlan(workload, currentDate);
+        plan.allocateEvents(events);
+        plan.allocateDeadlines(deadlines);
+        plan.allocateSimpleTasks(simpleTasks);
+    }
+
     @Override
     public Iterator<Task> iterator() {
         return internalList.iterator();
@@ -153,5 +159,17 @@ public class UniqueTaskList implements Iterable<Task> {
             }
         }
         return true;
+    }
+
+    public SimpleTaskList filterSimpleTasks(LocalDate d) {
+        return new SimpleTaskList(this.internalList, d);
+    }
+
+    public DeadlineList filterDeadlines(LocalDate d) {
+        return new DeadlineList(this.internalList, d);
+    }
+
+    public EventList filterEvents(LocalDate d) {
+        return new EventList(this.internalList, d);
     }
 }

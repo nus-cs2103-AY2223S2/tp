@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.task.testutil.TypicalDailyPlans.getTypicalDailyPlans;
 import static seedu.task.testutil.TypicalDeadlines.ASSIGNMENT;
 import static seedu.task.testutil.TypicalDeadlines.RETURN_BOOK;
 import static seedu.task.testutil.TypicalDeadlines.getTypicalDeadlineBook;
@@ -32,12 +33,13 @@ import seedu.task.model.task.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTaskBook(), new UserPrefs());
-    private Model deadlineModel = new ModelManager(getTypicalDeadlineBook(), new UserPrefs());
-    private Model expectedDeadlineModel = new ModelManager(getTypicalDeadlineBook(), new UserPrefs());
-    private Model eventModel = new ModelManager(getTypicalEventBook(), new UserPrefs());
-    private Model expectedEventModel = new ModelManager(getTypicalEventBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalDailyPlans());
+    private Model expectedModel = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalDailyPlans());
+    private Model deadlineModel = new ModelManager(getTypicalDeadlineBook(), new UserPrefs(), getTypicalDailyPlans());
+    private Model expectedDeadlineModel = new ModelManager(getTypicalDeadlineBook(), new UserPrefs(),
+            getTypicalDailyPlans());
+    private Model eventModel = new ModelManager(getTypicalEventBook(), new UserPrefs(), getTypicalDailyPlans());
+    private Model expectedEventModel = new ModelManager(getTypicalEventBook(), new UserPrefs(), getTypicalDailyPlans());
 
     @Test
     public void equals() {

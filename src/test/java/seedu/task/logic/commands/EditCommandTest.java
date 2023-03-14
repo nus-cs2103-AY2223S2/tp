@@ -10,6 +10,7 @@ import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.task.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.task.testutil.TypicalDailyPlans.getTypicalDailyPlans;
 import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.task.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.task.testutil.TypicalTasks.getTypicalTaskBook;
@@ -33,7 +34,7 @@ import seedu.task.testutil.SimpleTaskBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalDailyPlans());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
@@ -42,7 +43,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new TaskBook(model.getTaskBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskBook(model.getTaskBook()), new UserPrefs(), model.getPlanner());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +64,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new TaskBook(model.getTaskBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskBook(model.getTaskBook()), new UserPrefs(), model.getPlanner());
         expectedModel.setTask(lastTask, editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +77,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new TaskBook(model.getTaskBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskBook(model.getTaskBook()), new UserPrefs(), model.getPlanner());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +93,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new TaskBook(model.getTaskBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskBook(model.getTaskBook()), new UserPrefs(), model.getPlanner());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

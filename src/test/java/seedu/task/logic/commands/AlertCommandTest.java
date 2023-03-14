@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.task.testutil.TypicalComplicatedTasks.getTypicalComplicatedTasks;
+import static seedu.task.testutil.TypicalDailyPlans.getTypicalDailyPlans;
 
 import java.time.Duration;
 
@@ -22,13 +23,13 @@ import seedu.task.model.task.TaskWithinTimelinePredicate;
  * {@code AlertCommand}.
  */
 public class AlertCommandTest {
-    private Model model = new ModelManager(getTypicalComplicatedTasks(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalComplicatedTasks(), new UserPrefs(), getTypicalDailyPlans());
 
     @Test
     public void execute_validIndexAlertList_success() {
         AlertCommand alertCommand = new AlertCommand(48);
         String expectedMessage = AlertCommand.ALERT_COMMAND_SUCCESS;
-        ModelManager expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), model.getPlanner());
         expectedModel.updateAlertTaskList(new TaskWithinTimelinePredicate(Duration.ofHours(48)));
         assertCommandSuccess(alertCommand, model, expectedMessage, expectedModel);
     }

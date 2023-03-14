@@ -44,6 +44,8 @@ public interface Model {
      */
     void setTaskBookFilePath(Path taskBookFilePath);
 
+    Path getPlannerFilePath();
+
     /**
      * Replaces task book data with the data in {@code taskBook}.
      */
@@ -101,4 +103,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateAlertTaskList(Predicate<Task> predicate);
+
+    /**
+     * Returns the Planner
+     */
+    ReadOnlyPlanner getPlanner();
 }

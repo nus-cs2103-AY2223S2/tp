@@ -21,25 +21,27 @@ public class ModelManager implements Model {
 
     private final TaskBook taskBook;
     private final UserPrefs userPrefs;
+    private final Planner planner;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Task> alertTasks;
 
     /**
      * Initializes a ModelManager with the given taskBook and userPrefs.
      */
-    public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs, ReadOnlyPlanner planner) {
         requireAllNonNull(taskBook, userPrefs);
 
         logger.fine("Initializing with task book: " + taskBook + " and user prefs " + userPrefs);
 
         this.taskBook = new TaskBook(taskBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.planner = new Planner(planner);
         filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
         alertTasks = new FilteredList<>(this.taskBook.getTaskList());
     }
 
     public ModelManager() {
-        this(new TaskBook(), new UserPrefs());
+        this(new TaskBook(), new UserPrefs(), new Planner());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -77,6 +79,11 @@ public class ModelManager implements Model {
         userPrefs.setTaskBookFilePath(taskBookFilePath);
     }
 
+    @Override
+    public Path getPlannerFilePath() {
+        return userPrefs.getPlannerFilePath();
+    }
+
     //=========== TaskBook ================================================================================
 
     @Override
@@ -87,6 +94,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyTaskBook getTaskBook() {
         return taskBook;
+    }
+
+    @Override
+    public ReadOnlyPlanner getPlanner() {
+        return planner;
     }
 
     @Override

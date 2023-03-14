@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.task.testutil.Assert.assertThrows;
+import static seedu.task.testutil.TypicalDailyPlans.getTypicalDailyPlans;
 import static seedu.task.testutil.TypicalTasks.ALICE;
 import static seedu.task.testutil.TypicalTasks.BENSON;
 
@@ -97,10 +98,11 @@ public class ModelManagerTest {
         TaskBook taskBook = new TaskBookBuilder().withTask(ALICE).withTask(BENSON).build();
         TaskBook differentTaskBook = new TaskBook();
         UserPrefs userPrefs = new UserPrefs();
+        Planner samePlanner = getTypicalDailyPlans();
 
         // same values -> returns true
-        modelManager = new ModelManager(taskBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(taskBook, userPrefs);
+        modelManager = new ModelManager(taskBook, userPrefs, samePlanner);
+        ModelManager modelManagerCopy = new ModelManager(taskBook, userPrefs, samePlanner);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,12 +115,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different taskBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentTaskBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentTaskBook, userPrefs, samePlanner)));
 
         // different filteredList -> returns false
         String keyphrase = ALICE.getName().fullName;
         modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(keyphrase));
-        assertFalse(modelManager.equals(new ModelManager(taskBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(taskBook, userPrefs, samePlanner)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
@@ -126,6 +128,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setTaskBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(taskBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(taskBook, differentUserPrefs, samePlanner)));
     }
 }

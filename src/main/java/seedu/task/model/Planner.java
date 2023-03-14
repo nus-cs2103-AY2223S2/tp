@@ -13,6 +13,10 @@ import seedu.task.model.calendar.DailyPlan;
 public class Planner implements ReadOnlyPlanner {
 
     private List<DailyPlan> plansList;
+
+    {
+        plansList = new ArrayList<DailyPlan>();
+    }
     public Planner() {}
 
     /**

@@ -2,6 +2,7 @@ package seedu.task.logic.commands;
 
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.task.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.task.testutil.TypicalDailyPlans.getTypicalDailyPlans;
 import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.task.testutil.TypicalTasks.getTypicalTaskBook;
 
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalDailyPlans());
+        expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), model.getPlanner());
     }
 
     @Test

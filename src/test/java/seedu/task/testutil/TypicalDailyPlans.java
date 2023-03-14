@@ -1,5 +1,10 @@
 package seedu.task.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.task.model.Planner;
 import seedu.task.model.calendar.DailyPlan;
 
 /**
@@ -38,4 +43,20 @@ public class TypicalDailyPlans {
     public static final DailyPlan MAY24 = new DailyPlan(5, TypicalLocalDates.MAY24);
     public static final DailyPlan MAY25 = new DailyPlan(5, TypicalLocalDates.MAY25);
 
+    /**
+     * Returns an {@code Planner} with all the typical DailyPlans.
+     */
+    public static Planner getTypicalDailyPlans() {
+        Planner p = new Planner();
+        for (DailyPlan dp : getDailyPlans()) {
+            p.addDailyPlan(dp);
+        }
+        return p;
+    }
+
+    private static List<DailyPlan> getDailyPlans() {
+        return new ArrayList<>((Arrays.asList(APRIL26, APRIL27, APRIL28, APRIL29, APRIL30, MAY1, MAY2, MAY3, MAY4,
+                MAY5, MAY6, MAY7, MAY8, MAY9, MAY10, MAY11, MAY12, MAY13, MAY14, MAY15, MAY16, MAY17, MAY18, MAY19,
+                MAY20, MAY21, MAY22, MAY23, MAY24, MAY25)));
+    }
 }

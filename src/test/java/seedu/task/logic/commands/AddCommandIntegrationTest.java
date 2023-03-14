@@ -2,6 +2,7 @@ package seedu.task.logic.commands;
 
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.task.testutil.TypicalDailyPlans.getTypicalDailyPlans;
 import static seedu.task.testutil.TypicalTasks.getTypicalTaskBook;
 
 import java.util.ArrayList;
@@ -24,13 +25,13 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
+        model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalDailyPlans());
     }
 
     @Test
     public void execute_newTask_success() {
         Task validTask = new SimpleTaskBuilder().build();
-        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), model.getPlanner());
         expectedModel.addTask(validTask);
         assertCommandSuccess(new AddCommand(validTask), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, "1. " + validTask + "\n"), expectedModel);

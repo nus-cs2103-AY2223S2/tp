@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.task.logic.commands.CommandTestUtil.showTaskAtIndexList;
+import static seedu.task.testutil.TypicalDailyPlans.getTypicalDailyPlans;
 import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_FIRST_TASK;
 import static seedu.task.testutil.TypicalIndexLists.INDEXLIST_SECOND_TASK;
 import static seedu.task.testutil.TypicalTasks.getTypicalTaskBook;
@@ -25,14 +26,14 @@ import seedu.task.model.task.Task;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalDailyPlans());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         DeleteCommand deleteCommand = new DeleteCommand(INDEXLIST_FIRST_TASK);
 
         String expectedMessage = DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
-        ModelManager expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), model.getPlanner());
 
         int n = INDEXLIST_FIRST_TASK.size();
 
@@ -62,7 +63,7 @@ public class DeleteCommandTest {
         int n = INDEXLIST_FIRST_TASK.size();
 
         DeleteCommand deleteCommand = new DeleteCommand(INDEXLIST_FIRST_TASK);
-        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), model.getPlanner());
 
         String expectedMessage = DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
 

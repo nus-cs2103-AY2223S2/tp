@@ -31,10 +31,6 @@ public class DailyPlan {
 
     /**
      * Constructor used when reading values from JSON
-     * @param taskList
-     * @param desiredWorkload
-     * @param currentWorkload
-     * @param date
      */
     public DailyPlan(ArrayList<Task> taskList, long desiredWorkload, long currentWorkload, LocalDate date) {
         this.taskList = taskList;
