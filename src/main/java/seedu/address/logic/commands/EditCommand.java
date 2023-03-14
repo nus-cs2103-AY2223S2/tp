@@ -104,7 +104,8 @@ public class EditCommand extends Command {
         InterviewDateTime interviewDateTime = personToEdit.getInterviewDateTime().orElse(null);
         Set<Note> updatedNotes = editPersonDescriptor.getNotes().orElse(personToEdit.getNotes());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus, interviewDateTime, updatedNotes);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus,
+                interviewDateTime, updatedNotes);
     }
 
     @Override

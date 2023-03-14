@@ -207,9 +207,7 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Status: ")
-                .append(getStatus())
-                .append("; Interview Date: ")
-                .append(getInterviewDateTime());
+                .append(getStatus());
 
         Set<Note> notes = getNotes();
         if (!notes.isEmpty()) {
