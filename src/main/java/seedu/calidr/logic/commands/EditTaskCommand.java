@@ -75,7 +75,7 @@ public class EditTaskCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        model.setTask(taskToEdit, editedTask);
+        model.setTask(index, editedTask);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
