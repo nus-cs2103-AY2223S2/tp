@@ -21,7 +21,6 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
      */
     public TaskContainsKeywordsPredicate(TaskContainsKeywordsPredicate toCopy) {
         setTaskNameKeywords(toCopy.taskNameKeywords);
-        setTaskName(toCopy.getTaskName().isPresent() ? toCopy.getTaskName().get() : null);
         setTaskDeadline(toCopy.getTaskDeadline().isPresent() ? toCopy.getTaskDeadline().get() : null);
         setTaskStatus(toCopy.getTaskStatus().isPresent() ? toCopy.getTaskStatus().get() : null);
     }
@@ -85,7 +84,6 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
         TaskContainsKeywordsPredicate predicate = (TaskContainsKeywordsPredicate) other;
 
         return getTaskNameKeywords().equals(predicate.getTaskNameKeywords())
-                && getTaskName().equals(predicate.getTaskName())
                 && getTaskDeadline().equals(predicate.getTaskDeadline())
                 && getTaskStatus().equals(predicate.getTaskStatus());
     }
