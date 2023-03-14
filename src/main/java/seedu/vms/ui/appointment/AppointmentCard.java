@@ -1,5 +1,6 @@
 package seedu.vms.ui.appointment;
 
+import java.time.format.DateTimeFormatter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -18,7 +19,8 @@ public class AppointmentCard extends UiPart<Region> {
     private Label titleLabel;
     @FXML
     private Label appointmentTime;
-
+    @FXML
+    private Label vaccine;
 
     /**
      * Constructs a {@code AppointmentCard}.
@@ -27,8 +29,16 @@ public class AppointmentCard extends UiPart<Region> {
      */
     public AppointmentCard(IdData<Appointment> data) {
         super(FXML_FILE);
-        titleLabel.setText(String.valueOf(data.getValue().getPatient().getOneBased()));
-        appointmentTime.setText(data.getValue().getAppointmentTime().toString());
+        Appointment appointment = data.getValue();
+        titleLabel.setText(String.format("#%04d", appointment
+                .getPatient()
+                .getOneBased()));
+        appointmentTime.setText(appointment.getAppointmentTime()
+                .format(DateTimeFormatter.ofPattern("h:mm a MMM d yyyy"))
+                + " ~ "
+                + appointment.getAppointmentEndTime()
+                .format(DateTimeFormatter.ofPattern("h:mm a MMM d yyyy")));
+        vaccine.setText(appointment.getVaccination().toString());
     }
 }
 
