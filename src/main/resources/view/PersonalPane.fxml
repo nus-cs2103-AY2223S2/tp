@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
 <HBox id="personalPane" fx:id="personalPane" xmlns="http://javafx.com/javafx"
@@ -17,8 +16,7 @@
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
 
-            <ImageView fitWidth="150" preserveRatio="true">
-                <Image url="@/images/spongbob.png"/>
+            <ImageView fx:id="imageView" fitWidth="150" preserveRatio="true">
             </ImageView>
             <VBox alignment="CENTER">
                 <Label fx:id="id" styleClass="cell_big_label">
