@@ -29,6 +29,7 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
      */
     private String plane;
 
+
     /**
      * Constructs a {@code JsonAdaptedFlight} with the given flight details.
      * This is intended for Jackson to use.

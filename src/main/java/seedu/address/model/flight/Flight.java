@@ -14,6 +14,9 @@ import seedu.address.model.plane.Plane;
 public class Flight implements Item {
     private static final String UUID_STRING = "UUID";
     private static final String CODE_STRING = "Code";
+    private static final String DEPARTURE_STRING = "Depart from";
+    private static final String ARRIVE_STRING = "Arrive at";
+
     private final String code;
     private final String id;
     private Plane plane;
@@ -55,7 +58,9 @@ public class Flight implements Item {
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s: %s", UUID_STRING, id),
-                String.format("%s: %s", CODE_STRING, code)
+                String.format("%s: %s", CODE_STRING, code),
+                String.format("%s: %s", DEPARTURE_STRING, getDepartureLocationName()),
+                String.format("%s: %s", ARRIVE_STRING, getArrivalLocationName())
         );
     }
 
@@ -140,5 +145,21 @@ public class Flight implements Item {
      */
     public Location getArrivalLocation() {
         return arrivalLocation;
+    }
+
+    private String getDepartureLocationName() {
+        if (departureLocation == null) {
+            return "null";
+        } else {
+            return departureLocation.getName();
+        }
+    }
+
+    private String getArrivalLocationName() {
+        if (arrivalLocation == null) {
+            return "null";
+        } else {
+            return arrivalLocation.getName();
+        }
     }
 }
