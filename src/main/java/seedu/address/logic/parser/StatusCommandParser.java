@@ -25,16 +25,9 @@ public class StatusCommandParser implements Parser<StatusCommand> {
     public StatusCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_STATUS_ASSIGN, PREFIX_STATUS_FIND);
+                PREFIX_STATUS_ASSIGN);
 
         LeadStatus status;
-
-        if (argMultimap.getValue(PREFIX_STATUS_FIND).isPresent()) {
-            String statusText = argMultimap.getValue(PREFIX_STATUS_FIND).get();
-            checkArgument(LeadStatusName.isValidLeadStatus(statusText), LeadStatus.MESSAGE_CONSTRAINTS);
-            status = new LeadStatus(statusText);
-            return new StatusCommand(status);
-        }
 
         if (argMultimap.getValue(PREFIX_STATUS_ASSIGN).isPresent()) {
             Index index;

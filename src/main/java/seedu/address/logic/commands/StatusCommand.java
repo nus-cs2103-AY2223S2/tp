@@ -31,21 +31,15 @@ public class StatusCommand extends Command {
     public static final String COMMAND_WORD = "status";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Handles lead statuses, "
-            + "allows for setting of statuses or finding contacts matching the status.\n"
-            + "Parameters (choose only one): \n"
-            + "[INDEX " + PREFIX_STATUS_ASSIGN + " STATUS_TYPE] OR "
-            + "[" + PREFIX_STATUS_FIND + "STATUS_TYPE]\n"
+            + "allows for setting of statuses.\n"
+            + "Parameters: \n"
+            + "[INDEX " + PREFIX_STATUS_ASSIGN + " STATUS_TYPE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_STATUS_ASSIGN + "qualified\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_STATUS_ASSIGN + "uncontacted";
+            + PREFIX_STATUS_ASSIGN + "qualified\n";
 
     public static final String MESSAGE_STATUS_ASSIGN_PERSON_SUCCESS = "Assigned %1$s status of "
             + " %2$s";
-    public static final String MESSAGE_STATUS_FIND_PERSON_SUCCESS = "Listed all contacts with "
-            + "status %1$s";
-    public static final String MESSAGE_STATUS_NOT_IMPLEMENTED = "status command not implemented";
-    public static final String MESSAGE_STATUS_IS_SAME = "The status of %1$s is already %1$s";
+    public static final String MESSAGE_STATUS_IS_SAME = "The status of %1$s is already %2$s";
 
     private final Index index;
     private final LeadStatus status;
@@ -65,17 +59,6 @@ public class StatusCommand extends Command {
         this.status = status;
     }
 
-    /**
-     * Constructor for a status command. Enables search for the status given.
-     * @param status a valid LeadStatus to search for
-     */
-    public StatusCommand(LeadStatus status) {
-        requireNonNull(status);
-
-        this.index = null;
-        this.status = status;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -90,7 +73,7 @@ public class StatusCommand extends Command {
         LeadStatus currLeadStatus = toBeUpdated.getStatus();
 
         if (status.equals(currLeadStatus)) { // lead status is already assigned
-            throw new CommandException(MESSAGE_STATUS_IS_SAME);
+            throw new CommandException(String.format(MESSAGE_STATUS_IS_SAME, toBeUpdated.getName(), status));
         }
 
         Person updatedStatusPerson = createPersonWithNewStatus(toBeUpdated, status);
