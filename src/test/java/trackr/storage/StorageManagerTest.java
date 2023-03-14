@@ -13,7 +13,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import trackr.commons.core.GuiSettings;
 import trackr.model.SupplierList;
-import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.TaskList;
 import trackr.model.UserPrefs;
@@ -60,7 +60,7 @@ public class StorageManagerTest {
         SupplierList originalAddressBook = getTypicalAddressBook();
         TaskList originalTaskList = getTypicalTaskList();
         storageManager.saveTrackr(originalAddressBook, originalTaskList);
-        ReadOnlyAddressBook retrievedAddressBook = storageManager.readAddressBook().get();
+        ReadOnlySupplierList retrievedAddressBook = storageManager.readAddressBook().get();
         assertEquals(originalAddressBook, new SupplierList(retrievedAddressBook));
         ReadOnlyTaskList retrievedTaskList = storageManager.readTaskList().get();
         assertEquals(originalTaskList, new TaskList(retrievedTaskList));

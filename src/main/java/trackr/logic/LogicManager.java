@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveTrackr(model.getAddressBook(), model.getTaskList());
+            storage.saveTrackr(model.getSupplierList(), model.getTaskList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -58,7 +58,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlySupplierList getAddressBook() {
-        return model.getAddressBook();
+        return model.getSupplierList();
     }
 
     @Override

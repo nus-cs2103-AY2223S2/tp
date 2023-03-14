@@ -21,7 +21,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import trackr.commons.exceptions.DataConversionException;
 import trackr.model.SupplierList;
-import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.TaskList;
 
@@ -37,7 +37,7 @@ public class JsonTrackrStorageTest {
         assertThrows(NullPointerException.class, () -> readTaskList(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlySupplierList> readAddressBook(String filePath) throws Exception {
         return new JsonTrackrStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -92,7 +92,7 @@ public class JsonTrackrStorageTest {
 
         // Save in new file and read back
         jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, filePath);
-        ReadOnlyAddressBook readBackAddressBook = jsonTrackrStorage.readAddressBook(filePath).get();
+        ReadOnlySupplierList readBackAddressBook = jsonTrackrStorage.readAddressBook(filePath).get();
         ReadOnlyTaskList readBackTaskList = jsonTrackrStorage.readTaskList(filePath).get();
         assertEquals(originalAddressBook, new SupplierList(readBackAddressBook));
         assertEquals(originalTaskList, new TaskList(readBackTaskList));
@@ -131,7 +131,7 @@ public class JsonTrackrStorageTest {
     /**
      * Saves {@code addressBook} and {@code taskList} at the specified {@code filePath}.
      */
-    private void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList, String filePath) {
+    private void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList, String filePath) {
         try {
             new JsonTrackrStorage(Paths.get(filePath))
                     .saveTrackr(addressBook, taskList, addToTestDataPathIfNotNull(filePath));

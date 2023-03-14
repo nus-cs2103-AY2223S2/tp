@@ -58,8 +58,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        TrackrStorage addressBookStorage = new JsonTrackrStorage(userPrefs.getTrackrFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TrackrStorage trackrStorage = new JsonTrackrStorage(userPrefs.getTrackrFilePath());
+        storage = new StorageManager(trackrStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -71,28 +71,28 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s supplier list, task list and {@code userPrefs}. <br>
+     * The data from the sample supplier list and task list will be used instead if {@code storage}'s supplier list and task list is not found,
+     * or an empty supplier list and task list will be used instead if errors occur when reading {@code storage}'s supplier list and task list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlySupplierList> addressBookOptional;
+        Optional<ReadOnlySupplierList> supplierListOptional;
         Optional<ReadOnlyTaskList> taskListOptional;
-        ReadOnlySupplierList initialAddressBook;
+        ReadOnlySupplierList initialSupplierList;
         ReadOnlyTaskList initialTaskList;
 
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            supplierListOptional = storage.readSupplierList();
+            if (!supplierListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample SupplierList");
             }
-            initialAddressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialSupplierList = supplierListOptional.orElseGet(SampleDataUtil::getSampleSupplierList);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialAddressBook = new SupplierList();
+            logger.warning("Data file not in the correct format. Will be starting with an empty SupplierList");
+            initialSupplierList = new SupplierList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialAddressBook = new SupplierList();
+            logger.warning("Problem while reading from the file. Will be starting with an empty SupplierList");
+            initialSupplierList = new SupplierList();
         }
 
         try {
@@ -109,7 +109,7 @@ public class MainApp extends Application {
             initialTaskList = new TaskList();
         }
 
-        return new ModelManager(initialAddressBook, initialTaskList, userPrefs);
+        return new ModelManager(initialSupplierList, initialTaskList, userPrefs);
     }
 
     private void initLogging(Config config) {

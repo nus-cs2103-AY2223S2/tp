@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import trackr.model.SupplierList;
-import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.TaskList;
 import trackr.model.supplier.Address;
@@ -23,7 +23,7 @@ import trackr.model.task.TaskStatus;
  * Contains utility methods for populating {@code Trackr} with sample data.
  */
 public class SampleDataUtil {
-    public static Supplier[] getSamplePersons() {
+    public static Supplier[] getSampleSuppliers() {
         return new Supplier[] {
             new Supplier(new Name("Prima Flour"), new Phone("87438807"), new Email("sales.primaflour@prima.com.sg"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -46,12 +46,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        SupplierList sampleAb = new SupplierList();
-        for (Supplier samplePerson : getSamplePersons()) {
-            sampleAb.addSupplier(samplePerson);
+    public static ReadOnlySupplierList getSampleSupplierList() {
+        SupplierList sampleSupplierList = new SupplierList();
+        for (Supplier sampleSupplier : getSampleSuppliers()) {
+            sampleSupplierList.addSupplier(sampleSupplier);
         }
-        return sampleAb;
+        return sampleSupplierList;
     }
 
     /**

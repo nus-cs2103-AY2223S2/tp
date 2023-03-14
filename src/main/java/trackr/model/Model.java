@@ -57,14 +57,14 @@ public interface Model {
     // =================================================== Supplier ===================================================
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces supplier list data with the data in {@code supplierList}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setSupplierList(ReadOnlySupplierList supplierList);
 
     /**
-     * Returns the AddressBook
+     * Returns the SupplierList
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlySupplierList getSupplierList();
 
     /**
      * Returns true if a Supplier with the same identity as {@code supplier} exists in the address book.
@@ -84,10 +84,10 @@ public interface Model {
     void addSupplier(Supplier supplier);
 
     /**
-     * Replaces the given person {@code target} with {@code editedSupplier}.
-     * {@code target} must exist in the address book.
+     * Replaces the given supplier {@code target} with {@code editedSupplier}.
+     * {@code target} must exist in the supplier list.
      * The person identity of {@code editedSupplier} must not be the same
-     * as another existing supplier in the address book.
+     * as another existing supplier in the supplier list.
      */
     void setSupplier(Supplier target, Supplier editedSupplier);
 

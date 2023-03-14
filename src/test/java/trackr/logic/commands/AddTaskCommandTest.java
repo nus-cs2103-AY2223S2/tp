@@ -17,7 +17,7 @@ import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
-import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.TaskList;
@@ -118,12 +118,12 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlySupplierList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlySupplierList getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 

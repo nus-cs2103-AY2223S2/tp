@@ -46,15 +46,15 @@ public interface TrackrStorage {
 
     /**
      * Saves the given {@link ReadOnlySupplierList} and {@link ReadOnlyTaskList} to the storage.
-     * @param addressBook cannot be null.
+     * @param supplierList cannot be null.
      * @param taskList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList) throws IOException;
+    void saveTrackr(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList) throws IOException;
 
     /**
      * @see #saveTrackr(ReadOnlySupplierList, ReadOnlyTaskList)
      */
-    void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList, Path filePath) throws IOException;
+    void saveTrackr(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList, Path filePath) throws IOException;
 
 }
