@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DECK;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,9 +15,9 @@ public class AddDeckCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new deck "
             + "Parameters: "
-            + PREFIX_DECK + "DECK NAME\n"
+            + "DECK NAME\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DECK + "LAK1201";
+            + "LAK1201";
 
     public static final String MESSAGE_SUCCESS = "New deck created: %1$s";
     public static final String MESSAGE_DUPLICATE_DECK = "This deck already exists in the deck list";

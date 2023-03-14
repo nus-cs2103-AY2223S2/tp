@@ -113,7 +113,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addCard(Card card) {
-        masterDeck.addCard(card);
+        masterDeck.addCard(card); // Todo: setDeck of card to selectedDeck here
     }
 
     @Override
@@ -196,6 +196,7 @@ public class ModelManager implements Model {
     public void selectDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         selectedDeck = filteredDecks.get(zeroBasesIdx);
+        assert selectedDeck != null : "selectedDeck cannot be null here";
         updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
 
