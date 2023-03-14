@@ -26,16 +26,24 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+        System.out.println("--add command start ----");
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_STATUS);
+
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_NRIC, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        NRIC nric = ParserUtil.parseNRIC(argMultimap.getValue(PREFIX_NRIC).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        NRIC nric = ParserUtil.parseNRIC(argMultimap.getValue(PREFIX_NRIC).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+
+        System.out.println("--add command ----");
+        System.out.println(name);
+        System.out.println(nric);
+        System.out.println(status);
 
         Patient patient = new Patient(nric, name, status);
 

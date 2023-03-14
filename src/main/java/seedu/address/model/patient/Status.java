@@ -3,7 +3,7 @@ package seedu.address.model.patient;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-public enum Status {
+public class Status {
   /**
    * The colour codes below reflect the severity of a patient's condition
    * and the urgency of treatment needed.
@@ -14,22 +14,17 @@ public enum Status {
    * RED: Requires immediate evaluation by physician
    */
 
-  GRAY("GRAY"),
-  GREEN("GREEN"),
-  YELLOW("YELLOW"),
-  RED("RED");
-
   public static String[] VALUES = { "GRAY", "GREEN", "YELLOW", "RED" };
   public static final String MESSAGE_CONSTRAINTS = "Statuses should only be 'GRAY', 'GREEN', 'YELLOW', or 'RED'";
 
   public final String value;
 
   /**
-   * Constructs an {@code NRIC}.
+   * Constructs an {@code status}.
    *
-   * @param nric A valid nric.
+   * @param status A valid status.
    */
-  Status(String status) {
+  public Status(String status) {
     requireNonNull(status);
     checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
     value = status;
