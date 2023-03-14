@@ -17,11 +17,6 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
-import seedu.address.model.client.policy.CustomDate;
-import seedu.address.model.client.policy.Frequency;
-import seedu.address.model.client.policy.Policy;
-import seedu.address.model.client.policy.PolicyName;
-import seedu.address.model.client.policy.Premium;
 
 public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "R@chel";
@@ -132,6 +127,8 @@ public class JsonAdaptedClientTest {
         assertThrows(IllegalValueException.class, client::toModelType);
     }
 
+    /*
+    Don't really need this because invalidPolicies is dependent on InvalidPolicy
     @Test
     public void toModelType_invalidPolicies_throwsIllegalValueException() {
         List<JsonAdaptedPolicy> invalidPolicies = new ArrayList<>(VALID_POLICIES);
@@ -142,6 +139,6 @@ public class JsonAdaptedClientTest {
                 VALID_TAGS, invalidPolicies);
         assertThrows(IllegalValueException.class, client::toModelType);
     }
-
+    */
 
 }

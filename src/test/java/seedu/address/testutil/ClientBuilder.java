@@ -109,6 +109,16 @@ public class ClientBuilder {
         }
         return this;
     }
+
+    /**
+     * Sets the {@code UniquePolicyList} of the {@code Client} that we are building.
+     * @param policyList the policies that belong to the client.
+     * @return A ClientBuilder that builds into {@code Client} when called.
+     */
+    public ClientBuilder withPolicyList(UniquePolicyList policyList) {
+        this.policyList = policyList;
+        return this;
+    }
     // Don't need withPolicyList() because by default it should always be empty
     public Client build() {
         return new Client(name, phone, email, address, tags, policyList);

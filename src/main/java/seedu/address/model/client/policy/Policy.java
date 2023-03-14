@@ -92,8 +92,8 @@ public class Policy {
                 .append("; Premium: ")
                 .append(getPremium())
                 .append("; Frequency: ")
-                .append(getFrequency());
-
+                .append(getFrequency())
+                .append("; ");
         return builder.toString();
     }
 }

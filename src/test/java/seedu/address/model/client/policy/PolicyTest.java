@@ -12,7 +12,7 @@ class PolicyTest {
     private PolicyName name = new PolicyName("Health");
     private CustomDate date = new CustomDate("01.02.2023");
     private Premium premium = new Premium("200");
-    private Frequency frequency = new Frequency("quarterly");
+    private Frequency frequency = new Frequency("weekly");
     private Policy policy = new Policy(name, date, premium, frequency);
 
     @Test
@@ -36,7 +36,7 @@ class PolicyTest {
     @Test
     void getFrequency() {
         Frequency frequency = policy.getFrequency();
-        assertEquals(frequency.toString(), "quarterly");
+        assertEquals(frequency.toString(), "weekly");
     }
 
     @Test
@@ -46,7 +46,7 @@ class PolicyTest {
         CustomDate date1 = new CustomDate("01.02.2023");
         Premium premium1 = new Premium("200");
         Premium premium2 = new Premium("150");
-        Frequency frequency1 = new Frequency("quarterly");
+        Frequency frequency1 = new Frequency("weekly");
         Frequency frequency2 = new Frequency("yearly");
         Policy policy1 = new Policy(name1, date1, premium1, frequency1);
         Policy policy2 = new Policy(name1, date1, premium2, frequency2);
@@ -66,7 +66,7 @@ class PolicyTest {
         PolicyName name1 = new PolicyName("Health");
         CustomDate date1 = new CustomDate("01.02.2023");
         Premium premium1 = new Premium("200");
-        Frequency frequency1 = new Frequency("quarterly");
+        Frequency frequency1 = new Frequency("weekly");
         Policy policy1 = new Policy(name1, date1, premium1, frequency1);
 
         assertEquals(policy.toString(), policy1.toString());
