@@ -23,7 +23,7 @@ For now, let’s keep `RemarkCommand` as simple as possible and print some outpu
 **`RemarkCommand.java`:**
 
 ``` java
-package seedu.address.logic.commands;
+package seedu.address.logic.core;
 
 import seedu.address.model.Model;
 
