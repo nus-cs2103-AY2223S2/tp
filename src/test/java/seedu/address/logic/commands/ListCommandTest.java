@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.TankList;
@@ -30,12 +31,16 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedResult = new CommandResult(ListCommand.MESSAGE_SUCCESS_FISHES, false, false, true);
+        expectedModel.setGuiMode(GuiSettings.GuiMode.DISPLAY_ALL_FISHES);
+        assertCommandSuccess(ListCommand.LIST_FISHES, model, expectedResult, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showFishAtIndex(model, INDEX_FIRST_FISH);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedResult = new CommandResult(ListCommand.MESSAGE_SUCCESS_FISHES, false, false, true);
+        expectedModel.setGuiMode(GuiSettings.GuiMode.DISPLAY_ALL_FISHES);
+        assertCommandSuccess(ListCommand.LIST_FISHES, model, expectedResult, expectedModel);
     }
 }

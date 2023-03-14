@@ -47,7 +47,7 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features 
+## Features
 
 <div markdown="block" class="alert alert-info">
 

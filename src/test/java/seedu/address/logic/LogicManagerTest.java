@@ -7,8 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.LAST_FED_DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TANK_DESC;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFishes.AMY;
+import static seedu.address.testutil.TypicalTanks.getTypicalTanks;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -70,8 +72,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListCommand.COMMAND_WORD + " fishes";
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS_FISHES, model);
     }
 
     @Test
@@ -85,13 +87,21 @@ public class LogicManagerTest {
         JsonTankListStorage tankListStorage = new JsonTankListStorage(temporaryFolder.resolve("tankList.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
                 taskListStorage, tankListStorage);
+        // Initializes Tanks
+        TankList tankList = new TankList();
+        tankList.setTanks(getTypicalTanks());
+        model.setTankList(tankList);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + LAST_FED_DATE_DESC_AMY + SPECIES_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + TANK_DESC + NAME_DESC_AMY + LAST_FED_DATE_DESC_AMY
+                + SPECIES_DESC_AMY + ADDRESS_DESC_AMY;
         Fish expectedFish = new FishBuilder(AMY).withTags().build();
+        
         ModelManager expectedModel = new ModelManager();
+
+        // Manually sets tanklist
+        expectedModel.setTankList(tankList);
         expectedModel.addFish(expectedFish);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

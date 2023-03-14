@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TaskListPanel taskListPanel;
+    private TankListPanel tankListPanel;
     private MainContent mainContent;
 
     @FXML
@@ -113,8 +114,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         fishListPanel = new FishListPanel(logic.getFilteredFishList());
+        tankListPanel = new TankListPanel(logic.getFilteredTankList());
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        mainContent = new MainContent(fishListPanel, taskListPanel);
+        mainContent = new MainContent(tankListPanel, taskListPanel);
         mainContentPlaceholder.getChildren().add(mainContent.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -167,6 +169,24 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Changes the GUI Mode.
+     */
+    private void handleGuiChange() {
+        GuiSettings.GuiMode newMode = logic.getGuiSettings().getGuiMode();
+        switch (newMode) {
+        case DISPLAY_ALL_TANKS:
+            mainContent.setPanels(tankListPanel, taskListPanel);
+            break;
+        case DISPLAY_ALL_FISHES:
+            mainContent.setPanels(fishListPanel, taskListPanel);
+            break;
+        default:
+            mainContent.setPanels(tankListPanel, taskListPanel); // Default mode
+            break;
+        }
+    }
+
     public FishListPanel getFishListPanel() {
         return fishListPanel;
     }
@@ -188,6 +208,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isChangeGui()) {
+                handleGuiChange();
             }
 
             return commandResult;

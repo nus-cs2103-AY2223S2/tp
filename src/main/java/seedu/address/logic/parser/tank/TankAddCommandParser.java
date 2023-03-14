@@ -11,6 +11,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
 
@@ -36,7 +37,7 @@ public class TankAddCommandParser {
 
         TankName tankName = ParserUtil.parseTankName(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Tank tank = new Tank(tankName);
+        Tank tank = new Tank(tankName, new AddressBook());
 
         return new TankAddCommand(tank);
     }
