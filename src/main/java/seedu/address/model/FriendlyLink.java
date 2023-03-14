@@ -208,7 +208,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
 
     /**
-     * Adds a {code @pair} to {@code FriendlyLink}.
+     * Adds a {@code pair} to {@code FriendlyLink}.
      * The pair must not already exist in {@code FriendlyLink}.
      *
      * @param pair Pair to add into FriendlyLink.
@@ -219,7 +219,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Adds a pair consisting of elderly with {@code elderlyNric} and volunteer with {@code volunteerNric}
-     * from {@code FriendlyLink}.
+     * to {@code FriendlyLink}.
      * The pair must not already exist in {@code FriendlyLink}.
      *
      * @param elderlyNric Nric of elderly.
