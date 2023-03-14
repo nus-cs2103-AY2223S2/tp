@@ -5,8 +5,8 @@ package seedu.address.model.person;
  */
 public class Image {
     private String imagePath;
-    private static final String DEFAULT_IMAGE = "/images/default_image.png";
-    public final String imageName;
+    private final static String DEFAULT_IMAGE = "/images/default_image.png";
+    private final String imageName;
 
     /**
      * Constructs an {@code Image}.
@@ -17,6 +17,9 @@ public class Image {
         this.imageName = imageName;
     }
 
+    /**
+     * Overloaded constructor for a default image.
+     */
     public Image() {
         this.imagePath = DEFAULT_IMAGE;
         this.imageName = DEFAULT_IMAGE;
