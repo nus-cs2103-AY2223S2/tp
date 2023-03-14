@@ -64,6 +64,19 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Delete a tag from a person
+     * The person and the tag must already exist in the list
+     * 
+     * @param person The person to delete tag from.
+     * @param toDelete The tag to delete.
+     */
+    public void deleteTag(Person person, Tag toDelete) {
+        requireNonNull(person);
+        requireNonNull(toDelete);
+        findPerson(person).deleteTag(toDelete);
+    }
+    
+    /**
      * Finds the person
      */
     public Person findPerson(Person toFind) {

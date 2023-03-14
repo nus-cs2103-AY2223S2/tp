@@ -117,6 +117,11 @@ public class ModelManager implements Model {
         addressBook.addTag(person, tag);
     }
 
+    @Override
+    public void deleteTag(Person person, Tag tag) {
+        addressBook.deleteTag(person, tag);
+    }
+    
     //=========== Filtered Person List Accessors =============================================================
 
     /**
