@@ -18,24 +18,24 @@ import seedu.address.model.listing.Listing;
 public class SampleDataUtil {
     public static Listing[] getSampleListings() {
         return new Listing[] {
-                new Listing(new JobTitle("SE Summer Intern"),
-                        new JobDescription("3 month internship specialising in Software Engineering."),
-                        getApplicantSet("friends")),
-                new Listing(new JobTitle("UI Summer Intern"),
-                        new JobDescription("3 month internship specialising in UI/UX"),
-                        getApplicantSet("colleagues", "friends")),
-                new Listing(new JobTitle("Computer Security Summer Intern"),
-                        new JobDescription("3 month internship specialising in Computer Security."),
-                        getApplicantSet("Charlotte Oliveiro")),
-                new Listing(new JobTitle("AI Summer Intern"),
-                        new JobDescription("3 month internship specialising in Artificial Intelligence"),
-                        getApplicantSet("David Li")),
-                new Listing(new JobTitle("Algorithms Summer Intern"),
-                        new JobDescription("3 month internship specialising in Algorithms."),
-                        getApplicantSet("Irfan Ibrahim")),
-                new Listing(new JobTitle("Parallel Computing Summer Intern"),
-                        new JobDescription("3 month internship specialising in Parallel Computing."),
-                        getApplicantSet("Roy Balakrishnan"))
+            new Listing(new JobTitle("SE Summer Intern"),
+                    new JobDescription("3 month internship specialising in Software Engineering."),
+                    getApplicantSet("friends")),
+            new Listing(new JobTitle("UI Summer Intern"),
+                    new JobDescription("3 month internship specialising in UI/UX"),
+                    getApplicantSet("colleagues", "friends")),
+            new Listing(new JobTitle("Computer Security Summer Intern"),
+                    new JobDescription("3 month internship specialising in Computer Security."),
+                    getApplicantSet("Charlotte Oliveiro")),
+            new Listing(new JobTitle("AI Summer Intern"),
+                    new JobDescription("3 month internship specialising in Artificial Intelligence"),
+                    getApplicantSet("David Li")),
+            new Listing(new JobTitle("Algorithms Summer Intern"),
+                    new JobDescription("3 month internship specialising in Algorithms."),
+                    getApplicantSet("Irfan Ibrahim")),
+            new Listing(new JobTitle("Parallel Computing Summer Intern"),
+                    new JobDescription("3 month internship specialising in Parallel Computing."),
+                    getApplicantSet("Roy Balakrishnan"))
         };
     }
 

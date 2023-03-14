@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given listing {@code target} with {@code editedListing}.
      * {@code target} must exist in the listing book.
-     * The person identity of {@code editedListing} must not be the same as another existing listing in the listing book.
+     * The person identity of {@code editedListing} must not be the same
+     * as another existing listing in the listing book.
      */
     void setListing(Listing target, Listing editedListing);
 

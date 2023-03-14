@@ -22,19 +22,19 @@ public class NameTest {
     @Test
     public void isValidName() {
         // null name
-        assertThrows(NullPointerException.class, () -> seedu.address.model.person.Name.isValidName(null));
+        assertThrows(NullPointerException.class, () -> seedu.address.model.applicant.Name.isValidName(null));
 
         // invalid name
-        assertFalse(seedu.address.model.person.Name.isValidName("")); // empty string
-        assertFalse(seedu.address.model.person.Name.isValidName(" ")); // spaces only
-        assertFalse(seedu.address.model.person.Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(seedu.address.model.person.Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(seedu.address.model.applicant.Name.isValidName("")); // empty string
+        assertFalse(seedu.address.model.applicant.Name.isValidName(" ")); // spaces only
+        assertFalse(seedu.address.model.applicant.Name.isValidName("^")); // only non-alphanumeric characters
+        assertFalse(seedu.address.model.applicant.Name.isValidName("peter*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(seedu.address.model.person.Name.isValidName("peter jack")); // alphabets only
-        assertTrue(seedu.address.model.person.Name.isValidName("12345")); // numbers only
-        assertTrue(seedu.address.model.person.Name.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(seedu.address.model.person.Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(seedu.address.model.person.Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(seedu.address.model.applicant.Name.isValidName("peter jack")); // alphabets only
+        assertTrue(seedu.address.model.applicant.Name.isValidName("12345")); // numbers only
+        assertTrue(seedu.address.model.applicant.Name.isValidName("peter the 2nd")); // alphanumeric characters
+        assertTrue(seedu.address.model.applicant.Name.isValidName("Capital Tan")); // with capital letters
+        assertTrue(seedu.address.model.applicant.Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
 }
