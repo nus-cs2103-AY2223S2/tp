@@ -18,7 +18,7 @@ public class Region {
      * Enum that represents all regions of Singapore
      */
     public enum Regions {
-        NORTH, SOUTH, EAST, WEST, CENTRAL
+        NORTH, SOUTH, EAST, WEST, CENTRAL, UNKNOWN
     }
 
     /**
@@ -95,5 +95,24 @@ public class Region {
      */
     public Regions getRegion() {
         return this.region;
+    }
+
+    /**
+     * Returns the detected region based on the address <p>
+     * Goes through all towns and attempts to find a match of a town name in the address.
+     * If the town name cannot be found, it returns {@code Regions.UNKNOWN} 
+     * @param address address that we find to get the region from
+     * @return detected region if there is one, {@code Regions.UNKNOWN} if no town is found
+     */
+    public static Regions getRegionFromAddress(String address) {
+        String toUpperCaseAddress = address.toUpperCase();
+        Towns[] allTowns = Towns.values();
+        for (Towns t : allTowns) {
+            String spacedTownName = t.toString().replace('_', ' ');
+            if (toUpperCaseAddress.contains(spacedTownName)) {
+                return t.townRegion;
+            }
+        }
+        return Regions.UNKNOWN;
     }
 }
