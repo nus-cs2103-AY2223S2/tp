@@ -21,7 +21,6 @@ import trackr.logic.commands.DeleteTaskCommand;
 import trackr.logic.commands.EditCommand;
 import trackr.logic.commands.EditCommand.EditPersonDescriptor;
 import trackr.logic.commands.EditTaskCommand;
-import trackr.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindCommand;
 import trackr.logic.commands.FindTaskCommand;
@@ -32,11 +31,12 @@ import trackr.model.person.NameContainsKeywordsPredicate;
 import trackr.model.person.Person;
 import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
+import trackr.model.task.TaskDescriptor;
 import trackr.testutil.EditPersonDescriptorBuilder;
-import trackr.testutil.EditTaskDescriptorBuilder;
 import trackr.testutil.PersonBuilder;
 import trackr.testutil.PersonUtil;
 import trackr.testutil.TaskBuilder;
+import trackr.testutil.TaskDescriptorBuilder;
 import trackr.testutil.TaskUtil;
 
 public class TrackrParserTest {
@@ -105,22 +105,22 @@ public class TrackrParserTest {
     @Test
     public void parseCommand_editTask() throws Exception {
         Task task = new TaskBuilder().build();
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
+        TaskDescriptor descriptor = new TaskDescriptorBuilder(task).build();
         EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
                 EditTaskCommand.COMMAND_WORD + " "
                         + INDEX_FIRST_OBJECT.getOneBased()
-                        + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
+                        + " " + TaskUtil.getTaskDescriptorDetails(descriptor));
         assertEquals(new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor), command);
     }
 
     @Test
     public void parseCommand_editTaskShortcut() throws Exception {
         Task task = new TaskBuilder().build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
+        TaskDescriptor descriptor = new TaskDescriptorBuilder(task).build();
         EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
                 EditTaskCommand.COMMAND_WORD_SHORTCUT + " "
                         + INDEX_FIRST_OBJECT.getOneBased()
-                        + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
+                        + " " + TaskUtil.getTaskDescriptorDetails(descriptor));
         assertEquals(new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor), command);
     }
 
@@ -142,19 +142,23 @@ public class TrackrParserTest {
     @Test
     public void parseCommand_findTask() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
+        predicate.setTaskNameKeywords(keywords);
         FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
                 FindTaskCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindTaskCommand(new TaskContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindTaskCommand(predicate), command);
     }
 
     @Test
     public void parseCommand_findTaskShortcut() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
+        predicate.setTaskNameKeywords(keywords);
         FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
                 FindTaskCommand.COMMAND_WORD_SHORTCUT
                         + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindTaskCommand(new TaskContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindTaskCommand(predicate), command);
     }
 
     @Test

@@ -5,8 +5,8 @@ import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.logic.commands.AddTaskCommand;
-import trackr.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import trackr.model.task.Task;
+import trackr.model.task.TaskDescriptor;
 
 /**
  * A utility class for Task.
@@ -38,8 +38,8 @@ public class TaskUtil {
         return sb.toString();
     }
 
-    //Returns the part of command string for the given {@code EditTaskDescriptor}'s details.
-    public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
+    // Returns the part of command string for the given {@code TaskDescriptor}'s details.
+    public static String getTaskDescriptorDetails(TaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTaskName()
                 .ifPresent(taskName -> sb.append(PREFIX_NAME).append(taskName.fullTaskName).append(" "));
