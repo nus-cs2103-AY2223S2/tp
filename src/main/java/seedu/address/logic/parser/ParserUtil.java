@@ -165,12 +165,13 @@ public class ParserUtil {
         int endHour = Integer.parseInt(endTimeString[0]);
         int endMinute = Integer.parseInt(endTimeString[1]);
 
-        return new LocalDateTime[]{
-                LocalDateTime.of(year, month, day, startHour, startMinute),
-                LocalDateTime.of(year, month, day, endHour, endMinute)
+        return new LocalDateTime[] {
+            LocalDateTime.of(year, month, day, startHour, startMinute),
+            LocalDateTime.of(year, month, day, endHour, endMinute)
         };
+    }
 
-     * Parses a {@code String region} into the correct {@code Regions} enum
+     /**Parses a {@code String region} into the correct {@code Regions} enum
      *
      * @param region
      * @return

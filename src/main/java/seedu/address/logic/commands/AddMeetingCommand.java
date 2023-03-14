@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ public class AddMeetingCommand extends Command {
             + "other meetings on the day or period specified.\n"
             + "Parameters: [INDEX] m/ [DATE START] [DATE END]\n"
             + "Example: " + COMMAND_WORD + "1 m/ 30-03-2020 20:10 22:10";
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d Meeting: %2$s";
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting to Person: %1$s";
 
     private final Index index;
@@ -36,6 +36,8 @@ public class AddMeetingCommand extends Command {
      * @param meeting meeting to add
      */
     public AddMeetingCommand(Index index, Meeting meeting) {
+        requireNonNull(index);
+        requireNonNull(meeting);
         this.index = index;
         this.meeting = meeting;
     }
@@ -48,6 +50,7 @@ public class AddMeetingCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -76,8 +79,8 @@ public class AddMeetingCommand extends Command {
      * Checks if any 2 AddMeetingCommand are the same. This is done
      * by checking if both Meeting objects are assigned to the same person
      * and have same day, start and end time.
-     * @param other
-     * @return
+     * @param other other Object to be compared
+     * @return boolean value
      */
     @Override
     public boolean equals(Object other) {
@@ -103,6 +106,7 @@ public class AddMeetingCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
+        requireNonNull(personToEdit);
         return String.format(MESSAGE_ADD_MEETING_SUCCESS, personToEdit);
     }
 
@@ -114,6 +118,8 @@ public class AddMeetingCommand extends Command {
      * @return boolean value
      */
     private boolean hasClash(Meeting meetingToCheck, Person personUnderInspection) {
+        requireNonNull(personUnderInspection);
+        requireNonNull(meetingToCheck);
         ArrayList<Meeting> currentMeetings = personUnderInspection.getMeetings();
         for (Meeting meeting: currentMeetings) {
             if (meetingToCheck.checkTimeClash(meeting)) {
@@ -122,4 +128,5 @@ public class AddMeetingCommand extends Command {
         }
         return false;
     }
+
 }
