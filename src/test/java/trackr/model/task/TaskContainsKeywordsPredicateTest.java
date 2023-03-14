@@ -38,8 +38,10 @@ public class TaskContainsKeywordsPredicateTest {
                         .withTaskStatus("N")
                         .build();
         assertTrue(firstPredicate.equals(firstPredicateCopy));
-        firstPredicateCopy = new TaskPredicateBuilder(firstPredicate).build();
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
+
+        secondPredicate = new TaskPredicateBuilder().build();
+        TaskContainsKeywordsPredicate secondPredicateCopy = new TaskPredicateBuilder(secondPredicate).build();
+        assertTrue(secondPredicate.equals(secondPredicateCopy));
 
         // different types -> returns false
         assertFalse(firstPredicate.equals(1));
