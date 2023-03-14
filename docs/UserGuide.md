@@ -271,6 +271,22 @@ Simply use this command to clear all contacts from your address book.
 
 > Command: `clear`
 
+### Switching between UI tabs: `tab`
+
+Looking for a faster way to switch between the address book and the calendar?
+
+Use this command to navigate to the specified tab.
+
+> Command: `tab INDEX`
+
+Here are some important requirements for you to take note:
+* `INDEX` refers to the index of the tab to navigate to, shown before the name in the tab.
+  * `INDEX` must be a positive integer.
+
+Examples:
+* `tab 1` switches to the address book tab.
+* `tab 2` switches to the calendar tab.
+
 ### Exiting AddressBookNeo : `exit`
 
 Finished what you needed to do?
@@ -281,17 +297,19 @@ Use this command to exit the application!
 
 ### Address Book Command Summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action     | Format, Examples                                                                                                                                                         |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Clear**  | `clear`                                                                                                                                                                  |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                      |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |  
-| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                         |
-| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                     |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                            |
+| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                        |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                               |
+| **List**   | `list`                                                                                                                                                                   |
+| **Help**   | `help`                                                                                                                                                                   |
+| **Tab**    | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                            |
+| **Exit**   | `exit`                                                                                                                                                                   |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Calendar Features

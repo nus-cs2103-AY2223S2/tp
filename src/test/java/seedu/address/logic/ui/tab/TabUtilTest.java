@@ -9,6 +9,9 @@ import seedu.address.commons.core.index.Index;
 
 import java.util.List;
 
+/**
+ * Contains unit tests for {@code TabUtil}.
+ */
 class TabUtilTest {
 
     private final TabUtil tabUtil = new TabUtil(TabType.ADDRESS_BOOK, TabType.CALENDAR);
