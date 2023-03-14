@@ -145,7 +145,7 @@ public class TrackrParserTest {
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         predicate.setTaskNameKeywords(keywords);
         FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
-                FindTaskCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindTaskCommand.COMMAND_WORD + " " + TaskUtil.getTaskPredicateDetails(predicate));
         assertEquals(new FindTaskCommand(predicate), command);
     }
 
@@ -157,7 +157,7 @@ public class TrackrParserTest {
         FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
                 FindTaskCommand.COMMAND_WORD_SHORTCUT
                         + " "
-                        + keywords.stream().collect(Collectors.joining(" ")));
+                        + TaskUtil.getTaskPredicateDetails(predicate));
         assertEquals(new FindTaskCommand(predicate), command);
     }
 

@@ -1,6 +1,8 @@
 package trackr.logic.parser;
 
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static trackr.logic.commands.CommandTestUtil.TASK_NAME_DESC_BUY_FLOUR;
+import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -28,12 +30,12 @@ public class FindTaskCommandParserTest {
     public void parse_validArgs_returnsFindTaskCommand() {
         // no leading and trailing whitespaces
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
-        predicate.setTaskNameKeywords(Arrays.asList("Buy", "Sort"));
+        predicate.setTaskNameKeywords(Arrays.asList("Buy", "Flour"));
         FindTaskCommand expectedFindTaskCommand = new FindTaskCommand(predicate);
-        assertParseSuccess(parser, "Buy Sort", expectedFindTaskCommand);
+        assertParseSuccess(parser, TASK_NAME_DESC_BUY_FLOUR, expectedFindTaskCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Buy \n \t Sort  \t", expectedFindTaskCommand);
+        assertParseSuccess(parser, " " + PREFIX_NAME + "\n Buy \n \t Flour  \t", expectedFindTaskCommand);
     }
 
 }

@@ -6,6 +6,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.logic.commands.AddTaskCommand;
 import trackr.model.task.Task;
+import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDescriptor;
 
 /**
@@ -46,6 +47,19 @@ public class TaskUtil {
         descriptor.getTaskDeadline()
                 .ifPresent(taskDeadline -> sb.append(PREFIX_DEADLINE).append(taskDeadline.toJsonString()).append(" "));
         descriptor.getTaskStatus()
+                .ifPresent(taskStatus -> sb.append(PREFIX_STATUS).append(taskStatus.toJsonString()).append(" "));
+        return sb.toString();
+    }
+
+    // Returns the part of command string for the given {@code TaskContainsKeywordsPredicate}'s details.
+    public static String getTaskPredicateDetails(TaskContainsKeywordsPredicate predicate) {
+        StringBuilder sb = new StringBuilder();
+        predicate.getTaskNameKeywords()
+                .ifPresent(taskNameKeywords -> sb.append(PREFIX_NAME)
+                        .append(String.join(" ", taskNameKeywords)).append(" "));
+        predicate.getTaskDeadline()
+                .ifPresent(taskDeadline -> sb.append(PREFIX_DEADLINE).append(taskDeadline.toJsonString()).append(" "));
+        predicate.getTaskStatus()
                 .ifPresent(taskStatus -> sb.append(PREFIX_STATUS).append(taskStatus.toJsonString()).append(" "));
         return sb.toString();
     }

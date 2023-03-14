@@ -33,7 +33,7 @@ public class FindTaskCommandTest {
         firstPredicate.setTaskNameKeywords(Collections.singletonList("first"));
 
         TaskContainsKeywordsPredicate secondPredicate = new TaskContainsKeywordsPredicate();
-        secondPredicate.setTaskNameKeywords(Collections.singletonList("first"));
+        secondPredicate.setTaskNameKeywords(Collections.singletonList("second"));
 
         FindTaskCommand findTaskFirstCommand = new FindTaskCommand(firstPredicate);
         FindTaskCommand findTaskSecondCommand = new FindTaskCommand(secondPredicate);
