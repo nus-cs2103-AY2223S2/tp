@@ -20,7 +20,7 @@ public class DeleteRecurringEventParser implements Parser<DeleteRecurringEventCo
         Index eventIndex;
 
         try {
-            String split [] = userInput.split(" ", 3);
+            String[] split = userInput.split(" ", 3);
 
             if (split.length < 3) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

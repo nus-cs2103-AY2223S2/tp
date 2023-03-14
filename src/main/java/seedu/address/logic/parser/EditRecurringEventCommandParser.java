@@ -28,7 +28,7 @@ public class EditRecurringEventCommandParser implements Parser<EditRecurringEven
         try {
             String inputWithBothIndex = argMultimap.getPreamble().trim();
 
-            String splitIndex[] = inputWithBothIndex.split(" ", 2);
+            String[] splitIndex = inputWithBothIndex.split(" ", 2);
 
             if (splitIndex.length < 2) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
