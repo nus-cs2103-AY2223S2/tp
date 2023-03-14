@@ -22,7 +22,7 @@ public class DeleteClientCommand extends Command {
             COMMAND_ACRONYM + ": Deletes the client with the given email address.\n"
 
             + "Arguments: "
-            + CliSyntax.PREFIX_CLIENT_EMAIL + " EMAIL \n"
+            + CliSyntax.PREFIX_CLIENT_EMAIL + " EMAIL\n"
 
             + "Example: "
             + COMMAND_ACRONYM + " " + CliSyntax.PREFIX_CLIENT_EMAIL + " alice_baker@bakers.com";
