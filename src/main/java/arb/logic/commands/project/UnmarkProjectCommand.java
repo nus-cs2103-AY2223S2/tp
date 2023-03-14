@@ -48,11 +48,18 @@ public class UnmarkProjectCommand extends Command {
         }
 
         Project projectToUnmark = lastShownList.get(targetIndex.getZeroBased());
-        projectToUnmark.unmarkAsDone();
+        projectToUnmark.markAsUndone();
 
         model.setProject(projectToUnmark, projectToUnmark);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
         return new CommandResult(String.format(MESSAGE_UNMARK_PROJECT_SUCCESS, projectToUnmark), ListType.PROJECT);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UnmarkProjectCommand // instanceof handles nulls
+                && targetIndex.equals(((UnmarkProjectCommand) other).targetIndex)); // state check
     }
 }

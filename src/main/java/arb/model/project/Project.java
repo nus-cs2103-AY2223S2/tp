@@ -50,7 +50,7 @@ public class Project {
         this.status.setTrue();
     }
 
-    public void unmarkAsDone() {
+    public void markAsUndone() {
         this.status.setFalse();
     }
 
