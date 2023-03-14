@@ -35,7 +35,7 @@ public class SudoHr implements ReadOnlySudoHr {
     public SudoHr() {}
 
     /**
-     * Creates an SudoHr using the Persons in the {@code toBeCopied}
+     * Creates an SudoHr using the Employees in the {@code toBeCopied}
      */
     public SudoHr(ReadOnlySudoHr toBeCopied) {
         this();
@@ -45,8 +45,8 @@ public class SudoHr implements ReadOnlySudoHr {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the employee list with {@code employees}.
+     * {@code employees} must not contain duplicate employees.
      */
     public void setEmployees(List<Employee> employees) {
         this.employees.setEmployees(employees);
@@ -61,7 +61,7 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Resets the existing data of this {@code SudoHr} with {@code newData}.
+     * Resets the existing data of this {@code SudoHR} with {@code newData}.
      */
     public void resetData(ReadOnlySudoHr newData) {
         requireNonNull(newData);
@@ -73,7 +73,7 @@ public class SudoHr implements ReadOnlySudoHr {
     //=========== Employee-Level Operations ============================
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in SudoHR.
+     * Returns true if an employee with the same identity as {@code employee} exists in SudoHR.
      */
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
@@ -81,34 +81,34 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Returns true if a person shares the same email with a different {@code person} (different id).
+     * Returns true if an employee shares the same email with a different {@code employee} (different id).
      */
-    boolean hasClashingEmail(Employee person) {
-        requireNonNull(person);
-        return employees.sharesEmail(person);
+    boolean hasClashingEmail(Employee employee) {
+        requireNonNull(employee);
+        return employees.sharesEmail(employee);
     }
 
     /**
-     * Returns true if a person shares the same phone number with a different {@code person} (different id).
+     * Returns true if an employee shares the same phone number with a different {@code employee} (different id).
      */
-    boolean hasClashingPhoneNumber(Employee person) {
-        requireNonNull(person);
-        return employees.sharesPhoneNumber(person);
+    boolean hasClashingPhoneNumber(Employee employee) {
+        requireNonNull(employee);
+        return employees.sharesPhoneNumber(employee);
     }
 
     /**
      * Adds an employee to SudoHR.
-     * The person must not already exist in SudoHR and
+     * The employee must not already exist in SudoHR and
      * should not have any clashes with email or phone number fields
      */
-    public void addEmployee(Employee person) {
-        employees.add(person);
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedEmployee}.
+     * Replaces the given employee {@code target} in the list with {@code editedEmployee}.
      * {@code target} must exist in SudoHR.
-     * The person identity of {@code editedEmployee} must not be the same as
+     * The employee identity of {@code editedEmployee} must not be the same as
      * another existing employee in SudoHR.
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
@@ -153,9 +153,8 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Replaces the given department {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in SudoHR.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in SudoHR.
+     * Replaces the given department {@code target} in the list with {@code editedDepartment}.
+     * {@code editedDepartment} must exist in SudoHR.
      */
     public void setDepartment(Department target, Department editedDepartment) {
         requireNonNull(editedDepartment);

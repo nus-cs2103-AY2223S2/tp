@@ -14,8 +14,8 @@ import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
 /**
  * A list of employees that enforces uniqueness between its elements and does not allow nulls.
  * An employee is considered unique by comparing using {@code Employee#isSameEmployee(Employee)}. As such, adding and updating
- * of employees uses Employee#isSameEmployee(Employee) for equality to ensure that the person being added or updated is
- * unique in terms of identity in the UniqueEmployeeList. However, the removal of a person uses Employee#equals(Object)
+ * of employees uses Employee#isSameEmployee(Employee) for equality to ensure that the employee being added or updated is
+ * unique in terms of identity in the UniqueEmployeeList. However, the removal of an employee uses Employee#equals(Object)
  * to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -71,29 +71,29 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the person {@code target} in the list with {@code editedEmployee}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedEmployee} must not be the same as another existing employee in the list.
      */
-    public void setEmployee(Employee target, Employee editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setEmployee(Employee target, Employee editedEmployee) {
+        requireAllNonNull(target, editedEmployee);
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new EmployeeNotFoundException();
         }
-        if (!target.isSameEmployee(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameEmployee(editedEmployee) && contains(editedEmployee)) {
             throw new DuplicateEmployeeException();
         }
 
-        if (!target.isSameEmployee(editedPerson) && sharesPhoneNumber(editedPerson)) {
+        if (!target.isSameEmployee(editedEmployee) && sharesPhoneNumber(editedEmployee)) {
             throw new DuplicatePhoneNumberException();
         }
 
-        if (!target.isSameEmployee(editedPerson) && sharesEmail(editedPerson)) {
+        if (!target.isSameEmployee(editedEmployee) && sharesEmail(editedEmployee)) {
             throw new DuplicateEmailException();
         }
 
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedEmployee);
     }
 
     /**
@@ -111,22 +111,22 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         internalList.setAll(replacement.internalList);
     }
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code employees}.
+     * {@code employees} must not contain duplicate employees.
      */
-    public void setEmployees(List<Employee> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+    public void setEmployees(List<Employee> employees) {
+        requireAllNonNull(employees);
+        if (!employeesAreUnique(employees)) {
             throw new DuplicateEmployeeException();
         }
-        if (!phoneNumbersAreUnique(persons)) {
+        if (!phoneNumbersAreUnique(employees)) {
             throw new DuplicatePhoneNumberException();
         }
-        if (!emailsAreUnique(persons)) {
+        if (!emailsAreUnique(employees)) {
             throw new DuplicateEmailException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(employees);
     }
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
@@ -149,12 +149,12 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         return internalList.hashCode();
     }
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code employees} contains only unique employees.
      */
-    private boolean personsAreUnique(List<Employee> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameEmployee(persons.get(j))) {
+    private boolean employeesAreUnique(List<Employee> employees) {
+        for (int i = 0; i < employees.size() - 1; i++) {
+            for (int j = i + 1; j < employees.size(); j++) {
+                if (employees.get(i).isSameEmployee(employees.get(j))) {
                     return false;
                 }
             }
@@ -163,12 +163,12 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique emails.
+     * Returns true if {@code employees} contains only unique emails.
      */
-    private boolean emailsAreUnique(List<Employee> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).emailClashes(persons.get(j))) {
+    private boolean emailsAreUnique(List<Employee> employees) {
+        for (int i = 0; i < employees.size() - 1; i++) {
+            for (int j = i + 1; j < employees.size(); j++) {
+                if (employees.get(i).emailClashes(employees.get(j))) {
                     return false;
                 }
             }
@@ -177,12 +177,12 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique phone numbers.
+     * Returns true if {@code employees} contains only unique phone numbers.
      */
-    private boolean phoneNumbersAreUnique(List<Employee> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).phoneClashes(persons.get(j))) {
+    private boolean phoneNumbersAreUnique(List<Employee> employees) {
+        for (int i = 0; i < employees.size() - 1; i++) {
+            for (int j = i + 1; j < employees.size(); j++) {
+                if (employees.get(i).phoneClashes(employees.get(j))) {
                     return false;
                 }
             }
