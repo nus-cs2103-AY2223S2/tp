@@ -11,6 +11,7 @@ public class Performance {
 
     public static final String MESSAGE_CONSTRAINTS = "Must be an integer between 0 to 100";
 
+
     public final String value;
 
     /**
