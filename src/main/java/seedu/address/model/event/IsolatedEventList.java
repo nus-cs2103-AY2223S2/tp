@@ -33,13 +33,11 @@ public class IsolatedEventList {
 
         while (it.hasNext()) {
             currEvent = it.next();
-           if (currEvent.occursBetween(startDate, endDate)) {
-
-               return currEvent;
-           }
+            if (currEvent.occursBetween(startDate, endDate)) {
+                return currEvent;
+            }
             counter++;
         }
-
         return null;
     }
 

@@ -73,14 +73,14 @@ public class GroupFindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleGroupsFound() {
         String expectedMessage = String.format(MESSAGE_GROUPS_LISTED_OVERVIEW, 2);
-        String multipleKeywords = "Friends CS2103";
+        String multipleKeywords = "CS2103 Friends";
         GroupNameContainsKeywordsPredicate groupPredicate = prepareGroupPredicate(multipleKeywords);
         MemberOfGroupPredicate memberPredicate = prepareMemberPredicate(multipleKeywords);
         GroupFindCommand command = new GroupFindCommand(groupPredicate, memberPredicate);
         expectedModel.updateFilteredGroupList(groupPredicate);
         expectedModel.updateFilteredPersonList(memberPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FRIENDS_GROUP, CS2103_GROUP), model.getFilteredGroupList());
+        assertEquals(Arrays.asList(CS2103_GROUP, FRIENDS_GROUP), model.getFilteredGroupList());
     }
 
     @Test

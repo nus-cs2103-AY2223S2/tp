@@ -146,6 +146,14 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_invalidGroupAdded_failure() {
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withGroups("INVALID").build());
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_GROUP);
+    }
+
+    @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
 

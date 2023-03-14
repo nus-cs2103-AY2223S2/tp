@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 
@@ -128,7 +129,15 @@ public interface Model {
      */
     void addIsolatedEvent(Person person, IsolatedEvent eventToAdd);
 
+    /**
+     * Add Recurring Event object to the person's isolated event list
+     * @param personToEdit
+     * @param eventToAdd
+     */
+    void addRecurringEvent(Person personToEdit, RecurringEvent eventToAdd);
+
     void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event);
 
     void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent, IsolatedEvent editedIsolatedEvent);
+
 }

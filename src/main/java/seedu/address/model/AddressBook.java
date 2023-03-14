@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Person;
@@ -97,6 +98,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setIsolatedEvent(Person person, IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
         requireNonNull(editedEvent);
         person.getIsolatedEventList().edit(originalEvent, editedEvent);
+    }
+
+    public void addRecurringEvent(Person person, RecurringEvent event) {
+        person.addRecurringEvent(event);
     }
 
     /**

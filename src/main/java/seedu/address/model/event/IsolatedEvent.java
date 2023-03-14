@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
 
-    public static final String VALIDATION_REGEX_EVENTNAME = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String MESSAGE_CONSTRAINTS_EVENTNAME =
             "Event name should only contain alphanumeric characters and spaces, and it should not be blank";
     public static final String MESSAGE_CONSTRAINTS_DATE =
@@ -75,10 +74,6 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
         }
 
         return true;
-    }
-
-    public static boolean isValidEventName(String eventName) {
-        return eventName.matches(VALIDATION_REGEX_EVENTNAME);
     }
 
     @Override
