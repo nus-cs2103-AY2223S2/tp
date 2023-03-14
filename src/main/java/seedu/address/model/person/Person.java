@@ -5,13 +5,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
 
@@ -23,6 +25,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Optional<Birthday> birthday;
 
     /**
      * Every field must be present and not null.
@@ -34,6 +37,11 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.birthday = Optional.empty();
+    }
+
+    public void setBirthday(Birthday birthday) {
+        this.birthday = Optional.ofNullable(birthday);
     }
 
     public Name getName() {
@@ -52,8 +60,13 @@ public class Person {
         return address;
     }
 
+    public Optional<Birthday> getBirthday() {
+        return birthday;
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -109,6 +122,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Birthday: ")
+                .append(getBirthday())
                 .append("; Address: ")
                 .append(getAddress());
 
