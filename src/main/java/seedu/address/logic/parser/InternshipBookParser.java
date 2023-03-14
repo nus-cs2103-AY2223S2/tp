@@ -11,8 +11,8 @@ import seedu.address.logic.commands.AddApplicationCommand;
 import seedu.address.logic.commands.ApplicationCommand;
 import seedu.address.logic.commands.DeleteApplicationCommand;
 import seedu.address.logic.commands.EditApplicationCommand;
-import seedu.address.logic.commands.HelpApplicationCommand;
 import seedu.address.logic.commands.FindApplicationCommand;
+import seedu.address.logic.commands.HelpApplicationCommand;
 import seedu.address.logic.commands.ListApplicationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
