@@ -40,6 +40,14 @@ public class Plane implements Item {
     }
 
     /**
+     * Returns the id of the plane.
+     * @return the id of the plane.
+     */
+    public String getId() {
+        return this.id;
+    }
+
+    /**
      * Returns the model of the plane.
      * @return the model of the plane.
      */
@@ -61,10 +69,6 @@ public class Plane implements Item {
                 String.format("%s: %s", MODEL_STRING, model),
                 String.format("%s: %s", AGE_STRING, age)
         );
-    }
-
-    public String getId() {
-        return this.id;
     }
 
     @Override
