@@ -32,26 +32,32 @@ public class TypicalElderly {
 
     public static final Elderly ALICE = new ElderlyBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withTags("friends")
-            .withAge("20").withNric("S9673908G").withRiskLevel("low").build();
+            .withPhone("94351253").withTags("friends").withAge("20")
+            .withRegion("NORTH").withNric("S9673908G").withRiskLevel("low").build();
     public static final Elderly BENSON = new ElderlyBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withTags("owesMoney", "friends")
-            .withAge("23").withNric("S6878241D").withRiskLevel("medium").build();
+            .withAge("23").withRegion("NORTHEAST")
+            .withNric("S6878241D").withRiskLevel("medium").build();
     public static final Elderly CARL = new ElderlyBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withAge("31").withNric("S3634466J").withRiskLevel("high").build();
+            .withAge("31").withRegion("CENTRAL")
+            .withNric("S3634466J").withRiskLevel("high").build();
     public static final Elderly DANIEL = new ElderlyBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").withAge("25")
+            .withEmail("cornelia@example.com").withAddress("10th street")
+            .withTags("friends").withAge("25").withRegion("WEST")
             .withNric("S0203151E").withRiskLevel("LOW").build();
     public static final Elderly ELLE = new ElderlyBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").withAge("28")
+            .withEmail("werner@example.com").withAddress("michegan ave")
+            .withAge("28").withRegion("EAST")
             .withNric("S7238791J").withRiskLevel("HIGH").build();
     public static final Elderly FIONA = new ElderlyBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").withAge("26")
+            .withEmail("lydia@example.com").withAddress("little tokyo")
+            .withAge("26").withRegion("CENTRAL")
             .withNric("S3576311B").withRiskLevel("MEDIUM").build();
     public static final Elderly GEORGE = new ElderlyBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withAge("24")
+            .withEmail("anna@example.com").withAddress("4th street")
+            .withAge("24").withRegion("NORTH")
             .withNric("S1262951F").withRiskLevel("LoW").build();
 
     // Manually added

@@ -7,6 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "nric" : "S9673908G",
     "age" : "20",
+    "region": "CENTRAL",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "nric" : "S6878241D",
     "age" : "23",
+    "region": "WEST",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +25,7 @@
     "address" : "wall street",
     "nric" : "S3634466J",
     "age" : "31",
+    "region": "EAST",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "address" : "10th street",
     "nric" : "S0203151E",
     "age" : "25",
+    "region": "NORTH",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "address" : "michegan ave",
     "nric" : "S7238791J",
     "age" : "28",
+    "region": "NORTHEAST",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "address" : "little tokyo",
     "nric" : "S3576311B",
     "age" : "26",
+    "region": "EAST",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "address" : "4th street",
     "nric" : "S1262951F",
     "age" : "24",
+    "region": "CENTRAL",
     "tagged" : [ ]
   } ]
 }

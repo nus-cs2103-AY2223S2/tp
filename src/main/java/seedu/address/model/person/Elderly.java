@@ -9,6 +9,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.person.information.RiskLevel;
 import seedu.address.model.tag.Tag;
 
@@ -20,16 +21,13 @@ public class Elderly extends Person {
 
     private final RiskLevel riskLevel;
 
-    // private final Region region;
-
-    // private final Community community;
-
     /**
      * Every field must be present and not null.
      */
     public Elderly(Name name, Phone phone, Email email,
-                   Address address, Nric nric, Age age, RiskLevel riskLevel, Set<Tag> tags) {
-        super(name, phone, email, address, nric, age, tags);
+                   Address address, Nric nric, Age age, Region region,
+                   RiskLevel riskLevel, Set<Tag> tags) {
+        super(name, phone, email, address, nric, age, region, tags);
         this.riskLevel = riskLevel;
     }
 
@@ -61,7 +59,7 @@ public class Elderly extends Person {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(getName(), getPhone(), getEmail(), getAddress(),
-                getNric(), getAge(), getRiskLevel(), getTags());
+                getNric(), getAge(), getRegion(),getRiskLevel(), getTags());
     }
 
     @Override
@@ -78,6 +76,8 @@ public class Elderly extends Person {
                 .append(getNric())
                 .append("; Age: ")
                 .append(getAge())
+                .append("; Region: ")
+                .append(getRegion())
                 .append("; RiskLevel: ")
                 .append(getRiskLevel());
 

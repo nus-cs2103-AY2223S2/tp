@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -20,7 +21,6 @@ import seedu.address.model.person.Elderly;
  */
 public class AddElderlyCommand extends Command {
 
-    // TODO: later find ways to make this "add elderly"
     public static final String COMMAND_WORD = "add_elderly";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an elderly to the database. "
@@ -40,9 +40,10 @@ public class AddElderlyCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_NRIC_ELDERLY + "S1234567A "
             + PREFIX_AGE + "69 "
+            + PREFIX_REGION + "WEST "
             + PREFIX_RISK + "LOW "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "diabetes "
+            + PREFIX_TAG + "lonely";
 
     public static final String MESSAGE_SUCCESS = "New elderly added: %1$s";
 

@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
@@ -30,6 +31,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.person.information.RiskLevel;
 import seedu.address.model.tag.Tag;
 
@@ -50,6 +52,7 @@ public class EditElderlyCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NRIC_ELDERLY + "NRIC] "
             + "[" + PREFIX_AGE + "AGE] "
+            + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_RISK + "RISK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -113,12 +116,13 @@ public class EditElderlyCommand extends Command {
         Address updatedAddress = editElderlyDescriptor.getAddress().orElse(elderlyToEdit.getAddress());
         Nric updatedNric = editElderlyDescriptor.getNric().orElse(elderlyToEdit.getNric());
         Age updatedAge = editElderlyDescriptor.getAge().orElse(elderlyToEdit.getAge());
+        Region updateRegion = editElderlyDescriptor.getRegion().orElse(elderlyToEdit.getRegion());
         RiskLevel updagetRiskLevel = editElderlyDescriptor.getRiskLevel()
                 .orElse(elderlyToEdit.getRiskLevel());
         Set<Tag> updatedTags = editElderlyDescriptor.getTags().orElse(elderlyToEdit.getTags());
 
         return new Elderly(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updagetRiskLevel, updatedTags);
+                updatedNric, updatedAge, updateRegion, updagetRiskLevel, updatedTags);
     }
 
     @Override
@@ -150,6 +154,7 @@ public class EditElderlyCommand extends Command {
         private Address address;
         private Nric nric;
         private Age age;
+        private Region region;
         private RiskLevel riskLevel;
         private Set<Tag> tags;
 
@@ -166,6 +171,7 @@ public class EditElderlyCommand extends Command {
             setAddress(toCopy.address);
             setNric(toCopy.nric);
             setAge(toCopy.age);
+            setRegion(toCopy.region);
             setRiskLevel(toCopy.riskLevel);
             setTags(toCopy.tags);
         }
@@ -175,7 +181,7 @@ public class EditElderlyCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone,
-                    email, address, nric, age, riskLevel, tags);
+                    email, address, nric, age, region, riskLevel, tags);
         }
 
         public void setName(Name name) {
@@ -226,6 +232,14 @@ public class EditElderlyCommand extends Command {
             return Optional.ofNullable(age);
         }
 
+        public void setRegion(Region region) {
+            this.region = region;
+        }
+
+        public Optional<Region> getRegion() {
+            return Optional.ofNullable(region);
+        }
+
         public void setRiskLevel(RiskLevel riskLevel) {
             this.riskLevel = riskLevel;
         }
@@ -272,6 +286,7 @@ public class EditElderlyCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getNric().equals(e.getNric())
                     && getAge().equals(e.getAge())
+                    && getRegion().equals(e.getRegion())
                     && getRiskLevel().equals(e.getRiskLevel())
                     && getTags().equals(e.getTags());
         }

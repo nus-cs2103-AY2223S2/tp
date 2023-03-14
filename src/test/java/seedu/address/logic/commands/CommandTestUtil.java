@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -51,6 +52,9 @@ public class CommandTestUtil {
 
     public static final String VALID_AGE_AMY = "68";
     public static final String VALID_AGE_BOB = "85";
+
+    public static final String VALID_REGION_AMY = "NORTH";
+    public static final String VALID_REGION_BOB = "CENTRAL";
 
     public static final String VALID_RISKLEVEL_AMY = "LOW";
     public static final String VALID_RISKLEVEL_BOB = "MEDIUM";

@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
@@ -29,6 +30,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +50,7 @@ public class EditVolunteerCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NRIC_VOLUNTEER + "NRIC] "
             + "[" + PREFIX_AGE + "AGE] "
+            + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -111,10 +114,11 @@ public class EditVolunteerCommand extends Command {
         Address updatedAddress = editVolunteerDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
         Nric updatedNric = editVolunteerDescriptor.getNric().orElse(volunteerToEdit.getNric());
         Age updatedAge = editVolunteerDescriptor.getAge().orElse(volunteerToEdit.getAge());
+        Region updatedRegion = editVolunteerDescriptor.getRegion().orElse(volunteerToEdit.getRegion());
         Set<Tag> updatedTags = editVolunteerDescriptor.getTags().orElse(volunteerToEdit.getTags());
 
         return new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updatedTags);
+                updatedNric, updatedAge, updatedRegion, updatedTags);
     }
 
     @Override
@@ -146,6 +150,7 @@ public class EditVolunteerCommand extends Command {
         private Address address;
         private Nric nric;
         private Age age;
+        private Region region;
         private Set<Tag> tags;
 
         public EditVolunteerDescriptor() {}
@@ -161,6 +166,7 @@ public class EditVolunteerCommand extends Command {
             setAddress(toCopy.address);
             setNric(toCopy.nric);
             setAge(toCopy.age);
+            setRegion(toCopy.region);
             setTags(toCopy.tags);
         }
 
@@ -169,7 +175,7 @@ public class EditVolunteerCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone,
-                    email, address, nric, age, tags);
+                    email, address, nric, age, region, tags);
         }
 
         public void setName(Name name) {
@@ -220,6 +226,14 @@ public class EditVolunteerCommand extends Command {
             return Optional.ofNullable(age);
         }
 
+        public void setRegion(Region region) {
+            this.region = region;
+        }
+
+        public Optional<Region> getRegion() {
+            return Optional.ofNullable(region);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -258,6 +272,7 @@ public class EditVolunteerCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getNric().equals(e.getNric())
                     && getAge().equals(e.getAge())
+                    && getRegion().equals(e.getRegion())
                     && getTags().equals(e.getTags());
         }
     }

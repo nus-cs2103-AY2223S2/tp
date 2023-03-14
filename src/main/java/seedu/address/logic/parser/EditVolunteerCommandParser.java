@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.Messages;
@@ -30,7 +31,7 @@ public class EditVolunteerCommandParser extends EditCommandParser implements Par
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC_VOLUNTEER, PREFIX_AGE, PREFIX_TAG);
+                        PREFIX_NRIC_VOLUNTEER, PREFIX_AGE, PREFIX_REGION, PREFIX_TAG);
 
         Index index;
 
@@ -65,6 +66,10 @@ public class EditVolunteerCommandParser extends EditCommandParser implements Par
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
             editVolunteerDescriptor.setAge(
                     ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_REGION).isPresent()) {
+            editVolunteerDescriptor.setRegion(
+                    ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get()));
         }
         super.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
                 .ifPresent(editVolunteerDescriptor::setTags);

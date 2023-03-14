@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -31,7 +32,7 @@ public class EditElderlyCommandParser extends EditCommandParser implements Parse
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC_ELDERLY, PREFIX_AGE, PREFIX_RISK, PREFIX_TAG);
+                        PREFIX_NRIC_ELDERLY, PREFIX_AGE, PREFIX_REGION, PREFIX_RISK, PREFIX_TAG);
 
         Index index;
 
@@ -66,6 +67,10 @@ public class EditElderlyCommandParser extends EditCommandParser implements Parse
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
             editElderlyDescriptor.setAge(
                     ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_REGION).isPresent()) {
+            editElderlyDescriptor.setRegion(
+                    ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get()));
         }
         if (argMultimap.getValue(PREFIX_RISK).isPresent()) {
             editElderlyDescriptor.setRiskLevel(
