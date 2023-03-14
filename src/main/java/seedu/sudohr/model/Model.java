@@ -57,23 +57,23 @@ public interface Model {
     //=========== Employee-Level Operations ===========================================
 
     /**
-     * Returns true if an employee with the same identity as {@code employee} exists in SudoHR.
+     * Returns true if an employee with the same identity as {@code person} exists in SudoHR.
      */
     boolean hasEmployee(Employee employee);
 
     /**
-     * Returns true if a employee shares the same email with a different {@code employee} (different id).
+     * Returns true if a person shares the same email with a different {@code person} (different id).
      */
-    boolean hasClashingEmail(Employee employee);
+    boolean hasClashingEmail(Employee person);
 
     /**
-     * Returns true if a employee shares the same phone number with a different {@code employee} (different id).
+     * Returns true if a person shares the same phone number with a different {@code person} (different id).
      */
-    boolean hasClashingPhoneNumber(Employee employee);
+    boolean hasClashingPhoneNumber(Employee person);
 
     /**
      * Deletes the given employee.
-     * The employee must exist in SudoHR.
+     * The person must exist in SudoHR.
      */
     void deleteEmployee(Employee target);
 

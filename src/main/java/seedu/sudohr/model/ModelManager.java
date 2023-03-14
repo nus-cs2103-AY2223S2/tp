@@ -95,21 +95,21 @@ public class ModelManager implements Model {
     //=========== Employee-Level Operations ========================
 
     @Override
-    public boolean hasEmployee(Employee employee) {
-        requireNonNull(employee);
-        return sudoHr.hasEmployee(employee);
+    public boolean hasEmployee(Employee person) {
+        requireNonNull(person);
+        return sudoHr.hasEmployee(person);
     }
 
     @Override
-    public boolean hasClashingEmail(Employee employee) {
-        requireNonNull(employee);
-        return sudoHr.hasClashingEmail(employee);
+    public boolean hasClashingEmail(Employee person) {
+        requireNonNull(person);
+        return sudoHr.hasClashingEmail(person);
     }
 
     @Override
-    public boolean hasClashingPhoneNumber(Employee employee) {
-        requireNonNull(employee);
-        return sudoHr.hasClashingPhoneNumber(employee);
+    public boolean hasClashingPhoneNumber(Employee person) {
+        requireNonNull(person);
+        return sudoHr.hasClashingPhoneNumber(person);
     }
 
     @Override
