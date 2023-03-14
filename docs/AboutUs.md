@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Titus Lowe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tituswe.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/tituswe)]
+[[portfolio](team/tituswe.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Ang Yuze
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yzmunchmunch.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yzmunchmunch)]
+[[portfolio](team/yzmunchmunch.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Pang Rui Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pangrwa.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/pangrwa)]
+[[portfolio](team/pangrwa.md)]
+
+* Role: -To be Added soon-
+* Responsibilities: -To be Added soon-
+
+### Lu Chenyu
+
+<img src="images/adam07018.png" width="200px">
+
+[[github](http://github.com/adam07018)]
+[[portfolio](team/adam07018.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Policy Management Features
 
-### Jean Doe
+### Anunaya Joshi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/anunayajoshi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/anunayajoshi)]
+[[portfolio](team/anunayajoshi.md)]
 
 * Role: Developer
 * Responsibilities: UI

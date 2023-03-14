@@ -4,8 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_FREQUENCY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_PREMIUM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalPolicies.AMY_POLICY;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,20 +19,21 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPolicyCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.ClientUtil;
+import seedu.address.testutil.EditClientDescriptorBuilder;
 
 public class AddressBookParserTest {
 
@@ -35,9 +41,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Client client = new ClientBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(ClientUtil.getAddCommand(client));
+        assertEquals(new AddCommand(client), command);
+    }
+    @Test
+    public void parseCommand_addPolicy() throws Exception {
+        final String policyStub = POLICY_NAME_AMY + POLICY_DATE_AMY + POLICY_PREMIUM_AMY + POLICY_FREQUENCY_AMY;
+        AddPolicyCommand command = (AddPolicyCommand) parser.parseCommand(
+                AddPolicyCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " " + policyStub);
+        assertEquals(new AddPolicyCommand(INDEX_FIRST_CLIENT, AMY_POLICY), command);
     }
 
     @Test
@@ -49,17 +62,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_CLIENT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Client client = new ClientBuilder().build();
+        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_CLIENT, descriptor), command);
     }
 
     @Test
@@ -89,9 +102,16 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_select() throws Exception {
+        SelectCommand command = (SelectCommand) parser.parseCommand(
+                SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
+        assertEquals(new SelectCommand(INDEX_FIRST_CLIENT), command);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

@@ -12,4 +12,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
+    /* Policy Prefix definitions */
+    public static final Prefix PREFIX_POLICY_NAME = new Prefix("pn/");
+    public static final Prefix PREFIX_POLICY_START_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_POLICY_PREMIUM = new Prefix("pr/");
+    public static final Prefix PREFIX_POLICY_FREQUENCY = new Prefix("fr/");
+
 }
