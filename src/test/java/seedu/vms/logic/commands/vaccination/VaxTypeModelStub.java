@@ -131,8 +131,9 @@ public class VaxTypeModelStub implements Model {
 
     @Override
     public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteVaxType'");
+        return manager.remove(vaxName.toString())
+                .orElseThrow(() -> new IllegalValueException(String.format(
+                        "Vaccination type does not exist: %s", vaxName.toString())));
     }
 
 }
