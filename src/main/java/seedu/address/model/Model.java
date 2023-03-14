@@ -5,7 +5,13 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
+import seedu.address.model.service.Part;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 
 /**
  * The API of the Model component.
@@ -13,6 +19,13 @@ import seedu.address.model.entity.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = nused -> true;
+    Predicate<Technician> PREDICATE_SHOW_ALL_TECHNICIANS = unused -> true;
+    Predicate<Part> PREDICATE_SHOW_ALL_PARTS = unused -> true;
+    Predicate<Service> PREDICATE_SHOW_ALL_SERVICES = unused -> true;
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+    Predicate<Vehicle> PREDICATE_SHOW_ALL_VEHICLES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -76,6 +89,12 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    void deleteCustomer(Customer target);
+
+    void addCustomer(Customer person);
+
+    void setCustomer(Customer target, Customer editedPerson);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -84,4 +103,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredCustomerList(Predicate<Customer> predicate);
 }

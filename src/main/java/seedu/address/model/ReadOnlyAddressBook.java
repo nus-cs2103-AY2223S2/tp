@@ -6,8 +6,6 @@ import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.service.Vehicle;
 
-import java.util.List;
-
 /**
  * Unmodifiable view of an address book
  */

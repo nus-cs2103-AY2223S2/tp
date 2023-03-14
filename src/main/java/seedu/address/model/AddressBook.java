@@ -166,7 +166,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Customer> getCustomerList() { return customers.asUnmodifiableObservableList(); }
+    public ObservableList<Customer> getCustomerList() {
+        return customers.asUnmodifiableObservableList();
+    }
 
     // --------------------------------------------------
     //// technician-level operations
@@ -214,7 +216,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Technician> getTechnicianList() { return technicians.asUnmodifiableObservableList(); }
+    public ObservableList<Technician> getTechnicianList() {
+        return technicians.asUnmodifiableObservableList();
+    }
 
     // --------------------------------------------------
     //// vehicle-level operations
@@ -262,7 +266,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Vehicle> getVehicleList() { return vehicles.asUnmodifiableObservableList(); }
+    public ObservableList<Vehicle> getVehicleList() {
+        return vehicles.asUnmodifiableObservableList();
+    }
 
     // --------------------------------------------------
     //// util methods

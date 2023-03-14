@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.service.Part;
@@ -27,7 +28,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Person> filteredCustomers;
+    private final FilteredList<Customer> filteredCustomers;
     private final FilteredList<Technician> filteredTechnicians;
     private final FilteredList<Service> filteredServices;
     private final FilteredList<Vehicle> filteredVehicles;
@@ -46,10 +47,10 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        filteredCustomers = null;
-        filteredTechnicians = null;
+        filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
+        filteredTechnicians = new FilteredList<>(this.addressBook.getTechnicianList());
         filteredServices = null; // new FilteredList<>(this.addressBook.getPersonList());
-        filteredVehicles = null; // new FilteredList<>(this.addressBook.getPersonList());
+        filteredVehicles = new FilteredList<>(this.addressBook.getVehicleList());
         filteredParts = null; // new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = null; // new FilteredList<>(this.addressBook.getPersonList());
     }
@@ -112,6 +113,7 @@ public class ModelManager implements Model {
         return addressBook.hasPerson(person);
     }
 
+    // ==== For persons ===
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
@@ -129,6 +131,25 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    // ==== For Customers ==
+
+    @Override
+    public void deleteCustomer(Customer target) {
+        addressBook.removeCustomer(target);
+    }
+
+    @Override
+    public void addCustomer(Customer person) {
+        addressBook.addCustomer(person);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+    }
+
+    @Override
+    public void setCustomer(Customer target, Customer editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        addressBook.setCustomer(target, editedPerson);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -144,6 +165,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+        requireNonNull(predicate);
+        filteredCustomers.setPredicate(predicate);
     }
 
     @Override
