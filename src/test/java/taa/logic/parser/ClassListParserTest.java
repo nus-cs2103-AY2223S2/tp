@@ -29,7 +29,7 @@ import taa.testutil.TypicalIndexes;
 
 public class ClassListParserTest {
 
-    private final TAAParser parser = new TAAParser();
+    private final TaaParser parser = new TaaParser();
 
     @Test
     public void parseCommand_add() throws Exception {

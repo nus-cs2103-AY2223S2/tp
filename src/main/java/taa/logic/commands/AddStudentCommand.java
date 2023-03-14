@@ -1,8 +1,8 @@
 package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
+import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;

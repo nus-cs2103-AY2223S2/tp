@@ -19,7 +19,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = TypicalPersons.BENSON.getName().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalPersons.BENSON.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalPersons.BENSON.getClassTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 

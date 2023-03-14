@@ -1,8 +1,8 @@
 package taa.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
+import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Collection;
 import java.util.Collections;

@@ -1,8 +1,8 @@
 package taa.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
+import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
 import java.util.Collection;
@@ -43,7 +43,7 @@ public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
         }
 
         if (week == -1) {
-            throw new ParseException(Attendance.errorMsg);
+            throw new ParseException(Attendance.ERROR_MSG);
         }
 
         return new MarkAttendanceCommand(index, Index.fromOneBased(week));

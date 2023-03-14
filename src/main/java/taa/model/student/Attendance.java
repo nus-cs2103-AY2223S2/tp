@@ -4,7 +4,7 @@ package taa.model.student;
  * Attendance class
  */
 public class Attendance {
-    public static final String errorMsg = "Week number out of range, should be between 1-12";
+    public static final String ERROR_MSG = "Week number out of range, should be between 1-12";
     private final boolean[] attendanceList = new boolean[12];
 
     /**

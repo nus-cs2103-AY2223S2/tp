@@ -31,7 +31,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
-        tags = new HashSet<>(studentToCopy.getTags());
+        tags = new HashSet<>(studentToCopy.getClassTags());
     }
 
     /**

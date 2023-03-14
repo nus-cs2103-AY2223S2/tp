@@ -10,7 +10,8 @@ import taa.commons.util.AppUtil;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should only contain alphanumeric characters, '-' and '_'";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should only contain alphanumeric characters,"
+        + " '-' and '_'";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}-_]+";
 
     public final String tagName;

@@ -33,7 +33,9 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + CliSyntax.PREFIX_CLASS_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + CliSyntax.PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_TAG_DESC = " " + CliSyntax.PREFIX_CLASS_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " "
+            + CliSyntax.PREFIX_CLASS_TAG
+            + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
