@@ -41,23 +41,37 @@ public class CommandInput extends TextField {
     @FXML
     private void handleKeyPressed(KeyEvent event) {
 
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            parent.requestFocus();
-            String commandString = this.getText();
+        boolean isEnterEvent = event.getCode().equals(KeyCode.ENTER);
+        boolean isEscEvent = event.getCode().equals(KeyCode.ESCAPE);
 
-            // TODO : Create a Parser to parse the command and create a Driver to run it.
-            if (commandString.equals(":wq!")) {
-                Platform.exit();
-            }
-            this.setVisible(false);
-        }
-
-        if (event.getCode().equals(KeyCode.ESCAPE)) {
-            this.setVisible(false);
-            parent.requestFocus();
+        if (isEscEvent) {
+            returnFocusToParent();
             System.out.println("You escaped");
         }
 
+        if (isEnterEvent) {
+            String commandString = this.getText();
+            checkIsQuitCommand(commandString);
+            executeCommand(commandString);
+            returnFocusToParent();
+        }
+
+    }
+
+    private void executeCommand(String commandString) {
+        System.out.println("Your command is " + commandString);
+    }
+
+    private void returnFocusToParent() {
+        parent.requestFocus();
+        this.setVisible(false);
+    }
+
+    private void checkIsQuitCommand(String commandString) {
+        // TODO : Create a Parser to parse the command and create a Driver to run it.
+        if (commandString.equals(":wq!")) {
+            Platform.exit();
+        }
     }
 
     @FXML
