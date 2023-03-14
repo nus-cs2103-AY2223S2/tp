@@ -4,7 +4,7 @@ import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_VAX_GROUPS;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Index patientId = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT).get());
         LocalDateTime startTime = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTTIME).get());
         LocalDateTime endTime = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ENDTIME).get());
-        GroupName vaccine = ParserUtil.parseGroupName(argMultimap.getValue(PREFIX_VAX_GROUPS).get());
+        GroupName vaccine = ParserUtil.parseGroupName(argMultimap.getValue(PREFIX_VACCINATION).get());
 
         Appointment appointment = new Appointment(patientId, startTime, endTime, vaccine);
 

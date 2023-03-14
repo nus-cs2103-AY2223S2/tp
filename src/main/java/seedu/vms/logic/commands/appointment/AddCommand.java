@@ -5,7 +5,7 @@ import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_VAX_GROUPS;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
 import java.util.Map;
 
@@ -30,12 +30,12 @@ public class AddCommand extends Command {
             + DELIMITER + PREFIX_PATIENT + " PATIENT ID "
             + DELIMITER + PREFIX_STARTTIME + " START TIME "
             + DELIMITER + PREFIX_ENDTIME + " END TIME "
-            + DELIMITER + PREFIX_VAX_GROUPS + " VAX GROUP\n"
+            + DELIMITER + PREFIX_VACCINATION + " VAX GROUP\n"
             + "Example: appointment " + COMMAND_WORD + " "
             + DELIMITER + PREFIX_PATIENT + " 1 "
             + DELIMITER + PREFIX_STARTTIME + " 2024-01-01 "
             + DELIMITER + PREFIX_ENDTIME + " 2024-01-01 "
-            + DELIMITER + PREFIX_VAX_GROUPS + " Mordena\n";
+            + DELIMITER + PREFIX_VACCINATION + " Mordena\n";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists"
