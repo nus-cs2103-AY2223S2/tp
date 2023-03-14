@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.ui.tab.TabInfo;
+import seedu.address.logic.ui.tab.TabUtil;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +87,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    boolean isValidTabIndex(Index index);
+
+    TabUtil getTabUtil();
+
+    TabInfo getSelectedTab();
+
+    void setSelectedTab(Index index);
 }

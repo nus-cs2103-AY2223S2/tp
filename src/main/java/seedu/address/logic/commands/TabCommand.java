@@ -15,13 +15,13 @@ public class TabCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Switches between UI tabs in the application "
             + "by the index of the tab.\n"
-            + "Parameters: INDEX (must be 1 or 2)\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Tab command not implemented yet";
+    public static final String MESSAGE_INVALID_INDEX = "The provided tab index "
+            + "should be in the range of %d to %d (inclusive).";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
+    public static final String MESSAGE_SUCCESS = "Switched to tab %s";
 
     private final Index index;
 
@@ -35,8 +35,13 @@ public class TabCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-
-        throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased()));
+        if (!model.isValidTabIndex(index)) {
+            int lowerBound = 1;
+            int upperBound = model.getTabUtil().getTabInfoList().size();
+            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, lowerBound, upperBound));
+        }
+        model.setSelectedTab(index);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedTab()));
     }
 
     @Override
