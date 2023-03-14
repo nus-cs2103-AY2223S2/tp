@@ -45,7 +45,11 @@ public class PersonCard extends UiPart<Region> {
         this.card = card;
         id.setText(displayedIndex + ". ");
         name.setText(card.getQuestion().question);
-        address.setText(card.getAnswer().answer);
+        if (card.isFlipped()) {
+            address.setText(card.getAnswer().answer);
+        } else {
+            address.setText("");
+        }
         card.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

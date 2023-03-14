@@ -21,7 +21,7 @@ public class ReviewCommand extends Command {
             + "Parameter: INDEX (must be a positive integer).\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Deck to be reviewed: %1$s"; // %1$s is the first argument in format
+    public static final String MESSAGE_SUCCESS = "Deck to be reviewed: %1$s\nEnter [ to flip card and show answer!";
     public static final String MESSAGE_INVALID_DECK_DISPLAYED_INDEX = "Deck index provided is invalid";
     private final Index deckIndex;
 

@@ -2,6 +2,8 @@ package seedu.address.model.review;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.card.Card;
@@ -15,10 +17,9 @@ public class Review {
 
     private final Deck deck;
     private List<Card> cardList;
-    private int currScore = 0;
-    private int currCardNum = 0;
+    private List<Boolean> scoreList;
+    private int currCardNum = 1; // 1-Indexed
     private Card currCard;
-    private boolean isFlipped = false;
 
     /**
      * Every field must be present and not null.
@@ -26,9 +27,15 @@ public class Review {
     public Review(Deck deck, List<Card> cardList) {
         requireNonNull(deck);
         this.deck = deck;
-
         this.cardList = cardList;
         //TODO write a shuffle based on user statistics
+
+        // initialise first card
+        currCard = this.cardList.get(currCardNum - 1);
+        currCard.setAsUnflipped();
+
+        // initialise scoreList
+        scoreList = new ArrayList<>(Arrays.asList(new Boolean[this.cardList.size()]));
     }
 
     public Deck getDeck() {
@@ -39,24 +46,21 @@ public class Review {
         return deck.getDeckName();
     }
 
-    public Integer getCurrScore() {
-        return currScore;
-    }
-
-    public void incrementCurrScore() {
-        currScore++;
+    public Integer getTotalScore() {
+        return scoreList.stream().map(bool -> bool ? 1 : 0).mapToInt(a -> a).sum();
     }
 
     /**
      * Move to the next card.
      */
     public void goToNextCard() {
-        isFlipped = false;
+        currCard.setAsUnflipped(); // always unflip current card before moving to next
         currCardNum++;
         if (currCardNum > cardList.size()) {
             currCardNum--; //TODO throw exception
         } else {
-            this.currCard = cardList.get(currCardNum - 1);
+            currCard = cardList.get(currCardNum - 1);
+            currCard.setAsUnflipped();
         }
     }
 
@@ -64,12 +68,12 @@ public class Review {
      * Move back to previous card.
      */
     public void goToPrevCard() {
-        isFlipped = false;
+        currCard.setAsUnflipped();
         currCardNum--;
         if (currCardNum <= 0) {
             currCardNum++; //TODO throw exception
         } else {
-            this.currCard = cardList.get(currCardNum - 1);
+            currCard = cardList.get(currCardNum - 1);
         }
     }
 
@@ -78,29 +82,25 @@ public class Review {
     }
 
     public void markCurrCardAsCorrect() {
-        currScore++; //TODO implement tracking of individual card correctness.
+        scoreList.set(currCardNum - 1, true);
+        goToNextCard();
+    }
+
+    public void markCurrCardAsWrong() {
+        scoreList.set(currCardNum - 1, false);
+        goToNextCard();
     }
 
     public void flipCard() {
-        isFlipped = true;
+        currCard.setAsFlipped();
+    }
+
+    public void unflipCard() {
+        currCard.setAsUnflipped();
     }
 
     public boolean isFlipped() {
-        return isFlipped;
-    }
-
-    /**
-     * Returns the string to be displayed of the current card
-     * depending on if the card is flipped
-     *
-     * @return Question or (Question and Answer) of current card.
-     */
-    public String displayOnCard() {
-        if (isFlipped) {
-            return currCard.getQuestion() + "\n" + currCard.getAnswer();
-        } else {
-            return currCard.getQuestion().toString();
-        }
+        return currCard.isFlipped();
     }
 
     /*

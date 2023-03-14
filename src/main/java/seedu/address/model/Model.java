@@ -130,4 +130,12 @@ public interface Model {
     String getReviewDeckName();
 
     void flipCard();
+
+    void markWrong();
+
+    void markCorrect();
+
+    void goToPrevCard();
+
+    void goToNextCard();
 }

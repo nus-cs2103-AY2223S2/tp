@@ -50,7 +50,11 @@ public class LogicManager implements Logic {
         Optional<Review> currReview = this.model.getReview();
 
         if (currReview.isPresent()) {
-            command = masterDeckParser.parseCommandWhenReviewing(commandText);
+            if (currReview.get().isFlipped()) {
+                command = masterDeckParser.parseCommandWhenReviewingAndFlipped(commandText);
+            } else {
+                command = masterDeckParser.parseCommandWhenReviewingAndUnflipped(commandText);
+            }
         } else if (selectedDeck.isPresent()) {
             command = masterDeckParser.parseCommandWhenDeckSelected(commandText);
         } else {
