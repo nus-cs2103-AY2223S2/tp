@@ -105,6 +105,18 @@ public interface Model {
     void addTask(DeadlineTask person);
 
     /**
+     * Marks the given task {@code task} as done.
+     * {@code task} must exist in the address book.
+     */
+    void markTask(Task task);
+
+    /**
+     * Unmarks the given task {@code task} as not done.
+     * {@code task} must exist in the address book.
+     */
+    void unmarkTask(Task task);
+
+    /**
      * Assign a task to a person.
      * @param taskIndex
      * @param personIndex

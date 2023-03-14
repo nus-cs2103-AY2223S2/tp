@@ -11,7 +11,10 @@ public class Task {
     protected boolean isDone;
     private final TaskDescription description;
     private Index personAssignedIndex;
+<<<<<<< HEAD
     private String personAssignedName;
+=======
+>>>>>>> a7de97ba5ce2f92451c4417c985bfa733b579d0d
 
     /**
      * The constructor of the Task that takes in description of the task.
@@ -39,6 +42,15 @@ public class Task {
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
+    }
+
+    /**
+     * Returns whether task is done or not.
+     *
+     * @return Boolean value of whether task is done.
+     */
+    public boolean isDone() {
+        return isDone;
     }
 
     /**

@@ -139,6 +139,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markTask(Task task) {
+        requireNonNull(task);
+        addressBook.markTask(task);
+    }
+
+    @Override
+    public void unmarkTask(Task task) {
+        requireNonNull(task);
+        addressBook.unmarkTask(task);
+    }
+
     public void assignTask(Index taskIndex, Index personIndex) {
         addressBook.assignTask(taskIndex, personIndex);
     }
