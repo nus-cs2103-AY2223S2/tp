@@ -2,19 +2,18 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
-import seedu.address.model.internship.Status;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -28,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_STATUS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_ROLE, PREFIX_STATUS, PREFIX_TAG);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -36,58 +35,61 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (!argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()
+                && !argMultimap.getValue(PREFIX_ROLE).isPresent()
                 && !argMultimap.getValue(PREFIX_STATUS).isPresent()
                 && !argMultimap.getValue(PREFIX_TAG).isPresent()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
+        List<String> names = new ArrayList<>();
+        List<String> roles = new ArrayList<>();
+        List<String> statuses = new ArrayList<>();
+
         List<String> nameKeywords;
+        List<String> roleKeywords;
         List<String> statusKeywords;
         List<String> tagKeywords;
 
-        if (argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()) {
-            CompanyName companyName = ParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_COMPANY_NAME).get());
-            nameKeywords = split(companyName.fullCompanyName);
-        } else {
-            nameKeywords = Collections.emptyList();
+        List<String> nameList = argMultimap.getAllValues(PREFIX_COMPANY_NAME);
+        for (String name : nameList) {
+            names.add(ParserUtil.parseCompanyName(name).fullCompanyName);
         }
+        nameKeywords = this.split(names);
 
-        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-            statusKeywords = split(status.fullStatus);
-        } else {
-            statusKeywords = Collections.emptyList();
+        List<String> roleList = argMultimap.getAllValues(PREFIX_ROLE);
+        for (String role : roleList) {
+            roles.add(ParserUtil.parseRole(role).fullRole);
         }
+        roleKeywords = this.split(roles);
+
+        List<String> statusList = argMultimap.getAllValues(PREFIX_STATUS);
+        for (String status : statusList) {
+            statuses.add(ParserUtil.parseStatus(status).fullStatus);
+        }
+        statusKeywords = this.split(statuses);
 
         List<String> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)).stream()
                 .map(tag -> tag.tagName)
                 .collect(Collectors.toList());
 
-        tagKeywords = split(tags);
+        tagKeywords = this.split(tags);
 
-        return new FindCommand(new InternshipContainsKeywordsPredicate(nameKeywords, statusKeywords, tagKeywords));
-    }
-
-    private List<String> split(String str) throws ParseException {
-        if (str.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        String[] keywords = str.split("\\s+");
-        return Arrays.asList(keywords);
+        return new FindCommand(new InternshipContainsKeywordsPredicate(nameKeywords, roleKeywords, statusKeywords,
+                tagKeywords));
     }
 
     private List<String> split(List<String> ls) throws ParseException {
-        for (String tag : ls) {
-            if (tag.isEmpty()) {
+        //check if should throw this ParseException
+        for (String str : ls) {
+            if (str.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
         }
 
         return ls.stream()
-                .map(tag -> tag.split("\\s+"))
+                .map(str -> str.split("\\s+"))
                 .flatMap(arr -> Arrays.asList(arr).stream())
                 .collect(Collectors.toList());
     }
