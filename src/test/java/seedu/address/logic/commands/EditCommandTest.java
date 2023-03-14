@@ -170,5 +170,4 @@ public class EditCommandTest {
         // different descriptor -> returns false
         assertNotEquals(standardCommand, new EditCommand(INDEX_FIRST_PERSON, DESC_BOB));
     }
-
 }

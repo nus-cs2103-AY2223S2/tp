@@ -68,6 +68,8 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.commit(model.getAddressBook());
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
