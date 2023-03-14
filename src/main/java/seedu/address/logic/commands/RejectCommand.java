@@ -11,8 +11,16 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
 import seedu.address.model.note.Note;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewDateTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.NamePhoneNumberPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
+
 
 /**
  * Rejects an applicant in HMHero.
@@ -59,7 +67,7 @@ public class RejectCommand extends Command {
         If applicant cannot be rejected, CommandException will be thrown */
         if (canRejectApplicant(model, personToReject)) {
             rejectedPerson = createRejectedPerson(personToReject);
-            model.setPerson(personToReject,rejectedPerson);
+            model.setPerson(personToReject, rejectedPerson);
         }
         model.refreshListWithPredicate(predicate);
         return new CommandResult(String.format(MESSAGE_REJECT_PERSON_SUCCESS, personToReject.getName()));

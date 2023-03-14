@@ -1,6 +1,10 @@
 package seedu.address.storage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -28,7 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String status;
-    private String interviewDate;
+    private final String interviewDate;
     private final List<JsonAdaptedNote> notes = new ArrayList<>();
 
     /**
