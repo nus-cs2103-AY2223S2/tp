@@ -89,6 +89,12 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_equals() throws Exception {
+        assertEquals(parser.parseCommand(AddCommand.COMMAND_WORD.get(0)),
+                parser.parseCommand(AddCommand.COMMAND_WORD.get(1)));
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
