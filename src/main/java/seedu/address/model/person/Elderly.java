@@ -59,7 +59,7 @@ public class Elderly extends Person {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(getName(), getPhone(), getEmail(), getAddress(),
-                getNric(), getAge(), getRegion(),getRiskLevel(), getTags());
+                getNric(), getAge(), getRegion(), getRiskLevel(), getTags());
     }
 
     @Override

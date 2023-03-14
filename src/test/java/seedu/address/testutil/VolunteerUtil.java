@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -39,6 +40,7 @@ public class VolunteerUtil {
         sb.append(PREFIX_ADDRESS).append(volunteer.getAddress().value).append(" ");
         sb.append(PREFIX_NRIC_VOLUNTEER).append(volunteer.getNric().value).append(" ");
         sb.append(PREFIX_AGE).append(volunteer.getAge().value).append(" ");
+        sb.append(PREFIX_REGION).append(volunteer.getRegion()).append(" ");
         volunteer.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
         );
@@ -65,6 +67,7 @@ public class VolunteerUtil {
                 sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getNric().ifPresent(nric -> sb.append(PREFIX_NRIC_VOLUNTEER).append(nric.value).append(" "));
         descriptor.getAge().ifPresent(age -> sb.append(PREFIX_AGE).append(age.value).append(" "));
+        descriptor.getRegion().ifPresent(region -> sb.append(PREFIX_REGION).append(region).append(" "));
 
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

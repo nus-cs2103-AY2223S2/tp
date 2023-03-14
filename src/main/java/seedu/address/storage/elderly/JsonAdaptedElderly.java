@@ -51,6 +51,16 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
         riskLevel = String.valueOf(source.getRiskLevel().riskStatus);
     }
 
+    public RiskLevel getModelRiskLevel(String missingFieldMessageFormat) throws IllegalValueException {
+        if (riskLevel == null) {
+            throw new IllegalValueException(String.format(missingFieldMessageFormat, RiskLevel.class.getSimpleName()));
+        }
+        if (!RiskLevel.isValidRisk(riskLevel)) {
+            throw new IllegalValueException(RiskLevel.MESSAGE_CONSTRAINTS);
+        }
+        return new RiskLevel(riskLevel);
+    }
+
     /**
      * Converts this Jackson-friendly adapted elderly object into the model's {@code Elderly} object.
      *
@@ -65,16 +75,9 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
         Nric modelNric = super.getModelNric(MISSING_FIELD_MESSAGE_FORMAT);
         Age modelAge = super.getModelAge(MISSING_FIELD_MESSAGE_FORMAT);
         Region modelRegion = super.getModelRegion(MISSING_FIELD_MESSAGE_FORMAT);
-
-        if (riskLevel == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    RiskLevel.class.getSimpleName()));
-        }
-        if (!RiskLevel.isValidRisk(riskLevel)) {
-            throw new IllegalValueException(RiskLevel.MESSAGE_CONSTRAINTS);
-        }
+        RiskLevel modelRiskLevel = getModelRiskLevel(MISSING_FIELD_MESSAGE_FORMAT);
 
         return new Elderly(modelName, modelPhone, modelEmail, modelAddress,
-               modelNric, modelAge, modelRegion, new RiskLevel(riskLevel), modelTags);
+               modelNric, modelAge, modelRegion, modelRiskLevel, modelTags);
     }
 }

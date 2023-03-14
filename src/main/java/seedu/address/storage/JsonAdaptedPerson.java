@@ -98,7 +98,7 @@ public abstract class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(missingFieldMessageFormat, Region.class.getSimpleName()));
         }
         if (!Region.isValidRegion(region)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Region.MESSAGE_CONSTRAINTS);
         }
         return new Region(region);
     }

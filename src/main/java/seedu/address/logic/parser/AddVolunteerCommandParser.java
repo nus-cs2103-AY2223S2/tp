@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.AddVolunteerCommand;

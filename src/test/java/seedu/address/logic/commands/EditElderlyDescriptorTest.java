@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 
@@ -66,6 +67,12 @@ public class EditElderlyDescriptorTest {
         editedAmy = new EditElderlyDescriptorBuilder(DESC_ELDERLY_AMY)
                 .withAge(VALID_AGE_BOB).build();
         assertFalse(DESC_ELDERLY_AMY.equals(editedAmy));
+
+        // different region -> returns false
+        editedAmy = new EditElderlyDescriptorBuilder()
+                .withRegion(VALID_REGION_BOB).build();
+        assertFalse(DESC_ELDERLY_AMY.equals(editedAmy));
+
 
         // different risk level -> returns false
         editedAmy = new EditElderlyDescriptorBuilder(DESC_ELDERLY_AMY)

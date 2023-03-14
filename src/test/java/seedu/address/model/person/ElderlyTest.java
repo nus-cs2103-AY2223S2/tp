@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -40,12 +41,14 @@ public class ElderlyTest {
         // same name, same nric, all other attributes different -> returns true
         Elderly editedAlice = new ElderlyBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISKLEVEL_BOB)
+                .withRegion(VALID_REGION_BOB)
                 .withTags(VALID_TAG_SINGLE).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, different nric, all other attributes different -> returns false
         editedAlice = new ElderlyBuilder(ALICE).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE).withNric(VALID_NRIC_BOB)
+                .withRegion(VALID_REGION_BOB)
                 .withRiskLevel(VALID_RISKLEVEL_BOB).withAge(VALID_AGE_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
@@ -103,6 +106,10 @@ public class ElderlyTest {
 
         // different nric -> returns false
         editedAlice = new ElderlyBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
+        assertNotEquals(ALICE, editedAlice);
+
+        // different region -> returns false
+        editedAlice = new ElderlyBuilder(ALICE).withRegion(VALID_REGION_BOB).build();
         assertNotEquals(ALICE, editedAlice);
 
         // different risklevel -> returns false
