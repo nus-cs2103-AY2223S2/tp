@@ -2,20 +2,20 @@
     -fx-font-family: sans-serif, Helvetica, Arial;
 }
 
-#copyButton, #helpMessage {
-    -fx-text-fill: black;
+#openButton, #helpMessage {
+-fx-text-fill: black;
 }
 
-#copyButton {
-    -fx-background-color: lightgray;
+#openButton {
+-fx-background-color: lightgray;
 }
 
-#copyButton:hover {
-    -fx-background-color: gray;
+#openButton:hover {
+-fx-background-color: gray;
 }
 
-#copyButton:armed {
-    -fx-background-color: darkgray;
+#openButton:armed {
+-fx-background-color: darkgray;
 }
 
 #helpMessageContainer {
