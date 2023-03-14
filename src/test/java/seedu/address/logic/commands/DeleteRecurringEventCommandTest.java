@@ -14,7 +14,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-
 public class DeleteRecurringEventCommandTest {
     private Model model = new ModelManager(new AddressBook(), new UserPrefs());
 

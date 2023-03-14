@@ -44,7 +44,6 @@ public class SampleEventUtil {
             + "18:00" + PREFIX_ENDDATETIME + "20:00";
     public static final String INVALID_TIME_RECURRING_EVENT = PREFIX_RECURRINGEVENT + "biking" + PREFIX_DAYOFWEEK
             + "MONDAY" + PREFIX_STARTDATETIME + "18:00" + PREFIX_ENDDATETIME + "20";
-
     public static final RecurringEvent BIKING_RECURRING_EVENT = new RecurringEvent("biking", DayOfWeek.MONDAY,
             TWO_O_CLOCK_VALID.toLocalTime(), FOUR_O_CLOCK_VALID.toLocalTime());
 

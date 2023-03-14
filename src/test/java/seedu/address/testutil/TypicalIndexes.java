@@ -11,4 +11,8 @@ public class TypicalIndexes {
     public static final Index INDEX_THIRD_PERSON = Index.fromOneBased(3);
     public static final Index INDEX_FIRST_GENERIC_ITEM = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_GENERIC_ITEM = Index.fromOneBased(2);
+    public static final Index INDEX_FIRST_EVENT = Index.fromOneBased(1);
+    public static final Index INDEX_SECOND_EVENT = Index.fromOneBased(2);
+    public static final Index INDEX_THIRD_EVENT = Index.fromOneBased(3);
+
 }

@@ -215,6 +215,12 @@ class GroupCreateCommandTest {
         public void deleteRecurringEvent(Person personToEdit, RecurringEvent event) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setRecurringEvent(Person personToEdit, RecurringEvent originalEvent,
+                                      RecurringEvent editedRecurringEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
