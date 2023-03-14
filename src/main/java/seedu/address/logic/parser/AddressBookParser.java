@@ -16,6 +16,7 @@ import seedu.address.logic.commands.DeleteIsolatedEventCommand;
 import seedu.address.logic.commands.DeleteRecurringEventCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditIsolatedEventCommand;
+import seedu.address.logic.commands.EditRecurringEventCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -90,9 +91,11 @@ public class AddressBookParser {
         case DeleteRecurringEventCommand.COMMAND_WORD:
             return new DeleteRecurringEventParser().parse(arguments);
 
+        case EditRecurringEventCommand.COMMAND_WORD:
+            return new EditRecurringEventCommandParser().parse(arguments);
+
         case GroupCommand.COMMAND_WORD:
             return new GroupCommandParser().parse(arguments);
-
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

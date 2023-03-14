@@ -134,6 +134,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setRecurringEvent(Person person, RecurringEvent originalEvent, RecurringEvent editedRecurringEvent) {
+        requireAllNonNull(person, originalEvent, editedRecurringEvent);
+        addressBook.setRecurringEvent(person, originalEvent, editedRecurringEvent);
+    }
+
+    @Override
     public void deleteRecurringEvent(Person person, RecurringEvent event) {
         requireAllNonNull(person, event);
         addressBook.deleteRecurringEvent(person, event);

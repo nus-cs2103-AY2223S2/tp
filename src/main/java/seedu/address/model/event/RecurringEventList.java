@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+import seedu.address.model.event.exceptions.EventNotFoundException;
+
 /**
  * Represents the list of {@code RecurringEvent} that each {@code Person} has.
  */
@@ -45,7 +47,6 @@ public class RecurringEventList {
         return recurringEvent;
     }
 
-
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
@@ -79,5 +80,18 @@ public class RecurringEventList {
 
     public void deleteRecurringEvent(RecurringEvent event) {
         recurringEvents.remove(event);
+    }
+
+    /**
+     * Edit recurring event parameters in the recurring event list
+     * @param originalEvent to be edited
+     * @param editedRecurringEvent to be edited to
+     */
+    public void edit(RecurringEvent originalEvent, RecurringEvent editedRecurringEvent) {
+        if (!recurringEvents.contains(originalEvent)) {
+            throw new EventNotFoundException();
+        }
+        recurringEvents.remove(originalEvent);
+        recurringEvents.add(editedRecurringEvent);
     }
 }

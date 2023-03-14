@@ -113,6 +113,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         person.getRecurringEventList().deleteRecurringEvent(event);
     }
 
+    public void setRecurringEvent(Person person, RecurringEvent originalEvent, RecurringEvent editedRecurringEvent) {
+        requireNonNull(editedRecurringEvent);
+        person.getRecurringEventList().edit(originalEvent, editedRecurringEvent);
+    }
+
+
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
