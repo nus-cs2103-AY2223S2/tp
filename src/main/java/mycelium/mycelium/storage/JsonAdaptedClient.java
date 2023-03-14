@@ -48,11 +48,12 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client client) {
+        System.out.println(client);
         name = client.getName().fullName;
         email = client.getEmail().value;
-        yearOfBirth = client.getYearOfBirth().orElse(null).value;
+        yearOfBirth = client.getYearOfBirth().map(x -> x.value).orElse(null);
         source = client.getSource().orElse(null);
-        mobileNumber = client.getMobileNumber().orElse(null).value;
+        mobileNumber = client.getMobileNumber().map(x -> x.value).orElse(null);
     }
 
     /**
@@ -95,21 +96,19 @@ class JsonAdaptedClient {
         nullCheck(email == null, Email.class.getSimpleName());
         validityCheck(!Email.isValidEmail(email), Email.MESSAGE_CONSTRAINTS);
         final Email modelEmail = new Email(email);
+
         if (yearOfBirth != null) {
             validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth), YearOfBirth.MESSAGE_CONSTRAINTS);
         }
-        final YearOfBirth modelYearOfBirth = new YearOfBirth(yearOfBirth);
         // TODO validityCheck for source
         if (mobileNumber != null) {
             validityCheck(!Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelMobileNumber = new Phone(mobileNumber);
+
         return new Client(modelName,
             modelEmail,
-            Optional.ofNullable(modelYearOfBirth),
+            Optional.ofNullable(yearOfBirth).map(YearOfBirth::new),
             Optional.ofNullable(source),
-            Optional.ofNullable(modelMobileNumber));
+            Optional.ofNullable(mobileNumber).map(Phone::new));
     }
-
-
 }
