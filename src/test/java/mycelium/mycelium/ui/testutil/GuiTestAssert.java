@@ -4,7 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Date;
 
+import guitests.guihandles.ClientListCardHandle;
 import guitests.guihandles.ProjectListCardHandle;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.YearOfBirth;
+import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.project.Project;
 
 /**
@@ -36,5 +40,18 @@ public class GuiTestAssert {
         assertEquals(expectedProject.getAcceptedOn().toString(), actualCard.getAcceptedOn());
         assertEquals(expectedProject.getDeadline().map(Date::toString).orElse("No Deadline"), actualCard.getDeadline());
         assertEquals(expectedProject.getDescription().orElse("No description given"), actualCard.getDescription());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedPerson}.
+     */
+    public static void assertCardDisplaysClient(Client expectedProject, ClientListCardHandle actualCard) {
+        assertEquals(expectedProject.getName().toString(), actualCard.getName());
+        assertEquals(expectedProject.getEmail().value, actualCard.getEmail());
+        assertEquals(expectedProject.getSource().orElse("No source"), actualCard.getSource());
+        assertEquals(expectedProject.getYearOfBirth().map(YearOfBirth::toString).orElse("No year of birth"),
+                actualCard.getYearOfBirth());
+        assertEquals(expectedProject.getMobileNumber().map(Phone::toString).orElse("No mobile number"),
+                actualCard.getMobileNumber());
     }
 }
