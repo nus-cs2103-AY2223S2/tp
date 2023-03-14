@@ -13,21 +13,21 @@ class GoalTest {
     }
 
     @Test
-    public void constructor_invalidGender_throwsIllegalArgumentException() {
+    public void constructor_invalidGoal_throwsIllegalArgumentException() {
         String invalidGoal = "";
         assertThrows(IllegalArgumentException.class, () -> new Goal(invalidGoal));
     }
 
     @Test
     public void isValidGoal() {
-        // null gender
+        // null goal
         assertThrows(NullPointerException.class, () -> Goal.isValidGoal(null));
 
-        // invalid genders
+        // invalid goals
         assertFalse(Goal.isValidGoal("")); // empty string
         assertFalse(Goal.isValidGoal("  ")); // empty whitespace
 
-        // valid genders
+        // valid goals
         assertTrue(Goal.isValidGoal("gain")); // one word
         assertTrue(Goal.isValidGoal("lose weight")); // two words
         assertTrue(Goal.isValidGoal("i want to be strong like my friend jacob")); // a sentence
