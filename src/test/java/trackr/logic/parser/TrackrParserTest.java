@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import trackr.logic.commands.AddCommand;
 import trackr.logic.commands.AddTaskCommand;
 import trackr.logic.commands.ClearCommand;
+import trackr.logic.commands.ClearTaskCommand;
 import trackr.logic.commands.DeleteCommand;
 import trackr.logic.commands.DeleteTaskCommand;
 import trackr.logic.commands.EditCommand;
@@ -70,6 +71,18 @@ public class TrackrParserTest {
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_clearTask() throws Exception {
+        assertTrue(parser.parseCommand(ClearTaskCommand.COMMAND_WORD) instanceof ClearTaskCommand);
+        assertTrue(parser.parseCommand(ClearTaskCommand.COMMAND_WORD + " 3") instanceof ClearTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_clearTaskShortcut() throws Exception {
+        assertTrue(parser.parseCommand(ClearTaskCommand.COMMAND_WORD) instanceof ClearTaskCommand);
+        assertTrue(parser.parseCommand(ClearTaskCommand.COMMAND_WORD + " 3") instanceof ClearTaskCommand);
     }
 
     @Test
