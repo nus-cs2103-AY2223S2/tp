@@ -112,6 +112,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getPhoto().equals(getPhoto())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getPerformance().equals(getPerformance())
                 && otherPerson.getTags().equals(getTags());
     }
 
