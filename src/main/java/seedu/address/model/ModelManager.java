@@ -47,16 +47,17 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.shop = new Shop();
 
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
-        filteredTechnicians = new FilteredList<>(this.addressBook.getTechnicianList());
-        filteredServices = null; // new FilteredList<>(this.addressBook.getPersonList());
-        filteredVehicles = new FilteredList<>(this.addressBook.getVehicleList());
-        filteredParts = null; // new FilteredList<>(this.addressBook.getPersonList());
-        filteredAppointment = null; // new FilteredList<>(this.addressBook.getPersonList());
-        this.shop = null; //TODO
+        filteredCustomers = new FilteredList<>(this.shop.getCustomerList());
+        filteredTechnicians = new FilteredList<>(this.shop.getTechnicianList());
+        filteredServices = new FilteredList<>(this.shop.getServiceList());
+        filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
+        filteredParts = new FilteredList<>(this.shop.getPartList());
+        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+
     }
 
     public ModelManager() {

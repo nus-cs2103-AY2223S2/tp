@@ -107,6 +107,13 @@ public class Shop implements ReadOnlyShop {
         this.getAppointments().add(appointment);
     }
 
+    @Override
+    public ObservableList<Appointment> getAppointmentList() {
+
+        //        return this.appointments.asUnmodifiableObservableList();
+        return null;
+    }
+
     // --------------------------------------------------
     //// part-level operations
     /**
@@ -144,6 +151,12 @@ public class Shop implements ReadOnlyShop {
      */
     public boolean hasPart(String partName) {
         return this.partMap.contains(partName);
+    }
+
+    @Override
+    public ObservableList<Part> getPartList() {
+        //        return this.appointments.asUnmodifiableObservableList();
+        return null;
     }
 
     // --------------------------------------------------
@@ -324,4 +337,26 @@ public class Shop implements ReadOnlyShop {
     }
 
     //// Delete operations
+
+    // --------------------------------------------------
+    //// util methods
+
+    //    @Override
+    //    public String toString() {
+    //        return persons.asUnmodifiableObservableList().size() + " persons";
+    //        // TODO: refine later
+    //        // TODO: modify this
+    //    }
+    //
+    //    @Override
+    //    public boolean equals(Object other) {
+    //        return other == this // short circuit if same object
+    //                || (other instanceof AddressBook // instanceof handles nulls
+    //                && persons.equals(((AddressBook) other).persons));
+    //    }
+    //
+    //    @Override
+    //    public int hashCode() {
+    //        return persons.hashCode();
+    //    }
 }

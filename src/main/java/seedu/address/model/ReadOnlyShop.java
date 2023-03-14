@@ -3,13 +3,19 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.service.Part;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Unmodifiable view of an address book
  */
 public interface ReadOnlyShop {
+
+    ObservableList<Appointment> getAppointmentList();
+
+    ObservableList<Part> getPartList();
 
     /**
      * Returns an unmodifiable view of the customers list.
