@@ -9,8 +9,6 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -38,8 +36,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "  exit                                                             exit the program\n"
             + "\n";
 
-    public static final String EXAMPLE = "Example:   " +
-            "add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01\n\n";
+    public static final String EXAMPLE = "Example:   "
+            + "add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01\n\n";
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html"; // TODO
     public static final String HELP_MESSAGE = AB3_NAME + OPTIONS + EXAMPLE

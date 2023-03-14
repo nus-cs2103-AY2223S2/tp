@@ -15,7 +15,7 @@ import javafx.application.Application;
  * LauncherHelper will check for the javafx.graphics module to be present
  * as a named module. We don't use JavaFX via the module system so it can't
  * find the javafx.graphics module, and so the launch is aborted.
- * 
+ *
  * By having a separate main class (Main) that doesn't extend Application
  * to be the entry point of the application, we avoid this issue.
  */

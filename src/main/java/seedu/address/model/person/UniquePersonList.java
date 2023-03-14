@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -49,7 +48,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
         internalList.add(toAdd);
     }
-    
+
     /**
      * Adds a tag to a person
      * The person must already exist in the list
@@ -63,7 +62,7 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Delete a tag from a person
      * The person and the tag must already exist in the list
-     * 
+     *
      * @param person The person to delete tag from.
      * @param toDelete The tag to delete.
      */
@@ -72,7 +71,7 @@ public class UniquePersonList implements Iterable<Person> {
         requireNonNull(toDelete);
         findPerson(person).deleteTag(toDelete);
     }
-    
+
     /**
      * Finds the person
      */

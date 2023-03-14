@@ -17,7 +17,7 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
     /**
      * Creates a DeleteTagCommand to parse the argument from user input
      * and delete the corresponding tag from the person.
-     * 
+     *
      * @param args The input from user.
      * @return DeleteTagCommand with the Person and Tag objects correspond to input.
      * @throws ParseException If the command is in invalid format.
