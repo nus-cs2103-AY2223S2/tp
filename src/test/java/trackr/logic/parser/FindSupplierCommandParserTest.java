@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import trackr.logic.commands.FindSupplierCommand;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
 
-public class FindCommandParserTest {
+public class FindSupplierCommandParserTest {
 
     private FindSupplierCommandParser parser = new FindSupplierCommandParser();
 

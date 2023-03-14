@@ -18,32 +18,32 @@ import trackr.testutil.TypicalTasks;
 public class JsonSerializableTrackrTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTrackrTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsTrackr.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonTrackr.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonTrackr.json");
+    private static final Path TYPICAL_SUPPLIER_FILE = TEST_DATA_FOLDER.resolve("typicalSuppliersTrackr.json");
+    private static final Path INVALID_SUPPLIER_FILE = TEST_DATA_FOLDER.resolve("invalidSupplierTrackr.json");
+    private static final Path DUPLICATE_SUPPLIER_FILE = TEST_DATA_FOLDER.resolve("duplicateSupplierTrackr.json");
     private static final Path TYPICAL_TASKS_FILE = TEST_DATA_FOLDER.resolve("typicalTasksTrackr.json");
     private static final Path INVALID_TASK_FILE = TEST_DATA_FOLDER.resolve("invalidTaskTrackr.json");
     private static final Path DUPLICATE_TASK_FILE = TEST_DATA_FOLDER.resolve("duplicateTaskTrackr.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+    public void toModelType_typicalSuppliersFile_success() throws Exception {
+        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(TYPICAL_SUPPLIER_FILE,
                 JsonSerializableTrackr.class).get();
-        SupplierList addressBookFromFile = dataFromFile.toModelType();
-        SupplierList typicalPersonsAddressBook = TypicalSuppliers.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        SupplierList supplierListFromFile = dataFromFile.toModelType();
+        SupplierList typicalSuppliersSuppliersList = TypicalSuppliers.getTypicalSupplierList();
+        assertEquals(supplierListFromFile, typicalSuppliersSuppliersList);
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+    public void toModelType_invalidSupplierFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(INVALID_SUPPLIER_FILE,
                 JsonSerializableTrackr.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+    public void toModelType_duplicateSuppliers_throwsIllegalValueException() throws Exception {
+        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_SUPPLIER_FILE,
                 JsonSerializableTrackr.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableTrackr.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);

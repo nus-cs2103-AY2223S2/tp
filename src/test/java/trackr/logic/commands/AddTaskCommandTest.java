@@ -118,12 +118,12 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlySupplierList newData) {
+        public void setSupplierList(ReadOnlySupplierList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlySupplierList getAddressBook() {
+        public ReadOnlySupplierList getSupplierList() {
             throw new AssertionError("This method should not be called.");
         }
 

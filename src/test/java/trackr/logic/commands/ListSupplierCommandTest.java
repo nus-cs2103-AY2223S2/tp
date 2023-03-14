@@ -1,9 +1,9 @@
 package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static trackr.testutil.TypicalSuppliers.getTypicalAddressBook;
+import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
+import static trackr.testutil.TypicalIndexes.INDEX_FIRST_SUPPLIER;
+import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,15 +16,15 @@ import trackr.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
-public class ListCommandTest {
+public class ListSupplierCommandTest {
 
     private Model model;
     private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
+        model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
+        expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(), new UserPrefs());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showSupplierAtIndex(model, INDEX_FIRST_SUPPLIER);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

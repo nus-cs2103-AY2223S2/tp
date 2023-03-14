@@ -2,7 +2,7 @@ package trackr.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static trackr.testutil.TypicalSuppliers.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.nio.file.Path;
@@ -57,10 +57,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        SupplierList originalAddressBook = getTypicalAddressBook();
+        SupplierList originalAddressBook = getTypicalSupplierList();
         TaskList originalTaskList = getTypicalTaskList();
         storageManager.saveTrackr(originalAddressBook, originalTaskList);
-        ReadOnlySupplierList retrievedAddressBook = storageManager.readAddressBook().get();
+        ReadOnlySupplierList retrievedAddressBook = storageManager.readSupplierList().get();
         assertEquals(originalAddressBook, new SupplierList(retrievedAddressBook));
         ReadOnlyTaskList retrievedTaskList = storageManager.readTaskList().get();
         assertEquals(originalTaskList, new TaskList(retrievedTaskList));

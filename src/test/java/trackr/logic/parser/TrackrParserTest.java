@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static trackr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static trackr.testutil.TypicalIndexes.INDEX_FIRST_SUPPLIER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +18,7 @@ import trackr.logic.commands.AddTaskCommand;
 import trackr.logic.commands.ClearCommand;
 import trackr.logic.commands.DeleteSupplierCommand;
 import trackr.logic.commands.EditSupplierCommand;
-import trackr.logic.commands.EditSupplierCommand.EditPersonDescriptor;
+import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindSupplierCommand;
 import trackr.logic.commands.HelpCommand;
@@ -27,7 +27,7 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
-import trackr.testutil.EditPersonDescriptorBuilder;
+import trackr.testutil.EditSupplierDescriptorBuilder;
 import trackr.testutil.SupplierBuilder;
 import trackr.testutil.SupplierUtil;
 import trackr.testutil.TaskBuilder;
@@ -38,7 +38,7 @@ public class TrackrParserTest {
     private final TrackrParser parser = new TrackrParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addSupplier() throws Exception {
         Supplier person = new SupplierBuilder().build();
         AddSupplierCommand command = (AddSupplierCommand) parser.parseCommand(SupplierUtil.getAddCommand(person));
         assertEquals(new AddSupplierCommand(person), command);
@@ -67,19 +67,19 @@ public class TrackrParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_deleteSupplier() throws Exception {
         DeleteSupplierCommand command = (DeleteSupplierCommand) parser.parseCommand(
-                DeleteSupplierCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteSupplierCommand(INDEX_FIRST_PERSON), command);
+                DeleteSupplierCommand.COMMAND_WORD + " " + INDEX_FIRST_SUPPLIER.getOneBased());
+        assertEquals(new DeleteSupplierCommand(INDEX_FIRST_SUPPLIER), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_editSupplier() throws Exception {
         Supplier person = new SupplierBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder(person).build();
         EditSupplierCommand command = (EditSupplierCommand) parser.parseCommand(EditSupplierCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + SupplierUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditSupplierCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_SUPPLIER.getOneBased() + " " + SupplierUtil.getEditSupplierDescriptorDetails(descriptor));
+        assertEquals(new EditSupplierCommand(INDEX_FIRST_SUPPLIER, descriptor), command);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class TrackrParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findSupplier() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindSupplierCommand command = (FindSupplierCommand) parser.parseCommand(
                 FindSupplierCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));

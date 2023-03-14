@@ -12,7 +12,7 @@ import trackr.model.tag.Tag;
 import trackr.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Supplier objects.
  */
 public class SupplierBuilder {
 
@@ -28,7 +28,7 @@ public class SupplierBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code SupplierBuilder} with the default details.
      */
     public SupplierBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -39,18 +39,18 @@ public class SupplierBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the SupplierBuilder with the data of {@code supplierToCopy}.
      */
-    public SupplierBuilder(Supplier personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public SupplierBuilder(Supplier supplierToCopy) {
+        name = supplierToCopy.getName();
+        phone = supplierToCopy.getPhone();
+        email = supplierToCopy.getEmail();
+        address = supplierToCopy.getAddress();
+        tags = new HashSet<>(supplierToCopy.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code supplier} that we are building.
      */
     public SupplierBuilder withName(String name) {
         this.name = new Name(name);
@@ -58,7 +58,7 @@ public class SupplierBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code supplier} that we are building.
      */
     public SupplierBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -66,7 +66,7 @@ public class SupplierBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code supplier} that we are building.
      */
     public SupplierBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -74,7 +74,7 @@ public class SupplierBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code supplier} that we are building.
      */
     public SupplierBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -82,7 +82,7 @@ public class SupplierBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code supplier} that we are building.
      */
     public SupplierBuilder withEmail(String email) {
         this.email = new Email(email);

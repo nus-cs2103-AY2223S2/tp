@@ -19,12 +19,12 @@ public class SupplierTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Supplier person = new SupplierBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Supplier supplier = new SupplierBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> supplier.getTags().remove(0));
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameSupplier() {
         // same object -> returns true
         assertTrue(ALICE.isSameSupplier(ALICE));
 
@@ -65,7 +65,7 @@ public class SupplierTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different supplier -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false

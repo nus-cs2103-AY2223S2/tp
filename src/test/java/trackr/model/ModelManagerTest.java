@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.GuiSettings;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.task.TaskNameContainsKeywordsPredicate;
-import trackr.testutil.AddressBookBuilder;
+import trackr.testutil.SupplierListBuilder;
 import trackr.testutil.TaskListBuilder;
 
 public class ModelManagerTest {
@@ -31,7 +31,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new SupplierList(), new SupplierList(modelManager.getAddressBook()));
+        assertEquals(new SupplierList(), new SupplierList(modelManager.getSupplierList()));
         assertEquals(new TaskList(), new TaskList(modelManager.getTaskList()));
     }
 
@@ -122,7 +122,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        SupplierList addressBook = new AddressBookBuilder().withSupplier(ALICE).withSupplier(BENSON).build();
+        SupplierList addressBook = new SupplierListBuilder().withSupplier(ALICE).withSupplier(BENSON).build();
         SupplierList differentAddressBook = new SupplierList();
         TaskList taskList = new TaskListBuilder().withTask(SORT_INVENTORY_N).withTask(BUY_FLOUR_N).build();
         TaskList differentTaskList = new TaskList();

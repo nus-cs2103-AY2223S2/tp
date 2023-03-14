@@ -3,7 +3,7 @@ package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.testutil.TypicalSuppliers.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,14 +24,14 @@ public class AddTaskCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
+        model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
     }
 
     @Test
     public void execute_newTask_success() {
         Task validTask = new TaskBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(),
+        Model expectedModel = new ModelManager(model.getSupplierList(),
                 model.getTaskList(), new UserPrefs());
         expectedModel.addTask(validTask);
 

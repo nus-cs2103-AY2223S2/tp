@@ -19,7 +19,7 @@ import trackr.model.SupplierList;
 import trackr.model.supplier.Supplier;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Supplier} objects to be used in tests.
  */
 public class TypicalSuppliers {
 
@@ -60,14 +60,14 @@ public class TypicalSuppliers {
     private TypicalSuppliers() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code SupplierList} with all the typical suppliers.
      */
-    public static SupplierList getTypicalAddressBook() {
-        SupplierList ab = new SupplierList();
+    public static SupplierList getTypicalSupplierList() {
+        SupplierList sl = new SupplierList();
         for (Supplier person : getTypicalSuppliers()) {
-            ab.addSupplier(person);
+            sl.addSupplier(person);
         }
-        return ab;
+        return sl;
     }
 
     public static List<Supplier> getTypicalSuppliers() {
