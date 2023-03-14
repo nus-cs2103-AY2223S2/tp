@@ -53,7 +53,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             //Address currently returns Customer.address, should be returning
             address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         } else {
-            address =  ParserUtil.parseAddress("NOT IMPLEMENTED");
+            address = ParserUtil.parseAddress("NOT IMPLEMENTED");
             //get address from given customer
             //Address address = new Quantity(1);
         }

@@ -31,18 +31,18 @@ public enum StatusValue {
 
         String uStatusValueString = statusValueString.toUpperCase();
         switch (uStatusValueString) {
-            case "PENDING":
-                return StatusValue.PENDING;
-            case "PAID":
-                return StatusValue.PAID;
-            case "COMPLETED":
-                return StatusValue.COMPLETED;
-            case "SHIPPED":
-                return StatusValue.SHIPPED;
-            case "CANCELLED":
-                return StatusValue.CANCELLED;
-            default:
-                return valueOf(uStatusValueString);
+        case "PENDING":
+            return StatusValue.PENDING;
+        case "PAID":
+            return StatusValue.PAID;
+        case "COMPLETED":
+            return StatusValue.COMPLETED;
+        case "SHIPPED":
+            return StatusValue.SHIPPED;
+        case "CANCELLED":
+            return StatusValue.CANCELLED;
+        default:
+            return valueOf(uStatusValueString);
         }
     }
 
