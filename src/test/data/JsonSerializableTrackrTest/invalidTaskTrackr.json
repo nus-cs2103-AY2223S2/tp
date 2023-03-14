@@ -1,5 +1,5 @@
 {
-  "persons": [ ],
+  "suppliers": [ ],
   "tasks": [ {
     "taskName": "Buy Food",
     "taskDeadline": "01/01/2023/invalid",

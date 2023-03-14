@@ -1,5 +1,5 @@
 {
-  "persons": [ ],
+  "suppliers": [ ],
   "tasks": [ {
     "taskName": "Sort Inventory",
     "taskDeadline": "01/01/2024",
