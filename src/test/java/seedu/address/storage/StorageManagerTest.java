@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPetPalStorage addressBookStorage = new JsonPetPalStorage(getTempFilePath("ab"));
+        JsonPetPalStorage petPalStorage = new JsonPetPalStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(petPalStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,11 +48,11 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void petPalReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonPetPalStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonPetPalStorageTest} class.
          */
         PetPal original = getTypicalPetPal();
         storageManager.savePetPal(original);
@@ -61,7 +61,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getPetPalFilePath() {
         assertNotNull(storageManager.getPetPalFilePath());
     }
 

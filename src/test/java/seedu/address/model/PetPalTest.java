@@ -22,7 +22,7 @@ import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.exceptions.DuplicatePetException;
 import seedu.address.testutil.PetBuilder;
 
-public class AddressBookTest {
+public class PetPalTest {
 
     private final PetPal petPal = new PetPal();
 
