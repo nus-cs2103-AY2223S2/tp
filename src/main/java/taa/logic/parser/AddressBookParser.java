@@ -12,6 +12,7 @@ import taa.logic.commands.EditCommand;
 import taa.logic.commands.ExitCommand;
 import taa.logic.commands.FindCommand;
 import taa.logic.commands.HelpCommand;
+import taa.logic.commands.ImportCommand;
 import taa.logic.commands.ListCommand;
 import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.commands.RemarkCommand;
@@ -77,6 +78,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

@@ -202,6 +202,17 @@ Stores and loads data in with CSV files.
 * Import data in CSV format: `import`
 * Export data in CSV format: `export`
 
+Our CSV files follow the following format:
+1. All CSV files are header-less. Student data has exactly 2 columns: name, tags.
+2. If a student has no tags, a comma representing the tags column is still required because [if a column is defined as optional, it means that the column is required to exist, but the value can be blank.](https://www.ibm.com/docs/en/atlas-policy-suite/6.0.3?topic=files-rules-creating-populating-csv) 
+
+Acceptable CSV format example:
+```
+Technoblade, Minecrafter Pig Anarchist
+Meggy Spletzer,Inkling
+John von Neumann,
+```
+
 ### Import data in CSV format: `import` [coming soon]
 Import data in CSV format from file.
 

@@ -3,10 +3,10 @@ package taa.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import taa.commons.util.SampleDataUtil;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
-import taa.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Student objects.
