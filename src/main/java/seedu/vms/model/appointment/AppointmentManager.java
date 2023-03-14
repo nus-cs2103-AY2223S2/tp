@@ -1,10 +1,10 @@
 package seedu.vms.model.appointment;
 
+import java.util.Optional;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import seedu.vms.model.StorageModel;
-
-import java.util.Optional;
 
 /**
  * Wraps all data at the patient-manager level

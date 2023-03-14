@@ -1,13 +1,9 @@
 package seedu.vms.model.appointment;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 
 
