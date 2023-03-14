@@ -9,12 +9,18 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Medication {
 
-    public static final String MESSAGE_CONSTRAINTS = "Medication can take any values, and it should not be blank";
+    private static final String DELIMITER = ";";
+    public static final String MESSAGE_CONSTRAINTS = "Medication should be of the format qty medication. "
+            + "If you would like to prescribe multiple medications, insert a " + DELIMITER + "between each string.";
 
     /*
-     * Any string will do.
+     * Accepts one of the following 2 cases:
+     * An empty string
+     * number medication[;number medication]*
      */
-    public static final String VALIDATION_REGEX = "(.*?)";
+    // ^$|\\d+ [^+;+]+(;\\s*\\d+ [^;]+)*
+    public static final String VALIDATION_REGEX = "^$|\\d+ [^+"  + DELIMITER + "+]+(" + DELIMITER
+            + "\\s*\\d+ [^" + DELIMITER +"]+)*";
 
     public final String value;
 
