@@ -42,8 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private Label remark;
     @FXML
     private Label deadline;
-    // @FXML
-    // private Label teacher;
+    @FXML
+    private Label teacher;
     @FXML
     private FlowPane tags;
 
@@ -63,7 +63,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         deadline.setText("Deadline: " + person.getDeadline().value);
-        //teacher.setText("Teacher: " + person.getTeacher().value);
+        teacher.setText("Teacher: " + person.getTeacher().value);
     }
 
     @Override
