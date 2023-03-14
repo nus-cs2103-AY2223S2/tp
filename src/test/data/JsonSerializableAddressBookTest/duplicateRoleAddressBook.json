@@ -6,6 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "jobDescription": "Analyst @ CitiBank",
     "tagged": [ "friends" ],
+    "website": "www.google.com",
     "salary": "4000",
     "deadline" : "2023-10-20"
   }, {
@@ -14,6 +15,7 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "jobDescription": "Analyst @ CitiBank",
+    "website": "www.google.com",
     "salary": "4000",
     "deadline" : "2023-10-20"
   } ]

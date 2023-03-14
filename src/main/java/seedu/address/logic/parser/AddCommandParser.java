@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -23,6 +24,7 @@ import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
+import seedu.address.model.job.Website;
 import seedu.address.model.tag.Tag;
 
 
@@ -41,10 +43,11 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_JOBDESCRIPTION,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SALARY, PREFIX_DEADLINE);
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_WEBSITE, PREFIX_SALARY, PREFIX_DEADLINE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_ADDRESS,
+        if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_WEBSITE,
                 PREFIX_JOBDESCRIPTION, PREFIX_SALARY, PREFIX_DEADLINE) || !argMultimap.getPreamble().isEmpty()) {
+
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -54,9 +57,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         JobDescription jd = ParserUtil.parseJobDescription(argMultimap.getValue(PREFIX_JOBDESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Website website = ParserUtil.parseWebsite(argMultimap.getValue(PREFIX_WEBSITE).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
         Deadline deadline = ParserUtil.parseDateline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Role role = new Role(name, phone, email, address, jd, tagList, salary, deadline);
+        Role role = new Role(name, phone, email, address, jd, tagList, website, salary, deadline);
 
         return new AddCommand(role);
     }

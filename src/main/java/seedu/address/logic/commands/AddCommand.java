@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -36,6 +37,9 @@ public class AddCommand extends Command {
             + PREFIX_CONTACT + "98765432 "
             + PREFIX_EMAIL + "google@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "owesMoney "
+            + PREFIX_WEBSITE + "www.google.com"
             + PREFIX_JOBDESCRIPTION + "Data Engineering team - penultimate students preferred "
             + PREFIX_TAG + "Tech "
             + PREFIX_SALARY + "4000 "

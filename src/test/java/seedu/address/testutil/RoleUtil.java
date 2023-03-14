@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
 
 import java.util.Set;
 
@@ -15,6 +16,9 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditRoleDescriptor;
 import seedu.address.model.job.Role;
 import seedu.address.model.tag.Tag;
+
+
+
 
 /**
  * A utility class for Role.
@@ -38,6 +42,7 @@ public class RoleUtil {
         sb.append(PREFIX_EMAIL + role.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + role.getAddress().value + " ");
         sb.append(PREFIX_JOBDESCRIPTION + role.getJobDescription().value + " ");
+        sb.append(PREFIX_WEBSITE + role.getWebsite().value + " ");
         sb.append(PREFIX_SALARY + role.getSalary().salary + " ");
         sb.append(PREFIX_DEADLINE + role.getDeadline().deadline + " ");
         role.getTags().stream().forEach(
@@ -57,6 +62,7 @@ public class RoleUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getJobDescription().ifPresent(jobDescription -> sb.append(PREFIX_JOBDESCRIPTION)
                         .append(jobDescription.value).append(" "));
+        descriptor.getWebsite().ifPresent(website -> sb.append(PREFIX_WEBSITE).append(website.value).append(" "));
         descriptor.getSalary().ifPresent(salary -> sb.append(PREFIX_SALARY).append(salary.salary).append(" "));
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
                 .append(deadline.deadline).append(" "));

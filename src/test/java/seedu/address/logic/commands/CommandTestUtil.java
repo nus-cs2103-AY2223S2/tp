@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
+    public static final String VALID_WEB_AMY = "www.google.com";
+    public static final String VALID_WEB_BOB = "www.google.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
@@ -41,6 +44,7 @@ public class CommandTestUtil {
     public static final String VALID_JOBDESCRIPTION_BOB = "Civil Engineer Intern @ HDB";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_WEB_FRIEND = "www.google.com";
     public static final String VALID_SALARY_AMY = "4000";
     public static final String VALID_SALARY_BOB = "4000";
     public static final String VALID_DEADLINE_AMY = "2023-10-20";
@@ -58,6 +62,7 @@ public class CommandTestUtil {
     public static final String JOBDESCRIPTION_DESC_BOB = " " + PREFIX_JOBDESCRIPTION + VALID_JOBDESCRIPTION_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String WEBSITE = " " + PREFIX_WEBSITE + "www.google.com";
     public static final String SALARY_DESC_AMY = " " + PREFIX_SALARY + VALID_SALARY_AMY;
     public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
     public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY;
@@ -69,6 +74,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_JOBDESCRIPTION_DESC = " " + PREFIX_JOBDESCRIPTION; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_WEBSITE = " " + PREFIX_WEBSITE + "ww.com";
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "dn1"; // Characters not allowed in salaries
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
             + "2023-10-2a"; // Characters not allowed in deadline
@@ -81,10 +87,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditRoleDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withJobDescription(VALID_JOBDESCRIPTION_AMY).withTags(VALID_TAG_FRIEND).withSalary(VALID_SALARY_AMY)
+                .withTags(VALID_TAG_FRIEND).withWebsite(VALID_WEB_AMY).withJobDescription(VALID_JOBDESCRIPTION_AMY)
+                .withTags(VALID_TAG_FRIEND).withSalary(VALID_SALARY_AMY)
                 .withDeadline(VALID_DEADLINE_AMY).build();
         DESC_BOB = new EditRoleDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withWebsite(VALID_WEB_BOB)
                 .withJobDescription(VALID_JOBDESCRIPTION_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .withSalary(VALID_SALARY_BOB).withDeadline(VALID_DEADLINE_BOB).build();
     }

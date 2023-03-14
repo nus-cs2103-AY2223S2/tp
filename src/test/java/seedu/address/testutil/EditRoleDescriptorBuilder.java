@@ -13,6 +13,7 @@ import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
+import seedu.address.model.job.Website;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,6 +41,7 @@ public class EditRoleDescriptorBuilder {
         descriptor.setEmail(role.getEmail());
         descriptor.setAddress(role.getAddress());
         descriptor.setJobDescription(role.getJobDescription());
+        //descriptor.setWebsite(role.getWebsite());
         descriptor.setTags(role.getTags());
         descriptor.setSalary(role.getSalary());
         descriptor.setDeadline(role.getDeadline());
@@ -99,6 +101,14 @@ public class EditRoleDescriptorBuilder {
      */
     public EditRoleDescriptorBuilder withSalary(String salary) {
         descriptor.setSalary(new Salary(salary));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Website} of the {@code EditRoleDescriptor} that we are building.
+     */
+    public EditRoleDescriptorBuilder withWebsite(String website) {
+        descriptor.setWebsite(new Website(website));
         return this;
     }
 

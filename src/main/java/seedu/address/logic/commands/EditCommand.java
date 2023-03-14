@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -30,6 +31,7 @@ import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
+import seedu.address.model.job.Website;
 import seedu.address.model.tag.Tag;
 
 
@@ -53,6 +55,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_EMAIL + "johndoe@example.com"
+            + PREFIX_WEBSITE + "www.google.com"
             + PREFIX_CONTACT + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"
             + PREFIX_JOBDESCRIPTION + "Software Engineer @ Jane Street"
@@ -106,6 +110,7 @@ public class EditCommand extends Command {
     private static Role createEditedRole(Role roleToEdit, EditRoleDescriptor editRoleDescriptor) {
         assert roleToEdit != null;
 
+        Website updatedWebsite = editRoleDescriptor.getWebsite().orElse(roleToEdit.getWebsite());
         Name updatedName = editRoleDescriptor.getName().orElse(roleToEdit.getName());
         Phone updatedPhone = editRoleDescriptor.getPhone().orElse(roleToEdit.getPhone());
         Email updatedEmail = editRoleDescriptor.getEmail().orElse(roleToEdit.getEmail());
@@ -114,7 +119,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editRoleDescriptor.getTags().orElse(roleToEdit.getTags());
         Salary updatedSalary = editRoleDescriptor.getSalary().orElse(roleToEdit.getSalary());
         Deadline updatedDeadline = editRoleDescriptor.getDeadline().orElse(roleToEdit.getDeadline());
-        return new Role(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedJd, updatedTags,
+        return new Role(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedJd, updatedTags, updatedWebsite,
                 updatedSalary, updatedDeadline);
     }
 
@@ -147,6 +152,7 @@ public class EditCommand extends Command {
         private Address address;
         private JobDescription jd;
         private Set<Tag> tags;
+        private Website website;
         private Salary salary;
         private Deadline deadline;
 
@@ -164,6 +170,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setJobDescription(toCopy.jd);
             setTags(toCopy.tags);
+            setWebsite(toCopy.website);
             setSalary(toCopy.salary);
             setDeadline(toCopy.deadline);
         }
@@ -172,7 +179,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, salary, deadline);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, website, salary, deadline);
         }
 
         public void setName(Name name) {
@@ -223,6 +230,14 @@ public class EditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
+        public void setWebsite(Website website) {
+            this.website = website;
+        }
+
+        public Optional<Website> getWebsite() {
+            return Optional.ofNullable(website);
+        }
+
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
@@ -267,6 +282,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getTags().equals(e.getTags())
+                    && getWebsite().equals(e.getWebsite())
                     && getJobDescription().equals(e.getJobDescription())
                     && getTags().equals(e.getTags())
                     && getSalary().equals(e.getSalary())

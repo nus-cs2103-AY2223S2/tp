@@ -18,6 +18,7 @@ import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
+import seedu.address.model.job.Website;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +36,7 @@ class JsonAdaptedRole {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String salary;
     private final String deadline;
+    private final String website;
 
     /**
      * Constructs a {@code JsonAdaptedRole} with the given role details.
@@ -44,6 +46,7 @@ class JsonAdaptedRole {
     public JsonAdaptedRole(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                 @JsonProperty("JobDescription") String jd, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                @JsonProperty("website") String website,
                 @JsonProperty("salary") String salary, @JsonProperty("deadline") String deadline) {
 
         this.name = name;
@@ -56,6 +59,7 @@ class JsonAdaptedRole {
         }
         this.salary = salary;
         this.deadline = deadline;
+        this.website = website;
     }
 
     /**
@@ -72,6 +76,7 @@ class JsonAdaptedRole {
                 .collect(Collectors.toList()));
         salary = source.getSalary().salary;
         deadline = source.getDeadline().deadline;
+        website = source.getWebsite().value;
     }
 
     /**
@@ -145,8 +150,16 @@ class JsonAdaptedRole {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
+        if (website == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Website.class.getSimpleName()));
+        }
+        if (!Website.isValidWebsite(website)) {
+            throw new IllegalValueException(Website.MESSAGE_CONSTRAINTS);
+        }
+        final Website modelWebsite = new Website(website);
+
         return new Role(modelName, modelPhone, modelEmail, modelAddress, modelJobDescription, modelTags,
-                modelSalary, modelDeadline);
+                modelWebsite, modelSalary, modelDeadline);
     }
 
 }

@@ -19,6 +19,7 @@ public class Role {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Website website;
 
     // Data fields
     private final Address address;
@@ -31,14 +32,16 @@ public class Role {
      * Every field must be present and not null.
      */
     public Role(Name name, Phone phone, Email email, Address address, JobDescription jd, Set<Tag> tags,
-                Salary salary, Deadline deadline) {
-        requireAllNonNull(name, phone, email, address, jd, tags, salary, deadline);
+                  Website website, Salary salary, Deadline deadline) {
+        requireAllNonNull(name, phone, email, address, jd, tags, website, salary, deadline);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.jobDescription = jd;
         this.tags.addAll(tags);
+        this.website = website;
         this.salary = salary;
         this.deadline = deadline;
     }
@@ -59,6 +62,10 @@ public class Role {
         return address;
     }
 
+    public Website getWebsite() {
+        return website;
+    }
+
     public JobDescription getJobDescription() {
         return jobDescription;
     }
@@ -71,6 +78,10 @@ public class Role {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
+     */
     public Salary getSalary() {
         return salary;
     }
@@ -113,14 +124,17 @@ public class Role {
                 && otherRole.getAddress().equals(getAddress())
                 && otherRole.getJobDescription().equals(getJobDescription())
                 && otherRole.getTags().equals(getTags())
+                && otherRole.getWebsite().equals(getWebsite())
                 && otherRole.getSalary().equals(getSalary())
                 && otherRole.getDeadline().equals(getDeadline());
+
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, jobDescription, tags, salary, deadline);
+        return Objects.hash(name, phone, email, address, jobDescription, tags, website, salary, deadline);
+
     }
 
     @Override
@@ -141,6 +155,9 @@ public class Role {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+
+        builder.append("; Website: ").append(getWebsite());
         builder.append("; Salary: ").append(getSalary());
         builder.append("; Deadline: ").append(getDeadline());
         return builder.toString();

@@ -11,6 +11,7 @@ import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
+import seedu.address.model.job.Website;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -26,6 +27,7 @@ public class RoleBuilder {
     public static final String DEFAULT_JOBDESCRIPTION = "Software Engineer Intern @ DBS";
     public static final String DEFAULT_SALARY = "4000";
     public static final String DEFAULT_DEADLINE = "2023-10-20";
+    public static final String DEFAULT_WEBSITE = "www.google.com";
 
     private Name name;
     private Phone phone;
@@ -35,6 +37,7 @@ public class RoleBuilder {
     private Set<Tag> tags;
     private Salary salary;
     private Deadline deadline;
+    private Website website;
 
     /**
      * Creates a {@code RoleBuilder} with the default details.
@@ -48,6 +51,7 @@ public class RoleBuilder {
         tags = new HashSet<>();
         salary = new Salary(DEFAULT_SALARY);
         deadline = new Deadline(DEFAULT_DEADLINE);
+        website = new Website(DEFAULT_WEBSITE);
     }
 
     /**
@@ -62,6 +66,7 @@ public class RoleBuilder {
         salary = roleToCopy.getSalary();
         deadline = roleToCopy.getDeadline();
         tags = new HashSet<>(roleToCopy.getTags());
+        website = roleToCopy.getWebsite();
     }
 
     /**
@@ -128,8 +133,17 @@ public class RoleBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Website} of the {@code Role} that we are building.
+     */
+    public RoleBuilder withWebsite(String website) {
+        this.website = new Website(website);
+        return this;
+    }
+
+
     public Role build() {
-        return new Role(name, phone, email, address, jd, tags, salary, deadline);
+        return new Role(name, phone, email, address, jd, tags, website, salary, deadline);
     }
 
 }
