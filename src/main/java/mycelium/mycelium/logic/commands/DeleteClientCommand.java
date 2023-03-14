@@ -18,10 +18,14 @@ public class DeleteClientCommand extends Command {
 
     public static final String COMMAND_ACRONYM = "dc";
 
-    public static final String MESSAGE_USAGE = COMMAND_ACRONYM
-        + ": Deletes the client with the given email address.\n"
-        + "Parameters: EMAIL \n"
-        + "Example: " + COMMAND_ACRONYM + " " + CliSyntax.PREFIX_CLIENT_EMAIL + " alice_baker@bakers.com";
+    public static final String MESSAGE_USAGE =
+            COMMAND_ACRONYM + ": Deletes the client with the given email address.\n"
+
+            + "Arguments: "
+            + CliSyntax.PREFIX_CLIENT_EMAIL + " EMAIL \n"
+
+            + "Example: "
+            + COMMAND_ACRONYM + " " + CliSyntax.PREFIX_CLIENT_EMAIL + " alice_baker@bakers.com";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Client: %1$s";
 

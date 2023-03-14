@@ -15,23 +15,26 @@ import mycelium.mycelium.model.project.Project;
 public class AddProjectCommand extends Command {
     public static final String COMMAND_ACRONYM = "p";
 
-    public static final String MESSAGE_USAGE = COMMAND_ACRONYM + ": Adds a project to Mycelium. "
-        + "Parameters: "
-        + CliSyntax.PREFIX_PROJECT_NAME + "PROJECT NAME "
-        + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
-        + CliSyntax.PREFIX_PROJECT_STATUS + "PROJECT STATUS "
-        + CliSyntax.PREFIX_SOURCE + "PROJECT SOURCE "
-        + CliSyntax.PREFIX_PROJECT_DESCRIPTION + "PROJECT DESCRIPTION "
-        + CliSyntax.PREFIX_ACCEPTED_DATE + "DATE PROJECT WAS ACCEPTED "
-        + CliSyntax.PREFIX_DEADLINE_DATE + "DEADLINE OF PROJECT\n"
-        + "Example: " + COMMAND_ACRONYM + " "
-        + CliSyntax.PREFIX_PROJECT_NAME + "Mycelium "
-        + CliSyntax.PREFIX_CLIENT_EMAIL + "alice_baker@gmail.com "
-        + CliSyntax.PREFIX_PROJECT_STATUS + "done "
-        + CliSyntax.PREFIX_SOURCE + "Fiverr "
-        + CliSyntax.PREFIX_PROJECT_DESCRIPTION + "Cli-based project management app "
-        + CliSyntax.PREFIX_ACCEPTED_DATE + "01/12/2023 "
-        + CliSyntax.PREFIX_DEADLINE_DATE + "31/12/2023";
+    public static final String MESSAGE_USAGE =
+        COMMAND_ACRONYM + ": Adds a project to Mycelium. "
+
+            + "Arguments: "
+            + CliSyntax.PREFIX_PROJECT_NAME + "PROJECT NAME "
+            + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
+            + CliSyntax.PREFIX_PROJECT_STATUS + "PROJECT STATUS "
+            + CliSyntax.PREFIX_SOURCE + "PROJECT SOURCE "
+            + CliSyntax.PREFIX_PROJECT_DESCRIPTION + "PROJECT DESCRIPTION "
+            + CliSyntax.PREFIX_ACCEPTED_DATE + "DATE PROJECT WAS ACCEPTED "
+            + CliSyntax.PREFIX_DEADLINE_DATE + "DEADLINE OF PROJECT\n"
+
+            + "Example: " + COMMAND_ACRONYM + " "
+            + CliSyntax.PREFIX_PROJECT_NAME + "Mycelium "
+            + CliSyntax.PREFIX_CLIENT_EMAIL + "alice_baker@gmail.com "
+            + CliSyntax.PREFIX_PROJECT_STATUS + "done "
+            + CliSyntax.PREFIX_SOURCE + "Fiverr "
+            + CliSyntax.PREFIX_PROJECT_DESCRIPTION + "Cli-based project management app "
+            + CliSyntax.PREFIX_ACCEPTED_DATE + "01/12/2023 "
+            + CliSyntax.PREFIX_DEADLINE_DATE + "31/12/2023";
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
 

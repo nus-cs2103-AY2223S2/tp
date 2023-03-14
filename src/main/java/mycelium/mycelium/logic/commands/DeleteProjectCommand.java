@@ -16,10 +16,15 @@ import mycelium.mycelium.model.project.Project;
 public class DeleteProjectCommand extends Command {
     public static final String COMMAND_ACRONYM = "dp";
 
-    public static final String MESSAGE_USAGE = COMMAND_ACRONYM
-        + ": Deletes the project with the given project name.\n"
-        + "Parameters: PROJECT NAME\n"
-        + "Example: " + COMMAND_ACRONYM + " " + CliSyntax.PREFIX_PROJECT_NAME + " Mycelium";
+    public static final String MESSAGE_USAGE =
+        COMMAND_ACRONYM
+            + ": Deletes the project with the given project name.\n"
+
+            + "Arguments: "
+            + CliSyntax.PREFIX_PROJECT_NAME + " PROJECT NAME\n"
+
+            + "Example: "
+            + COMMAND_ACRONYM + " " + CliSyntax.PREFIX_PROJECT_NAME + " Mycelium";
 
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
