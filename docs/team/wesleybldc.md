@@ -21,6 +21,7 @@ for fast typists.
 Setup the CS2103 team organisation and codecov setup
 Adding description for Saving the data file and Editing the data file
 Implemented the findtag feature
+Implemented the unit tests for findtag
 UG for findtag feature
 
 Contributions to the DG
