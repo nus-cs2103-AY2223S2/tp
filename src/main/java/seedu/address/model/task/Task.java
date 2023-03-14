@@ -11,10 +11,7 @@ public class Task {
     protected boolean isDone;
     private final TaskDescription description;
     private Index personAssignedIndex;
-<<<<<<< HEAD
     private String personAssignedName;
-=======
->>>>>>> a7de97ba5ce2f92451c4417c985bfa733b579d0d
 
     /**
      * The constructor of the Task that takes in description of the task.
