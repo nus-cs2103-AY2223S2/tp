@@ -112,7 +112,7 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getNric())
-                .append("; NRIC: ")
+                .append("; Name: ")
                 .append(getName())
                 .append("; Phone: ")
                 .append(getPhone())

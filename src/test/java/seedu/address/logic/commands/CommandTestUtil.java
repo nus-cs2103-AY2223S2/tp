@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -130,5 +131,18 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person with the given {@code nric} in the
+     * {@code model}'s address book.
+     */
+    public static void showPersonWithNric(Model model, Nric nric) {
+        Person person = Nric.hasNric(model.getFilteredPersonList(), nric);
+        final Nric targetNric = person.getNric();
+        model.updateFilteredPersonList(chosen-> chosen.getNric().equals(targetNric));
+
+        assertEquals(1, model.getFilteredPersonList().size());
+    }
+
 
 }
