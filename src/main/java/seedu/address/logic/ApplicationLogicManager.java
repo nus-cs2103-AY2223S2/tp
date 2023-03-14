@@ -15,7 +15,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.ReadOnlyInternshipBook;
 import seedu.address.model.application.Application;
-import seedu.address.storage.ApplicationStorage;
+//import seedu.address.storage.ApplicationStorage;
+import seedu.address.storage.Storage;
 
 /**
  * The main LogicManager of the app.
@@ -25,13 +26,14 @@ public class ApplicationLogicManager implements ApplicationLogic {
     private final Logger logger = LogsCenter.getLogger(ApplicationLogicManager.class);
 
     private final ApplicationModel model;
-    private final ApplicationStorage storage;
+    //private final ApplicationStorage storage;
+    private final Storage storage;
     private final InternshipBookParser internshipBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public ApplicationLogicManager(ApplicationModel model, ApplicationStorage storage) {
+    public ApplicationLogicManager(ApplicationModel model, Storage storage) {
         this.model = model;
         this.storage = storage;
         internshipBookParser = new InternshipBookParser();
@@ -46,7 +48,7 @@ public class ApplicationLogicManager implements ApplicationLogic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveInternshipBook(model.getInternshipBook());
+            storage.saveAddressBook(model.getInternshipBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
