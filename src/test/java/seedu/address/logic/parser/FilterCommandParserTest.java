@@ -11,12 +11,11 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.FieldsMatchRegexPredicate;
 
 public class FilterCommandParserTest {
 
-    private FilterCommandParser parser = new FilterCommandParser();
+    private final FilterCommandParser parser = new FilterCommandParser();
 
     @Test
     public void parse_invalidPrefix_throwsParseException() {
@@ -32,7 +31,6 @@ public class FilterCommandParserTest {
                         Collections.singletonList(".*95.*"),
                         new ArrayList<>(),
                         Collections.singletonList(".*[0-9].*"),
-                        new ArrayList<>(),
                         new ArrayList<>()
                 ));
         assertParseSuccess(parser, " n/l p/95 a/[0-9]", expectedFilterCommand);
@@ -50,13 +48,12 @@ public class FilterCommandParserTest {
                         Arrays.asList(".*95.*", ".*94.*"),
                         Collections.singletonList(".*@.*"),
                         Collections.singletonList(".*[0-9].*"),
-                        Arrays.asList(".*fri.*", ".*col.*"),
-                        Collections.singletonList(".*abc.*")
+                        Arrays.asList(".*fri.*", ".*col.*")
                 ));
-        assertParseSuccess(parser, " e/@ n/l p/95 t/fri a/[0-9] p/94 n/Ge r/abc t/col", expectedFilterCommand);
+        assertParseSuccess(parser, " e/@ n/l p/95 t/fri a/[0-9] p/94 n/Ge t/col", expectedFilterCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser,
-                " \n e/@ n/l \n\n p/95\n \t t/fri a/[0-9] n/Ge p/94 r/abc \n t/col \t", expectedFilterCommand);
+                " \n e/@ n/l \n\n p/95\n \t t/fri a/[0-9] n/Ge p/94 \n t/col \t", expectedFilterCommand);
     }
 }

@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMARK);
+                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
@@ -65,10 +64,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         List<String> emailList = formSubstring(argMultimap.getAllValues(PREFIX_EMAIL));
         List<String> addressList = formSubstring(argMultimap.getAllValues(PREFIX_ADDRESS));
         List<String> tagList = formSubstring(argMultimap.getAllValues(PREFIX_TAG));
-        List<String> remarkList = formSubstring(argMultimap.getAllValues(PREFIX_REMARK));
 
         return new FilterCommand(
-                new FieldsMatchRegexPredicate(nameList, phoneList, emailList, addressList, tagList, remarkList));
+                new FieldsMatchRegexPredicate(nameList, phoneList, emailList, addressList, tagList));
     }
 
 }

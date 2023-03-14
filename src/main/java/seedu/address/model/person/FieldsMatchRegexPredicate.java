@@ -14,16 +14,14 @@ public class FieldsMatchRegexPredicate implements Predicate<Person> {
     private final List<String> emails;
     private final List<String> addresses;
     private final List<String> tags;
-    private final List<String> remarks;
 
     public FieldsMatchRegexPredicate(List<String> names, List<String> phones, List<String> emails,
-                                     List<String> addresses, List<String> tags, List<String> remarks) {
+                                     List<String> addresses, List<String> tags) {
         this.names = names;
         this.phones = phones;
         this.emails = emails;
         this.addresses = addresses;
         this.tags = tags;
-        this.remarks = remarks;
     }
 
     private boolean inRegexList(List<String> regexes, String str) {
@@ -36,8 +34,7 @@ public class FieldsMatchRegexPredicate implements Predicate<Person> {
                 && inRegexList(phones, person.getPhone().value)
                 && inRegexList(emails, person.getEmail().value)
                 && inRegexList(addresses, person.getAddress().value)
-                && (tags.isEmpty() || person.getTags().stream().anyMatch(tag -> inRegexList(tags, tag.tagName)))
-                && inRegexList(remarks, person.getRemark().value);
+                && (tags.isEmpty() || person.getTags().stream().anyMatch(tag -> inRegexList(tags, tag.tagName)));
     }
 
     @Override
@@ -48,8 +45,7 @@ public class FieldsMatchRegexPredicate implements Predicate<Person> {
                 && Objects.equals(phones, ((FieldsMatchRegexPredicate) other).phones)
                 && Objects.equals(emails, ((FieldsMatchRegexPredicate) other).emails)
                 && Objects.equals(addresses, ((FieldsMatchRegexPredicate) other).addresses)
-                && Objects.equals(tags, ((FieldsMatchRegexPredicate) other).tags)
-                && Objects.equals(remarks, ((FieldsMatchRegexPredicate) other).remarks));
+                && Objects.equals(tags, ((FieldsMatchRegexPredicate) other).tags));
     }
 
 }
