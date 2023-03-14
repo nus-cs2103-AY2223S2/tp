@@ -33,7 +33,7 @@ public class AddDoctorCommand extends AddCommand {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_SPECIALTY + "Cardiology "
             + PREFIX_YOE + "5 "
-            + PREFIX_TAG + "Head of Department ";
+            + PREFIX_TAG + "surgeon";
 
     public static final String MESSAGE_SUCCESS = "New doctor added: %1$s";
     public static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the address book";
