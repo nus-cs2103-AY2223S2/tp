@@ -142,30 +142,37 @@ Examples:
 ### Adding a student: `add_student` 
 Adds a student to a given class list.
 
-Format: `add_student n/STUDENT_NAME cl/CLASS_LIST`
+Format: `add_student n/STUDENT_NAME cl/CLASS_NAME`
 The argument `STUDENT_NAME` should be the name of the student to be added
-The argument `CLASS_LIST` should be the name of a given class list
-The search for `CLASS_LIST` is case-insensitive. e.g. cs2103T will match CS2103T
+The argument `CLASS_NAME` should be the name of a given class the student belongs to
 
 
 Examples:
-- `add n/Tom cl/cs2103t-t14` adds Tom to the class list CS2103T-T14
-- `add n/Harry cl/cs6244` adds Harry to the class list CS6244
+- `add n/Tom cl/cs2103t-t14` adds Tom to the class CS2103T-T14
+- `add n/Harry cl/cs6244` adds Harry to the class CS6244
 
+### Editing a student: `edit_student`
+Edits a student in the active class list.
 
-### Deleting a student: `delete` [coming soon]
-Deletes a student from a given class list.
-
-Format: `delete STUDENT_NAME CLASS_LIST`
-- The argument `STUDENT_NAME` should be the name of the student to be deleted
-- The search for `STUDENT_NAME` is case-insensitive. e.g. bOb will match BOB
-- The argument `CLASS_LIST` should be the name of a given class list
-- The search for `CLASS_LIST` is case-insensitive. e.g. cs2103T will match CS2103T
-
+Format: `edit_student STUDENT_INDEX [n/STUDENT_NAME] [cl/CLASS_NAME]`
+- The `STUDENT_INDEX` is the index of the student that is currently being shown on screen.
+- At least one of the optional fields must be present. (i.e. either `STUDENT_NAME` and/or `CLASS_NAME`)
 
 Examples:
-- `delete Tom cs2103t-t14` removes Tom from the class list CS2103T-T14
-- `delete Harry cs6244` removes Harry from the class list CS6244
+- `edit_student 3 n/Barry Allen` changes the name of the 3rd student to "Barry Allen"
+- `edit_student 5 cl/Tutorial_T14` assigns the 5th student only to the class "Tutorial_14"
+- `edit_student 12 n/Tom Hanks cl/Lab_L11` changes the name of the 12th student to "Tom Hanks", and assigns
+him to the class "Lab_L11"
+
+
+### Deleting a student: `delete_student` 
+Deletes a student from the active class list.
+
+Format: `delete_student STUDENT_INDEX`
+- The `STUDENT_INDEX` is the index of the student that is currently being shown on screen.
+
+Examples:
+- `delete_student 3` removes the 3rd student in the currently active/displayed class list
 
 ### Listing all students : `list` [coming soon]
 List the students in the class.
