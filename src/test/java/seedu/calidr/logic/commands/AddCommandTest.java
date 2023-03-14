@@ -18,6 +18,7 @@ import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.model.AddressBook;
 import seedu.calidr.model.Model;
 import seedu.calidr.model.ReadOnlyAddressBook;
+import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.ReadOnlyUserPrefs;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.Task;
@@ -149,7 +150,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ArrayList<Task> getTaskList() {
+        public ReadOnlyTaskList getTaskList() {
             throw new AssertionError("This method should not be called.");
         }
     }

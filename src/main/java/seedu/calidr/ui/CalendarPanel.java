@@ -2,7 +2,6 @@ package seedu.calidr.ui;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -29,11 +28,11 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.commons.util.TaskEntryUtil;
+import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.TaskEntry;
 import seedu.calidr.model.task.Event;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.ToDo;
-
 
 /**
  * Panel containing the CalendarFX DetailedWeekView.
@@ -151,10 +150,10 @@ public class CalendarPanel extends UiPart<Region> {
      *
      * @param taskList the task list
      */
-    public void updateCalendar(ArrayList<Task> taskList) {
+    public void updateCalendar(ReadOnlyTaskList taskList) {
         // TODO: Asynchronous / lazy loading
         taskEntryCalendarMap.values().forEach(Calendar::clear);
-        taskList.forEach(task -> {
+        taskList.getTaskList().forEach(task -> {
             Class<? extends Task> taskClass = task.getClass();
             if (taskEntryCalendarMap.containsKey(taskClass)) {
                 Calendar<TaskEntry> calendar = taskEntryCalendarMap.get(taskClass);

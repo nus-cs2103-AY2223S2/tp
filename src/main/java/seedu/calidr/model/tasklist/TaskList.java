@@ -1,9 +1,15 @@
 package seedu.calidr.model.tasklist;
 
-import java.util.ArrayList;
+import static java.util.Objects.requireNonNull;
+import static javafx.collections.FXCollections.observableList;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.collections.ObservableList;
 import seedu.calidr.exception.CalidrException;
 import seedu.calidr.exception.CalidrInvalidArgumentException;
+import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.params.Priority;
 
@@ -11,9 +17,9 @@ import seedu.calidr.model.task.params.Priority;
  * Represents a task list manager that aids in storing and manipulating the
  * list of Tasks.
  */
-public class TaskList {
+public class TaskList implements ReadOnlyTaskList {
 
-    private final ArrayList<Task> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     /**
      * Returns all the Tasks in the list of Tasks.
@@ -95,6 +101,15 @@ public class TaskList {
     }
 
     /**
+     * Adds a given Task to the list of Tasks.
+     *
+     * @param task     The Task to be added to the list of Tasks.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    /**
      * Deletes a Task from the list of Tasks.
      *
      * @param taskNumber The number to indicate which Task is to be deleted.
@@ -170,4 +185,39 @@ public class TaskList {
         }
     }
 
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return observableList(tasks);
+    }
+
+    /**
+     * Resets the existing data of this {@code TaskList} with {@code newData}.
+     * @param newData The new data to update the task list.
+     */
+    public void resetData(ReadOnlyTaskList newData) {
+        requireNonNull(newData);
+
+        tasks = newData.getTaskList();
+    }
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
+     * @param task The task to check.
+     * @return true if task already exists in the task list and false otherwise.
+     */
+    public boolean hasTask(Task task) {
+        // stub
+        return false;
+    }
+
+
+    public void removeTask(Task target) {
+        tasks.remove(target);
+    }
+
+    public void setTask(Task target, Task editedTask) {
+        // stub
+        tasks.remove(target);
+        tasks.add(editedTask);
+    }
 }
