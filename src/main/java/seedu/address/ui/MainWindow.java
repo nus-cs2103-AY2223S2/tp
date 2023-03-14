@@ -31,9 +31,12 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ExpenseListPanel expenseListPanel;
+    private CategoryListPanel categoryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ResultsHeader resultsHeader;
+    private ResultsDetails resultsDetails;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +45,20 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane resultsHeaderPlaceholder;
+
+    @FXML
+    private StackPane resultsDetailsPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,11 +120,18 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
+        listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        resultsHeader = new ResultsHeader();
+        resultsHeaderPlaceholder.getChildren().add(resultsHeader.getRoot());
+
+        // TODO ensure the filters applied are observable too
+        resultsDetails = new ResultsDetails(15, "All", true);
+        resultsDetailsPlaceholder.getChildren().add(resultsDetails.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -163,8 +180,19 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public void switchListPanel(boolean isExpenseList) {
+        listPanelPlaceholder.getChildren().clear();
+        if (isExpenseList) {
+            resultsHeader.setHeader(true, "All");
+            resultsDetails.setDetails(14, "All", true);
+            expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
+            listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
+        } else {
+            resultsHeader.setHeader(false, "");
+            resultsDetails.setDetails(20, "", false);
+            categoryListPanel = new CategoryListPanel(logic.getCategoryList());
+            listPanelPlaceholder.getChildren().add(categoryListPanel.getRoot());
+        }
     }
 
     /**
@@ -178,6 +206,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            switchListPanel(false);
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

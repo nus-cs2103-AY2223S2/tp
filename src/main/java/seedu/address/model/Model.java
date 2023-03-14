@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.category.Category;
+import seedu.address.model.expense.Expense;
 import seedu.address.model.person.Person;
 
 /**
@@ -78,6 +80,13 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the category list */
+    ObservableList<Category> getCategoryList();
+
+    /** Returns an unmodifiable view of the filtered expense list */
+    ObservableList<Expense> getFilteredExpenseList();
+
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

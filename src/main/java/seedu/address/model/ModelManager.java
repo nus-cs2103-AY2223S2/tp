@@ -4,14 +4,23 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.category.Category;
+import seedu.address.model.category.UserDefinedCategory;
+import seedu.address.model.expense.Expense;
 import seedu.address.model.person.Person;
+import seedu.address.ui.CategoryCard;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +31,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Expense> filteredExpenses;
+    private final ObservableList<Category> allCategories;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -33,6 +44,23 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        ArrayList<Category> categoryList = new ArrayList<>();
+        ArrayList<Expense> expenseList = new ArrayList<>();
+        //TODO be able to obtain the category, expense list from FastTrack
+        categoryList.add(new UserDefinedCategory("groceries", "xxx"));
+        categoryList.add(new UserDefinedCategory("entertainment", "xxx"));
+        Category cat = new UserDefinedCategory("drink", "xxx");
+        String sDate1="31/12/1998";
+        Date date1 = new Date();
+        try {
+            date1= new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        expenseList.add(new Expense("food", 34.20, date1, cat));
+        expenseList.add(new Expense("dinner", 19.3, date1, cat));
+        filteredExpenses = new FilteredList<>(FXCollections.observableArrayList(expenseList));
+        allCategories = FXCollections.observableArrayList(categoryList);
     }
 
     public ModelManager() {
@@ -146,4 +174,24 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //=========== Category List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Category} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Category> getCategoryList() {
+        return allCategories;
+    }
+
+    //=========== Filtered Expense List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Expense} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Expense> getFilteredExpenseList() {
+        return filteredExpenses;
+    }
 }
