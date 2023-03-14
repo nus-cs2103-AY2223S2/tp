@@ -1,13 +1,15 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
+import java.util.Objects;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.Objects;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-
+/**
+ * Parses input arguments and creates a new ListCommand
+ */
 public class ListCommandParser implements Parser<ListCommand> {
     @Override
     public ListCommand parse(String userInput) throws ParseException {

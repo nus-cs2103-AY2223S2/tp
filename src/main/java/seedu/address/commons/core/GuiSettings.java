@@ -10,7 +10,10 @@ import java.util.Objects;
  */
 public class GuiSettings implements Serializable {
 
-    public enum GuiMode {DISPLAY_ALL_TANKS, DISPLAY_ALL_FISHES}
+    /**
+     * The current elements being displayed
+     */
+    public enum GuiMode { DISPLAY_ALL_TANKS, DISPLAY_ALL_FISHES }
 
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;

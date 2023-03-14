@@ -181,6 +181,9 @@ public class MainWindow extends UiPart<Stage> {
         case DISPLAY_ALL_FISHES:
             mainContent.setPanels(fishListPanel, taskListPanel);
             break;
+        default:
+            mainContent.setPanels(tankListPanel, taskListPanel); // Default mode
+            break;
         }
     }
 
@@ -207,7 +210,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if(commandResult.isChangeGui()) {
+            if (commandResult.isChangeGui()) {
                 handleGuiChange();
             }
 
