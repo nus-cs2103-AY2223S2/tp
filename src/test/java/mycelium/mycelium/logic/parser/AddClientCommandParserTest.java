@@ -1,14 +1,20 @@
 package mycelium.mycelium.logic.parser;
 
+import static mycelium.mycelium.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static mycelium.mycelium.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.AddClientCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.model.client.YearOfBirth;
+import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.person.Name;
+import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.Pair;
 
@@ -35,11 +41,6 @@ public class AddClientCommandParserTest {
             Map.entry("has email prefix only, but no whitespace", "-ehogrider@coc.org"),
 
             Map.entry("prefixes are not separated", "-cn-e"),
-            Map.entry("no name nor email", "-cn -e"),
-            Map.entry("no name nor email (whitespace)", "-cn  -e "),
-            Map.entry("email, but no name", "-cn -e hogrider@coc.org"),
-            Map.entry("name, but no email", "-cn Bob -e"),
-            Map.entry("name, but email is whitespace", "-cn Bob -e "),
             Map.entry("name and email not separated", "-cnBob-ehogrider@coc.org")
         );
         tests.forEach((desc, tt) -> {
@@ -47,9 +48,10 @@ public class AddClientCommandParserTest {
             // where it expects an initial whitespace. But this is why I added
             // the " " in front.
             String input = " " + tt;
-            Assertions.assertThrows(ParseException.class, ()
-                    -> new AddClientCommandParser().parse(input),
-                "While testing case: " + desc);
+            assertParseFailure(new AddClientCommandParser(), input, String.format(
+                Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                AddClientCommand.MESSAGE_USAGE
+            ), "While testing case: " + desc);
         });
     }
 
@@ -59,18 +61,21 @@ public class AddClientCommandParserTest {
         assertEquals(CliSyntax.PREFIX_CLIENT_EMAIL.getPrefix(), "-e ");
 
         // For each of the following cases, we expect the parser to throw an exception.
-        Map<String, String> tests = Map.ofEntries(
-            Map.entry("invalid email", "-cn Bob -e foobar"),
-            Map.entry("invalid name", "-cn SHA-256 -e hogrider@coc.org"),
-            Map.entry("invalid mobile number", "-cn Jamal -e jamal@hogriders.org -m 1234567890"),
-            Map.entry("invalid source (empty)", "-cn Jamal -e jamal@hogriders.org -src "),
-            Map.entry("invalid year of birth", "-cn Jamal -e jamal@hogriders.org -y 42069")
+        Map<String, Pair<String, String>> tests = Map.ofEntries(
+            Map.entry("name is whitespace", Pair.of("-cn   -e hogrider@coc.org", Name.MESSAGE_CONSTRAINTS)),
+            Map.entry("email is whitespace", Pair.of("-cn Bob -e   ", Email.MESSAGE_CONSTRAINTS)),
+            Map.entry("invalid email", Pair.of("-cn Bob -e foobar", Email.MESSAGE_CONSTRAINTS)),
+            Map.entry("invalid name", Pair.of("-cn SHA-256 -e hogrider@coc.org", Name.MESSAGE_CONSTRAINTS)),
+            Map.entry("invalid mobile number",
+                Pair.of("-cn Jamal -e jamal@hogriders.org -mn hogridaaaa", Phone.MESSAGE_CONSTRAINTS)),
+            Map.entry("invalid source (empty)",
+                Pair.of("-cn Jamal -e jamal@hogriders.org -src ", Messages.MESSAGE_EMPTY_STR)),
+            Map.entry("invalid year of birth",
+                Pair.of("-cn Jamal -e jamal@hogriders.org -y 42069", YearOfBirth.MESSAGE_CONSTRAINTS))
         );
         tests.forEach((desc, tt) -> {
-            String input = " " + tt;
-            Assertions.assertThrows(ParseException.class, ()
-                    -> new AddClientCommandParser().parse(input),
-                "While testing case: " + desc);
+            String input = " " + tt.first;
+            assertParseFailure(new AddClientCommandParser(), input, tt.second, "While testing case: " + desc);
         });
     }
 
@@ -107,8 +112,7 @@ public class AddClientCommandParserTest {
         for (String desc : tests.keySet()) {
             String input = " " + tests.get(desc).first;
             AddClientCommand want = tests.get(desc).second;
-            AddClientCommand got = new AddClientCommandParser().parse(input);
-            assertEquals(want, got, "While testing case: " + desc);
+            assertParseSuccess(new AddClientCommandParser(), input, want, "While testing case: " + desc);
         }
     }
 }
