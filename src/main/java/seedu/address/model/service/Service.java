@@ -36,7 +36,7 @@ public class Service {
     /**
      *  This method is the constructor for a Service.
      *
-     * @param vehicle The vehicle that requires servicing.
+     * @param id The vehicle that requires servicing.
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      * @param assignedToIds The list of staffs ids that this service is assigned to.
      */
