@@ -2,8 +2,8 @@ package seedu.address.model.listing;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_APPLICANTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_APPLICANTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
 import static seedu.address.testutil.TypicalListings.CHICKEN_RICE_UNCLE;
 import static seedu.address.testutil.TypicalListings.TOILET_CLEANER;
@@ -70,7 +70,8 @@ public class ListingTest {
         assertFalse(CHICKEN_RICE_UNCLE.equals(editedChickenRiceUncle));
 
         // different applicants -> returns true
-        editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE).withApplicants(new ArrayList<>(TypicalApplicants.getTypicalApplicants())).build();
+        editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE)
+                .withApplicants(new ArrayList<>(TypicalApplicants.getTypicalApplicants())).build();
         assertTrue(CHICKEN_RICE_UNCLE.equals(editedChickenRiceUncle));
     }
 

@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_APPLICANTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_APPLICANTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
 
 import java.util.ArrayList;

@@ -1,25 +1,18 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ListingBook;
 import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
-import seedu.address.model.applicant.Name;
 import seedu.address.model.listing.Listing;
 
 /**
@@ -47,8 +40,10 @@ public class CommandTestUtil {
             + " " + PREFIX_APPLICANT + VALID_APPLICANT_NAME_CHRIS;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "TITLE\n"; // '\n' not allowed in titles
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "^"; // '^' only not allowed in descriptions
-    public static final String INVALID_APPLICANT_DESC = " " + PREFIX_APPLICANT + "peter*"; // '*' not allowed in applicant names
+    public static final String INVALID_DESCRIPTION_DESC =
+            " " + PREFIX_DESCRIPTION + "^"; // '^' only not allowed in descriptions
+    public static final String INVALID_APPLICANT_DESC =
+            " " + PREFIX_APPLICANT + "peter*"; // '*' not allowed in applicant names
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
