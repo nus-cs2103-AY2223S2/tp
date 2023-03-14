@@ -100,10 +100,9 @@ public class EditCommand extends Command {
         TimeSlot updatedTimeSlot = editPersonDescriptor.getTimeSlot().orElse(personToEdit.getTimeSlot());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Remark updatedRemark = personToEdit.getRemark();
-        Deadline updatedDeadline = personToEdit.getDeadline();
-        Teacher updatedTeacher = personToEdit.getTeacher();
-
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
+        Deadline updatedDeadline = editPersonDescriptor.getDeadline().orElse(personToEdit.getDeadline());
+        Teacher updatedTeacher = editPersonDescriptor.getTeacher().orElse(personToEdit.getTeacher());
         return new Person(updatedName, updatedType, updatedTimeSlot, updatedAddress, updatedTags, updatedRemark,
                 updatedDeadline, updatedTeacher);
     }
