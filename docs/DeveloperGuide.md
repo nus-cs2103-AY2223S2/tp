@@ -262,7 +262,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to execute commands and input patient records
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 * solve the problem of slow and multiple step process of documenting patient medical records during in-processing
 * provide faster access to a particular patient’s medical records for hospital admin staff

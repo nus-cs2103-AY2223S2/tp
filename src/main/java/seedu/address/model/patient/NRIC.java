@@ -55,4 +55,5 @@ public class NRIC {
     public int hashCode() {
         return value.hashCode();
     }
+
 }
