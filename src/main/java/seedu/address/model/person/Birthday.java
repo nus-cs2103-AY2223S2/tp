@@ -31,11 +31,20 @@ public class Birthday {
         value = LocalDate.of(year, month, day);
     }
 
+    public Birthday(LocalDate birthday) {
+        requireNonNull(birthday);
+        value = birthday;
+    }
+
     /**
      * Returns if a given string is a valid birthday.
      */
     public static boolean isValidBirthday(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public LocalDate getValue() {
+        return value;
     }
 
     @Override
