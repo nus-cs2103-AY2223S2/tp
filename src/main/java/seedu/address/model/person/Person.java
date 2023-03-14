@@ -22,17 +22,26 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Rank rank;
+    private final Unit unit;
+    private final Company company;
+    private final Platoon platoon;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Rank rank,
+                  Unit unit, Company company, Platoon platoon, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, rank, unit, company, platoon, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.rank = rank;
+        this.unit = unit;
+        this.company = company;
+        this.platoon = platoon;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +59,22 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public Platoon getPlatoon() {
+        return platoon;
     }
 
     /**
@@ -92,13 +117,17 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getRank().equals(getRank())
+                && otherPerson.getUnit().equals(getUnit())
+                && otherPerson.getCompany().equals(getCompany())
+                && otherPerson.getPlatoon().equals(getPlatoon())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, rank, unit, company, platoon, tags);
     }
 
     @Override
@@ -110,7 +139,15 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Rank: ")
+                .append(getRank())
+                .append("; Unit: ")
+                .append(getUnit())
+                .append("; Company: ")
+                .append(getCompany())
+                .append("; Platoon: ")
+                .append(getPlatoon());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
