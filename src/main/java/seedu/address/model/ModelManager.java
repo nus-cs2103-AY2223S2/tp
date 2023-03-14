@@ -11,7 +11,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.shop.Shop;
+import seedu.address.model.service.Part;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +28,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final Shop shop;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.shop = null; //TODO
     }
 
     public ModelManager() {
@@ -126,6 +134,95 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    /**
+     * Adds customer to the shop
+     *
+     * @param customer Customer to be added
+     */
+    @Override
+    public void addCustomer(Customer customer) {
+        this.shop.addCustomer(customer);
+    }
+
+    /**
+     * Checks whether Shop already has customer
+     *
+     * @param customerId Customer ID to be checked
+     */
+    @Override
+    public boolean hasCustomer(int customerId) {
+        return this.shop.hasCustomer(customerId);
+    }
+
+    /**
+     * Adds vehicle to the shop
+     *
+     * @param vehicle Vehicle to be added
+     */
+    @Override
+    public void addVehicle(int customerId, Vehicle vehicle) {
+        this.shop.addVehicle(customerId, vehicle);
+    }
+
+    /**
+     * Checks if shop already has vehicle
+     *
+     * @param vehicleId Vehicle ID to check against
+     */
+    @Override
+    public boolean hasVehicle(int vehicleId) {
+        return this.shop.hasVehicle(vehicleId);
+    }
+
+    /**
+     * Adds service
+     *
+     * @param service Service to add
+     */
+    @Override
+    public void addService(int vehicleId, Service service) {
+        this.shop.addService(vehicleId, service);
+    }
+
+    /**
+     * @param serviceId ID of service
+     * @return Whether service already in the system
+     */
+    @Override
+    public boolean hasService(int serviceId) {
+        return this.shop.hasService(serviceId);
+    }
+
+    /**
+     * Adds appointment
+     *
+     * @param appointment Appointment to add
+     */
+    @Override
+    public void addAppointment(Appointment appointment) {
+        this.shop.addAppointment(appointment);
+    }
+
+    /**
+     * Adds part
+     *
+     * @param part Part to add
+     */
+    @Override
+    public void addPart(Part part) {
+        this.shop.addPart(part);
+    }
+
+    /**
+     * Checks if part already exists
+     *
+     * @param part Part to check against
+     */
+    @Override
+    public boolean hasPart(Part part) {
+        return this.shop.hasPart(part.getName());
     }
 
     @Override
