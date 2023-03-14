@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.category.Category;
+import seedu.address.model.expense.Expense;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -116,5 +118,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    // TODO merge with Isaac's segment
+    public boolean hasCategory(String categoryName) {
+        return true;
+    }
+
+    // TODO merge with Shirsho's segment
+    public void addExpense(Expense expense) {
+        return;
     }
 }
