@@ -58,7 +58,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
             argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION),
             ParserUtil::parseNonEmptyString);
         Optional<LocalDate> deadline = ParserUtil.parseOptionalWith(
-            argMultimap.getValue(PREFIX_SOURCE),
+            argMultimap.getValue(PREFIX_DEADLINE_DATE),
             d -> ParserUtil.parseLocalDate(d, Project.DATE_FMT));
 
         Project project = new Project(name, projectStatus, clientEmail, source, description, acceptedOn, deadline);
