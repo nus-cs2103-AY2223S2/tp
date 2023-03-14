@@ -130,7 +130,7 @@ Format: `find PREFIX/KEYWORD`
 * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`
 * Details containing the keyword will also be matched, even if both do not match exactly.
   e.g. `Han` will match `Hans`, `John` will match `John Li` and `John Tan`,
-  `19` will match `1900` and `1090`
+  `19` will match `1900` and `0190`
 
 Available Prefixes:
 * `n` filters by Name
