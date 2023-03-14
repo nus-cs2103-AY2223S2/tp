@@ -103,7 +103,7 @@ Examples:
 *  `edit 1 p/91164512` Edits the phone number of the 1st person to be `91164512`.
 *  `edit 3 p/90011009 e/bernice512@example.com` Edits the phone number and email address of the 3rd person to be
    90011009 and bernice512@example.com respectively
-   ![editCommandExample](images/editCommandExample.png)
+   ![editCommandExample](docs/images/editCommandExample.png)
 
 ### Locating persons by name: `find`
 
@@ -166,7 +166,6 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-
 ### Filter contacts by tags
 
 Given the tag, find all contacts that has the specified tag
@@ -176,6 +175,21 @@ Format: `filter [TAG]`
 Examples:
 - `filter Family`
 - `filter Friends`
+
+### Undo past commands
+Undoes previous commands that modified ModCheck.
+Undo will only undo commands that have successfully modified the data in ModCheck. For example, a successful `add`, 
+`edit`, or `delete` command can be undone by the undo command.
+Any commands that does not modify the data in ModCheck will NOT be undone. This includes `view`, `find`, and other 
+similar commands. Any command that would have modified the data in ModCheck, but was unsuccessful in doing so (eg: 
+`add` duplicate person), will NOT be undone.
+
+Chaining of a few undo commands is supported. Once the undo limit has been reached, the error message `No command to 
+undo!` will be shown.
+
+Format: `undo`
+
+Use `redo` to reapply the changes undone by undo.
 
 ## Command Summary
 
@@ -189,5 +203,7 @@ Examples:
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                |
 | **Filter** | `filter [TAG]` <br> e.g., `filter Girlfriend`, `filter family`                                                                                                        |
+| **Undo**   | `undo`                                                                                                                                                                |
+| **Redo**   | `redo`                                                                                                                                                                |
 
 ---
