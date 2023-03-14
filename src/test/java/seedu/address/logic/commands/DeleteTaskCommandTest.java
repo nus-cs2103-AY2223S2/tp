@@ -22,11 +22,12 @@ import seedu.address.model.task.Task;
 
 public class DeleteTaskCommandTest {
 
-    private final OfficeConnectModel model = new OfficeConnectModel(new RepositoryModelManager<>(getTypicalTaskRepository()),
-            new RepositoryModelManager<>(new Repository<AssignTask>()));
+    private final OfficeConnectModel model = new OfficeConnectModel(
+        new RepositoryModelManager<>(getTypicalTaskRepository()),
+        new RepositoryModelManager<>(new Repository<AssignTask>()));
     private final OfficeConnectModel expectedModel = new OfficeConnectModel(new
-            RepositoryModelManager<>(model.getTaskModelManager().getReadOnlyRepository()),
-            new RepositoryModelManager<>(new Repository<AssignTask>()));
+        RepositoryModelManager<>(model.getTaskModelManager().getReadOnlyRepository()),
+        new RepositoryModelManager<>(new Repository<AssignTask>()));
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

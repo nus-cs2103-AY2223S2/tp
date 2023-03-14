@@ -24,8 +24,8 @@ import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.shared.Id;
-import seedu.address.model.task.TitleContainsExactKeywordsPredicate;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TitleContainsExactKeywordsPredicate;
 
 
 public class ReviewTaskCommandTest {
