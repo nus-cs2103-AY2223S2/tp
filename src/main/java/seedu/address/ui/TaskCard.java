@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
 
 /**
@@ -45,8 +46,8 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskDesc.setText(task.getDescription().toString());
-        personAssigned.setText(task.getPersonName());
-        taskDeadline.setText(task.getDeadlineDate());
+        personAssigned.setText(task.getPersonAssignedName());
+        taskDeadline.setText(((DeadlineTask) task).getDate().toString());
         personRole.setText("Member");
     }
 

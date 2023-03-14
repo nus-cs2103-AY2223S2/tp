@@ -143,8 +143,6 @@ public class ModelManager implements Model {
         addressBook.assignTask(taskIndex, personIndex);
     }
 
-
-
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
