@@ -16,7 +16,7 @@ public class RecipeDuration {
 
     @Override
     public String toString() {
-        return time + " " + unit;
+        return String.format("%s %s", this.time, this.unit);
     }
 
     @Override
