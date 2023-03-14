@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -97,7 +98,7 @@ public class MasterDeck implements ReadOnlyMasterDeck {
 
     /**
      * Removes {@code key} from this {@code Deck}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the MasterDeck.
      */
     public void removeCard(Card key) {
         cards.remove(key);
@@ -150,6 +151,16 @@ public class MasterDeck implements ReadOnlyMasterDeck {
      * {@code key} must exist.
      */
     public void removeDeck(Deck key) {
+        ArrayList<Card> remCards = new ArrayList<>();
+        for (Card c : cards) {
+            Deck targetDeck = c.getDeck().orElse(new Deck(""));
+            if (targetDeck.equals(key)) {
+                remCards.add(c);
+            }
+        }
+        for (Card r : remCards) {
+            removeCard(r);
+        }
         decks.remove(key);
     }
 
