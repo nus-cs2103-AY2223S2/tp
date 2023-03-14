@@ -18,7 +18,18 @@ public class Region {
      * Enum that represents all regions of Singapore
      */
     public enum Regions {
-        NORTH, SOUTH, EAST, WEST, CENTRAL, UNKNOWN
+        NORTH, SOUTH, EAST, WEST, CENTRAL, UNKNOWN;
+
+        /**
+         * Returns a string to be displayed in the UI
+         * @return string in all lower case with first letter capitalised
+         */
+        public String getDisplayString() {
+            String allCapsRegion = this.toString();
+            String capitaliseFirstLetter = allCapsRegion.substring(0,1).toUpperCase()
+                    + allCapsRegion.substring(1).toLowerCase();
+            return "Region: " + capitaliseFirstLetter;
+        }
     }
 
     /**
@@ -115,4 +126,5 @@ public class Region {
         }
         return Regions.UNKNOWN;
     }
+
 }
