@@ -64,6 +64,12 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes the image for the given person.
+     * The person must exist in the address book.
+     */
+    void deleteImage(Person target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
