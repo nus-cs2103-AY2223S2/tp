@@ -43,10 +43,6 @@ public class FilterCommand extends Command {
             + PREFIX_TAG + "Friends "
             + PREFIX_TAG + "Family";
 
-
-
-    public static final String MESSAGE_SUCCESS = "%1$s contact matches the tag!";
-
     private final Predicate<Person> predicate;
 
     public FilterCommand(Predicate<Person> predicate) {
@@ -58,7 +54,7 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(this.predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override
