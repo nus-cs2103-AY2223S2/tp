@@ -2,24 +2,41 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## Table of Contents
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+   <!-- - [Architecture](#architecture)
+   - [UI component](#ui-component)
+   - [Logic component](#logic-component)
+   - [Model component](#model-component)
+   - [Storage component](#storage-component)
+   - [Common classes](#common-classes) -->
+- [Implementation](#implementation)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+   * [Product scope](#product-scope)
+   * [User stories](#user-stories)
+   * [Use cases](#use-cases)
+   * [Non-Functional Requirements](#non-functional-requirements)
+   * [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -59,7 +76,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -150,7 +167,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -241,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -251,7 +268,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
@@ -347,13 +364,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User enters the wrong command.
-   * 1a1. System displays that the command is invalid and to try again.
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
 
       Use case resumes at step 2.
 
-* 1b. User enters an invalid index.
-   * 1b1. System displays that the index is invalid and to try again.
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
 
       Use case resumes at step 2.
 
@@ -383,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 1c1. System displays that the event has already been marked.
 
       Use case ends.
-   
+
 **Use case: UC4 - List Events**
 
 **MSS**
@@ -402,10 +419,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
    * 2a1. System displays an empty list.
-      
-      Use case ends.
 
-**Use case: UC5 - List Contacts**
+      Use case ends.
+<!-- **Use case: UC5 - List Contacts**
 
 **MSS**
 
@@ -423,45 +439,180 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
    * 2a1. System displays an empty list.
-      
-      Use case ends.
 
-**Use case: UC6 - Link contact and event**
+      Use case ends. -->
+
+**Use case: UC5 - Link contact and event**
 
 **MSS**
 
 1. User <u>lists events (UC4)</u>.
-2. User <u>lists contacts (UC5)</u>.
-3. User requests to link a specified event and contact.
-4. System links them and displays the event's and contact's information.
+2. User requests to link a specified event and contact.
+3. System links them and displays the event's and contact's information.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. User enters the wrong command.
-   * 3a1. System displays that the command is invalid and to try again.
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
 
       Use case resumes at step 3.
 
-* 3b. User enters an invalid index.
-   * 3b1. System displays that the index is invalid and to try again.
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
 
       Use case resumes at step 3.
 
-* 4a. The event has a contact linked already.
+* 2c. User enters an invalid contact information
+   * 2c1. System displays that the contact information is invalid and to try again.
+
+      Use case resumes at step 3.
+
+* 3a. The event has a contact linked already.
    * 4a1. System replaces the previous contact with the new contact.
 
       Use case ends.
 
+**Use case: UC6 - Display Rate**
 
-*{More to be added}*
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to display the rate of a specified event in the list.
+3. System displays the event and displays information of the rate.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+<!-- **Use case: UC7 - Tag a rate to an Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to tag a rate to a specified event in the list.
+3. System tags the rate to the event and displays information of the event tagged.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User enters an invalid rate.
+   * 2c1. System displays that the rate is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 3a. The event has a rate tagging already.
+   * 3a1. System replaces the previous rate with the new rate.
+
+      Use case ends. -->
+
+**Use case: UC7 - Add Contact**
+
+**MSS**
+
+1.  User requests to add a contact to an event.
+2.  System adds the contact to the event and displays information of the contact and event.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 1.
+
+* 1b. User enters invalid contact details.
+   * 1b1. System displays that the input is invalid and to try again.
+
+      Use case resumes at step 1.
+
+**Use case: UC8 - Add Date to Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to add a date to a specified event in the list.
+3. System adds the date to the event and displays information of the event with new date added.
+
+   Use case ends.
+
+**Extensions**
+
+ 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User enters an invalid date.
+   * 2c1. System displays that the date is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 3a. The event has a date linked already.
+   * 3a1. System replaces the previous date with the new date.
+
+      Use case ends.
+      
+**Use case: UC9 - Edit Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to edit a specified event in the list.
+3. System updates the event with the edit and displays information of the event edited.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User enters an invalid argument format.
+   * 2c1. System displays that the format is invalid and to try again.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-3. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage. 
+3. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 4. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 5. The system should work on both 32-bit and 64-bit environments.
 6. The source code should be open source.
@@ -478,7 +629,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -528,3 +679,6 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+[Back to top](#)
