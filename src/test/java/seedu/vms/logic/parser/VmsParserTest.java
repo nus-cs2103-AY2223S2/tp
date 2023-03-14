@@ -42,9 +42,9 @@ public class VmsParserTest {
     @Test
     public void parseCommand_patient_deleteCommand() throws ParseException {
         try {
-            assertTrue(parser.parseCommand(VALID_ALTERNATIVE_APPOINTMENT+ APPOINTMENT_DELETE_STRING)
+            assertTrue(parser.parseCommand(VALID_ALTERNATIVE_PATIENT + PATIENT_DELETE_STRING)
                     instanceof seedu.vms.logic.commands.patient.DeleteCommand);
-            parser.parseCommand(INVALID_ALTERNATIVE_APPOINTMENT + APPOINTMENT_DELETE_STRING);
+            parser.parseCommand(INVALID_ALTERNATIVE_PATIENT + PATIENT_DELETE_STRING);
         } catch (ParseException parseException) {
             assertEquals(parseException.getMessage(), MESSAGE_UNKNOWN_COMMAND);
         }
