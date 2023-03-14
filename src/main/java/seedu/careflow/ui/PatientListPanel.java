@@ -38,21 +38,6 @@ public class PatientListPanel extends UiPart<Region> {
     @FXML
     private Label selectedIc;
 
-
-    private StringProperty selectedNameProperty = new SimpleStringProperty();
-    private StringProperty selectedPhoneProperty = new SimpleStringProperty();
-    private StringProperty selectedAddressProperty = new SimpleStringProperty();
-    private StringProperty selectedEmailProperty = new SimpleStringProperty();
-    private StringProperty selectedBirthDateProperty = new SimpleStringProperty();
-    private StringProperty selectedGenderProperty = new SimpleStringProperty();
-    private StringProperty selectedIcProperty = new SimpleStringProperty();
-
-    private ObjectProperty<Patient> patientSelected = new SimpleObjectProperty<>();
-
-    private final ChangeListener<String> phoneChangeListener = (observable, oldValue, newValue) -> {
-        selectedPhone.setText(newValue);
-    };
-
     /**
      * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
@@ -77,7 +62,6 @@ public class PatientListPanel extends UiPart<Region> {
             setPatientDetailDisplay(selectedPatient);
         });
     }
-
 
     private void setPatientDetailDisplay(Patient selectedPatient) {
         selectedName.setText(selectedPatient.getName().fullName);
