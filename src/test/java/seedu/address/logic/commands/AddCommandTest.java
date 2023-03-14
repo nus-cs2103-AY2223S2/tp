@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -168,7 +169,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateSortedDeliveryJobListByDate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<DeliveryJob> getSortedDeliveryJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Map<String, ArrayList<DeliveryJob>> getSortedDeliveryJobListByDate() {
             throw new AssertionError("This method should not be called.");
         }
 

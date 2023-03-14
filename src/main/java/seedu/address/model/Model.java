@@ -1,7 +1,9 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -112,11 +114,14 @@ public interface Model {
 
     void updateFilteredDeliveryJobList(Predicate<DeliveryJob> predicate);
     void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter);
+    void updateSortedDeliveryJobListByDate();
     ObservableList<DeliveryJob> getSortedDeliveryJobList();
+    Map<String, ArrayList<DeliveryJob>> getSortedDeliveryJobListByDate();
 
 
 
-    // NOTIFICATION =========================================
+
+        // NOTIFICATION =========================================
 
     /**
      * Deletes the given reminder.

@@ -4,10 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -17,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.sorters.SortbyTime;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -24,6 +23,8 @@ import seedu.address.model.reminder.Reminder;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+    public static final SortbyTime SORTER_BY_SLOT = new SortbyTime();
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
@@ -32,8 +33,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<DeliveryJob> filteredDeliveryJobs;
     private final List<DeliveryJob> sortedDeliveryJobs;
-
     private final ObservableList<Reminder> reminderList;
+    private final Map<String, ArrayList<DeliveryJob>> jobListGroupedByDate;
 
 
     /**
@@ -54,6 +55,7 @@ public class ModelManager implements Model {
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredDeliveryJobs = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
         this.sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
+        this.jobListGroupedByDate = new HashMap<String, ArrayList<DeliveryJob>>();
         this.reminderList = this.addressBook.getReminderList();
     }
 
@@ -210,6 +212,27 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<DeliveryJob> getSortedDeliveryJobList() {
         return FXCollections.observableArrayList(sortedDeliveryJobs);
+    }
+
+    @Override
+    public void updateSortedDeliveryJobListByDate() {
+        updateSortedDeliveryJobList(SORTER_BY_SLOT);
+        for (int i = 0; i < sortedDeliveryJobs.size(); i++) {
+            String jobSlot = sortedDeliveryJobs.get(i).getDeliverSlot();
+            DeliveryJob toAdd = sortedDeliveryJobs.get(i);
+            if (jobListGroupedByDate.containsKey(jobSlot)) {
+                ArrayList<DeliveryJob> jobsInCurrentSlot = jobListGroupedByDate.get(jobSlot);
+                jobsInCurrentSlot.add(toAdd);
+                jobListGroupedByDate.put(jobSlot, jobsInCurrentSlot);
+            } else {
+                jobListGroupedByDate.put(jobSlot, new ArrayList<DeliveryJob>(List.of(toAdd)));
+            }
+        }
+    }
+
+    @Override
+    public Map<String, ArrayList<DeliveryJob>> getSortedDeliveryJobListByDate() {
+        return jobListGroupedByDate;
     }
 
     //=========== ReminderList Accessors =============================================================

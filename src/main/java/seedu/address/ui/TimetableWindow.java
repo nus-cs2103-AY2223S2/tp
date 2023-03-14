@@ -123,13 +123,13 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
 
         for (int i = 1; i < 13; i++) {
             TreeItem<String> month = new TreeItem<String>(String.format("Month %d", i));
+            month.getChildren().add(new TreeItem<String>("09:00"));
             year.getChildren().add(month);
         }
 
         monthDeliveryJobListTreeView.setShowRoot(false);
 
     }
-
 
     @FXML
     private void handleExit() {
