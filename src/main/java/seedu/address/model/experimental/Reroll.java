@@ -1,14 +1,18 @@
 package seedu.address.model.experimental;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.Item;
-import seedu.address.model.entity.Character;
-import seedu.address.model.entity.Mob;
-
 import static java.util.Objects.requireNonNull;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
+
 // Driver function.
+
+/**
+ * Reroll...
+ */
 public class Reroll implements ReadOnlyReroll {
     private final RerollCharacters characters;
     private final RerollItems items;
@@ -22,12 +26,19 @@ public class Reroll implements ReadOnlyReroll {
 
     public Reroll() {}
 
-    // Creates a new Reroll model from an existing one
+    /**
+     * Create Reroll from existing copy
+     * @param toBeCopied
+     */
     public Reroll(ReadOnlyReroll toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
+    /**
+     * Reset data to newData
+     * @param newData
+     */
     public void resetData(ReadOnlyReroll newData) {
         requireNonNull(newData);
 
@@ -47,10 +58,17 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     @Override
-    public ReadOnlyEntities<Mob> getMobs() { return mobs; }
+    public ReadOnlyEntities<Mob> getMobs() {
+        return mobs;
+    }
 
     // Entity level operations ===============
 
+    /**
+     * Has entity
+     * @param e
+     * @return
+     */
     public boolean hasEntity(Entity e) {
         // Switch till it works
         if (e instanceof Item) {
@@ -64,6 +82,11 @@ public class Reroll implements ReadOnlyReroll {
             return false;
         }
     }
+
+    /**
+     * Add Entity
+     * @param e
+     */
     public void addEntity(Entity e) {
         if (e instanceof Item) {
             items.addEntity((Item) e);
@@ -76,6 +99,11 @@ public class Reroll implements ReadOnlyReroll {
         }
     }
 
+    /**
+     * Set Entity
+     * @param target
+     * @param edited
+     */
     public void setEntity(Entity target, Entity edited) {
         if (!target.getClass().equals(edited.getClass())) {
             return; // throw error.
@@ -91,6 +119,10 @@ public class Reroll implements ReadOnlyReroll {
         }
     }
 
+    /**
+     * Edit entity
+     * @param key
+     */
     public void deleteEntity(Entity key) {
         if (key instanceof Item) {
             items.deleteEntity((Item) key);
@@ -104,8 +136,10 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     // Misc ====================
-
-    // Returns some list from the 3 choices...
+    /**
+     * Return some list for the updated list
+     * @return
+     */
     public ObservableList<? extends Entity> getList() {
         // not slap at all
         return characters.entities.asUnmodifiableObservableList();

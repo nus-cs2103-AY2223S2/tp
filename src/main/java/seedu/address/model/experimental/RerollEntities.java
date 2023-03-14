@@ -1,12 +1,16 @@
 package seedu.address.model.experimental;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.Entity;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Abstraction of some specific entity class T
+ * @param <T>
+ */
 public abstract class RerollEntities<T extends Entity> implements ReadOnlyEntities {
 
     protected final UniqueEntityList<T> entities;

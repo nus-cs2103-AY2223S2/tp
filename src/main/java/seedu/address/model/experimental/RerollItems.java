@@ -3,7 +3,9 @@ package seedu.address.model.experimental;
 import seedu.address.model.entity.Item;
 
 
-// Abstraction of all operations on items
+/**
+ * Abstraction of all items
+ */
 public class RerollItems extends RerollEntities<Item> {
 
     // For convenience
