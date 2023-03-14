@@ -2,8 +2,8 @@ package trackr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import trackr.model.SupplierList;
 import trackr.model.Model;
+import trackr.model.SupplierList;
 
 /**
  * Clears the supplier list.

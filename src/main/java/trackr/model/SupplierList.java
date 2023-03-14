@@ -77,7 +77,8 @@ public class SupplierList implements ReadOnlySupplierList {
     /**
      * Replaces the given person {@code target} in the list with {@code editedSupplier}.
      * {@code target} must exist in the supplier list.
-     * The supplier identity of {@code editedSupplier} must not be the same as another existing supplier in the address book.
+     * The supplier identity of {@code editedSupplier} must not be the same as another existing supplier
+     * in the address book.
      */
     public void setSupplier(Supplier target, Supplier editedSupplier) {
         requireNonNull(editedSupplier);

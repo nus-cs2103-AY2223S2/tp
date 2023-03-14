@@ -16,11 +16,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.logic.commands.exceptions.CommandException;
-import trackr.model.SupplierList;
 import trackr.model.Model;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
+import trackr.model.SupplierList;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.testutil.SupplierBuilder;
@@ -39,7 +39,8 @@ public class AddSupplierCommandTest {
 
         CommandResult commandResult = new AddSupplierCommand(validSupplier).execute(modelStub);
 
-        assertEquals(String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validSupplier), modelStub.suppliersAdded);
     }
 
@@ -49,7 +50,8 @@ public class AddSupplierCommandTest {
         AddSupplierCommand addSupplierCommand = new AddSupplierCommand(validSupplier);
         ModelStub modelStub = new ModelStubWithSupplier(validSupplier);
 
-        assertThrows(CommandException.class, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER, () -> addSupplierCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER, () -> addSupplierCommand.execute(modelStub));
     }
 
     @Test
@@ -111,7 +113,7 @@ public class AddSupplierCommandTest {
         }
 
         @Override
-        public void addSupplier(Supplier Supplier) {
+        public void addSupplier(Supplier supplier) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -126,7 +128,7 @@ public class AddSupplierCommandTest {
         }
 
         @Override
-        public boolean hasSupplier(Supplier Supplier) {
+        public boolean hasSupplier(Supplier supplier) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -195,17 +197,17 @@ public class AddSupplierCommandTest {
      * A Model stub that contains a single Supplier.
      */
     private class ModelStubWithSupplier extends ModelStub {
-        private final Supplier Supplier;
+        private final Supplier supplier;
 
-        ModelStubWithSupplier(Supplier Supplier) {
-            requireNonNull(Supplier);
-            this.Supplier = Supplier;
+        ModelStubWithSupplier(Supplier supplier) {
+            requireNonNull(supplier);
+            this.supplier = supplier;
         }
 
         @Override
-        public boolean hasSupplier(Supplier Supplier) {
-            requireNonNull(Supplier);
-            return this.Supplier.isSameSupplier(Supplier);
+        public boolean hasSupplier(Supplier supplier) {
+            requireNonNull(supplier);
+            return this.supplier.isSameSupplier(supplier);
         }
     }
 

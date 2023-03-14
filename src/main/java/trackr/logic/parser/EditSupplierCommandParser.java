@@ -39,7 +39,8 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditSupplierCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditSupplierCommand.MESSAGE_USAGE), pe);
         }
 
         EditSupplierDescriptor editSupplierDescriptor = new EditSupplierDescriptor();

@@ -1,6 +1,6 @@
 {
   "_comment": "Trackr save file which contains the same Supplier values as in TypicalSuppliers#getTypicalSupplierList()",
-  "persons" : [ {
+  "suppliers" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",

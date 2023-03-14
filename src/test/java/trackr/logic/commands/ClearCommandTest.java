@@ -6,9 +6,9 @@ import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.model.SupplierList;
 import trackr.model.Model;
 import trackr.model.ModelManager;
+import trackr.model.SupplierList;
 import trackr.model.UserPrefs;
 
 public class ClearCommandTest {

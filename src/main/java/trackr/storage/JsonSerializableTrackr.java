@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import trackr.commons.exceptions.IllegalValueException;
-import trackr.model.SupplierList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
+import trackr.model.SupplierList;
 import trackr.model.TaskList;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;

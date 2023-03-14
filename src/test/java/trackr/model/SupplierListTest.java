@@ -49,7 +49,7 @@ public class SupplierListTest {
         Supplier editedAlice = new SupplierBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Supplier> newSuppliers = Arrays.asList(ALICE, editedAlice);
-        supplierListStub newData = new supplierListStub(newSuppliers);
+        SupplierListStub newData = new SupplierListStub(newSuppliers);
 
         assertThrows(DuplicateSupplierException.class, () -> supplierList.resetData(newData));
     }
@@ -86,10 +86,10 @@ public class SupplierListTest {
     /**
      * A stub ReadOnlysupplierList whose suppliers list can violate interface constraints.
      */
-    private static class supplierListStub implements ReadOnlySupplierList {
+    private static class SupplierListStub implements ReadOnlySupplierList {
         private final ObservableList<Supplier> suppliers = FXCollections.observableArrayList();
 
-        supplierListStub(Collection<Supplier> suppliers) {
+        SupplierListStub(Collection<Supplier> suppliers) {
             this.suppliers.setAll(suppliers);
         }
 

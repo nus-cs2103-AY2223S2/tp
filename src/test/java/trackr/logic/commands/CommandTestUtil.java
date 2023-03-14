@@ -17,8 +17,8 @@ import java.util.List;
 
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.exceptions.CommandException;
-import trackr.model.SupplierList;
 import trackr.model.Model;
+import trackr.model.SupplierList;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;

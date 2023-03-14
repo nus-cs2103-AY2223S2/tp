@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import trackr.model.SupplierList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
+import trackr.model.SupplierList;
 import trackr.model.TaskList;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;

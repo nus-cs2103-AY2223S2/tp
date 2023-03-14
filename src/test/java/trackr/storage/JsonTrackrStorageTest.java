@@ -20,9 +20,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import trackr.commons.exceptions.DataConversionException;
-import trackr.model.SupplierList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
+import trackr.model.SupplierList;
 import trackr.model.TaskList;
 
 public class JsonTrackrStorageTest {

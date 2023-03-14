@@ -40,7 +40,8 @@ public class AddSupplierCommandIntegrationTest {
     @Test
     public void execute_duplicateSupplier_throwsCommandException() {
         Supplier supplierInList = model.getSupplierList().getSupplierList().get(0);
-        assertCommandFailure(new AddSupplierCommand(supplierInList), model, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER);
+        assertCommandFailure(new AddSupplierCommand(supplierInList),
+                model, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER);
     }
 
 }
