@@ -4,32 +4,32 @@ import static java.util.Objects.requireNonNull;
 import static seedu.library.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Bookmark's Progress in the Library.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ * Represents a Book's Progress status in the Library.
+ * Guarantees: immutable; is valid as declared in {@link #isValidProgress(String)}
  */
 public class Progress {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Progress can take any values, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Progress}.
      *
-     * @param phone A valid phone number.
+     * @param progress A valid current progress status.
      */
-    public Phone(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+    public Progress(String progress) {
+        requireNonNull(progress);
+        checkArgument(isValidProgress(progress), MESSAGE_CONSTRAINTS);
+        value = progress;
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid progress status.
      */
-    public static boolean isValidPhone(String test) {
+    public static boolean isValidProgress(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -41,8 +41,8 @@ public class Progress {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Phone) other).value)); // state check
+                || (other instanceof Progress // instanceof handles nulls
+                && value.equals(((Progress) other).value)); // state check
     }
 
     @Override
