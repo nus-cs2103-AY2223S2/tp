@@ -66,6 +66,9 @@ public class AddressBookParser {
         case  DeadlineCommand.COMMAND_WORD:
             return new DeadlineCommandParser().parse(arguments);
 
+        case TeacherCommand.COMMAND_WORD:
+            return new TeacherCommandParser().parse(arguments);
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

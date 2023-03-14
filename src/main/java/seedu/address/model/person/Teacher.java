@@ -4,37 +4,26 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Module's deadline.
+ * Represents the Teacher of the Module's Lecture or Tutorial.
  */
-public class Deadline {
-    public static final String VALIDATION_REGEX = "[^\\d].*";
-
+public class Teacher {
     public final String value;
-
-    /**
-     * Returns if a given string is a valid timeSlot.
-     */
-    public static boolean isValidDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
 
     /**
      * Constructs an {@code Deadline}.
      *
-     * @param deadline A valid deadline.
+     * @param teacher A valid name of teacher.
      */
-    public Deadline (String deadline) {
-        //deadline is optional and hence we do not requireNonNull.
+    public Teacher (String teacher) {
+        //teacher is optional and hence we do not requireNonNull.
         //requireNonNull(deadline);
-        value = deadline;
+        value = teacher;
     }
-
 
     @Override
     public String toString() {
         return value;
     }
-
 
     @Override
     public boolean equals(Object other) {

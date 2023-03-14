@@ -14,6 +14,7 @@ import seedu.address.model.person.TimeSlot;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Deadline;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -93,6 +94,21 @@ public class ParserUtil {
             throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
         return new TimeSlot(trimmedTimeSlot);
+    }
+
+    /**
+     * Parses a {@code String timeSlot} into an {@code TimeSlot}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code timeSlot} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
+        }
+        return new Deadline(trimmedDeadline);
     }
 
     /**
