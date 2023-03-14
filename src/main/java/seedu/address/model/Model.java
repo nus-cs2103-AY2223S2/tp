@@ -85,6 +85,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Category> getFilteredCategoryList();
+
     ObservableList<Category> getCategoryList();
 
     /**
@@ -92,4 +94,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredCategoryList(Predicate<Category> predicate);
 }
