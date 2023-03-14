@@ -5,55 +5,49 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Jonathon Low Eng Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/creationsv2.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Creationsv2)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Data Querying
 
-### Jean Doe
+### Ong Wei Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ongweijie7.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ongweijie7)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Data Filtering
+
+### Sean Chin Jun Kai
+
+<img src="images/seanchinjunkai.png" width="200px">
+
+[[github](http://github.com/seanchinjunkai)]
+
+* Role: Developer
+* Responsibilities: Help function
+
+### Ma Yu Chen
+
+<img src="images/dawg420.png" width="200px">
+
+[[github](http://github.com/dawg420)]
+
+* Role: Developer
+* Responsibilities: Data Management/Storage
+
+### Pei Wen Qi
+
+<img src="images/cedricpei.png" width="200px">
+
+[[github](http://github.com/cedricpei)]
+
+* Role: Developer
+* Responsibilities: GUI + Data Querying

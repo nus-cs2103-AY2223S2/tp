@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: HospiSearch is a comprehensive hospital records management system designed to streamline administrative tasks and improve patient care. With our app, you can easily store, retrieve, and manage patient records, appointment schedules, and billing information all in one place
 
 
 ### User stories
@@ -272,49 +272,121 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | new user                                   | see the user guide      	    		  | know about all functions            |
+| `* * *`  | new user                                   | access a help menu              	  |  know about all commands            |
+| `* * *`  | admin                                      | add patients’ records             	  | keep track of their information     |
+| `* * *`  | admin                                      | edit patients’ records      	        | update their information  	    |
+| `* * *`  | admin                                      | delete patients’ records   		  |                			    |
+| `* *`    | admin          					  | import data files of different formats  |						    |
+| `* *`    | admin          					  | list all patients                       | have an overview			    |
+| `* *`    | admin          					  | search for a patient record 		  | find the needed information quickly |
+| `*`      | admin         					  | clear data                              | start the database from scratch     |
+| `*`      | admin         					  | save data                               | resume the same state next time     |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HospiSearch` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add patient to system**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+1.  Administrator types add command together with the patient details (NRIC, age, gender, medicine usage, health conditions).
+2.  HS adds the patient to the system.
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. HS detects an error in the entered patient details or missing patient details.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+	1a1. HS requests for the correct data.
+	1a2. Administrator enters the new data.
+	Steps 1a1-1a2 are repeated until the data entered are correct.
       Use case resumes at step 2.
 
+**Use case: UC2 - Edit patients' details**
+
+**MSS**
+
+1.  Administrator requests to update a patients' details and enters the updated information.
+2.  HS updates the patient's record in the system.
+    Use case ends.
+
+**Extensions**
+
+* 1a. HS detects an error in the updated information.
+
+    1a1. HS requests for the correct data.
+    1a2. Administrator enters the new data.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+**Use case: UC3 - Help Administrator obtain information on HospiSearch**
+
+**MSS**
+
+1.  Administrator is new to the system and requests for help.
+2.  HS gives a list of all possible commands together with brief descriptions to guide the user.
+    Use case ends.
+
+**Use case: UC4 - Clear all data**
+
+**MSS**
+
+1.  Administrator requests to clear all data in the system.
+2.  HS clears all the data in the system.
+    Use case ends.
+
+**Use case: UC5 - Search for patients by health conditions**
+
+**MSS**
+
+1.  Administrator wants to search for patients based on a certain health condition.
+2.  HS provides a list of all patients with the specified health condition.
+    Use case ends.
+
+**Extensions**
+
+* 1a. No such patient has the specified health condition.
+  Use case ends.
+
+**Use case: UC6 - Search for patients by medicine**
+
+**MSS**
+
+1.  Administrator requests for a list of patients using a certain type of medicine as he wants to stock up on medicine.
+2.  HS provides a list of patients using the specified type of medicine.
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no patients using the specified type of medicine in HS system.
+  Use case ends.
+
+**Use case: UC7 - Get patient by NRIC**
+
+**MSS**
+
+1.  Administrator wants to get patient details’ based on the patient’s NRIC.
+2.  HS provides the details of the patient with the specified NRIC.
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no such patient with specified NRIC in the HS system.
+  Use case ends.
+
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. Should be able to produce find results in less than 3 seconds for a database of less than 10000 user information.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 

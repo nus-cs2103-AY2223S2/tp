@@ -69,4 +69,9 @@ shadowJar {
     archiveFileName = 'addressbook.jar'
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-Xlint:unchecked'
+    options.deprecation = true
+}
+
 defaultTasks 'clean', 'test'
