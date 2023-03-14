@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.calidr.commons.core.GuiSettings;
+import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.model.AddressBook;
 import seedu.calidr.model.Model;
@@ -165,7 +166,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteTask(Task task) {
+        public void deleteTask(Index taskIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -175,7 +176,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTask(Task target, Task editedTask) {
+        public void setTask(Index targetIndex, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
 
