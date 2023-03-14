@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Website;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_WEBSITE = "#www.com";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +35,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_WEBSITE = "www.google.com";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -146,6 +150,29 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseWebsite_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseWebsite((String) null));
+    }
+
+    @Test
+    public void parseWebsite_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseWebsite(INVALID_WEBSITE));
+    }
+
+    @Test
+    public void parseWebsite_validValueWithoutWhitespace_returnsWebsite() throws Exception {
+        Website expectedWebsite = new Website(VALID_WEBSITE);
+        assertEquals(expectedWebsite, ParserUtil.parseWebsite(VALID_WEBSITE));
+    }
+
+    @Test
+    public void parseWebsite_validValueWithWhitespace_returnsTrimmedWebsite() throws Exception {
+        String websiteWithWhitespace = WHITESPACE + VALID_WEBSITE + WHITESPACE;
+        Website expectedWebsite = new Website(VALID_WEBSITE);
+        assertEquals(expectedWebsite, ParserUtil.parseWebsite(websiteWithWhitespace));
     }
 
     @Test

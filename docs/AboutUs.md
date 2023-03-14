@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/amoonguss1.png" width="200px">
 
-[[github](http://github.com/amoonguss1)] 
+[[github](http://github.com/amoonguss1)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Coding, UI
