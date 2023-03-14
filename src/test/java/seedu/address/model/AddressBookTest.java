@@ -95,7 +95,7 @@ public class AddressBookTest {
 
         @Override
         public ObservableList<Person> getPersonList() {
-            return persons;
+            return FXCollections.observableArrayList(persons);
         }
     }
 
