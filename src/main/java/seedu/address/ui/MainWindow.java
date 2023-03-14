@@ -32,6 +32,13 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+
+    private ViewModePanel viewModePanel;
+    private EntityListPanel viewModeEntityListPanel;
+
+    private ListModePanel listModePanel;
+    private EntityListPanel listModeEntityListPanel;
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -39,10 +46,16 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private StackPane modePanelPlaceholder;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane entityListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -66,6 +79,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -110,8 +124,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listModeEntityListPanel = new EntityListPanel(logic.getFilteredPersonList());
+        viewModeEntityListPanel = new EntityListPanel(logic.getFilteredPersonList());
+        listModePanel = new ListModePanel(listModeEntityListPanel);
+        viewModePanel = new ViewModePanel(viewModeEntityListPanel);
+        modePanelPlaceholder.getChildren().add(listModePanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -121,7 +138,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
+
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -167,6 +186,15 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public void SwitchDisplayMode(boolean isViewMode){
+        logger.info("switching display mode, isViewMode: " + isViewMode);
+        modePanelPlaceholder.getChildren().remove(0);
+        if(isViewMode) {
+            modePanelPlaceholder.getChildren().add(viewModePanel.getRoot());
+        } else {
+            modePanelPlaceholder.getChildren().add(listModePanel.getRoot());
+        }
+    }
     /**
      * Executes the command and returns the result.
      *
@@ -184,6 +212,20 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+            switch (commandResult.getSwitchMode()){
+
+            case NONE:
+                break;
+            case VIEW:
+                SwitchDisplayMode(true);
+                break;
+            case LIST:
+                SwitchDisplayMode(false);
+                break;
+            case TOGGLE:
+                SwitchDisplayMode(modePanelPlaceholder.getChildren().contains(listModePanel.getRoot()));
+                break;
             }
 
             return commandResult;
