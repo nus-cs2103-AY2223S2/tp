@@ -1,6 +1,5 @@
 package seedu.fitbook.testutil.routine;
 
-
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EXERCISE_NUMBER;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ROUTINE;

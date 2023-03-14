@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.testutil.client.ClientBuilder;
 
-
 public class ClientTest {
 
     @Test

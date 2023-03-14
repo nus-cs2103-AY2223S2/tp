@@ -9,12 +9,12 @@ import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.routines.RoutineNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindRoutineCommand object
  */
 public class FindRoutineCommandParser implements Parser<FindRoutineCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * Parses the given {@code String} of arguments in the context of the FindRoutineCommand
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */

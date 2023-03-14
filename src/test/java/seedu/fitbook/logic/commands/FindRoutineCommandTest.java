@@ -21,7 +21,7 @@ import seedu.fitbook.model.UserPrefs;
 import seedu.fitbook.model.routines.RoutineNameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the FitBookModel) for {@code FindCommand}.
+ * Contains integration tests (interaction with the FitBookModel) for {@code FindRoutineCommand}.
  */
 public class FindRoutineCommandTest {
     private FitBookModel model = new FitBookModelManager(getTypicalFitBook(),

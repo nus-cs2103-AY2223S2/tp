@@ -11,7 +11,7 @@ import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.routines.Routine;
 
 /**
- * Deletes a client identified using it's displayed index from the address book.
+ * Deletes a Routine identified using it's displayed index from the FitBook.
  */
 public class DeleteRoutineCommand extends Command {
 

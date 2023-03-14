@@ -21,7 +21,7 @@ import seedu.fitbook.model.routines.Routine;
 
 /**
  * Contains integration tests (interaction with the FitBookModel) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteRoutineCommand}.
  */
 public class DeleteRoutineCommandTest {
 
@@ -72,7 +72,7 @@ public class DeleteRoutineCommandTest {
         showRoutineAtIndex(model, INDEX_FIRST_ROUTINE);
 
         Index outOfBoundIndex = INDEX_SECOND_ROUTINE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of FitBook list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFitBookExerciseRoutine().getRoutineList().size());
 
         DeleteRoutineCommand deleteRoutineCommand = new DeleteRoutineCommand(outOfBoundIndex);

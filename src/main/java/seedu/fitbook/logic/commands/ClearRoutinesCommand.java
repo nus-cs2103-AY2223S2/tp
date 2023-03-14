@@ -6,7 +6,7 @@ import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
 
 /**
- * Clears the address book.
+ * Clears the FitBook.
  */
 public class ClearRoutinesCommand extends Command {
 

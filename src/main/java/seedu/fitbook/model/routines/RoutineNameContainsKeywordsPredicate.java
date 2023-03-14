@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.fitbook.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Routine}'s {@code RoutineName} matches any of the keywords given.
  */
 public class RoutineNameContainsKeywordsPredicate implements Predicate<Routine> {
     private final List<String> keywords;

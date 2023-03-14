@@ -14,7 +14,7 @@ import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the FitBookModel) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the FitBookModel) and unit tests for ListRoutineCommand.
  */
 public class ListRoutinesCommandTest {
 
