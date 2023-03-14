@@ -16,7 +16,7 @@ import tfifteenfour.clipboard.model.student.Student;
 /**
  * An Immutable Roster that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "clipboard")
 class JsonSerializableRoster {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";
@@ -46,15 +46,15 @@ class JsonSerializableRoster {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Roster toModelType() throws IllegalValueException {
-        Roster addressBook = new Roster();
+        Roster roster = new Roster();
         for (JsonAdaptedStudent jsonAdaptedStudent : persons) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (addressBook.hasStudent(student)) {
+            if (roster.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addStudent(student);
+            roster.addStudent(student);
         }
-        return addressBook;
+        return roster;
     }
 
 }
