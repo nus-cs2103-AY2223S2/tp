@@ -27,6 +27,8 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(cardList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setStyle("-fx-background-color: #AAAAAA");
+
     }
 
     /**
@@ -36,10 +38,10 @@ public class PersonListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Card card, boolean empty) {
             super.updateItem(card, empty);
-
             if (empty || card == null) {
                 setGraphic(null);
                 setText(null);
+
             } else {
                 setGraphic(new PersonCard(card, getIndex() + 1).getRoot());
             }

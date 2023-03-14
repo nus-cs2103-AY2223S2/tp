@@ -1,6 +1,6 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: derive(#ffffff, 20%);
+    background-color: #ffffff; /* Used in the default.html file */
 }
 
 .label {
@@ -43,8 +43,6 @@
     -fx-base: #1d1d1d;
     -fx-control-inner-background: #1d1d1d;
     -fx-background-color: #1d1d1d;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
     -fx-padding: 5;
 }
 
@@ -54,7 +52,6 @@
 
 .table-view .column-header, .table-view .filler {
     -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-border-color:
         transparent
@@ -78,7 +75,7 @@
 
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-border-color: transparent transparent transparent #1d1d1d;
 }
 
 .split-pane {
@@ -87,10 +84,10 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-.list-view {
+
+.list-view{
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .list-cell {
@@ -139,8 +136,8 @@
 .pane-with-border {
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
 }
+
 
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
@@ -176,7 +173,7 @@
 
 .grid-pane {
     -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#ffffff, 30%);
     -fx-border-width: 1px;
 }
 
@@ -309,10 +306,10 @@
 
 #cardPane {
     -fx-background-color: #007aff;
-    -fx-border-width: 0;
 }
 
-#deckPane{
+#panel{
+    -fx-background-color: #007aff;
 }
 
 #commandTypeLabel {
@@ -322,10 +319,7 @@
 
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
-    -fx-background-insets: 0;
     -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
