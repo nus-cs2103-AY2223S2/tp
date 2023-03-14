@@ -59,7 +59,8 @@ public class Person {
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
                   Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags,
                      LeadStatus status) {
-        requireAllNonNull(name, phone, email, address, tags, remark);
+        requireAllNonNull(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags, remark,
+                status);
         this.name = name;
         this.gender = gender;
         this.phone = phone;
