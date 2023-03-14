@@ -3,8 +3,9 @@ package codoc.logic.commands;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static java.util.Objects.requireNonNull;
 
 import codoc.logic.commands.exceptions.CommandException;
@@ -23,15 +24,18 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_GITHUB + "GITHUB] "
-            + "[" + PREFIX_LINKEDIN + "LINKEDIN] "
-            + "[" + PREFIX_SKILL_ADD + "SKILL]...\n"
+            + "[" + PREFIX_LINKEDIN + "LINKEDIN]\n"
+            + "[" + PREFIX_SKILL + "SKILL]\n"
+            + "[" + PREFIX_MOD + "MOD]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GITHUB + "j0hn-Do3 "
             + PREFIX_LINKEDIN + "linkedin.com/in/j0hn-Do3 "
-            + PREFIX_SKILL_ADD + "python "
-            + PREFIX_SKILL_ADD + "java";
+            + PREFIX_SKILL + "python "
+            + PREFIX_SKILL + "java"
+            + PREFIX_MOD + "AY2223S2 CS2100"
+            + PREFIX_MOD + "AY2122S1 CS1101S";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in CoDoc";

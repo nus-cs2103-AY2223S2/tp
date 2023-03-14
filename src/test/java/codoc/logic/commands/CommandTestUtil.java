@@ -3,10 +3,12 @@ package codoc.logic.commands;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_NEW;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_OLD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_NEW;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
@@ -51,12 +53,14 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String LINKEDIN_DESC_AMY = " " + PREFIX_LINKEDIN + VALID_LINKEDIN_AMY;
     public static final String LINKEDIN_DESC_BOB = " " + PREFIX_LINKEDIN + VALID_LINKEDIN_BOB;
+    public static final String SKILL_DESC_CSHARP = " " + PREFIX_SKILL + VALID_SKILL_CSHARP;
     public static final String SKILL_ADD_DESC_CSHARP = " " + PREFIX_SKILL_ADD + VALID_SKILL_CSHARP;
     public static final String SKILL_ADD_DESC_JAVA = " " + PREFIX_SKILL_ADD + VALID_SKILL_JAVA;
     public static final String SKILL_OLD_DESC_CSHARP = " " + PREFIX_SKILL_OLD + VALID_SKILL_CSHARP;
     public static final String SKILL_NEW_DESC_CSHARP = " " + PREFIX_SKILL_NEW + VALID_SKILL_CSHARP;
 
-    public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL_ADD + VALID_SKILL_JAVA;
+    public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL + VALID_SKILL_JAVA;
+    public static final String MOD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD + VALID_MODULE_AY2223S2_CS2103T;
     public static final String MOD_ADD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_ADD + VALID_MODULE_AY2223S2_CS2103T;
     public static final String MOD_OLD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_OLD + VALID_MODULE_AY2223S2_CS2103T;
     public static final String MOD_NEW_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_NEW + VALID_MODULE_AY2223S2_CS2103T;
@@ -69,11 +73,17 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_LINKEDIN_DESC = " " + PREFIX_LINKEDIN + "linkedin.com/in/4my sheesh"; // space
     // not allowed for linkedins
-    public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL_ADD + "hubbyü"; // 'ü' not allowed in skills
+    public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL + "hubbyü"; // 'ü' not allowed in skills
+    public static final String INVALID_SKILL_ADD_DESC = " " + PREFIX_SKILL_ADD + "hubbyü"; // 'ü' not allowed in skills
+
     // D must be replaced by number
-    public static final String INVALID_MOD_DESC = " " + PREFIX_MOD_ADD + "AY22D3S2 CS2102";
+    public static final String INVALID_MOD_DESC = " " + PREFIX_MOD + "AY22D3S2 CS2102";
+    public static final String INVALID_MOD_ADD_DESC = " " + PREFIX_MOD_ADD + "AY22D3S2 CS2102";
+
     // last number following S must be replaced by 1 or 2
-    public static final String INVALID_MOD_SEM_DESC = " " + PREFIX_MOD_ADD + "AY2223S3 CS2102";
+    public static final String INVALID_MOD_SEM_DESC = " " + PREFIX_MOD + "AY2223S3 CS2102";
+    public static final String INVALID_MOD_ADD_SEM_DESC = " " + PREFIX_MOD_ADD + "AY2223S3 CS2102";
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

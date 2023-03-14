@@ -3,8 +3,10 @@ package codoc.testutil;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 
 import java.util.Set;
@@ -37,10 +39,10 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_LINKEDIN + person.getLinkedin().value + " ");
         person.getSkills().stream().forEach(
-            s -> sb.append(PREFIX_SKILL_ADD + s.skillName + " ")
+            s -> sb.append(PREFIX_SKILL + s.skillName + " ")
         );
         person.getModules().stream().forEach(
-                m -> sb.append(PREFIX_MOD_ADD + m.moduleName + " ")
+                m -> sb.append(PREFIX_MOD + m.moduleName + " ")
         );
         return sb.toString();
     }
