@@ -10,8 +10,6 @@ import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentBuilder;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.storage.JsonAdaptedGroupName;
-import seedu.vms.storage.JsonAdaptedLocalDateTime;
-import seedu.vms.storage.JsonAdaptedPatientId;
 
 
 /** A JSON friendly version of {@link Appointment}. */
@@ -45,20 +43,6 @@ public class JsonAdaptedAppointment {
         this.startTime = appointment.getAppointmentTime();
         this.endTime = appointment.getAppointmentEndTime();
         this.vaccine = new JsonAdaptedGroupName(appointment.getVaccination().getName());
-    }
-
-
-    /**
-     * Converts the specified {@code Appointment} to a
-     * {@code JsonAdaptedAppointment}.
-     */
-    public static JsonAdaptedAppointment fromModelType(Appointment appointment) {
-        Integer patientId = appointment.getPatient().getOneBased();
-        LocalDateTime startTime = appointment.getAppointmentTime();
-        LocalDateTime endTime = appointment.getAppointmentEndTime();
-        JsonAdaptedGroupName vaccine = JsonAdaptedGroupName.fromModelType(appointment.getVaccination());
-
-        return new JsonAdaptedAppointment(patientId, startTime, endTime, vaccine);
     }
 
 
