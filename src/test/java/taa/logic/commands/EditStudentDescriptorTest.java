@@ -9,7 +9,7 @@ import static taa.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import taa.logic.commands.EditCommand.EditStudentDescriptor;
+import taa.logic.commands.EditStudentCommand.EditStudentDescriptor;
 import taa.testutil.EditPersonDescriptorBuilder;
 
 public class EditStudentDescriptorTest {
@@ -17,7 +17,7 @@ public class EditStudentDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditStudentDescriptor descriptorWithSameValues = new EditCommand.EditStudentDescriptor(DESC_AMY);
+        EditStudentCommand.EditStudentDescriptor descriptorWithSameValues = new EditStudentCommand.EditStudentDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
