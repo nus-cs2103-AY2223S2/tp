@@ -8,14 +8,13 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.logic.Logic;
-import seedu.vms.logic.commands.CommandResult;
-import seedu.vms.logic.commands.exceptions.CommandException;
-import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
@@ -27,7 +26,7 @@ import seedu.vms.ui.vaccination.VaxTypeCard;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class MainWindow extends UiPart<Stage> {
+public class MainWindow extends UiPart<Stage> implements Refreshable {
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -51,7 +50,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML private StackPane vaxTypeListPanelPlaceholder;
     @FXML private StackPane appointmentListPanelPlaceholder;
 
-    @FXML private StackPane resultDisplayPlaceholder;
+    @FXML private VBox resultDisplayPlaceholder;
 
     @FXML private StackPane statusbarPlaceholder;
 
@@ -76,6 +75,15 @@ public class MainWindow extends UiPart<Stage> {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+
+
+    @Override
+    public void refresh() {
+        resultDisplay.refresh();
+        patientListPanel.refresh();
+        vaxTypeListPanel.refresh();
+    }
+
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
@@ -131,12 +139,14 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel);
 
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        Region resultDisplayRegion = resultDisplay.getRoot();
+        resultDisplayPlaceholder.getChildren().add(resultDisplayRegion);
+        logic.setOnExecutionCompletion(resultDisplay::setFeedbackToUser);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getPatientManagerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(logic::queue);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -178,32 +188,5 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    /**
-     * Executes the command and returns the result.
-     *
-     * @see seedu.vms.logic.Logic#execute(String)
-     */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
-            return commandResult;
-        } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
-            throw e;
-        }
     }
 }

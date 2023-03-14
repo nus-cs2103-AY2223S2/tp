@@ -1,12 +1,12 @@
 package seedu.vms.logic;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.function.Consumer;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.logic.commands.CommandResult;
-import seedu.vms.logic.commands.exceptions.CommandException;
-import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
@@ -18,13 +18,21 @@ import seedu.vms.model.vaccination.VaxType;
  */
 public interface Logic {
     /**
-     * Executes the command and returns the result.
-     * @param commandText The command as entered by the user.
-     * @return the result of the command execution.
-     * @throws CommandException If an error occurs during command execution.
-     * @throws ParseException If an error occurs during parsing.
+     * Queues the command text for execution.
+     *
+     * @param commandText - the command text to queue.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    void queue(String commandText);
+
+
+    /**
+     * Sets the action to be performed when a command completes its execution.
+     *
+     * @param onExecutionComplete - the {@code Consumer} to be called after a
+     *      command completes its execution.
+     */
+    void setOnExecutionCompletion(Consumer<List<CommandResult>> onExecutionComplete);
+
 
     /**
      * Returns the PatientManager.

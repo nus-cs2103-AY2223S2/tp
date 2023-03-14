@@ -3,9 +3,12 @@ package seedu.vms;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import seedu.vms.commons.core.Config;
 import seedu.vms.commons.core.LogsCenter;
@@ -42,12 +45,15 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(0, 2, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static final int FPS = 30;
 
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
     protected Config config;
+
+    private final ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
     @Override
     public void init() throws Exception {
@@ -184,7 +190,18 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting PatientManager " + MainApp.VERSION);
         ui.start(primaryStage);
+        startRefreshLoop();
     }
+
+
+    private void startRefreshLoop() {
+        executor.scheduleAtFixedRate(
+                () -> Platform.runLater(() -> ui.refresh()),
+                0,
+                1000 / FPS,
+                TimeUnit.MILLISECONDS);
+    }
+
 
     @Override
     public void stop() {
@@ -194,5 +211,6 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
+        executor.shutdown();
     }
 }
