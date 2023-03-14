@@ -99,6 +99,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasCategory(Category category) {
+        requireNonNull(category);
+        return addressBook.hasCategory(category);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

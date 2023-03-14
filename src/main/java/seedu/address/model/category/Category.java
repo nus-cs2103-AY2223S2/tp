@@ -7,8 +7,27 @@ import java.util.Objects;
  */
 public abstract class Category {
 
+    public static final String MESSAGE_CONSTRAINTS = "Category names should be alphanumeric";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
     protected String categoryName;
     protected String summary;
+
+    /**
+     * Constructor for Category class.
+     * @param categoryName Name of the category
+     * @param description Description of the category
+     */
+    public Category(String categoryName, String description) {
+        this.categoryName = categoryName;
+        this.summary = description;
+    }
+    /**
+     * Returns true if a given string is a valid category name.
+     */
+    public static boolean isValidCategoryName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
 
     public String getCategoryName() {
         return this.categoryName;
@@ -22,7 +41,7 @@ public abstract class Category {
             return true;
         }
 
-        if (toCheck != null && !toCheck.getCategoryName().equals(this.getCategoryName())) {
+        if (toCheck != null && toCheck.getCategoryName().equals(this.getCategoryName())) {
             return true;
         }
 
@@ -52,5 +71,10 @@ public abstract class Category {
     @Override
     public int hashCode() {
         return Objects.hash(categoryName, summary);
+    }
+
+    @Override
+    public String toString() {
+        return this.categoryName;
     }
 }

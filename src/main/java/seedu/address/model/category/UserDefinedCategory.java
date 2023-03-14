@@ -1,13 +1,12 @@
 package seedu.address.model.category;
 
 /**
- * User-defined category class which allows users to customize their own categories to use.
+ * User-defined category class which allows users to customize their own
+ * categories to use.
  */
 public class UserDefinedCategory extends Category {
-
     public UserDefinedCategory(String categoryName, String summary) {
-        this.categoryName = categoryName;
-        this.summary = summary;
+        super(categoryName, summary);
     }
 
     public void setCategoryName(String newName) {
