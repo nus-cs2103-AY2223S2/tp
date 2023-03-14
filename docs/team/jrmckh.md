@@ -1,5 +1,6 @@
 ---
-Chia Jeremy's Project Portfolio Page
+layout: page
+title: Chia Jeremy's Project Portfolio Page
 ---
 
 ### <span style="color:orange"> Project: EzSchedule </span>
