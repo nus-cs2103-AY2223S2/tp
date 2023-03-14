@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -42,7 +42,7 @@ public class PatientBuilder {
     /**
      * Sets the {@code Nric} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withNRIC(String nric) {
+    public PatientBuilder withNric(String nric) {
         this.nric = new Nric(nric);
         return this;
     }

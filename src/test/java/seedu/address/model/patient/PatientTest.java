@@ -2,7 +2,9 @@ package seedu.address.model.patient;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BOB;
 
@@ -21,7 +23,7 @@ public class PatientTest {
         assertFalse(ALICE.isSamePatient(null));
 
         // same name, all other attributes different -> returns true
-        Patient editedAlice = new PatientBuilder(ALICE).withNRIC(VALID_NRIC_AMY).build();
+        Patient editedAlice = new PatientBuilder(ALICE).withNric(VALID_NRIC_AMY).build();
         assertTrue(ALICE.isSamePatient(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -61,7 +63,7 @@ public class PatientTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different nric -> returns false
-        editedAlice = new PatientBuilder(ALICE).withNRIC(VALID_NRIC_BOB).build();
+        editedAlice = new PatientBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

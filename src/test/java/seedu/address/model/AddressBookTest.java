@@ -44,7 +44,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two patients with the same identity fields
-        Patient editedAlice = new PatientBuilder(ALICE).withNRIC("S1234567A")
+        Patient editedAlice = new PatientBuilder(ALICE).withNric("S1234567A")
                 .build();
         List<Patient> newPatients = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPatients);
@@ -71,7 +71,7 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPatient(ALICE);
-        Patient editedAlice = new PatientBuilder(ALICE).withNRIC("S1234567")
+        Patient editedAlice = new PatientBuilder(ALICE).withNric("S1234567")
                 .build();
         assertTrue(addressBook.hasPatient(editedAlice));
     }
