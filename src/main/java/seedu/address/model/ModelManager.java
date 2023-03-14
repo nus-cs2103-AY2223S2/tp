@@ -113,6 +113,7 @@ public class ModelManager implements Model {
     @Override
     public void addCard(Card card) {
         masterDeck.addCard(card);
+        updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
     }
 
     @Override
