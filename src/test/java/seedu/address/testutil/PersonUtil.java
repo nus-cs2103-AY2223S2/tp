@@ -1,9 +1,13 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -12,6 +16,10 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.editpersoncommandsparser.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.subfields.Tag;
+
+
+
+
 
 /**
  * A utility class for Person.
@@ -37,6 +45,10 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        sb.append(PREFIX_GENDER + person.getGender().value + " ");
+        sb.append(PREFIX_MAJOR + person.getMajor().majorName + " ");
+        sb.append(PREFIX_RACE + person.getRace().race + " ");
+        sb.append(PREFIX_COMMS + person.getComms().nameOfCommunicationChannel + " ");
         return sb.toString();
     }
 
@@ -57,6 +69,11 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.value).append(" "));
+        descriptor.getMajor().ifPresent(major -> sb.append(PREFIX_MAJOR).append(major.majorName).append(" "));
+        descriptor.getRace().ifPresent(race -> sb.append(PREFIX_RACE).append(race.race).append(" "));
+        descriptor.getComms().ifPresent(comms ->
+                sb.append(PREFIX_COMMS).append(comms.nameOfCommunicationChannel).append(" "));
         return sb.toString();
     }
 }

@@ -31,5 +31,9 @@ public class User extends Person {
         super(name, phone, email, address, gender, major, modules, race, tags, comms);
     }
 
+    public User() {
+        super(new Name("Neo"));
+    }
+
 }
 

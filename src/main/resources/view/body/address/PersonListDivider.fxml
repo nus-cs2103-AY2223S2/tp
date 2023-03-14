@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+
+<VBox id="cardDivider" spacing="5" styleClass="ph"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <Label fx:id="title" text="\$title" styleClass="label-h6, pa-b" />
+    <Separator styleClass="pa-t" />
+</VBox>

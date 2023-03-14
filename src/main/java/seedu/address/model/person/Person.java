@@ -102,21 +102,11 @@ public class Person {
     }
 
     /**
-     * Constructor to create a Person with no fields. Will assign the rest of the fields as blank.
-     * Only for use for UserData. Should not be used anywhere else.
+     * Factory method to create a Person with no fields. Will assign the rest of the fields as blank.
+     * Only for use for UserData. Should not be used anywhere else. Todo: Deprecate
      */
-    public Person() {
-        this.name = new Name("Neo");
-        this.isFavorite = new Favorite(false);
-        this.phone = new Phone("");
-        this.email = new Email("");
-        this.address = new Address("");
-        this.tags.addAll(new HashSet<>());
-        this.gender = new Gender("");
-        this.major = new Major("");
-        this.modules = new Modules(new HashSet<>());
-        this.race = new Race("");
-        this.comms = new CommunicationChannel("");
+    public static Person ofDefaultUser() {
+        return new Person(new Name("Neo"));
     }
 
 

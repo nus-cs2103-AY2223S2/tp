@@ -24,7 +24,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <ImageView fx:id="star" fitHeight="10" fitWidth="10">
+        <ImageView fx:id="star" fitHeight="10" fitWidth="10" visible="false">
           <Image url="/images/star.png"/>
         </ImageView>
       </VBox>
