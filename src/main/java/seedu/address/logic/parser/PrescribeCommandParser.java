@@ -37,4 +37,5 @@ public class PrescribeCommandParser implements Parser<PrescribeCommand> {
 
         return new PrescribeCommand(index, medication);
     }
+    //@@author Jeffry Lum
 }

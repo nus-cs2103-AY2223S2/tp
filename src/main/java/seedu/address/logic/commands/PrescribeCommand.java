@@ -49,6 +49,7 @@ public class PrescribeCommand extends Command {
 
     //@@author Jeffry Lum-reused
     //Reused from https://nus-cs2103-ay2223s2.github.io/tp/tutorials/AddRemark.html
+    // with minor modifications
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -77,6 +78,7 @@ public class PrescribeCommand extends Command {
         String message = !medication.value.isEmpty() ? MESSAGE_ADD_PRESCRIBE_SUCCESS : MESSAGE_DELETE_PRESCRIBE_SUCCESS;
         return String.format(message, personToEdit);
     }
+    //@@author Jeffry Lum
 
     @Override
     public boolean equals(Object other) {
