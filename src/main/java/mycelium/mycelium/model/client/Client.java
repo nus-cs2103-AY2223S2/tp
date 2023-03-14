@@ -113,7 +113,7 @@ public class Client implements IsSame<Client> {
             return true;
         }
         return otherClient != null
-                && otherClient.getEmail().equals(getEmail());
+            && otherClient.getEmail().equals(getEmail());
     }
 
     @Override
@@ -128,14 +128,16 @@ public class Client implements IsSame<Client> {
 
         Client otherClient = (Client) other;
         return otherClient.getName().equals(getName())
-                && otherClient.getEmail().equals(getEmail())
-                && otherClient.getYearOfBirth().equals(getYearOfBirth())
-                && otherClient.getSource().equals(getSource())
-                && otherClient.getMobileNumber().equals(getMobileNumber());
+            && otherClient.getEmail().equals(getEmail())
+            && otherClient.getYearOfBirth().equals(getYearOfBirth())
+            && otherClient.getSource().equals(getSource())
+            && otherClient.getMobileNumber().equals(getMobileNumber());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(name, email, yearOfBirth, source, mobileNumber);
     }
+
+    // TODO implement a user-friendly toString method
 }

@@ -1,7 +1,5 @@
 package mycelium.mycelium.ui.project;
 
-import java.util.Date;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -54,8 +52,8 @@ public class ProjectListCard extends UiPart<Region> {
         email.setText(p.getClientEmail().toString());
         source.setText(p.getSource().orElse("Unknown"));
         description.setText(p.getDescription().orElse("No description given"));
-        acceptedOn.setText(p.getAcceptedOn().toString());
-        deadline.setText(p.getDeadline().map(Date::toString).orElse("No Deadline"));
+        acceptedOn.setText(p.getAcceptedOn().format(Project.DATE_FMT));
+        deadline.setText(p.getDeadline().map(d -> d.format(Project.DATE_FMT)).orElse("No Deadline"));
     }
 
     @Override

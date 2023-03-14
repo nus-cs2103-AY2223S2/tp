@@ -4,7 +4,7 @@ import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.function.UnaryOperator;
 
@@ -37,7 +37,7 @@ public class JsonAdaptedProjectTest {
 
     @Test
     public void toModelType_nonNullDeadline_returnsProject() throws Exception {
-        Project project = new ProjectBuilder().withDeadline(new Date()).build();
+        Project project = new ProjectBuilder().withDeadline(LocalDate.now()).build();
         JsonAdaptedProject jsonAdaptedProject = new JsonAdaptedProject(project);
         assertEquals(project, jsonAdaptedProject.toModelType());
     }

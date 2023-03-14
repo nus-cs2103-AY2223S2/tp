@@ -34,7 +34,8 @@ public class ListPanel<T> extends UiPart<Region> {
 
     /**
      * Creates a {@code ListPanel} with the given {@cpde list} after transforming with {@code biMap}
-     * @param list ObservableList of items
+     *
+     * @param list  ObservableList of items
      * @param biMap BiFunction that transform the list to the approproate {@code UiPart}
      */
     public ListPanel(

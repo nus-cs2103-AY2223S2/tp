@@ -1,5 +1,6 @@
 package mycelium.mycelium.model;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -9,6 +10,13 @@ import mycelium.mycelium.model.project.Project;
  * The API for operations related to projects.
  */
 public interface ProjectModel {
+    /**
+     * Finds a single project that matches the specified predicate. Expects to
+     * find either zero or one projects. If more than one project matches the
+     * provided predicate, throws {@code DuplicateProjectException}.
+     */
+    Optional<Project> getUniqueProject(Predicate<Project> predicate);
+
     /**
      * Checks if a project with the same name exists in Mycelium.
      */

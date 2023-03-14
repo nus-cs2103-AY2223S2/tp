@@ -1,14 +1,17 @@
 package mycelium.mycelium.testutil;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Optional;
+import java.util.function.UnaryOperator;
 
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
 
 /**
- * A utility class to easily construct Projects.
+ * A utility class to easily construct Projects. Offers some sensible defaults for each field of a {@code Project} to
+ * use in testing. In particular, note that the default {@code acceptedOn} date is 01/01/1970, and the deadline is
+ * not set.
  */
 public class ProjectBuilder {
     public static final String DEFAULT_NAME = "Default Project";
@@ -16,14 +19,16 @@ public class ProjectBuilder {
     public static final Email DEFAULT_CLIENT_EMAIL = new Email("ruido@gossum.co");
     public static final String DEFAULT_SOURCE = "fiverr";
     public static final String DEFAULT_DESCRIPTION = "Do this, and then that, and finally those.";
-    public static final Date DEFAULT_ACCEPTED_ON = new Date(0);
+    public static final LocalDate DEFAULT_ACCEPTED_ON = LocalDate.of(1970, 1, 1);
+
+    /* Initialize our builder with the defaults. */
     private String name = DEFAULT_NAME;
     private ProjectStatus status = DEFAULT_STATUS;
     private Email clientEmail = DEFAULT_CLIENT_EMAIL;
     private String source = DEFAULT_SOURCE;
     private String description = DEFAULT_DESCRIPTION;
-    private Date acceptedOn = DEFAULT_ACCEPTED_ON;
-    private Date deadline = null;
+    private LocalDate acceptedOn = DEFAULT_ACCEPTED_ON;
+    private LocalDate deadline = null;
 
     /**
      * Initializes a new {@code PersonBuilder} with default fields.
@@ -95,16 +100,32 @@ public class ProjectBuilder {
     /**
      * Sets the project's accepted on date.
      */
-    public ProjectBuilder withAcceptedOn(Date acceptedOn) {
+    public ProjectBuilder withAcceptedOn(LocalDate acceptedOn) {
         this.acceptedOn = acceptedOn;
+        return this;
+    }
+
+    /**
+     * Updates the project's accepted on date using the given function.
+     */
+    public ProjectBuilder withAcceptedOn(UnaryOperator<LocalDate> fn) {
+        this.acceptedOn = fn.apply(this.acceptedOn);
         return this;
     }
 
     /**
      * Sets the project's deadline.
      */
-    public ProjectBuilder withDeadline(Date deadline) {
+    public ProjectBuilder withDeadline(LocalDate deadline) {
         this.deadline = deadline;
+        return this;
+    }
+
+    /**
+     * Updates the project's deadline using the given function.
+     */
+    public ProjectBuilder withDeadline(UnaryOperator<LocalDate> fn) {
+        this.deadline = fn.apply(this.deadline);
         return this;
     }
 

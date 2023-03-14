@@ -2,17 +2,25 @@ package mycelium.mycelium.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
+import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.commons.core.index.Index;
 import mycelium.mycelium.commons.util.StringUtil;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Address;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.tag.Tag;
 
 /**
@@ -121,5 +129,77 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String year of birth} into an {@code YearOfBirth}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static YearOfBirth parseYearOfBirth(String yearOfBirth) throws ParseException {
+        requireNonNull(yearOfBirth);
+        String trimmedYearOfBirth = yearOfBirth.trim();
+        if (!YearOfBirth.isValidYearOfBirth(trimmedYearOfBirth)) {
+            throw new ParseException(YearOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new YearOfBirth(trimmedYearOfBirth);
+    }
+
+    /**
+     * Parses a project's status from its string representation.
+     */
+    public static ProjectStatus parseProjectStatus(String projectStatus) throws ParseException {
+        requireNonNull(projectStatus);
+        String trimmedProjectStatus = projectStatus.trim();
+        if (!ProjectStatus.isValidProjectStatus(trimmedProjectStatus)) {
+            throw new ParseException(ProjectStatus.MESSAGE_CONSTRAINTS);
+        }
+        return ProjectStatus.fromString(trimmedProjectStatus);
+    }
+
+    /**
+     * Parses a string by asserting that it is non empty after trimming.
+     */
+    public static String parseNonEmptyString(String source) throws ParseException {
+        requireNonNull(source);
+        String trimmedSource = source.trim();
+        if (source.isEmpty()) {
+            throw new ParseException(Messages.MESSAGE_EMPTY_STR);
+        }
+        return trimmedSource;
+    }
+
+    /**
+     * Parses a string into a {@code LocalDate} using the formatter provided.
+     */
+    public static LocalDate parseLocalDate(String s, DateTimeFormatter dateFmt) throws ParseException {
+        requireNonNull(s);
+        String trimmedSource = s.trim();
+        try {
+            return LocalDate.parse(trimmedSource, dateFmt);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_DATE);
+        }
+    }
+
+    /**
+     * Performs a map operation.
+     *
+     * @param src The raw input to pass, which may be an {@code Optional.empty()}
+     * @param f   The parsing function to use against the raw input
+     * @param <T> Type of the raw input
+     * @param <U> Type of the parsed result
+     * @return The parsed result, wrapped in an {@code Optional}
+     * @throws ParseException If the parsing function throws it.
+     */
+    public static <T, U> Optional<U> parseOptionalWith(Optional<T> src, ParserFn<T, U> f) throws ParseException {
+        return src.isPresent() ? Optional.of(f.parse(src.get())) : Optional.empty();
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
