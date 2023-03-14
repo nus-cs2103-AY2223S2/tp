@@ -8,13 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_ID;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ShopModel;
 import seedu.address.model.service.Service;
 
 /**
  * Manages adding services
  */
-public class AddServiceCommand extends ShopCommand {
+public class AddServiceCommand extends Command {
     public static final String COMMAND_WORD = "addservice";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a service to the shop. "
             + "Parameters: "
@@ -51,7 +50,7 @@ public class AddServiceCommand extends ShopCommand {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult execute(ShopModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasVehicle(toAdd.getVehicleId())) {
             throw new CommandException(String.format(MESSAGE_VEHICLE_NOT_FOUND, toAdd.getVehicleId()));
@@ -59,16 +58,8 @@ public class AddServiceCommand extends ShopCommand {
         if (model.hasService(toAdd.getId())) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_SERVICE, toAdd.getId()));
         }
-        model.addService(toAdd);
+        model.addService(toAdd.getVehicleId(), toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    /**
-     * Should never be called
-     */
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        throw new IllegalAccessError();
     }
 
     @Override

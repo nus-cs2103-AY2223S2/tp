@@ -6,13 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ShopModel;
 import seedu.address.model.service.Part;
 
 /**
  * Command that manages adding parts
  */
-public class AddPartCommand extends ShopCommand {
+public class AddPartCommand extends Command {
 
     public static final String COMMAND_WORD = "addpart";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a part to the shop. "
@@ -45,7 +44,7 @@ public class AddPartCommand extends ShopCommand {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult execute(ShopModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.hasPart(toAdd)) {
             model.addPart(toAdd);
@@ -54,14 +53,6 @@ public class AddPartCommand extends ShopCommand {
 
         model.addPart(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    /**
-     * Should never be called
-     */
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        throw new IllegalAccessError();
     }
 
     @Override

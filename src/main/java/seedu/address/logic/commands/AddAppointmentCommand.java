@@ -7,13 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ShopModel;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Manages adding appointments
  */
-public class AddAppointmentCommand extends ShopCommand {
+public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "addappointment";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds appointment with customer. "
@@ -48,21 +47,13 @@ public class AddAppointmentCommand extends ShopCommand {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult execute(ShopModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasCustomer(toAdd.getCustomerId())) {
             throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
         }
         model.addAppointment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    /**
-     * Should never be called
-     */
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        throw new IllegalAccessError();
     }
 
     @Override

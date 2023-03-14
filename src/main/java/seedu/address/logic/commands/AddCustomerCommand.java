@@ -4,13 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ShopModel;
 import seedu.address.model.entity.person.Customer;
 
 /**
  * Manages adding of customers
  */
-public class AddCustomerCommand extends ShopCommand {
+public class AddCustomerCommand extends Command {
     public static final String COMMAND_WORD = "addcustomer";
     public static final String MESSAGE_USAGE = AddCommand.MESSAGE_USAGE;
     public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
@@ -35,7 +34,7 @@ public class AddCustomerCommand extends ShopCommand {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult execute(ShopModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasCustomer(toAdd.getId())) {
@@ -44,14 +43,6 @@ public class AddCustomerCommand extends ShopCommand {
 
         model.addCustomer(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    /**
-     * Should never be called
-     */
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        throw new IllegalAccessError();
     }
 
     @Override
