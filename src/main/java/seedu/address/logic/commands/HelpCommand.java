@@ -19,7 +19,6 @@ public class HelpCommand extends Command {
             + "help tutorial\n"
             + "help lab\n"
             + "help consultation";
-
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(HELP_CATEGORIES);

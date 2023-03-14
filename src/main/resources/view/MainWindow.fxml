@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="800" minWidth="900" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="800" minWidth="900" onCloseRequest="#handleExit" title="TrAcker" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -32,7 +32,7 @@
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="User Guide"/>
           </Menu>
         </MenuBar>
         <HBox prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: transparent;">
