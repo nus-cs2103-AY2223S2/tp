@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.ui.tab.TabInfo;
+import seedu.address.logic.ui.tab.TabType;
 import seedu.address.logic.ui.tab.TabUtil;
 import seedu.address.model.person.Person;
 
@@ -39,7 +40,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.tabUtil = new TabUtil();
+        this.tabUtil = new TabUtil(TabType.getAll());
     }
 
     public ModelManager() {

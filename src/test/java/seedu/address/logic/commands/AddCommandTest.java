@@ -11,11 +11,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.ui.tab.TabInfo;
+import seedu.address.logic.ui.tab.TabUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -77,7 +81,7 @@ public class AddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -147,6 +151,26 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isValidTabIndex(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public TabUtil getTabUtil() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyObjectProperty<TabInfo> getSelectedTab() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSelectedTab(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -189,6 +213,8 @@ public class AddCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
+
     }
 
 }

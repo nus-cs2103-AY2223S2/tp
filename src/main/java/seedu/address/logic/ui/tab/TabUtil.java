@@ -12,18 +12,16 @@ import seedu.address.commons.core.index.Index;
  * Utility class to keep and manage {@code TabInfo}s.
  */
 public class TabUtil {
-    private static final TabType[] TAB_TYPES = TabType.getAll();
-
     private final List<TabInfo> tabInfoList;
     private final ReadOnlyObjectWrapper<TabInfo> selectedTabInfo;
 
     /**
      * Creates a {@code TabUtil}.
      */
-    public TabUtil() {
-        tabInfoList = new ArrayList<>(TAB_TYPES.length);
-        for (int i = 0; i < TAB_TYPES.length; i++) {
-            tabInfoList.add(new TabInfo(Index.fromZeroBased(i), TAB_TYPES[i]));
+    public TabUtil(TabType ...tabTypes) {
+        tabInfoList = new ArrayList<>(tabTypes.length);
+        for (int i = 0; i < tabTypes.length; i++) {
+            tabInfoList.add(new TabInfo(Index.fromZeroBased(i), tabTypes[i]));
         }
         selectedTabInfo = new ReadOnlyObjectWrapper<>(tabInfoList.get(0));
     }
