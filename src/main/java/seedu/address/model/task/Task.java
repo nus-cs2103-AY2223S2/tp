@@ -10,9 +10,13 @@ public class Task {
 
     protected boolean isDone;
     private final TaskDescription description;
+<<<<<<< HEAD
     private Index personAssigned;
     private String personName;
     private Date deadlineDate;
+=======
+    private Index personAssignedIndex;
+>>>>>>> origin
 
 
     /**
@@ -21,9 +25,13 @@ public class Task {
     public Task(TaskDescription description, Date deadlineDate) {
         this.description = description;
         this.isDone = false;
+<<<<<<< HEAD
         this.personAssigned = null;
         this.personName = null;
         this.deadlineDate = deadlineDate;
+=======
+        this.personAssignedIndex = null;
+>>>>>>> origin
     }
 
     /**
@@ -49,9 +57,14 @@ public class Task {
      *
      * @param personIndex Index of the person to be assigned to the current task
      */
+<<<<<<< HEAD
     public void assignPerson(Index personIndex, String personName) {
         this.personAssigned = personIndex;
         this.personName = personName;
+=======
+    public void assignPerson(Index personIndex) {
+        this.personAssignedIndex = personIndex;
+>>>>>>> origin
     }
 
     /**
@@ -59,8 +72,8 @@ public class Task {
      *
      * @return Index index of the person assigned to the current task
      */
-    public Index getPersonAssigned() {
-        return this.personAssigned;
+    public Index getPersonAssignedIndex() {
+        return this.personAssignedIndex;
     }
 
     /**
