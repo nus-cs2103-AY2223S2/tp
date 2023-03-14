@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,6 +16,8 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.policy.Policy;
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +32,7 @@ class JsonAdaptedClient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -36,13 +40,17 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("policies") List<JsonAdaptedPolicy> policies) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (policies != null) {
+            this.policies.addAll(policies);
         }
     }
 
@@ -57,6 +65,9 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        policies.addAll(StreamSupport.stream(source.getPolicyList().spliterator(), false)
+                .map(JsonAdaptedPolicy::new)
+                .collect(Collectors.toList())); // is it considered breaking Law of Demeter?
     }
 
     /**
@@ -69,6 +80,12 @@ class JsonAdaptedClient {
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toModelType());
         }
+
+        final ArrayList<Policy> personPolicies = new ArrayList<>();
+        for (JsonAdaptedPolicy policy : policies) {
+            personPolicies.add(policy.toModelType());
+        }
+
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -103,7 +120,14 @@ class JsonAdaptedClient {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+
+        final UniquePolicyList modelPolicies = new UniquePolicyList();
+        for (Policy policy : personPolicies) {
+            modelPolicies.add(policy);
+        }
+
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies);
     }
 
 }

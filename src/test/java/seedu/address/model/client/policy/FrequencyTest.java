@@ -22,7 +22,7 @@ class FrequencyTest {
     @Test
     void isValidFrequency() {
         String monthly = "monthly";
-        String quarterly = "quarterly";
+        String quarterly = "weekly";
         String yearly = "yearly";
         String invalid = "uregoweijnowig";
 

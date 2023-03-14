@@ -41,10 +41,14 @@ public class EditCommandTest {
         EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder(editedClient).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT, descriptor);
 
-        String expectedMessage = EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS;
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, editedClient);
+        Client originalClient = model.getFilteredClientList().get(0);
+        String policies = originalClient.toString().split("Policies:")[1];
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient) + "; Policies:"
+                + policies;
+        CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedClient));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        editedClient = new ClientBuilder(editedClient).withPolicyList(originalClient.getPolicyList()).build();
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
@@ -59,12 +63,12 @@ public class EditCommandTest {
         Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
+        CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedClient));
+
         EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastClient, descriptor);
-
-        String expectedMessage = EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS;
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, editedClient);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(lastClient, editedClient);
@@ -91,14 +95,19 @@ public class EditCommandTest {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
 
         Client clientInFilteredList = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
+
         Client editedClient = new ClientBuilder(clientInFilteredList).withName(VALID_NAME_BOB).build();
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
+
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT,
                 new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS;
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, editedClient);
+        CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedClient));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+
+        editedClient = new ClientBuilder(editedClient).withPolicyList(clientInFilteredList.getPolicyList()).build();
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);

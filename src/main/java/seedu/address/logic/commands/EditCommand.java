@@ -24,6 +24,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,7 +55,7 @@ public class EditCommand extends Command {
     private final EditClientDescriptor editClientDescriptor;
 
     /**
-     * @param index                of the client in the filtered client list to edit
+     * @param index of the client in the filtered client list to edit
      * @param editClientDescriptor details to edit the client with
      */
     public EditCommand(Index index, EditClientDescriptor editClientDescriptor) {
@@ -63,23 +64,6 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
-    }
-
-    /**
-     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
-     * edited with {@code editClientDescriptor}.
-     */
-    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
-        assert clientToEdit != null;
-
-        Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
-        Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
-        Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
-        Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
-        //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
-        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -100,7 +84,25 @@ public class EditCommand extends Command {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        return new CommandResult(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
+        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
+    }
+
+    /**
+     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
+     * edited with {@code editClientDescriptor}.
+     */
+    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
+        assert clientToEdit != null;
+
+        Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
+        Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
+        Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
+        Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
+        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
+
+        UniquePolicyList policyList = clientToEdit.getPolicyList(); // To change policyList you must use EditPolicy
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList);
     }
 
     @Override
@@ -132,8 +134,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditClientDescriptor() {
-        }
+        public EditClientDescriptor() {}
 
         /**
          * Copy constructor.
@@ -154,36 +155,44 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
         public void setName(Name name) {
             this.name = name;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
         }
 
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
         }
 
         public void setEmail(Email email) {
             this.email = email;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
         }
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -193,14 +202,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         @Override

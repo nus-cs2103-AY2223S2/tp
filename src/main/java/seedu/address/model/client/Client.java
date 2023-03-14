@@ -33,14 +33,14 @@ public class Client {
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UniquePolicyList policyList) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.policyList = new UniquePolicyList(); // TODO: @pangrwa Need to read from Storage
+        this.policyList = policyList; // TODO: @pangrwa Need to read from Storage
         filteredPolicies = new FilteredList<>(this.policyList.asUnmodifiableObservableList());
     }
 
