@@ -30,7 +30,7 @@ public class FindApplicationCommand extends ApplicationCommand {
 	public CommandResult execute(ApplicationModel model) {
 		requireNonNull(model);
 		model.updateFilteredApplicationList(predicate);
-		return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+		return new CommandResult(String.format(Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW,
 						model.getFilteredApplicationList().size()));
 	}
 
