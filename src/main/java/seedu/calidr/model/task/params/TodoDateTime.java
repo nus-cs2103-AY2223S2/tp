@@ -22,10 +22,8 @@ public class TodoDateTime {
      */
     public TodoDateTime(LocalDateTime dateTime) {
         requireNonNull(dateTime);
-        checkArgument(!isOver(dateTime), MESSAGE_CONSTRAINTS);
-
+        // checkArgument(!isOver(dateTime), MESSAGE_CONSTRAINTS);
         value = dateTime;
-
     }
 
     /**

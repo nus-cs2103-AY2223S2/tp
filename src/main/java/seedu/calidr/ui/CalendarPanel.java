@@ -7,16 +7,34 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import com.calendarfx.model.Entry;
+import com.calendarfx.view.EntryViewBase;
+import javafx.scene.Scene;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import org.controlsfx.control.PopOver;
+
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
+import com.calendarfx.view.DateControl;
 import com.calendarfx.view.MonthView;
 
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.WeakInvalidationListener;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
+import javafx.util.Callback;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.commons.util.TaskEntryUtil;
 import seedu.calidr.model.TaskEntry;
@@ -61,13 +79,53 @@ public class CalendarPanel extends UiPart<Region> {
         taskEntryCalendarMap.put(Event.class, calendarEvents);
 
         calendarSource.getCalendars().addAll(calendarTodos, calendarEvents);
-        calendarView.setEntryContextMenuCallback(param -> null);
+
+        calendarView.setEntryContextMenuCallback(param -> {
+            EntryViewBase<?> entryView = param.getEntryView();
+            Entry<?> entry = entryView.getEntry();
+
+            ContextMenu contextMenu = new ContextMenu();
+
+            MenuItem informationItem = new MenuItem("Information");
+            informationItem.setOnAction(evt -> {
+                showInformationDialog(entry, this.getRoot().getScene().getWindow());
+            });
+            contextMenu.getItems().add(informationItem);
+
+            return contextMenu;
+        });
+
+        //calendarView.setEntryDetailsPopOverContentCallback(new TaskEntryPopOverContentProvider());
+
         calendarView.addEventFilter(MouseEvent.MOUSE_CLICKED, javafx.event.Event::consume);
         calendarView.getCalendarSources().add(calendarSource);
         calendarView.setBackground(Background.fill(Paint.valueOf("#ffffff")));
         calendarView.setRequestedTime(LocalTime.now());
 
         spawnUpdateThread(); // update the calendar's "current time" every 10 seconds
+    }
+
+    private void showInformationDialog(Entry<?> entry, Window window) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(window);
+        VBox dialogVbox = new VBox(10);
+        dialogVbox.setPadding(new javafx.geometry.Insets(10));
+        ArrayList<String> information = new ArrayList<>();
+        information.add(entry.getTitle());
+        information.add(entry.getInterval().getStartDate().toString());
+        information.add(entry.getInterval().getStartTime().toString());
+        dialogVbox.getChildren().addAll(
+                information.stream().map(Text::new).map(
+                        text -> {
+                            text.wrappingWidthProperty().bind(dialogVbox.widthProperty());
+                            return text;
+                        }
+                ).toArray(Node[]::new)
+        );
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 
     private void spawnUpdateThread() {

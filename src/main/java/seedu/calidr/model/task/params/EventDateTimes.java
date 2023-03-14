@@ -45,7 +45,7 @@ public class EventDateTimes {
      * is valid.
      */
     public boolean isValidEventDateTimes(LocalDateTime start, LocalDateTime end) {
-        return (!isOver(end) && end.isAfter(start));
+        return end.isAfter(start);
     }
 
     /**
