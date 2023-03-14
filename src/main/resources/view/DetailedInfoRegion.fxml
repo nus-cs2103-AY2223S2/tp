@@ -7,4 +7,3 @@
     <StackPane fx:id="headerBarPlaceholder" VBox.vgrow="NEVER" />
     <StackPane fx:id="detailedContentPlaceholder" VBox.vgrow="ALWAYS" />
 </VBox>
-

@@ -14,6 +14,8 @@ import seedu.address.model.student.HomeworkIsCompletePredicate;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 
 class ViewHomeworkCommandParserTest {
+    private ViewHomeworkCommandParser parser = new ViewHomeworkCommandParser();
+
     @Test
     public void parse_validArgsWithMultipleKeywords_returnsViewHomeworkCommand() throws ParseException {
         String args = " n/alice n/bob n/charlie " + PREFIX_STATUS + " completed";
@@ -36,5 +38,13 @@ class ViewHomeworkCommandParserTest {
         ViewHomeworkCommand expectedCommand = new ViewHomeworkCommand(PREDICATE_SHOW_ALL_STUDENTS,
                 new HomeworkIsCompletePredicate(false), true);
         assertEquals(expectedCommand, new ViewHomeworkCommandParser().parse(args));
+    }
+
+    @Test
+    public void parse_validArgs_returnsViewHomeworkCommand() throws ParseException {
+        ViewHomeworkCommand expectedCommand = new ViewHomeworkCommand(
+                new NameContainsKeywordsPredicate(List.of("Alice", "Bob")),
+                new HomeworkIsCompletePredicate(false), false);
+        assertEquals(expectedCommand, parser.parse("n/Alice n/Bob"));
     }
 }

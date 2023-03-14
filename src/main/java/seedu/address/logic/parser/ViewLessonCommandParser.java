@@ -83,4 +83,10 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof ViewLessonCommandParser // instanceof handles nulls
+            && this.equals((ViewLessonCommandParser) other)); // state check
+    }
 }
