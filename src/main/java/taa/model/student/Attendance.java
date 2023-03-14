@@ -21,6 +21,7 @@ public class Attendance {
     public static boolean isValidWeek(String week) {
         int intWeek = Integer.parseInt(week);
         if (intWeek <= 0 || intWeek > 12) {
+            System.out.println(week);
             return false;
         }
         return true;
@@ -67,22 +68,11 @@ public class Attendance {
     }
 
     /**
-     * Function to mark attendance
-     * @param index index to mark
-     */
-    public void mark(int index) {
-        this.attendanceList[index - 1] = true;
-    }
-
-    /**
      * Function to unmark attendance
      *
      * @param index index to unmark
      */
-    public void unmark(int index) {
-        if (index <= 0 || index >= 12) {
-            System.out.println("Error, attendance index out of range");
-        }
-        this.attendanceList[index - 1] = false;
+    public void unmarkAttendance(int index) {
+        this.attendanceList[index] = false;
     }
 }
