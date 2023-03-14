@@ -56,6 +56,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String gender} into a {@code Gender}.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        if (!Company.isValidCompanyName(gender)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(gender);
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -138,19 +151,6 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Company(company);
-    }
-
-    /**
-     * Parses a {@code String gender} into a {@code Gender}.
-     *
-     * @throws ParseException if the given {@code gender} is invalid.
-     */
-    public static Gender parseGender(String gender) throws ParseException {
-        requireNonNull(gender);
-        if (!Company.isValidCompanyName(gender)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new Gender(gender);
     }
 
     /**
