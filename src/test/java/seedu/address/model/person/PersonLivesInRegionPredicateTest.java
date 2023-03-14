@@ -12,7 +12,7 @@ public class PersonLivesInRegionPredicateTest {
 
     private Person someGuyWhoLivesInTheNorth = new PersonBuilder().withAddress("JTC 22 Woodlands Link #02-61").build();
     private Person anotherGuyWhoLivesInTheNorth = new PersonBuilder().withAddress("30 Kranji Way ").build();
-    private Person someNorthGuy = new PersonBuilder()
+    private Person someWestGuy = new PersonBuilder()
             .withAddress("Lim Chu Kang Community Centre, Lim Chu Kang Road, 580, Singapore, Lim Chu Kang")
             .build();
 
@@ -24,8 +24,6 @@ public class PersonLivesInRegionPredicateTest {
         PersonLivesInRegionPredicate northPredicate = new PersonLivesInRegionPredicate(Regions.NORTH);
         assertTrue(northPredicate.test(someGuyWhoLivesInTheNorth));
         assertTrue(northPredicate.test(anotherGuyWhoLivesInTheNorth));
-        assertTrue(northPredicate.test(someNorthGuy));
-
         PersonLivesInRegionPredicate westPredicate = new PersonLivesInRegionPredicate(Regions.WEST);
         assertTrue(westPredicate.test(clementiGuy));
     }
@@ -35,7 +33,7 @@ public class PersonLivesInRegionPredicateTest {
         PersonLivesInRegionPredicate southPredicate = new PersonLivesInRegionPredicate(Regions.SOUTH);
         assertFalse(southPredicate.test(someGuyWhoLivesInTheNorth));
         assertFalse(southPredicate.test(anotherGuyWhoLivesInTheNorth));
-        assertFalse(southPredicate.test(someNorthGuy));
+        assertFalse(southPredicate.test(someWestGuy));
         assertFalse(southPredicate.test(clementiGuy));
     }
 }
