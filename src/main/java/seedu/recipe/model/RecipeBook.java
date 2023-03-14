@@ -93,6 +93,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
         recipes.remove(key);
     }
 
+
     //// util methods
 
     @Override
@@ -105,6 +106,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
     public ObservableList<Recipe> getRecipeList() {
         return recipes.asUnmodifiableObservableList();
     }
+
 
     @Override
     public boolean equals(Object other) {

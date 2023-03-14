@@ -23,7 +23,6 @@ import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Title;
 
-
 /**
  * Edits the details of an existing recipe in the recipe book.
  */
@@ -96,7 +95,6 @@ public class EditCommand extends Command {
                 .orElse(recipeToEdit.getIngredients());
         Set<Step> updatedSteps = editRecipeDescriptor.getSteps()
                 .orElse(recipeToEdit.getSteps());
-
         return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps);
     }
 

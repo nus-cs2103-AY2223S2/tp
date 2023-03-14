@@ -30,6 +30,7 @@ import seedu.recipe.storage.StorageManager;
 import seedu.recipe.storage.UserPrefsStorage;
 import seedu.recipe.ui.Ui;
 import seedu.recipe.ui.UiManager;
+
 /**
  * Runs the application.
  */

@@ -79,10 +79,12 @@ public class UniqueRecipeList implements Iterable<Recipe> {
         }
     }
 
+
     public void setRecipes(UniqueRecipeList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
+
 
     /**
      * Replaces the contents of this list with {@code recipes}.
