@@ -1,5 +1,6 @@
 package seedu.calidr.model.task;
 
+import seedu.calidr.logic.commands.AddCommand;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 
@@ -73,6 +74,13 @@ public abstract class Task {
     public String toString() {
         String mark = this.isDone ? "X" : " ";
         return "{" + this.priority.toString().toLowerCase() + "}[" + mark + "] " + this.title;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Task // instanceof handles nulls
+                && title.equals(((Task) other).title));
     }
 
 }

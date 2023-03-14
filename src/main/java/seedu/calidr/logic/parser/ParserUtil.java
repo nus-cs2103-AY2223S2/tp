@@ -1,7 +1,11 @@
 package seedu.calidr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.calidr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +19,9 @@ import seedu.calidr.model.person.Name;
 import seedu.calidr.model.person.Phone;
 import seedu.calidr.model.person.Remark;
 import seedu.calidr.model.tag.Tag;
+import seedu.calidr.model.task.params.EventDateTimes;
+import seedu.calidr.model.task.params.Title;
+import seedu.calidr.model.task.params.TodoDateTime;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -132,5 +139,57 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    //===============================For Calidr====================================================
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+        return new Title(trimmedTitle);
+    }
+
+    private static LocalDateTime parseDateTime(String dateTimeText) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+
+        try {
+            LocalDateTime dateTime = LocalDateTime.parse(dateTimeText, dateTimeFormatter);
+            return dateTime;
+
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
+    public static TodoDateTime parseTodoDateTime(String todoDateTime) throws ParseException {
+        requireNonNull(todoDateTime);
+        String trimmedTodoDateTime = todoDateTime.trim();
+
+        LocalDateTime byDateTime = parseDateTime(trimmedTodoDateTime);
+        if (byDateTime == null) {
+            throw new ParseException("Date-times should be of the format YYYY-MM-DD hhmm");
+        }
+
+        return new TodoDateTime(byDateTime);
+    }
+
+    public static EventDateTimes parseEventDateTimes(String fromDateTime, String toDateTime)
+            throws ParseException {
+
+        requireAllNonNull(fromDateTime, toDateTime);
+
+        String trimmedFromDateTime = fromDateTime.trim();
+        String trimmedToDateTime = toDateTime.trim();
+
+        LocalDateTime from = parseDateTime(trimmedFromDateTime);
+        LocalDateTime to = parseDateTime(trimmedToDateTime);
+
+        if (from == null || to == null) {
+            throw new ParseException("Date-times should be of the format YYYY-MM-DD hhmm");
+        }
+
+        return new EventDateTimes(from, to);
     }
 }
