@@ -1,5 +1,12 @@
 {
-  "java.completion.importOrder": ["#", "java", "javax", "org", "com", ""],
+  "java.completion.importOrder": [
+    "#",
+    "java",
+    "javax",
+    "org",
+    "com",
+    ""
+  ],
   "java.settings.url": ".vscode/vscode-java.prefs",
   "java.format.settings.url": ".vscode/eclipse-java-google-style.xml",
   "java.project.sourcePaths": ["src/main/java", "src/test/java", ""],
@@ -14,6 +21,5 @@
   "files.trimTrailingWhitespace": true,
   "java.inlayHints.parameterNames.enabled": "none",
   /* enable if you want to see VSCode suggestions */
-  "css.validate": false,
-  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable"
+  "css.validate": false
 }
