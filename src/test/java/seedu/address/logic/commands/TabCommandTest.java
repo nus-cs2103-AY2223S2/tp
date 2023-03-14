@@ -1,18 +1,19 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_ADDRESS_BOOK_TAB;
+import static seedu.address.testutil.TypicalIndexes.INDEX_CALENDAR_TAB;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.ui.tab.TabInfo;
 import seedu.address.logic.ui.tab.TabType;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_ADDRESS_BOOK_TAB;
-import static seedu.address.testutil.TypicalIndexes.INDEX_CALENDAR_TAB;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the model)

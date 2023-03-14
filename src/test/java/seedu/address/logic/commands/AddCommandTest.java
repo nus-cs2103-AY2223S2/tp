@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import javafx.beans.property.ReadOnlyObjectProperty;
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
