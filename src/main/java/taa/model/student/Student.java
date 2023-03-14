@@ -22,17 +22,17 @@ public class Student {
     private final Attendance atd;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Tag> classes = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, tags);
+    public Student(Name name, Tag initialClass) {
+        CollectionUtil.requireAllNonNull(name, initialClass);
         this.id = ++lastId;
         this.name = name;
         this.atd = new Attendance();
-        this.tags.addAll(tags);
+        this.classes.add(initialClass);
     }
 
     public int getId() {
@@ -54,8 +54,16 @@ public class Student {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Tag> getClasses() {
+        return Collections.unmodifiableSet(classes);
+    }
+
+    /**
+     * Associates this student with a new class/class list.
+     * @param newClass The new class/class list to associate this student with.
+     */
+    public void addClass(Tag newClass) {
+        this.classes.add(newClass);
     }
 
     /**
@@ -87,26 +95,24 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getClass().equals(getClasses());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, tags);
+        return Objects.hash(name, classes);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append("; Email: ");
+        builder.append(getName());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Tag> classes = getClasses();
+        if (!classes.isEmpty()) {
+            builder.append("; Classes: ");
+            classes.forEach(builder::append);
         }
         return builder.toString();
     }
