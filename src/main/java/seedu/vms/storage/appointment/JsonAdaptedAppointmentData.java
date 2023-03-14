@@ -2,6 +2,7 @@ package seedu.vms.storage.appointment;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.appointment.Appointment;
