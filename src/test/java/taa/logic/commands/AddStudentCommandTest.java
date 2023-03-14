@@ -156,6 +156,23 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public void updateFilteredClassLists(Predicate<ClassList> predicate) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public ObservableList<Student> getFilteredClassList() {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public boolean hasClassList(ClassList tocheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addAssignment(String toAdd) {
             throw new AssertionError("This method should not be called.");
         }
@@ -164,6 +181,12 @@ public class AddStudentCommandTest {
         public void deleteAssignment(String assignmentName) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void addClassList(ClassList toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public void grade(String assignmentName, int studentId, int marks) {
