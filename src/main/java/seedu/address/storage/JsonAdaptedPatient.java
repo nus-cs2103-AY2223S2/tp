@@ -76,7 +76,7 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
 
-        final Status modelStatus = Status.valueOf(status);
+        final Status modelStatus = new Status(status);
 
 
         return new Patient(modelNric, modelName, modelStatus);
