@@ -24,7 +24,7 @@ public class Card {
     private final Answer answer;
     private final Set<Tag> tags = new HashSet<>();
     private Optional<Deck> deck;
-    private boolean isFlipped = false;
+    private boolean isFlipped = true;
 
     /**
      * Every field must be present and not null.

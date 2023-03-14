@@ -273,6 +273,7 @@ public class ModelManager implements Model {
 
     @Override
     public void endReview() {
+        currReview.flipAllCards();
         currReview = null;
         selectedDeck = null;
         updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);

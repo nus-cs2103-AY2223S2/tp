@@ -28,11 +28,11 @@ public class Review {
         requireNonNull(deck);
         this.deck = deck;
         this.cardList = cardList;
+        unflipAllCards();
         //TODO write a shuffle based on user statistics
 
         // initialise first card
         currCard = this.cardList.get(currCardNum - 1);
-        currCard.setAsUnflipped();
 
         // initialise scoreList
         scoreList = new ArrayList<>(Arrays.asList(new Boolean[this.cardList.size()]));
@@ -114,4 +114,13 @@ public class Review {
         scoreList.set(currCardNum - 1, false);
         goToNextCard();
     }
+
+    public void unflipAllCards() {
+        cardList.stream().forEach(Card::setAsUnflipped);
+    }
+
+    public void flipAllCards() {
+        cardList.stream().forEach(Card::setAsFlipped);
+    }
+
 }
