@@ -44,17 +44,19 @@ public class ModelManager implements Model {
         logger.fine("Initializing with patient manager: " + patientManager + " and user prefs " + userPrefs);
 
         this.patientManager = new PatientManager(patientManager);
-        this.userPrefs = new UserPrefs(userPrefs);
         filteredPatientMap = new FilteredIdDataMap<>(this.patientManager.getMapView());
 
-        this.appointmentManager = appointmentManager;
-        filteredAppointmentMap = new FilteredIdDataMap<>(appointmentManager.getMapView());
+        this.appointmentManager = new AppointmentManager(appointmentManager);
+        filteredAppointmentMap = new FilteredIdDataMap<>(this.appointmentManager.getMapView());
+
         this.vaxTypeManager = vaxTypeManager;
+
+        this.userPrefs = new UserPrefs(userPrefs);
     }
 
     /**
      * Convenience constructor to construct a {@code ModelManager} with an
-     * empty {@code VaxTypeManager}.
+     * empty {@code VaxTypeManager} and {@code AppointmentManager}.
      */
     public ModelManager(ReadOnlyPatientManager patientManager, ReadOnlyUserPrefs userPrefs) {
         this(patientManager, new VaxTypeManager(), new AppointmentManager(), userPrefs);
