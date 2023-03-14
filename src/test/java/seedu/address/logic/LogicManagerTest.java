@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TANK_DESC;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFishes.AMY;
+import static seedu.address.testutil.TypicalTanks.getTypicalTanks;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -81,6 +82,10 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage);
+        // Initializes Tanks
+        TankList tankList = new TankList();
+        tankList.setTanks(getTypicalTanks());
+        model.setTankList(tankList);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -88,6 +93,9 @@ public class LogicManagerTest {
                 + ADDRESS_DESC_AMY;
         Fish expectedFish = new FishBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
+
+        // Manually sets tanklist
+        expectedModel.setTankList(tankList);
         expectedModel.addFish(expectedFish);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTanks.getTypicalTanks;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTankList;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TankList;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
@@ -83,6 +85,13 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        private TankList tankList;
+
+        private ModelStub() {
+            tankList = new TankList();
+            tankList.setTanks(getTypicalTanks());
+        }
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -193,10 +202,13 @@ public class AddCommandTest {
         public void updateFilteredTaskList(Predicate<Task> predicate) {}
 
         //=========== TankList =============================================================
-        public void setTankList(ReadOnlyTankList tankList) {}
+        @Override
+        public void setTankList(ReadOnlyTankList tankList) {
+            this.tankList.resetData(tankList);
+        }
 
         public ReadOnlyTankList getTankList() {
-            return null;
+            return tankList;
         }
 
         public Path getTankListFilePath() {
@@ -245,6 +257,10 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingFishAdded extends ModelStub {
         final ArrayList<Fish> fishesAdded = new ArrayList<>();
+
+        ModelStubAcceptingFishAdded() {
+            super();
+        }
 
         @Override
         public boolean hasFish(Fish fish) {

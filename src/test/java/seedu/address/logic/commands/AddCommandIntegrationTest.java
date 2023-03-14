@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalFishes.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTanks.getTypicalTankList;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.TankList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.fish.Fish;
 import seedu.address.testutil.FishBuilder;
@@ -25,7 +25,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), new TankList());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class AddCommandIntegrationTest {
         Fish validFish = new FishBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                new TankList());
+                model.getTankList());
         expectedModel.addFish(validFish);
 
         assertCommandSuccess(new AddCommand(validFish, Index.fromOneBased(1)), model,

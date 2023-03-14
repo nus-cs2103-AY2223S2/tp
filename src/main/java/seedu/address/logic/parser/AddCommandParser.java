@@ -56,7 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Fish fish = new Fish(name, phone, email, address, tagList);
 
-        return new AddCommand(fish, Index.fromOneBased(1));
+        return new AddCommand(fish, tankIndex);
     }
 
     /**
