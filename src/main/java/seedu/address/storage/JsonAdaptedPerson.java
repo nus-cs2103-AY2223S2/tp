@@ -126,8 +126,10 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         if (performance == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Performance.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Performance.class.getSimpleName()));
+        }
+        if (!Performance.isValidPerformance(performance)) {
+            throw new IllegalValueException(String.format(Performance.MESSAGE_CONSTRAINTS));
         }
         final Performance modelPerformance = new Performance(performance);
 

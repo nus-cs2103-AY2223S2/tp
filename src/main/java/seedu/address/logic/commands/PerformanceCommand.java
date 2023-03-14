@@ -75,7 +75,8 @@ public class PerformanceCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !performance.value.isEmpty() ? MESSAGE_ADD_PERFORMANCE_SUCCESS
+        String message = !performance.value.isEmpty()
+                ? MESSAGE_ADD_PERFORMANCE_SUCCESS
                 : MESSAGE_DELETE_PERFORMANCE_SUCCESS;
         return String.format(message, personToEdit);
     }
