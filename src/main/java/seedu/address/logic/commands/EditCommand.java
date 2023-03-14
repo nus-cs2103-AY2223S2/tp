@@ -76,7 +76,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Edits person at the given index
+     * Edits person at the given index.
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
@@ -109,10 +109,11 @@ public class EditCommand extends Command {
 
     /**
      * Edits the user information
+     * @param model {@code Model} which the command should operate on
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    protected CommandResult editUser(Model model) {
+    private CommandResult editUser(Model model) {
         User editedUser = createEditedUser(model.getUser(), editPersonDescriptor);
 
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
