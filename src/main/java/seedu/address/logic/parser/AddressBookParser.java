@@ -82,7 +82,7 @@ public class AddressBookParser {
             return new UnfavoriteCommandParser().parse(arguments);
 
         case TabCommand.COMMAND_WORD:
-            return new TabCommand();
+            return new TabCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
