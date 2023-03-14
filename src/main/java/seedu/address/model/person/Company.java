@@ -17,7 +17,7 @@ public class Company {
      *
      * @param companyName valid address.
      */
-    public Company (String companyName) {
+    public Company(String companyName) {
         this.value = String.valueOf(companyName);
     }
 
