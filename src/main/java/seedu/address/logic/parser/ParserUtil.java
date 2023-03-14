@@ -62,8 +62,8 @@ public class ParserUtil {
      */
     public static Gender parseGender(String gender) throws ParseException {
         requireNonNull(gender);
-        if (!Company.isValidCompanyName(gender)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!Gender.isValidGender(gender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(gender);
     }
@@ -148,7 +148,7 @@ public class ParserUtil {
     public static Company parseCompany(String company) throws ParseException {
         requireNonNull(company);
         if (!Company.isValidCompanyName(company)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(company);
     }
@@ -160,8 +160,8 @@ public class ParserUtil {
      */
     public static Occupation parseOccupation(String occupation) throws ParseException {
         requireNonNull(occupation);
-        if (!Company.isValidCompanyName(occupation)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!Occupation.isValidOccupation(occupation)) {
+            throw new ParseException(Occupation.MESSAGE_CONSTRAINTS);
         }
         return new Occupation(occupation);
     }
@@ -173,8 +173,8 @@ public class ParserUtil {
      */
     public static JobTitle parseJobTitle(String jobTitle) throws ParseException {
         requireNonNull(jobTitle);
-        if (!Company.isValidCompanyName(jobTitle)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!JobTitle.isValidJobTitle(jobTitle)) {
+            throw new ParseException(JobTitle.MESSAGE_CONSTRAINTS);
         }
         return new JobTitle(jobTitle);
     }
@@ -186,8 +186,8 @@ public class ParserUtil {
      */
     public static Industry parseIndustry(String industry) throws ParseException {
         requireNonNull(industry);
-        if (!Company.isValidCompanyName(industry)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!Industry.isValidIndustry(industry)) {
+            throw new ParseException(Industry.MESSAGE_CONSTRAINTS);
         }
         return new Industry(industry);
     }

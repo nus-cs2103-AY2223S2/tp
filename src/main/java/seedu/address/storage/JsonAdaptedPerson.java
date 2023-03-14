@@ -146,7 +146,7 @@ class JsonAdaptedPerson {
                     Industry.class.getSimpleName()));
         }
         if (!Industry.isValidIndustry(industry)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Industry.MESSAGE_CONSTRAINTS);
         }
         final Industry modelIndustry = new Industry(industry);
 
