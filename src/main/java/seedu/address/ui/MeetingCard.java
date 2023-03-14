@@ -31,9 +31,9 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label attendees;
     @FXML
-    private Label description;
-    @FXML
     private Label meetingLocation;
+    @FXML
+    private Label description;
 
     /**
      * Creates a {@code MeetingCard} with the given {@code Meeting} and index to display.
