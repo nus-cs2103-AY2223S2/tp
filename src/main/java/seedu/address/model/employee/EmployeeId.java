@@ -1,9 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.employee;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Class represents a Person's employee ID in the database.
+ * Class represents an employee's employee ID in the database.
  */
 public class EmployeeId {
 
@@ -55,6 +55,12 @@ public class EmployeeId {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Gets the current employee ID as an integer.
+     */
+    public int getEmployeeId() {
+        return Integer.parseInt(value);
+    }
 
     /**
      * Sets the current employee count and thus next employee ID.

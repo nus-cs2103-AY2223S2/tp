@@ -33,9 +33,9 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
 ### Viewing help : `help` [coming soon]
 
 
-### Adding a person: `add`
+### Adding a employee: `add`
 
-Adds a person to the ExecutivePro database.
+Adds a employee to the ExecutivePro database.
 
 Format: `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT]`
 
@@ -50,33 +50,33 @@ Shows a list of all employees and their details in the ExecutivePro database.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a employee : `edit`
 
 Edits an employee’s details in the ExecutivePro database.
 
 Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT]`
 
-* Edits the details of the person with the specified `EMPLOYEE_ID`. If such an employee doesn’t exist, an error message will be shown.
+* Edits the details of the employee with the specified `EMPLOYEE_ID`. If such an employee doesn’t exist, an error message will be shown.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Changes the phone number and email address of the employee with ID `1` to be `91234567` and `johndoe@example.com` respectively.
 
-### Locating persons by keyword: `find`
+### Locating employees by keyword: `find`
 
-Shows a list of all persons in address book whose names match the keyword provided.
+Shows a list of all employees in address book whose names match the keyword provided.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* Displays list of persons matching at least one keyword if multiple keywords are provided.
+* Displays list of employees matching at least one keyword if multiple keywords are provided.
 * Keyword is for the name only, not any other details
 
 Examples:
-* `find John` displays list of all persons whose full name contains a 'John' in it  
+* `find John` displays list of all employees whose full name contains a 'John' in it  
 
 
-### Deleting a person : `delete`
+### Deleting a employee : `delete`
 
 Deletes the specified employee from the ExecutivePro database.
 
