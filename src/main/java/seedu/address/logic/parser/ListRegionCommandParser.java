@@ -14,4 +14,5 @@ public class ListRegionCommandParser implements Parser<ListRegionCommand> {
         Regions inputRegion = ParserUtil.parseRegion(userInput);
         return new ListRegionCommand(inputRegion);
     }
+
 }
