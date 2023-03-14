@@ -60,7 +60,8 @@ public class Region {
 
         THOMSON(Regions.CENTRAL), MARYMOUNT(Regions.CENTRAL), SIN_MING(Regions.CENTRAL),
         ANG_MO_KIO(Regions.CENTRAL), BISHAN(Regions.CENTRAL), SERANGOON_GARDENS(Regions.CENTRAL),
-        MACRITCHIE(Regions.CENTRAL), TOA_PAYOH(Regions.CENTRAL);
+        MACRITCHIE(Regions.CENTRAL), TOA_PAYOH(Regions.CENTRAL), GEYLANG(Regions.CENTRAL), 
+        ALJUNIED(Regions.CENTRAL);
 
         private final Regions townRegion;
 
