@@ -43,7 +43,6 @@ import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
-import seedu.patientist.model.person.patient.PatientIdNumber;
 import seedu.patientist.model.tag.Tag;
 import seedu.patientist.testutil.PatientBuilder;
 

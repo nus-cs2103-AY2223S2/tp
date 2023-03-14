@@ -5,7 +5,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PID;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -18,10 +18,10 @@ import seedu.patientist.logic.commands.AddCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
-import seedu.patientist.model.person.patient.PatientIdNumber;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.tag.Tag;
 
@@ -37,16 +37,16 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_STATUS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        PatientIdNumber idNumber = ParserUtil.parsePid(argMultimap.getValue(PREFIX_PID).get());
+        IdNumber idNumber = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
@@ -61,7 +61,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             return new AddCommand(patient);
         }
 
-        Patient patient = new Patient(idNumber, name, phone, email, address, tagList);
+        Patient patient = new Patient(email, name, phone, idNumber, address, tagList);
         return new AddCommand(patient);
     }
 

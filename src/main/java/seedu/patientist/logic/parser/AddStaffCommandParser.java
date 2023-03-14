@@ -5,6 +5,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
@@ -16,6 +17,7 @@ import seedu.patientist.logic.commands.AddStaffCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.staff.Staff;
@@ -33,9 +35,10 @@ public class AddStaffCommandParser {
      */
     public AddStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ID,
+                        PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ID, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE));
         }
@@ -44,10 +47,11 @@ public class AddStaffCommandParser {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        IdNumber id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         Set<Tag> tagList = new HashSet<>(Arrays.asList(new Tag("Staff")));
         tagList.addAll(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
-        Staff staff = new Staff(name, phone, email, address, tagList);
+        Staff staff = new Staff(name, phone, email, id, address, tagList);
         return new AddStaffCommand(staff);
     }
 
