@@ -44,7 +44,8 @@ public class FindDoctorCommandParser implements Parser<FindDoctorCommand> {
         String specialty = argMultimap.getValue(PREFIX_SPECIALTY).orElse("").trim();
         String yoe = argMultimap.getValue(PREFIX_YOE).orElse("").trim();
         Set<String> tagList = argMultimap.getAllValues(PREFIX_TAG)
-                .stream().map(tag -> tag.toLowerCase().trim()).collect(Collectors.toSet());
+                .stream().filter(tag -> !tag.isBlank())
+                .map(tag -> tag.toLowerCase().trim()).collect(Collectors.toSet());
 
         if (name.isEmpty() && phone.isEmpty() && email.isEmpty()
                 && specialty.isEmpty() && yoe.isEmpty() && tagList.isEmpty()) {
