@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.service.Part;
 import seedu.address.model.service.Service;
@@ -28,24 +29,39 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Customer> filteredCustomers;
+    private final FilteredList<Technician> filteredTechnicians;
+    private final FilteredList<Service> filteredServices;
+    private final FilteredList<Vehicle> filteredVehicles;
+    //    private final FilteredList<Part> filteredParts;
+    //    private final FilteredList<Appointment> filteredAppointment;
     private final Shop shop;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyShop shop) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.shop = new Shop(shop);
+
+
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.shop = null; //TODO
+        filteredCustomers = new FilteredList<>(this.shop.getCustomerList());
+        filteredTechnicians = new FilteredList<>(this.shop.getTechnicianList());
+        filteredServices = new FilteredList<>(this.shop.getServiceList());
+        filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
+        //        filteredParts = new FilteredList<>(this.shop.getPartList());
+        //        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new Shop());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -95,12 +111,12 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    // ==== For persons ===
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
-
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
@@ -115,27 +131,10 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
+    // ==== For Customers ==
     /**
      * Adds customer to the shop
      *
@@ -144,6 +143,8 @@ public class ModelManager implements Model {
     @Override
     public void addCustomer(Customer customer) {
         this.shop.addCustomer(customer);
+        // addressBook.addCustomer(person);
+        // updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS); #todo fix 44 allow shops
     }
 
     /**
@@ -154,8 +155,25 @@ public class ModelManager implements Model {
     @Override
     public boolean hasCustomer(int customerId) {
         return this.shop.hasCustomer(customerId);
+        //        @Override
+        //        public boolean hasCustomer(Customer person) {
+        //            requireNonNull(person);
+        //            return addressBook.hasCustomer(person); #todo Deploy shop into modelmanager
+        //        }
     }
 
+    //    @Override
+    //    public void deleteCustomer(Customer target) {
+    //        addressBook.removeCustomer(target);
+    //    }
+    //
+    //    @Override
+    //    public void setCustomer(Customer target, Customer editedPerson) {
+    //        requireAllNonNull(target, editedPerson);
+    //        addressBook.setCustomer(target, editedPerson);
+    //    }
+
+    // ==== For Vehicles ==
     /**
      * Adds vehicle to the shop
      *
@@ -176,6 +194,7 @@ public class ModelManager implements Model {
         return this.shop.hasVehicle(vehicleId);
     }
 
+    // -------------
     /**
      * Adds service
      *
@@ -195,6 +214,8 @@ public class ModelManager implements Model {
         return this.shop.hasService(serviceId);
     }
 
+    // -------------
+
     /**
      * Adds appointment
      *
@@ -205,6 +226,7 @@ public class ModelManager implements Model {
         this.shop.addAppointment(appointment);
     }
 
+    // -------------
     /**
      * Adds part
      *
@@ -223,6 +245,29 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPart(Part part) {
         return this.shop.hasPart(part.getName());
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+        requireNonNull(predicate);
+        filteredCustomers.setPredicate(predicate);
     }
 
     @Override

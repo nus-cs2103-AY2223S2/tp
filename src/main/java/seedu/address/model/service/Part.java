@@ -8,7 +8,6 @@ import seedu.address.model.service.exception.InsufficientPartException;
  */
 public class Part {
 
-    private static int incrementalID = 0;
     private int id;
     private int stockLeft;
     private String name;
@@ -32,8 +31,8 @@ public class Part {
      * @param cost The cost of the vehicle part.
      * @param quantity How many in stock.
      */
-    public Part(String name, PartType type, int cost, int quantity) {
-        id = ++incrementalID;
+    public Part(int id, String name, PartType type, int cost, int quantity) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.cost = cost;
@@ -47,8 +46,8 @@ public class Part {
      * @param type The type of the vehicle part.
      * @param cost The cost of the vehicle part.
      */
-    public Part(String name, PartType type, int cost) {
-        this(name, type, cost, 0);
+    public Part(int id, String name, PartType type, int cost) {
+        this(id, name, type, cost, 0);
     }
 
     /**
