@@ -17,7 +17,6 @@ _Details coming soon ..._
 1. [Attendance](#Attendance)
    * mark
    * unmark
-   * exit
 2. [Assignments](#Assignments)
    * add
    * delete
@@ -43,25 +42,20 @@ _Details coming soon ..._
 Directs you to the attendance system. Within the attendance system, you can make the following calls:
 * mark
 * unmark
-* exit
 
 ### Mark attendance: `mark`
 Marks the attendance of a student for that week<br>
-Format: `mark {student_name} {week_number}`<br>
+Format: `mark {student_number} w/{week_number}`<br>
 Examples
-* `mark john 1`
-* `mark james 1`
+* `markAtd 1 w/1`
+* `markAtd 2 w/1`
 
 ### Unmark attendance: `unmark`
 Unmarks the attendance of a student for that week<br>
-Format: `unmark {student_name} {week_number}`<br>
+Format: `unmark {student_number} w/{week_number}`<br>
 Examples
-* `unmark john 1`
-* `unmark james 1`
-
-### Exit attendance system: `exit`
-Exits the attendance system.<br>
-Format: `exit`
+* `unmarkAtd 1 w/1`
+* `unmarkAtd 2 w/1`
 
 ## Assignments
 
