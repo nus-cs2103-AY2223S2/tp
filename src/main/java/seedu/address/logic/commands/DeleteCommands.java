@@ -67,7 +67,6 @@ public class DeleteCommands extends Command {
      * @return
      */
     public boolean sameArrayList(ArrayList<Index> other) {
-
         if (other.size() != this.indices.size()) {
             System.out.println("-----------------");
             return false;

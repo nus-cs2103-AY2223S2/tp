@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-import seedu.address.storage.ImageStorage;
+import seedu.address.storage.FileStorage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -99,13 +99,15 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
-        ImageStorage.deleteDrc(target.getName().fullName);
+        FileStorage fileStorage = new FileStorage(target.getName().fullName);
+        //new Thread(() -> imageStorage.uploadFile(target.getName().fullName)).start();
+        FileStorage.deleteDrc(target.getName().fullName);
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        ImageStorage imageStorage = new ImageStorage(person.getName().fullName);
+        FileStorage fileStorage = new FileStorage(person.getName().fullName);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
