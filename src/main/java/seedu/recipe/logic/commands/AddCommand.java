@@ -1,11 +1,7 @@
 package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.recipe.logic.parser.CliSyntax.*;
 
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
@@ -21,9 +17,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_DURATION + "DURATION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
