@@ -22,7 +22,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -50,6 +50,22 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    /**
+    * Adds a tag to the person
+    */
+    public void addTag(Tag toAdd) {
+        tags.add(toAdd);
+    }
+
+    /**
+     * Deletes a tag from the person.
+     *
+     * @param toDelete the tag to deleted from the person.
+     */
+    public void deleteTag(Tag toDelete) {
+        tags.remove(toDelete);
     }
 
     /**
@@ -98,7 +114,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address);
     }
 
     @Override
