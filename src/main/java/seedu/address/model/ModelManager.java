@@ -114,25 +114,25 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    @Override
-    public void hasTransaction(Transaction transaction) {
-        // implementation here
-    }
-
-    @Override
-    public void addTransaction(Transaction transaction, Person owner) {
-        // implementation here
-    }
-
-    @Override
-    public void deleteTransaction(Transaction transaction) {
-        // implementation here
-    }
-
-    @Override
-    public void setTransaction(Transaction target, Transaction editedTxn) {
-        // implementation here
-    }
+    //    @Override
+    //    public void hasTransaction(Transaction transaction) {
+    //        // implementation here
+    //    }
+    //
+    //    @Override
+    //    public void addTransaction(Transaction transaction, Person owner) {
+    //        // implementation here
+    //    }
+    //
+    //    @Override
+    //    public void deleteTransaction(Transaction transaction) {
+    //        // implementation here
+    //    }
+    //
+    //    @Override
+    //    public void setTransaction(Transaction target, Transaction editedTxn) {
+    //        // implementation here
+    //    }
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -145,10 +145,10 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
-    @Override
-    public ObservableList<Transaction> getFilteredTransactionList() {
-        return filteredTransactions;
-    }
+    //@Override
+    //public ObservableList<Transaction> getFilteredTransactionList() {
+    //return filteredTransactions;
+    //}
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
@@ -156,10 +156,10 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    @Override
-    public void updateFilteredTransactionsList(Predicate<Transaction> predicate) {
-        // implementation here
-    }
+    //@Override
+    //public void updateFilteredTransactionsList(Predicate<Transaction> predicate) {
+    // implementation here
+    //}
 
     @Override
     public boolean equals(Object obj) {
