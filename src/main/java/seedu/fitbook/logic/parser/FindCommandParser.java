@@ -2,6 +2,8 @@ package seedu.fitbook.logic.parser;
 
 import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_PREFIX;
+import static seedu.fitbook.commons.core.Messages.MESSAGE_NO_ARGS;
+import static seedu.fitbook.commons.core.Messages.MESSAGE_NO_PREFIX;
 
 import java.util.Arrays;
 
@@ -29,17 +31,8 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
 
-        if (!trimmedArgs.contains("/")) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-
-        //check if empty after /
+        checkParseStringFormat(trimmedArgs);
 
         String prefix = trimmedArgs.substring(0, trimmedArgs.indexOf('/'));
         String[] allKeywords = {trimmedArgs.substring(trimmedArgs.indexOf('/') + 1)};
@@ -73,5 +66,26 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    /**
+     * Checks the format of the given {@code String} of arguments in the context of the FindCommand.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public void checkParseStringFormat(String trimmedString) throws ParseException {
+        if (trimmedString.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_NO_ARGS, FindCommand.MESSAGE_USAGE));
+        }
+
+        if (!trimmedString.contains("/")) {
+            throw new ParseException(
+                    String.format(MESSAGE_NO_PREFIX, FindCommand.PREFIX_USAGE));
+        }
+
+        if (trimmedString.substring(trimmedString.indexOf('/') + 1).isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_NO_ARGS, FindCommand.MESSAGE_USAGE));
+        }
     }
 }
