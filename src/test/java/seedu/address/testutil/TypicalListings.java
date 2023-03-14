@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.ListingBook;
 import seedu.address.model.listing.Listing;
 
 
@@ -34,6 +35,16 @@ public class TypicalListings {
 
     private TypicalListings() {} // prevents instantiation
 
+    /**
+     * Returns an {@code ListingBook} with all the typical listings.
+     */
+    public static ListingBook getTypicalListingBook() {
+        ListingBook lb = new ListingBook();
+        for (Listing listing : getTypicalListings()) {
+            lb.addListing(listing);
+        }
+        return lb;
+    }
 
     public static List<Listing> getTypicalListings() {
         return new ArrayList<>(Arrays.asList(CHICKEN_RICE_UNCLE, TOILET_CLEANER, SOFTWARE_DEVELOPER));
