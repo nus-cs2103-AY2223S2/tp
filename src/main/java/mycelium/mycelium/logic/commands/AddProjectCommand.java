@@ -23,14 +23,14 @@ public class AddProjectCommand extends Command {
         + CliSyntax.PREFIX_SOURCE + "PROJECT SOURCE "
         + CliSyntax.PREFIX_PROJECT_DESCRIPTION + "PROJECT DESCRIPTION "
         + CliSyntax.PREFIX_ACCEPTED_DATE + "DATE PROJECT WAS ACCEPTED "
-        + CliSyntax.PREFIX_DEADLINE_DATE + "DEADLINE OF PROJECT "
+        + CliSyntax.PREFIX_DEADLINE_DATE + "DEADLINE OF PROJECT\n"
         + "Example: " + COMMAND_ACRONYM + " "
         + CliSyntax.PREFIX_PROJECT_NAME + "Mycelium "
         + CliSyntax.PREFIX_CLIENT_NAME + "Alice Baker "
         + CliSyntax.PREFIX_PROJECT_STATUS + "done "
         + CliSyntax.PREFIX_SOURCE + "Fiverr "
         + CliSyntax.PREFIX_PROJECT_DESCRIPTION + "Cli-based project management app "
-        + CliSyntax.PREFIX_ACCEPTED_DATE + "1-Dec-2023"
+        + CliSyntax.PREFIX_ACCEPTED_DATE + "1-Dec-2023 "
         + CliSyntax.PREFIX_DEADLINE_DATE + "31-Dec-2023";
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
