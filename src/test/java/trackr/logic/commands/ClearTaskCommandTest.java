@@ -1,7 +1,7 @@
 package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
@@ -23,8 +23,8 @@ public class ClearTaskCommandTest {
 
     @Test
     public void execute_nonEmptyTaskList_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
+        Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
         expectedModel.setTaskList(new TaskList());
 
         assertCommandSuccess(new ClearTaskCommand(), model, ClearTaskCommand.MESSAGE_SUCCESS, expectedModel);

@@ -7,7 +7,7 @@ import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import trackr.model.task.Task;
  */
 public class DeleteTaskCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredTaskList_success() {
@@ -34,7 +34,7 @@ public class DeleteTaskCommandTest {
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
 
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
@@ -57,7 +57,7 @@ public class DeleteTaskCommandTest {
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
         showNoTask(expectedModel);
 

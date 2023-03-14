@@ -22,6 +22,7 @@ import trackr.logic.commands.DeleteTaskCommand;
 import trackr.logic.commands.EditSupplierCommand;
 import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.logic.commands.EditTaskCommand;
+import trackr.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindSupplierCommand;
 import trackr.logic.commands.FindTaskCommand;
@@ -34,7 +35,7 @@ import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.model.task.TaskNameContainsKeywordsPredicate;
 import trackr.testutil.EditSupplierDescriptorBuilder;
-import trackr.testutil.TaskDescriptorBuilder;
+import trackr.testutil.EditTaskDescriptorBuilder;
 import trackr.testutil.SupplierBuilder;
 import trackr.testutil.SupplierUtil;
 import trackr.testutil.TaskBuilder;
@@ -112,28 +113,28 @@ public class TrackrParserTest {
         EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder(supplier).build();
         EditSupplierCommand command = (EditSupplierCommand) parser.parseCommand(EditSupplierCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_OBJECT.getOneBased() + " " + SupplierUtil.getEditSupplierDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_OBJECT, descriptor), command);
+        assertEquals(new EditSupplierCommand(INDEX_FIRST_OBJECT, descriptor), command);
     }
 
     @Test
     public void parseCommand_editTask() throws Exception {
         Task task = new TaskBuilder().build();
-        TaskDescriptor descriptor = new TaskDescriptorBuilder(task).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
         EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
                 EditTaskCommand.COMMAND_WORD + " "
                         + INDEX_FIRST_OBJECT.getOneBased()
-                        + " " + TaskUtil.getTaskDescriptorDetails(descriptor));
+                        + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
         assertEquals(new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor), command);
     }
 
     @Test
     public void parseCommand_editTaskShortcut() throws Exception {
         Task task = new TaskBuilder().build();
-        TaskDescriptor descriptor = new TaskDescriptorBuilder(task).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
         EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
                 EditTaskCommand.COMMAND_WORD_SHORTCUT + " "
                         + INDEX_FIRST_OBJECT.getOneBased()
-                        + " " + TaskUtil.getTaskDescriptorDetails(descriptor));
+                        + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
         assertEquals(new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor), command);
     }
 

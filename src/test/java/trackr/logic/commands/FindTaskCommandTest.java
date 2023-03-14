@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.BUY_EGGS_D;
 import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -24,8 +24,8 @@ import trackr.model.task.TaskNameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindTaskCommand}.
  */
 public class FindTaskCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
 
     @Test
     public void equals() {

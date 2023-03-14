@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_SUPPLIER;
-import static trackr.testutil.TypicalIndexes.INDEX_SECOND_SUPPLIER;
+import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
+import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -29,8 +29,8 @@ public class DeleteSupplierCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_SUPPLIER.getZeroBased());
-        DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_SUPPLIER);
+        Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
 
         String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_SUPPLIER_SUCCESS, supplierToDelete);
 
@@ -50,10 +50,10 @@ public class DeleteSupplierCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showSupplierAtIndex(model, INDEX_FIRST_SUPPLIER);
+        showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
 
-        Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_SUPPLIER.getZeroBased());
-        DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_SUPPLIER);
+        Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
 
         String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_SUPPLIER_SUCCESS, supplierToDelete);
 
@@ -66,9 +66,9 @@ public class DeleteSupplierCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showSupplierAtIndex(model, INDEX_FIRST_SUPPLIER);
+        showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
 
-        Index outOfBoundIndex = INDEX_SECOND_SUPPLIER;
+        Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getSupplierList().getSupplierList().size());
 
@@ -79,14 +79,14 @@ public class DeleteSupplierCommandTest {
 
     @Test
     public void equals() {
-        DeleteSupplierCommand deleteFirstCommand = new DeleteSupplierCommand(INDEX_FIRST_SUPPLIER);
-        DeleteSupplierCommand deleteSecondCommand = new DeleteSupplierCommand(INDEX_SECOND_SUPPLIER);
+        DeleteSupplierCommand deleteFirstCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
+        DeleteSupplierCommand deleteSecondCommand = new DeleteSupplierCommand(INDEX_SECOND_OBJECT);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteSupplierCommand deleteFirstCommandCopy = new DeleteSupplierCommand(INDEX_FIRST_SUPPLIER);
+        DeleteSupplierCommand deleteFirstCommandCopy = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
