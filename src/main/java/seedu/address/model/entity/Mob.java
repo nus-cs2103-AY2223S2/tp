@@ -7,32 +7,32 @@ import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Character, which is a child class of Entity
+ * Represents a mob, which is a child class of Entity
  */
-public class Character extends Entity {
-    private Stats stats;
-    private int level;
-    // Represents the amount of experience points (xp) needed for the next level-up
-    private int xp;
+public class Mob extends Entity {
+    private final Stats stats;
+    // A higher challenge rating (CR) represents an increased difficulty to defeat a mob
+    private final int challengeRating;
+    private final boolean isLegendary;
 
     /**
      * Every field should be present and non-null.
-     * @param name name of the character
-     * @param stats stats of the character (e.g. Strength, Dexterity)
-     * @param level level of the character
-     * @param xp experience points of the character
-     * @param tags tags categorizing the character
+     * @param name name of the mob
+     * @param stats stats of the mob (e.g. Strength, Dexterity)
+     * @param challengeRating challenge rating of the mob
+     * @param isLegendary legendary status of the mob
+     * @param tags tags categorizing the mob
      */
-    public Character(Name name, Stats stats, int level, int xp, Set<Tag> tags) {
+    public Mob(Name name, Stats stats, int challengeRating, boolean isLegendary, Set<Tag> tags) {
         super(name, tags);
         this.stats = stats;
-        this.level = level;
-        this.xp = xp;
+        this.challengeRating = challengeRating;
+        this.isLegendary = isLegendary;
     }
 
-    public int getLevel() { return this.level; }
+    public int getChallengeRating() { return this.challengeRating; }
 
-    public int getXP() { return this.xp; }
+    public boolean getLegendaryStatus() { return this.isLegendary; }
 
     @Override
     public int hashCode() {
@@ -42,8 +42,8 @@ public class Character extends Entity {
                 stats.getStrength(),
                 stats.getDexterity(),
                 stats.getIntelligence(),
-                getLevel(),
-                getXP(),
+                getChallengeRating(),
+                getLegendaryStatus(),
                 getTags()
         );
     }
@@ -51,13 +51,13 @@ public class Character extends Entity {
     @Override
     public String toString() {
         String characterDetails = String.format(
-                "Name: %s | Str: %d | Dex: %d | Int: %d | Level: %d | XP: %d",
+                "Name: %s | Str: %d | Dex: %d | Int: %d | CR: %d | Legendary: %b",
                 getName(),
                 stats.getStrength(),
                 stats.getDexterity(),
                 stats.getIntelligence(),
-                getLevel(),
-                getXP()
+                getChallengeRating(),
+                getLegendaryStatus()
         );
 
         final StringBuilder builder = new StringBuilder(characterDetails);
