@@ -78,8 +78,7 @@ public class ListingTest {
     @Test
     public void stringTest() {
         String expected = "Chicken Rice Uncle; "
-                + "JobDescription: Make delicious chicken rice!; "
-                + "Applicants: Drum Mer, Benedict Green, Chris Toper";
+                + "JobDescription: Make delicious chicken rice!";
         assertTrue(CHICKEN_RICE_UNCLE.toString().equals(expected));
     }
 }

@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -39,6 +40,8 @@ public class ListingBookParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

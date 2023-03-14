@@ -1,19 +1,25 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ListingBook;
 import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.listing.TitleContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.
@@ -79,7 +85,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the listing book, filtered listing list and selected listing in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -90,6 +96,20 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedListingBook, actualModel.getListingBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredListingList());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the listing at the given {@code targetIndex} in the
+     * {@code model}'s listing book.
+     */
+    public static void showListingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredListingList().size());
+
+        Listing listing = model.getFilteredListingList().get(targetIndex.getZeroBased());
+        final String[] splitName = listing.getTitle().fullTitle.split("\\s+");
+        model.updateFilteredListingList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredListingList().size());
     }
 
 }
