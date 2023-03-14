@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -111,6 +112,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String tag} into a {@code ModuleTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Moduletag} is invalid.
+     */
+    public static ModuleTag parseModuleTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!ModuleTag.isValidTagName(trimmedTag)) {
+            throw new ParseException(ModuleTag.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleTag(trimmedTag);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -118,6 +134,18 @@ public class ParserUtil {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> moduleTags} into a {@code Set<ModuleTag>}.
+     */
+    public static Set<ModuleTag> parseModuleTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<ModuleTag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseModuleTag(tagName));
         }
         return tagSet;
     }

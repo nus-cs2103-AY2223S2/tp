@@ -257,6 +257,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* students from NUS
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
@@ -270,29 +271,58 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                       | I want to …​                                        | So that I can…​                                                        |
+|----------|-----------------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | Student                                       | see usage instructions                              | refer to instructions when I forget how to use the App                 |
+| `* * *`  | Student                                       | add a new contact                                   |                                                                        |
+| `* * *`  | Student                                       | delete a contact                                    | remove a contact that I no longer need                                 |
+| `* * *`  | Student                                       | view a person's contact details                     | contact the person(TA/Professor) to seek help for my tutorials         |
+| `* * *`  | Student                                       | find a contact by name                              | locate details of persons without having to go through the entire list |
+| `* * *`  | Student                                       | filter my contacts by tag                           | find my contacts that is related to the tag quickly                    |
+| `* * *`  | Student                                       | edit a contact                                      | update the contact details of my contacts when they change             |
+| `* * *`  | Student                                       | assign modules to my contacts                       | know which of my contacts are in charge of which modules               |
+| `* * *`  | Student                                       | filter my contacts by module                        | find all the relevant contacts of a module I am taking                 |
+| `* *`    | Student                                       | undo my last command                                | reverse my actions if i made a wrong change to ModCheck                |
+| `* *`    | Student                                       | be able to set certain fields as 'unknown'          | add contacts that I may not know all the details of                    |
+| `* *`    | Student                                       | hide private contact details                        | minimize chance of someone else seeing them by accident                |
+| `* *`    | Student                                       | delete all contacts                                 | remove all contacts for a fresh start                                  |
+| `*`      | Student with many contacts | sort contacts by name                                | locate a contact easily                                                 |
+| `*`      | Student                                       | use the arrow keys to re-enter my previous commands | enter recently used commands much faster                               |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ModCheck` and the **Actor** is the `Student`, unless specified otherwise)
+
+**Use case: Add a person**
+
+**MSS**
+
+1. Student requests to add person. 
+2. Student enter the required details and submits.
+3. ModCheck creates a new person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given details is of the wrong format.
+  
+    * 2a1. ModCheck shows an error message.
+    Use case continues at step 2.
+* 2b. Person already exists in ModCheck
+    * 2b1. ModCheck shows an error message.
+    Use case continues at step 2.
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Student requests to list persons
+2.  ModCheck shows a list of persons
+3.  Student requests to delete a specific person in the list
+4.  ModCheck deletes the person
 
     Use case ends.
 
@@ -304,9 +334,84 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ModCheck shows an error message.
 
       Use case resumes at step 2.
+
+
+#### Use case: Filter contacts by tag
+
+**MSS**
+
+1. Student requests to filter persons by tag.
+2. ModCheck shows a list of persons with the tag.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. There are no persons with the tag.
+
+    * 2a1. ModCheck shows an error message.
+        
+        Use case ends.
+
+
+
+#### Use case: View a person's contact details
+
+**MSS**
+
+1.  Student requests to list contacts
+2.  ModCheck shows a list of contacts
+3.  Student requests to view a specific contact in the list
+4.  ModCheck displays the person's contact details
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ModCheck shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3b.  User requests to view multiple people in the list
+
+    * 3b1. ModCheck validates indexes given is correct.
+    * 3b2. ModCheck displays all person's contact details
+
+      Use case ends.
+  
+      * 3b1a. ModCheck validates indexes given is incorrect
+      * 3b1b. ModChecks shows an error message.
+
+
+#### Use case: Edit a contact
+
+**MSS**
+
+1.  Student requests to edit a contact supplying new values for certain fields 
+2.  ModCheck finds the relevant contact and edits it
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact does not exist
+    * 2a1. ModCheck informs student that contact does not exist
+
+        Use case ends.
+
+* 3a. The new value for the specified field is invalid
+    * 3a1. ModCheck informs student that the given value for the specified field is invalid 
+
+      Use case ends.
 
 *{More to be added}*
 
@@ -314,15 +419,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A student with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  A student should be able to learn and use commands provided by MODCheck easily within an hour of usage.
+5.  Should be able to handle exceptions, errors and invalid inputs without crashing.
+6.  Should be able to still work even if there is no data file present.
+7.  Should be able to function offline - data file and features should work without network connection
+8.  Data file should be human-readable and editable with a simple text editor
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Contact**: An entry in ModCheck describing a person, consisting of a name and fields containing contact details of 
+  that person
+* **Contact details**: Information regarding a person's phone number, email, office location, telegram, LinkedIn, or 
+  any other information relevant for students to communicate with that person
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **TA**: Teaching Assistant - people who assists Professors in conducting tutorial, labs and other classes
+* **GUI**: Graphical User Interface - a system of interactive visual components for computer software
+* **CLI**: Command Line Interface - a text-based user interface (UI) used to run programs, manage computer files and interact with the computer
+* **Index**: A number indicating the order or position in a given list
+* **Person**: Referring to TA or Professor
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -365,6 +483,26 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Viewing a person's contact details
+
+1. Viewing a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `view` command. Multiple persons in the list. Contact details not hidden
+
+       1. Test case: `view 1`<br>
+          Expected: The contact details of the first person in the list is displayed in ModCheck.
+       
+       2. Test case: `view 1 3 4 `<br>
+          Expected: The contact details of the first, third and fourth person in the list is displayed in ModCheck.
+
+       3. Test case: `view 0`<br>
+          Expected: No person's contact details is displayed. Error details shown in the status message. Status bar remains the same.
+
+       4. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
+          Expected: Similar to previous.
+
+
 
 1. _{ more test cases …​ }_
 

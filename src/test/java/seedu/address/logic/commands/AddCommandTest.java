@@ -147,6 +147,23 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasUndoableCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public String executeUndo() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean hasRedoableCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public String executeRedo() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
