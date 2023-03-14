@@ -6,6 +6,7 @@ import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseSuc
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
 import org.junit.jupiter.api.Test;
+import seedu.internship.logic.commands.DeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -20,7 +21,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_INTERNSHIP));
     }
 
     @Test
