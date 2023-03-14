@@ -74,4 +74,12 @@ public class CommandHistory {
 
         throw new OutOfBoundsCommandHistoryException();
     }
+
+    /**
+     * Clears {@code CommandHistory}
+     */
+    public static void clear() {
+        commands.clear();
+        index = -1;
+    }
 }
