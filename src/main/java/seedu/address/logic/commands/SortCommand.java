@@ -29,7 +29,9 @@ public class SortCommand extends Command {
             + "PREFIX/a or PREFIX/d\n"
             + "Examples: \n"
             + COMMAND_WORD + " " + Prefix.GROUP_TAG + "a" + Prefix.NAME + "d\n"
-            + COMMAND_WORD + " " + Prefix.MODULE_TAG + "";
+            + COMMAND_WORD + " " + Prefix.MODULE_TAG + "\n"
+            + "If you want to sort by your original contact's index, then the command is:\n"
+            + COMMAND_WORD + " " + "index";
     private final Comparator<Person> comparator;
     private final String comparatorDesc;
 

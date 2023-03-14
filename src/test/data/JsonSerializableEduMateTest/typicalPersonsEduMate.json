@@ -3,6 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
+    "index" : 0,
     "address": "National University of Singapore",
     "phone": "90102030",
     "groups": [
@@ -22,6 +23,7 @@
       "name": "Albert Park",
       "email": "albertpark@gmail.com",
       "telegramHandle": "@albertpark",
+      "index" : 1,
       "address": "2 Blackmore Drive",
       "groups": [
         "TA"
@@ -40,6 +42,7 @@
       "name": "Ang Mei Hua",
       "email": "angmeihua@gmail.com",
       "telegramHandle": "@angmeihua",
+      "index" : 2,
       "address": "91 Ang Mo Kio Avenue 4",
       "groups": [
         "Study",
@@ -59,6 +62,7 @@
       "name": "Bart Lee",
       "email": "bartlee@gmail.com",
       "telegramHandle": "@bartlee",
+      "index" : 3,
       "address": "90 Bartley Road",
       "groups": [
         "CCA"
@@ -77,6 +81,7 @@
       "name": "Clark Kee",
       "email": "clarkkee@gmail.com",
       "telegramHandle": "@clarkkee",
+      "index" : 4,
       "address": "10 Eu Tong Sen Street",
       "groups": [
         "NUS"
@@ -95,6 +100,7 @@
       "name": "Dawson Quentin",
       "email": "dawsonquentin@gmail.com",
       "telegramHandle": "@dawsonquentin",
+      "index" : 5,
       "address": "301 Commonwealth Avenue",
       "groups": [
         "Groupmate"
@@ -112,6 +118,7 @@
       "name": "Edward Richards",
       "email": "edwardrichards@gmail.com",
       "telegramHandle": "@edwardrichards",
+      "index" : 6,
       "address": "301 South Buona Vista Road",
       "groups": [
         "CCA"
@@ -130,6 +137,7 @@
       "name": "Ford Canning",
       "email": "fordcanning@gmail.com",
       "telegramHandle": "@fordcanning",
+      "index" : 7,
       "address": "170 River Valley Road",
       "groups": [
         "TA"
@@ -148,6 +156,7 @@
       "name": "George Richards",
       "email": "georgerichards@gmail.com",
       "telegramHandle": "@georgerichards",
+      "index" : 8,
       "address": "301 South Buona Vista Road",
       "groups": [
         "CCA"
@@ -166,6 +175,7 @@
       "name": "Hong Shan",
       "email": "hongshan@gmail.com",
       "telegramHandle": "@hongshan",
+      "index" : 9,
       "address": "920 Tiong Bahru Road",
       "groups": [
         "Groupmate"
@@ -184,6 +194,7 @@
       "name": "Isaac Newton",
       "email": "isaacnewton@gmail.com",
       "telegramHandle": "@isaacnewton",
+      "index" : 10,
       "address": "49 Scotts Road",
       "groups": [
         "TA",
@@ -203,6 +214,7 @@
       "name": "Joo Koon",
       "email": "jookoon@gmail.com",
       "telegramHandle": "@jookoon",
+      "index" : 11,
       "address": "91 Joo Koon Circle",
       "groups": [
         "Groupmate"
@@ -221,6 +233,7 @@
       "name": "Kevin Ho",
       "email": "kevinho@gmail.com",
       "telegramHandle": "@kevinho",
+      "index" : 12,
       "address": "900 Upper Serangoon Road",
       "groups": [
         "NUS"
@@ -239,6 +252,7 @@
       "name": "Lavender Crawford",
       "email": "lavendercrawford@gmail.com",
       "telegramHandle": "@lavendercrawford",
+      "index" : 13,
       "address": "50 Kallang Road",
       "groups": [
         "Groupmate"
@@ -257,6 +271,7 @@
       "name": "Mary Meng",
       "email": "marymeng@gmail.com",
       "telegramHandle": "@marymeng",
+      "index" : 14,
       "address": "60 Marymount Road",
       "groups": [
         "CCA"
@@ -275,6 +290,7 @@
       "name": "Nicole Hai Wei Ting",
       "email": "nicolehaiweiting@gmail.com",
       "telegramHandle": "@nicolehaiweiting",
+      "index" : 15,
       "address": "20 Republic Avenue",
       "groups": [
         "CCA"
