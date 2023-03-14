@@ -259,7 +259,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 > This product is for fish enthusiasts who wants to keep track of their numerous fishes' details, such as their health, tank status, feeding requirements etc.
 
-**Value proposition**: 
+**Value proposition**:
 
 > This product makes it easier for fish keepers to keep track of numerous tasks to maintain the health of the fish and fish tanks. There are many fine details that go into maintaining an environment for live aquatic animals, and this product will help track them.
 
@@ -312,7 +312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User specifies a tank.
 
     * 1a1. Fish is added to the tank.
-  
+
   Use case ends.
 
 **Use case: Add a tank**
@@ -344,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. User specifies if the task is a `deadline`.
 
-  * 1b1. `deadline` task is created. 
+  * 1b1. `deadline` task is created.
 
     Use case ends.
 
