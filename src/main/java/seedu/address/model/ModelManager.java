@@ -33,8 +33,8 @@ public class ModelManager implements Model {
     private final FilteredList<Technician> filteredTechnicians;
     private final FilteredList<Service> filteredServices;
     private final FilteredList<Vehicle> filteredVehicles;
-    private final FilteredList<Part> filteredParts;
-    private final FilteredList<Appointment> filteredAppointment;
+    //    private final FilteredList<Part> filteredParts;
+    //    private final FilteredList<Appointment> filteredAppointment;
     private final Shop shop;
 
     /**
@@ -55,8 +55,8 @@ public class ModelManager implements Model {
         filteredTechnicians = new FilteredList<>(this.shop.getTechnicianList());
         filteredServices = new FilteredList<>(this.shop.getServiceList());
         filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
-        filteredParts = new FilteredList<>(this.shop.getPartList());
-        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+        //        filteredParts = new FilteredList<>(this.shop.getPartList());
+        //        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
 
     }
 
