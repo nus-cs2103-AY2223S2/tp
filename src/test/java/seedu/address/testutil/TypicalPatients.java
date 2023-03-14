@@ -33,8 +33,8 @@ public class TypicalPatients {
             .withName("George Townsend").build();
 
     // Manually added
-    public static final Patient HOON = new PatientBuilder().withNric("T2222222L").withName("Hoon Meier").build();
-    public static final Patient IDA = new PatientBuilder().withName("S33333333L").withNric("Ida Mueller").build();
+    public static final Patient HOON = new PatientBuilder().withName("Hoon Meier").withNric("T2222222L").build();
+    public static final Patient IDA = new PatientBuilder().withName("Ida Mueller").withNric("S3333333L").build();
 
     // Manually added - Patient's details found in {@code CommandTestUtil}
     public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withNric(VALID_NRIC_AMY).build();
