@@ -1,36 +1,28 @@
 package seedu.vms.commons.util;
 
-import static java.util.Objects.requireNonNull;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
-import seedu.vms.commons.core.LogsCenter;
-import seedu.vms.commons.exceptions.DataConversionException;
-
 /**
  * Converts a Java object instance to JSON and vice versa
  */
 public class JsonUtil {
-
-    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+    private static final String FORMAT_INVALID_JSON_FILE = "File is not in a valid JSON format: %s";
 
     private static ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules()
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
@@ -41,60 +33,16 @@ public class JsonUtil {
                     .addSerializer(Level.class, new ToStringSerializer())
                     .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
 
-    static <T> void serializeObjectToJsonFile(Path jsonFile, T objectToSerialize) throws IOException {
-        FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize));
-    }
-
-    static <T> T deserializeObjectFromJsonFile(Path jsonFile, Class<T> classOfObjectToDeserialize)
-            throws IOException {
-        return fromJsonString(FileUtil.readFromFile(jsonFile), classOfObjectToDeserialize);
-    }
 
     /**
-     * Returns the Json object from the given file or {@code Optional.empty()} object if the file is not found.
-     * If any values are missing from the file, default values will be used, as long as the file is a valid json file.
-     * @param filePath cannot be null.
-     * @param classOfObjectToDeserialize Json file has to correspond to the structure in the class given here.
-     * @throws DataConversionException if the file format is not as expected.
-     */
-    public static <T> Optional<T> readJsonFile(
-            Path filePath, Class<T> classOfObjectToDeserialize) throws DataConversionException {
-        requireNonNull(filePath);
-
-        if (!Files.exists(filePath)) {
-            logger.info("Json file " + filePath + " not found");
-            return Optional.empty();
-        }
-
-        T jsonFile;
-
-        try {
-            jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);
-        } catch (IOException e) {
-            logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
-            throw new DataConversionException(e);
-        }
-
-        return Optional.of(jsonFile);
-    }
-
-    /**
-     * Saves the Json object to the specified file.
-     * Overwrites existing file if it exists, creates a new file if it doesn't.
-     * @param jsonFile cannot be null
-     * @param filePath cannot be null
-     * @throws IOException if there was an error during writing to the file
-     */
-    public static <T> void saveJsonFile(T jsonFile, Path filePath) throws IOException {
-        requireNonNull(filePath);
-        requireNonNull(jsonFile);
-
-        serializeObjectToJsonFile(filePath, jsonFile);
-    }
-
-
-    /**
-     * Deserializes a JSON file in the resource folder.
+     * Deserializes a JSON file in the resource folder to an object instance.
+     *
+     * @param <T> - the type of the object to deserialize to.
+     * @param pathString - the path to the file to deserialize in the resource
+     *      folder as a String.
+     * @param valueType - the type of the object to deserialize to.
+     * @throws IOException if an I/O error occurs.
+     * @throws NullPointerException if any parameter is {@code null}.
      */
     public static <T> T deserializeFromResource(String pathString, Class<T> valueType)
                 throws IOException {
@@ -105,14 +53,20 @@ public class JsonUtil {
 
 
     /**
-     * Deserializes a JSON file in the specified pathString.
+     * Deserializes a JSON file to an object instance.
      *
+     * @param <T> - the type of the object to deserialize to.
+     * @param path - path to the file to deserialize from.
+     * @param valueType - the type of the object to deserialize to.
      * @throws IOException if an I/O exception occurs.
+     * @throws NullPointerException if any parameter is {@code null}.
      */
-    public static <T> T deserializeFromFile(String pathString, Class<T> valueType)
+    public static <T> T deserializeFromFile(Path path, Class<T> valueType)
                 throws IOException {
-        try (BufferedReader reader = FileUtil.getFileReader(pathString)) {
+        try (BufferedReader reader = FileUtil.getFileReader(path)) {
             return objectMapper.readValue(reader, valueType);
+        } catch (JsonParseException | JsonMappingException jsonEx) {
+            throw new IOException(FORMAT_INVALID_JSON_FILE, jsonEx);
         }
     }
 
@@ -120,36 +74,18 @@ public class JsonUtil {
     /**
      * Serializes the given object instance to the specified file.
      *
-     * @param pathString - path of the file to serialize to.
+     * @param path - path to serialize to.
      * @param instance - the object instance to serialize.
      * @throws IOException if an I/O error occurs.
+     * @throws NullPointerException if any parameter is {@code null}.
      */
-    public static void serializeToFile(String pathString, Object instance) throws IOException {
-        try (BufferedWriter writer = FileUtil.getFileWriter(pathString)) {
+    public static void serializeToFile(Path path, Object instance) throws IOException {
+        try (BufferedWriter writer = FileUtil.getFileWriter(path)) {
             objectMapper.writerWithDefaultPrettyPrinter()
                     .writeValue(writer, instance);
         }
     }
 
-
-    /**
-     * Converts a given string representation of a JSON data to instance of a class
-     * @param <T> The generic type to create an instance of
-     * @return The instance of T with the specified values in the JSON string
-     */
-    public static <T> T fromJsonString(String json, Class<T> instanceClass) throws IOException {
-        return objectMapper.readValue(json, instanceClass);
-    }
-
-    /**
-     * Converts a given instance of a class into its JSON data string representation
-     * @param instance The T object to be converted into the JSON string
-     * @param <T> The generic type to create an instance of
-     * @return JSON data representation of the given class instance, in string
-     */
-    public static <T> String toJsonString(T instance) throws JsonProcessingException {
-        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(instance);
-    }
 
     /**
      * Contains methods that retrieve logging level from serialized string.

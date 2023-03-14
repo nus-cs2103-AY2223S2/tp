@@ -11,7 +11,7 @@
 <GridPane hgap="5.0" minHeight="-Infinity" vgap="10.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
-      <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" prefWidth="273.0" />
+      <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints vgrow="SOMETIMES" />
