@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.commons.core.LogsCenter;
+import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.Event;
 import seedu.calidr.model.task.Task;
@@ -189,8 +190,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTask(Task target) {
-        taskList.removeTask(target);
+    public void deleteTask(Index targetIndex) {
+        taskList.deleteTask(targetIndex);
     }
 
     @Override
@@ -200,9 +201,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-        taskList.setTask(target, editedTask);
+    public void setTask(Index targetIndex, Task editedTask) {
+        requireAllNonNull(targetIndex, editedTask);
+        taskList.setTask(targetIndex, editedTask);
     }
 
     //=========== Filtered Task List Accessors =============================================================

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.calidr.commons.core.GuiSettings;
+import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.Task;
 
@@ -111,7 +112,7 @@ public interface Model {
      * Deletes the given task.
      * The task must exist in the task list.
      */
-    void deleteTask(Task task);
+    void deleteTask(Index targetIndex);
 
     /**
      * Adds the given task.
@@ -124,7 +125,7 @@ public interface Model {
      * {@code target} must exist in the task list.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
      */
-    void setTask(Task target, Task editedTask);
+    void setTask(Index targetIndex, Task editedTask);
 
     /**
      * Returns an unmodifiable view of the filtered task list
