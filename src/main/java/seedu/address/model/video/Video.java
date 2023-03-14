@@ -1,7 +1,9 @@
 package seedu.address.model.video;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Duration;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,6 +18,8 @@ import seedu.address.model.tag.Tag;
 public class Video {
 
     private final VideoName name;
+    private final Duration timestamp;
+    private final boolean hasWatched;
 
     private final Set<Tag> tags = new HashSet<>();
 
@@ -25,14 +29,26 @@ public class Video {
      * @param name The name of the video.
      * @param tags The tags applied to the video.
      */
-    public Video(VideoName name, Set<Tag> tags) {
-        requireNonNull(name);
+    public Video(VideoName name, Duration timestamp, boolean hasWatched, Set<Tag> tags) {
+        requireAllNonNull(name, timestamp, hasWatched, tags);
+
         this.name = name;
+        this.timestamp = timestamp;
+        this.hasWatched = hasWatched;
+
         this.tags.addAll(tags);
     }
 
     public VideoName getName() {
         return name;
+    }
+
+    public Duration getTimestamp() {
+        return timestamp;
+    }
+
+    public boolean hasWatched() {
+        return hasWatched;
     }
 
     /**
