@@ -121,7 +121,6 @@ public class MainApp extends Application {
             initialDeliveryJobSystemData = new DeliveryJobSystem();
         }
 
-        // return new ModelManager(initialAddressData, userPrefs);
         return new ModelManager(initialAddressData, initialDeliveryJobSystemData, userPrefs);
     }
 
