@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -142,6 +143,33 @@ public class ParserUtil {
             throw new ParseException(RiskLevel.MESSAGE_CONSTRAINTS);
         }
         return new RiskLevel(upperRisk);
+    }
+
+    public static AvailableDate parseDateRange(String datePair) throws ParseException {
+        requireNonNull(datePair);
+
+        String[] dates = datePair.split(",");
+        String startDate = dates[0];
+        String endDate = dates[1];
+
+        requireNonNull(startDate, endDate);
+        String trimmedStartDate = startDate.trim();
+        String trimmedEndDate = endDate.trim();
+
+        try {
+            return new AvailableDate(trimmedStartDate, trimmedEndDate);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
+    }
+
+    public static Set<AvailableDate> parseDateRanges(Collection<String> datePairs) throws ParseException {
+        requireNonNull(datePairs);
+        final Set<AvailableDate> datesSet = new HashSet<>();
+        for (String tagName : datePairs) {
+            datesSet.add(parseDateRange(tagName));
+        }
+        return datesSet;
     }
 
     /**
