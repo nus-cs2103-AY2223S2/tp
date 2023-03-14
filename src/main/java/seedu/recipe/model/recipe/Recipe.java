@@ -2,10 +2,7 @@ package seedu.recipe.model.recipe;
 
 import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.recipe.model.tag.Tag;
 
@@ -13,45 +10,41 @@ import seedu.recipe.model.tag.Tag;
  * Represents a Recipe in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
+
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class Recipe {
 
-    // Identity fields
+    // Identity field
     private final Name name;
-    private final Ingredient ingredient;
-    private final Email email;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
-    private final Step step;
+    private Optional<RecipePortion> portion = Optional.empty();
+    private Optional<RecipeDuration> duration = Optional.empty();
+    private Optional<Set<Tag>> tags = Optional.empty();
+    private Optional<List<Ingredient>> ingredients = Optional.empty();
+    private Optional<List<Step>> steps = Optional.empty();
 
     /**
-     * Every field must be present and not null.
+     * Only the name field is required. The rest are optional (but recommended)
      */
-    public Recipe(Name name, Ingredient ingredient, Email email, Address address, Set<Tag> tags, Step step) {
-        requireAllNonNull(name, ingredient, email, address, tags);
+    public Recipe(Name name) {
+        requireAllNonNull(name);
         this.name = name;
-        this.ingredient = ingredient;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.step = step;
     }
 
     public Name getName() {
         return name;
     }
-
-    public Ingredient getIngredient() {
-        return ingredient;
+    public List<Ingredient> getIngredients() {
+        return ingredients.get();
     }
 
-    public Email getEmail() {
-        return email;
+    public RecipePortion getPortion() {
+        return portion.get();
     }
 
-    public Address getAddress() {
-        return address;
+    public RecipeDuration getDuration() {
+        return duration.get();
     }
 
     /**
@@ -59,12 +52,34 @@ public class Recipe {
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        return Collections.unmodifiableSet(tags.get());
     }
 
-    public Step getStep() {
-        return step;
+    public List<Step> getSteps() {
+        return steps.get();
     }
+
+    public void setPortion(Optional<RecipePortion> portion) {
+        this.portion = portion;
+    }
+
+    public void setDuration(Optional<RecipeDuration> duration) {
+        this.duration = duration;
+    }
+
+    public void setTags(Optional<Set<Tag>> tags) {
+        this.tags = tags;
+    }
+
+    public void setIngredients(Optional<List<Ingredient>> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public void setSteps(Optional<List<Step>> steps) {
+        this.steps = steps;
+    }
+
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -94,35 +109,59 @@ public class Recipe {
 
         Recipe otherRecipe = (Recipe) other;
         return otherRecipe.getName().equals(getName())
-                && otherRecipe.getIngredient().equals(getIngredient())
-                && otherRecipe.getEmail().equals(getEmail())
-                && otherRecipe.getAddress().equals(getAddress())
-                && otherRecipe.getTags().equals(getTags());
+                && otherRecipe.getPortion().equals(getPortion())
+                && otherRecipe.getDuration().equals(getDuration())
+                && otherRecipe.getTags().equals(getTags())
+                && otherRecipe.getIngredients().equals(getIngredients())
+                && otherRecipe.getSteps().equals(getSteps());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, ingredient, email, address, tags);
+        return Objects.hash(name, portion, duration, tags, ingredients, steps);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Ingredient: ")
-                .append(getIngredient())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getName());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        if (portion.isPresent()) {
+            builder.append("; Portion: ").append(getPortion());
+        }
+
+        if (duration.isPresent()) {
+            builder.append("; Duration: ").append(getDuration());
+        }
+
+        if (steps.isPresent()) {
+            Set<Tag> tags = getTags();
+            if (!tags.isEmpty()) {
+                builder.append("; Tags: ");
+                tags.forEach(builder::append);
+            }
+        }
+
+        if (ingredients.isPresent()) {
+            StringBuilder ingredientBuilder = new StringBuilder("; Ingredients: ");
+            List<Ingredient> ingredientList = ingredients.get();
+            for (Ingredient ingredient : ingredientList) {
+                ingredientBuilder.append(ingredient.toString() + ", ");
+            }
+            builder.append(ingredientBuilder);
+        }
+
+        if (steps.isPresent()) {
+            StringBuilder stepsBuilder = new StringBuilder("; Steps: ");
+            List<Step> stepList = steps.get();
+            int counter = 1;
+            for (Step step : stepList) {
+                stepsBuilder.append(counter + ". " + step.toString() + ", ");
+                counter++;
+            }
+            builder.append(stepsBuilder);
         }
         return builder.toString();
     }
-
 }

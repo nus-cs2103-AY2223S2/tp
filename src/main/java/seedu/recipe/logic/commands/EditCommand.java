@@ -94,7 +94,7 @@ public class EditCommand extends Command {
         assert recipeToEdit != null;
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        Ingredient updatedIngredient = editRecipeDescriptor.getPhone().orElse(recipeToEdit.getIngredient());
+        List<Ingredient> updatedIngredients = editRecipeDescriptor.getPhone().orElse(recipeToEdit.getIngredient());
         Email updatedEmail = editRecipeDescriptor.getEmail().orElse(recipeToEdit.getEmail());
         Address updatedAddress = editRecipeDescriptor.getAddress().orElse(recipeToEdit.getAddress());
         Set<Tag> updatedTags = editRecipeDescriptor.getTags().orElse(recipeToEdit.getTags());
@@ -125,7 +125,7 @@ public class EditCommand extends Command {
      */
     public static class EditRecipeDescriptor {
         private Name name;
-        private Ingredient ingredient;
+        private List<Ingredient> ingredients;
         private Email email;
         private Address address;
         private Set<Tag> tags;
@@ -138,7 +138,7 @@ public class EditCommand extends Command {
          */
         public EditRecipeDescriptor(EditRecipeDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.ingredient);
+            setPhone(toCopy.ingredients);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, ingredient, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, ingredients, email, address, tags);
         }
 
         public void setName(Name name) {

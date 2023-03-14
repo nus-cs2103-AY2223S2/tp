@@ -23,12 +23,12 @@ public class Name {
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param recipeName A valid name.
      */
-    public Name(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        recipeName = name;
+    public Name(String recipeName) {
+        requireNonNull(recipeName);
+        checkArgument(isValidName(recipeName), MESSAGE_CONSTRAINTS);
+        this.recipeName = recipeName;
     }
 
     /**

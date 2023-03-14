@@ -2,9 +2,8 @@ package seedu.recipe.model.recipe;
 
 /**
  * Represents one of a recipe's steps for a recipe in the recipe book.
- * Guarantees: immutable;
+ * Guarantees: immutable, is valid as declared in {@link #isValidStep(String)}
  */
-
 public class Step {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -17,7 +16,6 @@ public class Step {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String description;
-//    public final Recipe recipe;
 
     /**
      * Constructs a {@code Step}
@@ -25,7 +23,6 @@ public class Step {
      */
     public Step(String description) {
         this.description = description;
-//        this.recipe = recipe;
     }
 
     /**
