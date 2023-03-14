@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 import javafx.util.Pair;
 
@@ -80,6 +81,7 @@ public class UndoManager {
      * @return An AddressBook containing an earlier saved state of ModCheck
      */
     public Pair<AddressBook, String> getPreviousHistory() {
+        assert hasUndoableCommand();
         versionTracker++;
         //Note that commandHistory and addressBookHistory is off by one
         //ie: The most recent change command will lead to the second most recent address book state
@@ -88,11 +90,42 @@ public class UndoManager {
 
     /**
      * Returns an AddressBook containing a later saved state of ModCheck.
-     * @return An AddressBook containing a later saved state of ModCheck
+     * @return An AddressBook containing a later saved state of ModCheck.
      */
     public Pair<AddressBook, String> getNextHistory() {
+        assert hasRedoableCommand();
         versionTracker--;
         return new Pair<>(addressBookHistory.get(versionTracker), commandHistory.get(versionTracker));
     }
 
+    /**
+     * Returns an AddressBook with the current state of ModCheck.
+     * @return An AddressBook with the current state of ModCheck.
+     */
+    public AddressBook getCurrentState() {
+        return addressBookHistory.get(versionTracker);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        UndoManager that = (UndoManager) o;
+
+        if (maxSavedHistory != that.maxSavedHistory) {
+            return false;
+        }
+        if (versionTracker != that.versionTracker) {
+            return false;
+        }
+        if (!Objects.equals(addressBookHistory, that.addressBookHistory)) {
+            return false;
+        }
+        return Objects.equals(commandHistory, that.commandHistory);
+    }
 }
