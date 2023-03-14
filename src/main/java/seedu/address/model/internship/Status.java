@@ -23,7 +23,6 @@ public class Status {
     public static final String INTERVIEW = "interview";
     public static final String OFFERED = "offered";
     public static final String REJECTED = "rejected";
-    
     //A set of valid statuses
     public static final List<String> LIST_OF_VALID_STATUSES =
             Arrays.asList(NEW, APPLIED, ASSESSMENT, INTERVIEW, OFFERED, REJECTED);

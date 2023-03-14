@@ -1,12 +1,17 @@
 package seedu.address.ui;
 
+import static seedu.address.model.internship.Status.APPLIED;
+import static seedu.address.model.internship.Status.ASSESSMENT;
+import static seedu.address.model.internship.Status.INTERVIEW;
+import static seedu.address.model.internship.Status.NEW;
+import static seedu.address.model.internship.Status.OFFERED;
+import static seedu.address.model.internship.Status.REJECTED;
+
 import java.util.Comparator;
 import java.util.HashMap;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -15,25 +20,16 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Status;
 
-import static seedu.address.model.internship.Status.NEW;
-import static seedu.address.model.internship.Status.APPLIED;
-import static seedu.address.model.internship.Status.ASSESSMENT;
-import static seedu.address.model.internship.Status.INTERVIEW;
-import static seedu.address.model.internship.Status.OFFERED;
-import static seedu.address.model.internship.Status.REJECTED;
 
 /**
  * A UI component that displays information of a {@code Internship}.
  */
 public class InternshipCard extends UiPart<Region> {
-
-    private static final String FXML = "InternshipListCard.fxml";
-
     public static final String ROLE_LABEL = "Role: ";
+    private static final String FXML = "InternshipListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

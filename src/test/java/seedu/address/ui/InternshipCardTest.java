@@ -1,29 +1,23 @@
 package seedu.address.ui;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.ui.InternshipCard.ROLE_LABEL;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.Flow;
 import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import org.junit.jupiter.api.Test;
-
-import javafx.scene.paint.Color;
 import seedu.address.model.internship.Internship;
 import seedu.address.testutil.InternshipBuilder;
 import seedu.address.testutil.TypicalInternships;
-
-
-import static seedu.address.ui.InternshipCard.ROLE_LABEL;
 
 public class InternshipCardTest extends GuiUnitTest {
     @Test
@@ -80,7 +74,7 @@ public class InternshipCardTest extends GuiUnitTest {
         assertEquals(internshipDate.getText(), expectedDateLabel + internship.getDate().toString());
         assertEquals(internshipStatus.getText(), internship.getStatus().toString().toUpperCase());
         assertIterableEquals(internshipNodeTags.stream().map(node -> ((Label) node).getText()).sorted()
-                .collect(Collectors.toList()), internship.getTags().stream().sorted().collect(Collectors.toList()) );
+                .collect(Collectors.toList()), internship.getTags().stream().sorted().collect(Collectors.toList()));
         //@@author
     }
 
