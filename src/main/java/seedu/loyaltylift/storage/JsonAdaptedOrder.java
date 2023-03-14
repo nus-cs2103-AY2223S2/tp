@@ -78,7 +78,7 @@ public class JsonAdaptedOrder {
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
-        final Status modelEmail = Status.valueOf(status);
+        final Status modelStatus = Status.valueOf(status);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -105,6 +105,6 @@ public class JsonAdaptedOrder {
         }
         final CreatedDate modelCreatedDate = new CreatedDate(dateObject);
 
-        return new Order(modelName, modelQuantity, modelEmail, modelAddress, modelCreatedDate);
+        return new Order(modelName, modelQuantity, modelStatus, modelAddress, modelCreatedDate);
     }
 }
