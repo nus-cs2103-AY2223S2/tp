@@ -2,6 +2,7 @@ package arb.testutil;
 
 import arb.model.AddressBook;
 import arb.model.client.Client;
+import arb.model.project.Project;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -25,6 +26,14 @@ public class AddressBookBuilder {
      */
     public AddressBookBuilder withClient(Client client) {
         addressBook.addClient(client);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Project} to the {@code AddressBook} that we are building.
+     */
+    public AddressBookBuilder withProject(Project project) {
+        addressBook.addProject(project);
         return this;
     }
 

@@ -1,6 +1,7 @@
 package arb.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import arb.commons.core.GuiSettings;
@@ -17,6 +18,34 @@ public interface Model {
 
     /** {@code Predicate} for filtered project list that always evaluates to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+
+    /** {@code comparator} for sorted client list that compares using client names */
+    Comparator<Client> CLIENT_NAME_COMPARATOR = (c1, c2) -> {
+        return c1.getName().compareTo(c2.getName());
+    };
+
+    /** {@code comparator} for sorted project list that compares using project titles */
+    Comparator<Project> PROJECT_TITLE_COMPARATOR = (p1, p2) -> {
+        return p1.getTitle().compareTo(p2.getTitle());
+    };
+
+    /** {@code comparator} for sorted project list that compares using project deadlines */
+    Comparator<Project> PROJECT_DEADLINE_COMPARATOR = (p1, p2) -> {
+        if (!p1.isDeadlinePresent() && !p2.isDeadlinePresent()) {
+            return 0;
+        } else if (!p1.isDeadlinePresent()) {
+            return 1;
+        } else if (!p2.isDeadlinePresent()) {
+            return -1;
+        }
+        return p1.getDeadline().compareTo(p2.getDeadline());
+    };
+
+    /** Null {@code comparator} for sorted client list */
+    Comparator<Client> CLIENT_NO_COMPARATOR = null;
+
+    /** Null {@code comparator} for sorted project list */
+    Comparator<Project> PROJECT_NO_COMPARATOR = null;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -128,5 +157,21 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
+
+    /** Returns an unmodifiable view of the sorted client list */
+    ObservableList<Client> getSortedClientList();
+
+    /** Returns an unmodifiable view of the sorted project list */
+    ObservableList<Project> getSortedProjectList();
+
+    /**
+     * Updates the comparator of the sorted client list to filter by the given {@code comparator}.
+     */
+    void updateSortedClientList(Comparator<Client> comparator);
+
+    /**
+     * Updates the comparator of the sorted project list to filter by the given {@code comparator}.
+     */
+    void updateSortedProjectList(Comparator<Project> comparator);
 
 }
