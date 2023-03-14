@@ -55,13 +55,13 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Map<Integer, IdData<Patient>> lastShownList = model.getFilteredPatientList();
+        Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
         int patientId = toAdd.getPatient().getZeroBased();
-        if (!lastShownList.containsKey(patientId)) {
+        if (!patientList.containsKey(patientId)) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        Patient patient = lastShownList.get(patientId).getValue();
+        Patient patient = patientList.get(patientId).getValue();
 
         model.addAppointment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
