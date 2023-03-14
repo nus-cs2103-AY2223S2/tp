@@ -10,13 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.patient.Vaccine;
 
 /**
  * Jackson-friendly version of {@link Patient}.
@@ -29,17 +28,19 @@ class JsonAdaptedPatient {
     private final String phone;
     private final String dob;
     private final String bloodType;
-    private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
-    private final List<JsonAdaptedVaccine> vaccines = new ArrayList<>();
+    private final List<JsonAdaptedGroupName> allergies = new ArrayList<>();
+    private final List<JsonAdaptedGroupName> vaccines = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
      */
     @JsonCreator
-    public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("dob") String dob, @JsonProperty("bloodType") String bloodType,
-            @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
-            @JsonProperty("vaccines") List<JsonAdaptedVaccine> vaccines) {
+    public JsonAdaptedPatient(@JsonProperty("name") String name,
+            @JsonProperty("phone") String phone,
+            @JsonProperty("dob") String dob,
+            @JsonProperty("bloodType") String bloodType,
+            @JsonProperty("allergies") List<JsonAdaptedGroupName> allergies,
+            @JsonProperty("vaccines") List<JsonAdaptedGroupName> vaccines) {
         this.name = name;
         this.phone = phone;
         this.dob = dob;
@@ -61,25 +62,27 @@ class JsonAdaptedPatient {
         dob = source.getDob().toString();
         bloodType = source.getBloodType().toString();
         allergies.addAll(source.getAllergy().stream()
-                .map(JsonAdaptedAllergy::new)
+                .map(JsonAdaptedGroupName::fromModelType)
                 .collect(Collectors.toList()));
         vaccines.addAll(source.getVaccine().stream()
-                .map(JsonAdaptedVaccine::new)
+                .map(JsonAdaptedGroupName::fromModelType)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted patient object into the model's {@code Patient} object.
+     * Converts this Jackson-friendly adapted patient object into the model's
+     * {@code Patient} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted patient.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
-        final List<Allergy> patientAllergies = new ArrayList<>();
-        for (JsonAdaptedAllergy allergy : allergies) {
+        final List<GroupName> patientAllergies = new ArrayList<>();
+        for (JsonAdaptedGroupName allergy : allergies) {
             patientAllergies.add(allergy.toModelType());
         }
-        final List<Vaccine> patientVaccines = new ArrayList<>();
-        for (JsonAdaptedVaccine vaccine : vaccines) {
+        final List<GroupName> patientVaccines = new ArrayList<>();
+        for (JsonAdaptedGroupName vaccine : vaccines) {
             patientVaccines.add(vaccine.toModelType());
         }
 
@@ -116,8 +119,8 @@ class JsonAdaptedPatient {
         }
         final BloodType modelBloodType = new BloodType(bloodType);
 
-        final Set<Allergy> modelAllergies = new HashSet<>(patientAllergies);
-        final Set<Vaccine> modelVaccines = new HashSet<>(patientVaccines);
+        final Set<GroupName> modelAllergies = new HashSet<>(patientAllergies);
+        final Set<GroupName> modelVaccines = new HashSet<>(patientVaccines);
         return new Patient(modelName, modelPhone, modelDob, modelBloodType, modelAllergies, modelVaccines);
     }
 

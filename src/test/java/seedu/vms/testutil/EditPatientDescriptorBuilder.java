@@ -6,13 +6,12 @@ import java.util.stream.Stream;
 
 import seedu.vms.logic.commands.patient.EditCommand.EditPatientDescriptor;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.patient.Vaccine;
 
 /**
  * A utility class to help with building EditPatientDescriptor objects.
@@ -77,21 +76,21 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code EditPatientDescriptor}
+     * Parses the {@code allergies} into a {@code Set<GroupName>} and set it to the {@code EditPatientDescriptor}
      * that we are building.
      */
     public EditPatientDescriptorBuilder withAllergies(String... allergies) {
-        Set<Allergy> allergySet = Stream.of(allergies).map(Allergy::new).collect(Collectors.toSet());
+        Set<GroupName> allergySet = Stream.of(allergies).map(GroupName::new).collect(Collectors.toSet());
         descriptor.setAllergies(allergySet);
         return this;
     }
 
     /**
-     * Parses the {@code vaccines} into a {@code Set<Vaccine>} and set it to the {@code EditPatientDescriptor}
+     * Parses the {@code vaccines} into a {@code Set<GroupName>} and set it to the {@code EditPatientDescriptor}
      * that we are building.
      */
     public EditPatientDescriptorBuilder withVaccines(String... vaccines) {
-        Set<Vaccine> vaccineSet = Stream.of(vaccines).map(Vaccine::new).collect(Collectors.toSet());
+        Set<GroupName> vaccineSet = Stream.of(vaccines).map(GroupName::new).collect(Collectors.toSet());
         descriptor.setVaccines(vaccineSet);
         return this;
     }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
@@ -12,7 +12,6 @@ import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.Phone;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
-import seedu.vms.model.patient.Vaccine;
 
 /**
  * Contains utility methods for populating {@code PatientManager} with sample data.
@@ -70,18 +69,18 @@ public class SampleDataUtil {
     /**
      * Returns a allergy set containing the list of strings given.
      */
-    public static Set<Allergy> getAllergySet(String... strings) {
+    public static Set<GroupName> getAllergySet(String... strings) {
         return Arrays.stream(strings)
-                .map(Allergy::new)
+                .map(GroupName::new)
                 .collect(Collectors.toSet());
     }
 
     /**
      * Returns a vaccine set containing the list of strings given.
      */
-    public static Set<Vaccine> getVaccineSet(String... strings) {
+    public static Set<GroupName> getVaccineSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Vaccine::new)
+                .map(GroupName::new)
                 .collect(Collectors.toSet());
     }
 

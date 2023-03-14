@@ -21,15 +21,14 @@ import seedu.vms.commons.util.CollectionUtil;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
-import seedu.vms.model.patient.Allergy;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.patient.Vaccine;
 
 /**
  * Edits the details of an existing patient in the bloodType book.
@@ -99,8 +98,8 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Dob updatedDob = editPatientDescriptor.getDob().orElse(patientToEdit.getDob());
         BloodType updatedBloodType = editPatientDescriptor.getBloodType().orElse(patientToEdit.getBloodType());
-        Set<Allergy> updatedAllergies = editPatientDescriptor.getAllergies().orElse(patientToEdit.getAllergy());
-        Set<Vaccine> updatedVaccines = editPatientDescriptor.getVaccines().orElse(patientToEdit.getVaccine());
+        Set<GroupName> updatedAllergies = editPatientDescriptor.getAllergies().orElse(patientToEdit.getAllergy());
+        Set<GroupName> updatedVaccines = editPatientDescriptor.getVaccines().orElse(patientToEdit.getVaccine());
 
         return new Patient(updatedName, updatedPhone, updatedDob, updatedBloodType, updatedAllergies, updatedVaccines);
     }
@@ -132,8 +131,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Dob dob;
         private BloodType bloodType;
-        private Set<Allergy> allergies;
-        private Set<Vaccine> vaccines;
+        private Set<GroupName> allergies;
+        private Set<GroupName> vaccines;
 
         public EditPatientDescriptor() {}
 
@@ -193,7 +192,7 @@ public class EditCommand extends Command {
          * Sets {@code allergies} to this object's {@code allergies}.
          * A defensive copy of {@code allergies} is used internally.
          */
-        public void setAllergies(Set<Allergy> allergies) {
+        public void setAllergies(Set<GroupName> allergies) {
             this.allergies = (allergies != null) ? new HashSet<>(allergies) : null;
         }
 
@@ -202,7 +201,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code allergies} is null.
          */
-        public Optional<Set<Allergy>> getAllergies() {
+        public Optional<Set<GroupName>> getAllergies() {
             return (allergies != null) ? Optional.of(Collections.unmodifiableSet(allergies)) : Optional.empty();
         }
 
@@ -210,7 +209,7 @@ public class EditCommand extends Command {
          * Sets {@code vaccines} to this object's {@code vaccines}.
          * A defensive copy of {@code vaccines} is used internally.
          */
-        public void setVaccines(Set<Vaccine> vaccines) {
+        public void setVaccines(Set<GroupName> vaccines) {
             this.vaccines = (vaccines != null) ? new HashSet<>(vaccines) : null;
         }
 
@@ -219,7 +218,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code vaccines} is null.
          */
-        public Optional<Set<Vaccine>> getVaccines() {
+        public Optional<Set<GroupName>> getVaccines() {
             return (vaccines != null) ? Optional.of(Collections.unmodifiableSet(vaccines)) : Optional.empty();
         }
 

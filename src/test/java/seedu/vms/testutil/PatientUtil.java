@@ -5,9 +5,8 @@ import java.util.Set;
 import seedu.vms.logic.commands.patient.AddCommand;
 import seedu.vms.logic.commands.patient.EditCommand.EditPatientDescriptor;
 import seedu.vms.logic.parser.CliSyntax;
-import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.Patient;
-import seedu.vms.model.patient.Vaccine;
 
 /**
  * A utility class for Patient.
@@ -54,7 +53,7 @@ public class PatientUtil {
         descriptor.getBloodType()
                 .ifPresent(bloodType -> sb.append(PREFIX_BLOODTYPE).append(bloodType.toString()).append(" "));
         if (descriptor.getAllergies().isPresent()) {
-            Set<Allergy> allergies = descriptor.getAllergies().get();
+            Set<GroupName> allergies = descriptor.getAllergies().get();
             if (allergies.isEmpty()) {
                 sb.append(PREFIX_ALLERGY);
             } else {
@@ -62,7 +61,7 @@ public class PatientUtil {
             }
         }
         if (descriptor.getVaccines().isPresent()) {
-            Set<Vaccine> vaccines = descriptor.getVaccines().get();
+            Set<GroupName> vaccines = descriptor.getVaccines().get();
             if (vaccines.isEmpty()) {
                 sb.append(PREFIX_VACCINATION);
             } else {

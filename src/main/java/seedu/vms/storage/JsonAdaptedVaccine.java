@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.model.patient.Vaccine;
+import seedu.vms.model.GroupName;
 
 /**
- * Jackson-friendly version of {@link Vaccine}.
+ * Jackson-friendly version of {@link GroupName}.
  */
 class JsonAdaptedVaccine {
 
@@ -24,8 +24,8 @@ class JsonAdaptedVaccine {
     /**
      * Converts a given {@code Vaccine} into this class for Jackson use.
      */
-    public JsonAdaptedVaccine(Vaccine source) {
-        vaccineName = source.vaccineName;
+    public JsonAdaptedVaccine(GroupName source) {
+        vaccineName = source.getName();
     }
 
     @JsonValue
@@ -38,11 +38,11 @@ class JsonAdaptedVaccine {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted vaccine.
      */
-    public Vaccine toModelType() throws IllegalValueException {
-        if (!Vaccine.isValidVaccineName(vaccineName)) {
-            throw new IllegalValueException(Vaccine.MESSAGE_CONSTRAINTS);
+    public GroupName toModelType() throws IllegalValueException {
+        if (!GroupName.isValidName(vaccineName)) {
+            throw new IllegalValueException(GroupName.MESSAGE_CONSTRAINTS);
         }
-        return new Vaccine(vaccineName);
+        return new GroupName(vaccineName);
     }
 
 }
