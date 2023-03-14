@@ -3,311 +3,353 @@
 }
 
 .background {
--fx-background-color: #f2f2f2;
-background-color: #f2f2f2; /* Used in the default.html file */
+    -fx-background-color: #b1e6fa;
+    background-color: #b1e6fa; /* Used in the default.html file */
 }
 
 .label {
--fx-font-size: 11pt;
--fx-font-weight: bold;
--fx-text-fill: #333333;
--fx-opacity: 0.9;
+    -fx-font-size: 11pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: derive(#445568, 15%);
+    -fx-opacity: 0.9;
 }
 
 .label-bright {
--fx-font-size: 11pt;
--fx-font-weight: bold;
--fx-text-fill: black;
--fx-opacity: 1;
+    -fx-font-size: 11pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: derive(#445568, 15%);
+    -fx-opacity: 1;
 }
 
 .label-header {
--fx-font-size: 32pt;
--fx-font-weight: lighter;
--fx-text-fill: black;
--fx-opacity: 1;
+    -fx-font-size: 32pt;
+    -fx-font-weight: lighter;
+    -fx-text-fill: derive(#445568, 15%);
+    -fx-opacity: 1;
 }
 
 .text-field {
--fx-font-size: 12pt;
--fx-font-weight: bold;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
 }
 
 .tab-pane {
--fx-padding: 0 0 0 1;
+    -fx-padding: 0 0 0 1;
 }
 
 .tab-pane .tab-header-area {
--fx-padding: 0 0 0 0;
--fx-min-height: 0;
--fx-max-height: 0;
+    -fx-padding: 0 0 0 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
 }
 
 .table-view {
--fx-base: #f2f2f2;
--fx-control-inner-background: #f2f2f2;
--fx-background-color: #f2f2f2;
--fx-table-cell-border-color: transparent;
--fx-table-header-border-color: transparent;
--fx-padding: 5;
+    -fx-base: #b1e6fa;
+    -fx-control-inner-background: #b1e6fa;
+    -fx-background-color: #b1e6fa;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
 }
 
 .table-view .column-header-background {
--fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
 
 .table-view .column-header, .table-view .filler {
--fx-size: 35;
--fx-border-width: 0 0 1 0;
--fx-background-color: transparent;
--fx-border-color:
-transparent
-transparent
-derive(-fx-base, 80%)
-transparent;
--fx-border-insets: 0 10 1 0;
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+    transparent
+    transparent
+    derive(-fx-base, 80%)
+    transparent;
+    -fx-border-insets: 0 10 1 0;
 }
 
 .table-view .column-header .label {
--fx-font-size: 20pt;
--fx-font-weight: lighter;
--fx-text-fill: black;
--fx-alignment: center-left;
--fx-opacity: 1;
+    -fx-font-size: 20pt;
+    -fx-font-weight: lighter;
+    -fx-text-fill: black;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {
--fx-background-color: -fx-focus-color;
+    -fx-background-color: -fx-focus-color;
 }
 
 .split-pane:horizontal .split-pane-divider {
--fx-background-color: derive(#f2f2f2, 20%);
--fx-border-color: transparent transparent transparent #c3c3c3;
+    -fx-background-color: derive(#b1e6fa, 20%);
+    -fx-border-color: transparent transparent transparent #c3c3c3;
 }
 
 .split-pane {
--fx-border-radius: 1;
--fx-border-width: 1;
--fx-background-color: derive(#f2f2f2, 20%);
+    -fx-border-radius: 1;
+    -fx-border-width: 1;
+    -fx-background-color: derive(#b1e6fa, 20%);
 }
 
 .list-view {
--fx-background-insets: 0;
--fx-padding: 0;
--fx-background-color: derive(#f2f2f2, 20%);
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: derive(#b1e6fa, 20%);
 }
 
 .list-cell {
--fx-label-padding: 0 0 0 0;
--fx-graphic-text-gap : 0;
--fx-padding: 0 0 0 0;
+    /*-fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;*/
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    /* -fx-padding: 0 0 1 0; */
+    -fx-padding: 5px;
+    -fx-background-radius: 10.0;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
 }
 
 .list-cell:filled:even {
--fx-background-color: #f2f2f2;
+    -fx-background-color: derive(#d7f2fc, 20%);
 }
 
 .list-cell:filled:odd {
--fx-background-color: #e5e5e5;
+    -fx-background-color: derive(#d7f2fc, 40%);
 }
 
 .list-cell:filled:selected {
--fx-background-color: #d9d9d9;
+    -fx-background-color: #a9c1c9;
 }
 
-.list-cell:filled:selected #cardPane {
--fx-border-color: #8cb3d9;
--fx-border-width: 1;
-}
+/*.list-cell:filled:selected #cardPane {
+    -fx-border-color: #8cb3d9;
+    -fx-border-width: 1;
+}*/
 
 .list-cell .label {
--fx-text-fill: black;
+    -fx-text-fill: derive(#445568, 15%);;
 }
 
 .cell_big_label {
--fx-font-weight: bold;
--fx-font-size: 16px;
--fx-text-fill: #010504;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-
--fx-font-size: 13px;
--fx-text-fill: #010504;
+    -fx-font-size: 14px;
+    -fx-text-fill: #010504;
 }
 
 .stack-pane {
--fx-background-color: derive(#f2f2f2, 20%);
+    -fx-background-color: derive(#b1e6fa, 20%);
 }
 
 .pane-with-border {
--fx-background-color: derive(#f2f2f2, 20%);
--fx-border-color: derive(#f2f2f2, 10%);
--fx-border-top-width: 1px;
+    -fx-background-color: derive(#b1e6fa, 20%);
+    -fx-border-color: derive(#b1e6fa, 10%);
+    -fx-border-top-width: 1px;
+}
+/* TAB PANE RELATED*/
+.tab-pane:top *.tab-header-area {
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.416667em 0.166667em 0.0em 0.0em;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width: 90px;
+    -fx-background-color: derive(#b1e6fa, 25%);
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1, 0, 0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: derive(#445568, 15%);
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #F7F8F8
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-pref-width: 150.0;
+    -fx-text-fill: derive(#b1e6fa, 25%);
+    -fx-font-size: 14px;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: derive(#445568, 15%);;
 }
 
 .status-bar {
--fx-background-color: #e3e3e3;
+    -fx-background-color: #e3e3e3;
 }
 
 .result-display {
--fx-background-color: transparent;
--fx-font-weight: lighter;
--fx-font-size: 13pt;
--fx-text-fill: black;
+    -fx-background-color: transparent;
+    -fx-font-weight: lighter;
+    -fx-font-size: 13pt;
+    -fx-text-fill: derive(#445568, 15%);
 }
 
 .result-display .label {
--fx-text-fill: black !important;
+    -fx-text-fill: derive(#445568, 15%) !important;
 }
 
 .status-bar .label {
--fx-font-weight: lighter;
--fx-text-fill: black;
--fx-padding: 4px;
--fx-pref-height: 30px;
+    -fx-font-weight: lighter;
+    -fx-text-fill: black;
+    -fx-padding: 4px;
+    -fx-pref-height: 30px;
 }
 
 .status-bar-with-border {
--fx-background-color: #e3e3e3;
--fx-border-color: #d4d4d4;
--fx-border-width: 1px;
+    -fx-background-color: #e3e3e3;
+    -fx-border-color: #d4d4d4;
+    -fx-border-width: 1px;
 }
 
 .status-bar-with-border .label {
--fx-text-fill: black;
+    -fx-text-fill: black;
 }
 
 .grid-pane {
--fx-background-color: #e3e3e3;
--fx-border-color: #d4d4d4;
--fx-border-width: 1px;
+    -fx-background-color: #e3e3e3;
+    -fx-border-color: #d4d4d4;
+    -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
--fx-background-color: #e3e3e3;
+    -fx-background-color: #e3e3e3;
 }
 
 .context-menu {
--fx-background-color: #f2f2f2;
+    -fx-background-color: #b1e6fa;
 }
 
 .context-menu .label {
--fx-text-fill: black;
+    -fx-text-fill: black;
 }
 
 .menu-bar {
--fx-background-color: #e3e3e3;
+    -fx-background-color: #b1e6fa;
 }
 
 .menu-bar .label {
--fx-font-size: 12pt;
--fx-font-weight: lighter;
--fx-text-fill: black;
--fx-opacity: 0.9;
+    -fx-font-size: 12pt;
+    -fx-font-weight: lighter;
+    -fx-text-fill: black;
+    -fx-opacity: 0.9;
 }
 
 .menu .left-container {
--fx-background-color: white;
+    -fx-background-color: white;
 }
 
-/*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
+
 .button {
--fx-padding: 5 22 5 22;
--fx-border-color: #666666;
--fx-border-width: 2;
--fx-background-radius: 0;
--fx-background-color: #f5f5f5;
--fx-font-size: 11pt;
--fx-text-fill: #666666;
--fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #666666;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #f5f5f5;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #666666;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 .button:hover {
--fx-background-color: #e0e0e0;
+    -fx-background-color: #e0e0e0;
 }
 
 .button:pressed, .button:default:hover:pressed {
--fx-background-color: #1d1d1d;
--fx-text-fill: #f5f5f5;
+    -fx-background-color: #1d1d1d;
+    -fx-text-fill: #f5f5f5;
 }
 
 .button:focused {
--fx-border-color: #1d1d1d, #1d1d1d;
--fx-border-width: 1, 1;
--fx-border-style: solid, segments(1, 1);
--fx-border-radius: 0, 0;
--fx-border-insets: 1 1 1 1, 0;
+    -fx-border-color: #1d1d1d, #1d1d1d;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
 }
 
 .button:disabled, .button:default:disabled {
--fx-opacity: 0.4;
--fx-background-color: #f5f5f5;
--fx-text-fill: #666666;
+    -fx-opacity: 0.4;
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #666666;
 }
 
 .button:default {
--fx-background-color: -fx-focus-color;
--fx-text-fill: #ffffff;
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: #ffffff;
 }
 
 .button:default:hover {
--fx-background-color: derive(-fx-focus-color, 30%);
+    -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
 .dialog-pane {
--fx-background-color: #f5f5f5;
+    -fx-background-color: #f5f5f5;
 }
 
 .dialog-pane > *.button-bar > *.container {
--fx-background-color: #f5f5f5;
+    -fx-background-color: #f5f5f5;
 }
 
 .dialog-pane > *.label.content {
--fx-font-size: 14px;
--fx-font-weight: bold;
--fx-text-fill: #1d1d1d;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1d1d1d;
 }
 
 .dialog-pane:header *.header-panel {
--fx-background-color: derive(#f5f5f5, 25%);
+    -fx-background-color: derive(#f5f5f5, 25%);
 }
 
 .dialog-pane:header *.header-panel *.label {
--fx-font-size: 18px;
--fx-font-style: italic;
--fx-fill: #1d1d1d;
--fx-text-fill: #1d1d1d;
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-fill: #1d1d1d;
+    -fx-text-fill: #1d1d1d;
 }
 
 .scroll-bar {
--fx-background-color: #f5f5f5;
+    -fx-background-color: #f5f5f5;
 }
 
 .scroll-bar .thumb {
--fx-background-color: #c7c7c7;
--fx-background-insets: 3;
+    -fx-background-color: #c7c7c7;
+    -fx-background-insets: 3;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
--fx-background-color: transparent;
--fx-padding: 0 0 0 0;
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
 }
 
 .scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
--fx-shape: " ";
+    -fx-shape: " ";
 }
 
 .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
--fx-padding: 1 8 1 8;
+    -fx-padding: 1 8 1 8;
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
--fx-padding: 8 1 8 1;
+    -fx-padding: 8 1 8 1;
 }
 
 #cardPane {
@@ -354,6 +396,18 @@ transparent;
     -fx-font-size: 11;
 }
 
+#drugList {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+#patientList {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+#detailDisplay {
+    -fx-background-color: transparent, white, transparent, white;
+    -fx-background-radius: 0;
+}
 
 .error {
     -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
@@ -361,7 +415,7 @@ transparent;
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #f2f2f2;
+    -fx-background: #b1e6fa;
 }
 
 .tag-selector {

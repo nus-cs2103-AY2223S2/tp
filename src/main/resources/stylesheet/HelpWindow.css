@@ -1,3 +1,7 @@
+.root {
+    -fx-font-family: sans-serif, Helvetica, Arial;
+}
+
 #copyButton, #helpMessage {
     -fx-text-fill: white;
 }

@@ -1,6 +1,6 @@
-    .root {
-        -fx-font-family: sans-serif, Helvetica, Arial;
-    }
+.root {
+    -fx-font-family: sans-serif, Helvetica, Arial;
+}
 
 .background {
     -fx-background-color: derive(#445568, 20%);
@@ -108,11 +108,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #758E9B;
+    -fx-background-color: derive(#758E9B, 20%)
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #758E9B;
+    -fx-background-color: derive(#758E9B, 40%)
 }
 
 .list-cell:filled:selected {
@@ -386,6 +386,17 @@
     -fx-background-radius: 0;
 }
 
+#drugList {
+    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
+}
+#patientList {
+    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
+}
+#detailDisplay {
+    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 5%);
+    -fx-background-radius: 0;
+}
+
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
@@ -399,6 +410,3 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
-
-
-
