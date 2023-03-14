@@ -119,6 +119,16 @@ public class CommandTestUtil {
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
     }
 
+    //order fields
+    public static final String VALID_ORDER_NAME_CHOCOLATE_COOKIES = "Chocolate Cookies";
+    public static final String VALID_ORDER_DEADLINE_2100 = "01/01/2100";
+    public static final String VALID_ORDER_STATUS_DONE = "D";
+    public static final String VALID_ORDER_STATUS_NOT_DONE = "N";
+    public static final String VALID_ORDER_STATUS_IN_PROGRESS = "I";
+    public static final String VALID_CUSTOMER_NAME = "Nigel Wong";
+    public static final String VALID_CUSTOMER_PHONE = "91234567";
+    public static final String VALID_CUSTOMER_ADDRESS = "Woodlands Street 43";
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
