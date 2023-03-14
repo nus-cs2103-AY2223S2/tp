@@ -265,13 +265,13 @@ public class EditCommand extends Command {
         }
 
         private void deleteSkillsHelper(Set<Skill> skills) {
-                Set<Skill> result = new HashSet<>();
-                for (Skill s : this.skills) {
-                    if (!skills.contains(s)) {
-                        result.add(s);
-                    }
+            Set<Skill> result = new HashSet<>();
+            for (Skill s : this.skills) {
+                if (!skills.contains(s)) {
+                    result.add(s);
                 }
-                this.skills = result;
+            }
+            this.skills = result;
         }
 
         /**
