@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.student.exceptions.DuplicateHomeworkException;
-import seedu.address.model.student.exceptions.HomeworkNotFoundException;
+import seedu.address.model.student.exceptions.DuplicateEntryException;
+import seedu.address.model.student.exceptions.EntryNotFoundException;
 
 public class UniqueHomeworkListTest {
 
@@ -52,7 +52,7 @@ public class UniqueHomeworkListTest {
     @Test
     public void add_duplicateHomework_throwsDuplicateHomeworkException() {
         uniqueHomeworkList.add(homework1);
-        assertThrows(DuplicateHomeworkException.class, () -> uniqueHomeworkList.add(homework1));
+        assertThrows(DuplicateEntryException.class, () -> uniqueHomeworkList.add(homework1));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class UniqueHomeworkListTest {
 
     @Test
     public void setHomework_targetHomeworkNotInList_throwsHomeworkNotFoundException() {
-        assertThrows(HomeworkNotFoundException.class, () -> uniqueHomeworkList.setHomework(homework1, homework2));
+        assertThrows(EntryNotFoundException.class, () -> uniqueHomeworkList.setHomework(homework1, homework2));
     }
 
     @Test
@@ -99,7 +99,7 @@ public class UniqueHomeworkListTest {
 
     @Test
     public void remove_homeworkNotInList_throwsHomeworkNotFoundException() {
-        assertThrows(HomeworkNotFoundException.class, () -> uniqueHomeworkList.remove(homework1));
+        assertThrows(EntryNotFoundException.class, () -> uniqueHomeworkList.remove(homework1));
     }
 
     @Test

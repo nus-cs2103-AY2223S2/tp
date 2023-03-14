@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.student.exceptions.DuplicateEntryException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +29,7 @@ public class Student {
     private final Set<Tag> tags = new HashSet<>();
     private final UniqueHomeworkList homeworkList = new UniqueHomeworkList();
     private final UniqueLessonsList lessonsList = new UniqueLessonsList();
+    private final UniqueExamList examList = new UniqueExamList();
 
     /**
      * Every field must be present and not null.
@@ -45,7 +47,7 @@ public class Student {
      * Every field must be present and not null
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Homework> homeworkList,
-                   List<Lesson> lessonList) {
+                   List<Lesson> lessonList, List<Exam> examList) {
         requireAllNonNull(name, phone, email, address, tags, homeworkList, lessonList);
         this.name = name;
         this.phone = phone;
@@ -54,6 +56,7 @@ public class Student {
         this.tags.addAll(tags);
         this.homeworkList.setHomeworks(homeworkList);
         this.lessonsList.setLessons(lessonList);
+        this.examList.setExams(examList);
     }
 
     public Name getName() {
@@ -101,6 +104,17 @@ public class Student {
         return lessonsList.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns an immutable Exams list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of exams
+     */
+    public List<Exam> getExamList() {
+        return examList.asUnmodifiableObservableList();
+    }
+
+    //HOMEWORK########################################################################################
 
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
@@ -211,13 +225,14 @@ public class Student {
         Homework homeworkToMarkAsUndone = this.homeworkList.getHomework(index.getZeroBased());
         homeworkToMarkAsUndone.markAsUndone();
     }
+
+    //LESSONS########################################################################################
     /**
      * Returns a homework from the homework list.
      *
      * @param index index of homework to be returned
      * @return homework
      */
-
     public Lesson getLesson(Index index) {
         return this.lessonsList.getLesson(index.getZeroBased());
     }
@@ -270,8 +285,80 @@ public class Student {
         return Collections.unmodifiableList(filteredLessonsList);
     }
 
+    //Exams########################################################################################
+
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     *
+     * @return list of pending homework
+     */
+    public List<Exam> getUpcomingExamList() {
+        List<Exam> upcomingExamList = new ArrayList<>();
+
+        // filter exam list for pending exams
+        for (Exam exam : examList) {
+            if (exam.getStatus().equals(Exam.ExamStatus.Upcoming)) {
+                upcomingExamList.add(exam);
+            }
+        }
+        return Collections.unmodifiableList(upcomingExamList);
+    }
+
+    /**
+     * Returns an immutable exam list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered exams
+     */
+    public List<Exam> getFilteredExamList(Predicate<Exam> predicate) {
+        List<Exam> filteredExamList = new ArrayList<>();
+
+        // filter homework list for homework that matches predicate
+        for (Exam exam : examList) {
+            if (predicate.test(exam)) {
+                filteredExamList.add(exam);
+            }
+        }
+
+        return Collections.unmodifiableList(filteredExamList);
+    }
+
+    /**
+     * Adds an Exam to the exam list.
+     *
+     * @param exam Exam to be added
+     * @throws DuplicateEntryException when exam already exists
+     */
+    public void addExam(Exam exam) {
+        // check for duplicate homework
+        if (examList.contains(exam)) {
+            throw new DuplicateEntryException();
+        }
+        this.examList.add(exam);
+    }
+
+    /**
+     * Returns an exam from the exam list.
+     *
+     * @param index index of exam to be returned
+     * @return Exam
+     */
+    public Exam getExam(Index index) {
+        return this.examList.getExam(index.getZeroBased());
+    }
+
+    /**
+     * Deletes an exam from the exam list.
+     *
+     * @param index index of exam to be deleted
+     */
+    public void deleteExam(Index index) {
+        Exam examToDelete = this.examList.getExam(index.getZeroBased());
+        this.examList.remove(examToDelete);
+    }
 
 
+    //UTIL########################################################################################
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
