@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LEAD_STATUS_LABEL_QUALIFIED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LEAD_STATUS_UNCONTACTED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LEAD_STATUS_WORKING;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -56,8 +58,19 @@ public class StatusCommandTest {
         LeadStatus sameStatus = new LeadStatus(statusName.getLabel());
 
         StatusCommand statusCommand = new StatusCommand(INDEX_FIRST_PERSON, sameStatus);
+        String expectedMessage = String.format(StatusCommand.MESSAGE_STATUS_IS_SAME, firstPerson.getName(), sameStatus);
 
-        assertCommandFailure(statusCommand, model, StatusCommand.MESSAGE_STATUS_IS_SAME);
+        assertCommandFailure(statusCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void equals() {
+        StatusCommand first = new StatusCommand(INDEX_FIRST_PERSON, VALID_LEAD_STATUS_LABEL_QUALIFIED);
+        StatusCommand second = new StatusCommand(INDEX_FIRST_PERSON,
+                new LeadStatus(LeadStatusName.QUALIFIED.getLabel()));
+
+        assertTrue(first.equals(second));
+        assertTrue(second.equals(first));
     }
 
 }
