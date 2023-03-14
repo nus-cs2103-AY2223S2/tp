@@ -28,7 +28,6 @@
                   <Insets bottom="10" left="10" right="10" top="10" />
                </padding>
                <TreeView fx:id="monthDeliveryJobListTreeView" prefHeight="250.0" prefWidth="318.0" />
-               <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
 
             <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
