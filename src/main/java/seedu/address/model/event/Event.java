@@ -9,6 +9,7 @@ import seedu.address.model.person.Name;
 public class Event {
 
     private Name name;
+    private String date; //Can abstract to Date class
     private String startTime;
     private String endTime;
 
@@ -19,11 +20,20 @@ public class Event {
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.date = "To be confirmed";
+    }
+    
+    public Event(Name name, String date, String startTime, String endTime) {
+        this.name = name;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public Name getName() {
         return name;
     }
+    public String getDate() {return date;}
 
     public String getParsedStartTime() {
         return startTime;
@@ -61,4 +71,18 @@ public class Event {
             && otherEvent.getParsedStartTime().equals(getParsedStartTime())
             && otherEvent.getParsedEndTime().equals(getParsedEndTime());
     }
+    
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(getName())
+                .append("Date: ")
+                .append(getDate())
+                .append("\nStart: ")
+                .append(getParsedStartTime())
+                .append("\nEnd: ")
+                .append(getParsedEndTime());
+        return sb.toString();
+    }
+    
 }
