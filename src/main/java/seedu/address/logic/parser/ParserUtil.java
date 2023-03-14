@@ -3,7 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
@@ -189,6 +191,36 @@ public class ParserUtil {
             moduleTagSet.add(parseModuleTag(tagName));
         }
         return moduleTagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<GroupTag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<GroupTag>} containing zero tags.
+     */
+    public static Optional<Set<GroupTag>> parseGroupTagsForCommands(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseGroupTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<ModuleTag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<ModuleTag>} containing zero tags.
+     */
+    public static Optional<Set<ModuleTag>> parseModuleTagsForCommands(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(parseModuleTags(tagSet));
     }
 }
 
