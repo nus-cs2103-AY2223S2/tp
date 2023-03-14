@@ -15,8 +15,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import vimification.model.person.exceptions.DuplicatePersonException;
-import vimification.model.person.exceptions.PersonNotFoundException;
+import vimification.model.task.UniquePersonList;
+import vimification.model.task.exceptions.DuplicateTaskException;
+import vimification.model.task.exceptions.TaskNotFoundException;
 import vimification.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -56,7 +57,7 @@ public class UniquePersonListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+        assertThrows(DuplicateTaskException.class, () -> uniquePersonList.add(ALICE));
     }
 
     @Test
@@ -71,7 +72,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+        assertThrows(TaskNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
     }
 
     @Test
@@ -108,7 +109,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateTaskException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
     }
 
     @Test
@@ -118,7 +119,7 @@ public class UniquePersonListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+        assertThrows(TaskNotFoundException.class, () -> uniquePersonList.remove(ALICE));
     }
 
     @Test
@@ -163,7 +164,7 @@ public class UniquePersonListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class,
+        assertThrows(DuplicateTaskException.class,
                 () -> uniquePersonList.setPersons(listWithDuplicatePersons));
     }
 

@@ -12,10 +12,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import vimification.commons.exceptions.IllegalValueException;
-import vimification.model.person.Address;
-import vimification.model.person.Email;
-import vimification.model.person.Name;
-import vimification.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";

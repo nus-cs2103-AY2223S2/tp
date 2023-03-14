@@ -18,7 +18,7 @@ import vimification.logic.LogicManager;
 import vimification.model.AddressBook;
 import vimification.model.Model;
 import vimification.model.ModelManager;
-import vimification.model.ReadOnlyAddressBook;
+import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 import vimification.model.util.SampleDataUtil;
@@ -78,8 +78,8 @@ public class MainApp extends Application {
      * {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTaskPlanner> addressBookOptional;
+        ReadOnlyTaskPlanner initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {

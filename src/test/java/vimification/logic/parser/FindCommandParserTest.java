@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import vimification.logic.commands.FindCommand;
-import vimification.model.person.NameContainsKeywordsPredicate;
+import vimification.model.task.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

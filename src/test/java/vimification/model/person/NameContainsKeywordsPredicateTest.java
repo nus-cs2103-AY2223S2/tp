@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import vimification.model.task.NameContainsKeywordsPredicate;
 import vimification.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {

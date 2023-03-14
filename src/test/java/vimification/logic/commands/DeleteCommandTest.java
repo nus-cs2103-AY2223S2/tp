@@ -16,7 +16,6 @@ import vimification.commons.core.index.Index;
 import vimification.model.Model;
 import vimification.model.ModelManager;
 import vimification.model.UserPrefs;
-import vimification.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.

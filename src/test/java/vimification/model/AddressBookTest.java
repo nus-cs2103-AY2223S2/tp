@@ -18,8 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import vimification.model.person.Person;
-import vimification.model.person.exceptions.DuplicatePersonException;
+import vimification.model.task.exceptions.DuplicateTaskException;
 import vimification.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -52,7 +51,7 @@ public class AddressBookTest {
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -87,9 +86,9 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyTaskPlanner whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class AddressBookStub implements ReadOnlyTaskPlanner {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {

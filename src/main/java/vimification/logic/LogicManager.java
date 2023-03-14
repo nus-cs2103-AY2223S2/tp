@@ -13,8 +13,7 @@ import vimification.logic.commands.exceptions.CommandException;
 import vimification.logic.parser.AddressBookParser;
 import vimification.logic.parser.ParseException;
 import vimification.model.Model;
-import vimification.model.ReadOnlyAddressBook;
-import vimification.model.person.Person;
+import vimification.model.ReadOnlyTaskPlanner;
 import vimification.storage.Storage;
 
 /**
@@ -55,7 +54,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyTaskPlanner getAddressBook() {
         return model.getAddressBook();
     }
 

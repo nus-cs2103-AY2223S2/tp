@@ -36,10 +36,6 @@ import org.junit.jupiter.api.Test;
 import vimification.commons.core.index.Index;
 import vimification.logic.commands.EditCommand;
 import vimification.logic.commands.EditCommand.EditPersonDescriptor;
-import vimification.model.person.Address;
-import vimification.model.person.Email;
-import vimification.model.person.Name;
-import vimification.model.person.Phone;
 import vimification.model.tag.Tag;
 import vimification.testutil.EditPersonDescriptorBuilder;
 

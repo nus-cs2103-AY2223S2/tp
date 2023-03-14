@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import vimification.commons.exceptions.DataConversionException;
-import vimification.model.ReadOnlyAddressBook;
+import vimification.model.ReadOnlyTaskPlanner;
 
 /**
  * Represents a storage for {@link vimification.model.AddressBook}.
@@ -18,31 +18,31 @@ public interface AddressBookStorage {
     Path getAddressBookFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}. Returns {@code Optional.empty()}
+     * Returns AddressBook data as a {@link ReadOnlyTaskPlanner}. Returns {@code Optional.empty()}
      * if storage file is not found.
      * 
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaskPlanner> readAddressBook() throws DataConversionException, IOException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath)
+    Optional<ReadOnlyTaskPlanner> readAddressBook(Path filePath)
             throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyTaskPlanner} to the storage.
      * 
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyTaskPlanner addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveAddressBook(ReadOnlyTaskPlanner)
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+    void saveAddressBook(ReadOnlyTaskPlanner addressBook, Path filePath) throws IOException;
 
 }

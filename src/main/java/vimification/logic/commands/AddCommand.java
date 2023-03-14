@@ -9,7 +9,6 @@ import static vimification.logic.parser.CliSyntax.PREFIX_TAG;
 
 import vimification.logic.commands.exceptions.CommandException;
 import vimification.model.Model;
-import vimification.model.person.Person;
 
 /**
  * Adds a person to the address book.

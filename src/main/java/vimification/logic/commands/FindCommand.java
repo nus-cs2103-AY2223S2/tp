@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import vimification.commons.core.Messages;
 import vimification.model.Model;
-import vimification.model.person.NameContainsKeywordsPredicate;
+import vimification.model.task.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

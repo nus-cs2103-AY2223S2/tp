@@ -12,7 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import vimification.commons.core.GuiSettings;
 import vimification.model.AddressBook;
-import vimification.model.ReadOnlyAddressBook;
+import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -57,7 +57,7 @@ public class StorageManagerTest {
          */
         AddressBook original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        ReadOnlyTaskPlanner retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
     }
 

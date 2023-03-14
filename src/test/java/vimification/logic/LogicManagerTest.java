@@ -24,9 +24,8 @@ import vimification.logic.commands.exceptions.CommandException;
 import vimification.logic.parser.ParseException;
 import vimification.model.Model;
 import vimification.model.ModelManager;
-import vimification.model.ReadOnlyAddressBook;
+import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.UserPrefs;
-import vimification.model.person.Person;
 import vimification.storage.JsonAddressBookStorage;
 import vimification.storage.JsonUserPrefsStorage;
 import vimification.storage.StorageManager;
@@ -167,7 +166,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
+        public void saveAddressBook(ReadOnlyTaskPlanner addressBook, Path filePath)
                 throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }

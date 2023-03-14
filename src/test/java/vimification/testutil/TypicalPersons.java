@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import vimification.model.AddressBook;
-import vimification.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

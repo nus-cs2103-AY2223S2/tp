@@ -13,10 +13,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import vimification.model.person.Address;
-import vimification.model.person.Email;
-import vimification.model.person.Name;
-import vimification.model.person.Phone;
 import vimification.model.tag.Tag;
 
 public class ParserUtilTest {

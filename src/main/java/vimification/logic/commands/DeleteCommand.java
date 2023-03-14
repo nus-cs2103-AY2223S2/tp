@@ -8,7 +8,6 @@ import vimification.commons.core.Messages;
 import vimification.commons.core.index.Index;
 import vimification.logic.commands.exceptions.CommandException;
 import vimification.model.Model;
-import vimification.model.person.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

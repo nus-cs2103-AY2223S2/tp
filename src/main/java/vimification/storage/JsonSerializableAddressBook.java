@@ -10,8 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import vimification.commons.exceptions.IllegalValueException;
 import vimification.model.AddressBook;
-import vimification.model.ReadOnlyAddressBook;
-import vimification.model.person.Person;
+import vimification.model.ReadOnlyTaskPlanner;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -33,12 +32,12 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTaskPlanner} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created
      *        {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlyTaskPlanner source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
     }

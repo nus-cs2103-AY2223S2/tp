@@ -10,7 +10,6 @@ import java.util.Set;
 
 import vimification.logic.commands.AddCommand;
 import vimification.logic.commands.EditCommand.EditPersonDescriptor;
-import vimification.model.person.Person;
 import vimification.model.tag.Tag;
 
 /**

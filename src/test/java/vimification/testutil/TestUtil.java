@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 
 import vimification.commons.core.index.Index;
 import vimification.model.Model;
-import vimification.model.person.Person;
 
 /**
  * A utility class for test cases.

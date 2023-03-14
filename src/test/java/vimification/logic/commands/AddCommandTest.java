@@ -18,9 +18,8 @@ import vimification.commons.core.GuiSettings;
 import vimification.logic.commands.exceptions.CommandException;
 import vimification.model.AddressBook;
 import vimification.model.Model;
-import vimification.model.ReadOnlyAddressBook;
+import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.ReadOnlyUserPrefs;
-import vimification.model.person.Person;
 import vimification.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -116,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyTaskPlanner newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTaskPlanner getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -188,7 +187,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTaskPlanner getAddressBook() {
             return new AddressBook();
         }
     }

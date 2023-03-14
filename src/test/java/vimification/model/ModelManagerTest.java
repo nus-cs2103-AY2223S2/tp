@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import vimification.commons.core.GuiSettings;
-import vimification.model.person.NameContainsKeywordsPredicate;
+import vimification.model.task.NameContainsKeywordsPredicate;
 import vimification.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

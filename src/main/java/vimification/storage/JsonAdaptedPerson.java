@@ -10,11 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import vimification.commons.exceptions.IllegalValueException;
-import vimification.model.person.Address;
-import vimification.model.person.Email;
-import vimification.model.person.Name;
-import vimification.model.person.Person;
-import vimification.model.person.Phone;
 import vimification.model.tag.Tag;
 
 /**

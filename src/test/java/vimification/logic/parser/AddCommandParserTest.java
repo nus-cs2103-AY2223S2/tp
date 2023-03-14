@@ -32,11 +32,6 @@ import static vimification.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import vimification.logic.commands.AddCommand;
-import vimification.model.person.Address;
-import vimification.model.person.Email;
-import vimification.model.person.Name;
-import vimification.model.person.Person;
-import vimification.model.person.Phone;
 import vimification.model.tag.Tag;
 import vimification.testutil.PersonBuilder;
 
