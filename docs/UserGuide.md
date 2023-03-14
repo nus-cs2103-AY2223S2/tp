@@ -82,8 +82,8 @@ Adds a parcel to an existing delivery at the specified `INDEX`. The index refers
 Format: `add_pc INDEX pc/PARCEL`
 
 Examples:
-* `add 1 pc/shopee234` Adds parcel shopee234 to 1st delivery.
-* `add 2 pc/lazada456` Adds parcel lazada456 to 2nd delivery.
+* `add_pc 1 pc/shopee234` Adds parcel shopee234 to 1st delivery.
+* `add_pc 2 pc/lazada456` Adds parcel lazada456 to 2nd delivery.
 
 ### Listing all deliveries : `list`
 
@@ -192,9 +192,6 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -209,7 +206,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/DELIVERY a/ADDRESS` <br> e.g., `add n/Shopee a/Yusof Ishak House, #04-420`
+**Add** | `add n/DELIVERY a/ADDRESS [p/PHONE_NUMBER] [e/EMAIL] [pc/PARCEL]…​` <br> e.g., `add n/Shopee a/Yusof Ishak House, #04-420 pc/lazada123`
+**Add Parcel** | `add_pc INDEX pc/PARCEL` <br> e.g., `add_pc 1 pc/alibaba420`
 **Mark** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/otw`
 **View** | `view INDEX` <br> e.g., `view 1`
 **Clear** | `clear`
