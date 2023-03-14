@@ -16,4 +16,8 @@ public enum TabType {
     public String getTitle() {
         return title;
     }
+
+    public static TabType[] getAll() {
+        return new TabType[]{ADDRESS_BOOK, CALENDAR};
+    }
 }
