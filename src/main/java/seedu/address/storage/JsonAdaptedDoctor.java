@@ -22,7 +22,7 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
     private final String yearsOfExperience;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedDoctor} with the given doctor details.
      */
     @JsonCreator
     public JsonAdaptedDoctor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -47,7 +47,7 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Doctor} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted doctor.
      */
     public Doctor toModelType() throws IllegalValueException {
         if (specialty == null) {

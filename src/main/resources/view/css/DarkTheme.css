@@ -87,10 +87,10 @@
 }
 
 .enlarged-contact-card .description-label {
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #828282;
-    -fx-padding: 2 0 0 0;
+    -fx-padding: 4 0 0 0;
 }
 
 .enlarged-contact-card .value-label {
