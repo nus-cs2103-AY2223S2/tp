@@ -77,8 +77,8 @@ Adds a patient to the list of patients.
 Format: `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]`
 
 Examples:
-* `add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C `
-* `add -n Betsy Crowe -ph 92478963 -em betsycrowe@example.com -ad Sambal Street, Block 72, #04-12 -dob 01-01-2001 -g female -ic T8837191D -da Aspirin -ec 12345678`
+* `p add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C `
+* `p add -n Betsy Crowe -ph 92478963 -em betsycrowe@example.com -ad Sambal Street, Block 72, #04-12 -dob 01-01-2001 -g female -ic T8837191D -da Aspirin -ec 12345678`
 
 [Back to top](#top)
 
@@ -106,8 +106,8 @@ Format: `p find -n PATIENT_NAME`
 * Only the name is searched.
 
 Examples:
-* `find John` returns john and John Doe
-* `find alex david` returns Alex Yeoh, David Li
+* `p find John` returns john and John Doe
+* `p find alex david` returns Alex Yeoh, David Li
 
 
 ### Delete a Patient record by NRIC: `p delete`
@@ -150,7 +150,7 @@ Adds a drug entry to the list of drugs.
 Format: `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT`
 
 Examples:
-* `d add -tn Panadol -ai Paracetamol, sodium - dir Adults and children above 12 years old, 1-2 capsules - pur treat fever, headache, toothache, rheumatic and muscle pains -se dizziness, fatigue -sc 500`
+* `d add -tn Panadol -ai Paracetamol -dir Adults and children above 12 years old, 1-2 capsules -pur treat fever, headache, toothache, rheumatic and muscle pains -se dizziness, fatigue -sc 500`
 
 
 [Back to top](#top)
