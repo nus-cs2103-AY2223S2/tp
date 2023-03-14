@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -31,12 +32,12 @@ public class AddMeetingCommandTest {
     private final AddMeetingCommand standardCommand = new AddMeetingCommand(INDEX_FIRST_PERSON, VALID_MEETING_AMY);
 
     @Test
-    public void nullMeeting_throwsNullPointerExceptionTest() {
+    public void nullMeetingTest() {
         assertThrows(NullPointerException.class, () -> new AddMeetingCommand(INDEX_FIRST_PERSON, null));
     }
 
     @Test
-    public void addMeeting_SuccessTest() throws Exception {
+    public void addMeetingSuccessTest() throws Exception {
         final Meeting meeting = new Meeting(
             LocalDateTime.of(2023, 03, 14, 15, 30),
             LocalDateTime.of(2023, 03, 14, 16, 30)
@@ -52,7 +53,7 @@ public class AddMeetingCommandTest {
     }
 
     @Test
-    public void outOfRangeIndex_ThrowsCommandException() throws Exception {
+    public void outOfRangeIndexTest() throws Exception {
         final Meeting meeting = new Meeting(
             LocalDateTime.of(2023, 03, 14, 15, 30),
             LocalDateTime.of(2023, 03, 14, 16, 30)
@@ -66,7 +67,7 @@ public class AddMeetingCommandTest {
     }
 
     @Test
-    public void clash_In_Meetings_ThrowsCommandException() throws Exception {
+    public void clashInMeetingsTest() throws Exception {
         Meeting sampleMeeting = new Meeting(
             LocalDateTime.of(2023, 03, 14, 16, 00),
             LocalDateTime.of(2023, 03, 14, 17, 30)
