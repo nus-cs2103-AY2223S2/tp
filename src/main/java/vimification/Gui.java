@@ -12,8 +12,6 @@ public class Gui extends Application {
     public void start(Stage primaryStage) throws Exception {
         // Create control
         MainWindow mainWindow = new MainWindow();
-        mainWindow.setFocusTraversable(true); // Important
-
         // Set window
         // configureStage(primaryStage);
         Scene scene = new Scene(mainWindow);
