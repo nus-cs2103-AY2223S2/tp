@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -19,7 +20,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@Theme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -38,26 +39,17 @@
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
           <items>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-            <StackPane fx:id="deckListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="deckListPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
+          <StackPane fx:id="personListPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
           </items>
         </SplitPane>
 
-        <SplitPane dividerPositions="0.5" VBox.vgrow="NEVER">
+        <SplitPane fx:id="commandBox" dividerPositions="0.5" VBox.vgrow="NEVER">
           <items>
-
             <StackPane fx:id="commandBoxPlaceholder" prefWidth="340.0" styleClass="pane-with-border">
-              <padding>
-                <Insets bottom="5" left="10" right="10" top="5" />
-              </padding>
             </StackPane>
-
             <StackPane fx:id="resultDisplayPlaceholder" alignment="TOP_LEFT" maxHeight="100" minHeight="100" prefHeight="100" prefWidth="317.0" styleClass="pane-with-border">
-              <padding>
-                <Insets bottom="5" left="10" right="10" top="5" />
-              </padding>
             </StackPane>
-
           </items>
         </SplitPane>
 
