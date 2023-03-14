@@ -15,6 +15,8 @@ import seedu.address.ui.body.calendar.CalendarPanel;
  */
 public class BodyPanel extends UiPart<Region> {
     private static final String FXML = "body/BodyPanel.fxml";
+    private static final String TAB_ADDRESS_BOOK = "1. Address Book";
+    private static final String TAB_CALENDAR = "2. Calendar";
 
     /**
      * An enum to identify tabs.
@@ -44,12 +46,12 @@ public class BodyPanel extends UiPart<Region> {
 
         addressPanel = new AddressPanel(logic.getFilteredPersonList());
         addressBookTab = new Tab();
-        addressBookTab.setText("Address Book");
+        addressBookTab.setText(TAB_ADDRESS_BOOK);
         addressBookTab.setContent(addressPanel.getRoot());
 
         calendarPanel = new CalendarPanel();
         calendarTab = new Tab();
-        calendarTab.setText("Calendar");
+        calendarTab.setText(TAB_CALENDAR);
         calendarTab.setContent(calendarPanel.getRoot());
 
         bodyTabs.getTabs().addAll(addressBookTab, calendarTab);
