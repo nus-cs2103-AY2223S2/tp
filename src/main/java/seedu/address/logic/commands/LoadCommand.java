@@ -1,5 +1,11 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -9,25 +15,10 @@ import seedu.address.model.backup.Backup;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-
 /**
  * Loads the data from a specified backup
  */
-public class LoadCommand extends Command{
-
-    private final Backup backup;
-
-
-    public LoadCommand(Index index) {
-        requireAllNonNull(index);
-        this.backup = new Backup(index);
-    }
+public class LoadCommand extends Command {
 
     public static final String COMMAND_WORD = "load";
     public static final String MESSAGE_SUCCESS = "File loaded from: index %1$d";
@@ -41,9 +32,20 @@ public class LoadCommand extends Command{
             + "Example: " + COMMAND_WORD
             + " 3";
 
+
+    private final Backup backup;
+
+    /**
+     * @param index of the backup file
+     */
+    public LoadCommand(Index index) {
+        requireAllNonNull(index);
+        this.backup = new Backup(index);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        AddressBookStorage loadStorage = new JsonAddressBookStorage(Path.of(backup.BACKUP_LOCATION));
+        AddressBookStorage loadStorage = new JsonAddressBookStorage(Path.of(backup.backupLocation));
         ReadOnlyAddressBook data;
         try {
             Optional<ReadOnlyAddressBook> addressBookOptional;

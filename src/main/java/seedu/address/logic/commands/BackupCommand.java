@@ -1,33 +1,25 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.backup.Backup;
-import seedu.address.storage.*;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.backup.Backup;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 
 /**
  * Backs up the data to a specified index
  */
 public class BackupCommand extends Command {
-
-    private final Backup backup;
-    private final Path USER_PREFS_PATH = Path.of("preferences.json");
-    public static final String MESSAGE_SUCCESS = "File saved to: index %1$d";
-    public static final String SAVE_ERROR = "Error saving file!";
-
-    /**
-     * @param index of the backup file
-     */
-    public BackupCommand(Index index) {
-        requireAllNonNull(index);
-        this.backup = new Backup(index);
-    }
 
     public static final String COMMAND_WORD = "backup";
 
@@ -41,12 +33,23 @@ public class BackupCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
 
+    public static final String MESSAGE_SUCCESS = "File saved to: index %1$d";
+    public static final String SAVE_ERROR = "Error saving file!";
+    private final Backup backup;
+    private final Path userPrefsPath = Path.of("preferences.json");
 
+    /**
+     * @param index of the backup file
+     */
+    public BackupCommand(Index index) {
+        requireAllNonNull(index);
+        this.backup = new Backup(index);
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(USER_PREFS_PATH);
-        AddressBookStorage backupStorage = new JsonAddressBookStorage(Path.of(backup.BACKUP_LOCATION));
+        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(userPrefsPath);
+        AddressBookStorage backupStorage = new JsonAddressBookStorage(Path.of(backup.backupLocation));
         Storage storage = new StorageManager(backupStorage, userPrefsStorage);
         try {
             storage.saveAddressBook(model.getAddressBook());
