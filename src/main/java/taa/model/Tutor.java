@@ -115,4 +115,8 @@ public class Tutor implements ReadOnlyAddressBook {
         return classLists.asUnmodifiableObservableList();
     }
 
+    public void addStudentToClass(Student student, String className) {
+        this.classLists.addStudent(student, className);
+    }
+
 }
