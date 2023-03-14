@@ -3,6 +3,7 @@ package arb.logic.commands;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.PREFIX_OPTION;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static arb.testutil.Assert.assertThrows;
@@ -16,6 +17,7 @@ import java.util.List;
 import arb.commons.core.index.Index;
 import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.exceptions.CommandException;
+import arb.logic.commands.project.EditProjectCommand;
 import arb.model.AddressBook;
 import arb.model.ListType;
 import arb.model.Model;
@@ -24,6 +26,7 @@ import arb.model.client.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
 import arb.model.project.TitleContainsKeywordsPredicate;
 import arb.testutil.EditClientDescriptorBuilder;
+import arb.testutil.EditProjectDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -41,8 +44,11 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_SKY_PAINTING = "Sky Painting";
     public static final String VALID_TITLE_OIL_PAINTING = "Oil Painting";
-    public static final String VALID_DEADLINE_SKY_PAINTING = "2023-02-02";
-    public static final String VALID_DEADLINE_OIL_PAINTING = "2023-05-05";
+    public static final String VALID_DEADLINE_SKY_PAINTING = "6pm 2023-02-02";
+    public static final String VALID_DEADLINE_OIL_PAINTING = "midnight 2023-05-05";
+
+    public static final String VALID_SORTING_OPTION_DEADLINE = "deadline";
+    public static final String VALID_SORTING_OPTION_TITLE = "name";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -58,6 +64,8 @@ public class CommandTestUtil {
     public static final String DEADLINE_DESC_SKY_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_SKY_PAINTING;
     public static final String DEADLINE_DESC_OIL_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_OIL_PAINTING;
 
+    public static final String SORTING_OPTION_DESC = " " + PREFIX_OPTION + VALID_SORTING_OPTION_DEADLINE;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -66,7 +74,10 @@ public class CommandTestUtil {
     public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME
             + "watercolour painting&"; // '&' not allowed in titles
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
-            + "2023-07-02&"; // '&' not allowed in deadlines
+            + "ocean"; // 'ocean' is not able to be parsed into a date
+
+    public static final String INVALID_SORTING_OPTION_DESC = " " + PREFIX_OPTION
+            + "deadline&"; // does not match 'deadline' or 'name'
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -81,6 +92,18 @@ public class CommandTestUtil {
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    public static final EditProjectCommand.EditProjectDescriptor DESC_SKY_PAINTING;
+    public static final EditProjectCommand.EditProjectDescriptor DESC_OIL_PAINTING;
+
+    static {
+        DESC_SKY_PAINTING = new EditProjectDescriptorBuilder().withTitle(VALID_TITLE_SKY_PAINTING)
+                .withDeadline(VALID_DEADLINE_SKY_PAINTING).build();
+
+        DESC_OIL_PAINTING = new EditProjectDescriptorBuilder().withTitle(VALID_TITLE_OIL_PAINTING)
+                .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .build();
     }
 
     /**
@@ -143,15 +166,15 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code models}'s filtered list to show only the project at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the project at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showProjectAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
 
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
-        final String[] splitTitle = project.getTitle().title.split("\\s+");
-        model.updateFilteredProjectList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        final String[] splitName = project.getTitle().fullTitle.split("\\s+");
+        model.updateFilteredProjectList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredProjectList().size());
     }

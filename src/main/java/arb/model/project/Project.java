@@ -32,8 +32,7 @@ public class Project {
     }
 
     /**
-     * Checks if this project has a deadline.
-     * @return True if this project has a deadline, false otherwise.
+     * Returns true if this project has a deadline.
      */
     public boolean isDeadlinePresent() {
         return deadline.isPresent();
@@ -66,7 +65,14 @@ public class Project {
 
     @Override
     public String toString() {
-        return getTitle() + ", due by: " + getDeadline();
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getTitle());
+
+        if (isDeadlinePresent()) {
+            builder.append(", due by: ").append(getDeadline());
+        }
+
+        return builder.toString();
     }
 
     @Override

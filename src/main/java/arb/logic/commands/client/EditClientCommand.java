@@ -4,6 +4,7 @@ import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
+import static arb.model.Model.CLIENT_NO_COMPARATOR;
 import static arb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static java.util.Objects.requireNonNull;
 
@@ -32,7 +33,7 @@ import arb.model.tag.Tag;
  */
 public class EditClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit-client";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "
@@ -68,21 +69,26 @@ public class EditClientCommand extends Command {
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
         requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredClientList();
+        List<Client> lastShownList = model.getSortedClientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        }
+
+        if (currentListBeingShown != ListType.CLIENT) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LIST_CLIENT);
         }
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());
         Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_CLIENT);
         }
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        model.updateSortedClientList(CLIENT_NO_COMPARATOR);
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient), ListType.CLIENT);
     }
 

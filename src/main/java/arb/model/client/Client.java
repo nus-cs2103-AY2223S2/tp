@@ -39,6 +39,9 @@ public class Client {
         return this.name;
     }
 
+    /**
+     * Returns true if this client has a phone.
+     */
     public boolean isPhonePresent() {
         return this.phone.isPresent();
     }
@@ -47,6 +50,9 @@ public class Client {
         return this.phone.orElse(null);
     }
 
+    /**
+     * Returns true if this client has an email.
+     */
     public boolean isEmailPresent() {
         return this.email.isPresent();
     }

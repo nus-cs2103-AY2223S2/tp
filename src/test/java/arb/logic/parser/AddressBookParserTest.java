@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import arb.logic.commands.CommandTestUtil;
 import arb.logic.commands.ExitCommand;
 import arb.logic.commands.HelpCommand;
 import arb.logic.commands.client.AddClientCommand;
@@ -22,13 +23,16 @@ import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import arb.logic.commands.client.FindClientCommand;
 import arb.logic.commands.client.ListClientCommand;
+import arb.logic.commands.client.SortClientCommand;
 import arb.logic.commands.project.DeleteProjectCommand;
+import arb.logic.commands.project.SortProjectCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
 import arb.model.client.NameContainsKeywordsPredicate;
 import arb.testutil.ClientBuilder;
 import arb.testutil.ClientUtil;
 import arb.testutil.EditClientDescriptorBuilder;
+import arb.testutil.TypicalProjectSortingOptions;
 
 public class AddressBookParserTest {
 
@@ -82,6 +86,19 @@ public class AddressBookParserTest {
         FindClientCommand command = (FindClientCommand) parser.parseCommand(
                 FindClientCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindClientCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_sortClient() throws Exception {
+        assertTrue(parser.parseCommand(SortClientCommand.COMMAND_WORD) instanceof SortClientCommand);
+        assertTrue(parser.parseCommand(SortClientCommand.COMMAND_WORD + " 3") instanceof SortClientCommand);
+    }
+
+    @Test
+    public void parseCommand_sortProject() throws Exception {
+        SortProjectCommand sortProjectCommand = (SortProjectCommand) parser.parseCommand(
+                SortProjectCommand.COMMAND_WORD + CommandTestUtil.SORTING_OPTION_DESC);
+        assertEquals(new SortProjectCommand(TypicalProjectSortingOptions.BY_DEADLINE), sortProjectCommand);
     }
 
     @Test

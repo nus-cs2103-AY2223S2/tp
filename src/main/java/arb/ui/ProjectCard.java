@@ -44,10 +44,10 @@ public class ProjectCard extends UiPart<Region> {
         super(FXML);
         this.project = project;
         id.setText(displayedIndex + ". ");
-        title.setText(project.getTitle().title);
+        title.setText(project.getTitle().fullTitle);
 
         if (project.isDeadlinePresent()) {
-            deadline.setText(project.getDeadline().dueDate);
+            deadline.setText(project.getDeadline().toString());
         } else {
             contentsPane.getChildren().remove(deadline);
         }
