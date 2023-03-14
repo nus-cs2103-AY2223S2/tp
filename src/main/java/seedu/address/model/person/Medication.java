@@ -10,8 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Medication {
 
     private static final String DELIMITER = ";";
-    public static final String MESSAGE_CONSTRAINTS = "Medication should be of the format qty medication. "
-            + "If you would like to prescribe multiple medications, insert a " + DELIMITER + "between each string.";
+    public static final String MESSAGE_CONSTRAINTS = "Medication should be of the format:\n"
+            + "qty medication\n"
+            + "If you would like to prescribe multiple medications, insert " + DELIMITER + " between each string.";
 
     /*
      * Accepts one of the following 2 cases:

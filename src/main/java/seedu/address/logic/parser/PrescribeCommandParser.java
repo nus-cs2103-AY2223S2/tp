@@ -33,7 +33,7 @@ public class PrescribeCommandParser implements Parser<PrescribeCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrescribeCommand.MESSAGE_USAGE));
         }
 
-        Medication medication = new Medication(argMultimap.getValue(PREFIX_MEDICATION).orElse(""));
+        Medication medication = ParserUtil.parseMedication(argMultimap.getValue(PREFIX_MEDICATION).orElse(""));
 
         return new PrescribeCommand(index, medication);
     }
