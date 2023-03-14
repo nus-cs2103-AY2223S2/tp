@@ -11,9 +11,9 @@ import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static arb.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
-import static arb.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
-import static arb.testutil.TypicalIndexes.INDEX_THIRD_PROJECT;
+import static arb.testutil.TypicalIndexes.INDEX_FIRST;
+import static arb.testutil.TypicalIndexes.INDEX_SECOND;
+import static arb.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -77,7 +77,7 @@ public class EditProjectCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PROJECT;
+        Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING
                 + TITLE_DESC_SKY_PAINTING;
 
@@ -92,7 +92,7 @@ public class EditProjectCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PROJECT;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING;
 
         EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
@@ -106,7 +106,7 @@ public class EditProjectCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // title
-        Index targetIndex = INDEX_THIRD_PROJECT;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_SKY_PAINTING;
         EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withTitle(VALID_TITLE_SKY_PAINTING).build();
@@ -122,7 +122,7 @@ public class EditProjectCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PROJECT;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_SKY_PAINTING
                 + DEADLINE_DESC_SKY_PAINTING
                 + DEADLINE_DESC_OIL_PAINTING;
@@ -138,7 +138,7 @@ public class EditProjectCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PROJECT;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_DEADLINE_DESC + DEADLINE_DESC_OIL_PAINTING;
         EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING).build();

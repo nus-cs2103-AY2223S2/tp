@@ -14,7 +14,7 @@ import arb.model.Model;
 import arb.model.client.Client;
 
 /**
- * Deletes a client identified using it's displayed index from the address book.
+ * Deletes a client identified using its displayed index from the address book.
  */
 public class DeleteClientCommand extends Command {
 
@@ -29,6 +29,9 @@ public class DeleteClientCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteClientCommand to delete the specified {@code Client}
+     */
     public DeleteClientCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

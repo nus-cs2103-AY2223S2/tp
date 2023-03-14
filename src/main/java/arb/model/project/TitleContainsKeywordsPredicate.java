@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import arb.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Project}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Project}'s {@code Title} matches any of the keywords given.
  */
 public class TitleContainsKeywordsPredicate implements Predicate<Project> {
     private final List<String> keywords;

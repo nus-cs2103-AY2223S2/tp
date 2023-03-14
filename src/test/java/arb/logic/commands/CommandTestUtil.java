@@ -123,7 +123,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, ListType, ListType, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}, {@code currentListBeingShown} and {@code listToBeShown}.
      */
     public static void assertCommandSuccess(Command command, ListType currentListBeingShown, ListType listToBeShown,

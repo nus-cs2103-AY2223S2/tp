@@ -2,7 +2,7 @@ package arb.logic.parser;
 
 import static arb.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static arb.testutil.Assert.assertThrows;
-import static arb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static arb.testutil.TypicalIndexes.INDEX_FIRST;
 import static arb.testutil.TypicalProjectSortingOptions.BY_DEADLINE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -52,10 +52,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_CLIENT, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_CLIENT, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
