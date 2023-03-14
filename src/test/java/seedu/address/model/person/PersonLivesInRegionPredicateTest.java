@@ -10,12 +10,14 @@ import seedu.address.testutil.PersonBuilder;
 
 public class PersonLivesInRegionPredicateTest {
 
-    Person someGuyWhoLivesInTheNorth = new PersonBuilder().withAddress("JTC 22 Woodlands Link #02-61").build();
-    Person anotherGuyWhoLivesInTheNorth = new PersonBuilder().withAddress("30 Kranji Way ").build();
-    Person someNorthGuy = new PersonBuilder().withAddress("Lim Chu Kang Community Centre, Lim Chu Kang Road, 580, Singapore, Lim Chu Kang, Neo Tiew, Kranji, North: 719418").build();
+    private Person someGuyWhoLivesInTheNorth = new PersonBuilder().withAddress("JTC 22 Woodlands Link #02-61").build();
+    private Person anotherGuyWhoLivesInTheNorth = new PersonBuilder().withAddress("30 Kranji Way ").build();
+    private Person someNorthGuy = new PersonBuilder()
+            .withAddress("Lim Chu Kang Community Centre, Lim Chu Kang Road, 580, Singapore, Lim Chu Kang")
+            .build();
 
     // Clementi is in west of singaproe
-    Person clementiGuy = new PersonBuilder().withAddress("321 Clementi Ave 3, Singapore 129905").build();
+    private Person clementiGuy = new PersonBuilder().withAddress("321 Clementi Ave 3, Singapore 129905").build();
 
     @Test
     public void test_validAddressMatchesRegion_returnsTrue() {

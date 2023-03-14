@@ -34,13 +34,15 @@ public class ListRegionCommand extends Command {
     }
 
     /**
-     * Two commands are considered equal (or equivalent) if executing both yields the exact same results for all model states <p>
+     * Two commands are considered equal (or equivalent)
+     * if executing both yields the exact same results for all model states <p>
      * For the list region command, having the same target region will guarantee the same results.
      */
     @Override
     public boolean equals(Object other) {
-        return other == this 
+        // Safe typecast. Shortcircuit will disallow type mismatch at runtime
+        return other == this
                 || (other instanceof ListRegionCommand
-                && targetRegion.equals(((ListRegionCommand) other).targetRegion)); // Safe typecast. Shortcircuit will disallow type mismatch at runtime
+                && targetRegion.equals(((ListRegionCommand) other).targetRegion));
     }
 }
