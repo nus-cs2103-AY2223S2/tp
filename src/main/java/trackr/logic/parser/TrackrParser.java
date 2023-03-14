@@ -9,13 +9,18 @@ import java.util.regex.Pattern;
 import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.AddTaskCommand;
 import trackr.logic.commands.ClearCommand;
+import trackr.logic.commands.ClearTaskCommand;
 import trackr.logic.commands.Command;
 import trackr.logic.commands.DeleteSupplierCommand;
+import trackr.logic.commands.DeleteTaskCommand;
 import trackr.logic.commands.EditSupplierCommand;
+import trackr.logic.commands.EditTaskCommand;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindSupplierCommand;
+import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
 import trackr.logic.commands.ListCommand;
+import trackr.logic.commands.ListTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
 
 /**
@@ -56,17 +61,37 @@ public class TrackrParser {
         case EditSupplierCommand.COMMAND_WORD:
             return new EditSupplierCommandParser().parse(arguments);
 
+        case EditTaskCommand.COMMAND_WORD:
+        case EditTaskCommand.COMMAND_WORD_SHORTCUT:
+            return new EditTaskCommandParser().parse(arguments);
+
         case DeleteSupplierCommand.COMMAND_WORD:
             return new DeleteSupplierCommandParser().parse(arguments);
+
+        case DeleteTaskCommand.COMMAND_WORD:
+        case DeleteTaskCommand.COMMAND_WORD_SHORTCUT:
+            return new DeleteTaskCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case ClearTaskCommand.COMMAND_WORD:
+        case ClearTaskCommand.COMMAND_WORD_SHORTCUT:
+            return new ClearTaskCommand();
+
         case FindSupplierCommand.COMMAND_WORD:
             return new FindSupplierCommandParser().parse(arguments);
 
+        case FindTaskCommand.COMMAND_WORD:
+        case FindTaskCommand.COMMAND_WORD_SHORTCUT:
+            return new FindTaskCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListTaskCommand.COMMAND_WORD:
+        case ListTaskCommand.COMMAND_WORD_SHORTCUT:
+            return new ListTaskCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

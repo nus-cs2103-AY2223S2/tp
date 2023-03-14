@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_SUPPLIER;
+import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -62,10 +62,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_SUPPLIER, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_OBJECT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_SUPPLIER, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_OBJECT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

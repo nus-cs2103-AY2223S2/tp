@@ -2,7 +2,7 @@ package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_SUPPLIER;
+import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -34,7 +34,7 @@ public class ListSupplierCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showSupplierAtIndex(model, INDEX_FIRST_SUPPLIER);
+        showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

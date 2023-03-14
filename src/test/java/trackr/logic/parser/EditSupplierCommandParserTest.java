@@ -27,9 +27,9 @@ import static trackr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static trackr.testutil.TypicalIndexes.INDEX_FIRST_SUPPLIER;
-import static trackr.testutil.TypicalIndexes.INDEX_SECOND_SUPPLIER;
-import static trackr.testutil.TypicalIndexes.INDEX_THIRD_SUPPLIER;
+import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
+import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static trackr.testutil.TypicalIndexes.INDEX_THIRD_OBJECT;
 
 import org.junit.jupiter.api.Test;
 
@@ -107,7 +107,7 @@ public class EditSupplierCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_SUPPLIER;
+        Index targetIndex = INDEX_SECOND_OBJECT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
@@ -121,7 +121,7 @@ public class EditSupplierCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_SUPPLIER;
+        Index targetIndex = INDEX_FIRST_OBJECT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
         EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withPhone(VALID_PHONE_BOB)
@@ -134,7 +134,7 @@ public class EditSupplierCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_SUPPLIER;
+        Index targetIndex = INDEX_THIRD_OBJECT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditSupplierCommand expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
@@ -167,7 +167,7 @@ public class EditSupplierCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_SUPPLIER;
+        Index targetIndex = INDEX_FIRST_OBJECT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
@@ -183,7 +183,7 @@ public class EditSupplierCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_SUPPLIER;
+        Index targetIndex = INDEX_FIRST_OBJECT;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         EditSupplierCommand expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
@@ -200,7 +200,7 @@ public class EditSupplierCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_SUPPLIER;
+        Index targetIndex = INDEX_THIRD_OBJECT;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withTags().build();
