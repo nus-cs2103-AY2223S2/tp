@@ -57,7 +57,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .parseTelegramHandle(argMultimap.getValue(Prefix.TELEGRAM_HANDLE).get()));
         }
 
-        parseGroupTagsForEdit(argMultimap.getAllValues(Prefix.GROUP_TAG))
+        ParserUtil.parseGroupTagsForCommands(argMultimap.getAllValues(Prefix.GROUP_TAG))
                 .ifPresent(editPersonDescriptor::setGroupTags);
         ParserUtil.parseModuleTagsForCommands(argMultimap.getAllValues(Prefix.MODULE_TAG))
                 .ifPresent(editPersonDescriptor::setModuleTags);
@@ -66,35 +66,4 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         return new EditCommand(index, editPersonDescriptor);
     }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<GroupTag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<GroupTag>} containing zero tags.
-     */
-    private Optional<Set<GroupTag>> parseGroupTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseGroupTags(tagSet));
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<ModuleTag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<ModuleTag>} containing zero tags.
-     */
-    private Optional<Set<ModuleTag>> parseModuleTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseModuleTags(tagSet));
-    }
-
 }
