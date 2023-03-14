@@ -37,7 +37,7 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
                     CreateExamCommand.MESSAGE_USAGE));
         }
 
-        String examDescription = argMultimap.getValue(PREFIX_HOMEWORK).get();
+        String examDescription = argMultimap.getValue(PREFIX_EXAM).get();
         LocalDateTime startTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_STARTTIME).get());
         LocalDateTime endTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ENDTIME).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);

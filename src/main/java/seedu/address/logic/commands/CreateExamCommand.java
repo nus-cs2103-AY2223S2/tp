@@ -24,12 +24,12 @@ public class CreateExamCommand extends Command {
             + "Parameters: "
             + "n/STUDENT_NAME "
             + "e/EXAM_DESCRIPTION "
-            + "start/START_TIME"
+            + "start/START_TIME "
             + "end/END_TIME\n"
             + "Example: " + COMMAND_WORD + " "
             + "n/John Doe "
             + "e/Math MYE Paper 1 "
-            + "start/2023-03-01T12:00"
+            + "start/2023-03-01T12:00 "
             + "end/2023-03-01T13:00";
 
     private final String examDescription;
