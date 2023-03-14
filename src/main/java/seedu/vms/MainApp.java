@@ -20,6 +20,7 @@ import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
+import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.util.SampleDataUtil;
 import seedu.vms.model.vaccination.VaxTypeManager;
@@ -29,6 +30,8 @@ import seedu.vms.storage.PatientManagerStorage;
 import seedu.vms.storage.Storage;
 import seedu.vms.storage.StorageManager;
 import seedu.vms.storage.UserPrefsStorage;
+import seedu.vms.storage.appointment.JsonAppointmentStorage;
+import seedu.vms.storage.appointment.AppointmentStorage;
 import seedu.vms.storage.vaccination.JsonVaxTypeStorage;
 import seedu.vms.storage.vaccination.VaxTypeStorage;
 import seedu.vms.ui.Ui;
@@ -65,7 +68,8 @@ public class MainApp extends Application {
         PatientManagerStorage patientManagerStorage = new JsonPatientManagerStorage(
                 userPrefs.getPatientManagerFilePath());
         VaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
-        storage = new StorageManager(patientManagerStorage, vaxTypeStorage, userPrefsStorage);
+        AppointmentStorage appointmentStorage = new JsonAppointmentStorage();
+        storage = new StorageManager(patientManagerStorage, vaxTypeStorage, appointmentStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -100,7 +104,17 @@ public class MainApp extends Application {
             // not suppose to happen but initialize as empty
         }
 
-        return new ModelManager(initialData, vaxTypeManager, userPrefs);
+        AppointmentManager appointmentManager = new AppointmentManager();
+        try {
+            appointmentManager = storage.loadUserAppointments();
+        } catch (IOException ioEx) {
+            logger.warning("Unable to load appointments, default will be loaded, problem: " + ioEx.getMessage());
+            appointmentManager = storage.loadDefaultAppointments();
+        } catch (RuntimeException rte) {
+            // not suppose to happen but initialize as empty
+        }
+
+        return new ModelManager(initialData, vaxTypeManager, appointmentManager, userPrefs);
     }
 
     private void initLogging(Config config) {

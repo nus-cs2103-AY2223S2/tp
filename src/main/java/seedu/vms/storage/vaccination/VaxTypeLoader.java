@@ -80,7 +80,7 @@ public class VaxTypeLoader {
     /**
      * Writes the data of this {@code VaxTypeLoader} to the specified file.
      *
-     * @throws IOexception if an I/O error occurs.
+     * @throws IOException if an I/O error occurs.
      */
     public void write(Path path) throws IOException {
         JsonUtil.serializeToFile(path, this);

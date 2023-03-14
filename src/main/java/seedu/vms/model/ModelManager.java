@@ -38,7 +38,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given patientManager and userPrefs.
      */
     public ModelManager(ReadOnlyPatientManager patientManager, VaxTypeManager vaxTypeManager,
-            ReadOnlyUserPrefs userPrefs) {
+            AppointmentManager appointmentManager, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(patientManager, userPrefs);
 
         logger.fine("Initializing with patient manager: " + patientManager + " and user prefs " + userPrefs);
@@ -47,7 +47,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatientMap = new FilteredIdDataMap<>(this.patientManager.getMapView());
 
-        appointmentManager = new AppointmentManager();
+        this.appointmentManager = appointmentManager;
         filteredAppointmentMap = new FilteredIdDataMap<>(appointmentManager.getMapView());
         this.vaxTypeManager = vaxTypeManager;
     }
@@ -57,11 +57,11 @@ public class ModelManager implements Model {
      * empty {@code VaxTypeManager}.
      */
     public ModelManager(ReadOnlyPatientManager patientManager, ReadOnlyUserPrefs userPrefs) {
-        this(patientManager, new VaxTypeManager(), userPrefs);
+        this(patientManager, new VaxTypeManager(), new AppointmentManager(), userPrefs);
     }
 
     public ModelManager() {
-        this(new PatientManager(), new VaxTypeManager(), new UserPrefs());
+        this(new PatientManager(), new VaxTypeManager(), new AppointmentManager(), new UserPrefs());
     }
 
     // =========== UserPrefs ==================================================================================
