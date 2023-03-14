@@ -24,6 +24,7 @@ import arb.logic.commands.project.FindProjectCommand;
 import arb.logic.commands.project.ListProjectCommand;
 import arb.logic.commands.project.MarkProjectCommand;
 import arb.logic.commands.project.SortProjectCommand;
+import arb.logic.commands.project.UnmarkProjectCommand;
 import arb.logic.parser.client.AddClientCommandParser;
 import arb.logic.parser.client.DeleteClientCommandParser;
 import arb.logic.parser.client.EditClientCommandParser;
@@ -35,6 +36,7 @@ import arb.logic.parser.project.EditProjectCommandParser;
 import arb.logic.parser.project.FindProjectCommandParser;
 import arb.logic.parser.project.MarkProjectCommandParser;
 import arb.logic.parser.project.SortProjectCommandParser;
+import arb.logic.parser.project.UnmarkProjectCommandParser;
 
 /**
  * Parses user input.
@@ -71,6 +73,9 @@ public class AddressBookParser {
 
         case MarkProjectCommand.COMMAND_WORD:
             return new MarkProjectCommandParser().parse(arguments);
+
+        case UnmarkProjectCommand.COMMAND_WORD:
+            return new UnmarkProjectCommandParser().parse(arguments);
 
         case EditClientCommand.COMMAND_WORD:
             return new EditClientCommandParser().parse(arguments);

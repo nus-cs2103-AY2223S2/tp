@@ -16,22 +16,21 @@ import arb.model.Model;
 import arb.model.project.Project;
 
 /**
- * Marks a project identified using its displayed index from the address book.
+ * Unmarks a project identified using its displayed index from the address book.
  */
-public class MarkProjectCommand extends Command {
-
-    public static final String COMMAND_WORD = "mark";
+public class UnmarkProjectCommand extends Command {
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the project identified by the index number used in the displayed project list.\n"
+            + ": Unmarks the project identified by the index number used in the displayed project list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_PROJECT_SUCCESS = "Marked Project: %1$s";
+    public static final String MESSAGE_UNMARK_PROJECT_SUCCESS = "Unmarked Project: %1$s";
 
     private final Index targetIndex;
 
-    public MarkProjectCommand(Index targetIndex) {
+    public UnmarkProjectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -48,19 +47,19 @@ public class MarkProjectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_LIST_PROJECT);
         }
 
-        Project projectToMark = lastShownList.get(targetIndex.getZeroBased());
-        projectToMark.markAsDone();
+        Project projectToUnmark = lastShownList.get(targetIndex.getZeroBased());
+        projectToUnmark.markAsUndone();
 
-        model.setProject(projectToMark, projectToMark);
+        model.setProject(projectToUnmark, projectToUnmark);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
-        return new CommandResult(String.format(MESSAGE_MARK_PROJECT_SUCCESS, projectToMark), ListType.PROJECT);
+        return new CommandResult(String.format(MESSAGE_UNMARK_PROJECT_SUCCESS, projectToUnmark), ListType.PROJECT);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MarkProjectCommand // instanceof handles nulls
-                && targetIndex.equals(((MarkProjectCommand) other).targetIndex)); // state check
+                || (other instanceof UnmarkProjectCommand // instanceof handles nulls
+                && targetIndex.equals(((UnmarkProjectCommand) other).targetIndex)); // state check
     }
 }
