@@ -1,12 +1,17 @@
 package seedu.address.ui;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.command.CommandHistory;
+import seedu.address.model.command.exceptions.OutOfBoundsCommandHistoryException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -29,6 +34,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setOnKeyPressed(new KeyPressedHandler());
     }
 
     /**
@@ -80,6 +86,40 @@ public class CommandBox extends UiPart<Region> {
          * @see seedu.address.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
+    }
+
+    public class KeyPressedHandler implements EventHandler<KeyEvent> {
+        @Override
+        public void handle(KeyEvent event) {
+            KeyCode key = event.getCode();
+
+            if (key.equals(KeyCode.UP)) {
+                if (commandTextField.getText().equals("")) {
+                    CommandHistory.setLast();
+                }
+
+                try {
+                    commandTextField.setStyle("-fx-display-caret: false;");
+                    commandTextField.setText(CommandHistory.prev());
+                } catch (OutOfBoundsCommandHistoryException e) {
+                    // Nothing to do
+                } finally {
+                    commandTextField.end();
+                    commandTextField.setStyle("-fx-display-caret: true;");
+
+                }
+            }
+
+            if (key.equals(KeyCode.DOWN)) {
+                try {
+                    commandTextField.setText(CommandHistory.next());
+                } catch (OutOfBoundsCommandHistoryException e) {
+                    commandTextField.setText("");
+                } finally {
+                    commandTextField.end();
+                }
+            }
+        }
     }
 
 }
