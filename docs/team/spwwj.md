@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   * Justification: The addition of Local Storage is a crucial enhancement for OfficeConnect. It provides users with a convenient and reliable way to store their data, which can be easily accessed and restored as needed. This feature ensures that users have complete control over their data, helping to improve productivity and streamline workflows.
   * Highlights: The addition of Local Storage is a significant update that impacts the existing data structure of OfficeConnect. This feature is a fundamental building block for all other OfficeConnect features, making it a key component of the software's architecture. With Local Storage, OfficeConnect provides a more comprehensive and user-friendly solution for managing data, enabling users to work more efficiently and effectively.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=spwwj&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
 * **Project management**:
   * To be added.

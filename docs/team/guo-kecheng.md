@@ -20,7 +20,7 @@ that emails are sent during working hours, so that subordinates will not be dist
 Given below are my contributions to the project.
 
 - **New Feature**:
-- **Code contributed**: [RepoSense link]()
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=guo-kecheng&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 - **Project management**:
 - **Enhancements to existing features**:
 - **Documentation**:
