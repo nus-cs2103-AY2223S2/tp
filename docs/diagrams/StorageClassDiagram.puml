@@ -22,6 +22,14 @@ Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
 
+package "DeliveryJob Storage" #F4F6F6{
+Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
+Class JsonDeliveryJobStorage
+Class JsonSerializableDeliveryJob
+Class JsonAdaptedDeliveryJob
+Class JsonAdaptedDeliveryPackage
+}
+
 }
 
 Class HiddenOutside #FFFFFF

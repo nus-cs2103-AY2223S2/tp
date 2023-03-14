@@ -1,0 +1,8 @@
+#statsMessage {
+    -fx-text-fill: white;
+}
+
+
+#statsMessageContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}

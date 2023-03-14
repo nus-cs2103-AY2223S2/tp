@@ -9,51 +9,48 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chin Jun An
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chinjunan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/ChinJunAn)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Notification and reminder function
 
-### Jean Doe
+### Do Ha Duong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dohaduong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/dohaduong)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibility: Scheduling and timetable function
+
+### Chen Zuo Hui
+
+<img src="images/zuohui48.png" width="200px">
+
+[[github](https://github.com/zuohui48)]
+
+* Role: Developer
+* Responsibilities: List jobs, Summary Statistics
+
+### Zhu Le Yao
+
+<img src="images/zhuleyao.png" width="200px">
+
+[[github](http://github.com/ZhuLeYao)]
+
+* Role: Developer
+* Responsibilities: Data, Add and view jobs function
+
+### Chen Junsheng
+
+<img src="images/c0j0s.png" width="200px">
+
+[[github](http://github.com/c0j0s)]
+[[portfolio](team/c0j0s.md)]
+
+* Role: Developer
+* Responsibilities: Delivery jobs function

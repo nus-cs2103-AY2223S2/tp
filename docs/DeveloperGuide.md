@@ -262,59 +262,117 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* delivery man with >50 deliveries in a day
+* drives constanly with a laptop in the van
+* lazy, doesn't like to micromanage
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Also helps delivery men to plan the most efficient delivery route and retain customer relations.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                           | I want to …​                   | So that I can…​                                                        |
+|----------|-------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new delivery driver and Duke Driver user                          | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | delivery driver                                                   | add/delete jobs                | keep track of my upcoming and old jobs                                 |
+| `* * *`  | delivery driver                                                   | mark/unmark jobs               | keep track of completed jobs                                           |
+| `* * *`  | delivery driver                                                   | add a new person               | keep in touch with my clients                                          |
+| `* * *`  | delivery driver                                                   | delete a person                | remove entries that I no longer need                                   |
+| `* * *`  | organised delivery driver                                         | find a person by name          | locate details of persons without having to go through the entire list |
+| `* *`    | delivery driver                                                   | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | delivery driver who wants to provide better service for customers | chat with my clients           | retain custormer relations and maintain more customers.                |
+| `* *`    | delivery driver who wants to learn how to maximise his earnings   | view my aggregated information | track my earnings and other statistics                                 |
+| `*`      | delivery driver with many customers in the address book           | sort persons by name           | locate a person/client easily and thus increase delivery efficiency    |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Duke Driver` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+<details>
+<summary><b>[ST1] View statistics</b></summary>
+<pre>
+<b>MSS</b>
+1. User is on homepage of list of jobs.
+2. User requests to view overall statistics.
+3. System shows total earnings, monthly earnings,
+   weekly earnings, daily earnings and top customers visited.
+   Use case ends.
 
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
+<b>Extensions</b>
 * 2a. The list is empty.
+      Use case ends.
+</pre>
+</details>
 
+<details>
+<summary><b>[DE1] View delivery job details</b></summary>
+<pre>
+<b>MSS</b>
+1. User opens the system.
+2. System list all pending jobs.
+3. User selects the job for details.
+4. System displays the full detail of the delivery job.
+</pre>
+</details>
+
+
+<details>
+<summary><b>[DE2] Add a delivery job</b></summary>
+<pre>
+<b>MSS</b>
+1. User is on homepage of list of jobs.
+2. User requests to add a job in the list.
+3. System adds job and job appears in list of jobs.
+   Use case ends.
+</pre>
+</details>
+
+
+<details>
+<summary><b>[DE3] Delete a job</b></summary>
+<pre>
+<b>MSS</b>
+1. User is on homepage of list of jobs.
+2. System shows a list of jobs.
+3. User requests to delete a specific job in the list.
+4. System deletes the job.
+   Use case ends.
+
+<b>Extensions</b>
+* 2a. The list is empty.
   Use case ends.
-
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+    * 3a1. System shows an error message.
       Use case resumes at step 2.
+</pre>
+</details>
+
+
+<details>
+<summary><b>[TT1] Display timetable and scheduling tasks</b></summary>
+<pre>
+<b>MSS</b>
+1. User requests to display timetable by selecting Timetable option on homepage.
+2. System displays timetable of uncompleted/upcoming jobs.
+   Use case ends.
+
+</pre>
+</details>
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be used for a single user only i.e. (not a multi-user product).
+3.  The system should respond within two seconds (after receiving input from user).
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
 
 *{More to be added}*
 
@@ -322,6 +380,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **GUI**: Graphical User Interface
+* **CLI**: Command Line Interface
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -375,3 +435,5 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+

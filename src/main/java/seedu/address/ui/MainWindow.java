@@ -16,6 +16,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.job.DeliveryJobDetailPane;
+import seedu.address.ui.job.DeliveryJobListPanel;
+import seedu.address.ui.main.CommandBox;
+import seedu.address.ui.main.ResultDisplay;
+import seedu.address.ui.main.StatusBarFooter;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,18 +36,33 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    // private PersonListPanel personListPanel;
+    private DeliveryJobListPanel deliveryJobListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TimetableWindow timetableWindow;
+    private StatisticsWindow statsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private StackPane deliveryJobDetailPlaceholder;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private MenuItem timetableMenuItem;
+
+    @FXML
+    private MenuItem statsItem;
+
+    // @FXML
+    // private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane deliveryJobListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -66,6 +86,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        timetableWindow = new TimetableWindow(new Stage(), logic);
+        statsWindow = new StatisticsWindow(new Stage(), logic);
     }
 
     public Stage getPrimaryStage() {
@@ -78,6 +100,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,8 +133,18 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        // personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        // personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), (idx, job) -> {
+            deliveryJobDetailPlaceholder.getChildren().clear();
+            DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, idx);
+            deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
+        });
+        deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
+
+        DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(logic.getFilteredDeliveryJobList().get(0), 0);
+        deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -147,6 +180,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens Timetable window.
+     */
+    @FXML
+    private void handleTimetable() {
+        if (!timetableWindow.isShowing()) {
+            timetableWindow.show();
+            timetableWindow.fillInnerParts();
+        } else {
+            timetableWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -160,11 +206,30 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        timetableWindow.hide();
+        statsWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Opens Statistics window.
+     */
+    @FXML
+    private void handleStats() {
+        if (!statsWindow.isShowing()) {
+            statsWindow.show();
+            statsWindow.fillInnerParts();
+        } else {
+            statsWindow.focus();
+        }
+    }
+
+    // public PersonListPanel getPersonListPanel() {
+    //     return personListPanel;
+    // }
+
+    public DeliveryJobListPanel getDeliveryJobListPanel() {
+        return deliveryJobListPanel;
     }
 
     /**
@@ -180,6 +245,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowTimetable()) {
+                handleTimetable();
             }
 
             if (commandResult.isExit()) {
