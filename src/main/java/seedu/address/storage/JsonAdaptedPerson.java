@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,10 +12,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Platoon;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Unit;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +33,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String rank;
+    private final String unit;
+    private final String company;
+    private final String platoon;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +44,18 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("rank") String rank, @JsonProperty("unit") String unit,
+                             @JsonProperty("company") String company, @JsonProperty("platoon") String platoon,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.rank = rank;
+        this.unit = unit == null ? "N/A" : unit;
+        this.company = company == null ? "N/A" : company;
+        this.platoon = platoon == null ? "N/A" : platoon;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +69,10 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        rank = source.getRank().value;
+        unit = source.getUnit().value;
+        company = source.getCompany().value;
+        platoon = source.getPlatoon().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +121,42 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (rank == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rank.class.getSimpleName()));
+        }
+        if (!Rank.isValidRank(rank)) {
+            throw new IllegalValueException(Rank.MESSAGE_CONSTRAINTS);
+        }
+        final Rank modelRank = new Rank(rank);
+
+        if (unit == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rank.class.getSimpleName()));
+        }
+        if (!Unit.isValidUnit(unit)) {
+            throw new IllegalValueException(Unit.MESSAGE_CONSTRAINTS);
+        }
+        final Unit modelUnit = new Unit(unit);
+
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rank.class.getSimpleName()));
+        }
+        if (!Company.isValidCompany(company)) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
+        }
+        final Company modelCompany = new Company(company);
+
+        if (platoon == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Platoon.class.getSimpleName()));
+        }
+        if (!Platoon.isValidPlatoon(platoon)) {
+            throw new IllegalValueException(Platoon.MESSAGE_CONSTRAINTS);
+        }
+        final Platoon modelPlatoon = new Platoon(platoon);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRank,
+                modelUnit, modelCompany, modelPlatoon, modelTags);
     }
 
 }

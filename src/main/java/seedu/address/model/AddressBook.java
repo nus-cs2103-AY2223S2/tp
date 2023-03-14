@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -16,6 +17,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
+    private final ArrayList<ReadOnlyAddressBook> addressBookStateList = new ArrayList<>();
+
+    private int currentStatePointer;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -27,7 +32,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -35,6 +41,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+        addressBookStateList.add(toBeCopied);
+        currentStatePointer = 0;
     }
 
     //// list overwrite operations
@@ -93,11 +101,47 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Saves the current address book state to history.
+     *
+     * @param currentState The current state of the address book.
+     */
+    public void commit(ReadOnlyAddressBook currentState) {
+        if (currentStatePointer < addressBookStateList.size() - 1) {
+            // need to remove all states to the right
+            int numStatesToRemove = addressBookStateList.size() - 1 - currentStatePointer;
+            for (int i = 0; i < numStatesToRemove; i++) {
+                addressBookStateList.remove(addressBookStateList.size() - 1);
+            }
+        }
+        addressBookStateList.add(new AddressBook(currentState));
+        currentStatePointer += 1;
+    }
+
+    /**
+     * Restores the previous address book state from history.
+     */
+    public void undo() {
+        ReadOnlyAddressBook previousState = addressBookStateList.get(currentStatePointer - 1);
+        resetData(previousState);
+        currentStatePointer -= 1;
+    }
+
+    /**
+     * Checks whether there are old address book states in history to undo.
+     *
+     * @return A boolean indicating if there are old address book states in history.
+     */
+    public boolean canUndo() {
+        return currentStatePointer > 0;
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.toString();
+        // return persons.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
