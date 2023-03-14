@@ -274,44 +274,53 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                                                                                                                           | So that I can…​                                                                                                                                                             |
-|----------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | A receptionist at the GP clinic   | Add new patients profiles                                                                                                              | use the system to track their personal information and health records                                                                                                       |
-| `* * *`  | A receptionist at the GP clinic   | delete a patient                                                                                                                       | remove patient data that I no longer need                                                                                                                                   |
-| `* * *`  | A receptionist at the GP clinic   | find a person by name                                                                                                                  | locate details of persons without having to go through the entire list                                                                                                      |
-| `* * * ` | A receptionist at the GP clinic   |Retrieve patients’ contact number| remind patients of their upcoming appointments                                                                                                                              |
-| `* * *`  | A receptionist at the GP clinic   | update patient profiles                                                                                                                | have access to the most updated version of their personal information in terms of their contact number, address etc to facilitate our internal patient management procedure |
-| `* * `   | A receptionist at the GP clinic   | sort persons by name                                                                                                                   | locate a person easily                                                                                                                                                      |
-| `* * `   | A receptionist at the GP clinic   | archive a patient profile if the patient has not visited for a long time                                                               | searching in a smaller dataset and when I distribute health information, I can omit patients in the archive to reduce spamming                                              |
-| `* * `   | A receptionist at the GP clinic   | Refer the patient to hospitals                                                                                                         | easily forward their personal information, health record and health condition to hospitals if the patient needs more professional treatment                                 |
-| `* * `   | A receptionist at the GP clinic   | Check if a patient has any drug allergy                                                                                                | Inform the doctor of the patient’s drug allergy and ensure the safety of the patients by avoiding prescribing them with drugs that they are allergic to                     |
-| `* * `   | A receptionist at the GP clinic   | Update patients on crowd conditions                                                                                                    | They can avoid visiting during peak clinic capacities                                                                                                                       |
-| `* * `   | A receptionist at the GP clinic   | Access all hotlines to major SG hospitals                                                                                              | easily contact them for emergency cases                                                                                                                                     |
-| `* * `   | A receptionist at the GP clinic   | Add appointment dates for a patient                                                                                                    | easily tell who has upcoming appointments and sms/email them to remind them                                                                                                 |
-| `* * `   | A receptionist at the GP clinic   | Use the system to send notifications to patients who have upcoming appointments                                                        | send out mass notifications with one simple click without having to text each patient individually                                                                          |
-| `* * `   | A receptionist at the GP clinic   | Check a patient’s past appointment records at the clinic                                                                               | get information about their past visits (doctor, visit frequency, drugs prescribed etc.)                                                                                    |
-| `* * `   | A receptionist at the GP clinic   | Detect patients who have missed their appointment                                                                                      | send them reminders to make another appointment                                                                                                                             |
-| `* * `   | A receptionist at the GP clinic   | Update patients on the crowding condition upon request                                                                                 | provide a more flexible experience at the clinic since they can decide whether or when to visit the clinic based on the crowding condition that can be easily retrieved     |
-| `* * `   | A receptionist at the GP clinic   | Append patient to the queue                                                                                                            | Ensure that the patients are served on a first-come-first-served basis and new patients will be lined at the end of the queue.                                              |
-| `* * `   | A receptionist at the GP clinic   | Check number of patients in the queue for doctor consultation                                                                          | Know the number of patients already in the queue and inform new patients about the rough waiting hours before their consultation.                                           |
-| `* * `   | A receptionist at the GP clinic   | Dequeue patients once they enter consultation room                                                                                     | ensure that the patient who is consulting is no longer in the queue and other patients in the queue can get to see the doctor                                               |
-| `* * `   | A receptionist at the GP clinic   | Take down special request from patient: male doctor/ female doctor/ specific doctor                                                    | Ensure that the patient is assigned to a doctor that they wish to visit and are comfortable with                                                                            |
-| `* * `   | A receptionist at the GP clinic   | Edit a calendar of patient appointments                                                                                                | make amendment to the patient appoitment if there is a need to delete or change the date of patient appointment                                                             |
-| `* * `   | A receptionist at the GP clinic   | View calendar of patient appointments                                                                                                  | be informed about the upcoming appointments in the day                                                                                                                      |
-| `* * `   | A receptionist at the GP clinic   | Distribute health information / news to patients (SMS / whatsapp)                                                                      | let patients know their personal health info                                                                                                                                |
-| `* * `   | A receptionist at the GP clinic   | Record down the visitor who has entered the clinic                                                                                     | Eliminate paper sign-in system                                                                                                                                              |
-| `* * `   | A receptionist at the GP clinic   | Track patient’s observation time at the clinic after vaccination/treatment                                                             | easily track and tell when they can leave                                                                                                                                   |
-| `* * `   | A receptionist at the GP clinic   | Update drug inventory count                                                                                                            | increase the drug inventory count when new drugs arrive and also decrease the count when the drugs are prescribed to patients                                               |
-| `* * `   | A receptionist at the GP clinic   | Check if a drug is still available and if it needs more supply                                                                         | ensuer that the dispensary does not run out of supply of drugs                                                                                                              |
-| `* * `   | A receptionist at the GP clinic   | Generate pdf receipts for consultation, procedures and medication prescribed                                                           | have the choice to print out upon patient requests or email it to them (go green and paperless)                                                                             |
-| `* * `   | A receptionist at the GP clinic   | Check if a doctor has an appointment during a period of time.                                                                          | Ensure that appointments will not clash                                                                                                                                     |
-| `* * `   | A receptionist at the GP clinic   | notify patients to enter the consultation room by using the system to send push notifications / SMS, or any external broadcast devices | choose not to call out their names                                                                                                                                          |
-| `* * `   | A receptionist at the GP clinic   | retrieve the patient's past vaccination records                                                                                        | Inform the doctor and allow him or her to decide on whether to provide additional vaccines                                                                                  |
-| `* * `   | A receptionist at the GP clinic   |Retrieve patients’ emergency contact| Inform the patients’ loved ones or guardian during unexpected situations                                                                                                    |
+| Priority | As a …​                          | I want to …​                                                  | So that I can…​                                               |
+| -------- | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `* * *`  | A receptionist at the GP clinic | Add new patients profiles                                    | use the system to track their personal information and health records |
+| `* * *`  | A receptionist at the GP clinic | Add new drug record                                          | use the system to store drug information and track storage   |
+| `* * *`  | A receptionist at the GP clinic | delete a patient                                             | remove patient data that I no longer need                    |
+| `* * *`  | A receptionist at the GP clinic | delete a drug by index                                       | remove data of drugs that my clinic no longer offers         |
+| `* * *`  | A receptionist at the GP clinic | delete a drug by trade name                                  | remove data of drugs that my clinic no longer offers         |
+| `* * *`  | A receptionist at the GP clinic | list all drugs                                               | have an overview of the inventory                            |
+| `* * *`  | A receptionist at the GP clinic | list all patients                                            | have an overview of all patient records                      |
+| `* * *`  | A receptionist at the GP clinic | find a person by name                                        | locate details of persons without having to go through the entire list |
+| `* * *`  | A receptionist at the GP clinic | find a drug by trade name                                    | retrieve details of the drug to facilitate prescription      |
+| `* * * ` | A receptionist at the GP clinic | Retrieve patients’ contact number                            | remind patients of their upcoming appointments               |
+| `* * *`  | A receptionist at the GP clinic | update patient profiles                                      | have access to the most updated version of their personal information in terms of their contact number, address etc to facilitate our internal patient management procedure |
+| `* * *`  | A receptionist at the GP clinic | increase a drug's storage count                              | update inventory whenever new batches of drug arrives        |
+| `* * *`  | A receptionist at the GP clinic | decrease a drug's storage count                              | update inventory whenever a drug is prescribed               |
+| `* * *`  | A receptionist at the GP clinic | clear all drug                                               | to prevent data leakage in case the clinic goes out of business |
+| `* * *`  | A receptionist at the GP clinic | clear all patients                                           | to prevent data leakage in case the clinic goes out of business |
+| `* * `   | A receptionist at the GP clinic | sort persons by name                                         | locate a person easily                                       |
+| `* * `   | A receptionist at the GP clinic | archive a patient profile if the patient has not visited for a long time | searching in a smaller dataset and when I distribute health information, I can omit patients in the archive to reduce spamming |
+| `* * `   | A receptionist at the GP clinic | Refer the patient to hospitals                               | easily forward their personal information, health record and health condition to hospitals if the patient needs more professional treatment |
+| `* * `   | A receptionist at the GP clinic | Check if a patient has any drug allergy                      | Inform the doctor of the patient’s drug allergy and ensure the safety of the patients by avoiding prescribing them with drugs that they are allergic to |
+| `* * `   | A receptionist at the GP clinic | Update patients on crowd conditions                          | They can avoid visiting during peak clinic capacities        |
+| `* * `   | A receptionist at the GP clinic | Access all hotlines to major SG hospitals                    | easily contact them for emergency cases                      |
+| `* * `   | A receptionist at the GP clinic | Add appointment dates for a patient                          | easily tell who has upcoming appointments and sms/email them to remind them |
+| `* * `   | A receptionist at the GP clinic | Use the system to send notifications to patients who have upcoming appointments | send out mass notifications with one simple click without having to text each patient individually |
+| `* * `   | A receptionist at the GP clinic | Check a patient’s past appointment records at the clinic     | get information about their past visits (doctor, visit frequency, drugs prescribed etc.) |
+| `* * `   | A receptionist at the GP clinic | Detect patients who have missed their appointment            | send them reminders to make another appointment              |
+| `* * `   | A receptionist at the GP clinic | Update patients on the crowding condition upon request       | provide a more flexible experience at the clinic since they can decide whether or when to visit the clinic based on the crowding condition that can be easily retrieved |
+| `* * `   | A receptionist at the GP clinic | Append patient to the queue                                  | Ensure that the patients are served on a first-come-first-served basis and new patients will be lined at the end of the queue. |
+| `* * `   | A receptionist at the GP clinic | Check number of patients in the queue for doctor consultation | Know the number of patients already in the queue and inform new patients about the rough waiting hours before their consultation. |
+| `* * `   | A receptionist at the GP clinic | Dequeue patients once they enter consultation room           | ensure that the patient who is consulting is no longer in the queue and other patients in the queue can get to see the doctor |
+| `* * `   | A receptionist at the GP clinic | Take down special request from patient: male doctor/ female doctor/ specific doctor | Ensure that the patient is assigned to a doctor that they wish to visit and are comfortable with |
+| `* * `   | A receptionist at the GP clinic | Edit a calendar of patient appointments                      | make amendment to the patient appoitment if there is a need to delete or change the date of patient appointment |
+| `* * `   | A receptionist at the GP clinic | View calendar of patient appointments                        | be informed about the upcoming appointments in the day       |
+| `* * `   | A receptionist at the GP clinic | Distribute health information / news to patients (SMS / whatsapp) | let patients know their personal health info                 |
+| `* * `   | A receptionist at the GP clinic | Record down the visitor who has entered the clinic           | Eliminate paper sign-in system                               |
+| `* * `   | A receptionist at the GP clinic | Track patient’s observation time at the clinic after vaccination/treatment | easily track and tell when they can leave                    |
+| `* * `   | A receptionist at the GP clinic | Check if a drug is still available and if it needs more supply | ensuer that the dispensary does not run out of supply of drugs |
+| `* * `   | A receptionist at the GP clinic | Generate pdf receipts for consultation, procedures and medication prescribed | have the choice to print out upon patient requests or email it to them (go green and paperless) |
+| `* * `   | A receptionist at the GP clinic | Check if a doctor has an appointment during a period of time. | Ensure that appointments will not clash                      |
+| `* * `   | A receptionist at the GP clinic | notify patients to enter the consultation room by using the system to send push notifications / SMS, or any external broadcast devices | choose not to call out their names                           |
+| `* * `   | A receptionist at the GP clinic | retrieve the patient's past vaccination records              | Inform the doctor and allow him or her to decide on whether to provide additional vaccines |
+| `* * `   | A receptionist at the GP clinic | Retrieve patients’ emergency contact                         | Inform the patients’ loved ones or guardian during unexpected situations |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `GP receptionist`, unless specified otherwise)
+(For all use cases below, the **System** is the `Careflow` and the **Actor** is the `GP receptionist`, unless specified otherwise)
 
 **Use case: UC01 - Add a patient**
 
@@ -322,56 +331,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to add a new patient to the system.
-2. The user enters patient details
+2. The user enters patient details.
    1. The following are required information:
          - Patient name
-         - NRIC
          - Phone Number
          - Email
          - Address
+         - Date of Birth
+         - Gender
+         - IC
    2. The following are non-required information:
          - Drug Allergy
          - Emergency contact
-3. The system creates the new user account
-4. The system show the new created user in the patient list
+3. The system creates the new user account.
+4. The system show the new created user in the patient list.
 
     Use case ends.
 
 **Extensions**
 * 2a. If any of the required fields are not completed
 
-    * 2a1. the user is informed which required fields are missing
+    * 2a1. the user is informed of this and show the correct format for the command
 
  Use case resume at step 2.
 
-* 2b. If the username is already in use
+* 2b. If the patient name is already in use
 
     * 2b1. the user is informed that he or she must choose a different name
 
  Use case resume at step 2.
 
-* 2c. If the input field is invalid, the user is informed of this, and the corresponding valid naming criteria is displayed
+* 2c. If the input field is invalid, the user is informed of this, and the corresponding correct format for the command is displayed
 
-    * 2c1. If the NRIC is invalid, the user is informed of this, and valid naming criteria is displayed.
+    * 2c1. If the length of name exceed 50 character, the user is informed of this, and correct format for the command is displayed.
 
-	 * 2c2. If the phone number is invalid, the user is informed of this, and valid naming criteria is displayed.
+	  * 2c2. If the phone number is invalid, the user is informed of this, and correct format for the command is displayed.
 
-	 * 2c3. If the email is invalid, the user is informed of this, and valid naming criteria is displayed.
+	  * 2c3. If the email is invalid, the user is informed of this, and correct format for the command is displayed.
 
-	 * 2c4. If the address is invalid, the user is informed of this, and valid naming criteria is displayed.
+  	* 2c4. If the address is invalid, the user is informed of this, and correct format for the command is displayed.
+
+    * 2c5. If the birth date is invalid, the user is informed of this, and correct format for the command is displayed.
+
+    * 2c6. If the gender is invalid, the user is informed of this, and correct format for the command is displayed.
+
+    * 2c7. If the IC is invalid, the user is informed of this, and correct format for the command is displayed.
+
+    * 2c8. If the drug allergy is invalid, the user is informed of this, and correct format for the command is displayed.
+
+    * 2c9. If the emergency contact is invalid, the user is informed of this, and correct format for the command is displayed.
 
  Use case resume at step 2.
 
-**Use case: UC02 - Delete a person**
+**Use case: UC02 - Delete a patient**
 
 **Precondition: The GP receptionist is logged into the system**
 
 **MSS**
 
-1.  User <ins>list all patients(UC03)</ins>
-3.  User enters NRIC or index to delete a specific person in the list
-4.  CareFlow deletes the person from the system
-5.  Careflow show the upddated patient list
+1.  User <ins>list all patients(UC03).</ins>
+3.  User enters NRIC or index to delete a specific person in the list.
+4.  System deletes the person from the system.
+5.  System show the upddated patient list.
 
     Use case ends.
 
@@ -383,13 +404,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The given NRIC is invalid.
 
-    * 2a1. CareFlow shows an error message.
+    * 2a1. System shows an error message.
 
       Use case resumes at step 2.
 
 * 2b. The given index is invalid.
 
-    * 2b1. CareFlow shows an error message.
+    * 2b1. System shows an error message.
 
       Use case resumes at step 2.
 
@@ -399,36 +420,84 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all patients
-2.  CareFlow shows a list of patients
+1.  User requests to list all patients.
+2.  System shows a list of patients.
 
     Use case ends.
 
-**Use case:  UC04 - Add a drug**
+**Use case:  UC04 - Find the patients**
 
 **Precondition: The GP receptionist is logged into the system**
 
-**Guarantee: A new user account is created on the system with**
+**MSS**
+
+1.  User requests to find patients.
+2.  User enter keyword that they want search for.
+2.  System return the list of patient that contain the keyword given by the user.
+
+    Use case ends.
+
+**Use case:  UC05 - Add a drug**
+
+**Precondition: The GP receptionist is logged into the system**
+
+**Guarantee: A new drug entry is created on the system with**
 
 **MSS**
 
 1. User request to add a new drug to the system
 2. The user enters drug details
-3. The system creates the new user account
+   1. The following are required information:
+         - Trade name 
+         - Active ingredients
+         - Direction 
+         - Purpose 
+         - Side effect 
+         - Storage count
+3. The system creates the new drug entry
 4. The system show the new created drug in the drug list
 
     Use case ends.
 
-**Use case:  UC05 - Delete a drug**
+**Extensions**
+* 2a. If any of the required fields are not completed
+
+    * 2a1. the user is informed of this and show the correct format for the command
+
+ Use case resume at step 2.
+
+* 2b. If the trade name is already in use
+
+    * 2b1. the user is informed that he or she must choose a different name
+
+ Use case resume at step 2.
+
+* 2c. If the input field is invalid, the user is informed of this, and the corresponding correct format for the command is displayed
+
+    * 2c1. If the length of tradeName exceed 50 character, the user is informed of this, and correct format for the command is displayed.
+
+	  * 2c2. If the active ingredient is invalid, the user is informed of this, and correct format for the command is displayed.
+
+	  * 2c3. If the direction is invalid, the user is informed of this, and correct format for the command is displayed.
+
+  	* 2c4. If the purpose is invalid, the user is informed of this, and correct format for the command is displayed.
+
+    * 2c5. If the side effect is invalid, the user is informed of this, and correct format for the command is displayed.
+
+    * 2c6. If the storage count is invalid, the user is informed of this, and correct format for the command is displayed.
+
+ Use case resume at step 2.
+
+**Use case:  UC06 - Delete a drug**
 
 **Precondition: The GP receptionist is logged into the system**
 
 **MSS**
 
-1.  User <ins>lists all drugs(UC06)</ins>
-3.  User enters drug's trade name or index to delete a specific drug in the list
-4.  CareFlow deletes the drug from the system
-5.  Careflow show the updated drug list
+1.  User <ins>lists all drugs(UC06).</ins>
+3.  User enters drug's trade name or index to delete a specific drug in the list.
+4.  System deletes the drug from the system.
+5.  System show the updated drug list.
 
     Use case ends.
 
@@ -450,14 +519,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case:  UC06 - List all drugs**
+**Use case:  UC07 - List all drugs**
 
 **Precondition: The GP receptionist is logged into the system**
 
 **MSS**
 
 1.  User requests to list all drugs
-2.  CareFlow shows a list of drugs
+2.  System shows a list of drugs
+
+    Use case ends.
+
+**Use case:  UC08 - Find the drugs**
+
+**Precondition: The GP receptionist is logged into the system**
+
+**MSS**
+
+1.  User requests to find drugs.
+2.  User enter keyword that they want search for.
+2.  System return the list of drug that contain the keyword given by the user.
 
     Use case ends.
 

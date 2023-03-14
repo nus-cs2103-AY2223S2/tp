@@ -1,19 +1,23 @@
-#copyButton, #helpMessage {
+.root {
+    -fx-font-family: sans-serif, Helvetica, Arial;
+}
+
+#openButton, #helpMessage {
 -fx-text-fill: black;
 }
 
-#copyButton {
+#openButton {
 -fx-background-color: lightgray;
 }
 
-#copyButton:hover {
+#openButton:hover {
 -fx-background-color: gray;
 }
 
-#copyButton:armed {
+#openButton:armed {
 -fx-background-color: darkgray;
 }
 
 #helpMessageContainer {
--fx-background-color: derive(#f0f0f0, 20%);
+    -fx-background-color: derive(#f0f0f0, 20%);
 }

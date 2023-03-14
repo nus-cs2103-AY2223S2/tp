@@ -12,12 +12,12 @@
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
     <ListView fx:id="patientListView" HBox.hgrow="ALWAYS"/>
-    <ScrollPane prefWidth="300" hvalue="1.0"  hbarPolicy="NEVER" style="-fx-background-color: derive(#445568, 5%);"  GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <ScrollPane fx:id="patientList" prefWidth="300" hvalue="1.0"  hbarPolicy="NEVER" GridPane.columnIndex="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
         <padding>
             <Insets top="5" right="5" bottom="5" left="15" />
         </padding>
         <content >
-            <VBox maxWidth="280" prefWidth="265" prefHeight="450" fx:id="detailDisplay" style="-fx-background-color: derive(#445568, 5%);">
+            <VBox maxWidth="280" prefWidth="265" prefHeight="450" fx:id="detailDisplay">
                 <Label fx:id="selectedName" maxHeight="Infinity"  wrapText="true" text="Please select a patient" styleClass="cell_big_label" />
                 <Label fx:id="selectedPhone"  maxHeight="Infinity" wrapText="true" styleClass="cell_small_label" />
                 <Label fx:id="selectedAddress" maxHeight="Infinity" wrapText="true" styleClass="cell_small_label"  />
