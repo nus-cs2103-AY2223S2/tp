@@ -51,4 +51,6 @@ public interface Logic {
     void setPersonId(int index);
 
     int getPersonId();
+
 }
+
