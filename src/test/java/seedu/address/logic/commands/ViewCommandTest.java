@@ -30,15 +30,15 @@ public class ViewCommandTest {
 
     @Test
     public void execute_byIndex_correctPersonQueried() throws CommandException {
-        ViewCommand command1 = new ViewCommand(null, new ContactIndex(1));
+        ViewCommand command1 = new ViewCommand(null, new ContactIndex(2));
         ViewCommandResult commandResult1 = command1.execute(model);
         assertEquals(Optional.of(ANG), commandResult1.getDisplayPerson());
 
-        ViewCommand command2 = new ViewCommand(null, new ContactIndex(2));
+        ViewCommand command2 = new ViewCommand(null, new ContactIndex(3));
         ViewCommandResult commandResult2 = command2.execute(model);
         assertEquals(Optional.of(BART), commandResult2.getDisplayPerson());
 
-        ViewCommand command3 = new ViewCommand(null, new ContactIndex(3));
+        ViewCommand command3 = new ViewCommand(null, new ContactIndex(4));
         ViewCommandResult commandResult3 = command3.execute(model);
         assertEquals(Optional.of(CLARK), commandResult3.getDisplayPerson());
     }
