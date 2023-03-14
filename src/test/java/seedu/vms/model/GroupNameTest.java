@@ -2,6 +2,7 @@ package seedu.vms.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -64,6 +65,10 @@ public class GroupNameTest {
         assertTrue(testing.equals(eqs));
         assertFalse(testing.equals(diff));
         assertFalse(testing.equals(unrelated));
+        assertEquals(testing, testing);
+        assertEquals(testing, eqs);
+        assertNotEquals(testing, diff);
+        assertNotEquals(testing, unrelated);
     }
 
 
