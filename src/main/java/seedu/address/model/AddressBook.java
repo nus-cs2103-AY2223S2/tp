@@ -5,11 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.person.UniqueCustomerList;
 import seedu.address.model.entity.person.UniquePersonList;
 import seedu.address.model.entity.person.UniqueTechnicianList;
 import seedu.address.model.service.UniqueVehicleList;
+import seedu.address.model.service.Vehicle;
 
 /**
  * Wraps all data at the address-book level
@@ -58,20 +61,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
-
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setVehicles(newData.getVehicleList());
     }
 
     //// person-level operations
@@ -111,17 +107,171 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setPersons(List<Person> persons) {
+        this.persons.setPersons(persons);
+    }
+
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return persons.asUnmodifiableObservableList();
+    }
+
+    // --------------------------------------------------
+    //// customer-level operations
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasCustomer(Customer person) {
+        requireNonNull(person);
+        return customers.contains(person);
+    }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addCustomer(Customer p) {
+        customers.add(p);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setCustomer(Customer target, Customer editedPerson) {
+        requireNonNull(editedPerson);
+        customers.setCustomer(target, editedPerson);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeCustomer(Customer key) {
+        customers.remove(key);
+    }
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setCustomers(List<Customer> persons) {
+        customers.setCustomers(persons);
+    }
+
+    @Override
+    public ObservableList<Customer> getCustomerList() { return customers.asUnmodifiableObservableList(); }
+
+    // --------------------------------------------------
+    //// technician-level operations
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasTechnician(Technician person) {
+        requireNonNull(person);
+        return technicians.contains(person);
+    }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addTechnician(Technician p) {
+        technicians.add(p);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setTechnician(Technician target, Technician editedPerson) {
+        requireNonNull(editedPerson);
+        technicians.setTechnician(target, editedPerson);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTechnician(Technician key) {
+        technicians.remove(key);
+    }
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setTechnicians(List<Technician> persons) {
+        technicians.setTechnicians(persons);
+    }
+
+    @Override
+    public ObservableList<Technician> getTechnicianList() { return technicians.asUnmodifiableObservableList(); }
+
+    // --------------------------------------------------
+    //// vehicle-level operations
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasVehicle(Vehicle vehicle) {
+        requireNonNull(vehicle);
+        return vehicles.contains(vehicle);
+    }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addVehicle(Vehicle v) {
+        vehicles.add(v);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setVehicle(Vehicle target, Vehicle editedVehicle) {
+        requireNonNull(editedVehicle);
+        vehicles.setVehicle(target, editedVehicle);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeVehicle(Vehicle key) {
+        vehicles.remove(key);
+    }
+
+    /**
+     * Replaces the contents of the vehicle list with {@code vehicle}.
+     * {@code vehicle} must not contain duplicate vehicle.
+     */
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles.setVehicles(vehicles);
+    }
+
+    @Override
+    public ObservableList<Vehicle> getVehicleList() { return vehicles.asUnmodifiableObservableList(); }
+
+    // --------------------------------------------------
     //// util methods
 
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        // TODO: modify this
     }
 
     @Override
