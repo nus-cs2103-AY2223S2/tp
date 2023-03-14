@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_TYPE;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ShopModel;
-import seedu.address.model.Vehicle;
+import seedu.address.model.service.Vehicle;
 
 /**
  * Manages adding vehicles

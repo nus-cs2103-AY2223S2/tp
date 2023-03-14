@@ -6,6 +6,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.service.Part;
 import seedu.address.model.service.Service;
+import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 
 /**

@@ -172,15 +172,6 @@ public class Service {
     }
 
     /**
-     * This method sets the description of this service.
-     *
-     * @param description the new description of this service.
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
      * This method returns the list of technician ids assigned to this task.
      *
      * @return the list of technician ids assigned to this task.
