@@ -17,19 +17,19 @@ import seedu.address.model.patient.Patient;
  */
 public class TypicalPatients {
 
-    public static final Patient ALICE = new PatientBuilder().withNric("S1234567A")
+    public static final Patient ALICE = new PatientBuilder().withNric("S1334567A")
             .withName("Alex Smith").build();
     public static final Patient BENSON = new PatientBuilder().withNric("S7654321F")
             .withName("Benson Tillman").build();
     public static final Patient CARL = new PatientBuilder().withNric("S2468024G")
             .withName("Carl Leigh").build();
-    public static final Patient DANIEL = new PatientBuilder().withNric("S1234567A")
+    public static final Patient DANIEL = new PatientBuilder().withNric("S1244567A")
             .withName("Daniel Wellington").build();
-    public static final Patient ELLE = new PatientBuilder().withNric("S1234567A")
+    public static final Patient ELLE = new PatientBuilder().withNric("S1235567A")
             .withName("Elle Schmidt").build();
     public static final Patient FIONA = new PatientBuilder().withNric("S6969696B")
             .withName("Fiona Shrekt").build();
-    public static final Patient GEORGE = new PatientBuilder().withNric("S1234567A")
+    public static final Patient GEORGE = new PatientBuilder().withNric("S1224567A")
             .withName("George Townsend").build();
 
     // Manually added
