@@ -52,7 +52,6 @@ public class AddCommand extends Command {
         }
         toAdd.setDeck(selectedDeck);
         model.addCard(toAdd);
-        model.updateFilteredCardList(new CardInDeckPredicate(model.getSelectedDeck().get()));
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

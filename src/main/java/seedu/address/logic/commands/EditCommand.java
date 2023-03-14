@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
+import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.card.Question;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
@@ -75,7 +76,7 @@ public class EditCommand extends Command {
         }
 
         model.setCard(cardToEdit, editedCard);
-        model.updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+        model.updateFilteredCardList(new CardInDeckPredicate(model.getSelectedDeck().get()));
         return new CommandResult(String.format(MESSAGE_EDIT_CARD_SUCCESS, editedCard));
     }
 

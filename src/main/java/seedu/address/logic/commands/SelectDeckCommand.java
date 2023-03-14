@@ -45,7 +45,6 @@ public class SelectDeckCommand extends Command {
         }
 
         model.selectDeck(deckIndex);
-        model.updateFilteredCardList(new CardInDeckPredicate(model.getSelectedDeck().get()));
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedDeckName()));
     }
 
