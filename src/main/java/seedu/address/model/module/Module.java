@@ -14,6 +14,7 @@ import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.lecture.UniqueLectureList;
+import seedu.address.model.lecture.exceptions.DuplicateLectureException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,6 +98,7 @@ public class Module implements ReadOnlyModule {
      * The lecture must not already exist in the module.
      *
      * @param lecture The lecture to add.
+     * @throws DuplicateLectureException Indicates that {@code lecture} already exist in the module.
      */
     public void addLecture(Lecture lecture) {
         lectures.add(lecture);
@@ -109,6 +111,9 @@ public class Module implements ReadOnlyModule {
      *
      * @param target The lecture to be replaced.
      * @param editedLecture The lecture that will replace.
+     * @throws LectureNotFoundException Indicates that {@code target} does not exist in the module.
+     * @throws DuplicateLectureException Indicates that {@code editedLecture} is the same as another existing
+     *                                   lecture in the module.
      */
     public void setLecture(ReadOnlyLecture target, Lecture editedLecture) {
         requireNonNull(editedLecture);
@@ -121,6 +126,7 @@ public class Module implements ReadOnlyModule {
      * {@code key} must exist in the module.
      *
      * @param key The lecture to be removed.
+     * @throws LectureNotFoundException Indicates that the lecture does not exist in the module.
      */
     public void removeLecture(ReadOnlyLecture key) {
         lectures.remove((Lecture) key);

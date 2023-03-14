@@ -30,6 +30,28 @@ public class UniqueVideoList extends UniqueDataList<Video> {
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * @param toAdd {@inheritDoc}
+     * @throws DuplicateVideoException Indicates that {@code toAdd} already exist in the list.
+     */
+    @Override
+    public void add(Video toAdd) {
+        super.add(toAdd);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param toRemove {@inheritDoc}
+     * @throws VideoNotFoundException Indicates that the video does not exist in the list.
+     */
+    @Override
+    public void remove(Video toRemove) {
+        super.remove(toRemove);
+    }
+
+    /**
      * Replaces the video {@code target} in the list with {@code editedVideo}.<p>
      * {@code target} must exist in the list.<p>
      * {@code editedVideo} must not have the same name as another existing video in the list.

@@ -30,6 +30,28 @@ public class UniqueModuleList extends UniqueDataList<Module> {
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * @param toAdd {@inheritDoc}
+     * @throws DuplicateModuleException Indicates that {@code toAdd} already exist in the list.
+     */
+    @Override
+    public void add(Module toAdd) {
+        super.add(toAdd);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param toRemove {@inheritDoc}
+     * @throws ModuleNotFoundException Indicates that the module does not exist in the list.
+     */
+    @Override
+    public void remove(Module toRemove) {
+        super.remove(toRemove);
+    }
+
+    /**
      * Replaces the module {@code target} in the list with {@code editedModule}.<p>
      * {@code target} must exist in the list.<p>
      * {@code editedModule} must not be the same as another existing module in the list.

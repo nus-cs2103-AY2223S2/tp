@@ -11,6 +11,8 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.module.UniqueModuleList;
+import seedu.address.model.module.exceptions.DuplicateModuleException;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
 /**
  * Wraps all data at the tracker level.<p>
@@ -81,6 +83,7 @@ public class Tracker implements ReadOnlyTracker {
      * The module must not already exist in the tracker.
      *
      * @param module The module to be added.
+     * @throws DuplicateModuleException Indicates that {@code module} already exist in the tracker.
      */
     public void addModule(Module module) {
         modules.add(module);
@@ -93,6 +96,9 @@ public class Tracker implements ReadOnlyTracker {
      *
      * @param target The module to be replaced.
      * @param editedModule The module that will replace.
+     * @throws ModuleNotFoundException Indicates that {@code target} does not exist in the tracker.
+     * @throws DuplicateModuleException Indicates that {@code editedModule} is the same as another existing
+     *                                  module in the tracker.
      */
     public void setModule(ReadOnlyModule target, Module editedModule) {
         requireAllNonNull(target, editedModule);
@@ -105,6 +111,7 @@ public class Tracker implements ReadOnlyTracker {
      * {@code key} must exist in the tracker.
      *
      * @param key The module to remove from this tracker.
+     * @throws ModuleNotFoundException Indicates that the module does not exist in the tracker.
      */
     public void removeModule(ReadOnlyModule key) {
         modules.remove((Module) key);

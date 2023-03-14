@@ -30,6 +30,28 @@ public class UniqueLectureList extends UniqueDataList<Lecture> {
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * @param toAdd {@inheritDoc}
+     * @throws DuplicateLectureException Indicates that {@code toAdd} already exist in the list.
+     */
+    @Override
+    public void add(Lecture toAdd) {
+        super.add(toAdd);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param toRemove {@inheritDoc}
+     * @throws LectureNotFoundException Indicates that the lecture does not exist in the list.
+     */
+    @Override
+    public void remove(Lecture toRemove) {
+        super.remove(toRemove);
+    }
+
+    /**
      * Replaces the lecture {@code target} in the list with {@code editedLecture}.<p>
      * {@code target} must exist in the list.<p>
      * {@code editedLecture} must not have the same name as another existing lecture in the list.

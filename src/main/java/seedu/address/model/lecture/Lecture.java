@@ -14,6 +14,8 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.video.UniqueVideoList;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.exceptions.DuplicateVideoException;
+import seedu.address.model.video.exceptions.VideoNotFoundException;
 
 /**
  * Represents a lecture of a module.<p>
@@ -86,6 +88,7 @@ public class Lecture implements ReadOnlyLecture {
      * The video must not already exist in the lecture.
      *
      * @param video The video to add.
+     * @throws DuplicateVideoException Indicates that {@code video} already exist in the module.
      */
     public void addVideo(Video video) {
         videos.add(video);
@@ -98,6 +101,9 @@ public class Lecture implements ReadOnlyLecture {
      *
      * @param target The video to be replaced.
      * @param editedVideo The video that will replace.
+     * @throws VideoNotFoundException Indicates that {@code target} does not exist in the lecture.
+     * @throws DuplicateVideoException Indicates that {@code editedVideo} is the same as another existing
+     *                                 video in the lecture.
      */
     public void setVideo(Video target, Video editedVideo) {
         requireNonNull(editedVideo);
@@ -110,6 +116,7 @@ public class Lecture implements ReadOnlyLecture {
      * {@code key} must exist in the lecture.
      *
      * @param key The video to be removed.
+     * @throws VideoNotFoundException Indicates that the video does not exist in the lecture.
      */
     public void removeVideo(Video key) {
         videos.remove(key);
