@@ -1,6 +1,5 @@
 package seedu.calidr.model.task;
 
-import seedu.calidr.logic.commands.AddCommand;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 

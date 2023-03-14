@@ -52,5 +52,6 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    //========================For Calidr=========================================================
     ReadOnlyTaskList getTaskList();
 }
