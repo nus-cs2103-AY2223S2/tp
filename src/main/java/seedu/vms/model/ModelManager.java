@@ -148,6 +148,14 @@ public class ModelManager implements Model {
         return action.apply(vaxTypeManager);
     }
 
+
+    @Override
+    public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
+        return vaxTypeManager.remove(vaxName.toString())
+                .orElseThrow(() -> new IllegalValueException(String.format(
+                        "Vaccination type does not exist: %s", vaxName.toString())));
+    }
+
     // =========== Filtered Patient List Accessors =============================================================
 
     /**
