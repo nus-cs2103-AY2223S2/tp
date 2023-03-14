@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InterviewDateTime;
@@ -12,7 +13,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -33,7 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Status status;
     private Optional<InterviewDateTime> interviewDateTime;
-    private Set<Tag> tags;
+    private Set<Note> notes;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -45,7 +45,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         status = Status.valueOf(DEFAULT_STATUS);
         interviewDateTime = Optional.empty();
-        tags = new HashSet<>();
+        notes = new HashSet<>();
     }
 
     /**
@@ -58,7 +58,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         status = personToCopy.getStatus();
         interviewDateTime = personToCopy.getInterviewDateTime();
-        tags = new HashSet<>(personToCopy.getNotes());
+        notes = new HashSet<>(personToCopy.getNotes());
     }
 
     /**
@@ -70,10 +70,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code notes} into a {@code Set<Note>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withNotes(String ... notes) {
+        this.notes = SampleDataUtil.getNoteSet(notes);
         return this;
     }
 
@@ -126,7 +126,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, status, interviewDateTime.orElse(null), tags);
+        return new Person(name, phone, email, address, status, interviewDateTime.orElse(null), notes);
     }
 
 }

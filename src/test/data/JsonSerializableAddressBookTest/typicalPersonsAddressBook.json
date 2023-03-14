@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "status" : "APPLIED",
     "interviewDate" : "",
-    "tagged" : [ "friends" ]
+    "notes": [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -15,7 +15,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "status" : "SHORTLISTED",
     "interviewDate" : "02-03-2023 14:00",
-    "tagged" : [ "owesMoney", "friends" ]
+    "notes": [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -23,7 +23,7 @@
     "address" : "wall street",
     "status" : "ACCEPTED",
     "interviewDate" : "",
-    "tagged" : [ ]
+    "notes": [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -31,7 +31,7 @@
     "address" : "10th street",
     "status" : "APPLIED",
     "interviewDate" : "",
-    "tagged" : [ "friends" ]
+    "notes": [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -39,7 +39,7 @@
     "address" : "michegan ave",
     "status" : "SHORTLISTED",
     "interviewDate" : "04-03-2024 13:00",
-    "tagged" : [ ]
+    "notes": [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -47,7 +47,7 @@
     "address" : "little tokyo",
     "status" : "ACCEPTED",
     "interviewDate" : "",
-    "tagged" : [ ]
+    "notes": [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -55,6 +55,6 @@
     "address" : "4th street",
     "status" : "REJECTED",
     "interviewDate" : "",
-    "tagged" : [ ]
+    "notes": [ ]
   } ]
 }

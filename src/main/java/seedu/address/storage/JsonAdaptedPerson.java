@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InterviewDateTime;
@@ -17,7 +18,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -32,7 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String status;
     private String interviewDate;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedNote> notes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,15 +41,15 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("status") String status, @JsonProperty("interviewDate") String interviewDate,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("notes") List<JsonAdaptedNote> notes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.status = status;
         this.interviewDate = interviewDate;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (notes != null) {
+            this.notes.addAll(notes);
         }
     }
 
@@ -63,8 +63,8 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         status = source.getStatus().name();
         interviewDate = source.getInterviewDateTimeString();
-        tagged.addAll(source.getNotes().stream()
-                .map(JsonAdaptedTag::new)
+        notes.addAll(source.getNotes().stream()
+                .map(JsonAdaptedNote::new)
                 .collect(Collectors.toList()));
     }
 
@@ -74,9 +74,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<Note> personNotes = new ArrayList<>();
+        for (JsonAdaptedNote note : notes) {
+            personNotes.add(note.toModelType());
         }
 
         if (name == null) {
@@ -126,8 +126,8 @@ class JsonAdaptedPerson {
         //will not throw ParseException as it has been checked in previous line
         final InterviewDateTime interviewDateTime = InterviewDateTime.createInterviewDateTime(interviewDate);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, interviewDateTime, modelTags);
+        final Set<Note> modelNotes = new HashSet<>(personNotes);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, interviewDateTime, modelNotes);
     }
 
 }

@@ -58,8 +58,8 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         status.setText(person.getStatus().name() + " " + person.getInterviewDateTimeString());
         person.getNotes().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(note -> note.noteName))
+                .forEach(note -> tags.getChildren().add(new Label(note.noteName)));
     }
 
     @Override
