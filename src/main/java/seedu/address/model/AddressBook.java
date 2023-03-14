@@ -71,9 +71,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
-    public boolean hasPerson(Name name) {
+    public boolean hasPersonByName(Name name) {
         requireNonNull(name);
-        return persons.contains(name);
+        return persons.containsByName(name);
     }
 
     /**

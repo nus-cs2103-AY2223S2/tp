@@ -32,7 +32,7 @@ public class AppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasPerson(appointment.getName())) { // todo hasPerson by name not person
+        if (!model.hasPersonByName(appointment.getName())) { // todo hasPerson by name not person
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
 

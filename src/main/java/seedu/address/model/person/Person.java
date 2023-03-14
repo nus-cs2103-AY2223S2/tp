@@ -75,7 +75,7 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
-    public boolean isSamePerson(Name otherName) {
+    public boolean isSamePersonByName(Name otherName) {
         if (otherName == this.getName()) {
             return true;
         }

@@ -88,4 +88,6 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    // todo add containsByName
 }
