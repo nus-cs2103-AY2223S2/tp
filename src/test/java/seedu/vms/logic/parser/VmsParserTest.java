@@ -9,31 +9,31 @@ import org.junit.jupiter.api.Test;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
 public class VmsParserTest {
-    private static final String patientAddString = "add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur "
+    private static final String PATIENT_ADD_STRING = "add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur "
             + "--a pollen --v covax";
-    private static final String patientDeleteString = "delete --index 5";
-    private static final String patientFindString = "find --name john";
-    private static final String patientListString = "list";
-    private static final String appointmentAddString = "add --patient 5 --start 2023-3-5 0700 --end 2023-3-5 0800";
-    private static final String appointmentDeleteString = "delete --index 5";
-    private static final String appointmentListString = "list";
-    private static final String vaccinationAddString = "add Pfizer (Dose 1) --groups DOSE 1, PFIZER, "
+    private static final String PATIENT_DELETE_STRING = "delete --index 5";
+    private static final String PATIENT_FIND_STRING = "find --name john";
+    private static final String PATIENT_LIST_STRING = "list";
+    private static final String APPOINTMENT_ADD_STRING = "add --patient 5 --start 2023-3-5 0700 --end 2023-3-5 0800";
+    private static final String APPOINTMENT_DELETE_STRING = "delete --index 5";
+    private static final String APPOINTMENT_LIST_STRING = "list";
+    private static final String VACCINATION_ADD_STRING = "add Pfizer (Dose 1) --groups DOSE 1, PFIZER, "
             + "VACCINATION --lal 5 --s 56 --a NONE::allergy1, allergy2, allergy3 --h NONE::DOES 1";
-    private static final String validAlternativePatient = "p";
-    private static final String validAlternativeAppointment = "a";
-    private static final String validAlternativeVaccination = "v";
-    private static final String invalidAlternativePatient = "patien";
-    private static final String invalidAlternativeAppointment = "appointmen";
-    private static final String invalidAlternativeVaccination = "vaccinatio";
+    private static final String VALID_ALTERNATIVE_PATIENT = "p";
+    private static final String VALID_ALTERNATIVE_APPOINTMENT = "a";
+    private static final String VALID_ALTERNATIVE_VACCINATION = "v";
+    private static final String INVALID_ALTERNATIVE_PATIENT = "patien";
+    private static final String INVALID_ALTERNATIVE_APPOINTMENT = "appointmen";
+    private static final String INVALID_ALTERNATIVE_VACCINATION = "vaccinatio";
 
     private final VmsParser parser = new VmsParser();
 
     @Test
     public void parseCommand_patient_addCommand() throws ParseException {
         try {
-            assertTrue(parser.parseCommand(validAlternativePatient + patientAddString)
+            assertTrue(parser.parseCommand(VALID_ALTERNATIVE_PATIENT + PATIENT_ADD_STRING)
                     instanceof seedu.vms.logic.commands.patient.AddCommand);
-            parser.parseCommand(invalidAlternativePatient + patientAddString);
+            parser.parseCommand(INVALID_ALTERNATIVE_PATIENT + PATIENT_ADD_STRING);
         } catch (ParseException parseException) {
             assertEquals(parseException.getMessage(), MESSAGE_UNKNOWN_COMMAND);
         }
@@ -42,9 +42,9 @@ public class VmsParserTest {
     @Test
     public void parseCommand_patient_deleteCommand() throws ParseException {
         try {
-            assertTrue(parser.parseCommand(validAlternativePatient + patientDeleteString)
+            assertTrue(parser.parseCommand(VALID_ALTERNATIVE_APPOINTMENT+ APPOINTMENT_DELETE_STRING)
                     instanceof seedu.vms.logic.commands.patient.DeleteCommand);
-            parser.parseCommand(invalidAlternativePatient + patientDeleteString);
+            parser.parseCommand(INVALID_ALTERNATIVE_APPOINTMENT + APPOINTMENT_DELETE_STRING);
         } catch (ParseException parseException) {
             assertEquals(parseException.getMessage(), MESSAGE_UNKNOWN_COMMAND);
         }
@@ -53,9 +53,9 @@ public class VmsParserTest {
     @Test
     public void parseCommand_patient_findCommand() throws ParseException {
         try {
-            assertTrue(parser.parseCommand(validAlternativePatient + patientFindString)
+            assertTrue(parser.parseCommand(VALID_ALTERNATIVE_PATIENT + PATIENT_FIND_STRING)
                     instanceof seedu.vms.logic.commands.patient.FindCommand);
-            parser.parseCommand(invalidAlternativePatient + patientFindString);
+            parser.parseCommand(INVALID_ALTERNATIVE_PATIENT + PATIENT_FIND_STRING);
         } catch (ParseException parseException) {
             assertEquals(parseException.getMessage(), MESSAGE_UNKNOWN_COMMAND);
         }
@@ -64,9 +64,9 @@ public class VmsParserTest {
     @Test
     public void parseCommand_patient_listCommand() throws ParseException {
         try {
-            assertTrue(parser.parseCommand(validAlternativePatient + patientListString)
+            assertTrue(parser.parseCommand(VALID_ALTERNATIVE_PATIENT + PATIENT_LIST_STRING)
                     instanceof seedu.vms.logic.commands.patient.ListCommand);
-            parser.parseCommand(invalidAlternativePatient + patientListString);
+            parser.parseCommand(INVALID_ALTERNATIVE_PATIENT + PATIENT_LIST_STRING);
         } catch (ParseException parseException) {
             assertEquals(parseException.getMessage(), MESSAGE_UNKNOWN_COMMAND);
         }
@@ -75,9 +75,9 @@ public class VmsParserTest {
     @Test
     public void parseCommand_appointment_addCommand() throws ParseException {
         try {
-            assertTrue(parser.parseCommand(validAlternativeAppointment + appointmentAddString)
+            assertTrue(parser.parseCommand(VALID_ALTERNATIVE_APPOINTMENT + APPOINTMENT_ADD_STRING)
                     instanceof seedu.vms.logic.commands.appointment.AddCommand);
-            parser.parseCommand(invalidAlternativeAppointment + appointmentAddString);
+            parser.parseCommand(INVALID_ALTERNATIVE_APPOINTMENT + APPOINTMENT_ADD_STRING);
         } catch (ParseException parseException) {
             assertEquals(parseException.getMessage(), MESSAGE_UNKNOWN_COMMAND);
         }
@@ -86,9 +86,9 @@ public class VmsParserTest {
     @Test
     public void parseCommand_vaccination_addVaxTypeCommand() throws ParseException {
         try {
-            assertTrue(parser.parseCommand(validAlternativeVaccination + vaccinationAddString)
+            assertTrue(parser.parseCommand(VALID_ALTERNATIVE_VACCINATION + VACCINATION_ADD_STRING)
                     instanceof seedu.vms.logic.commands.vaccination.AddVaxTypeCommand);
-            parser.parseCommand(invalidAlternativeVaccination + vaccinationAddString);
+            parser.parseCommand(INVALID_ALTERNATIVE_VACCINATION + VACCINATION_ADD_STRING);
         } catch (ParseException parseException) {
             assertEquals(parseException.getMessage(), MESSAGE_UNKNOWN_COMMAND);
         }
