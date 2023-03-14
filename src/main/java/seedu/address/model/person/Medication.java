@@ -36,6 +36,13 @@ public class Medication {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if Medication value is an empty string.
+     */
+    public boolean isEmpty() {
+        return value.length() == 0;
+    }
+
     @Override
     public String toString() {
         return value;

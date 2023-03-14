@@ -115,10 +115,12 @@ public class Person {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Medication: ")
-                .append(getMedication())
-                .append("; Address: ")
+                .append(getEmail());
+        if (!getMedication().isEmpty()) {
+            builder.append("; Medication: ")
+                    .append(getMedication());
+        }
+        builder.append("; Address: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();
