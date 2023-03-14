@@ -4,13 +4,14 @@ import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import arb.commons.core.index.Index;
 import arb.logic.commands.project.UnmarkProjectCommand;
+import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
 import arb.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new UnmarkProjectCommand object
  */
-public class UnmarkProjectCommandParser {
+public class UnmarkProjectCommandParser implements Parser<UnmarkProjectCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UnmarkProjectCommand
      * and returns an UnmarkProjectCommand object for execution.
