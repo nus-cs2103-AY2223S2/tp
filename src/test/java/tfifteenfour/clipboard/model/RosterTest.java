@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_MODULE_CS2105;
-import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
+import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
 import static tfifteenfour.clipboard.testutil.TypicalStudents.ALICE;
 import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalRoster;
@@ -46,7 +46,7 @@ public class RosterTest {
     @Test
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
+        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).withTags(VALID_MODULE_CS2105)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         RosterStub newData = new RosterStub(newStudents);
@@ -73,7 +73,7 @@ public class RosterTest {
     @Test
     public void hasStudent_studentWithSameIdentityFieldsInRoster_returnsTrue() {
         roster.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
+        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).withTags(VALID_MODULE_CS2105)
                 .build();
         assertTrue(roster.hasStudent(editedAlice));
     }

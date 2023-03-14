@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_MODULE_CS2105;
+import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
 import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
 import static tfifteenfour.clipboard.testutil.TypicalStudents.ALICE;
@@ -42,7 +43,7 @@ public class UniqueStudentListTest {
     @Test
     public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
+        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).withTags(VALID_MODULE_CS2105)
                 .build();
         assertTrue(uniqueStudentList.contains(editedAlice));
     }
