@@ -24,23 +24,23 @@ import tfifteenfour.clipboard.testutil.StudentBuilder;
 
 public class RosterTest {
 
-    private final Roster addressBook = new Roster();
+    private final Roster roster = new Roster();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getStudentList());
+        assertEquals(Collections.emptyList(), roster.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> roster.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyRoster_replacesData() {
         Roster newData = getTypicalRoster();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        roster.resetData(newData);
+        assertEquals(newData, roster);
     }
 
     @Test
@@ -51,36 +51,36 @@ public class RosterTest {
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         RosterStub newData = new RosterStub(newStudents);
 
-        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> roster.resetData(newData));
     }
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
+        assertThrows(NullPointerException.class, () -> roster.hasStudent(null));
     }
 
     @Test
     public void hasStudent_studentNotInRoster_returnsFalse() {
-        assertFalse(addressBook.hasStudent(ALICE));
+        assertFalse(roster.hasStudent(ALICE));
     }
 
     @Test
     public void hasStudent_studentInRoster_returnsTrue() {
-        addressBook.addStudent(ALICE);
-        assertTrue(addressBook.hasStudent(ALICE));
+        roster.addStudent(ALICE);
+        assertTrue(roster.hasStudent(ALICE));
     }
 
     @Test
     public void hasStudent_studentWithSameIdentityFieldsInRoster_returnsTrue() {
-        addressBook.addStudent(ALICE);
+        roster.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
                 .build();
-        assertTrue(addressBook.hasStudent(editedAlice));
+        assertTrue(roster.hasStudent(editedAlice));
     }
 
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> roster.getStudentList().remove(0));
     }
 
     /**

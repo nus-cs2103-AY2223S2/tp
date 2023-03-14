@@ -60,8 +60,8 @@ public class JsonRosterStorage implements RosterStorage {
     }
 
     @Override
-    public void saveRoster(ReadOnlyRoster addressBook) throws IOException {
-        saveRoster(addressBook, filePath);
+    public void saveRoster(ReadOnlyRoster roster) throws IOException {
+        saveRoster(roster, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonRosterStorage implements RosterStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveRoster(ReadOnlyRoster addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveRoster(ReadOnlyRoster roster, Path filePath) throws IOException {
+        requireNonNull(roster);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableRoster(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableRoster(roster), filePath);
     }
 
 }

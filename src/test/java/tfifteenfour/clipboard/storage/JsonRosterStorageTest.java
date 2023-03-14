@@ -20,7 +20,7 @@ import tfifteenfour.clipboard.model.ReadOnlyRoster;
 import tfifteenfour.clipboard.model.Roster;
 
 public class JsonRosterStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonRosterStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -92,12 +92,12 @@ public class JsonRosterStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code roster} at the specified {@code filePath}.
      */
-    private void saveRoster(ReadOnlyRoster addressBook, String filePath) {
+    private void saveRoster(ReadOnlyRoster roster, String filePath) {
         try {
             new JsonRosterStorage(Paths.get(filePath))
-                    .saveRoster(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveRoster(roster, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
