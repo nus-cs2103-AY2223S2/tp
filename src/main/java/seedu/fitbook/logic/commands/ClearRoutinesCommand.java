@@ -6,7 +6,7 @@ import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
 
 /**
- * Clears the FitBook.
+ * Clears the FitBook routine list.
  */
 public class ClearRoutinesCommand extends Command {
 

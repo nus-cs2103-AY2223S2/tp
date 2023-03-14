@@ -39,7 +39,7 @@ public class RoutineNameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different client -> returns false
+        // different routine -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

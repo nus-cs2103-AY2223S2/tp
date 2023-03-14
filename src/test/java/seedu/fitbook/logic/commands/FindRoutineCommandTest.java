@@ -76,8 +76,9 @@ public class FindRoutineCommandTest {
         assertEquals(Arrays.asList(JUMP, STRENGTH), model.getFilteredRoutineList());
     }
 
+
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code RoutineNameContainsKeywordsPredicate}.
      */
     private RoutineNameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new RoutineNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));

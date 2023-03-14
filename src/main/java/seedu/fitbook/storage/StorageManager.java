@@ -16,7 +16,6 @@ import seedu.fitbook.storage.routine.FitBookExerciseRoutineStorage;
 /**
  * Manages storage of FitBook and Exercise Routine data in local storage.
  */
-
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
@@ -24,9 +23,6 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     private FitBookExerciseRoutineStorage fitBookExerciseRoutineStorage;
-
-
-
     /**
      * Creates a {@code StorageManager} with the given {@code FitBookStorage} and {@code UserPrefStorage}.
      */
@@ -83,7 +79,6 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         fitBookStorage.saveFitBook(fitBook, filePath);
     }
-
 
     // ================ FitBook Exercise Routine methods ==============================
 
