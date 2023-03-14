@@ -30,21 +30,45 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook; // TODO: Remove this
     private final FilteredList<Person> filteredPersons; // TODO: Remove this
+
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Constructs a ModelManager using the provided {@code tracker} and {@code userPrefs}.
+     *
+     * @param tracker The tracker.
+     * @param userPrefs The user prefs.
+     */
+    public ModelManager(Tracker tracker, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(tracker, userPrefs);
+
+        logger.fine("Initializing with tracker: " + tracker + " and user prefs " + userPrefs);
+
+        this.tracker = new Tracker(tracker);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredModules = new FilteredList<>(this.tracker.getModuleList());
+
+        this.addressBook = null;
+        filteredPersons = null;
+    }
+
+    /**
+     * TODO: Remove this
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with tracker: " + addressBook + " and user prefs " + userPrefs);
 
-        this.tracker = new Tracker(); //TODO: assign this from constructor arguments
-        this.addressBook = new AddressBook(addressBook);
+        this.tracker = new Tracker();
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<>(this.tracker.getModuleList());
+
+        this.addressBook = new AddressBook(addressBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
+    /**
+     * Constructs a ModelManager.
+     */
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
@@ -53,7 +77,6 @@ public class ModelManager implements Model {
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
     }
 
@@ -69,19 +92,17 @@ public class ModelManager implements Model {
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getTrackerFilePath() {
         return userPrefs.getTrackerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setTrackerFilePath(addressBookFilePath);
+    public void setTrackerFilePath(Path trackerFilePath) {
+        userPrefs.setTrackerFilePath(trackerFilePath);
     }
 
     //=========== Tracker ====================================================================================
@@ -114,8 +135,6 @@ public class ModelManager implements Model {
 
     @Override
     public void setModule(ReadOnlyModule target, Module editedModule) {
-        requireAllNonNull(target, editedModule);
-
         tracker.setModule(target, editedModule);
     }
 
@@ -189,10 +208,31 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
-        requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return addressBook.equals(other.addressBook)
+                && tracker.equals(other.tracker)
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredModules.equals(other.filteredModules);
+    }
+
+    // TODO: Remove all code beyond this point
     //=========== AddressBook ================================================================================
 
     @Override
@@ -244,27 +284,6 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && tracker.equals(other.tracker)
-                && filteredModules.equals(other.filteredModules);
     }
 
 }

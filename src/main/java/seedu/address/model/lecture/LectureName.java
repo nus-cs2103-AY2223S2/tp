@@ -32,12 +32,14 @@ public class LectureName {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if {@code test} is a valid name.
+     *
+     * @param test The string to check if it is a valid name.
+     * @return True if {@code test} is a valid name. Otherwise, false.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {
