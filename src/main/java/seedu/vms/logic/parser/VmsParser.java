@@ -26,6 +26,7 @@ public class VmsParser {
             new AbstractMap.SimpleEntry<String, String>("a", "appointment"),
             new AbstractMap.SimpleEntry<String, String>("app", "appointment"),
             new AbstractMap.SimpleEntry<String, String>("appo", "appointment"),
+            new AbstractMap.SimpleEntry<String, String>("appt", "appointment"),
             new AbstractMap.SimpleEntry<String, String>("v", "vaccination"),
             new AbstractMap.SimpleEntry<String, String>("vac", "vaccination"),
             new AbstractMap.SimpleEntry<String, String>("vacc", "vaccination")
