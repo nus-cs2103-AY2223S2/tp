@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -32,6 +33,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
     protected Nric nric;
     protected Age age;
     protected Set<Tag> tags;
+    protected Set<AvailableDate> availableDates;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +46,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
         nric = new Nric(DEFAULT_NRIC);
         age = new Age(DEFAULT_AGE);
         tags = new HashSet<>();
+        availableDates = new HashSet<>();
     }
 
     /**
@@ -57,6 +60,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
         nric = personToCopy.getNric();
         age = personToCopy.getAge();
         tags = new HashSet<>(personToCopy.getTags());
+        availableDates = new HashSet<>(personToCopy.getAvailableDates());
     }
 
     private T castSelf() {
@@ -77,6 +81,14 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
      */
     public T withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return castSelf();
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public T withAvailableDates(String startDate, String endDate) {
+        this.availableDates.add(SampleDataUtil.getAvailableDate(startDate, endDate));
         return castSelf();
     }
 

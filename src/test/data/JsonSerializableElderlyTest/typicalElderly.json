@@ -17,7 +17,8 @@
     "nric" : "S6878241D",
     "age" : "23",
     "riskLevel" : "MEDIUM",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "availableDates": ["2023-05-01 to 2023-05-12"]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",

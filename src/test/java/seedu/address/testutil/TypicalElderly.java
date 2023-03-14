@@ -37,7 +37,8 @@ public class TypicalElderly {
     public static final Elderly BENSON = new ElderlyBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withTags("owesMoney", "friends")
-            .withAge("23").withNric("S6878241D").withRiskLevel("medium").build();
+            .withAge("23").withNric("S6878241D").withRiskLevel("medium")
+            .withAvailableDates("2023-05-01", "2023-05-12").build();
     public static final Elderly CARL = new ElderlyBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withAge("31").withNric("S3634466J").withRiskLevel("high").build();
