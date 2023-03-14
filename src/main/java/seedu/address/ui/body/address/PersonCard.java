@@ -3,7 +3,9 @@ package seedu.address.ui.body.address;
 import java.util.Comparator;
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -57,9 +59,12 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         star.setVisible(person.getIsFavorite().getFavoriteStatus());
+
+        ObservableList<Node> tagsList = tags.getChildren();
+        tagsList.clear();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tagsList.add(new Label(tag.tagName)));
     }
 
     @Override

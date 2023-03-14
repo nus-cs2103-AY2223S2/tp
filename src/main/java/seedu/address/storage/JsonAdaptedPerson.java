@@ -151,7 +151,7 @@ class JsonAdaptedPerson {
         }
         final Major modelMajor = new Major(this.major);
 
-        if (!Race.isValidRace(address)) {
+        if (!Race.isValidRace(this.race)) {
             throw new IllegalValueException(Race.MESSAGE_CONSTRAINTS);
         }
         final Race modelRace = new Race(this.race);
