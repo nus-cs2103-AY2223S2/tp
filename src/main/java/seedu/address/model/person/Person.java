@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -21,16 +23,19 @@ public class Person {
 
     // Data fields
     private final Optional<Address> address;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = Optional.ofNullable(phone);
         this.email = Optional.ofNullable(email);
         this.address = Optional.ofNullable(address);
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -48,6 +53,10 @@ public class Person {
 
     public Address getAddress() {
         return address.orElse(null);
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -108,8 +117,9 @@ public class Person {
         builder.append(getName())
                 .append(phone)
                 .append(email)
-                .append(address);
-
+                .append(address)
+                .append(getRemark())
+                .append(" Tags: ");
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
