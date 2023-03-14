@@ -1,8 +1,8 @@
 package taa.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
-import static taa.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -28,7 +28,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CLASS_TAG);
 
         Index index;
 
@@ -43,7 +43,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_CLASS_TAG)).ifPresent(editStudentDescriptor::setTags);
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

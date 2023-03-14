@@ -31,7 +31,6 @@
       <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
       <Label fx:id="assignment" styleClass="cell_small_label" text="\$assignment" />
       <Label fx:id="groups" styleClass="cell_small_label" text="\$groups" />
-      <Label fx:id="classes" styleClass="cell_small_label" text="\$classes" />
 
     </VBox>
   </GridPane>

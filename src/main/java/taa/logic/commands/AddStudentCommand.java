@@ -1,8 +1,8 @@
 package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
-import static taa.logic.parser.CliSyntax.PREFIX_TAG;
 
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
@@ -11,28 +11,28 @@ import taa.model.student.Student;
 /**
  * Adds a student to the address book.
  */
-public class AddCommand extends Command {
+public class AddStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add_student";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_CLASS_TAG + "CLASS_NAME]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_CLASS_TAG + "Tutorial_T01 "
+            + PREFIX_CLASS_TAG + "Lab_L01";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class list";
 
     private final Student toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Student}
+     * Creates an AddStudentCommand to add the specified {@code Student}
      */
-    public AddCommand(Student student) {
+    public AddStudentCommand(Student student) {
         requireNonNull(student);
         toAdd = student;
     }
@@ -52,7 +52,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddStudentCommand // instanceof handles nulls
+                && toAdd.equals(((AddStudentCommand) other).toAdd));
     }
 }

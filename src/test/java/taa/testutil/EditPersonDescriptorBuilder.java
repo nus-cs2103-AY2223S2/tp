@@ -30,7 +30,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Student student) {
         descriptor = new EditCommand.EditStudentDescriptor();
         descriptor.setName(student.getName());
-        descriptor.setTags(student.getTags());
+        descriptor.setTags(student.getClassTags());
     }
 
     /**

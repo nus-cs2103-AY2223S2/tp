@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import taa.commons.core.Messages;
-import taa.logic.commands.AddCommand;
+import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.ClearCommand;
 import taa.logic.commands.DeleteCommand;
 import taa.logic.commands.EditCommand;
@@ -29,13 +29,13 @@ import taa.testutil.TypicalIndexes;
 
 public class ClassListParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TaaParser parser = new TaaParser();
 
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
-        assertEquals(new AddCommand(student), command);
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
+        assertEquals(new AddStudentCommand(student), command);
     }
 
     @Test

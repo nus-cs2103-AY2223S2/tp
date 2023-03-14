@@ -5,13 +5,14 @@ import static java.util.Objects.requireNonNull;
 import taa.commons.util.AppUtil;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in the class list.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should only contain alphanumeric characters,"
+        + " '-' and '_'";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}-_]+";
 
     public final String tagName;
 
