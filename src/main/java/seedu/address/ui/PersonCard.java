@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 /**
@@ -30,6 +31,8 @@ public class PersonCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private HBox birthdayContainer;
     @FXML
     private Label name;
     @FXML
@@ -66,6 +69,8 @@ public class PersonCard extends UiPart<Region> {
             birthday.setText(person.getBirthday().get().toString());
         } else {
             birthday.setText("");
+            birthdayContainer.setVisible(false);
+            birthdayContainer.managedProperty().bind(birthdayContainer.visibleProperty());
         }
     }
 
