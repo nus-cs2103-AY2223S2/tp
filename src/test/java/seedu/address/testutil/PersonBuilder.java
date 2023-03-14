@@ -1,9 +1,11 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Meeting;
@@ -94,11 +96,13 @@ public class PersonBuilder {
         return this;
     }
 
-    /*
-    public PersonBuilder withMeetings() {
 
+    public PersonBuilder withMeetings(String dateTime) {
+        LocalDateTime[] dateTimes = ParserUtil.parseDateTime(dateTime);
+        Meeting meetingToAdd = new Meeting(dateTimes[0], dateTimes[1]);
+        this.meetings.add(meetingToAdd);
+        return this;
     }
-     */
 
     public Person build() {
         return new Person(name, phone, email, address, tags, meetings);

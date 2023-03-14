@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.model.person.Meeting;
 

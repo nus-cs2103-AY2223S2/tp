@@ -97,7 +97,7 @@ public class AddMeetingCommand extends Command {
         // state check
         AddMeetingCommand e = (AddMeetingCommand) other;
         return index.equals(e.index)
-                && meeting.equals(e.meeting);
+            && meeting.equals(e.meeting);
     }
 
     /**

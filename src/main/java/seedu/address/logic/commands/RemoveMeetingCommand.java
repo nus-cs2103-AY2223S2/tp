@@ -20,8 +20,6 @@ public class RemoveMeetingCommand extends Command {
         + "Parameters: [Index] [Meeting Index]"
         + "Example: " + COMMAND_WORD + " 1 2";
     public static final String MESSAGE_REMOVE_SUCCESS = "Removed meeting from person: %1$s";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Remark command not implemented yet";
-    public static final String MESSAGE_ARGUMENTS = "Person Index: %1$d, Meeting Index: %1$d";
 
     private Index indexPerson;
     private Index indexMeeting;
@@ -54,7 +52,7 @@ public class RemoveMeetingCommand extends Command {
 
         Person personToEdit = lastShownList.get(indexPerson.getZeroBased());
 
-        if (indexMeeting.getZeroBased() >= personToEdit.getMeetings().size()) {
+        if (indexMeeting.getOneBased() >= personToEdit.getMeetings().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
@@ -72,5 +70,22 @@ public class RemoveMeetingCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         return String.format(MESSAGE_REMOVE_SUCCESS, personToEdit);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(o instanceof RemoveMeetingCommand)) {
+            return false;
+        }
+
+        // state check
+        RemoveMeetingCommand e = (RemoveMeetingCommand) o;
+        return this.indexPerson.equals(e.indexPerson)
+            && this.indexMeeting.equals(e.indexMeeting);
     }
 }

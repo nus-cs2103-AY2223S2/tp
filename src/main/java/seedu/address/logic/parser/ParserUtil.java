@@ -136,7 +136,7 @@ public class ParserUtil {
      *
      * @throws ParseException if start time given is after the end time given
      */
-    public static Meeting parseMeeting(String meeting) throws ParseException {
+    public static Meeting parseMeeting(String meeting) {
         requireNonNull(meeting);
         String trimmedMeeting = meeting.trim();
 
@@ -151,7 +151,7 @@ public class ParserUtil {
      * Parses {@code String dateTime} into a pair of
      * {@code LocalDateTime} objects
      */
-    private static LocalDateTime[] parseDateTime(String dateTime) {
+    public static LocalDateTime[] parseDateTime(String dateTime) {
         String[] dateTimeStrings = dateTime.split(" ");
         String[] dateString = dateTimeStrings[0].split("-");
         String[] startTimeString = dateTimeStrings[1].split(":");
