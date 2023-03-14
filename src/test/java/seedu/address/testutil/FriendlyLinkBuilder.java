@@ -13,12 +13,20 @@ public class FriendlyLinkBuilder {
 
     private final FriendlyLink friendlyLink;
 
+    /**
+     * Constructs an empty FriendlyLinkBuilder.
+     */
     public FriendlyLinkBuilder() {
         friendlyLink = new FriendlyLink();
     }
 
-    public FriendlyLinkBuilder(FriendlyLink friendlyLink) {
-        this.friendlyLink = friendlyLink;
+    /**
+     * Constructs a FriendlyLinkBuilder using an existing FriendlyLink.
+     *
+     * @param friendlyLinkToCopy Friendlylink to copy.
+     */
+    public FriendlyLinkBuilder(FriendlyLink friendlyLinkToCopy) {
+        this.friendlyLink = new FriendlyLink(friendlyLinkToCopy);
     }
 
     /**
@@ -37,6 +45,9 @@ public class FriendlyLinkBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code FriendlyLink} object.
+     */
     public FriendlyLink build() {
         return friendlyLink;
     }

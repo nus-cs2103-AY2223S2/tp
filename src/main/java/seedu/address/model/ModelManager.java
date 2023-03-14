@@ -31,6 +31,13 @@ public class ModelManager implements Model {
     private FilteredList<Pair> filteredPairs;
 
     /**
+     * Constructs a ModelManager with the default friendlyLink and userPrefs.
+     */
+    public ModelManager() {
+        init(new FriendlyLink(), new UserPrefs());
+    }
+
+    /**
      * Constructs a ModelManager with the given friendlyLink and userPrefs.
      */
     public ModelManager(ReadOnlyFriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
@@ -54,10 +61,6 @@ public class ModelManager implements Model {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty FriendlyLink");
         }
-    }
-
-    public ModelManager() {
-        this(new FriendlyLink(), new UserPrefs());
     }
 
     private void init(FriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
