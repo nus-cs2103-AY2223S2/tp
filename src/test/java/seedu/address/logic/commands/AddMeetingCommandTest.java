@@ -34,7 +34,7 @@ public class AddMeetingCommandTest {
     @Test
     public void addMeeting_SuccessTest() throws Exception {
         final Meeting meeting = new Meeting(
-            LocalDateTime.of(2023, 03, 14, 15,30),
+            LocalDateTime.of(2023, 03, 14, 15, 30),
             LocalDateTime.of(2023, 03, 14, 16, 30)
         );
 
@@ -48,9 +48,9 @@ public class AddMeetingCommandTest {
     }
 
     @Test
-    public void outOfRangeIndex_ThrowsCommandException() throws Exception{
+    public void outOfRangeIndex_ThrowsCommandException() throws Exception {
         final Meeting meeting = new Meeting(
-            LocalDateTime.of(2023, 03, 14, 15,30),
+            LocalDateTime.of(2023, 03, 14, 15, 30),
             LocalDateTime.of(2023, 03, 14, 16, 30)
         );
 
@@ -64,7 +64,7 @@ public class AddMeetingCommandTest {
     @Test
     public void clash_In_Meetings_ThrowsCommandException() throws Exception {
         Meeting sampleMeeting = new Meeting(
-            LocalDateTime.of(2023, 03, 14, 16,00),
+            LocalDateTime.of(2023, 03, 14, 16, 00),
             LocalDateTime.of(2023, 03, 14, 17, 30)
         );
 
