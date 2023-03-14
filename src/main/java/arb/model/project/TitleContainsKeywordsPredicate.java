@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import arb.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Project}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Project}'s {@code Title} matches any of the keywords given.
  */
 public class TitleContainsKeywordsPredicate implements Predicate<Project> {
     private final List<String> keywords;
@@ -18,7 +18,7 @@ public class TitleContainsKeywordsPredicate implements Predicate<Project> {
     @Override
     public boolean test(Project project) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getTitle().title, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getTitle().fullTitle, keyword));
     }
 
     @Override

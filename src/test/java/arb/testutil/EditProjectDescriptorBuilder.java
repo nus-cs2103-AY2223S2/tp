@@ -40,7 +40,7 @@ public class EditProjectDescriptorBuilder {
     /**
      * Sets the {@code Deadline} of the {@code EditProjectDescriptor} that we are building.
      */
-    public EditProjectDescriptorBuilder withPhone(String deadline) {
+    public EditProjectDescriptorBuilder withDeadline(String deadline) {
         descriptor.setDeadline(new Deadline(deadline));
         return this;
     }

@@ -16,6 +16,7 @@ import java.util.List;
 import arb.commons.core.index.Index;
 import arb.logic.commands.client.EditClientCommand;
 import arb.logic.commands.exceptions.CommandException;
+import arb.logic.commands.project.EditProjectCommand;
 import arb.model.AddressBook;
 import arb.model.ListType;
 import arb.model.Model;
@@ -24,6 +25,7 @@ import arb.model.client.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
 import arb.model.project.TitleContainsKeywordsPredicate;
 import arb.testutil.EditClientDescriptorBuilder;
+import arb.testutil.EditProjectDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -81,6 +83,18 @@ public class CommandTestUtil {
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    public static final EditProjectCommand.EditProjectDescriptor DESC_SKY_PAINTING;
+    public static final EditProjectCommand.EditProjectDescriptor DESC_OIL_PAINTING;
+
+    static {
+        DESC_SKY_PAINTING = new EditProjectDescriptorBuilder().withTitle(VALID_TITLE_SKY_PAINTING)
+                .withDeadline(VALID_DEADLINE_SKY_PAINTING).build();
+
+        DESC_OIL_PAINTING = new EditProjectDescriptorBuilder().withTitle(VALID_TITLE_OIL_PAINTING)
+                .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .build();
     }
 
     /**
@@ -151,7 +165,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
 
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
-        final String[] splitTitle = project.getTitle().title.split("\\s+");
+        final String[] splitTitle = project.getTitle().fullTitle.split("\\s+");
         model.updateFilteredProjectList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredProjectList().size());

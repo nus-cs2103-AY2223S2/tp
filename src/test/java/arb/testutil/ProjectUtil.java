@@ -24,7 +24,7 @@ public class ProjectUtil {
      */
     public static String getProjectDetails(Project project) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + project.getTitle().title + " ");
+        sb.append(PREFIX_NAME + project.getTitle().fullTitle + " ");
         sb.append(PREFIX_DEADLINE + project.getDeadline().toString() + " ");
         return sb.toString();
     }
@@ -34,7 +34,7 @@ public class ProjectUtil {
      */
     public static String getEditProjectDescriptorDetails(EditProjectDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_NAME).append(title.title).append(" "));
+        descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_NAME).append(title.fullTitle).append(" "));
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
                 .append(deadline.toString()).append(" "));
         return sb.toString();

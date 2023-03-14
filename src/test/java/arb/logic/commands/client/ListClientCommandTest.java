@@ -34,6 +34,12 @@ public class ListClientCommandTest {
     }
 
     @Test
+    public void execute_currentListShownProject_success() {
+        assertCommandSuccess(new ListClientCommand(), ListType.PROJECT, ListType.CLIENT, model,
+                ListClientCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
     public void execute_listIsFiltered_showsEverything() {
         showClientAtIndex(model, INDEX_FIRST);
         assertCommandSuccess(new ListClientCommand(), ListType.CLIENT, ListType.CLIENT, model,
