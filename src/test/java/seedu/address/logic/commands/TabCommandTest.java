@@ -37,6 +37,18 @@ public class TabCommandTest {
     }
 
     @Test
+    void execute_repeatedIndex_success() {
+        TabCommand tabCommand = new TabCommand(INDEX_ADDRESS_BOOK_TAB);
+        String expectedMessage = String.format(TabCommand.MESSAGE_NO_CHANGE, addressBookTabInfo);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setSelectedTab(INDEX_ADDRESS_BOOK_TAB);
+
+        model.setSelectedTab(INDEX_ADDRESS_BOOK_TAB);
+        assertCommandSuccess(tabCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     void execute_invalidIndex_throwsCommandException() {
         int tabsSize = model.getTabUtil().getTabInfoList().size();
         Index outOfBoundIndex = Index.fromOneBased(tabsSize + 1);
