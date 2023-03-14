@@ -15,8 +15,29 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://docs.google.com/document/d/1nTsxXRuQh8OzcsR_LoAR6xX_pkw0IuO5HKIqznkDMzE/edit?usp=sharing";
+    public static final String HELP_MESSAGE_COMMAND = "Features:\n" +
+            "help\n" +
+            "   - Accesses this help guide\n" +
+            "cat [c/categoryName]\n" +
+            "   - Adds a new category to the expense tracker\n" +
+            "delcat [categoryName]\n" +
+            "   - Deletes a category from the expense tracker\n" +
+            "add [c/categoryName] [n/itemName] [p/price] [d/date]\n" +
+            "   - Adds an expense to the user's expense tracker\n" +
+            "lcat (UNAVAILABLE AS OF v1.2)\n" +
+            "   - Shows all categories in the expense tracker\n" +
+            "del [index]\n" +
+            "   - Deletes expense at index [index]\n" +
+            "find [itemname] (UNAVAILABLE AS OF v1.2)\n" +
+            "   - lists all items with matching names\n" +
+            "list -[command option]  (UNAVAILABLE AS OF v1.2)\n" +
+            "   - Toggles the view of summary of expenses\n" +
+            "       list -t  - All expenses of the user\n" +
+            "       list -c  - All expenses of the user in a specific category\n" +
+            "       list -w  - All expenses of the user in the past 7 days\n\n\n";
+
+    public static final String HELP_MESSAGE = HELP_MESSAGE_COMMAND + "For more info, refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
