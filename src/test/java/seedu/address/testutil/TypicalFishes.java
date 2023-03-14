@@ -4,10 +4,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -25,33 +25,33 @@ public class TypicalFishes {
 
     public static final Fish ALICE = new FishBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
+            .withLastFedDate("06/06/2003")
             .withTags("friends").build();
     public static final Fish BENSON = new FishBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
+            .withEmail("johnd@example.com").withLastFedDate("06/07/2003")
             .withTags("owesMoney", "friends").build();
-    public static final Fish CARL = new FishBuilder().withName("Carl Kurz").withPhone("95352563")
+    public static final Fish CARL = new FishBuilder().withName("Carl Kurz").withLastFedDate("08/06/2003")
             .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Fish DANIEL = new FishBuilder().withName("Daniel Meier").withPhone("87652533")
+    public static final Fish DANIEL = new FishBuilder().withName("Daniel Meier").withLastFedDate("09/06/2003")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Fish ELLE = new FishBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Fish ELLE = new FishBuilder().withName("Elle Meyer").withLastFedDate("10/06/2003")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Fish FIONA = new FishBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Fish FIONA = new FishBuilder().withName("Fiona Kunz").withLastFedDate("11/06/2003")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Fish GEORGE = new FishBuilder().withName("George Best").withPhone("9482442")
+    public static final Fish GEORGE = new FishBuilder().withName("George Best").withLastFedDate("12/06/2003")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
-    public static final Fish HOON = new FishBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Fish HOON = new FishBuilder().withName("Hoon Meier").withLastFedDate("01/01/2000")
             .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Fish IDA = new FishBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Fish IDA = new FishBuilder().withName("Ida Mueller").withLastFedDate("01/01/2000")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Fish's details found in {@code CommandTestUtil}
-    public static final Fish AMY = new FishBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+    public static final Fish AMY = new FishBuilder().withName(VALID_NAME_AMY).withLastFedDate(VALID_LAST_FED_DATE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Fish BOB = new FishBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    public static final Fish BOB = new FishBuilder().withName(VALID_NAME_BOB).withLastFedDate(VALID_LAST_FED_DATE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
