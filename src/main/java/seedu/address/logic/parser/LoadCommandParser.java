@@ -24,8 +24,7 @@ public class LoadCommandParser {
 
         Index index;
         try {
-            String indexString = argMultimap.getValue(PREFIX_BACKUP).orElse("");
-            index = ParserUtil.parseIndex(indexString);
+            index = ParserUtil.parseIndex(args);
         } catch (IllegalValueException | IllegalArgumentException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LoadCommand.MESSAGE_USAGE), ive);
         }

@@ -9,6 +9,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.BackupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Parses input arguments and creates a new {@code BackupCommand} object
  */
@@ -24,8 +26,8 @@ public class BackupCommandParser implements Parser<BackupCommand> {
 
         Index index;
         try {
-            String indexString = argMultimap.getValue(PREFIX_BACKUP).orElse("");
-            index = ParserUtil.parseIndex(indexString);
+            index = ParserUtil.parseIndex(args);
+            checkArgument(isValidIndex(index));
         } catch (IllegalValueException | IllegalArgumentException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BackupCommand.MESSAGE_USAGE), ive);
         }
@@ -33,5 +35,12 @@ public class BackupCommandParser implements Parser<BackupCommand> {
 
 
         return new BackupCommand(index);
+    }
+
+    /**
+     * Returns true if a given index is a valid
+     */
+    public static boolean isValidIndex(Index test) {
+        return test.getOneBased() <= 10 && test.getOneBased() > 0;
     }
 }

@@ -19,7 +19,7 @@ public class BackupCommand extends Command {
     private final Backup backup;
     private final Path USER_PREFS_PATH = Path.of("preferences.json");
     public static final String MESSAGE_SUCCESS = "File saved to: index %1$d";
-    public static final String LOAD_ERROR = "Error loading file!";
+    public static final String SAVE_ERROR = "Error saving file!";
 
     /**
      * @param index of the backup file
@@ -35,9 +35,9 @@ public class BackupCommand extends Command {
             + ": Backs up the file to a specified slot "
             + "Existing backup file be overwritten.\n"
             + "Parameters: INDEX (must be an integer between 1 and 10) "
-            + "b/[INDEX]\n"
+            + "[INDEX]\n"
             + "Example: " + COMMAND_WORD
-            + " b/3";
+            + " 3";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
 
@@ -51,7 +51,7 @@ public class BackupCommand extends Command {
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ex) {
-            throw new CommandException(LOAD_ERROR);
+            throw new CommandException(SAVE_ERROR);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, backup.getBackupIndex().getOneBased()));
     }
