@@ -23,7 +23,8 @@ public class JsonSerializableSudoHrTest {
     private static final Path DUPLICATE_ID_FILE = TEST_DATA_FOLDER.resolve("duplicateIdSudoHr.json");
     private static final Path DUPLICATE_EMAIL_FILE = TEST_DATA_FOLDER.resolve("duplicateEmailSudoHr.json");
     private static final Path DUPLICATE_PHONE_FILE = TEST_DATA_FOLDER.resolve("duplicatePhoneSudoHr.json");
-    private static final Path DUPLICATE_PHONE_AND_EMAIL_FILE = TEST_DATA_FOLDER.resolve("duplicatePhoneEmailSudoHr.json");
+    private static final Path DUPLICATE_PHONE_AND_EMAIL_FILE = TEST_DATA_FOLDER.resolve(
+            "duplicatePhoneEmailSudoHr.json");
     private static final Path TYPICAL_DEPARTMENTS_FILE = TEST_DATA_FOLDER.resolve("typicalDepartmentsSudoHr.json");
     private static final Path INVALID_DEPARTMENT_FILE = TEST_DATA_FOLDER.resolve("invalidDepartmentSudoHr.json");
     private static final Path DUPLICATE_DEPARTMENT_FILE = TEST_DATA_FOLDER.resolve("duplicateDepartmentSudoHr.json");

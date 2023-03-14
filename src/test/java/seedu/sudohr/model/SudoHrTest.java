@@ -259,7 +259,7 @@ public class SudoHrTest {
 
     // first error accounted is that of duplicate person
     @Test
-    public void add_PersonWithSameIdEmailPhone_throwsDuplicatePersonException() {
+    public void add_personWithSameIdEmailPhone_throwsDuplicatePersonException() {
         sudoHr.addEmployee(BOB);
         Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)
@@ -269,7 +269,7 @@ public class SudoHrTest {
 
     // first error accounted is that of duplicate phone
     @Test
-    public void add_PersonWithSameEmailPhone_throwsDuplicatePhoneNumberException() {
+    public void add_personWithSameEmailPhone_throwsDuplicatePhoneNumberException() {
         sudoHr.addEmployee(BOB);
         Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)

@@ -4,6 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -15,12 +21,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
@@ -68,7 +68,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(sameIdPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EMPLOYEE, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_EMPLOYEE, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -198,7 +199,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasClashingEmail(Employee person)  {
+        public boolean hasClashingEmail(Employee person) {
             throw new AssertionError("This method should not be called.");
         };
 
@@ -208,7 +209,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasClashingPhoneNumber(Employee person)  {
+        public boolean hasClashingPhoneNumber(Employee person) {
             throw new AssertionError("This method should not be called.");
         };
 

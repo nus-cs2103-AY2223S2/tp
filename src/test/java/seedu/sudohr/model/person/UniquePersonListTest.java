@@ -1,8 +1,8 @@
 package seedu.sudohr.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -18,7 +18,9 @@ import static seedu.sudohr.testutil.TypicalPersons.AMY;
 import static seedu.sudohr.testutil.TypicalPersons.BOB;
 import static seedu.sudohr.testutil.TypicalPersons.CARL;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +30,6 @@ import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.model.employee.exceptions.DuplicatePhoneNumberException;
 import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
-
 import seedu.sudohr.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -303,7 +304,7 @@ public class UniquePersonListTest {
 
     // first error accounted is that of duplicate person
     @Test
-    public void add_PersonWithSameIdEmailPhone_throwsDuplicatePersonException() {
+    public void add_personWithSameIdEmailPhone_throwsDuplicatePersonException() {
         uniquePersonList.add(BOB);
         Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)
@@ -313,7 +314,7 @@ public class UniquePersonListTest {
 
     // first error accounted is that of duplicate phone
     @Test
-    public void add_PersonWithSameEmailPhone_throwsDuplicatePhoneNumberException() {
+    public void add_personWithSameEmailPhone_throwsDuplicatePhoneNumberException() {
         uniquePersonList.add(BOB);
         Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)

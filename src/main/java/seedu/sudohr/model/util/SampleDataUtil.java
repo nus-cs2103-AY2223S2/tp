@@ -38,9 +38,9 @@ public class SampleDataUtil {
             new Employee(new Id("6"), new Name("Roy Balakrishnan"), new Phone("92624417"),
                 new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues")),
-                new Employee(new Id("7"), new Name("TheMythDaMith"), new Phone("98987676"),
-                        new Email("themyth@example.com"), new Address("COM2 NUS 85, #03-10"),
-                        getTagSet("professor"))
+            new Employee(new Id("7"), new Name("TheMythDaMith"), new Phone("98987676"),
+                    new Email("themyth@example.com"), new Address("COM2 NUS 85, #03-10"),
+                    getTagSet("professor"))
         };
     }
 

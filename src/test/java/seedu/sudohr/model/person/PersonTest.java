@@ -144,15 +144,15 @@ public class PersonTest {
 
         // same name, phone, address, tags only -> returns false
         editedBob = new PersonBuilder(BOB).withId(VALID_ID_AMY).withEmail(VALID_EMAIL_AMY).build();
-        assertFalse (BOB.emailClashes(editedBob));
+        assertFalse(BOB.emailClashes(editedBob));
 
         // same id, name, phone, address, tags only -> returns false
         editedBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_AMY).build();
-        assertFalse (BOB.emailClashes(editedBob));
+        assertFalse(BOB.emailClashes(editedBob));
 
         // same email, name, phone, address, tags only -> returns false
         editedBob = new PersonBuilder(BOB).withId(VALID_ID_AMY).build();
-        assertTrue (BOB.emailClashes(editedBob));
+        assertTrue(BOB.emailClashes(editedBob));
     }
 
     @Test
@@ -198,11 +198,11 @@ public class PersonTest {
 
         // same id, name, email, address, tags only -> returns false
         editedBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_AMY).build();
-        assertFalse (BOB.phoneClashes(editedBob));
+        assertFalse(BOB.phoneClashes(editedBob));
 
         // same email, name, phone, address, tags only -> returns false
         editedBob = new PersonBuilder(BOB).withId(VALID_ID_AMY).build();
-        assertTrue (BOB.phoneClashes(editedBob));
+        assertTrue(BOB.phoneClashes(editedBob));
     }
 
     @Test

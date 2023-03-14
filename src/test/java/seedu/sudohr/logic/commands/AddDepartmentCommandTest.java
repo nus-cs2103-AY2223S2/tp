@@ -139,7 +139,7 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasClashingEmail(Employee person)  {
+        public boolean hasClashingEmail(Employee person) {
             throw new AssertionError("This method should not be called.");
         };
 
@@ -149,7 +149,7 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasClashingPhoneNumber(Employee person)  {
+        public boolean hasClashingPhoneNumber(Employee person) {
             throw new AssertionError("This method should not be called.");
         };
 

@@ -1,15 +1,14 @@
 package seedu.sudohr.logic.commands;
 
-import static seedu.sudohr.logic.commands.CommandTestUtil.*;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.sudohr.testutil.Assert.assertThrows;
+import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.testutil.TypicalPersons.BOB;
 import static seedu.sudohr.testutil.TypicalPersons.getTypicalSudoHr;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;

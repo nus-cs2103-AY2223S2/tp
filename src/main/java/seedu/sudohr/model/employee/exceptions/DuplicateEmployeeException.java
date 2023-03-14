@@ -1,8 +1,8 @@
 package seedu.sudohr.model.employee.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Employees (Employees are considered duplicates if they have the same
- * identity field).
+ * Signals that the operation will result in duplicate Employees.
+ * Employees are considered duplicates if they have the same identity field.
  */
 public class DuplicateEmployeeException extends RuntimeException {
     public DuplicateEmployeeException() {

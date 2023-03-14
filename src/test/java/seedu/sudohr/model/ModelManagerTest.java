@@ -3,16 +3,16 @@ package seedu.sudohr.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_AMY;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_AMY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import static seedu.sudohr.testutil.Assert.assertThrows;
-import static seedu.sudohr.testutil.TypicalPersons.AMY;
 import static seedu.sudohr.testutil.TypicalPersons.ALICE;
+import static seedu.sudohr.testutil.TypicalPersons.AMY;
 import static seedu.sudohr.testutil.TypicalPersons.BENSON;
 import static seedu.sudohr.testutil.TypicalPersons.BOB;
 import static seedu.sudohr.testutil.TypicalPersons.CARL;
@@ -24,8 +24,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.core.GuiSettings;
-import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.model.employee.exceptions.DuplicatePhoneNumberException;
@@ -214,7 +214,7 @@ public class ModelManagerTest {
 
     // first error accounted is that of duplicate person
     @Test
-    public void add_PersonWithSameIdEmailPhone_throwsDuplicatePersonException() {
+    public void add_personWithSameIdEmailPhone_throwsDuplicatePersonException() {
         modelManager.addEmployee(BOB);
         Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)
@@ -224,7 +224,7 @@ public class ModelManagerTest {
 
     // first error accounted is that of duplicate phone
     @Test
-    public void add_PersonWithSameEmailPhone_throwsDuplicatePhoneNumberException() {
+    public void add_personWithSameEmailPhone_throwsDuplicatePhoneNumberException() {
         modelManager.addEmployee(BOB);
         Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)
