@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a video of a lecture that belongs to a module that is in the tracker.
+ * Represents a video of a lecture.<p>
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Video {
@@ -23,7 +23,7 @@ public class Video {
      * Constructs a {@code Video}.
      *
      * @param name The name of the video.
-     * @param tags The tags applied to the module.
+     * @param tags The tags applied to the video.
      */
     public Video(VideoName name, Set<Tag> tags) {
         requireNonNull(name);
@@ -38,14 +38,19 @@ public class Video {
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     *
+     * @return An immutable tag set.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
     /**
-     * Returns true if both videos have the same name.
+     * Returns true if both videos have the same name.<p>
      * This defines a weaker notion of equality between two videos.
+     *
+     * @param other The video to check if this video is the same with.
+     * @return True if both videos have the same name. Otherwise, false.
      */
     public boolean isSameVideo(Video other) {
         if (other == this) {
@@ -57,8 +62,11 @@ public class Video {
     }
 
     /**
-     * Returns true if both videos have the same fields.
+     * Returns true if both videos have the same fields.<p>
      * This defines a stronger notion of equality between two videos.
+     *
+     * @param other The video to check if it is equivalent to this video.
+     * @return True if both videos have the same fields. Otherwise, false.
      */
     @Override
     public boolean equals(Object other) {

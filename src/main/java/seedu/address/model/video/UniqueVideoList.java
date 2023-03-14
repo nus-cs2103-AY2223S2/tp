@@ -7,64 +7,57 @@ import seedu.address.model.video.exceptions.DuplicateVideoException;
 import seedu.address.model.video.exceptions.VideoNotFoundException;
 
 /**
- * A list of videos that enforces uniqueness between its elements and does not allow nulls. A video is considered unique
- * by comparing using {@code Video#isSameVideo(Video)}. As such, adding and updating of videos uses
- * Video#isSameVideo(Video) for equality so as to ensure that the video being added or updated is unique in terms of
- * name in the UniqueVideoList. However, the removal of a video uses Video#equals(Object) so as to ensure that the
- * video with exactly the same fields will be removed.
+ * A list of videos that enforces uniqueness between its elements and does not allow nulls.<p>
  *
- * Supports a minimal set of list operations.
+ * A video is considered unique by comparing using {@code Video#isSameVideo(Video)}. As such, adding and updating of
+ * videos uses {@code Video#isSameVideo(Video)} for equality so as to ensure that the video being added or updated is
+ * unique in terms of name in the {@code UniqueVideoList}.<p>
+ *
+ * However, the removal of a video uses {@code Video#equals(Object)} so as to ensure that the video with exactly the
+ * same fields will be removed.<p>
+ *
+ * Supports a minimal set of list operations.<p>
  *
  * @see Video#isSameVideo(Video)
  */
 public class UniqueVideoList extends UniqueDataList<Video> {
 
+    /**
+     * Constructs a {@code UniqueVideoList}.
+     */
     public UniqueVideoList() {
         super((a, b) -> a.isSameVideo(b), DuplicateVideoException::new, VideoNotFoundException::new);
     }
 
     /**
-     * Returns true if the list contains an equivalent video as the given argument.
-     */
-    @Override
-    public boolean contains(Video toCheck) {
-        return super.contains(toCheck);
-    }
-
-    /**
-     * Adds a video to the list.
-     * The video must not already exist in the list.
-     */
-    @Override
-    public void add(Video toAdd) {
-        super.add(toAdd);
-    }
-
-    /**
-     * Replaces the video {@code target} in the list with {@code editedVideo}.
-     * {@code target} must exist in the list.
-     * The name of {@code editedVideo} must not be the same as another existing video in the list.
+     * Replaces the video {@code target} in the list with {@code editedVideo}.<p>
+     * {@code target} must exist in the list.<p>
+     * {@code editedVideo} must not have the same name as another existing video in the list.
+     *
+     * @param target The video to be replaced.
+     * @param editedVideo The video that will replace.
+     * @throws VideoNotFoundException Indicates that {@code target} does not exist in the list.
+     * @throws DuplicateVideoException Indicates that {@code editedVideo} is the same as another existing
+     *                                 video in the list.
      */
     public void setVideo(Video target, Video editedVideo) {
         super.setData(target, editedVideo);
     }
 
     /**
-     * Removes the equivalent video from the list.
-     * The video must exist in the list.
+     * Replaces the content of this list with {@code replacement}.
+     *
+     * @param replacement The list containing the video that will replace.
      */
-    @Override
-    public void remove(Video toRemove) {
-        super.remove(toRemove);
-    }
-
     public void setVideos(UniqueVideoList replacement) {
         super.setAllData(replacement);
     }
 
     /**
-     * Replaces the contents of this list with {@code videos}.
+     * Replaces the contents of this list with {@code videos}.<p>
      * {@code videos} must not contain duplicate videos.
+     *
+     * @param videos The list containing the videos that will replace.
      */
     public void setVideos(List<Video> videos) {
         super.setAllData(videos);
