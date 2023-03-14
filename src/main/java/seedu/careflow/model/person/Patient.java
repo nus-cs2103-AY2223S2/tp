@@ -1,7 +1,5 @@
 package seedu.careflow.model.person;
 
-import javafx.beans.value.ObservableValue;
-
 import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;

@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.careflow.MainApp;
 import seedu.careflow.commons.core.LogsCenter;
@@ -99,19 +97,9 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-    /**
-     * Copies the URL to the user guide to the clipboard.
-     */
-//    @FXML
-//    private void copyUrl() {
-//        final Clipboard clipboard = Clipboard.getSystemClipboard();
-//        final ClipboardContent url = new ClipboardContent();
-//        url.putString(USERGUIDE_URL);
-//        clipboard.setContent(url);
-//    }
     @FXML
     private void openUrl() {
-        final Hyperlink URL = new Hyperlink(USERGUIDE_URL);
-        MainApp.getStaticHostServices().showDocument(URL.getText());
+        final Hyperlink userGuideUrl = new Hyperlink(USERGUIDE_URL);
+        MainApp.getStaticHostServices().showDocument(userGuideUrl.getText());
     }
 }
