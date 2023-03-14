@@ -211,15 +211,30 @@ Format: `listtask`
 Lists all the tasks in OfficeConnect.
 
 ## Assigning a Task to a Person: `assign`
-Format: `assign /task INDEX /person INDEX`
+Format: `assign ti/ INDEX pi/ INDEX`
 
 Assigns the task at specified index to the person at specified index.
 The index refers to the index number shown in the displayed person/task list.
 The index must be a positive integer 1, 2, 3...
 
 Examples:
-- `assign /task 2 /person 3` assigns task 2 to person 3.
+- `assign ti/ 2 pi/ 3` assigns task 2 to person 3.
 
+## Review tasks assigned to a Person: `review`
+Format: `review NAME`
+
+Reviews the list of tasks that are assigned to the person with the specified name.
+
+Examples:
+- `review John Cena` displays all tasks that are assigned to him.
+
+## Review tasks assigned to a Person: `reviewtask`
+Format: `review SUBJECT`
+
+Reviews the list of persons who are assigned to the task with the specified subject.
+
+Examples:
+- `review CS2103 TP` displays everyone who are assigned to this task.
 
 ### Archiving data files `[coming in v1.3]`
 
@@ -236,14 +251,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                                                                     |
-|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Task**  | `addtask s/SUBJECT c/CONTENT st/STATUS` <br> e.g., `addtask s/Draft proposal c/Complete proposal by 1st March st/false`                                              |
-| **Clear**     | `clear`                                                                                                                                                              |
-| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
-| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
-| **List**      | `list`                                                                                                                                                               |
-| **List Task** | `listtask`                                                                                                                                                           |
-| **Help**      | `help`                                                                                                                                                               |
+| Action          | Format, Examples                                                                                                                                                     |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Task**    | `addtask s/SUBJECT c/CONTENT st/STATUS` <br> e.g., `addtask s/Draft proposal c/Complete proposal by 1st March st/false`                                              |
+| **Clear**       | `clear`                                                                                                                                                              |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **Help**        | `help`                                                                                                                                                               |
+| **List**        | `list`                                                                                                                                                               |
+| **List All**    | `listall`                                                                                                                                                            |
+| **List Task**   | `listtask`                                                                                                                                                           |
+| **Review**      | `review NAME`<br> e.g., `review James Jake`                                                                                                                          |
+| **Review Task** | `reviewtask SUBJECT`<br> e.g., `reviewtask CS2103 TP`                                                                                                                |
