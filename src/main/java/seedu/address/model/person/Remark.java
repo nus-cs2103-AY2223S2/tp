@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Remark {
     public static final String NULL_REMARK = "None yet!";
+
     public final String value;
 
     /**

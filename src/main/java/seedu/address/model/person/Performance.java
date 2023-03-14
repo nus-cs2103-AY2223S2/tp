@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Performance {
     public static final String NULL_PERFORMANCE = "None yet!";
+
     public final String value;
 
     /**
