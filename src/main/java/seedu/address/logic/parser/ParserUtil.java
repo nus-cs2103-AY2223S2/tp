@@ -130,9 +130,6 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String region} into the correct {@code Regions} enum
-     *
-     * @param region
-     * @return
      */
     public static Regions parseRegion(String region) throws ParseException {
         requireNonNull(region);
