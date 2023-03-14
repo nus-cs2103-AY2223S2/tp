@@ -1,12 +1,14 @@
 package seedu.careflow.model.person;
 
+import javafx.beans.value.ObservableValue;
+
 import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Represents a Patient in the patient record
+ * Represents a Patient in the patient recordn
  */
 public class Patient {
     // Identity fields
