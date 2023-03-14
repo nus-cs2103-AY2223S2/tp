@@ -122,4 +122,6 @@ public interface Model {
     void endReview();
 
     String getReviewDeckName();
+
+    void flipCard();
 }

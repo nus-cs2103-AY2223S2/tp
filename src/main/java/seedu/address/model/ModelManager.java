@@ -50,7 +50,7 @@ public class ModelManager implements Model {
         this(new MasterDeck(), new UserPrefs());
     }
 
-    /* UserPrefs */
+    /* ==================================== UserPrefs ==================================== */
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -121,7 +121,7 @@ public class ModelManager implements Model {
         masterDeck.setCard(target, editedCard);
     }
 
-    /* Filtered Card/Deck List Accessors */
+    /* ==================================== Filtered Card/Deck List Accessors ==================================== */
 
     /**
      * Returns an unmodifiable view of the list of {@code Card} backed by the internal list of
@@ -162,7 +162,7 @@ public class ModelManager implements Model {
     }
 
 
-    /* PowerDeck Operations */
+    /* ==================================== PowerDeck Operations ==================================== */
 
     @Override
     public void updateFilteredDeckList(Predicate<Deck> predicate) {
@@ -211,7 +211,7 @@ public class ModelManager implements Model {
                 .orElse("None");
     }
 
-    /* Review Operations */
+    /* ==================================== Review Operations ==================================== */
 
     /**
      * Starts a new review session based on deckIndex selected
@@ -234,7 +234,6 @@ public class ModelManager implements Model {
     @Override
     public void endReview() {
         currReview = null;
-        // Todo: set predicate to showing all cards again?
     }
 
     @Override
@@ -244,4 +243,7 @@ public class ModelManager implements Model {
                 .orElse("None");
     }
 
+    public void flipCard() {
+        Optional.ofNullable(currReview).ifPresent(Review::flipCard);
+    }
 }

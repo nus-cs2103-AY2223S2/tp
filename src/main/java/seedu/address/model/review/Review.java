@@ -43,7 +43,7 @@ public class Review {
         return currScore;
     }
 
-    public void incrementCurrentScore() {
+    public void incrementCurrScore() {
         currScore++;
     }
 
