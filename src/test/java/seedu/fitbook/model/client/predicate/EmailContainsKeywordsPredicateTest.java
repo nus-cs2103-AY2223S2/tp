@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.fitbook.testutil.ClientBuilder;
+import seedu.fitbook.testutil.client.ClientBuilder;
 
 public class EmailContainsKeywordsPredicateTest {
 

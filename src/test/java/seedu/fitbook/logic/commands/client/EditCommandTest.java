@@ -2,7 +2,6 @@ package seedu.fitbook.logic.commands.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
