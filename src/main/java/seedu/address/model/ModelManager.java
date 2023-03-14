@@ -112,12 +112,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addCard(Card card) {
-        masterDeck.addCard(card);
-
-        // only update filteredCardList if a deck is selected
-        Optional.ofNullable(selectedDeck)
-                .map(CardInDeckPredicate::new)
-                .ifPresent(this::updateFilteredCardList);
+        masterDeck.addCard(card); // Todo: setDeck of card to selectedDeck here
     }
 
     @Override
