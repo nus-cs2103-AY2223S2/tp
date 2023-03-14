@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import seedu.address.model.flight.exceptions.LinkedPlaneNotFoundException;
 import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
 import seedu.address.model.plane.Plane;
 
 /**
@@ -18,6 +19,9 @@ public class Flight implements Item {
     private Plane plane;
 
     //TODO: Add departure and arrival locations
+    private Location departureLocation;
+    private Location arrivalLocation;
+
     //TODO: Add exceptions to ensure departure and arrival locations are distinct
 
     /**
@@ -90,5 +94,51 @@ public class Flight implements Item {
         } else {
             throw new LinkedPlaneNotFoundException();
         }
+    }
+
+    /**
+     * Links the flight to a departure location.
+     * @param departureLocation the departure location to link to
+     */
+    public void linkDepartureLocation(Location departureLocation) {
+        this.departureLocation = departureLocation;
+    }
+
+    /**
+     * Links the flight to an arrival location.
+     * @param arrivalLocation the arrival location to link to
+     */
+    public void linkArrivalLocation(Location arrivalLocation) {
+        this.arrivalLocation = arrivalLocation; 
+    }
+
+    /**
+     * Unlinks the departure location.
+     */
+    public void unLinkDepartureLocation() {
+        this.departureLocation = null;
+    }
+
+    /**
+     * Unlinks the arrival location.
+     */
+    public void unLinkArrivalLocation() {
+        this.arrivalLocation = null;
+    }
+
+    /**
+     * Returns the departure location of the plane.
+     * @return the departure location.
+     */
+    public Location getDepartureLocation() {
+        return departureLocation;
+    }
+
+    /**
+     * Returns the arrival location of the plane.
+     * @return the arrival location
+     */
+    public Location getArrivalLocation() {
+        return arrivalLocation;
     }
 }
