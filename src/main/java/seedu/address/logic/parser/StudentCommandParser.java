@@ -31,7 +31,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.student.StudentAddCommand;
 import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.commands.student.StudentCommentCommand;
@@ -184,14 +183,14 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public StudentDeleteCommand deleteCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
-            if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
-            || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentDeleteCommand.MESSAGE_USAGE));
-            }
-            Class sc = ParserUtil.parseStudentClass(studentClass);
-            IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
-            return new StudentDeleteCommand(indexNumber, sc);
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentDeleteCommand.MESSAGE_USAGE));
+        }
+        Class sc = ParserUtil.parseStudentClass(studentClass);
+        IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
+        return new StudentDeleteCommand(indexNumber, sc);
     }
 
     /**
