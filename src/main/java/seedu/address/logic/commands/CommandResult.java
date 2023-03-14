@@ -37,6 +37,16 @@ public class CommandResult {
     }
 
     /**
+     * Constructs a {@code CommandResult} with the specified fields, and default switch mode of NONE.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.switchMode = UiSwitchMode.NONE;
+    }
+
+    /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, and other fields set to their
      * default value.
      */
