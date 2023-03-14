@@ -87,8 +87,8 @@ public class StudentBuilder {
     /**
      * Sets the {@code StudentId} of the {@code Student} that we are building.
      */
-    public StudentBuilder withStudentId(String address) {
-        this.studentId = new StudentId(address);
+    public StudentBuilder withStudentId(String studentId) {
+        this.studentId = new StudentId(studentId.trim());
         return this;
     }
 

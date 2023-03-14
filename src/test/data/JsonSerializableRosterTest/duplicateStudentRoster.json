@@ -8,10 +8,10 @@
     "remark": "",
     "tagged": [ "Team1" ]
   }, {
-    "name": "Alice Pauline",
+    "name": "Alice",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "studentId": "A0123456X",
+    "studentId": "A1234567X",
     "modules": [ "CS2101" ],
     "remark": "",
     "tagged" : [ ]

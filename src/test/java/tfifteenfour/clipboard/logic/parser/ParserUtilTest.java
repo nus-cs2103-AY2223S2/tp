@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.student.Email;
-import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.StudentId;
 import tfifteenfour.clipboard.model.tag.Tag;
@@ -29,10 +28,10 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_STUDENTID = "A0123456J";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "Team1";
+    private static final String VALID_TAG_2 = "Team2";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -67,16 +66,9 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
-    }
-
-    @Test
-    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    public void parseName_validValueWithWhitespace_throwsParseException() throws Exception {
+        String expectedSidWithWhitespace = VALID_NAME + WHITESPACE + VALID_NAME;
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudentId(expectedSidWithWhitespace));
     }
 
     @Test
@@ -114,14 +106,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        StudentId expectedStudentId = new StudentId(VALID_ADDRESS);
-        assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_ADDRESS));
+        StudentId expectedStudentId = new StudentId(VALID_STUDENTID);
+        assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_STUDENTID));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        StudentId expectedStudentId = new StudentId(VALID_ADDRESS);
+        String addressWithWhitespace = WHITESPACE + VALID_STUDENTID + WHITESPACE;
+        StudentId expectedStudentId = new StudentId(VALID_STUDENTID);
         assertEquals(expectedStudentId, ParserUtil.parseStudentId(addressWithWhitespace));
     }
 

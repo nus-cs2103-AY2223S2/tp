@@ -32,23 +32,23 @@ public class StudentTest {
         // null -> returns false
         assertFalse(ALICE.isSameStudent(null));
 
-        // same name, all other attributes different -> returns true
-        Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105).build();
+        // same sid, all other attributes different -> returns true
+        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withTags(VALID_MODULE_CS2105).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different sid, all other attributes same -> returns false
+        editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
-        Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        // sid differs in case, all other attributes same -> returns true
+        Student editedBob = new StudentBuilder(BOB).withStudentId(VALID_STUDENTID_BOB.toLowerCase()).build();
+        assertTrue(BOB.isSameStudent(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        // sid has trailing spaces, all other attributes same -> returns true
+        String sidWithTrailingSpaces = VALID_STUDENTID_BOB + "   ";
+        editedBob = new StudentBuilder(BOB).withStudentId(sidWithTrailingSpaces).build();
+        assertTrue(BOB.isSameStudent(editedBob));
     }
 
     @Test
