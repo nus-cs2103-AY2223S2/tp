@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.StatusCommand;
+import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.person.status.LeadStatusName;
 
 
@@ -35,7 +36,7 @@ public class StatusCommandParserTest {
     public void parse_invalidLeadStatusSpecified_failure() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_LEAD_STATUS_LABEL;
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, LeadStatus.MESSAGE_CONSTRAINTS);
 
         assertParseFailure(parser, userInput, expectedMessage);
     }
