@@ -18,7 +18,7 @@
    </HBox>
    <HBox alignment="CENTER" prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: #E6ECF0;">
       <children>
-         <Label fx:id="greetings" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="353.0" style="-fx-background-color: #E6ECF0; -fx-text-fill: bold;" text="You have tasks today" textAlignment="CENTER">
+         <Label fx:id="greetings" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="353.0" style="-fx-background-color: #E6ECF0;" text="You have tasks today" textAlignment="CENTER">
             <HBox.margin>
                <Insets />
             </HBox.margin>
