@@ -35,7 +35,7 @@
           </Menu>
         </MenuBar>
 
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="supplierList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
@@ -48,7 +48,7 @@
                    </Tab>
                    <Tab text="AddressBook">
                      <content>
-                       <StackPane fx:id="personListPanelPlaceholder" />
+                       <StackPane fx:id="supplierListPanelPlaceholder" />
                      </content>
                    </Tab>
                    <Tab text="Orders">
