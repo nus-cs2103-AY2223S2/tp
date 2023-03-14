@@ -25,120 +25,178 @@ public interface Model {
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
+     *
+     * @param userPrefs The data to replace the current user prefs data.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs.
+     *
+     * @return The user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
 
     /**
      * Returns the user prefs' GUI settings.
+     *
+     * @return The user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
 
     /**
      * Sets the user prefs' GUI settings.
+     *
+     * @param guiSettings The GUI settings to set the user prefs's GUI settings to.
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    // TODO: Replace this
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' tracker file path.
+     *
+     * @return The user prefs' tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getTrackerFilePath();
 
-    // TODO: Replace this
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' tracker file path.
+     *
+     * @param trackerFilePath The file path to set the user prefs' tracker file path to.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTrackerFilePath(Path trackerFilePath);
 
     /**
      * Replaces tracker data with the data in {@code tracker}.
+     *
+     * @param tracker The tracker whose data will replace the current tracker data.
      */
     void setTracker(ReadOnlyTracker tracker);
 
     /**
-     * Returns the Tracker.
+     * Returns the tracker.
+     *
+     * @return The tracker.
      */
     ReadOnlyTracker getTracker();
 
     /**
      * Returns true if a module with the same code as {@code module} exists in the tracker.
+     *
+     * @param module The module to check if exist.
+     * @return True if a module with the same code as {@code module} exists in the tracker. Otherwise, false.
      */
     boolean hasModule(ReadOnlyModule module);
 
     /**
-     * Deletes the given module.
+     * Deletes the given module. <p>
      * The module must exist in the tracker.
+     *
+     * @param target The module to be deleted.
      */
     void deleteModule(ReadOnlyModule target);
 
     /**
      * Adds the given module.
+     *
+     * @param module The module to be added.
      */
     void addModule(Module module);
 
     /**
-     * Replaces the given module {@code target} with {@code editedModule}.
-     * {@code target} must exist in the tracker.
+     * Replaces the given module {@code target} with {@code editedModule}.<p>
+     * {@code target} must exist in the tracker.<p>
      * The module code of {@code editedModule} must not be the same as another existing module in the tracker.
+     *
+     * @param target The module to be replaced.
+     * @param editedModule The module that will replace.
      */
     void setModule(ReadOnlyModule target, Module editedModule);
 
     /**
      * Returns true if a lecture with the same name as {@code lecture} exists in {@code module}.
+     *
+     * @param module The module to check if it contains the lecture.
+     * @param lecture The lecture to check if exist.
+     * @return True if a lecture with the same name as {@code lecture} exists in {@code module}. Otherwise, false.
      */
     boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture);
 
     /**
-     * Deletes the given lecture {@code target}.
+     * Deletes the given lecture {@code target}.<p>
      * The lecture must exist in {@code module}.
+     *
+     * @param module The module to delete the lecture from.
+     * @param target The lecture to be deleted.
      */
     void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target);
 
     /**
      * Adds the given lecture to {@code module}.
+     *
+     * @param module The module to add the lecture to.
+     * @param lecture The lecture to add.
      */
     void addLecture(ReadOnlyModule module, Lecture lecture);
 
     /**
-     * Replaces the given lecture {@code target} with {@code editedLecture}.
-     * {@code target} must exist in {@code module}.
+     * Replaces the given lecture {@code target} with {@code editedLecture}.<p>
+     * {@code target} must exist in {@code module}.<p>
      * The name of {@code editedLecture} must not be the same as another existing lecture in {@code module}.
+     *
+     * @param module The module whose lecture is to be replaced.
+     * @param target The lecture to be replaced.
+     * @param editedLecture The lecture that will replace.
      */
     void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture);
 
     /**
      * Returns true if a video with the same name as {@code video} exists in {@code lecture}.
+     *
+     * @param lecture The lecture to check if it contains the video.
+     * @param video The video to check if exist.
+     * @return True if a video with the same name as {@code video} exists in {@code lecture}. Otherwise, false.
      */
     boolean hasVideo(ReadOnlyLecture lecture, Video video);
 
     /**
-     * Deletes the given video {@code target}.
+     * Deletes the given video {@code target}.<p>
      * The video must exist in {@code lecture}.
+     *
+     * @param lecture The lecture to delete the video from.
+     * @param video The video to be deleted.
      */
     void deleteVideo(ReadOnlyLecture lecture, Video video);
 
     /**
      * Adds the given video to {@code lecture}.
+     *
+     * @param lecture The lecture to add the video to.
+     * @param video The video to add.
      */
     void addVideo(ReadOnlyLecture lecture, Video video);
 
     /**
-     * Replaces the given video {@code target} with {@code editedVideo}.
-     * {@code target} must exist in {@code lecture}.
+     * Replaces the given video {@code target} with {@code editedVideo}.<p>
+     * {@code target} must exist in {@code lecture}.<p>
      * The name of {@code editedVideo} must not be the same as another existing video in {@code lecture}.
+     *
+     * @param lecture The lecture whose video is to be replaced.
+     * @param target The video to be replaced.
+     * @param editedVideo The video that will replace.
      */
     void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo);
 
-    /** Returns an unmodifiable view of the filtered module list */
+    /**
+     * Returns an unmodifiable view of the filtered module list.
+     *
+     * @return An unmodifiable view of the filtered module list.
+     */
     ObservableList<? extends ReadOnlyModule> getFilteredModuleList();
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     *
+     * @param predicate The predicate to filter modules by.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate);

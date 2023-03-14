@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -82,7 +83,7 @@ public class Tracker implements ReadOnlyTracker {
      * The module of {@code editedModule} must not be the same as another existing module in the tracker.
      */
     public void setModule(ReadOnlyModule target, Module editedModule) {
-        requireNonNull(editedModule);
+        requireAllNonNull(target, editedModule);
 
         modules.setModule((Module) target, editedModule);
     }
