@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 import seedu.calidr.logic.commands.AddEventCommand;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 import seedu.calidr.model.task.Event;
-import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.EventDateTimes;
+import seedu.calidr.model.task.params.Title;
 
 /**
  * Parses input arguments and creates a new AddEventCommand object

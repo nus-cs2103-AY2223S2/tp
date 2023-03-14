@@ -8,6 +8,9 @@ import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.model.Model;
 import seedu.calidr.model.task.ToDo;
 
+/**
+ * Adds a to-do to the task list.
+ */
 public class AddTodoCommand extends Command {
 
     public static final String COMMAND_WORD = "todo";
@@ -19,7 +22,7 @@ public class AddTodoCommand extends Command {
             + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Assignment "
-            + PREFIX_BY + "2023-05-04 2359 ";
+            + PREFIX_BY + "2023-05-04 2359";
 
     public static final String MESSAGE_SUCCESS = "New to-do added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This to-do already exists in the task list.";
@@ -27,7 +30,7 @@ public class AddTodoCommand extends Command {
     private final ToDo toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code ToDo}
+     * Creates an AddTodoCommand to add the specified {@code ToDo}
      */
     public AddTodoCommand(ToDo todo) {
         requireNonNull(todo);

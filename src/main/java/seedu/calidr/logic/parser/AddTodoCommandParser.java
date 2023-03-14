@@ -12,6 +12,9 @@ import seedu.calidr.model.task.ToDo;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
 
+/**
+ * Parses input arguments and creates a new AddTodoCommand object
+ */
 public class AddTodoCommandParser implements Parser<AddTodoCommand> {
 
     /**

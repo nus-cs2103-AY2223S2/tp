@@ -142,6 +142,12 @@ public class ParserUtil {
     }
 
     //===============================For Calidr====================================================
+    /**
+     * Parses a {@code String title} into a {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
     public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
@@ -163,6 +169,12 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a {@code String todoDateTime} into a {@code TodoDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code todoDateTime} is invalid.
+     */
     public static TodoDateTime parseTodoDateTime(String todoDateTime) throws ParseException {
         requireNonNull(todoDateTime);
         String trimmedTodoDateTime = todoDateTime.trim();
@@ -175,6 +187,14 @@ public class ParserUtil {
         return new TodoDateTime(byDateTime);
     }
 
+    /**
+     * Parses a {@code String fromDateTime} and {@code String toDateTime}
+     * into a {@code EventDateTimes}. Leading and trailing whitespaces will
+     * be trimmed.
+     *
+     * @throws ParseException if the given {@code String fromDateTime} and
+     *     {@code String toDateTime} are invalid.
+     */
     public static EventDateTimes parseEventDateTimes(String fromDateTime, String toDateTime)
             throws ParseException {
 
