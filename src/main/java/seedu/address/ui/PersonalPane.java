@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -19,6 +21,8 @@ public class PersonalPane extends UiPart<Region> {
     @FXML
     private HBox personalPane;
 
+    @FXML
+    private ImageView imageView;
     @FXML
     private Label name;
     @FXML
@@ -37,6 +41,9 @@ public class PersonalPane extends UiPart<Region> {
      */
     public PersonalPane(Person person) {
         super(FXML);
+        Image image = person.getImage() != null ? new Image("/images/spongbob.png")
+                : new Image(person.getImage().toString());
+        imageView.setImage(image);
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
