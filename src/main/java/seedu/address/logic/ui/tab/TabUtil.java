@@ -12,7 +12,7 @@ import seedu.address.commons.core.index.Index;
  * Utility class to keep and manage {@code TabInfo}s.
  */
 public class TabUtil {
-    private static final String[] TITLES = {"Address Book", "Calendar"};
+    private static final TabType[] TAB_TYPES = {TabType.ADDRESS_BOOK, TabType.CALENDAR};
 
     private final List<TabInfo> tabInfoList;
     private final ReadOnlyObjectWrapper<TabInfo> selectedTabInfo;
@@ -21,11 +21,11 @@ public class TabUtil {
      * Creates a {@code TabUtil}.
      */
     public TabUtil() {
-        tabInfoList = new ArrayList<>(TITLES.length);
-        for (int i = 0; i < TITLES.length; i++) {
-            tabInfoList.add(new TabInfo(Index.fromZeroBased(i), TITLES[i]));
+        tabInfoList = new ArrayList<>(TAB_TYPES.length);
+        for (int i = 0; i < TAB_TYPES.length; i++) {
+            tabInfoList.add(new TabInfo(Index.fromZeroBased(i), TAB_TYPES[i]));
         }
-        selectedTabInfo = new ReadOnlyObjectWrapper<>(null);
+        selectedTabInfo = new ReadOnlyObjectWrapper<>(tabInfoList.get(0));
     }
 
     public List<TabInfo> getTabInfoList() {

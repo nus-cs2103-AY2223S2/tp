@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -80,6 +81,11 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public List<TabInfo> getTabInfoList() {
+        return model.getTabUtil().getTabInfoList();
     }
 
     @Override

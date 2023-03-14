@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.ui.tab.TabInfo;
 import seedu.address.model.Model;
 
 /**
@@ -22,6 +23,7 @@ public class TabCommand extends Command {
             + "should be in the range of %d to %d (inclusive).";
 
     public static final String MESSAGE_SUCCESS = "Switched to tab %s";
+    public static final String MESSAGE_NO_CHANGE = "Already on tab %s";
 
     private final Index index;
 
@@ -40,8 +42,15 @@ public class TabCommand extends Command {
             int upperBound = model.getTabUtil().getTabInfoList().size();
             throw new CommandException(String.format(MESSAGE_INVALID_INDEX, lowerBound, upperBound));
         }
+
+        TabInfo prevTab = model.getSelectedTab().get();
         model.setSelectedTab(index);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedTab().get()));
+        TabInfo currTab = model.getSelectedTab().get();
+        if (Objects.equals(prevTab, currTab)) {
+            return new CommandResult(String.format(MESSAGE_NO_CHANGE, currTab));
+        } else {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, currTab));
+        }
     }
 
     @Override
