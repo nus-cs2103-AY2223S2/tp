@@ -1,7 +1,5 @@
 package seedu.calidr.model.task;
 
-import java.time.LocalDateTime;
-
 import seedu.calidr.model.task.params.EventDateTimes;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
@@ -43,12 +41,8 @@ public class Event extends Task {
         this.eventDateTimes = eventDateTimes;
     }
 
-    public LocalDateTime getFrom() {
-        return eventDateTimes.fromDateTime;
-    }
-
-    public LocalDateTime getTo() {
-        return eventDateTimes.toDateTime;
+    public EventDateTimes getEventDateTimes() {
+        return eventDateTimes;
     }
 
     @Override

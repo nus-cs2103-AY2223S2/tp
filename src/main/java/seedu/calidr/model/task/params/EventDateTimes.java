@@ -12,32 +12,25 @@ import java.time.format.DateTimeFormatter;
 public class EventDateTimes {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The END date-time should be after the current date-time and the START date-time";
+            "The END date-time should be after the START date-time";
 
-    public final LocalDateTime fromDateTime;
-    public final LocalDateTime toDateTime;
+    public final LocalDateTime from;
+    public final LocalDateTime to;
 
 
     /**
      * Constructs an {@code EventDateTimes}
      *
-     * @param fromDateTime A valid START date-time.
-     * @param toDateTime A valid END date-time.
+     * @param from A valid START date-time.
+     * @param to A valid END date-time.
      */
-    public EventDateTimes(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
-        requireAllNonNull(fromDateTime, toDateTime);
-        checkArgument(isValidEventDateTimes(fromDateTime, toDateTime), MESSAGE_CONSTRAINTS);
+    public EventDateTimes(LocalDateTime from, LocalDateTime to) {
+        requireAllNonNull(from, to);
+        checkArgument(isValidEventDateTimes(from, to), MESSAGE_CONSTRAINTS);
 
-        this.fromDateTime = fromDateTime;
-        this.toDateTime = toDateTime;
+        this.from = from;
+        this.to = to;
 
-    }
-
-    /**
-     * Returns true if a given date-time has passed.
-     */
-    public boolean isOver(LocalDateTime test) {
-        return test.isBefore(LocalDateTime.now());
     }
 
     /**
@@ -53,16 +46,16 @@ public class EventDateTimes {
      */
     public String toString() {
         DateTimeFormatter formatToPrint = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
-        return "from: " + fromDateTime.format(formatToPrint)
-                + " ; to: " + toDateTime.format(formatToPrint);
+        return "from: " + from.format(formatToPrint)
+                + " ; to: " + to.format(formatToPrint);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EventDateTimes // instanceof handles nulls
-                && fromDateTime.equals(((EventDateTimes) other).fromDateTime)
-                && toDateTime.equals(((EventDateTimes) other).toDateTime)); // state check
+                && from.equals(((EventDateTimes) other).from)
+                && to.equals(((EventDateTimes) other).to)); // state check
     }
 
 }

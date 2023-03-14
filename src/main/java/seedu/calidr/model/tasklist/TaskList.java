@@ -132,7 +132,7 @@ public class TaskList {
 
         for (int i = 0; i < this.tasks.size(); i++) {
             Task task = this.tasks.get(i);
-            String taskDescription = task.getTitle().toLowerCase();
+            String taskDescription = task.getTitle().value.toLowerCase();
 
             int findIndex = taskDescription.indexOf(keyword.toLowerCase());
 

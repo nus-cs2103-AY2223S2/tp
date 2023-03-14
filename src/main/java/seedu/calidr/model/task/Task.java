@@ -41,8 +41,8 @@ public abstract class Task {
         this.priority = priority;
     }
 
-    public String getTitle() {
-        return this.title.value;
+    public Title getTitle() {
+        return this.title;
     }
 
     public void mark() {
