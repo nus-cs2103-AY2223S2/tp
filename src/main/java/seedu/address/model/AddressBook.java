@@ -53,12 +53,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the task list with {@code tasks}.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setTasks(newData.getTaskList());
     }
 
     //// person-level operations
@@ -116,6 +124,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Marks the given task {@code task} as done.
+     */
+    public void markTask(Task task) {
+        task.mark();
+    }
+
+    /**
+     * Unmarks the given task {@code task} as not done.
+     */
+    public void unmarkTask(Task task) {
+        task.unmark();
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -143,8 +165,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         String personName = persons.getPerson(personIndex).getName().toString();
         tasks.assignTask(taskIndex, personIndex, personName);
     }
-
-
 
     /**
      * Removes {@code key} from this {@code AddressBook}.

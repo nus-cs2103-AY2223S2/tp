@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -20,12 +21,12 @@ public class AssignTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to a particular user "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to a particular user.\n"
             + "Parameters: "
             + PREFIX_TASK_INDEX + "TASK_ID "
-            + PREFIX_PERSON_INDEX + "MEMBER_ID"
+            + PREFIX_PERSON_INDEX + "MEMBER_ID\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TASK_INDEX + "3"
+            + PREFIX_TASK_INDEX + "3 "
             + PREFIX_PERSON_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "Assigned task to %s \n %s";
@@ -68,6 +69,7 @@ public class AssignTaskCommand extends Command {
         Person personToAssign = lastShownPersonList.get(toAssignMember.getZeroBased());
 
         model.assignTask(toAssignTask, toAssignMember);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         String taskString = taskToAssign.toString();
         String personString = personToAssign.getName().toString();
         return new CommandResult(String.format(MESSAGE_SUCCESS, personString, taskString));

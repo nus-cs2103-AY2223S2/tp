@@ -10,20 +10,17 @@ public class Task {
 
     protected boolean isDone;
     private final TaskDescription description;
-    private Index personAssigned;
-    private String personName;
-    private Date deadlineDate;
-
+    private Index personAssignedIndex;
+    private String personAssignedName;
 
     /**
      * The constructor of the Task that takes in description of the task.
      */
-    public Task(TaskDescription description, Date deadlineDate) {
+    public Task(TaskDescription description) {
         this.description = description;
         this.isDone = false;
-        this.personAssigned = null;
-        this.personName = null;
-        this.deadlineDate = deadlineDate;
+        this.personAssignedIndex = null;
+        this.personAssignedName = null;
     }
 
     /**
@@ -45,13 +42,22 @@ public class Task {
     }
 
     /**
+     * Returns whether task is done or not.
+     *
+     * @return Boolean value of whether task is done.
+     */
+    public boolean isDone() {
+        return isDone;
+    }
+
+    /**
      * Assigns a person to the current task.
      *
      * @param personIndex Index of the person to be assigned to the current task
      */
     public void assignPerson(Index personIndex, String personName) {
-        this.personAssigned = personIndex;
-        this.personName = personName;
+        this.personAssignedIndex = personIndex;
+        this.personAssignedName = personName;
     }
 
     /**
@@ -59,22 +65,18 @@ public class Task {
      *
      * @return Index index of the person assigned to the current task
      */
-    public Index getPersonAssigned() {
-        return this.personAssigned;
+    public Index getPersonAssignedIndex() {
+        return personAssignedIndex;
     }
 
     /**
      * Supplies the name of the person assigned to the current task when requested.
-     * @return name of the person
+     *
+     * @return String name of the person assigned to the current task
      */
-    public String getPersonName() {
-        return this.personName;
+    public String getPersonAssignedName() {
+        return personAssignedName;
     }
-
-    public String getDeadlineDate() {
-        return this.deadlineDate.toString();
-    }
-
 
     /**
      * Changes status of current task as done by assigning isDone as true.
