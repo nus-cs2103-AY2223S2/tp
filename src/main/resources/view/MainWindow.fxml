@@ -6,8 +6,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -24,7 +24,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox prefHeight="557.0" prefWidth="671.0">
+      <VBox minWidth="850.0" prefHeight="557.0" prefWidth="850.0">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -33,18 +33,18 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <SplitPane fx:id="studentSplitPanePlaceholder" dividerPositions="0.5" VBox.vgrow="ALWAYS">
-               <items>
+            <HBox fx:id="studentPanelPlaceholder" minWidth="850.0" style="-fx-background-color: derive(#a1826d, 20%);">
+               <children>
       
-              <VBox fx:id="studentList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                    <VBox fx:id="studentList" minWidth="340.0" prefHeight="411.0" prefWidth="421.0">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <StackPane fx:id="personListPanelPlaceholder" prefHeight="372.0" prefWidth="649.0" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="personListPanelPlaceholder" minWidth="389.0" prefHeight="391.0" prefWidth="413.0" VBox.vgrow="ALWAYS" />
               </VBox>
-                  <Pane fx:id="studentViewPanePlaceholder" prefHeight="200.0" prefWidth="200.0" />
-               </items>
-            </SplitPane>
+                  <Pane fx:id="studentViewPanePlaceholder" minWidth="414.0" prefHeight="411.0" prefWidth="446.0" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
 
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>

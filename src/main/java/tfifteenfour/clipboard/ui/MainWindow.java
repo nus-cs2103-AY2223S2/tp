@@ -10,6 +10,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -56,7 +57,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private SplitPane studentSplitPanePlaceholder;
+    private HBox studentPanelPlaceholder;
 
     @FXML
     private Pane studentViewPanePlaceholder;
@@ -124,14 +125,6 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
-        try {
-            //logic.getViewedStudent();
-            studentViewPane = new StudentViewPane(logic.getViewedStudent());
-            studentViewPanePlaceholder.getChildren().add(studentViewPane.getRoot());
-        } catch (NullPointerException e) {
-            //
-        }
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -186,16 +179,26 @@ public class MainWindow extends UiPart<Stage> {
         return studentListPanel;
     }
 
+    public void refreshViewPane() {
+        studentViewPanePlaceholder.getChildren().clear();
+        studentViewPane = new StudentViewPane(logic.getViewedStudent());
+        studentViewPanePlaceholder.getChildren().add(studentViewPane.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      *
      * @see tfifteenfour.clipboard.logic.Logic#execute(String)
      */
-    private CommandResult executeCo mmand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.getFeedbackToUser().startsWith("Viewing")) {
+                refreshViewPane();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

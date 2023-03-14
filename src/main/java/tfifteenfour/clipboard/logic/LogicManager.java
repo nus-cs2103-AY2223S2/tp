@@ -2,6 +2,7 @@ package tfifteenfour.clipboard.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -65,8 +66,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Student getViewedStudent() {
+    public Optional<Student> getViewedStudent() {
         return model.getViewedStudent();
+    }
+
+    @Override
+    public void removeViewedStudent() {
+        model.removeViewedStudent();
     }
 
     @Override

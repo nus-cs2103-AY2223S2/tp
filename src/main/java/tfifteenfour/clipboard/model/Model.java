@@ -88,7 +88,9 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     //=========== Viewed Student Accessors =============================================================
-    Student getViewedStudent();
+    Optional<Student> getViewedStudent();
 
-    void updateViewedStudent(Predicate<Student> predicate);
+    void updateViewedStudent(Student student);
+
+    void removeViewedStudent();
 }

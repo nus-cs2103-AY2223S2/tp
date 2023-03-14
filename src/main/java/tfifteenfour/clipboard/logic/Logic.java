@@ -1,6 +1,7 @@
 package tfifteenfour.clipboard.logic;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
@@ -33,7 +34,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Student> getFilteredStudentList();
 
-    Student getViewedStudent();
+    Optional<Student> getViewedStudent();
+
+    void removeViewedStudent();
 
     /**
      * Returns the user prefs' address book file path.
