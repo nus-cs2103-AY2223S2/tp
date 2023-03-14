@@ -1,5 +1,6 @@
 package trackr.testutil;
 
+import java.util.Arrays;
 import java.util.List;
 
 import trackr.model.task.Task;
@@ -40,6 +41,16 @@ public class TaskPredicateBuilder {
     public TaskPredicateBuilder withTaskNameKeywords(List<String> taskNameKeywords) {
         if (taskNameKeywords != null) {
             taskPredicate.setTaskNameKeywords(taskNameKeywords);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code TaskNameKeywords} of the {@code TaskContainsKeywordsPredicate} that we are building.
+     */
+    public TaskPredicateBuilder withTaskNameKeywords(String taskNameKeywords) {
+        if (taskNameKeywords != null) {
+            taskPredicate.setTaskNameKeywords(Arrays.asList(taskNameKeywords.trim().split("\\s+")));
         }
         return this;
     }
