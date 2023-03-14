@@ -3,13 +3,15 @@ package codoc.testutil;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 
 import java.util.Set;
 
 import codoc.logic.commands.AddCommand;
 import codoc.logic.commands.EditCommand.EditPersonDescriptor;
+import codoc.model.module.Module;
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
 
@@ -35,7 +37,10 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_LINKEDIN + person.getLinkedin().value + " ");
         person.getSkills().stream().forEach(
-            s -> sb.append(PREFIX_SKILL + s.skillName + " ")
+            s -> sb.append(PREFIX_SKILL_ADD + s.skillName + " ")
+        );
+        person.getModules().stream().forEach(
+                m -> sb.append(PREFIX_MOD_ADD + m.moduleName + " ")
         );
         return sb.toString();
     }
@@ -52,9 +57,17 @@ public class PersonUtil {
         if (descriptor.getSkills().isPresent()) {
             Set<Skill> skills = descriptor.getSkills().get();
             if (skills.isEmpty()) {
-                sb.append(PREFIX_SKILL);
+                sb.append(PREFIX_SKILL_ADD);
             } else {
-                skills.forEach(s -> sb.append(PREFIX_SKILL).append(s.skillName).append(" "));
+                skills.forEach(s -> sb.append(PREFIX_SKILL_ADD).append(s.skillName).append(" "));
+            }
+        }
+        if (descriptor.getModules().isPresent()) {
+            Set<Module> modules = descriptor.getModules().get();
+            if (modules.isEmpty()) {
+                sb.append(PREFIX_MOD_ADD);
+            } else {
+                modules.forEach(m -> sb.append(PREFIX_MOD_ADD).append(m.moduleName).append(" "));
             }
         }
         return sb.toString();

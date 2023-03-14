@@ -1,5 +1,8 @@
 package codoc.testutil;
 
+import static codoc.logic.commands.CommandTestUtil.VALID_MODULE_AY2223S2_CS2103T;
+import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_CSHARP;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,15 +15,21 @@ import codoc.model.person.Person;
 import codoc.model.skill.Skill;
 import codoc.model.util.SampleDataUtil;
 
+
+
 /**
  * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_GITHUB = "amyG";
+    public static final String DEFAULT_GITHUB = "amy-123";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_LINKEDIN = "linkedin.com/in/4my";
+    public static final Skill DEFAULT_SKILL = new Skill(VALID_SKILL_CSHARP);
+    public static final Module DEFAULT_MODULE = new Module(VALID_MODULE_AY2223S2_CS2103T);
+
+
 
     private Name name;
     private Github github;
@@ -38,7 +47,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         linkedin = new Linkedin(DEFAULT_LINKEDIN);
         skills = new HashSet<>();
+        skills.add(DEFAULT_SKILL);
         mods = new HashSet<>();
+        mods.add(DEFAULT_MODULE);
     }
 
     /**
@@ -78,6 +89,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code modules} into a {@code Set<Module>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModules(String ... modules) {
+        this.mods = SampleDataUtil.getModuleSet(modules);
+        return this;
+    }
+
+    /**
      * Sets the {@code Linkedin} of the {@code Person} that we are building.
      */
     public PersonBuilder withLinkedin(String linkedin) {
@@ -102,6 +121,25 @@ public class PersonBuilder {
     }
 
     public Person build() {
+        return new Person(name, github, email, linkedin, skills, mods);
+    }
+
+    /**
+     * Build a different person
+     * @return
+     */
+    public Person buildEditedPerson() {
+        name = new Name("Test name");
+        github = new Github("987654321");
+        email = new Email("test@gmail.com");
+        linkedin = new Linkedin("linkedin.com/in/test");
+        skills = new HashSet<>();
+        skills.add(DEFAULT_SKILL);
+        skills.add(new Skill("Solidity"));
+        mods = new HashSet<>();
+        mods.add(DEFAULT_MODULE);
+        mods.add(new Module("AY2122S1 GEA1000"));
+
         return new Person(name, github, email, linkedin, skills, mods);
     }
 

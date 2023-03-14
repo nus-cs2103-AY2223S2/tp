@@ -5,12 +5,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import codoc.logic.commands.EditCommand.EditPersonDescriptor;
+import codoc.model.module.Module;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
+
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -36,7 +38,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setGithub(person.getGithub());
         descriptor.setEmail(person.getEmail());
         descriptor.setLinkedin(person.getLinkedin());
-        descriptor.setSkills(person.getSkills());
+        descriptor.addSkills(person.getSkills());
+        descriptor.addMods(person.getModules());
     }
 
     /**
@@ -77,7 +80,16 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withSkills(String... skills) {
         Set<Skill> skillSet = Stream.of(skills).map(Skill::new).collect(Collectors.toSet());
-        descriptor.setSkills(skillSet);
+        descriptor.addSkills(skillSet);
+        return this;
+    }
+    /**
+     * Parses the {@code modules} into a {@code Set<Module>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withModules(String... modules) {
+        Set<Module> moduleSet = Stream.of(modules).map(Module::new).collect(Collectors.toSet());
+        descriptor.addMods(moduleSet);
         return this;
     }
 

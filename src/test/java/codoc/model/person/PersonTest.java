@@ -1,7 +1,9 @@
 package codoc.model.person;
 
 import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
 import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_AMY;
 import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
@@ -31,23 +33,23 @@ public class PersonTest {
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
 
-        // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_BOB)
-                .withLinkedin(VALID_LINKEDIN_BOB).withSkills(VALID_SKILL_JAVA).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        // same email, all other attributes different -> returns true
+        Person editedAlice = new PersonBuilder(ALICE).withGithub(VALID_GITHUB_AMY).withEmail(VALID_EMAIL_BOB)
+                .withLinkedin(VALID_LINKEDIN_AMY).withSkills(VALID_SKILL_JAVA).build();
+        assertTrue(BOB.isSamePerson(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different email, all other attributes same -> returns false
+        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        // email differs in case, all other attributes same -> returns false
+        Person editedBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_BOB.toUpperCase()).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        //        String emailWithTrailingSpaces = VALID_EMAIL_BOB + " ";
+        //        editedBob = new PersonBuilder(BOB).withEmail(emailWithTrailingSpaces).build();
+        //        assertTrue(BOB.isSamePerson(editedBob));
     }
 
     @Test

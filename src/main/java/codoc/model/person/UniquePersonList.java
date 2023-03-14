@@ -30,6 +30,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
+     * Allows duplicate names because 2 people can have the same names
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);

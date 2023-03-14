@@ -1,5 +1,8 @@
 package codoc.model.person;
 
+import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static codoc.testutil.Assert.assertThrows;
 import static codoc.testutil.TypicalPersons.ALICE;
 import static codoc.testutil.TypicalPersons.BOB;
@@ -13,7 +16,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import codoc.logic.commands.CommandTestUtil;
 import codoc.model.person.exceptions.DuplicatePersonException;
 import codoc.model.person.exceptions.PersonNotFoundException;
 import codoc.testutil.PersonBuilder;
@@ -40,11 +42,11 @@ public class UniquePersonListTest {
 
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice =
-                new PersonBuilder(ALICE).withLinkedin(CommandTestUtil.VALID_LINKEDIN_BOB).withSkills(
-                        CommandTestUtil.VALID_SKILL_JAVA)
-                        .build();
+        uniquePersonList.add(BOB);
+        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+                .withLinkedin(VALID_LINKEDIN_BOB)
+                .withSkills(VALID_SKILL_JAVA)
+                .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
@@ -86,10 +88,8 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice =
-                new PersonBuilder(ALICE).withLinkedin(CommandTestUtil.VALID_LINKEDIN_BOB).withSkills(
-                        CommandTestUtil.VALID_SKILL_JAVA)
-                        .build();
+        Person editedAlice = new PersonBuilder(ALICE).withLinkedin(VALID_LINKEDIN_BOB).withSkills(VALID_SKILL_JAVA)
+                .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);

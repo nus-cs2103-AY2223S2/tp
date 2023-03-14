@@ -3,9 +3,15 @@ package codoc.logic.commands;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
-import static codoc.logic.parser.CliSyntax.PREFIX_MODULE;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD_NEW;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD_OLD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_DELETE;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_NEW;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
 import static codoc.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
@@ -33,23 +39,40 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person in the view panel "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person in the view panel\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_LINKEDIN + "LINKEDIN] "
-            + "[" + PREFIX_SKILL + "SKILL]... "
-            + "[" + PREFIX_MODULE + "MODULE]...\n"
+            + "[" + PREFIX_SKILL_ADD + "SKILL] "
+            + "[" + PREFIX_SKILL_DELETE + "SKILL] "
+            + "[" + PREFIX_SKILL_OLD + "SKILL " + PREFIX_SKILL_NEW + "SKILL]...\n"
+            + "[" + PREFIX_MOD_ADD + "MOD] "
+            + "[" + PREFIX_MOD_DELETE + "MOD] "
+            + "[" + PREFIX_MOD_OLD + "MOD " + PREFIX_MOD_NEW + "MOD]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_GITHUB + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in CoDoc.";
 
+    public static final String MESSAGE_NOT_EDITED = "The person was not edited.";
+    public static final String MESSAGE_DUPLICATE_PERSON =
+            "This person already exists in the address book.";
+    public static final String MESSAGE_SKILL_DOES_NOT_EXIST =
+            "There is a skill you are trying to delete/update that does not exist";
+    public static final String MESSAGE_MOD_DOES_NOT_EXIST =
+            "There is a module you are trying to delete/update that does not exist";
+    public static final String MESSAGE_INCORRECT_OLD_NEW_SKILL_PREFIX =
+            "To update existing skills, the prefixes so/ and sn/ must be present";
+    public static final String MESSAGE_INCORRECT_OLD_NEW_MOD_PREFIX =
+            "To update existing modules, the prefixes mo/ and mn/ must be present";
+    public static final String MESSAGE_UNEQUAL_OLD_NEW_SKILLS =
+            "The number of old skills not equal to number of new skills";
+    public static final String MESSAGE_UNEQUAL_OLD_NEW_MODS =
+            "The number of old modules not equal to number of new modules";
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
@@ -69,7 +92,8 @@ public class EditCommand extends Command {
         Person personToEdit = model.getProtagonist();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (personToEdit.equals(editedPerson)
+                || (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson))) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -126,6 +150,20 @@ public class EditCommand extends Command {
         private Set<Module> modules;
 
         public EditPersonDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * @param person The person that we want to edit.
+         */
+        public EditPersonDescriptor(Person person) {
+            this.name = person.getName();
+            this.github = person.getGithub();
+            this.email = person.getEmail();
+            this.linkedin = person.getLinkedin();
+            this.skills = person.getSkills();
+            this.modules = person.getModules();
+
+        }
 
         /**
          * Copy constructor.
@@ -193,6 +231,164 @@ public class EditCommand extends Command {
          */
         public void setModules(Set<Module> modules) {
             this.modules = (modules != null) ? new HashSet<>(modules) : null;
+        }
+
+        /**
+         * Adds {@code skills} to this object's {@code skills}.
+         * A defensive copy of {@code skills} is used internally.
+         */
+        public void addSkills(Set<Skill> skills) {
+            Set<Skill> set = new HashSet<>();
+            if (skills != null && this.skills != null) {
+                set.addAll(this.skills);
+                set.addAll(skills);
+                this.skills = set;
+            } else {
+                this.skills = skills;
+            }
+        }
+
+        /**
+         * Deletes {@code skills} from this object's {@code skills}.
+         * A defensive copy of {@code skills} is used internally.
+         */
+        public void deleteSkills(Set<Skill> skills) {
+            if (skills != null && skills.size() == 0) {
+                this.skills = skills;
+            } else if (skills != null && this.skills != null) {
+                deleteSkillsHelper(skills);
+            }
+        }
+
+        private void deleteSkillsHelper(Set<Skill> skills) {
+            if (hasSkills(skills)) {
+                Set<Skill> result = new HashSet<>();
+                for (Skill s : this.skills) {
+                    if (!skills.contains(s)) {
+                        result.add(s);
+                    }
+                }
+                this.skills = result;
+            } else {
+                this.skills = null;
+            }
+        }
+
+        /**
+         * Updates {@code skills} from this object's {@code skills}.
+         * A defensive copy of {@code skills} is used internally.
+         */
+        public void updateSkills(Set<Skill> oldSkills, Set<Skill> newSkills) {
+            if (oldSkills != null && newSkills != null && this.skills != null) {
+                updateSkillsHelper(oldSkills, newSkills);
+            }
+        }
+
+        private void updateSkillsHelper(Set<Skill> oldSkills, Set<Skill> newSkills) {
+            if (hasSkills(oldSkills)) {
+                Set<Skill> result = new HashSet<>();
+                for (Skill s : this.skills) {
+                    if (oldSkills.contains(s)) {
+                        Skill newSkill = newSkills.iterator().next();
+                        result.add(newSkill);
+                        newSkills.remove(newSkill);
+                    } else {
+                        result.add(s);
+                    }
+                }
+                this.skills = result;
+            } else {
+                this.skills = null;
+            }
+        }
+
+        private boolean hasSkills(Set<Skill> oldSkills) {
+            for (Skill s : oldSkills) {
+                if (!this.skills.contains(s)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /**
+         * Adds {@code modules} to this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void addMods(Set<Module> modules) {
+            Set<Module> set = new HashSet<>();
+            if (modules != null && this.modules != null) {
+                set.addAll(this.modules);
+                set.addAll(modules);
+                System.out.println(set);
+                this.modules = set;
+            } else {
+                this.modules = modules;
+            }
+        }
+        //edit m+/AY2223S1 CS2108
+
+        /**
+         * Deletes {@code modules} from this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void deleteMods(Set<Module> modules) {
+            if (modules != null && modules.size() == 0) {
+                this.modules = modules;
+            } else if (modules != null && this.modules != null) {
+                deleteModsHelper(modules);
+            }
+        }
+
+        private void deleteModsHelper(Set<Module> modules) {
+            if (hasMods(modules)) {
+                Set<Module> result = new HashSet<>();
+                for (Module m : this.modules) {
+                    if (!modules.contains(m)) {
+                        result.add(m);
+                    }
+                }
+                this.modules = result;
+            } else {
+                this.modules = null;
+            }
+        }
+
+        /**
+         * Updates {@code modules} from this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void updateMods(Set<Module> oldMods, Set<Module> newMods) {
+            if (oldMods != null && newMods != null && this.modules != null) {
+                updateModsHelper(oldMods, newMods);
+            }
+        }
+
+        private void updateModsHelper(Set<Module> oldMods, Set<Module> newMods) {
+            if (hasMods(oldMods)) {
+                Set<Module> result = new HashSet<>();
+                for (Module m : this.modules) {
+                    if (oldMods.contains(m)) {
+                        Module newMod = newMods.iterator().next();
+                        result.add(newMod);
+                        newMods.remove(newMod);
+                    } else {
+                        result.add(m);
+                    }
+                }
+                this.modules = result;
+            } else {
+                this.modules = null;
+            }
+        }
+
+        private boolean hasMods(Set<Module> oldMods) {
+            for (Module m : oldMods) {
+                if (!this.modules.contains(m)) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         /**

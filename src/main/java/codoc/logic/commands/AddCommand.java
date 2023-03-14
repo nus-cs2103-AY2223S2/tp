@@ -4,7 +4,7 @@ import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 import static java.util.Objects.requireNonNull;
 
 import codoc.logic.commands.exceptions.CommandException;
@@ -24,14 +24,14 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_LINKEDIN + "LINKEDIN] "
-            + "[" + PREFIX_SKILL + "SKILL]...\n"
+            + "[" + PREFIX_SKILL_ADD + "SKILL]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GITHUB + "j0hn-Do3 "
             + PREFIX_LINKEDIN + "linkedin.com/in/j0hn-Do3 "
-            + PREFIX_SKILL + "python "
-            + PREFIX_SKILL + "java";
+            + PREFIX_SKILL_ADD + "python "
+            + PREFIX_SKILL_ADD + "java";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in CoDoc";
