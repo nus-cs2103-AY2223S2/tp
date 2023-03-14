@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+FAid is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAid can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your FAid application.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -27,7 +27,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to FAid.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -67,7 +67,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -143,9 +143,75 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+
+
+### Add meeting : `meeting add`
+
+Add a meeting to the address book
+
+Format: `meeting add DATE START END PERSON_INDEX`
+
+Required Information:
+* Date (dd/mm/yyyy)
+* Start and end time in 24HR format (HH:mm)
+* Index of a person in address book
+
+Examples:
+* `meeting add 2/12/2023 1240 2359 3` adds a meeting on 2nd December 2023 from 12.40pm to 11.59pm, with John (index 3)
+
+Notes:
+* Meeting must not conflict in timing with a previous meeting
+* Index must be a positive integer (1,2,3,...)
+
+### Remove meeting : `meeting delete`
+
+Removes meeting from the address book
+
+Format: `meeting delete PERSON_INDEX MEETING_INDEX`
+
+Required Information:
+* Index of a person already in address book
+* Meeting ID
+
+Examples:
+* `meeting delete 3 2` Deletes a meeting with index 2 from a person with index 3
+* `meeting delete 20 6` Deletes a meeting with index 6 from a person with index 20
+
+
+### Find meeting : `meeting find`
+
+Gets meetings from the address book
+
+Format: `meeting find DATE [PERSON_INDEX]`
+
+Required Information:
+* Date (dd/mm/yyyy)
+* Index of a person already in address book
+
+Examples:
+* `meeting find 12/02/2023` Lists out all meetings that start on 12/02/2023
+* `meeting find 12/02/2023 5` Lists out all meetings that start on 12/02/2023 with the fifth person in the address book
+
+
+### List meeting : `meeting list`
+
+Lists all meetings scheduled for the day from address book
+
+### Locate person by region : `region find`
+
+Finds a person from address book by region
+
+Required information:
+* Region person is residing in
+* Region specified should be a valid region
+
+Examples:
+* `find Central` Finds people from Central region in the address book
+* `find NorthEast 3` Displays person indexed at 3 in the address book if that person resides in North-East region
+
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from FAid.
 
 Format: `clear`
 
@@ -157,20 +223,20 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FAid data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+FAid data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, FAid will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
-
+###
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -191,3 +257,8 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Add Meeting** | `meeting add DATE START END PERSON_INDEX`
+**Remove Meeting** | `meeting delete PERSON_INDEX MEETING_INDEX`
+**Find Meeting** | ` meeting find DATE [PERSON_INDEX]`
+**List all meetings** | `meeting list`
+**List all in Region** | `region find REGION [PERSON_INDEX]`
