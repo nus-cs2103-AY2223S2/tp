@@ -15,6 +15,5 @@ public class Messages {
     public static final String MESSAGE_INTERVIEW_DATETIME_IS_REQUIRED =
             "Please provide an interview date and time! (dd-MM-yyyy HH:mm)";
     public static final String MESSAGE_PERSON_CANNOT_BE_ADVANCED = "%s cannot be advanced!";
-    public static final String MESSAGE_PERSON_CANNOT_BE_REJECTED = "%s has already been rejected!";
 
 }

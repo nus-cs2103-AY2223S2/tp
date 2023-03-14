@@ -19,10 +19,24 @@ title: <Frederic Chow> Project Portfolio Page
 
 - HMHero helps Hiring Managers track the statuses of candidates' applications
 
+<br>  
+
 (**Summary of Contributions**)
 
-- Implemented "list" feature that lists out all applicants across all statuses,
-with a statistic that shows the number of applicants in each status
+(**Code contributions**)
+
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=fredericchow00&breakdown=true)
+
+- **Project management**:
+
+  - Liaised with teammates on deadlines during meetings to ensure that everyone is on task.
+
+(**Enhancements implemented**)
+
+- **Features implemented**
+
+1. Implemented "list" feature that lists out all applicants across all statuses,
+   with a statistic that shows the number of applicants in each status
 
 Example Input: `list`
 
@@ -40,31 +54,35 @@ Accepted: 1
 Rejected: 0
 ```
 
-- Enhanced the `AdvanceCommand` and `AdvanceCommandParser` to detect when there should or should not be 
-a need for the user to provide an interview date for the applicant when the user calls the `Advance` feature
-
-
-Example 1: John Doe's application status is `Applied`, so calling the `Advance` command would change 
-John Doe's status to `Shortlisted`, where an interview date is mandatory. 
-
-Example 2: Calling `Advance` on John Doe again change John Doe's status to `Accepted` and hence, the command 
-would *NOT* require an interview date. 
-
-(**Code contributions**)
-
-Example
-
-- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=fredericchow00&breakdown=true)
-
-- **Project management**:
-
-  - to be added soon
-
-(**Enhancements implemented**)
-
 - **Enhancements to existing features**:
 
-  - to be added soon
+1. Enhanced `AdvanceCommand` and `AdvanceCommandParser` to detect when there should or should not be
+   a need for the user to provide an interview date for the applicant when the user calls the `Advance` feature
+
+
+> Example Situation: John Doe's application status is `Applied`, so calling the `Advance` command would change
+John Doe's status to `Shortlisted`, where an interview date is mandatory.
+
+Example Input: `advance n/John Doe p/(John Doe's number)`
+
+Output: `Please provide an interview date and time! (dd-MM-yyyy HH:mm)`
+
+Example Input: `advance n/John Doe p/(John Doe's number) d/05-05-2023 18:00`
+
+Output: `Successfully advanced John Doe`
+
+> Follow-up Situation: Calling `Advance` on John Doe again change John Doe's status to `Accepted` and hence, the command
+would *NOT* require an interview date.
+
+Example Input: `advance n/John Doe p/(John Doe's number) d/05-05-2023 18:00`
+
+Output: `Interview date and time is not required!`
+
+Example Input: `advance n/John Doe p/(John Doe's number)`
+
+Output: `Successfully advanced John Doe`
+
+2. Wrote test cases for RejectCommand and RejectCommandParser
 
 - **Documentation**:
 
