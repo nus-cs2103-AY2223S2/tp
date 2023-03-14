@@ -57,7 +57,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteClientCommand = "delete 9";
+        String deleteClientCommand = "delete-client 9";
         assertCommandException(deleteClientCommand, MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
@@ -87,8 +87,13 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredClientList().remove(0));
+    public void getSortedClientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getSortedClientList().remove(0));
+    }
+
+    @Test
+    public void getSortedProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getSortedProjectList().remove(0));
     }
 
     /**

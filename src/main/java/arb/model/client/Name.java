@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents a Client's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class Name implements Comparable<Name> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -49,6 +49,11 @@ public class Name {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
                 && fullName.equals(((Name) other).fullName)); // state check
+    }
+
+    @Override
+    public int compareTo(Name otherName) {
+        return this.fullName.compareTo(otherName.fullName);
     }
 
     @Override

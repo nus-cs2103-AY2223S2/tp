@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents a Project's title in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
-public class Title {
+public class Title implements Comparable<Title> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -18,7 +18,7 @@ public class Title {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String title;
+    public final String fullTitle;
 
     /**
      * Constructs a {@code Title}.
@@ -27,7 +27,7 @@ public class Title {
     public Title(String title) {
         requireNonNull(title);
         checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
-        this.title = title;
+        fullTitle = title;
     }
 
     /**
@@ -41,18 +41,23 @@ public class Title {
 
     @Override
     public String toString() {
-        return title;
+        return fullTitle;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Title) // handles null
-                && title.equals(((Title) other).title); // check title
+                && fullTitle.equals(((Title) other).fullTitle); // check title
+    }
+
+    @Override
+    public int compareTo(Title otherTitle) {
+        return this.fullTitle.compareTo(otherTitle.fullTitle);
     }
 
     @Override
     public int hashCode() {
-        return title.hashCode();
+        return fullTitle.hashCode();
     }
 }

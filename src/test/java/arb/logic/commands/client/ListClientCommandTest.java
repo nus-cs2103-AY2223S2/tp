@@ -3,7 +3,7 @@ package arb.logic.commands.client;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.logic.commands.CommandTestUtil.showClientAtIndex;
 import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static arb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static arb.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,8 +34,14 @@ public class ListClientCommandTest {
     }
 
     @Test
+    public void execute_currentListShownProject_success() {
+        assertCommandSuccess(new ListClientCommand(), ListType.PROJECT, ListType.CLIENT, model,
+                ListClientCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
     public void execute_listIsFiltered_showsEverything() {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
+        showClientAtIndex(model, INDEX_FIRST);
         assertCommandSuccess(new ListClientCommand(), ListType.CLIENT, ListType.CLIENT, model,
                 ListClientCommand.MESSAGE_SUCCESS, expectedModel);
     }

@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -114,6 +115,11 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public void resetProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void resetClientList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -179,12 +185,32 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public ObservableList<Client> getSortedClientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Project> getSortedProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredProjectList(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedClientList(Comparator<Client> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedProjectList(Comparator<Project> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
