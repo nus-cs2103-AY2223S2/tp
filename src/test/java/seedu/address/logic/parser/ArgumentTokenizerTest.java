@@ -101,8 +101,8 @@ public class ArgumentTokenizerTest {
         assertArgumentPresent(argMultimap, dashT, "dashT-Value");
         assertArgumentPresent(argMultimap, hatQ, "111");
      */
-        /* Also covers: Reusing of the tokenizer multiple times */
-/*
+    /* Also covers: Reusing of the tokenizer multiple times */
+    /*
         // Reuse tokenizer on an empty string to ensure ArgumentMultimap is correctly reset
         // (i.e. no stale values from the previous tokenizing remain)
         argsString = "";
@@ -111,7 +111,7 @@ public class ArgumentTokenizerTest {
         assertArgumentAbsent(argMultimap, pSlash);
 
         /* Also covers: testing for prefixes not specified as a prefix */
-/*
+    /*
         // Prefixes not previously given to the tokenizer should not return any values
         argsString = unknownPrefix + "some value";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
