@@ -22,7 +22,7 @@ public class AddClientCommand extends Command {
         + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
         + CliSyntax.PREFIX_SOURCE + "CLIENT SOURCE "
         + CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER + "MOBILE NUMBER "
-        + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "YEAR OF BIRTH"
+        + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "YEAR OF BIRTH "
         + "Example: " + COMMAND_ACRONYM + " "
         + CliSyntax.PREFIX_CLIENT_NAME + "Alice Baker "
         + CliSyntax.PREFIX_CLIENT_EMAIL + "alice_baker@bakers.com "
