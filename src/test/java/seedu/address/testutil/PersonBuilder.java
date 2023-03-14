@@ -1,13 +1,18 @@
+
 package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.ContactPhone;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Event;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rate;
+import seedu.address.model.person.Timing;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,36 +22,44 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_RATE = "85355255";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_START_TIME = "12-03-2023 11:00";
+    public static final String DEFAULT_END_TIME = "12-03-2023 12:00";
+    public static final String DEFAULT_CONTACTNUM = "91234567";
 
     private Name name;
-    private Phone phone;
-    private Email email;
+    private Rate rate;
     private Address address;
+    private Timing timing;
+    private Mark mark;
     private Set<Tag> tags;
+    private Contact contact;
+
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        rate = new Rate(DEFAULT_RATE);
         address = new Address(DEFAULT_ADDRESS);
+        timing = new Timing(DEFAULT_START_TIME, DEFAULT_END_TIME);
         tags = new HashSet<>();
+        contact = new Contact(new ContactName(DEFAULT_NAME), new ContactPhone(DEFAULT_CONTACTNUM));
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
+    public PersonBuilder(Event personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
+        rate = personToCopy.getRate();
         address = personToCopy.getAddress();
+        timing = personToCopy.getTiming();
+        mark = personToCopy.getMark();
         tags = new HashSet<>(personToCopy.getTags());
+        contact = personToCopy.getContact();
     }
 
     /**
@@ -74,23 +87,49 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Rate} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withRate(String rate) {
+        this.rate = new Rate(rate);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Timing} of the {@code Event} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withTiming(String startTime, String endTime) {
+        this.timing = new Timing(startTime, endTime);
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    /**
+     * Sets the {@code Mark} of the {@code Event} that we are building.
+     */
+    public PersonBuilder withMark(String mark) {
+        this.mark = new Mark();
+        if (mark.equals("[X]")) {
+            this.mark.setDone();
+        }
+        return this;
+    }
+    /**
+     * Sets the {@code contact} of the {@code Event} that we are building.
+     */
+    public PersonBuilder withContact(String name, String number) {
+        this.contact = new Contact(new ContactName(name), new ContactPhone(number));
+        return this;
+    }
+
+    /**
+     * Builds the event.
+     * @return Event that is built.
+     */
+    public Event build() {
+        Event event = new Event(name, rate, address, timing, tags);
+        if (!contact.equals(new Contact(new ContactName(DEFAULT_NAME), new ContactPhone(DEFAULT_CONTACTNUM)))) {
+            event.linkContact(this.contact);
+        }
+        return event;
     }
 
 }

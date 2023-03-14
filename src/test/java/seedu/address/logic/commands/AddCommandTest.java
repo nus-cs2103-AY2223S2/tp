@@ -19,8 +19,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.person.Event;
+import seedu.address.model.person.Rate;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -33,7 +36,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Event validPerson = new PersonBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
@@ -43,17 +46,17 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
+        Event validPerson = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EVENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Event alice = new PersonBuilder().withName("Alice").build();
+        Event bob = new PersonBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -104,12 +107,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getContactListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void setContactListFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPerson(Event person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +142,57 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public ReadOnlyContactList getContactList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public boolean hasPerson(Event person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public boolean hasContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public void deletePerson(Event target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void setPerson(Event target, Event editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredContactList(Predicate<Contact> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void linkContact(Event event, Contact contact) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Rate getRate(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markEvent(Event target, Event markedEvent) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -153,17 +201,17 @@ public class AddCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+        private final Event person;
 
-        ModelStubWithPerson(Person person) {
+        ModelStubWithPerson(Event person) {
             requireNonNull(person);
             this.person = person;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasPerson(Event person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return this.person.isSameEvent(person);
         }
     }
 
@@ -171,16 +219,16 @@ public class AddCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Event> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasPerson(Event person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return personsAdded.stream().anyMatch(person::isSameEvent);
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addPerson(Event person) {
             requireNonNull(person);
             personsAdded.add(person);
         }

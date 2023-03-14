@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.testutil.TypicalContacts;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -22,8 +23,10 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(),
+                TypicalContacts.getTypicalContactList(), new UserPrefs());
+        expectedModel = new ModelManager(model.getAddressBook(),
+                TypicalContacts.getTypicalContactList(), new UserPrefs());
     }
 
     @Test

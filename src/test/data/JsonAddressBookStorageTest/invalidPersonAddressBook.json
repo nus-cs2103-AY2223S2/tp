@@ -1,8 +1,10 @@
 {
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "rate": "9482424",
+    "address": "4th street",
+    "startTiming": "11-03-2023 11:00",
+    "endTiming": "11-03-2023 12:00",
+    "mark": "[ ]"
   } ]
 }

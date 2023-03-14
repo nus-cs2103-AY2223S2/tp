@@ -2,24 +2,41 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## Table of Contents
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+   <!-- - [Architecture](#architecture)
+   - [UI component](#ui-component)
+   - [Logic component](#logic-component)
+   - [Model component](#model-component)
+   - [Storage component](#storage-component)
+   - [Common classes](#common-classes) -->
+- [Implementation](#implementation)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+   * [Product scope](#product-scope)
+   * [User stories](#user-stories)
+   * [Use cases](#use-cases)
+   * [Non-Functional Requirements](#non-functional-requirements)
+   * [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -59,7 +76,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -150,7 +167,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -241,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -251,81 +268,370 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* freelancer who wants to keep track of their events and contact person
+* has a need to manage a significant number of events
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage events' information and respective contact person faster than a typical mouse/GUI driven app.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a/an...           | I can...                                         | so that...                                           |
+| -------- | -------------------- | ------------------------------------------------ | ---------------------------------------------------- |
+| `* * *`     | User                 | Access the software                              | I can use it                                         |
+| `* * *`     | User                 | Click X to exit                                  | I can stop it                                        |
+| `* * *`     | User                 | Add client contact to an event                    | I can refer to when needed                          |
+| `* * *`     | User                 | View all my contacts                             | I can see who I can contact                          |
+| `* * *`     | User                 | Link client contact to event                     | I can have quick reference to POC (Point of Contact) |
+| `* * *`     | User                 | See the rates I have discussed with the client   | I know how much money to collect                     |
+| `* * *`     | User                 | Mark the event that is done                      | I know what I don't have to do anymore               |
+| `* * *`     | User                 | Unmark an event                                  | I can undo an accidental mark.                       |
+| `* * *`     | User                 | Add events                                       | I can remember my events later                       |
+| `* * *`     | User                 | View events                                      | I can see what events I have done or am going to do  |
+| `* * *`     | User                 | Delete events                                    | I can remove unnecessary events                      |
+| `* * *`     | User                 | Add dates to my events                           | I know when the event is due                         |
+| `* * *`     | User                 | Save my events after closing the app             | I can save for when I use the app another time       |
+| `* * *`     | User                 | Load my saved events when opening the app        | I can see my events when I reopen the app            |
+| `* * *`     | User                 | Add a rate to an event                           | I can see how much I earn from an event              |
+| `* * *`     | User                 | View information associated to each event        | I can see its details                                |
+| `* * *`     | User                 | Edit my existing event details                   | I can change the details whenever there are changes  |
+| `* * *`     | User                 | See what I have added before                     | I don't need repeat myself                           |
+| `* * *`     | User                 | Change a contact linked to an event              | I can link a different contact if the POC changes    |
+| `* * *`     | New user             | See usage instructions                           | I know how to use the software                       |
+| `* * *`     | User                 | View undone events                               | I can see what events I have to do                   |
+| `* * *`     | Freelancer           | Link venue to event                              | I can have quick reference                           |
+| `* * *`     | Forgetful User       | Be reminded of upcoming events                   | I can remember                                       |
+| `* * *`     | User                 | Delete contacts                                  | I can delete unnecessary contacts                    |
+| `* *`   | User                 | Filter the events that has not been paid         | I can collect money                                  |
+| `* *`   | User                 | View the total revenue I have earned this week   | I can manage my money                                |
+| `* *`   | User                 | Set notes for contacts                           | I can keep track about them and rmb what not to do   |
+| `* *`   | User                 | View timing of upcoming events                   | I know when to go                                    |
+| `* *`   | User                 | See the most urgent events                       | I know what to do first                              |
+| `* *`   | Careless user        | Undo accidental deletion                         | I can undo deleted events                            |
+| `* *`   | Impatient person     | Search contacts                                  | I can quick find specific POC                        |
+| `* *`   | Impatient person     | Search events                                    | I can quick find specific event                      |
+| `* *`   | Lazy person          | Filter events to find similar events             | I can find similar events easily                     |
+| `* *`   | User                 | Add all information to an event at the same time | I can save time on adding all the information        |
+| `* *`   | User                 | View events associated to each contact           | I know what events to contact the POC for            |
+| `*`      | User                 | Toggle between light and dark mode               | I can use the theme i prefer                         |
+| `*`      | User                 | Redo previous action                             | I can redo previous action                           |
+| `*`      | User                 | Use abbreviation                                 | I can quickly insert items                           |
+| `*`      | Goal oriented person | Set goals                                        | I can look at my goals                               |
+| `*`      | Forgetful User       | Set reminders/checklist for events               | I can remember things to bring etc.                  |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Paidlancers` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add Event**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add an event together with its information.
+2.  System adds the event and displays information of the event added.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
 
-  Use case ends.
+      Use case resumes at step 1.
 
-* 3a. The given index is invalid.
+**Use case: UC2 - Delete Event**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to delete a specified event in the list.
+3. System deletes the event and displays information of the event deleted.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+**Use case: UC3 - Mark Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to mark a specified event in the list.
+3. System marks the event and displays information of the event marked.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 1b. User enters an invalid index.
+   * 1b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 1c. User marks an event that is already marked.
+   * 1c1. System displays that the event has already been marked.
+
+      Use case ends.
+
+**Use case: UC4 - List Events**
+
+**MSS**
+
+1. User requests the system to list events.
+2. System displays information of all events with their respective index.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 1.
+
+* 2a. The list is empty.
+   * 2a1. System displays an empty list.
+
+      Use case ends.
+<!-- **Use case: UC5 - List Contacts**
+
+**MSS**
+
+1. User requests the system to list contacts.
+2. System displays information of all contacts with their respective index.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 1.
+
+* 2a. The list is empty.
+   * 2a1. System displays an empty list.
+
+      Use case ends. -->
+
+**Use case: UC5 - Link contact and event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to link a specified event and contact.
+3. System links them and displays the event's and contact's information.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 3.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 3.
+
+* 2c. User enters an invalid contact information
+   * 2c1. System displays that the contact information is invalid and to try again.
+
+      Use case resumes at step 3.
+
+* 3a. The event has a contact linked already.
+   * 4a1. System replaces the previous contact with the new contact.
+
+      Use case ends.
+
+**Use case: UC6 - Display Rate**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to display the rate of a specified event in the list.
+3. System displays the event and displays information of the rate.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+<!-- **Use case: UC7 - Tag a rate to an Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to tag a rate to a specified event in the list.
+3. System tags the rate to the event and displays information of the event tagged.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User enters an invalid rate.
+   * 2c1. System displays that the rate is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 3a. The event has a rate tagging already.
+   * 3a1. System replaces the previous rate with the new rate.
+
+      Use case ends. -->
+
+**Use case: UC7 - Add Contact**
+
+**MSS**
+
+1.  User requests to add a contact to an event.
+2.  System adds the contact to the event and displays information of the contact and event.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the wrong command.
+   * 1a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 1.
+
+* 1b. User enters invalid contact details.
+   * 1b1. System displays that the input is invalid and to try again.
+
+      Use case resumes at step 1.
+
+**Use case: UC8 - Add Date to Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to add a date to a specified event in the list.
+3. System adds the date to the event and displays information of the event with new date added.
+
+   Use case ends.
+
+**Extensions**
+
+ 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User enters an invalid date.
+   * 2c1. System displays that the date is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 3a. The event has a date linked already.
+   * 3a1. System replaces the previous date with the new date.
+
+      Use case ends.
+      
+**Use case: UC9 - Edit Event**
+
+**MSS**
+
+1. User <u>lists events (UC4)</u>.
+2. User requests to edit a specified event in the list.
+3. System updates the event with the edit and displays information of the event edited.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User enters an invalid argument format.
+   * 2c1. System displays that the format is invalid and to try again.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+4. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
+5. The system should work on both 32-bit and 64-bit environments.
+6. The source code should be open source.
+7. The product is offered as a free product.
+8. The system should respond within two seconds for events and persons up to 1000.
+9. The user interface should be intuitive enough for users who are not as IT-savvy.
+10. The dimensions should be at least `726px * 593px` so that it is readable for the user.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -375,3 +681,6 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+[Back to top](#)

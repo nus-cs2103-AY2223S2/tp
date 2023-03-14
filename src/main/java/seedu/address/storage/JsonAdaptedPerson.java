@@ -10,37 +10,49 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.ContactPhone;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rate;
+import seedu.address.model.person.Timing;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Event}.
  */
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-    private final String phone;
-    private final String email;
+    private final String rate;
     private final String address;
+    private final String startTime;
+    private final String endTime;
+    private final String mark;
+    private final String contact;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("rate") String rate,
+            @JsonProperty("address") String address,
+            @JsonProperty("startTiming") String startTime,
+            @JsonProperty("endTiming") String endTiming,
+            @JsonProperty("mark") String mark, @JsonProperty("contact") String contact,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
-        this.email = email;
+        this.rate = rate;
         this.address = address;
+        this.startTime = startTime;
+        this.endTime = endTiming;
+        this.mark = mark;
+        this.contact = contact;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -49,11 +61,14 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedPerson(Event source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        rate = Double.toString(source.getRate().value);
         address = source.getAddress().value;
+        startTime = source.getTiming().startTime;
+        endTime = source.getTiming().endTime;
+        mark = source.getMark().toString();
+        contact = source.getContact().toCardString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -64,7 +79,7 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Event toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -78,21 +93,13 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (rate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Rate.isValidRate(rate)) {
+            throw new IllegalValueException(Rate.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
+        final Rate modelRate = new Rate(rate);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -102,8 +109,25 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (startTime == null || endTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Timing.class.getSimpleName()));
+        }
+        if (!Timing.isValidTiming(startTime, endTime)) {
+            throw new IllegalValueException(Timing.MESSAGE_CONSTRAINTS);
+        }
+        final Timing modelTiming = new Timing(startTime, endTime);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        Event event = new Event(modelName, modelRate, modelAddress, modelTiming, modelTags);
+        if (mark.equals("[X]")) {
+            event.mark();
+        }
+        if (!contact.equals(" ")) {
+            String[] args = contact.split("HP:");
+            Contact contact = new Contact(new ContactName(args[0].trim()), new ContactPhone(args[1].trim()));
+            event.linkContact(contact);
+        }
+        return event;
     }
 
 }

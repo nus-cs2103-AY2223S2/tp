@@ -1,8 +1,12 @@
 {
   "persons": [ {
     "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
+    "rate": "948242a4",
+    "address": "4th street",
+    "startTiming": "11-03-2023 11:00",
+    "endTiming": "11-03-2023 12:00",
+    "mark": "[ ]",
+    "contact" : " "
   } ]
 }
+

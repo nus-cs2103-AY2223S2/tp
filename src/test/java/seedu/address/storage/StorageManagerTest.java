@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -12,7 +13,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
+import seedu.address.model.ContactList;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -25,8 +28,9 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonContactListStorage contactListStorage = new JsonContactListStorage(getTempFilePath("cl"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(addressBookStorage, contactListStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -61,8 +65,21 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void contactListReadSave() throws Exception {
+        ContactList original = getTypicalContactList();
+        storageManager.saveContactList(original);
+        ReadOnlyContactList retrieved = storageManager.readContactList().get();
+        assertEquals(original, new ContactList(retrieved));
+    }
+
+    @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getContactListFilePath() {
+        assertNotNull(storageManager.getContactListFilePath());
     }
 
 }

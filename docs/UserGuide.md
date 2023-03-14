@@ -3,10 +3,23 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Paidlancers is a **desktop app for keeping track of your freelancing events, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+## Table of Contents
+- [Quick Start](#quick-start)
+- [Features](#features)
+  * [Add a Contact](#add-a-contact)
+  <!-- * [View Contact List](#list-all-contacts) -->
+  * [Link Contact to Event](#link-contact-to-event)
+  * [View Rate](#view-rate)
+  * [Tag Rate](#tag-rate)
+  * [Mark Event as Done](#mark-event)
+  * [Create New Event](#create-new-event)
+  * [View Event List](#list-all-events)
+  * [Delete an Event](#delete-an-event)
+  * [Edit an Event](#edit-an-event)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,26 +27,22 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `Paidlancers.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Paidlancers.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `listcontact` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `newcontact n/John Doe p/98765432` : Adds a contact named `John Doe` to the contact list.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
+   * `delete 3` : Deletes the 3rd event shown in the current list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -41,153 +50,153 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+### Add a Contact: `newcontact` <a id = "add-a-contact"></a>
 
-**:information_source: Notes about the command format:**<br>
+Adding a contact to contacts
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+**Format**: `newcontact n/NAME p/NUMBER`
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+- Creates a new contact with specified `NAME` and `NUMBER`
 
 
-### Adding a person: `add`
+**Example**:
+- `newcontact n/Deborah Tan p/91234567`
+- `newcontact n/Mandy p/98765432`
 
-Adds a person to the address book.
+<!-- ### List all Contacts: `listcontact` <a id = "list-all-contacts"></a>
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Displays all contacts saved in a list
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+**Format**: `listcontact` -->
+### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Links client contact to an event.
 
-### Listing all persons : `list`
+**Format**: `linkcontact INDEX CONTACT`
 
-Shows a list of all persons in the address book.
+- Links contact to the event at the specified `INDEX`.
 
-Format: `list`
+  - The `INDEX` refers to the index number in the displayed events list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …​
 
-### Editing a person : `edit`
+**Example**:
+- `linkcontact 2 91234567` links `2nd event` to contact `91234567` in the list.
 
-Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+### View Rate: `rate` <a id = "view-rate"></a>
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Displays the rate tagged to an event.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+**Format**: `rate INDEX`
 
-### Locating persons by name: `find`
+- Displays the agreed rate of the event at the specified `INDEX`.
 
-Finds persons whose names contain any of the given keywords.
+  - The `INDEX` refers to the index number in the displayed events list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …​
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+**Example**:
+- `rate 2` returns the rate of `2nd event` in the event list.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+<!-- ### Tag Rate: `newrate` <a id = "tag-rate"></a>
 
-### Deleting a person : `delete`
+Tags a rate to an event.
 
-Deletes the specified person from the address book.
+**Format**: `newrate INDEX AMOUNT`
 
-Format: `delete INDEX`
+- Adds a specified rate, `AMOUNT`, to an event at the specified `INDEX`.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+  - The `INDEX` refers to the index number in the displayed events list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …​
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+**Example**:
+- `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list. -->
 
-### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
-Format: `clear`
+Marks a specified event in the address book as done.
 
-### Exiting the program : `exit`
+**Format**: `mark INDEX`
 
-Exits the program.
+- Marks the event at the specified `INDEX` as done.
 
-Format: `exit`
+The event must not be marked as done beforehand.
+
+**Example**:
+- `mark 2` marks the `2nd event` as done.
+
+### Create new Event: `newevent` <a id = "create-new-event"></a>
+
+Creates a new event
+
+**Format**: `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…​`
+
+- Times must have the format `dd-MM-yyyy HH:mm`.
+
+**Example**:
+- `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
+
+### List all Events: `listevent` <a id = "list-all-events"></a>
+
+Shows a list of all events in the address book
+
+**Format**: `list`
+
+
+### Delete an Event: `delete` <a id = "delete-an-event"></a>
+
+Deletes the specified event from the event book.
+
+**Format**: `delete INDEX`
+
+- Deletes the event at the specified `INDEX`
+
+  - The `INDEX` refers to the index number shown in the displayed event list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …​
+
+**Example**:
+  - `delete 2` deletes the `2nd event` in the event list.
+
+### Edit an Event: `edit` <a id = "edit-an-event"></a>
+
+Edits the specified event from the event book.
+
+**Format**: `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`
+
+- Edits the event at the specified `INDEX`
+
+  - The `INDEX` refers to the index number shown in the displayed event list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …​
+  - At least one of the optional fields must be provided.
+  - Edits will replace existing values, edits are not cumulative.
+  - Tags can be removed by typing `t/` without specifying any tags after it.
+
+**Example**:
+  - `edit 1 p/91234567 r/100` Edits the phone number and rate of the 1st person to be 91234567 and j100 respectively.
+  - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
+Paidlancers data are saved in the hard disk automatically exiting the program. There is no need to save manually.
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another Computer?
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
+(#add-a-contact)
 
---------------------------------------------------------------------------------------------------------------------
+## Command Summary
+|                    Commands                     |               Command Format                |                                Example Usage                                |
+|:-----------------------------------------------:|:-------------------------------------------:|:---------------------------------------------------------------------------:|
+|         [Add a Contact](#add-a-contact)         |        `newcontact n/NAME p/NUMBER`         |                    `newcontact n/Deborah Tan p/91234567`                    |
+| [Link Contact to Event](#link-contact-to-event) |            `linkcontact INDEX CONTACT`             |                              `linkcontact 2 91234567`                              |
+|             [View Rate](#view-rate)             |                `rate INDEX`                 |                                  `rate 2`                                   |
+|       [Marks Event as Done](#mark-event)        |                `mark INDEX`                 |                                  `mark 2`                                   |
+|     [Create a new Event](#create-new-event)     |               `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`               |                             `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`                  
+|       [View Event List](#list-all-events)       |                 `list`                 |                                 `list`                                 |
+|       [Delete an Event](#delete-an-event)       |               `delete INDEX`               |                               `delete 2`                               |
+|       [Edit an Event](#edit-an-event)       |               `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`               |                               `edit 2 r/100`                               |
 
-## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+[Back to top](#)
