@@ -1,18 +1,24 @@
 package seedu.loyaltylift.logic.commands;
 
-import seedu.loyaltylift.commons.core.Messages;
-import seedu.loyaltylift.commons.core.index.Index;
-import seedu.loyaltylift.logic.commands.exceptions.CommandException;
-import seedu.loyaltylift.model.Model;
-import seedu.loyaltylift.model.customer.*;
-import seedu.loyaltylift.model.tag.Tag;
+import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
+import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 import java.util.Set;
 
-import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
+import seedu.loyaltylift.commons.core.Messages;
+import seedu.loyaltylift.commons.core.index.Index;
+import seedu.loyaltylift.logic.commands.exceptions.CommandException;
+import seedu.loyaltylift.model.Model;
+import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
+import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.customer.Points;
+import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Sets the reward points of a customer

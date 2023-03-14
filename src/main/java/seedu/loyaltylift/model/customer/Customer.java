@@ -43,7 +43,8 @@ public class Customer {
     /**
      * Every field must be present and not null.
      */
-    public Customer(CustomerType customerType, Name name, Phone phone, Email email, Address address, Set<Tag> tags, Points points) {
+    public Customer(CustomerType customerType, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                    Points points) {
         requireAllNonNull(name, phone, email, address, tags, points);
         this.customerType = customerType;
         this.name = name;
@@ -82,7 +83,9 @@ public class Customer {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Points getPoints() { return points;}
+    public Points getPoints() {
+        return points;
+    }
 
     /**
      * Returns true if both customers have the same name.

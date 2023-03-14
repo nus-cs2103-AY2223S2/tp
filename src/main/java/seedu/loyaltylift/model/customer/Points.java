@@ -2,9 +2,18 @@ package seedu.loyaltylift.model.customer;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents a Customer's points in the address book.
+ * The minimum points a customer can have is 0.
+ */
 public class Points {
     public final Integer value;
 
+    /**
+     * Constructs an {@code Points}.
+     *
+     * @param points A valid amount of points.
+     */
     public Points(Integer points) {
         requireNonNull(points);
         value = points;
