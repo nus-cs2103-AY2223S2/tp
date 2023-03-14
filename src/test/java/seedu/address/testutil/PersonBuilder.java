@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -23,12 +24,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_TELEGRAM_HANDLE = "@amyFarrahFowler";
+    public static final Integer DEFAULT_CONTACT_INDEX = 1;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private TelegramHandle telegramHandle;
+    private ContactIndex contactIndex;
     private Set<GroupTag> groupTags;
     private Set<ModuleTag> moduleTags;
 
@@ -41,6 +44,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
+        contactIndex = new ContactIndex(DEFAULT_CONTACT_INDEX);
         groupTags = new HashSet<>();
         moduleTags = new HashSet<>();
     }
@@ -56,6 +60,7 @@ public class PersonBuilder {
         groupTags = new HashSet<>(personToCopy.getImmutableGroupTags());
         moduleTags = new HashSet<>(personToCopy.getImmutableModuleTags());
         telegramHandle = personToCopy.getTelegramHandle();
+        contactIndex = personToCopy.getContactIndex();
     }
 
     /**
@@ -116,10 +121,18 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code ContactIndex} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withContactIndex(Integer index) {
+        this.contactIndex = new ContactIndex(index);
+        return this;
+    }
+
+    /**
      * Returns a {@code Person} with input features called so far.
      */
     public Person build() {
-        return new Person(name, phone, email, address, telegramHandle,
+        return new Person(name, phone, email, address, telegramHandle, contactIndex,
                 groupTags, moduleTags);
     }
 

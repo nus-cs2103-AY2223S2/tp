@@ -3,6 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
+    "index" : 0,
     "address": "National University of Singapore",
     "phone": "90102030",
     "groups": [
@@ -22,6 +23,7 @@
       "name": "Eusoff Richards",
       "email": "eusoffrichards@gmail.com",
       "telegramHandle": "@eusoffrichards",
+      "index" : 1,
       "address": "301 South Buona Vista Road",
       "groups": [
         "CCA"

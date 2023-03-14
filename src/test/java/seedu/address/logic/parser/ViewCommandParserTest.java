@@ -6,9 +6,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.model.person.ContactIndex;
 
 
 class ViewCommandParserTest {
@@ -60,7 +60,7 @@ class ViewCommandParserTest {
     @Test
     public void parse_indexOnly_success() {
         for (int i = 1; i < 100; i++) {
-            Index index = Index.fromOneBased(i);
+            ContactIndex index = new ContactIndex(i);
             assertParseSuccess(viewCommandParser,
                     String.valueOf(i),
                     new ViewCommand(null, index));
