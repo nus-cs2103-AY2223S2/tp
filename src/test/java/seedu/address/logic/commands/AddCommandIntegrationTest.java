@@ -38,8 +38,8 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePet_throwsCommandException() {
-        Pet PetInList = model.getPetPal().getPetList().get(0);
-        assertCommandFailure(new AddCommand(PetInList), model, AddCommand.MESSAGE_DUPLICATE_PET);
+        Pet petInList = model.getPetPal().getPetList().get(0);
+        assertCommandFailure(new AddCommand(petInList), model, AddCommand.MESSAGE_DUPLICATE_PET);
     }
 
 }

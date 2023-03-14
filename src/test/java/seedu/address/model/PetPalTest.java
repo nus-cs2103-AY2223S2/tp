@@ -60,18 +60,18 @@ public class PetPalTest {
     }
 
     @Test
-    public void hasPet_PetNotInAddressBook_returnsFalse() {
+    public void hasPet_petNotInAddressBook_returnsFalse() {
         assertFalse(petPal.hasPet(ALICE));
     }
 
     @Test
-    public void hasPet_PetInAddressBook_returnsTrue() {
+    public void hasPet_petInAddressBook_returnsTrue() {
         petPal.addPet(ALICE);
         assertTrue(petPal.hasPet(ALICE));
     }
 
     @Test
-    public void hasPet_PetWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPet_petWithSameIdentityFieldsInAddressBook_returnsTrue() {
         petPal.addPet(ALICE);
         Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -87,15 +87,15 @@ public class PetPalTest {
      * A stub ReadOnlyAddressBook whose Pets list can violate interface constraints.
      */
     private static class PetPalStub implements ReadOnlyPetPal {
-        private final ObservableList<Pet> Pets = FXCollections.observableArrayList();
+        private final ObservableList<Pet> pets = FXCollections.observableArrayList();
 
-        PetPalStub(Collection<Pet> Pets) {
-            this.Pets.setAll(Pets);
+        PetPalStub(Collection<Pet> pets) {
+            this.pets.setAll(pets);
         }
 
         @Override
         public ObservableList<Pet> getPetList() {
-            return Pets;
+            return pets;
         }
     }
 

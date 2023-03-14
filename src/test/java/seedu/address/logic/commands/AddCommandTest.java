@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.PetPal;
 import seedu.address.model.Model;
+import seedu.address.model.PetPal;
 import seedu.address.model.ReadOnlyPetPal;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.pet.Pet;
@@ -31,7 +31,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_PetAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_petAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPetAdded modelStub = new ModelStubAcceptingPetAdded();
         Pet validPet = new PetBuilder().build();
 
@@ -104,12 +104,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPetPalFilePath(Path PetPalFilePath) {
+        public void setPetPalFilePath(Path petPalFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPet(Pet Pet) {
+        public void addPet(Pet pet) {
             throw new AssertionError("This method should not be called.");
         }
 

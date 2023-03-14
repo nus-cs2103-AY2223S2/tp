@@ -19,9 +19,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPetDescriptor;
-import seedu.address.model.PetPal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PetPal;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.pet.Pet;
 import seedu.address.testutil.EditPetDescriptorBuilder;
@@ -53,8 +53,8 @@ public class EditCommandTest {
         Index indexLastPet = Index.fromOneBased(model.getFilteredPetList().size());
         Pet lastPet = model.getFilteredPetList().get(indexLastPet.getZeroBased());
 
-        PetBuilder PetInList = new PetBuilder(lastPet);
-        Pet editedPet = PetInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        PetBuilder petInList = new PetBuilder(lastPet);
+        Pet editedPet = petInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditPetDescriptor descriptor = new EditPetDescriptorBuilder().withName(VALID_NAME_BOB)
@@ -85,8 +85,8 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showPetAtIndex(model, INDEX_FIRST_PET);
 
-        Pet PetInFilteredList = model.getFilteredPetList().get(INDEX_FIRST_PET.getZeroBased());
-        Pet editedPet = new PetBuilder(PetInFilteredList).withName(VALID_NAME_BOB).build();
+        Pet petInFilteredList = model.getFilteredPetList().get(INDEX_FIRST_PET.getZeroBased());
+        Pet editedPet = new PetBuilder(petInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PET,
                 new EditPetDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
@@ -112,9 +112,9 @@ public class EditCommandTest {
         showPetAtIndex(model, INDEX_FIRST_PET);
 
         // edit Pet in filtered list into a duplicate in address book
-        Pet PetInList = model.getPetPal().getPetList().get(INDEX_SECOND_PET.getZeroBased());
+        Pet petInList = model.getPetPal().getPetList().get(INDEX_SECOND_PET.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PET,
-                new EditPetDescriptorBuilder(PetInList).build());
+                new EditPetDescriptorBuilder(petInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PET);
     }
