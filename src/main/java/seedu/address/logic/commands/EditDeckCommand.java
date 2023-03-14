@@ -9,8 +9,8 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.deck.Deck;
 import seedu.address.model.Model;
+import seedu.address.model.deck.Deck;
 
 /**
  * Edits the name of the deck
@@ -51,11 +51,11 @@ public class EditDeckCommand extends Command {
         requireNonNull(model);
         List<Deck> lastShownList = model.getFilteredDeckList();
 
-        if(index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
         }
 
-        if(model.hasDeck(editedDeck)) {
+        if (model.hasDeck(editedDeck)) {
             throw new CommandException(MESSAGE_DUPLICATE_DECK);
         }
 
