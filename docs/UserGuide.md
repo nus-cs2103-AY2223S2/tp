@@ -144,10 +144,9 @@ Available Prefixes:
 * `app` filters by Appointment
 
 Examples:
-* `find n/John` returns `John Tan` and `John Doe`
-* `find n/Ale` returns `Alex Yeoh`
-* `find p/91234567` returns `John Tan`
-* `find alex david` will throw an exception.
+* `find n/Alex` returns every client with 'Alex' in their name.
+* `find p/91234567` returns every client with phone numbers that matches or contains '91234567'.
+* `find alex david` will throw an exception, since there is a missing prefix in the command.
 
 ### Deleting a client : `delete`
 
