@@ -1,6 +1,7 @@
 package seedu.fitbook.logic.parser;
 
 import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 
 import java.util.Arrays;
 
@@ -38,6 +39,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
+        //check if empty after /
+
         String prefix = trimmedArgs.substring(0, trimmedArgs.indexOf('/'));
         String[] allKeywords = {trimmedArgs.substring(trimmedArgs.indexOf('/') + 1)};
         if (prefix.length() == 1) {
@@ -58,8 +61,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             case 'g':
                 return new FindCommand(new GenderContainsKeywordsPredicate(Arrays.asList(allKeywords)));
             default:
-                // Handle unexpected input
-                throw new IllegalArgumentException("Invalid prefix: " + prefixChar);
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_PREFIX, FindCommand.PREFIX_USAGE));
             }
         } else if (prefix.length() > 1) {
             if (prefix.equals("cal")) {

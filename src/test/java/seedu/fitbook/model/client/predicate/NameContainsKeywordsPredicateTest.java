@@ -1,4 +1,4 @@
-package seedu.fitbook.model.client;
+package seedu.fitbook.model.client.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,10 +9,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
 import seedu.fitbook.testutil.ClientBuilder;
 
-public class FindContainsKeywordsPredicateTest {
+public class NameContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
