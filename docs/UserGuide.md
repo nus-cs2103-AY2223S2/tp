@@ -20,11 +20,13 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 
 Adds a student to the managing system.
 
-Format: ```add student n/NAME p/PHONE_NUMBER e/EMAIL s/SUBJECT sch/SCHEDULE from/TIME to/TIME```
+Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE```
+Subject supported: {`Math`, `Physics`, `English`}
+Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}
 
 Examples:
 
-* ```add student n/John Doe p/98765432 e/johnd@example.com s/math sch/Monday from/2:30 to/5:30``` 
+* ```add n/John Doe p/98765432 e/johnd@example.com a/block 224 s/Math sch/monday```
 
 ## Delete student <a name="delete"></a>
 
