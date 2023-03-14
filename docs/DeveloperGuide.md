@@ -256,38 +256,48 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+* NUS undergraduate students from the School of Computing 
+* Tech-savvy and able to type fast
+* Comfortable using CLI apps
+* Has to manage a large number of different expense types
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+* Easy-to-use and allows students to log their daily expenses quickly and efficiently via a CLI
+* Students can keep track of their spending habits with informative statistics
+* FastTrack provides visual feedback and suggestions to help NUS students make more informed financial decisions
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​               | I want to …​                                                          | So that I can…​                                                               |
+|----------|-----------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *`  | New user              | See usage instructions                                                | Refer to instructions when I forget how to use the app                        |
+| `* * *`  | NUS Computing Student | Add my own expense categories                                         | Categorise my expenses with a high degree of customisation                    |
+| `* * *`  | NUS Computing Student | Delete an expense category                                            | Remove categories that I no longer need                                       |
+| `* * *`  | NUS Computing Student | List all categories                                                   | See all my categories at a glance                                             |
+| `* * *`  | NUS Computing Student | Log an expense in a single command                                    | Keep track of expenses in the system                                          |
+| `* * *`  | NUS Computing Student | List all expenses in total                                            | See all my expenses at a glance                                               |
+| `* * *`  | NUS Computing Student | List all expenses by category                                         | Analyse my expenses in each category                                          |
+| `* * *`  | NUS Computing Student | Delete an expense                                                     | Remove expenses which I have keyed in incorrectly                             |
+| `* * *`  | NUS Computing Student | See a summary of my expenses                                          | Analyse and correct my spending habits                                        |
+| `* * *`  | NUS Computing Student | Keep track of Software-As-A-Service/application hosting subscriptions | Be prepared when a recurring expense is due soon                              |
+| `* * *`  | NUS Computing Student | Find an expense based on a keyword                                    | Easily filter expenses based on their name                                    |
+| `* * *`  | NUS Computing Student | Edit an expense                                                       | Update the details of an expense without deleting and creating a new one      |
+| `* * *`  | NUS Computing Student | See how much I have spent in total in the list                        | Can see how much I have spent in total for any number of expenses in the list |
+| `* *`    | NUS Computing Student | See my expense to budget statistics                                   | Ensure my expenses are within or have exceeded a predefined budget            |
+| `* *`    | NUS Computing Student | List all expenses for a specified time frame                          | Track my expenses on a timely basis                                           |
+| `* *`    | NUS Computing Student | Add descriptions to my categories containing additional details       | Define my categories distinctly                                               |
+| `* *`    | NUS Computing Student | See a percentage breakdown of my expenses                             | Be aware of what categories I should spend less on                            |
+| `* *`    | NUS Computing Student | Get feedback on how I can change my spending habits                   | Develop good financial habits                                                 |
 
-*{More to be added}*
+## Use cases
 
-### Use cases
-
-(For all use cases below, the **System** is `Fastrack` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `FastTrack` and the **Actor** is the `user`, unless specified otherwise)
 
 **Precondition: The user has launched the FastTrack application**
 
-**UC1: Add category**
+### Use case: UC1 - Add category
 
 **MSS**
 
@@ -313,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 3.
 
-**UC2: Delete a Category**
+### Use case: UC2 - Delete a Category
 
 **MSS**
 
@@ -333,7 +343,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-**Use case: UC7 - List all expense**
+### Use case: UC3 - Edit an Expense
+
+**MSS**
+
+1. The user lists all expenses using UC7.
+2. The user selects the expense they want to edit from the list of expenses.
+3. User keys in the command to edit the expense.
+4. FastTrack responds with a success message indicating the expense has been successfully edited.
+
+**Extensions**
+* 2a. The user selects an expense that does not exist. 
+    * 2a1. FastTrack displays an error message and does not allow the user to edit the expense. 
+* 2b. The user tries to save an expense with invalid or missing data.
+    * 2b1. FastTrack displays an error message indicating the fields that need to be corrected.
+
+**Precondition: The user has created at least one expense in the app**
+### Use case: UC4 - List all Categories
+
+**MSS**
+
+1.  User requests to list all categories. 
+2.  FastTrack displays all categories.
+   
+   Use case ends.
+  
+
+**Extensions**
+* 2a. The user does not have any categories.
+    * 2a1. FastTrack only displays the Misc category
+      
+### Use case: UC5 - Add an expense
+
+**MSS**
+
+1.  User wants to add an expense to be tracked.
+2.  User keys in the command to add an expense to be tracked.
+3.  FastTrack responds with a successfully added message.
+
+**Extensions**
+
+* 2a. User keys in information in wrong format.
+  * 2a1. FastTrack returns an error, requesting that the user inputs information in the correct format.
+  * 2a2. User inputs information again.
+  * 2a3. Steps 2a1-2a2 are repeated until the information being input is of the correct format.
+   
+    Use case resumes from step 3.
+
+## Use case: UC6 - Delete an expense
+
+**MSS**
+
+1. User wants to delete an expense that has been tracked.
+2. User uses UC7 (to list out all expenses currently added).
+3. User keys in the command to delete the expense.
+4. FastTrack responds with a successfully deleted message.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User keys in an invalid expense index.
+    * 3a1. FastTrack returns an error, requesting that the user inputs the correct expense index.
+    * 3a2. User inputs information again.
+    * 3a3. Steps 3a1-3a2 are repeated until the expense index being input by the user is valid.
+  
+      Use case resumes from step 4.
+
+
+**MSS**
+
+### Use case: UC7 - List all expense
 
 **MSS**
 
@@ -342,7 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC8 - List all expense in a given category**
+### Use case: UC8 - List all expense in a given category
 
 **MSS**
 
@@ -361,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC9 - List all expense in the past week**
+### Use case: UC9 - List all expense in the past week
 
 **MSS**
 
@@ -370,12 +450,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC10 - Find an expense**
+### Use case: UC10 - Find an expense
 
 **MSS**
 
 1.  User requests to find an expense.
 2.  FastTrack displays all expenses related to the keyword provided.
+
+    Use case ends.
+    
+### Use case: UC11 - Clear all expenses from the expense log
+
+**MSS**
+
+1. User wants to wipe all currently-logged expenses.
+2. User keys in the command to clear all logged expenses.
+    
+    Use case ends.
+
+### Use case: UC12 - Exit from FastTrack
+
+**MSS**
+
+1. User wants to exit the application.
+2. User keys in the command to exit the application.
+3. FastTrack exits and is closed.
 
     Use case ends.
     
@@ -388,7 +487,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. The code should be well-organized and well-documented to ensure ease of maintenance and debugging.
 6. FastTrack should protect user data from unauthorized access or modification.
 7. Any modification to the data will result in a prompt update to the user interface.
-
 
 ### Glossary
 

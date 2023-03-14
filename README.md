@@ -1,10 +1,11 @@
 [![CI Status](https://github.com/AY2223S2-CS2103T-W09-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W09-2/tp/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W09-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103T-W09-2/tp/)
+
 
 ![UiMockup](docs/images/Ui.png)
 
 # FastTrack
-FastTrack is specifically designed to cater to the needs of tech-savvy NUS undergraduate students who are on a tight budget. 
+FastTrack is specifically designed to cater to the needs of tech-savvy NUS computing students who are on a tight budget. 
 With our expense tracking features, students can easily track their daily expenses and ensure that they are not overspending. 
 The Command Line Interface (CLI) and batch logging features make it easy to enter expenses quickly and efficiently.
 which is ideal stressed out undergraduates with limited free times.
