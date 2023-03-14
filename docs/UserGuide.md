@@ -50,6 +50,11 @@ As an example, the command below creates a new project with the name *Mycelium D
 p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com
 ```
 
+### A note on dates
+
+For arguments which expect a date, Mycelium only accepts input of the format dd/MM/yyyy.
+For example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Managing Clients
@@ -133,10 +138,10 @@ Creates a new project.
 
 **Examples**
 
-The following command creates a new project whose name is *Mycelium Desktop*, submitted from the client *Spiderman* from *fiverr.com*.
+The following command creates a new project whose name is *Mycelium Desktop*, submitted from the client *Spiderman* from *fiverr.com*, with a deadline on *30 February, 2075*.
 
 ```bash
-p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 01/02/2075
+p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075
 ```
 
 ### Deleting a project: `dp`
@@ -160,5 +165,5 @@ Action | Format
 --------|------------------
 **Create new client** | c -cn client_name -e email -y year_of_birth -src source -mn mobile_number <br> e.g., `c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000`
 **Delete an existing client** | dc -e email <br> e.g., `dc -e alice_baker@bakers.com`
-**Create a project** | p -pn project_name -e client_email -s status -src source -d description -ad accepted_date -dd deadline_date <br> e.g., `p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 01/02/2075`
+**Create a project** | p -pn project_name -e client_email -s status -src source -d description -ad accepted_date -dd deadline_date <br> e.g., `p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
 **Delete a project** | dp -pn project_name <br> `e.g., dp -pn Mycelium`
