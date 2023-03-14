@@ -21,6 +21,7 @@ import seedu.task.model.ReadOnlyPlanner;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.ReadOnlyUserPrefs;
 import seedu.task.model.TaskBook;
+import seedu.task.model.task.Date;
 import seedu.task.model.task.Task;
 import seedu.task.testutil.SimpleTaskBuilder;
 
@@ -177,6 +178,11 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyPlanner getPlanner() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void schedule(Date date) {
             throw new AssertionError("This method should not be called.");
         }
     }

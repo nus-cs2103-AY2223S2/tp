@@ -1,12 +1,15 @@
 package seedu.task.logic.parser;
 
+import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.task.logic.commands.ScheduleCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.task.Date;
 
-import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-public class ScheduleCommandParser implements Parser<ScheduleCommand>{
+/**
+ * Parses input arguments and creates a new ScheduleCommand object
+ */
+public class ScheduleCommandParser implements Parser<ScheduleCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the PlanCommand
      * and returns a ScheduleCommand object for execution.

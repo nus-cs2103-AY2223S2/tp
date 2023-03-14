@@ -3,6 +3,9 @@ package seedu.task.model.task;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Tests if a {@code Task} is in the day's planned task
+ */
 public class IsSameTaskPredicate implements Predicate<Task> {
     private final List<Task> taskList;
 
