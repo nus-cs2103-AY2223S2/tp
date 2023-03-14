@@ -88,6 +88,9 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+    /**
+     * Represents the handler for {@code KeyCode.UP} and {@code KeyCode.DOWN} key-presses.
+     */
     public class KeyPressedHandler implements EventHandler<KeyEvent> {
         @Override
         public void handle(KeyEvent event) {
