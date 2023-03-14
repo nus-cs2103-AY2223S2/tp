@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -37,6 +39,8 @@ public class PersonCard extends UiPart<Region> {
     private HBox cardPane;
 
     @FXML
+    private ImageView imageView;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -58,6 +62,9 @@ public class PersonCard extends UiPart<Region> {
         this.logic = logic;
         this.mainWindow = mainWindow;
         this.index = displayedIndex;
+        Image image = person.getImage() != null ? new Image("/images/spongbob.png")
+                : new Image(person.getImage().toString());
+        imageView.setImage(image);
         id.setText(this.index + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);

@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -23,9 +22,7 @@
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
             <VBox alignment="CENTER_LEFT">
-                <ImageView fitWidth="100" preserveRatio="true">
-                    <Image url="@/images/spongbob.png"/>
-                </ImageView>
+                <ImageView fx:id="imageView" fitWidth="100" preserveRatio="true"></ImageView>
             </VBox>
             <VBox alignment="CENTER_RIGHT">
                 <HBox>
