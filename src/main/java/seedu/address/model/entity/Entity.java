@@ -15,13 +15,14 @@ import seedu.address.model.tag.Tag;
 public abstract class Entity {
     // Identity fields
     private final Name name;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Tag> tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Entity(Name name) {
+    public Entity(Name name, Set<Tag> tags) {
         this.name = name;
+        this.tags = tags;
     }
 
 
