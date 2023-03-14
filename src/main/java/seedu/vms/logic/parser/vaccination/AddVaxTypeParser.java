@@ -12,6 +12,14 @@ public class AddVaxTypeParser extends VaxTypeValueParser {
     public static final String COMMAND_WORD = "add";
 
 
+    /**
+     * Constructs an {@code AddVaxTypeParser}.
+     */
+    public AddVaxTypeParser() {
+        super(false);
+    }
+
+
     @Override
     protected Command getCommand(VaxTypeBuilder builder) {
         return new AddVaxTypeCommand(builder);

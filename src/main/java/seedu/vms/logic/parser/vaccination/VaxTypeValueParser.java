@@ -33,6 +33,18 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
     private static final String FIELD_NAME_ALLERGY = "Allergy requirements";
     private static final String FIELD_NAME_HISTORY = "History requirements";
 
+    private final boolean isRenameAllowed;
+
+
+    /**
+     * Constructs an {@code VaxTypeValueParser}.
+     *
+     * @param isRenameAllowed - if renaming is allowed.
+     */
+    public VaxTypeValueParser(boolean isRenameAllowed) {
+        this.isRenameAllowed = isRenameAllowed;
+    }
+
 
     /**
      * Creates the command for the specified builder.
@@ -46,6 +58,9 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
 
         VaxTypeBuilder builder = VaxTypeBuilder.of(mapName(argsMap.getPreamble()));
 
+        builder = mapRenamedName(argsMap.getValue(CliSyntax.PREFIX_NAME))
+                .map(builder::setName)
+                .orElse(builder);
         builder = mapGroupSet(argsMap.getValue(CliSyntax.PREFIX_VAX_GROUPS))
                 .map(builder::setGroups)
                 .orElse(builder);
@@ -75,6 +90,14 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
         } catch (ParseException parseEx) {
             throw new ParseException(String.format("%s: %s", FIELD_NAME_VAX_NAME, parseEx.getMessage()));
         }
+    }
+
+
+    private Optional<GroupName> mapRenamedName(Optional<String> newName) throws ParseException {
+        if (!isRenameAllowed || !newName.isPresent()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(mapName(newName.get()));
     }
 
 
