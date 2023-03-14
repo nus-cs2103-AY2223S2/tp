@@ -12,8 +12,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Industry;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
@@ -86,14 +91,19 @@ public class StatusCommand extends Command {
     private static Person createPersonWithNewStatus(Person toBeUpdated, LeadStatus status) {
         assert toBeUpdated != null;
 
-        Name updatedName = toBeUpdated.getName();
-        Phone updatedPhone = toBeUpdated.getPhone();
-        Email updatedEmail = toBeUpdated.getEmail();
-        Address updatedAddress = toBeUpdated.getAddress();
-        Remark updatedRemark = toBeUpdated.getRemark();
-        Set<Tag> updatedTags = toBeUpdated.getTags();
+        Name name = toBeUpdated.getName();
+        Gender gender = toBeUpdated.getGender();
+        Phone phone = toBeUpdated.getPhone();
+        Email email = toBeUpdated.getEmail();
+        Address address = toBeUpdated.getAddress();
+        Company company = toBeUpdated.getCompany();
+        Industry industry = toBeUpdated.getIndustry();
+        Occupation occupation = toBeUpdated.getOccupation();
+        JobTitle jobTitle = toBeUpdated.getJobTitle();
+        Remark remark = toBeUpdated.getRemark();
+        Set<Tag> tags = toBeUpdated.getTags();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
+        return new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address, remark, tags,
                 status);
     }
 
