@@ -125,6 +125,9 @@ public class CommandTestUtil {
     public static final String VALID_ORDER_STATUS_DONE = "D";
     public static final String VALID_ORDER_STATUS_NOT_DONE = "N";
     public static final String VALID_ORDER_STATUS_IN_PROGRESS = "I";
+    public static final String VALID_ORDER_QUANTITY_ONE = "1";
+    public static final String VALID_ORDER_QUANTITY_TWO = "12";
+    public static final String VALID_ORDER_QUANTITY_THREE = "123";
     public static final String VALID_CUSTOMER_NAME = "Nigel Wong";
     public static final String VALID_CUSTOMER_PHONE = "91234567";
     public static final String VALID_CUSTOMER_ADDRESS = "Woodlands Street 43";
