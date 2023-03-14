@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,7 +19,6 @@ import seedu.address.model.category.Category;
 import seedu.address.model.category.UserDefinedCategory;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.person.Person;
-import seedu.address.ui.CategoryCard;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -50,10 +48,10 @@ public class ModelManager implements Model {
         categoryList.add(new UserDefinedCategory("groceries", "xxx"));
         categoryList.add(new UserDefinedCategory("entertainment", "xxx"));
         Category cat = new UserDefinedCategory("drink", "xxx");
-        String sDate1="31/12/1998";
+        String sDate1 = "31/12/1998";
         Date date1 = new Date();
         try {
-            date1= new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+            date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
         } catch (Exception e) {
             System.out.println(e.toString());
         }

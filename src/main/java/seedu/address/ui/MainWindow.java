@@ -180,6 +180,10 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Toggles the display between the expense list and the category list.
+     * @param isExpenseList true if the expense list should be shown, false if the category list should be shown
+     */
     public void switchListPanel(boolean isExpenseList) {
         listPanelPlaceholder.getChildren().clear();
         if (isExpenseList) {
