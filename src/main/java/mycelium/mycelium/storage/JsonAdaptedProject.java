@@ -1,6 +1,6 @@
 package mycelium.mycelium.storage;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -23,10 +23,10 @@ public class JsonAdaptedProject {
     private final String clientEmail;
     private final String source;
     private final String description;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private final Date acceptedOn;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private final Date deadline;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private final LocalDate acceptedOn;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private final LocalDate deadline; // NOTE: it is okay for the deadline to be null
 
     /**
      * Constructs this class from its properties.
@@ -37,8 +37,8 @@ public class JsonAdaptedProject {
                               @JsonProperty("clientEmail") String clientEmail,
                               @JsonProperty("source") String source,
                               @JsonProperty("description") String description,
-                              @JsonProperty("acceptedOn") Date acceptedOn,
-                              @JsonProperty("deadline") Date deadline) {
+                              @JsonProperty("acceptedOn") LocalDate acceptedOn,
+                              @JsonProperty("deadline") LocalDate deadline) {
         this.name = name;
         this.status = status;
         this.clientEmail = clientEmail;
@@ -77,8 +77,6 @@ public class JsonAdaptedProject {
         assertField(name != null, "name");
         assertField(status != null, "status");
         assertField(clientEmail != null, "clientEmail");
-        assertField(source != null, "source");
-        assertField(description != null, "description");
         assertField(acceptedOn != null, "acceptedOn");
         // NOTE: it is okay for the deadline to be null.
         return new Project(name,

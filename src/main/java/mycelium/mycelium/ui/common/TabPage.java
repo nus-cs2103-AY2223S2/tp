@@ -17,7 +17,8 @@ public class TabPage extends UiPart<Tab> {
 
     /**
      * Initialises a {@code TabPage} with a given title.
-     * @param title Title of the Tab
+     *
+     * @param title   Title of the Tab
      * @param content Content the tab should be poulated with
      */
     public TabPage(String title, UiPart<? extends Node> content) {

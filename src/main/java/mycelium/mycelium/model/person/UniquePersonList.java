@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mycelium.mycelium.model.person.exceptions.DuplicatePersonException;
 import mycelium.mycelium.model.person.exceptions.PersonNotFoundException;
+
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
@@ -25,7 +26,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -111,8 +112,8 @@ public class UniquePersonList implements Iterable<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                && internalList.equals(((UniquePersonList) other).internalList));
+            || (other instanceof UniquePersonList // instanceof handles nulls
+            && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override

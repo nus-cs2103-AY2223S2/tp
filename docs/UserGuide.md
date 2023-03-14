@@ -47,8 +47,13 @@ All arguments take the structure of `-arg arg_data`, and multiple arguments can 
 As an example, the command below creates a new project with the name *Mycelium Desktop*, for client *Spiderman*, and sourced from *fiverr.com*.
 
 ```bash
-p -pn 'Mycelium Desktop' -cn Spiderman -src fiverr.com
+p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com
 ```
+
+### A note on dates
+
+For arguments which expect a date, Mycelium only accepts input of the format dd/MM/yyyy.
+For example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -110,8 +115,8 @@ Creates a new project.
 - **`-pn project_name`**
     - The project’s name, which must be *unique.*
     - If another project with the same name already exists, then the command *overrides* the existing project with the new details.
-- **`-cn client_name`**
-    - The name of the client who submitted this project. Note that this client must have already been created in Mycelium.
+- **`-e client_email`**
+    - The email of the client who submitted this project. Note that this client must have already been created in Mycelium.
 
 **Optional Arguments**
 
@@ -133,10 +138,10 @@ Creates a new project.
 
 **Examples**
 
-The following command creates a new project whose name is *Mycelium Desktop*, submitted from the client *Spiderman* from *fiverr.com*.
+The following command creates a new project whose name is *Mycelium Desktop*, submitted from the client *Spiderman* from *fiverr.com*, with a deadline on *30 February, 2075*.
 
 ```bash
-p -pn 'Mycelium Desktop' -cn Spiderman -src fiverr.com
+p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075
 ```
 
 ### Deleting a project: `dp`
@@ -160,5 +165,5 @@ Action | Format
 --------|------------------
 **Create new client** | c -cn client_name -e email -y year_of_birth -src source -mn mobile_number <br> e.g., `c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000`
 **Delete an existing client** | dc -e email <br> e.g., `dc -e alice_baker@bakers.com`
-**Create a project** | p -pn project_name -cn client_name -s status -src source -d description -ad accepted_date -dd deadline_date <br> e.g., `p -pn 'Mycelium Desktop' -cn Spiderman -src fiverr.com`
+**Create a project** | p -pn project_name -e client_email -s status -src source -d description -ad accepted_date -dd deadline_date <br> e.g., `p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
 **Delete a project** | dp -pn project_name <br> `e.g., dp -pn Mycelium`

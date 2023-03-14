@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.client.exceptions.DuplicateClientException;
+import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.NameContainsKeywordsPredicate;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
@@ -118,6 +119,23 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getUniqueClient_addressBookIsEmpty_returnsEmpty() {
+        assertTrue(modelManager.getUniqueClient(c -> c.getName().equals(new Name("Jamal"))).isEmpty());
+    }
+
+    @Test
+    public void getUniqueClient_clientNotInAddressBook_returnsEmpty() {
+        modelManager.addClient(WEST);
+        assertTrue(modelManager.getUniqueClient(c -> c.getName().equals(new Name("Jamal"))).isEmpty());
+    }
+
+    @Test
+    public void getUniqueClient_clientInAddressBook_returnsClient() {
+        modelManager.addClient(WEST);
+        assertEquals(modelManager.getUniqueClient(c -> c.equals(WEST)).get(), WEST);
+    }
+
+    @Test
     public void deleteClient_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.deleteClient(null));
     }
@@ -194,6 +212,24 @@ public class ModelManagerTest {
         cases.forEach((desc, tt) -> {
             assertTrue(modelManager.hasProject(project), "While testing case: " + desc);
         });
+    }
+
+    @Test
+    public void getUniqueProject_addressBookIsEmpty_returnsEmpty() {
+        assertTrue(modelManager.getUniqueProject(p -> p.getName().equals("Bing")).isEmpty());
+    }
+
+    @Test
+    public void getUniqueProject_projectNotInAddressBook_returnsEmpty() {
+        modelManager.addProject(new ProjectBuilder().withName("Bard").build());
+        assertTrue(modelManager.getUniqueProject(p -> p.getName().equals("Bing")).isEmpty());
+    }
+
+    @Test
+    public void getUniqueProject_projectInAddressBook_returnsProject() {
+        Project project = new ProjectBuilder().withName("Bing").build();
+        modelManager.addProject(project);
+        assertEquals(modelManager.getUniqueProject(p -> p.equals(project)).get(), project);
     }
 
     @Test

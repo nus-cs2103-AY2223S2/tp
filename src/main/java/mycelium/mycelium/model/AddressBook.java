@@ -57,6 +57,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
+
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
@@ -64,6 +65,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setClients(List<Client> clients) {
         this.clients.setItems(clients);
     }
+
     /**
      * Replaces the contents of the project list with {@code projects}.
      * {@code projects} must not contain duplicate projects.
@@ -180,7 +182,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
         AddressBook that = (AddressBook) o;
         return Objects.equals(persons, that.persons) && Objects.equals(projects, that.projects)
-                && Objects.equals(clients, that.clients);
+            && Objects.equals(clients, that.clients);
     }
 
     @Override

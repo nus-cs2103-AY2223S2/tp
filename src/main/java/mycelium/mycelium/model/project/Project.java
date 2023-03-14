@@ -1,6 +1,7 @@
 package mycelium.mycelium.model.project;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -11,6 +12,8 @@ import mycelium.mycelium.model.util.IsSame;
  * Represents a project.
  */
 public class Project implements IsSame<Project> {
+    public static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     /**
      * The project's name
      */
@@ -40,12 +43,12 @@ public class Project implements IsSame<Project> {
     /**
      * The date on which this project was accepted
      */
-    private final Date acceptedOn;
+    private final LocalDate acceptedOn;
 
     /**
      * A potential deadline for this project
      */
-    private final Optional<Date> deadline;
+    private final Optional<LocalDate> deadline;
 
     /**
      * Creates a new project from the minimal set of required fields. The remaining fields are filled with default
@@ -57,7 +60,7 @@ public class Project implements IsSame<Project> {
         this.clientEmail = clientEmail;
         this.source = Optional.empty();
         this.description = Optional.empty();
-        this.acceptedOn = new Date();
+        this.acceptedOn = LocalDate.now(); // use current date
         this.deadline = Optional.empty();
     }
 
@@ -69,8 +72,8 @@ public class Project implements IsSame<Project> {
                    Email clientEmail,
                    Optional<String> source,
                    Optional<String> description,
-                   Date acceptedOn,
-                   Optional<Date> deadline) {
+                   LocalDate acceptedOn,
+                   Optional<LocalDate> deadline) {
         this.name = name;
         this.status = status;
         this.clientEmail = clientEmail;
@@ -100,11 +103,11 @@ public class Project implements IsSame<Project> {
         return description;
     }
 
-    public Date getAcceptedOn() {
+    public LocalDate getAcceptedOn() {
         return acceptedOn;
     }
 
-    public Optional<Date> getDeadline() {
+    public Optional<LocalDate> getDeadline() {
         return deadline;
     }
 
@@ -145,5 +148,7 @@ public class Project implements IsSame<Project> {
     public int hashCode() {
         return Objects.hash(name, status, clientEmail, source, description, acceptedOn, deadline);
     }
+
+    // TODO implement a user-friendly toString()
 }
 

@@ -4,9 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -32,6 +35,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Project> filteredProjects;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -143,6 +147,15 @@ public class ModelManager implements Model {
 
     //=========== Client ==================================================================================
     @Override
+    public Optional<Client> getUniqueClient(Predicate<Client> predicate) {
+        List<Client> clients = addressBook.getClientList().stream().filter(predicate).collect(Collectors.toList());
+        if (clients.size() > 1) {
+            throw new DuplicateClientException();
+        }
+        return clients.size() == 0 ? Optional.empty() : Optional.of(clients.get(0));
+    }
+
+    @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
@@ -154,8 +167,8 @@ public class ModelManager implements Model {
             addressBook.removeClient(client);
         } catch (ItemNotFoundException e) {
             logger.warning(String.format(
-                    "Requested deletion for client with name %s not found in address book, ignoring...",
-                    client.getName()));
+                "Requested deletion for client with name %s not found in address book, ignoring...",
+                client.getName()));
         }
     }
 
@@ -182,7 +195,14 @@ public class ModelManager implements Model {
         filteredClients.setPredicate(predicate);
     }
 
-    //=========== Project ====================================================================================
+    @Override
+    public Optional<Project> getUniqueProject(Predicate<Project> predicate) {
+        List<Project> projects = addressBook.getProjectList().stream().filter(predicate).collect(Collectors.toList());
+        if (projects.size() > 1) {
+            throw new DuplicateProjectException();
+        }
+        return projects.size() == 0 ? Optional.empty() : Optional.of(projects.get(0));
+    }
 
     public boolean hasProject(Project project) {
         return addressBook.hasProject(project);
@@ -232,14 +252,16 @@ public class ModelManager implements Model {
         }
         ModelManager that = (ModelManager) o;
         return Objects.equals(addressBook, that.addressBook)
-                && Objects.equals(userPrefs, that.userPrefs)
-                && Objects.equals(filteredPersons, that.filteredPersons)
-                && Objects.equals(filteredClients, that.filteredClients)
-                && Objects.equals(filteredProjects, that.filteredProjects);
+            && Objects.equals(userPrefs, that.userPrefs)
+            && Objects.equals(filteredPersons, that.filteredPersons)
+            && Objects.equals(filteredClients, that.filteredClients)
+            && Objects.equals(filteredProjects, that.filteredProjects);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(addressBook, userPrefs, filteredPersons, filteredClients, filteredProjects);
     }
+
+
 }

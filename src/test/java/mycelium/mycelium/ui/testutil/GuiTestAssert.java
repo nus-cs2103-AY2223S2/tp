@@ -2,8 +2,6 @@ package mycelium.mycelium.ui.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Date;
-
 import guitests.guihandles.ClientListCardHandle;
 import guitests.guihandles.ProjectListCardHandle;
 import mycelium.mycelium.model.client.Client;
@@ -37,8 +35,13 @@ public class GuiTestAssert {
         assertEquals(expectedProject.getStatus().toString(), actualCard.getStatus());
         assertEquals(expectedProject.getClientEmail().value, actualCard.getClientEmail());
         assertEquals(expectedProject.getSource().orElse("Unknown"), actualCard.getSource());
-        assertEquals(expectedProject.getAcceptedOn().toString(), actualCard.getAcceptedOn());
-        assertEquals(expectedProject.getDeadline().map(Date::toString).orElse("No Deadline"), actualCard.getDeadline());
+        assertEquals(expectedProject.getAcceptedOn().format(Project.DATE_FMT), actualCard.getAcceptedOn());
+        assertEquals(
+            expectedProject
+                .getDeadline()
+                .map(d -> d.format(Project.DATE_FMT))
+                .orElse("No Deadline"),
+            actualCard.getDeadline());
         assertEquals(expectedProject.getDescription().orElse("No description given"), actualCard.getDescription());
     }
 
