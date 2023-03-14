@@ -13,17 +13,17 @@ import seedu.address.model.person.Birthday;
  * Jackson-friendly version of {@link Birthday}.
  */
 class JsonAdaptedBirthday {
-    private final Optional<Birthday> birthday;
+    private final Optional<String> birthday;
 
     /**
      * Constructs a {@code JsonAdaptedBirthday} with the given {@code birthday}.
      */
     @JsonCreator
-    public JsonAdaptedBirthday(String birthday) throws IllegalValueException {
+    public JsonAdaptedBirthday(String birthday) {
         if (birthday.equals("") || birthday == null) {
             this.birthday = Optional.empty();
         } else {
-            this.birthday = Optional.of(new Birthday(birthday));
+            this.birthday = Optional.of(birthday);
         }
     }
 
@@ -36,13 +36,13 @@ class JsonAdaptedBirthday {
      * Converts a given {@code Birthday} into this class for Jackson use.
      */
     public JsonAdaptedBirthday(Birthday source) {
-        birthday = Optional.of(source);
+        birthday = Optional.of(source.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 
     @JsonValue
     public String getBirthday() {
         if (birthday.isPresent()) {
-            return birthday.get().getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            return birthday.get();
         } else {
             return null;
         }
@@ -57,7 +57,7 @@ class JsonAdaptedBirthday {
      */
     public Optional<Birthday> toModelType() throws IllegalValueException {
         if (birthday.isPresent()) {
-            return Optional.of(new Birthday(birthday.get().getValue()));
+            return Optional.of(new Birthday(birthday.get()));
         } else {
             return Optional.empty();
         }
