@@ -3,19 +3,17 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.TagCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.ModuleTagSet;
-import seedu.address.model.tag.ModuleTag;
-
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.ModuleTag;
+
+/**
+ * Parses input arguments and creates a new TagCommand object
+ */
 public class TagCommandParser implements Parser<TagCommand> {
 
     /**
@@ -35,24 +33,13 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor= new EditPersonDescriptor();
-
-        Optional<Set<ModuleTag>> modulesToAdd = parseModuleTagsForEdit(argMultiMap.getAllValues(Prefix.MODULE_TAG));
+        Optional<Set<ModuleTag>> modulesToAdd =
+                ParserUtil.parseModuleTagsForCommands(argMultiMap.getAllValues(Prefix.MODULE_TAG));
 
         if (modulesToAdd.isEmpty()) {
             throw new ParseException(TagCommand.MESSAGE_NO_TAGS);
         }
 
         return new TagCommand(index, modulesToAdd.get());
-    }
-
-    private Optional<Set<ModuleTag>> parseModuleTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseModuleTags(tagSet));
     }
 }

@@ -3,20 +3,16 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.GroupTag;
+import seedu.address.model.person.ModuleTagSet;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 import seedu.address.model.tag.ModuleTag;
 
 /**
@@ -26,20 +22,21 @@ public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
 
-    /**
-     * tag n/NAME m/MODULE_TAG
-     */
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a ModuleTag to a person. \n"
+            + "tag <index> m/<module> : Adds tags from the person of given index in displayed list. \n"
+            + "tag m/<module> : Adds tags to your own profile instead.";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a ModuleTag to a person. "
-            + "Parameters: ";
-
-    public static final String MESSAGE_TAG_PERSON_SUCCESS = "Module(s) tagged to Person:";
-    public static final String MESSAGE_TAG_USER_SUCCESS = "Module(s) tagged to User:";
+    public static final String MESSAGE_TAG_PERSON_SUCCESS = "Module(s) tagged to Person! \n";
+    public static final String MESSAGE_TAG_USER_SUCCESS = "Module(s) tagged to User! \n";
     public static final String MESSAGE_NO_TAGS = "At least one Module must be provided.";
 
     private final Index index;
     private final Set<ModuleTag> moduleTags;
 
+    /**
+     * @param index of the person in the filtered person list to add modules.
+     * @param modulesToAdd modules to add to the person
+     */
     public TagCommand(Index index, Set<ModuleTag> modulesToAdd) {
         requireNonNull(modulesToAdd);
 
@@ -50,14 +47,18 @@ public class TagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (index == null) {
             return addUserTags(model);
         }
-
         return addPersonTags(model);
     }
 
+    /**
+     * Add tags to person at given index.
+     * @param model {@code Model} which the command should operate on
+     * @return feedback message of the operation result for display
+     * @throws CommandException If an error occurs during command execution.
+     */
     public CommandResult addPersonTags(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -78,9 +79,16 @@ public class TagCommand extends Command {
         personToEdit.setCommonModules(userModuleTags);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS,
+                personToEdit.getImmutableGroupTags().toString()));
     }
 
+    /**
+     * Adds modules to user.
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If an error occurs during command execution.
+     */
     public CommandResult addUserTags(Model model) throws CommandException {
         User editedUser = model.getUser();
 
