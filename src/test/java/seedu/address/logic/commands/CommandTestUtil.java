@@ -19,6 +19,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.status.LeadStatus;
+import seedu.address.model.person.status.LeadStatusName;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -62,6 +64,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final LeadStatus VALID_LEAD_STATUS_UNCONTACTED;
+    public static final LeadStatus VALID_LEAD_STATUS_WORKING;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -69,6 +74,9 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        VALID_LEAD_STATUS_UNCONTACTED = new LeadStatus(LeadStatusName.UNCONTACTED.getLabel());
+        VALID_LEAD_STATUS_WORKING = new LeadStatus(LeadStatusName.WORKING.getLabel());
     }
 
     /**
