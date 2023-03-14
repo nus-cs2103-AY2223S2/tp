@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.vms.commons.core.LogsCenter;
@@ -32,7 +31,7 @@ public class JsonPatientManagerStorage implements PatientManagerStorage {
     }
 
     @Override
-    public Optional<ReadOnlyPatientManager> readPatientManager() throws DataConversionException {
+    public ReadOnlyPatientManager readPatientManager() throws IOException {
         return readPatientManager(filePath);
     }
 
@@ -42,20 +41,16 @@ public class JsonPatientManagerStorage implements PatientManagerStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyPatientManager> readPatientManager(Path filePath) throws DataConversionException {
+    @Override
+    public ReadOnlyPatientManager readPatientManager(Path filePath) throws IOException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializablePatientManager> jsonPatientManager = JsonUtil.readJsonFile(
-                filePath, JsonSerializablePatientManager.class);
-        if (!jsonPatientManager.isPresent()) {
-            return Optional.empty();
-        }
-
         try {
-            return Optional.of(jsonPatientManager.get().toModelType());
+            return JsonUtil
+                    .deserializeFromFile(filePath, JsonSerializablePatientManager.class)
+                    .toModelType();
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
+            throw new IOException("Illegal values present", ive);
         }
     }
 
@@ -74,7 +69,7 @@ public class JsonPatientManagerStorage implements PatientManagerStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializablePatientManager(patientManager), filePath);
+        JsonUtil.serializeToFile(filePath, new JsonSerializablePatientManager(patientManager));
     }
 
 }

@@ -2,11 +2,9 @@ package seedu.vms.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.vms.commons.core.LogsCenter;
-import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
@@ -43,7 +41,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
+    public UserPrefs readUserPrefs() throws IOException {
         return userPrefsStorage.readUserPrefs();
     }
 
@@ -60,13 +58,13 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyPatientManager> readPatientManager() throws DataConversionException, IOException {
+    public ReadOnlyPatientManager readPatientManager() throws IOException {
         return readPatientManager(patientManagerStorage.getPatientManagerFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyPatientManager> readPatientManager(Path filePath)
-            throws DataConversionException, IOException {
+    public ReadOnlyPatientManager readPatientManager(Path filePath)
+            throws IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return patientManagerStorage.readPatientManager(filePath);
     }

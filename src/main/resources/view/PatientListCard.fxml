@@ -5,33 +5,49 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-    </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-      <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
-      </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+<GridPane hgap="5.0" minHeight="-Infinity" vgap="10.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="NEVER" prefWidth="80.0" />
+    <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+      <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <HBox prefWidth="390.0" spacing="5.0" GridPane.columnSpan="2147483647">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" styleClass="card-id-holder" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="idLabel" styleClass="card-sub-title" />
+               </children>
+            </VBox>
+            <VBox minHeight="25.0" HBox.hgrow="NEVER">
+               <children>
+                  <Label fx:id="nameLabel" maxWidth="-Infinity" minHeight="-Infinity" prefWidth="340.0" styleClass="card-title" wrapText="true" />
+               </children>
+            </VBox>
+         </children>
       </HBox>
-      <VBox fx:id="allergies"> </VBox>
-      <VBox fx:id="vaccines"> </VBox>
-      <Label fx:id="id" styleClass="cell_small_label" text="\$id" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="dob" styleClass="cell_small_label" text="\$dob" />
-      <Label fx:id="bloodType" styleClass="cell_small_label" text="\$bloodType" />
-    </VBox>
-  </GridPane>
-</HBox>
+      <Label styleClass="card-attribute-label" text="DOB:" GridPane.rowIndex="1" />
+      <Label fx:id="dobLabel" styleClass="card-value-label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label styleClass="card-attribute-label" text="Blood type:" GridPane.rowIndex="2" />
+      <Label fx:id="bloodTypeLabel" styleClass="card-value-label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label styleClass="card-attribute-label" text="Allergies:" GridPane.rowIndex="3" />
+      <VBox fx:id="allergyBox" maxWidth="305.0" styleClass="card-value-label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label styleClass="card-attribute-label" text="Phone:" GridPane.rowIndex="5" />
+      <Label fx:id="phoneLabel" styleClass="card-value-label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label styleClass="card-attribute-label" text="Vaccines:" GridPane.rowIndex="4" />
+      <VBox fx:id="vaccineBox" maxWidth="305.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>

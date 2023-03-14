@@ -14,10 +14,13 @@ import javafx.scene.control.ListView;
 
 
 /** An extension of {@link ListView} to display the values of a map. */
-public class ListViewPanel<T extends Comparable<T>> extends ListView<T> {
+public class ListViewPanel<T extends Comparable<T>> extends ListView<T> implements Refreshable {
     private final Function<T, Node> displayFunction;
     private final ObjectProperty<Comparator<T>> comparatorProperty =
             new SimpleObjectProperty<>(Comparator.naturalOrder());
+
+    private final ObjectProperty<MapChangeListener.Change<?, ? extends T>> changeProperty =
+            new SimpleObjectProperty<>();
 
 
     /**
@@ -44,14 +47,25 @@ public class ListViewPanel<T extends Comparable<T>> extends ListView<T> {
     }
 
 
-    private void handleChange(MapChangeListener.Change<?, ? extends T> change) {
-        updateList(change.getMap().values());
+    private synchronized void handleChange(MapChangeListener.Change<?, ? extends T> change) {
+        changeProperty.set(change);
     }
 
 
-    private void updateList(Collection<? extends T> updatedDatas) {
+    private synchronized void updateList(Collection<? extends T> updatedDatas) {
         getItems().setAll(updatedDatas);
         getItems().sort(comparatorProperty.get());
+    }
+
+
+    @Override
+    public void refresh() {
+        MapChangeListener.Change<?, ? extends T> change = changeProperty.get();
+        if (change == null) {
+            return;
+        }
+        updateList(change.getMap().values());
+        changeProperty.set(null);
     }
 
 

@@ -22,8 +22,8 @@ public class JsonSerializablePatientManagerTest {
 
     @Test
     public void toModelType_typicalPatientsFile_success() throws Exception {
-        JsonSerializablePatientManager dataFromFile = JsonUtil.readJsonFile(TYPICAL_PATIENTS_FILE,
-                JsonSerializablePatientManager.class).get();
+        JsonSerializablePatientManager dataFromFile = JsonUtil.deserializeFromFile(TYPICAL_PATIENTS_FILE,
+                JsonSerializablePatientManager.class);
         PatientManager patientManagerFromFile = dataFromFile.toModelType();
         PatientManager typicalPatientsPatientManager = TypicalPatients.getTypicalPatientManager();
         assertEquals(patientManagerFromFile, typicalPatientsPatientManager);
@@ -31,15 +31,15 @@ public class JsonSerializablePatientManagerTest {
 
     @Test
     public void toModelType_invalidPatientFile_throwsIllegalValueException() throws Exception {
-        JsonSerializablePatientManager dataFromFile = JsonUtil.readJsonFile(INVALID_PATIENT_FILE,
-                JsonSerializablePatientManager.class).get();
+        JsonSerializablePatientManager dataFromFile = JsonUtil.deserializeFromFile(INVALID_PATIENT_FILE,
+                JsonSerializablePatientManager.class);
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateId_throwsIllegalValueException() throws Exception {
-        JsonSerializablePatientManager dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PATIENT_FILE,
-                JsonSerializablePatientManager.class).get();
+        JsonSerializablePatientManager dataFromFile = JsonUtil.deserializeFromFile(DUPLICATE_PATIENT_FILE,
+                JsonSerializablePatientManager.class);
         assertThrows(IllegalValueException.class, JsonSerializablePatientManager.DUPLICATE_ID,
                 dataFromFile::toModelType);
     }
