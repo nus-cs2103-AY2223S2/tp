@@ -44,7 +44,7 @@ public class DeleteProjectCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
-        
+
         if (currentListBeingShown != ListType.PROJECT) {
             throw new CommandException(Messages.MESSAGE_INVALID_LIST_PROJECT);
         }

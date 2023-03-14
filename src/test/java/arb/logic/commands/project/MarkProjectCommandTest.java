@@ -3,8 +3,8 @@ package arb.logic.commands.project;
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static arb.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static arb.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static arb.testutil.TypicalIndexes.INDEX_FIRST;
+import static arb.testutil.TypicalIndexes.INDEX_SECOND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -29,9 +29,9 @@ class MarkProjectCommandTest {
 
     @Test
     void execute_validIndexUnfilteredList_success() {
-        Project projectToMark = model.getFilteredProjectList().get(INDEX_FIRST_CLIENT.getZeroBased());
+        Project projectToMark = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project projectToMarkCopy = new ProjectBuilder(projectToMark).build();
-        MarkProjectCommand markProjectCommand = new MarkProjectCommand(INDEX_FIRST_CLIENT);
+        MarkProjectCommand markProjectCommand = new MarkProjectCommand(INDEX_FIRST);
         String expectedMessage = String.format(MarkProjectCommand.MESSAGE_MARK_PROJECT_SUCCESS, projectToMark);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         projectToMarkCopy.markAsDone();
@@ -50,14 +50,14 @@ class MarkProjectCommandTest {
 
     @Test
     public void equals() {
-        MarkProjectCommand markFirstCommand = new MarkProjectCommand(INDEX_FIRST_CLIENT);
-        MarkProjectCommand markSecondCommand = new MarkProjectCommand(INDEX_SECOND_CLIENT);
+        MarkProjectCommand markFirstCommand = new MarkProjectCommand(INDEX_FIRST);
+        MarkProjectCommand markSecondCommand = new MarkProjectCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(markFirstCommand.equals(markFirstCommand));
 
         // same values -> returns true
-        MarkProjectCommand markFirstCommandCopy = new MarkProjectCommand(INDEX_FIRST_CLIENT);
+        MarkProjectCommand markFirstCommandCopy = new MarkProjectCommand(INDEX_FIRST);
         assertTrue(markFirstCommand.equals(markFirstCommandCopy));
 
         // different types -> returns false

@@ -8,8 +8,8 @@ import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.logic.commands.CommandTestUtil.showProjectAtIndex;
 import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static arb.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
-import static arb.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
+import static arb.testutil.TypicalIndexes.INDEX_FIRST;
+import static arb.testutil.TypicalIndexes.INDEX_SECOND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,7 +34,7 @@ public class EditProjectCommandTest {
         Project editedProject = new ProjectBuilder().build();
         EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
                 .build();
-        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST_PROJECT, descriptor);
+        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
@@ -71,9 +71,9 @@ public class EditProjectCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST_PROJECT,
+        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST,
                 new EditProjectCommand.EditProjectDescriptor());
-        Project editedProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        Project editedProject = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
@@ -85,11 +85,11 @@ public class EditProjectCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showProjectAtIndex(model, INDEX_FIRST_PROJECT);
+        showProjectAtIndex(model, INDEX_FIRST);
 
-        Project projectInFilteredList = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        Project projectInFilteredList = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectInFilteredList).withTitle(VALID_TITLE_OIL_PAINTING).build();
-        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST_PROJECT,
+        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST,
                 new EditProjectDescriptorBuilder().withTitle(VALID_TITLE_OIL_PAINTING).build());
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
@@ -103,9 +103,9 @@ public class EditProjectCommandTest {
 
     @Test
     public void execute_duplicateProjectUnfilteredList_failure() {
-        Project firstProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        Project firstProject = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(firstProject).build();
-        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_SECOND_PROJECT, descriptor);
+        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_SECOND, descriptor);
 
         assertCommandFailure(editProjectCommand, ListType.PROJECT, model,
                 Messages.MESSAGE_DUPLICATE_PROJECT);
@@ -113,11 +113,11 @@ public class EditProjectCommandTest {
 
     @Test
     public void execute_duplicateProjectFilteredList_failure() {
-        showProjectAtIndex(model, INDEX_FIRST_PROJECT);
+        showProjectAtIndex(model, INDEX_FIRST);
 
         // edit project in filtered list into a duplicate in address book
-        Project projectInList = model.getAddressBook().getProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
-        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST_PROJECT,
+        Project projectInList = model.getAddressBook().getProjectList().get(INDEX_SECOND.getZeroBased());
+        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST,
                 new EditProjectDescriptorBuilder(projectInList).build());
 
         assertCommandFailure(editProjectCommand, ListType.PROJECT, model,
@@ -141,8 +141,8 @@ public class EditProjectCommandTest {
      */
     @Test
     public void execute_invalidProjectIndexFilteredList_failure() {
-        showProjectAtIndex(model, INDEX_FIRST_PROJECT);
-        Index outOfBoundIndex = INDEX_SECOND_PROJECT;
+        showProjectAtIndex(model, INDEX_FIRST);
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getProjectList().size());
 
@@ -155,12 +155,12 @@ public class EditProjectCommandTest {
 
     @Test
     public void equals() {
-        final EditProjectCommand standardCommand = new EditProjectCommand(INDEX_FIRST_PROJECT, DESC_SKY_PAINTING);
+        final EditProjectCommand standardCommand = new EditProjectCommand(INDEX_FIRST, DESC_SKY_PAINTING);
 
         // same values -> returns true
         EditProjectCommand.EditProjectDescriptor copyDescriptor = new EditProjectCommand
                 .EditProjectDescriptor(DESC_SKY_PAINTING);
-        EditProjectCommand commandWithSameValues = new EditProjectCommand(INDEX_FIRST_PROJECT, copyDescriptor);
+        EditProjectCommand commandWithSameValues = new EditProjectCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -170,9 +170,9 @@ public class EditProjectCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditProjectCommand(INDEX_SECOND_PROJECT, DESC_SKY_PAINTING)));
+        assertFalse(standardCommand.equals(new EditProjectCommand(INDEX_SECOND, DESC_SKY_PAINTING)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditProjectCommand(INDEX_FIRST_PROJECT, DESC_OIL_PAINTING)));
+        assertFalse(standardCommand.equals(new EditProjectCommand(INDEX_FIRST, DESC_OIL_PAINTING)));
     }
 }
