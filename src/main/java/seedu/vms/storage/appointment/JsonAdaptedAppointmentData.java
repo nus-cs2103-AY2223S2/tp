@@ -23,7 +23,7 @@ public class JsonAdaptedAppointmentData {
     public JsonAdaptedAppointmentData(
             @JsonProperty("isActive") boolean isActive,
             @JsonProperty("id") int id,
-            @JsonProperty("patient") JsonAdaptedAppointment appointment) {
+            @JsonProperty("appointment") JsonAdaptedAppointment appointment) {
         this.isActive = isActive;
         this.id = id;
         this.appointment = appointment;

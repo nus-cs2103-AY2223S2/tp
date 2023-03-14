@@ -62,17 +62,17 @@ public class JsonAdaptedAppointment {
         if (startTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "START TIME"));
         }
-        builder.setStartTime(startTime);
+        builder = builder.setStartTime(startTime);
 
         if (endTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "END TIME"));
         }
-        builder.setEndTime(endTime);
+        builder = builder.setEndTime(endTime);
 
         if (vaccine == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "VACCINE"));
         }
-        builder.setVaccine(vaccine.toModelType());
+        builder = builder.setVaccine(vaccine.toModelType());
 
         return builder.create(new AppointmentManager());
     }
@@ -94,17 +94,17 @@ public class JsonAdaptedAppointment {
         if (startTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "START TIME"));
         }
-        builder.setStartTime(startTime);
+        builder = builder.setStartTime(startTime);
 
         if (endTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "END TIME"));
         }
-        builder.setEndTime(endTime);
+        builder = builder.setEndTime(endTime);
 
         if (vaccine == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "VACCINE"));
         }
-        builder.setVaccine(vaccine.toModelType());
+        builder = builder.setVaccine(vaccine.toModelType());
 
         return builder.create(manager);
     }
