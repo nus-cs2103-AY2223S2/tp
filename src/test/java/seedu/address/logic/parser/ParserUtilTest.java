@@ -23,7 +23,7 @@ import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
-import seedu.address.model.task.Subject;
+import seedu.address.model.task.Title;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -221,14 +221,14 @@ public class ParserUtilTest {
     @Test
     void parseSubject_validString_returnsSubject() throws ParseException {
         String validSubject = "Math";
-        Subject subject = ParserUtil.parseSubject(validSubject);
-        assertEquals(validSubject, subject.toString(), "Parsed subject should be equal to the input string");
+        Title title = ParserUtil.parseSubject(validSubject);
+        assertEquals(validSubject, title.toString(), "Parsed title should be equal to the input string");
     }
 
     @Test
     void parseSubject_invalidString_throwsParseException() {
         String invalidSubject = "Invalid_Subject";
-        assertThrows(ParseException.class, Subject.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseSubject(invalidSubject));
+        assertThrows(ParseException.class, Title.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseSubject(invalidSubject));
     }
 
     @Test

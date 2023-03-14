@@ -34,7 +34,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to OfficeConnect.
    
-   * `add s/Complete slides c/Finish up slides for meeting st/false` : Adds a task with subject `Complete slides` to OfficeConnect.
+   * `add s/Complete slides c/Finish up slides for meeting st/false` : Adds a task with title `Complete slides` to OfficeConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -231,7 +231,7 @@ Examples:
 ## Review tasks assigned to a Person: `reviewtask`
 Format: `review SUBJECT`
 
-Reviews the list of persons who are assigned to the task with the specified subject.
+Reviews the list of persons who are assigned to the task with the specified title.
 
 Examples:
 - `review CS2103 TP` displays everyone who are assigned to this task.

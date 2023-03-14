@@ -9,11 +9,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ReviewTaskCommand;
-import seedu.address.model.task.SubjectContainsExactKeywordsPredicate;
+import seedu.address.model.task.TitleContainsExactKeywordsPredicate;
 
 public class ReviewTaskCommandParserTest {
 
-    private ReviewTaskCommandParser parser = new ReviewTaskCommandParser();
+    private final ReviewTaskCommandParser parser = new ReviewTaskCommandParser();
     @Test
     public void parse_empty_throwsParseException() {
         assertParseFailure(parser, "     ",
@@ -24,7 +24,7 @@ public class ReviewTaskCommandParserTest {
     public void parse_validArgs_returnsReviewTaskCommand() {
         // no leading and trailing whitespaces
         ReviewTaskCommand expectedReviewTaskCommand =
-                new ReviewTaskCommand(new SubjectContainsExactKeywordsPredicate((Arrays.asList("Task", "1"))));
+                new ReviewTaskCommand(new TitleContainsExactKeywordsPredicate((Arrays.asList("Task", "1"))));
         assertParseSuccess(parser, "Task 1", expectedReviewTaskCommand);
 
         // multiple whitespaces between keywords

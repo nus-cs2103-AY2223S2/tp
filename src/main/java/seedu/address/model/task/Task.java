@@ -17,16 +17,16 @@ public class Task implements Relationship<Task> {
     private final Id id;
 
     // Data fields
-    private final Subject subject;
+    private final Title title;
     private final Content content;
     private final Status status;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Subject subject, Content content, Status status) {
-        requireAllNonNull(subject, content, status);
-        this.subject = subject;
+    public Task(Title title, Content content, Status status) {
+        requireAllNonNull(title, content, status);
+        this.title = title;
         this.content = content;
         this.status = status;
         this.id = new Id();
@@ -37,9 +37,9 @@ public class Task implements Relationship<Task> {
      * Every field must be present and not null.
      * ID must be specific when loading from local storage
      */
-    public Task(Subject subject, Content content, Status status, Id id) {
-        requireAllNonNull(subject, content, status);
-        this.subject = subject;
+    public Task(Title title, Content content, Status status, Id id) {
+        requireAllNonNull(title, content, status);
+        this.title = title;
         this.content = content;
         this.status = status;
         this.id = id;
@@ -50,8 +50,8 @@ public class Task implements Relationship<Task> {
         return id;
     }
 
-    public Subject getSubject() {
-        return subject;
+    public Title getTitle() {
+        return title;
     }
 
     public Content getContent() {
@@ -64,7 +64,7 @@ public class Task implements Relationship<Task> {
 
 
     /**
-     * Returns true if both tasks have the same subject.
+     * Returns true if both tasks have the same title.
      * This defines a weaker notion of equality between two tasks.
      */
     @Override
@@ -74,7 +74,7 @@ public class Task implements Relationship<Task> {
         }
 
         return otherTask != null
-            && otherTask.getSubject().equals(getSubject());
+            && otherTask.getTitle().equals(getTitle());
     }
 
     @Override
@@ -93,20 +93,20 @@ public class Task implements Relationship<Task> {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getSubject().equals(getSubject())
+        return otherTask.getTitle().equals(getTitle())
             && otherTask.getContent().equals(getContent())
             && otherTask.getStatus().equals(getStatus());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, subject, content, status);
+        return Objects.hash(id, title, content, status);
     }
 
     @Override
     public String toString() {
 
-        return getSubject()
+        return getTitle()
             + "; Status: "
             + getStatus()
             + "; Content: "

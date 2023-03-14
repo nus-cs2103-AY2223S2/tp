@@ -25,12 +25,12 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonPersonTaskStorage;
+import seedu.address.storage.JsonAssignTaskStorage;
 import seedu.address.storage.JsonTaskStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.RepositoryStorage;
@@ -68,7 +68,7 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         RepositoryStorage<Task> taskRepositoryStorage = new JsonTaskStorage(userPrefs.getTaskFilePath());
-        RepositoryStorage<PersonTask> personTaskStorage = new JsonPersonTaskStorage(userPrefs
+        RepositoryStorage<AssignTask> personTaskStorage = new JsonAssignTaskStorage(userPrefs
             .getPersonTaskPath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, taskRepositoryStorage, personTaskStorage);
 
@@ -92,9 +92,9 @@ public class MainApp extends Application {
 
 
         Optional<ReadOnlyRepository<Task>> taskReadOnlyRepository;
-        Optional<ReadOnlyRepository<PersonTask>> personTaskReadOnlyRepository;
+        Optional<ReadOnlyRepository<AssignTask>> personTaskReadOnlyRepository;
         ReadOnlyRepository<Task> initialTaskData;
-        ReadOnlyRepository<PersonTask> initialPersonTaskData;
+        ReadOnlyRepository<AssignTask> initialPersonTaskData;
         try {
             taskReadOnlyRepository = storage.readTaskBook();
             personTaskReadOnlyRepository = storage.readPersonTaskBook();
@@ -103,7 +103,7 @@ public class MainApp extends Application {
                     + "task.json and person_task_mapping.json");
             }
             initialTaskData = taskReadOnlyRepository.orElseGet(SampleDataUtil::getSampleTasksRepo);
-            initialPersonTaskData = personTaskReadOnlyRepository.orElseGet(SampleDataUtil::getSamplePersonTasksRepo);
+            initialPersonTaskData = personTaskReadOnlyRepository.orElseGet(SampleDataUtil::getSampleAssignTaskRepo);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty "
                 + "task.json and person_task_mapping.json");
@@ -119,7 +119,7 @@ public class MainApp extends Application {
 
         RepositoryModelManager<Task> taskRepositoryModelManager =
             new RepositoryModelManager<>(initialTaskData);
-        RepositoryModelManager<PersonTask> personTaskRepositoryModelManager =
+        RepositoryModelManager<AssignTask> personTaskRepositoryModelManager =
             new RepositoryModelManager<>(initialPersonTaskData);
 
         return new OfficeConnectModel(taskRepositoryModelManager, personTaskRepositoryModelManager);

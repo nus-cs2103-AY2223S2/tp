@@ -22,7 +22,7 @@ import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.NameContainsExactKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.shared.Id;
@@ -36,10 +36,10 @@ public class ReviewCommandTest {
 
     private OfficeConnectModel officeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
-            new RepositoryModelManager<>(new Repository<PersonTask>()));
+            new RepositoryModelManager<>(new Repository<AssignTask>()));
     private OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(new
             RepositoryModelManager<>(officeConnectModel.getTaskModelManager().getReadOnlyRepository()),
-            new RepositoryModelManager<>(new Repository<PersonTask>()));
+            new RepositoryModelManager<>(new Repository<AssignTask>()));
     @Test
     public void equals() {
         NameContainsExactKeywordsPredicate firstPredicate =
@@ -85,7 +85,7 @@ public class ReviewCommandTest {
 
         Id pId = getAssignedPersonId(predicate);
 
-        ObservableList<PersonTask> assignedTaskList = getAssignedTaskList(pId);
+        ObservableList<AssignTask> assignedTaskList = getAssignedTaskList(pId);
         assertEquals(Collections.emptyList(), assignedTaskList);
 
         expectedModel.updateFilteredPersonList(person -> person.getId().equals(pId));
@@ -107,8 +107,8 @@ public class ReviewCommandTest {
         return pId;
     }
 
-    private ObservableList<PersonTask> getAssignedTaskList(Id pId) {
-        ObservableList<PersonTask> assignedTaskList = expectedOfficeConnectModel.getPersonTaskModelManager()
+    private ObservableList<AssignTask> getAssignedTaskList(Id pId) {
+        ObservableList<AssignTask> assignedTaskList = expectedOfficeConnectModel.getAssignTaskModelManager()
                 .getFilteredItemList()
                 .filtered(persontask -> persontask.getPersonId().equals(pId));
         return assignedTaskList;

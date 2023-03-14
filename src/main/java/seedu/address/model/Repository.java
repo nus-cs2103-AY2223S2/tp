@@ -54,7 +54,7 @@ public class Repository<T extends Relationship<T>> implements ReadOnlyRepository
     public void resetData(ReadOnlyRepository<T> newData) {
         requireNonNull(newData);
 
-        setItems(newData.getReadOnlyRepository());
+        setItems(newData.getData());
     }
 
     //// task-level operations
@@ -104,7 +104,7 @@ public class Repository<T extends Relationship<T>> implements ReadOnlyRepository
     }
 
     @Override
-    public ObservableList<T> getReadOnlyRepository() {
+    public ObservableList<T> getData() {
         return items.asUnmodifiableObservableList();
     }
 

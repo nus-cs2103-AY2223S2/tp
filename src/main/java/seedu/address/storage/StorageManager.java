@@ -11,7 +11,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyRepository;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.task.Task;
 
 /**
@@ -23,7 +23,7 @@ public class StorageManager implements Storage {
     private final AddressBookStorage addressBookStorage;
     private final UserPrefsStorage userPrefsStorage;
     private final RepositoryStorage<Task> taskRepositoryStorage;
-    private final RepositoryStorage<PersonTask> personTaskRepositoryStorage;
+    private final RepositoryStorage<AssignTask> personTaskRepositoryStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -33,14 +33,14 @@ public class StorageManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
         UserPrefs userPrefs = new UserPrefs();
         taskRepositoryStorage = new JsonTaskStorage(userPrefs.getTaskFilePath());
-        personTaskRepositoryStorage = new JsonPersonTaskStorage(userPrefs.getPersonTaskPath());
+        personTaskRepositoryStorage = new JsonAssignTaskStorage(userPrefs.getPersonTaskPath());
     }
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
-        RepositoryStorage<Task> taskRepositoryStorage, RepositoryStorage<PersonTask> personTaskRepositoryStorage) {
+        RepositoryStorage<Task> taskRepositoryStorage, RepositoryStorage<AssignTask> personTaskRepositoryStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
 
@@ -109,12 +109,12 @@ public class StorageManager implements Storage {
         taskRepositoryStorage.saveRepository(taskBook);
     }
     @Override
-    public Optional<ReadOnlyRepository<PersonTask>> readPersonTaskBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlyRepository<AssignTask>> readPersonTaskBook() throws DataConversionException, IOException {
         logger.fine("Attempting to read data to person_task file");
         return personTaskRepositoryStorage.readRepository();
     }
     @Override
-    public void savePersonTaskBook(ReadOnlyRepository<PersonTask> personTaskBook) throws IOException {
+    public void savePersonTaskBook(ReadOnlyRepository<AssignTask> personTaskBook) throws IOException {
         logger.fine("Attempting to save data to person_task file");
         personTaskRepositoryStorage.saveRepository(personTaskBook);
     }

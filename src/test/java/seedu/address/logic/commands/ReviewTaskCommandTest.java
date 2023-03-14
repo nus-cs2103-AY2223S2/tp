@@ -22,9 +22,9 @@ import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.shared.Id;
-import seedu.address.model.task.SubjectContainsExactKeywordsPredicate;
+import seedu.address.model.task.TitleContainsExactKeywordsPredicate;
 import seedu.address.model.task.Task;
 
 
@@ -34,17 +34,17 @@ public class ReviewTaskCommandTest {
 
     private OfficeConnectModel officeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
-            new RepositoryModelManager<>(new Repository<PersonTask>()));
+            new RepositoryModelManager<>(new Repository<AssignTask>()));
     private OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(new
             RepositoryModelManager<>(officeConnectModel.getTaskModelManager().getReadOnlyRepository()),
-            new RepositoryModelManager<>(new Repository<PersonTask>()));
+            new RepositoryModelManager<>(new Repository<AssignTask>()));
 
     @Test
     public void equals() {
-        SubjectContainsExactKeywordsPredicate firstPredicate =
-                new SubjectContainsExactKeywordsPredicate(Collections.singletonList("first"));
-        SubjectContainsExactKeywordsPredicate secondPredicate =
-                new SubjectContainsExactKeywordsPredicate(Collections.singletonList("second"));
+        TitleContainsExactKeywordsPredicate firstPredicate =
+                new TitleContainsExactKeywordsPredicate(Collections.singletonList("first"));
+        TitleContainsExactKeywordsPredicate secondPredicate =
+                new TitleContainsExactKeywordsPredicate(Collections.singletonList("second"));
         ReviewTaskCommand reviewFirstCommand = new ReviewTaskCommand(firstPredicate);
         ReviewTaskCommand reviewSecondCommand = new ReviewTaskCommand(secondPredicate);
 
@@ -68,7 +68,7 @@ public class ReviewTaskCommandTest {
     @Test
     public void execute_invalidKeywords_noTaskReviewed() {
         String expectedMessage = Messages.MESSAGE_INVALID_TASK;
-        SubjectContainsExactKeywordsPredicate predicate = preparePredicate("Project Destroy");
+        TitleContainsExactKeywordsPredicate predicate = preparePredicate("Project Destroy");
         ReviewTaskCommand command = new ReviewTaskCommand(predicate);
         assertCommandFailure(command, model, expectedMessage);
         // Does not flush out the GUI when taking in invalid keywords
@@ -81,11 +81,11 @@ public class ReviewTaskCommandTest {
     @Test
     public void execute_validKeywords_noPersonAssigned() {
         String expectedMessage = String.format(ReviewTaskCommand.MESSAGE_NO_PERSON_ASSIGNED, "Send email to client");
-        SubjectContainsExactKeywordsPredicate predicate = preparePredicate("Send email to client");
+        TitleContainsExactKeywordsPredicate predicate = preparePredicate("Send email to client");
         ReviewTaskCommand command = new ReviewTaskCommand(predicate);
         Id tId = getAssignedTaskId(predicate);
 
-        ObservableList<PersonTask> assignedPersonList = getAssignedPersonList(tId);
+        ObservableList<AssignTask> assignedPersonList = getAssignedPersonList(tId);
         assertEquals(Collections.emptyList(), assignedPersonList);
 
         expectedModel.updateFilteredPersonList(person -> assignedPersonList.stream()
@@ -99,26 +99,26 @@ public class ReviewTaskCommandTest {
         assertTaskCommandSuccess(command, officeConnectModel, expectedMessage, expectedOfficeConnectModel);
     }
 
-    private Id getAssignedTaskId(SubjectContainsExactKeywordsPredicate predicate) {
+    private Id getAssignedTaskId(TitleContainsExactKeywordsPredicate predicate) {
         ObservableList<Task> taskList = officeConnectModel
                 .getTaskModelManager()
-                .getReadOnlyRepository().getReadOnlyRepository()
+                .getReadOnlyRepository().getData()
                 .filtered(predicate);
         Id tId = taskList.get(0).getId();
         return tId;
     }
 
-    private ObservableList<PersonTask> getAssignedPersonList(Id tId) {
-        ObservableList<PersonTask> assignedPersonList = officeConnectModel.getPersonTaskModelManager()
+    private ObservableList<AssignTask> getAssignedPersonList(Id tId) {
+        ObservableList<AssignTask> assignedPersonList = officeConnectModel.getAssignTaskModelManager()
                 .getFilteredItemList()
                 .filtered(persontask -> persontask.getTaskId().equals(tId));
         return assignedPersonList;
     }
 
     /**
-     * Parses {@code userInput} into a {@code SubjectContainsExactKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TitleContainsExactKeywordsPredicate}.
      */
-    private SubjectContainsExactKeywordsPredicate preparePredicate(String userInput) {
-        return new SubjectContainsExactKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private TitleContainsExactKeywordsPredicate preparePredicate(String userInput) {
+        return new TitleContainsExactKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

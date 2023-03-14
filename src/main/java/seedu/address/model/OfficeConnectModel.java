@@ -2,7 +2,7 @@ package seedu.address.model;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.task.Task;
 
 
@@ -12,30 +12,30 @@ import seedu.address.model.task.Task;
 public class OfficeConnectModel {
     public static final Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     private final RepositoryModelManager<Task> taskModelManager;
-    private final RepositoryModelManager<PersonTask> personTaskModelManager;
+    private final RepositoryModelManager<AssignTask> assignTaskModelManager;
 
     /**
      * Initializes a OfficeConnectModel empty data.
      */
     public OfficeConnectModel() {
         taskModelManager = new RepositoryModelManager<>(new Repository<Task>());
-        personTaskModelManager = new RepositoryModelManager<>(new Repository<PersonTask>());
+        assignTaskModelManager = new RepositoryModelManager<>(new Repository<AssignTask>());
     }
     /**
      * Initializes a OfficeConnectModel given data.
      */
     public OfficeConnectModel(RepositoryModelManager<Task> taskModelManager,
-                              RepositoryModelManager<PersonTask> personTaskModelManager) {
+                              RepositoryModelManager<AssignTask> assignTaskModelManager) {
         this.taskModelManager = taskModelManager;
-        this.personTaskModelManager = personTaskModelManager;
+        this.assignTaskModelManager = assignTaskModelManager;
     }
 
     public RepositoryModelManager<Task> getTaskModelManager() {
         return taskModelManager;
     }
 
-    public RepositoryModelManager<PersonTask> getPersonTaskModelManager() {
-        return personTaskModelManager;
+    public RepositoryModelManager<AssignTask> getAssignTaskModelManager() {
+        return assignTaskModelManager;
     }
 
 }

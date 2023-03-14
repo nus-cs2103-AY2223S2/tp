@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's subject in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidSubject(String)}
  */
-public class Subject {
+public class Title {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Subjects should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -21,11 +21,11 @@ public class Subject {
     private final String value;
 
     /**
-     * Constructs a {@code Subject}.
+     * Constructs a {@code Title}.
      *
-     * @param value A valid subject.
+     * @param value A valid title.
      */
-    public Subject(String value) {
+    public Title(String value) {
         requireNonNull(value);
         checkArgument(isValidSubject(value), MESSAGE_CONSTRAINTS);
         this.value = value;
@@ -51,8 +51,8 @@ public class Subject {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Subject // instanceof handles nulls
-            && value.equals(((Subject) other).value)); // state check
+            || (other instanceof Title // instanceof handles nulls
+            && value.equals(((Title) other).value)); // state check
     }
 
     @Override

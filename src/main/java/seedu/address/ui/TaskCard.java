@@ -26,7 +26,7 @@ public class TaskCard extends UiPart<Region> {
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label subject;
+    private Label title;
     @FXML
     private Label content;
     @FXML
@@ -43,7 +43,7 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
-        subject.setText(task.getSubject().getValue());
+        title.setText(task.getTitle().getValue());
         content.setText(task.getContent().getValue());
         status.setText(task.getStatus().toString());
     }

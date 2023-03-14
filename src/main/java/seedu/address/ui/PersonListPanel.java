@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.model.OfficeConnectModel;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 
 
@@ -51,7 +51,7 @@ public class PersonListPanel extends UiPart<Region> {
         //         Logger logger = LogsCenter.getLogger(PersonListPanel.class);
         //         logger.info("An item selected: " + this.getItem().toString());
         //
-        //         ObservableList<PersonTask> personTasks = officeConnectModel.getPersonTaskModelManager()
+        //         ObservableList<AssignTask> personTasks = officeConnectModel.getPersonTaskModelManager()
         //             .getFilteredItemList().filtered(personTask ->
         //                 personTask.getPersonId().equals(super.getItem().getId()));
         //
@@ -75,11 +75,11 @@ public class PersonListPanel extends UiPart<Region> {
                         Logger logger = LogsCenter.getLogger(PersonListPanel.class);
                         logger.info("An item selected: " + PersonListViewCell.super.getItem().toString());
 
-                        ObservableList<PersonTask> personTasks = officeConnectModel.getPersonTaskModelManager()
+                        ObservableList<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager()
                             .getFilteredItemList().filtered(personTask ->
                                 personTask.getPersonId().equals(PersonListViewCell.super.getItem().getId()));
 
-                        officeConnectModel.getTaskModelManager().updateFilteredItemList(task -> personTasks.stream()
+                        officeConnectModel.getTaskModelManager().updateFilteredItemList(task -> assignTasks.stream()
                             .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
                     } else if (event.getClickCount() == 2) {
                         System.out.println("Double click on item: " + PersonListViewCell.super.getItem());

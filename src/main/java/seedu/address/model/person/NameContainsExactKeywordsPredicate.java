@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Task}'s {@code Subject} matches exactly the keywords given.
+ * Tests that a {@code Task}'s {@code Title} matches exactly the keywords given.
  */
 public class NameContainsExactKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;

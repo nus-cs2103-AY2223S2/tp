@@ -27,7 +27,7 @@ import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -66,15 +66,15 @@ public class AssignCommandTest {
         AssignCommand command = new AssignCommand(personIndex, taskIndex);
         CommandResult result = command.execute(model, officeConnectModel);
 
-        Repository<PersonTask> repo = getPersonTaskRepository();
-        repo.addItem(new PersonTask(person.getId(), task.getId()));
+        Repository<AssignTask> repo = getPersonTaskRepository();
+        repo.addItem(new AssignTask(person.getId(), task.getId()));
 
         assertEquals(String.format(AssignCommand.MESSAGE_SUCCESS, person, task), result.getFeedbackToUser());
-        assertEquals(repo, officeConnectModel.getPersonTaskModelManager().getReadOnlyRepository());
+        assertEquals(repo, officeConnectModel.getAssignTaskModelManager().getReadOnlyRepository());
     }
 
     /**
-     * Test for duplicate PersonTask
+     * Test for duplicate AssignTask
      */
     @Test
     public void execute_duplicatePersonTask_throwsCommandException() {
@@ -86,7 +86,7 @@ public class AssignCommandTest {
 
     /**
      * Test if an invalid person index throws a CommandException and that the
-     * PersonTask repo does not change.
+     * AssignTask repo does not change.
      */
     @Test
     public void execute_invalidPersonIndex_throwsCommandException() {
@@ -97,12 +97,12 @@ public class AssignCommandTest {
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () ->
                 command.execute(model, officeConnectModel));
         assertEquals(getPersonTaskRepository(),
-                officeConnectModel.getPersonTaskModelManager().getReadOnlyRepository());
+                officeConnectModel.getAssignTaskModelManager().getReadOnlyRepository());
     }
 
     /**
      * Test if an invalid task index throws a CommandException and that the
-     * PersonTask repo does not change.
+     * AssignTask repo does not change.
      */
     @Test
     public void execute_invalidTaskIndex_throwsCommandException() {
@@ -114,7 +114,7 @@ public class AssignCommandTest {
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, () ->
                 command.execute(model, officeConnectModel));
         assertEquals(getPersonTaskRepository(),
-                officeConnectModel.getPersonTaskModelManager().getReadOnlyRepository());
+                officeConnectModel.getAssignTaskModelManager().getReadOnlyRepository());
     }
 
     @Test
@@ -143,15 +143,15 @@ public class AssignCommandTest {
      * IMPLEMENTED THIS FOR TESTING FOR NOW
      * TO DO: WRAP MODEL, OFFICECONNECTMODEL IN ANOTHER CLASS NEXT
      *
-     * Returns a {@code Repository} with a few PersonTask mappings for the TypicalTaskRepository and
+     * Returns a {@code Repository} with a few AssignTask mappings for the TypicalTaskRepository and
      * TypicalAddressBook used in this class.
      */
-    private Repository<PersonTask> getPersonTaskRepository() {
-        PersonTask mapping1 = new PersonTask(ALICE.getId(), SEND_EMAIL_TO_CLIENT.getId());
-        PersonTask mapping2 = new PersonTask(BENSON.getId(), COMPLETE_SLIDES.getId());
-        PersonTask mapping3 = new PersonTask(CARL.getId(), STOCK_PANTRY.getId());
+    private Repository<AssignTask> getPersonTaskRepository() {
+        AssignTask mapping1 = new AssignTask(ALICE.getId(), SEND_EMAIL_TO_CLIENT.getId());
+        AssignTask mapping2 = new AssignTask(BENSON.getId(), COMPLETE_SLIDES.getId());
+        AssignTask mapping3 = new AssignTask(CARL.getId(), STOCK_PANTRY.getId());
 
-        Repository<PersonTask> ptl = new Repository<>();
+        Repository<AssignTask> ptl = new Repository<>();
         ptl.addItem(mapping1);
         ptl.addItem(mapping2);
         ptl.addItem(mapping3);

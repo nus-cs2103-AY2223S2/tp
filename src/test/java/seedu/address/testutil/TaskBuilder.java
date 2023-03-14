@@ -3,22 +3,22 @@ package seedu.address.testutil;
 import seedu.address.model.Repository;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
-import seedu.address.model.task.Subject;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 
 /**
  * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
 
-    public static final String RANDOM_TASK_SUBJECT = "Random Subject";
+    public static final String RANDOM_TASK_SUBJECT = "Random Title";
     public static final String RANDOM_TASK_CONTENT = "Random Content ABC";
     public static final boolean RANDOM_TASK_STATUS = true;
-    public static final String DEFAULT_SUBJECT = "Recreation day";
+    public static final String DEFAULT_TITLE = "Recreation day";
     public static final String DEFAULT_CONTENT = "Play football";
     public static final boolean DEFAULT_STATUS = false;
 
-    private Subject subject;
+    private Title title;
     private Content content;
     private Status status;
 
@@ -26,7 +26,7 @@ public class TaskBuilder {
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
-        subject = new Subject(DEFAULT_SUBJECT);
+        title = new Title(DEFAULT_TITLE);
         content = new Content(DEFAULT_CONTENT);
         status = new Status(DEFAULT_STATUS);
     }
@@ -35,18 +35,18 @@ public class TaskBuilder {
      * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
     public TaskBuilder(Task taskToCopy) {
-        subject = taskToCopy.getSubject();
+        title = taskToCopy.getTitle();
         content = taskToCopy.getContent();
         status = taskToCopy.getStatus();
     }
 
     private Task buildRandomTask() {
-        return new Task(new Subject(RANDOM_TASK_SUBJECT), new Content(RANDOM_TASK_CONTENT),
+        return new Task(new Title(RANDOM_TASK_SUBJECT), new Content(RANDOM_TASK_CONTENT),
             new Status(RANDOM_TASK_STATUS));
     }
 
     private Task buildRandomTaskWithIndex(int index) {
-        return new Task(new Subject(RANDOM_TASK_SUBJECT + " " + index),
+        return new Task(new Title(RANDOM_TASK_SUBJECT + " " + index),
             new Content(RANDOM_TASK_CONTENT + " " + index),
             new Status(RANDOM_TASK_STATUS));
     }
@@ -71,10 +71,10 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Subject} of the {@code Task} that we are building.
+     * Sets the {@code Title} of the {@code Task} that we are building.
      */
     public TaskBuilder withSubject(String subject) {
-        this.subject = new Subject(subject);
+        this.title = new Title(subject);
         return this;
     }
 
@@ -97,10 +97,10 @@ public class TaskBuilder {
     /**
      * Sets Task to be created
      *
-     * @return Task containing specified {@code Subject, @code Content, @code Status}
+     * @return Task containing specified {@code Title, @code Content, @code Status}
      */
     public Task build() {
-        return new Task(subject, content, status);
+        return new Task(title, content, status);
     }
 
 

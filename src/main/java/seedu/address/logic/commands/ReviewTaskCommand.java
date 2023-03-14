@@ -8,11 +8,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.RepositoryModelManager;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.shared.Id;
-import seedu.address.model.task.Subject;
-import seedu.address.model.task.SubjectContainsExactKeywordsPredicate;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
+import seedu.address.model.task.TitleContainsExactKeywordsPredicate;
+
 
 /**
  * Review the list of persons assigned to a specified task.
@@ -26,12 +27,12 @@ public class ReviewTaskCommand extends Command {
     public static final String MESSAGE_PERSON_ASSIGNED = "%1$s has been assigned to the following person/s:";
     public static final String MESSAGE_NO_PERSON_ASSIGNED = "%1$s has not been assigned to anyone.";
 
-    private final SubjectContainsExactKeywordsPredicate predicate;
+    private final TitleContainsExactKeywordsPredicate predicate;
 
     /**
      * Creates ReviewTask object with given taskIndex
      */
-    public ReviewTaskCommand(SubjectContainsExactKeywordsPredicate predicate) {
+    public ReviewTaskCommand(TitleContainsExactKeywordsPredicate predicate) {
         requireAllNonNull(predicate);
 
         this.predicate = predicate;
@@ -45,40 +46,39 @@ public class ReviewTaskCommand extends Command {
         requireAllNonNull(model, officeConnectModel);
 
         ObservableList<Task> taskList = officeConnectModel.getTaskModelManager()
-                .getReadOnlyRepository().getReadOnlyRepository()
+                .getReadOnlyRepository().getData()
                 .filtered(predicate);
         if (taskList.size() != 1) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK);
         }
         Task task = taskList.get(0);
         Id tId = task.getId();
-        Subject subject = task.getSubject();
+        Title title = task.getTitle();
 
-        ObservableList<PersonTask> assignedPersonList = getAssignedPersonList(officeConnectModel, tId);
+        ObservableList<AssignTask> assignedPersonList = getAssignedPersonList(officeConnectModel, tId);
 
         displayAssignedTasksAndPersons(model, officeConnectModel, assignedPersonList, tId);
 
         if (assignedPersonList.isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_NO_PERSON_ASSIGNED, subject));
+            return new CommandResult(String.format(MESSAGE_NO_PERSON_ASSIGNED, title));
         } else {
-            return new CommandResult(String.format(MESSAGE_PERSON_ASSIGNED, subject));
+            return new CommandResult(String.format(MESSAGE_PERSON_ASSIGNED, title));
         }
     }
 
     private static void displayAssignedTasksAndPersons(Model model, OfficeConnectModel officeConnectModel,
-                                                       ObservableList<PersonTask> assignedPersonList, Id tId) {
+                                                       ObservableList<AssignTask> assignedPersonList, Id tId) {
         RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
         model.updateFilteredPersonList(person -> assignedPersonList.stream()
                 .anyMatch(personTask -> personTask.getPersonId().equals(person.getId())));
         taskModelManager.updateFilteredItemList(task -> task.getId().equals(tId));
     }
 
-    private static ObservableList<PersonTask> getAssignedPersonList(OfficeConnectModel officeConnectModel, Id tId) {
-        RepositoryModelManager<PersonTask> personTaskModelManager = officeConnectModel.getPersonTaskModelManager();
-        ObservableList<PersonTask> assignedPersonList = personTaskModelManager
+    private static ObservableList<AssignTask> getAssignedPersonList(OfficeConnectModel officeConnectModel, Id tId) {
+        RepositoryModelManager<AssignTask> personTaskModelManager = officeConnectModel.getAssignTaskModelManager();
+        return personTaskModelManager
                 .getFilteredItemList()
                 .filtered(persontask -> persontask.getTaskId().equals(tId));
-        return assignedPersonList;
     }
 
     @Override
