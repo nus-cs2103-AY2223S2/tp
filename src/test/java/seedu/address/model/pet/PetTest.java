@@ -1,4 +1,4 @@
-package seedu.address.model.Pet;
+package seedu.address.model.pet;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,15 +13,14 @@ import static seedu.address.testutil.TypicalPets.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.pet.Pet;
 import seedu.address.testutil.PetBuilder;
 
 public class PetTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Pet Pet = new PetBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> Pet.getTags().remove(0));
+        Pet pet = new PetBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> pet.getTags().remove(0));
     }
 
     @Test

@@ -51,14 +51,14 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPetAtIndex(model, INDEX_FIRST_PET);
 
-        Pet PETToDelete = model.getFilteredPetList().get(INDEX_FIRST_PET.getZeroBased());
+        Pet petToDelete = model.getFilteredPetList().get(INDEX_FIRST_PET.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PET);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PET_SUCCESS, PETToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PET_SUCCESS, petToDelete);
 
         Model expectedModel = new ModelManager(model.getPetPal(), new UserPrefs());
-        expectedModel.deletePet(PETToDelete);
-        showNoPET(expectedModel);
+        expectedModel.deletePet(petToDelete);
+        showNoPet(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -101,7 +101,7 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPET(Model model) {
+    private void showNoPet(Model model) {
         model.updateFilteredPetList(p -> false);
 
         assertTrue(model.getFilteredPetList().isEmpty());

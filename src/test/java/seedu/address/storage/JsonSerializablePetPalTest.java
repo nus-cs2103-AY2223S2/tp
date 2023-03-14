@@ -24,9 +24,9 @@ public class JsonSerializablePetPalTest {
     public void toModelType_typicalPetFile_success() throws Exception {
         JsonSerializablePetPal dataFromFile = JsonUtil.readJsonFile(TYPICAL_PET_FILE,
                 JsonSerializablePetPal.class).get();
-        PetPal PetPalFromFile = dataFromFile.toModelType();
+        PetPal petPalFromFile = dataFromFile.toModelType();
         PetPal typicalPetPetPal = TypicalPets.getTypicalPetPal();
-        assertEquals(PetPalFromFile, typicalPetPetPal);
+        assertEquals(petPalFromFile, typicalPetPetPal);
     }
 
     @Test

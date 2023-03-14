@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPetPalStorage PetPalStorage =
+        JsonPetPalStorage petPalStorage =
                 new JsonPetPalStorage(temporaryFolder.resolve("PetPal.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(PetPalStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(petPalStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,11 +71,11 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonPetPalIoExceptionThrowingStub
-        JsonPetPalStorage PetPalStorage =
+        JsonPetPalStorage petPalStorage =
                 new JsonPetPalIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionPetPal.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(PetPalStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(petPalStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

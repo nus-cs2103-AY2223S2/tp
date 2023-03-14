@@ -94,10 +94,10 @@ public class JsonPetPalStorageTest {
     /**
      * Saves {@code PetPal} at the specified {@code filePath}.
      */
-    private void savePetPal(ReadOnlyPetPal PetPal, String filePath) {
+    private void savePetPal(ReadOnlyPetPal petPal, String filePath) {
         try {
             new JsonPetPalStorage(Paths.get(filePath))
-                    .savePetPal(PetPal, addToTestDataPathIfNotNull(filePath));
+                    .savePetPal(petPal, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

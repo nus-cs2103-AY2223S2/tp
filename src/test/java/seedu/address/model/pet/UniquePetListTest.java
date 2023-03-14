@@ -1,4 +1,4 @@
-package seedu.address.model.Pet;
+package seedu.address.model.pet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.UniquePetList;
 import seedu.address.model.pet.exceptions.DuplicatePetException;
 import seedu.address.model.pet.exceptions.PetNotFoundException;
 import seedu.address.testutil.PetBuilder;
@@ -31,18 +29,18 @@ public class UniquePetListTest {
     }
 
     @Test
-    public void contains_PetNotInList_returnsFalse() {
+    public void contains_petNotInList_returnsFalse() {
         assertFalse(uniquePetList.contains(ALICE));
     }
 
     @Test
-    public void contains_PetInList_returnsTrue() {
+    public void contains_petInList_returnsTrue() {
         uniquePetList.add(ALICE);
         assertTrue(uniquePetList.contains(ALICE));
     }
 
     @Test
-    public void contains_PetWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_petWithSameIdentityFieldsInList_returnsTrue() {
         uniquePetList.add(ALICE);
         Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -117,7 +115,7 @@ public class UniquePetListTest {
     }
 
     @Test
-    public void remove_PetDoesNotExist_throwsPetNotFoundException() {
+    public void remove_petDoesNotExist_throwsPetNotFoundException() {
         assertThrows(PetNotFoundException.class, () -> uniquePetList.remove(ALICE));
     }
 
@@ -151,8 +149,8 @@ public class UniquePetListTest {
     @Test
     public void setPets_list_replacesOwnListWithProvidedList() {
         uniquePetList.add(ALICE);
-        List<Pet> PetList = Collections.singletonList(BOB);
-        uniquePetList.setPets(PetList);
+        List<Pet> petList = Collections.singletonList(BOB);
+        uniquePetList.setPets(petList);
         UniquePetList expectedUniquePetList = new UniquePetList();
         expectedUniquePetList.add(BOB);
         assertEquals(expectedUniquePetList, uniquePetList);
