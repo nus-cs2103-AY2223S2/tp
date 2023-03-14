@@ -9,8 +9,8 @@ import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.EditTaskCommand;
-import trackr.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.task.TaskDescriptor;
 
 /**
  * Parses input arguments and creates a new EditTaskCommand object
@@ -36,7 +36,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
         }
 
-        EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
+        TaskDescriptor editTaskDescriptor = new TaskDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editTaskDescriptor.setTaskName(
                     ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get()));

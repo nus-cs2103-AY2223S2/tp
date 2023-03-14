@@ -29,10 +29,11 @@ public class FindTaskCommandTest {
 
     @Test
     public void equals() {
-        TaskContainsKeywordsPredicate firstPredicate =
-                new TaskContainsKeywordsPredicate(Collections.singletonList("first"));
-        TaskContainsKeywordsPredicate secondPredicate =
-                new TaskContainsKeywordsPredicate(Collections.singletonList("second"));
+        TaskContainsKeywordsPredicate firstPredicate = new TaskContainsKeywordsPredicate();
+        firstPredicate.setTaskNameKeywords(Collections.singletonList("first"));
+
+        TaskContainsKeywordsPredicate secondPredicate = new TaskContainsKeywordsPredicate();
+        secondPredicate.setTaskNameKeywords(Collections.singletonList("first"));
 
         FindTaskCommand findTaskFirstCommand = new FindTaskCommand(firstPredicate);
         FindTaskCommand findTaskSecondCommand = new FindTaskCommand(secondPredicate);
@@ -78,6 +79,8 @@ public class FindTaskCommandTest {
      * Parses {@code userInput} into a {@code TaskNameContainsKeywordsPredicate}.
      */
     private TaskContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new TaskContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
+        predicate.setTaskNameKeywords(Arrays.asList(userInput.split("\\s+")));
+        return predicate;
     }
 }

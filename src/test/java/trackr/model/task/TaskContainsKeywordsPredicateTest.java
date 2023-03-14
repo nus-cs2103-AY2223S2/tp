@@ -18,17 +18,17 @@ public class TaskContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TaskContainsKeywordsPredicate firstPredicate =
-                new TaskContainsKeywordsPredicate(firstPredicateKeywordList);
-        TaskContainsKeywordsPredicate secondPredicate =
-                new TaskContainsKeywordsPredicate(secondPredicateKeywordList);
+        TaskContainsKeywordsPredicate firstPredicate = new TaskContainsKeywordsPredicate();
+        firstPredicate.setTaskNameKeywords(firstPredicateKeywordList);
+        TaskContainsKeywordsPredicate secondPredicate = new TaskContainsKeywordsPredicate();
+        secondPredicate.setTaskNameKeywords(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TaskContainsKeywordsPredicate firstPredicateCopy =
-                new TaskContainsKeywordsPredicate(firstPredicateKeywordList);
+        TaskContainsKeywordsPredicate firstPredicateCopy = new TaskContainsKeywordsPredicate();
+        firstPredicateCopy.setTaskNameKeywords(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,35 +44,36 @@ public class TaskContainsKeywordsPredicateTest {
     @Test
     public void test_taskNameContainsKeywords_returnsTrue() {
         // One keyword
-        TaskContainsKeywordsPredicate predicate =
-                new TaskContainsKeywordsPredicate(Collections.singletonList("Buy"));
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
+        predicate.setTaskNameKeywords(Collections.singletonList("Buy"));
         assertTrue(predicate.test(new TaskBuilder().withTaskName("Buy Food").build()));
 
         // Multiple keywords
-        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("Buy", "Food"));
+        predicate.setTaskNameKeywords(Arrays.asList("Buy", "Food"));
         assertTrue(predicate.test(new TaskBuilder().withTaskName("Buy Food").build()));
 
         // Only one matching keyword
-        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("Buy", "Flour"));
+        predicate.setTaskNameKeywords(Arrays.asList("Buy", "Flour"));
         assertTrue(predicate.test(new TaskBuilder().withTaskName("Buy Food").build()));
 
         // Mixed-case keywords
-        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("BUy", "FlOuR"));
+        predicate.setTaskNameKeywords(Arrays.asList("BUy", "FlOuR"));
         assertTrue(predicate.test(new TaskBuilder().withTaskName("Buy Flour").build()));
     }
 
     @Test
     public void test_taskNameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate(Collections.emptyList());
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
+        predicate.setTaskNameKeywords(Collections.emptyList());
         assertFalse(predicate.test(new TaskBuilder().withTaskName("Buy").build()));
 
         // Non-matching keyword
-        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("Buy"));
+        predicate.setTaskNameKeywords(Arrays.asList("Buy"));
         assertFalse(predicate.test(new TaskBuilder().withTaskName("Sort Inventory").build()));
 
         // Keywords match deadline and status, but does not match name
-        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("11/11/2024", "N"));
+        predicate.setTaskNameKeywords(Arrays.asList("11/11/2024", "N"));
         assertFalse(predicate.test(new TaskBuilder().withTaskName("Buy").withTaskDeadline("11/11/2024")
                 .withTaskStatus("N").build()));
     }
