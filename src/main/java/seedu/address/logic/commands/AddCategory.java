@@ -32,7 +32,7 @@ public class AddCategory extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCategory(UserDefinedCategory category) {
+    public AddCategory(Category category) {
         requireNonNull(category);
         toAdd = category;
     }
@@ -40,14 +40,10 @@ public class AddCategory extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        // to add once storage is done
-//        if (model.hasCategory(toAdd)) {
-//            throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
-//        }
-
-        // to add after storage
-//        model.addCategory(toAdd);
+        if (model.hasCategory(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
+        }
+        model.addCategory(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -136,6 +136,6 @@ public class ParserUtil {
         if (!Category.isValidCategoryName(category)) {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
-        return new UserDefinedCategory(category, summary);
+        return new UserDefinedCategory(trimmedCategory, summary);
     }
 }

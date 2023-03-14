@@ -2,12 +2,14 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUMMARY;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCategory;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.category.Category;
 import seedu.address.model.category.UserDefinedCategory;
 
 
@@ -23,15 +25,15 @@ public class AddCategoryParser implements Parser<AddCategory> {
      */
     public AddCategory parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_SUMMARY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY, PREFIX_SUMMARY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCategory.MESSAGE_USAGE));
         }
 
         String summary = argMultimap.getValue(PREFIX_SUMMARY).get();
-        UserDefinedCategory category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get(), summary);
+        Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get(), summary);
 
         return new AddCategory(category);
     }
