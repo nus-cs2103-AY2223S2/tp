@@ -23,7 +23,7 @@ import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
-import trackr.testutil.PersonBuilder;
+import trackr.testutil.SupplierBuilder;
 
 public class AddCommandTest {
 
@@ -35,7 +35,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Supplier validPerson = new PersonBuilder().build();
+        Supplier validPerson = new SupplierBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
@@ -45,7 +45,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Supplier validPerson = new PersonBuilder().build();
+        Supplier validPerson = new SupplierBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
@@ -54,8 +54,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Supplier alice = new PersonBuilder().withName("Alice").build();
-        Supplier bob = new PersonBuilder().withName("Bob").build();
+        Supplier alice = new SupplierBuilder().withName("Alice").build();
+        Supplier bob = new SupplierBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -111,7 +111,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Supplier person) {
+        public void addSupplier(Supplier person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -126,27 +126,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Supplier person) {
+        public boolean hasSupplier(Supplier person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Supplier target) {
+        public void deleteSupplier(Supplier target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Supplier target, Supplier editedPerson) {
+        public void setSupplier(Supplier target, Supplier editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Supplier> getFilteredPersonList() {
+        public ObservableList<Supplier> getFilteredSupplierList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Supplier> predicate) {
+        public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -203,9 +203,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Supplier person) {
+        public boolean hasSupplier(Supplier person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return this.person.isSameSupplier(person);
         }
     }
 
@@ -216,13 +216,13 @@ public class AddCommandTest {
         final ArrayList<Supplier> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Supplier person) {
+        public boolean hasSupplier(Supplier person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return personsAdded.stream().anyMatch(person::isSameSupplier);
         }
 
         @Override
-        public void addPerson(Supplier person) {
+        public void addSupplier(Supplier person) {
             requireNonNull(person);
             personsAdded.add(person);
         }

@@ -8,7 +8,7 @@ import static trackr.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalPersons.AMY;
+import static trackr.testutil.TypicalSuppliers.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -34,7 +34,7 @@ import trackr.model.task.Task;
 import trackr.storage.JsonTrackrStorage;
 import trackr.storage.JsonUserPrefsStorage;
 import trackr.storage.StorageManager;
-import trackr.testutil.PersonBuilder;
+import trackr.testutil.SupplierBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -85,9 +85,9 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Supplier expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Supplier expectedPerson = new SupplierBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addSupplier(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
@@ -117,7 +117,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList() {
-        ObservableList<Supplier> expected = model.getFilteredPersonList();
+        ObservableList<Supplier> expected = model.getFilteredSupplierList();
         assertEquals(expected, logic.getFilteredPersonList());
     }
 

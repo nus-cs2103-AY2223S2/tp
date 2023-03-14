@@ -3,7 +3,7 @@ package trackr.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static trackr.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalPersons.BENSON;
+import static trackr.testutil.TypicalSuppliers.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;

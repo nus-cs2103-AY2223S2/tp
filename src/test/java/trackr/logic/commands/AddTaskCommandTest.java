@@ -113,7 +113,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void addPerson(Supplier person) {
+        public void addSupplier(Supplier person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -128,27 +128,27 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Supplier person) {
+        public boolean hasSupplier(Supplier person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Supplier target) {
+        public void deleteSupplier(Supplier target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Supplier target, Supplier editedPerson) {
+        public void setSupplier(Supplier target, Supplier editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Supplier> getFilteredPersonList() {
+        public ObservableList<Supplier> getFilteredSupplierList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Supplier> predicate) {
+        public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

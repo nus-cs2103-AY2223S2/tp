@@ -2,7 +2,7 @@ package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalAddressBook;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +12,7 @@ import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.supplier.Supplier;
-import trackr.testutil.PersonBuilder;
+import trackr.testutil.SupplierBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -28,10 +28,10 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Supplier validPerson = new PersonBuilder().build();
+        Supplier validPerson = new SupplierBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addSupplier(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
@@ -39,7 +39,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Supplier personInList = model.getAddressBook().getPersonList().get(0);
+        Supplier personInList = model.getAddressBook().getSupplierList().get(0);
         assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

@@ -3,10 +3,10 @@ package trackr.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalPersons.ALICE;
-import static trackr.testutil.TypicalPersons.HOON;
-import static trackr.testutil.TypicalPersons.IDA;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.ALICE;
+import static trackr.testutil.TypicalSuppliers.HOON;
+import static trackr.testutil.TypicalSuppliers.IDA;
+import static trackr.testutil.TypicalSuppliers.getTypicalAddressBook;
 import static trackr.testutil.TypicalTasks.BUY_FLOUR_N;
 import static trackr.testutil.TypicalTasks.CLEAN_TOOLS_N;
 import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;
@@ -98,8 +98,8 @@ public class JsonTrackrStorageTest {
         assertEquals(originalTaskList, new TaskList(readBackTaskList));
 
         // Modify data, overwrite exiting file, and read back
-        originalAddressBook.addPerson(HOON);
-        originalAddressBook.removePerson(ALICE);
+        originalAddressBook.addSupplier(HOON);
+        originalAddressBook.removeSupplier(ALICE);
         jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, filePath);
         readBackAddressBook = jsonTrackrStorage.readAddressBook(filePath).get();
         assertEquals(originalAddressBook, new AddressBook(readBackAddressBook));
@@ -111,7 +111,7 @@ public class JsonTrackrStorageTest {
         assertEquals(originalTaskList, new TaskList(readBackTaskList));
 
         // Save and read without specifying file path
-        originalAddressBook.addPerson(IDA);
+        originalAddressBook.addSupplier(IDA);
         jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList); // file path not specified
         readBackAddressBook = jsonTrackrStorage.readAddressBook().get(); // file path not specified
         assertEquals(originalAddressBook, new AddressBook(readBackAddressBook));

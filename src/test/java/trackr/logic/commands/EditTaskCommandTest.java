@@ -15,7 +15,7 @@ import static trackr.logic.commands.EditTaskCommand.MESSAGE_DUPLICATE_TASK;
 import static trackr.logic.commands.EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalAddressBook;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;

@@ -2,7 +2,7 @@ package trackr.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalAddressBook;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.nio.file.Path;

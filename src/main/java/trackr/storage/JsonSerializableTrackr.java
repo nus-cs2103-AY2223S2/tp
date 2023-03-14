@@ -45,7 +45,11 @@ class JsonSerializableTrackr {
      * @param sourceTask future changes to this will not affect the created {@code JsonSerializableTrackr}.
      */
     public JsonSerializableTrackr(ReadOnlyAddressBook sourcePerson, ReadOnlyTaskList sourceTask) {
-        persons.addAll(sourcePerson.getSupplierList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(sourcePerson
+            .getSupplierList()
+            .stream()
+            .map(JsonAdaptedPerson::new)
+            .collect(Collectors.toList()));
         tasks.addAll(sourceTask.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 

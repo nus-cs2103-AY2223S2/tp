@@ -26,8 +26,8 @@ import static trackr.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static trackr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static trackr.testutil.TypicalPersons.AMY;
-import static trackr.testutil.TypicalPersons.BOB;
+import static trackr.testutil.TypicalSuppliers.AMY;
+import static trackr.testutil.TypicalSuppliers.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,14 +38,14 @@ import trackr.model.supplier.Name;
 import trackr.model.supplier.Phone;
 import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
-import trackr.testutil.PersonBuilder;
+import trackr.testutil.SupplierBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Supplier expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Supplier expectedPerson = new SupplierBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -68,7 +68,7 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Supplier expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Supplier expectedPersonMultipleTags = new SupplierBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
@@ -77,7 +77,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Supplier expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Supplier expectedPerson = new SupplierBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedPerson));
     }

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static trackr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalPersons.ALICE;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.ALICE;
+import static trackr.testutil.TypicalSuppliers.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import trackr.model.supplier.Supplier;
 import trackr.model.supplier.exceptions.DuplicateSupplierException;
-import trackr.testutil.PersonBuilder;
+import trackr.testutil.SupplierBuilder;
 
 public class AddressBookTest {
 
@@ -28,7 +28,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getSupplierList());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Supplier editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Supplier editedAlice = new SupplierBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Supplier> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
@@ -56,31 +56,31 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasSupplier(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasSupplier(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        addressBook.addSupplier(ALICE);
+        assertTrue(addressBook.hasSupplier(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Supplier editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        addressBook.addSupplier(ALICE);
+        Supplier editedAlice = new SupplierBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasSupplier(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getSupplierList().remove(0));
     }
 
     /**
@@ -94,7 +94,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Supplier> getPersonList() {
+        public ObservableList<Supplier> getSupplierList() {
             return persons;
         }
     }

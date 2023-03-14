@@ -28,8 +28,8 @@ import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.testutil.EditPersonDescriptorBuilder;
-import trackr.testutil.PersonBuilder;
-import trackr.testutil.PersonUtil;
+import trackr.testutil.SupplierBuilder;
+import trackr.testutil.SupplierUtil;
 import trackr.testutil.TaskBuilder;
 import trackr.testutil.TaskUtil;
 
@@ -39,8 +39,8 @@ public class TrackrParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Supplier person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        Supplier person = new SupplierBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(SupplierUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
 
@@ -75,10 +75,10 @@ public class TrackrParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Supplier person = new PersonBuilder().build();
+        Supplier person = new SupplierBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + SupplierUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

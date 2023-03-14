@@ -1,12 +1,10 @@
-package trackr.model.person;
+package trackr.model.supplier;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import trackr.model.supplier.Name;
 
 public class NameTest {
 

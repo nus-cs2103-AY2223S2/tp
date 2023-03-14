@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.testutil.TypicalPersons.CARL;
-import static trackr.testutil.TypicalPersons.ELLE;
-import static trackr.testutil.TypicalPersons.FIONA;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.CARL;
+import static trackr.testutil.TypicalSuppliers.ELLE;
+import static trackr.testutil.TypicalSuppliers.FIONA;
+import static trackr.testutil.TypicalSuppliers.getTypicalAddressBook;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.util.Arrays;
@@ -60,9 +60,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredSupplierList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredSupplierList());
     }
 
     @Test
@@ -70,9 +70,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredSupplierList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredSupplierList());
     }
 
     /**

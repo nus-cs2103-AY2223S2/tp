@@ -16,7 +16,7 @@ import trackr.model.tag.Tag;
 /**
  * A utility class for Person.
  */
-public class PersonUtil {
+public class SupplierUtil {
 
     /**
      * Returns an add command string for adding the {@code person}.

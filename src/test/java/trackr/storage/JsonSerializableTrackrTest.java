@@ -12,7 +12,7 @@ import trackr.commons.exceptions.IllegalValueException;
 import trackr.commons.util.JsonUtil;
 import trackr.model.AddressBook;
 import trackr.model.TaskList;
-import trackr.testutil.TypicalPersons;
+import trackr.testutil.TypicalSuppliers;
 import trackr.testutil.TypicalTasks;
 
 public class JsonSerializableTrackrTest {
@@ -30,7 +30,7 @@ public class JsonSerializableTrackrTest {
         JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableTrackr.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        AddressBook typicalPersonsAddressBook = TypicalSuppliers.getTypicalAddressBook();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

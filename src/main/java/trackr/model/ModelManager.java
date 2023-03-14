@@ -82,7 +82,7 @@ public class ModelManager implements Model {
         userPrefs.setTrackrFilePath(trackrFilePath);
     }
 
-    //=========== AddressBook - Supplier ================================================================================
+    //=========== AddressBook - Supplier ==============================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {

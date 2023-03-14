@@ -3,7 +3,7 @@ package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalAddressBook;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.BeforeEach;
