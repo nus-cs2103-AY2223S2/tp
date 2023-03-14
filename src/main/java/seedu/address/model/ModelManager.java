@@ -14,10 +14,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.service.Part;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -34,6 +36,8 @@ public class ModelManager implements Model {
     private final FilteredList<Vehicle> filteredVehicles;
     private final FilteredList<Part> filteredParts;
     private final FilteredList<Appointment> filteredAppointment;
+
+    private final Shop shop;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -53,6 +57,7 @@ public class ModelManager implements Model {
         filteredVehicles = new FilteredList<>(this.addressBook.getVehicleList());
         filteredParts = null; // new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = null; // new FilteredList<>(this.addressBook.getPersonList());
+        this.shop = null; //TODO
     }
 
     public ModelManager() {
@@ -106,14 +111,12 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-    // PERSONS
+    // ==== For persons ===
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
-
-    // ==== For persons ===
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
@@ -132,7 +135,11 @@ public class ModelManager implements Model {
     }
 
     // ==== For Customers ==
-
+    @Override
+    public boolean hasCustomer(Customer person) {
+        requireNonNull(person);
+        return addressBook.hasCustomer(person);
+    }
     @Override
     public void deleteCustomer(Customer target) {
         addressBook.removeCustomer(target);

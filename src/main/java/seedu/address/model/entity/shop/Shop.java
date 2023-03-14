@@ -36,7 +36,6 @@ public abstract class Shop implements ReadOnlyShop {
     private final PartMap partMap;
 
 
-
     /**
      * Constructor for class Shop.
      */
@@ -64,6 +63,7 @@ public abstract class Shop implements ReadOnlyShop {
     public ObservableList<Vehicle> getVehicleList() {
         return this.vehicles.asUnmodifiableObservableList();
     }
+
     @Override
     public ObservableList<Technician> getTechnicianList() {
         return this.technicians.asUnmodifiableObservableList();
@@ -104,6 +104,16 @@ public abstract class Shop implements ReadOnlyShop {
     }
 
     /**
+     * Checks if customer is registered
+     *
+     * @param customerId Customer ID to check
+     */
+    public boolean hasCustomer(int customerId) {
+        return this.getCustomerList().stream()
+                .anyMatch(c -> c.getId() == customerId);
+    }
+
+    /**
      * Adds vehicle to the shop
      *
      * @param customerId Id of vehicle's owner
@@ -122,6 +132,16 @@ public abstract class Shop implements ReadOnlyShop {
     }
 
     /**
+     * Checks if vehicle is in the shop
+     *
+     * @param vehicleId Vehicle ID to check
+     */
+    public boolean hasVehicle(int vehicleId) {
+        return this.getVehicleList().stream()
+                .anyMatch(v -> v.getId() == vehicleId);
+    }
+
+    /**
      * Adds service to a vehicle
      *
      * @param vehicleId Id of vehicle
@@ -132,9 +152,21 @@ public abstract class Shop implements ReadOnlyShop {
         for (var vehicle : this.getVehicleList()) {
             if (vehicle.getId() == vehicleId) {
                 vehicle.addService(service);
+                this.services.add(service);
             }
         }
         throw new VehicleNotFoundException();
+    }
+
+    /**
+     * Checks if service already added
+     *
+     * @param serviceId Service ID to check
+     */
+    public boolean hasService(int serviceId) {
+        return this.getServiceList()
+                .stream()
+                .anyMatch(s -> s.getId() == serviceId);
     }
 
     /**
@@ -150,10 +182,19 @@ public abstract class Shop implements ReadOnlyShop {
      * Increases part stock
      *
      * @param partName Name of part
-     * @param amt Amount to increase by
+     * @param amt      Amount to increase by
      */
     public void addPartStock(String partName, int amt) throws PartNotFoundException {
         this.partMap.getPart(partName).increaseStock(amt);
+    }
+
+    /**
+     * Checks if part already in the system
+     *
+     * @param partName Name of part
+     */
+    public boolean hasPart(String partName) {
+        return this.partMap.contains(partName);
     }
 
     /**

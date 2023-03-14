@@ -89,6 +89,9 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    // ==== For Customers ==
+    boolean hasCustomer(Customer person);
+
     void deleteCustomer(Customer target);
 
     void addCustomer(Customer person);

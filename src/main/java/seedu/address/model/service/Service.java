@@ -14,6 +14,7 @@ import seedu.address.model.entity.person.Technician;
  */
 public class Service {
     private final int id;
+    private final int vehicleId;
     private final LocalDate entryDate;
     private List<Part> requiredParts;
     private final String description;
@@ -22,12 +23,13 @@ public class Service {
     private boolean isComplete = false;
 
     /**
-     *  This method is the constructor for a Service.
+     * This method is the constructor for a Service.
      *
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      */
-    public Service(int id, int estimatedDaysRequired, String description) {
+    public Service(int id, int vehicleId, int estimatedDaysRequired, String description) {
         this.id = id;
+        this.vehicleId = vehicleId;
         entryDate = LocalDate.now();
         this.description = description;
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
@@ -35,15 +37,17 @@ public class Service {
     }
 
     /**
-     *  This method is the constructor for a Service.
+     * This method is the constructor for a Service.
      *
-     * @param id The vehicle that requires servicing.
+     * @param id                    The ID of service.
+     * @param vehicleId             ID of vehicle that requires service
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
-     * @param assignedToIds The list of staffs ids that this service is assigned to.
+     * @param assignedToIds         The list of staffs ids that this service is assigned to.
      */
-    public Service(int id, int estimatedDaysRequired, Set<Integer> assignedToIds, String description) {
+    public Service(int id, int vehicleId, int estimatedDaysRequired, Set<Integer> assignedToIds, String description) {
         this.id = id;
         entryDate = LocalDate.now();
+        this.vehicleId = vehicleId;
         this.description = description;
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
         requiredParts = new ArrayList<Part>();
@@ -54,8 +58,8 @@ public class Service {
      * This method is the constructor for a Service.
      * By default, this method estimates the amount of time needed to be 7 whole days (not working days).
      */
-    public Service(int id) {
-        this(id, 7, "");
+    public Service(int id, int vehicleId) {
+        this(id, vehicleId, 7, "");
     }
 
     /**
@@ -65,6 +69,15 @@ public class Service {
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     * Get ID of vehicle that requires service
+     *
+     * @return Vehicle ID
+     */
+    public int getVehicleId() {
+        return this.vehicleId;
     }
 
     /**
@@ -124,6 +137,7 @@ public class Service {
      * This method returns the bill of this service.
      * Currently only returns the requiredParts cost. Assumes that only use one part.
      * Does not charge Technician cost etc.
+     *
      * @return The cost of this service.
      */
     public int bill() {
@@ -141,6 +155,7 @@ public class Service {
 
     /**
      * This method removes some parts that was added to this service.
+     *
      * @param parts The part to be removed.
      */
     public void removeParts(List<Part> parts) {
