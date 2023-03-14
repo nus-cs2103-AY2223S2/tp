@@ -3,9 +3,9 @@ package seedu.patientist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.patientist.logic.commands.exceptions.CommandException;
@@ -38,6 +38,11 @@ public class AddStaffCommand extends Command {
 
     private final Staff toAdd;
 
+    /**
+     * Creates an AddCommand to add the specified {@code Staff}
+     *
+     * @param staff The staff member to be created.
+     */
     public AddStaffCommand(Staff staff) {
         requireNonNull(staff);
         toAdd = staff;

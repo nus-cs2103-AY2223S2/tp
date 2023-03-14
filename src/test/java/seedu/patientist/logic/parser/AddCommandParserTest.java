@@ -40,6 +40,7 @@ import org.junit.jupiter.api.Test;
 import seedu.patientist.logic.commands.AddCommand;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
@@ -142,7 +143,7 @@ public class AddCommandParserTest {
 
         // invalid pid
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_PID_DESC + TAG_DESC_HUSBAND + VALID_TAG_FRIEND, PatientIdNumber.MESSAGE_CONSTRAINTS);
+                + INVALID_PID_DESC + TAG_DESC_HUSBAND + VALID_TAG_FRIEND, IdNumber.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC

@@ -14,6 +14,11 @@ public class IdNumber {
 
     protected final String idNumber;
 
+    /**
+     * Creates an idNumber.
+     *
+     * @param idNumber The idNumber in text form.
+     */
     public IdNumber(String idNumber) {
         requireNonNull(idNumber);
         checkArgument(isValidPid(idNumber), MESSAGE_CONSTRAINTS);

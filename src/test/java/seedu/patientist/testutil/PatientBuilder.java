@@ -36,7 +36,7 @@ public class PatientBuilder extends PersonBuilder {
      */
     public PatientBuilder(Patient patientToCopy) {
         name = patientToCopy.getName();
-        id = patientToCopy.getPatientIdNumber();
+        id = patientToCopy.getIdNumber();
         status = patientToCopy.getPatientStatusDetails();
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
