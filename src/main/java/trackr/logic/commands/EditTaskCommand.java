@@ -1,6 +1,7 @@
 package trackr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -49,8 +50,7 @@ public class EditTaskCommand extends Command {
      * @param editTaskDescriptor details to edit the task with
      */
     public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editTaskDescriptor);
+        requireAllNonNull(index, editTaskDescriptor);
 
         this.index = index;
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
