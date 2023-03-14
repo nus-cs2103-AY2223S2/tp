@@ -3,6 +3,8 @@ package seedu.task.model.calendar;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.task.model.task.Deadline;
 import seedu.task.model.task.DeadlineList;
@@ -171,5 +173,9 @@ public class MonthlyPlan {
             }
             return today.equals(mp.today);
         }
+    }
+
+    public List<DailyPlan> getDailyPlans() {
+        return Arrays.asList(this.dailyPlans);
     }
 }

@@ -48,6 +48,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveTaskBook(model.getTaskBook());
+            storage.savePlanner(model.getPlanner());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

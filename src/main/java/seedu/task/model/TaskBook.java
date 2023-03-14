@@ -98,8 +98,8 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.sort();
     }
 
-    public void plan(int workload) {
-        tasks.plan(workload);
+    public void plan(int workload, Planner plans) {
+        tasks.plan(workload, plans);
     }
 
     //// util methods

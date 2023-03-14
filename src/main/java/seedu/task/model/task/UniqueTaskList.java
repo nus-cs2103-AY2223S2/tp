@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.task.model.Planner;
 import seedu.task.model.calendar.MonthlyPlan;
 import seedu.task.model.task.exceptions.DuplicateTaskException;
 import seedu.task.model.task.exceptions.TaskNotFoundException;
@@ -118,7 +119,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Main algorithm that supports the planning function
      * @param workload amount of effort user wants to put in per day in the workplan.
      */
-    public void plan(int workload) {
+    public void plan(int workload, Planner planner) {
         LocalDate currentDate = java.time.LocalDate.now();
         SimpleTaskList simpleTasks = filterSimpleTasks(currentDate);
         EventList events = filterEvents(currentDate);
@@ -128,6 +129,8 @@ public class UniqueTaskList implements Iterable<Task> {
         plan.allocateEvents(events);
         plan.allocateDeadlines(deadlines);
         plan.allocateSimpleTasks(simpleTasks);
+
+        planner.setDailyPlans(plan.getDailyPlans());
     }
 
     @Override

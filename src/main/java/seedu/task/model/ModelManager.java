@@ -132,7 +132,7 @@ public class ModelManager implements Model {
 
     @Override
     public void plan(int workload) {
-        taskBook.plan(workload);
+        taskBook.plan(workload, planner);
     }
 
     //=========== Filtered Task List Accessors =============================================================
