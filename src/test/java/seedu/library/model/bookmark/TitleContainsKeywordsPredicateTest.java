@@ -11,21 +11,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.library.testutil.BookmarkBuilder;
 
-public class NameContainsKeywordsPredicateTest {
+public class TitleContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        List<String> firstKeywordList = Collections.singletonList("first");
+        List<String> secondKeywordList = Arrays.asList("first", "second");
 
-        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
+        TitleContainsKeywordsPredicate firstPredicate = new TitleContainsKeywordsPredicate(firstKeywordList);
+        TitleContainsKeywordsPredicate secondPredicate = new TitleContainsKeywordsPredicate(secondKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        TitleContainsKeywordsPredicate firstPredicateCopy = new TitleContainsKeywordsPredicate(firstKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,34 +41,36 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(
+                Collections.singletonList("Alice")
+        );
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
+        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice").withPhone("12345")
                 .withGenre("alice@email.com").withAuthor("Main Street").build()));
     }

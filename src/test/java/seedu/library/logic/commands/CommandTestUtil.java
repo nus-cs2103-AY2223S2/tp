@@ -18,7 +18,7 @@ import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Library;
 import seedu.library.model.Model;
 import seedu.library.model.bookmark.Bookmark;
-import seedu.library.model.bookmark.NameContainsKeywordsPredicate;
+import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
 import seedu.library.testutil.EditBookmarkDescriptorBuilder;
 
 /**
@@ -30,8 +30,8 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_GENRE_AMY = "amy@example.com";
-    public static final String VALID_GENRE_BOB = "bob@example.com";
+    public static final String VALID_GENRE_AMY = "Amy";
+    public static final String VALID_GENRE_BOB = "Bob";
     public static final String VALID_AUTHOR_AMY = "Block 312, Amy Street 1";
     public static final String VALID_AUTHOR_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -50,7 +50,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_GENRE_DESC = " " + PREFIX_GENRE + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_GENRE_DESC = " " + PREFIX_GENRE;
     public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -120,7 +120,7 @@ public class CommandTestUtil {
 
         Bookmark bookmark = model.getFilteredBookmarkList().get(targetIndex.getZeroBased());
         final String[] splitName = bookmark.getTitle().value.split("\\s+");
-        model.updateFilteredBookmarkList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredBookmarkList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredBookmarkList().size());
     }
