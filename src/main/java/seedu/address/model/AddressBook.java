@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.category.UniqueCategoryList;
+import seedu.address.model.expense.ExpenseList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -17,6 +19,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueCategoryList categories;
+    private final ExpenseList expenses;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,6 +31,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        categories = new UniqueCategoryList();
+        expenses = new ExpenseList();
     }
 
     public AddressBook() {}
@@ -49,13 +55,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setCategories(List<Category> categories) { this.categories.setCategoryList(categories); }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+//        setPersons(newData.getPersonList());
+        setCategories(newData.getCategoryList());
     }
 
     //// person-level operations
@@ -68,6 +77,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    public boolean hasCategory(Category category) {
+        requireNonNull(category);
+        return categories.contains(category);
+    }
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
@@ -75,6 +89,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addPerson(Person p) {
         persons.add(p);
     }
+
+    public void addCategory(Category toAdd) { categories.add(toAdd); }
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
@@ -95,6 +111,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void removeCategory(Category key) {
+        categories.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -106,6 +126,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Category> getCategoryList() {
+        return categories.asUnmodifiableList();
+    }
+
+    @Override
+    public ObservableList<Expense> getExpenseList() {
+        return expenses.asUnmodifiableList();
     }
 
     @Override
@@ -125,8 +155,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return true;
     }
 
-    // TODO merge with Shirsho's segment
     public void addExpense(Expense expense) {
-        return;
+        expenses.add(expense);
+    }
+
+    public void deleteExpense(Expense expense) {
+        expenses.remove(expense);
     }
 }

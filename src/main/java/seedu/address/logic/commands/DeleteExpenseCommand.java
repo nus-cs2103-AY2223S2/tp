@@ -43,8 +43,7 @@ public class DeleteExpenseCommand extends Command {
         }
 
         Expense expense = lastShownList.get(targetIndex.getZeroBased());
-//        TODO implement delete expense
-//        model.deleteExpense(expense);
+        model.deleteExpense(expense);
         return new CommandResult(String.format(MESSAGE_DELETE_EXPENSE_SUCCESS, expense));
     }
 

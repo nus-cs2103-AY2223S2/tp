@@ -69,6 +69,7 @@ public class Expense {
         return name.matches(VALIDATION_REGEX);
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
