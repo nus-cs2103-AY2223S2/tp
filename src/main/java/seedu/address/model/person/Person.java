@@ -2,10 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.model.tag.Tag;
 
@@ -17,7 +14,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Optional<Phone> phone;
     private final Email email;
 
     // Data fields
@@ -28,9 +25,9 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+//        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.phone = Optional.ofNullable(phone);
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -41,7 +38,7 @@ public class Person {
     }
 
     public Phone getPhone() {
-        return phone;
+        return phone.orElse(null);
     }
 
     public Email getEmail() {
