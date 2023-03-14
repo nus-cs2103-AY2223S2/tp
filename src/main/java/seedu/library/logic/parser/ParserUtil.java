@@ -51,7 +51,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String progress} into a {@code Progess}.
+     * Parses a {@code String progress} into a {@code Progress}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code progress} is invalid.
