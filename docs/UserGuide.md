@@ -48,12 +48,10 @@ record-keeping and hello to a more efficient and organised way of managing the v
 * Delete personnel
     * Delete elderly
     * Delete volunteer
+* Find personnel using NRIC
 * Add pairing of elderly and volunteer
 * Delete pairing of elderly and volunteer
 * View pairing list of elderly and volunteer
-* View personnel list
-    * View volunteer list
-    * View elderly list
 
 <div markdown="block" class="alert alert-info">
 
@@ -75,7 +73,7 @@ record-keeping and hello to a more efficient and organised way of managing the v
 * If a parameter is expected only once in the command and is specified multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -95,8 +93,9 @@ Format: `help`
 Adds an elderly to FriendlyLink.
 
 Format: `add_elderly n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS enr/NRIC ag/AGE r/RISK [t/TAG]…​`
-* Every elderly must have a unique `NRIC`
-* The `RISK` can only takes 3 values: `LOW`, `MEDIUM` or `HIGH`
+* Every elderly must have a unique `NRIC`.
+* Alphabets in `NRIC` are case-insensitive.
+* The `RISK` can only takes 3 values: `LOW`, `MEDIUM` or `HIGH`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An elderly can have any number of tags (including 0)
@@ -106,17 +105,13 @@ Examples:
 * `add_elderly n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 enr/S1234567C ag/68 r/HIGH`
 * `add_elderly n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 enr/T1234567D ag/75 r/LOW t/lonely`
 
-### Listing all elderly members : `list_elderly`
-
-Shows a list of all elderly members in FriendlyLink.
-
-
 ### Adding a volunteer: `add_volunteer`
 
-Adds a volunteer to the address book.
+Adds a volunteer to FriendlyLink.
 
 Format: `add_volunteer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE vnr/NRIC [t/TAG]…​`
-* Every volunteer must have a unique `NRIC`
+* Every volunteer must have a unique `NRIC`.
+* Alphabets in `NRIC` are case-insensitive.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A volunteer can have any number of tags (including 0)
@@ -125,12 +120,6 @@ A volunteer can have any number of tags (including 0)
 Examples:
 * `add_volunteer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ag/23 vnr/S8457677H`
 * `add_volunteer n/Betsy Crowe t/graduate e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/27 vnr/S8959886I t/experienced`
-
-### Listing all persons : `list_volunteer`
-
-Shows a list of all volunteers in the application.
-
-Format: `list_volunteer`
 
 [//]: # (### Editing a person : `edit`)
 
@@ -160,46 +149,37 @@ Format: `list_volunteer`
 
 [//]: # (*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.)
 
-### Locating persons by name: `find`
+### Locating persons by NRIC: `find_nric`
 
-Finds persons whose names contain any of the given keywords.
+Finds any elderly or volunteers with the specified NRIC.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find_nric NRIC`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. e.g. `t1234567i` will match `T1234567I`.
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting an elderly : `delete_elderly`
 
 Deletes the specified elderly from FriendlyLink.
 
-Format: `delete enr/NRIC`
+Format: `delete_elderly NRIC`
 
-* Deletes the elderly with the specific NRIC `NRIC`.
+* Deletes the elderly with the specified NRIC `NRIC`.
 
 Examples:
-* `delete_elderly enr/S8238657A` deletes the elderly with NRIC `S8238657A`
+* `delete_elderly S8238657A` deletes the elderly with NRIC `S8238657A`.
 
 
 ### Deleting a volunteer : `delete_volunteer`
 
-Deletes the specified volunteer from the address book.
+Deletes the specified volunteer from FriendlyLink.
 
-Format: `delete vnr/NRIC`
+Format: `delete_volunteer NRIC`
 
-* Deletes the volunteer with NRIC `NRIC`
+* Deletes the volunteer with the specified NRIC `NRIC`.
 
 Examples:
-* `delete_volunteer vnr/S8238658J` deletes the volunteer with NRIC `S8238658J`
+* `delete_volunteer S8238658J` deletes the volunteer with NRIC `S8238658J`.
 
 
 ### Pair volunteer and elderly: `add_pair`
@@ -221,7 +201,7 @@ Examples:
 
 ### Unpair volunteer and elderly: `delete_pair`
 
-Unpairs an elderly from its assigned volunteer
+Unpairs an elderly from its assigned volunteer.
 
 This deletes the pair while still keeping the information of the elderly member and volunteer.
 
@@ -233,12 +213,6 @@ Format `delete_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`
 Examples
 * `delete_pair enr/S2235243I vnr/t0123423a` unpairs the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
 * `delete_pair enr/s1135243A vnr/S0773423a` unpairs the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
-
-### Clearing all entries : `clear`
-
-Clears all data from FriendlyLink.
-
-Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -269,16 +243,13 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 | Action               | Format, Examples                                                                                                                                                                                              |
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                          |
 | **Add Elderly**      | `add_elderly n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS enr/NRIC ag/AGE r/RISK [t/TAG]…` <br> e.g.,`add_elderly n/John Doe p/98765432 e/johnd@example.com a/John St, blk 123, #01-01 enr/S1234567C ag/68 r/HIGH` |
 | **Add Volunteer**    | `add_volunteer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE vnr/NRIC [t/TAG]…` <br> e.g.,`add_volunteer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ag/23 vnr/S8457677H`     |
 | **Add Pair**         | `add_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`<br> e.g., `add_pair enr/S2235243I vnr/t0123423a`                                                                                                               |
-| **Clear**            | `clear`                                                                                                                                                                                                       |
-| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                           |
-| **Delete Elderly**   | `delete_elderly enr/NRIC`<br> e.g., `delete_elderly vnr/S8238655C`                                                                                                                                            |
-| **Delete Volunteer** | `delete_volunteer vnr/NRIC`<br> e.g., `delete_volunteer vnr/S8238658J`                                                                                                                                        |
+| **Delete Elderly**   | `delete_elderly NRIC`<br> e.g., `delete_elderly S8238655C`                                                                                                                                                    |
+| **Delete Volunteer** | `delete_volunteer NRIC`<br> e.g., `delete_volunteer S8238658J`                                                                                                                                                |
 | **Delete Pair**      | `delete_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`<br> e.g., `delete_pair vnr/t0123423a enr/S2235243I`                                                                                                         |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                    |
-| **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                    |
-| **List**             | `list`                                                                                                                                                                                                        |
+| **Find by NRIC**     | `find_nric NRIC`<br> e.g., `find_nric T1234567I`                                                                                                                                                              |
 | **Help**             | `help`                                                                                                                                                                                                        |
+
+[//]: # (| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                    |)
