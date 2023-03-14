@@ -61,15 +61,15 @@ public class Event {
         if (other == this) {
             return true;
         }
-
+    
         if (!(other instanceof Event)) {
             return false;
         }
-
+    
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
-            && otherEvent.getParsedStartTime().equals(getParsedStartTime())
-            && otherEvent.getParsedEndTime().equals(getParsedEndTime());
+                && otherEvent.getParsedStartTime().equals(getParsedStartTime())
+                && otherEvent.getParsedEndTime().equals(getParsedEndTime());
     }
     
     @Override
@@ -84,5 +84,4 @@ public class Event {
                 .append(getParsedEndTime());
         return sb.toString();
     }
-    
 }
