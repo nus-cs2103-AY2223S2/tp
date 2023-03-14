@@ -67,7 +67,7 @@ public class Tutor implements ReadOnlyAddressBook {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getClassTags().equals(getTags());
     }
 
     @Override

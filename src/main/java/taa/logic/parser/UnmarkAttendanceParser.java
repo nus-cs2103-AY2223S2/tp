@@ -2,7 +2,7 @@ package taa.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
-import static taa.logic.parser.CliSyntax.PREFIX_TAG;
+import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
 import taa.commons.core.Messages;
@@ -20,7 +20,7 @@ public class UnmarkAttendanceParser implements Parser<UnmarkAttendanceCommand> {
     public UnmarkAttendanceCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_TAG, PREFIX_WEEK);
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_CLASS_TAG, PREFIX_WEEK);
 
         Index index;
         int week = -1;

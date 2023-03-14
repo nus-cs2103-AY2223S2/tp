@@ -39,8 +39,6 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label groups;
     @FXML
-    private Label classes;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -54,10 +52,9 @@ public class StudentCard extends UiPart<Region> {
         attendance.setText(String.format("Attendance: %d/12", this.student.getNumWeeksPresent()));
         assignment.setText("Latest assignment submission: xxx");
         groups.setText("Groups: Group xxx");
-        classes.setText("Classes: Class xxx");
-        student.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        student.getClassTags().stream()
+                .sorted(Comparator.comparing(classTag -> classTag.tagName))
+                .forEach(classTag -> tags.getChildren().add(new Label(classTag.tagName)));
     }
 
     @Override
