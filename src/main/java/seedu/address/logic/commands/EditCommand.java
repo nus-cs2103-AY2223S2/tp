@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,13 +19,13 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Department;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.EmployeeId;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.Department;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -70,28 +70,28 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Person> lastShownList = model.getFilteredPersonList();
+        ObservableList<Employee> lastShownList = model.getFilteredEmployeeList();
 
         if (!EmployeeId.isValidNumber(employeeId.toString())) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
 
-        List<Person> filteredList = lastShownList.filtered(employee -> employee.getEmployeeId().equals(employeeId));
+        List<Employee> filteredList = lastShownList.filtered(employee -> employee.getEmployeeId().equals(employeeId));
 
         if (filteredList.size() != 1) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = filteredList.get(0);
+        Employee personToEdit = filteredList.get(0);
 
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Employee editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!personToEdit.isSameEmployee(editedPerson) && model.hasEmployee(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setEmployee(personToEdit, editedPerson);
+        model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -99,7 +99,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Employee createEditedPerson(Employee personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -110,7 +110,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         EmployeeId employeeId = personToEdit.getEmployeeId();
-        return new Person(updatedName, employeeId, updatedPhone, updatedEmail, updatedAddress,
+        return new Employee(updatedName, employeeId, updatedPhone, updatedEmail, updatedAddress,
                 updatedDepartment, updatedTags);
     }
 
@@ -163,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, department, tags);
         }
 
         public void setName(Name name) {

@@ -9,28 +9,27 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
-
+import seedu.address.model.employee.Employee;
 
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of employees.
  */
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Employee> personListView;
     @FXML
     private Label nameCard;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Employee> employeeList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(employeeList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
         nameCard.setText("Welcome to ExecutivePro v1.2");
 
@@ -39,16 +38,16 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<Employee> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Employee employee, boolean empty) {
+            super.updateItem(employee, empty);
 
-            if (empty || person == null) {
+            if (empty || employee == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(employee, getIndex() + 1).getRoot());
             }
         }
     }

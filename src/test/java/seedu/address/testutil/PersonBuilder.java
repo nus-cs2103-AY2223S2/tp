@@ -3,13 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Department;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.EmployeeId;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.Department;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -48,14 +48,14 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        employeeId = personToCopy.getEmployeeId();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        department = personToCopy.getDepartment();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PersonBuilder(Employee employeeToCopy) {
+        name = employeeToCopy.getName();
+        employeeId = employeeToCopy.getEmployeeId();
+        phone = employeeToCopy.getPhone();
+        email = employeeToCopy.getEmail();
+        address = employeeToCopy.getAddress();
+        department = employeeToCopy.getDepartment();
+        tags = new HashSet<>(employeeToCopy.getTags());
     }
 
     public static void setEmployeeId(String id) {
@@ -119,8 +119,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, employeeId, phone, email, address, department, tags);
+    public Employee build() {
+        return new Employee(name, employeeId, phone, email, address, department, tags);
     }
 
 }
