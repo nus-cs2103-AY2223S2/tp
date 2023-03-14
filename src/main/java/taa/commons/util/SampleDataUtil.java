@@ -20,17 +20,17 @@ public class SampleDataUtil {
     public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"),
-                getTagSet("friends")),
+                getTagSet("Tutorial_T01")),
             new Student(new Name("Bernice Yu"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("Tutorial_T01", "Lab_L01")),
             new Student(new Name("Charlotte Oliveiro"),
-                getTagSet("neighbours")),
+                getTagSet("Tutorial_T02")),
             new Student(new Name("David Li"),
-                getTagSet("family")),
+                getTagSet("Lab_L02")),
             new Student(new Name("Irfan Ibrahim"),
-                getTagSet("classmates")),
+                getTagSet("Recitation_R03")),
             new Student(new Name("Roy Balakrishnan"),
-                getTagSet("colleagues"))
+                getTagSet("Lab_L12"))
         };
     }
 

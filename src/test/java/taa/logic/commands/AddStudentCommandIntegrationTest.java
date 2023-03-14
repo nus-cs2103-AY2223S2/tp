@@ -11,9 +11,9 @@ import taa.testutil.PersonBuilder;
 import taa.testutil.TypicalPersons;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddStudentCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddStudentCommandIntegrationTest {
 
     private Model model;
 
@@ -29,15 +29,15 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addStudent(validStudent);
 
-        CommandTestUtil.assertCommandSuccess(new AddCommand(validStudent), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
+        CommandTestUtil.assertCommandSuccess(new AddStudentCommand(validStudent), model,
+                String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Student studentInList = model.getAddressBook().getStudentList().get(0);
         CommandTestUtil.assertCommandFailure(
-                new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_STUDENT);
+                new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
 }

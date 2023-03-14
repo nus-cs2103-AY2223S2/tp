@@ -108,6 +108,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateStudent(Student target) {
+        classList.updateStudent(target);
+    }
+
+    @Override
     public void setStudent(Student target, Student editedStudent) {
         CollectionUtil.requireAllNonNull(target, editedStudent);
 

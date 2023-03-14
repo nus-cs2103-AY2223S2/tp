@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import taa.commons.core.Messages;
-import taa.logic.commands.AddCommand;
+import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.CommandResult;
 import taa.logic.commands.CommandTestUtil;
 import taa.logic.commands.ListCommand;
@@ -54,7 +54,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "delete_student 9";
         assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
@@ -75,7 +75,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY;
+        String addCommand = AddStudentCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY;
         Student expectedStudent = new PersonBuilder(TypicalPersons.AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);

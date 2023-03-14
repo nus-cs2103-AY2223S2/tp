@@ -1,6 +1,7 @@
 package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
 import java.util.List;
 
@@ -17,7 +18,12 @@ import taa.model.student.Student;
 public class UnmarkAttendanceCommand extends Command {
     public static final String COMMAND_WORD = "unmarkAtd";
     public static final String SUCCESS_MSG = "Attendance unmarked successfully!";
-    public static final String MESSAGE_DUPLICATE_MARKING = "This student's attendance has already been marked.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Unmarks the attendance of the student identified\n"
+            + "by the index number used in the displayed student list.\n"
+            + "Parameters: INDEX (must be a positive integer), "
+            + "[" + PREFIX_WEEK + "WeekToMark] \n"
+            + "Example: " + COMMAND_WORD + " 1 w/1 ";
     private final Index index;
     private final Index week;
 
@@ -52,6 +58,7 @@ public class UnmarkAttendanceCommand extends Command {
 
         studentAtd.unmarkAttendance(this.week.getZeroBased());
 
+        model.updateStudent(studentToEdit);
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(SUCCESS_MSG);
     }

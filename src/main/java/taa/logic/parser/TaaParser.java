@@ -4,11 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import taa.commons.core.Messages;
-import taa.logic.commands.AddCommand;
+import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.ClearCommand;
 import taa.logic.commands.Command;
-import taa.logic.commands.DeleteCommand;
-import taa.logic.commands.EditCommand;
+import taa.logic.commands.DeleteStudentCommand;
+import taa.logic.commands.EditStudentCommand;
 import taa.logic.commands.ExitCommand;
 import taa.logic.commands.FindCommand;
 import taa.logic.commands.HelpCommand;
@@ -22,7 +22,7 @@ import taa.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TaaParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -55,14 +55,14 @@ public class AddressBookParser {
         case UnmarkAttendanceCommand.COMMAND_WORD:
             return new UnmarkAttendanceParser().parse(arguments);
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddStudentCommand.COMMAND_WORD:
+            return new AddStudentCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditStudentCommand.COMMAND_WORD:
+            return new EditStudentCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteStudentCommand.COMMAND_WORD:
+            return new DeleteStudentCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

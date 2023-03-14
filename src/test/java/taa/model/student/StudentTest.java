@@ -15,7 +15,7 @@ public class StudentTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Student student = new PersonBuilder().build();
-        Assert.assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
+        Assert.assertThrows(UnsupportedOperationException.class, () -> student.getClassTags().remove(0));
     }
 
     @Test

@@ -10,7 +10,7 @@ import taa.commons.core.LogsCenter;
 import taa.logic.commands.Command;
 import taa.logic.commands.CommandResult;
 import taa.logic.commands.exceptions.CommandException;
-import taa.logic.parser.AddressBookParser;
+import taa.logic.parser.TaaParser;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
 import taa.model.ReadOnlyAddressBook;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final TaaParser taaParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        taaParser = new TaaParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = taaParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

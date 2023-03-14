@@ -1,8 +1,8 @@
 package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
-import static taa.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -23,16 +23,16 @@ import taa.model.tag.Tag;
 /**
  * Edits the details of an existing student in the address book.
  */
-public class EditCommand extends Command {
+public class EditStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit_student";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_CLASS_TAG + "CLASS_NAME]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
@@ -46,7 +46,7 @@ public class EditCommand extends Command {
      * @param index of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
-    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+    public EditStudentCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 
@@ -83,9 +83,9 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Set<Tag> updatedClassTags = editStudentDescriptor.getTags().orElse(studentToEdit.getClassTags());
 
-        return new Student(updatedName, updatedTags);
+        return new Student(updatedName, updatedClassTags);
     }
 
     @Override
@@ -96,12 +96,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditStudentCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditStudentCommand e = (EditStudentCommand) other;
         return index.equals(e.index)
                 && editStudentDescriptor.equals(e.editStudentDescriptor);
     }

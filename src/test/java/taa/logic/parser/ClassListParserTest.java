@@ -10,10 +10,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import taa.commons.core.Messages;
-import taa.logic.commands.AddCommand;
+import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.ClearCommand;
-import taa.logic.commands.DeleteCommand;
-import taa.logic.commands.EditCommand;
+import taa.logic.commands.DeleteStudentCommand;
+import taa.logic.commands.EditStudentCommand;
 import taa.logic.commands.ExitCommand;
 import taa.logic.commands.FindCommand;
 import taa.logic.commands.HelpCommand;
@@ -29,13 +29,13 @@ import taa.testutil.TypicalIndexes;
 
 public class ClassListParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TaaParser parser = new TaaParser();
 
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
-        assertEquals(new AddCommand(student), command);
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
+        assertEquals(new AddStudentCommand(student), command);
     }
 
     @Test
@@ -46,19 +46,19 @@ public class ClassListParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+        DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
+                DeleteStudentCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteStudentCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Student student = new PersonBuilder().build();
-        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditStudentCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
+        EditStudentCommand command = (EditStudentCommand) parser.parseCommand(EditStudentCommand.COMMAND_WORD + " "
                 + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased()
                 + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditStudentCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test

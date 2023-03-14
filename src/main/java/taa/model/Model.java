@@ -70,6 +70,12 @@ public interface Model {
     void addStudent(Student student);
 
     /**
+     * Updates the student list to propagate change to the rest of the model.
+     * @param student The student to be refreshed.
+     */
+    void updateStudent(Student student);
+
+    /**
      * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in the address book.
      * The student identity of {@code editedStudent} must not be the same as

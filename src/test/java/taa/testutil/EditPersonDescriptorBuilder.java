@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import taa.logic.commands.EditCommand;
+import taa.logic.commands.EditStudentCommand;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -14,23 +14,23 @@ import taa.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditCommand.EditStudentDescriptor descriptor;
+    private EditStudentCommand.EditStudentDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditCommand.EditStudentDescriptor();
+        descriptor = new EditStudentCommand.EditStudentDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditStudentDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditStudentDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditStudentCommand.EditStudentDescriptor descriptor) {
+        this.descriptor = new EditStudentCommand.EditStudentDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditStudentDescriptor} with fields containing {@code student}'s details
      */
     public EditPersonDescriptorBuilder(Student student) {
-        descriptor = new EditCommand.EditStudentDescriptor();
+        descriptor = new EditStudentCommand.EditStudentDescriptor();
         descriptor.setName(student.getName());
-        descriptor.setTags(student.getTags());
+        descriptor.setTags(student.getClassTags());
     }
 
     /**
@@ -51,7 +51,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditStudentDescriptor build() {
+    public EditStudentCommand.EditStudentDescriptor build() {
         return descriptor;
     }
 }
