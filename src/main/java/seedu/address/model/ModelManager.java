@@ -161,9 +161,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredDoctorList(Predicate<? extends Person> predicate) {
+    public void updateFilteredDoctorList(Predicate<Doctor> predicate) {
         requireNonNull(predicate);
-        filteredDoctors.setPredicate((Predicate<? super Doctor>) predicate);
+        filteredDoctors.setPredicate(predicate);
     }
 
     @Override

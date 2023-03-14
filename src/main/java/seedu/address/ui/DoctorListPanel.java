@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -20,13 +21,52 @@ public class DoctorListPanel extends UiPart<Region> {
     @FXML
     private ListView<Doctor> doctorListView;
 
+    private Doctor selectedDoctor;
+
     /**
      * Creates a {@code DoctorListPanel} with the given {@code ObservableList}.
      */
-    public DoctorListPanel(ObservableList<Doctor> doctorList) {
+    public DoctorListPanel(ObservableList<Doctor> doctorList, EnlargedContactCard enlargedContactCard) {
         super(FXML);
         doctorListView.setItems(doctorList);
         doctorListView.setCellFactory(listView -> new DoctorListViewCell());
+        setSelectedDoctor(doctorList);
+        showSelectedDoctorInfo(enlargedContactCard);
+    }
+
+    /**
+     * Returns the {@code Doctor} selected by the user.
+     *
+     * @return doctor selected by user
+     */
+    public Doctor getSelectedDoctor() {
+        return this.selectedDoctor;
+    }
+
+    /**
+     * Sets the {@code Doctor} selected by the user.
+     *
+     * @param doctorList list of {@code Doctor} objects queried by the user
+     */
+    private void setSelectedDoctor(ObservableList<Doctor> doctorList) {
+        selectedDoctor = null;
+        if (!doctorList.isEmpty()) {
+            selectedDoctor = doctorList.get(0);
+        }
+    }
+
+    /**
+     * Prompts {@code EnlargedContactCard} to display the information of the {@code Doctor} selected by the user.
+     * This is done by configuring a {@code ChangeListener} to listen to user selection.
+     *
+     * @param enlargedContactCard the UI part displaying the information of {@code Doctor} selected
+     */
+    private void showSelectedDoctorInfo(EnlargedContactCard enlargedContactCard) {
+        ChangeListener<Doctor> changeListener = (observable, oldValue, newValue) -> {
+            selectedDoctor = observable.getValue();
+            enlargedContactCard.updateSelectedDoctor(selectedDoctor);
+        };
+        doctorListView.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }
 
     /**
