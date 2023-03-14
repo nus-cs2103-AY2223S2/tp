@@ -9,7 +9,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Exam;
-import seedu.address.model.student.Homework;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
@@ -41,8 +40,8 @@ public class CreateExamCommand extends Command {
     /**
      * Creates a CreateExamCommand to add the specified exam to the specified student.
      */
-    public CreateExamCommand(NameContainsKeywordsPredicate predicate, String examDescription, LocalDateTime startTime
-            , LocalDateTime endTime) {
+    public CreateExamCommand(NameContainsKeywordsPredicate predicate, String examDescription, LocalDateTime startTime,
+            LocalDateTime endTime) {
         requireNonNull(predicate);
         requireNonNull(examDescription);
         requireNonNull(startTime);
