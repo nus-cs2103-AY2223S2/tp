@@ -1,59 +1,77 @@
 package seedu.address.model.entity.shop;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.address.model.Vehicle;
-import seedu.address.model.entity.Entity;
+import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.entity.person.Customer;
+import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.person.UniqueCustomerList;
+import seedu.address.model.entity.person.UniqueTechnicianList;
 import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
-import seedu.address.model.exception.VehicleNotFoundException;
 import seedu.address.model.service.Part;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
+import seedu.address.model.service.ServiceList;
+import seedu.address.model.service.UniqueVehicleList;
+import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.service.exception.PartNotFoundException;
+import seedu.address.model.service.exception.VehicleNotFoundException;
 
 /**
  * A Shop is an entity that usually buy sells things.
  */
-public abstract class Shop extends Entity {
-    private final List<Customer> customers;
+public abstract class Shop implements ReadOnlyShop {
+    private final UniqueCustomerList customers = new UniqueCustomerList();
+    private final UniqueVehicleList vehicles = new UniqueVehicleList();
+    private final UniqueTechnicianList technicians = new UniqueTechnicianList();
+    private final ServiceList services = new ServiceList();
+
+    //TODO: Implement immutable list for appointments
     private final List<Appointment> appointments;
-    private final List<Vehicle> vehicles;
     private final PartMap partMap;
+
+
 
     /**
      * Constructor for class Shop.
      */
     public Shop() {
-        this.customers = new ArrayList<>();
         this.appointments = new ArrayList<>();
-        this.vehicles = new ArrayList<>();
         this.partMap = new PartMap();
     }
 
     /**
-     * Adds customer to the shop
-     *
-     * @param customer Customer to be added
+     * Creates a Shop using the data in the {@code toBeCopied}
      */
-    public void addCustomer(Customer customer) {
-        this.customers.add(customer);
+    public Shop(ReadOnlyShop toBeCopied) {
+        this();
+        resetData(toBeCopied);
     }
 
-    /**
-     * @return List of customers registered with the shop
-     */
-    public List<Customer> getCustomers() {
-        return this.customers;
+    //// Get operations
+
+    @Override
+    public ObservableList<Customer> getCustomerList() {
+        return this.customers.asUnmodifiableObservableList();
     }
 
-    /**
-     * @return List of vehicles in the shop
-     */
-    public List<Vehicle> getVehicles() {
-        return this.vehicles;
+    @Override
+    public ObservableList<Vehicle> getVehicleList() {
+        return this.vehicles.asUnmodifiableObservableList();
+    }
+    @Override
+    public ObservableList<Technician> getTechnicianList() {
+        return this.technicians.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Service> getServiceList() {
+        return this.services.asUnmodifiableObservableList();
     }
 
     /**
@@ -74,6 +92,17 @@ public abstract class Shop extends Entity {
         return this.appointments;
     }
 
+    //// Add operations
+
+    /**
+     * Adds customer to the shop
+     *
+     * @param customer Customer to be added
+     */
+    public void addCustomer(Customer customer) {
+        this.customers.add(customer);
+    }
+
     /**
      * Adds vehicle to the shop
      *
@@ -85,7 +114,7 @@ public abstract class Shop extends Entity {
         for (var customer : customers) {
             if (customer.getId() == customerId) {
                 customer.addVehicle(vehicle);
-                this.getVehicles().add(vehicle);
+                this.getVehicleList().add(vehicle);
                 return;
             }
         }
@@ -100,7 +129,7 @@ public abstract class Shop extends Entity {
      * @throws VehicleNotFoundException if customer does not have specific vehicle
      */
     public void addService(int vehicleId, Service service) throws VehicleNotFoundException {
-        for (var vehicle : this.getVehicles()) {
+        for (var vehicle : this.getVehicleList()) {
             if (vehicle.getId() == vehicleId) {
                 vehicle.addService(service);
             }
@@ -135,4 +164,43 @@ public abstract class Shop extends Entity {
     public void addAppointment(Appointment appointment) {
         this.getAppointments().add(appointment);
     }
+
+    //// Edit, Update, Overwrite operations
+
+    /**
+     * Replaces the contents of the customer list with {@code customers}.
+     * {@code customers} must not contain duplicate customers.
+     */
+    public void setCustomers(List<Customer> customers) {
+        this.customers.setCustomers(customers);
+    }
+
+    /**
+     * Replaces the contents of the vehicle list with {@code vehicles}.
+     * {@code vehicles} must not contain duplicate vehicles.
+     */
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles.setVehicles(vehicles);
+    }
+
+    /**
+     * Replaces the contents of the technician list with {@code technicians}.
+     * {@code technicians} must not contain duplicate technicians.
+     */
+    public void setTechnicians(List<Technician> technicians) {
+        this.technicians.setTechnicians(technicians);
+    }
+
+    /**
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyShop newData) {
+        requireNonNull(newData);
+
+        setCustomers(newData.getCustomerList());
+        setVehicles(newData.getVehicleList());
+        setTechnicians(newData.getTechnicianList());
+    }
+
+    //// Delete operations
 }

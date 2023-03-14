@@ -26,4 +26,28 @@ public abstract class Staff extends Person {
     public int getId() {
         return id;
     }
+
+    /**
+     * Returns true if both staffs have the same id.
+     */
+    public boolean isSameStaff(Staff otherStaff) {
+        if (otherStaff == this) {
+            return true;
+        }
+
+        return otherStaff != null
+                && otherStaff.getId() == getId();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof Staff) {
+            Staff otherStaff = (Staff) other;
+            return this.getId() == otherStaff.getId() || super.equals(other);
+        }
+        return false;
+    }
 }

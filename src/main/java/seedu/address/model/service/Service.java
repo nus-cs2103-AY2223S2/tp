@@ -17,7 +17,7 @@ public class Service {
     private final int vehicleId;
     private final LocalDate entryDate;
     private List<Part> requiredParts;
-    private String description;
+    private final String description;
     private LocalDate estimatedFinishDate;
     private final Set<Integer> assignedToIds = new HashSet<>();
     private boolean isComplete = false;
@@ -27,10 +27,11 @@ public class Service {
      *
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      */
-    public Service(int id, int vehicleId, int estimatedDaysRequired) {
+    public Service(int id, int vehicleId, int estimatedDaysRequired, String description) {
         this.id = id;
         this.vehicleId = vehicleId;
         entryDate = LocalDate.now();
+        this.description = description;
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
         requiredParts = new ArrayList<Part>();
     }
@@ -43,10 +44,11 @@ public class Service {
      * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
      * @param assignedToIds         The list of staffs ids that this service is assigned to.
      */
-    public Service(int id, int vehicleId, int estimatedDaysRequired, Set<Integer> assignedToIds) {
+    public Service(int id, int vehicleId, int estimatedDaysRequired, Set<Integer> assignedToIds, String description) {
         this.id = id;
-        this.vehicleId = vehicleId;
         entryDate = LocalDate.now();
+        this.vehicleId = vehicleId;
+        this.description = description;
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
         requiredParts = new ArrayList<Part>();
         this.assignedToIds.addAll(assignedToIds);
@@ -57,7 +59,7 @@ public class Service {
      * By default, this method estimates the amount of time needed to be 7 whole days (not working days).
      */
     public Service(int id, int vehicleId) {
-        this(id, vehicleId, 7);
+        this(id, vehicleId, 7, "");
     }
 
     /**
@@ -221,6 +223,31 @@ public class Service {
      */
     public void setComplete(boolean complete) {
         isComplete = complete;
+    }
+
+    /**
+     * Returns true if both Services have the same id.
+     */
+    public boolean isSameService(Service otherService) {
+        if (otherService == this) {
+            return true;
+        }
+
+        return otherService != null
+                && otherService.getId() == getId();
+
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof Service) {
+            Service otherService = (Service) other;
+            return this.getId() == otherService.getId() || super.equals(other);
+        }
+        return false;
     }
 
     @Override
