@@ -36,7 +36,7 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
             return new DeleteTagCommand(index, tag);
         } catch (ParseException pe) {
-            throw new ParseException( 
+            throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE), pe);
         }
     }
