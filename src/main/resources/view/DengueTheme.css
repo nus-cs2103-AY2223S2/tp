@@ -40,7 +40,7 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
+    -fx-base: #474A2C;
     -fx-control-inner-background: #1d1d1d;
     -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
@@ -84,72 +84,76 @@
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#474A2C, 20%);
 }
 
 .list-view {
     -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 5 2 0 10;
+    -fx-background-color: #B9C19D;
 }
 
 .list-cell {
-    -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-label-padding: 0;
+    -fx-graphic-text-gap: 0;
+    -fx-padding: 5 15 5 0;
+    -fx-background-color: transparent;
+}
+
+.list-cell:filled {
+    -fx-background-radius: 0 10 25 10;
+    -fx-background-insets: 1 2 2 0;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #CCD5AE;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #E9EDC9;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
-}
-
-.list-cell .label {
-    -fx-text-fill: white;
+    -fx-background-color: #FFF5DA;
 }
 
 .cell_big_label {
     -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #3D4A5A;
 }
 
-.age_label {
+.date_label {
     -fx-font-family: "Lucida Sans Typewriter";
-    -fx-font-size: 12px;
-    -fx-font-style: italic;
-    -fx-text-fill: #010504;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: #3D4A5A;
 }
+
 .cell_small_label {
     -fx-font-family: "Lucida Sans Typewriter";
-    -fx-font-size: 12px;
-    -fx-text-fill: #010504;
+    -fx-font-size: 13px;
+    -fx-text-fill: #3D4A5A;
+    -fx-padding: 5 0 0 0;
+}
+
+.small_label_gap {
+    -fx-font-size:5px;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#474A2C, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #E7D6C5;
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #B3A79B;
 }
 
 .result-display {
@@ -191,7 +195,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #B3A79B;
 }
 
 .context-menu .label {
@@ -199,7 +203,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #B3A79B;
 }
 
 .menu-bar .label {
@@ -288,12 +292,12 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
-    -fx-background-insets: 3;
+    -fx-background-color: #FFF5DA;
+    -fx-background-insets: 2;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -320,18 +324,19 @@
 
 #commandTypeLabel {
     -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
+    -fx-text-fill: white;
 }
 
 #commandTextField {
-    -fx-background-color: #484848;
+    -fx-background-color: #B3A79B;
     -fx-background-insets: 0;
     -fx-border-color: #181818;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Tahoma";
     -fx-font-size: 16pt;
-    -fx-text-fill: #D8D8D8;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: beige;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -339,7 +344,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: #404040;
+    -fx-background-color: #B3A79B;
     -fx-background-radius: 0;
     -fx-border-color: #181818;
 }
@@ -351,7 +356,7 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #3E7B91;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;

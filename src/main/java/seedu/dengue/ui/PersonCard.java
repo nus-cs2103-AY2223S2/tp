@@ -15,7 +15,7 @@ import seedu.dengue.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
-    private static final String AGE_FORMAT = "%s y/o";
+    private static final String AGE_FORMAT = "Age: %s y/o";
     private static final String POSTAL_FORMAT = "Postal Code: %s";
     private static final String DATE_FORMAT = "Case reported on %s";
 
