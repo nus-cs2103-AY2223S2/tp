@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Transaction> PREDICATE_SHOW_ALL_TRANSACTIONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -76,12 +78,28 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    //    void hasTransaction(Transaction transaction);
+    //
+    //    void addTransaction(Transaction transaction, Person owner);
+    //
+    //    void deleteTransaction(Transaction transaction);
+    //
+    //    void setTransaction(Transaction target, Transaction editedTxn);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    ///** Returns an unmodifiable view of the filtered transaction list */
+    //ObservableList<Transaction> getFilteredTransactionList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    ///**
+    //* Updates the filter of the filtered transaction list to filter by the given {@code predicate}
+    //*/
+    //void updateFilteredTransactionsList(Predicate<Transaction> predicate);
 }
