@@ -29,6 +29,7 @@ public class LoadCommand extends Command {
 
     @Override
     public LoadCommandResult execute(Model model) throws CommandException {
+        // Logic manager will handle the actual storage functions
         return new LoadCommandResult(String.format(MESSAGE_SUCCESS, filePath.toString()), filePath);
     }
 

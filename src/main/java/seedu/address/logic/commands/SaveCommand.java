@@ -13,7 +13,7 @@ public class SaveCommand extends Command {
 
     public static final String COMMAND_WORD = "save";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": saves the current EduMate into memory."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": saves the current EduMate into memory.\n"
             + "Parameters:\n"
             + "save FILENAME(as single string without spaces)"
             + "Example:\n"
@@ -30,6 +30,7 @@ public class SaveCommand extends Command {
 
     @Override
     public SaveCommandResult execute(Model model) throws CommandException {
+        // Logic manager will handle the actual storage functions
         return new SaveCommandResult(String.format(MESSAGE_SUCCESS, filePath.toString()), filePath);
     }
 

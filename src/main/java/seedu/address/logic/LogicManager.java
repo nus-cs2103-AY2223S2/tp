@@ -54,6 +54,7 @@ public class LogicManager implements Logic {
             if (commandResult.isSave()) {
                 storage.saveEduMate(model.getEduMate(), filePath);
             } else if (commandResult.isLoad()) {
+                // we throw if the file does not exist
                 ReadOnlyEduMate readOnlyEduMate =
                         storage.readEduMate(filePath)
                                 .orElseThrow(() -> new CommandException(FILE_GET_ERROR_MESSAGE));
