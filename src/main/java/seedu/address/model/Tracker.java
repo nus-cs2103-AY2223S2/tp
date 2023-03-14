@@ -13,27 +13,23 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.module.UniqueModuleList;
 
 /**
- * Wraps all data at the tracker level
+ * Wraps all data at the tracker level.<p>
  * Duplicate modules are not allowed (by .isSameModule comparison)
  */
 public class Tracker implements ReadOnlyTracker {
     private final UniqueModuleList modules;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+    /**
+     * Constructs a Tracker.
      */
-    {
+    public Tracker() {
         modules = new UniqueModuleList();
     }
 
-    public Tracker() {}
-
     /**
-     * Creates a Tracker using the Modules in the {@code toBeCopied}
+     * Constructs a Tracker using the data in {@code toBeCopied}.
+     *
+     * @param toBeCopied The tracker whose data is to be copied to this tracker.
      */
     public Tracker(ReadOnlyTracker toBeCopied) {
         this();
@@ -43,8 +39,10 @@ public class Tracker implements ReadOnlyTracker {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the module list with {@code modules}.
+     * Replaces the contents of the module list with {@code modules}.<p>
      * {@code modules} must not contain duplicate modules.
+     *
+     * @param modules The modules that will replace the contents of the module list.
      */
     public void setModules(List<Module> modules) {
         this.modules.setModules(modules);
@@ -52,17 +50,26 @@ public class Tracker implements ReadOnlyTracker {
 
     /**
      * Resets the existing data of this {@code Tracker} with {@code newData}.
+     *
+     * @param newData The tracker whose data is to be copied to this tracker.
      */
     public void resetData(ReadOnlyTracker newData) {
         requireNonNull(newData);
 
-        setModules(newData.getModuleList().stream().map((d) -> (Module) d).collect(Collectors.toList()));
+        setModules(newData
+                .getModuleList()
+                .stream()
+                .map((d) -> (Module) d)
+                .collect(Collectors.toList()));
     }
 
     //// module-level operations
 
     /**
      * Returns true if a module with the same code as {@code module} exists in the tracker.
+     *
+     * @param module The module to check if exist.
+     * @return True if a module with the same code as {@code module} exists in the tracker. Otherwise, false.
      */
     public boolean hasModule(ReadOnlyModule module) {
         requireNonNull(module);
@@ -70,17 +77,22 @@ public class Tracker implements ReadOnlyTracker {
     }
 
     /**
-     * Adds a module to the tracker.
+     * Adds a module to the tracker.<p>
      * The module must not already exist in the tracker.
+     *
+     * @param module The module to be added.
      */
     public void addModule(Module module) {
         modules.add(module);
     }
 
     /**
-     * Replaces the given module {@code target} in the list with {@code editedModule}.
-     * {@code target} must exist in the tracker.
+     * Replaces the given module {@code target} in the list with {@code editedModule}.<p>
+     * {@code target} must exist in the tracker.<p>
      * The module of {@code editedModule} must not be the same as another existing module in the tracker.
+     *
+     * @param target The module to be replaced.
+     * @param editedModule The module that will replace.
      */
     public void setModule(ReadOnlyModule target, Module editedModule) {
         requireAllNonNull(target, editedModule);
@@ -89,8 +101,10 @@ public class Tracker implements ReadOnlyTracker {
     }
 
     /**
-     * Removes {@code key} from this {@code Tracker}.
+     * Removes the given module {@code key} from this {@code Tracker}.<p>
      * {@code key} must exist in the tracker.
+     *
+     * @param key The module to remove from this tracker.
      */
     public void removeModule(ReadOnlyModule key) {
         modules.remove((Module) key);
