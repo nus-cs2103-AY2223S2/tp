@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_APPLICANTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
 
@@ -20,7 +20,7 @@ public class TypicalListings {
     public static final Listing CHICKEN_RICE_UNCLE = new ListingBuilder()
             .withTitle("Chicken Rice Uncle")
             .withDescription("Make delicious chicken rice!")
-            .withApplicants(new ArrayList<>(TypicalApplicants.getTypicalApplicants()))
+            .withApplicants(VALID_NO_APPLICANTS)
             .build();
     public static final Listing TOILET_CLEANER = new ListingBuilder()
             .withTitle("Toilet Cleaner")
@@ -30,7 +30,7 @@ public class TypicalListings {
     public static final Listing SOFTWARE_DEVELOPER = new ListingBuilder()
             .withTitle(VALID_TITLE)
             .withDescription(VALID_DESCRIPTION)
-            .withApplicants(VALID_APPLICANTS)
+            .withApplicants(new ArrayList<>(TypicalApplicants.getTypicalApplicants()))
             .build();
 
     private TypicalListings() {} // prevents instantiation

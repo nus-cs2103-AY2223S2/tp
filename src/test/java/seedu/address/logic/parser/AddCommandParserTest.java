@@ -1,195 +1,107 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPLICANT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_APPLICANTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANTS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_BENEDICT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_DESC;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalListings.CHICKEN_RICE_UNCLE;
+import static seedu.address.testutil.TypicalListings.SOFTWARE_DEVELOPER;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ListingBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyListingBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Name;
+import seedu.address.model.listing.JobDescription;
+import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.Listing;
 import seedu.address.testutil.ListingBuilder;
 
 public class AddCommandParserTest {
-    @Test
-    public void constructor_nullListing_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
-    }
+    private AddCommandParser parser = new AddCommandParser();
 
     @Test
-    public void execute_listingAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingListingAdded modelStub = new ModelStubAcceptingListingAdded();
-        Listing validListing = new ListingBuilder().build();
+    public void parse_allFieldsPresent_success() {
+        Listing expectedListing =
+                new ListingBuilder(SOFTWARE_DEVELOPER).build();
 
-        CommandResult commandResult = new AddCommand(validListing).execute(modelStub);
+        // whitespace only preamble
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_TITLE_DESC
+                + VALID_DESCRIPTION_DESC + VALID_APPLICANTS_DESC, new AddCommand(expectedListing));
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validListing), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validListing), modelStub.listingsAdded);
+        // multiple title - last title accepted
+        assertParseSuccess(parser, " t/other_title" + VALID_TITLE_DESC
+                + VALID_DESCRIPTION_DESC + VALID_APPLICANTS_DESC, new AddCommand(expectedListing));
+
+        // multiple phones - last phone accepted
+        assertParseSuccess(parser, VALID_TITLE_DESC + " d/other_description"
+                + VALID_DESCRIPTION_DESC + VALID_APPLICANTS_DESC, new AddCommand(expectedListing));
+
+        // multiple tags - all accepted
+        assertParseSuccess(parser, VALID_TITLE_DESC
+                + VALID_DESCRIPTION_DESC + VALID_APPLICANTS_DESC, new AddCommand(expectedListing));
     }
 
     @Test
-    public void execute_duplicateListing_throwsCommandException() {
-        Listing validListing = new ListingBuilder().build();
-        AddCommand addCommand = new AddCommand(validListing);
-        ModelStub modelStub = new ModelStubWithListing(validListing);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_LISTING, () -> addCommand.execute(modelStub));
+    public void parse_optionalFieldsMissing_success() {
+        // zero tags
+        Listing expectedListing = new ListingBuilder(SOFTWARE_DEVELOPER).withApplicants(VALID_NO_APPLICANTS).build();
+        assertParseSuccess(parser, VALID_TITLE_DESC + VALID_DESCRIPTION_DESC,
+                new AddCommand(expectedListing));
     }
 
     @Test
-    public void equals() {
-        Listing listing1 = new ListingBuilder().withTitle("Title 1").withDescription("Description 1").build();
-        Listing listing2 = new ListingBuilder().withTitle("Title 2").withDescription("Description 2").build();
-        AddCommand addListing1Command = new AddCommand(listing1);
-        AddCommand addListing2Command = new AddCommand(listing2);
+    public void parse_compulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // same object -> returns true
-        assertTrue(addListing1Command.equals(addListing1Command));
+        // missing title prefix
+        assertParseFailure(parser, VALID_TITLE + VALID_DESCRIPTION_DESC + VALID_APPLICANTS_DESC,
+                expectedMessage);
 
-        // same values -> returns true
-        AddCommand addListing1CommandCopy = new AddCommand(listing1);
-        assertTrue(addListing1Command.equals(addListing1CommandCopy));
+        // missing description prefix
+        assertParseFailure(parser, VALID_TITLE_DESC + VALID_DESCRIPTION_DESC + VALID_APPLICANTS_DESC,
+                expectedMessage);
 
-        // different types -> returns false
-        assertFalse(addListing1Command.equals(1));
+        // missing applicant prefix
+        assertParseFailure(parser, VALID_TITLE_DESC + VALID_DESCRIPTION_DESC + VALID_APPLICANT_NAME_BENEDICT,
+                expectedMessage);
 
-        // null -> returns false
-        assertFalse(addListing1Command.equals(null));
-
-        // different person -> returns false
-        assertFalse(addListing1Command.equals(addListing2Command));
+        // all prefixes missing
+        assertParseFailure(parser, VALID_TITLE + VALID_DESCRIPTION + VALID_APPLICANT_NAME_BENEDICT,
+                expectedMessage);
     }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
+    @Test
+    public void parse_invalidValue_failure() {
+        // invalid title
+        assertParseFailure(parser, INVALID_TITLE_DESC + VALID_DESCRIPTION_DESC + VALID_APPLICANTS_DESC, JobTitle.MESSAGE_CONSTRAINTS);
 
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
+        // invalid description
+        assertParseFailure(parser, VALID_TITLE_DESC + INVALID_DESCRIPTION_DESC + VALID_APPLICANTS_DESC, JobDescription.MESSAGE_CONSTRAINTS);
 
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
+        // invalid applicant
+        assertParseFailure(parser, VALID_TITLE_DESC + VALID_DESCRIPTION_DESC + INVALID_APPLICANT_DESC, Name.MESSAGE_CONSTRAINTS);
 
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
+        // two invalid values, only first invalid value reported
+        assertParseFailure(parser, INVALID_TITLE_DESC + INVALID_DESCRIPTION_DESC + VALID_APPLICANTS_DESC,
+                JobTitle.MESSAGE_CONSTRAINTS);
 
-        @Override
-        public Path getListingBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setListingBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addListing(Listing listing) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setListingBook(ReadOnlyListingBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyListingBook getListingBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasListing(Listing listing) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteListing(Listing target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setListing(Listing target, Listing editedListing) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Listing> getFilteredListingList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredListingList(Predicate<Listing> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
+        // non-empty preamble
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + VALID_TITLE_DESC + VALID_DESCRIPTION_DESC + VALID_APPLICANTS_DESC,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
-
-    /**
-     * A Model stub that contains a single listing.
-     */
-    private class ModelStubWithListing extends ModelStub {
-        private final Listing listing;
-
-        ModelStubWithListing(Listing listing) {
-            requireNonNull(listing);
-            this.listing = listing;
-        }
-
-        @Override
-        public boolean hasListing(Listing listing) {
-            requireNonNull(listing);
-            return this.listing.isSameListing(listing);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the listing being added.
-     */
-    private class ModelStubAcceptingListingAdded extends ModelStub {
-        final ArrayList<Listing> listingsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasListing(Listing listing) {
-            requireNonNull(listing);
-            return listingsAdded.stream().anyMatch(listing::isSameListing);
-        }
-
-        @Override
-        public void addListing(Listing listing) {
-            requireNonNull(listing);
-            listingsAdded.add(listing);
-        }
-
-        @Override
-        public ReadOnlyListingBook getListingBook() {
-            return new ListingBook();
-        }
-    }
-
 }
