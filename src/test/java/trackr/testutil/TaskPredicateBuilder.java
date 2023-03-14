@@ -5,7 +5,6 @@ import java.util.List;
 import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDeadline;
-import trackr.model.task.TaskDescriptor;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
 
@@ -67,7 +66,7 @@ public class TaskPredicateBuilder {
         return this;
     }
 
-    public TaskDescriptor build() {
+    public TaskContainsKeywordsPredicate build() {
         return taskPredicate;
     }
 }
