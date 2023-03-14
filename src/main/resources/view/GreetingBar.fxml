@@ -4,15 +4,28 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <HBox alignment="CENTER" prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: #1d1d1d;">
-        <children>
-            <Label fx:id="greetings" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="353.0" style="-fx-background-color: #1d1d1d;" text="Hello, you have tasks today" textAlignment="CENTER">
-                <HBox.margin>
-                    <Insets />
-                </HBox.margin>
-            </Label>
-        </children>
-    </HBox>
+   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: #E6ECF0;">
+      <children>
+         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="353.0" style="-fx-background-color: #E6ECF0;" text="Hello!" textAlignment="CENTER">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+         </Label>
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: #E6ECF0;">
+      <children>
+         <Label fx:id="greetings" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="353.0" style="-fx-background-color: #E6ECF0;" text="You have tasks today" textAlignment="CENTER">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <font>
+               <Font name="Helvetica" size="14.0" />
+            </font>
+         </Label>
+      </children>
+   </HBox>
 </VBox>

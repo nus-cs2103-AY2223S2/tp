@@ -7,6 +7,8 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Performance {
+    public static final String NULL_PERFORMANCE = "None yet!";
+
     public final String value;
 
     /**
@@ -17,6 +19,13 @@ public class Performance {
         requireNonNull(performance);
         //Add check to make sure it is not a gibberish number
         value = performance;
+    }
+
+    /**
+     * Initiates null performance object without causing error.
+     */
+    public Performance() {
+        value = NULL_PERFORMANCE;
     }
 
     @Override
