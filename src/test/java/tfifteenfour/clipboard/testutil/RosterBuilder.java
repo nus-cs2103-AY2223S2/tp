@@ -4,7 +4,7 @@ import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Roster objects.
  * Example usage: <br>
  *     {@code Roster ab = new RosterBuilder().withStudent("John", "Doe").build();}
  */
