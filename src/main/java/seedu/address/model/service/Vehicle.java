@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.service.Service;
 
 /**
  * The vehicle class is the superclass of all types of vehicle.
@@ -21,14 +20,6 @@ public class Vehicle {
     private String brand;
     private VehicleType type;
     private final Set<Integer> serviceIds = new HashSet<>();
-
-    /**
-     * This enum allows us to specify vehicle type without creating respective classes.
-     */
-    public enum VehicleType {
-        MOTORBIKE,
-        CAR
-    }
 
     /**
      * This method is the constructor for the Vehicle class.
@@ -182,6 +173,35 @@ public class Vehicle {
      */
     public void removeService(Service service) {
         this.serviceIds.remove(service.getId());
+    }
+
+    /**
+     * Returns true if both vehicles have the same plate number.
+     */
+    public boolean isSameVehicle(Vehicle otherVehicle) {
+        if (otherVehicle == this) {
+            return true;
+        }
+
+        return otherVehicle != null
+                && otherVehicle.getPlateNumber().equalsIgnoreCase(getPlateNumber());
+    }
+
+    /**
+     * Returns true if both vehicles have the same car plate number.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof Vehicle) {
+            Vehicle otherVehicle = (Vehicle) other;
+            return this.isSameVehicle(otherVehicle);
+        }
+
+        return false;
     }
 
     @Override

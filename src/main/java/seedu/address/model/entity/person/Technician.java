@@ -15,4 +15,5 @@ public class Technician extends Staff {
     public Technician(int id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(id, name, phone, email, address, tags);
     }
+
 }

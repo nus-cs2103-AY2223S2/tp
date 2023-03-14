@@ -2,7 +2,7 @@ package seedu.address.model.entity.shop.garage;
 
 import java.util.Objects;
 
-import seedu.address.model.Vehicle;
+import seedu.address.model.service.Vehicle;
 
 /**
  * This class represents a lot within the Garage.
