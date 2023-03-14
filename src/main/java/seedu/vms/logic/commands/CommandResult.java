@@ -103,6 +103,6 @@ public class CommandResult {
      * Represents the state of a {@code CommandResult}.
      */
     public static enum State {
-        INFO, WARNING, ERROR
+        INFO, WARNING, ERROR, DEATH
     }
 }
