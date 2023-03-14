@@ -1,8 +1,11 @@
 package seedu.sudohr.model.employee;
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +38,23 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     }
 
     /**
+     * Returns true if the list contains an equivalent person as the given argument,
+     * excluding the specified person.
+     */
+    public boolean contains(Employee toCheck, Employee toExclude) {
+        requireNonNull(toCheck);
+        requireNonNull(toExclude);
+        for (Employee employee : internalList) {
+            if (!employee.isSameEmployee(toExclude)) {
+                if (employee.isSameEmployee(toCheck)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if the list contains a different person with the same email as the given argument.
      */
     public boolean sharesEmail(Employee toCheck) {
@@ -43,11 +63,45 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     }
 
     /**
+     * Returns true if the list contains a different person with the same email as the given argument,
+     * excluding the specified person.
+     */
+    public boolean sharesEmail(Employee toCheck, Employee toExclude) {
+        requireNonNull(toCheck);
+        requireNonNull(toExclude);
+        for (Employee employee : internalList) {
+            if (!employee.isSameEmployee(toExclude)) {
+                if (employee.emailClashes(toCheck)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if the list contains a different person with the same phone number as the given argument.
      */
     public boolean sharesPhoneNumber(Employee toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::phoneClashes);
+    }
+
+    /**
+     * Returns true if the list contains a different person with the same phone number as the given argument,
+     * excluding the specified person.
+     */
+    public boolean sharesPhoneNumber(Employee toCheck, Employee toExclude) {
+        requireNonNull(toCheck);
+        requireNonNull(toExclude);
+        for (Employee employee : internalList) {
+            if (!employee.isSameEmployee(toExclude)) {
+                if (employee.phoneClashes(toCheck)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 
@@ -81,15 +135,15 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         if (index == -1) {
             throw new EmployeeNotFoundException();
         }
-        if (!target.isSameEmployee(editedPerson) && contains(editedPerson)) {
+        if (contains(editedPerson, target)) {
             throw new DuplicateEmployeeException();
         }
 
-        if (!target.isSameEmployee(editedPerson) && sharesPhoneNumber(editedPerson)) {
+        if (sharesPhoneNumber(editedPerson, target)) {
             throw new DuplicatePhoneNumberException();
         }
 
-        if (!target.isSameEmployee(editedPerson) && sharesEmail(editedPerson)) {
+        if (sharesEmail(editedPerson, target)) {
             throw new DuplicateEmailException();
         }
 
@@ -138,11 +192,50 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     public Iterator<Employee> iterator() {
         return internalList.iterator();
     }
+
+    /**
+     * Returns if two UniqueEmployeeList are equals by checking the contents of the lists.
+     * @param other the list to check against
+     * @return a boolean value indicating equality.
+     */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueEmployeeList // instanceof handles nulls
-                && internalList.equals(((UniqueEmployeeList) other).internalList));
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof UniqueEmployeeList) { // handles null
+            // idea it to make sure each list is a subset of the other
+            Map<Id, Employee> currentList = new HashMap<>();
+            Map<Id, Employee> otherList = new HashMap<>();
+
+            for (Employee e : internalList) {
+                currentList.put(e.getId(), e);
+            }
+
+            for (Employee e : (UniqueEmployeeList) other) {
+                otherList.put(e.getId(), e);
+            }
+
+            for (Id id : currentList.keySet()) {
+                Employee employeeFromCurrent = currentList.get(id);
+                Employee employeeFromOther = otherList.getOrDefault(id, null);
+                if (employeeFromOther == null
+                        || !employeeFromCurrent.equals(employeeFromOther)) {
+                    return false;
+                }
+            }
+
+            for (Id id : otherList.keySet()) {
+                Employee employeeFromCurrent = currentList.getOrDefault(id, null);
+                Employee employeeFromOther = otherList.get(id);
+                if (employeeFromCurrent == null
+                        || !employeeFromCurrent.equals(employeeFromOther)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     @Override
     public int hashCode() {

@@ -1,25 +1,22 @@
 package seedu.sudohr.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.sudohr.logic.commands.CommandTestUtil.*;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 import static seedu.sudohr.testutil.TypicalPersons.ALICE;
+import static seedu.sudohr.testutil.TypicalPersons.AMY;
 import static seedu.sudohr.testutil.TypicalPersons.BOB;
+import static seedu.sudohr.testutil.TypicalPersons.CARL;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.UniqueEmployeeList;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
@@ -31,6 +28,94 @@ import seedu.sudohr.testutil.PersonBuilder;
 public class UniquePersonListTest {
 
     private final UniqueEmployeeList uniquePersonList = new UniqueEmployeeList();
+
+    /** Tests equals method **/
+    @Test
+    public void equals_bothEmpty_success() {
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
+    public void equals_bothNull_success() {
+        UniqueEmployeeList nullListOne = null;
+        UniqueEmployeeList nullListTwo = null;
+        assertEquals(nullListOne, nullListTwo);
+    }
+
+    @Test
+    public void equals_bothContainSameContentSameOrder_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        Employee duplicatedAlice = new PersonBuilder(ALICE).build();
+        Employee duplicatedBob = new PersonBuilder(BOB).build();
+        expectedUniquePersonList.add(duplicatedAlice);
+        expectedUniquePersonList.add(duplicatedBob);
+        expectedUniquePersonList.add(CARL);
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
+    public void equals_bothContainSameContentDifferentOrder_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        Employee duplicatedAlice = new PersonBuilder(ALICE).build();
+        Employee duplicatedBob = new PersonBuilder(BOB).build();
+        expectedUniquePersonList.add(CARL);
+        expectedUniquePersonList.add(duplicatedBob);
+        expectedUniquePersonList.add(duplicatedAlice);
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
+    public void equals_sameContentButOneHasLess_notSuccess() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        Employee duplicatedAlice = new PersonBuilder(ALICE).build();
+        Employee duplicatedBob = new PersonBuilder(BOB).build();
+        expectedUniquePersonList.add(duplicatedAlice);
+        expectedUniquePersonList.add(duplicatedBob);
+        assertNotEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
+    public void equals_containDifferentContent_notSuccess() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        Employee duplicatedBob = new PersonBuilder(BOB).build();
+        expectedUniquePersonList.add(AMY);
+        expectedUniquePersonList.add(duplicatedBob);
+        expectedUniquePersonList.add(CARL);
+        assertNotEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
+    public void equals_containFieldsChanged_notSuccess() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        Employee slightlyDifferentBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+                .withAddress(VALID_ADDRESS_AMY)
+                .build();
+        expectedUniquePersonList.add(ALICE);
+        expectedUniquePersonList.add(slightlyDifferentBob);
+        expectedUniquePersonList.add(CARL);
+        assertNotEquals(expectedUniquePersonList, uniquePersonList);
+    }
 
     /** duplicated person checks **/
     @Test
@@ -257,66 +342,264 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentityOnly_success() {
-        uniquePersonList.add(BOB);
-        Employee newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
-                .build();
-        uniquePersonList.setEmployee(BOB, newBob);
-        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
-        expectedUniquePersonList.add(newBob);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
-    }
-
-    @Test
-    public void setPerson_editedPersonHasSameIdentityAndEmailOnly_success() {
-        uniquePersonList.add(BOB);
-        Employee newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
-                .build();
-        uniquePersonList.setEmployee(BOB, newBob);
-        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
-        expectedUniquePersonList.add(newBob);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
-    }
-
-    @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setEmployee(ALICE, BOB);
-        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
-    }
-
-    @Test
     public void setPerson_editedPersonAlreadyExists_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
         assertThrows(DuplicateEmployeeException.class, () -> uniquePersonList.setEmployee(ALICE, BOB));
     }
 
-    // edited person now has unique phone number that does not exist in SudoHR
+    @Test
+    public void setPerson_editedPersonChangeAllUnique_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(CARL);
+        uniquePersonList.setEmployee(ALICE, BOB);
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(BOB);
+        expectedUniquePersonList.add(CARL);
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    // edited person kept same id (ie change every other field)
+    @Test
+    public void setPerson_editedPersonHasSameIdentityOnly_success() {
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+                .build();
+        uniquePersonList.setEmployee(BOB, newBob);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(newBob);
+        expectedUniquePersonList.add(CARL);
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    // edited employee changed id only (ie no change to other fields)
+    @Test
+    public void setPerson_editedPersonChangeUniqueIdOnly_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(BOB).withId(VALID_ID_AMY)
+                .build();
+        uniquePersonList.setEmployee(BOB, newBob);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(ALICE);
+        expectedUniquePersonList.add(newBob);
+        expectedUniquePersonList.add(CARL);
+
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    // edited person actually made no change to its own id
+    @Test
+    public void setPerson_editedPersonNoChangeToId_success() {
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(AMY);
+        uniquePersonList.add(ALICE);
+        Employee newBob = new PersonBuilder(BOB).withId(VALID_ID_BOB)
+                .build();
+        uniquePersonList.setEmployee(BOB, newBob);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(newBob);
+        expectedUniquePersonList.add(AMY);
+        expectedUniquePersonList.add(ALICE);
+
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    // edited person changed to an id that already exists
+    @Test
+    public void setPerson_editedIdAlreadyExists_throwsDuplicatePersonException() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        Employee sameIdAsBob = new PersonBuilder().withId(VALID_ID_BOB)
+                .build();
+        assertThrows(DuplicateEmployeeException.class, () -> uniquePersonList.setEmployee(ALICE, sameIdAsBob));
+    }
+
+    // test with some fields changed, excluding id
+    @Test
+    public void setPerson_editedPersonHasSameIdentityAndEmailOnly_success() {
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
+                .build();
+        uniquePersonList.setEmployee(BOB, newBob);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(CARL);
+        expectedUniquePersonList.add(newBob);
+
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    // test with some fields changed, including id
+    @Test
+    public void setPerson_editedPersonChangeIdEmailAddressOnly_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(CARL);
+        uniquePersonList.add(BOB);
+        Employee newBob = new PersonBuilder(BOB).withId(VALID_ID_AMY)
+                .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .build();
+        uniquePersonList.setEmployee(BOB, newBob);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(newBob);
+        expectedUniquePersonList.add(ALICE);
+        expectedUniquePersonList.add(CARL);
+
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    // edited person change to non-duplicated phone number
     @Test
     public void setPerson_editedPersonNewPhoneIsUnique_success() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
-        Employee newBob = new PersonBuilder().withPhone(VALID_PHONE_AMY)
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_AMY)
                 .build();
         uniquePersonList.setEmployee(BOB, newBob);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(ALICE);
+        expectedUniquePersonList.add(newBob);
+        expectedUniquePersonList.add(CARL);
+
+        assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
-    // edited person now has phone number that already exists in SudoHR
+    // edited person made no change to phone number
+    @Test
+    public void setPerson_editedPersonPhoneNoChange_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_BOB)
+                .build();
+        uniquePersonList.setEmployee(BOB, newBob);
 
-    // edited person is different id but with a unique phone number
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(ALICE);
+        expectedUniquePersonList.add(newBob);
+        expectedUniquePersonList.add(CARL);
 
-    // edited person is different id but with phone number that exists
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
 
 
+    // edited person change to duplicated phone number as someone SudoHR
+    @Test
+    public void setPerson_editedPersonDuplicatedPhoneNumber_throwsDuplicatePhoneNumberException() {
+        uniquePersonList.add(AMY);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_AMY)
+                .build();
+        assertThrows(DuplicatePhoneNumberException.class, () -> uniquePersonList.setEmployee(BOB, newBob));
+    }
+
+    // edited person changed to duplicated phone number and email as someone in SudoHR
+    @Test
+    public void setPerson_editedPersonChangeEmailPhone_throwsDuplicatePhoneNumberException() {
+        uniquePersonList.add(AMY);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_AMY)
+                .withEmail(VALID_EMAIL_AMY)
+                .build();
+        assertThrows(DuplicatePhoneNumberException.class, () -> uniquePersonList.setEmployee(BOB, newBob));
+    }
+
+    // edited person changed some fields, including phone number
+    @Test
+    public void setPerson_editedPersonSomeChangesAndPhone_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_AMY)
+                .withAddress(VALID_ADDRESS_AMY).withId(VALID_ID_AMY)
+                .build();
+        uniquePersonList.setEmployee(BOB, newBob);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(newBob);
+        expectedUniquePersonList.add(CARL);
+        expectedUniquePersonList.add(ALICE);
+
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    // edited person change to non-duplicated email
+    @Test
+    public void setPerson_editedPersonNewEmailIsUnique_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+                .build();
+        uniquePersonList.setEmployee(BOB, newBob);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(ALICE);
+        expectedUniquePersonList.add(newBob);
+        expectedUniquePersonList.add(CARL);
+
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    // edited person made no change to email
+    @Test
+    public void setPerson_editedPersonEmailNoChange_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_BOB)
+                .build();
+        uniquePersonList.setEmployee(BOB, newBob);
+
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(ALICE);
+        expectedUniquePersonList.add(newBob);
+        expectedUniquePersonList.add(CARL);
+
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
 
 
-    // edited person shares email with another
+    // edited person change to duplicated email as someone SudoHR
+    @Test
+    public void setPerson_editedPersonDuplicatedEmail_throwsDuplicateEmailException() {
+        uniquePersonList.add(AMY);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+                .build();
+        assertThrows(DuplicateEmailException.class, () -> uniquePersonList.setEmployee(BOB, newBob));
+    }
 
-    // edited person shares same email and phone number with someone else
+    // edited person changed some fields, including email
+    @Test
+    public void setPerson_editedPersonSomeChangesAndEmail_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(CARL);
+        Employee newBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
+                .build();
+        uniquePersonList.setEmployee(BOB, newBob);
 
+        UniqueEmployeeList expectedUniquePersonList = new UniqueEmployeeList();
+        expectedUniquePersonList.add(newBob);
+        expectedUniquePersonList.add(CARL);
+        expectedUniquePersonList.add(ALICE);
+
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
 
     /** Tests removal of a person **/
     @Test
@@ -337,7 +620,7 @@ public class UniquePersonListTest {
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
-    /** Testt setting of persons with a provided list **/
+    /** Tests setting of persons with a provided list **/
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.setEmployees((UniqueEmployeeList) null));
