@@ -169,6 +169,7 @@ public class UniqueListingListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        //todo
+        assertThrows(UnsupportedOperationException.class, ()
+            -> uniqueListingList.asUnmodifiableObservableList().remove(0));
     }
 }
