@@ -10,12 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-import java.util.stream.Collectors;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FieldsMatchRegexPredicate;
@@ -26,9 +23,16 @@ import seedu.address.model.person.FieldsMatchRegexPredicate;
 public class FilterCommandParser implements Parser<FilterCommand> {
     public static final String MESSAGE_INVALID_REGEX = "Invalid regex: %1$s\n(becomes: %2$s)";
 
+    /**
+     * Converts each regex in <code>regexes</code> from matching a full string to matching a substring.
+     *
+     * @param regexes Regexes to convert
+     * @return Resulting substring-match regexes
+     * @throws ParseException if any resulting regex is not a valid regular expression
+     */
     private List<String> formSubstring(List<String> regexes) throws ParseException {
         List<String> newRegexes = new ArrayList<>();
-        for (String regex: regexes) {
+        for (String regex : regexes) {
             try {
                 Pattern.compile(".*" + regex + ".*");
                 newRegexes.add(".*" + regex + ".*");
@@ -39,6 +43,14 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         return newRegexes;
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FilterCommand
+     * and returns a FilterCommand object for execution.
+     *
+     * @param args The arguments to the FilterCommand
+     * @return The parsed FilterCommand
+     * @throws ParseException if {@code userInput} does not conform the expected format
+     */
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,

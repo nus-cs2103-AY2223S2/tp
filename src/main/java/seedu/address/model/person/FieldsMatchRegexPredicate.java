@@ -3,10 +3,11 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
-import java.util.logging.Logger;
 
-import seedu.address.commons.core.LogsCenter;
-
+/**
+ * Tests that a {@code Person}'s fields all match at least one of the field-respective regexes,
+ * if any such field-respective regexes were supplied.
+ */
 public class FieldsMatchRegexPredicate implements Predicate<Person> {
     private final List<String> names;
     private final List<String> phones;
