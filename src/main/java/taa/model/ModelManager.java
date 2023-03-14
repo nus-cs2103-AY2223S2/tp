@@ -105,6 +105,11 @@ public class ModelManager implements Model {
         return classList.hasStudent(student);
     }
 
+    public boolean hasClassList(ClassList classList) {
+        requireNonNull(classList);
+        return tutor.containsClassList(classList);
+    }
+
     @Override
     public void deleteStudent(Student target) {
         classList.removeStudent(target);
@@ -113,6 +118,12 @@ public class ModelManager implements Model {
     @Override
     public void addStudent(Student student) {
         classList.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    @Override
+    public void addClassList(ClassList toAdd) {
+        tutor.addClass(toAdd);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 

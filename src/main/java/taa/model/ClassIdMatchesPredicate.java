@@ -7,15 +7,15 @@ import java.util.function.Predicate;
  * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.
  */
 public class ClassIdMatchesPredicate implements Predicate<ClassList> {
-    private final int keywords;
+    private final String keywords;
 
-    public ClassIdMatchesPredicate(int keyword) {
+    public ClassIdMatchesPredicate(String keyword) {
         this.keywords = keyword;
     }
 
     @Override
     public boolean test(ClassList classList) {
-        return classList.getClassId() == keywords;
+        return classList.getClassId().equals(keywords);
     }
 
     @Override

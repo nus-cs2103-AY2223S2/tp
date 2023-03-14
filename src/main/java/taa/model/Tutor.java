@@ -99,6 +99,14 @@ public class Tutor implements ReadOnlyAddressBook {
         return students;
     }
 
+    public boolean containsClassList(ClassList tocheck) {
+        return this.classLists.contains(tocheck);
+    }
+
+    public void addClass(ClassList toAdd) {
+        this.classLists.add(toAdd);
+    }
+
     public ObservableList<Student> getStudentList() {
         return this.getAllStudents().asUnmodifiableObservableList();
     }

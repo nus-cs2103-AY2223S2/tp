@@ -19,6 +19,7 @@ public class ClassList implements ReadOnlyAddressBook {
 
     private UniqueStudentList students;
     private AssignmentList assignments;
+    private String className = "DEFAULT";
     private int classId;
     private int studentCount = 0;
 
@@ -29,19 +30,25 @@ public class ClassList implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
-    {
+
+    public ClassList(String name) {
+        assignments = new AssignmentList();
+        students = new UniqueStudentList();
+        this.classId = ++lastId;
+        this.className = name;
+    }
+
+    public ClassList() {
         assignments = new AssignmentList();
         students = new UniqueStudentList();
         this.classId = ++lastId;
     }
 
-    public ClassList() {}
-
     /**
      * Creates an ClassList using the Persons in the {@code toBeCopied}
      */
     public ClassList(ReadOnlyAddressBook toBeCopied) {
-        this();
+        this("DEFAULT");
         resetData(toBeCopied);
     }
 
@@ -60,8 +67,8 @@ public class ClassList implements ReadOnlyAddressBook {
                 && otherClassList.getClassId() == (getClassId());
     }
 
-    public int getClassId() {
-        return this.classId;
+    public String getClassId() {
+        return this.className;
     }
 
 
@@ -140,8 +147,8 @@ public class ClassList implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return students.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+        return "class name: " + this.className + " " + students.asUnmodifiableObservableList().size() + " persons";
+
     }
 
     @Override

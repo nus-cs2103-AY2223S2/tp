@@ -70,6 +70,8 @@ public class TaaParser {
         case ListByClassCommand.COMMAND_WORD:
             return new ListByClassCommandParser().parse(arguments);
 
+        case CreateClassCommand.COMMAND_WORD:
+            return new CreateClassCommandParser().parse(arguments);
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
