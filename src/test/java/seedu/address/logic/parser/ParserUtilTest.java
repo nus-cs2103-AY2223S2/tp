@@ -13,12 +13,13 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Website;
+import seedu.address.logic.commands.exceptions.exceptions.ParseException;
+import seedu.address.model.job.Address;
+import seedu.address.model.job.Deadline;
+import seedu.address.model.job.Email;
+import seedu.address.model.job.Name;
+import seedu.address.model.job.Phone;
+import seedu.address.model.job.Website;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -28,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_WEBSITE = "#www.com";
+    private static final String INVALID_DEADLINE = "2019-10-20";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -36,8 +38,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_WEBSITE = "www.google.com";
-
-
+    private static final String VALID_DEADLINE = "2023-10-20";
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -183,6 +184,28 @@ public class ParserUtilTest {
     @Test
     public void parseTag_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    }
+
+    @Test
+    public void parseDeadline_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    }
+
+    @Test
+    public void parseDeadline_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_DEADLINE));
+    }
+    @Test
+    public void parseDeadline_validValueWithoutWhitespace_returnsEmail() throws Exception {
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseDateline(VALID_DEADLINE));
+    }
+
+    @Test
+    public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
+        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseDateline(deadlineWithWhitespace));
     }
 
     @Test
