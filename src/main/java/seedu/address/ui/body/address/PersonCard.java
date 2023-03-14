@@ -1,8 +1,11 @@
 package seedu.address.ui.body.address;
 
 import java.util.Comparator;
+import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -25,9 +28,6 @@ public class PersonCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
-    public final Person person;
-
     @FXML
     private HBox cardPane;
     @FXML
@@ -41,19 +41,30 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private ImageView star;
 
+    private Person person;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
+        setPerson(person, displayedIndex);
+    }
+
+    public void setPerson(Person person, int displayedIndex) {
+        Objects.requireNonNull(person);
         this.person = person;
+
         id.setText(String.valueOf(displayedIndex));
-        star.setVisible(person.getIsFavorite().getFavoriteStatus());
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
+        star.setVisible(person.getIsFavorite().getFavoriteStatus());
+
+        ObservableList<Node> tagsList = tags.getChildren();
+        tagsList.clear();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tagsList.add(new Label(tag.tagName)));
     }
 
     @Override

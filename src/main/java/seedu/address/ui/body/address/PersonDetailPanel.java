@@ -22,6 +22,8 @@ import seedu.address.ui.UiPart;
  */
 public class PersonDetailPanel extends UiPart<Region> {
     private static final String FXML = "body/address/PersonDetailPanel.fxml";
+    private static final String INDEX_UNSPECIFIED = "Select a contact";
+    private static final String INDEX_SPECIFIED = "Index %d";
 
     @FXML
     private ScrollPane scrollContainer;
@@ -51,7 +53,6 @@ public class PersonDetailPanel extends UiPart<Region> {
         }
 
         name.setText(person.getName().toString());
-        tags.getChildren().addAll(getTagLabels(person));
         dataContainer.getChildren().addAll(getDataCardCollection(person));
         star.setVisible(person.getIsFavorite().getFavoriteStatus());
     }
@@ -65,10 +66,9 @@ public class PersonDetailPanel extends UiPart<Region> {
      */
     public void setDisplayedIndex(int index) {
         if (index < 1) {
-            id.setText("Select a contact");
-            star.setVisible(false);
+            id.setText(INDEX_UNSPECIFIED);
         } else {
-            id.setText(String.format("Index %d", index));
+            id.setText(String.format(INDEX_SPECIFIED, index));
         }
     }
 
@@ -82,6 +82,7 @@ public class PersonDetailPanel extends UiPart<Region> {
         tags.getChildren().clear();
         dataContainer.getChildren().clear();
         scrollContainer.setVvalue(0);
+        star.setVisible(false);
     }
 
     private Collection<Label> getTagLabels(Person person) {
@@ -93,7 +94,16 @@ public class PersonDetailPanel extends UiPart<Region> {
     }
 
     private Collection<Region> getDataCardCollection(Person person) {
-        List<Region> regions = Stream.of(
+        List<Region> regions = new LinkedList<>();
+
+        // Adds Person tags, if any
+        if (!person.getTags().isEmpty()) {
+            tags.getChildren().addAll(getTagLabels(person));
+            regions.add(tags);
+        }
+
+        // Adds all detail cards, except modules taken
+        Collection<Region> dataRegions = Stream.of(
                 new PersonDetailCard.DetailCardData("Phone", person.getPhone().toString()),
                 new PersonDetailCard.DetailCardData("Address", person.getAddress().toString()),
                 new PersonDetailCard.DetailCardData("Email", person.getEmail().toString()),
@@ -101,17 +111,18 @@ public class PersonDetailPanel extends UiPart<Region> {
                 new PersonDetailCard.DetailCardData("Race", person.getRace().toString()),
                 new PersonDetailCard.DetailCardData("Communication channels", person.getComms().toString()),
                 new PersonDetailCard.DetailCardData("Major", person.getMajor().toString()))
-                .filter(PersonDetailCard.DetailCardData::hasBody)
                 .map(PersonDetailCard::new)
                 .map(PersonDetailCard::getRoot)
-                .collect(Collectors.toCollection(LinkedList::new));
+                .collect(Collectors.toList());
+        regions.addAll(dataRegions);
 
-        if (person.getModules() == null
-                || person.getModules().mods == null
-                || person.getModules().mods.isEmpty()) {
-            return regions;
+        // Adds card for modules taken, if any
+        boolean hasModules = person.getModules() != null
+                && person.getModules().mods != null
+                && !person.getModules().mods.isEmpty();
+        if (hasModules) {
+            regions.add(new PersonModulesCard("Modules", person.getModules().mods).getRoot());
         }
-        regions.add(new PersonModulesCard("Modules", person.getModules().mods).getRoot());
 
         return regions;
     }

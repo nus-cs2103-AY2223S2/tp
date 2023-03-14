@@ -24,13 +24,13 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <ImageView fx:id="star" fitHeight="10" fitWidth="10">
+        <ImageView fx:id="star" fitHeight="10" fitWidth="10" visible="false">
           <Image url="/images/star.png"/>
         </ImageView>
       </VBox>
       <VBox spacing="5" HBox.hgrow="ALWAYS">
         <Label fx:id="name" text="\$first" styleClass="label-h6" />
-        <Label fx:id="phone" styleClass="label-hp" text="\$phone" />
+        <Label fx:id="phone" styleClass="label-p" text="\$phone" />
         <FlowPane fx:id="tags" />
       </VBox>
     </HBox>

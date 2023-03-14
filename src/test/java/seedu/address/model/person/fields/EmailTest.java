@@ -1,12 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.person.fields.Email;
 
 public class EmailTest {
 
@@ -15,18 +13,18 @@ public class EmailTest {
         assertThrows(NullPointerException.class, () -> new Email(null));
     }
 
-    @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
-        //String invalidEmail = "";
-        //assertThrows(IllegalArgumentException.class, () -> new Email(invalidEmail));
-    }
+    //@Test
+    //public void constructor_invalidEmail_throwsIllegalArgumentException() {
+    //    String invalidEmail = "";
+    //   assertThrows(IllegalArgumentException.class, () -> new Email(invalidEmail));
+    //}
 
     @Test
     public void isValidEmail() {
         // null email
         assertThrows(NullPointerException.class, () -> Email.isValidEmail(null));
 
-        // blank email
+        //blank email
         //assertFalse(Email.isValidEmail("")); // empty string
         //assertFalse(Email.isValidEmail(" ")); // spaces only
 

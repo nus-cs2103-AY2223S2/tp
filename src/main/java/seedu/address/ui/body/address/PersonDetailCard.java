@@ -12,6 +12,9 @@ import seedu.address.ui.UiPart;
  */
 public class PersonDetailCard extends UiPart<Region> {
     private static final String FXML = "body/address/PersonDetailCard.fxml";
+    private static final String DATA_BODY_PLACEHOLDER = "Unknown";
+    private static final double OPACITY_PRESENT = 1;
+    private static final double OPACITY_MISSING = 0.5;
 
     @FXML
     private Label title;
@@ -27,7 +30,14 @@ public class PersonDetailCard extends UiPart<Region> {
         super(FXML);
 
         title.setText(data.title);
-        body.setText(data.body);
+
+        if (data.hasBody()) {
+            body.setText(data.body);
+            this.getRoot().setOpacity(OPACITY_PRESENT);
+        } else {
+            body.setText(DATA_BODY_PLACEHOLDER);
+            this.getRoot().setOpacity(OPACITY_MISSING);
+        }
     }
 
     /**

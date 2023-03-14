@@ -15,7 +15,8 @@
             </ImageView>
         </HBox>
         <Label fx:id="name" text="\$first" styleClass="label-header" wrapText="true" minHeight="-Infinity" />
-        <FlowPane fx:id="tags" />
-        <VBox fx:id="dataContainer" spacing="10" />
+        <VBox fx:id="dataContainer" spacing="10">
+            <FlowPane fx:id="tags" />
+        </VBox>
     </VBox>
 </ScrollPane>
