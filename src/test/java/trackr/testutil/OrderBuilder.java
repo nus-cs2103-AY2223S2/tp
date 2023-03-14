@@ -3,6 +3,7 @@ package trackr.testutil;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
+import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.order.customer.Customer;
 import trackr.model.order.customer.CustomerAddress;
@@ -16,12 +17,14 @@ public class OrderBuilder {
 
     public static final String DEFAULT_ORDER_NAME = "Chocolate Cookies";
     public static final String DEFAULT_ORDER_DEADLINE = "01/01/2027";
+    public static final String DEFAULT_ORDER_QUANTITY = "3";
     public static final String DEFAULT_ORDER_STATUS = "N";
     public static final String DEFAULT_CUSTOMER_NAME = "John Doe";
     public static final String DEFAULT_CUSTOMER_PHONE = "98765432";
     public static final String DEFAULT_CUSTOMER_ADDRESS = "123 Main Street";
 
     private OrderName orderName;
+    private OrderQuantity orderQuantity;
     private OrderDeadline orderDeadline;
     private OrderStatus orderStatus;
     private CustomerName customerName;
@@ -33,6 +36,7 @@ public class OrderBuilder {
      */
     public OrderBuilder() {
         orderName = new OrderName(DEFAULT_ORDER_NAME);
+        orderQuantity = new OrderQuantity(DEFAULT_ORDER_QUANTITY);
         orderDeadline = new OrderDeadline(DEFAULT_ORDER_DEADLINE);
         orderStatus = new OrderStatus(DEFAULT_ORDER_STATUS);
         customerName = new CustomerName(DEFAULT_CUSTOMER_NAME);
@@ -45,6 +49,7 @@ public class OrderBuilder {
      */
     public OrderBuilder(Order orderToCopy) {
         orderName = orderToCopy.getOrderName();
+        orderQuantity = orderToCopy.getOrderQuantity();
         orderDeadline = orderToCopy.getOrderDeadline();
         orderStatus = orderToCopy.getOrderStatus();
         customerName = orderToCopy.getCustomer().getCustomerName();
@@ -57,6 +62,14 @@ public class OrderBuilder {
      */
     public OrderBuilder withOrderName(String orderName) {
         this.orderName = new OrderName(orderName);
+        return this;
+    }
+
+    /**
+     * Sets the {@code OrderQuantity} of the {@code Order} that we are building.
+     */
+    public OrderBuilder withOrderQuantity(String orderQuantity) {
+        this.orderQuantity = new OrderQuantity(orderQuantity);
         return this;
     }
 
@@ -113,7 +126,7 @@ public class OrderBuilder {
      */
     public Order build() {
         Customer c = new Customer(customerName, customerPhone, customerAddress);
-        return new Order(orderName, orderDeadline, orderStatus, c);
+        return new Order(orderName, orderDeadline, orderStatus, orderQuantity, c);
     }
 
 }
