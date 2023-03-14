@@ -43,17 +43,17 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
 
     private final Index index;
-    private final EditTaskDescriptor editTaskDescriptor;
+    private final TaskDescriptor taskDescriptor;
 
     /**
      * @param index of the task in the filtered task list to edit
-     * @param editTaskDescriptor details to edit the task with
+     * @param taskDescriptor details to edit the task with
      */
-    public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
-        requireAllNonNull(index, editTaskDescriptor);
+    public EditTaskCommand(Index index, TaskDescriptor taskDescriptor) {
+        requireAllNonNull(index, taskDescriptor);
 
         this.index = index;
-        this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
+        this.taskDescriptor = new TaskDescriptor(taskDescriptor);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class EditTaskCommand extends Command {
         }
 
         Task taskToEdit = lastShownTaskList.get(index.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        Task editedTask = createEditedTask(taskToEdit, taskDescriptor);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -81,15 +81,15 @@ public class EditTaskCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(Task taskToEdit, TaskDescriptor taskDescriptor) {
         assert taskToEdit != null;
 
         TaskName updatedTaskName =
-                editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
+                taskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
         TaskDeadline updatedTaskDeadline =
-                editTaskDescriptor.getTaskDeadline().orElse(taskToEdit.getTaskDeadline());
+                taskDescriptor.getTaskDeadline().orElse(taskToEdit.getTaskDeadline());
         TaskStatus updatedTaskStatus =
-                editTaskDescriptor.getTaskStatus().orElse(taskToEdit.getTaskStatus());
+                taskDescriptor.getTaskStatus().orElse(taskToEdit.getTaskStatus());
 
         return new Task(updatedTaskName, updatedTaskDeadline, updatedTaskStatus);
     }
@@ -109,22 +109,6 @@ public class EditTaskCommand extends Command {
         // state check
         EditTaskCommand e = (EditTaskCommand) other;
         return index.equals(e.index)
-                && editTaskDescriptor.equals(e.editTaskDescriptor);
-    }
-
-    /**
-     * Stores the details to edit the task with.
-     */
-    public static class EditTaskDescriptor extends TaskDescriptor {
-        public EditTaskDescriptor() {
-            super();
-        }
-
-        /**
-         * Copy constructor.
-         */
-        public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            super(toCopy);
-        }
+                && taskDescriptor.equals(e.taskDescriptor);
     }
 }
