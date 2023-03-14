@@ -66,7 +66,11 @@ public class CopyCommand extends Command {
         infoBuilder.append("Name: " + personToCopy.getName() + "\n")
                 .append("Phone: " + personToCopy.getPhone() + "\n")
                 .append("Email: " + personToCopy.getEmail() + "\n")
-                .append("Address: " + personToCopy.getAddress() + "\n");
+                .append("Address: " + personToCopy.getAddress() + "\n")
+                .append("Rank: " + personToCopy.getRank() + "\n")
+                .append("Unit: " + personToCopy.getUnit() + "\n")
+                .append("Company: " + personToCopy.getCompany() + "\n")
+                .append("Platoon: " + personToCopy.getPlatoon() + "\n");
         return infoBuilder.toString();
     }
 
