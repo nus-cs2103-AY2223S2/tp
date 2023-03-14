@@ -2,9 +2,9 @@ package seedu.vms.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VAX_GROUPS;
 
 import java.util.Map;

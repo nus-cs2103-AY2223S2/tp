@@ -1,9 +1,9 @@
 package seedu.vms.logic.parser.appointment;
 
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VAX_GROUPS;
 
 import java.time.LocalDateTime;
