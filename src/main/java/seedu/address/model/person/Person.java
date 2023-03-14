@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
-    // Identity fields
+    // Compulsory fields
     private final Name name; //module name
     private final Type type; // module type (tutorial, lecture, lab, assignment, project)
     private final TimeSlot timeSlot; // timeslot (should be optional)

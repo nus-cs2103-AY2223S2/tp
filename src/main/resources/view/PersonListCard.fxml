@@ -28,12 +28,12 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="type" styleClass="cell_small_label" text="\$type" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="timeSlot" styleClass="cell_small_label" text="\$timeSlot" />
       <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
       <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
       <Label fx:id="teacher" styleClass="cell_small_label" text="\$teacher" />
+
 
     </VBox>
   </GridPane>

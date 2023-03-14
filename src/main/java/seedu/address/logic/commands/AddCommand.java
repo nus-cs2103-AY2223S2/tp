@@ -14,20 +14,18 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module tracker. \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_TAG + "TYPE "
+            + PREFIX_NAME + "MODULE_NAME "
+            + PREFIX_TAG + "TYPE (Lecture, Tutorial, Lab) "
             + PREFIX_TIMESLOT + "TIMESLOT "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TEACHER + "TEACHER] " + "[" + PREFIX_DEADLINE + "DEADLINE] " + "[" + PREFIX_REMARK + "REMARK]\n"
+            + PREFIX_ADDRESS + "VENUE "
+            + "[" + PREFIX_TEACHER + "TEACHER] " + "[" + PREFIX_DEADLINE + "DEADLINES] " + "[" + PREFIX_REMARK + "REMARKS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS1101S "
             + PREFIX_TAG + "Lecture "
             + PREFIX_TIMESLOT + "12 noon - 2pm "
-            + PREFIX_ADDRESS + "COM1 "
-            + PREFIX_REMARK + "Hard introduction module..."
-            + PREFIX_TEACHER + "Professor Low Kok Lim";
+            + PREFIX_ADDRESS + "COM1 ";
 
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
