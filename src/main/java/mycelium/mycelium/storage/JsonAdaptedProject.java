@@ -77,8 +77,6 @@ public class JsonAdaptedProject {
         assertField(name != null, "name");
         assertField(status != null, "status");
         assertField(clientEmail != null, "clientEmail");
-        assertField(source != null, "source");
-        assertField(description != null, "description");
         assertField(acceptedOn != null, "acceptedOn");
         // NOTE: it is okay for the deadline to be null.
         return new Project(name,
