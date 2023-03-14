@@ -1,10 +1,12 @@
 package seedu.address.logic.parser.editpersoncommandsparser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_NO_PREAMBLE_REQUIRED;
 
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.commands.EditUserCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -27,6 +29,14 @@ public class EditUserCommandParser extends EditPersonCommandParser implements Pa
 
     @Override
     public Optional<Index> parseIndex(String index) throws ParseException {
+        if (!index.isEmpty()) {
+            throw new ParseException(MESSAGE_NO_PREAMBLE_REQUIRED);
+        }
         return Optional.empty();
+    }
+
+    @Override
+    public String getMessageUsage() {
+        return EditUserCommand.MESSAGE_USAGE;
     }
 }

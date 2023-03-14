@@ -122,28 +122,6 @@ public class EditPersonDescriptor {
         return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditPersonDescriptor)) {
-            return false;
-        }
-
-        // state check
-        EditPersonDescriptor e = (EditPersonDescriptor) other;
-
-        return getName().equals(e.getName())
-                && getPhone().equals(e.getPhone())
-                && getEmail().equals(e.getEmail())
-                && getAddress().equals(e.getAddress())
-                && getTags().equals(e.getTags());
-    }
-
     public void setGender(Gender gender) {
         this.gender = gender;
     }
@@ -182,5 +160,32 @@ public class EditPersonDescriptor {
 
     public void setComms(CommunicationChannel comms) {
         this.comms = comms;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditPersonDescriptor)) {
+            return false;
+        }
+
+        // state check
+        EditPersonDescriptor e = (EditPersonDescriptor) other;
+
+        return getName().equals(e.getName())
+                && getPhone().equals(e.getPhone())
+                && getEmail().equals(e.getEmail())
+                && getAddress().equals(e.getAddress())
+                && getTags().equals(e.getTags())
+                && getGender().equals(e.getGender())
+                && getMajor().equals(e.getMajor())
+                && getRace().equals(e.getRace())
+                && getModules().equals(e.getModules())
+                && getComms().equals(e.getComms());
     }
 }

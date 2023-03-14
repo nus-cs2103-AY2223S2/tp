@@ -1,6 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Set;
@@ -30,9 +35,20 @@ public class EditUserCommand extends Command {
     public static final String COMMAND_WORD = "edituser";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited User: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    final EditPersonDescriptor editUserDescriptor;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the user. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters:"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "johndoe@example.com";
+
+    private final EditPersonDescriptor editUserDescriptor;
 
     /**
      * @param editPersonDescriptor details to edit the person with
@@ -80,6 +96,10 @@ public class EditUserCommand extends Command {
                 updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite);
     }
 
+    public EditPersonDescriptor getEditUserDescriptor() {
+        return this.editUserDescriptor;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -88,13 +108,13 @@ public class EditUserCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditContactCommand)) {
+        if (!(other instanceof EditUserCommand)) {
             return false;
         }
 
         // state check
-        EditContactCommand e = (EditContactCommand) other;
-        return this.editUserDescriptor.equals(e.editPersonDescriptor);
+        EditUserCommand e = (EditUserCommand) other;
+        return this.getEditUserDescriptor().equals(e.getEditUserDescriptor());
     }
 
 }

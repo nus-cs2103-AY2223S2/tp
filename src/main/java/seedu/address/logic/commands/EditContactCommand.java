@@ -55,18 +55,15 @@ public class EditContactCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    final EditPersonDescriptor editPersonDescriptor;
+    private final EditPersonDescriptor editPersonDescriptor;
     private final Index index;
 
     /**
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditContactCommand(EditPersonDescriptor editPersonDescriptor) throws ParseException {
+    public EditContactCommand(EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
 
-        if (editPersonDescriptor.getIndex().isEmpty()) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
         this.index = editPersonDescriptor.getIndex().get();
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
@@ -116,6 +113,10 @@ public class EditContactCommand extends Command {
                 updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite);
     }
 
+    public EditPersonDescriptor getEditPersonDescriptor() {
+        return this.editPersonDescriptor;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -131,6 +132,6 @@ public class EditContactCommand extends Command {
         // state check
         EditContactCommand e = (EditContactCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && this.getEditPersonDescriptor().equals(e.getEditPersonDescriptor());
     }
 }

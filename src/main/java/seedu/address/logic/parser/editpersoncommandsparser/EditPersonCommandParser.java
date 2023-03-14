@@ -35,6 +35,8 @@ public abstract class EditPersonCommandParser {
 
     public abstract Optional<Index> parseIndex(String index) throws ParseException;
 
+    protected abstract String getMessageUsage();
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditPersonDescriptor for edit commands to use.
@@ -55,7 +57,7 @@ public abstract class EditPersonCommandParser {
             editPersonDescriptor.setIndex(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE), pe
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, this.getMessageUsage()), pe
             );
         }
 
@@ -94,6 +96,7 @@ public abstract class EditPersonCommandParser {
 
         return editPersonDescriptor;
     }
+
 
     private Optional<Modules> parseModulesForEdit(Collection<String> mods) throws ParseException {
         assert mods != null;

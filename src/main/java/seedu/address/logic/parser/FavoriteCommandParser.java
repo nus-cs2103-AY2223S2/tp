@@ -20,14 +20,11 @@ public class FavoriteCommandParser implements Parser<FavoriteCommand> {
      */
     public FavoriteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        Optional<Index> index;
+        Index index;
 
         try {
             index = ParserUtil.parseIndex(args);
-            if (index.isEmpty()) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
-            }
-            return new FavoriteCommand(index.get());
+            return new FavoriteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FavoriteCommand.MESSAGE_USAGE), pe);

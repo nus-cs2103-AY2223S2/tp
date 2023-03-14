@@ -20,14 +20,11 @@ public class UnfavoriteCommandParser implements Parser<UnfavoriteCommand> {
      */
     public UnfavoriteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        Optional<Index> index;
+        Index index;
 
         try {
             index = ParserUtil.parseIndex(args);
-            if (index.isEmpty()) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
-            }
-            return new UnfavoriteCommand(index.get());
+            return new UnfavoriteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnfavoriteCommand.MESSAGE_USAGE), pe);

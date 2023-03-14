@@ -33,6 +33,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_NO_PREAMBLE_REQUIRED = "There is no need for a preamble for this command";
+
     /**
      * Formatter for String to LocalDateTime.
      */
@@ -64,13 +66,13 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Optional<Index> parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws ParseException {
 
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Optional.of(Index.fromOneBased(Integer.parseInt(trimmedIndex)));
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
     /**

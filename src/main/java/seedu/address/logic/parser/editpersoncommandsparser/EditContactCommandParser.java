@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.editpersoncommandsparser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Optional;
 
@@ -22,7 +23,6 @@ public class EditContactCommandParser extends EditPersonCommandParser implements
      */
     public EditContactCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        Index index;
 
         EditPersonDescriptor editPersonDescriptor = this.parseForTags(args);
 
@@ -31,6 +31,11 @@ public class EditContactCommandParser extends EditPersonCommandParser implements
 
     @Override
     public Optional<Index> parseIndex(String index) throws ParseException {
-        return ParserUtil.parseIndex(index);
+        return Optional.of(ParserUtil.parseIndex(index));
+    }
+
+    @Override
+    public String getMessageUsage() {
+        return EditContactCommand.MESSAGE_USAGE;
     }
 }
