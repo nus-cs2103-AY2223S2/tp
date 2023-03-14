@@ -145,6 +145,14 @@ public class ParserUtil {
         return new RiskLevel(upperRisk);
     }
 
+    /**
+     * Parses a {@code String datePair} into a {@code AvailableDate}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param datePair The datePair to be parsed
+     * @return The AvailableDate Object
+     * @throws ParseException throws error if invalid datePair
+     */
     public static AvailableDate parseDateRange(String datePair) throws ParseException {
         requireNonNull(datePair);
 
@@ -163,6 +171,9 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses {@code Collection<String> datePairs} into a {@code Set<AvailableDate>}.
+     */
     public static Set<AvailableDate> parseDateRanges(Collection<String> datePairs) throws ParseException {
         requireNonNull(datePairs);
         final Set<AvailableDate> datesSet = new HashSet<>();

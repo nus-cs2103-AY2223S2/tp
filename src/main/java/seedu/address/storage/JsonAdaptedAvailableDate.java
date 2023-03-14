@@ -6,10 +6,16 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.information.AvailableDate;
 
+/**
+ * Jackson-friendly version of {@link AvailableDate}.
+ */
 public class JsonAdaptedAvailableDate {
     private final String startDate;
     private final String endDate;
 
+    /**
+     * Constructs a {@code JsonAdaptedAvailableDate} with the given {@code dateRange}.
+     */
     @JsonCreator
     public JsonAdaptedAvailableDate(String dateRange) {
         String[] dates = dateRange.split(" to ");
@@ -17,6 +23,9 @@ public class JsonAdaptedAvailableDate {
         this.endDate = dates[1];
     }
 
+    /**
+     * Constructs a {@code JsonAdaptedAvailableDate} with the given {@code AvailableDate}.
+     */
     public JsonAdaptedAvailableDate(AvailableDate src) {
         this.endDate = src.getEndDate().toString();
         this.startDate = src.getStartDate().toString();
