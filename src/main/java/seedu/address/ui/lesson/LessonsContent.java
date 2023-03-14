@@ -1,14 +1,12 @@
 package seedu.address.ui.lesson;
 
-import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Name;
@@ -28,10 +26,16 @@ public class LessonsContent extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label listName;
+    private Label pastLessonsListName;
 
     @FXML
-    private ListView<String> lessonList;
+    private StackPane pastLessonsListPlaceholder;
+
+    @FXML
+    private Label upcomingLessonsListName;
+
+    @FXML
+    private StackPane upcomingLessonsListPlaceholder;
 
     /**
      * Creates a {@code HomeworkContent} with the given {@code Student}.
@@ -41,17 +45,19 @@ public class LessonsContent extends UiPart<Region> {
         studentName = student.getName();
 
         name.setText(String.format("Full Name: %s", student.getName().fullName));
-        listName.setText("Student Lessons List: ");
+        pastLessonsListName.setText("Past Lessons: ");
 
-        ObservableList<String> lessonItems = FXCollections.observableArrayList();
-        List<Lesson> studentLessonsList = student.getLessonsList();
-        for (int i = 0; i < studentLessonsList.size(); i++) {
-            Lesson lessonItem = studentLessonsList.get(i);
-            String lessonString = String.format("%d. %s", i + 1, lessonItem.toString());
-            lessonItems.add(lessonString);
-        }
+        // Set the past lessons list panel to display the past lessons of the student
+        ObservableList<Lesson> pastLessonsList = student.getPastLessonsList();
+        LessonsListPanel pastLessonsListPanel = new LessonsListPanel(pastLessonsList);
+        pastLessonsListPlaceholder.getChildren().add(pastLessonsListPanel.getRoot());
 
-        lessonList.setItems(lessonItems);
+        upcomingLessonsListName.setText("Upcoming Lessons: ");
+
+        // Set the upcoming lessons list panel to display the upcoming lessons of the student
+        ObservableList<Lesson> upcomingLessonsList = student.getUpcomingLessonsList();
+        LessonsListPanel upcomingLessonsListPanel = new LessonsListPanel(upcomingLessonsList);
+        upcomingLessonsListPlaceholder.getChildren().add(upcomingLessonsListPanel.getRoot());
     }
 
     @Override

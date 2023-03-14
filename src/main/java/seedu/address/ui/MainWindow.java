@@ -214,7 +214,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @param textToDisplay the text to display
      */
-    public void setDetailedHeaderBar(String textToDisplay) {
-        detailedInfoRegion.setHeaderBar(textToDisplay);
+    public void setDetailedHeaderBar(String textToDisplay, String iconPath) {
+        detailedInfoRegion.setHeaderBar(textToDisplay, iconPath);
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.student.Exam;
 import seedu.address.model.student.Student;
 import seedu.address.ui.detail.ProfileContent;
 import seedu.address.ui.exam.EmptyExamsContent;
@@ -20,8 +21,12 @@ import seedu.address.ui.lesson.LessonsContent;
  * A UI component that displays information of a {@code Person}.
  */
 public class StudentCard extends UiPart<Region> {
-
     private static final String FXML = "StudentListCard.fxml";
+    private static final String PROFILE_ICON = "images/profile_icon.png";
+    private static final String HOMEWORK_ICON = "images/homework_icon.png";
+    private static final String LESSONS_ICON = "images/lessons_icon.png";
+    private static final String EXAMS_ICON = "images/exams_icon.png";
+
     private final MainWindow mainWindow;
 
     /**
@@ -74,7 +79,8 @@ public class StudentCard extends UiPart<Region> {
 
     @FXML
     private void handleViewProfileClick() {
-        mainWindow.setDetailedHeaderBar(String.format("Student Profile: %s", student.getName().fullName));
+        mainWindow.setDetailedHeaderBar(String.format("Student Profile: %s",
+                student.getName().fullName), PROFILE_ICON);
         mainWindow.setDetailedContent(new ProfileContent(student));
     }
 
@@ -82,7 +88,8 @@ public class StudentCard extends UiPart<Region> {
      * Handles the view school tasks button click event.
      */
     private void handleViewHomeworkClick() {
-        mainWindow.setDetailedHeaderBar(String.format("Homework List: %s", student.getName().fullName));
+        mainWindow.setDetailedHeaderBar(String.format("Homework List: %s",
+                student.getName().fullName), HOMEWORK_ICON);
         if (student.getHomeworkList().isEmpty()) {
             mainWindow.setDetailedContent(new EmptyHomeworkContent(student));
         } else {
@@ -94,7 +101,8 @@ public class StudentCard extends UiPart<Region> {
      * Handles the view student lessons button click event
      */
     private void handleViewLessonsClick() {
-        mainWindow.setDetailedHeaderBar(String.format("Lessons List: %s", student.getName().fullName));
+        mainWindow.setDetailedHeaderBar(String.format("Lessons List: %s",
+                student.getName().fullName), LESSONS_ICON);
         if (student.getLessonsList().isEmpty()) {
             mainWindow.setDetailedContent(new EmptyLessonsContent(student));
         } else {
@@ -107,7 +115,8 @@ public class StudentCard extends UiPart<Region> {
      */
     private void handleViewExamsClick() {
         //TODO
-        mainWindow.setDetailedHeaderBar(String.format("Exams List: %s", student.getName().fullName));
+        mainWindow.setDetailedHeaderBar(String.format("Exams List: %s",
+                student.getName().fullName), EXAMS_ICON);
         mainWindow.setDetailedContent(new EmptyExamsContent(student));
     }
 

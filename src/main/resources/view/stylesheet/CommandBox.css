@@ -3,6 +3,7 @@
     -fx-font-family: "Comic Sans MS";
     -fx-text-fill: #1d1d1d;
     -fx-opacity: 1;
+    -fx-background-color: #fffceb;
 }
 
 #commandTypeLabel {

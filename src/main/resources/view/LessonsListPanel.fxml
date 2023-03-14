@@ -9,7 +9,7 @@
     <stylesheets>
         <URL value="@../view/stylesheet/HomeworkList.css" />
     </stylesheets>
-    <ListView fx:id="homeworkListView" VBox.vgrow="ALWAYS" />
+    <ListView fx:id="lessonsListView" VBox.vgrow="ALWAYS" />
     <cursor>
         <Cursor fx:constant="OPEN_HAND" />
     </cursor>

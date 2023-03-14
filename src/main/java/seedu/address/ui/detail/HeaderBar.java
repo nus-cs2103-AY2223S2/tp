@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.ui.UiPart;
@@ -16,14 +18,18 @@ public class HeaderBar extends UiPart<Region> {
     private static final String FXML = "HeaderBar.fxml";
 
     @FXML
+    private ImageView icon;
+
+    @FXML
     private Label title;
 
     /**
      * Creates a {@code HeaderBar} with the given {@code Stage} and {@code Student}.
      */
-    public HeaderBar(String titleText) {
+    public HeaderBar(String titleText, String iconPath) {
         super(FXML);
         title.setText(titleText);
+        icon.setImage(new Image(iconPath));
     }
 
     @Override

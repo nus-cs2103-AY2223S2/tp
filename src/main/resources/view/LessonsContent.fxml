@@ -5,20 +5,17 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.Cursor?>
 
 <StackPane fx:id="detailedContent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10" />
     </padding>
-    <VBox id="studentLessonsContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="500.0">
 
+    <VBox id="studentLessonsContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="500.0">
         <Label fx:id="name" alignment="TOP_LEFT" styleClass="studentNameLabel" text="Full Name" />
-        <Label fx:id="listName" alignment="TOP_LEFT" text="List Name" />
-        <ListView fx:id="lessonList" id="lessonList" prefHeight="250.0" prefWidth="300.0" />
-        <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-        </cursor>
+        <Label fx:id="pastLessonsListName" alignment="TOP_LEFT" text="List Name" />
+        <StackPane fx:id="pastLessonsListPlaceholder" prefHeight="400.0" prefWidth="300.0" />
+        <Label fx:id="upcomingLessonsListName" alignment="TOP_LEFT" text="List Name" />
+        <StackPane fx:id="upcomingLessonsListPlaceholder" prefHeight="400.0" prefWidth="300.0" />
     </VBox>
 </StackPane>

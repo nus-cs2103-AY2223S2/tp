@@ -11,8 +11,8 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
-import seedu.address.model.student.exceptions.DuplicateHomeworkException;
-import seedu.address.model.student.exceptions.HomeworkNotFoundException;
+import seedu.address.model.student.exceptions.DuplicateEntryException;
+import seedu.address.model.student.exceptions.EntryNotFoundException;
 
 /**
  * A list of homework that enforces uniqueness between its elements and does not allow nulls.

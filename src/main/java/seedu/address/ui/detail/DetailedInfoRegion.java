@@ -29,7 +29,7 @@ public class DetailedInfoRegion extends UiPart<Region> {
     public DetailedInfoRegion(String textToDisplay) {
         super(FXML);
 
-        HeaderBar headerBar = new HeaderBar("Detailed Information");
+        HeaderBar headerBar = new HeaderBar("Detailed Information", "/images/info_icon.png");
         headerBarPlaceholder.getChildren().add(headerBar.getRoot());
 
         UiPart<Region> detailedContent = new WelcomeContent();
@@ -40,9 +40,10 @@ public class DetailedInfoRegion extends UiPart<Region> {
      * Sets the header bar to display the given text.
      *
      * @param titleText The text to display in the header bar.
+     * @param iconPath The path to the icon to display in the header bar.
      */
-    public void setHeaderBar(String titleText) {
-        HeaderBar headerBar = new HeaderBar(titleText);
+    public void setHeaderBar(String titleText, String iconPath) {
+        HeaderBar headerBar = new HeaderBar(titleText, iconPath);
         headerBarPlaceholder.getChildren().add(headerBar.getRoot());
     }
 

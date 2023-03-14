@@ -3,3 +3,11 @@
     -fx-font-family: "Comic Sans MS";
     -fx-font-size: 15;
 }
+
+#endTime {
+    -fx-padding: 0 0 0 10;
+}
+
+#upcomingLessonsListName {
+    -fx-padding: 15 15 15 15;
+}

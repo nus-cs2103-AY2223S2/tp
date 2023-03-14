@@ -18,8 +18,5 @@
         <Label fx:id="listName" alignment="TOP_LEFT" text="List Name" />
         <StackPane fx:id="homeworkListPlaceholder" prefHeight="400.0" prefWidth="300.0" />
         <PieChart fx:id="homeworkPieChart" />
-        <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-        </cursor>
     </VBox>
 </StackPane>
