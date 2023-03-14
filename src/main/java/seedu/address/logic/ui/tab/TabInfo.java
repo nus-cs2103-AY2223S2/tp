@@ -18,6 +18,10 @@ public class TabInfo {
         this.title = title;
     }
 
+    public Index getIndex() {
+        return index;
+    }
+
     @Override
     public String toString() {
         return String.format(STRING_REPRESENTATION, index.getOneBased(), title);

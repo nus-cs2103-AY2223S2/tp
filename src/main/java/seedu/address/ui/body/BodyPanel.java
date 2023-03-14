@@ -55,6 +55,12 @@ public class BodyPanel extends UiPart<Region> {
         calendarTab.setContent(calendarPanel.getRoot());
 
         bodyTabs.getTabs().addAll(addressBookTab, calendarTab);
+        logic.getSelectedTab().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                return;
+            }
+            bodyTabs.getSelectionModel().select(newValue.getIndex().getZeroBased());
+        });
     }
 
     /**

@@ -46,9 +46,8 @@ public class TabUtil {
     }
 
     public void setSelectedTab(Index index) {
-        if (!isIndexInRange(index)) {
-            return;
+        if (isIndexInRange(index)) {
+            selectedTabInfo.setValue(tabInfoList.get(index.getZeroBased()));
         }
-        selectedTabInfo.set(tabInfoList.get(index.getZeroBased()));
     }
 }
