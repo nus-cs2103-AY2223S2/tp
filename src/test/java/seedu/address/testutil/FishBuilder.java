@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.fish.Address;
-import seedu.address.model.fish.Species;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
