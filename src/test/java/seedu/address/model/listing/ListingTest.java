@@ -2,15 +2,18 @@ package seedu.address.model.listing;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_APPLICANTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
 import static seedu.address.testutil.TypicalListings.CHICKEN_RICE_UNCLE;
 import static seedu.address.testutil.TypicalListings.TOILET_CLEANER;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ListingBuilder;
+import seedu.address.testutil.TypicalApplicants;
 
 public class ListingTest {
     @Test
@@ -24,7 +27,7 @@ public class ListingTest {
         // same name, all other attributes different -> returns true
         Listing editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE)
                 .withDescription(VALID_DESCRIPTION)
-                .withApplicants(VALID_APPLICANTS)
+                .withApplicants(VALID_NO_APPLICANTS)
                 .build();
         assertTrue(CHICKEN_RICE_UNCLE.isSameListing(editedChickenRiceUncle));
 
@@ -67,15 +70,15 @@ public class ListingTest {
         assertFalse(CHICKEN_RICE_UNCLE.equals(editedChickenRiceUncle));
 
         // different applicants -> returns true
-        editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE).withApplicants(VALID_APPLICANTS).build();
+        editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE)
+                .withApplicants(new ArrayList<>(TypicalApplicants.getTypicalApplicants())).build();
         assertTrue(CHICKEN_RICE_UNCLE.equals(editedChickenRiceUncle));
     }
 
     @Test
     public void stringTest() {
         String expected = "Chicken Rice Uncle; "
-                + "JobDescription: Make delicious chicken rice!; "
-                + "Applicants: Drum Mer, Benedict Green, Chris Toper";
+                + "JobDescription: Make delicious chicken rice!";
         assertTrue(CHICKEN_RICE_UNCLE.toString().equals(expected));
     }
 }
