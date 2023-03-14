@@ -77,7 +77,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY;
-        Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
+        Patient expectedPatient = new PatientBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPatient(expectedPatient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

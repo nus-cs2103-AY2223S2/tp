@@ -16,13 +16,13 @@ public class JsonAdaptedPatientTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPatient person = new JsonAdaptedPatient(BENSON, nric);
+        JsonAdaptedPatient person = new JsonAdaptedPatient(BENSON);
         assertEquals(BENSON, person.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPatient person = new JsonAdaptedPatient(INVALID_NAME, nric);
+        JsonAdaptedPatient person = new JsonAdaptedPatient(INVALID_NAME, "NRIC", "GRAY");
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
