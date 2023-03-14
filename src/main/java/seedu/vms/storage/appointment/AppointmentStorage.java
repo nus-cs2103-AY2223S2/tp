@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import seedu.vms.model.appointment.AppointmentManager;
 
-
 /**
  * Represents the storage for {@link AppointmentManager}.
  */
