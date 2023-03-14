@@ -4,10 +4,12 @@ import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.*;
 
+import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
+import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
 import seedu.recipe.model.tag.Tag;
 
 /**
- * Represents a Recipe in the address book.
+ * Represents a Recipe in the recipe book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 
@@ -20,9 +22,9 @@ public class Recipe {
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();
     private Optional<RecipeDuration> duration = Optional.empty();
-    private Optional<Set<Tag>> tags = Optional.empty();
-    private Optional<List<Ingredient>> ingredients = Optional.empty();
-    private Optional<List<Step>> steps = Optional.empty();
+    private Set<Tag> tags = Set.of();
+    private List<Ingredient> ingredients = List.of();
+    private List<Step> steps = List.of();
 
     /**
      * Only the name field is required. The rest are optional (but recommended)
@@ -36,14 +38,16 @@ public class Recipe {
         return name;
     }
     public List<Ingredient> getIngredients() {
-        return ingredients.get();
+        return ingredients;
     }
 
     public RecipePortion getPortion() {
+        portion.orElseThrow(RecipePortionNotPresentException::new);
         return portion.get();
     }
 
     public RecipeDuration getDuration() {
+        duration.orElseThrow(RecipePortionNotPresentException::new);
         return duration.get();
     }
 
@@ -52,31 +56,31 @@ public class Recipe {
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags.get());
+        return Collections.unmodifiableSet(tags);
     }
 
     public List<Step> getSteps() {
-        return steps.get();
+        return steps;
     }
 
-    public void setPortion(Optional<RecipePortion> portion) {
-        this.portion = portion;
+    public void setPortion(RecipePortion portion) {
+        this.portion = Optional.of(portion);
     }
 
-    public void setDuration(Optional<RecipeDuration> duration) {
-        this.duration = duration;
+    public void setDuration(RecipeDuration duration) {
+        this.duration = Optional.of(duration);
     }
 
-    public void setTags(Optional<Set<Tag>> tags) {
-        this.tags = tags;
+    public void setTags(Tag... tags) {
+        this.tags.addAll(Set.of(tags));
     }
 
-    public void setIngredients(Optional<List<Ingredient>> ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredients(Ingredient... ingredients) {
+        this.ingredients.addAll(List.of(ingredients));
     }
 
-    public void setSteps(Optional<List<Step>> steps) {
-        this.steps = steps;
+    public void setSteps(Step... steps) {
+        this.steps.addAll(List.of(steps));
     }
 
 
@@ -127,40 +131,34 @@ public class Recipe {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
 
-        if (portion.isPresent()) {
-            builder.append("; Portion: ").append(getPortion());
+        portion.ifPresent(p -> {
+            builder.append("; Portion: ").append(p);
+        });
+
+        duration.ifPresent(d -> {
+            builder.append("; Duration: ").append(d);
+        });
+
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
         }
 
-        if (duration.isPresent()) {
-            builder.append("; Duration: ").append(getDuration());
+        if (!ingredients.isEmpty()) {
+            builder.append("; Ingredients: ");
+            ingredients.forEach(i -> builder.append(i).append(", "));
         }
 
-        if (steps.isPresent()) {
-            Set<Tag> tags = getTags();
-            if (!tags.isEmpty()) {
-                builder.append("; Tags: ");
-                tags.forEach(builder::append);
-            }
-        }
-
-        if (ingredients.isPresent()) {
-            StringBuilder ingredientBuilder = new StringBuilder("; Ingredients: ");
-            List<Ingredient> ingredientList = ingredients.get();
-            for (Ingredient ingredient : ingredientList) {
-                ingredientBuilder.append(ingredient.toString() + ", ");
-            }
-            builder.append(ingredientBuilder);
-        }
-
-        if (steps.isPresent()) {
-            StringBuilder stepsBuilder = new StringBuilder("; Steps: ");
-            List<Step> stepList = steps.get();
+        if (!steps.isEmpty()) {
+            builder.append("; Steps: ");
             int counter = 1;
-            for (Step step : stepList) {
-                stepsBuilder.append(counter + ". " + step.toString() + ", ");
+            for (Step step : steps) {
+                builder.append(counter)
+                    .append(". ")
+                    .append(step)
+                    .append(", ");
                 counter++;
             }
-            builder.append(stepsBuilder);
         }
         return builder.toString();
     }
