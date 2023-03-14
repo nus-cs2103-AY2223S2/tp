@@ -12,10 +12,9 @@ public class Medication {
     public static final String MESSAGE_CONSTRAINTS = "Medication can take any values, and it should not be blank";
 
     /*
-     * The first character of the medication must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Any string will do.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "(.*?)";
 
     public final String value;
 
@@ -31,7 +30,7 @@ public class Medication {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid medication.
      */
     public static boolean isValidMedication(String test) {
         return test.matches(VALIDATION_REGEX);
