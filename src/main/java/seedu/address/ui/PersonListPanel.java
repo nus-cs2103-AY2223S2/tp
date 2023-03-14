@@ -44,6 +44,7 @@ public class PersonListPanel extends UiPart<Region> {
 
             } else {
                 setGraphic(new PersonCard(card, getIndex() + 1).getRoot());
+                setStyle("-fx-padding: 10 80 10 80; -fx-background-color:#AAAAAA ");
             }
         }
     }

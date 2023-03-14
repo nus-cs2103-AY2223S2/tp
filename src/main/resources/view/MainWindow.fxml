@@ -34,10 +34,7 @@
           </Menu>
         </MenuBar>
 
-        <SplitPane fx:id="cardList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
+        <SplitPane fx:id="cardList" dividerPositions="0.2" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <items>
             <StackPane fx:id="deckListPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
           <StackPane fx:id="personListPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
