@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedEmployee.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalEmployees.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class JsonAdaptedEmployeeTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+    public void toModelType_validEmployeeDetails_returnsEmployee() throws Exception {
         JsonAdaptedEmployee person = new JsonAdaptedEmployee(BENSON);
         assertEquals(BENSON, person.toModelType());
     }
@@ -62,7 +62,7 @@ public class JsonAdaptedEmployeeTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedEmployee person =
-                new JsonAdaptedEmployee(VALID_NAME, INVALID_EMPLOYEE_ID, INVALID_PHONE,
+                new JsonAdaptedEmployee(VALID_NAME, VALID_EMPLOYEE_ID, INVALID_PHONE,
                         VALID_EMAIL, VALID_ADDRESS, VALID_DEPARTMENT, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);

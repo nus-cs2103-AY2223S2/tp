@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the employee in the {@code model}'s employee list at {@code index}.
      */
-    public static Employee getPerson(Model model, Index index) {
+    public static Employee getEmployee(Model model, Index index) {
         return model.getFilteredEmployeeList().get(index.getZeroBased());
     }
 }
