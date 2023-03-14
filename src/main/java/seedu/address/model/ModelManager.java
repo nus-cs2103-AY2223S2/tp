@@ -31,19 +31,34 @@ public class ModelManager implements Model {
     private final AddressBook addressBook; // TODO: Remove this
     private final FilteredList<Person> filteredPersons; // TODO: Remove this
 
-    // TODO:
     /**
      * Constructs a ModelManager using the provided {@code tracker} and {@code userPrefs}.
      *
      * @param tracker The tracker.
      * @param userPrefs The user prefs.
      */
+    public ModelManager(Tracker tracker, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(tracker, userPrefs);
+
+        logger.fine("Initializing with tracker: " + tracker + " and user prefs " + userPrefs);
+
+        this.tracker = new Tracker(tracker);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredModules = new FilteredList<>(this.tracker.getModuleList());
+
+        this.addressBook = null;
+        filteredPersons = null;
+    }
+
+    /**
+     * TODO: Remove this
+     */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with tracker: " + addressBook + " and user prefs " + userPrefs);
 
-        this.tracker = new Tracker(); //TODO: assign this from constructor arguments
+        this.tracker = new Tracker();
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<>(this.tracker.getModuleList());
 
