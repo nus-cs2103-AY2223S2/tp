@@ -62,6 +62,26 @@ Examples:
 *  `assign t/1 i/3`
 
 
+### Mark task: `mark`
+
+Marks a task as completed
+
+Format: `mark {TASK_ID}`
+
+Examples:
+* `mark 1`
+
+
+### Unmark task: `unmark`
+
+Unmarks a task as not completed
+
+Format: `unmark {TASK_ID}`
+
+Examples:
+* `unmark 1`
+
+
 ### Delete a person: `delete`
 
 Deletes an existing person

@@ -186,6 +186,16 @@ public class AddCommandTest {
         public List<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called");
         }
+
+        @Override
+        public void markTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unmarkTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

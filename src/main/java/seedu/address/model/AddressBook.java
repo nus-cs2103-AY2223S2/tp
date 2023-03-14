@@ -53,12 +53,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the task list with {@code tasks}.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setTasks(newData.getTaskList());
     }
 
     //// person-level operations
@@ -113,6 +121,20 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTask(Task p) {
         tasks.add(p);
+    }
+
+    /**
+     * Marks the given task {@code task} as done.
+     */
+    public void markTask(Task task) {
+        task.mark();
+    }
+
+    /**
+     * Unmarks the given task {@code task} as not done.
+     */
+    public void unmarkTask(Task task) {
+        task.unmark();
     }
 
     /**

@@ -335,7 +335,7 @@ _{Explain here how the data archiving feature will be implemented}_
     * 1a1. Pied Piper shows an error message.
 
       Use case resumes at step 2.
-    
+
 **Use case: Delete a task**
 
 **MSS**
@@ -353,7 +353,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * 1a. The given index is invalid.
   * 1a1. Pied Piper shows an error message.
-  
+
     Use case resumes at step 2.
 
 **Use Case: view tasks**
@@ -368,7 +368,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Extensions**
 * 1a. No existing tasks
   * 1a1. Display message to user that there are no existing tasks
-  
+
     Use case ends
 
 ### Non-Functional Requirements
