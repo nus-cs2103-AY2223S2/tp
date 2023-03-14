@@ -347,8 +347,8 @@ Trackr shows an error message.
 
 MSS
 
-1. Home bakery owner requests to add a new order. 
-2. Home bakery owner enters an add order command with the required information. 
+1. Home bakery owner requests to add a new order.
+2. Home bakery owner enters an add order command with the required information.
 3. Trackr saves the new order to the system.
 
     Use case ends.
@@ -436,7 +436,7 @@ MSS
 
 1. Home bakery owner requests to list orders
 2. Trackr shows a list of orders
-3. Home bakery owner enters an edit order command with the index of the order and the updated information 
+3. Home bakery owner enters an edit order command with the index of the order and the updated information
 4. Trackr updates the order details with the new information
 
     Use case ends.
@@ -447,7 +447,7 @@ MSS
 Use case ends.
 * 3a. The Home bakery owner enters an invalid index.
 Trackr displays an error message.
-    
+
     Use case ends.
 
 
@@ -456,9 +456,9 @@ Trackr displays an error message.
 
 MSS
 
-1. Home bakery owner requests to list suppliers. 
-2. Trackr shows a list of suppliers. 
-3. Home bakery owner enters an edit supplier command with the index of the supplier and the updated information. 
+1. Home bakery owner requests to list suppliers.
+2. Trackr shows a list of suppliers.
+3. Home bakery owner enters an edit supplier command with the index of the supplier and the updated information.
 4. Trackr updates the supplier details with the new information.
 
    Use case ends.
@@ -544,10 +544,10 @@ MSS
 
 MSS
 
-1. Home bakery owner requests to find a task. 
-2. Home bakery owner enters the find_task command with the desired search criteria. 
-3. Trackr searches for tasks that match the given criteria. 
-4. Trackr displays a list of tasks that match the criteria. 
+1. Home bakery owner requests to find a task.
+2. Home bakery owner enters the find_task command with the desired search criteria.
+3. Trackr searches for tasks that match the given criteria.
+4. Trackr displays a list of tasks that match the criteria.
 
     Use case ends.
 
@@ -565,8 +565,8 @@ Trackr displays a message indicating no matching task is found.
 
 MSS
 
-1. Home bakery owner requests to switch to another tab. 
-2. Home bakery owner enters the tab command with the target tab. 
+1. Home bakery owner requests to switch to another tab.
+2. Home bakery owner enters the tab command with the target tab.
 3. Trackr switches to the target tab.
 
     Use case ends.
@@ -574,7 +574,7 @@ MSS
 **Extensions**
 
 * 2a. The Home bakery owner enters an invalid target tab.
-Trackr displays an error message. 
+Trackr displays an error message.
 
     Use case ends.
 
