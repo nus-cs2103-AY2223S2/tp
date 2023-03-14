@@ -17,7 +17,11 @@ import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.CollectionUtil;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
-import seedu.recipe.model.recipe.*;
+import seedu.recipe.model.recipe.Description;
+import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.Title;
 
 /**
  * Edits the details of an existing recipe in the recipe book.
@@ -91,7 +95,6 @@ public class EditCommand extends Command {
                 .orElse(recipeToEdit.getIngredients());
         Set<Step> updatedSteps = editRecipeDescriptor.getSteps()
                 .orElse(recipeToEdit.getSteps());
-                
         return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps);
     }
 
