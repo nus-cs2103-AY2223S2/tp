@@ -94,26 +94,28 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 
 * General Particulars:
-    - Name <**NAME**>
+      - Name <**NAME**>
         - String value of student's name
+      - Phone <**PH**>
+          - Numbers (integer)
+      - Sex <**SEX**>
+          - M / m means male while F / f means female
+  * Optional:
+      - Age [**AGE**]
+          - Numbers (integer)
+      - Phone number [**PH**]
+          - String value of phone address
+      - Address <**ADDR**>
+          - String value of student's address
+      - Email <**EM**>
+          - String value of email address
+
+
+* Student Particulars:
     - Class <**CLASS**>
         - String value of student's class
     - Index Number <**INDEX_NUMBER**>
         - Numbers (integer)
-    - Sex <**SEX**>
-        - M / m means male while F / f means female
-  * Optional:
-      - Image [**IMG**]
-          - String value of absolute path to image
-      - Age [**AGE**]
-          - Numbers (integer)
-      - Email [**EM**]
-          - String value of email address
-      - Phone number [**PH**]
-          - String value of phone address
-
-
-* Student Particulars:
     - Academics
         - Test <**TEST_NAME**>
             - String value of test name
@@ -126,6 +128,7 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
     - Parents/ Next-of-kin <**NOK**>
       -String value of parent's name
   * Optional:
+      - Image [**img**]
       - CCA [**CCA**]
       - Comments [**com**]
 
