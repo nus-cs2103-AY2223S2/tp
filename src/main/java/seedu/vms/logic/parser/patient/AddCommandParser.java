@@ -18,13 +18,12 @@ import seedu.vms.logic.parser.Parser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.Prefix;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.patient.Vaccine;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -49,8 +48,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Dob dateOfBirth = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
         BloodType bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get());
-        Set<Allergy> allergies = ParserUtil.parseAllergies(argMultimap.getAllValues(PREFIX_ALLERGY));
-        Set<Vaccine> vaccines = ParserUtil.parseVaccines(argMultimap.getAllValues(PREFIX_VACCINATION));
+        Set<GroupName> allergies = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_ALLERGY));
+        Set<GroupName> vaccines = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_VACCINATION));
 
         Patient patient = new Patient(name, phone, dateOfBirth, bloodType, allergies, vaccines);
 

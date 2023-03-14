@@ -10,7 +10,7 @@ import seedu.vms.commons.util.AppUtil;
  * Represents a group name. Ensures that the name is valid.
  */
 public class GroupName implements Comparable<GroupName> {
-    public static final String MESSAGE_CONSTRAINT = "Group name should not be blank, "
+    public static final String MESSAGE_CONSTRAINTS = "Group name should not be blank, "
             + "and should only contain alphanumeric characters including brackets and dashes";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}\\(\\)\\[\\]\\{\\}\\-_ ]{1,30}";
@@ -27,7 +27,7 @@ public class GroupName implements Comparable<GroupName> {
      */
     public GroupName(String name) {
         Objects.requireNonNull(name);
-        AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINT);
+        AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name.strip();
         collator = Collator.getInstance();
         collator.setStrength(Collator.TERTIARY);

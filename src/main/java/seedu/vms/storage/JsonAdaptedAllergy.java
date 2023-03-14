@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.GroupName;
 
 /**
- * Jackson-friendly version of {@link Allergy}.
+ * Jackson-friendly version of {@link GroupName}.
  */
 class JsonAdaptedAllergy {
 
@@ -24,8 +24,8 @@ class JsonAdaptedAllergy {
     /**
      * Converts a given {@code Allergy} into this class for Jackson use.
      */
-    public JsonAdaptedAllergy(Allergy source) {
-        allergyName = source.allergyName;
+    public JsonAdaptedAllergy(GroupName source) {
+        allergyName = source.getName();
     }
 
     @JsonValue
@@ -38,11 +38,11 @@ class JsonAdaptedAllergy {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted allergy.
      */
-    public Allergy toModelType() throws IllegalValueException {
-        if (!Allergy.isValidAllergyName(allergyName)) {
-            throw new IllegalValueException(Allergy.MESSAGE_CONSTRAINTS);
+    public GroupName toModelType() throws IllegalValueException {
+        if (!GroupName.isValidName(allergyName)) {
+            throw new IllegalValueException(GroupName.MESSAGE_CONSTRAINTS);
         }
-        return new Allergy(allergyName);
+        return new GroupName(allergyName);
     }
 
 }

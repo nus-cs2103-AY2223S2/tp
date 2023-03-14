@@ -15,16 +15,15 @@ import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
-import seedu.vms.model.patient.Allergy;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.patient.Vaccine;
 import seedu.vms.model.vaccination.Requirement;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various *Parser
+ * classes.
  */
 public class ParserUtil {
 
@@ -44,10 +43,12 @@ public class ParserUtil {
     private static final String DELIMITER_LIST = ",";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be
      * trimmed.
      *
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -118,60 +119,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String allergy} into a {@code Allergy}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code allergy} is invalid.
-     */
-    public static Allergy parseAllergy(String allergy) throws ParseException {
-        requireNonNull(allergy);
-        String trimmedAllergy = allergy.trim();
-        if (!Allergy.isValidAllergyName(trimmedAllergy)) {
-            throw new ParseException(Allergy.MESSAGE_CONSTRAINTS);
-        }
-        return new Allergy(trimmedAllergy);
-    }
-
-    /**
-     * Parses {@code Collection<String> allergies} into a {@code Set<Allergy>}.
-     */
-    public static Set<Allergy> parseAllergies(Collection<String> allergies) throws ParseException {
-        requireNonNull(allergies);
-        final Set<Allergy> allergySet = new HashSet<>();
-        for (String allergyName : allergies) {
-            allergySet.add(parseAllergy(allergyName));
-        }
-        return allergySet;
-    }
-
-    /**
-     * Parses a {@code String vaccine} into a {@code Vaccine}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code vaccine} is invalid.
-     */
-    public static Vaccine parseVaccine(String vaccine) throws ParseException {
-        requireNonNull(vaccine);
-        String trimmedVaccine = vaccine.trim();
-        if (!Vaccine.isValidVaccineName(trimmedVaccine)) {
-            throw new ParseException(Vaccine.MESSAGE_CONSTRAINTS);
-        }
-        return new Vaccine(trimmedVaccine);
-    }
-
-    /**
-     * Parses {@code Collection<String> vaccines} into a {@code Set<Vaccine>}.
-     */
-    public static Set<Vaccine> parseVaccines(Collection<String> vaccines) throws ParseException {
-        requireNonNull(vaccines);
-        final Set<Vaccine> vaccineSet = new HashSet<>();
-        for (String vaccineName : vaccines) {
-            vaccineSet.add(parseVaccine(vaccineName));
-        }
-        return vaccineSet;
-    }
-
-    /**
      * Parses a String date to a {@code LocalDateTime}.
      * <p>
      * The following formats are supported:
@@ -215,7 +162,6 @@ public class ParserUtil {
      * ========================================================================
      */
 
-
     /**
      * Parses a requirement.
      */
@@ -232,12 +178,11 @@ public class ParserUtil {
         return new Requirement(reqType, reqSet);
     }
 
-
     /**
      * Parses a requirement type.
      */
     public static Requirement.RequirementType parseReqType(String reqTypeString)
-                throws ParseException {
+            throws ParseException {
         try {
             return Requirement.RequirementType.valueOf(reqTypeString.toUpperCase());
         } catch (IllegalArgumentException illArgEx) {
@@ -245,13 +190,11 @@ public class ParserUtil {
         }
     }
 
-
     /*
      * ========================================================================
      * Basic
      * ========================================================================
      */
-
 
     /**
      * Parses an integer.
@@ -265,7 +208,6 @@ public class ParserUtil {
         }
     }
 
-
     /**
      * Parses the argument into parts according to {@link #DELIMITER_PART}
      * delimiter pattern.
@@ -273,7 +215,6 @@ public class ParserUtil {
     public static List<String> parseParts(String arg) throws ParseException {
         return splitArgs(arg, DELIMITER_PART);
     }
-
 
     /**
      * Parses the argument into a list according to {@link #DELIMITER_LIST}
@@ -285,7 +226,6 @@ public class ParserUtil {
         }
         return splitArgs(arg, DELIMITER_LIST);
     }
-
 
     private static List<String> splitArgs(String arg, String delimiter) throws ParseException {
         arg = " " + arg + " ";
@@ -300,9 +240,8 @@ public class ParserUtil {
         return splitArgs;
     }
 
-
     /**
-     * Parses vaccination type names.
+     * Parses group names.
      *
      * @param name - name to parse.
      * @throws ParseException if the name cannot be parsed.
@@ -310,11 +249,10 @@ public class ParserUtil {
     public static GroupName parseGroupName(String name) throws ParseException {
         requireNonNull(name);
         if (!GroupName.isValidName(name)) {
-            throw new ParseException(GroupName.MESSAGE_CONSTRAINT);
+            throw new ParseException(GroupName.MESSAGE_CONSTRAINTS);
         }
         return new GroupName(name);
     }
-
 
     /**
      * Parses a String representing a list of groups.
@@ -324,11 +262,27 @@ public class ParserUtil {
     public static List<GroupName> parseGroups(String args) throws ParseException {
         List<String> grpStrings = parseList(args);
 
-        ArrayList<GroupName> grps = new ArrayList<>();
+        ArrayList<GroupName> groups = new ArrayList<>();
         for (String grpString : grpStrings) {
-            grps.add(parseGroupName(grpString));
+            groups.add(parseGroupName(grpString));
         }
 
-        return grps;
+        return groups;
+    }
+
+    /**
+     * Parses a String representing a list of groups.
+     *
+     * @throws ParseException if any of the groups cannot be parsed.
+     */
+    public static Set<GroupName> parseGroups(Collection<String> args) throws ParseException {
+        requireNonNull(args);
+
+        final Set<GroupName> groups = new HashSet<>();
+        for (String grpString : args) {
+            groups.add(parseGroupName(grpString));
+        }
+
+        return groups;
     }
 }
