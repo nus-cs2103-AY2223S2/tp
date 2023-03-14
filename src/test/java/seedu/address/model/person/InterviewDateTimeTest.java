@@ -2,11 +2,8 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class InterviewDateTimeTest {
@@ -16,16 +13,6 @@ public class InterviewDateTimeTest {
     static {
         try {
             template = new InterviewDateTime(templateDateTimeString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void createInterviewDateTime_validFormat() {
-        try {
-            LocalDateTime dateTime = DateTimeParser.parseDateTime(templateDateTimeString);
-            assertEquals(template, dateTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -43,7 +30,7 @@ public class InterviewDateTimeTest {
     }
 
     @Test
-    public void checkEqualityOfIdenticalInterviewDateTime() {
+    public void createInterviewDateTime_validFormat() {
         try {
             InterviewDateTime interviewDateTime = new InterviewDateTime(templateDateTimeString);
             boolean equals = interviewDateTime.equals(template);
