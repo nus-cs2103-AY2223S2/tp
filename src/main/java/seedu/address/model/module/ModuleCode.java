@@ -3,7 +3,7 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a module's code in the tracker.
+ * Represents a module's code in the tracker.<p>
  * Guarantees: immutable.
  */
 public class ModuleCode {
@@ -27,9 +27,13 @@ public class ModuleCode {
     }
 
     /**
-     * Returns true if a given string is a valid module code.
+     * Returns true if {@code test} is a valid module code.
+     *
+     * @param test The string to check if it is a valid module code.
+     * @return True if {@code test} is a valid module code. Otherwise, false.
      */
     public static boolean isValidCode(String test) {
+        requireNonNull(test);
         return test.matches(VALIDATION_REGEX);
     }
 

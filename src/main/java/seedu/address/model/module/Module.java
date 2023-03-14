@@ -17,7 +17,7 @@ import seedu.address.model.lecture.UniqueLectureList;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a module in the tracker.
+ * Represents a module in the tracker.<p>
  * Guarantees: details are not null, field values are validated, immutable with exception of lecture list.
  */
 public class Module implements ReadOnlyModule {
@@ -30,6 +30,7 @@ public class Module implements ReadOnlyModule {
     private final UniqueLectureList lectures = new UniqueLectureList();
 
     /**
+     * Constructs a {@code Module}.<p>
      * Every field must be not null.
      *
      * @param code The module's code.
@@ -39,6 +40,7 @@ public class Module implements ReadOnlyModule {
      */
     public Module(ModuleCode code, ModuleName name, Set<Tag> tags, List<Lecture> lectures) {
         requireAllNonNull(code, name, tags, lectures);
+
         this.code = code;
         this.name = name;
         this.tags.addAll(tags);
@@ -91,17 +93,22 @@ public class Module implements ReadOnlyModule {
     }
 
     /**
-     * Adds a lecture to the module.
+     * Adds a lecture to the module.<p>
      * The lecture must not already exist in the module.
+     *
+     * @param lecture The lecture to add.
      */
     public void addLecture(Lecture lecture) {
         lectures.add(lecture);
     }
 
     /**
-     * Replaces the given lecture {@code target} in the list with {@code editedLecture}.
-     * {@code target} must exist in the module.
-     * The lecture of {@code editedLecture} must not be the same as another existing lecture in the module.
+     * Replaces the given lecture {@code target} in the list with {@code editedLecture}.<p>
+     * {@code target} must exist in the module.<p>
+     * {@code editedLecture} must not be the same as another existing lecture in the module.
+     *
+     * @param target The lecture to be replaced.
+     * @param editedLecture The lecture that will replace.
      */
     public void setLecture(ReadOnlyLecture target, Lecture editedLecture) {
         requireNonNull(editedLecture);
@@ -110,17 +117,21 @@ public class Module implements ReadOnlyModule {
     }
 
     /**
-     * Removes {@code key} from this {@code Module}.
+     * Removes the given lecture {@code key} from this {@code Module}.<p>
      * {@code key} must exist in the module.
-     * @param key
+     *
+     * @param key The lecture to be removed.
      */
     public void removeLecture(ReadOnlyLecture key) {
         lectures.remove((Lecture) key);
     }
 
     /**
-     * Returns true if both modules have the same fields.
+     * Returns true if both modules have the same fields.<p>
      * This defines a stronger notion of equality between two modules.
+     *
+     * @param other The module to check if it is equivalent to this module.
+     * @return True if both modules have the same fields. Otherwise, false.
      */
     @Override
     public boolean equals(Object other) {
