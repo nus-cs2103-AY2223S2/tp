@@ -4,20 +4,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import codoc.model.module.Module;
+import codoc.model.skill.Skill;
 import codoc.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code Module}.
+ * An UI component that displays information of a {@code Skill}.
  */
-public class ModuleCard extends UiPart<Region> {
+public class SkillCard extends UiPart<Region> {
 
-    private static final String FXML = "ModuleListCard.fxml";
+    private static final String FXML = "SkillListCard.fxml";
 
-    public final Module module;
+    public final Skill skill;
 
     @FXML
-    private HBox moduleCard;
+    private HBox skillCard;
     @FXML
     private Label name;
     @FXML
@@ -26,11 +26,11 @@ public class ModuleCard extends UiPart<Region> {
     /**
      * Creates a {@code ModuleCard} with the given {@code Module} and index to display.
      */
-    public ModuleCard(Module module, int displayedIndex) {
+    public SkillCard(Skill skill, int displayedIndex) {
         super(FXML);
-        this.module = module;
+        this.skill = skill;
         id.setText(displayedIndex + ". ");
-        name.setText(module.moduleName);
+        name.setText(skill.skillName);
     }
 
     @Override
@@ -46,8 +46,8 @@ public class ModuleCard extends UiPart<Region> {
         }
 
         // state check
-        ModuleCard card = (ModuleCard) other;
+        SkillCard card = (SkillCard) other;
         return id.getText().equals(card.id.getText())
-                && module.equals(card.module);
+                && skill.equals(card.skill);
     }
 }

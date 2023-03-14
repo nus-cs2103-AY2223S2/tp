@@ -8,13 +8,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root minHeight="600" minWidth="900" onCloseRequest="#handleExit" title="CoDoc" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="900" onCloseRequest="#handleExit" title="CoDoc" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/technologist.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
+        <URL value="@CodocTheme.css" />
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
@@ -56,7 +57,7 @@
                   <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
               </VBox>
 
-              <VBox fx:id="infoTabPlaceholder" minWidth="340" maxWidth="340" styleClass="pane-with-border" />
+              <VBox fx:id="infoTabPlaceholder" maxWidth="340" minWidth="340" styleClass="pane-with-border" />
           </SplitPane>
       </VBox>
     </Scene>

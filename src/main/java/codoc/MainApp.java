@@ -29,6 +29,7 @@ import codoc.storage.UserPrefsStorage;
 import codoc.ui.Ui;
 import codoc.ui.UiManager;
 import javafx.application.Application;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -50,6 +51,8 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing CoDoc ]===========================");
         super.init();
+
+        Font.loadFont(MainApp.class.getResource("/font/JetBrainsMono-Bold.ttf").toExternalForm(), 10);
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane>
          <children>
@@ -32,6 +31,16 @@
             </HBox>
          </children>
       </StackPane>
-      <VBox prefHeight="200.0" prefWidth="100.0" />
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="GitHub ID:" />
+            <Label fx:id="github" text="\\\$git_hub_link" />
+            <StackPane prefHeight="20.0" prefWidth="300.0" />
+            <Label text="Email Address:" />
+            <Label fx:id="email" text="\\\$email" />
+            <StackPane layoutX="10.0" layoutY="38.0" prefHeight="20.0" prefWidth="300.0" />
+            <Label text="LinkedIn Profile:" />
+            <Label fx:id="linkedin" text="\\\$linkedin" />
+         </children></VBox>
    </children>
 </VBox>
