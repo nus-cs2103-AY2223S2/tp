@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Person;
 
 /**
  * This class is the parent class of tasks that make up the tasklist.
