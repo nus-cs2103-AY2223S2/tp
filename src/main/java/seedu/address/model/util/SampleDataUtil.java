@@ -1,5 +1,8 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +18,10 @@ import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Phone;
 import seedu.address.model.entity.shop.Shop;
+import seedu.address.model.service.Part;
+import seedu.address.model.service.PartType;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.ServiceStatus;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleType;
 import seedu.address.model.tag.Tag;
@@ -24,27 +31,28 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
-        return new Person[] {
+        return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
+                    new Address("Blk 30 Geylang Street 29, #06-40"),
+                    getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
+                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                    getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                    getTagSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
+                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                    getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
+                    new Address("Blk 47 Tampines Street 20, #17-35"),
+                    getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                    new Address("Blk 45 Aljunied Street 85, #11-31"),
+                    getTagSet("colleagues"))
         };
     }
+
     public static Customer[] getSampleCustomers() {
         return new Customer[] {
             new Customer(1, new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -75,6 +83,43 @@ public class SampleDataUtil {
         };
     }
 
+    public static Part[] getSampleParts() {
+        return new Part[]{
+            new Part(1, 50, "Part A", "", 10, PartType.FRAME),
+            new Part(2, 1000, "Part B", "Sample Description for Part B", 1, PartType.BOLT),
+            new Part(3, 100, "Part C", "Sample Description for Part C", 100, PartType.HORN),
+            new Part(4, 100, "Part D", "", 20, PartType.LIGHT),
+            new Part(5, 100, "Part E", "", 80, PartType.WHEELS),
+            new Part(6, 50, "Part F", "Sample Description for Part F", 1000, PartType.SUSPENSION),
+            new Part(7, 200, "Part G", "", 1600, PartType.GEARBOX),
+            new Part(8, 20, "Part H", "", 45, PartType.HEADLAMP),
+            new Part(9, 20, "Part I", "", 2000, PartType.STEERING),
+            new Part(10, 20, "Part J", "Some other part", 30, PartType.OTHERS),
+            new Part(11, 20, "Part K", "Some other part", 55, PartType.OTHERS),
+        };
+    }
+
+    public static Service[] getSampleServices() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        Part[] partsSampleA = new Part[]{
+            new Part(5, 4, "Part E", "", 80, PartType.WHEELS),
+            new Part(6, 4, "Part F", "Sample Description for Part F", 1000, PartType.SUSPENSION),
+        };
+
+        Part[] partsSampleB = new Part[]{
+            new Part(7, 200, "Part G", "", 1600, PartType.GEARBOX),
+        };
+
+        return new Service[]{
+            new Service(1, 1, LocalDate.parse("16/03/2023", dtf),
+                new ArrayList<>(Arrays.asList(partsSampleA)), "Wheels can't make it",
+                LocalDate.parse("28/03/2023", dtf), ServiceStatus.TO_REPAIR),
+            new Service(2, 5, LocalDate.parse("17/02/2023", dtf),
+                new ArrayList<>(Arrays.asList(partsSampleB)), "Gearbox dead",
+                LocalDate.parse("05/04/2023", dtf), ServiceStatus.TO_REPAIR),
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -90,6 +135,12 @@ public class SampleDataUtil {
         }
         for (Vehicle sampleVehicle : getSampleVehicles()) {
             sampleSh.addVehicle(sampleVehicle);
+        }
+        for (Part samplePart : getSampleParts()) {
+            sampleSh.addPart(samplePart);
+        }
+        for (Service sampleService : getSampleServices()) {
+            sampleSh.addService(sampleService);
         }
         return sampleSh;
     }
