@@ -113,12 +113,12 @@ public class EditElderlyCommand extends Command {
         Address updatedAddress = editElderlyDescriptor.getAddress().orElse(elderlyToEdit.getAddress());
         Nric updatedNric = editElderlyDescriptor.getNric().orElse(elderlyToEdit.getNric());
         Age updatedAge = editElderlyDescriptor.getAge().orElse(elderlyToEdit.getAge());
-        RiskLevel updagetRiskLevel = editElderlyDescriptor.getRiskLevel()
+        RiskLevel updateRiskLevel = editElderlyDescriptor.getRiskLevel()
                 .orElse(elderlyToEdit.getRiskLevel());
         Set<Tag> updatedTags = editElderlyDescriptor.getTags().orElse(elderlyToEdit.getTags());
 
         return new Elderly(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updagetRiskLevel, updatedTags);
+                updatedNric, updatedAge, updateRiskLevel, updatedTags);
     }
 
     @Override
