@@ -11,8 +11,8 @@ package seedu.address.model.person;
 public class Region {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Region in Singapore should be either North, South, East, West or Central\n" +
-            "No other regions are accepted!\n";
+            "Region in Singapore should be either North, South, East, West or Central\n"
+            + "No other regions are accepted!\n";
 
     /**
      * Enum that represents all regions of Singapore
@@ -68,6 +68,7 @@ public class Region {
      * Constructor for a new Region object.
      * <p>
      * Use {@code Regions} enum to select region
+     *
      * @param region Region of this object
      */
     public Region(Regions region) {
@@ -79,6 +80,7 @@ public class Region {
      * Region classification is based on the following URL:
      * <p>
      * Use {@code Towns} enum to select the town
+     *
      * @param town Town selected from {@code Towns} enum
      * @return the region that the town is in
      */
@@ -88,6 +90,7 @@ public class Region {
 
     /**
      * Returns the region of this object
+     *
      * @return a region defined by the {@code Regions} enum
      */
     public Regions getRegion() {
