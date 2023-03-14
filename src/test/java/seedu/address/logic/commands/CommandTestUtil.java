@@ -40,6 +40,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_ALEX = "301 Commonwealth Avenue";
     public static final String ADDRESS_BEN = "11 Kallang Bahru";
     public static final String TELEGRAM_HANDLE_ALEX = "@alexquentin";
+    public static final Integer INDEX_ALEX = 16;
+    public static final Integer INDEX_BEN = 17;
     public static final String TELEGRAM_HANDLE_BEN = "@benjamindemeer";
     public static final String VALID_GROUP_1 = "Groupmate";
     public static final String VALID_GROUP_2 = "TA";
@@ -82,11 +84,13 @@ public class CommandTestUtil {
         DESC_ALEX = new EditPersonDescriptorBuilder().withName(NAME_ALEX)
                 .withPhone(PHONE_ALEX).withEmail(EMAIL_ALEX).withAddress(ADDRESS_ALEX)
                 .withTelegramHandle(TELEGRAM_HANDLE_ALEX)
+                .withContactIndex(INDEX_ALEX)
                 .withGroupTags(VALID_GROUP_2)
                 .withModuleTags(VALID_MODULE_1, VALID_MODULE_2).build();
         DESC_BEN = new EditPersonDescriptorBuilder().withName(NAME_BEN)
                 .withPhone(PHONE_BEN).withEmail(EMAIL_BEN)
                 .withAddress(ADDRESS_BEN)
+                .withContactIndex(INDEX_BEN)
                 .withTelegramHandle(TELEGRAM_HANDLE_BEN)
                 .withGroupTags(VALID_GROUP_1, VALID_GROUP_2)
                 .withModuleTags(VALID_MODULE_2).build();

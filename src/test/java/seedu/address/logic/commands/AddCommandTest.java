@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
@@ -38,9 +39,7 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
 
         Person validPerson = new PersonBuilder().build();
-
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -191,6 +190,8 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        final EduMate eduMate = new EduMate();
+        final FilteredList<Person> filteredList = new FilteredList<>(eduMate.getPersonList());
 
         @Override
         public boolean hasPerson(Person person) {
@@ -207,6 +208,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyEduMate getEduMate() {
             return new EduMate();
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return filteredList;
         }
     }
 

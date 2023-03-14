@@ -5,18 +5,18 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.parser.IndexHandler;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -51,17 +51,17 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    protected final Index index;
+    protected final ContactIndex contactIndex;
     protected final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param contactIndex of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(ContactIndex contactIndex, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.contactIndex = contactIndex;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -69,7 +69,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (index == null) {
+        if (contactIndex == null) {
             return editUser(model);
         }
 
@@ -83,13 +83,14 @@ public class EditCommand extends Command {
      * @throws CommandException If an error occurs during command execution.
      */
     protected CommandResult editPerson(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        IndexHandler indexHandler = new IndexHandler(model);
+        Optional<Person> personToEditOption = indexHandler.getPersonByIndex(contactIndex);
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (personToEditOption.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = personToEditOption.get();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -135,6 +136,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        ContactIndex unchangedContactIndex = personToEdit.getContactIndex();
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
                 .orElse(personToEdit.getTelegramHandle());
@@ -143,7 +145,7 @@ public class EditCommand extends Command {
         Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
                 .orElse(personToEdit.getImmutableModuleTags());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTelegramHandle,
-                updatedGroupTags, updatedModuleTags);
+                unchangedContactIndex, updatedGroupTags, updatedModuleTags);
     }
 
     /**
@@ -163,7 +165,8 @@ public class EditCommand extends Command {
                 .orElse(userToEdit.getImmutableModuleTags());
 
         return new User(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTelegramHandle, updatedGroupTags, updatedModuleTags);
+                updatedAddress, updatedTelegramHandle, new ContactIndex(0),
+                updatedGroupTags, updatedModuleTags);
     }
 
     @Override
@@ -180,7 +183,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return contactIndex.equals(e.contactIndex)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
@@ -193,6 +196,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private ContactIndex contactIndex;
         private TelegramHandle telegramHandle;
         private Set<GroupTag> groupTags;
         private Set<ModuleTag> moduleTags;
@@ -208,6 +212,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setContactIndex(toCopy.contactIndex);
             setTelegramHandle(toCopy.telegramHandle);
             setGroupTags(toCopy.groupTags);
             setModuleTags(toCopy.moduleTags);
@@ -220,12 +225,20 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, groupTags, moduleTags, telegramHandle);
         }
 
+        public void setContactIndex(ContactIndex contactIndex) {
+            this.contactIndex = contactIndex;
+        }
+
         public void setName(Name name) {
             this.name = name;
         }
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public ContactIndex getContactIndex() {
+            return contactIndex;
         }
 
         public void setPhone(Phone phone) {
