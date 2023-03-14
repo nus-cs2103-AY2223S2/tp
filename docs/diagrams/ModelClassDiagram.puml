@@ -4,43 +4,54 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Package Model <<Rectangle>> {
+Class "<<interface>>\nReadOnlyEduMate" as ReadOnlyEduMate
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class EduMate
 Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
 Class Person
+Class User
 Class Address
 Class Email
 Class Name
 Class Phone
+Class GroupTagSet
+Class GroupTag
+Class ModuleTagSet
+Class ModuleTag
 Class Tag
-
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+EduMate .up.|> ReadOnlyEduMate
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyEduMate
+ModelManager -left-> "1" EduMate
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+EduMate *--> "1" UniquePersonList
+EduMate *--> "1" User
+User --|> Person
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> ModuleTagSet
+ModuleTagSet *--> "*" ModuleTag
+Person *--> GroupTagSet
+GroupTagSet *--> "*" GroupTag
+GroupTag ..> Tag
+ModuleTag ..> Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
