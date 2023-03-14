@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.fitbook.model.client.exceptions.DuplicateClientException;
 import seedu.fitbook.model.routines.exceptions.DuplicateRoutineException;
 import seedu.fitbook.model.routines.exceptions.RoutineNotFoundException;
 
@@ -93,7 +92,7 @@ public class UniqueRoutineList implements Iterable<Routine> {
     public void setRoutines(List<Routine> routines) {
         requireAllNonNull(routines);
         if (!routinesAreUnique(routines)) {
-            throw new DuplicateClientException();
+            throw new DuplicateRoutineException();
         }
 
         internalList.setAll(routines);

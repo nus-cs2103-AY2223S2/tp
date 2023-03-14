@@ -28,7 +28,9 @@ public class Exercise {
      * Returns true if a given string is a valid exercise name.
      */
     public static boolean isValidExerciseName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX)
+                && !test.trim().isEmpty()
+                && !test.isEmpty();
     }
 
     @Override

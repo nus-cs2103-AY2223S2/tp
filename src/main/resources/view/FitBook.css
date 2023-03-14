@@ -262,6 +262,16 @@
 }
 
 
+.menu-item:focused {
+    -fx-background-color: derive(#F88017, 60%);
+    -fx-background-radius: 2;
+}
+
+.menu-item:focused .label{
+    -fx-text-fill: white;
+    -fx-background-color: derive(#F88017, 60%);
+}
+
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira

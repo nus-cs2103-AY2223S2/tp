@@ -52,7 +52,7 @@ public class JsonFitBookStorageTest {
 
     @Test
     public void readFitBook_invalidClientFitBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readFitBook("invalidRoutineFitBook.json"));
+        assertThrows(DataConversionException.class, () -> readFitBook("invalidClientFitBook.json"));
     }
 
     @Test

@@ -1,11 +1,12 @@
-package seedu.fitbook.logic.commands;
+package seedu.fitbook.logic.commands.client;
 
-import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
 import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.fitbook.logic.commands.ClearCommand;
+import seedu.fitbook.logic.commands.CommandTestUtil;
 import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
@@ -18,18 +19,20 @@ public class ClearCommandTest {
         FitBookModel model = new FitBookModelManager();
         FitBookModel expectedFitBookModel = new FitBookModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS,
+                expectedFitBookModel);
     }
 
     @Test
     public void execute_nonEmptyFitBook_success() {
-        FitBookModel model = new FitBookModelManager(getTypicalFitBook(), getTypicalFitBookExerciseRoutine(),
-                new UserPrefs());
+        FitBookModel model = new FitBookModelManager(getTypicalFitBook(),
+                getTypicalFitBookExerciseRoutine(), new UserPrefs());
         FitBookModel expectedFitBookModel = new FitBookModelManager(getTypicalFitBook(),
                 getTypicalFitBookExerciseRoutine(), new UserPrefs());
         expectedFitBookModel.setFitBook(new FitBook());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS,
+                expectedFitBookModel);
     }
 
 }

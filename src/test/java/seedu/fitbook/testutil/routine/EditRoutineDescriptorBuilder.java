@@ -7,7 +7,7 @@ import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineName;
 
 /**
- * A utility class to help with building EditClientDescriptor objects.
+ * A utility class to help with building EditRoutineDescriptor objects.
  */
 public class EditRoutineDescriptorBuilder {
 

@@ -1,4 +1,4 @@
-package seedu.fitbook.logic.commands;
+package seedu.fitbook.logic.commands.routine;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,71 +15,75 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.fitbook.commons.core.GuiSettings;
+import seedu.fitbook.logic.commands.AddRoutineCommand;
+import seedu.fitbook.logic.commands.CommandResult;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
-import seedu.fitbook.model.FitBook;
+import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.ReadOnlyFitBook;
 import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
 import seedu.fitbook.model.ReadOnlyUserPrefs;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Routine;
-import seedu.fitbook.testutil.client.ClientBuilder;
+import seedu.fitbook.testutil.routine.RoutineBuilder;
 
-public class AddCommandTest {
+public class AddRoutineCommandTest {
 
     @Test
-    public void constructor_nullClient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullRoutine_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddRoutineCommand(null));
     }
 
     @Test
-    public void execute_clientAcceptedByFitBookModel_addSuccessful() throws Exception {
-        FitBookModelStubAcceptingClientAdded modelStub = new FitBookModelStubAcceptingClientAdded();
-        Client validClient = new ClientBuilder().build();
+    public void execute_routineAcceptedByFitBookModelExerciseRoutine_addSuccessful() throws Exception {
+        FitBookExerciseRoutineExerciseRoutineModelStubAcceptingRoutineAdded modelStub =
+                new FitBookExerciseRoutineExerciseRoutineModelStubAcceptingRoutineAdded();
+        Routine validRoutine = new RoutineBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validClient).execute(modelStub);
+        CommandResult commandResult = new AddRoutineCommand(validRoutine).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validClient), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validClient), modelStub.clientsAdded);
+        assertEquals(String.format(AddRoutineCommand.MESSAGE_SUCCESS, validRoutine), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validRoutine), modelStub.routinesAdded);
     }
 
     @Test
-    public void execute_duplicateClient_throwsCommandException() {
-        Client validClient = new ClientBuilder().build();
-        AddCommand addCommand = new AddCommand(validClient);
-        FitBookModelStub modelStub = new FitBookModelStubWithClient(validClient);
+    public void execute_duplicateRoutine_throwsCommandException() {
+        Routine validRoutine = new RoutineBuilder().build();
+        AddRoutineCommand addRoutineCommand = new AddRoutineCommand(validRoutine);
+        FitBookExerciseRoutineModelStub modelStub = new FitBookExerciseRoutineModelStubWithRoutine(validRoutine);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CLIENT, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddRoutineCommand.MESSAGE_DUPLICATE_ROUTINE, () ->
+                addRoutineCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Client alice = new ClientBuilder().withName("Alice").build();
-        Client bob = new ClientBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Routine cardio = new RoutineBuilder().withRoutineName("Cardio").build();
+        Routine strength = new RoutineBuilder().withRoutineName("Strength").build();
+        AddRoutineCommand addRoutineCardioCommand = new AddRoutineCommand(cardio);
+        AddRoutineCommand addRoutineStrengthCommand = new AddRoutineCommand(strength);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addRoutineCardioCommand.equals(addRoutineCardioCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddRoutineCommand addRoutineCardioCommandCopy = new AddRoutineCommand(cardio);
+        assertTrue(addRoutineCardioCommand.equals(addRoutineCardioCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addRoutineCardioCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addRoutineCardioCommand.equals(null));
 
-        // different client -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different routine -> returns false
+        assertFalse(addRoutineCardioCommand.equals(addRoutineStrengthCommand));
     }
 
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class FitBookModelStub implements FitBookModel {
+    private class FitBookExerciseRoutineModelStub implements FitBookModel {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -110,6 +114,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        // Client part not used in this part.
         @Override
         public void addClient(Client client) {
             throw new AssertionError("This method should not be called.");
@@ -192,44 +197,45 @@ public class AddCommandTest {
     }
 
     /**
-     * A FitBookModel stub that contains a single client.
+     * A FitBookExerciseRoutineModel stub that contains a single routine.
      */
-    private class FitBookModelStubWithClient extends FitBookModelStub {
-        private final Client client;
+    private class FitBookExerciseRoutineModelStubWithRoutine extends FitBookExerciseRoutineModelStub {
+        private final Routine routine;
 
-        FitBookModelStubWithClient(Client client) {
-            requireNonNull(client);
-            this.client = client;
+        FitBookExerciseRoutineModelStubWithRoutine(Routine routine) {
+            requireNonNull(routine);
+            this.routine = routine;
         }
 
         @Override
-        public boolean hasClient(Client client) {
-            requireNonNull(client);
-            return this.client.isSameClient(client);
+        public boolean hasRoutine(Routine routine) {
+            requireNonNull(routine);
+            return this.routine.isSameRoutine(routine);
         }
     }
 
     /**
-     * A FitBookModel stub that always accept the client being added.
+     * A FitBookExerciseRoutineModel stub that always accept the routine being added.
      */
-    private class FitBookModelStubAcceptingClientAdded extends FitBookModelStub {
-        final ArrayList<Client> clientsAdded = new ArrayList<>();
+    private class FitBookExerciseRoutineExerciseRoutineModelStubAcceptingRoutineAdded
+            extends FitBookExerciseRoutineModelStub {
+        final ArrayList<Routine> routinesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasClient(Client client) {
-            requireNonNull(client);
-            return clientsAdded.stream().anyMatch(client::isSameClient);
+        public boolean hasRoutine(Routine routine) {
+            requireNonNull(routine);
+            return routinesAdded.stream().anyMatch(routine::isSameRoutine);
         }
 
         @Override
-        public void addClient(Client client) {
-            requireNonNull(client);
-            clientsAdded.add(client);
+        public void addRoutine(Routine routine) {
+            requireNonNull(routine);
+            routinesAdded.add(routine);
         }
 
         @Override
-        public ReadOnlyFitBook getFitBook() {
-            return new FitBook();
+        public ReadOnlyFitBookExerciseRoutine getFitBookExerciseRoutine() {
+            return new FitBookExerciseRoutine();
         }
     }
 

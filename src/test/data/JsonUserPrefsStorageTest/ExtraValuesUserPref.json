@@ -9,5 +9,6 @@
       "z" : 99
     }
   },
-  "fitBookFilePath" : "fitbook.json"
+  "fitBookFilePath" : "fitbook.json",
+  "fitBookExerciseRoutineFilePath" : "exerciseroutine.json"
 }

@@ -1,4 +1,4 @@
-package seedu.fitbook.logic.commands;
+package seedu.fitbook.logic.commands.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +19,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.commons.core.index.Index;
+import seedu.fitbook.logic.commands.ClearCommand;
+import seedu.fitbook.logic.commands.EditCommand;
 import seedu.fitbook.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.FitBookExerciseRoutine;
@@ -34,8 +36,8 @@ import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(), getTypicalFitBookExerciseRoutine(),
-            new UserPrefs());
+    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(),
+            getTypicalFitBookExerciseRoutine(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -118,7 +120,7 @@ public class EditCommandTest {
     public void execute_duplicateClientFilteredList_failure() {
         showClientAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit client in filtered list into a duplicate in address book
+        // edit client in filtered list into a duplicate in FitBook
         Client clientInList = model.getFitBook().getClientList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditClientDescriptorBuilder(clientInList).build());
@@ -137,13 +139,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of FitBook
      */
     @Test
     public void execute_invalidClientIndexFilteredList_failure() {
         showClientAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of FitBook list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFitBook().getClientList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,

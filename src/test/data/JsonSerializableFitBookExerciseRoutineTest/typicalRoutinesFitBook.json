@@ -1,5 +1,5 @@
 {
-  "_comment": "FitBook exercise routine save file which contains the same Routine values as in TypicalClients#getTypicalFitBook()",
+  "_comment": "FitBook exercise routine save file which contains the same Routine values as in TypicalRoutines#getTypicalFitBookExerciseRoutine()",
   "routines" : [ {
     "exercises" : [ "3x10 Jumping Jacks", "4x5 1km Run" ],
     "routineName" : "Jumps"
@@ -7,7 +7,7 @@
     "exercises" : [ "3x10 Dumbbell Curls", "4x5 Bench Press" ],
     "routineName" : "Strength"
   }, {
-    "exercises" : [ "3x10 Dumbbell Curls", "4x5 Bench Press" ],
+    "exercises" : [ "3x10 Squats", "4x5 Deadlift", "5x10 10kg forward lunges" ],
     "routineName" : "Legs Exercises"
   } ]
 }

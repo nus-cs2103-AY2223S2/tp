@@ -1,4 +1,4 @@
-package seedu.fitbook.logic.commands;
+package seedu.fitbook.logic.commands.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.commons.core.index.Index;
+import seedu.fitbook.logic.commands.DeleteCommand;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
@@ -25,8 +26,8 @@ import seedu.fitbook.model.client.Client;
  */
 public class DeleteCommandTest {
 
-    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(), getTypicalFitBookExerciseRoutine(),
-            new UserPrefs());
+    private FitBookModel model = new FitBookModelManager(getTypicalFitBook(),
+            getTypicalFitBookExerciseRoutine(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

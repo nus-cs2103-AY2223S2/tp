@@ -90,14 +90,15 @@ public class EditRoutineCommand extends Command {
         assert routineToEdit != null;
         List<Exercise> updatedExercise;
         RoutineName updatedRoutineName = editRoutineDescriptor.getRoutineName().orElse(routineToEdit.getRoutineName());
-        int changeIndex = editRoutineDescriptor.getExerciseIndex().get().getZeroBased();
-        Exercise changeExercise = editRoutineDescriptor.getExercise().get();
-
-        if (changeIndex >= routineToEdit.getExercises().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX);
-        }
 
         if (editRoutineDescriptor.getExercise().isPresent() && editRoutineDescriptor.getExerciseIndex().isPresent()) {
+            int changeIndex = editRoutineDescriptor.getExerciseIndex().get().getZeroBased();
+            Exercise changeExercise = editRoutineDescriptor.getExercise().get();
+
+            if (changeIndex >= routineToEdit.getExercises().size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX);
+            }
+
             routineToEdit.getExercises().remove(changeIndex);
             routineToEdit.getExercises().add(changeIndex, changeExercise);
         }
@@ -150,6 +151,17 @@ public class EditRoutineCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(routineName, exerciseIndex, exerciseChange);
+        }
+
+        public void setExerciseIndexNull() {
+            this.exerciseIndex = null;
+        }
+        public void setExerciseNull() {
+            this.exerciseChange = null;
+        }
+
+        public void setRoutineNameNull() {
+            this.routineName = null;
         }
 
         public void setRoutineName(RoutineName routineName) {

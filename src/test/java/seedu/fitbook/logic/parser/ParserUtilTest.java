@@ -6,9 +6,11 @@ import static seedu.fitbook.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.fitbook.testutil.Assert.assertThrows;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -22,9 +24,12 @@ import seedu.fitbook.model.client.Gender;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.routines.Exercise;
+import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.tag.Tag;
 
 public class ParserUtilTest {
+    //Client
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -51,6 +56,14 @@ public class ParserUtilTest {
     private static final String VALID_APPOINTMENT_1 = "10-10-2023";
     private static final String VALID_APPOINTMENT_2 = "11-12-2020";
 
+    //Routine
+    private static final String INVALID_ROUTINE = "@$!%%@";
+    private static final String INVALID_EXERCISE = "%@!%#%";
+
+    private static final String VALID_ROUTINE = "Cardio";
+    private static final String VALID_EXERCISE_1 = "3x5 Jumping jacks";
+    private static final String VALID_EXERCISE_2 = "4x5 Dumbbell curls";
+
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -73,6 +86,7 @@ public class ParserUtilTest {
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
     }
 
+    //Client
     @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
@@ -329,4 +343,78 @@ public class ParserUtilTest {
         assertEquals(actualAppointmentSet, expectedAppointmentSet);
     }
 
+    //Routine
+
+    @Test
+    public void parseRoutineName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRoutineName((String) null));
+    }
+
+    @Test
+    public void parseRoutineName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRoutineName(INVALID_ROUTINE));
+    }
+
+    @Test
+    public void parseRoutineName_validValueWithoutWhitespace_returnsName() throws Exception {
+        RoutineName expectedRoutineName = new RoutineName(VALID_ROUTINE);
+        assertEquals(expectedRoutineName, ParserUtil.parseRoutineName(VALID_ROUTINE));
+    }
+
+    @Test
+    public void parseRoutineName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String routineNameWithWhitespace = WHITESPACE + VALID_ROUTINE + WHITESPACE;
+        RoutineName expectedRoutineName = new RoutineName(VALID_ROUTINE);
+        assertEquals(expectedRoutineName, ParserUtil.parseRoutineName(routineNameWithWhitespace));
+    }
+
+    @Test
+    public void parseExercise_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseExercise(null));
+    }
+
+    @Test
+    public void parseExercise_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExercise(INVALID_EXERCISE));
+    }
+
+    @Test
+    public void parseExercise_validValueWithoutWhitespace_returnsAppointment() throws Exception {
+        Exercise expectedExercise = new Exercise(VALID_EXERCISE_1);
+        assertEquals(expectedExercise, ParserUtil.parseExercise(VALID_EXERCISE_1));
+    }
+
+    @Test
+    public void parseExercise_validValueWithWhitespace_returnsTrimmedAppointment() throws Exception {
+        String exerciseWithWhitespace = WHITESPACE + VALID_EXERCISE_1 + WHITESPACE;
+        Exercise expectedExercise = new Exercise(VALID_EXERCISE_1);
+        assertEquals(expectedExercise, ParserUtil.parseExercise(exerciseWithWhitespace));
+    }
+
+    @Test
+    public void parseExercises_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseExercises(null));
+    }
+
+    @Test
+    public void parseExercises_collectionWithInvalidExercises_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseExercises(Arrays.asList(VALID_EXERCISE_1, INVALID_EXERCISE)));
+    }
+
+    @Test
+    public void parseExercises_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseExercises(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseExercises_collectionWithValidExercises_returnsExerciseList() throws Exception {
+        List<Exercise> actualExerciseList =
+                ParserUtil.parseExercises(Arrays.asList(VALID_EXERCISE_1, VALID_EXERCISE_2));
+        List<Exercise> expectedExerciseList =
+                new ArrayList<>(Arrays.asList(new Exercise(VALID_EXERCISE_1),
+                        new Exercise(VALID_EXERCISE_2)));
+
+        assertEquals(actualExerciseList, expectedExerciseList);
+    }
 }

@@ -1,9 +1,7 @@
 package seedu.fitbook.storage.routine;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -56,7 +54,6 @@ class JsonAdaptedRoutine {
         for (JsonAdaptedExercise exercise : exercises) {
             routineExercises.add(exercise.toFitBookExerciseRoutineModelType());
         }
-        final Set<Exercise> modelExercise = new HashSet<>(routineExercises);
         if (routineName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     RoutineName.class.getSimpleName()));

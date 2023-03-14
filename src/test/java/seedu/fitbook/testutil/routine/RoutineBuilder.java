@@ -8,7 +8,6 @@ import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.util.SampleExerciseRoutineDataUtil;
 
-
 /**
  * A utility class to help with building Routine objects.
  */
