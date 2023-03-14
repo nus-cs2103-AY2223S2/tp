@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 public class EventDateTimes {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The END date-time should be after the current date-time and the START date-time";
+            "The END date-time should be after the START date-time";
 
     public final LocalDateTime fromDateTime;
     public final LocalDateTime toDateTime;
@@ -34,18 +34,11 @@ public class EventDateTimes {
     }
 
     /**
-     * Returns true if a given date-time has passed.
-     */
-    public boolean isOver(LocalDateTime test) {
-        return test.isBefore(LocalDateTime.now());
-    }
-
-    /**
      * Returns true if a particular set of START and END date-times
      * is valid.
      */
     public boolean isValidEventDateTimes(LocalDateTime start, LocalDateTime end) {
-        return (!isOver(end) && end.isAfter(start));
+        return end.isAfter(start);
     }
 
     /**
