@@ -15,8 +15,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.TankList;
 import seedu.address.model.UserPrefs;
 
-import java.util.List;
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
