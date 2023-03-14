@@ -19,7 +19,8 @@ import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.order.Order;
 
 /**
- * A utility class containing a list of {@code Order} objects to be used in tests.
+ * A utility class containing a list of {@code Order} objects to be used in
+ * tests.
  */
 public class TypicalOrders {
     // Manually added - Order's details found in {@code CommandTestUtil}
@@ -37,10 +38,10 @@ public class TypicalOrders {
             .withStatus("Completed").withQuantity("3")
             .withCreatedDate("2022/12/12").build();
 
-
     public static final String KEYWORD_MATCHING_SHORTCAKE = "Shortcake"; // A keyword that matches Shortcake
 
-    private TypicalOrders() {} // prevents instantiation
+    private TypicalOrders() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical orders.

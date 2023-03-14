@@ -73,5 +73,30 @@
     "address": "30 Wolf Street, #01-33",
     "tagged": [],
     "points": 0
+  } ],
+  "orders": [ {
+    "name": "Strawberry Shortcake",
+    "quantity": 5,
+    "status": "PENDING",
+    "address": "10 Summer Drive, Singapore 3098812",
+    "createdDate": "2023/01/09"
+  }, {
+    "name": "Banana Split",
+    "quantity": 2,
+    "status": "PAID",
+    "address": "11 Fabordrive, Singapore 3001298",
+    "createdDate": "2022/12/20"
+  }, {  
+    "name": "Melon Cookie",
+    "quantity": 50,
+    "status": "SHIPPED",
+    "address": "9 Bishan Rd, Singapore 310909",
+    "createdDate": "2022/12/20"
+  }, {
+    "name": "Strawberry Shortcake",
+    "quantity": 3,
+    "status": "COMPLETED",
+    "address": "9 Bishan Rd, Singapore 310909",
+    "createdDate": "2022/12/12"
   } ]
 }

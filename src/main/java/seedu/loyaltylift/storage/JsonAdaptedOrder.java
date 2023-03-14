@@ -1,20 +1,22 @@
 package seedu.loyaltylift.storage;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
-import seedu.loyaltylift.model.order.Address;
+import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
-import seedu.loyaltylift.model.order.Name;
 import seedu.loyaltylift.model.order.Status;
-import seedu.loyaltylift.model.order.StatusValue;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.Date;
-
+/**
+ * Jackson-friendly version of {@link Order}.
+ */
 public class JsonAdaptedOrder {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
@@ -43,11 +45,11 @@ public class JsonAdaptedOrder {
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order source) {
-        name = source.getName().name;
+        name = source.getName().fullName;
         quantity = source.getQuantity().value;
-        status = source.getStatus().value.toString();
+        status = source.getStatus().toString().toUpperCase();
         address = source.getAddress().value;
-        createdDate = source.getCreatedDate().value.toString();
+        createdDate = source.getCreatedDate().toString();
     }
 
     /**
@@ -65,7 +67,8 @@ public class JsonAdaptedOrder {
         final Name modelName = new Name(name);
 
         if (quantity == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
         }
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
@@ -75,10 +78,7 @@ public class JsonAdaptedOrder {
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
-        if (!Status.isValidStatus(StatusValue.valueOf(status))) {
-            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
-        }
-        final Status modelEmail = new Status(StatusValue.valueOf(status));
+        final Status modelEmail = Status.valueOf(status);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -89,13 +89,14 @@ public class JsonAdaptedOrder {
         final Address modelAddress = new Address(address);
 
         if (createdDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CreatedDate.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, CreatedDate.class.getSimpleName()));
         }
 
-        Date dateObject;
+        LocalDate dateObject;
         try {
-            dateObject = CreatedDate.DATE_FORMAT.parse(createdDate);
-        } catch (ParseException e) {
+            dateObject = LocalDate.parse(createdDate, CreatedDate.DATE_FORMATTER);
+        } catch (DateTimeParseException e) {
             throw new IllegalValueException(CreatedDate.MESSAGE_CONSTRAINTS);
         }
 
