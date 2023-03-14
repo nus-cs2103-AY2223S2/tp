@@ -5,6 +5,9 @@ import static seedu.internship.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLED
 
 import org.junit.jupiter.api.Test;
 
+import seedu.internship.model.Model;
+import seedu.internship.model.ModelManager;
+
 public class ExitCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();

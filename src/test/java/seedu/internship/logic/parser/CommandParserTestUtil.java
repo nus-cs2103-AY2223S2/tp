@@ -2,6 +2,7 @@ package seedu.internship.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
@@ -14,7 +15,7 @@ public class CommandParserTestUtil {
      * equals to {@code expectedCommand}.
      */
     public static void assertParseSuccess(Parser<? extends Command> parser, String userInput,
-            Command expectedCommand) {
+                                          Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
             assertEquals(expectedCommand, command);

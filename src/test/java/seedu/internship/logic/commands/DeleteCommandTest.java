@@ -7,12 +7,16 @@ import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.internship.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
 import static seedu.internship.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
+import seedu.internship.model.Model;
+import seedu.internship.model.ModelManager;
+import seedu.internship.model.UserPrefs;
 import seedu.internship.model.person.Person;
 
 /**
@@ -21,7 +25,7 @@ import seedu.internship.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalInternshipCatalogue(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
