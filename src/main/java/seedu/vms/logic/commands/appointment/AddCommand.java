@@ -56,7 +56,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         Map<Integer, IdData<Patient>> lastShownList = model.getFilteredPatientList();
-        int patientId = toAdd.getPatient() - 1;
+        int patientId = toAdd.getPatient().getZeroBased();
         if (!lastShownList.containsKey(patientId)) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }

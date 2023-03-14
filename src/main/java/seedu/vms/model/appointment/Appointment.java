@@ -40,8 +40,8 @@ public class Appointment implements Comparable<Appointment> {
         return vaccine;
     }
 
-    public int getPatient() {
-        return patientId.getOneBased();
+    public Index getPatient() {
+        return patientId;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class Appointment implements Comparable<Appointment> {
 
     @Override
     public String toString() {
-        return getPatient()
+        return getPatient().getOneBased()
                 + " has an appointment at "
                 + startTime;
     }
