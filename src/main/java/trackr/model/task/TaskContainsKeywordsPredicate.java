@@ -34,6 +34,10 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
         return Optional.ofNullable(taskNameKeywords);
     }
 
+    public boolean isAnyFieldPresent() {
+        return isAnyFieldEdited() || taskNameKeywords != null;
+    }
+
     @Override
     public boolean test(Task task) {
         boolean isTaskNameMatch;
