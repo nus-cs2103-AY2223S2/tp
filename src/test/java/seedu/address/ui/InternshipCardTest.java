@@ -2,16 +2,22 @@ package seedu.address.ui;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
 import org.junit.jupiter.api.Test;
 
 import javafx.scene.paint.Color;
 import seedu.address.model.internship.Internship;
 import seedu.address.testutil.InternshipBuilder;
 import seedu.address.testutil.TypicalInternships;
+
+
+import static seedu.address.ui.InternshipCard.ROLE_LABEL;
 
 public class InternshipCardTest extends GuiUnitTest {
     @Test
@@ -24,6 +30,19 @@ public class InternshipCardTest extends GuiUnitTest {
         new UiPartExtension().setUiPart(internshipCard);
     }
 
+    @Test
+    public void display_internshipCard_success() {
+        Internship internship = new InternshipBuilder().build();
+        InternshipCard internshipCard = new InternshipCard(internship, 1);
+        uiPartExtension.setUiPart(internshipCard);
+        assertInternshipCardEqual(internshipCard, internship, 1);
+//
+//        // with tags
+//        Person personWithTags = new PersonBuilder().build();
+//        personCard = new PersonCard(personWithTags, 2);
+//        uiPartExtension.setUiPart(personCard);
+//        assertCardDisplay(personCard, personWithTags, 2);
+    }
 
     @Test
     public void equals() {
@@ -84,4 +103,19 @@ public class InternshipCardTest extends GuiUnitTest {
         //Check Status Label
         assertTrue(internshipCardInformation.get(6).equals("ASSESSMENT"));
     }
+
+    private void assertInternshipCardEqual(InternshipCard internshipCard, Internship internship, int expectedIndex) {
+        Region internshipRegion = internshipCard.getRoot();
+        Label companyName = (Label) internshipRegion.lookup("#companyName");
+        Label internshipRoleLabel = (Label) internshipRegion.lookup("#role");
+        Label internshipDate = (Label) internshipRegion.lookup("#date");
+        Label internshipStatus = (Label) internshipRegion.lookup("#statusLabel");
+        String expectedDateLabel = internshipCard.getDateLabel(internship.getStatus());
+
+        assertEquals(companyName.getText(), internship.getCompanyName().toString());
+        assertEquals(internshipRoleLabel.getText(), ROLE_LABEL + internship.getRole().toString());
+        assertEquals(internshipDate.getText(), expectedDateLabel + internship.getDate().toString());
+        assertEquals(internshipStatus.getText(), internship.getStatus().toString().toUpperCase());
+    }
+
 }

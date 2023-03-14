@@ -16,7 +16,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Status;
 
 /**
  * An UI component that displays information of a {@code Internship}.
@@ -24,6 +26,8 @@ import seedu.address.model.internship.Internship;
 public class InternshipCard extends UiPart<Region> {
 
     private static final String FXML = "InternshipListCard.fxml";
+
+    public static final String ROLE_LABEL = "Role: ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -69,33 +73,11 @@ public class InternshipCard extends UiPart<Region> {
         internshipCardInformation.add(companyName.getText());
 
         //Add Role
-        role.setText("Role: " + internship.getRole().fullRole);
+        role.setText(ROLE_LABEL + internship.getRole().fullRole);
         internshipCardInformation.add(role.getText());
 
         //Add Date
-        String dateLabel;
-        switch (internship.getStatus().toString()) {
-        case "New":
-            dateLabel = "Date Added: ";
-            break;
-        case "Applied":
-            dateLabel = "Date Applied: ";
-            break;
-        case "Assessment":
-            dateLabel = "Date of Assessment: ";
-            break;
-        case "Interview":
-            dateLabel = "Date of Interview: ";
-            break;
-        case "Offered":
-            dateLabel = "Date of Notice of Offer: ";
-            break;
-        case "Rejected":
-            dateLabel = "Date of Notice of Rejection: ";
-            break;
-        default:
-            dateLabel = "Date: ";
-        }
+        String dateLabel = getDateLabel(internship.getStatus());
         date.setText(dateLabel + internship.getDate().fullDate);
         internshipCardInformation.add(date.getText());
 
@@ -160,5 +142,32 @@ public class InternshipCard extends UiPart<Region> {
      */
     public ArrayList<String> getInternshipCardInformation() {
         return this.internshipCardInformation;
+    }
+
+    public String getDateLabel(Status status) {
+        String dateLabel;
+        switch (status.toString()) {
+        case "New":
+            dateLabel = "Date Added: ";
+            break;
+        case "Applied":
+            dateLabel = "Date Applied: ";
+            break;
+        case "Assessment":
+            dateLabel = "Date of Assessment: ";
+            break;
+        case "Interview":
+            dateLabel = "Date of Interview: ";
+            break;
+        case "Offered":
+            dateLabel = "Date of Notice of Offer: ";
+            break;
+        case "Rejected":
+            dateLabel = "Date of Notice of Rejection: ";
+            break;
+        default:
+            dateLabel = "Date: ";
+        }
+        return dateLabel;
     }
 }
