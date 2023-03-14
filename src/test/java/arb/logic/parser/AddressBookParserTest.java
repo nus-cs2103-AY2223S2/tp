@@ -33,6 +33,7 @@ import arb.logic.commands.project.FindProjectCommand;
 import arb.logic.commands.project.ListProjectCommand;
 import arb.logic.commands.project.MarkProjectCommand;
 import arb.logic.commands.project.SortProjectCommand;
+import arb.logic.commands.project.UnmarkProjectCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
 import arb.model.client.NameContainsKeywordsPredicate;
@@ -170,6 +171,13 @@ public class AddressBookParserTest {
         MarkProjectCommand command = (MarkProjectCommand) parser.parseCommand(
                 MarkProjectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new MarkProjectCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_unmarkProject() throws Exception {
+        UnmarkProjectCommand command = (UnmarkProjectCommand) parser.parseCommand(
+                UnmarkProjectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new UnmarkProjectCommand(INDEX_FIRST), command);
     }
 
     @Test
