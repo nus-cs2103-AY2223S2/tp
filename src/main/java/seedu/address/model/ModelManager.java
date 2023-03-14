@@ -153,6 +153,20 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return previousHistory.getValue();
     }
+    public boolean hasRedoableCommand() {
+        return undoManager.hasRedoableCommand();
+    }
+
+    /**
+     * Redoes the changes unmade by the last undo command
+     * @return The string representation of the command redone
+     */
+    public String executeRedo() {
+        Pair<AddressBook, String> nextHistory = undoManager.getNextHistory();
+        this.addressBook.resetData(nextHistory.getKey());
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return nextHistory.getValue();
+    }
 
     @Override
     public boolean equals(Object obj) {

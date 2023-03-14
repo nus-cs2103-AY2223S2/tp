@@ -68,15 +68,31 @@ public class UndoManager {
     }
 
     /**
+     * Returns true if model has a command that can be redone, false otherwise
+     */
+    public boolean hasRedoableCommand() {
+        return versionTracker > 0;
+    }
+
+    /**
      * Returns an AddressBook containing a saved state of ModCheck.
      * Calling this method multiple times will return earlier saved states of ModCheck, to facilitate chained undoes.
      * @return An AddressBook containing an earlier saved state of ModCheck
      */
     public Pair<AddressBook, String> getPreviousHistory() {
         versionTracker++;
-        //Note that when implementing undo, commandHistory and addressBookHistory is off by one
+        //Note that commandHistory and addressBookHistory is off by one
         //ie: The most recent change command will lead to the second most recent address book state
         return new Pair<>(addressBookHistory.get(versionTracker), commandHistory.get(versionTracker - 1));
+    }
+
+    /**
+     * Returns an AddressBook containing a later saved state of ModCheck.
+     * @return An AddressBook containing a later saved state of ModCheck
+     */
+    public Pair<AddressBook, String> getNextHistory() {
+        versionTracker--;
+        return new Pair<>(addressBookHistory.get(versionTracker), commandHistory.get(versionTracker));
     }
 
 }

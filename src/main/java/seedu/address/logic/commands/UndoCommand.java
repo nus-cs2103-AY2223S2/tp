@@ -12,7 +12,6 @@ import seedu.address.model.Model;
  * For example: Add, Edit, Clear, etc.
  * A command that would have changed data in ModCheck, but encountered an error, (eg: Adding duplicate persons), will
  * NOT be undone
- * Only supports ONE undo command - chained undos are not supported
  */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";

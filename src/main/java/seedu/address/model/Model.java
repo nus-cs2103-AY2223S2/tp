@@ -96,5 +96,16 @@ public interface Model {
      * @return The string representation of the last modification command used
      */
     String executeUndo();
+    /**
+     * Returns if there is a redoable command in model.
+     * @return True if there is a redoable command in model, false otherwise.
+     */
+    boolean hasRedoableCommand();
+
+    /**
+     * Redoes the changes unmade by the last undo command
+     * @return The string representation of the command redone
+     */
+    String executeRedo();
 
 }
