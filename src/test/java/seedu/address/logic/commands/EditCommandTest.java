@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -60,11 +61,11 @@ public class EditCommandTest {
         Fish lastFish = model.getFilteredFishList().get(indexLastFish.getZeroBased());
 
         FishBuilder fishInList = new FishBuilder(lastFish);
-        Fish editedFish = fishInList.withName(VALID_NAME_BOB).withLastFedDate(VALID_LAST_FED_DATE_BOB)
+        Fish editedFish = fishInList.withName(VALID_NAME_BOB).withLastFedDate(VALID_LAST_FED_DATE_BOB).withSpecies(VALID_SPECIES_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withLastFedDate(VALID_LAST_FED_DATE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withLastFedDate(VALID_LAST_FED_DATE_BOB).withSpecies(VALID_SPECIES_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastFish, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);

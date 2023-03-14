@@ -3,7 +3,7 @@ package seedu.address.model.fish;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -32,7 +32,7 @@ public class FishTest {
         assertFalse(ALICE.isSameFish(null));
 
         // same name, all other attributes different -> returns true
-        Fish editedAlice = new FishBuilder(ALICE).withLastFedDate(VALID_LAST_FED_DATE_BOB).withEmail(VALID_EMAIL_BOB)
+        Fish editedAlice = new FishBuilder(ALICE).withLastFedDate(VALID_LAST_FED_DATE_BOB).withSpecies(VALID_SPECIES_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameFish(editedAlice));
 
@@ -76,8 +76,8 @@ public class FishTest {
         editedAlice = new FishBuilder(ALICE).withLastFedDate(VALID_LAST_FED_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new FishBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        // different species -> returns false
+        editedAlice = new FishBuilder(ALICE).withSpecies(VALID_SPECIES_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false

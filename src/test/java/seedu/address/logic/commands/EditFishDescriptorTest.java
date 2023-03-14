@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -43,8 +43,8 @@ public class EditFishDescriptorTest {
         editedAmy = new EditFishDescriptorBuilder(DESC_AMY).withLastFedDate(VALID_LAST_FED_DATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
-        editedAmy = new EditFishDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        // different species -> returns false
+        editedAmy = new EditFishDescriptorBuilder(DESC_AMY).withSpecies(VALID_SPECIES_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false

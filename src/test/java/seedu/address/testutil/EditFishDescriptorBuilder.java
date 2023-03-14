@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditFishDescriptor;
 import seedu.address.model.fish.Address;
-import seedu.address.model.fish.Email;
+import seedu.address.model.fish.Species;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
@@ -34,7 +34,7 @@ public class EditFishDescriptorBuilder {
         descriptor = new EditFishDescriptor();
         descriptor.setName(fish.getName());
         descriptor.setLastFedDate(fish.getLastFedDate());
-        descriptor.setEmail(fish.getEmail());
+        descriptor.setSpecies(fish.getSpecies());
         descriptor.setAddress(fish.getAddress());
         descriptor.setTags(fish.getTags());
     }
@@ -56,10 +56,10 @@ public class EditFishDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditFishDescriptor} that we are building.
+     * Sets the {@code Species} of the {@code EditFishDescriptor} that we are building.
      */
-    public EditFishDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditFishDescriptorBuilder withSpecies(String species) {
+        descriptor.setSpecies(new Species(species));
         return this;
     }
 
