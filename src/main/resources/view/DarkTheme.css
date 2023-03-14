@@ -158,12 +158,15 @@
     -fx-padding: 4 1 4 1;
 }
 
-.details_steps_label .label {
+.details_label .label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: white;
 }
 
+.details_label {
+    -fx-padding: 0 0 7 0;
+}
 
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);

@@ -29,8 +29,11 @@ public class RecipeDetailsPanel extends UiPart<Region> {
     @FXML
     private Label stepsTitle;
 
-    private Recipe currentShowingRecipe;
+    @FXML
+    private VBox ingredients;
 
+    @FXML
+    private Label ingredientsTitle;
 
 
     /**
@@ -40,17 +43,20 @@ public class RecipeDetailsPanel extends UiPart<Region> {
         super(FXML);
     }
 
-    public Recipe getCurrentShowingRecipe() {
-        return currentShowingRecipe;
-    }
 
     public void setRecipeDetails(Recipe recipe) {
         if (recipe != null) {
-            currentShowingRecipe = recipe;
             recipeTitle.setText(recipe.getTitle().toString());
             recipeDesc.setText(recipe.getDesc().toString());
+            ingredients.getChildren().clear();
+            ingredientsTitle.setText("What you will need:");
+            recipe.getIngredients().stream()
+                            .forEach(ingredient -> {
+                                Label ingredientLabel = new Label(ingredient.ingredient);
+                                ingredients.getChildren().add(ingredientLabel);
+                            });
             steps.getChildren().clear();
-            stepsTitle.setText("Instructions");
+            stepsTitle.setText("Instructions:");
             recipe.getSteps().stream()
                     .forEach(step -> {
                         Label stepLabel = new Label(step.step);
@@ -63,6 +69,8 @@ public class RecipeDetailsPanel extends UiPart<Region> {
         recipeTitle.setText(null);
         recipeDesc.setText(null);
         stepsTitle.setText(null);
+        ingredientsTitle.setText(null);
         steps.getChildren().clear();
+        ingredients.getChildren().clear();
     }
 }

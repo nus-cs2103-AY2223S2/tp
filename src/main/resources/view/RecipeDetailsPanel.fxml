@@ -15,8 +15,11 @@
 
         <Label fx:id="recipeDesc" text="\$recipeDesc" wrapText="true" styleClass="details_desc_label" />
         <VBox alignment="CENTER_LEFT">
+            <Label fx:id="ingredientsTitle" text="\$ingredientsTitle" wrapText="true"
+                   styleClass="details_steps_title"/>
+            <VBox fx:id="ingredients" styleClass="details_label"/>
             <Label fx:id="stepsTitle" text="\$stepsTitle" wrapText="true" styleClass="details_steps_title" />
-            <VBox fx:id="steps" styleClass="details_steps_label"/>
+            <VBox fx:id="steps" styleClass="details_label"/>
         </VBox>
 
     </VBox>
