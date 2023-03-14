@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DOG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPets.ALICE;
 import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
@@ -46,7 +46,7 @@ public class PetPalTest {
     @Test
     public void resetData_withDuplicatePets_throwsDuplicatePetException() {
         // Two Pets with the same identity fields
-        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
         List<Pet> newPets = Arrays.asList(ALICE, editedAlice);
         PetPalStub newData = new PetPalStub(newPets);
@@ -73,7 +73,7 @@ public class PetPalTest {
     @Test
     public void hasPet_petWithSameIdentityFieldsInAddressBook_returnsTrue() {
         petPal.addPet(ALICE);
-        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
         assertTrue(petPal.hasPet(editedAlice));
     }

@@ -6,10 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DOG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPets.ALICE;
-import static seedu.address.testutil.TypicalPets.BOB;
+import static seedu.address.testutil.TypicalPets.EXAMPLE_DOG;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,7 @@ public class PetTest {
 
         // same name, all other attributes different -> returns true
         Pet editedAlice = new PetBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG).build();
         assertTrue(ALICE.isSamePet(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -41,13 +41,13 @@ public class PetTest {
         assertFalse(ALICE.isSamePet(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Pet editedBob = new PetBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePet(editedBob));
+        Pet editedBob = new PetBuilder(EXAMPLE_DOG).withName(VALID_NAME_BOB.toLowerCase()).build();
+        assertFalse(EXAMPLE_DOG.isSamePet(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PetBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePet(editedBob));
+        editedBob = new PetBuilder(EXAMPLE_DOG).withName(nameWithTrailingSpaces).build();
+        assertFalse(EXAMPLE_DOG.isSamePet(editedBob));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class PetTest {
         assertFalse(ALICE.equals(5));
 
         // different Pet -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(ALICE.equals(EXAMPLE_DOG));
 
         // different name -> returns false
         Pet editedAlice = new PetBuilder(ALICE).withName(VALID_NAME_BOB).build();
@@ -85,7 +85,7 @@ public class PetTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PetBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new PetBuilder(ALICE).withTags(VALID_TAG_DOG).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

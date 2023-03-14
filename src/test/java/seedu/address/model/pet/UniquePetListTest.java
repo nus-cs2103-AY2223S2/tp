@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DOG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPets.ALICE;
-import static seedu.address.testutil.TypicalPets.BOB;
+import static seedu.address.testutil.TypicalPets.EXAMPLE_DOG;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,7 +42,7 @@ public class UniquePetListTest {
     @Test
     public void contains_petWithSameIdentityFieldsInList_returnsTrue() {
         uniquePetList.add(ALICE);
-        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
         assertTrue(uniquePetList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniquePetListTest {
     @Test
     public void setPet_editedPetHasSameIdentity_success() {
         uniquePetList.add(ALICE);
-        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
         uniquePetList.setPet(ALICE, editedAlice);
         UniquePetList expectedUniquePetList = new UniquePetList();
@@ -96,17 +96,17 @@ public class UniquePetListTest {
     @Test
     public void setPet_editedPetHasDifferentIdentity_success() {
         uniquePetList.add(ALICE);
-        uniquePetList.setPet(ALICE, BOB);
+        uniquePetList.setPet(ALICE, EXAMPLE_DOG);
         UniquePetList expectedUniquePetList = new UniquePetList();
-        expectedUniquePetList.add(BOB);
+        expectedUniquePetList.add(EXAMPLE_DOG);
         assertEquals(expectedUniquePetList, uniquePetList);
     }
 
     @Test
     public void setPet_editedPetHasNonUniqueIdentity_throwsDuplicatePetException() {
         uniquePetList.add(ALICE);
-        uniquePetList.add(BOB);
-        assertThrows(DuplicatePetException.class, () -> uniquePetList.setPet(ALICE, BOB));
+        uniquePetList.add(EXAMPLE_DOG);
+        assertThrows(DuplicatePetException.class, () -> uniquePetList.setPet(ALICE, EXAMPLE_DOG));
     }
 
     @Test
@@ -136,7 +136,7 @@ public class UniquePetListTest {
     public void setPets_uniquePetList_replacesOwnListWithProvidedUniquePetList() {
         uniquePetList.add(ALICE);
         UniquePetList expectedUniquePetList = new UniquePetList();
-        expectedUniquePetList.add(BOB);
+        expectedUniquePetList.add(EXAMPLE_DOG);
         uniquePetList.setPets(expectedUniquePetList);
         assertEquals(expectedUniquePetList, uniquePetList);
     }
@@ -149,10 +149,10 @@ public class UniquePetListTest {
     @Test
     public void setPets_list_replacesOwnListWithProvidedList() {
         uniquePetList.add(ALICE);
-        List<Pet> petList = Collections.singletonList(BOB);
+        List<Pet> petList = Collections.singletonList(EXAMPLE_DOG);
         uniquePetList.setPets(petList);
         UniquePetList expectedUniquePetList = new UniquePetList();
-        expectedUniquePetList.add(BOB);
+        expectedUniquePetList.add(EXAMPLE_DOG);
         assertEquals(expectedUniquePetList, uniquePetList);
     }
 

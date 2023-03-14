@@ -43,18 +43,18 @@ public class PetBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PersonBuilder with the data of {@code petToCopy}.
      */
-    public PetBuilder(Pet personToCopy) {
-        ownerName = personToCopy.getOwnerName();
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PetBuilder(Pet petToCopy) {
+        ownerName = petToCopy.getOwnerName();
+        name = petToCopy.getName();
+        phone = petToCopy.getPhone();
+        email = petToCopy.getEmail();
+        address = petToCopy.getAddress();
+        tags = new HashSet<>(petToCopy.getTags());
     }
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Pet} that we are building.
      */
     public PetBuilder withOwnerName(String ownerName) {
         this.ownerName = new OwnerName(ownerName);

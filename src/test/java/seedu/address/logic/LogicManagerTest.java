@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPets.AMY;
+import static seedu.address.testutil.TypicalPets.EXAMPLE_CAT;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Pet expectedPet = new PetBuilder(AMY).withTags().build();
+        Pet expectedPet = new PetBuilder(EXAMPLE_CAT).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPet(expectedPet);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
