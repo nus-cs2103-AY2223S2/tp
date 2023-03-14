@@ -12,9 +12,12 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
 
@@ -26,6 +29,7 @@ public class ModelManager implements Model {
 
     private final Tracker tracker;
     private final UserPrefs userPrefs;
+    private final Navigation navigation;
     private final FilteredList<? extends ReadOnlyModule> filteredModules;
 
     private final AddressBook addressBook; // TODO: Remove this
@@ -44,6 +48,7 @@ public class ModelManager implements Model {
 
         this.tracker = new Tracker(tracker);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.navigation = new Navigation();
         filteredModules = new FilteredList<>(this.tracker.getModuleList());
 
         this.addressBook = null;
@@ -64,6 +69,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        navigation = new Navigation();
     }
 
     /**
@@ -123,6 +129,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModule(ModuleCode moduleCode) {
+        return tracker.getModule(moduleCode) != null;
+    }
+
+    @Override
     public void deleteModule(ReadOnlyModule target) {
         tracker.removeModule(target);
     }
@@ -142,6 +153,12 @@ public class ModelManager implements Model {
     public boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
         requireNonNull(module);
         return module.hasLecture(lecture);
+    }
+
+    @Override
+    public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
+        ReadOnlyModule mod = tracker.getModule(moduleCode);
+        return mod != null && mod.getLecture(lectureName) != null;
     }
 
     @Override
@@ -230,6 +247,48 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredModules.equals(other.filteredModules);
+    }
+
+    //=========== Navigation =================================================================================
+
+    @Override
+    public ReadOnlyNavigation getNavigation() {
+        return navigation;
+    }
+
+    @Override
+    public NavigationContext getCurrentNavContext() {
+        return navigation.getCurrentContext();
+    }
+
+    @Override
+    public void navigateTo(ModuleCode moduleCode) {
+        navigation.navigateTo(moduleCode);
+    }
+
+    @Override
+    public void navigateTo(ModuleCode moduleCode, LectureName lectureName) {
+        navigation.navigateTo(moduleCode, lectureName);
+    }
+
+    @Override
+    public void navigateToModFromRoot(ModuleCode moduleCode) {
+        navigation.navigateToModFromRoot(moduleCode);
+    }
+
+    @Override
+    public void navigateToLecFromMod(LectureName lectureName) {
+        navigation.navigateToLecFromMod(lectureName);
+    }
+
+    @Override
+    public void navigateBack() {
+        navigation.back();;
+    }
+
+    @Override
+    public void navigateToRoot() {
+        navigation.goToRoot();
     }
 
     // TODO: Remove all code beyond this point
