@@ -19,11 +19,11 @@ activate model MODEL_COLOR
 model -[MODEL_COLOR]-> logic
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveAddressBook(eduMate)
+logic -[LOGIC_COLOR]> storage : saveEduMate(eduMate)
 activate storage STORAGE_COLOR
 
 storage -[STORAGE_COLOR]> storage : Save to file
-activate storage STORAGE_COLOR_T1
+activate storage STORAGE_COLOR_LIGHT
 storage --[STORAGE_COLOR]> storage
 deactivate storage
 
