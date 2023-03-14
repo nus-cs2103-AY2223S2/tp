@@ -10,21 +10,28 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.Messages;
+import mycelium.mycelium.logic.commands.AddClientCommand;
 import mycelium.mycelium.logic.commands.AddCommand;
+import mycelium.mycelium.logic.commands.AddProjectCommand;
 import mycelium.mycelium.logic.commands.ClearCommand;
+import mycelium.mycelium.logic.commands.DeleteClientCommand;
 import mycelium.mycelium.logic.commands.DeleteCommand;
+import mycelium.mycelium.logic.commands.DeleteProjectCommand;
 import mycelium.mycelium.logic.commands.EditCommand;
 import mycelium.mycelium.logic.commands.ExitCommand;
 import mycelium.mycelium.logic.commands.FindCommand;
 import mycelium.mycelium.logic.commands.HelpCommand;
 import mycelium.mycelium.logic.commands.ListCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.NameContainsKeywordsPredicate;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.testutil.Assert;
+import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.EditPersonDescriptorBuilder;
 import mycelium.mycelium.testutil.PersonBuilder;
 import mycelium.mycelium.testutil.PersonUtil;
+import mycelium.mycelium.testutil.ProjectBuilder;
 import mycelium.mycelium.testutil.TypicalIndexes;
 
 public class AddressBookParserTest {
@@ -85,6 +92,42 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_createClient() throws Exception {
+        String input = AddClientCommand.COMMAND_ACRONYM + " -cn Jamal -e jamal@hogriders.org";
+        AddClientCommand got = (AddClientCommand) parser.parseCommand(input);
+        AddClientCommand
+            want =
+            new AddClientCommand(new ClientBuilder().withName("Jamal").withEmail("jamal@hogriders.org").build());
+        assertEquals(want, got);
+    }
+
+    @Test
+    public void parseCommand_createProject() throws Exception {
+        String input = AddProjectCommand.COMMAND_ACRONYM + " -pn Bing -e jamal@hogriders.org";
+        AddProjectCommand got = (AddProjectCommand) parser.parseCommand(input);
+        AddProjectCommand
+            want =
+            new AddProjectCommand(new ProjectBuilder().withName("Bing").withClientEmail("jamal@hogriders.org").build());
+        assertEquals(want, got);
+    }
+
+    @Test
+    public void parseCommand_deleteClient() throws Exception {
+        String input = DeleteClientCommand.COMMAND_ACRONYM + " -e jamal@hogriders.org";
+        DeleteClientCommand got = (DeleteClientCommand) parser.parseCommand(input);
+        DeleteClientCommand want = new DeleteClientCommand(new Email("jamal@hogriders.org"));
+        assertEquals(want, got);
+    }
+
+    @Test
+    public void parseCommand_deleteProject() throws Exception {
+        String input = DeleteProjectCommand.COMMAND_ACRONYM + " -pn Bing";
+        DeleteProjectCommand got = (DeleteProjectCommand) parser.parseCommand(input);
+        DeleteProjectCommand want = new DeleteProjectCommand("Bing");
+        assertEquals(want, got);
     }
 
     @Test
