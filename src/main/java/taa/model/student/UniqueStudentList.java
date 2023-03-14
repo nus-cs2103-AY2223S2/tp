@@ -82,6 +82,19 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Updates the student list to propagate change to the rest of the model.
+     * @param student The student to be refreshed.
+     */
+    public void update(Student student) {
+        requireNonNull(student);
+        int index = internalList.indexOf(student);
+        if (index < 0) {
+            throw new StudentNotFoundException();
+        }
+        internalList.add(index, internalList.remove(index));
+    }
+
+    /**
      * Append the list of students to the list of students
      * @param list
      * @return

@@ -7,7 +7,7 @@ import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
 import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
-import taa.logic.commands.EditCommand;
+import taa.logic.commands.EditStudentCommand;
 import taa.logic.commands.UnmarkAttendanceCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Attendance;
@@ -29,7 +29,7 @@ public class UnmarkAttendanceParser implements Parser<UnmarkAttendanceCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditCommand.MESSAGE_USAGE), pe);
+                    EditStudentCommand.MESSAGE_USAGE), pe);
         }
 
         if (argMultimap.getValue(PREFIX_WEEK).isPresent()) {

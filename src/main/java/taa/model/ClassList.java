@@ -100,6 +100,14 @@ public class ClassList implements ReadOnlyAddressBook {
         this.studentCount += 1;
     }
 
+    /**
+     * Updates the student list to propagate change to the rest of the model.
+     * @param target The student to be refreshed.
+     */
+    public void updateStudent(Student target) {
+        students.update(target);
+    }
+
     public int getStudentCount() {
         return this.studentCount;
     }
