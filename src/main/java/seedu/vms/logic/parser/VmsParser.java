@@ -19,7 +19,7 @@ import seedu.vms.logic.parser.vaccination.VaccinationParser;
 public class VmsParser {
     private static final Pattern BASIC_COMMAND_FORMAT =
             Pattern.compile("(?<featureName>\\S+)(?<arguments>.*)");
-    public static final Map<String, String> ALTERNATIVE_FEATURE_NAME_MAPPINGS = Map.ofEntries(
+    private static final Map<String, String> ALTERNATIVE_FEATURE_NAME_MAPPINGS = Map.ofEntries(
             new AbstractMap.SimpleEntry<String, String>("p", "patient"),
             new AbstractMap.SimpleEntry<String, String>("pa", "patient"),
             new AbstractMap.SimpleEntry<String, String>("pat", "patient"),
