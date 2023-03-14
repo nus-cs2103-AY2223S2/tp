@@ -33,14 +33,14 @@ public class RoutineTest {
         assertFalse(CARDIO.isSameRoutine(editedCardio));
 
         // routine name differs in case, all other attributes same -> returns false
-        Routine editedBob = new RoutineBuilder(STRENGTH).withRoutineName(VALID_ROUTINE_NAME_STRENGTH.toLowerCase())
+        Routine editedStrength = new RoutineBuilder(STRENGTH).withRoutineName(VALID_ROUTINE_NAME_STRENGTH.toLowerCase())
                 .build();
-        assertFalse(STRENGTH.isSameRoutine(editedBob));
+        assertFalse(STRENGTH.isSameRoutine(editedStrength));
 
         // routine name has trailing spaces, all other attributes same -> returns false
         String routineNameWithTrailingSpaces = VALID_ROUTINE_NAME_STRENGTH + " ";
-        editedBob = new RoutineBuilder(STRENGTH).withRoutineName(routineNameWithTrailingSpaces).build();
-        assertFalse(STRENGTH.isSameRoutine(editedBob));
+        editedStrength = new RoutineBuilder(STRENGTH).withRoutineName(routineNameWithTrailingSpaces).build();
+        assertFalse(STRENGTH.isSameRoutine(editedStrength));
     }
 
     @Test

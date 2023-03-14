@@ -36,8 +36,6 @@ public class TypicalRoutines {
     public static final Routine STR = new RoutineBuilder().withRoutineName(VALID_ROUTINE_NAME_STRENGTH)
             .withExercises(VALID_EXERCISE_PUSHUP, VALID_EXERCISE_SITUP).build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
     private TypicalRoutines() {} // prevents instantiation
 
     /**
