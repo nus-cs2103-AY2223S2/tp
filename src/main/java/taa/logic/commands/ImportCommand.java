@@ -111,7 +111,7 @@ public class ImportCommand extends Command {
 
         int nLines = 0;
         for (CSVRecord record : parser) {
-            new AddCommand(parseFromCsvRec(record)).execute(model);
+            new AddStudentCommand(parseFromCsvRec(record)).execute(model);
             nLines++;
         }
         return new CommandResult(String.format(MSG_SUCCESS, nLines));
