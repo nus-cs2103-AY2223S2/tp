@@ -14,7 +14,7 @@ import seedu.address.model.pet.Pet;
  */
 public class PetCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "PetListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -30,6 +30,8 @@ public class PetCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label name;
+    @FXML
+    private Label oname;
     @FXML
     private Label id;
     @FXML
@@ -47,6 +49,7 @@ public class PetCard extends UiPart<Region> {
     public PetCard(Pet pet, int displayedIndex) {
         super(FXML);
         this.pet = pet;
+        oname.setText(pet.getOwnerName().fullName);
         id.setText(displayedIndex + ". ");
         name.setText(pet.getName().fullName);
         phone.setText(pet.getPhone().value);

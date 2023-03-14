@@ -11,28 +11,28 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.pet.Pet;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of pets.
  */
 public class PetListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "PetListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PetListPanel.class);
 
     @FXML
-    private ListView<Pet> personListView;
+    private ListView<Pet> petListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public PetListPanel(ObservableList<Pet> petList) {
         super(FXML);
-        personListView.setItems(petList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        petListView.setItems(petList);
+        petListView.setCellFactory(listView -> new PetListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Pet> {
+    class PetListViewCell extends ListCell<Pet> {
         @Override
         protected void updateItem(Pet pet, boolean empty) {
             super.updateItem(pet, empty);

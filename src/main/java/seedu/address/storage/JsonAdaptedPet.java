@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.pet.Address;
 import seedu.address.model.pet.Email;
 import seedu.address.model.pet.Name;
+import seedu.address.model.pet.OwnerName;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.Phone;
 import seedu.address.model.tag.Tag;
@@ -20,10 +21,11 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Pet}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedPet {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Pet's %s field is missing!";
 
+    private final String ownerName;
     private final String name;
     private final String phone;
     private final String email;
@@ -31,12 +33,13 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedPet} with the given pet details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPet(@JsonProperty("ownerName") String ownerName, @JsonProperty("name") String name,
+            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+            @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        this.ownerName = ownerName;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,9 +50,10 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Pet} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Pet source) {
+    public JsonAdaptedPet(Pet source) {
+        ownerName = source.getOwnerName().fullName;
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -60,16 +64,23 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted pet object into the model's {@code Pet} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted pet.
      */
     public Pet toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> petTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            petTags.add(tag.toModelType());
         }
 
+        if (ownerName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(ownerName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final OwnerName modelOwnerName = new OwnerName(ownerName);
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -102,8 +113,8 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Pet(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<Tag> modelTags = new HashSet<>(petTags);
+        return new Pet(modelOwnerName, modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

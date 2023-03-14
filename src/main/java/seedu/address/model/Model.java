@@ -6,14 +6,13 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.Pet;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Pet> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Pet> PREDICATE_SHOW_ALL_PETS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -38,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getPetPalFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPetPalFilePath(Path petPalFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPetPal(ReadOnlyPetPal petPal);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the PetPal */
+    ReadOnlyPetPal getPetPal();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

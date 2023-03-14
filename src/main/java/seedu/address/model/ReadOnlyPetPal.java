@@ -6,7 +6,7 @@ import seedu.address.model.pet.Pet;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyPetPal {
 
     /**
      * Returns an unmodifiable view of the persons list.

@@ -7,7 +7,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyPetPal;
 import seedu.address.model.pet.Pet;
 
 /**
@@ -26,17 +27,17 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getPetPal()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyPetPal getPetPal();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Pet> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of Pets */
+    ObservableList<Pet> getFilteredPetList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getPetPalFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
