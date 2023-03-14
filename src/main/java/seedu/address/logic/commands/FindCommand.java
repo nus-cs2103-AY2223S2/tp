@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.EventContainsKeywordsPredicate;
-import seedu.address.model.person.EventContainsKeywordsPredicate;
+
+import seedu.address.model.event.EventContainsKeywordsPredicate;
 
 /**
  * Finds and lists all events in address book whose name contains any of the argument keywords.
