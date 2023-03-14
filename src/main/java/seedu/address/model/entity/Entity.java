@@ -55,6 +55,11 @@ public abstract class Entity {
         return builder.toString();
     }
 
+    // Not implemented. in other branch temp.
+    public boolean isSameEntity(Entity other) {
+        return true;
+    }
+
 
 
 }
