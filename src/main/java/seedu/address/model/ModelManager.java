@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private Comparator<Person> personComparator = (p1, p2) -> 0;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -111,6 +113,26 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean advancePerson(Person target) {
+        requireNonNull(target);
+
+        return addressBook.advancePerson(target);
+    }
+
+    @Override
+    public boolean rejectPerson(Person target) {
+        requireNonNull(target);
+
+        return addressBook.rejectPerson(target);
+    }
+
+    @Override
+    public void refreshListWithPredicate(Predicate<Person> predicate) {
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        filteredPersons.setPredicate(predicate);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -119,13 +141,17 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+        return filteredPersons.sorted(personComparator);
     }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    public void sortFilteredPersonList(Comparator<Person> comparator) {
+        personComparator = comparator;
     }
 
     @Override

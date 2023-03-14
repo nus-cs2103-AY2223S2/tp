@@ -9,51 +9,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Jia Xin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jxleejiaxin.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jxleejiaxin)][[portfolio](team/jxleejiaxin.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Merge PRs, In charge of Model component
 
-### Jean Doe
+### Merrick Neo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/merrickneo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/merrickneo)][[portfolio](team/merrickneo.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality, In charge of Command component
+
+### Frederic Chow
+
+<img src="images/fredericchow00.png" width="200px">
+
+[[github](http://github.com/fredericchow00)][[portfolio](team/fredericchow00.md)]
+
+* Role: Developer
+* Responsibilities: Testing, Deliverables and Deadline, In charge of UI component
+
+### Bo Feng
+
+<img src="images/bofeng1999.png" width="200px">
+
+[[github](http://github.com/bofeng1999)][[portfolio](team/bofeng1999.md)]
+
+* Role: Developer
+* Responsibilities: Integration, In charge of Parser component
+
+### Dun Liang
+
+<img src="images/dunliang0513.png" width="200px">
+
+[[github](http://github.com/dunliang0513)][[portfolio](team/dunliang0513.md)]
+
+* Role: Developer
+* Responsibilities: Documentation, In charge of Storage component

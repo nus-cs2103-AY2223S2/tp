@@ -1,193 +1,125 @@
+## Table of contents
+
+1. Overview
+2. How to use this guide
+3. Getting started
+4. Feature list
+5. Command summary
+6. Trouble shooting/FAQ
+7. Additional information
+
 ---
-layout: page
-title: User Guide
+
+## Overview
+
+HMHero is a tool that helps Hiring Managers easily track the statuses of candidates' applications.
+
+In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant. This application includes features such as quick searching of applicants, algorithm to prioritize applicants according to their strengths and tabs on every applicant's application status.
+
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+## How to use this Guide
 
-* Table of Contents
-{:toc}
+---
 
---------------------------------------------------------------------------------------------------------------------
+## Getting started
 
-## Quick start
+1. Ensure you have `Java 11` or above installed in your computer
+2. Download the latest `HMHero` from [here]()
+3. Copy the file to the folder you want to use as the home folder for HMHero.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hmhero.jar` command to run the application.
+5. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+| Note                                                                                                                                                                                                                               |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Words in UPPER_CASE are the parameters to be supplied by the user.<br>e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.                                                                           |
+| Items in square brackets are optional.<br>e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.                                                                                                           |
+| Items with `…​` after them can be used multiple times including zero times.<br>e.g. `[t/TAG]…​` can be used as ` `, `t/friend`, `t/friend t/family` etc.                                                                           |
+| Parameters can be in any order.<br>e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.                                                                                              |
+| If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. |
+| Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>e.g. if the command specifies `help 123`, it will be interpreted as `help`.                     |
 
-**:information_source: Notes about the command format:**<br>
+---
+// Additional features: can list out the tag(skillset) of the applicants.
+### **Command**
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+### 1. Viewing help: `help`
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Format: `help`
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+### 2. Adding a person: `add`
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+- Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [note/NOTES]`
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+- Examples: `add n/Jack Dill p/91234567 e/jackdill@example.com a/John Street, block 123 #01-01`
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+### 3. List applicant: `list`
 
-</div>
+- Format: `list`
 
-### Viewing help : `help`
+### 4. Delete applicants: `delete`
 
-Shows a message explaning how to access the help page.
+- Format: `delete n/NAME p/PHONE_NUMBER`
 
-![help message](images/helpMessage.png)
+- Examples:
+    - `delete n/Jack Dill p/PHONE_NUMBER`
 
-Format: `help`
+### 5. Advancing an applicant's status: `advance`
 
+- Applied -> Shortlisted
+- Shortlisted -> Accepted
 
-### Adding a person: `add`
+Shortlists a candidate
 
-Adds a person to the address book.
+- Format: `advance n/NAME p/PHONE_NUMBER`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+- Examples:
+    - `advance n/Jack Dill p/91234567`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+### 6. Rejecting an applicant: `reject`
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- Shortlisted -> Rejected
+- Applied -> Rejected
 
-### Listing all persons : `list`
+Rejects a candidate or interviewee
 
-Shows a list of all persons in the address book.
+- Format: `reject n/NAME p/PHONE_NUMBER`
 
-Format: `list`
+- Examples:
+    - `reject n/Jack Dill p/91234567`
 
-### Editing a person : `edit`
+### 7. Find an applicant: `find`
 
-Edits an existing person in the address book.
+Find applicants using keywords (name OR phone number OR both)
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+- Format:
+  - Format 1: `find NAME or PHONE NUMBER` (only need to provide either one)
+  - Format 2: `find n/NAME p/PHONE NUMBER` (must provide both)
+- Example: 
+  - Example 1: `find Jack Dill`, `find 91234567`
+  - Example 2: `find n/Jack Dill p/91234567`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+---
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+## Command Summary
 
-### Locating persons by name: `find`
+| Action  | Format, Examples                                                                                                                                                        |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Add     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [note/NOTES]…`<br>Example: `add n/James Ho p/91234567 e/jamesho@example.com a/123, Clementi Rd, 1234665 note/Entrepreneur` |
+| Delete  | `delete n/NAME p/PHONE_NUMBER`<br>Example: `delete n/James Ho p/91234567`                                                                                               |
+| Edit    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br>Example: `edit 2 n/James Lee e/jameslee@example.com`                                           |
+| List    | `list`                                                                                                                                                                  |
+| Help    | `help`                                                                                                                                                                  |
+| Advance | `advance n/NAME p/PHONE_NUMBER`<br>Example: `advance n/James Ho p/91234567`                                                                                             |
 
-Finds persons whose names contain any of the given keywords.
+---
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+## Trouble shooting / FAQ
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+---
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+## Additional information(Glossary, Product specs)

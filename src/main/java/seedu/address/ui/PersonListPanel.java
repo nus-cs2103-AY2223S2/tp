@@ -30,6 +30,14 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
+     * Updates {@code PersonListPanel} with the sorted {@code ObservableList}.
+     */
+    public void updateListPanel(ObservableList<Person> filteredPersonList) {
+        personListView.setItems(filteredPersonList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {

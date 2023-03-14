@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -76,6 +77,23 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Advances the given person.
+     * The person must exist in the address book.
+     */
+    boolean advancePerson(Person target);
+
+    /**
+     * Rejects the given person.
+     * The person must exist in the address book.
+     */
+    boolean rejectPerson(Person target);
+
+    /**
+     * Refreshes the list after a command.
+     */
+    void refreshListWithPredicate(Predicate<Person> predicate);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -84,4 +102,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Sets the comparator of the filtered person list
+     */
+    void sortFilteredPersonList(Comparator<Person> comparator);
 }
