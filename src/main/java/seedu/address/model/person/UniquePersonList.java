@@ -57,7 +57,10 @@ public class UniquePersonList implements Iterable<Person> {
     public void addTag(Person toAdd, Tag tagToAdd) {
         requireNonNull(toAdd);
         requireNonNull(tagToAdd);
-        findPerson(toAdd).addTag(tagToAdd);
+        Person target = findPerson(toAdd);
+        target.addTag(tagToAdd);
+        int index = internalList.indexOf(target);
+        internalList.set(index, target);
     }
 
     /**
