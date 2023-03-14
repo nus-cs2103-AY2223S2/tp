@@ -1,6 +1,6 @@
 ---
-
-Title: HospiSearch User Guide
+layout: page
+Title: User Guide
 ---
 
 HospiSearch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** 
@@ -51,7 +51,6 @@ e.g. [t/TAG]…​ can be used as   (i.e. 0 times), t/friend, t/friend t/family 
 
 Shows a message explaning how to access the help page.
 
-
 Format: `help`
 
 
@@ -75,54 +74,50 @@ Examples:
 
 Edits an existing person in the patient record.
 
-Format: `edit INDEX [n/NAME] [i/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​`
+Format: `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​`
 
 * You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
-Examples:
-* `edit 1 p/91234567 e/johndoe@example.com`.Edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
-* `edit 2 n/Betsy Crower t/`.Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
+Examples: `edit i/T0012345A p/91234567 e/johndoe@example.com`.Edits the phone number and email address of the patient with NRIC T0012345A to be 91234567 and johndoe@example.com respectively
 
 
 ### Deleting a person: `delete`
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete i/NRIC`
+
+Examples: `delete i/T0012345A` to delete patient with NRIC T0012345A from patient records system
+
+### Find persons by name or address: `find`
+
+Find people according to a particular attribute. Eg. name(n) or address(a)
+Format: `find ATTRIBUTE KEYWORD [MORE_KEYWORDS]`
+
+
+* The search is case-insensitive. e.g panadol will match pANAdol
+* The order of the keywords does matters. e.g. "panadol" will match "medicine panadol"
+* Only the provided attribute will be search (a or n)
+* Can input multiple keywords for a given attribute and all matching persons will be returned
+
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the find command.
-
-### Filtering a person: `filter`
-
-Filters people according to a particular attribute. Eg. Medicine usage or health conditions.
-
-Format: `filter KEYWORD [MORE_KEYWORDS]`
-
-
-* The search is case-sensitive. e.g panadol will match panadol 
-* The order of the keywords does matters. e.g. panadol will match panadol 
-* Only the name of the attribute is searched
-* Only full words will be matched e.g. Han will not match Hans
-
-Examples:
-* `filter panadol` returns `john` and `John Doe` who both use panadol
-* `filter diabetes` returns `john` and `John Doe` who both have diabetes as a health condition
+* `find n john` returns `John Lim` and `John Doe` 
+* `find a serangoon` returns `Alice Tan` and `John Doe` who both stay in serangoon
+*  `find a ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio` or  `serangoon`
 
 ### Get a person: `get`
 Get a person from the records system.
 
 Format: `get i/NRIC`
 
-Examples:
-* `get i/T0012345A`
+Examples: `get i/T0012345A` to get patient with NRIC T0012345A from patient records system
   
 
-###Clearing all data: `clearAll`
+### Clearing all data: `clear`
 Purges all data from the database
 
-Format: `clearAll`
+Format: `clear`
 
 ###Backup data: `backup`
 Backs up the data to different indexes
@@ -139,9 +134,10 @@ Loads the data from different slots
 
 Format: `load INDEX_NO`
 
-Example: `load 3` loads the data from the 3rd slot
+Example: 
+* `load 3` loads the data from the 3rd slot
 
-###Help menu:
+### Help menu: `help`
 Help function lists out all the commands available, along with a brief description
 
 Format: `help`
@@ -166,14 +162,14 @@ Format: `list`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/diagnosis] [t/TAG]…​` <br> e.g. `add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/depression`
-**Get** | ` get i/T0012345A`
-**Clear all** | `clearAll`
-**Delete** | `delete INDEX` e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [i/NRIC] [p/PHONE] [e/EMAIL] [d/DIAGNOSIS] [a/ADDRESS] [t/TAG]…`  e.g.,edit 2 n/James Lee e/jameslee@example.com
-**Find** | `filter KEYWORD [MORE_KEYWORDS]` <br/> e.g., find panadol <br/> e.g., find diabetes
-**Save** | `save FILE_NO` <br/> eg. save 3
-**List** | `list`
-**Help** | `help`
+| Action        | Format, Examples                                                                                                                                                                                |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/diagnosis] [t/TAG]…​` <br/> e.g. add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/depression |
+| **Get**       | `get i/NRIC` <br/> e.g. get i/T0012345A                                                                                                                                                         |
+| **Clear all** | `clear`                                                                                                                                                                                         |
+| **Delete**    | `delete i/NRIC` <br/> e.g. delete i/T0012345A                                                                                                                                                   |
+| **Edit**      | `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​` <br/> e.g. edit i/T0012345A p/91234567 e/johndoe@example.com                                                     |
+| **Find**      | `filter KEYWORD [MORE_KEYWORDS]` <br/> e.g. find panadol <br/> e.g. find diabetes                                                                                                               |
+| **Save**      | `save FILE_NO` <br/> eg. save 3                                                                                                                                                                 |
+| **List**      | `list`                                                                                                                                                                                          |
+| **Help**      | `help`                                                                                                                                                                                          |
