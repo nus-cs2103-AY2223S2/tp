@@ -151,15 +151,15 @@ public class ParserUtil {
         return new Title(trimmedTitle);
     }
 
-    private static LocalDateTime parseDateTime(String dateTimeText) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static LocalDateTime parseDateTime(String dateTimeText) throws ParseException {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("To");
 
         try {
             LocalDateTime dateTime = LocalDateTime.parse(dateTimeText, dateTimeFormatter);
             return dateTime;
 
         } catch (DateTimeParseException e) {
-            return null;
+            throw new ParseException("Date-times should be of the format YYYY-MM-DD hhmm");
         }
     }
 
@@ -168,9 +168,6 @@ public class ParserUtil {
         String trimmedTodoDateTime = todoDateTime.trim();
 
         LocalDateTime byDateTime = parseDateTime(trimmedTodoDateTime);
-        if (byDateTime == null) {
-            throw new ParseException("Date-times should be of the format YYYY-MM-DD hhmm");
-        }
 
         return new TodoDateTime(byDateTime);
     }
@@ -185,10 +182,6 @@ public class ParserUtil {
 
         LocalDateTime from = parseDateTime(trimmedFromDateTime);
         LocalDateTime to = parseDateTime(trimmedToDateTime);
-
-        if (from == null || to == null) {
-            throw new ParseException("Date-times should be of the format YYYY-MM-DD hhmm");
-        }
 
         return new EventDateTimes(from, to);
     }
