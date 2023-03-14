@@ -40,7 +40,7 @@ public class TypicalPersons {
             .withNotes("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withStatus("ACCEPTED").withInterviewDateTime("").build();
+            .withStatus("ACCEPTED").withInterviewDateTime("04-03-2024 13:00").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withStatus("APPLIED")
             .withInterviewDateTime("").withNotes("friends").build();
@@ -49,7 +49,7 @@ public class TypicalPersons {
             .withStatus("SHORTLISTED").withInterviewDateTime("04-03-2024 13:00").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withStatus("ACCEPTED").withInterviewDateTime("").build();
+            .withStatus("ACCEPTED").withInterviewDateTime("04-03-2024 13:00").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withStatus("REJECTED").withInterviewDateTime("").build();
@@ -70,7 +70,7 @@ public class TypicalPersons {
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withStatus(VALID_STATUS_BOB).withInterviewDateTime(VALID_INTERVIEW_DATE_AMY)
-            .withNotes(VALID_TAG_HUSBAND, VALID_NOTE_FRIEND)
+            .withNotes(VALID_NOTE_HUSBAND, VALID_NOTE_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

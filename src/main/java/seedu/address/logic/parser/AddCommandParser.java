@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -46,7 +47,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Note> noteList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_NOTE));
         Status status = Status.APPLIED;
 
-        Person person = new Person(name, phone, email, address, status, null, noteList);
+        Person person = new Person(name, phone, email, address, status,
+                Optional.empty(), noteList);
 
         return new AddCommand(person);
     }

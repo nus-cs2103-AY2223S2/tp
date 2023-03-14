@@ -5,13 +5,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.*;
-import seedu.address.model.tag.Note;
+import seedu.address.model.note.Note;
 
 /**
  * Rejects an applicant in HMHero.
@@ -87,10 +88,11 @@ public class RejectCommand extends Command {
         Email updatedEmail = personToReject.getEmail();
         Address updatedAddress = personToReject.getAddress();
         Status updatedStatus = personToReject.getStatus(); //User not allowed to edit applicant status directly
-        Set<Note> updatedTags = personToReject.getNotes();
+        Optional<InterviewDateTime> interviewDateTime = personToReject.getInterviewDateTime();
+        Set<Note> updatedNotes = personToReject.getNotes();
 
-        Person rejectedPerson =
-                new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus, updatedTags);
+        Person rejectedPerson = new Person(updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedStatus, interviewDateTime, updatedNotes);
         rejectedPerson.rejectPerson();
         return rejectedPerson;
     }

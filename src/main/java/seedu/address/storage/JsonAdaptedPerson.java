@@ -1,9 +1,6 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -129,7 +126,7 @@ class JsonAdaptedPerson {
         }
 
         //will not throw ParseException as it has been checked in previous line
-        final InterviewDateTime interviewDateTime = InterviewDateTime.createInterviewDateTime(interviewDate);
+        final Optional<InterviewDateTime> interviewDateTime = InterviewDateTime.createInterviewDateTime(interviewDate);
 
         final Set<Note> modelNotes = new HashSet<>(personNotes);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, interviewDateTime, modelNotes);

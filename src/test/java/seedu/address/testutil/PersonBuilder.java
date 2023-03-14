@@ -126,7 +126,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, status, interviewDateTime.orElse(null), notes);
+        return new Person(name, phone, email, address, status, interviewDateTime, notes);
     }
 
 }
