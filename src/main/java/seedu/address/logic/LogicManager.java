@@ -44,19 +44,20 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        CommandResult commandResult;
         Command command;
-        Optional<Deck> selectedDeck = this.model.getSelectedDeck();
-        Review currReview = this.model.getReview();
 
-        if (currReview != null) {
+        Optional<Deck> selectedDeck = this.model.getSelectedDeck();
+        Optional<Review> currReview = this.model.getReview();
+
+        if (currReview.isPresent()) {
             command = masterDeckParser.parseCommandWhenReviewing(commandText);
         } else if (selectedDeck.isPresent()) {
-            command = masterDeckParser.parseCommandWhenDeckSelected(commandText, selectedDeck);
+            command = masterDeckParser.parseCommandWhenDeckSelected(commandText);
         } else {
             command = masterDeckParser.parseCommandWhenDeckNotSelected(commandText);
         }
-        commandResult = command.execute(model);
+
+        CommandResult commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getMasterDeck());

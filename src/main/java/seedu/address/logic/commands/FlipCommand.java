@@ -17,7 +17,7 @@ public class FlipCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.getReview().flipCard();
+        model.flipCard(); // Todo: any possible exception here?
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

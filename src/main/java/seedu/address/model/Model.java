@@ -117,9 +117,11 @@ public interface Model {
 
     void reviewDeck(Index idx);
 
-    Review getReview();
+    Optional<Review> getReview();
 
     void endReview();
 
     String getReviewDeckName();
+
+    void flipCard();
 }

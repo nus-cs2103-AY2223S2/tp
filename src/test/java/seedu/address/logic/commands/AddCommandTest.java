@@ -202,7 +202,8 @@ public class AddCommandTest {
         public String getSelectedDeckName() {
             throw new AssertionError("This method should not be called.");
         }
-        public Review getReview() {
+
+        public Optional<Review> getReview() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -221,6 +222,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void flipCard() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
