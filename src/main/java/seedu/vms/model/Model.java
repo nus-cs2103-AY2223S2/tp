@@ -113,4 +113,6 @@ public interface Model {
 
     /** Performs the specified action of the {@code VaxTypeManager} that the model is using. */
     VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
+
+    VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException;
 }

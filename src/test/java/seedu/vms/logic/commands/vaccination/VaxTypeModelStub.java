@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
@@ -126,6 +127,12 @@ public class VaxTypeModelStub implements Model {
     public AppointmentManager getAppointmentManager() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAppointmentManager'");
+    }
+
+    @Override
+    public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteVaxType'");
     }
 
 }
