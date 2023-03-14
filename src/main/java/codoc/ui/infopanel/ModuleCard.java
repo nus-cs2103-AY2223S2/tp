@@ -1,11 +1,12 @@
 package codoc.ui.infopanel;
 
+import codoc.model.module.Module;
+import codoc.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import codoc.model.module.Module;
-import codoc.ui.UiPart;
+
 
 /**
  * An UI component that displays information of a {@code Module}.

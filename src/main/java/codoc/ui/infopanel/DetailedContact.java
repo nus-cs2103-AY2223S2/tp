@@ -20,6 +20,9 @@ public class DetailedContact extends DetailedInfo {
     @FXML
     private Label linkedin;
 
+    /**
+     * Creates a {@code DetailedContact} tab with the given {@code protagonist}.
+     */
     public DetailedContact(Person protagonist) {
         super(FXML);
         github.setText(protagonist.getGithub().value);

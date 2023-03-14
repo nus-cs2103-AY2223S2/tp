@@ -1,6 +1,7 @@
 package codoc.ui.infopanel;
 
-import codoc.model.module.Module;
+import java.util.Comparator;
+
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
 import javafx.collections.FXCollections;
@@ -9,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 
-import java.util.Comparator;
+
 
 /**
  * DetailedSkill controller for showing skill details at DetailedInfoPanel.
@@ -21,6 +22,9 @@ public class DetailedSkill extends DetailedInfo {
     @FXML
     private ListView<Skill> skillListView;
 
+    /**
+     * Creates a {@code DetailedSkill} tab with the given {@code protagonist}.
+     */
     public DetailedSkill(Person protagonist) {
         super(FXML);
         ObservableList<Skill> skills = FXCollections.observableArrayList();

@@ -1,15 +1,14 @@
 package codoc.ui.infopanel;
 
+import java.util.Comparator;
+
+import codoc.model.module.Module;
+import codoc.model.person.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import codoc.model.module.Module;
-import codoc.model.person.Person;
-import codoc.ui.infopanel.ModuleCard;
-
-import java.util.Comparator;
 
 /**
  * DetailedModule controller for showing module details at DetailedInfoPanel.
@@ -20,7 +19,9 @@ public class DetailedModule extends DetailedInfo {
 
     @FXML
     private ListView<Module> moduleListView;
-
+    /**
+     * Creates a {@code DetailedModule} tab with the given {@code protagonist}.
+     */
     public DetailedModule(Person protagonist) {
         super(FXML);
         ObservableList<Module> modules = FXCollections.observableArrayList();
