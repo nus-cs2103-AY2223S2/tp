@@ -3,14 +3,10 @@ package seedu.address.model.person;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 /**
  * Represents a Person's meetings in the address book.
  */
 public class Meeting {
-    public static final String MEETING_CONSTRAINTS = "Start time should be before end time!";
-
     protected LocalDateTime start;
     protected LocalDateTime end;
 
