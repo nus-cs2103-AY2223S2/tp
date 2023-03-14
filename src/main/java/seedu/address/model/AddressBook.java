@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.UniquePersonList;
 
-
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
@@ -41,10 +40,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setPersons(List<Person> persons) {
+        this.persons.setPersons(persons);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
+
         setPersons(newData.getPersonList());
     }
 
@@ -85,27 +93,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
-    }
-
-    // --------------------------------------------------
     //// util methods
 
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
-        // TODO: modify this
+    }
+
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return persons.asUnmodifiableObservableList();
     }
 
     @Override
