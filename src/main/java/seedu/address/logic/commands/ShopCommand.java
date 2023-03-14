@@ -6,7 +6,7 @@ import seedu.address.model.ShopModel;
 /**
  * Represents a command with hidden internal logic and the ability to be executed on ShopModels.
  */
-public abstract class ShopCommand {
+public abstract class ShopCommand extends Command {
 
     /**
      * Executes the command and returns the result message.

@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PART_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.ShopModel;
 import seedu.address.model.service.Part;
 
@@ -55,11 +56,18 @@ public class AddPartCommand extends ShopCommand {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
+    /**
+     * Should never be called
+     */
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        throw new IllegalAccessError();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddPartCommand // instanceof handles nulls
                 && toAdd.equals(((AddPartCommand) other).toAdd));
     }
-
 }

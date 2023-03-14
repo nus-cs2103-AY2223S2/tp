@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_ID;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.ShopModel;
 import seedu.address.model.service.Service;
 
@@ -60,6 +61,14 @@ public class AddServiceCommand extends ShopCommand {
         }
         model.addService(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    /**
+     * Should never be called
+     */
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        throw new IllegalAccessError();
     }
 
     @Override
