@@ -121,25 +121,33 @@ Examples:
 
 ### Locating clients by name: `find`
 
+Finds Clients in Fitbook whose details contain any of the given keywords.
 
-Finds Clients in Fitbook whose names contain any of the given keywords.
+Format: `find PREFIX/KEYWORD`
 
-
-Format: `find KEYWORD [MORE KEYWORDS] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER]…​`
-
+* Prefix must be included, or there will be an exception. Only one prefix is allowed per command.
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only keyword for name is compulsory in the command. The inclusion of other information is optional.
-  e.g. `find Hans` and `find Hans p/91234567` will work but `find p/91234567` will not work.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Clients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`
+* Details containing the keyword will also be matched, even if both do not match exactly.
+  e.g. `Han` will match `Hans`, `John` will match `John Li` and `John Tan`,
+  `19` will match `1900` and `1090`
+
+Available Prefixes:
+* `n` filters by Name
+* `p` filters by Phone
+* `e` filers by Email
+* `a` filters by Address
+* `t` filters by Tag
+* `w` filters by Weight
+* `g` filters by Gender
+* `cal` filters by Calorie
+* `app` filters by Appointment
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find John p/91234567` returns `John Tan`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/John` returns `John Tan` and `John Doe`
+* `find n/Ale` returns `Alex Yeoh`
+* `find p/91234567` returns `John Tan`
+* `find alex david` will throw an exception.
 
 ### Deleting a client : `delete`
 
