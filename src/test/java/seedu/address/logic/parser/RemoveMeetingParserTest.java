@@ -20,13 +20,13 @@ public class RemoveMeetingParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + SomeMeetingIndex;
         RemoveMeetingCommand expectedCommand = new RemoveMeetingCommand(INDEX_FIRST_PERSON,
-                Index.fromZeroBased(Integer.parseInt(SomeMeetingIndex)));
+            Index.fromZeroBased(Integer.parseInt(SomeMeetingIndex)));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no MEETING
         userInput = targetIndex.getOneBased() + SomeMeetingIndex;
         expectedCommand = new RemoveMeetingCommand(INDEX_FIRST_PERSON,
-                Index.fromZeroBased(Integer.parseInt(SomeMeetingIndex)));
+            Index.fromZeroBased(Integer.parseInt(SomeMeetingIndex)));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

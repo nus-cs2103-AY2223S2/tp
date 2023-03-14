@@ -29,7 +29,7 @@ public class AddMeetingCommandTest {
         final Meeting meeting = new Meeting();
 
         assertCommandFailure(new AddMeetingCommand(INDEX_FIRST_PERSON, meeting), model,
-                String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), meeting));
+            String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), meeting));
     }
 
     @Test

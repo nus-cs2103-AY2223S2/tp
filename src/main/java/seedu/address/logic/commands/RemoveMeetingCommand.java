@@ -14,11 +14,11 @@ import seedu.address.model.person.Person;
 public class RemoveMeetingCommand extends Command {
     public static final String COMMAND_WORD = "meetingRemove";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes a meeting by specified index number from the person identified"
-            + "by the index number used in the last person listing.\n"
-            + "If there no meeting to be removed, nothing will be removed.\n"
-            + "Parameters: [Index] [Meeting Index]"
-            + "Example: " + COMMAND_WORD + " 1 2";
+        + ": Removes a meeting by specified index number from the person identified"
+        + "by the index number used in the last person listing.\n"
+        + "If there no meeting to be removed, nothing will be removed.\n"
+        + "Parameters: [Index] [Meeting Index]"
+        + "Example: " + COMMAND_WORD + " 1 2";
     public static final String MESSAGE_REMOVE_SUCCESS = "Removed meeting from person: %1$s";
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Remark command not implemented yet";
     public static final String MESSAGE_ARGUMENTS = "Person Index: %1$d, Meeting Index: %1$d";
@@ -28,7 +28,8 @@ public class RemoveMeetingCommand extends Command {
 
     /**
      * Removes meeting at specified index from specified {@code Person}
-     * @param indexPerson index of Person to look up
+     *
+     * @param indexPerson  index of Person to look up
      * @param indexMeeting index of meeting in Person to remove
      */
     public RemoveMeetingCommand(Index indexPerson, Index indexMeeting) {
@@ -37,11 +38,12 @@ public class RemoveMeetingCommand extends Command {
     }
 
     /**
-    * Executes meetingRemove command
-    * @param model {@code Model} which the command should operate on.
-    * @return CommandResult Object
-    * @throws CommandException when index of person or meeting specified is out of range or invalid
-    */
+     * Executes meetingRemove command
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult Object
+     * @throws CommandException when index of person or meeting specified is out of range or invalid
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -58,7 +60,7 @@ public class RemoveMeetingCommand extends Command {
 
         personToEdit.getMeetings().remove(indexMeeting.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
 
         return new CommandResult(generateSuccessMessage(editedPerson));
     }

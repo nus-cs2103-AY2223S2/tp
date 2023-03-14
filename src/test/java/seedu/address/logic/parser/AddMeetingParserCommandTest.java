@@ -25,8 +25,8 @@ public class AddMeetingParserCommandTest {
         String userInput = targetIndex.getOneBased() + " " + PREFIX_MEETING + NonEmptyMeeting;
 
         Meeting testMeeting = new Meeting(
-                LocalDateTime.of(2001, 11, 9, 11, 30),
-                LocalDateTime.of(2001, 11, 9, 12, 30)
+            LocalDateTime.of(2001, 11, 9, 11, 30),
+            LocalDateTime.of(2001, 11, 9, 12, 30)
         );
         AddMeetingCommand expectedCommand = new AddMeetingCommand(INDEX_FIRST_PERSON, testMeeting);
         assertParseSuccess(parser, userInput, expectedCommand);

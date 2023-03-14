@@ -26,8 +26,8 @@ public class RemoveMeetingCommandTest {
     public void execute() {
 
         assertCommandFailure(new RemoveMeetingCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON), model,
-                String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(),
-                        INDEX_SECOND_PERSON.getOneBased()));
+            String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(),
+                INDEX_SECOND_PERSON.getOneBased()));
     }
 
     @Test

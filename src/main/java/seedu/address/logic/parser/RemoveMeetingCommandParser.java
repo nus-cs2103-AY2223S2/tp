@@ -13,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class RemoveMeetingCommandParser implements Parser<RemoveMeetingCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the RemoveMeetingCommand
+     *
      * @param args String of arguments to be parsed
      * @return RemoveMeetingCommand object
      * @throws ParseException if the user input does not conform to the expected format
@@ -26,7 +27,7 @@ public class RemoveMeetingCommandParser implements Parser<RemoveMeetingCommand> 
             return new RemoveMeetingCommand(indexPerson, indexMeeting);
         } catch (ParseException parseErr) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveMeetingCommand.MESSAGE_USAGE, parseErr)
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveMeetingCommand.MESSAGE_USAGE, parseErr)
             );
         }
     }
