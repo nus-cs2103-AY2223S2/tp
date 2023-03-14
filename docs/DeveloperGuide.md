@@ -337,8 +337,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons
 2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+3.  User requests to delete a specific person in the list 
+4.  AddressBook displays a confirmation message
+5.  User confirms to delete the specific person in the list
+6.  AddressBook deletes the person
 
     Use case ends.
 
