@@ -71,7 +71,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() { // allows all fields to be null TODO
+    public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditCommand.EditEmployeeDescriptor());
         Employee editedPerson = model.getFilteredEmployeeList().get(INDEX_FIRST_PERSON.getZeroBased());
 

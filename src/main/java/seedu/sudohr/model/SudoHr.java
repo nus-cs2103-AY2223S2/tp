@@ -83,7 +83,7 @@ public class SudoHr implements ReadOnlySudoHr {
     /**
      * Returns true if a person shares the same email with a different {@code person} (different id).
      */
-    boolean hasClashingEmail(Employee person) {
+    public boolean hasClashingEmail(Employee person) {
         requireNonNull(person);
         return employees.sharesEmail(person);
     }
@@ -91,7 +91,7 @@ public class SudoHr implements ReadOnlySudoHr {
     /**
      * Returns true if a person shares the same phone number with a different {@code person} (different id).
      */
-    boolean hasClashingPhoneNumber(Employee person) {
+    public boolean hasClashingPhoneNumber(Employee person) {
         requireNonNull(person);
         return employees.sharesPhoneNumber(person);
     }

@@ -75,11 +75,11 @@ public class TypicalPersons {
      * Returns an {@code SudoHr} with all the typical persons.
      */
     public static SudoHr getTypicalSudoHr() {
-        SudoHr ab = new SudoHr();
+        SudoHr sudoHr = new SudoHr();
         for (Employee person : getTypicalPersons()) {
-            ab.addEmployee(person);
+            sudoHr.addEmployee(person);
         }
-        return ab;
+        return sudoHr;
     }
 
     public static List<Employee> getTypicalPersons() {

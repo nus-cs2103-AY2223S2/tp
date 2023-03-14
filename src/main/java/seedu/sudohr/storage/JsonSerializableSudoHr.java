@@ -21,6 +21,8 @@ import seedu.sudohr.model.employee.Employee;
 class JsonSerializableSudoHr {
 
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "Employees list contains duplicate employee(s).";
+    public static final String MESSAGE_DUPLICATE_PHONE = "There are duplicate phone numbers in the employee list.";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "There are duplicate email addresses in the employee list";
     public static final String MESSAGE_DUPLICATE_DEPARTMENTS = "Departments list contains duplicate department(s).";
 
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
@@ -59,6 +61,12 @@ class JsonSerializableSudoHr {
             Employee employee = jsonAdaptedEmployee.toModelType();
             if (sudoHr.hasEmployee(employee)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EMPLOYEE);
+            }
+            if (sudoHr.hasClashingPhoneNumber(employee)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PHONE);
+            }
+            if (sudoHr.hasClashingEmail(employee)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EMAIL);
             }
             sudoHr.addEmployee(employee);
         }

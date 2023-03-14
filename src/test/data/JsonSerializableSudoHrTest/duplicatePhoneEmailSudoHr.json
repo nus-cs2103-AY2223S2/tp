@@ -1,0 +1,17 @@
+{
+  "employees": [ {
+    "id": "123",
+    "name": "kwang joo",
+    "phone": "84617913",
+    "email": "pseudohr@yahoo.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ]
+  }, {
+    "id": "456",
+    "name": "John James",
+    "phone": "84617913",
+    "email": "pseudohr@yahoo.com",
+    "address": "4th street"
+  } ],
+  "departments": []
+}

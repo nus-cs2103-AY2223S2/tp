@@ -1,0 +1,17 @@
+{
+  "employees": [ {
+    "id": "123",
+    "name": "andre",
+    "phone": "84617913",
+    "email": "tiltedaf@yahoo.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ]
+  }, {
+    "id": "456",
+    "name": "Kenneth",
+    "phone": "84617913",
+    "email": "kiang@gmail.com",
+    "address": "4th street"
+  } ],
+  "departments": []
+}
