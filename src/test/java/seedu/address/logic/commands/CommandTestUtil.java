@@ -61,7 +61,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String PREFIX_SPECIALTY_DESC = " " + PREFIX_SPECIALTY + "GP&"; // '&' not allowed in specialty
+    public static final String INVALID_SPECIALTY_DESC = " " + PREFIX_SPECIALTY + "GP&"; // '&' not allowed in specialty
     public static final String INVALID_YOE_DESC = " " + PREFIX_YOE + "129037"; // YOE maximum 2 digits
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 

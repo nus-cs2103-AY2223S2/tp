@@ -157,7 +157,7 @@ public class EditDoctorCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, specialty, yoe, tags);
         }
 
         public void setName(Name name) {
@@ -183,15 +183,19 @@ public class EditDoctorCommand extends Command {
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
+
         public void setSpecialty(Specialty specialty) {
             this.specialty = specialty;
         }
+
         public Optional<Specialty> getSpecialty() {
             return Optional.ofNullable(specialty);
         }
+
         public void setYoe(Yoe yoe) {
             this.yoe = yoe;
         }
+
         public Optional<Yoe> getYoe() {
             return Optional.ofNullable(yoe);
         }
