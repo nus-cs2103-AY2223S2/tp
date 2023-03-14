@@ -4,19 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tagged Requirement in the Curriculum
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
-
-    private static enum ValidTag {
-        UNIVERSITY_LEVEL_REQUIREMENTS,
-        COMPUTER_SCIENCE_FOUNDATION,
-        COMPUTER_SCIENCE_BREADTH_AND_DEPTH,
-        IT_PROFESSIONALISM,
-        MATHEMATICS_AND_SCIENCES,
-        UNRESTRICTED_ELECTIVES
-    }
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be one of possible curriculum requirements";
 
@@ -25,7 +16,7 @@ public class Tag {
     /**
      * Constructs a {@code Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param tagName A valid requirement
      */
     public Tag(String tagName) {
         requireNonNull(tagName);

@@ -13,13 +13,6 @@ public class DegreeProgressionData {
 
     // Currently for cohort 2122
     public static final int TOTALCREDIT = 160;
-    public static final Map<String, Integer> REQUIREMENTCREDITS = Map.of(
-            "UNIVERSITY_LEVEL_REQUIREMENTS", 16,
-            "COMPUTER_SCIENCE_FOUNDATION", 36,
-            "COMPUTER_SCIENCE_BREADTH_AND_DEPTH", 40,
-            "IT_PROFESSIONALISM", 12,
-            "MATHEMATICS_AND_SCIENCES", 16,
-            "UNRESTRICTED_ELECTIVES", 40);
     private int completedCredit = 0;
     private int plannedCredit = 0; // Includes Incomplete Modules
     private HashMap<String, Integer> completedRequirementCredits = new HashMap<>();
