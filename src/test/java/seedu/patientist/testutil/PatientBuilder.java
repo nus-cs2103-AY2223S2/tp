@@ -4,10 +4,10 @@ import java.util.HashSet;
 
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
-import seedu.patientist.model.person.patient.PatientIdNumber;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.util.SampleDataUtil;
 
@@ -20,7 +20,7 @@ public class PatientBuilder extends PersonBuilder {
     public static final String DEFAULT_ID = "A1234567890B";
 
     private PatientStatusDetails status;
-    private PatientIdNumber id;
+    private IdNumber id;
 
     /**
      * Creates a Patient from default details, with defaults specified here and in PersonBuilder
@@ -28,7 +28,7 @@ public class PatientBuilder extends PersonBuilder {
     public PatientBuilder() {
         super();
         this.status = new PatientStatusDetails(DEFAULT_STATUS);
-        this.id = new PatientIdNumber(DEFAULT_ID);
+        this.id = new IdNumber(DEFAULT_ID);
     }
 
     /**
@@ -100,7 +100,7 @@ public class PatientBuilder extends PersonBuilder {
      * Sets the {@code Status} of the {@code Patient} that we are building.
      */
     public PatientBuilder withId(String id) {
-        this.id = new PatientIdNumber(id);
+        this.id = new IdNumber(id);
         return this;
     }
 

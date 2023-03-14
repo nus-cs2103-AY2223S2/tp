@@ -12,11 +12,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.patientist.commons.exceptions.IllegalValueException;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
-import seedu.patientist.model.person.patient.PatientIdNumber;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -64,7 +64,7 @@ class JsonAdaptedPerson {
 
         if (source instanceof Patient) {
             Patient patient = (Patient) source;
-            id = patient.getPatientIdNumber().getIdNumber();
+            id = patient.getIdNumber().toString();
         } else {
             id = "";
         }
@@ -92,10 +92,10 @@ class JsonAdaptedPerson {
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!PatientIdNumber.isValidPid(id)) {
-            throw new IllegalValueException(PatientIdNumber.MESSAGE_CONSTRAINTS);
+        if (!IdNumber.isValidPid(id)) {
+            throw new IllegalValueException(IdNumber.MESSAGE_CONSTRAINTS);
         }
-        final PatientIdNumber modelPid = new PatientIdNumber(id);
+        final IdNumber modelPid = new IdNumber(id);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -122,7 +122,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelPid, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Patient(modelEmail, modelName, modelPhone, modelPid, modelAddress, modelTags);
     }
 
 }

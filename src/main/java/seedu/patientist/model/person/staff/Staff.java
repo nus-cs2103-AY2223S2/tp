@@ -4,6 +4,7 @@ import java.util.Set;
 
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
@@ -24,8 +25,8 @@ public class Staff extends Person {
      * @param address
      * @param tags
      */
-    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags); //TODO: wards in charge implemented as tags for now
+    public Staff(Name name, Phone phone, Email email, IdNumber id, Address address, Set<Tag> tags) {
+        super(name, phone, email, id, address, tags); //TODO: wards in charge implemented as tags for now
     }
 
     @Override

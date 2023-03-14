@@ -4,6 +4,7 @@ import java.util.Set;
 
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
@@ -16,23 +17,21 @@ import seedu.patientist.model.tag.Tag;
  */
 public class Patient extends Person {
     private PatientStatusDetails details;
-    private PatientIdNumber id;
 
     /**
      * Every field must be present and not null.
      *
-     * @param id
+     * @param email
      * @param name
      * @param phone
-     * @param email
+     * @param id
      * @param address
      * @param tags
      */
-    public Patient(PatientIdNumber id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+    public Patient(Email email, Name name, Phone phone, IdNumber id, Address address, Set<Tag> tags) {
+        super(name, phone, email, id, address, tags);
         //TODO: for now, let's set ward using tags. we can change this implementation once wards are implemented
         this.details = new PatientStatusDetails();
-        this.id = id;
     }
 
     /**
@@ -46,12 +45,11 @@ public class Patient extends Person {
      * @param details
      * @param tags
      */
-    public Patient(PatientIdNumber id, Name name, Phone phone, Email email,
+    public Patient(IdNumber id, Name name, Phone phone, Email email,
                    Address address, PatientStatusDetails details, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+        super(name, phone, email, id, address, tags);
         //TODO: for now, let's set ward using tags. we can change this implementation once wards are implemented
         this.details = details;
-        this.id = id;
     }
 
     /**
@@ -70,14 +68,6 @@ public class Patient extends Person {
         return this.details;
     }
 
-    /**
-     * Returns the <code>PatientIdNumber</code> of this patient
-     * @return <code>id</code>, the object representing the unique identifier of this patient
-     */
-    public PatientIdNumber getPatientIdNumber() {
-        return this.id;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(super.toString());
@@ -89,7 +79,7 @@ public class Patient extends Person {
 
     @Override
     public int hashCode() {
-        return this.id.hashCode();
+        return getIdNumber().hashCode();
     }
 
     @Override
@@ -103,7 +93,7 @@ public class Patient extends Person {
         }
 
         Patient otherPat = (Patient) other;
-        return this.id.equals(otherPat.id) && this.getName().equals(otherPat.getName());
+        return getIdNumber().equals(otherPat.getIdNumber()) && this.getName().equals(otherPat.getName());
     }
 
     /**
@@ -122,7 +112,7 @@ public class Patient extends Person {
         }
 
         Patient otherPat = (Patient) otherPerson;
-        return super.isSamePerson(otherPerson) && this.id.equals(otherPat.id);
+        return super.isSamePerson(otherPerson) && getIdNumber().equals(otherPat.getIdNumber());
     }
 
 }

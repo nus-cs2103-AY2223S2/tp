@@ -5,6 +5,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.patientist.logic.commands.exceptions.CommandException;
@@ -26,6 +27,7 @@ public class AddStaffCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Mary Jane "
+            + PREFIX_ID + "A17625H"
             + PREFIX_PHONE + "96421234 "
             + PREFIX_EMAIL + "mj@example.com "
             + PREFIX_ADDRESS + "789 Hospice St, #06-16 "
