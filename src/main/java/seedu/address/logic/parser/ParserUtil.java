@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -40,6 +41,16 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    public static ContactIndex parseContactIndex(String index) throws ParseException {
+        String trimmedIndex = index.trim();
+        if (trimmedIndex.isEmpty()) {
+            return null;
+        }
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return new ContactIndex(Integer.parseInt(trimmedIndex));
+    }
     /**
      * Parses an {@code intString} into an {@code Integer} and returns it.
      * @throws ParseException if the string cannot be converted into an integer.

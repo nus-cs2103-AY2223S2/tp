@@ -51,17 +51,17 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    protected final Index index;
+    protected final ContactIndex contactIndex;
     protected final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param contactIndex of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(ContactIndex contactIndex, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.contactIndex = contactIndex;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -69,13 +69,17 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (index == null) {
+        if (contactIndex == null) {
             return editUser(model);
         }
 
         return editPerson(model);
     }
 
+    public Optional<Person> findPersonByIndex(ContactIndex index, Model model) {
+        List<Person> personList = model.getFilteredPersonList();
+        return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
+    }
     /**
      * Edits person at the given index
      * @param model {@code Model} which the command should operate on.
@@ -84,12 +88,15 @@ public class EditCommand extends Command {
      */
     protected CommandResult editPerson(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
+        Optional<Person> personToEditOption = findPersonByIndex(contactIndex, model);
+//        if (index.getZeroBased() >= lastShownList.size()) {
+//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        }
+        if (personToEditOption.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = personToEditOption.get();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -182,7 +189,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return contactIndex.equals(e.contactIndex)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
