@@ -13,10 +13,10 @@ public class SampleDataUtil {
         return new Patient[] {
                 new Patient(new NRIC("S1234567A"), new Name("Alex Yeoh")),
                 new Patient(new NRIC("S0000000A"), new Name("Bernice Yu")),
-                new Patient(new NRIC("S0000001A"), new Name("Charlotte Oliveiro"), Status.GRAY),
-                new Patient(new NRIC("S0000002A"), new Name("David Li"), Status.GREEN),
-                new Patient(new NRIC("S0000003A"), new Name("Irfan Ibrahim"), Status.YELLOW),
-                new Patient(new NRIC("S0000004A"), new Name("Roy Balakrishnan"), Status.RED)
+                new Patient(new NRIC("S0000001A"), new Name("Charlotte Oliveiro"), new Status("GRAY")),
+                new Patient(new NRIC("S0000002A"), new Name("David Li"), new Status("GREEN")),
+                new Patient(new NRIC("S0000003A"), new Name("Irfan Ibrahim"), new Status("YELLOW")),
+                new Patient(new NRIC("S0000004A"), new Name("Roy Balakrishnan"), new Status("RED"))
         };
     }
 

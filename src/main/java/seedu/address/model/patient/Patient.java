@@ -16,7 +16,7 @@ public class Patient {
     private final Name name;
 
     // Data fields
-    private Status status = Status.GRAY;
+    private Status status = new Status("GRAY");
 
     /**
      * Every field must be present and not null.
