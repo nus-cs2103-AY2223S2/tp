@@ -24,11 +24,11 @@ import seedu.address.storage.Storage;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    private FriendlyLink friendlyLink;
-    private UserPrefs userPrefs;
-    private FilteredList<Elderly> filteredElderly;
-    private FilteredList<Volunteer> filteredVolunteers;
-    private FilteredList<Pair> filteredPairs;
+    private final FriendlyLink friendlyLink;
+    private final UserPrefs userPrefs;
+    private final FilteredList<Elderly> filteredElderly;
+    private final FilteredList<Volunteer> filteredVolunteers;
+    private final FilteredList<Pair> filteredPairs;
 
     /**
      * Constructs a {@code ModelManager} with the data from {@code Storage} and {@code userPrefs}. <br>
@@ -39,18 +39,20 @@ public class ModelManager implements Model {
      */
     public ModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(storage, userPrefs);
+        FriendlyLink temporaryFriendlyLink = new FriendlyLink();
         try {
-            friendlyLink = storage.read();
-            logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
-            this.userPrefs = new UserPrefs(userPrefs);
-            filteredElderly = new FilteredList<>(friendlyLink.getElderlyList());
-            filteredVolunteers = new FilteredList<>(friendlyLink.getVolunteerList());
-            filteredPairs = new FilteredList<>(friendlyLink.getPairList());
+            temporaryFriendlyLink = storage.read();
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty FriendlyLink");
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty FriendlyLink");
         }
+        friendlyLink = temporaryFriendlyLink;
+        logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredElderly = new FilteredList<>(friendlyLink.getElderlyList());
+        filteredVolunteers = new FilteredList<>(friendlyLink.getVolunteerList());
+        filteredPairs = new FilteredList<>(friendlyLink.getPairList());
     }
 
     //=========== UserPrefs ==================================================================================
