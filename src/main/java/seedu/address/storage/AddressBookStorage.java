@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 
+// TODO: Remove this
 /**
  * Represents a storage for {@link seedu.address.model.AddressBook}.
  */

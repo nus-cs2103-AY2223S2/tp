@@ -13,6 +13,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 
+// TODO: Remove this
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */

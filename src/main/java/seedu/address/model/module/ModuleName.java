@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class ModuleName {
 
-    private final String name;
+    public final String name;
 
     /**
      * Constructs a {@code ModuleName}.

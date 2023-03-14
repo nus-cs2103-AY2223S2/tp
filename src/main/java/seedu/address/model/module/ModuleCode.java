@@ -15,7 +15,7 @@ public class ModuleCode {
 
     public static final String VALIDATION_REGEX = "[A-Z]+[0-9]+[A-Z]*";
 
-    private final String code;
+    public final String code;
 
     /**
      * Constructs a {@code ModuleCode}.
