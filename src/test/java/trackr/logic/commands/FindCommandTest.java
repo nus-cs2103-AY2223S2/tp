@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalPersons.CARL;
 import static trackr.testutil.TypicalPersons.ELLE;
 import static trackr.testutil.TypicalPersons.FIONA;
@@ -25,8 +26,10 @@ import trackr.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(),
+            getTypicalOrderList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(),
+            getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void equals() {

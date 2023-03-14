@@ -18,7 +18,9 @@ import trackr.logic.LogicManager;
 import trackr.model.AddressBook;
 import trackr.model.Model;
 import trackr.model.ModelManager;
+import trackr.model.OrderList;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.TaskList;
@@ -78,8 +80,10 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyTaskList> taskListOptional;
+        Optional<ReadOnlyOrderList> orderListOptional;
         ReadOnlyAddressBook initialAddressBook;
         ReadOnlyTaskList initialTaskList;
+        ReadOnlyOrderList initialOrderList;
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -109,7 +113,21 @@ public class MainApp extends Application {
             initialTaskList = new TaskList();
         }
 
-        return new ModelManager(initialAddressBook, initialTaskList, userPrefs);
+        try {
+            orderListOptional = storage.readOrderList();
+            if (!orderListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample OrderList");
+            }
+            initialOrderList = orderListOptional.orElseGet(SampleDataUtil::getSampleOrderList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty OrderList");
+            initialOrderList = new OrderList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty OrderList");
+            initialOrderList = new OrderList();
+        }
+
+        return new ModelManager(initialAddressBook, initialTaskList, initialOrderList, userPrefs);
     }
 
     private void initLogging(Config config) {

@@ -3,6 +3,7 @@ package trackr.logic.commands;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
+import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -23,8 +24,10 @@ public class ListTaskCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(),
+                getTypicalOrderList(), new UserPrefs());
+        expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(),
+                model.getOrderList(), new UserPrefs());
     }
 
     @Test

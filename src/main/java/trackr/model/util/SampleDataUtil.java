@@ -5,9 +5,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import trackr.model.AddressBook;
+import trackr.model.OrderList;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.TaskList;
+import trackr.model.order.Order;
+import trackr.model.order.OrderDeadline;
+import trackr.model.order.OrderName;
+import trackr.model.order.OrderQuantity;
+import trackr.model.order.OrderStatus;
+import trackr.model.order.customer.Customer;
+import trackr.model.order.customer.CustomerAddress;
+import trackr.model.order.customer.CustomerName;
+import trackr.model.order.customer.CustomerPhone;
 import trackr.model.person.Address;
 import trackr.model.person.Email;
 import trackr.model.person.Name;
@@ -77,6 +88,43 @@ public class SampleDataUtil {
             sampleTl.addTask(sampleTask);
         }
         return sampleTl;
+    }
+
+    public static Order[] getSampleOrders() {
+        Customer amy = new Customer(new CustomerName("Amy"),
+                new CustomerPhone("12345678"),
+                new CustomerAddress("123 Smith Street"));
+        Customer bob = new Customer(new CustomerName("Bob"),
+                new CustomerPhone("87654321"),
+                new CustomerAddress("321 Hoover Street"));
+        Customer charlie = new Customer(new CustomerName("Charlie"),
+                new CustomerPhone("71396482"),
+                new CustomerAddress("789 Bonder Street"));
+
+        return new Order[] {
+            new Order(new OrderName("Chocolate Cookies"),
+                    new OrderDeadline("01/01/2024"),
+                    new OrderStatus(), new OrderQuantity("2"),
+                    amy),
+            new Order(new OrderName("Cheese Cake"),
+                    new OrderDeadline("03/03/2024"),
+                    new OrderStatus(),
+                    new OrderQuantity("10"),
+                    bob),
+            new Order(new OrderName("Vanilla Ice Cream"),
+                    new OrderDeadline("02/01/2024"),
+                    new OrderStatus(),
+                    new OrderQuantity("100"),
+                    charlie),
+        };
+    }
+
+    public static ReadOnlyOrderList getSampleOrderList() {
+        OrderList sampleOl = new OrderList();
+        for (Order sampleOrder : getSampleOrders()) {
+            sampleOl.addOrder(sampleOrder);
+        }
+        return sampleOl;
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import trackr.commons.exceptions.DataConversionException;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlyTaskList;
 
 /**
@@ -32,6 +33,26 @@ public interface TrackrStorage {
     Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
 
     /**
+     * Saves the given {@link ReadOnlyAddressBook} and {@link ReadOnlyTaskList} to the storage.
+     * @param addressBook cannot be null.
+     * @param taskList cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
+    void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+            ReadOnlyOrderList orderList) throws IOException;
+
+    /**
+     * @see #saveTrackr(ReadOnlyAddressBook, ReadOnlyTaskList)
+     */
+    void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+            ReadOnlyOrderList orderList, Path filePath) throws IOException;
+
+    /**
+     * @see #getTrackrFilePath()
+     */
+    Optional<ReadOnlyTaskList> readTaskList(Path filePath) throws DataConversionException, IOException;
+
+    /**
      * Returns TaskList data as a {@link ReadOnlyTaskList}.
      * Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
@@ -42,19 +63,14 @@ public interface TrackrStorage {
     /**
      * @see #getTrackrFilePath()
      */
-    Optional<ReadOnlyTaskList> readTaskList(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyOrderList> readOrderList(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} and {@link ReadOnlyTaskList} to the storage.
-     * @param addressBook cannot be null.
-     * @param taskList cannot be null.
-     * @throws IOException if there was any problem writing to the file.
+     * Returns OrderList data as a {@link ReadOnlyOrderList}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     * @throws DataConversionException if the data in storage is not in the expected format.
+     * @throws IOException if there was any problem when reading from the storage.
      */
-    void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList) throws IOException;
-
-    /**
-     * @see #saveTrackr(ReadOnlyAddressBook, ReadOnlyTaskList)
-     */
-    void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList, Path filePath) throws IOException;
+    Optional<ReadOnlyOrderList> readOrderList() throws DataConversionException, IOException;
 
 }

@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import trackr.commons.core.LogsCenter;
 import trackr.commons.exceptions.DataConversionException;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.UserPrefs;
@@ -77,15 +78,28 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList) throws IOException {
-        saveTrackr(addressBook, taskList, trackrStorage.getTrackrFilePath());
+    public Optional<ReadOnlyOrderList> readOrderList() throws DataConversionException, IOException {
+        return readOrderList(trackrStorage.getTrackrFilePath());
     }
 
     @Override
-    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList, Path filePath)
+    public Optional<ReadOnlyOrderList> readOrderList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return trackrStorage.readOrderList(filePath);
+    }
+
+    @Override
+    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+            ReadOnlyOrderList orderList) throws IOException {
+        saveTrackr(addressBook, taskList, orderList, trackrStorage.getTrackrFilePath());
+    }
+
+    @Override
+    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+            ReadOnlyOrderList orderList, Path filePath)
             throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        trackrStorage.saveTrackr(addressBook, taskList, filePath);
+        trackrStorage.saveTrackr(addressBook, taskList, orderList, filePath);
     }
 
 }

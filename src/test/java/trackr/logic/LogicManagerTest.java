@@ -27,8 +27,10 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.UserPrefs;
+import trackr.model.order.Order;
 import trackr.model.person.Person;
 import trackr.model.task.Task;
 import trackr.storage.JsonTrackrStorage;
@@ -104,6 +106,11 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
+    }
+
+    @Test
     public void getAddressBook() {
         ReadOnlyAddressBook expected = model.getAddressBook();
         assertEquals(expected, logic.getAddressBook());
@@ -116,6 +123,12 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getOrderList() {
+        ReadOnlyOrderList expected = model.getOrderList();
+        assertEquals(expected, logic.getOrderList());
+    }
+
+    @Test
     public void getFilteredPersonList() {
         ObservableList<Person> expected = model.getFilteredPersonList();
         assertEquals(expected, logic.getFilteredPersonList());
@@ -125,6 +138,12 @@ public class LogicManagerTest {
     public void getFilteredTaskList() {
         ObservableList<Task> expected = model.getFilteredTaskList();
         assertEquals(expected, logic.getFilteredTaskList());
+    }
+
+    @Test
+    public void getFilteredOrderList() {
+        ObservableList<Order> expected = model.getFilteredOrderList();
+        assertEquals(expected, logic.getFilteredOrderList());
     }
 
     @Test
@@ -176,7 +195,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(),
+                model.getOrderList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -202,7 +222,8 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList, Path filePath)
+        public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+                ReadOnlyOrderList orderList, Path filePath)
                 throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }

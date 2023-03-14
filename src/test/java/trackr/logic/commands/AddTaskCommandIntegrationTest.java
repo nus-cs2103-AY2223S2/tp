@@ -3,6 +3,7 @@ package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -24,7 +25,8 @@ public class AddTaskCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(),
+                getTypicalOrderList(), new UserPrefs());
     }
 
     @Test
@@ -32,7 +34,7 @@ public class AddTaskCommandIntegrationTest {
         Task validTask = new TaskBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(),
-                model.getTaskList(), new UserPrefs());
+                model.getTaskList(), getTypicalOrderList(), new UserPrefs());
         expectedModel.addTask(validTask);
 
         assertCommandSuccess(new AddTaskCommand(validTask), model,

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
+import trackr.model.order.Order;
 import trackr.model.person.Person;
 import trackr.model.task.Task;
 
@@ -21,6 +22,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     // ================================================= User Prefs =================================================
 
@@ -149,4 +155,52 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    // ================================================= Order =================================================
+
+    /**
+     * Replaces order list data with the data in {@code orderList}.
+     */
+    void setOrderList(ReadOnlyOrderList orderList);
+
+    /**
+     * Returns the OrderList
+     */
+    ReadOnlyOrderList getOrderList();
+
+    /**
+     * Returns true if an order with the same identity as {@code order} exists in the order list.
+     */
+    boolean hasOrder(Order order);
+
+    /**
+     * Deletes the given order.
+     * The order must exist in the order list.
+     */
+    void deleteOrder(Order target);
+
+    /**
+     * Adds the given order.
+     * {@code order} must not already exist in the order list.
+     */
+    void addOrder(Order order);
+
+    /**
+     * Replaces the given order {@code target} with {@code editedOrder}.
+     * {@code target} must exist in the order list.
+     * The order identity of {@code editedOrder} must not be the same as another existing order in the order list.
+     */
+    void setOrder(Order target, Order editedOrder);
+
+    /**
+     * Returns an unmodifiable view of the filtered order list
+     */
+    ObservableList<Order> getFilteredOrderList();
+
+    /**
+     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOrderList(Predicate<Order> predicate);
 }

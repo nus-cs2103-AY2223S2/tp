@@ -13,6 +13,7 @@ import trackr.commons.exceptions.IllegalValueException;
 import trackr.commons.util.FileUtil;
 import trackr.commons.util.JsonUtil;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlyTaskList;
 
 /**
@@ -89,19 +90,49 @@ public class JsonTrackrStorage implements TrackrStorage {
     }
 
     @Override
-    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList) throws IOException {
-        saveTrackr(addressBook, taskList, filePath);
+    public Optional<ReadOnlyOrderList> readOrderList() throws DataConversionException {
+        return readOrderList(filePath);
+    }
+
+    /**
+     * Similar to {@link #readOrderList}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
+    public Optional<ReadOnlyOrderList> readOrderList(Path filePath) throws DataConversionException {
+        requireNonNull(filePath);
+
+        Optional<JsonSerializableTrackr> jsonTrackr = JsonUtil.readJsonFile(
+                filePath, JsonSerializableTrackr.class);
+        if (!jsonTrackr.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonTrackr.get().toOrderModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
     }
 
     @Override
-    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList, Path filePath)
+    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+            ReadOnlyOrderList orderList) throws IOException {
+        saveTrackr(addressBook, taskList, orderList, filePath);
+    }
+
+    @Override
+    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+            ReadOnlyOrderList orderList, Path filePath)
             throws IOException {
         requireNonNull(addressBook);
         requireNonNull(taskList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTrackr(addressBook, taskList), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTrackr(addressBook, taskList, orderList), filePath);
     }
 
 }

@@ -8,7 +8,9 @@ import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.ReadOnlyAddressBook;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlyTaskList;
+import trackr.model.order.Order;
 import trackr.model.person.Person;
 import trackr.model.task.Task;
 
@@ -36,6 +38,13 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns the OrderList
+     *
+     * @see trackr.model.Model#getOrderList()
+     */
+    ReadOnlyOrderList getOrderList();
+
+    /**
      * Returns the TaskList.
      *
      * @see trackr.model.Model#getTaskList()
@@ -44,6 +53,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
+
+    /** Returns an unmodifiable view of the filtered list of orders */
+    ObservableList<Order> getFilteredOrderList();
 
     /**
      * Returns the user prefs' trackr file path.
