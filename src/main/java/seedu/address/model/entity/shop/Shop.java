@@ -7,7 +7,10 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyShop;
-import seedu.address.model.entity.person.*;
+import seedu.address.model.entity.person.Customer;
+import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.person.UniqueCustomerList;
+import seedu.address.model.entity.person.UniqueTechnicianList;
 import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
 import seedu.address.model.service.Part;
 import seedu.address.model.service.PartMap;

@@ -1,20 +1,23 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.entity.person.*;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entity.person.Customer;
+import seedu.address.model.entity.person.Person;
+
+
 /**
  * Jackson-friendly version of {@link Customer}.
  */
-class JsonAdaptedCustomer extends JsonAdaptedPerson{
+class JsonAdaptedCustomer extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Customer's %s field is missing!";
 
@@ -67,7 +70,7 @@ class JsonAdaptedCustomer extends JsonAdaptedPerson{
 
         final Set<Integer> modelVehicleIds = new HashSet<>(customerVehicleIds);
 
-        return new Customer(id, p.getName(), p.getPhone(),p.getEmail(),p.getAddress(), p.getTags(), modelVehicleIds);
+        return new Customer(id, p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), p.getTags(), modelVehicleIds);
     }
 
 }

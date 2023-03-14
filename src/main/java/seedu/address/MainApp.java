@@ -29,9 +29,9 @@ import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonShopStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ShopStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.ShopStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -96,8 +96,8 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample Shop");
             }
             shopInitialData = shopOptional.orElseGet(SampleDataUtil::getSampleShop);
-//            TODO: saveShop here is for testing purposes, Remove in the future
-//            storage.saveShop(shopInitialData);
+            //TODO: saveShop here is for testing purposes, Remove in the future
+            //storage.saveShop(shopInitialData);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook, Shop");
             initialData = new AddressBook();

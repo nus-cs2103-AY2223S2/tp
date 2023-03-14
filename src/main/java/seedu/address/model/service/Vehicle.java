@@ -46,7 +46,8 @@ public class Vehicle {
      * @param type What vehicle type this vehicle is (i.e. Bike)
      * @param serviceIds The list of service id this vehicle had/has
      */
-    public Vehicle(int id, int ownerId, String plateNumber, String color, String brand, VehicleType type, Set<Integer> serviceIds) {
+    public Vehicle(int id, int ownerId, String plateNumber, String color, String brand,
+                   VehicleType type, Set<Integer> serviceIds) {
         this.id = id;
         this.ownerId = ownerId;
         this.plateNumber = plateNumber;
