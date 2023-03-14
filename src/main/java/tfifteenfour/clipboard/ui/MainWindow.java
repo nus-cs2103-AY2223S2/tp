@@ -1,13 +1,16 @@
 package tfifteenfour.clipboard.ui;
 
+import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
@@ -16,6 +19,7 @@ import tfifteenfour.clipboard.logic.Logic;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
+import tfifteenfour.clipboard.model.student.Student;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
+    private StudentViewPane studentViewPane;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -49,6 +54,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private SplitPane studentSplitPanePlaceholder;
+
+    @FXML
+    private Pane studentViewPanePlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -113,6 +124,14 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
+        try {
+            //logic.getViewedStudent();
+            studentViewPane = new StudentViewPane(logic.getViewedStudent());
+            studentViewPanePlaceholder.getChildren().add(studentViewPane.getRoot());
+        } catch (NullPointerException e) {
+            //
+        }
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -172,7 +191,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see tfifteenfour.clipboard.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCo mmand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());

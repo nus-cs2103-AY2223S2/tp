@@ -1,6 +1,7 @@
 package tfifteenfour.clipboard.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -85,4 +86,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    //=========== Viewed Student Accessors =============================================================
+    Student getViewedStudent();
+
+    void updateViewedStudent(Predicate<Student> predicate);
 }
