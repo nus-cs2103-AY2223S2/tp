@@ -139,18 +139,18 @@ Examples:
 - `rand_grp cs2103t-t14 2` returns: Group 1: Alex, John; Group 2: Bonnie, Clyde
 - `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
 
-### Adding a student: `add` [coming soon]
+### Adding a student: `add_student` 
 Adds a student to a given class list.
 
-Format: `add STUDENT_NAME CLASS_LIST`
+Format: `add_student n/STUDENT_NAME cl/CLASS_LIST`
 The argument `STUDENT_NAME` should be the name of the student to be added
 The argument `CLASS_LIST` should be the name of a given class list
 The search for `CLASS_LIST` is case-insensitive. e.g. cs2103T will match CS2103T
 
 
 Examples:
-- `add Tom cs2103t-t14` adds Tom to the class list CS2103T-T14
-- `add Harry cs6244` adds Harry to the class list CS6244
+- `add n/Tom cl/cs2103t-t14` adds Tom to the class list CS2103T-T14
+- `add n/Harry cl/cs6244` adds Harry to the class list CS6244
 
 
 ### Deleting a student: `delete` [coming soon]
