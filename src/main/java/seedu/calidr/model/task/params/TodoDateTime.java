@@ -1,7 +1,6 @@
 package seedu.calidr.model.task.params;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.calidr.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
