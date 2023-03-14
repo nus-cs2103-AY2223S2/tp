@@ -103,8 +103,8 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         String phone = getPhone().toString() == "" ? "" : String.format("; Phone: %s", getPhone().toString());
-        String email = getEmail().toString() == "" ? "" : String.format(" Email: %s;", getEmail().toString());
-        String address = getAddress().toString() == "" ? "" : String.format(" Address: %s;", getAddress().toString());
+        String email = getEmail().toString() == "" ? "" : String.format("; Email: %s", getEmail().toString());
+        String address = getAddress().toString() == "" ? "" : String.format("; Address: %s", getAddress().toString());
         builder.append(getName())
                 .append(phone)
                 .append(email)

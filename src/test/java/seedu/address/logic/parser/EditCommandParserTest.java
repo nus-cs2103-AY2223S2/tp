@@ -18,11 +18,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_ADDRESS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_EMAIL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_PHONE;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -204,5 +211,41 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_resetAddress_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + EMPTY_ADDRESS_DESC;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_EMPTY_ADDRESS).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+    }
+
+    @Test
+    public void parse_resetEmail_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + EMPTY_EMAIL_DESC;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMPTY_EMAIL).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+    }
+
+    @Test
+    public void parse_resetPhone_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + EMPTY_PHONE_DESC;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_EMPTY_PHONE).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
     }
 }
