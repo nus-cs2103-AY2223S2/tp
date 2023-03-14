@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -40,7 +40,7 @@ public class FilterCommandTest {
      */
     @Test
     void executeFilter_noContactFound_emptyTags() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 0);
         FilterCommand command = new FilterCommand(emptyTagsPredicate);
         expectedModel.updateFilteredPersonList(this.emptyTagsPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -52,7 +52,7 @@ public class FilterCommandTest {
      */
     @Test
     void executeFilter_multipleContactsFound_multipleTags() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 3);
         FilterCommand command = new FilterCommand(multipleTagsPredicate);
         expectedModel.updateFilteredPersonList(this.multipleTagsPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
