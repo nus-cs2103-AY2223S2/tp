@@ -51,8 +51,8 @@ public class MeetingCard extends UiPart<Region> {
                         .map(person -> person.getName().toString())
                         .reduce((s, s2) -> s + "," + s2)
                         .get());
-        description.setText("Description: " + meeting.getDescription().toString());
         meetingLocation.setText("Location: " + meeting.getLocation().toString());
+        description.setText("Description: " + meeting.getDescription().toString());
     }
 
     @Override
