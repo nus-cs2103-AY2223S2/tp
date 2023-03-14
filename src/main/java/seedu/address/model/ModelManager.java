@@ -182,6 +182,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setDeck(Deck target, Deck editedDeck) {
+        masterDeck.setDeck(target, editedDeck);
+    }
+    @Override
     public void removeDeck(Deck key) { //TODO should remove all cards associated with deck
         masterDeck.removeDeck(key);
         updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
