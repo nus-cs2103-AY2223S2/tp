@@ -137,11 +137,13 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
+    @Test
     public void toModelType_invalidNotes_throwsIllegalValueException() {
         List<JsonAdaptedNote> invalidNotes = new ArrayList<>(VALID_TAGS);
         invalidNotes.add(new JsonAdaptedNote(INVALID_NOTE));
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_STATUS, VALID_INTERVIEW_DATETIME, invalidNotes);
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_STATUS,
+                        VALID_INTERVIEW_DATETIME, invalidNotes);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
