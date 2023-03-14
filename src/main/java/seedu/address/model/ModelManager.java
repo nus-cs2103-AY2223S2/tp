@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -147,8 +148,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public TabInfo getSelectedTab() {
-        return tabUtil.getSelectedTab().get();
+    public ReadOnlyObjectProperty<TabInfo> getSelectedTab() {
+        return tabUtil.getSelectedTab();
     }
 
     @Override

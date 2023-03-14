@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
@@ -92,7 +93,7 @@ public interface Model {
 
     TabUtil getTabUtil();
 
-    TabInfo getSelectedTab();
+    ReadOnlyObjectProperty<TabInfo> getSelectedTab();
 
     void setSelectedTab(Index index);
 }

@@ -41,7 +41,7 @@ public class TabCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INVALID_INDEX, lowerBound, upperBound));
         }
         model.setSelectedTab(index);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedTab()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSelectedTab().get()));
     }
 
     @Override
