@@ -15,8 +15,9 @@ import seedu.address.model.person.Person;
  */
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
+    private PersonDetailPanel personDetailPanel;
+    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
     @FXML
     private ListView<Person> personListView;
 
@@ -42,6 +43,9 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setOnMouseClicked(e -> {
+                    System.out.println("Single click on item: " + personListView.getItems().get(getIndex()));
+                });
             }
         }
     }
