@@ -13,8 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_BLOODTYPE = new Prefix("b");
     public static final Prefix PREFIX_ALLERGY = new Prefix("a");
     public static final Prefix PREFIX_VACCINATION = new Prefix("v");
-    public static final Prefix PREFIX_TIME = new Prefix("t");
-    public static final Prefix PREFIX_PATIENT = new Prefix("p");
 
     /*
      * ========================================================================
@@ -28,5 +26,15 @@ public class CliSyntax {
     public static final Prefix PREFIX_MIN_SPACING = new Prefix("s");
     public static final Prefix PREFIX_ALLERGY_REQ = new Prefix("a");
     public static final Prefix PREFIX_HISTORY_REQ = new Prefix("h");
+
+    /*
+     * ========================================================================
+     * Appointment
+     * ========================================================================
+     */
+
+    public static final Prefix PREFIX_PATIENT = new Prefix("p");
+    public static final Prefix PREFIX_STARTTIME = new Prefix("s");
+    public static final Prefix PREFIX_ENDTIME = new Prefix("e");
 
 }

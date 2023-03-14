@@ -1,6 +1,7 @@
 package seedu.vms.storage.vaccination;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.FileUtil;
@@ -12,13 +13,13 @@ import seedu.vms.model.vaccination.VaxTypeManager;
  * JSON files containing {@link VaxTypeManager} data.
  */
 public class JsonVaxTypeStorage implements VaxTypeStorage {
-    public static final String USER_FILE_PATH = "data/vaxtype.json";
+    public static final Path USER_VAX_FILE_PATH = Path.of("data", "vaxtype.json");
 
 
     @Override
     public VaxTypeManager loadUserVaxTypes() throws IOException {
         try {
-            return VaxTypeLoader.load(USER_FILE_PATH);
+            return VaxTypeLoader.load(USER_VAX_FILE_PATH);
         } catch (IllegalValueException illValEx) {
             throw new IOException(illValEx.getMessage());
         }
@@ -37,7 +38,7 @@ public class JsonVaxTypeStorage implements VaxTypeStorage {
 
     @Override
     public void saveVaxTypes(VaxTypeManager manager) throws IOException {
-        FileUtil.createIfMissing(USER_FILE_PATH);
-        VaxTypeLoader.fromModelType(manager).write(USER_FILE_PATH);
+        FileUtil.createIfMissing(USER_VAX_FILE_PATH);
+        VaxTypeLoader.fromModelType(manager).write(USER_VAX_FILE_PATH);
     }
 }
