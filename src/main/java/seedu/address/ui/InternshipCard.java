@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
@@ -28,7 +27,7 @@ import static seedu.address.model.internship.Status.OFFERED;
 import static seedu.address.model.internship.Status.REJECTED;
 
 /**
- * An UI component that displays information of a {@code Internship}.
+ * A UI component that displays information of a {@code Internship}.
  */
 public class InternshipCard extends UiPart<Region> {
 
@@ -45,9 +44,6 @@ public class InternshipCard extends UiPart<Region> {
      */
 
     public final Internship internship;
-
-    private ArrayList<String> internshipCardInformation = new ArrayList<String>();
-
 
     @FXML
     private HBox cardPane;
@@ -73,28 +69,21 @@ public class InternshipCard extends UiPart<Region> {
         this.internship = internship;
         //Add Id
         id.setText(displayedIndex + ". ");
-        internshipCardInformation.add(id.getText());
 
         //Add Company Name
         companyName.setText(internship.getCompanyName().fullCompanyName);
-        internshipCardInformation.add(companyName.getText());
 
         //Add Role
         role.setText(ROLE_LABEL + internship.getRole().fullRole);
-        internshipCardInformation.add(role.getText());
 
         //Add Date
         String dateLabel = getDateLabel(internship.getStatus());
         date.setText(dateLabel + internship.getDate().fullDate);
-        internshipCardInformation.add(date.getText());
 
         //Add Tags
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        ObservableList<Node> listNodes = tags.getChildren();
-        listNodes.forEach(node -> internshipCardInformation.add(((Label) node).getText()));
 
 
         //Set up status label
@@ -104,7 +93,6 @@ public class InternshipCard extends UiPart<Region> {
         statusLabel.setText(statusString.toUpperCase());
         statusLabel.setBackground(new Background(new BackgroundFill(
                 statusColor, new CornerRadii(10), new Insets(-5))));
-        internshipCardInformation.add(statusLabel.getText());
     }
 
     @Override
@@ -145,12 +133,11 @@ public class InternshipCard extends UiPart<Region> {
 
 
     /**
-     * Gets the list that stores the string information of the internship card
+     * Returns the label for the date field in Internship Card.
+     *
+     * @param status
+     * @return the corresponding String as a label for the date.
      */
-    public ArrayList<String> getInternshipCardInformation() {
-        return this.internshipCardInformation;
-    }
-
     public String getDateLabel(Status status) {
         String dateLabel;
         switch (status.toString()) {

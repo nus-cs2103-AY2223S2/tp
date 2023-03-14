@@ -3,11 +3,17 @@ package seedu.address.ui;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Flow;
+import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import org.junit.jupiter.api.Test;
 
@@ -36,12 +42,6 @@ public class InternshipCardTest extends GuiUnitTest {
         InternshipCard internshipCard = new InternshipCard(internship, 1);
         uiPartExtension.setUiPart(internshipCard);
         assertInternshipCardEqual(internshipCard, internship, 1);
-//
-//        // with tags
-//        Person personWithTags = new PersonBuilder().build();
-//        personCard = new PersonCard(personWithTags, 2);
-//        uiPartExtension.setUiPart(personCard);
-//        assertCardDisplay(personCard, personWithTags, 2);
     }
 
     @Test
@@ -62,60 +62,26 @@ public class InternshipCardTest extends GuiUnitTest {
         assertTrue(internshipCardAmazonOne.equals(internshipCardAmazonOneDuplicate));
     }
 
-//    @Test
-//    public void create_colorMap_success() {
-//        HashMap<String, Color> colorMap = new InternshipCard(TypicalInternships.AMAZON, 1).setupColours();
-//        //Check "New" color
-//        assertTrue(colorMap.get("New").equals(Color.rgb(250, 155, 68, 1.0)));
-//        //Check "Applied" color
-//        assertTrue(colorMap.get("Applied").equals(Color.rgb(68, 170, 250, 1.0)));
-//        //Check "Assessment" color
-//        assertTrue(colorMap.get("Assessment").equals(Color.rgb(250, 68, 155, 1.0)));
-//        //Check "Interview" color
-//        assertTrue(colorMap.get("Interview").equals(Color.rgb(126, 68, 250, 1.0)));
-//        //Check "Offered" color
-//        assertTrue(colorMap.get("Offered").equals(Color.rgb(42, 174, 79, 1.0)));
-//        //Check "Rejected" color
-//        assertTrue(colorMap.get("Rejected").equals(Color.rgb(250, 68, 68, 1.0)));
-//    }
-
-    @Test
-    public void set_fields_success() {
-        InternshipCard internshipCardAmazonOne = new InternshipCard(TypicalInternships.AMAZON, 1);
-        ArrayList<String> internshipCardInformation = internshipCardAmazonOne.getInternshipCardInformation();
-
-        //Check Index
-        assertTrue(internshipCardInformation.get(0).equals("1. "));
-
-        //Check Company Name
-        assertTrue(internshipCardInformation.get(1).equals("Amazon"));
-
-        //Check Role
-        assertTrue(internshipCardInformation.get(2).equals("Role: " + "Cloud Architect"));
-
-        //Check Date
-        assertTrue(internshipCardInformation.get(3).equals("Date of Assessment: " + "2023-02-01"));
-
-        //Check Tags
-        assertTrue(internshipCardInformation.get(4).equals("aws"));
-        assertTrue(internshipCardInformation.get(5).equals("back"));
-
-        //Check Status Label
-        assertTrue(internshipCardInformation.get(6).equals("ASSESSMENT"));
-    }
 
     private void assertInternshipCardEqual(InternshipCard internshipCard, Internship internship, int expectedIndex) {
+        //@@author potty10-reused
+        //Reused with some modification from
+        //https://github.com/AY2223S1-CS2103T-W17-4/tp/blob/master/src/test/java/seedu/phu/ui/InternshipCardTest.java
         Region internshipRegion = internshipCard.getRoot();
         Label companyName = (Label) internshipRegion.lookup("#companyName");
         Label internshipRoleLabel = (Label) internshipRegion.lookup("#role");
         Label internshipDate = (Label) internshipRegion.lookup("#date");
         Label internshipStatus = (Label) internshipRegion.lookup("#statusLabel");
         String expectedDateLabel = internshipCard.getDateLabel(internship.getStatus());
+        ObservableList<Node> internshipNodeTags = ((FlowPane) internshipRegion.lookup("#tags")).getChildren();
 
         assertEquals(companyName.getText(), internship.getCompanyName().toString());
         assertEquals(internshipRoleLabel.getText(), ROLE_LABEL + internship.getRole().toString());
         assertEquals(internshipDate.getText(), expectedDateLabel + internship.getDate().toString());
         assertEquals(internshipStatus.getText(), internship.getStatus().toString().toUpperCase());
+        assertIterableEquals(internshipNodeTags.stream().map(node -> ((Label) node).getText()).sorted()
+                .collect(Collectors.toList()), internship.getTags().stream().sorted().collect(Collectors.toList()) );
+        //@@author
     }
 
 }
