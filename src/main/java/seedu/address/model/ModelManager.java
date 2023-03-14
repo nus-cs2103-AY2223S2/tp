@@ -167,7 +167,7 @@ public class ModelManager implements Model {
     @Override
     public void addMeeting(Meeting meeting) {
         addressBook.addMeeting(meeting);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     @Override

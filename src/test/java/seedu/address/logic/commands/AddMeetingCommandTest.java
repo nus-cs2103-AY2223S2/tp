@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -52,9 +53,9 @@ public class AddMeetingCommandTest {
     @Test
     public void execute_duplicateMeeting_throwsCommandException() {
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(MEETING_A.getTitle(), MEETING_A.getDateTime(),
-            new HashSet<>(Collections.singletonList(ALICE.getName())),
-            MEETING_A.getLocation(), MEETING_A.getDescription());
-        ModelStub modelStub = new ModelStubWithPersons(ALICE, CARL);
+            new HashSet<>(Collections.singletonList(ALICE.getName())), MEETING_A.getLocation(),
+            MEETING_A.getDescription());
+        ModelStub modelStub = new ModelStubWithMeeting(ALICE, CARL, MEETING_A);
 
         assertThrows(CommandException.class, AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () ->
             addMeetingCommand.execute(modelStub));
@@ -171,6 +172,7 @@ public class AddMeetingCommandTest {
      * A Model stub that contains a single person.
      */
     private static class ModelStubWithPersons extends AddMeetingCommandTest.ModelStub {
+        private final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
         private final Person person1;
         private final Person person2;
 
@@ -185,9 +187,49 @@ public class AddMeetingCommandTest {
         }
 
         @Override
+        public void addMeeting(Meeting meeting) {
+            requireNonNull(meeting);
+            meetingsAdded.add(meeting);
+        }
+
+        @Override
         public boolean hasMeeting(Meeting meeting) {
             requireNonNull(meeting);
-            return MEETING_A.isSameMeeting(meeting);
+            return meetingsAdded.stream().anyMatch(meeting::isSameMeeting);
+        }
+
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return this.person1.isSamePerson(person) || this.person2.isSamePerson(person);
+        }
+    }
+    private static class ModelStubWithMeeting extends AddMeetingCommandTest.ModelStub {
+        private final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
+        private final Person person1;
+        private final Person person2;
+
+        ModelStubWithMeeting(Person person1, Person person2, Meeting meeting) {
+            this.person1 = person1;
+            this.person2 = person2;
+            meetingsAdded.add(meeting);
+        }
+
+        @Override
+        public Person getPersonByName(Name personName) {
+            return person1.getName().equals(personName) ? person1 : person2;
+        }
+
+        @Override
+        public void addMeeting(Meeting meeting) {
+            requireNonNull(meeting);
+            meetingsAdded.add(meeting);
+        }
+
+        @Override
+        public boolean hasMeeting(Meeting meeting) {
+            requireNonNull(meeting);
+            return meetingsAdded.stream().anyMatch(meeting::isSameMeeting);
         }
 
         @Override
