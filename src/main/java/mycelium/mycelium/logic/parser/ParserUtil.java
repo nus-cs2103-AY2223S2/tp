@@ -149,11 +149,11 @@ public class ParserUtil {
      */
     public static ProjectStatus parseProjectStatus(String projectStatus) throws ParseException {
         requireNonNull(projectStatus);
-        // String trimmedProjectStatus = projectStatus.trim();
-        // if (!ProjectStatus.isValidProjectStatus(trimmedProjectStatus)) {
-        // throw new ParseException(ProjectStatus.MESSAGE_CONSTRAINTS);
-        // }
-        return ProjectStatus.NOT_STARTED;
+        String trimmedProjectStatus = projectStatus.trim();
+        if (!ProjectStatus.isValidProjectStatus(trimmedProjectStatus)) {
+            throw new ParseException(ProjectStatus.MESSAGE_CONSTRAINTS);
+        }
+        return ProjectStatus.fromString(trimmedProjectStatus);
     }
 
     /**

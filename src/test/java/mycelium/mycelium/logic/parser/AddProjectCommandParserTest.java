@@ -68,7 +68,10 @@ public class AddProjectCommandParserTest {
             Map.entry("invalid deadline (date but with time)", basic + "-dd 2020-01-01 12:00"),
 
             Map.entry("invalid source (empty)", basic + "-src "),
-            Map.entry("invalid description (empty)", basic + "-d ")
+            Map.entry("invalid description (empty)", basic + "-d "),
+
+            Map.entry("invalid status (empty)", basic + "-s "),
+            Map.entry("invalid status (not a valid status)", basic + "-s foobar")
         );
         tests.forEach((desc, tt) -> {
             String input = " " + tt;
@@ -97,18 +100,16 @@ public class AddProjectCommandParserTest {
             Map.entry("multiple words in project name",
                 Pair.of("-pn Microsoft Bing -e jamal@hogriders.org", addMicrosoftBing)),
 
-            // TODO tests for status
             Map.entry("multiple names",
                 Pair.of("-e jamal@hogriders.org -pn Bing -pn Microsoft Bing", addMicrosoftBing)),
             Map.entry("multiple emails", Pair.of("-pn Bing -e jamar@hogriders.org -e jamal@hogriders.org", addBing)),
             Map.entry("multiple names and emails",
                 Pair.of("-pn Bing -pn Microsoft Bing -e jamar@hogriders.org -e jamal@hogriders.org", addMicrosoftBing)),
 
-            // TODO add the status arg
             Map.entry("all arguments present",
                 Pair.of(
                     "-pn Bing -e jamal@hogriders.org -ad 01/01/1970 -dd 02/01/1970 -src Fiverr -d This is a "
-                        + "description",
+                        + "description -s in_progress",
                     addBing))
         );
         for (String desc : tests.keySet()) {

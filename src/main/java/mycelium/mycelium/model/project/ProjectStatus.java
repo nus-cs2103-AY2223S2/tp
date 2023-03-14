@@ -8,6 +8,9 @@ public enum ProjectStatus {
     IN_PROGRESS,
     DONE;
 
+    public static final String MESSAGE_CONSTRAINTS = "Project status should be one of the following: "
+            + "not_started, in_progress, done.";
+
     /**
      * Parses a project's status from its string representation. Throws an
      * {@code IllegalArgumentException} if the input string is not valid. To

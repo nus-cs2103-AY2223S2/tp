@@ -45,7 +45,10 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Email clientEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
 
         // The project's status and acceptedOn date take default values.
-        ProjectStatus projectStatus = ProjectStatus.NOT_STARTED; // TODO actually parse this
+        Optional<String> maybeProjectStatus = argMultimap.getValue(PREFIX_PROJECT_STATUS);
+        ProjectStatus projectStatus = maybeProjectStatus.isPresent()
+            ? ParserUtil.parseProjectStatus(maybeProjectStatus.get())
+            : ProjectStatus.NOT_STARTED;
         Optional<String> maybeAcceptedOn = argMultimap.getValue(PREFIX_ACCEPTED_DATE);
         LocalDate acceptedOn = maybeAcceptedOn.isPresent()
             ? ParserUtil.parseLocalDate(maybeAcceptedOn.get(), Project.DATE_FMT)
