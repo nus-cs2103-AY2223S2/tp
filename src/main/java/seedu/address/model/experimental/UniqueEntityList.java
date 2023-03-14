@@ -23,16 +23,16 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  *
  * @see Entity#isSameEntity(Entity)
  */
-public class UniqueEntityList<T extends Entity> implements Iterable<Entity> {
+public class UniqueEntityList<T extends Entity> implements Iterable<T> {
 
-    private final ObservableList<Entity> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Entity> internalUnmodifiableList =
+    private final ObservableList<T> internalList = FXCollections.observableArrayList();
+    private final ObservableList<T> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
-    public boolean contains(Entity toCheck) {
+    public boolean contains(T toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameEntity);
     }
@@ -41,7 +41,7 @@ public class UniqueEntityList<T extends Entity> implements Iterable<Entity> {
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
-    public void add(Entity toAdd) {
+    public void add(T toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
@@ -80,7 +80,7 @@ public class UniqueEntityList<T extends Entity> implements Iterable<Entity> {
         }
     }
 
-    public void setPersons(UniqueEntityList<T> replacement) {
+    public void setPersons(UniqueEntityList<? extends T> replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -101,12 +101,12 @@ public class UniqueEntityList<T extends Entity> implements Iterable<Entity> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Entity> asUnmodifiableObservableList() {
+    public ObservableList<T> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Entity> iterator() {
+    public Iterator<T> iterator() {
         return internalList.iterator();
     }
 
@@ -114,7 +114,7 @@ public class UniqueEntityList<T extends Entity> implements Iterable<Entity> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueEntityList // instanceof handles nulls
-                        && internalList.equals(((UniqueEntityList) other).internalList));
+                        && internalList.equals(((UniqueEntityList<?>) other).internalList));
     }
 
     @Override
@@ -125,7 +125,7 @@ public class UniqueEntityList<T extends Entity> implements Iterable<Entity> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<T> persons) {
+    private boolean personsAreUnique(List<? extends T> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
                 if (persons.get(i).isSameEntity(persons.get(j))) {

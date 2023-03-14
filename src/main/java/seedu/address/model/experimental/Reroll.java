@@ -33,6 +33,7 @@ public class Reroll implements ReadOnlyReroll {
 
         characters.resetData(newData.getCharacters());
         items.resetData(newData.getItems());
+        mobs.resetData(newData.getMobs());
     }
 
     @Override
@@ -105,7 +106,7 @@ public class Reroll implements ReadOnlyReroll {
     // Misc ====================
 
     // Returns some list from the 3 choices...
-    public ObservableList<Entity> getList() {
+    public ObservableList<? extends Entity> getList() {
         // not slap at all
         return characters.entities.asUnmodifiableObservableList();
     }

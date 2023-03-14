@@ -11,7 +11,7 @@ public abstract class RerollEntities<T extends Entity> implements ReadOnlyEntiti
 
     protected final UniqueEntityList<T> entities;
     {
-        entities = new UniqueEntityList();
+        entities = new UniqueEntityList<>();
     }
     // List level operations
     void setEntities(List<T> entities) {
@@ -47,7 +47,7 @@ public abstract class RerollEntities<T extends Entity> implements ReadOnlyEntiti
     }
 
     @Override
-    public ObservableList<Entity> getEntityList() {
+    public ObservableList<T> getEntityList() {
         return entities.asUnmodifiableObservableList();
     }
 

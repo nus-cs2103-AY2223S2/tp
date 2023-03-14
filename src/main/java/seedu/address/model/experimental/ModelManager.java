@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given reroll and userPrefs.
      */
+
     public ModelManager(ReadOnlyReroll reroll, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(reroll, userPrefs);
 
@@ -35,7 +36,11 @@ public class ModelManager implements Model {
 
         this.reroll = new Reroll(reroll);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEntities = new FilteredList<>(this.reroll.getList());
+        // Meaningless to maintain generics at this point.
+        // Don't want any generics outside of this model.
+        @SuppressWarnings("unchecked")
+        FilteredList<Entity> temp = (FilteredList<Entity>) new FilteredList<>(this.reroll.getList());
+        this.filteredEntities = temp;
     }
 
     public ModelManager() {
