@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
@@ -80,7 +81,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Pied Piper ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -103,6 +104,18 @@ public class ModelManager implements Model {
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return addressBook.hasTask(task);
+    }
+
+    @Override
+    public boolean hasTaskIndex(Index taskIndex) {
+        requireNonNull(taskIndex);
+        return addressBook.hasTaskIndex(taskIndex);
+    }
+
+    @Override
+    public boolean hasPersonIndex(Index personIndex) {
+        requireNonNull(personIndex);
+        return addressBook.hasPersonIndex(personIndex);
     }
 
     @Override
@@ -136,6 +149,10 @@ public class ModelManager implements Model {
     public void unmarkTask(Task task) {
         requireNonNull(task);
         addressBook.unmarkTask(task);
+    }
+
+    public void assignTask(Index taskIndex, Index personIndex) {
+        addressBook.assignTask(taskIndex, personIndex);
     }
 
     @Override

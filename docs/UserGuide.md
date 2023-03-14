@@ -52,23 +52,14 @@ Format: `deadline task/{TASK_NAME} by/{DD/MM/YYYY}`
 Example:
 * `deadline task/Complete Assignment by/12/09/2021`
 
-### Assigning roles to members: `role`
-
-Gives a role to a member
-
-Format: `role n/{MEMBER_NAME} r/{ROLE}`
-
-Example:
-* `role n/John Doe r/Leader`
-
 ### Assigning task to member: `assign`
 
 Assign a task to a person
 
-Format: `assign  t/{TASK_ID} n/{MEMBER_NAME}`
+Format: `assign  t/{TASK_ID} i/{MEMBER_ID}`
 
 Examples:
-*  `assign t/1 n/John Doe`
+*  `assign t/1 i/3`
 
 
 ### Delete a person: `delete`

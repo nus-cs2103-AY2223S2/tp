@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
@@ -87,6 +88,26 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a task with the same index as {@code taskIndex} exists in the address book.
+     * @param taskIndex
+     * @return
+     */
+    public boolean hasTaskIndex(Index taskIndex) {
+        requireNonNull(taskIndex);
+        return tasks.checkIndex(taskIndex);
+    }
+
+    /**
+     * Returns true if a person with the same index as {@code personIndex} exists in the address book.
+     * @param personIndex
+     * @return
+     */
+    public boolean hasPersonIndex(Index personIndex) {
+        requireNonNull(personIndex);
+        return persons.checkIndex(personIndex);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -133,6 +154,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Assigns a task to a person.
+     * @param taskIndex
+     * @param personIndex
+     */
+    public void assignTask(Index taskIndex, Index personIndex) {
+        tasks.assignTask(taskIndex, personIndex);
     }
 
     /**
