@@ -78,6 +78,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Deck> getFilteredDeckList() {
+        return model.getFilteredDeckList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getMasterDeckFilePath();
     }
