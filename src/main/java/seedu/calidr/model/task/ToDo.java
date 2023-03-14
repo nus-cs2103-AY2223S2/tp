@@ -1,7 +1,5 @@
 package seedu.calidr.model.task;
 
-import java.time.LocalDateTime;
-
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
@@ -43,8 +41,8 @@ public class ToDo extends Task {
         this.byDateTime = by;
     }
 
-    public LocalDateTime getBy() {
-        return this.byDateTime.value;
+    public TodoDateTime getBy() {
+        return this.byDateTime;
     }
 
     @Override

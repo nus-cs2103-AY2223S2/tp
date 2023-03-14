@@ -1,7 +1,6 @@
 package seedu.calidr.model.task.params;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.calidr.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,8 +9,6 @@ import java.time.format.DateTimeFormatter;
  * Represents the deadline date-time for a ToDo.
  */
 public class TodoDateTime {
-
-    public static final String MESSAGE_CONSTRAINTS = "The deadline date-time cannot be before the current time.";
 
     public final LocalDateTime value;
 
@@ -22,17 +19,9 @@ public class TodoDateTime {
      */
     public TodoDateTime(LocalDateTime dateTime) {
         requireNonNull(dateTime);
-        checkArgument(!isOver(dateTime), MESSAGE_CONSTRAINTS);
 
         value = dateTime;
 
-    }
-
-    /**
-     * Returns true if a given date-time is a valid date-time.
-     */
-    public boolean isOver(LocalDateTime test) {
-        return test.isBefore(LocalDateTime.now());
     }
 
     /**
