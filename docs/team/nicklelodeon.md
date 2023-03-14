@@ -22,6 +22,10 @@ Given below are my contributions to the project.
     * What it does: With this new feature, users can add tasks to OfficeConnect
     * Justification: This feature is instrumental, as it allows users to create tasks that are stored into the storage of OfficeConnect. This creates the foundation for subsequent task commands, such as delete task or assign task
     * Highlights: Users who are quick at typing will be able to add tasks quickly following the syntax specified in the UserGuide
+- **New Feature**: List tasks for OfficeConnect
+  * What it does: With this new feature, users can see all tasks stored in OfficeConnect
+  * Justification: This feature is vital, as it allows users to keep track of current tasks stored in OfficeConnect. This helps users better visualise their workload and efficiently delegate the tasks.
+  * Highlights: This feature is necessary as it needs to be called to retrieve the index of the task, before deletetask can be called
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=nicklelodeon&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 - **Project management**:
 - **Enhancements to existing features**:
