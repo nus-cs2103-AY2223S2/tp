@@ -19,25 +19,37 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private Optional<Phone> phone;
+    private Optional<Email> email;
 
     // Data fields
-    private final Address address;
+    private Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
     private Optional<Birthday> birthday;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.phone = Optional.empty();
+        this.email = Optional.empty();
+        this.address = Optional.empty();
         this.tags.addAll(tags);
         this.birthday = Optional.empty();
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = Optional.ofNullable(phone);
+    }
+
+    public void setEmail(Email email) {
+        this.email = Optional.ofNullable(email);
+    }
+
+    public void setAddress(Address address) {
+        this.address = Optional.ofNullable(address);
     }
 
     public void setBirthday(Birthday birthday) {
@@ -48,15 +60,15 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
+    public Optional<Phone> getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public Optional<Email> getEmail() {
         return email;
     }
 
-    public Address getAddress() {
+    public Optional<Address> getAddress() {
         return address;
     }
 

@@ -11,7 +11,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class Birthday {
     public static final String MESSAGE_CONSTRAINTS = "Birthday should be of the format DD/MM/YYYY";
+
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/([0-9]{4})$";
+
     private final LocalDate value;
 
     /**
@@ -33,7 +35,7 @@ public class Birthday {
 
     /**
      * Constructs an {@code Birthday}.
-     * @param birthday A  birthday as LocalDate.
+     * @param birthday A birthday as LocalDate.
      */
     public Birthday(LocalDate birthday) {
         requireNonNull(birthday);
