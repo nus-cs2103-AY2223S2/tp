@@ -37,7 +37,7 @@ Salespeople managing client contacts who prefer a CLI
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com c/company X` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -88,7 +88,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY`
+Format: `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact must include name and phone number.
@@ -96,7 +96,7 @@ A contact must include name and phone number.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com c/company X`
-* `add n/Betsy Crowe p/62353535`
+* `add n/Betsy Crowe p/62353535 t/friend`
 
 ### Listing all persons : `list`
 
@@ -108,7 +108,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG] …​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -214,10 +214,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER` *`e/EMAIL c/COMPANY​`* <br> e.g., `add n/John Doe p/98765432 c/company X`
+**Add** | `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] ...​` <br> e.g., `add n/John Doe p/98765432 c/company X`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Status** | `status INDEX_NUMBER` *`[STATUS …]`*<br> `status NAME` *`[STATUS …]`*<br> e.g., `status 1, status David closed-won`
 **List** | `list`
 **Help** | `help`
