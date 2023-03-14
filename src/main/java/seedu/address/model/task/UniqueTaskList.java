@@ -151,7 +151,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * @param taskIndex
      * @param personIndex
      */
-    public void assignTask(Index taskIndex, Index personIndex) {
-        internalList.get(taskIndex.getZeroBased()).assignPerson(personIndex);
+    public void assignTask(Index taskIndex, Index personIndex, String personName) {
+        internalList.get(taskIndex.getZeroBased()).assignPerson(personIndex, personName);
     }
 }

@@ -20,12 +20,12 @@ public class AssignTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to a particular user "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to a particular user.\n"
             + "Parameters: "
             + PREFIX_TASK_INDEX + "TASK_ID "
-            + PREFIX_PERSON_INDEX + "MEMBER_ID"
+            + PREFIX_PERSON_INDEX + "MEMBER_ID\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TASK_INDEX + "3"
+            + PREFIX_TASK_INDEX + "3 "
             + PREFIX_PERSON_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "Assigned task to %s \n %s";
