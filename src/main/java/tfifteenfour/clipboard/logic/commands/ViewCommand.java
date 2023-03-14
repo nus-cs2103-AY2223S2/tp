@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static tfifteenfour.clipboard.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -34,7 +33,6 @@ public class ViewCommand extends Command {
         requireNonNull(model);
 
         // refresh list before viewing
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         List<Student> studentList = model.getFilteredStudentList();
 
         if (targetIndex.getZeroBased() >= studentList.size()) {
