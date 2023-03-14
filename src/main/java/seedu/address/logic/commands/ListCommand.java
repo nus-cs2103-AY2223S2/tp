@@ -22,9 +22,9 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         List<InternshipApplication> lastShownList = model.getFilteredInternshipList();
         if (lastShownList.size() > 0) {
-            model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             return new CommandResult(MESSAGE_NO_APPLICATIONS);
