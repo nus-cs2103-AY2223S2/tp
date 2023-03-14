@@ -7,6 +7,8 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Remark {
+    public static final String NULL_REMARK = "None yet!";
+
     public final String value;
 
     /**
@@ -16,6 +18,13 @@ public class Remark {
     public Remark(String remark) {
         requireNonNull(remark);
         value = remark;
+    }
+
+    /**
+     * Initiates a null remark object without null error.
+     */
+    public Remark() {
+        value = NULL_REMARK;
     }
 
     @Override
