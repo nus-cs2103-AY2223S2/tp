@@ -22,15 +22,15 @@ import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
-import trackr.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.SupplierList;
 import trackr.model.TaskList;
 import trackr.model.UserPrefs;
 import trackr.model.task.Task;
-import trackr.testutil.EditTaskDescriptorBuilder;
+import trackr.model.task.TaskDescriptor;
 import trackr.testutil.TaskBuilder;
+import trackr.testutil.TaskDescriptorBuilder;
 
 public class EditTaskCommandTest {
 
@@ -39,7 +39,7 @@ public class EditTaskCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredTaskList_success() {
         Task editedTask = new TaskBuilder().build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
+        TaskDescriptor descriptor = new TaskDescriptorBuilder(editedTask).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor);
 
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -61,7 +61,7 @@ public class EditTaskCommandTest {
                 .withTaskDeadline(VALID_TASK_DEADLINE_2100)
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+        TaskDescriptor descriptor = new TaskDescriptorBuilder()
                 .withTaskName(VALID_TASK_NAME_SORT_INVENTORY)
                 .withTaskDeadline(VALID_TASK_DEADLINE_2100)
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
@@ -78,7 +78,7 @@ public class EditTaskCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredTaskList_success() {
-        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT, new EditTaskDescriptor());
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT, new TaskDescriptor());
         Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
 
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -96,7 +96,7 @@ public class EditTaskCommandTest {
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
         Task editedTask = new TaskBuilder(taskInFilteredList).withTaskName(VALID_TASK_NAME_SORT_INVENTORY).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT,
-                new EditTaskDescriptorBuilder().withTaskName(VALID_TASK_NAME_SORT_INVENTORY).build());
+                new TaskDescriptorBuilder().withTaskName(VALID_TASK_NAME_SORT_INVENTORY).build());
 
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
@@ -110,7 +110,7 @@ public class EditTaskCommandTest {
     @Test
     public void execute_duplicateTaskUnfilteredTaskList_failure() {
         Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask).build();
+        TaskDescriptor descriptor = new TaskDescriptorBuilder(firstTask).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_OBJECT, descriptor);
 
         assertCommandFailure(editTaskCommand, model, MESSAGE_DUPLICATE_TASK);
@@ -123,7 +123,7 @@ public class EditTaskCommandTest {
         // edit task in filtered task list into a duplicate in task list
         Task taskInList = model.getTaskList().getTaskList().get(INDEX_SECOND_OBJECT.getZeroBased());
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT,
-                new EditTaskDescriptorBuilder(taskInList).build());
+                new TaskDescriptorBuilder(taskInList).build());
 
         assertCommandFailure(editTaskCommand, model, MESSAGE_DUPLICATE_TASK);
     }
@@ -131,7 +131,7 @@ public class EditTaskCommandTest {
     @Test
     public void execute_invalidTaskIndexUnfilteredTaskList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+        TaskDescriptor descriptor = new TaskDescriptorBuilder()
                 .withTaskName(VALID_TASK_NAME_SORT_INVENTORY).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, descriptor);
 
@@ -150,7 +150,7 @@ public class EditTaskCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskList().getTaskList().size());
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex,
-                new EditTaskDescriptorBuilder().withTaskName(VALID_TASK_NAME_SORT_INVENTORY).build());
+                new TaskDescriptorBuilder().withTaskName(VALID_TASK_NAME_SORT_INVENTORY).build());
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
@@ -161,7 +161,7 @@ public class EditTaskCommandTest {
                 new EditTaskCommand(INDEX_FIRST_OBJECT, DESC_SORT_INVENTORY);
 
         // same values -> returns true
-        EditTaskDescriptor copyTaskDescriptor = new EditTaskDescriptor(DESC_SORT_INVENTORY);
+        TaskDescriptor copyTaskDescriptor = new TaskDescriptor(DESC_SORT_INVENTORY);
         EditTaskCommand commandWithSameValues =
                 new EditTaskCommand(INDEX_FIRST_OBJECT, copyTaskDescriptor);
         assertTrue(standardTaskCommand.equals(commandWithSameValues));

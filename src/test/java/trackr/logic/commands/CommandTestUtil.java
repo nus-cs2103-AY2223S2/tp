@@ -22,9 +22,10 @@ import trackr.model.SupplierList;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
-import trackr.model.task.TaskNameContainsKeywordsPredicate;
+import trackr.model.task.TaskContainsKeywordsPredicate;
+import trackr.model.task.TaskDescriptor;
 import trackr.testutil.EditSupplierDescriptorBuilder;
-import trackr.testutil.EditTaskDescriptorBuilder;
+import trackr.testutil.TaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -103,16 +104,16 @@ public class CommandTestUtil {
     public static final String INVALID_TASK_STATUS_DESC =
             " " + PREFIX_STATUS + "d2"; // status can only be d / D / n / N
 
-    public static final EditTaskCommand.EditTaskDescriptor DESC_SORT_INVENTORY;
-    public static final EditTaskCommand.EditTaskDescriptor DESC_BUY_FLOUR;
+    public static final TaskDescriptor DESC_SORT_INVENTORY;
+    public static final TaskDescriptor DESC_BUY_FLOUR;
 
     static {
-        DESC_SORT_INVENTORY = new EditTaskDescriptorBuilder()
+        DESC_SORT_INVENTORY = new TaskDescriptorBuilder()
                 .withTaskName(VALID_TASK_NAME_SORT_INVENTORY)
                 .withTaskDeadline(VALID_TASK_DEADLINE_2024)
                 .withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
 
-        DESC_BUY_FLOUR = new EditTaskDescriptorBuilder()
+        DESC_BUY_FLOUR = new TaskDescriptorBuilder()
                 .withTaskName(VALID_TASK_NAME_BUY_FLOUR)
                 .withTaskDeadline(VALID_TASK_DEADLINE_2100)
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
@@ -197,7 +198,9 @@ public class CommandTestUtil {
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
         final String[] splitTaskName = task.getTaskName().fullTaskName.split("\\s+");
-        model.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(splitTaskName[0])));
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
+        predicate.setTaskNameKeywords(Arrays.asList(splitTaskName[0]));
+        model.updateFilteredTaskList(predicate);
 
         assertEquals(1, model.getFilteredTaskList().size());
     }
