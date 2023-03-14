@@ -21,7 +21,7 @@ public class DeleteClientCommand extends Command {
     public static final String MESSAGE_USAGE =
             COMMAND_ACRONYM + ": Deletes the client with the given email address.\n"
 
-            + "Arguments: "
+            + "Compulsory Argument: "
             + CliSyntax.PREFIX_CLIENT_EMAIL + " EMAIL \n"
 
             + "Example: "

@@ -18,9 +18,10 @@ public class AddProjectCommand extends Command {
     public static final String MESSAGE_USAGE =
         COMMAND_ACRONYM + ": Adds a project to Mycelium. "
 
-            + "Arguments: "
+            + "Compulsory Arguments: "
             + CliSyntax.PREFIX_PROJECT_NAME + "PROJECT NAME "
-            + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
+            + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL\n"
+            + "Optional Arguments: "
             + CliSyntax.PREFIX_PROJECT_STATUS + "PROJECT STATUS "
             + CliSyntax.PREFIX_SOURCE + "PROJECT SOURCE "
             + CliSyntax.PREFIX_PROJECT_DESCRIPTION + "PROJECT DESCRIPTION "
