@@ -29,6 +29,8 @@ public class PersonCard extends UiPart<Region> {
 
     private final Logic logic;
 
+    private final MainWindow mainWindow;
+
     private final int index;
 
     @FXML
@@ -50,10 +52,11 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex, Logic logic) {
+    public PersonCard(Person person, int displayedIndex, Logic logic, MainWindow mainWindow) {
         super(FXML);
         this.person = person;
         this.logic = logic;
+        this.mainWindow = mainWindow;
         this.index = displayedIndex;
         id.setText(this.index + ". ");
         name.setText(person.getName().fullName);
@@ -68,8 +71,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private void showPersonalPane() {
         logic.setPersonId(this.index);
-        UiManager ui = new UiManager(logic);
-        System.out.println(this.index);
+        mainWindow.changeIndividualPane();
     }
 
     @Override

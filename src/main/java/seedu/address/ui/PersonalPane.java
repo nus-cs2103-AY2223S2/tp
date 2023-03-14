@@ -15,8 +15,6 @@ import seedu.address.model.person.Person;
 public class PersonalPane extends UiPart<Region> {
 
     private static final String FXML = "PersonalPane.fxml";
-    public final Person person;
-    private boolean status;
 
     @FXML
     private HBox personalPane;
@@ -39,7 +37,6 @@ public class PersonalPane extends UiPart<Region> {
      */
     public PersonalPane(Person person) {
         super(FXML);
-        this.person = person;
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -48,6 +45,4 @@ public class PersonalPane extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-
-
 }
