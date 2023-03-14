@@ -159,10 +159,10 @@ Format: `settier TIER_NUM POINT_THRESHOLD`
 * The points **must be a positive integer** 1, 2, 3, ​​…
 
 Examples:
-* `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be 
+* `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be
 in tier 1.
-* `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold 
-than tier 2. 
+* `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold
+than tier 2.
 
 ### Editing a person : `editc`
 

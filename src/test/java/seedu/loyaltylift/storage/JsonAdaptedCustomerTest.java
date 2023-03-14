@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
-import seedu.loyaltylift.model.customer.*;
+import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.customer.Points;
 
 public class JsonAdaptedCustomerTest {
     private static final String INVALID_NAME = "R@chel";

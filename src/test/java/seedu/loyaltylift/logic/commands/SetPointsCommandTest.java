@@ -1,24 +1,21 @@
 package seedu.loyaltylift.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_POINTS_AMY;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_POINTS_BOB;
+import static seedu.loyaltylift.testutil.Assert.assertThrows;
+import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.UserPrefs;
-import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.Points;
-import seedu.loyaltylift.testutil.CustomerBuilder;
-
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.loyaltylift.logic.commands.CommandTestUtil.*;
-import static seedu.loyaltylift.logic.commands.SetPointsCommand.MESSAGE_ARGUMENTS;
-import static seedu.loyaltylift.testutil.Assert.assertThrows;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
-import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
 
 public class SetPointsCommandTest {
 

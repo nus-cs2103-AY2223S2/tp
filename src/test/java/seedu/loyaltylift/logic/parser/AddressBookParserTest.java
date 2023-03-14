@@ -14,8 +14,17 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.logic.commands.*;
+import seedu.loyaltylift.logic.commands.AddCustomerCommand;
+import seedu.loyaltylift.logic.commands.ClearCommand;
+import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
+import seedu.loyaltylift.logic.commands.EditCustomerCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
+import seedu.loyaltylift.logic.commands.ExitCommand;
+import seedu.loyaltylift.logic.commands.FindCustomerCommand;
+import seedu.loyaltylift.logic.commands.HelpCommand;
+import seedu.loyaltylift.logic.commands.ListCustomerCommand;
+import seedu.loyaltylift.logic.commands.SetPointsCommand;
+import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;

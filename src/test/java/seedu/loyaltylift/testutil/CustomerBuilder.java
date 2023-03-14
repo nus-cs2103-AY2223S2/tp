@@ -107,7 +107,7 @@ public class CustomerBuilder {
         return this;
     }
 
-     /**
+    /**
      * Sets the {@code CustomerType} of the {@code Customer} that we are building.
      */
     public CustomerBuilder withCustomerType(CustomerType customerType) {
