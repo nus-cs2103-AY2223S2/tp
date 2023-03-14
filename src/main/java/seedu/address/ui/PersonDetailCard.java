@@ -5,6 +5,7 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
@@ -20,7 +21,8 @@ public class PersonDetailCard extends UiPart<Region> {
      */
 
     public final Person person;
-
+    @FXML
+    private HBox detailPane;
     @FXML
     private Label name;
     @FXML
