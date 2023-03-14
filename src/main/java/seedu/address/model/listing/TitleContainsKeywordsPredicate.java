@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-public class TitleContainsKeywordsPredicate implements Predicate<Listing>{
+
+/**
+ * Tests that a {@code Listing}'s {@code Title} matches any of the keywords given.
+ */
+public class TitleContainsKeywordsPredicate implements Predicate<Listing> {
     private final List<String> keywords;
 
     public TitleContainsKeywordsPredicate(List<String> keywords) {
