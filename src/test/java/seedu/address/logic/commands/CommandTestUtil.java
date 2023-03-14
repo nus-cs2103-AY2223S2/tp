@@ -18,8 +18,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ListingBook;
 import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
-import seedu.address.model.listing.TitleContainsKeywordsPredicate;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.listing.TitleContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.
