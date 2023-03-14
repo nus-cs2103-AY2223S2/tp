@@ -2,11 +2,11 @@ package seedu.fitbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
-
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all clients in address book whose name contains any of the argument keywords.

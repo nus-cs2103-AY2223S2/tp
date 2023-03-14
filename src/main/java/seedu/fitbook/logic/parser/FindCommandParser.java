@@ -6,7 +6,15 @@ import java.util.Arrays;
 
 import seedu.fitbook.logic.commands.FindCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
-import seedu.fitbook.model.client.predicate.*;
+import seedu.fitbook.model.client.predicate.AddressContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.AppointmentContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.CalorieContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.EmailContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.GenderContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.PhoneContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.TagContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.WeightContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -35,21 +43,21 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (prefix.length() == 1) {
             char prefixChar = prefix.charAt(0);
             switch (prefixChar) {
-                case 'n':
-                    return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-                case 'p':
-                    return new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-                case 'e':
-                    return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-                case 'a':
-                    return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-                case 't':
-                    return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-                case 'w':
-                    return new FindCommand(new WeightContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-                case 'g':
-                    return new FindCommand(new GenderContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-                default:
+            case 'n':
+                return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(allKeywords)));
+            case 'p':
+                return new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(allKeywords)));
+            case 'e':
+                return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(allKeywords)));
+            case 'a':
+                return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(allKeywords)));
+            case 't':
+                return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(allKeywords)));
+            case 'w':
+                return new FindCommand(new WeightContainsKeywordsPredicate(Arrays.asList(allKeywords)));
+            case 'g':
+                return new FindCommand(new GenderContainsKeywordsPredicate(Arrays.asList(allKeywords)));
+            default:
                 // Handle unexpected input
                 throw new IllegalArgumentException("Invalid prefix: " + prefixChar);
             }
