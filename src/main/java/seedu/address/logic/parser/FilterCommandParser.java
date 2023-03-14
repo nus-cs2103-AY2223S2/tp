@@ -38,49 +38,63 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+        try {
+            ArgumentMultimap argMultimap =
+                    ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
+                            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        int numOfPrefixesPresent = getNumOfPrefixesPresent(argMultimap,
-                PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+            int numOfPrefixesPresent = getNumOfPrefixesPresent(argMultimap,
+                    PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+                    PREFIX_EMAIL, PREFIX_TAG);
 
-        if (numOfPrefixesPresent > 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
-        }
+            if (numOfPrefixesPresent > 1) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FilterCommand.MESSAGE_USAGE));
+            }
 
-        if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
-        }
+            if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+                    PREFIX_EMAIL, PREFIX_TAG)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FilterCommand.MESSAGE_USAGE));
+            }
 
-        if (!isAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
-        }
+            if (!isAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+                    PREFIX_EMAIL, PREFIX_TAG)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FilterCommand.MESSAGE_USAGE));
+            }
 
-        Prefix prefix = getPrefix(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+            Prefix prefix = getPrefix(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+                    PREFIX_EMAIL, PREFIX_TAG);
 
-        if (prefix.getPrefix().equals("n/")) {
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            String fullName = name.toString();
-            String trimmedFullName = fullName.trim();
-            String[] nameKeywords = trimmedFullName.split("\\s+");
-            return new FilterCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else if (prefix.getPrefix().equals("p/")) {
-            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            String phoneNumber = phone.toString();
-            return new FilterCommand(new ContactContainsPhoneNumberPredicate(phoneNumber));
-        } else if (prefix.getPrefix().equals("e/")) {
-            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            String emailAddr = email.toString();
-            return new FilterCommand(new ContactContainsEmailPredicate(emailAddr));
-        } else if (prefix.getPrefix().equals("d/")) {
-            Address description = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-            String fullDescription = description.toString();
-            return new FilterCommand(new ContactContainsDescriptionPredicate(fullDescription));
-        } else if (prefix.getPrefix().equals("t/")) {
-            Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            return new FilterCommand(new ContactContainsTagPredicate(tagSet));
-        } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            if (prefix.getPrefix().equals("n/") && argMultimap.getAllValues(PREFIX_NAME).size() == 1) {
+                Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+                String fullName = name.toString();
+                String trimmedFullName = fullName.trim();
+                String[] nameKeywords = trimmedFullName.split("\\s+");
+                return new FilterCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            } else if (prefix.getPrefix().equals("p/") && argMultimap.getAllValues(PREFIX_PHONE).size() == 1) {
+                Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+                String phoneNumber = phone.toString();
+                return new FilterCommand(new ContactContainsPhoneNumberPredicate(phoneNumber));
+            } else if (prefix.getPrefix().equals("e/") && argMultimap.getAllValues(PREFIX_EMAIL).size() == 1) {
+                Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+                String emailAddr = email.toString();
+                return new FilterCommand(new ContactContainsEmailPredicate(emailAddr));
+            } else if (prefix.getPrefix().equals("d/") && argMultimap.getAllValues(PREFIX_ADDRESS).size() == 1) {
+                Address description = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+                String fullDescription = description.toString();
+                return new FilterCommand(new ContactContainsDescriptionPredicate(fullDescription));
+            } else if (prefix.getPrefix().equals("t/")) {
+                Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+                return new FilterCommand(new ContactContainsTagPredicate(tagSet));
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FilterCommand.MESSAGE_USAGE));
+            }
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FilterCommand.MESSAGE_USAGE));
         }
     }
 
