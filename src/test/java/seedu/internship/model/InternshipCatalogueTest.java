@@ -45,7 +45,7 @@ public class InternshipCatalogueTest {
         // Two internships with the same identity fields
         //Needs to be changed when we have valid internship feilds
         Internship editedML1 = new InternshipBuilder().withPosition(VALID_POSITION_ML1)
-                .withCompany(VALID_COMPANY_ML1).withId(VALID_ID_ML1).withDescription(VALID_DESCRIPTION_ML1)
+                .withCompany(VALID_COMPANY_ML1).withDescription(VALID_DESCRIPTION_ML1)
                 .withStatus(VALID_STATUS_ML1).withTags(VALID_TAG_IMPORTANT).build();
 
         List<Internship> newInternships = Arrays.asList(ML1, editedML1);

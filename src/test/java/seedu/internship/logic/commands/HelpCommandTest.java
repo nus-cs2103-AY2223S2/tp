@@ -5,6 +5,9 @@ import static seedu.internship.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.internship.model.Model;
+import seedu.internship.model.ModelManager;
+
 public class HelpCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();

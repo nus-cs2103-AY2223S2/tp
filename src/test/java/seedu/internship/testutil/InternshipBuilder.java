@@ -9,6 +9,7 @@ import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
+import seedu.internship.model.util.SampleDataUtil;
 
 
 /**

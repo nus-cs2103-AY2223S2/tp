@@ -6,7 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import seedu.internship.commons.core.index.Index;
-import seedu.internship.model.person.Person;
+import seedu.internship.model.Model;
+import seedu.internship.model.internship.Internship;
 
 /**
  * A utility class for test cases.
@@ -35,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the person in the {@code model}'s person list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+        return Index.fromOneBased(model.getFilteredInternshipList().size() / 2);
     }
 
     /**
      * Returns the last index of the person in the {@code model}'s person list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+        return Index.fromOneBased(model.getFilteredInternshipList().size());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the Internship in the {@code model}'s person list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Internship getInternship(Model model, Index index) {
+        return model.getFilteredInternshipList().get(index.getZeroBased());
     }
 }

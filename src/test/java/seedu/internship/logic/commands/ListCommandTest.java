@@ -1,12 +1,16 @@
 package seedu.internship.logic.commands;
 
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.internship.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.internship.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.internship.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
+import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import seedu.internship.model.Model;
+import seedu.internship.model.ModelManager;
+import seedu.internship.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -18,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalInternshipCatalogue(), new UserPrefs());
+        expectedModel = new ModelManager(model.getInternshipCatalogue(), new UserPrefs());
     }
 
     @Test
@@ -29,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
