@@ -9,11 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.fish.Address;
 import seedu.address.model.fish.Email;
 import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
 import seedu.address.model.task.Description;
 
@@ -152,5 +154,22 @@ public class ParserUtil {
             throw new ParseException(TankName.MESSAGE_CONSTRAINTS);
         }
         return new TankName(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String} into an {@code Tank}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     *
+     * @throws ParseException If the given {@code tank} is invalid.
+     */
+    public static Tank parseTank(String tank) throws ParseException {
+        requireNonNull(tank);
+        String trimmedTank = tank.trim();
+        if (!TankName.isValidTankName(trimmedTank)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Tank(new TankName(trimmedTank), new AddressBook());
+
     }
 }

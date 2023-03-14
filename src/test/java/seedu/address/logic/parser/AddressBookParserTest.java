@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -37,7 +38,7 @@ public class AddressBookParserTest {
     public void parseCommand_add() throws Exception {
         Fish fish = new FishBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(FishUtil.getAddCommand(fish));
-        assertEquals(new AddCommand(fish), command);
+        assertEquals(new AddCommand(fish, Index.fromOneBased(1)), command);
     }
 
     @Test

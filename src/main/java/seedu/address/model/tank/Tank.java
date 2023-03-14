@@ -2,18 +2,40 @@ package seedu.address.model.tank;
 
 import java.util.Objects;
 
+import seedu.address.model.AddressBook;
+import seedu.address.model.fish.Fish;
+
 /**
- *  Represents a Tank of the user
+ *  Represents a Tank of the user that contains fish.
  */
 public class Tank {
     private final TankName name;
+    private final AddressBook fishList;
 
-    public Tank(TankName tankName) {
+    /**
+     * Creates a Tank.
+     * @param tankName Name of tank.
+     * @param fishList Fish in tank.
+     */
+    public Tank(TankName tankName, AddressBook fishList) {
         this.name = tankName;
+        this.fishList = fishList;
+    }
+
+    public AddressBook getFishList() {
+        return this.fishList;
     }
 
     public TankName getTankName() {
         return this.name;
+    }
+
+    /**
+     * Adds a fish to the TankList.
+     * @param fish fish to be added.
+     */
+    public void addFish(Fish fish) {
+        fishList.addFish(fish);
     }
 
     /**

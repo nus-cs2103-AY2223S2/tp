@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTanks.getTypicalTanks;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -22,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTankList;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TankList;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
@@ -31,7 +34,7 @@ public class AddCommandTest {
 
     @Test
     public void constructor_nullFish_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCommand(null, Index.fromOneBased(1)));
     }
 
     @Test
@@ -39,7 +42,7 @@ public class AddCommandTest {
         ModelStubAcceptingFishAdded modelStub = new ModelStubAcceptingFishAdded();
         Fish validFish = new FishBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validFish).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validFish, Index.fromOneBased(1)).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFish), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validFish), modelStub.fishesAdded);
@@ -48,7 +51,7 @@ public class AddCommandTest {
     @Test
     public void execute_duplicateFish_throwsCommandException() {
         Fish validFish = new FishBuilder().build();
-        AddCommand addCommand = new AddCommand(validFish);
+        AddCommand addCommand = new AddCommand(validFish, Index.fromOneBased(1));
         ModelStub modelStub = new ModelStubWithFish(validFish);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FISH, () -> addCommand.execute(modelStub));
@@ -58,14 +61,14 @@ public class AddCommandTest {
     public void equals() {
         Fish alice = new FishBuilder().withName("Alice").build();
         Fish bob = new FishBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addAliceCommand = new AddCommand(alice, Index.fromOneBased(1));
+        AddCommand addBobCommand = new AddCommand(bob, Index.fromOneBased(1));
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddCommand addAliceCommandCopy = new AddCommand(alice, Index.fromOneBased(1));
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -82,6 +85,13 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        private TankList tankList;
+
+        private ModelStub() {
+            tankList = new TankList();
+            tankList.setTanks(getTypicalTanks());
+        }
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -197,10 +207,13 @@ public class AddCommandTest {
         public void updateFilteredTaskList(Predicate<Task> predicate) {}
 
         //=========== TankList =============================================================
-        public void setTankList(ReadOnlyTankList tankList) {}
+        @Override
+        public void setTankList(ReadOnlyTankList tankList) {
+            this.tankList.resetData(tankList);
+        }
 
         public ReadOnlyTankList getTankList() {
-            return null;
+            return tankList;
         }
 
         public Path getTankListFilePath() {
@@ -249,6 +262,10 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingFishAdded extends ModelStub {
         final ArrayList<Fish> fishesAdded = new ArrayList<>();
+
+        ModelStubAcceptingFishAdded() {
+            super();
+        }
 
         @Override
         public boolean hasFish(Fish fish) {
