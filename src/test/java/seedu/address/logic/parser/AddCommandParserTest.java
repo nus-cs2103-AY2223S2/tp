@@ -66,7 +66,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, TANK_DESC + NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + EMAIL_DESC_AMY
+        assertParseSuccess(parser, TANK_DESC + NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + SPECIES_DESC_AMY
                 + SPECIES_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedFish, Index.fromOneBased(1)));
 
@@ -97,7 +97,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing tank prefix
-        assertParseFailure(parser, VALID_TANK_INDEX + NAME_DESC_BOB + LAST_FED_DATE_DESC_AMY + EMAIL_DESC_BOB
+        assertParseFailure(parser, VALID_TANK_INDEX + NAME_DESC_BOB + LAST_FED_DATE_DESC_AMY + SPECIES_DESC_BOB
                         + ADDRESS_DESC_BOB, expectedMessage);
 
         // missing name prefix
@@ -133,7 +133,7 @@ public class AddCommandParserTest {
 
         // invalid email
         assertParseFailure(parser, TANK_DESC + NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + INVALID_SPECIES_DESC
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Species.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, TANK_DESC + NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + SPECIES_DESC_BOB
