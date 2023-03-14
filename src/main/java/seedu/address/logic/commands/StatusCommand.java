@@ -49,7 +49,6 @@ public class StatusCommand extends Command {
 
     private final Index index;
     private final LeadStatus status;
-    private final boolean isSearch;
 
     //TODO add DateTime timestamp of when the status was set.
 
@@ -64,7 +63,6 @@ public class StatusCommand extends Command {
 
         this.index = index;
         this.status = status;
-        this.isSearch = false;
     }
 
     /**
@@ -76,41 +74,31 @@ public class StatusCommand extends Command {
 
         this.index = null;
         this.status = status;
-        this.isSearch = true;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        if (!isSearch) {
-            requireNonNull(index);
-            if (index.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
 
-            Person toBeUpdated = lastShownList.get(index.getZeroBased());
-            LeadStatus currLeadStatus = toBeUpdated.getStatus();
-
-            if (status.equals(currLeadStatus)) {
-                throw new CommandException(MESSAGE_STATUS_IS_SAME);
-            }
-
-            Person updatedStatusPerson = createPersonWithNewStatus(toBeUpdated, status);
-
-            if (!toBeUpdated.isSamePerson(updatedStatusPerson) && model.hasPerson(updatedStatusPerson)) {
-                throw new CommandException(MESSAGE_STATUS_IS_SAME);
-            }
-
-            model.setPerson(toBeUpdated, updatedStatusPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-            return new CommandResult(String.format(MESSAGE_STATUS_ASSIGN_PERSON_SUCCESS, updatedStatusPerson.getName(),
-                    status));
+        requireNonNull(index);
+        if (index.getZeroBased() >= lastShownList.size()) { // index not found in list
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        //TODO look for matching lead status
-        throw new CommandException("find status: " + status);
+        Person toBeUpdated = lastShownList.get(index.getZeroBased());
+        LeadStatus currLeadStatus = toBeUpdated.getStatus();
+
+        if (status.equals(currLeadStatus)) { // lead status is already assigned
+            throw new CommandException(MESSAGE_STATUS_IS_SAME);
+        }
+
+        Person updatedStatusPerson = createPersonWithNewStatus(toBeUpdated, status);
+        model.setPerson(toBeUpdated, updatedStatusPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(String.format(MESSAGE_STATUS_ASSIGN_PERSON_SUCCESS, updatedStatusPerson.getName(),
+                status));
     }
 
     private static Person createPersonWithNewStatus(Person toBeUpdated, LeadStatus status) {
