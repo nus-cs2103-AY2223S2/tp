@@ -89,7 +89,7 @@ Precondition: User is logged in and has access to the add doctor feature.
 
 **MSS**
 
-1. User requests to add a doctor and enters the doctor's contact information, including name, department, and specialty..
+1. User requests to add a doctor by specifying their contact information, including name, department, and specialty.
 2. Docedex confirms the addition of the doctor contact.<br>
 
    Use case ends.
@@ -97,27 +97,25 @@ Precondition: User is logged in and has access to the add doctor feature.
 **Extensions**
 
 * 1a. User enters invalid command.
-      * 1a. Docedex detects error in command.
-        * 1a1. Docedex prompts user to correct the format of the command. <br>
-        * 1a2. User enters command and information to add a doctor.<br>
-        Steps 1a1-1a2 are repeated until a valid add command is entered.<br>
-        Use case resumes from step 2.
-      * 1b. Docedex detects duplicate information within the address book.
-        * 1b1. Docedex prompts user to confirm if they would like a new entry or <u>UCx Edit information.</u>
-        * 1b2. User chooses the option they desire.
-        Use cases resumes from step 2
+  * 1a. Docedex detects error in command.
+    * 1a1. Docedex prompts user to correct the format of the command. <br>
+    * 1a2. User enters command and information to add a doctor.<br>
+    Steps 1a1-1a2 are repeated until a valid add command is entered.<br>
+    Use case resumes from step 2.
+* 1b. Docedex detects duplicate information within the address book.
+  * 1b1. Docedex prompts user to confirm if they would like a new entry or <u>UCx Edit information.</u>
+  * 1b2. User chooses the option they desire.
+  Use cases resumes from step 2
 
 
-**Use case: UC3 - Delete Doctor**
+**Use case: UC2 - Delete Doctor**
 
 Actor: User
 
 **MSS**
 
-1. User requests to find doctors.
-2. Docedex shows a list of doctors.
-3. User request to delete a specific doctor from the list.
-4. Docedex confirms the deletion of the doctor contact.<br>
+1. User request to delete a specific doctor.
+2. Docedex confirms the deletion of the doctor contact.<br>
    Use case ends.
 
 **Extensions**
@@ -127,6 +125,25 @@ Actor: User
   * 1a2. User enters command to delete a doctor.<br>
   Steps 1a1-1a2 are repeated until a valid delete command is entered.<br>
   Use case resumes from step 2.
+
+
+**Use case: UC3 - Find Doctor**
+
+Actor: User
+
+**MSS**
+
+1. User requests to find doctors that meet a particular criteria, such as years of experience.
+2. Docedex shows a list of doctors that meet the criteria requested by user.
+   Use case ends.
+
+**Extensions**
+
+* 1a. Docedex detects an error in the command.
+  * 1a1. Docedex requests to correct the format of the command.
+  * 1a2. User enters command to delete a doctor.<br>
+    Steps 1a1-1a2 are repeated until a valid delete command is entered.<br>
+    Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
