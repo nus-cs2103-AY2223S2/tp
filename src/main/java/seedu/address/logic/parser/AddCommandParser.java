@@ -46,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Note> noteList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_NOTE));
         Status status = Status.APPLIED;
 
-        Person person = new Person(name, phone, email, address, status, noteList);
+        Person person = new Person(name, phone, email, address, status, null, noteList);
 
         return new AddCommand(person);
     }

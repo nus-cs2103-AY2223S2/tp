@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,8 +30,9 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedNote> notes = new ArrayList<>();
     private final String status;
+    private String interviewDate;
+    private final List<JsonAdaptedNote> notes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,12 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("status") String status, @JsonProperty("notes") List<JsonAdaptedNote> notes) {
+            @JsonProperty("status") String status, @JsonProperty("interviewDate") String interviewDate,
+                             @JsonProperty("notes") List<JsonAdaptedNote> notes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.status = status;
+        this.interviewDate = interviewDate;
         if (notes != null) {
             this.notes.addAll(notes);
         }
@@ -58,6 +62,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         status = source.getStatus().name();
+        interviewDate = source.getInterviewDateTimeString();
         notes.addAll(source.getNotes().stream()
                 .map(JsonAdaptedNote::new)
                 .collect(Collectors.toList()));
@@ -114,8 +119,15 @@ class JsonAdaptedPerson {
         }
         final Status modelStatus = Status.valueOf(status);
 
+        if (!InterviewDateTime.isValidDateTime(interviewDate)) {
+            throw new IllegalValueException(InterviewDateTime.MESSAGE_CONSTRAINTS);
+        }
+
+        //will not throw ParseException as it has been checked in previous line
+        final InterviewDateTime interviewDateTime = InterviewDateTime.createInterviewDateTime(interviewDate);
+
         final Set<Note> modelNotes = new HashSet<>(personNotes);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, modelNotes);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, interviewDateTime, modelNotes);
     }
 
 }
