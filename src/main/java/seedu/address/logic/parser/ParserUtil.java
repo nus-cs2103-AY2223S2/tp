@@ -41,6 +41,9 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Returns a ContactIndex from the string index.
+     */
     public static ContactIndex parseContactIndex(String index) throws ParseException {
         String trimmedIndex = index.trim();
         if (trimmedIndex.isEmpty()) {

@@ -10,7 +10,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
@@ -76,6 +75,12 @@ public class EditCommand extends Command {
         return editPerson(model);
     }
 
+    /**
+     * Returns an optional person which is found by contact index.
+     * @param index contact index of the friend.
+     * @param model
+     * @return
+     */
     public Optional<Person> findPersonByIndex(ContactIndex index, Model model) {
         List<Person> personList = model.getFilteredPersonList();
         return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
@@ -87,11 +92,8 @@ public class EditCommand extends Command {
      * @throws CommandException If an error occurs during command execution.
      */
     protected CommandResult editPerson(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
         Optional<Person> personToEditOption = findPersonByIndex(contactIndex, model);
-//        if (index.getZeroBased() >= lastShownList.size()) {
-//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//        }
+
         if (personToEditOption.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
