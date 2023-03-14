@@ -1,5 +1,7 @@
 package seedu.vms.storage.appointment;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -7,8 +9,6 @@ import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.FileUtil;
 import seedu.vms.commons.util.JsonUtil;
 import seedu.vms.model.appointment.AppointmentManager;
-
-import static java.util.Objects.requireNonNull;
 
 
 /**
@@ -22,7 +22,9 @@ public class JsonAppointmentStorage implements AppointmentStorage {
     @Override
     public AppointmentManager loadAppointments() throws IOException {
         try {
-            return JsonUtil.deserializeFromFile(USER_APPOINTMENT_PATH, JsonSerializableAppointmentManager.class).toModelType();
+            return JsonUtil
+                    .deserializeFromFile(USER_APPOINTMENT_PATH, JsonSerializableAppointmentManager.class)
+                    .toModelType();
         } catch (IllegalValueException illValEx) {
             throw new IOException(illValEx.getMessage());
         }

@@ -1,8 +1,9 @@
 package seedu.vms.storage.appointment;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.LocalDateTime;
 
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.exceptions.IllegalValueException;
