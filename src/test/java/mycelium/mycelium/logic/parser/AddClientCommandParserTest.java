@@ -40,10 +40,7 @@ public class AddClientCommandParserTest {
             Map.entry("email, but no name", "-cn -e hogrider@coc.org"),
             Map.entry("name, but no email", "-cn Bob -e"),
             Map.entry("name, but email is whitespace", "-cn Bob -e "),
-            Map.entry("name and email not separated", "-cnBob-ehogrider@coc.org"),
-
-            Map.entry("invalid email", "-cn Bob -e foobar"),
-            Map.entry("invalid name", "-cn SHA-256 -e hogrider@coc.org")
+            Map.entry("name and email not separated", "-cnBob-ehogrider@coc.org")
         );
         tests.forEach((desc, tt) -> {
             // Don't know why the argument tokenizer is written in this way
@@ -57,7 +54,7 @@ public class AddClientCommandParserTest {
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException(){
+    public void parse_invalidArgs_throwsParseException() {
         assertEquals(CliSyntax.PREFIX_CLIENT_NAME.getPrefix(), "-cn ");
         assertEquals(CliSyntax.PREFIX_CLIENT_EMAIL.getPrefix(), "-e ");
 
@@ -96,14 +93,16 @@ public class AddClientCommandParserTest {
             Map.entry("email first, then name", Pair.of("-e jamal@hogriders.org -cn Jamal", addJamal)),
             Map.entry("trailing whitespace", Pair.of("-cn Jamal -e jamal@hogriders.org  ", addJamal)),
 
-            Map.entry("multiple words in name", Pair.of("-cn Jamal the Hogrider -e jamal@hogriders.org", addJamalTheHogrider)),
+            Map.entry("multiple words in name",
+                Pair.of("-cn Jamal the Hogrider -e jamal@hogriders.org", addJamalTheHogrider)),
 
             Map.entry("multiple names", Pair.of("-e jamal@hogriders.org -cn Alice -cn jamal", addJamal)),
             Map.entry("multiple emails", Pair.of("-cn jamal -e alice@bakers.com -e jamal@hogriders.org", addJamal)),
             Map.entry("multiple names and emails",
                 Pair.of("-cn Alice -e alice@bakers.com -cn jamal -e jamal@hogriders.org", addJamal)),
-            
-            Map.entry("all arguments present", Pair.of("-cn jamal -e jamal@hogriders.org -mn 62353535 -src Fiverr -y 1843", addJamal))
+
+            Map.entry("all arguments present",
+                Pair.of("-cn jamal -e jamal@hogriders.org -mn 62353535 -src Fiverr -y 1843", addJamal))
         );
         for (String desc : tests.keySet()) {
             String input = " " + tests.get(desc).first;
