@@ -23,9 +23,9 @@ import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.mapping.PersonTask;
-import seedu.address.model.person.NameContainsExactKeywordsPredicate;
+import seedu.address.model.shared.Id;
 import seedu.address.model.task.SubjectContainsExactKeywordsPredicate;
-
+import seedu.address.model.task.Task;
 
 
 public class ReviewTaskCommandTest {
@@ -79,24 +79,40 @@ public class ReviewTaskCommandTest {
     }
 
     @Test
-    public void execute_validKeywords_NoPersonAssigned() {
+    public void execute_validKeywords_noPersonAssigned() {
         String expectedMessage = String.format(ReviewTaskCommand.MESSAGE_NO_PERSON_ASSIGNED, "Send email to client");
         SubjectContainsExactKeywordsPredicate predicate = preparePredicate("Send email to client");
         ReviewTaskCommand command = new ReviewTaskCommand(predicate);
-        // assignedTaskList here should be empty
-        ObservableList<PersonTask> assignedTaskList = expectedOfficeConnectModel
-                .getPersonTaskModelManager()
-                .getFilteredItemList();
-        // update expectedModel accordingly
-        model.updateFilteredPersonList(person -> assignedTaskList.stream()
+        Id tId = getAssignedTaskId(predicate);
+
+        ObservableList<PersonTask> assignedPersonList = getAssignedPersonList(tId);
+        assertEquals(Collections.emptyList(), assignedPersonList);
+
+        expectedModel.updateFilteredPersonList(person -> assignedPersonList.stream()
                 .anyMatch(personTask -> personTask.getPersonId().equals(person.getId())));
         expectedOfficeConnectModel.getTaskModelManager()
-                .updateFilteredItemList(assignedtask -> assignedTaskList.stream()
-                .anyMatch(personTask -> personTask.getTaskId().equals(assignedtask.getId())));
+                .updateFilteredItemList(task -> task.getId().equals(tId));
         // Person list expected to be empty
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                officeConnectModel, expectedOfficeConnectModel);
         // Task list expected to be updated accordingly
         assertTaskCommandSuccess(command, officeConnectModel, expectedMessage, expectedOfficeConnectModel);
+    }
+
+    private Id getAssignedTaskId(SubjectContainsExactKeywordsPredicate predicate) {
+        ObservableList<Task> taskList = officeConnectModel
+                .getTaskModelManager()
+                .getReadOnlyRepository().getReadOnlyRepository()
+                .filtered(predicate);
+        Id tId = taskList.get(0).getId();
+        return tId;
+    }
+
+    private ObservableList<PersonTask> getAssignedPersonList(Id tId) {
+        ObservableList<PersonTask> assignedPersonList = officeConnectModel.getPersonTaskModelManager()
+                .getFilteredItemList()
+                .filtered(persontask -> persontask.getTaskId().equals(tId));
+        return assignedPersonList;
     }
 
     /**

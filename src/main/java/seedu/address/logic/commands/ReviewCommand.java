@@ -64,7 +64,7 @@ public class ReviewCommand extends Command {
 
         ObservableList<PersonTask> assignedTaskList = getAssignedTaskList(officeConnectModel, pId);
 
-        displayAssignedTaskAndPerson(model, officeConnectModel, assignedTaskList);
+        displayAssignedTaskAndPerson(model, officeConnectModel, assignedTaskList, pId);
 
         if (assignedTaskList.isEmpty()) {
             return new CommandResult(String.format(MESSAGE_NO_TASK_ASSIGNED, name));
@@ -74,10 +74,9 @@ public class ReviewCommand extends Command {
     }
 
     private static void displayAssignedTaskAndPerson(Model model, OfficeConnectModel officeConnectModel,
-                                                     ObservableList<PersonTask> assignedTaskList) {
+                                                     ObservableList<PersonTask> assignedTaskList, Id pId) {
         RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
-        model.updateFilteredPersonList(assignedPerson -> assignedTaskList.stream()
-                .anyMatch(personTask -> personTask.getPersonId().equals(assignedPerson.getId())));
+        model.updateFilteredPersonList(person -> person.getId().equals(pId));
         taskModelManager.updateFilteredItemList(task -> assignedTaskList.stream()
                 .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
     }
