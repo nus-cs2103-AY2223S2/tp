@@ -121,7 +121,7 @@ public interface Model {
 
 
 
-        // NOTIFICATION =========================================
+    // NOTIFICATION =========================================
 
     /**
      * Deletes the given reminder.
