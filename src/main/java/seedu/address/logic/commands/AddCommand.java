@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -62,16 +65,21 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_FISH);
         }
 
+        /* Failed attempt at adding fish to tank.
+        Instead, change address of fish to tank, and sort filtered predicate.
         Tank tank;
         try {
-            tank = model.getTankList().getTankList().get(tankIndex.getZeroBased());
+            ObservableList<Tank> list = model.getFilteredTankList();
+            tank = model.getFilteredTankList().get(tankIndex.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_MISSING_TANK);
         }
         // check that tank is non-null
         requireNonNull(tank);
         // assigns fish to tank
-        tank.addFish(toAdd);
+        // tank.addFish(toAdd);
+        */
+
         model.addFish(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
