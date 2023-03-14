@@ -1,6 +1,6 @@
 ---
 layout: page
-Title: User Guide
+title: User Guide
 ---
 
 HospiSearch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** 
@@ -29,7 +29,7 @@ HospiSearch is a **desktop app for managing contacts, optimized for use via a Co
 
 ## Features
 
-####Notes:
+### Notes:
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
 e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
