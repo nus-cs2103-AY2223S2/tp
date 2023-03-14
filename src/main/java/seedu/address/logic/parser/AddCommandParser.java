@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -44,9 +45,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(Prefix.ADDRESS).get());
         TelegramHandle telegramHandle = ParserUtil
                 .parseTelegramHandle(argMultimap.getValue(Prefix.TELEGRAM_HANDLE).get());
+        ContactIndex placeholderContactIndex = new ContactIndex(Integer.MAX_VALUE);
         Set<GroupTag> groupTagList = ParserUtil.parseGroupTags(argMultimap.getAllValues(Prefix.GROUP_TAG));
         Set<ModuleTag> moduleTagList = ParserUtil.parseModuleTags(argMultimap.getAllValues(Prefix.MODULE_TAG));
-        Person person = new Person(name, phone, email, address, telegramHandle, groupTagList, moduleTagList);
+        Person person = new Person(name, phone, email, address, telegramHandle, placeholderContactIndex,
+                groupTagList, moduleTagList);
 
         return new AddCommand(person);
     }

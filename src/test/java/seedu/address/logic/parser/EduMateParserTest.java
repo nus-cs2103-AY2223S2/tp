@@ -22,6 +22,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.ContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -59,7 +60,7 @@ public class EduMateParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor);
         EditCommand command = (EditCommand) parser.parseCommand(commandString);
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditCommand(new ContactIndex(INDEX_FIRST_PERSON.getOneBased()), descriptor), command);
     }
 
     @Test
