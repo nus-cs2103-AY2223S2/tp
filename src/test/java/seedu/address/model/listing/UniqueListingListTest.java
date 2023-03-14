@@ -1,14 +1,5 @@
 package seedu.address.model.listing;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.listing.exceptions.DuplicateListingException;
-import seedu.address.model.listing.exceptions.ListingNotFoundException;
-import seedu.address.testutil.ListingBuilder;
-import seedu.address.testutil.TypicalApplicants;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,6 +7,17 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalListings.CHICKEN_RICE_UNCLE;
 import static seedu.address.testutil.TypicalListings.TOILET_CLEANER;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.listing.exceptions.DuplicateListingException;
+import seedu.address.model.listing.exceptions.ListingNotFoundException;
+import seedu.address.testutil.ListingBuilder;
+import seedu.address.testutil.TypicalApplicants;
 
 public class UniqueListingListTest {
 
@@ -69,7 +71,8 @@ public class UniqueListingListTest {
     }
     @Test
     public void setlListing_targetListingNotInList_throwsListingNotFoundException() {
-        assertThrows(ListingNotFoundException.class, () -> uniqueListingList.setListing(CHICKEN_RICE_UNCLE, CHICKEN_RICE_UNCLE));
+        assertThrows(ListingNotFoundException.class, () -> uniqueListingList
+                .setListing(CHICKEN_RICE_UNCLE, CHICKEN_RICE_UNCLE));
     }
 
     @Test
@@ -97,7 +100,7 @@ public class UniqueListingListTest {
     @Test
     public void setListing_editedListingDifferentIdentity_success() {
         uniqueListingList.add(CHICKEN_RICE_UNCLE);
-        uniqueListingList.setListing(CHICKEN_RICE_UNCLE,TOILET_CLEANER);
+        uniqueListingList.setListing(CHICKEN_RICE_UNCLE, TOILET_CLEANER);
         UniqueListingList expectedUniqueListingList = new UniqueListingList();
         expectedUniqueListingList.add(TOILET_CLEANER);
         assertEquals(expectedUniqueListingList, uniqueListingList);
@@ -107,8 +110,8 @@ public class UniqueListingListTest {
     public void setListing_editedListingHasNonUniqueIdentity_throwsDuplicateListingException() {
         uniqueListingList.add(CHICKEN_RICE_UNCLE);
         uniqueListingList.add(TOILET_CLEANER);
-        assertThrows(DuplicateListingException.class
-                , () -> uniqueListingList.setListing(CHICKEN_RICE_UNCLE, TOILET_CLEANER));
+        assertThrows(DuplicateListingException.class, () -> uniqueListingList
+                .setListing(CHICKEN_RICE_UNCLE, TOILET_CLEANER));
     }
 
     @Test
@@ -131,7 +134,7 @@ public class UniqueListingListTest {
 
     @Test
     public void setListings_nullUniqueListingList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueListingList.setListings((UniqueListingList)  null));
+        assertThrows(NullPointerException.class, () -> uniqueListingList.setListings((UniqueListingList) null));
     }
 
     @Test
@@ -146,5 +149,26 @@ public class UniqueListingListTest {
     @Test
     public void setListings_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueListingList.setListings((List<Listing>) null));
+    }
+
+    @Test
+    public void setListings_list_replaceOwnListWithProvidedList() {
+        uniqueListingList.add(CHICKEN_RICE_UNCLE);
+        List<Listing> listingList = Collections.singletonList(TOILET_CLEANER);
+        uniqueListingList.setListings(listingList);
+        UniqueListingList expectedUniqueListingList = new UniqueListingList();
+        expectedUniqueListingList.add(TOILET_CLEANER);
+        assertEquals(expectedUniqueListingList, uniqueListingList);
+    }
+
+    @Test
+    public void setListings_listWithDuplicatePersons_throwsDuplicateListingException() {
+        List<Listing> listWithDuplicateListings = Arrays.asList(CHICKEN_RICE_UNCLE, CHICKEN_RICE_UNCLE);
+        assertThrows(DuplicateListingException.class, () -> uniqueListingList.setListings(listWithDuplicateListings));
+    }
+
+    @Test
+    public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
+        //todo
     }
 }
