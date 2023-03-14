@@ -35,9 +35,9 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Listing}
      */
-    public AddCommand(Listing listing) {
-        requireNonNull(listing);
-        toAdd = listing;
+    public AddCommand(Listing listingToAdd) {
+        requireNonNull(listingToAdd);
+        toAdd = listingToAdd;
     }
 
     @Override
