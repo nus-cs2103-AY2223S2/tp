@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import vimification.commons.exceptions.DataConversionException;
-import vimification.model.ReadOnlyAddressBook;
+import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends TaskPlannerStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getTaskListFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaskPlanner> readTaskList() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveTaskList(ReadOnlyTaskPlanner taskList) throws IOException;
 
 }

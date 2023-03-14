@@ -1,11 +1,8 @@
 package vimification.logic.commands;
 
-<<<<<<< HEAD:src/main/java/seedu/address/logic/commands/RemarkCommand.java
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-=======
+import vimification.logic.commands.exceptions.CommandException;
 import vimification.model.Model;
->>>>>>> b327d0ef68878bc728042fdb72e2a9056a10e60d:src/main/java/vimification/logic/commands/RemarkCommand.java
+
 
 public class RemarkCommand extends Command {
 
