@@ -30,32 +30,32 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New listing added: %1$s";
     public static final String MESSAGE_DUPLICATE_LISTING = "This listing already exists in the listing book";
 
-    private final Listing toAdd;
+    private final Listing listingToAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Listing}
      */
     public AddCommand(Listing listingToAdd) {
         requireNonNull(listingToAdd);
-        toAdd = listingToAdd;
+        this.listingToAdd = listingToAdd;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasListing(toAdd)) {
+        if (model.hasListing(listingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_LISTING);
         }
 
-        model.addListing(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addListing(listingToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, listingToAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && listingToAdd.equals(((AddCommand) other).listingToAdd));
     }
 }
