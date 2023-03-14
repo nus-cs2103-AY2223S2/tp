@@ -46,11 +46,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_JOE = "Block 123, Joe Street 3";
 
     public static final String VALID_STATUS_AMY = "APPLIED";
+    public static final String VALID_INTERVIEW_DATE_AMY = "";
     public static final String VALID_STATUS_BOB = "APPLIED";
     public static final String VALID_STATUS_JOE = "REJECTED";
 
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friends";
+    public static final String VALID_NOTE_HUSBAND = "husband";
+    public static final String VALID_NOTE_FRIEND = "friends";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -68,8 +69,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ADDRESS_DESC_JOE = " " + PREFIX_ADDRESS + VALID_ADDRESS_JOE;
 
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_NOTE + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_NOTE + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_NOTE + VALID_NOTE_FRIEND;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_NOTE + VALID_NOTE_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -92,13 +93,13 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withNotes(VALID_NOTE_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withNotes(VALID_NOTE_HUSBAND, VALID_NOTE_FRIEND).build();
         DESC_JOE = new EditPersonDescriptorBuilder().withName(VALID_NAME_JOE)
                 .withPhone(VALID_PHONE_JOE).withEmail(VALID_EMAIL_JOE).withAddress(VALID_ADDRESS_JOE)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withNotes(VALID_NOTE_HUSBAND).build();
     }
 
     /**

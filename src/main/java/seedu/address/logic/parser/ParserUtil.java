@@ -10,12 +10,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Note;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -98,15 +98,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String note} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code note} is invalid.
      */
     public static Note parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Note.isValidTagName(trimmedTag)) {
+        if (!Note.isValidNoteName(trimmedTag)) {
             throw new ParseException(Note.MESSAGE_CONSTRAINTS);
         }
         return new Note(trimmedTag);
@@ -117,11 +117,11 @@ public class ParserUtil {
      */
     public static Set<Note> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Note> tagSet = new HashSet<>();
+        final Set<Note> noteSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            noteSet.add(parseTag(tagName));
         }
-        return tagSet;
+        return noteSet;
     }
 
     /**

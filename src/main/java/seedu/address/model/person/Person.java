@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.tag.Note;
+import seedu.address.model.note.Note;
 
 /**
  * Represents a Person in the address book.
@@ -25,18 +25,20 @@ public class Person {
     private final Address address;
     private Status status;
     private final Set<Note> notes = new HashSet<>();
-    private Optional<InterviewDateTime> interviewDateTime = Optional.empty();
+    private Optional<InterviewDateTime> interviewDateTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Status status, Set<Note> notes) {
+    public Person(Name name, Phone phone, Email email, Address address, Status status,
+                  InterviewDateTime interviewDateTime, Set<Note> notes) {
         requireAllNonNull(name, phone, email, address, notes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.status = status;
+        this.interviewDateTime = Optional.ofNullable(interviewDateTime);
         this.notes.addAll(notes);
     }
 
@@ -61,7 +63,7 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable note set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Note> getNotes() {
@@ -74,6 +76,10 @@ public class Person {
      */
     public Optional<InterviewDateTime> getInterviewDateTime() {
         return interviewDateTime;
+    }
+
+    public String getInterviewDateTimeString() {
+        return interviewDateTime.map(InterviewDateTime::toString).orElse("");
     }
 
     /**
@@ -143,6 +149,23 @@ public class Person {
     }
 
     /**
+     * Returns true if the other person has the same interview date.
+     * This is needed as Optional's equals method fails when two different Optional objects
+     * are created with same value.
+     */
+    public boolean hasSameDate(Person other) {
+        Optional<InterviewDateTime> idt1 = getInterviewDateTime();
+        Optional<InterviewDateTime> idt2 = other.getInterviewDateTime();
+        if (idt1.isEmpty() && idt2.isEmpty()) { //both dates are null
+            return true;
+        } else if (idt1.isPresent() && idt2.isPresent()) { //both dates exist
+            return idt1.get().getDateTime().equals(idt2.get().getDateTime());
+        } else { //only one exists
+            return false;
+        }
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -157,13 +180,14 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getNotes().equals(getNotes())
                 && otherPerson.getStatus().equals(getStatus())
-                && otherPerson.getInterviewDateTime().equals(getInterviewDateTime());
+                && otherPerson.hasSameDate(this);
     }
 
     @Override
@@ -183,14 +207,12 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Status: ")
-                .append(getStatus())
-                .append("; Interview Date: ")
-                .append(getInterviewDateTime());
+                .append(getStatus());
 
-        Set<Note> tags = getNotes();
-        if (!tags.isEmpty()) {
+        Set<Note> notes = getNotes();
+        if (!notes.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            notes.forEach(builder::append);
         }
         return builder.toString();
     }

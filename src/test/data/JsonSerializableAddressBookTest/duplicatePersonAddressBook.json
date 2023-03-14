@@ -5,12 +5,14 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "status" : "APPLIED",
-    "tagged": [ "friends" ]
+    "interviewDate" : "",
+    "notes": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "status" : "APPLIED",
+    "interviewDate" : "",
     "address": "4th street"
   } ]
 }
