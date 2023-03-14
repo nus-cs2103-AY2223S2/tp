@@ -143,6 +143,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return listingBook.equals(other.listingBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredListings.equals(other.listingBook);
+                && filteredListings.equals(other.filteredListings);
     }
 }
