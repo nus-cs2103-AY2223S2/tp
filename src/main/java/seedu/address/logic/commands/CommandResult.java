@@ -47,6 +47,11 @@ public class CommandResult {
     }
 
     @Override
+    public String toString() {
+        return feedbackToUser + "; showHelp: " + showHelp + "; exit: " + exit;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

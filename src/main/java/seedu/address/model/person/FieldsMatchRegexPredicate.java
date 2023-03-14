@@ -35,8 +35,8 @@ public class FieldsMatchRegexPredicate implements Predicate<Person> {
         return inRegexList(names, person.getName().fullName)
                 && inRegexList(phones, person.getPhone().value)
                 && inRegexList(emails, person.getEmail().value)
-                && inRegexList(emails, person.getAddress().value)
-                && person.getTags().stream().anyMatch(tag -> inRegexList(tags, tag.tagName))
+                && inRegexList(addresses, person.getAddress().value)
+                && (tags.isEmpty() || person.getTags().stream().anyMatch(tag -> inRegexList(tags, tag.tagName)))
                 && inRegexList(remarks, person.getRemark().value);
     }
 
