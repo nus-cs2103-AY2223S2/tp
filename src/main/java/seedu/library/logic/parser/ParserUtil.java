@@ -59,7 +59,7 @@ public class ParserUtil {
     public static Progress parseProgress(String progress) throws ParseException {
         requireNonNull(progress);
         String trimmedProgress = progress.trim();
-        if (!Progress.isValidProgress(trimmedPhone)) {
+        if (!Progress.isValidProgress(trimmedProgress)) {
             throw new ParseException(Progress.MESSAGE_CONSTRAINTS);
         }
         return new Progress(trimmedProgress);
