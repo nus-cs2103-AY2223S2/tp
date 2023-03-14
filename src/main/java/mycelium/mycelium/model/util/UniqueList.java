@@ -51,7 +51,8 @@ public class UniqueList<T extends IsSame<T>> implements Iterable<T> {
             throw new ItemNotFoundException(toRemove);
         }
         assert filtered.size() == 1 : "Invariant violated: list contains duplicate items";
-        assert internalList.remove(filtered.get(0)) : "Invariant violated: list does not contain item to remove";
+        boolean isRemoved = internalList.remove(filtered.get(0));
+        assert isRemoved : "Invariant violated: list does not contain item to remove";
     }
 
     /**
