@@ -61,9 +61,14 @@ public class LogicManager implements Logic {
         return model.getAddressBook();
     }
 
+//    @Override
+//    public ObservableList<Person> getFilteredPersonList() {
+//        return model.getFilteredPersonList();
+//    }
+
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Category> getCategoryList() {
+        return model.getCategoryList();
     }
 
     @Override
@@ -72,13 +77,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Category> getCategoryList() {
-        return model.getCategoryList();
+    public Path getAddressBookFilePath() {
+        return model.getAddressBookFilePath();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Person> getFilteredPersonList() {
+        return model.getFilteredPersonList();
     }
 
     @Override

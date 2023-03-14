@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
-import java.sql.Date;
-import java.util.Calendar;
+import java.time.Instant;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,10 +27,11 @@ public class JsonAdaptedExpense {
      */
     @JsonCreator
     public JsonAdaptedExpense(@JsonProperty("name") String name, @JsonProperty("amount") double amount,
-            @JsonProperty("date") Date date, @JsonProperty("category") Category category) {
+            @JsonProperty("date") String date, @JsonProperty("category") Category category) {
         this.name = name;
         this.amount = amount;
-        this.date = date;
+        Instant instant = Instant.parse(date);
+        this.date = Date.from(instant);
         this.category = category;
     }
 
@@ -39,19 +40,9 @@ public class JsonAdaptedExpense {
      * https://stackoverflow.com/questions/530012/how-to-convert-java-util-date-to-java-sql-date
      */
     public JsonAdaptedExpense(Expense source) {
-        java.util.Calendar cal = Calendar.getInstance();
-        java.util.Date utilDate = source.getDate();
-        cal.setTime(utilDate);
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        // java.sql.Date(source.getDate().getTime()) will be tried if this doesn't work
-        java.sql.Date sqlDate = new java.sql.Date(cal.getTime().getTime());
-
         name = source.getName();
         amount = source.getAmount();
-        date = sqlDate;
+        date = source.getDate();
         category = source.getCategory();
     }
 

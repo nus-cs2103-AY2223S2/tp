@@ -4,19 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.category.Category;
-import seedu.address.model.category.UserDefinedCategory;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.person.Person;
 
@@ -30,7 +25,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Expense> filteredExpenses;
-    private final ObservableList<Category> allCategories;
+    private final FilteredList<Category> filteredCategories;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -42,23 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        ArrayList<Category> categoryList = new ArrayList<>();
-        ArrayList<Expense> expenseList = new ArrayList<>();
-        //TODO be able to obtain the category, expense list from FastTrack
-        categoryList.add(new UserDefinedCategory("groceries", "xxx"));
-        categoryList.add(new UserDefinedCategory("entertainment", "xxx"));
-        Category cat = new UserDefinedCategory("drink", "xxx");
-        String sDate1 = "31/12/1998";
-        Date date1 = new Date();
-        try {
-            date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        expenseList.add(new Expense("food", 34.20, date1, cat));
-        expenseList.add(new Expense("dinner", 19.3, date1, cat));
-        filteredExpenses = new FilteredList<>(FXCollections.observableArrayList(expenseList));
-        allCategories = FXCollections.observableArrayList(categoryList);
+        filteredExpenses = new FilteredList<>(this.addressBook.getExpenseList());
+        filteredCategories = new FilteredList<>(this.addressBook.getCategoryList());
     }
 
     public ModelManager() {
@@ -119,14 +100,30 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasCategory(Category category) {
+        requireNonNull(category);
+        return addressBook.hasCategory(category);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+    }
+
+    @Override
+    public void deleteCategory(Category target) {
+        addressBook.removeCategory(target);
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addCategory(Category toAdd) {
+        addressBook.addCategory(toAdd);
     }
 
     @Override
@@ -147,11 +144,13 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -173,13 +172,28 @@ public class ModelManager implements Model {
     }
 
     //=========== Category List Accessors =============================================================
-    /**
-     * Returns an unmodifiable view of the list of {@code Category} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
+
+    @Override
+    public ObservableList<Category> getFilteredCategoryList() {
+        return filteredCategories;
+    }
+
     @Override
     public ObservableList<Category> getCategoryList() {
-        return allCategories;
+        return addressBook.getCategoryList();
+    }
+
+    @Override
+    public void updateFilteredCategoryList(Predicate<Category> predicate) {
+        requireNonNull(predicate);
+        filteredCategories.setPredicate(predicate);
+    }
+
+
+    @Override
+    public boolean hasCategory(String categoryName) {
+        requireNonNull(categoryName);
+        return addressBook.hasCategory(categoryName);
     }
 
     //=========== Filtered Expense List Accessors =============================================================
@@ -192,4 +206,23 @@ public class ModelManager implements Model {
     public ObservableList<Expense> getFilteredExpenseList() {
         return filteredExpenses;
     }
+
+    @Override
+    public void updateFilteredExpensesList(Predicate<Expense> predicate) {
+        requireNonNull(predicate);
+        filteredExpenses.setPredicate(predicate);
+    }
+
+    @Override
+    public void addExpense(Expense expense) {
+        addressBook.addExpense(expense);
+        updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
+    }
+
+    @Override
+    public void deleteExpense(Expense expense) {
+        addressBook.deleteExpense(expense);
+        updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
+    }
+
 }

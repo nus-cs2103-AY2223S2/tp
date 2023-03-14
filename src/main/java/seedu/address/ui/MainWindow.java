@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -120,9 +121,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
         listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -210,7 +211,14 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            switchListPanel(false);
+            if (Objects.equals(commandText, "lcat")) {
+                switchListPanel(false);
+            }
+
+            if (Objects.equals(commandText, "list")) {
+                switchListPanel(true);
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
