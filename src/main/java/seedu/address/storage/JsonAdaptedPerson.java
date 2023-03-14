@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +31,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String address;
     private final String payRate;
+    private final String startDateTime;
+    private final String endDateTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +40,14 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("address") String address, @JsonProperty("payRate") String payRate,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("address") String address, @JsonProperty("payRate") String payRate, @JsonProperty("startDateTime") String startDateTime
+            , @JsonProperty("endDateTIME") String endDateTime, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.payRate = payRate;
+        this.startDateTime = startDateTime;
+        this.endDateTime = JsonAdaptedPerson.this.endDateTime;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +61,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         address = source.getAddress().value;
         payRate = source.getPayRate().value;
+        startDateTime = LocalDateTime.parse(source.getSession().getStartDateTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(Session.DATE_TIME_FORMATTER);
+        endDateTime = LocalDateTime.parse(source.getSession().getEndDateTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(Session.DATE_TIME_FORMATTER);
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +111,24 @@ class JsonAdaptedPerson {
         }
         final PayRate modelPayRate = new PayRate(payRate);
 
+        if (startDateTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Session.class.getSimpleName()));
+        }
+        if (!Session.isValidDateTimeFormat(startDateTime)) {
+            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
+        }
+
+        if (endDateTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Session.class.getSimpleName()));
+        }
+        if (!Session.isValidDateTimeFormat(endDateTime)) {
+            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
+        }
+        final Session modelSession = new Session(startDateTime, endDateTime);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelAddress, modelPayRate, modelTags);
+        return new Person(modelName, modelPhone, modelAddress, modelPayRate, modelSession, modelTags);
     }
+
 
 }

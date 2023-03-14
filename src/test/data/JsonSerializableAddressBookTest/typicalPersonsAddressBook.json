@@ -1,46 +1,89 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "payRate" : "10",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "payRate" : "11",
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "address" : "wall street",
-    "payRate" : "12",
-    "tagged" : [ ]
-  }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "address" : "10th street",
-    "payRate" : "13",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "address" : "michegan ave",
-    "payRate" : "14",
-    "tagged" : [ ]
-  }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "address" : "little tokyo",
-    "payRate" : "15",
-    "tagged" : [ ]
-  }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "address" : "4th street",
-    "payRate" : "16",
-    "tagged" : [ ]
-  } ]
+  "persons": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "payRate": "10",
+      "tagged": [
+        "friends"
+      ],
+      "session": {
+        "startDateTime": "15-03-2022 10:00",
+        "endDateTime": "15-03-2022 12:00"
+      }
+    },
+    {
+      "name": "Benson Meier",
+      "phone": "98765432",
+      "address": "311, Clementi Ave 2, #02-25",
+      "payRate": "11",
+      "tagged": [
+        "owesMoney",
+        "friends"
+      ],
+      "session": {
+        "startDateTime": "15-03-2022 13:00",
+        "endDateTime": "15-03-2022 14:00"
+      }
+    },
+    {
+      "name": "Carl Kurz",
+      "phone": "95352563",
+      "address": "wall street",
+      "payRate": "12",
+      "tagged": [],
+      "session": {
+        "startDateTime": "16-03-2022 10:00",
+        "endDateTime": "16-03-2022 12:00"
+      }
+    },
+    {
+      "name": "Daniel Meier",
+      "phone": "87652533",
+      "address": "10th street",
+      "payRate": "13",
+      "tagged": [
+        "friends"
+      ],
+      "session": {
+        "startDateTime": "16-03-2022 13:00",
+        "endDateTime": "16-03-2022 14:00"
+      }
+    },
+    {
+      "name": "Elle Meyer",
+      "phone": "9482224",
+      "address": "michegan ave",
+      "payRate": "14",
+      "tagged": [],
+      "session": {
+        "startDateTime": "17-03-2022 10:00",
+        "endDateTime": "17-03-2022 12:00"
+      }
+    },
+    {
+      "name": "Fiona Kunz",
+      "phone": "9482427",
+      "address": "little tokyo",
+      "payRate": "15",
+      "tagged": [],
+      "session": {
+        "startDateTime": "17-03-2022 13:00",
+        "endDateTime": "17-03-2022 14:00"
+      }
+    },
+    {
+      "name": "George Best",
+      "phone": "9482442",
+      "address": "4th street",
+      "payRate": "16",
+      "tagged": [],
+      "session": {
+        "startDateTime": "18-03-2022 10:00",
+        "endDateTime": "18-03-2022 12:00"
+      }
+    }
+  ]
 }
