@@ -30,7 +30,6 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_newClient_success() {
         Client validClient = new ClientBuilder().build();
-
         FitBookModel expectedFitBookModel =
                 new FitBookModelManager(model.getFitBook(), model.getFitBookExerciseRoutine(), new UserPrefs());
         expectedFitBookModel.addClient(validClient);

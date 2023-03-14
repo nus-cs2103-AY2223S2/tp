@@ -163,6 +163,7 @@ public class AddCommandTest {
         }
 
         // Routine not used here.
+
         @Override
         public boolean hasRoutine(Routine routine) {
             throw new AssertionError("This method should not be called.");

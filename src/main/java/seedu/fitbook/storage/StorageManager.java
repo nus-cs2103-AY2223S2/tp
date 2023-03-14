@@ -21,8 +21,8 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private FitBookStorage fitBookStorage;
     private UserPrefsStorage userPrefsStorage;
-    private FitBookExerciseRoutineStorage fitBookExerciseRoutineStorage;
 
+    private FitBookExerciseRoutineStorage fitBookExerciseRoutineStorage;
     /**
      * Creates a {@code StorageManager} with the given {@code FitBookStorage} and {@code UserPrefStorage}.
      */

@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.fitbook.model.routines.exceptions.DuplicateRoutineException;
 import seedu.fitbook.model.routines.exceptions.RoutineNotFoundException;
 
-
 /**
  * A list of routines that enforces uniqueness between its elements and does not allow nulls.
  * A routine is considered unique by comparing using {@code Routine#isSameRoutine(Routine)}.

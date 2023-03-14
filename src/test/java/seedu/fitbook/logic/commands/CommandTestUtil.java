@@ -27,6 +27,7 @@ import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
 import seedu.fitbook.model.routines.Routine;
+import seedu.fitbook.model.routines.RoutineNameContainsKeywordsPredicate;
 import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
 import seedu.fitbook.testutil.routine.EditRoutineDescriptorBuilder;
 
@@ -187,20 +188,18 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredClientList().size());
     }
-
     /**
-     * Updates {@code model}'s filtered list to show only the routine at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the Routine at the given {@code targetIndex} in the
      * {@code model}'s FitBook.
      */
     public static void showRoutineAtIndex(FitBookModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredRoutineList().size());
 
         Routine routine = model.getFilteredRoutineList().get(targetIndex.getZeroBased());
-        final String[] splitName = routine.getRoutineName().routineName.split("\\s+");
-        //TODO: When find function is up. Do this.
-        model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitRoutineName = routine.getRoutineName().routineName.split("\\s+");
+        model.updateFilteredRoutineList(new RoutineNameContainsKeywordsPredicate(Arrays.asList(splitRoutineName[0])));
 
-        assertEquals(1, model.getFilteredClientList().size());
+        assertEquals(1, model.getFilteredRoutineList().size());
     }
 
 }

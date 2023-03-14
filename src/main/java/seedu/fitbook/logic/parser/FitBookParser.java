@@ -9,14 +9,18 @@ import java.util.regex.Pattern;
 import seedu.fitbook.logic.commands.AddCommand;
 import seedu.fitbook.logic.commands.AddRoutineCommand;
 import seedu.fitbook.logic.commands.ClearCommand;
+import seedu.fitbook.logic.commands.ClearRoutinesCommand;
 import seedu.fitbook.logic.commands.Command;
 import seedu.fitbook.logic.commands.DeleteCommand;
+import seedu.fitbook.logic.commands.DeleteRoutineCommand;
 import seedu.fitbook.logic.commands.EditCommand;
 import seedu.fitbook.logic.commands.EditRoutineCommand;
 import seedu.fitbook.logic.commands.ExitCommand;
 import seedu.fitbook.logic.commands.FindCommand;
+import seedu.fitbook.logic.commands.FindRoutineCommand;
 import seedu.fitbook.logic.commands.HelpCommand;
 import seedu.fitbook.logic.commands.ListClientsCommand;
+import seedu.fitbook.logic.commands.ListRoutinesCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -64,16 +68,29 @@ public class FitBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case ClearRoutinesCommand.COMMAND_WORD:
+            return new ClearRoutinesCommand();
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListClientsCommand.COMMAND_WORD:
             return new ListClientsCommand();
+
+        case ListRoutinesCommand.COMMAND_WORD:
+            return new ListRoutinesCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case FindRoutineCommand.COMMAND_WORD:
+            return new FindRoutineCommandParser().parse(arguments);
+
+        case DeleteRoutineCommand.COMMAND_WORD:
+            return new DeleteRoutineCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

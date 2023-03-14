@@ -30,7 +30,7 @@ public class FitBookModelManager implements FitBookModel {
      * Initializes a FitBookModelManager with the given addressBook and userPrefs.
      */
     public FitBookModelManager(ReadOnlyFitBook fitBook, ReadOnlyFitBookExerciseRoutine fitBookExerciseRoutine,
-            ReadOnlyUserPrefs userPrefs) {
+                               ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(fitBook, fitBookExerciseRoutine, userPrefs);
 
         logger.fine("Initializing with FitBook: " + fitBook + " , exercises routines "
