@@ -22,6 +22,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Mark;
@@ -115,6 +116,7 @@ public class EditCommand extends Command {
         Rate updatedRate = editPersonDescriptor.getRate().orElse(personToEdit.getRate());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Timing updatedTiming = editPersonDescriptor.getTiming().orElse(personToEdit.getTiming());
+        Contact updatedContact = editPersonDescriptor.getContact().orElse(personToEdit.getContact());
         Mark updatedMark = editPersonDescriptor.getMark().orElse(personToEdit.getMark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
@@ -122,6 +124,7 @@ public class EditCommand extends Command {
         if (updatedMark.isDone()) {
             updatedEvent.mark();
         }
+        updatedEvent.linkContact(updatedContact);
 
         return updatedEvent;
     }
@@ -153,6 +156,7 @@ public class EditCommand extends Command {
         private Rate rate;
         private Address address;
         private Timing timing;
+        private Contact contact;
         private Mark mark;
         private Set<Tag> tags;
 
@@ -167,6 +171,7 @@ public class EditCommand extends Command {
             setRate(toCopy.rate);
             setAddress(toCopy.address);
             setTiming(toCopy.timing);
+            setContact(toCopy.contact);
             setMark(toCopy.mark);
             setTags(toCopy.tags);
         }
@@ -208,6 +213,14 @@ public class EditCommand extends Command {
 
         public Optional<Timing> getTiming() {
             return Optional.ofNullable(timing);
+        }
+
+        public void setContact(Contact contact) {
+            this.contact = contact;
+        }
+
+        public Optional<Contact> getContact() {
+            return Optional.ofNullable(contact);
         }
 
         public void setMark(Mark mark) {
