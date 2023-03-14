@@ -1,9 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.tutee;
 
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Tutee's remark in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Remark {
