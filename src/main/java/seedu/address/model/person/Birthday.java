@@ -31,6 +31,10 @@ public class Birthday {
         value = LocalDate.of(year, month, day);
     }
 
+    /**
+     * Constructs an {@code Birthday}.
+     * @param birthday A  birthday as LocalDate.
+     */
     public Birthday(LocalDate birthday) {
         requireNonNull(birthday);
         value = birthday;
