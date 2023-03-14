@@ -20,8 +20,6 @@ public class AddDeckCommandParser implements Parser<AddDeckCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddDeckCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args);
 
         Deck deck = ParserUtil.parseDeck(args);
 
