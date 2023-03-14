@@ -43,7 +43,6 @@ public class RecipeDetailsPanel extends UiPart<Region> {
         super(FXML);
     }
 
-
     public void setRecipeDetails(Recipe recipe) {
         if (recipe != null) {
             recipeTitle.setText(recipe.getTitle().toString());
@@ -51,10 +50,10 @@ public class RecipeDetailsPanel extends UiPart<Region> {
             ingredients.getChildren().clear();
             ingredientsTitle.setText("What you will need:");
             recipe.getIngredients().stream()
-                            .forEach(ingredient -> {
-                                Label ingredientLabel = new Label(ingredient.ingredient);
-                                ingredients.getChildren().add(ingredientLabel);
-                            });
+                    .forEach(ingredient -> {
+                        Label ingredientLabel = new Label(ingredient.ingredient);
+                        ingredients.getChildren().add(ingredientLabel);
+                    });
             steps.getChildren().clear();
             stepsTitle.setText("Instructions:");
             recipe.getSteps().stream()
