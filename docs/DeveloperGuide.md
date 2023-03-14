@@ -32,7 +32,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 * is reasonably comfortable using CLI apps
 * can type fast
 
-**Value proposition**: 
+**Value proposition**:
 * Get teaching assistant tasks done more conveniently and quickly as compared to traditional GUI apps
 * Features are fully customized for teaching assistants in NUS to ensure user-friendliness for this particular group
 
