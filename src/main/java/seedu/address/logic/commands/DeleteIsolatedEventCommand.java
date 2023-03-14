@@ -36,6 +36,8 @@ public class DeleteIsolatedEventCommand extends Command {
      * @param eventIndex the index of the event to be deleted.
      */
     public DeleteIsolatedEventCommand(Index personIndex, Index eventIndex) {
+        requireNonNull(personIndex);
+        requireNonNull(eventIndex);
         this.personIndex = personIndex;
         this.eventIndex = eventIndex;
     }

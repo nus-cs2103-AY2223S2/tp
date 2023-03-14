@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddIsolatedEventCommand;
 
 public class IsolatedEventCommandParserTest {
-    private IsolatedEventCommandParser parser = new IsolatedEventCommandParser();
+    private AddIsolatedEventCommandParser parser = new AddIsolatedEventCommandParser();
 
     @Test
     public void parse_invalidValue_failure() {

@@ -77,7 +77,7 @@ public class AddressBookParser {
             return new GroupCommandParser().parse(arguments);
 
         case AddIsolatedEventCommand.COMMAND_WORD:
-            return new IsolatedEventCommandParser().parse(arguments);
+            return new AddIsolatedEventCommandParser().parse(arguments);
 
         case DeleteIsolatedEventCommand.COMMAND_WORD:
             return new DeleteIsolatedEventParser().parse(arguments);

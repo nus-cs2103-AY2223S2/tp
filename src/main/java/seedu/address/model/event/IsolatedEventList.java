@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -21,11 +22,29 @@ public class IsolatedEventList {
 
     /**
      * Check if the isolated event object is in the isolated event list.
-     * @param event to be checked.
+     * @param startDate of which event to be added starts at.
+     * @param endDate of which event to be added ends at.
      * @return
      */
+    public IsolatedEvent checkClashingIsolatedEvent(LocalDateTime startDate, LocalDateTime endDate) {
+        Iterator<IsolatedEvent> it = isolatedEvents.iterator();
+        IsolatedEvent currEvent;
+        int counter = 0;
+
+        while (it.hasNext()) {
+            currEvent = it.next();
+           if (currEvent.occursBetween(startDate, endDate)) {
+
+               return currEvent;
+           }
+            counter++;
+        }
+
+        return null;
+    }
+
     public boolean contain(IsolatedEvent event) {
-        return isolatedEvents.contains(event);
+        return this.isolatedEvents.contains(event);
     }
 
     /**
