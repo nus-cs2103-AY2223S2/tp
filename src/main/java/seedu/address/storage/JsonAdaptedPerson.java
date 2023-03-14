@@ -119,6 +119,11 @@ class JsonAdaptedPerson {
         }
         final Status modelStatus = Status.valueOf(status);
 
+        if (interviewDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    InterviewDateTime.class.getSimpleName()));
+        }
+
         if (!InterviewDateTime.isValidDateTime(interviewDate)) {
             throw new IllegalValueException(InterviewDateTime.MESSAGE_CONSTRAINTS);
         }
