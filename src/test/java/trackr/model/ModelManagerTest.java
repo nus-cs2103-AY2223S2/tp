@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.GuiSettings;
 import trackr.model.person.NameContainsKeywordsPredicate;
-import trackr.model.task.TaskNameContainsKeywordsPredicate;
+import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.testutil.AddressBookBuilder;
 import trackr.testutil.TaskListBuilder;
 
@@ -158,7 +158,7 @@ public class ModelManagerTest {
 
         // different filteredTaskList -> returns false
         String[] taskKeywords = SORT_INVENTORY_N.getTaskName().fullTaskName.split("\\s+");
-        modelManager.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(taskKeywords)));
+        modelManager.updateFilteredTaskList(new TaskContainsKeywordsPredicate(Arrays.asList(taskKeywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
@@ -171,7 +171,7 @@ public class ModelManagerTest {
         personKeywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
         taskKeywords = BUY_FLOUR_N.getTaskName().fullTaskName.split("\\s+");
-        modelManager.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(taskKeywords)));
+        modelManager.updateFilteredTaskList(new TaskContainsKeywordsPredicate(Arrays.asList(taskKeywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

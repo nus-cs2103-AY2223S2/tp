@@ -31,7 +31,7 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.person.NameContainsKeywordsPredicate;
 import trackr.model.person.Person;
 import trackr.model.task.Task;
-import trackr.model.task.TaskNameContainsKeywordsPredicate;
+import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.testutil.EditPersonDescriptorBuilder;
 import trackr.testutil.EditTaskDescriptorBuilder;
 import trackr.testutil.PersonBuilder;
@@ -144,7 +144,7 @@ public class TrackrParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
                 FindTaskCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindTaskCommand(new TaskNameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindTaskCommand(new TaskContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -154,7 +154,7 @@ public class TrackrParserTest {
                 FindTaskCommand.COMMAND_WORD_SHORTCUT
                         + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindTaskCommand(new TaskNameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindTaskCommand(new TaskContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

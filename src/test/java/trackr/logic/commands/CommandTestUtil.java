@@ -22,7 +22,7 @@ import trackr.model.Model;
 import trackr.model.person.NameContainsKeywordsPredicate;
 import trackr.model.person.Person;
 import trackr.model.task.Task;
-import trackr.model.task.TaskNameContainsKeywordsPredicate;
+import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.testutil.EditPersonDescriptorBuilder;
 import trackr.testutil.EditTaskDescriptorBuilder;
 
@@ -184,7 +184,7 @@ public class CommandTestUtil {
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
         final String[] splitTaskName = task.getTaskName().fullTaskName.split("\\s+");
-        model.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(splitTaskName[0])));
+        model.updateFilteredTaskList(new TaskContainsKeywordsPredicate(Arrays.asList(splitTaskName[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());
     }

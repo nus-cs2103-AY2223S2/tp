@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.task.TaskNameContainsKeywordsPredicate;
+import trackr.model.task.TaskContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindTaskCommand object
@@ -27,7 +27,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
 
         String[] taskNameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindTaskCommand(new TaskNameContainsKeywordsPredicate(Arrays.asList(taskNameKeywords)));
+        return new FindTaskCommand(new TaskContainsKeywordsPredicate(Arrays.asList(taskNameKeywords)));
     }
 
 }

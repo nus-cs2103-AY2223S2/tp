@@ -11,24 +11,24 @@ import org.junit.jupiter.api.Test;
 
 import trackr.testutil.TaskBuilder;
 
-public class TaskNameContainsKeywordsPredicateTest {
+public class TaskContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TaskNameContainsKeywordsPredicate firstPredicate =
-                new TaskNameContainsKeywordsPredicate(firstPredicateKeywordList);
-        TaskNameContainsKeywordsPredicate secondPredicate =
-                new TaskNameContainsKeywordsPredicate(secondPredicateKeywordList);
+        TaskContainsKeywordsPredicate firstPredicate =
+                new TaskContainsKeywordsPredicate(firstPredicateKeywordList);
+        TaskContainsKeywordsPredicate secondPredicate =
+                new TaskContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TaskNameContainsKeywordsPredicate firstPredicateCopy =
-                new TaskNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        TaskContainsKeywordsPredicate firstPredicateCopy =
+                new TaskContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,35 +44,35 @@ public class TaskNameContainsKeywordsPredicateTest {
     @Test
     public void test_taskNameContainsKeywords_returnsTrue() {
         // One keyword
-        TaskNameContainsKeywordsPredicate predicate =
-                new TaskNameContainsKeywordsPredicate(Collections.singletonList("Buy"));
+        TaskContainsKeywordsPredicate predicate =
+                new TaskContainsKeywordsPredicate(Collections.singletonList("Buy"));
         assertTrue(predicate.test(new TaskBuilder().withTaskName("Buy Food").build()));
 
         // Multiple keywords
-        predicate = new TaskNameContainsKeywordsPredicate(Arrays.asList("Buy", "Food"));
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("Buy", "Food"));
         assertTrue(predicate.test(new TaskBuilder().withTaskName("Buy Food").build()));
 
         // Only one matching keyword
-        predicate = new TaskNameContainsKeywordsPredicate(Arrays.asList("Buy", "Flour"));
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("Buy", "Flour"));
         assertTrue(predicate.test(new TaskBuilder().withTaskName("Buy Food").build()));
 
         // Mixed-case keywords
-        predicate = new TaskNameContainsKeywordsPredicate(Arrays.asList("BUy", "FlOuR"));
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("BUy", "FlOuR"));
         assertTrue(predicate.test(new TaskBuilder().withTaskName("Buy Flour").build()));
     }
 
     @Test
     public void test_taskNameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        TaskNameContainsKeywordsPredicate predicate = new TaskNameContainsKeywordsPredicate(Collections.emptyList());
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new TaskBuilder().withTaskName("Buy").build()));
 
         // Non-matching keyword
-        predicate = new TaskNameContainsKeywordsPredicate(Arrays.asList("Buy"));
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("Buy"));
         assertFalse(predicate.test(new TaskBuilder().withTaskName("Sort Inventory").build()));
 
         // Keywords match deadline and status, but does not match name
-        predicate = new TaskNameContainsKeywordsPredicate(Arrays.asList("11/11/2024", "N"));
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("11/11/2024", "N"));
         assertFalse(predicate.test(new TaskBuilder().withTaskName("Buy").withTaskDeadline("11/11/2024")
                 .withTaskStatus("N").build()));
     }

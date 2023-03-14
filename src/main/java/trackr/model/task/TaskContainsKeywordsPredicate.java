@@ -8,10 +8,10 @@ import trackr.commons.util.StringUtil;
 /**
  * Tests that a {@code Task}'s {@code TaskName} matches any of the keywords given.
  */
-public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
+public class TaskContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;
 
-    public TaskNameContainsKeywordsPredicate(List<String> keywords) {
+    public TaskContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -24,8 +24,8 @@ public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TaskNameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((TaskNameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof TaskContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((TaskContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

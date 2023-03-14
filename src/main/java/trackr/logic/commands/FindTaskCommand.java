@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import trackr.commons.core.Messages;
 import trackr.model.Model;
-import trackr.model.task.TaskNameContainsKeywordsPredicate;
+import trackr.model.task.TaskContainsKeywordsPredicate;
 
 /**
  * Finds and lists all task in task list whose description contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FindTaskCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " flour buy";
 
-    private final TaskNameContainsKeywordsPredicate predicate;
+    private final TaskContainsKeywordsPredicate predicate;
 
-    public FindTaskCommand(TaskNameContainsKeywordsPredicate predicate) {
+    public FindTaskCommand(TaskContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

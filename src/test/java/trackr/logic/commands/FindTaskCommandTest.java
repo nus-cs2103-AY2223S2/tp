@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
-import trackr.model.task.TaskNameContainsKeywordsPredicate;
+import trackr.model.task.TaskContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindTaskCommand}.
@@ -29,10 +29,10 @@ public class FindTaskCommandTest {
 
     @Test
     public void equals() {
-        TaskNameContainsKeywordsPredicate firstPredicate =
-                new TaskNameContainsKeywordsPredicate(Collections.singletonList("first"));
-        TaskNameContainsKeywordsPredicate secondPredicate =
-                new TaskNameContainsKeywordsPredicate(Collections.singletonList("second"));
+        TaskContainsKeywordsPredicate firstPredicate =
+                new TaskContainsKeywordsPredicate(Collections.singletonList("first"));
+        TaskContainsKeywordsPredicate secondPredicate =
+                new TaskContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindTaskCommand findTaskFirstCommand = new FindTaskCommand(firstPredicate);
         FindTaskCommand findTaskSecondCommand = new FindTaskCommand(secondPredicate);
@@ -57,7 +57,7 @@ public class FindTaskCommandTest {
     @Test
     public void execute_zeroKeywords_noTaskFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
-        TaskNameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        TaskContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -67,7 +67,7 @@ public class FindTaskCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
-        TaskNameContainsKeywordsPredicate predicate = preparePredicate("Buy Inventory");
+        TaskContainsKeywordsPredicate predicate = preparePredicate("Buy Inventory");
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -77,7 +77,7 @@ public class FindTaskCommandTest {
     /**
      * Parses {@code userInput} into a {@code TaskNameContainsKeywordsPredicate}.
      */
-    private TaskNameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new TaskNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private TaskContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new TaskContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
