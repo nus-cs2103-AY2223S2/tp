@@ -18,7 +18,7 @@ public class Title implements Comparable<Title> {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String title;
+    public final String fullTitle;
 
     /**
      * Constructs a {@code Title}.
@@ -27,7 +27,7 @@ public class Title implements Comparable<Title> {
     public Title(String title) {
         requireNonNull(title);
         checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
-        this.title = title;
+        fullTitle = title;
     }
 
     /**
@@ -41,14 +41,14 @@ public class Title implements Comparable<Title> {
 
     @Override
     public String toString() {
-        return title;
+        return fullTitle;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Title) // handles null
-                && title.equals(((Title) other).title); // check title
+                && fullTitle.equals(((Title) other).fullTitle); // check title
     }
 
     @Override
@@ -58,6 +58,6 @@ public class Title implements Comparable<Title> {
 
     @Override
     public int hashCode() {
-        return title.hashCode();
+        return fullTitle.hashCode();
     }
 }
