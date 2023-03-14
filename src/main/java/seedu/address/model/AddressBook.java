@@ -70,7 +70,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds a tag to the person in the address book
      * Person must already exist in the address book
-     * 
+     *
      * @param person the person to add the tag to
      * @param tag the tag added to the person
      */
@@ -81,7 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Deletes a tag from the person in the address book
      * Person and the tag must already exist in the address book
-     * 
+     *
      * @param person the person to delete tag from
      * @param tag the tag to be deleted
      */

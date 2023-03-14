@@ -48,7 +48,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      *
      * @param args The arguments to the FilterCommand
      * @return The parsed FilterCommand
-     * @throws ParseException if {@code userInput} does not conform the expected format
+     * @throws ParseException if {@code args} does not conform the expected format
      */
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

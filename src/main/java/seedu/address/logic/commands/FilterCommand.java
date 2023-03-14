@@ -28,6 +28,11 @@ public class FilterCommand extends Command {
 
     private final FieldsMatchRegexPredicate predicate;
 
+    /**
+     * Creates a FilterCommand to filter the model for persons satisfying a supplied predicate.
+     *
+     * @param predicate The predicate
+     */
     public FilterCommand(FieldsMatchRegexPredicate predicate) {
         this.predicate = predicate;
     }

@@ -19,7 +19,8 @@ public class FilterCommandParserTest {
 
     @Test
     public void parse_invalidPrefix_throwsParseException() {
-        assertParseFailure(parser, "zfs/abc", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "zfs/abc",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
     }
 
     @Test

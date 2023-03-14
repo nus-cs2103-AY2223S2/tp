@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -73,12 +71,12 @@ public class FilterCommandTest {
     @Test
     public void execute_zeroRegexes_allFiltered() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
-        FieldsMatchRegexPredicate predicate
-                = new FieldsMatchRegexPredicate(new ArrayList<>(),
-                new ArrayList<>(),
-                new ArrayList<>(),
-                new ArrayList<>(),
-                new ArrayList<>());
+        FieldsMatchRegexPredicate predicate =
+                new FieldsMatchRegexPredicate(new ArrayList<>(),
+                    new ArrayList<>(),
+                    new ArrayList<>(),
+                    new ArrayList<>(),
+                    new ArrayList<>());
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -88,12 +86,12 @@ public class FilterCommandTest {
     @Test
     public void execute_regexes_multipleFiltered() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        FieldsMatchRegexPredicate predicate
-                = new FieldsMatchRegexPredicate(Collections.singletonList(".*l.*"),
-                Arrays.asList("87.*", "94.*", "95.*"),
-                new ArrayList<>(),
-                new ArrayList<>(),
-                Collections.singletonList(".*ends?"));
+        FieldsMatchRegexPredicate predicate =
+                new FieldsMatchRegexPredicate(Collections.singletonList(".*l.*"),
+                    Arrays.asList("87.*", "94.*", "95.*"),
+                    new ArrayList<>(),
+                    new ArrayList<>(),
+                    Collections.singletonList(".*ends?"));
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

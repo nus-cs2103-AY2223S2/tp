@@ -15,6 +15,15 @@ public class FieldsMatchRegexPredicate implements Predicate<Person> {
     private final List<String> addresses;
     private final List<String> tags;
 
+    /**
+     * Creates a FieldsMatchRegexPredicate requiring that at least one regex of each non-empty field list matches.
+     *
+     * @param names     Regexes for the name field
+     * @param phones    Regexes for the phone field
+     * @param emails    Regexes for the email field
+     * @param addresses Regexes for the address field
+     * @param tags      Regexes for the tags field
+     */
     public FieldsMatchRegexPredicate(List<String> names, List<String> phones, List<String> emails,
                                      List<String> addresses, List<String> tags) {
         this.names = names;

@@ -25,13 +25,13 @@ public class DeleteTagCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";
-    
+
     private final Tag tagToDelete;
     private final Index targetIndex;
 
     /**
      * Creates a DeleteTagCommand to delete the specified tag from the person.
-     * 
+     *
      * @param index The index of the person to delete the tag from.
      * @param tag The tag to delete.
      */
@@ -39,7 +39,6 @@ public class DeleteTagCommand extends Command {
         this.tagToDelete = tag;
         this.targetIndex = index;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -58,7 +57,8 @@ public class DeleteTagCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteTagCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteTagCommand) other).targetIndex) && tagToDelete.equals(((DeleteTagCommand) other).tagToDelete));
+                && targetIndex.equals(((DeleteTagCommand) other).targetIndex)
+                && tagToDelete.equals(((DeleteTagCommand) other).tagToDelete));
     }
 
 }

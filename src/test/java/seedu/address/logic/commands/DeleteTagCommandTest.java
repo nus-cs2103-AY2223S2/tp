@@ -30,23 +30,23 @@ public class DeleteTagCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDeleteFrom = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteTagCommand DeleteTagCommand = new DeleteTagCommand(INDEX_FIRST_PERSON, tagToDelete);
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_PERSON, tagToDelete);
 
         String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, personToDeleteFrom);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTag(personToDeleteFrom, tagToDelete);
 
-        assertCommandSuccess(DeleteTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        
-        DeleteTagCommand DeleteTagCommand = new DeleteTagCommand(outOfBoundIndex, tagToDelete);
 
-        assertCommandFailure(DeleteTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(outOfBoundIndex, tagToDelete);
+
+        assertCommandFailure(deleteTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class DeleteTagCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDeleteFrom = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteTagCommand DeleteTagCommand = new DeleteTagCommand(INDEX_FIRST_PERSON,tagToDelete);
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_PERSON, tagToDelete);
 
         String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, personToDeleteFrom);
 
@@ -62,7 +62,7 @@ public class DeleteTagCommandTest {
         expectedModel.deletePerson(personToDeleteFrom);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(DeleteTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -73,9 +73,9 @@ public class DeleteTagCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteTagCommand DeleteTagCommand = new DeleteTagCommand(outOfBoundIndex, tagToDelete);
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(outOfBoundIndex, tagToDelete);
 
-        assertCommandFailure(DeleteTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
