@@ -53,4 +53,10 @@ public class ToDo extends Task {
                 + byDateTime.toString()
                 + ")";
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return super.equals(other)
+                && byDateTime.equals(((ToDo) other).byDateTime);
+    }
 }

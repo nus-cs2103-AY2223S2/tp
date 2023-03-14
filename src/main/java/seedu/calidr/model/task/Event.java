@@ -52,4 +52,10 @@ public class Event extends Task {
                 + eventDateTimes.toString()
                 + ")";
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return super.equals(other)
+                && eventDateTimes.equals(((Event) other).eventDateTimes);
+    }
 }
