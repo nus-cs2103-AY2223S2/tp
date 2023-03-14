@@ -4,10 +4,10 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/*
-    ContactContainsEmailPredicate is a predicate that filters the model based on address
-
-    @author Haiqel Bin Hanaffi
+/**
+ * ContactContainsEmailPredicate is a predicate that filters the model based on address
+ *
+ * @author Haiqel Bin Hanaffi
  */
 public class ContactContainsDescriptionPredicate implements Predicate<Person> {
     private final String description;

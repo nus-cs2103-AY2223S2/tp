@@ -2,10 +2,10 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
-/*
-    ContactContainsEmailPredicate is a predicate that filters the model based on email
-
-    @author Haiqel Bin Hanaffi
+/**
+ * ContactContainsEmailPredicate is a predicate that filters the model based on email
+ *
+ * @author Haiqel Bin Hanaffi
  */
 public class ContactContainsEmailPredicate implements Predicate<Person> {
     private final String emailAddr;

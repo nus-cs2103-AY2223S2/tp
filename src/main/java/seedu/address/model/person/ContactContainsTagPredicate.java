@@ -1,16 +1,16 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-/*
-    ContactContainsTagPredicate is a predicate that filters the model based on the tags
+import seedu.address.model.tag.Tag;
 
-    @author Haiqel Bin Hanaffi
+
+/**
+ * ContactContainsTagPredicate is a predicate that filters the model based on the tags
+ *
+ * @author Haiqel Bin Hanaffi
  */
 public class ContactContainsTagPredicate implements Predicate<Person> {
     // keywords are the different kind of tags

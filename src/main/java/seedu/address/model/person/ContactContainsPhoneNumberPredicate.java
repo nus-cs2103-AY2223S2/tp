@@ -2,10 +2,10 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
-/*
-    ContactContainsPhoneNumberPredicate is a predicate that filters the model based on phone number
-
-    @author Haiqel Bin Hanaffi
+/**
+ * ContactContainsPhoneNumberPredicate is a predicate that filters the model based on phone number
+ *
+ * @author Haiqel Bin Hanaffi
  */
 public class ContactContainsPhoneNumberPredicate implements Predicate<Person> {
     private final String phoneNumber;
