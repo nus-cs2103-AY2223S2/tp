@@ -100,21 +100,6 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return FXCollections.observableArrayList(persons);
         }
-
-        @Override
-        public ObservableList<Customer> getCustomerList() {
-            return null;
-        }
-
-        @Override
-        public ObservableList<Technician> getTechnicianList() {
-            return null;
-        }
-
-        @Override
-        public ObservableList<Vehicle> getVehicleList() {
-            return null;
-        }
     }
 
 }
