@@ -12,6 +12,7 @@ import arb.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new UnmarkProjectCommand object
  */
 public class UnmarkProjectCommandParser implements Parser<UnmarkProjectCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the UnmarkProjectCommand
      * and returns an UnmarkProjectCommand object for execution.
