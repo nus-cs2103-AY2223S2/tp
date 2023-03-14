@@ -21,7 +21,7 @@ public class AddEmployeeToDepartmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to an existing department.\n"
             + "Parameters: EMPLOYEE_ID, DEPARTMENT_NAME "
             + "[" + PREFIX_DEPARTMENT_NAME + "NAME] "
-            + "Example: " + COMMAND_WORD + PREFIX_ID + " 100 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ID + " 100 "
             + PREFIX_DEPARTMENT_NAME + "Software Engineering";
 
     public static final String MESSAGE_ADD_EMPLOYEE_TO_DEPARTMENT_SUCCESS = "New employee %1$s is added to %2$s";
@@ -51,11 +51,12 @@ public class AddEmployeeToDepartmentCommand extends Command {
             throw new CommandException(MESSAGE_DEPARTMENT_NOT_FOUND);
         }
 
-        if (!department.hasEmployee(employee)) {
+        if (department.hasEmployee(employee)) {
             throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
         }
 
-        return new CommandResult(String.format(MESSAGE_ADD_EMPLOYEE_TO_DEPARTMENT_SUCCESS, department));
+        department.addEmployee(employee);
+        return new CommandResult(String.format(MESSAGE_ADD_EMPLOYEE_TO_DEPARTMENT_SUCCESS, employee, department));
     }
 
     @Override
