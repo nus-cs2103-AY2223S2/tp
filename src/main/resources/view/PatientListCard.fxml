@@ -31,7 +31,7 @@
             </VBox>
             <VBox minHeight="25.0" HBox.hgrow="NEVER">
                <children>
-                  <Label fx:id="nameLabel" maxWidth="-Infinity" minHeight="-Infinity" prefWidth="340.0" styleClass="card-title" wrapText="true" />
+                  <Label fx:id="nameLabel" maxWidth="-Infinity" minHeight="-Infinity" prefWidth="305.0" styleClass="card-title" wrapText="true" />
                </children>
             </VBox>
          </children>
