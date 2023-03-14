@@ -11,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.StatusCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -98,5 +99,11 @@ public class StatusCommand extends Command {
                 status);
     }
 
-    //TODO add equals method
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof StatusCommand
+                && index.equals(((StatusCommand) other).index)
+                && status.equals(((StatusCommand) other).status));
+    }
 }
