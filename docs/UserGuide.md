@@ -49,9 +49,7 @@ Adds a employee to the ExecutivePro database.
 Format: `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-
 A person can have any number of tags (including 0)
-
 </div>
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing`
