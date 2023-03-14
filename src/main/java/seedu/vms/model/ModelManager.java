@@ -39,7 +39,7 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyPatientManager patientManager, VaxTypeManager vaxTypeManager,
             AppointmentManager appointmentManager, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(patientManager, userPrefs);
+        requireAllNonNull(patientManager, vaxTypeManager, appointmentManager, userPrefs);
 
         logger.fine("Initializing with patient manager: " + patientManager + " and user prefs " + userPrefs);
 
