@@ -327,6 +327,19 @@ public interface Model {
     void setFlight(Flight target, Flight editedFlight);
 
     /**
+     * Links a plane to a flight.
+     * @param flight The flight to be linked to.
+     * @param plane  The plane to be linked to a flight.
+     */
+    void linkPlane(Flight flight, Plane plane);
+
+    /**
+     * Unlinks a flight from any plane.
+     * @param flight The flight to be unlinked from.
+     */
+    void unlinkPlane(Flight flight);
+
+    /**
      * Returns an unmodifiable view of the filtered flight list
      * @return unmodifiable view of the filtered flight list
      */

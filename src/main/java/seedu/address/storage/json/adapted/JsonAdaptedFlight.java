@@ -25,6 +25,11 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
     private final String code;
 
     /**
+     * The plane linked to the flight.
+     */
+    private String plane;
+
+    /**
      * Constructs a {@code JsonAdaptedFlight} with the given flight details.
      * This is intended for Jackson to use.
      *
@@ -33,9 +38,11 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
      */
     @JsonCreator
     public JsonAdaptedFlight(@JsonProperty("id") String id,
-                               @JsonProperty("code") String code) {
+                             @JsonProperty("code") String code,
+                             @JsonProperty("plane") String plane) {
         this.id = id;
         this.code = code;
+        this.plane = plane;
     }
 
     /**
@@ -46,6 +53,12 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
     public JsonAdaptedFlight(Flight flight) {
         this.id = flight.getId();
         this.code = flight.getCode();
+
+        if (flight.hasLinkedPlane()) {
+            this.plane = flight.getLinkedPlane().getId();
+        } else {
+            this.plane = "";
+        }
     }
 
     @Override

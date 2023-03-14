@@ -1,4 +1,4 @@
-package seedu.address.logic.plane.unlinkplane;
+package seedu.address.logic.flight.unlinkplane;
 
 import java.util.Optional;
 import java.util.Set;
@@ -6,10 +6,6 @@ import java.util.Set;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
-
-import seedu.address.model.ModelManager;
-import seedu.address.model.flight.Flight;
-
 
 /**
  * The factory that's responsible for creating a {@code UnlinkPlaneCommand}.
@@ -31,17 +27,6 @@ public class UnlinkPlaneCommandFactory implements CommandFactory<UnlinkPlaneComm
     @Override
     public UnlinkPlaneCommand createCommand(CommandParam param) throws ParseException {
         String flightId = param.getNamedValuesOrThrow(PREFIX_FLIGHT_ID);
-
-        ModelManager modelManager = new ModelManager();
-        Flight flight = null;
-        for (Flight f : modelManager.getFilteredFlightList()) {
-            if (f.getId().equals(flightId)) {
-                flight = f;
-                break;
-            }
-        }
-
-        // TODO: exception when the given id doesn't correspond to any existing flight
-        return new UnlinkPlaneCommand(flight);
+        return new UnlinkPlaneCommand(flightId);
     }
 }

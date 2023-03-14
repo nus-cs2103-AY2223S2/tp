@@ -1,4 +1,4 @@
-package seedu.address.logic.plane.unlinkplane;
+package seedu.address.logic.flight.unlinkplane;
 
 import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
@@ -13,20 +13,27 @@ public class UnlinkPlaneCommand implements Command {
     /**
      * The flight which the plane is being unlinked from.
      */
-    private final Flight flight;
+    private final String flightId;
 
     /**
      * Creates a command that, when executed, resets the linked plane from a flight in the address book.
      *
-     * @param flight The flight to be unlinked from.
+     * @param flightId The flight to be unlinked from.
      */
-    public UnlinkPlaneCommand(Flight flight) {
-        this.flight = flight;
+    public UnlinkPlaneCommand(String flightId) {
+        this.flightId = flightId;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // TODO: unlink to the flight based on flight's implementation
-        return new CommandResult(flight.toString() + " no longer has a linked plane.");
+        Flight flight = null;
+        for (Flight f : model.getFilteredFlightList()) {
+            if (f.getId().equals(flightId)) {
+                flight = f;
+            }
+        }
+        // TODO: add exception when flight id is invalid
+        model.unlinkPlane(flight);
+        return new CommandResult(flight.getId() + " no longer has a linked plane.");
     }
 }

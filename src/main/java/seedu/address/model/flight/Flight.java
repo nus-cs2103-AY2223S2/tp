@@ -3,8 +3,9 @@ package seedu.address.model.flight;
 import java.util.List;
 import java.util.UUID;
 
+import seedu.address.model.flight.exceptions.LinkedPlaneNotFoundException;
 import seedu.address.model.item.Item;
-
+import seedu.address.model.plane.Plane;
 
 /**
  * Represents a flight object in wingman
@@ -14,6 +15,7 @@ public class Flight implements Item {
     private static final String CODE_STRING = "Code";
     private final String code;
     private final String id;
+    private Plane plane;
 
     //TODO: Add departure and arrival locations
     //TODO: Add exceptions to ensure departure and arrival locations are distinct
@@ -26,6 +28,7 @@ public class Flight implements Item {
     public Flight(String code) {
         this.code = code;
         this.id = UUID.randomUUID().toString();
+        this.plane = null;
     }
 
     /**
@@ -37,6 +40,7 @@ public class Flight implements Item {
     public Flight(String id, String code) {
         this.code = code;
         this.id = id;
+        this.plane = null;
     }
 
     public String getCode() {
@@ -54,5 +58,37 @@ public class Flight implements Item {
     @Override
     public String getId() {
         return this.id;
+    }
+
+    /**
+     * Links a plane to this flight.
+     * @param plane The plane to be linked.
+     */
+    public void linkPlane(Plane plane) {
+        this.plane = plane;
+    }
+
+    /**
+     * Unlinks any plane from this flight.
+     */
+    public void unlinkPlane() {
+        this.plane = null;
+    }
+
+    public boolean hasLinkedPlane() {
+        return this.plane != null;
+    }
+
+    /**
+     * If there's a linked plane, it returns it.
+     * @return The linked plane.
+     * @throws LinkedPlaneNotFoundException If this flight doesn't have a linked plane.
+     */
+    public Plane getLinkedPlane() throws LinkedPlaneNotFoundException {
+        if (this.hasLinkedPlane()) {
+            return this.plane;
+        } else {
+            throw new LinkedPlaneNotFoundException();
+        }
     }
 }
