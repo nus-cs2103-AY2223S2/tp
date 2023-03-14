@@ -38,7 +38,8 @@ jobs:
       - name: Build and check with Gradle
         run: ./gradlew check coverage
 
-      - uses: codecov/codecov-action@v2
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
         if: runner.os == 'Linux'
         with:
           directory: ${{ github.workspace }}/build/reports/jacoco/coverage

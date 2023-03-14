@@ -1,0 +1,14 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "postal": "943512",
+    "date": "2022-12-29",
+    "age": "22",
+    "tagged": [ "DENV1" ]
+  }, {
+    "name": "Alice Pauline",
+    "postal": "943512",
+    "date": "2022-12-29",
+    "age": "22"
+  } ]
+}
