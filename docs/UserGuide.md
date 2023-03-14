@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-SalesPunch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+SalesPunch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still 
+having the benefits of a Graphical User Interface (GUI). If you can type fast, SalesPunch can get your contact 
+management tasks done faster than traditional GUI apps.
 
 Salespeople managing client contacts who prefer a CLI
 
@@ -13,7 +15,9 @@ Salespeople managing client contacts who prefer a CLI
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: Users that want to log their sales funnel cycle and keep track of their leads. You can do it faster on a CLI with better NLP. Helps salesperson keep track of all the necessary details and set reminders/alerts, prioritise sales tasks
+**Value proposition**: Users that want to log their sales funnel cycle and keep track of their leads. You can do it 
+faster on a CLI with better NLP. Helps salesperson keep track of all the necessary details and set reminders/alerts, 
+prioritise sales tasks
 
 * Table of Contents
 {:toc}
@@ -24,11 +28,11 @@ Salespeople managing client contacts who prefer a CLI
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `salespunch.jar` from [here](https://github.com/AY2223S2-CS2103-W16-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your SalesPunch.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar salespunch.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
