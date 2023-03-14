@@ -16,6 +16,7 @@ public class Gui extends Application {
         // Set window
         // configureStage(primaryStage);
         Scene scene = new Scene(mainWindow);
+        scene.getRoot().requestFocus();
         primaryStage.setScene(scene); // Setting the stage to show our screen
         primaryStage.show(); // Render the stage.
 
