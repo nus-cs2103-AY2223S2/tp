@@ -1,12 +1,8 @@
 package seedu.address.logic.commands.student;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORKDONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.HashSet;
@@ -22,39 +18,26 @@ import seedu.address.model.person.student.Homework;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.Test;
-
-
 /**
- * A class for "student 'Class Name' 'Index number' grade" command"
+ * A class for "student 'Class Name' 'Index number' grade delete" command"
  */
-public class StudentGradeCommand extends StudentCommand {
-    public static final String COMMAND_WORD = "grade";
-
-    public static final String COMMAND_FORMAT = "student <CLASS_NAME> grade <INDEX> <GRADE>";
+public class StudentGradeDeleteCommand extends StudentCommand {
+    public static final String COMMAND_WORD = "gradedelete";
 
     public static final String MESSAGE_USAGE = "student CLASS_NAME " + COMMAND_WORD
-            + ": Adds a grade to a student in the address book. \n"
+            + ": Adds a grade to the student in the address book. \n"
             + "Parameters: "
             + PREFIX_INDEXNUMBER + "INDEX NUMBER "
             + "["
             + PREFIX_TEST + "TEST NAME OR "
             + PREFIX_HOMEWORK + "HOMEWORK NAME "
-            + "] "
-            + PREFIX_SCORE + "SCORE "
-            + PREFIX_DEADLINE + "DEADLINE (DD/MM/YYYY) "
-            + PREFIX_WEIGHTAGE + "WEIGHTAGE "
-            + "[ "
-            + PREFIX_HOMEWORKDONE + "HOMEWORK DONE? "
             + "]\n"
             + "Example: " + "student 1A " + COMMAND_WORD + " "
             + PREFIX_INDEXNUMBER + "13 "
-            + PREFIX_TEST + "CA1 "
-            + PREFIX_SCORE + "75 "
-            + PREFIX_DEADLINE + "15/05/2023 "
-            + PREFIX_WEIGHTAGE + "20 ";
+            + PREFIX_TEST + "CA1 ";
 
-    public static final String MESSAGE_SUCCESSTEST = "New test added:";
-    public static final String MESSAGE_SUCCESSHOMEWORK = "New homework added:";
+    public static final String MESSAGE_SUCCESSTEST = "Test deleted successfully";
+    public static final String MESSAGE_SUCCESSHOMEWORK = "Homework deleted successfully";
 
     private IndexNumber indexNumber;
     private Test test;
@@ -62,24 +45,24 @@ public class StudentGradeCommand extends StudentCommand {
     private Class sc;
 
     /**
-     * Creates an add grade command for test
+     * Creates a delete command for test
      *
      * @param indexNumber student to be edited
      * @param test test to be added
      */
-    public StudentGradeCommand(Class sc, IndexNumber indexNumber, Test test) {
+    public StudentGradeDeleteCommand(Class sc, IndexNumber indexNumber, Test test) {
         this.sc = sc;
         this.indexNumber = indexNumber;
         this.test = test;
     }
 
     /**
-     * Creates an add grade command for homework
+     * Creates a delete command for homework
      * @param sc
      * @param indexNumber
      * @param homework
      */
-    public StudentGradeCommand(Class sc, IndexNumber indexNumber, Homework homework) {
+    public StudentGradeDeleteCommand(Class sc, IndexNumber indexNumber, Homework homework) {
         this.sc = sc;
         this.indexNumber = indexNumber;
         this.homework = homework;
@@ -99,18 +82,6 @@ public class StudentGradeCommand extends StudentCommand {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
             if (curr.getIndexNumber().equals(indexNumber) && curr.getStudentClass().equals(sc)) {
-                Set<Homework> homeworkSet = curr.getHomework();
-                for (Homework hw : homeworkSet) {
-                    if (hw.equals(homework)) {
-                        throw new CommandException(Messages.MESSAGE_DUPLICATE_HOMEWORK);
-                    }
-                }
-                Set<Test> testSet = curr.getTest();
-                for (Test test : testSet) {
-                    if (test.equals(this.test)) {
-                        throw new CommandException(Messages.MESSAGE_DUPLICATE_TEST);
-                    }
-                }
                 studentToEdit = curr;
                 break;
             }
@@ -121,12 +92,11 @@ public class StudentGradeCommand extends StudentCommand {
             Set<Homework> homeworkSetReplaced = new HashSet<>();
             homeworkSetReplaced.addAll(homeworkSet);
             for (Homework hw:homeworkSetReplaced) {
-                if (hw.getName().equals("Insert student homework here!")) {
+                if (hw.getName().equals(this.homework.getName())) {
                     homeworkSetReplaced.remove(hw);
                     break;
                 }
             }
-            homeworkSetReplaced.add(homework);
             Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
                     studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
                     studentToEdit.getAge(),
@@ -143,12 +113,11 @@ public class StudentGradeCommand extends StudentCommand {
             Set<Test> testSetReplaced = new HashSet<>();
             testSetReplaced.addAll(testSet);
             for (Test t: testSetReplaced) {
-                if (t.getName().equals("Insert student test here!")) {
+                if (t.getName().equals(this.test.getName())) {
                     testSetReplaced.remove(t);
                     break;
                 }
             }
-            testSetReplaced.add(test);
             Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
                     studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
                     studentToEdit.getAge(),
@@ -162,5 +131,4 @@ public class StudentGradeCommand extends StudentCommand {
             return new CommandResult(MESSAGE_SUCCESSTEST);
         }
     }
-
 }
