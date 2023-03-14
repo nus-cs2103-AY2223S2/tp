@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCategoryList;
+import seedu.address.model.category.Category;
+import seedu.address.model.category.UserDefinedCategory;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -38,12 +41,28 @@ public class SampleDataUtil {
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
+
+    }
+
+    public static Category[] getSampleCategories() {
+                return new Category[] {
+                new UserDefinedCategory("Testing category name 1", "Description for first test category"),
+                new UserDefinedCategory("Testing category name 2", "Description for second test category")
+        };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        return sampleAb;
+    }
+
+    public static ReadOnlyAddressBook getSampleCategoryData() {
+        AddressBook sampleAb = new AddressBook();
+        for (Category sampleCategory : getSampleCategories()) {
+            sampleAb.addCategory(sampleCategory);
         }
         return sampleAb;
     }

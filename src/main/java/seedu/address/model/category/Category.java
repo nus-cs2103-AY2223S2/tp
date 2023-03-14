@@ -8,13 +8,13 @@ import java.util.Objects;
 public abstract class Category {
 
     protected String categoryName;
-    protected String description;
+    protected String summary;
 
     public String getCategoryName() {
         return this.categoryName;
     };
-    public String getDescription() {
-        return this.description;
+    public String getSummary() {
+        return this.summary;
     };
 
     public boolean isSameCategory(Category toCheck) {
@@ -42,7 +42,7 @@ public abstract class Category {
         Category otherTypecasted = (Category) other;
 
         if (this.getCategoryName().equals(otherTypecasted.getCategoryName()) &&
-                this.getDescription().equals(otherTypecasted.getDescription())) {
+                this.getSummary().equals(otherTypecasted.getSummary())) {
             return true;
         }
 
@@ -51,6 +51,6 @@ public abstract class Category {
 
     @Override
     public int hashCode() {
-        return Objects.hash(categoryName, description);
+        return Objects.hash(categoryName, summary);
     }
 }
