@@ -10,6 +10,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
@@ -65,9 +66,11 @@ public class MarkCommand extends Command {
         Address updatedAddress = eventToMark.getAddress();
         Set<Tag> updatedTags = eventToMark.getTags();
         Timing updatedTiming = eventToMark.getTiming();
+        Contact updatedContact = eventToMark.getContact();
 
         Event updatedEvent = new Event(updatedName, updatedRate, updatedAddress, updatedTiming, updatedTags);
         updatedEvent.mark();
+        updatedEvent.linkContact(updatedContact);
         return updatedEvent;
     }
 
