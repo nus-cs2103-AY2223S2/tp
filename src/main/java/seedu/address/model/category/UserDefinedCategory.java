@@ -5,16 +5,16 @@ package seedu.address.model.category;
  */
 public class UserDefinedCategory extends Category {
 
-    UserDefinedCategory(String categoryName, String description) {
+    public UserDefinedCategory(String categoryName, String summary) {
         this.categoryName = categoryName;
-        this.description = description;
+        this.summary = summary;
     }
 
     public void setCategoryName(String newName) {
         this.categoryName = newName;
     }
 
-    public void setDescription(String newDescription) {
-        this.description = newDescription;
+    public void setDescription(String newSummary) {
+        this.summary = newSummary;
     }
 }

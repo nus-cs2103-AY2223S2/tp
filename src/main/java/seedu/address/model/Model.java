@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Person;
 
 /**
@@ -51,6 +52,7 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+//    ReadOnlyCategoryList getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -63,11 +65,15 @@ public interface Model {
      */
     void deletePerson(Person target);
 
+    void deleteCategory(Category target);
+
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    void addCategory(Category toAdd);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -79,9 +85,15 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Category> getFilteredCategoryList();
+
+    ObservableList<Category> getCategoryList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredCategoryList(Predicate<Category> predicate);
 }

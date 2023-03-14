@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.category.Category;
+import seedu.address.model.category.UniqueCategoryList;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,6 +25,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final FilteredList<Category> filteredCategories;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredCategories = new FilteredList<>(this.addressBook.getCategoryList());
     }
 
     public ModelManager() {
@@ -99,9 +104,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteCategory(Category target) {
+        addressBook.removeCategory(target);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addCategory(Category toAdd) {
+        addressBook.addCategory(toAdd);
     }
 
     @Override
@@ -123,10 +138,28 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Category> getFilteredCategoryList() {
+        return filteredCategories;
+    }
+
+    @Override
+    public ObservableList<Category> getCategoryList() {
+        return addressBook.getCategoryList();
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public void updateFilteredCategoryList(Predicate<Category> predicate) {
+        requireNonNull(predicate);
+        filteredCategories.setPredicate(predicate);
+    }
+
+
 
     @Override
     public boolean equals(Object obj) {
