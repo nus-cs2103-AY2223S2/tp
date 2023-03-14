@@ -83,7 +83,7 @@ public class EditCommand extends Command {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse((Name) patientToEdit.getName());
-        NRIC updatedNric = editPatientDescriptor.getNric().orElse((NRIC) patientToEdit.getNric());
+        NRIC updatedNric = editPatientDescriptor.getNRIC().orElse((NRIC) patientToEdit.getNRIC());
         Status updatedStatus = editPatientDescriptor.getStatus().orElse((Status) patientToEdit.getStatus());
 
         return new Patient(updatedNric, updatedName, updatedStatus);
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public Optional<NRIC> getNric() {
+        public Optional<NRIC> getNRIC() {
             return Optional.ofNullable(nric);
         }
 
@@ -179,7 +179,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getStatus().equals(e.getStatus())
-                    && getNric().equals(e.getNric());
+                    && getNRIC().equals(e.getNRIC());
         }
     }
 }

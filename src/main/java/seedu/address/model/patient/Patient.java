@@ -34,7 +34,7 @@ public class Patient {
         this.status = status;
     }
 
-    public NRIC getNric() {
+    public NRIC getNRIC() {
         return nric;
     }
 
@@ -48,7 +48,7 @@ public class Patient {
 
     public void setStatus(Status newStatus) {
         requireAllNonNull(status);
-        status = newStatus;
+        this.status = newStatus;
     }
 
     /**
@@ -61,7 +61,7 @@ public class Patient {
         }
 
         return otherPatient != null
-                && otherPatient.getNric().equals(getNric())
+                && otherPatient.getNRIC().equals(getNRIC())
                 && otherPatient.getName().equals(getName());
     }
 
@@ -80,7 +80,7 @@ public class Patient {
         }
 
         Patient otherPatient = (Patient) other;
-        return otherPatient.getNric().equals(getNric())
+        return otherPatient.getNRIC().equals(getNRIC())
                 && otherPatient.getName().equals(getName())
                 && otherPatient.getStatus().equals(getStatus());
     }
@@ -94,7 +94,7 @@ public class Patient {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getNric())
+        builder.append(getNRIC())
                 .append("; Name: ")
                 .append(getName())
                 .append("; Status: ")

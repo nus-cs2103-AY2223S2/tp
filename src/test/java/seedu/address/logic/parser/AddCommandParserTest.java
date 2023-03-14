@@ -49,7 +49,7 @@ public class AddCommandParserTest {
         @Test
         public void parse_optionalFieldsMissing_success() {
                 // zero tags
-                Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
+                Patient expectedPatient = new PatientBuilder(AMY).build();
                 assertParseSuccess(parser, NAME_DESC_AMY,
                                 new AddCommand(expectedPatient));
         }

@@ -27,7 +27,7 @@ public class PatientBuilder {
      * Initializes the PersonBuilder with the data of {@code patientToCopy}.
      */
     public PatientBuilder(Patient patientToCopy) {
-        nric = patientToCopy.getNric();
+        nric = patientToCopy.getNRIC();
         name = patientToCopy.getName();
     }
 

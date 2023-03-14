@@ -9,8 +9,6 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.NRIC;
 import seedu.address.model.patient.Status;
 
-import java.util.Stack;
-
 /**
  * Jackson-friendly version of {@link Patient}.
  */
@@ -39,7 +37,7 @@ class JsonAdaptedPatient {
      */
     public JsonAdaptedPatient(Patient source) {
         name = source.getName().fullName;
-        nric = source.getNric().value;
+        nric = source.getNRIC().value;
         status = source.getStatus().value;
 
     }
