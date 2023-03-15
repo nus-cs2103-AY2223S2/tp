@@ -43,6 +43,7 @@ public class Tester {
             ReadOnlyReroll rr = storage.readReroll().get();
             System.out.println("Characters: " + rr.getCharacters().getEntityList());
             System.out.println("Mobs: " + rr.getMobs().getEntityList());
+            System.out.println("Items: " + rr.getItems().getEntityList());
         } catch (DataConversionException e) {
             System.out.println("May this never happen");
         } catch (IOException e) {

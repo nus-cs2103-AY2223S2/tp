@@ -35,7 +35,7 @@ public class Mob extends Entity {
     public boolean getLegendaryStatus() { return this.isLegendary; }
 
     public Stats getStats() {
-        return this.getStats();
+        return this.stats;
     }
 
     @Override
