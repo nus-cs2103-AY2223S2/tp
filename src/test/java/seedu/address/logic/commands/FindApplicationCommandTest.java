@@ -1,18 +1,24 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.ApplicationModel;
-import seedu.address.model.ApplicationModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.application.NameContainsKeywordsPredicate;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalApplications.AMAZON;
+import static seedu.address.testutil.TypicalApplications.APPLE;
+import static seedu.address.testutil.TypicalApplications.GOOGLE;
+import static seedu.address.testutil.TypicalApplications.getTypicalInternshipBook;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.core.Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalApplications.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.ApplicationModel;
+import seedu.address.model.ApplicationModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.application.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Application Model) for {@code FindApplicationCommand}.
