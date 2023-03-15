@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalClients.BOB;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.testutil.ClientBuilder;
 
 public class ClientTest {
@@ -57,7 +58,7 @@ public class ClientTest {
         Client client = new ClientBuilder().build();
         assertEquals(FXCollections.observableArrayList(), client.getFilteredPolicyList());
     }
-    /*
+
     @Test
     public void equals() {
         // same values -> returns true
@@ -96,5 +97,15 @@ public class ClientTest {
         editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
-     */
+
+    @Test
+    void getPolicyList() {
+        Client client = new ClientBuilder().build();
+        assertEquals(new UniquePolicyList(), client.getPolicyList());
+    }
+    @Test
+    void testHashCode() {
+        Client client = new ClientBuilder(ALICE).build();
+        assertEquals(client.hashCode(), ALICE.hashCode());
+    }
 }
