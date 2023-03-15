@@ -9,18 +9,22 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
+import seedu.address.model.review.Review;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -33,27 +37,25 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Card validCard = new PersonBuilder().build();
+        CommandResult commandResult = new AddCommand(validCard).execute(modelStub);
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCard), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validCard), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        Card validCard = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validCard);
+        ModelStub modelStub = new ModelStubWithPerson(validCard);
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CARD, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Card alice = new PersonBuilder().withName("Alice").build();
+        Card bob = new PersonBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -70,7 +72,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different card -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -99,95 +101,203 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getMasterDeckFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setMasterDeckFilePath(Path deckFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addCard(Card card) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setMasterDeck(ReadOnlyMasterDeck newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyMasterDeck getMasterDeck() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasCard(Card card) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteCard(Card target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setCard(Card target, Card editedCard) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Card> getFilteredCardList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public ObservableList<Deck> getFilteredDeckList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredCardList(Predicate<Card> predicate) {
+            return; // AddCommand does call updateFilteredCardList method
+        }
+
+        @Override
+        public void updateFilteredDeckList(Predicate<Deck> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST */
+        @Override
+        public Optional<Deck> getSelectedDeck() {
+            return Optional.of(new Deck("Default"));
+        }
+
+        @Override
+        public void addDeck(Deck deck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasDeck(Deck deck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDeck(Deck target, Deck editedDeck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /*
+        @Override
+        public void setDeck(Deck target, Deck editedDeck) {
+
+        }
+         */
+
+        @Override
+        public void removeDeck(Deck key) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void selectDeck(Index deckIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unselectDeck() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getSelectedDeckName() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getDeckSize(int deckIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        public Optional<Review> getReview() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void reviewDeck(Index deckIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void endReview() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getReviewDeckName() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void flipCard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markWrong() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markCorrect() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void goToPrevCard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void goToNextCard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single card.
      */
     private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+        private final Card card;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPerson(Card card) {
+            requireNonNull(card);
+            this.card = card;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasCard(Card card) {
+            requireNonNull(card);
+            return this.card.isSameCard(card);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the card being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
+        final ArrayList<Card> personsAdded = new ArrayList<>();
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasCard(Card card) {
+            requireNonNull(card);
+            return personsAdded.stream().anyMatch(card::isSameCard);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addCard(Card card) {
+            requireNonNull(card);
+            personsAdded.add(card);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyMasterDeck getMasterDeck() {
+            return new MasterDeck();
         }
     }
 

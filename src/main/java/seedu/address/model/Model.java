@@ -1,18 +1,24 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
+import seedu.address.model.review.Review;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Card> PREDICATE_SHOW_ALL_CARDS = unused -> true;
+
+    Predicate<Deck> PREDICATE_SHOW_ALL_DECKS = unused -> true; //this is unnecessary?
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +41,104 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' deck book file path.
      */
-    Path getAddressBookFilePath();
+    Path getMasterDeckFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' deck file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setMasterDeckFilePath(Path deckFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces deck data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setMasterDeck(ReadOnlyMasterDeck deck);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Deck */
+    ReadOnlyMasterDeck getMasterDeck();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a card with the same identity as {@code card} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasCard(Card card);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given card.
+     * The card must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteCard(Card target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given card.
+     * {@code card} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addCard(Card card);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given card {@code target} with {@code editedCard}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The card identity of {@code editedCard} must not be the same as another existing card in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setCard(Card target, Card editedCard);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered card list */
+    ObservableList<Card> getFilteredCardList();
+
+    /** Returns an unmodifiable view of the filtered deck list */
+    ObservableList<Deck> getFilteredDeckList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered card list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredCardList(Predicate<Card> predicate);
+
+
+    /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST (NOT IN AB3) */
+    void updateFilteredDeckList(Predicate<Deck> predicate);
+
+    /** Returns the deck */
+    Optional<Deck> getSelectedDeck();
+
+    void addDeck(Deck deck);
+
+    /**
+     * Returns true if a deck with the same name as {@code deck} exists.
+     */
+    boolean hasDeck(Deck deck);
+    /**
+     * Replaces the given deck {@code target} with {@code editedDeck}.
+     * {@code target} must exist.
+     * The deck name of {@code editedDeck} must not be the same as another existing deck.
+     */
+    void setDeck(Deck target, Deck editedDeck);
+
+    void removeDeck(Deck key);
+
+    void selectDeck(Index idx);
+
+    void unselectDeck();
+
+    String getSelectedDeckName();
+
+    int getDeckSize(int deckIndex);
+
+    void reviewDeck(Index idx);
+
+    Optional<Review> getReview();
+
+    void endReview();
+
+    String getReviewDeckName();
+
+    void flipCard();
+
+    void markWrong();
+
+    void markCorrect();
+
+    void goToPrevCard();
+
+    void goToNextCard();
 }

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +13,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.card.Card;
+import seedu.address.model.card.CardInDeckPredicate;
+import seedu.address.model.card.IsSameCardPredicate;
+import seedu.address.model.deck.Deck;
+import seedu.address.model.review.Review;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,28 +26,32 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final MasterDeck masterDeck;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Deck> filteredDecks;
+    private final FilteredList<Card> filteredCards;
+    private Deck selectedDeck;
+    private Review currReview;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyMasterDeck masterDeck, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(masterDeck, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + masterDeck + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.masterDeck = new MasterDeck(masterDeck);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredCards = new FilteredList<>(this.masterDeck.getCardList());
+        filteredDecks = new FilteredList<>(this.masterDeck.getDeckList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new MasterDeck(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    /* ==================================== UserPrefs ==================================== */
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -65,67 +76,71 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getMasterDeckFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setMasterDeckFilePath(Path masterDeckFilePath) {
+        requireNonNull(masterDeckFilePath);
+        userPrefs.setAddressBookFilePath(masterDeckFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    /* MasterDeck Operations */
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setMasterDeck(ReadOnlyMasterDeck deck) {
+        this.masterDeck.resetData(deck);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyMasterDeck getMasterDeck() {
+        return masterDeck;
+    }
+
+    /* PowerCard Operations */
+
+    @Override
+    public boolean hasCard(Card card) {
+        requireNonNull(card);
+        return masterDeck.hasCard(card);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteCard(Card target) {
+        masterDeck.removeCard(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addCard(Card card) {
+        masterDeck.addCard(card); // Todo: setDeck of card to selectedDeck here
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void setCard(Card target, Card editedCard) {
+        requireAllNonNull(target, editedCard);
+        masterDeck.setCard(target, editedCard);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    /* ==================================== Filtered Card/Deck List Accessors ==================================== */
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Card} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Card> getFilteredCardList() {
+        return filteredCards;
+    }
+
+    public ObservableList<Deck> getFilteredDeckList() {
+        return filteredDecks;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredCardList(Predicate<Card> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredCards.setPredicate(predicate);
     }
 
     @Override
@@ -142,9 +157,142 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return masterDeck.equals(other.masterDeck)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredDecks.equals(other.filteredDecks);
     }
 
+
+    /* ==================================== PowerDeck Operations ==================================== */
+
+    @Override
+    public void updateFilteredDeckList(Predicate<Deck> predicate) {
+        requireNonNull(predicate);
+        filteredDecks.setPredicate(predicate);
+    }
+
+    @Override
+    public void addDeck(Deck deck) {
+        masterDeck.addDeck(deck);
+        updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
+    }
+
+    @Override
+    public boolean hasDeck(Deck deck) {
+        return masterDeck.hasDeck(deck);
+    }
+
+    @Override
+    public void setDeck(Deck target, Deck editedDeck) {
+        masterDeck.setDeck(target, editedDeck);
+    }
+    @Override
+    public void removeDeck(Deck key) { //TODO should remove all cards associated with deck
+        masterDeck.removeDeck(key);
+        updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
+    }
+
+    @Override
+    public void selectDeck(Index deckIndex) {
+        int zeroBasesIdx = deckIndex.getZeroBased();
+        selectedDeck = filteredDecks.get(zeroBasesIdx);
+        assert selectedDeck != null : "selectedDeck cannot be null here";
+        updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
+    }
+
+    @Override
+    public void unselectDeck() {
+        this.selectedDeck = null;
+        updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+    }
+
+    @Override
+    public Optional<Deck> getSelectedDeck() {
+        return Optional.ofNullable(selectedDeck);
+    }
+
+    @Override
+    public String getSelectedDeckName() {
+        return Optional.ofNullable(selectedDeck)
+                .map(Deck::getDeckName)
+                .orElse("None");
+    }
+
+    @Override
+    public int getDeckSize(int deckIndex) {
+        Deck deck = filteredDecks.get(deckIndex);
+        return new FilteredList<>(
+                masterDeck.getCardList(), new CardInDeckPredicate(deck)
+        ).size();
+    }
+
+    /* ==================================== Review Operations ==================================== */
+
+    /**
+     * Starts a new review session based on deckIndex selected
+     * @param deckIndex Index of the deck
+     */
+    @Override
+    public void reviewDeck(Index deckIndex) {
+        int zeroBasesIdx = deckIndex.getZeroBased();
+        Deck deckToReview = filteredDecks.get(zeroBasesIdx);
+        List<Card> cardList = new FilteredList<>(
+                masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
+        );
+        currReview = new Review(deckToReview, cardList);
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public void markCorrect() {
+        this.currReview.markCurrCardAsCorrect();
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public void markWrong() {
+        this.currReview.markCurrCardAsWrong();
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public void goToPrevCard() {
+        this.currReview.goToPrevCard();
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public void goToNextCard() {
+        this.currReview.goToNextCard();
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public Optional<Review> getReview() {
+        return Optional.ofNullable(currReview);
+    };
+
+    @Override
+    public void endReview() {
+        currReview.flipAllCards();
+        currReview = null;
+        if (selectedDeck != null) {
+            updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
+        } else {
+            updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
+        }
+    }
+
+    @Override
+    public String getReviewDeckName() {
+        return Optional.ofNullable(currReview)
+                .map(Review::getDeckName)
+                .orElse("None");
+    }
+
+    @Override
+    public void flipCard() {
+        Optional.ofNullable(currReview).ifPresent(Review::flipCard);
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
 }

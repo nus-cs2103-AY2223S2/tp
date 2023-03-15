@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a card).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -172,11 +172,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th card in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new card. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -184,7 +184,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the card was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -229,7 +229,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the card being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -257,13 +257,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Needs to study a group of terms and definitions efficiently
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: study various topics using flashcards on the desktop
 
 
 ### User stories
@@ -273,55 +273,147 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| **`Epic`** | **user**                                  | **manage PowerCards**		       | 				                                                                |
+| `* * *`  | user                                       | create a new PowerCard with a question and answer pair               |                                  |
+| `* *`  | user                                         | search for PowerCards using keywords in the questions                |                                  |
+| `* *`  | user                                         | rewrite the question or the answer in the PowerCard                  | 						                      |
+| **`Epic`**  | **user**                                | **group PowerCards into decks of the same topic**                    | 				                          |
+| `* * *` | user                                        | set the name of a masterDeck                                               | 	                                |
+| `* * *` | user | list all decks I have created     |					|
+| `* * *` | user | list all the PowerCards in a masterDeck |					|
+| `* * *` | user | add PowerCards in a masterDeck	 |					|
+| `* * *` | user | remove PowerCards in a masterDeck	 |					|
+| `* *` | user | rename a masterDeck	 |					|
+| `* *` | user | delete a masterDeck		 |					|
+| `* *` | user | add the description of each masterDeck		 | I can check later what this masterDeck is about.				|
+| **`Epic`**    | **user**                                       | **review decks of PowerCards** | 				               |
+| `* * *` | user | review a single masterDeck of PowerCards           | I can test my knowledge of the topic	                                               |
+| `* * *` | user | mark a flash card to be correct / wrong during review          | 				                                   |
+| `* *` | user | review multiple decks of PowerCards          | I can test my knowledge of multiple topics                                    |
+| `* *` | user | see how many PowerCards I have left to review in one masterDeck          | 		                                   |
+| **`Epic`**    | **user**                                       | **keep track of how effective my learning has been** | 				               |
+| `* *` | user | record the number of questions I got right	 | I can see my progress					|
+| `* *` | user | see which are the PowerCards I struggle with / succeed at	 |					|
+| `*` | user | see which topics (decks) I am stronger / weaker in	 |					|
+| `*` | user | see how many times I have reviewed a PowerCard or masterDeck	 |					|
+| `*` | user | see how long I spent on each question during review	 |					|
+| `*` | user | revise PowerCards that I got wrong for		 | I can see what I’m weak at				|
+| `* *` | user | reset the statistics	 |					|
+| **`Epic`**    | **user**                                       | **share and receive decks from my friends** | 				               |
+| `* * *` | user | import decks from other users.          | 				                                   |
+| `* * *` | user | export decks for other users.         | 				                                   |
+| **`Epic`**    | **user**                                       | **undo and redo changes I make** | 				               |
+| `*` | user | retrieve a masterDeck or flash card should I accidentally delete a PowerCard or masterDeck	 |					|
+| `*` | user | redo changes that I had undone.	 |					|
+| **`Epic`**    | **user**                                       | **adjust the frequency of certain PowerCards appearing based on my input** | 				               |
+| `* *` | user | tag PowerCards that are hard	 | they will appear more frequently					|
+| `* *` | user | tag PowerCards that are easy	 | they will appear less frequently				|
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is the `Powercard` and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: Delete a person**
+**Use case: UC1 - Add a powerdeck**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to create a new deck with a specified name.
+2. System creates a new deck with the given name.
 
-    Use case ends.
+Use case ends.
 
-**Extensions**
+**Use case: UC2 - Add a powercard**
 
-* 2a. The list is empty.
+**MSS:**
+1. User chooses a deck to add powercard to.
+2. System enters the chosen deck.
+3. User enters the question and answer details for the card.
+4. System adds the card to the chosen deck.  
+   Steps 3-4 are repeated for as many times as required until the User finishes adding more cards to the deck.
 
-  Use case ends.
+Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC3 - Delete a powercard**
 
-    * 3a1. AddressBook shows an error message.
+**MSS:**
 
-      Use case resumes at step 2.
+1.  User requests to enter a specific deck.
+2.  System shows a list of powercards inside the chosen deck.
+3.  User requests to delete a specific powercard in the deck.
+4.  System deletes the powercard.
 
-*{More to be added}*
+Use case ends.
+
+**Extensions:**
+
+&nbsp;&nbsp;&nbsp;&nbsp;2a. The list is empty.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+
+&nbsp;&nbsp;&nbsp;&nbsp;3a. The given index is invalid.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3a1. System shows an error message.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2
+
+
+**Use case: UC4 - Find a powercard**
+
+**MSS:**
+
+1. User requests to find powercards containing a certain string in the question.
+2. System shows a list of cards matching the query.
+
+Use case ends.
+
+**Extensions:**
+
+&nbsp;&nbsp;&nbsp;&nbsp;2a. There are no powercards the match the query.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.
+
+**Use case: UC5 - Review  a deck**
+
+**MSS:**
+
+1. User requests to review a particular deck
+2. Application shows a random, non-repeating card in the deck
+3. User attempts to answer the question in the card.
+4. Application reveals the answer to the powercard.
+5. User self-grades question as easy/medium/difficult.  
+   Repeat step 2-5 until all powercards in deck have been exhausted.
+
+Use case ends.
+
+**Extensions:**
+
+&nbsp;&nbsp;&nbsp;&nbsp;1a. There are no decks with the name requested by the user.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use case ends
+
+&nbsp;&nbsp;&nbsp;&nbsp;*a. User decides to end the review early.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*a1. User requests to end the review session  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*a2. Powercard ends the session and brings the user back to default area  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use case ends
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+2.  Should be able to hold up to 1000 Powercards without a noticeable sluggishness in performance for typical usage.
+3. A Powercard should load when prompted without any noticeable lag
+4. Every command should provide a response within 2 seconds
+5. The Powercard program is not expected to determine the correctness of the user’s response
+6. A Powercard should be easily added/deleted in less than 3 commands after opening the program
+7.The data stored by Powercard should be forward compatible such that old data can still be loaded in newer versions of the program
+8. The maximum character limit of a powercard text should be [TO BE DETERMINED]
 *{More to be added}*
+
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Deck**: A group of PowerCards (flashcards) of a specific topic
+*{More to be added}*
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -351,17 +443,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a card
 
-1. Deleting a person while all persons are being shown
+1. Deleting a card while all cards are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all cards using the `list` command. Multiple cards in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No card is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
