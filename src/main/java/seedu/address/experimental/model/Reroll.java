@@ -1,4 +1,4 @@
-package seedu.address.model.experimental;
+package seedu.address.experimental.model;
 
 import static java.util.Objects.requireNonNull;
 
@@ -143,5 +143,10 @@ public class Reroll implements ReadOnlyReroll {
     public ObservableList<? extends Entity> getList() {
         // not slap at all
         return characters.entities.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public String toString() {
+        return "Characters:" + characters.toString() + "\nItems" + items.toString() + "\nMobs" + mobs.toString();
     }
 }

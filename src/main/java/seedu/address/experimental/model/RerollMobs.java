@@ -1,4 +1,4 @@
-package seedu.address.model.experimental;
+package seedu.address.experimental.model;
 
 import seedu.address.model.entity.Mob;
 

@@ -1,12 +1,11 @@
-package seedu.address.model.experimental;
-
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.entity.Entity;
+package seedu.address.experimental.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.entity.Entity;
 
 /**
  * The API of the Model component.
@@ -18,7 +17,7 @@ public interface Model {
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
-    void setUserPrefs(seedu.address.model.ReadOnlyUserPrefs userPrefs);
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs.

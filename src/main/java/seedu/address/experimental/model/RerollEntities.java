@@ -1,11 +1,11 @@
-package seedu.address.model.experimental;
+package seedu.address.experimental.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.Entity;
-
-import java.util.List;
 
 /**
  * Abstraction of some specific entity class T
