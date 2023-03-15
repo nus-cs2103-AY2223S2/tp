@@ -4,6 +4,9 @@
     -fx-primary-dark: #2c2c2c;
     -fx-primary-text: white;
     -fx-secondary-text: black;
+    -fx-list-odd: #333333;
+    -fx-list-even: #3c3e3f;
+    -fx-list-selected: #424d5f;
 }
 
 .theme-light {
@@ -12,6 +15,9 @@
     -fx-primary-dark: derive(#dddddd, -10%);
     -fx-primary-text: black;
     -fx-secondary-text: white;
+    -fx-list-odd: #cccccc;
+    -fx-list-even: #dbdbdb;
+    -fx-list-selected: derive(#424d5f, 90%);
 }
 
 .background {
@@ -132,19 +138,19 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: -fx-list-even;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #333333;
+    -fx-background-color: -fx-list-odd;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: -fx-list-selected;
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-primary-text;
 }
 
 .stack-pane {
