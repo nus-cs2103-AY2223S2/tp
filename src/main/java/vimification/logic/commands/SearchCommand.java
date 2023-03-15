@@ -1,9 +1,9 @@
-package seedu.address.logic.commands;
+package vimification.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.model.Model;
-import seedu.address.model.TaskList;
-import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
+import vimification.commons.core.Messages;
+import vimification.model.Model;
+import vimification.model.TaskList;
+import vimification.model.task.DescriptionContainsKeywordsPredicate;
 import static java.util.Objects.requireNonNull;
 
 /**
