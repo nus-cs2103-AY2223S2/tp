@@ -129,8 +129,8 @@ class JsonAdaptedCustomer {
         if (points == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Points.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Points.isValidPoints(points)) {
+            throw new IllegalValueException(Points.MESSAGE_CONSTRAINTS);
         }
         final Points modelPoints = new Points(points);
 
