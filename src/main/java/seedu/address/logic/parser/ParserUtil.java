@@ -9,9 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.entity.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -94,6 +95,22 @@ public class ParserUtil {
         }
         return new Email(trimmedEmail);
     }
+
+    /**
+     * Parses a {@code String classification} into an {@code Classification}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code classification} is invalid.
+     */
+    public static Classification parseClassification(String classification) throws ParseException {
+        requireNonNull(classification);
+        String trimmedClassification = classification.trim();
+        if (!Classification.isValidClassification(trimmedClassification)) {
+            throw new ParseException(Classification.MESSAGE_CONSTRAINTS);
+        }
+        return new Classification(trimmedClassification);
+    }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.

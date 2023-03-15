@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Stats;
-import seedu.address.model.person.Name;
+import seedu.address.model.entity.Name;
 
 /***/
 public class JsonAdaptedMob {
