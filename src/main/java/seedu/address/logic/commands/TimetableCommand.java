@@ -28,7 +28,7 @@ public class TimetableCommand extends Command {
         model.updateSortedDeliveryJobList(SORTER);
         model.getSortedDeliveryJobList();
 
-        return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false);
+        return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false, false);
     }
 
 }
