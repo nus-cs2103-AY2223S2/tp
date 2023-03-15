@@ -11,7 +11,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.UniqueContactList;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Event;
+import seedu.address.model.person.Mark;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Rate;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -75,7 +80,11 @@ public class LinkContactCommand extends Command {
                 && addContact.equals(((LinkContactCommand) other).addContact));
     }
 
-    public Event createLinkedEvent (Event eventToEdit, Contact toAdd) {
+    /**
+     * Creates and returns an {@code Event} with details of
+     * newly linked contact.
+     */
+    public Event createLinkedEvent  (Event eventToEdit, Contact toAdd) {
         Name name = eventToEdit.getName();
         Rate rate = eventToEdit.getRate();
         Address address = eventToEdit.getAddress();
