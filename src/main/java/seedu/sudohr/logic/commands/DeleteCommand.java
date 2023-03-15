@@ -11,7 +11,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.employee.Employee;
 
 /**
- * Deletes an employee identified using it's displayed index from the sudohr book.
+ * Deletes an employee identified using it's displayed index from SudoHR.
  */
 public class DeleteCommand extends Command {
 

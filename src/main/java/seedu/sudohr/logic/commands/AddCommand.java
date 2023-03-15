@@ -13,13 +13,13 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.employee.Employee;
 
 /**
- * Adds an employee to the sudohr book.
+ * Adds an employee to SudoHR.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to the sudohr book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to SudoHR. "
             + "Parameters: "
             + PREFIX_ID + "EMPLOYEE_ID "
             + PREFIX_NAME + "NAME "
@@ -37,7 +37,9 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New employee added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the sudohr book";
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in SudoHR";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "There already exists someone with this email!";
+    public static final String MESSAGE_DUPLICATE_PHONE = "There already exists someone with this phone number!";
 
     private final Employee toAdd;
 
@@ -57,7 +59,16 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
         }
 
+        if (model.hasClashingPhoneNumber(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        }
+
+        if (model.hasClashingEmail(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+
         model.addEmployee(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

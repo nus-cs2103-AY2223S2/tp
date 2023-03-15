@@ -32,7 +32,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlySudoHr sudoHr, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(sudoHr, userPrefs);
 
-        logger.fine("Initializing with sudohr book: " + sudoHr + " and user prefs " + userPrefs);
+        logger.fine("Initializing with SudoHR: " + sudoHr + " and user prefs " + userPrefs);
 
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -95,9 +95,42 @@ public class ModelManager implements Model {
     //=========== Employee-Level Operations ========================
 
     @Override
-    public boolean hasEmployee(Employee employee) {
-        requireNonNull(employee);
-        return sudoHr.hasEmployee(employee);
+    public boolean hasEmployee(Employee person) {
+        requireNonNull(person);
+        return sudoHr.hasEmployee(person);
+    }
+
+    @Override
+    public boolean hasEmployee(Employee person, Employee excludeFromCheck) {
+        requireNonNull(person);
+        requireAllNonNull(excludeFromCheck);
+        return sudoHr.hasEmployee(person, excludeFromCheck);
+    }
+
+    @Override
+    public boolean hasClashingEmail(Employee person) {
+        requireNonNull(person);
+        return sudoHr.hasClashingEmail(person);
+    }
+
+    @Override
+    public boolean hasClashingEmail(Employee person, Employee excludeFromCheck) {
+        requireNonNull(person);
+        requireNonNull(excludeFromCheck);
+        return sudoHr.hasClashingEmail(person, excludeFromCheck);
+    }
+
+    @Override
+    public boolean hasClashingPhoneNumber(Employee person) {
+        requireNonNull(person);
+        return sudoHr.hasClashingPhoneNumber(person);
+    }
+
+    @Override
+    public boolean hasClashingPhoneNumber(Employee person, Employee excludeFromCheck) {
+        requireNonNull(person);
+        requireNonNull(excludeFromCheck);
+        return sudoHr.hasClashingPhoneNumber(person, excludeFromCheck);
     }
 
     @Override

@@ -29,7 +29,7 @@ import seedu.sudohr.model.employee.Phone;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * Edits the details of an existing employee inside SudoHR.
+ * Edits the details of an existing employee in SudoHR.
  */
 public class EditCommand extends Command {
 
@@ -51,8 +51,10 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_EMPLOYEE_SUCCESS = "Edited Employee: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in SudoHR.";
-    // TODO DUPLICATED IDENTITY FIELDS
+
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in SudoHR";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "There already exists someone with this email!";
+    public static final String MESSAGE_DUPLICATE_PHONE = "There already exists someone with this phone number!";
 
     private final Index index;
     private final EditEmployeeDescriptor editEmployeeDescriptor;
@@ -81,13 +83,22 @@ public class EditCommand extends Command {
         Employee employeeToEdit = lastShownList.get(index.getZeroBased());
         Employee editedEmployee = createEditedEmployee(employeeToEdit, editEmployeeDescriptor);
 
-        if (!employeeToEdit.isSameEmployee(editedEmployee) && model.hasEmployee(editedEmployee)) {
+        if (model.hasEmployee(editedEmployee, employeeToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
+        }
+
+        if (model.hasClashingPhoneNumber(editedEmployee, employeeToEdit)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        }
+
+        if (model.hasClashingEmail(editedEmployee, employeeToEdit)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
         }
 
         model.setEmployee(employeeToEdit, editedEmployee);
         model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
         return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee));
+
     }
 
     /**

@@ -7,7 +7,7 @@ import seedu.sudohr.model.SudoHr;
 
 
 /**
- * Clears the sudohr book.
+ * Clears data in SudoHR.
  */
 public class ClearCommand extends Command {
 
