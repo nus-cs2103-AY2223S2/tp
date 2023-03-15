@@ -18,8 +18,8 @@ import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
-import seedu.address.model.job.Website;
 import seedu.address.model.job.Experience;
+import seedu.address.model.job.Website;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -156,7 +156,8 @@ class JsonAdaptedRole {
         final Deadline modelDeadline = new Deadline(deadline);
 
         if (website == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Website.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Website.class.getSimpleName()));
         }
         if (!Website.isValidWebsite(website)) {
             throw new IllegalValueException(Website.MESSAGE_CONSTRAINTS);
@@ -164,7 +165,8 @@ class JsonAdaptedRole {
         final Website modelWebsite = new Website(website);
 
         if (experience == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Experience.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Experience.class.getSimpleName()));
         }
         if (!Experience.isValidExperience(experience)) {
             throw new IllegalValueException(Experience.MESSAGE_CONSTRAINTS);
