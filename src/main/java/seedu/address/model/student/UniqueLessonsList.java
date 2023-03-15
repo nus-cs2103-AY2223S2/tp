@@ -150,6 +150,36 @@ public class UniqueLessonsList implements Iterable<Lesson> {
         return tempList;
     }
 
+    /**
+     * Returns a list of lessons that are upcoming.
+     *
+     * @return a list of lessons that are upcoming.
+     */
+    public ObservableList<Lesson> getPastLessons() {
+        ObservableList<Lesson> pastLessons = FXCollections.observableArrayList();
+        for (Lesson lesson : internalList) {
+            if (lesson.isPastLesson()) {
+                pastLessons.add(lesson);
+            }
+        }
+        return pastLessons;
+    }
+
+    /**
+     * Returns a list of lessons that are upcoming.
+     *
+     * @return a list of lessons that are upcoming.
+     */
+    public ObservableList<Lesson> getUpcomingLessons() {
+        ObservableList<Lesson> upcomingLessons = FXCollections.observableArrayList();
+        for (Lesson lesson : internalList) {
+            if (!lesson.isPastLesson()) {
+                upcomingLessons.add(lesson);
+            }
+        }
+        return upcomingLessons;
+    }
+
     public boolean hasLesson() {
         return this.internalList.size() != 0;
     }

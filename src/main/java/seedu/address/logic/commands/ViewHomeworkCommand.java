@@ -24,6 +24,10 @@ public class ViewHomeworkCommand extends Command {
             + "name and status keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: [n/STUDENT_NAME] [st/Status]\n"
             + "Example: " + COMMAND_WORD + " n/John st/pending";
+    private static final String SEPERATOR = "--------------------------------------------------\n";
+    private static final String DOT = ". ";
+    private static final String LINE_BREAK = "\n";
+    private static final String NAME_LABEL = "%s:\n";
     private static final Predicate<Homework> SHOW_ALL_HOMEWORK = homework -> true;
     private final Predicate<Student> namePredicate;
     private final Predicate<Homework> homeworkStatusPredicate;
@@ -71,24 +75,9 @@ public class ViewHomeworkCommand extends Command {
         List<Student> studentList = model.getFilteredStudentList();
 
         int numberOfStudents = studentList.size();
-        int numberOfHomework = 0;
-        StringBuilder sb = new StringBuilder();
-        sb.append("--------------------------------------------------\n");
+        int numberOfHomework = getNumberOfHomework(studentList);
+        String message = formatAllHomework(studentList);
 
-        // Loop through each student and add their homework to the string builder
-        for (Student student : studentList) {
-            List<Homework> homeworkList = student.getFilteredHomeworkList(homeworkStatusPredicate);
-            if (!homeworkList.isEmpty()) {
-                sb.append(student.getName().fullName).append(":\n");
-                numberOfHomework += homeworkList.size();
-
-                for (int i = 0; i < homeworkList.size(); i++) {
-                    sb.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
-                }
-
-                sb.append("--------------------------------------------------\n");
-            }
-        }
 
         // If no homework is found, throw an exception
         if (numberOfHomework == 0) {
@@ -98,11 +87,57 @@ public class ViewHomeworkCommand extends Command {
         // If the default predicate is used, display a different message
         if (defaultPredicateFlag) {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_ALL_HOMEWORK_LISTED_OVERVIEW, numberOfHomework, sb));
+                    String.format(Messages.MESSAGE_ALL_HOMEWORK_LISTED_OVERVIEW, numberOfHomework, message));
         } else {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_HOMEWORK_LISTED_OVERVIEW, numberOfHomework, numberOfStudents, sb));
+                    String.format(Messages.MESSAGE_HOMEWORK_LISTED_OVERVIEW,
+                            numberOfHomework, numberOfStudents, message));
         }
+    }
+
+    /**
+     * Formats all homework in the student list into a string.
+     *
+     * @param studentList List of students.
+     * @return String containing all homework in the student list.
+     */
+    public String formatAllHomework(List<Student> studentList) {
+        int numberOfHomework = 0;
+        StringBuilder sb = new StringBuilder();
+        sb.append(SEPERATOR);
+
+        // Loop through each student and add their homework to the string builder
+        for (Student student : studentList) {
+            List<Homework> homeworkList = student.getHomeworkList();
+            if (!homeworkList.isEmpty()) {
+                sb.append(String.format(NAME_LABEL, student.getName().fullName));
+                numberOfHomework += homeworkList.size();
+
+                for (int i = 0; i < homeworkList.size(); i++) {
+                    sb.append(i + 1).append(DOT).append(homeworkList.get(i)).append(LINE_BREAK);
+                }
+
+                sb.append(SEPERATOR);
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Returns the number of homework in the student list.
+     *
+     * @param studentList List of students.
+     * @return Number of homework in the student list.
+     */
+    public int getNumberOfHomework(List<Student> studentList) {
+        int numberOfHomework = 0;
+        for (Student student : studentList) {
+            List<Homework> homeworkList = student.getHomeworkList();
+            if (!homeworkList.isEmpty()) {
+                numberOfHomework += homeworkList.size();
+            }
+        }
+        return numberOfHomework;
     }
 
     @Override

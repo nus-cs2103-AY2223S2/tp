@@ -21,6 +21,9 @@ public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand
     /**
      * Parses the given {@code String} of arguments in the context of the CreateHomeworkCommand
      * and returns a CreateHomeworkCommand object for execution.
+     *
+     * @param args the user input to be parsed.
+     * @return CreateHomeworkCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CreateHomeworkCommand parse(String args) throws ParseException {

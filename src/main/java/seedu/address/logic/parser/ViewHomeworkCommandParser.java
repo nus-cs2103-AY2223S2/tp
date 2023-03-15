@@ -21,8 +21,10 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewHomeworkCommand
      * and returns a ViewHomeworkCommand object for execution.
+     *
      * @param args the user input to be parsed into a ViewHomeworkCommand object.
      * @return a ViewHomeworkCommand object.
+     * @throws ParseException if the user input does not conform the expected format
      */
     public ViewHomeworkCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -62,5 +64,4 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
             return new ViewHomeworkCommand(namePredicate, defaultPredicateFlag);
         }
     }
-
 }

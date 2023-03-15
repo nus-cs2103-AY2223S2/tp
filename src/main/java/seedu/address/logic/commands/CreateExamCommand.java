@@ -63,8 +63,10 @@ public class CreateExamCommand extends Command {
         if (startTime.isBefore(LocalDateTime.now())) {
             throw new CommandException("start time must be in the future.");
         }
+
         //Todo: currently weightage is 0 for convenience, implement this where possible
         Exam exam = new Exam(examDescription, startTime, endTime, 0d, Exam.ExamStatus.Upcoming, null);
+
         try {
             for (Student student : studentList) {
                 student.addExam(exam);

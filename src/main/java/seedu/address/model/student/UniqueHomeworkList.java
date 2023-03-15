@@ -3,12 +3,14 @@ package seedu.address.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
 import seedu.address.model.student.exceptions.EntryNotFoundException;
 
@@ -16,14 +18,11 @@ import seedu.address.model.student.exceptions.EntryNotFoundException;
  * A list of homework that enforces uniqueness between its elements and does not allow nulls.
  * A homework is considered unique by comparing using {@code Homework#isSameHomework(Homework)}.
  * As such, adding and updating of homework uses Homework#isSameHomework(Homework) for equality
- * so as to ensure that the homework being added or updated is unique in terms of identity in the
+ * to ensure that the homework being added or updated is unique in terms of identity in the
  * UniqueHomeworkList. However, the removal of a homework uses Homework#equals(Object) so as to ensure
  * that the homework with exactly the same fields will be removed.
- *
- * Supports a minimal set of list operations.
  */
 public class UniqueHomeworkList implements Iterable<Homework> {
-
     private final ObservableList<Homework> internalList = FXCollections.observableArrayList();
     private final ObservableList<Homework> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -45,12 +44,13 @@ public class UniqueHomeworkList implements Iterable<Homework> {
      *
      * @param toAdd the homework to be added
      */
-    public void add(Homework toAdd) {
+    public void addHomework(Homework toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateEntryException();
         }
         internalList.add(toAdd);
+        internalList.sort(Comparator.comparing(Homework::getDeadline));
     }
 
     /**
@@ -79,7 +79,7 @@ public class UniqueHomeworkList implements Iterable<Homework> {
      *
      * @param toRemove the homework to be removed
      */
-    public void remove(Homework toRemove) {
+    public void removeHomework(Homework toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new EntryNotFoundException();
@@ -158,11 +158,42 @@ public class UniqueHomeworkList implements Iterable<Homework> {
         return true;
     }
 
+    /**
+     * Updates the list of homeworks to only contain homeworks that are not completed.
+     *
+     * @param homeworkStatusPredicate the predicate to filter the homework list
+     */
+    public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
+        requireNonNull(homeworkStatusPredicate);
+        internalList.removeIf(homeworkStatusPredicate.negate());
+    }
+
+    /**
+     * Returns the pie chart data for the homework list.
+     *
+     * @return the pie chart data for the homework list
+     */
+    public ObservableList<PieChart.Data> getHomeworkPieChartData() {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        int completedHomework = 0;
+        int uncompletedHomework = 0;
+        for (Homework homework : internalList) {
+            if (homework.isCompleted()) {
+                completedHomework++;
+            } else {
+                uncompletedHomework++;
+            }
+        }
+        pieChartData.add(new PieChart.Data("Completed", completedHomework));
+        pieChartData.add(new PieChart.Data("Uncompleted", uncompletedHomework));
+        return pieChartData;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueHomeworkList // instanceof handles nulls
-                        && internalList.equals(((UniqueHomeworkList) other).internalList));
+                && internalList.equals(((UniqueHomeworkList) other).internalList));
     }
 
     @Override
@@ -170,11 +201,4 @@ public class UniqueHomeworkList implements Iterable<Homework> {
         return internalList.hashCode();
     }
 
-    /**
-     * Updates the list of homeworks to only contain homeworks that are not completed.
-     */
-    public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
-        requireNonNull(homeworkStatusPredicate);
-        internalList.removeIf(homeworkStatusPredicate.negate());
-    }
 }

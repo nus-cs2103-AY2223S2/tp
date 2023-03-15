@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 
@@ -16,6 +15,7 @@ import seedu.address.model.student.Student;
  */
 public class StudentListPanel extends UiPart<Region> {
     private static final String FXML = "StudentListPanel.fxml";
+    private final MainWindow mainWindow;
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
     @FXML
@@ -24,8 +24,9 @@ public class StudentListPanel extends UiPart<Region> {
     /**
      * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
-    public StudentListPanel(ObservableList<Student> personList, Stage primaryStage) {
+    public StudentListPanel(ObservableList<Student> personList, MainWindow mainWindow) {
         super(FXML);
+        this.mainWindow = mainWindow;
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
@@ -42,9 +43,25 @@ public class StudentListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new StudentCard(person, getIndex() + 1).getRoot());
+                setGraphic(new StudentCard(person, getIndex() + 1, mainWindow).getRoot());
             }
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof StudentListPanel)) {
+            return false;
+        }
+
+        // state check
+        StudentListPanel panel = (StudentListPanel) other;
+        return personListView.equals(panel.personListView);
+    }
 }

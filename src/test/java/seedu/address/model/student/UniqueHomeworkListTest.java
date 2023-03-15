@@ -33,26 +33,26 @@ public class UniqueHomeworkListTest {
 
     @Test
     public void contains_homeworkInList_returnsTrue() {
-        uniqueHomeworkList.add(homework1);
+        uniqueHomeworkList.addHomework(homework1);
         assertTrue(uniqueHomeworkList.contains(homework1));
     }
 
     @Test
     public void contains_homeworkWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueHomeworkList.add(homework1);
+        uniqueHomeworkList.addHomework(homework1);
         Homework editedHomework = new Homework("Complete math assignment", LocalDateTime.of(2022, 4, 1, 23, 59));
         assertTrue(uniqueHomeworkList.contains(editedHomework));
     }
 
     @Test
     public void add_nullHomework_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueHomeworkList.add(null));
+        assertThrows(NullPointerException.class, () -> uniqueHomeworkList.addHomework(null));
     }
 
     @Test
     public void add_duplicateHomework_throwsDuplicateHomeworkException() {
-        uniqueHomeworkList.add(homework1);
-        assertThrows(DuplicateEntryException.class, () -> uniqueHomeworkList.add(homework1));
+        uniqueHomeworkList.addHomework(homework1);
+        assertThrows(DuplicateEntryException.class, () -> uniqueHomeworkList.addHomework(homework1));
     }
 
     @Test
@@ -72,62 +72,62 @@ public class UniqueHomeworkListTest {
 
     @Test
     public void setHomework_editedHomeworkIsSameHomework_success() {
-        uniqueHomeworkList.add(homework1);
+        uniqueHomeworkList.addHomework(homework1);
         uniqueHomeworkList.setHomework(homework1, homework1);
         UniqueHomeworkList expectedUniqueHomeworkList = new UniqueHomeworkList();
-        expectedUniqueHomeworkList.add(homework1);
+        expectedUniqueHomeworkList.addHomework(homework1);
         assertEquals(expectedUniqueHomeworkList, uniqueHomeworkList);
     }
 
     @Test
     public void setHomework_editedHomeworkHasSameIdentity_success() {
-        uniqueHomeworkList.add(homework1);
+        uniqueHomeworkList.addHomework(homework1);
         Homework editedHomework = new Homework("Complete math assignment", LocalDateTime.of(2022, 4, 1, 23, 59));
         uniqueHomeworkList.setHomework(homework1, editedHomework);
         UniqueHomeworkList expectedUniqueHomeworkList = new UniqueHomeworkList();
-        expectedUniqueHomeworkList.add(editedHomework);
+        expectedUniqueHomeworkList.addHomework(editedHomework);
         assertEquals(expectedUniqueHomeworkList, uniqueHomeworkList);
     }
 
     @Test
     public void remove_homeworkInList_success() {
-        uniqueHomeworkList.add(homework1);
-        uniqueHomeworkList.remove(homework1);
+        uniqueHomeworkList.addHomework(homework1);
+        uniqueHomeworkList.removeHomework(homework1);
         UniqueHomeworkList expectedUniqueHomeworkList = new UniqueHomeworkList();
         assertEquals(expectedUniqueHomeworkList, uniqueHomeworkList);
     }
 
     @Test
     public void remove_homeworkNotInList_throwsHomeworkNotFoundException() {
-        assertThrows(EntryNotFoundException.class, () -> uniqueHomeworkList.remove(homework1));
+        assertThrows(EntryNotFoundException.class, () -> uniqueHomeworkList.removeHomework(homework1));
     }
 
     @Test
     public void setHomework_editedHomeworkHasDifferentIdentity_success() {
-        uniqueHomeworkList.add(homework1);
+        uniqueHomeworkList.addHomework(homework1);
         uniqueHomeworkList.setHomework(homework1, homework2);
         UniqueHomeworkList expectedUniqueHomeworkList = new UniqueHomeworkList();
-        expectedUniqueHomeworkList.add(homework2);
+        expectedUniqueHomeworkList.addHomework(homework2);
         assertEquals(expectedUniqueHomeworkList, uniqueHomeworkList);
     }
 
     @Test
     public void setHomework_editedHomeworkHasDifferentDeadline_success() {
-        uniqueHomeworkList.add(homework1);
+        uniqueHomeworkList.addHomework(homework1);
         Homework editedHomework = new Homework("Complete math assignment", LocalDateTime.of(2022, 5, 1, 23, 59));
         uniqueHomeworkList.setHomework(homework1, editedHomework);
         UniqueHomeworkList expectedUniqueHomeworkList = new UniqueHomeworkList();
-        expectedUniqueHomeworkList.add(editedHomework);
+        expectedUniqueHomeworkList.addHomework(editedHomework);
         assertEquals(expectedUniqueHomeworkList, uniqueHomeworkList);
     }
 
     @Test
     public void setHomework_editedHomeworkHasDifferentDescription_success() {
-        uniqueHomeworkList.add(homework1);
+        uniqueHomeworkList.addHomework(homework1);
         Homework editedHomework = new Homework("Do physics homework", LocalDateTime.of(2022, 4, 1, 23, 59));
         uniqueHomeworkList.setHomework(homework1, editedHomework);
         UniqueHomeworkList expectedUniqueHomeworkList = new UniqueHomeworkList();
-        expectedUniqueHomeworkList.add(editedHomework);
+        expectedUniqueHomeworkList.addHomework(editedHomework);
         assertEquals(expectedUniqueHomeworkList, uniqueHomeworkList);
     }
 }

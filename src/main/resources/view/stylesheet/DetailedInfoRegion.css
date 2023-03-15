@@ -1,0 +1,54 @@
+#detailedInfoRegion {
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 2, 3);
+}
+
+#detailedContentPlaceholder {
+    -fx-border-style: solid none none none;
+    -fx-border-width: 2;
+    -fx-border-color: black;
+    -fx-background-color: #fffceb;
+    -fx-background-radius: 5;
+}
+
+#detailedContent {
+    -fx-background-color: #fffceb;
+}
+
+#welcomeMessage {
+    -fx-font-size: 15pt;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #1d1d1d;
+}
+
+.label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #1d1d1d;
+}
+
+#detailedInfoRegion .list-view {
+    -fx-background-radius: 7;
+    -fx-border-width: 2;
+    -fx-border-color: black;
+    -fx-border-radius: 7;
+    -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 1, 2);
+}
+
+
+.chart-legend {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #1d1d1d;
+}
+
+.chart-pie-label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #1d1d1d;
+}
+
+#homeworkPieChart.default-color0.chart-pie { -fx-pie-color: #ffd700; }
+#homeworkPieChart.default-color1.chart-pie { -fx-pie-color: #ffa500; }

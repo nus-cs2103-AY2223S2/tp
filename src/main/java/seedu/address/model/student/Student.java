@@ -10,6 +10,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
 import seedu.address.model.tag.Tag;
@@ -32,7 +34,14 @@ public class Student {
     private final UniqueExamList examList = new UniqueExamList();
 
     /**
-     * Every field must be present and not null.
+     * An overloaded constructor for Student class.
+     * where homeworkList, lessonList and examList are empty.
+     *
+     * @param name name of student.
+     * @param phone phone number of student.
+     * @param email email of student.
+     * @param address address of student.
+     * @param tags tags of student.
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -44,7 +53,17 @@ public class Student {
     }
 
     /**
-     * Every field must be present and not null
+     * An overloaded constructor for Student class.
+     * Every field must be present and not null.
+     *
+     * @param name name of student.
+     * @param phone phone number of student.
+     * @param email email of student.
+     * @param address address of student.
+     * @param tags tags of student.
+     * @param homeworkList list of homework of student.
+     * @param lessonList list of lessons of student.
+     * @param examList list of exams of student.
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Homework> homeworkList,
                    List<Lesson> lessonList, List<Exam> examList) {
@@ -91,47 +110,39 @@ public class Student {
      *
      * @return list of homework
      */
-    public List<Homework> getHomeworkList() {
+    public ObservableList<Homework> getHomeworkList() {
         return homeworkList.asUnmodifiableObservableList();
     }
+
     /**
      * Returns an immutable lessons list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      *
      * @return list of lessons
      */
-    public List<Lesson> getLessonsList() {
+    public ObservableList<Lesson> getLessonsList() {
         return lessonsList.asUnmodifiableObservableList();
     }
 
     /**
-     * Returns an immutable Exams list, which throws {@code UnsupportedOperationException}
+     * Returns an immutable exam list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      *
      * @return list of exams
      */
-    public List<Exam> getExamList() {
+    public ObservableList<Exam> getExamsList() {
         return examList.asUnmodifiableObservableList();
     }
 
     //HOMEWORK########################################################################################
-
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      *
      * @return list of completed homework
      */
-    public List<Homework> getCompletedHomeworkList() {
-        List<Homework> completedHomeworkList = new ArrayList<>();
-
-        // filter homework list for completed homework
-        for (Homework hw : homeworkList) {
-            if (hw.isCompleted()) {
-                completedHomeworkList.add(hw);
-            }
-        }
-        return Collections.unmodifiableList(completedHomeworkList);
+    public ObservableList<Homework> getCompletedHomeworkList() {
+        return homeworkList.asUnmodifiableObservableList().filtered(Homework::isCompleted);
     }
 
     /**
@@ -139,16 +150,8 @@ public class Student {
      *
      * @return list of pending homework
      */
-    public List<Homework> getPendingHomeworkList() {
-        List<Homework> pendingHomeworkList = new ArrayList<>();
-
-        // filter homework list for pending homework
-        for (Homework hw : homeworkList) {
-            if (!hw.isCompleted()) {
-                pendingHomeworkList.add(hw);
-            }
-        }
-        return Collections.unmodifiableList(pendingHomeworkList);
+    public ObservableList<Homework> getPendingHomeworkList() {
+        return homeworkList.asUnmodifiableObservableList().filtered(homework -> !homework.isCompleted());
     }
 
     /**
@@ -157,17 +160,8 @@ public class Student {
      *
      * @return list of filtered homework
      */
-    public List<Homework> getFilteredHomeworkList(Predicate<Homework> predicate) {
-        List<Homework> filteredHomeworkList = new ArrayList<>();
-
-        // filter homework list for homework that matches predicate
-        for (Homework hw : homeworkList) {
-            if (predicate.test(hw)) {
-                filteredHomeworkList.add(hw);
-            }
-        }
-
-        return Collections.unmodifiableList(filteredHomeworkList);
+    public ObservableList<Homework> getFilteredHomeworkList(Predicate<Homework> predicate) {
+        return homeworkList.asUnmodifiableObservableList().filtered(predicate);
     }
 
     /**
@@ -183,7 +177,7 @@ public class Student {
             }
         }
 
-        this.homeworkList.add(homework);
+        this.homeworkList.addHomework(homework);
     }
 
     /**
@@ -203,7 +197,7 @@ public class Student {
      */
     public void deleteHomework(Index index) {
         Homework homeworkToDelete = this.homeworkList.getHomework(index.getZeroBased());
-        this.homeworkList.remove(homeworkToDelete);
+        this.homeworkList.removeHomework(homeworkToDelete);
     }
 
     /**
@@ -224,6 +218,15 @@ public class Student {
     public void markHomeworkAsUndone(Index index) {
         Homework homeworkToMarkAsUndone = this.homeworkList.getHomework(index.getZeroBased());
         homeworkToMarkAsUndone.markAsUndone();
+    }
+
+    /**
+     * Returns the pie chart data for the homework list.
+     *
+     * @return pie chart data for the homework list
+     */
+    public ObservableList<PieChart.Data> getHomeworkPieChartData() {
+        return homeworkList.getHomeworkPieChartData();
     }
 
     //LESSONS########################################################################################
@@ -283,6 +286,36 @@ public class Student {
         }
 
         return Collections.unmodifiableList(filteredLessonsList);
+    }
+
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered homework
+     */
+    public ObservableList<Lesson> getPastLessonsList() {
+        return lessonsList.getPastLessons();
+    }
+
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered homework
+     */
+    public ObservableList<Lesson> getUpcomingLessonsList() {
+        return lessonsList.getUpcomingLessons();
+    }
+
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered homework
+     */
+    public boolean hasLesson() {
+        return this.lessonsList.hasLesson();
     }
 
     //Exams########################################################################################
@@ -363,7 +396,6 @@ public class Student {
         this.examList.remove(examToDelete);
     }
 
-
     //UTIL########################################################################################
     /**
      * Returns true if both persons have the same name.
@@ -395,14 +427,14 @@ public class Student {
             return false;
         }
 
-        // state check
         Student otherPerson = (Student) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getHomeworkList().equals(getHomeworkList());
+                && otherPerson.getHomeworkList().equals(getHomeworkList())
+                && otherPerson.getLessonsList().equals(getLessonsList());
     }
 
     /**
@@ -432,22 +464,34 @@ public class Student {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Assignments: ")
-                .append(getHomeworkList());
+                .append("; Tags: ");
+        getTags().forEach(builder::append);
+        builder.append("; Homework: ");
+        getHomeworkList().forEach(builder::append);
+        builder.append("; Lessons: ");
+        getLessonsList().forEach(builder::append);
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 
-    public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
-        homeworkList.updateFilteredHomeworkList(homeworkStatusPredicate);
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered homework
+     */
+    public ObservableList<Exam> getPastExamsList() {
+        return examList.getPastExams();
     }
 
-    public boolean hasLesson() {
-        return this.lessonsList.hasLesson();
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered homework
+     */
+    public ObservableList<Exam> getUpcomingExamsList() {
+        return examList.getUpcomingExams();
     }
+
 }
