@@ -6,9 +6,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.tag.ModuleTag;
 
 /**
@@ -25,10 +25,10 @@ public class UntagCommandParser {
         requireNonNull(args);
         ArgumentMultimap argumentMultiMap = ArgumentTokenizer.tokenize(args, Prefix.MODULE_TAG);
 
-        Index index;
+        ContactIndex contactIndex;
 
         try {
-            index = ParserUtil.parseIndex(argumentMultiMap.getPreamble());
+            contactIndex = ParserUtil.parseContactIndex(argumentMultiMap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UntagCommand.MESSAGE_USAGE), pe);
         }
@@ -40,7 +40,7 @@ public class UntagCommandParser {
             throw new ParseException(UntagCommand.MESSAGE_NO_TAGS);
         }
 
-        return new UntagCommand(index, modulesToRemove.get());
+        return new UntagCommand(contactIndex, modulesToRemove.get());
     }
 
 }
