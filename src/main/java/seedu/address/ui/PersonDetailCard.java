@@ -9,6 +9,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
+/**
+ * An UI component that displays all information of a {@code Person}.
+ */
 public class PersonDetailCard extends UiPart<Region> {
     private static final String FXML = "PersonDetailCard.fxml";
 

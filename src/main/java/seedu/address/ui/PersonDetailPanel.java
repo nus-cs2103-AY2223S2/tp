@@ -1,25 +1,27 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
-import java.util.Comparator;
-import java.util.logging.Logger;
-
+/**
+ * Panel containing the person's information.
+ */
 public class PersonDetailPanel extends UiPart<Region> {
     private static final String FXML = "PersonDetailPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonDetailPanel.class);
     @FXML
     private ListView<Person> personDetailListView;
 
+    /**
+     * Creates a {@code PersonDetailPanel} with the given {@code ObservableList}.
+     */
     public PersonDetailPanel(ObservableList<Person> personList) {
         super(FXML);
         personDetailListView.setItems(personList);

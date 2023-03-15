@@ -17,9 +17,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
-
-import java.util.Arrays;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
