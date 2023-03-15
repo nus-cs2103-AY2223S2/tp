@@ -10,6 +10,8 @@ import seedu.wife.logic.commands.AddCommand;
 import seedu.wife.logic.commands.ClearCommand;
 import seedu.wife.logic.commands.Command;
 import seedu.wife.logic.commands.DeleteCommand;
+import seedu.wife.logic.commands.DeleteCommand;
+import seedu.wife.logic.commands.deleteCommands.DeleteByTagCommand;
 import seedu.wife.logic.commands.EditCommand;
 import seedu.wife.logic.commands.ExitCommand;
 import seedu.wife.logic.commands.FindCommand;
@@ -49,6 +51,9 @@ public class WifeParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case DeleteByTagCommand.COMMAND_WORD:
+            return new DeleteByTagCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
