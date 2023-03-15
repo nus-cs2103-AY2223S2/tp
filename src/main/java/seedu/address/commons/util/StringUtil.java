@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Helper functions for handling strings.
@@ -65,4 +67,18 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns a {@code List<String>} by splitting the given {@code args} by whitespace.
+     * Will return an empty List if argument is an empty string.
+     */
+    public static List<String> convertArgumentsIntoList(String args) {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            return Collections.emptyList();
+        }
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+        return Arrays.asList(nameKeywords);
+    }
+
 }
