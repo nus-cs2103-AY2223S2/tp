@@ -136,7 +136,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
 
         appointmentListPanel = new ListViewPanel<>(
                 logic.getFilteredAppointmentMap(),
-                data -> new AppointmentCard(data).getRoot());
+                idData -> new AppointmentCard(idData.getValue(), idData.getId() + 1).getRoot());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel);
 
         resultDisplay = new ResultDisplay();
