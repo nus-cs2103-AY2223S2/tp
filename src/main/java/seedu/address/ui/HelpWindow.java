@@ -1,13 +1,10 @@
 package seedu.address.ui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -21,7 +18,7 @@ import seedu.address.commons.core.LogsCenter;
 /**
  * Controller for a help page
  */
-public class HelpWindow extends UiPart<Stage> implements Initializable {
+public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "\nhttps://ay2223s2-cs2103-f10-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "For more help, Refer to the user guide: " + USERGUIDE_URL;
@@ -109,7 +106,7 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
     }
 
     /**
-     * Generates a String of information based on which TreeItem was clicked in the help interface.
+     * Generates and displays a String of information based on which TreeItem was clicked in the help interface.
      *
      * @param treeItemValue from the TreeItem's getValue(), we will process the String and return help text.
      */
@@ -148,9 +145,6 @@ public class HelpWindow extends UiPart<Stage> implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
 
     /**
      * Shows the help window.
