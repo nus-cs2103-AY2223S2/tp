@@ -1,4 +1,3 @@
-
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -58,10 +57,10 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+            transparent
+            transparent
+            derive(-fx-base, 80%)
+            transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -100,6 +99,7 @@
     -fx-padding: 0 0 0 0;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
+    -fx-background-color:#F4F6F8;
 }
 
 .list-cell:filled:even {
@@ -136,13 +136,13 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: #FDF6E3;
-     -fx-border-color: #FDF6E3;
-     -fx-border-top-width: 1px;
+    -fx-background-color: #FDF6E3;
+    -fx-border-color: #FDF6E3;
+    -fx-border-top-width: 1px;
 }
 
 .status-bar {
@@ -221,8 +221,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
@@ -337,7 +337,7 @@
 }
 
 #tags .label {
-    -fx-text-fill: whiteblack;
+    -fx-text-fill: black;
     -fx-background-color: #F7A05C;
     -fx-opacity: 0.9;
     -fx-padding: 1 3 1 3;

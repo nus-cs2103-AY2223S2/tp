@@ -42,7 +42,7 @@ public class ZoomView extends UiPart<Region> {
             view_Title.setText(bookmark.getTitle().value);
             authorView.setText(bookmark.getAuthor().value);
             GenreView.setText(bookmark.getGenre().value);
-            progressView.setText(bookmark.getPhone().value);
+            progressView.setText(bookmark.getProgress().value);
             bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
 
