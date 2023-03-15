@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +12,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
@@ -106,6 +106,16 @@ public class Student {
      */
     public ObservableList<Lesson> getLessonsList() {
         return lessonsList.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns an immutable exam list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of exams
+     */
+    public ObservableList<Exam> getExamList() {
+        return examList.asUnmodifiableObservableList();
     }
 
     /**

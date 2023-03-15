@@ -25,6 +25,12 @@ public class LessonCard extends UiPart<Region> {
     @FXML
     private Label endTime;
 
+    /**
+     * Creates a {@code LessonCode} with the given {@code Lesson} and index to display.
+     *
+     * @param lesson The lesson to be displayed.
+     * @param id The index of the lesson to be displayed.
+     */
     public LessonCard(Lesson lesson, int id) {
         super(FXML);
         this.id.setText(id + ". ");

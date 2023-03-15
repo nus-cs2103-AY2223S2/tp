@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.student.Exam;
 import seedu.address.model.student.Student;
 import seedu.address.ui.detail.ProfileContent;
 import seedu.address.ui.exam.EmptyExamsContent;
