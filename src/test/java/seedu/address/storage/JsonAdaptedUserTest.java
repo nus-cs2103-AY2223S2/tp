@@ -94,6 +94,22 @@ public class JsonAdaptedUserTest {
     }
 
     @Test
+    public void toModelType_userContactIndexNull_throwsIllegalValueException() {
+        JsonAdaptedPerson user =
+                new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_TELEGRAM_HANDLE, null, VALID_TAGS, VALID_MODULE_TAGS);
+        assertThrows(IllegalValueException.class, () -> user.toModelType());
+    }
+
+    @Test
+    public void toModelType_personContactIndexNull_throwsIllegalValueException() {
+        JsonAdaptedPerson user =
+                new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_TELEGRAM_HANDLE, null, VALID_TAGS, VALID_MODULE_TAGS);
+        assertThrows(IllegalValueException.class, () -> user.toModelType());
+    }
+
+    @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedUser user = new JsonAdaptedUser(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
                 VALID_TELEGRAM_HANDLE, VALID_CONTACT_INDEX, VALID_TAGS, VALID_MODULE_TAGS);
