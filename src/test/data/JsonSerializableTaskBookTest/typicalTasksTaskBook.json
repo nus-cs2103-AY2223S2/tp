@@ -24,16 +24,16 @@
     "name" : "Elle Meyer",
     "description" : "Elle's description",
     "tagged" : [ ],
-    "effort": 2
+    "effort": 24
   }, {
     "name" : "Fiona Kunz",
     "description" : "Fiona's description",
     "tagged" : [ ],
-    "effort": 2
+    "effort": 24
   }, {
     "name" : "George Best",
     "description" : "George's description",
     "tagged" : [ ],
-    "effort": 2
+    "effort": 24
   } ]
 }
