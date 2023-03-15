@@ -17,7 +17,7 @@ public class HomeworkCard extends UiPart<Region> {
     private static final String COMPLETED_ICON = "images/completed.png";
     private static final String UNCOMPLETED_ICON = "images/uncompleted.png";
     private static final String DOT = ". ";
-    private static final String DEADLINE_LABEL = "Deadline: ";
+    private static final String DEADLINE_LABEL = "(by: %s)";
 
     @FXML
     private HBox cardPane;
