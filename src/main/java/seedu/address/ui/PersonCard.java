@@ -39,6 +39,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox addressContainer;
     @FXML
+    private HBox socialMediaContainer;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -49,8 +51,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label socialMedia;
+    @FXML
     private FlowPane tags;
-
     @FXML
     private Label birthday;
 
@@ -83,6 +86,13 @@ public class PersonCard extends UiPart<Region> {
             address.setText("");
             addressContainer.setVisible(false);
             addressContainer.managedProperty().bind(addressContainer.visibleProperty());
+        }
+        if (person.getSocialMedia().isPresent() && !person.getSocialMedia().get().isBlank()) {
+            socialMedia.setText(person.getSocialMedia().get().toString());
+        } else {
+            socialMedia.setText("");
+            socialMediaContainer.setVisible(false);
+            socialMediaContainer.managedProperty().bind(socialMediaContainer.visibleProperty());
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -27,6 +30,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
@@ -45,8 +49,11 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_SOCMED_INSTAGRAM + "INSTAGRAM] "
+            + "[" + PREFIX_SOCMED_TELEGRAM + "TELEGRAM] "
+            + "[" + PREFIX_SOCMED_WHATSAPP + "WHATSAPP] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
-            + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_MODULE + "MODULE]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -129,6 +136,15 @@ public class EditCommand extends Command {
             }
         }
 
+        if (editPersonDescriptor.getSocialMedia().isPresent()) {
+            p.setSocialMedia(personToEdit.getSocialMedia().orElse(SocialMedia.create())
+                .updateWith(editPersonDescriptor.getSocialMedia().get()));
+        } else {
+            if (personToEdit.getSocialMedia().isPresent()) {
+                p.setSocialMedia(personToEdit.getSocialMedia().get());
+            }
+        }
+
         if (editPersonDescriptor.getBirthday().isPresent()) {
             p.setBirthday(editPersonDescriptor.getBirthday().get());
         } else {
@@ -168,6 +184,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private SocialMedia socialMedia;
         private Set<Tag> tags;
         private Birthday birthday;
         private Set<Module> modules;
@@ -184,6 +201,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setSocialMedia(toCopy.socialMedia);
             setTags(toCopy.tags);
             setModules(toCopy.modules);
 
@@ -194,7 +212,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, birthday, modules);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, tags, birthday, modules);
         }
 
         public void setName(Name name) {
@@ -222,14 +240,12 @@ public class EditCommand extends Command {
         }
 
         public void setAddress(Address address) {
-            this.address = (address != null)
-                    ? address
-                    : null;
+            this.address = address;
         }
 
         public Optional<Address> getAddress() {
             return (address != null)
-                    ? Optional.ofNullable(address)
+                    ? Optional.of(address)
                     : Optional.empty();
         }
 
@@ -239,6 +255,14 @@ public class EditCommand extends Command {
 
         public Optional<Birthday> getBirthday() {
             return Optional.ofNullable(birthday);
+        }
+
+        public void setSocialMedia(SocialMedia socialMedia) {
+            this.socialMedia = socialMedia;
+        }
+
+        public Optional<SocialMedia> getSocialMedia() {
+            return Optional.ofNullable(socialMedia);
         }
 
         /**

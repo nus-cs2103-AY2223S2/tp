@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
@@ -29,6 +30,9 @@ public class Person {
     private final Set<Module> modules = new HashSet<>();
     private Optional<Birthday> birthday;
 
+    // Social media fields
+    private Optional<SocialMedia> socialMedia;
+
     /**
      * Every field must be present and not null.
      */
@@ -38,6 +42,7 @@ public class Person {
         this.phone = Optional.empty();
         this.email = Optional.empty();
         this.address = Optional.empty();
+        this.socialMedia = Optional.empty();
         this.tags.addAll(tags);
         this.birthday = Optional.empty();
         this.modules.addAll(modules);
@@ -53,6 +58,10 @@ public class Person {
 
     public void setAddress(Address address) {
         this.address = Optional.ofNullable(address);
+    }
+
+    public void setSocialMedia(SocialMedia socialMedia) {
+        this.socialMedia = Optional.ofNullable(socialMedia);
     }
 
     public void setBirthday(Birthday birthday) {
@@ -77,6 +86,10 @@ public class Person {
 
     public Optional<Birthday> getBirthday() {
         return birthday;
+    }
+
+    public Optional<SocialMedia> getSocialMedia() {
+        return socialMedia;
     }
 
     /**
@@ -149,6 +162,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Birthday: ")
                 .append(getBirthday())
+                .append("; Social media: ")
+                .append(getSocialMedia())
                 .append("; Address: ")
                 .append(getAddress());
 

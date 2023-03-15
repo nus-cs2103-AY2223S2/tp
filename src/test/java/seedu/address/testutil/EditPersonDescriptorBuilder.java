@@ -10,6 +10,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
@@ -38,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone().get());
         descriptor.setEmail(person.getEmail().get());
         descriptor.setAddress(person.getAddress().get());
+        descriptor.setSocialMedia(person.getSocialMedia().orElse(SocialMedia.create()));
         descriptor.setTags(person.getTags());
         descriptor.setModules(person.getModules());
     }
