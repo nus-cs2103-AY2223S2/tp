@@ -88,9 +88,10 @@
 }
 
 .list-view {
+    -fx-background-color: derive(#FDEFBC, 20%);
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+
 }
 
 .list-cell {
@@ -100,15 +101,15 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #FCE9A3;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #FDEFBC;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #FBDD72;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -122,13 +123,13 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Arial";
     -fx-font-size: 16px;
     -fx-text-fill: black;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Arial";
     -fx-font-size: 13px;
     -fx-text-fill: black;
 }
@@ -137,16 +138,16 @@
      -fx-background-color: derive(#FDEFBC, 20%);
 }
 .label {
-     -fx-font-family: "Segoe UI";
+     -fx-font-family: "Arial";
      -fx-font-size: 13px;
      -fx-text-fill: black;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#FDEFBC, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
-     -fx-font-family: "Segoe UI";
+     -fx-font-family: "Arial";
      -fx-font-size: 13px;
      -fx-text-fill: #010504;
 }
@@ -167,14 +168,13 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Arial";
     -fx-text-fill: black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
     -fx-border-color: derive(#1d1d1d, 25%);
     -fx-border-width: 1px;
 }
@@ -184,13 +184,13 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#d1d1d1, 30%);
     -fx-border-color: derive(#1d1d1d, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#FDEFBC, 30%);
 }
 
 .context-menu {
@@ -227,7 +227,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Arial", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -266,7 +266,7 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #1;
 }
 
 .dialog-pane > *.button-bar > *.container {
@@ -369,6 +369,13 @@
     -fx-font-size: 11;
 }
 #homework .label {
+    -fx-text-fill: black;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+#students .label {
     -fx-text-fill: black;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;

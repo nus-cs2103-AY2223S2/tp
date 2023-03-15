@@ -6,8 +6,8 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<HBox id="cardPane" fx:id="cardPane" prefHeight="291.0" prefWidth="398.0" style="-fx-background-color: #FDEFBC;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox alignment="CENTER" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #FDEFBC;">
+<HBox id="cardPane" fx:id="cardPane" prefHeight="356.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER" prefHeight="415.0" prefWidth="81.0">
         <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
         </padding>
@@ -15,11 +15,11 @@
             <Circle fx:id="circle" radius="70" stroke="BLACK" strokeType="INSIDE" />
         </children>
     </VBox>
-    <GridPane HBox.hgrow="ALWAYS">
+    <GridPane prefHeight="11.0" prefWidth="285.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-color: #FDEFBC;" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="439.0" prefWidth="413.0" GridPane.rowIndex="1">
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
@@ -30,21 +30,24 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" style="-fx-text-fill: black;" styleClass="cell_big_label" text="\$first" />
+                <Label fx:id="name" style="-fx-text-fill: black;" styleClass="cell_big_label" text="\$first">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font></Label>
                 <Text text="Index:" />
-                <Label fx:id="index" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$index" />
+                <Label fx:id="index" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$index">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font></Label>
             </HBox>
             <FlowPane fx:id="tags" />
             <HBox>
                 <Text text="Class:    " />
-                <Label fx:id="className" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$class" />
-                <Text text = "    " />
-                <Text text = "Index:    " fill="burlywood" />
-                <Label fx:id="index" styleClass="cell_small_label" text="\$index" />
-            </HBox>
-            <HBox>
-                <Text text="Parent/Next of Kin Name:    " />
-                <Label fx:id="parentName" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$parentName" />
+                <Label fx:id="className" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$class">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font></Label>
+                <Text text="    " />
             </HBox>
             <HBox>
                 <Text text="Age:    " />
@@ -52,35 +55,38 @@
             </HBox>
             <HBox>
                 <Text text="Gender:   " />
-                <Label fx:id="sex" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$sex" />
+                <Label fx:id="sex" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$sex">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font></Label>
             </HBox>
             <HBox>
                 <Text text="Email:    " />
                 <Label fx:id="email" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$email" />
             </HBox>
             <HBox>
-                <Text text = "NOK name:    " fill="burlywood" />
-                <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName" />
+                <Text text="NOK name:    " />
+                <Label fx:id="parentName" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$parentName" />
             </HBox>
             <HBox>
-                <Text text = "NOK phone number:    " fill="burlywood" />
-                <Label fx:id="parentPhoneNumber" styleClass="cell_small_label" text="\$parentPhoneNumber" />
+                <Text text="NOK phone number:    " />
+                <Label fx:id="parentPhoneNumber" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$parentPhoneNumber" />
             </HBox>
             <HBox>
-                <Text text = "Relationship:    " fill="burlywood" />
-                <Label fx:id="rls" styleClass="cell_small_label" text="\$rls" />
+                <Text text="Relationship:    " />
+                <Label fx:id="rls" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$rls" />
             </HBox>
             <HBox>
-                <Text text = "Phone:    " fill="burlywood" />
-                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+                <Text text="Phone:    " />
+                <Label fx:id="phone" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$phone" />
             </HBox>
             <HBox>
-                <Text text = "Residential Address:    " fill="burlywood" />
-                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+                <Text text="Residential Address:    " />
+                <Label fx:id="address" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$address" />
             </HBox>
             <HBox>
-                <Text text = "CCA:    " fill="burlywood" />
-                <Label fx:id="cca" styleClass="cell_small_label" text="\$cca" />
+                <Text text="CCA:    " />
+                <Label fx:id="cca" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$cca" />
             </HBox>
             <HBox>
                 <Text text="Comments:    " />
@@ -96,6 +102,7 @@
             </HBox>
         </VBox>
       <rowConstraints>
+         <RowConstraints />
          <RowConstraints />
       </rowConstraints>
     </GridPane>
