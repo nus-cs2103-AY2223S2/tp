@@ -3,7 +3,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
-<ScrollPane styleClass="pane-with-rounded-corner"
+<ScrollPane styleClass="pane-with-rounded-corner" fitToWidth="true"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <VBox spacing="10" styleClass="pa">
         <Label fx:id="name" text="\$name" styleClass="label-h1" wrapText="true" />
