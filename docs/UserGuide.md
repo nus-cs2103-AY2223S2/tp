@@ -3,26 +3,24 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
+TutorPro is a **desktop app designed to help private tutors manage their student information effectively**. With TutorPro, tutors can easily keep track of their students' addresses, contact details, lessons, homework, and progress, all in one place. This app is optimised for use via a Graphical User Interface (GUI), allowing tutors to interact with the app using easy-to-understand buttons and menus. However, TutorPro also provides a Command Line Interface (CLI) for those who prefer a faster way of getting things done. Whether you're managing a handful of students or hundreds, TutorPro can help you streamline your workflow and make your tutoring experience more efficient.
 
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `TutorPro.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -35,159 +33,152 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
+
 ## Features
 
-<div markdown="block" class="alert alert-info">
+### 1. Create a new student profile
 
-**:information_source: Notes about the command format:**<br>
+Creates a new profile for a student given the student’s name.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+Format: `new-student [s/STUDENT_NAME]` [ad/STUDENT_ADDRESS] [sch/SCHOOL] [lvl/GRADE_LEVEL]
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+Example:
+`new-student s/John Doe ad/21 Prince George’s Park sch/ACJC lvl/sec 8`
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+* STUDENT_ADDRESS, SCHOOL and GRADE_LEVEL are optional.
 
 
-### Adding a person: `add`
+### 2. Update student information: 
 
-Adds a person to the address book.
+Updates the student's information given the student's label, field to change, and updated field value 
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `update-info [s/STUDENT_NAME] [f/FIELD] [v/VALUE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* if any parameters are missing in order, the command will display potential parameter options.
+* The available field parameters are “Address”, “School”, and “Level”.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `update-info` Displays a list of all available student profiles
+* `update-info s/John` Displays all students of the name “John” and prompts the user for clarification
+* `update-info st/John f/address` Displays the value stored in the Address Field and prompts the user for new Address.
+* `update-info st/John f/address v/Block 123 #12-34` Updates student info and displays the new value to the user.
 
-### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
 
-Format: `list`
 
-### Editing a person : `edit`
 
-Edits an existing person in the address book.
+### 3. Assign homework to a student
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Creates a homework assignment with a deadline for a student
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `assign-homework [s/STUDENT_NAME] [hw/HOMEWORK_NAME] [d/DEADLINE]’
+
+* The `STUDENT_NAME` must be an existing student of the tutor.
+* DEADLINE  must be in a dd-mm-yy OR dd-mm-yy-hhmm format.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+`assign-homework s/John hw/listening comprehension ex1 /d 02-12-2023-2359` adds the assignment `listening comprehension ex1` to the student named `John. The deadline is 02 Dec 2023 at 23:25.
 
-### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+### 4. Viewing homework: `view-homework`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Displays a list of homework with the ability to filter by student name and homework status.
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Format: `view-homework [s/STUDENT_NAME] [st/STATUS]`
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* By default, all homework will be displayed.
+* To view homework for a specific student, specify the name using `s/STUDENT_NAME`.
+* To view homework with a specific status, specify the status using `st/STATUS`.
+* It is possible to filter by both student name and status simultaneously.
+* The available status values are `completed` and `pending`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `view-homework` Displays a list of all homework.
+* `view-homework s/John` Displays homework for a student named `John`.
+* `view-homework st/completed` Displays all completed homework.
+* `view-homework s/John st/pending` Displays pending homework for a student named `John`.
 
-### Clearing all entries : `clear`
 
-Clears all entries from the address book.
 
-Format: `clear`
+### 5. Viewing Student Profile: `view-profile`
 
-### Exiting the program : `exit`
+Allows a user to view a student's home address and phone number.
 
-Exits the program.
+Format: `view-profile [s/STUDENT_NAME]`
 
-Format: `exit`
+* Click on the "view profile" button next to a student to access the student's profile.
+* The student's home address and phone number will be displayed.
+* Profile can also be accessed by clicking on a student’s name.
 
-### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+### 6. View a student’s upcoming tasks: `schooltasks`
 
-### Editing the data file
+Displays the list of upcoming exams / school assignments of a student.
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Format: `schooltasks [s/STUDENT_NAME]`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+* Can also click the `View School Tasks` button to view his/her upcoming school exams/assignments.
 
-### Archiving data files `[coming in v2.0]`
+Examples:
+`schooltasks s/John` Displays all upcoming exams / school assignments of the student named `John`
 
-_Details coming soon ..._
+
+
+### 7. Create a new Lesson plan for upcoming lesson: `new-lesson`
+
+Creates a new lesson for a given student, with a lesson title and time.
+
+Format: `new-lesson [/sSTUDENT_NAME] [t/LESSON_TITLE] [at/TIME]`
+
+* All three fields are mandatory.
+  *Time format is dd-mm-yy-hhmm
+
+* if any parameters are missing in order, the command will display potential parameter options.
+
+Examples:
+`new-lesson s/John Doe t/The Water Cycle at/25-03-23-1300`
+
+
+
+### 8. View Lesson History: `history`
+
+Displays the lesson history for a given tutor’s students.
+
+Format: `history [s/STUDENT_NAME]`
+
+* Displays the lesson history for all the tutor’s students if no student name is specified.
+* Displays the lesson history for a specific student if a student's name is specified with the `s/` prefix.
+* The `STUDENT_NAME` must be an existing student of the tutor.
+* The lesson history should include the date of the lesson, the topic taught, and the duration of the lesson.
+
+Examples:
+* `history` Displays the lesson history for all the tutor’s students.
+* `history s/John` Displays the lesson history for the student named John. If two students have the same name, then asks which one to show..
+
+
+### 9. View the lesson details of a past lesson: `view-lesson`
+
+Displays the date, time, and other information about a past lesson
+
+Format: `view-lesson [l/LESSON_INDEX]
+
+* The LESSON_INDEX is from the list of lessons displayed after calling the command `history` in feature 8.
+
+* This command can only be used when the user has just used the command `View Lesson History`
+
+Examples:
+`view-lesson l/2` Displays the lesson history of the lesson with index 2
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How can I transfer my data to another computer in TutorPro? <br>
+**A**: You can transfer your data to another computer by installing TutorPro on the new computer and replacing its empty data file with the one that contains the data from your previous TutorPro home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`

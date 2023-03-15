@@ -9,12 +9,22 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CreateExamCommand;
+import seedu.address.logic.commands.CreateHomeworkCommand;
+import seedu.address.logic.commands.CreateLessonCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteHomeworkCommand;
+import seedu.address.logic.commands.DeleteLessonCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkHomeworkAsDoneCommand;
+import seedu.address.logic.commands.MarkHomeworkAsUndoCommand;
+import seedu.address.logic.commands.ViewExamCommand;
+import seedu.address.logic.commands.ViewHomeworkCommand;
+import seedu.address.logic.commands.ViewLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -68,9 +78,33 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case CreateHomeworkCommand.COMMAND_WORD:
+            return new CreateHomeworkCommandParser().parse(arguments);
+
+        case ViewHomeworkCommand.COMMAND_WORD:
+            return new ViewHomeworkCommandParser().parse(arguments);
+
+        case DeleteHomeworkCommand.COMMAND_WORD:
+            return new DeleteHomeworkCommandParser().parse(arguments);
+
+        case CreateLessonCommand.COMMAND_WORD:
+            return new CreateLessonCommandParser().parse(arguments);
+        case MarkHomeworkAsDoneCommand.COMMAND_WORD:
+            return new MarkHomeworkAsDoneCommandParser().parse(arguments);
+
+        case MarkHomeworkAsUndoCommand.COMMAND_WORD:
+            return new MarkHomeworkAsUndoCommandParser().parse(arguments);
+        case ViewLessonCommand.COMMAND_WORD:
+            return new ViewLessonCommandParser().parse(arguments);
+        case DeleteLessonCommand.COMMAND_WORD:
+            return new DeleteLessonCommandParser().parse(arguments);
+        case CreateExamCommand.COMMAND_WORD:
+            return new CreateExamCommandParser().parse(arguments);
+        case ViewExamCommand.COMMAND_WORD:
+            return new ViewExamCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

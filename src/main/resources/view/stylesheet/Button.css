@@ -1,0 +1,50 @@
+/*
+ * Metro style Push Button
+ * Author: Pedro Duque Vieira
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ */
+.oddButton {
+    -fx-min-width: 65px;
+    -fx-min-height: 25px;
+    -fx-background-radius: 4;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 8pt;
+    -fx-text-fill: black;
+    -fx-padding: 5 2;
+    -fx-margin: 5;
+    -fx-background-color: #AED6F1;
+    -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 1, 2);
+}
+
+.evenButton {
+    -fx-min-width: 65px;
+    -fx-min-height: 25px;
+    -fx-background-radius: 4;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 8pt;
+    -fx-text-fill: black;
+    -fx-padding: 5 2;
+    -fx-margin: 5;
+    -fx-background-color: #BFEAF5;
+    -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 1, 2);
+}
+
+.oddButton:hover {
+    -fx-background-color: #f5f5f5;
+    -fx-effect: innerShadow(gaussian, grey, 5, 0.5, 1, 2);
+}
+
+.evenButton:hover {
+    -fx-background-color: #f5f5f5;
+    -fx-effect: innerShadow(gaussian, grey, 5, 0.5, 1, 2);
+}
+
+.oddButton:focused {
+    -fx-border-insets: 1 1 1 1, 0;
+    -fx-background-color: #f5f5f5;
+}
+
+.evenButton:focused {
+    -fx-border-insets: 1 1 1 1;
+    -fx-background-color: #f5f5f5;
+}

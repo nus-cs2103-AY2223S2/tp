@@ -1,0 +1,26 @@
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+
+<?import javafx.geometry.Insets?>
+
+<HBox fx:id="cardPane" alignment="CENTER_LEFT"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="5" right="5" bottom="5" left="10" />
+    </padding>
+    <HBox>
+        <HBox alignment="CENTER_LEFT">
+            <ImageView fx:id="statusIcon"  fitHeight="20" fitWidth="20" preserveRatio="true" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="3">
+            <padding>
+                <Insets left="10" />
+            </padding>
+            <Label fx:id="id" styleClass="cell_big_label" />
+            <Label fx:id="description" VBox.vgrow="NEVER" />
+            <Label fx:id="deadline" VBox.vgrow="NEVER" />
+        </HBox>
+    </HBox>
+</HBox>
