@@ -14,7 +14,7 @@ import seedu.fitbook.model.client.Appointment;
 import seedu.fitbook.model.client.Client;
 
 /**
- * An UI component that displays information of a {@code Client}.
+ * An UI component that displays information of a {@code Appointment}.
  */
 public class ScheduleCard extends UiPart<Region> {
 
@@ -56,12 +56,10 @@ public class ScheduleCard extends UiPart<Region> {
             dateTimeList.add(appointment.getDateTime());
         }
 
-        //String a = localDateTime.toLocalDate().toString() + " " + localDateTime.toLocalTime().toString();
         //Display the appointments
         DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         StringBuilder sb = new StringBuilder();
         for (LocalDateTime dateTime : dateTimeList) {
-            //sb.append(dateTime.toString());
             sb.append(dateTime.format(f));
             sb.append("\n");
         }
@@ -69,11 +67,9 @@ public class ScheduleCard extends UiPart<Region> {
         String dateTimeString = sb.toString();
         appointments.setText(dateTimeString);
 
-
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
     }
-
 
     @Override
     public boolean equals(Object other) {

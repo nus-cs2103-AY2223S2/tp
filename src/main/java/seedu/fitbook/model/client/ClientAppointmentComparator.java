@@ -9,11 +9,11 @@ import java.util.Comparator;
 public class ClientAppointmentComparator implements Comparator<Client> {
     @Override
     public int compare(Client c1, Client c2) {
-        if (c1.getAppointments().isEmpty() && c2.getAppointments().isEmpty()) {
+        if (c1.isAppointmentEmpty() && c2.isAppointmentEmpty()) {
             return 0;
-        } else if (c1.getAppointments().isEmpty()) {
+        } else if (c1.isAppointmentEmpty()) {
             return -1;
-        } else if (c2.getAppointments().isEmpty()) {
+        } else if (c2.isAppointmentEmpty()) {
             return 1;
         } else {
             Appointment c1Appointment = c1.getAppointments().iterator().next();

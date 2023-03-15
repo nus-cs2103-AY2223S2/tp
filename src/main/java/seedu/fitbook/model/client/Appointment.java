@@ -6,7 +6,6 @@ import static seedu.fitbook.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
 /**
  * Represents a Person's appointment time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAppointment(String)}
