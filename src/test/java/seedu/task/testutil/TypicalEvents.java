@@ -17,19 +17,25 @@ public class TypicalEvents {
             .withDescription("Meeting description")
             .withTags("Reminder")
             .withFrom("2023-01-01 1800")
-            .withTo("2023-01-02 1800").build();
+            .withTo("2023-01-02 1800")
+            .withEffort(5)
+            .build();
 
     public static final Event STUDY = new EventBuilder().withName("Study")
             .withDescription("Study description")
             .withTags("Concentrate")
             .withFrom("2023-01-02 1800")
-            .withTo("2023-01-03 1800").build();
+            .withTo("2023-01-03 1800")
+            .withEffort(3)
+            .build();
 
     public static final Event REST = new EventBuilder().withName("REST")
             .withDescription("rest description")
             .withTags("Important")
             .withFrom("2023-01-03 1800")
-            .withTo("2023-01-03 2000").build();
+            .withTo("2023-01-03 2000")
+            .withEffort(2)
+            .build();
 
 
     private TypicalEvents() {} // prevents instantiation

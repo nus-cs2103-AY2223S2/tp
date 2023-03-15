@@ -8,6 +8,7 @@ import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Date;
 import seedu.task.model.task.Deadline;
 import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
 import seedu.task.model.task.Name;
 import seedu.task.model.util.SampleDataUtil;
 
@@ -23,6 +24,7 @@ public class DeadlineBuilder {
     private Description description;
     private Set<Tag> tags;
     private Date deadline;
+    private Effort effort;
     private Duration alertWindow;
 
     /**
@@ -33,6 +35,7 @@ public class DeadlineBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
         deadline = new Date(DEFAULT_TIME);
+        effort = new Effort();
     }
 
     /**
@@ -43,6 +46,7 @@ public class DeadlineBuilder {
         description = taskToCopy.getDescription();
         tags = new HashSet<>(taskToCopy.getTags());
         deadline = taskToCopy.getDeadline();
+        effort = taskToCopy.getEffort();
     }
 
     /**
@@ -78,6 +82,14 @@ public class DeadlineBuilder {
     }
 
     /**
+     * Sets the {@code Effort} of the {@code Deadline} that we are building.
+     */
+    public DeadlineBuilder withEffort(long e) {
+        this.effort = new Effort(e);
+        return this;
+    }
+
+    /**
      * Sets the {@code alertWindow} of the {@code Deadline} that we are building.
      */
     public DeadlineBuilder withAlertWindow(String alertWindow) {
@@ -87,7 +99,7 @@ public class DeadlineBuilder {
 
 
     public Deadline build() {
-        return new Deadline(name, description, tags, deadline);
+        return new Deadline(name, description, tags, deadline, effort);
     }
 
 }

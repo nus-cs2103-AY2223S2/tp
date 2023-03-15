@@ -1,6 +1,7 @@
 {
   "tasks": [ {
     "name": "Hans Muster",
-    "description": ""
+    "description": "",
+    "effort": 2
   } ]
 }

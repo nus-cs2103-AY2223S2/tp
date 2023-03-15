@@ -19,6 +19,7 @@ import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Task;
@@ -89,8 +90,9 @@ public class EditCommand extends Command {
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        Effort updatedEffort = editTaskDescriptor.getEffort().orElse(taskToEdit.getEffort());
 
-        return new SimpleTask(updatedName, updatedDescription, updatedTags);
+        return new SimpleTask(updatedName, updatedDescription, updatedTags, updatedEffort);
     }
 
     @Override
@@ -118,6 +120,7 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Name name;
         private Description description;
+        private Effort effort;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -130,13 +133,14 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
+            setEffort(toCopy.effort);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, tags);
+            return CollectionUtil.isAnyNonNull(name, description, tags, effort);
         }
 
         public void setName(Name name) {
@@ -172,6 +176,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setEffort(Effort e) {
+            this.effort = e;
+        }
+
+        public Optional<Effort> getEffort() {
+            return (Optional.ofNullable(this.effort));
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -189,7 +201,8 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDescription().equals(e.getDescription())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getEffort().equals(e.getEffort());
         }
     }
 }

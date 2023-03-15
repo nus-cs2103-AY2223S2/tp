@@ -9,6 +9,7 @@ import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalTasks.ALICE;
 import static seedu.task.testutil.TypicalTasks.BOB;
+import static seedu.task.testutil.TypicalTasks.ELLE;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -82,6 +83,15 @@ public class SimpleTaskTest {
         // different tags -> returns false
         editedAlice = new SimpleTaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // same effort -> return true
+        Task editedElle1 = new SimpleTaskBuilder(ELLE).withEffort(5).build();
+        Task editedElle2 = new SimpleTaskBuilder(ELLE).withEffort(5).build();
+        assertTrue(editedElle1.equals(editedElle2));
+
+        // different effort -> return false
+        editedAlice = new SimpleTaskBuilder(ALICE).withEffort(1).build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
@@ -96,11 +106,11 @@ public class SimpleTaskTest {
         twoTag.add(tagTwo);
 
         Task zeroTagDeadline = new SimpleTask(new Name("zeroTag"), new Description("zeroTag"),
-                zeroTag);
+                zeroTag, new Effort(5));
         Task oneTagDeadline = new SimpleTask(new Name("oneTag"), new Description("oneTag"),
-                oneTag);
+                oneTag, new Effort(5));
         Task twoTagDeadline = new SimpleTask(new Name("twoTag"), new Description("twoTag"),
-                twoTag);
+                twoTag, new Effort(5));
 
         assertEquals(1, oneTagDeadline.compareTo(zeroTagDeadline));
         assertEquals(-1, oneTagDeadline.compareTo(twoTagDeadline));
@@ -109,11 +119,11 @@ public class SimpleTaskTest {
     @Test
     public void compareTo_name() {
         Task aName = new SimpleTask(new Name("apple"), new Description("apple"),
-                new HashSet<>());
+                new HashSet<>(), new Effort(5));
         Task bName = new SimpleTask(new Name("bucket"), new Description("bucket"),
-                new HashSet<>());
+                new HashSet<>(), new Effort(5));
         Task cName = new SimpleTask(new Name("car"), new Description("car"),
-                new HashSet<>());
+                new HashSet<>(), new Effort(5));
 
         assertEquals(1, bName.compareTo(aName));
         assertEquals(-1, bName.compareTo(cName));
@@ -122,11 +132,11 @@ public class SimpleTaskTest {
     @Test
     public void compareTo_all_tasks() {
         Task aName = new SimpleTask(new Name("apple"), new Description("apple"),
-                new HashSet<>());
+                new HashSet<>(), new Effort(5));
         Task bName = new Deadline(new Name("bucket"), new Description("bucket"),
-                new HashSet<>(), new Date("2023-04-01 0000"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Effort(5));
         Task cName = new Event(new Name("car"), new Description("car"),
-                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 0100"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Date("2023-04-01 0100"), new Effort(5));
 
         assertEquals(1, bName.compareTo(aName));
         assertEquals(-1, bName.compareTo(cName));

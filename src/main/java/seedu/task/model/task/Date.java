@@ -44,11 +44,11 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Formats the String to be a parseable String for LocalDateTime.
+     * Formats the String to be a parse-able String for LocalDateTime.
      * Only the first 4 numbers of the input String is parsed for time.
      *
      * @param input input String by user.
-     * @return String parseable by LocalDateTime.
+     * @return String parse-able by LocalDateTime.
      * @Throw IndexOutOfBoundsException if input is not the right format.
      */
     public static String formatDate(String input) throws IndexOutOfBoundsException {

@@ -21,8 +21,8 @@ public class Event extends Task {
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, Description description, Set<Tag> tags, Date from, Date to) {
-        super(name, description, tags);
+    public Event(Name name, Description description, Set<Tag> tags, Date from, Date to, Effort effort) {
+        super(name, description, tags, effort);
         requireAllNonNull(from, to);
         this.from = from;
         this.to = to;
@@ -55,7 +55,8 @@ public class Event extends Task {
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getTags().equals(getTags())
                 && otherTask.getFrom().equals(getFrom())
-                && otherTask.getTo().equals(getTo());
+                && otherTask.getTo().equals(getTo())
+                && otherTask.getEffort().equals(getEffort());
     }
 
     /**
@@ -73,7 +74,7 @@ public class Event extends Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, tags, from, to);
+        return Objects.hash(name, description, tags, from, to, effort);
     }
 
     /**
@@ -124,7 +125,9 @@ public class Event extends Task {
                 .append("; From: ")
                 .append(getFrom())
                 .append("; To: ")
-                .append(getTo());
+                .append(getTo())
+                .append("; Effort: ")
+                .append(getEffort());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

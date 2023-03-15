@@ -15,7 +15,9 @@ import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Date;
 import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
 import seedu.task.model.task.Name;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -168,6 +170,22 @@ public class ParserUtil {
         return new Date(trimmedDate);
     }
 
+    /**
+     * Parses a {@code String Effort} into a {@code Effort}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Effort} is invalid.
+     */
+    public static Effort parseEffort(String effort) throws ParseException {
+        requireNonNull(effort);
+        String trimmedEffort = effort.trim();
+        try {
+            long duration = Long.parseLong(trimmedEffort);
+            return new Effort(duration);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Effort.MESSAGE_CONSTRAINTS);
+        }
+    }
 
 
     /**
