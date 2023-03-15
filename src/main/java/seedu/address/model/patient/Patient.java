@@ -28,7 +28,7 @@ public class Patient {
         this.name = name;
     }
 
-    public Patient(NRIC nric, Name name, Status status) {
+    public Patient(Nric nric, Name name, Status status) {
         requireAllNonNull(nric, name, status);
         this.nric = nric;
         this.name = name;
