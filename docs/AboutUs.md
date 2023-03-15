@@ -5,55 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `coNtactUS@comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### The Myth
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/damithc.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/damithc)]
+[[portfolio](team/damithc.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Bahatheq Tariq Ahmed S
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tariq-droid.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Tariq-droid)]
+[[portfolio](team/Tariq-droid.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: TBA
+* Responsibilities: TBA
 
-### Johnny Doe
+### Jamie Leow Hui Lin
+<img src="images/jamieeeleow.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/jamieeeleow)] 
+[[portfolio](team/jamieeeleow.md)]
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+* Role: TBA
+* Responsibilities: TBA
 
-* Role: Developer
-* Responsibilities: Data
+### Chew Ting Yi
 
-### Jean Doe
+<img src="images/tingyic.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/tingyic)]
+[[portfolio](team/tingyic.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: TBA
+* Responsibilities: TBA
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+### Hee Jia Yuan
 
-### James Doe
+<img src="images/jayhee3.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/jayhee3)]
+[[portfolio](team/jayhee3.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: TBA
+* Responsibilities: TBA
