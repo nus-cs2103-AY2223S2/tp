@@ -43,7 +43,6 @@ public class SampleDataUtil {
         User sampleUser = getSampleUser();
         try {
             List<Person> samplePersons = getSamplePersons();
-            Collections.shuffle(samplePersons);
             samplePersons.stream()
                     .filter(Objects::nonNull)
                     .limit(size)
@@ -114,25 +113,26 @@ public class SampleDataUtil {
     /**
      * Formats the data from the text file.
      * @param personData String representing the person data in the text file.
+     * @param index The index to assign to the person.
      */
-    private static Person getSamplePerson(String personData) {
+    private static Person getSamplePerson(String personData, int index) {
         List<String> personDataList = Stream.of(personData.split("\\|"))
                 .map(String::trim)
-                .limit(8) // Maximum of 8 fields
+                .limit(7) // Maximum of 7 fields
                 .collect(Collectors.toList());
 
-        if (personDataList.size() != 8) {
+        if (personDataList.size() != 7) {
             return null;
         }
 
-        ContactIndex contactIndex = new ContactIndex(Integer.parseInt(personDataList.get(0)));
-        Name name = new Name(personDataList.get(1));
-        Phone phone = new Phone(personDataList.get(2));
-        Email email = new Email(personDataList.get(3));
-        Address address = new Address(personDataList.get(4));
-        TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(5));
-        Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(6));
-        Set<ModuleTag> moduleTagSet = getModuleTagSetFromUnsplitted(personDataList.get(7));
+        ContactIndex contactIndex = new ContactIndex(index);
+        Name name = new Name(personDataList.get(0));
+        Phone phone = new Phone(personDataList.get(1));
+        Email email = new Email(personDataList.get(2));
+        Address address = new Address(personDataList.get(3));
+        TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(4));
+        Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(5));
+        Set<ModuleTag> moduleTagSet = getModuleTagSetFromUnsplitted(personDataList.get(6));
 
         return new Person(name, phone, email, address,
                 telegramHandle, contactIndex, groupTagSet, moduleTagSet);
@@ -144,14 +144,22 @@ public class SampleDataUtil {
     public static List<Person> getSamplePersons() throws FileNotFoundException {
         File sampleDataFile = new File("src/main/java/seedu/address/model/util/sampleData.txt");
         Scanner scanner = new Scanner(sampleDataFile);
-        List<Person> personSet = new ArrayList<>();
+        List<String> lines = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
             String nextLine = scanner.nextLine();
-            personSet.add(getSamplePerson(nextLine));
+            lines.add(nextLine);
         }
 
-        return personSet;
+        Collections.shuffle(lines);
+
+        List<Person> personList = new ArrayList<>();
+
+        for (int i = 0; i < lines.size(); i++) {
+            personList.add(getSamplePerson(lines.get(i), i + 1));
+        }
+
+        return personList;
     }
 }
 
