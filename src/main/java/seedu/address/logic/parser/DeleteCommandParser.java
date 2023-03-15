@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMultipleIndexCommand;
+import seedu.address.logic.commands.DeleteSingleIndexCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -23,7 +25,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             if (args.length() == 1) {
                 // Delete Single
                 Index index = ParserUtil.parseIndex(args);
-                return new DeleteCommand(index);
+                return new DeleteSingleIndexCommand(index);
             } else {
                 // Delete Multiple
                 ArrayList<Index> listOfIndexes = ParserUtil.parseIndexes(args);
