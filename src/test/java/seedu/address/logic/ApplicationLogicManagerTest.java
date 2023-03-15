@@ -3,10 +3,10 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_EMAIL_DESC_ONE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_NAME_DESC_ONE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.ROLE_DESC_ONE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.STATUS_DESC_ONE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_EMAIL_DESC_BYTEDANCE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_NAME_DESC_BYTEDANCE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.ROLE_DESC_BYTEDANCE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.STATUS_DESC_BYTEDANCE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalApplications.BYTEDANCE;
 
@@ -80,7 +80,8 @@ public class ApplicationLogicManagerTest {
 
         // Execute add command
         String addApplicationCommand = AddApplicationCommand.COMMAND_WORD
-                + ROLE_DESC_ONE + COMPANY_NAME_DESC_ONE + COMPANY_EMAIL_DESC_ONE + STATUS_DESC_ONE;
+                + ROLE_DESC_BYTEDANCE + COMPANY_NAME_DESC_BYTEDANCE + COMPANY_EMAIL_DESC_BYTEDANCE
+                + STATUS_DESC_BYTEDANCE;
         Application expectedApplication = new ApplicationBuilder(BYTEDANCE).build();
         ApplicationModelManager expectedModel = new ApplicationModelManager();
         expectedModel.addApplication(expectedApplication);

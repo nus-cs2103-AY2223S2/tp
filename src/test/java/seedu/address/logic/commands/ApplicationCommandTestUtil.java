@@ -25,23 +25,24 @@ import seedu.address.testutil.EditApplicationDescriptorBuilder;
  */
 public class ApplicationCommandTestUtil {
 
-    public static final String VALID_ROLE_ONE = "ML Engineer Intern";
-    public static final String VALID_ROLE_TWO = "Software Engineer Intern";
-    public static final String VALID_COMPANY_NAME_ONE = "ByteDance";
-    public static final String VALID_COMPANY_NAME_TWO = "Grab";
-    public static final String VALID_COMPANY_EMAIL_ONE = "hr@bytedance.com";
-    public static final String VALID_COMPANY_EMAIL_TWO = "hr@grab.com";
-    public static final String VALID_STATUS_ONE = "interested";
-    public static final String VALID_STATUS_TWO = "applied";
+    public static final String VALID_ROLE_BYTEDANCE = "ML Engineer Intern";
+    public static final String VALID_ROLE_GRAB = "Software Engineer Intern";
+    public static final String VALID_COMPANY_NAME_BYTEDANCE = "ByteDance";
+    public static final String VALID_COMPANY_NAME_GRAB = "Grab";
+    public static final String VALID_COMPANY_EMAIL_BYTEDANCE = "hr@bytedance.com";
+    public static final String VALID_COMPANY_EMAIL_GRAB = "hr@grab.com";
+    public static final String VALID_STATUS_BYTEDANCE = "interested";
+    public static final String VALID_STATUS_GRAB = "applied";
 
-    public static final String ROLE_DESC_ONE = " " + PREFIX_ROLE + VALID_ROLE_ONE;
-    public static final String ROLE_DESC_TWO = " " + PREFIX_ROLE + VALID_ROLE_TWO;
-    public static final String COMPANY_NAME_DESC_ONE = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_ONE;
-    public static final String COMPANY_NAME_DESC_TWO = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_TWO;
-    public static final String COMPANY_EMAIL_DESC_ONE = " " + PREFIX_COMPANY_EMAIL + VALID_COMPANY_EMAIL_ONE;
-    public static final String COMPANY_EMAIL_DESC_TWO = " " + PREFIX_COMPANY_EMAIL + VALID_COMPANY_EMAIL_TWO;
-    public static final String STATUS_DESC_ONE = " " + PREFIX_STATUS + VALID_STATUS_ONE;
-    public static final String STATUS_DESC_TWO = " " + PREFIX_STATUS + VALID_STATUS_TWO;
+    public static final String ROLE_DESC_BYTEDANCE = " " + PREFIX_ROLE + VALID_ROLE_BYTEDANCE;
+    public static final String ROLE_DESC_GRAB = " " + PREFIX_ROLE + VALID_ROLE_GRAB;
+    public static final String COMPANY_NAME_DESC_BYTEDANCE = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_BYTEDANCE;
+    public static final String COMPANY_NAME_DESC_GRAB = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_GRAB;
+    public static final String COMPANY_EMAIL_DESC_BYTEDANCE = " " + PREFIX_COMPANY_EMAIL
+            + VALID_COMPANY_EMAIL_BYTEDANCE;
+    public static final String COMPANY_EMAIL_DESC_GRAB = " " + PREFIX_COMPANY_EMAIL + VALID_COMPANY_EMAIL_GRAB;
+    public static final String STATUS_DESC_BYTEDANCE = " " + PREFIX_STATUS + VALID_STATUS_BYTEDANCE;
+    public static final String STATUS_DESC_GRAB = " " + PREFIX_STATUS + VALID_STATUS_GRAB;
 
     // empty string not allowed for roles
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE;
@@ -58,12 +59,12 @@ public class ApplicationCommandTestUtil {
     public static final EditApplicationCommand.EditApplicationDescriptor DESC_TWO;
 
     static {
-        DESC_ONE = new EditApplicationDescriptorBuilder().withRole(VALID_ROLE_ONE)
-                .withCompanyName(VALID_COMPANY_NAME_ONE).withCompanyEmail(VALID_COMPANY_EMAIL_ONE)
-                .withStatus(VALID_STATUS_ONE).build();
-        DESC_TWO = new EditApplicationDescriptorBuilder().withRole(VALID_ROLE_TWO)
-                .withCompanyName(VALID_COMPANY_NAME_TWO).withCompanyEmail(VALID_COMPANY_EMAIL_TWO)
-                .withStatus(VALID_STATUS_TWO).build();
+        DESC_ONE = new EditApplicationDescriptorBuilder().withRole(VALID_ROLE_BYTEDANCE)
+                .withCompanyName(VALID_COMPANY_NAME_BYTEDANCE).withCompanyEmail(VALID_COMPANY_EMAIL_BYTEDANCE)
+                .withStatus(VALID_STATUS_BYTEDANCE).build();
+        DESC_TWO = new EditApplicationDescriptorBuilder().withRole(VALID_ROLE_GRAB)
+                .withCompanyName(VALID_COMPANY_NAME_GRAB).withCompanyEmail(VALID_COMPANY_EMAIL_GRAB)
+                .withStatus(VALID_STATUS_GRAB).build();
     }
 
     /**

@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_EMAIL_ONE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_EMAIL_TWO;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_ONE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_TWO;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_ONE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_TWO;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_ONE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_TWO;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_EMAIL_BYTEDANCE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_EMAIL_GRAB;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_BYTEDANCE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_GRAB;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_BYTEDANCE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_GRAB;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_BYTEDANCE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_GRAB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,12 +43,12 @@ public class TypicalApplications {
             .withStatus("rejected").build();
 
     // Manually added - Application's details found in {@code ApplicationCommandTestUtil}
-    public static final Application BYTEDANCE = new ApplicationBuilder().withRole(VALID_ROLE_ONE)
-            .withCompanyName(VALID_COMPANY_NAME_ONE).withCompanyEmail(VALID_COMPANY_EMAIL_ONE)
-            .withStatus(VALID_STATUS_ONE).build();
-    public static final Application GRAB = new ApplicationBuilder().withRole(VALID_ROLE_TWO)
-            .withCompanyName(VALID_COMPANY_NAME_TWO).withCompanyEmail(VALID_COMPANY_EMAIL_TWO)
-            .withStatus(VALID_STATUS_TWO).build();
+    public static final Application BYTEDANCE = new ApplicationBuilder().withRole(VALID_ROLE_BYTEDANCE)
+            .withCompanyName(VALID_COMPANY_NAME_BYTEDANCE).withCompanyEmail(VALID_COMPANY_EMAIL_BYTEDANCE)
+            .withStatus(VALID_STATUS_BYTEDANCE).build();
+    public static final Application GRAB = new ApplicationBuilder().withRole(VALID_ROLE_GRAB)
+            .withCompanyName(VALID_COMPANY_NAME_GRAB).withCompanyEmail(VALID_COMPANY_EMAIL_GRAB)
+            .withStatus(VALID_STATUS_GRAB).build();
 
     public static final String KEYWORD_MATCHING_GOOGLE = "Google"; // A keyword that matches Google
 
