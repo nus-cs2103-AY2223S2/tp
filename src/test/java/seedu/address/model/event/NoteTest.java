@@ -1,11 +1,15 @@
 package seedu.address.model.event;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class NoteTest {
     @Test
@@ -16,16 +20,16 @@ public class NoteTest {
 
     @Test
     public void note_validInputWithoutPerson_createsNonemptyObject() {
-        Note note = new Note("This is my first note!! \n " +
-                "Please remind me that I have to send report by next meeting");
+        Note note = new Note("This is my first note!! \n "
+                + "Please remind me that I have to send report by next meeting");
         assertNotNull(note.getContent());
     }
 
     @Test
     public void note_validInputWithPersons_createsNonemptyObject() {
-        Note note = new Note("This is my first note!! \n " +
-                "Please remind me that I have to send report by next meeting \n" +
-                "Relevant personnel: @Jim, @Lin, and @Han.");
+        Note note = new Note("This is my first note!! \n "
+                + "Please remind me that I have to send report by next meeting \n"
+                + "Relevant personnel: @Jim, @Lin, and @Han.");
         assertNotNull(note.getContent());
         List<String> actualPersonNames = new ArrayList<String>(3);
         actualPersonNames.add("Jim");
@@ -61,7 +65,7 @@ public class NoteTest {
                 + "Please remind me that I have to send report to @Jim, @Lin by next meeting \n"
                 + "And I need to regrade tutorial for @Han."
                 + ";\n Relevant personnel: "
-                + "Jim Lin Han",  note.toString());
+                + "Jim Lin Han", note.toString());
     }
 
     @Test
