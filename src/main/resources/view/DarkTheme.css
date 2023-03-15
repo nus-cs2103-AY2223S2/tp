@@ -98,7 +98,7 @@
     -fx-background-color: derive(#EFEEFC, 100%);
 }
 
-/*Student list*/
+/*List*/
 .list-view {
     -fx-background-insets: 0;
     -fx-background-color: white;
@@ -106,7 +106,7 @@
     -fx-padding:18 18 18 18;
 }
 
-/*Individual student*/
+/*Individual cell*/
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
@@ -139,7 +139,7 @@
     -fx-border-width: 0;
 }
 
-/*Student list text color*/
+/*List text color*/
 .list-cell .label {
     -fx-text-fill: #4A4A4A;
     -fx-font-family: "SansSerif";
@@ -155,6 +155,14 @@
     -fx-font-size: 22px;
     -fx-text-fill: #4A4A4A;
     -fx-padding: 0 0 4 0;
+}
+
+.cell_middle_label {
+    -fx-font-family: "SansSerif";
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-text-fill: #4A4A4A;
+    -fx-padding: 4 0 4 0;
 }
 
 .cell_small_label {
@@ -175,10 +183,10 @@
 
 .heading_label {
     -fx-font-family: "SansSerif";
-    -fx-font-size: 22px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: #4A4A4A;
-    -fx-padding: 12 0 -4 18;
+    -fx-padding: 16 0 2 18;
 }
 
 /*Input field*/

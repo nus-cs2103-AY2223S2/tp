@@ -12,19 +12,19 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <HBox prefWidth="100">
+        <HBox prefWidth="100" alignment="CENTER_LEFT">
             <padding>
                 <Insets top="0" right="10" bottom="0" left="10" />
             </padding>
-            <Label fx:id="id" styleClass="cell_big_label">
+            <Label fx:id="id" styleClass="cell_middle_label">
                 <minWidth>
                     <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE" />
                 </minWidth>
             </Label>
-            <Label fx:id="title" text="\$first" styleClass="cell_big_label" />
-            <Label fx:id="scoreValue" text="\$first" styleClass="cell_big_label" />
-            <Label fx:id="date" text="\$first" styleClass="cell_big_label" />
+            <Label fx:id="title" text="\$first" styleClass="cell_middle_label" />
+            <Label fx:id="scoreValue" text="\$first" styleClass="cell_middle_label" />
+            <Label fx:id="date" text="\$first" styleClass="cell_middle_label" />
         </HBox>
     </GridPane>
 </HBox>
