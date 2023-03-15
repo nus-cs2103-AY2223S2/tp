@@ -379,9 +379,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
    
 <b>Extensions:>/b>
-3a. A few minutes before the next schedule, System will check if there is an job.
-    3a1. If there is an upcoming job, fire a pop up notification
+* 3a. A few minutes before the next schedule, System will check if there is an job.
+    * 3a1. If there is an upcoming job, fire a pop up notification. 
     Use case resumes from step 4.
+
 </pre>
 </details>
  
@@ -393,9 +394,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. System adds the reminder into the reminder list.
    Use case ends.
    
-<b>Extensions:>/b>
-2a. date and time of reminder is not provide.
-    2a1. System will promopt user again.
+<b>Extensions:</b>
+* 2a. date and time of reminder is not provide.
+    * 2a1. System will promopt user again.
     Use case resumes from step 1.
 </pre>
 </details>
@@ -408,9 +409,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. System finds the corresponding reminder, and deletes it from the reminder list.
    Use case ends.
    
-<b>Extensions:>/b>
-2a. Index provided by user is not found in reminder list.
-    2a1. System will promopt user again.
+<b>Extensions:</b>
+* 2a. Index provided by user is not found in reminder list.
+    * 2a1. System will promopt user again.
     Use case resumes from step 1.
 </pre>
 </details>
