@@ -34,6 +34,10 @@ public class Mob extends Entity {
 
     public boolean getLegendaryStatus() { return this.isLegendary; }
 
+    public Stats getStats() {
+        return this.getStats();
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
