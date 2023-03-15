@@ -9,7 +9,7 @@ public class Company {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Company cannot be blank and must be a valid String";
-    public static final String VALIDATION_REGEX = "/^[a-zA-Z\\s]{0,255}$/"; //check if this actually works
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*"; //check if this actually works
     public final String value;
 
     /**

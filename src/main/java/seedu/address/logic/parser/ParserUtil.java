@@ -117,8 +117,8 @@ public class ParserUtil {
      */
     public static Company parseCompany(String company) throws ParseException {
         requireNonNull(company);
-        if (!BusinessSize.isValidBusinessSize(company)) {
-            throw new ParseException(BusinessSize.MESSAGE_CONSTRAINTS);
+        if (!Company.isValidCompany(company)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(company);
     }
