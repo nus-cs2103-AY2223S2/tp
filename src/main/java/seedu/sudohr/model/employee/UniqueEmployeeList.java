@@ -44,12 +44,9 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     public boolean contains(Employee toCheck, Employee toExclude) {
         requireNonNull(toCheck);
         requireNonNull(toExclude);
-        for (Employee employee : internalList) {
-            if (!employee.isSameEmployee(toExclude) && employee.isSameEmployee(toCheck)) {
-                return true;
-            }
-        }
-        return false;
+        return internalList.stream().filter(
+                e -> !toExclude.isSameEmployee(e))
+                .anyMatch(toCheck::isSameEmployee);
     }
 
     /**
@@ -67,12 +64,9 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     public boolean sharesEmail(Employee toCheck, Employee toExclude) {
         requireNonNull(toCheck);
         requireNonNull(toExclude);
-        for (Employee employee : internalList) {
-            if (!employee.isSameEmployee(toExclude) && employee.emailClashes(toCheck)) {
-                return true;
-            }
-        }
-        return false;
+        return internalList.stream().filter(
+                        e -> !toExclude.isSameEmployee(e))
+                .anyMatch(toCheck::emailClashes);
     }
 
     /**
@@ -90,12 +84,9 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     public boolean sharesPhoneNumber(Employee toCheck, Employee toExclude) {
         requireNonNull(toCheck);
         requireNonNull(toExclude);
-        for (Employee employee : internalList) {
-            if (!employee.isSameEmployee(toExclude) && employee.phoneClashes(toCheck)) {
-                return true;
-            }
-        }
-        return false;
+        return internalList.stream().filter(
+                        e -> !toExclude.isSameEmployee(e))
+                .anyMatch(toCheck::phoneClashes);
     }
 
 
