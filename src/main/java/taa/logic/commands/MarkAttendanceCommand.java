@@ -62,7 +62,6 @@ public class MarkAttendanceCommand extends Command {
         studentAtd.markAttendance(this.week.getZeroBased());
 
         model.updateStudent(studentToEdit);
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(SUCCESS_MSG);
     }
 }

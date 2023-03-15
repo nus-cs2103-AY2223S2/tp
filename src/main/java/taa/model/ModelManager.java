@@ -150,11 +150,7 @@ public class ModelManager implements Model {
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
-    /**
-     * Adds a student to all the class lists he/she is tagged with.
-     * Creates new class lists to add the student into, if required.
-     * @param student The student to include in all of his/her tagged classes.
-     */
+    @Override
     public void addStudentToTaggedClasses(Student student) {
         requireNonNull(student);
 

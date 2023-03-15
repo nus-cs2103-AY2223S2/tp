@@ -106,6 +106,13 @@ public interface Model {
 
     void updateFilteredClassLists(Predicate<ClassList> predicate);
 
+    /**
+     * Adds a student to all the class lists he/she is tagged with.
+     * Creates new class lists to add the student into, if required.
+     * @param student The student to include in all of his/her tagged classes.
+     */
+    void addStudentToTaggedClasses(Student student);
+
     void addAssignment(String assignmentName) throws CommandException;
 
     void deleteAssignment(String assignmentName) throws CommandException;
