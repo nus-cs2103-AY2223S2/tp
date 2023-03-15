@@ -2,13 +2,16 @@ package seedu.internship.logic.commands;
 
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.internship.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.internship.model.person.Person;
-import seedu.internship.testutil.PersonBuilder;
+import seedu.internship.model.Model;
+import seedu.internship.model.ModelManager;
+import seedu.internship.model.UserPrefs;
+import seedu.internship.model.internship.Internship;
+import seedu.internship.testutil.InternshipBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -19,24 +22,24 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalInternshipCatalogue(), new UserPrefs());
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+    public void execute_newInternship_success() {
+        Internship validInternship = new InternshipBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        Model expectedModel = new ModelManager(model.getInternshipCatalogue(), new UserPrefs());
+        expectedModel.addInternship(validInternship);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validInternship), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validInternship), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        Internship internshipInList = model.getInternshipCatalogue().getInternshipList().get(0);
+        assertCommandFailure(new AddCommand(internshipInList), model, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
 }
