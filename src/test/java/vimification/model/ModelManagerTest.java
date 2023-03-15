@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static vimification.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static vimification.testutil.Assert.assertThrows;
-import static vimification.testutil.TypicalPersons.ALICE;
-import static vimification.testutil.TypicalPersons.BENSON;
+import static vimification.testutil.TypicalTasks.ALICE;
+import static vimification.testutil.TypicalTasks.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

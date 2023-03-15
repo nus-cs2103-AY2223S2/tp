@@ -4,28 +4,29 @@ import static java.util.Objects.requireNonNull;
 import static vimification.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-public class Date {
+public class DateTime {
 
     public static final String MESSAGE_CONSTRAINTS = "";
     public static final String VALIDATION_REGEX ="";
 
-    public final LocalDate date;
+    public final LocalDateTime dateTime;
     public final String value;
-    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMM-dd-yyyy");
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
-     * Constructs an {@code Date}.
+     * Constructs an {@code DateTime}.
      *
      * @param date A valid date.
      */
-    public Date(String date) {
+    public DateTime(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        this.date = LocalDate.parse(date, dateFormatter);
-        value = dateFormatter.format(this.date);
+        this.dateTime = LocalDateTime.parse(date, dateTimeFormatter);
+        value = dateTimeFormatter.format(this.dateTime);
     }
 
     /**
@@ -43,8 +44,8 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && date.equals(((Date) other).date)); // state check
+                || (other instanceof DateTime // instanceof handles nulls
+                && dateTime.equals(((DateTime) other).dateTime)); // state check
     }
 
 }

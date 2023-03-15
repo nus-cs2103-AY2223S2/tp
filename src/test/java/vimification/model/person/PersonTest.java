@@ -8,18 +8,18 @@ import static vimification.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static vimification.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static vimification.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static vimification.testutil.Assert.assertThrows;
-import static vimification.testutil.TypicalPersons.ALICE;
-import static vimification.testutil.TypicalPersons.BOB;
+import static vimification.testutil.TypicalTasks.ALICE;
+import static vimification.testutil.TypicalTasks.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import vimification.testutil.PersonBuilder;
+import vimification.testutil.TaskBuilder;
 
 public class PersonTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
+        Person person = new TaskBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
     }
 
@@ -33,28 +33,28 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice =
-                new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                         .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Person editedBob = new TaskBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        editedBob = new TaskBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Person aliceCopy = new TaskBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -70,23 +70,23 @@ public class PersonTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Person editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        editedAlice = new TaskBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

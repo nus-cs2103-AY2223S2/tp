@@ -2,14 +2,14 @@ package vimification.model.task;
 
 public class Deadline extends Task {
 
-    private final Date deadline;
+    private final DateTime deadline;
 
-    public Deadline(Description description, Status status, Date deadline) {
+    public Deadline(Description description, Status status, DateTime deadline) {
         super(description, status, new Type("Deadline"));
         this.deadline = deadline;
     }
 
-    public Date getDeadline() { return deadline; }
+    public DateTime getDeadline() { return deadline; }
 
 
     public String toString() {

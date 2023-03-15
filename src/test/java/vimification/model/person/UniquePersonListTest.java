@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static vimification.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static vimification.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static vimification.testutil.Assert.assertThrows;
-import static vimification.testutil.TypicalPersons.ALICE;
-import static vimification.testutil.TypicalPersons.BOB;
+import static vimification.testutil.TypicalTasks.ALICE;
+import static vimification.testutil.TypicalTasks.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import vimification.model.task.UniquePersonList;
 import vimification.model.task.exceptions.DuplicateTaskException;
 import vimification.model.task.exceptions.TaskNotFoundException;
-import vimification.testutil.PersonBuilder;
+import vimification.testutil.TaskBuilder;
 
 public class UniquePersonListTest {
 
@@ -44,7 +44,7 @@ public class UniquePersonListTest {
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
         Person editedAlice =
-                new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                         .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
@@ -88,7 +88,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice =
-                new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                         .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();

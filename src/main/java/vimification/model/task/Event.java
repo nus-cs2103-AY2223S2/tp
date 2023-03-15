@@ -2,19 +2,19 @@ package vimification.model.task;
 
 public class Event extends Task {
 
-    private final Date startDate;
-    private final Date endDate;
+    private final DateTime startDate;
+    private final DateTime endDate;
 
 
-    public Event(Description description, Status status, Date startDate, Date endDate) {
+    public Event(Description description, Status status, DateTime startDate, DateTime endDate) {
         super(description, status, new Type("Event"));
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Date getStartDate() { return startDate; }
+    public DateTime getStartDate() { return startDate; }
 
-    public Date getEndDate() {
+    public DateTime getEndDate() {
         return endDate;
     }
 
