@@ -1,0 +1,13 @@
+{
+  "internships": [ {
+    "companyName": "Valid Internship",
+    "role": "Software Engineer",
+    "status": "applied",
+    "date": "2023-02-01"
+  }, {
+    "companyName": "Internship With Invalid Status Field",
+    "role": "Software Engineer",
+    "status": "not-a-status",
+    "date": "2023-02-01"
+  } ]
+}

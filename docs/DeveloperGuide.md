@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* InternBuddy is written in **Java 11**, with usage of the [JavaFX](https://openjfx.io/),
+[Jackson](https://github.com/FasterXML/jackson) and [JUnit5](https://github.com/junit-team/junit5) libraries. It
+is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -255,74 +257,157 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile:**
+Computing Undergraduates
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+**Characteristics of user profile:**
+* Has a need to manage many internship applications
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+Internships form an integral part of the undergraduate curriculum for Computing Undergraduates. In a technical field
+like Computing, it is especially important for undergraduates to practice what they have learnt in classrooms.
+However, given the tight competition in the market, many undergraduates source for numerous internship opportunities
+before being accepted for one. Therefore, many Computing undergraduates face the need to track many applications
+where each could be in a different phase of the application process.
+
+* Prefers typing to mouse interactions, with good typing speed
+
+Computing undergraduates have great exposure to computer usage where coding assignments and projects in school require
+extensive typing. This justifies a sufficiently good level of proficiency with regard to typing. In fact, with the
+existence of keyboard shortcuts, many programmers prefer typing over using the mouse because of the efficiency gains.
+
+
+* Reasonably comfortable in using Command Line Interface (CLI) apps
+
+CLI provides a simple way to interact with computers to run programs and manage files.
+Computing undergraduates are taught how to use the CLI in their curriculums, and are often required to use it
+to run system tasks that cannot be done over the GUI. Hence, this would imply a reasonable level of comfort in using
+the CLI interface.
+
+* Prefers desktop applications over other types
+
+**Value proposition**:
+
+InternBuddy aims to provide a 1-stop platform for a computing undergraduate to view and
+manage his internship applications. Consolidating internship information, the application provides organisational
+capabilities for easy tracking and follow-ups while eliminating the need to handle data across multiple platforms.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                                                                     | I want to …​                                                     | So that I can…​                                                                                     |
+|----------|---------------------------------------------------------------------------------------------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `* * *`  | Computing undergraduate with many internship applications                                   | list out all the entries                                         | browse through my list of applications.                                                             |
+| `* * *`  | Computing undergraduate applying for many internships                                       | add a new entry                                                  | manage new applications using InternBuddy.                                                          |
+| `* * *`  | Computing undergraduate managing many concurrent internship applications                    | add a status to each entry                                       | track the status of each application.                                                               |
+| `* * *`  | Computing undergraduate who is planning to track internship applications in the long run    | delete entries                                                   | remove outdated or irrelevant entries from InternBuddy.                                             |
+| `* * *`  | Computing undergraduate who is planning to track internship applications in the long run    | store data                                                       | resume from where I left off in my previous run of InternBuddy.                                     |
+| `* * *`  | Computing undergraduate who is a new user of InternBuddy                                    | view the list of supported commands                              | refer to it when I am unsure about the usage of InternBuddy.                                        |
+| `* *`    | meticulous Computing undergraduate                                                          | be notified that InternBuddy is exiting                          | be rest assured that InternBuddy has successfully terminated when I exit it.                        |
+| `* *`    | careless Computing undergraduate                                                            | modify the details of an entry                                   | correct my typos without having to create a new entry from scratch.                                 |
+| `* *`    | careless Computing undergraduate                                                            | be prompted with a confirmation message before I delete an entry | avoid accidental deletes.                                                                           |
+| `* *`    | forgetful Computing undergraduate                                                           | rely on auto-saving of data                                      | avoid the problem of forgetting to save my entries when I make changes to them.                     |
+| `* *`    | Computing undergraduate applying for technical roles                                        | tag each entry with its associated tech stack                    | identify the technical requirements associated with each application.                               |
+| `* *`    | Computing undergraduate applying for technical roles                                        | filter internship entries by tags                                | narrow down the search to internship applications with the tech stack that I would like to work on. |
+| `* *`    | Computing undergraduate with many internship applications                                   | search an entry by name                                          | easily and swiftly locate the desired application entry.                                            |
+| `* *`    | Computing undergraduate who is not extremely proficient with the command line interface     | have intuitive and simple-to-pick-up commands                    | use InternBuddy without much technical difficulties.                                                |
+| `* * `   | detail-oriented Computing undergraduate                                                     | add custom remarks to each entry                                 | have the flexibility of documenting miscellaneous but relevant information.                         |
+| `*`      | Computing undergraduate who is slow in learning                                             | go through a step-by-step in-app tutorial                        | learn how to use InternBuddy in a guided and self-paced environment.                                |
+| `*`      | Computing undergraduate managing many concurrent internship applications                    | filter internship entries by date                                | identify the upcoming tasks or deadlines.                                                           |
+| `*`      | Computing undergraduate managing many concurrent internship applications                    | obtain reminders                                                 | avoid forgetting about upcoming tasks or deadlines.                                                 |
+| `*`      | analytical Computing undergraduate                                                          | have a summary overview of all the entries                       | analyse the composition of the entries, such as what percentage of applications were successful.    |
+| `*`      | Computing undergraduate who is planning to track internship applications in the long run    | archive old entries                                              | delete them from InternBuddy while maintaining a backup copy of the outdated data.                  |
+| `*`      | Computing undergraduate who is experienced in using InternBuddy                             | have shortcuts to existing commands                              | carry out tasks in InternBuddy even more efficiently than previously.                               |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `InternBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an internship entry**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User enters internship entry
+2.  InternBuddy adds an internship entry and displays success message
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a.  InternBuddy detects one or more fields are missing.
+  * 1a1. InternBuddy requests for internship entry with correct format.
+  * 1a2. User enters corrected internship entry.
+  * Steps 1a1-1a2 are repeated until the internship entry entered is of the correct format.
+ 
+    Use case ends.
 
-  Use case ends.
+* 1b.  InternBuddy detects one or more fields have invalid parameters.
+    * 1b1. InternBuddy requests for internship entry with correct format.
+    * 1b2. User enters corrected internship entry.
+    * Steps 1b1-1b2 are repeated until the internship entry entered is of the correct format.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Use Case: Edit an internship entry**
 
-      Use case resumes at step 2.
+**MSS**
+
+1.  User edits an internship entry
+2.  InternBuddy updates that particular internship entry and displays success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. InternBuddy detects missing field.
+  * 1a1. InternBuddy prompts user for edit command of correct format.
+
+    Use case resumes from Step (1).
+
+* 1b. InternBuddy detects one or more fields has invalid parameters.
+  * 1b1. InternBuddy prompts user for edit command of correct format.
+
+    Use case resumes from Step (1).
+
+**Use case: Display list of all internship applications on InternBuddy.**
+
+**MSS**
+
+1.  User requests for the list
+2.  InternBuddy displays a list of all the internship entries
+
+    Use case ends.
+
+**Use case: Exit InternBuddy**
+
+**MSS**
+
+1.  User requests to exit InternBuddy
+2.  InternBuddy displays exit message and closes the application
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+2.  Should be able to hold up to 500 internship entries without a noticeable sluggishness in performance for typical usage.
+3.  Should be able to respond to user input within 6 seconds.
+3.  A Computing undergraduate student with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be easily adopted by most Computing undergraduates students who have never used command line applications to track internships before.
+5.  The user guide should be clear enough such that most Computing undergraduates know how to use the core features of InternBuddy after reading the the user guide.
+6.  The developer guide should be clear enough such that new developers are able to understand how the system is designed, and know how to contribute to the codebase after reading the guide.
+7.  InternBuddy is not required to handle concurrent users.
+8.  InternBuddy is not required to make data available online.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Computing undergraduate**: Refers to a university undergraduate pursuing a Computing degree.
+* **Tech stack**: Refers to a set of technologies that a company uses to create or maintain a software system or product.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
