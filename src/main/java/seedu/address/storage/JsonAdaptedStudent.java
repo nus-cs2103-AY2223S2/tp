@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
+import seedu.address.model.student.Exam;
 import seedu.address.model.student.Homework;
 import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Name;
@@ -33,6 +34,7 @@ class JsonAdaptedStudent {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedHomework> homeworkList = new ArrayList<>();
     private final List<JsonAdaptedLesson> lessonList = new ArrayList<>();
+    private final List<JsonAdaptedExam> examList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -42,7 +44,8 @@ class JsonAdaptedStudent {
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("homeworks") List<JsonAdaptedHomework> homeworkList,
-                              @JsonProperty("lessons") List<JsonAdaptedLesson> lessonList) {
+                              @JsonProperty("lessons") List<JsonAdaptedLesson> lessonList,
+                              @JsonProperty("exams") List<JsonAdaptedExam> examList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,6 +58,9 @@ class JsonAdaptedStudent {
         }
         if (lessonList != null) {
             this.lessonList.addAll(lessonList);
+        }
+        if (examList != null) {
+            this.examList.addAll(examList);
         }
     }
 
@@ -100,6 +106,12 @@ class JsonAdaptedStudent {
             modelLessonList.add(lesson.toModelType());
         }
 
+        // Convert examList to modelExamList
+        final List<Exam> modelExamList = new ArrayList<>();
+        for (JsonAdaptedExam exam : examList) {
+            modelExamList.add(exam.toModelType());
+        }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -134,6 +146,6 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelHomeworkList,
-            modelLessonList);
+            modelLessonList, modelExamList);
     }
 }
