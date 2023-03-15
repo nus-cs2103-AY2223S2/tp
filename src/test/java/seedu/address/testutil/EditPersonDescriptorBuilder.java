@@ -5,9 +5,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.tutee.*;
-import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.Address;
+import seedu.address.model.tutee.Email;
+import seedu.address.model.tutee.Name;
+import seedu.address.model.tutee.Phone;
+import seedu.address.model.tutee.Schedule;
+import seedu.address.model.tutee.Subject;
+import seedu.address.model.tutee.Tutee;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -33,6 +38,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(tutee.getPhone());
         descriptor.setEmail(tutee.getEmail());
         descriptor.setAddress(tutee.getAddress());
+        descriptor.setSubject(tutee.getSubject());
+        descriptor.setSchedule(tutee.getSchedule());
         descriptor.setTags(tutee.getTags());
     }
 
@@ -65,6 +72,22 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Subject} of the {@code Tutee} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSubject(String subject) {
+        descriptor.setSubject(new Subject(subject));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Schedule} of the {@code Tutee} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSchedule(String schedule) {
+        descriptor.setSchedule(new Schedule(schedule));
         return this;
     }
 

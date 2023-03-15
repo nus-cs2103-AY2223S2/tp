@@ -32,9 +32,12 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.tutee.*;
-import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.Address;
+import seedu.address.model.tutee.Email;
+import seedu.address.model.tutee.Name;
+import seedu.address.model.tutee.Phone;
+import seedu.address.model.tutee.Tutee;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {

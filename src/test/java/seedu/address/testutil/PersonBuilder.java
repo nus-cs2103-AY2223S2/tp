@@ -3,13 +3,15 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tutee.Address;
 import seedu.address.model.tutee.Email;
 import seedu.address.model.tutee.Name;
-import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tutee.Phone;
 import seedu.address.model.tutee.Remark;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.Schedule;
+import seedu.address.model.tutee.Subject;
+import seedu.address.model.tutee.Tutee;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -22,12 +24,16 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_SUBJECT = "math";
+    public static final String DEFAULT_SCHEDULE = "friday";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Remark remark;
+    private Subject subject;
+    private Schedule schedule;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +45,8 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
+        subject = new Subject(DEFAULT_SUBJECT);
+        schedule = new Schedule(DEFAULT_SCHEDULE);
         tags = new HashSet<>();
     }
 
@@ -51,6 +59,8 @@ public class PersonBuilder {
         email = tuteeToCopy.getEmail();
         address = tuteeToCopy.getAddress();
         remark = tuteeToCopy.getRemark();
+        subject = tuteeToCopy.getSubject();
+        schedule = tuteeToCopy.getSchedule();
         tags = new HashSet<>(tuteeToCopy.getTags());
     }
 
@@ -102,8 +112,25 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Subject} of the {@code Tutee} that we are building.
+     */
+    public PersonBuilder withSubject(String subject) {
+        this.subject = new Subject(subject);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Schedule} of the {@code Tutee} that we are building.
+     */
+    public PersonBuilder withSchedule(String schedule) {
+        this.schedule = new Schedule(schedule);
+        return this;
+    }
+
+
     public Tutee build() {
-        return new Tutee(name, phone, email, address, remark, tags);
+        return new Tutee(name, phone, email, address, remark, subject, schedule, tags);
     }
 
 }
