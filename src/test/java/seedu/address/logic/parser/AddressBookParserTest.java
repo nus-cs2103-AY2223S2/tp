@@ -71,7 +71,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("n", "foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("/n", "foo", "bar", "baz");
         List<String> keywords2 = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));

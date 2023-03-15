@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NricContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -26,10 +27,10 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "n Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, "/n Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "\n n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, "\n /n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
     @Test
@@ -37,10 +38,21 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList("tokyo")));
-        assertParseSuccess(parser, "a tokyo", expectedFindCommand);
+        assertParseSuccess(parser, "/a tokyo", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "\n a tokyo \n \t", expectedFindCommand);
+        assertParseSuccess(parser, "\n /a tokyo \n \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgs_returnsFindNricCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new NricContainsKeywordsPredicate(Arrays.asList("S0123456D")));
+        assertParseSuccess(parser, "/nric S0123456D", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, "\n /nric S0123456D \n \t", expectedFindCommand);
     }
 
     @Test
