@@ -22,6 +22,7 @@ import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
+import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.vaccination.VaxType;
 
@@ -91,12 +92,9 @@ public class EditCommand extends Command {
         }
 
         // Checks if appointment manager already contains an appointment from the patient of the given index
-        Map<Integer, IdData<Appointment>> appointmentList = model.getAppointmentManager().getMapView();
-        for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
-            Appointment appointment = entry.getValue().getValue();
-            if (appointment.getPatient().equals(editedAppointment.getPatient())) {
-                throw new CommandException(MESSAGE_EXISTING_PATIENT_ID);
-            }
+        AppointmentManager appointmentManager = model.getAppointmentManager();
+        if (appointmentManager.containsPatient(appointmentToEdit.getPatient())) {
+            throw new CommandException(MESSAGE_EXISTING_PATIENT_ID);
         }
 
         model.setAppointment(index.getZeroBased(), editedAppointment);

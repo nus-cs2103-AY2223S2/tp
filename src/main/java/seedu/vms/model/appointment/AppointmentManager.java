@@ -1,5 +1,9 @@
 package seedu.vms.model.appointment;
 
+import java.util.Map;
+
+import seedu.vms.commons.core.index.Index;
+import seedu.vms.model.IdData;
 import seedu.vms.model.StorageModel;
 
 /**
@@ -20,5 +24,16 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
      */
     public AppointmentManager(ReadOnlyAppointmentManager toBeCopied) {
         super(toBeCopied);
+    }
+
+    public boolean containsPatient(Index patientId) {
+        Map<Integer, IdData<Appointment>> appointmentList = this.getMapView();
+        for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
+            Appointment appointment = entry.getValue().getValue();
+            if (appointment.getPatient().equals(patientId)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
