@@ -8,8 +8,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 
 /**
@@ -86,6 +88,15 @@ public interface Model {
      * @return True if a module with the same code as {@code module} exists in the tracker. Otherwise, false.
      */
     boolean hasModule(ReadOnlyModule module);
+
+    /**
+     * Returns true if a module which has {@code moduleCode} exists in the tracker.
+     *
+     * @param moduleCode The code of the module to check if it exist.
+     * @return True if a module that has {@code moduleCode} exists in the tracker. Otherwise, false.
+     */
+    boolean hasModule(ModuleCode moduleCode);
+
 
     /**
      * Deletes the given module. <p>
@@ -186,11 +197,7 @@ public interface Model {
      */
     void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo);
 
-    /**
-     * Returns an unmodifiable view of the filtered module list.
-     *
-     * @return An unmodifiable view of the filtered module list.
-     */
+
     ObservableList<? extends ReadOnlyModule> getFilteredModuleList();
 
     /**

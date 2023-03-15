@@ -14,8 +14,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 
 /**
@@ -123,6 +125,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModule(ModuleCode moduleCode) {
+        return tracker.getModule(moduleCode) != null;
+    }
+
+    @Override
     public void deleteModule(ReadOnlyModule target) {
         tracker.removeModule(target);
     }
@@ -197,7 +204,6 @@ public class ModelManager implements Model {
         ((Lecture) lecture).setVideo(target, editedVideo);
         //CHECKSTYLE.ON: SeparatorWrap
     }
-
 
     //=========== Filtered Module List Accessors =============================================================
 

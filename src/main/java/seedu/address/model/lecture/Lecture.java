@@ -3,11 +3,7 @@ package seedu.address.model.lecture;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;
@@ -33,7 +29,6 @@ public class Lecture implements ReadOnlyLecture {
      * Constructs a {@code Lecture}.
      *
      * @param name The name of the lecture.
-     * @param tags The tags applied to the module.
      */
     public Lecture(LectureName name, Set<Tag> tags, List<Video> videos) {
         requireAllNonNull(name, tags, videos);
