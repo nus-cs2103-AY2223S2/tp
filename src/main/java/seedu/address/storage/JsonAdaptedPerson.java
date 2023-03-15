@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHubProfile;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Language;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,22 +27,30 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String profile;
     private final String phone;
     private final String email;
     private final String address;
+    private final List<JsonAdaptedLanguage> languages = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("profile") String profile,
+            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+            @JsonProperty("address") String address, @JsonProperty("languages") List<JsonAdaptedLanguage> languages,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.profile = profile;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        if (languages != null) {
+            this.languages.addAll(languages);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -51,9 +61,13 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        profile = source.getProfile().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        languages.addAll(source.getLanguages().stream()
+                .map(JsonAdaptedLanguage::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -65,6 +79,11 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+        final List<Language> personLanguages = new ArrayList<>();
+        for (JsonAdaptedLanguage language : languages) {
+            personLanguages.add(language.toModelType());
+        }
+
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -77,6 +96,15 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (profile == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GitHubProfile.class.getSimpleName()));
+        }
+        if (!GitHubProfile.isValidProfile(profile)) {
+            throw new IllegalValueException(GitHubProfile.MESSAGE_CONSTRAINTS);
+        }
+        final GitHubProfile modelProfile = new GitHubProfile(profile);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -102,8 +130,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final Set<Language> modelLangages = new HashSet<>(personLanguages);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelProfile, modelPhone, modelEmail, modelAddress, modelLangages, modelTags);
     }
 
 }

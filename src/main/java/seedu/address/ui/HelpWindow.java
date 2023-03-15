@@ -4,10 +4,12 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
+import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -15,17 +17,35 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://nus-cs2103-ay2223s2.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "COMMAND LIST\n"
+            + "\n"
+            + "1. Adding a person: add\n"
+            + "Format: add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] "
+            + "[g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
+            + "2. Listing all persons\n"
+            + "Format: list [t/TAG]\n\n"
+            + "3. Editing a person : edit\n"
+            + "Format: edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] "
+            + "[g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
+            + "4. Locating persons by name or tag: find\n"
+            + "Format: find KEYWORD [MORE_KEYWORDS]… [t/TAG]…\n\n"
+            + "5. Deleting a person : delete\n"
+            + "Format: delete INDEX\n\n"
+            + "6. Sorting persons (by other fields) : sort\n"
+            + "Format: sort [CATEGORY]\n\n"
+            + "7. Exiting the program : exit\n\n"
+            + "For more info:";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
     private Button copyButton;
-
     @FXML
     private Label helpMessage;
+    @FXML
+    private Hyperlink userGuideLink;
 
     /**
      * Creates a new HelpWindow.
@@ -35,6 +55,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        userGuideLink.setText(USERGUIDE_URL);
     }
 
     /**
@@ -98,5 +119,14 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * Opens the URL to the user guide in a browser.
+     */
+    @FXML
+    private void openUserGuide() {
+        MainApp.openUrl(USERGUIDE_URL);
+        userGuideLink.setVisited(false);
     }
 }

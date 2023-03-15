@@ -1,10 +1,13 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -139,5 +142,26 @@ public class StringUtilTest {
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
+
+    //---------------- Tests for convertArgumentsIntoList --------------------------------------
+
+    @Test
+    public void test_convertArgumentsIntoList_success() {
+        // No white spaces
+        List<String> expectedNoSpace = Arrays.asList("test");
+        assertEquals(expectedNoSpace, StringUtil.convertArgumentsIntoList("test"));
+
+        // White spaces only in front and back
+        assertEquals(expectedNoSpace, StringUtil.convertArgumentsIntoList(" test "));
+
+        // Only Single white space
+        List<String> expectedWhiteSpace = Arrays.asList("first", "second", "third");
+        assertEquals(expectedWhiteSpace, StringUtil.convertArgumentsIntoList("first second third"));
+
+        // Multiple white space
+        assertEquals(expectedWhiteSpace, StringUtil.convertArgumentsIntoList("first  \n  second \t  third"));
+    }
+
+
 
 }

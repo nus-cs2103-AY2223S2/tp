@@ -2,7 +2,13 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.person.Person.CATEGORY_ADDRESS;
+import static seedu.address.model.person.Person.CATEGORY_EMAIL;
+import static seedu.address.model.person.Person.CATEGORY_GITHUB;
+import static seedu.address.model.person.Person.CATEGORY_NAME;
+import static seedu.address.model.person.Person.CATEGORY_PHONE;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -133,5 +139,63 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    /**
+     * Sorts the list by given {@code category}.
+     * @param category
+     */
+    public void sort(String category) {
+        if (category.equals(CATEGORY_NAME)) {
+            internalList.sort(Comparator.comparing((Person a) -> a.getName().toString().toLowerCase()));
+        } else if (category.equals(CATEGORY_PHONE)) {
+            internalList.sort((Person a, Person b) -> {
+                if (a.getPhone().toString().isEmpty() && b.getPhone().toString().isEmpty()) {
+                    return a.getName().toString().toLowerCase().compareTo(b.getName().toString().toLowerCase());
+                } else if (a.getPhone().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getPhone().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getPhone().toString().toLowerCase().compareTo(b.getPhone().toString().toLowerCase());
+                }
+            });
+        } else if (category.equals(CATEGORY_EMAIL)) {
+            internalList.sort((Person a, Person b) -> {
+                if (a.getEmail().toString().isEmpty() && b.getEmail().toString().isEmpty()) {
+                    return a.getName().toString().toLowerCase().compareTo(b.getName().toString().toLowerCase());
+                } else if (a.getEmail().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getEmail().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getEmail().toString().toLowerCase().compareTo(b.getEmail().toString().toLowerCase());
+                }
+            });
+        } else if (category.equals(CATEGORY_ADDRESS)) {
+            internalList.sort((Person a, Person b) -> {
+                if (a.getAddress().toString().isEmpty() && b.getAddress().toString().isEmpty()) {
+                    return a.getName().toString().toLowerCase().compareTo(b.getName().toString().toLowerCase());
+                } else if (a.getAddress().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getAddress().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getAddress().toString().toLowerCase().compareTo(b.getAddress().toString().toLowerCase());
+                }
+            });
+        } else if (category.equals(CATEGORY_GITHUB)) {
+            internalList.sort((Person a, Person b) -> {
+                if (a.getProfile().toString().isEmpty() && b.getProfile().toString().isEmpty()) {
+                    return a.getName().toString().toLowerCase().compareTo(b.getName().toString().toLowerCase());
+                } else if (a.getProfile().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getProfile().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getProfile().toString().toLowerCase().compareTo(b.getProfile().toString().toLowerCase());
+                }
+            });
+        }
     }
 }

@@ -8,14 +8,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Addresses can take any values, and it should not be a blank string";
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
-
-    /*
+    /**
      * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * otherwise " " (a blank string) becomes a valid input. May be empty.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[^\\s].*|^$";
 
     public final String value;
 
@@ -35,6 +35,15 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if address is empty.
+     *
+     * @return {@code true} if address is empty.
+     */
+    public boolean isEmptyAddress() {
+        return value.equals("");
     }
 
     @Override

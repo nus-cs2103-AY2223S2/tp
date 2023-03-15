@@ -5,9 +5,11 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitHubProfile;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Language;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,14 +19,17 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_PROFILE = "";
+    public static final String DEFAULT_PHONE = "";
+    public static final String DEFAULT_EMAIL = "";
+    public static final String DEFAULT_ADDRESS = "";
 
     private Name name;
+    private GitHubProfile profile;
     private Phone phone;
     private Email email;
     private Address address;
+    private Set<Language> languages;
     private Set<Tag> tags;
 
     /**
@@ -32,9 +37,11 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        profile = new GitHubProfile(DEFAULT_PROFILE);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        languages = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -43,9 +50,11 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        profile = personToCopy.getProfile();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        languages = new HashSet<>(personToCopy.getLanguages());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -58,10 +67,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Sets the {@code Profile} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withProfile(String profile) {
+        this.profile = new GitHubProfile(profile);
         return this;
     }
 
@@ -89,8 +98,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code languages} into a {@code Set<Language>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withLanguages(String ... languages) {
+        this.languages = SampleDataUtil.getLanguageSet(languages);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, profile, phone, email, address, languages, tags);
     }
 
 }

@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Carmen Ang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cmang12.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/cmang12)]
+[[portfolio](team/cmang12.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Development
 
-### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+### Chia Yu Hong
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/chia-yh.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
+[[github](https://github.com/chia-yh)]
+[[portfolio](team/chia-yh.md)]
 
-### Johnny Doe
+* Role: Developer
+* Responsibilities: Development
 
-<img src="images/johndoe.png" width="200px">
+### Dillon Goh
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/dillongoh.png" width="200px">
+
+[[github](http://github.com/dillongoh)] [[portfolio](team/dillongoh.md)]
+
+* Role: Developer
+* Responsibilities: Development
+
+### Huang Hao
+
+<img src="images/huanghao1998.png" width="200px">
+
+[[github](http://github.com/huanghao1998)]
+[[portfolio](team/huanghao1998.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Jeff Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nus-jeff.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nus-jeff)]
+[[portfolio](team/nus-jeff.md)]
 
 * Role: Developer
-* Responsibilities: UI
