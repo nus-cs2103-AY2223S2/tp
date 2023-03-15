@@ -51,7 +51,9 @@ public class EventTest {
         assertFalse(BOB.isSameEvent(editedBob));
 
         // same name, different timing -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTiming(VALID_START_TIME_AMY, VALID_END_TIME_AMY)
+        editedAlice = new PersonBuilder(ALICE)
+                .withStartTime(VALID_START_TIME_AMY)
+                .withEndTime(VALID_END_TIME_AMY)
                 .build();
         assertFalse(ALICE.isSameEvent(editedAlice));
     }
@@ -94,7 +96,9 @@ public class EventTest {
         assertFalse(ALICE.hashCode() == (BOB.hashCode()));
 
         // different time -> return false
-        editedAlice = new PersonBuilder(ALICE).withTiming(VALID_START_TIME_AMY, VALID_END_TIME_AMY).build();
+        editedAlice = new PersonBuilder(ALICE)
+                .withStartTime(VALID_START_TIME_AMY)
+                .withEndTime(VALID_END_TIME_AMY).build();
         assertFalse(ALICE.equals(editedAlice));
 
 

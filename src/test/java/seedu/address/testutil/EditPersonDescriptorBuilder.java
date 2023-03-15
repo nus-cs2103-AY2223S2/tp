@@ -10,7 +10,7 @@ import seedu.address.model.person.Event;
 import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
-import seedu.address.model.person.Timing;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,7 +36,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setRate(person.getRate());
         descriptor.setAddress(person.getAddress());
-        descriptor.setTiming(person.getTiming());
+        descriptor.setStartTime(person.getStartTime());
+        descriptor.setEndTime(person.getEndTime());
         descriptor.setMark(person.getMark());
         descriptor.setTags(person.getTags());
     }
@@ -65,10 +66,18 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code TIMING} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the start time of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withTiming(String startTime, String endTime) {
-        descriptor.setTiming(new Timing(startTime, endTime));
+    public EditPersonDescriptorBuilder withStartTime(String startTime) {
+        descriptor.setStartTime(new Time(startTime));
+        return this;
+    }
+
+    /**
+     * Sets the end time of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withEndTime(String endTime) {
+        descriptor.setEndTime(new Time(endTime));
         return this;
     }
 

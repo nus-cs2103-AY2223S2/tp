@@ -44,7 +44,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
-import seedu.address.model.person.Timing;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -91,11 +91,11 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         // invalid timing
         assertParseFailure(parser, "1" + INVALID_START_TIME_DESC
-                + " " + INVALID_END_TIME_DESC, Timing.MESSAGE_CONSTRAINTS);
+                + " " + INVALID_END_TIME_DESC, Time.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + START_TIME_DESC_AMY
-                + " " + INVALID_END_TIME_DESC, Timing.MESSAGE_CONSTRAINTS);
+                + " " + INVALID_END_TIME_DESC, Time.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INVALID_START_TIME_DESC
-                + " " + END_TIME_DESC_AMY, Timing.MESSAGE_CONSTRAINTS);
+                + " " + END_TIME_DESC_AMY, Time.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
@@ -118,12 +118,14 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + ADDRESS_DESC_AMY + NAME_DESC_AMY
-                + START_TIME_DESC_BOB + " " + END_TIME_DESC_BOB
+                + START_TIME_DESC_BOB
+                + END_TIME_DESC_BOB
                 + TAG_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_AMY)
-                .withTiming(VALID_START_TIME_BOB, VALID_END_TIME_BOB)
+                .withStartTime(VALID_START_TIME_BOB)
+                .withEndTime(VALID_END_TIME_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -163,9 +165,17 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // timing
-        userInput = targetIndex.getOneBased() + START_TIME_DESC_AMY + " " + END_TIME_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withTiming(VALID_START_TIME_AMY, VALID_END_TIME_AMY).build();
+        // start time
+        userInput = targetIndex.getOneBased() + START_TIME_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder()
+                .withStartTime(VALID_START_TIME_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // end time
+        userInput = targetIndex.getOneBased() + END_TIME_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder()
+                .withEndTime(VALID_END_TIME_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -180,14 +190,14 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY
-                + START_TIME_DESC_AMY + " " + END_TIME_DESC_AMY
+                + START_TIME_DESC_AMY + END_TIME_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB
-                + START_TIME_DESC_BOB + " " + END_TIME_DESC_BOB
+                + START_TIME_DESC_BOB + END_TIME_DESC_BOB
                 + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTiming(VALID_START_TIME_BOB, VALID_END_TIME_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withStartTime(VALID_START_TIME_BOB).withEndTime(VALID_END_TIME_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);

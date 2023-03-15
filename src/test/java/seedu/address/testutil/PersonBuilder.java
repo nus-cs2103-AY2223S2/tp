@@ -12,7 +12,7 @@ import seedu.address.model.person.Event;
 import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
-import seedu.address.model.person.Timing;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -31,7 +31,8 @@ public class PersonBuilder {
     private Name name;
     private Rate rate;
     private Address address;
-    private Timing timing;
+    private Time startTime;
+    private Time endTime;
     private Mark mark;
     private Set<Tag> tags;
     private Contact contact;
@@ -44,7 +45,8 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         rate = new Rate(DEFAULT_RATE);
         address = new Address(DEFAULT_ADDRESS);
-        timing = new Timing(DEFAULT_START_TIME, DEFAULT_END_TIME);
+        startTime = new Time(DEFAULT_START_TIME);
+        endTime = new Time(DEFAULT_END_TIME);
         tags = new HashSet<>();
         contact = new Contact(new ContactName(DEFAULT_NAME), new ContactPhone(DEFAULT_CONTACTNUM));
     }
@@ -56,7 +58,8 @@ public class PersonBuilder {
         name = personToCopy.getName();
         rate = personToCopy.getRate();
         address = personToCopy.getAddress();
-        timing = personToCopy.getTiming();
+        startTime = personToCopy.getStartTime();
+        endTime = personToCopy.getEndTime();
         mark = personToCopy.getMark();
         tags = new HashSet<>(personToCopy.getTags());
         contact = personToCopy.getContact();
@@ -95,10 +98,18 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Timing} of the {@code Event} that we are building.
+     * Sets the start {@code Time} of the {@code Event} that we are building.
      */
-    public PersonBuilder withTiming(String startTime, String endTime) {
-        this.timing = new Timing(startTime, endTime);
+    public PersonBuilder withStartTime(String startTime) {
+        this.startTime = new Time(startTime);
+        return this;
+    }
+
+    /**
+     * Sets the end {@code Time} of the {@code Event} that we are building.
+     */
+    public PersonBuilder withEndTime(String endTime) {
+        this.endTime = new Time(endTime);
         return this;
     }
 
@@ -125,7 +136,7 @@ public class PersonBuilder {
      * @return Event that is built.
      */
     public Event build() {
-        Event event = new Event(name, rate, address, timing, tags);
+        Event event = new Event(name, rate, address, startTime, endTime, tags);
         if (!contact.equals(new Contact(new ContactName(DEFAULT_NAME), new ContactPhone(DEFAULT_CONTACTNUM)))) {
             event.linkContact(this.contact);
         }

@@ -7,8 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_END;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -22,12 +22,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
-import seedu.address.model.person.Timing;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,14 +53,13 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values. "
-            + "To edit timing, both start and end time must be included.\n"
+            + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_RATE + "RATE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TIMING_START + "START_TIME] "
-            + "[" + PREFIX_TIMING_END + "END_TIME] "
+            + "[" + PREFIX_TIME_START + "START_TIME] "
+            + "[" + PREFIX_TIME_END + "END_TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
@@ -114,14 +114,18 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Rate updatedRate = editPersonDescriptor.getRate().orElse(personToEdit.getRate());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Timing updatedTiming = editPersonDescriptor.getTiming().orElse(personToEdit.getTiming());
+        Time updatedStartTime = editPersonDescriptor.getStartTime().orElse(personToEdit.getStartTime());
+        Time updatedEndTime = editPersonDescriptor.getEndTime().orElse(personToEdit.getEndTime());
+        Contact updatedContact = editPersonDescriptor.getContact().orElse(personToEdit.getContact());
         Mark updatedMark = editPersonDescriptor.getMark().orElse(personToEdit.getMark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        Event updatedEvent = new Event(updatedName, updatedRate, updatedAddress, updatedTiming, updatedTags);
+        Event updatedEvent = new Event(
+                updatedName, updatedRate, updatedAddress, updatedStartTime, updatedEndTime, updatedTags);
         if (updatedMark.isDone()) {
             updatedEvent.mark();
         }
+        updatedEvent.linkContact(updatedContact);
 
         return updatedEvent;
     }
@@ -152,7 +156,9 @@ public class EditCommand extends Command {
         private Name name;
         private Rate rate;
         private Address address;
-        private Timing timing;
+        private Time startTime;
+        private Time endTime;
+        private Contact contact;
         private Mark mark;
         private Set<Tag> tags;
 
@@ -166,7 +172,9 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setRate(toCopy.rate);
             setAddress(toCopy.address);
-            setTiming(toCopy.timing);
+            setStartTime(toCopy.startTime);
+            setEndTime(toCopy.endTime);
+            setContact(toCopy.contact);
             setMark(toCopy.mark);
             setTags(toCopy.tags);
         }
@@ -175,7 +183,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rate, address, timing, mark, tags);
+            return CollectionUtil.isAnyNonNull(name, rate, address, startTime, endTime, mark, tags);
         }
 
         public void setName(Name name) {
@@ -202,12 +210,28 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setTiming(Timing timing) {
-            this.timing = timing;
+        public void setStartTime(Time startTime) {
+            this.startTime = startTime;
         }
 
-        public Optional<Timing> getTiming() {
-            return Optional.ofNullable(timing);
+        public void setEndTime(Time endTime) {
+            this.endTime = endTime;
+        }
+
+        public Optional<Time> getStartTime() {
+            return Optional.ofNullable(startTime);
+        }
+
+        public Optional<Time> getEndTime() {
+            return Optional.ofNullable(endTime);
+        }
+
+        public void setContact(Contact contact) {
+            this.contact = contact;
+        }
+
+        public Optional<Contact> getContact() {
+            return Optional.ofNullable(contact);
         }
 
         public void setMark(Mark mark) {
@@ -253,7 +277,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getRate().equals(e.getRate())
                     && getAddress().equals(e.getAddress())
-                    && getTiming().equals(e.getTiming())
+                    && getStartTime().equals(e.getStartTime())
+                    && getEndTime().equals(e.getEndTime())
                     && getTags().equals(e.getTags());
         }
     }
