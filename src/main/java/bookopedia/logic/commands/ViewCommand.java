@@ -49,7 +49,8 @@ public class ViewCommand extends Command {
                 + deliveryToView.getEmail().toString() + "\n"
                 + deliveryToView.getPhone().toString() + "\n"
                 + "Parcels:" + "\n"
-                + parcelsToPrint + "\n");
+                + parcelsToPrint + "\n"
+                + deliveryToView.getDeliveryStatus().toString() + "\n");
     }
 
     @Override
