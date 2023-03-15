@@ -111,6 +111,12 @@ public class ModelManager implements Model {
         petPal.setPet(target, editedPet);
     }
 
+    @Override
+    public void archivePet(Pet petToArchive) {
+        requireNonNull(petToArchive);
+
+    }
+
     //=========== Filtered Pet List Accessors =============================================================
 
     /**
@@ -126,11 +132,6 @@ public class ModelManager implements Model {
     public void updateFilteredPetList(Predicate<Pet> predicate) {
         requireNonNull(predicate);
         filteredPets.setPredicate(predicate);
-    }
-
-    @Override
-    public void archivePet(Pet petToArchive) {
-
     }
 
     @Override

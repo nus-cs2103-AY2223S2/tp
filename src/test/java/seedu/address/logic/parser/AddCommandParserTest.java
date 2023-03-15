@@ -52,15 +52,18 @@ public class AddCommandParserTest {
         Pet expectedPet = new PetBuilder(EXAMPLE_DOG).withTags(VALID_TAG_DOG).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + NAME_DESC_DOG + PHONE_DESC_BOB
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
+                + NAME_DESC_DOG + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_DOG, new AddCommand(expectedPet));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + NAME_DESC_DOG + PHONE_DESC_BOB
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB
+                + NAME_DESC_DOG + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_DOG, new AddCommand(expectedPet));
 
         // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + NAME_DESC_DOG + PHONE_DESC_BOB
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY
+                + NAME_DESC_DOG + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_DOG, new AddCommand(expectedPet));
 
         // multiple emails - last email accepted
@@ -87,8 +90,9 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Pet expectedPet = new PetBuilder(EXAMPLE_CAT).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_CAT + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                        + ADDRESS_DESC_AMY, new AddCommand(expectedPet));
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_CAT
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+                new AddCommand(expectedPet));
     }
 
     @Test
