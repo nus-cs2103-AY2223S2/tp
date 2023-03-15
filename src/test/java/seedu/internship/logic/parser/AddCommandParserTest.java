@@ -1,9 +1,31 @@
 package seedu.internship.logic.parser;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.logic.commands.CommandTestUtil.*;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_FUN;
+import static seedu.internship.logic.commands.CommandTestUtil.POSITION_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.POSITION_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.DESCRIPTION_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.internship.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_FUN;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_COMPANY_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_POSITION_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_STATUS_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
+import static seedu.internship.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.internship.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
+import static seedu.internship.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.internship.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+
+
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.internship.testutil.TypicalInternships.SE1;

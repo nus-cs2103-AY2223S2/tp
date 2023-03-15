@@ -18,11 +18,11 @@ import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
 
 public class JsonAdaptedInternshipTest {
-    private static final String INVALID_POSITION = " ";
-    private static final String INVALID_COMPANY = " ";
-    private static final String INVALID_STATUS = " ";
-    private static final String INVALID_DESCRIPTION = " ";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_POSITION = "Engineer&";
+    private static final String INVALID_COMPANY = "";
+    private static final String INVALID_STATUS = "5";
+    private static final String INVALID_DESCRIPTION = "";
+    private static final String INVALID_TAG = "imp and fun";
 
     private static final String VALID_POSITION = ML1.getPosition().toString();
     private static final String VALID_COMPANY = ML1.getCompany().toString();
