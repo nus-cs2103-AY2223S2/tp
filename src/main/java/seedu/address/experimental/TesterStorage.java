@@ -25,7 +25,7 @@ public class TesterStorage {
         // Instead of explicit object creation, MainApp uses some function to get UserPrefs
         UserPrefs up = new UserPrefs();
         // Creates RerollStorage using UserPrefs filePath
-        RerollStorage rrs = new JsonRerollStorage(up.getAddressBookFilePath());
+        RerollStorage rrs = new JsonRerollStorage(up.getRerollFilePath());
         // Creates Storage!
         Storage storage = new StorageManager(rrs, ups);
         // Quick check that storage is working as expected.
