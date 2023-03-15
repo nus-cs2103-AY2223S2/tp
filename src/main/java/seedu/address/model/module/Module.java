@@ -82,6 +82,8 @@ public class Module implements ReadOnlyModule {
 
     @Override
     public ReadOnlyLecture getLecture(LectureName name) {
+        requireNonNull(name);
+
         return getLectureList()
                 .stream()
                 .filter((l) -> l.getName().equals(name))

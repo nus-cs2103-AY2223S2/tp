@@ -132,6 +132,8 @@ public class Tracker implements ReadOnlyTracker {
 
     @Override
     public ReadOnlyModule getModule(ModuleCode code) {
+        requireNonNull(code);
+
         return getModuleList()
                 .stream()
                 .filter((m) -> m.getCode().equals(code))

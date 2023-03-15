@@ -103,7 +103,7 @@ public interface Model {
     /**
      * Returns true if a module which has {@code moduleCode} exists in the tracker.
      *
-     * @param moduleCode The moduleCode of the module to check if it exist.
+     * @param moduleCode The code of the module to check if it exist.
      * @return True if a module that has {@code moduleCode} exists in the tracker. Otherwise, false.
      */
     boolean hasModule(ModuleCode moduleCode);

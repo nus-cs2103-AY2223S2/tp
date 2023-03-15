@@ -36,7 +36,10 @@ public class ModelManager implements Model {
     private FilteredList<Person> filteredPersons; // TODO: Remove this
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Constructs a {@code ModelManager} using the provided {@code tracker} and {@code userPrefs}.
+     *
+     * @param tracker The tracker.
+     * @param userPrefs The user prefs.
      */
     public ModelManager(ReadOnlyTracker tracker, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(tracker, userPrefs);
@@ -47,30 +50,16 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.navigation = new Navigation();
         filteredModules = new FilteredList<>(this.tracker.getModuleList());
+
+        addressBook = new AddressBook();
+        filteredPersons = new FilteredList<>(addressBook.getPersonList());
     }
 
     /**
-     * TODO: Remove this
-     */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with tracker: " + addressBook + " and user prefs " + userPrefs);
-
-        this.tracker = new Tracker();
-        this.userPrefs = new UserPrefs(userPrefs);
-        filteredModules = new FilteredList<>(this.tracker.getModuleList());
-
-        this.addressBook = new AddressBook(addressBook);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        navigation = new Navigation();
-    }
-
-    /**
-     * Constructs a ModelManager.
+     * Constructs a {@code ModelManager}.
      */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Tracker(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -219,6 +208,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
+        requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
     }
 

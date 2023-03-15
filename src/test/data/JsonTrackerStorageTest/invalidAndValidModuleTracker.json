@@ -1,0 +1,29 @@
+{
+  "modules" : [ {
+    "code" : "CS2040S",
+    "name" : "Data Structures and Algorithms",
+    "lectures" : [ {
+      "name" : "Week 1",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "tagged" : [ "Algo" ]
+      } ],
+      "tagged" : [ "Intro" ]
+    } ],
+    "tagged" : [ "Heavy", "Analysis", "Math" ]
+  }, {
+    "code" : "CS2040$",
+    "name" : "Data Structures and Algorithms",
+    "lectures" : [ {
+      "name" : "Week 1",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "tagged" : [ "Algo" ]
+      } ],
+      "tagged" : [ "Intro" ]
+    } ],
+    "tagged" : [ "Heavy", "Analysis", "Math" ]
+  } ]
+}

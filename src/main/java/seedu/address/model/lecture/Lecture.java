@@ -71,6 +71,8 @@ public class Lecture implements ReadOnlyLecture {
 
     @Override
     public Video getVideo(VideoName name) {
+        requireNonNull(name);
+
         return getVideoList()
                 .stream()
                 .filter((v) -> v.getName().equals(name))

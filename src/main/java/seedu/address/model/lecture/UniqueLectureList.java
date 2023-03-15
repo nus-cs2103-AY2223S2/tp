@@ -6,6 +6,7 @@ import seedu.address.model.UniqueDataList;
 import seedu.address.model.lecture.exceptions.DuplicateLectureException;
 import seedu.address.model.lecture.exceptions.LectureNotFoundException;
 
+// TODO: Test this
 /**
  * A list of lectures that enforces uniqueness between its elements and does not allow nulls.<p>
  *
