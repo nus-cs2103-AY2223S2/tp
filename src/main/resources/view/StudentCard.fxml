@@ -1,86 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.shape.Circle?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox alignment="CENTER" prefHeight="50.0" prefWidth="85.0">
+<HBox id="cardPane" fx:id="cardPane" prefHeight="291.0" prefWidth="398.0" style="-fx-background-color: #FDEFBC;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #FDEFBC;">
         <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
         </padding>
         <children>
-            <Circle fx:id="circle" radius = '70' stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="circle" radius="70" stroke="BLACK" strokeType="INSIDE" />
         </children>
     </VBox>
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-color: #FDEFBC;" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="id" style="-fx-text-fill: black;" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-                <Text text = "Index:" fill="burlywood" />
-                <Label fx:id="index" styleClass="cell_small_label" text="\$index" />
+                <Label fx:id="name" style="-fx-text-fill: black;" styleClass="cell_big_label" text="\$first" />
+                <Text text="Index:" />
+                <Label fx:id="index" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$index" />
             </HBox>
             <FlowPane fx:id="tags" />
             <HBox>
-                <Text text = "Class:    " fill="burlywood" />
-                <Label fx:id="className" styleClass="cell_small_label" text="\$class" />
+                <Text text="Class:    " />
+                <Label fx:id="className" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$class" />
             </HBox>
             <HBox>
-                <Text text = "Parent/Next of Kin Name:    " fill="burlywood" />
-                <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName" />
+                <Text text="Parent/Next of Kin Name:    " />
+                <Label fx:id="parentName" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$parentName" />
             </HBox>
             <HBox>
-                <Text text = "Age:    " fill="burlywood" />
-                <Label fx:id="age" styleClass="cell_small_label" text="\$age" />
+                <Text text="Age:    " />
+                <Label fx:id="age" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$age" />
             </HBox>
             <HBox>
-                <Text text = "Gender:   " fill="burlywood" />
-                <Label fx:id="sex" styleClass="cell_small_label" text="\$sex" />
+                <Text text="Gender:   " />
+                <Label fx:id="sex" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$sex" />
             </HBox>
             <HBox>
-                <Text text = "Email:    " fill="burlywood" />
-                <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+                <Text text="Email:    " />
+                <Label fx:id="email" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$email" />
             </HBox>
             <HBox>
-                <Text text = "Phone:    " fill="burlywood" />
-                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+                <Text text="Phone:    " />
+                <Label fx:id="phone" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$phone" />
             </HBox>
             <HBox>
-                <Text text = "CCA:    " fill="burlywood" />
-                <Label fx:id="cca" styleClass="cell_small_label" text="\$cca" />
+                <Text text="CCA:    " />
+                <Label fx:id="cca" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$cca" />
             </HBox>
             <HBox>
-                <Text text = "Comments:    " fill="burlywood" />
-                <Label fx:id="comment" styleClass="cell_small_label" text="\$cca" />
+                <Text text="Comments:    " />
+                <Label fx:id="comment" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$cca" />
             </HBox>
             <HBox>
-                <Text text = "Tests:    " fill="burlywood" />
+                <Text text="Tests:    " />
                 <FlowPane fx:id="tests" />
             </HBox>
             <HBox>
-                <Text text = "Homework:    " fill="burlywood" />
-                <FlowPane fx:id="homework" styleClass="cell_small_label"/>
+                <Text text="Homework:    " />
+                <FlowPane fx:id="homework" style="-fx-text-fill: black;" styleClass="cell_small_label" />
             </HBox>
         </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
 </HBox>

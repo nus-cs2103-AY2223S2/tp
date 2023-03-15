@@ -150,9 +150,9 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         String deadline = argMultimap.getValue(PREFIX_DEADLINE).get();
         String weightage = argMultimap.getValue(PREFIX_WEIGHTAGE).get();
         String homeworkDone = argMultimap.getValue(PREFIX_HOMEWORKDONE).get();
-        Homework homework = ParserUtil.parseHomework(argMultimap.getValue(PREFIX_HOMEWORK).get(), score, deadline,
+        Homework homework = ParserUtil.parseHomework("Insert student homework here!", score, deadline,
                 weightage, homeworkDone);
-        Test test = ParserUtil.parseTest(argMultimap.getValue(PREFIX_TEST).get(), score, deadline, weightage);
+        Test test = ParserUtil.parseTest("Insert student test here!", score, deadline, weightage);
         Comment comment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Homework> homeworkSet = new HashSet<>();
@@ -218,24 +218,23 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             String deadline = argMultimap.getValue(PREFIX_DEADLINE).get();
             String weightage = argMultimap.getValue(PREFIX_WEIGHTAGE).get();
             String homeworkDone = argMultimap.getValue(PREFIX_HOMEWORKDONE).get();
-            Test test = ParserUtil.parseTest(argMultimap.getValue(PREFIX_TEST).get(), score, deadline, weightage);
-            Homework homework = ParserUtil.parseHomework(argMultimap.getValue(PREFIX_HOMEWORK).get(), score, deadline,
-                    weightage, homeworkDone);
-            if (homework.getName() == "Insert student homework here!"
-                    && test.getName() == "Insert student test here!") {
-                throw new ParseException("Please enter a test(test/) or homework(hw/)!");
-            } else if (test.getName() == "Insert student test here!") {
-                return new StudentGradeCommand(sc, indexNumber, homework);
-            } else {
+            Test test;
+            Homework homework;
+            if (arePrefixesPresent(argMultimap, PREFIX_TEST)) {
+                test = ParserUtil.parseTest(argMultimap.getValue(PREFIX_TEST).get(), score, deadline, weightage);
                 return new StudentGradeCommand(sc, indexNumber, test);
+            } else {
+                homework = ParserUtil.parseHomework(argMultimap.getValue(PREFIX_HOMEWORK).get(), score, deadline,
+                        weightage, homeworkDone);
+                return new StudentGradeCommand(sc, indexNumber, homework);
             }
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StudentGradeCommand.MESSAGE_USAGE));
         }
 
-    }
 
+        }
     /**
      * Function to parse the "student class grade delete" command
      * @param studentClass
@@ -250,21 +249,19 @@ public class StudentCommandParser implements Parser<StudentCommand> {
                 && argMultimap.getPreamble().isEmpty()) {
             Class sc = ParserUtil.parseStudentClass(studentClass);
             IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
-            Test test = ParserUtil.parseTest(argMultimap.getValue(PREFIX_TEST).get(),
-                    "Insert student score here!", argMultimap.getValue(PREFIX_DEADLINE).get(),
-                    "Insert student weightage here!");
-            Homework homework = ParserUtil.parseHomework(argMultimap.getValue(PREFIX_HOMEWORK).get(),
-                    "Insert student score here!", argMultimap.getValue(PREFIX_DEADLINE).get(),
-                    "Insert student weightage here!", "Insert student homework done here!");
-            if (homework.getName() == "Insert student homework here!"
-                    && test.getName() == "Insert student test here!") {
-                throw new ParseException("Please enter a test(test/) or homework(hw/)!");
-            } else if (test.getName() == "Insert student test here!") {
-                return new StudentGradeDeleteCommand(sc, indexNumber, homework);
-            } else {
+            Test test;
+            Homework homework;
+            if (arePrefixesPresent(argMultimap, PREFIX_TEST)) {
+                test = ParserUtil.parseTest(argMultimap.getValue(PREFIX_TEST).get(),
+                        "Insert student score here!", argMultimap.getValue(PREFIX_DEADLINE).get(),
+                        "Insert student weightage here!");
                 return new StudentGradeDeleteCommand(sc, indexNumber, test);
+            } else {
+                homework = ParserUtil.parseHomework(argMultimap.getValue(PREFIX_HOMEWORK).get(),
+                        "Insert student score here!", argMultimap.getValue(PREFIX_DEADLINE).get(),
+                        "Insert student weightage here!", "Insert student homework done here!");
+                return new StudentGradeDeleteCommand(sc, indexNumber, homework);
             }
-
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StudentGradeDeleteCommand.MESSAGE_USAGE));
