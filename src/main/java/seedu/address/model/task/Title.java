@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Task's subject in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidSubject(String)}
+ * Represents a Task's title in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
 public class Title {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Subjects should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Title should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -27,7 +27,7 @@ public class Title {
      */
     public Title(String value) {
         requireNonNull(value);
-        checkArgument(isValidSubject(value), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTitle(value), MESSAGE_CONSTRAINTS);
         this.value = value;
     }
 
@@ -36,9 +36,9 @@ public class Title {
     }
 
     /**
-     * Returns true if a given string is a valid subject.
+     * Returns true if a given string is a valid title.
      */
-    public static boolean isValidSubject(String test) {
+    public static boolean isValidTitle(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
