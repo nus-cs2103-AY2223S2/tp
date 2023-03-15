@@ -15,10 +15,12 @@ import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Date;
 import seedu.task.model.task.Deadline;
 import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
 import seedu.task.model.task.Event;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Task;
+import seedu.task.model.task.exceptions.InvalidEffortException;
 
 
 /**
@@ -34,17 +36,20 @@ class JsonAdaptedTask {
     private String deadline = "";
     private String from = "";
     private String to = "";
+    private long effort;
     private String alertWindow = "";
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("description") String description,
+    public JsonAdaptedTask(@JsonProperty("name") String name,
+                           @JsonProperty("description") String description,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                            @JsonProperty("deadline") String deadline,
                            @JsonProperty("from") String from,
                            @JsonProperty("to") String to,
+                           @JsonProperty("effort") Long effort,
                            @JsonProperty("alertWindow") String alertWindow) {
         this.name = name;
         this.description = description;
@@ -58,9 +63,11 @@ class JsonAdaptedTask {
             this.from = from;
             this.to = to;
         }
+        this.effort = effort;
         if (alertWindow != null) {
             this.alertWindow = alertWindow;
         }
+
     }
 
     /**
@@ -80,7 +87,9 @@ class JsonAdaptedTask {
             from = tmp.getFrom().getValue();
             to = tmp.getTo().getValue();
         }
+        effort = source.getEffort().getEffort();
         alertWindow = String.valueOf(source.getAlertWindow().toHours());
+
     }
 
     /**
@@ -130,22 +139,31 @@ class JsonAdaptedTask {
                 throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
             }
         }
+
+        if (effort < 0) {
+            throw new InvalidEffortException();
+        }
+        final Effort modelEffort = new Effort(this.effort);
+
         if (Date.isValidDate(deadline)) {
             Date modelDeadline = new Date(deadline);
-            Deadline deadline = new Deadline(modelName, modelDescription, modelTags, modelDeadline);
+            Deadline deadline = new Deadline(modelName, modelDescription, modelTags, modelDeadline, modelEffort);
             deadline.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
             return deadline;
+
         }
         if (Date.isValidDate(from) && Date.isValidDate(to)) {
             Date modelFrom = new Date(from);
             Date modelTo = new Date(to);
-            Event event = new Event(modelName, modelDescription, modelTags, modelFrom, modelTo);
+
+            Event event = new Event(modelName, modelDescription, modelTags, modelFrom, modelTo, modelEffort);
             event.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
             return event;
         }
-        SimpleTask simpleTask = new SimpleTask(modelName, modelDescription, modelTags);
+        SimpleTask simpleTask = new SimpleTask(modelName, modelDescription, modelTags, modelEffort);
         simpleTask.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
         return simpleTask;
+
     }
 
 }

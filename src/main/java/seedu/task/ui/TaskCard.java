@@ -41,6 +41,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label time;
     @FXML
+    private Label effort;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -53,6 +55,7 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().fullName);
         description.setText(task.getDescription().value);
         time.setText("No specified time");
+        effort.setText("Effort: " + task.getEffort().toString());
         if (task instanceof Deadline) {
             Deadline tmp = (Deadline) task;
             time.setText("Deadline: " + tmp.getDeadline().toString());

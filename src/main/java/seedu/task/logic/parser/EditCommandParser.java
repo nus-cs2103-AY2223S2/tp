@@ -3,6 +3,7 @@ package seedu.task.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_EFFORT;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -30,7 +31,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_EFFORT);
 
         Index index;
 
@@ -47,6 +48,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editTaskDescriptor
                     .setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+        }
+        if (argMultimap.getValue(PREFIX_EFFORT).isPresent()) {
+            editTaskDescriptor
+                    .setEffort((ParserUtil.parseEffort(argMultimap.getValue(PREFIX_EFFORT).get())));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 

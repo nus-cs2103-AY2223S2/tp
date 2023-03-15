@@ -3,6 +3,7 @@ package seedu.task.logic.parser;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_EFFORT;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
@@ -19,6 +20,7 @@ import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Date;
 import seedu.task.model.task.Deadline;
 import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
 import seedu.task.model.task.Event;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.SimpleTask;
@@ -38,7 +40,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION,
-                            PREFIX_TAG, PREFIX_DEADLINE, PREFIX_TO, PREFIX_FROM);
+                            PREFIX_TAG, PREFIX_DEADLINE, PREFIX_TO, PREFIX_FROM, PREFIX_EFFORT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -49,22 +51,27 @@ public class AddCommandParser implements Parser<AddCommand> {
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
+        Effort effort = new Effort();
+        if (arePrefixesPresent(argMultimap, PREFIX_EFFORT)) {
+            effort = ParserUtil.parseEffort(argMultimap.getValue(PREFIX_EFFORT).get());
+        }
+
         List<Task> taskList;
         // auto-convert to deadline if deadline prefix exists.
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
             Date deadline = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE).get());
-            taskList = addDeadlines(nameList, description, tagList, deadline);
+            taskList = addDeadlines(nameList, description, tagList, deadline, effort);
             return new AddCommand(taskList);
         }
         // auto-convert to event if from and to exist.
         if (arePrefixesPresent(argMultimap, PREFIX_FROM, PREFIX_TO)) {
             Date from = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get());
             Date to = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).get());
-            taskList = addEvents(nameList, description, tagList, from, to);
+            taskList = addEvents(nameList, description, tagList, from, to, effort);
             return new AddCommand(taskList);
         }
 
-        taskList = addSimpleTasks(nameList, description, tagList);
+        taskList = addSimpleTasks(nameList, description, tagList, effort);
 
         return new AddCommand(taskList);
     }
@@ -74,12 +81,13 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @param nameList All the names of tasks
      * @param description A single description belonging to all tasks
      * @param tagList A single tag belonging to all tasks
+     * @param effort An effort estimating the amount of work required to complete task
      * @return
      */
-    public List<Task> addSimpleTasks(Set<Name> nameList, Description description, Set<Tag> tagList) {
+    public List<Task> addSimpleTasks(Set<Name> nameList, Description description, Set<Tag> tagList, Effort effort) {
         List<Task> taskList = new ArrayList<>();
         for (Name cur: nameList) {
-            taskList.add(new SimpleTask(cur, description, tagList));
+            taskList.add(new SimpleTask(cur, description, tagList, effort));
         }
         return taskList;
     }
@@ -90,12 +98,14 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @param description A single description belonging to all deadlines
      * @param tagList A single tag belonging to all deadlines
      * @param deadline A date representing the deadline of all tasks here
+     * @param effort An effort estimating the amount of work required to complete task
      * @return
      */
-    public List<Task> addDeadlines(Set<Name> nameList, Description description, Set<Tag> tagList, Date deadline) {
+    public List<Task> addDeadlines(Set<Name> nameList, Description description,
+                                   Set<Tag> tagList, Date deadline, Effort effort) {
         List<Task> taskList = new ArrayList<>();
         for (Name cur: nameList) {
-            taskList.add(new Deadline(cur, description, tagList, deadline));
+            taskList.add(new Deadline(cur, description, tagList, deadline, effort));
         }
         return taskList;
     }
@@ -106,13 +116,15 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @param description A single description belonging to all events
      * @param tagList A single tag belonging to all events
      * @param from A date representing the start date of all events here
-     * @param to A datae representing the end date of all events here
+     * @param to A date representing the end date of all events here
+     * @param effort An effort estimating the amount of work required to complete task
      * @return
      */
-    public List<Task> addEvents(Set<Name> nameList, Description description, Set<Tag> tagList, Date from, Date to) {
+    public List<Task> addEvents(Set<Name> nameList, Description description, Set<Tag> tagList,
+                                Date from, Date to, Effort effort) {
         List<Task> taskList = new ArrayList<>();
         for (Name cur: nameList) {
-            taskList.add(new Event(cur, description, tagList, from, to));
+            taskList.add(new Event(cur, description, tagList, from, to, effort));
         }
         return taskList;
     }

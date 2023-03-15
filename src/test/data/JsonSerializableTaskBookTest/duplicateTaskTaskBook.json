@@ -2,9 +2,11 @@
   "tasks": [ {
     "name": "Alice Pauline",
     "description": "Alice's description",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "effort": 2
   }, {
     "name": "Alice Pauline",
-    "description": "Alice's description"
+    "description": "Alice's description",
+    "effort": 2
   } ]
 }

@@ -16,17 +16,23 @@ public class TypicalDeadlines {
     public static final Deadline RETURN_BOOK = new DeadlineBuilder().withName("Return Book")
             .withDescription("Return book description")
             .withTags("Reminder")
-            .withDate("2023-01-01 1800").build();
+            .withDate("2023-01-01 1800")
+            .withEffort(1)
+            .build();
 
     public static final Deadline ASSIGNMENT = new DeadlineBuilder().withName("Assignment")
             .withDescription("Assignment description")
             .withTags("Important")
-            .withDate("2023-01-01 1800").build();
+            .withDate("2023-01-01 1800")
+            .withEffort(1)
+            .build();
 
     public static final Deadline PROJECT = new DeadlineBuilder().withName("Project")
             .withDescription("Project description")
             .withTags("Important")
-            .withDate("2023-01-01 1800").build();
+            .withDate("2023-01-01 1800")
+            .withEffort(5)
+            .build();
 
 
     private TypicalDeadlines() {} // prevents instantiation

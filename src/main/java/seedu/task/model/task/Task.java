@@ -23,15 +23,17 @@ public abstract class Task implements Comparable<Task> {
 
     // Data fields
     protected final Set<Tag> tags = new HashSet<>();
+    protected Effort effort;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Description description, Set<Tag> tags) {
+    public Task(Name name, Description description, Set<Tag> tags, Effort effort) {
         requireAllNonNull(name, description, tags);
         this.name = name;
         this.description = description;
         this.tags.addAll(tags);
+        this.effort = effort;
         this.alertWindow = Duration.ofHours(24);
     }
 
@@ -59,6 +61,9 @@ public abstract class Task implements Comparable<Task> {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Effort getEffort() {
+        return this.effort;
+    }
 
     /**
      * Returns true if both tasks have the same name.
@@ -90,7 +95,8 @@ public abstract class Task implements Comparable<Task> {
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getDescription().equals(getDescription())
-                && otherTask.getTags().equals(getTags());
+                && otherTask.getTags().equals(getTags())
+                && otherTask.getEffort().equals(getEffort());
     }
 
     /**
@@ -101,7 +107,7 @@ public abstract class Task implements Comparable<Task> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, tags);
+        return Objects.hash(name, description, tags, effort);
     }
 
     @Override

@@ -51,6 +51,15 @@ public class DeadlineTest {
         String nameWithTrailingSpaces = "Assignment" + " ";
         editedAssignment = new DeadlineBuilder(ASSIGNMENT).withName(nameWithTrailingSpaces).build();
         assertFalse(ASSIGNMENT.isSameTask(editedAssignment));
+
+        // different effort, all other attributes same -> return true
+        editedAssignment = new DeadlineBuilder(ASSIGNMENT).withEffort(3).build();
+        assertTrue(ASSIGNMENT.isSameTask(editedAssignment));
+
+        // all attributes same, different instance -> return true
+        Task copyAssignment1 = new DeadlineBuilder().build();
+        Task copyAssignment2 = new DeadlineBuilder().build();
+        assertTrue(copyAssignment1.isSameTask(copyAssignment2));
     }
 
     @Test
@@ -82,6 +91,15 @@ public class DeadlineTest {
         // different tags -> returns false
         editedReturn = new DeadlineBuilder(RETURN_BOOK).withTags("Important").build();
         assertFalse(RETURN_BOOK.equals(editedReturn));
+
+        // different effort, all other attributes same -> return false
+        editedReturn = new DeadlineBuilder(ASSIGNMENT).withEffort(3).build();
+        assertTrue(ASSIGNMENT.isSameTask(editedReturn));
+
+        // all attributes same, different instance -> return true
+        Task copyReturn1 = new DeadlineBuilder().build();
+        Task copyReturn2 = new DeadlineBuilder().build();
+        assertTrue(copyReturn1.isSameTask(copyReturn2));
     }
 
     @Test
@@ -124,11 +142,11 @@ public class DeadlineTest {
         twoTag.add(tagTwo);
 
         Task zeroTagDeadline = new Deadline(new Name("zeroTag"), new Description("zeroTag"),
-                zeroTag, new Date("2023-04-01 0000"));
+                zeroTag, new Date("2023-04-01 0000"), new Effort(5));
         Task oneTagDeadline = new Deadline(new Name("oneTag"), new Description("oneTag"),
-                oneTag, new Date("2023-04-01 0000"));
+                oneTag, new Date("2023-04-01 0000"), new Effort(5));
         Task twoTagDeadline = new Deadline(new Name("twoTag"), new Description("twoTag"),
-                twoTag, new Date("2023-04-01 0000"));
+                twoTag, new Date("2023-04-01 0000"), new Effort(5));
 
         assertEquals(1, oneTagDeadline.compareTo(zeroTagDeadline));
         assertEquals(-1, oneTagDeadline.compareTo(twoTagDeadline));
@@ -137,11 +155,11 @@ public class DeadlineTest {
     @Test
     public void compareTo_name() {
         Task aName = new Deadline(new Name("apple"), new Description("apple"),
-                new HashSet<>(), new Date("2023-04-01 0000"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Effort(5));
         Task bName = new Deadline(new Name("bucket"), new Description("bucket"),
-                new HashSet<>(), new Date("2023-04-01 0000"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Effort(5));
         Task cName = new Deadline(new Name("car"), new Description("car"),
-                new HashSet<>(), new Date("2023-04-01 0000"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Effort(5));
 
         assertEquals(1, bName.compareTo(aName));
         assertEquals(-1, bName.compareTo(cName));
@@ -150,11 +168,11 @@ public class DeadlineTest {
     @Test
     public void compareTo_date() {
         Task morningDeadline = new Deadline(new Name("Morning"), new Description("0000 to 1200"),
-                new HashSet<>(), new Date("2023-04-01 0000"));
+                new HashSet<>(), new Date("2023-04-01 0000"), new Effort(5));
         Task noonDeadline = new Deadline(new Name("WholeDay"), new Description("0000 to 2359"),
-                new HashSet<>(), new Date("2023-04-01 1200"));
+                new HashSet<>(), new Date("2023-04-01 1200"), new Effort(5));
         Task nightDeadline = new Deadline(new Name("Night"), new Description("1200 to 2359"),
-                new HashSet<>(), new Date("2023-04-01 2359"));
+                new HashSet<>(), new Date("2023-04-01 2359"), new Effort(5));
 
         assertEquals(-1, morningDeadline.compareTo(noonDeadline));
         assertEquals(-1, morningDeadline.compareTo(nightDeadline));

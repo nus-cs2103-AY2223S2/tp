@@ -6,6 +6,7 @@ import java.util.Set;
 
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Description;
+import seedu.task.model.task.Effort;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Task;
@@ -21,6 +22,7 @@ public class SimpleTaskBuilder {
 
     private Name name;
     private Description description;
+    private Effort effort;
     private Set<Tag> tags;
     private Duration alertWindow;
 
@@ -31,6 +33,7 @@ public class SimpleTaskBuilder {
         name = new Name(DEFAULT_NAME);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
+        effort = new Effort();
     }
 
     /**
@@ -40,9 +43,8 @@ public class SimpleTaskBuilder {
         name = taskToCopy.getName();
         description = taskToCopy.getDescription();
         tags = new HashSet<>(taskToCopy.getTags());
+        effort = taskToCopy.getEffort();
     }
-
-
 
     /**
      * Sets the {@code Name} of the {@code Task} that we are building.
@@ -69,6 +71,14 @@ public class SimpleTaskBuilder {
     }
 
     /**
+     * Sets the {@code Effort} of the {@code Task} that we are building.
+     */
+    public SimpleTaskBuilder withEffort(long e) {
+        this.effort = new Effort(e);
+        return this;
+    }
+
+    /**
      * Sets the {@code alertWindow} of the {@code Task} that we are building.
      */
     public SimpleTaskBuilder withAlertWindow(String alertWindow) {
@@ -77,7 +87,11 @@ public class SimpleTaskBuilder {
     }
 
     public Task build() {
-        return new SimpleTask(name, description, tags);
+        return new SimpleTask(name, description, tags, effort);
+    }
+
+    public Task buildDefault() {
+        return new SimpleTask(name, description, tags, null);
     }
 
 }
