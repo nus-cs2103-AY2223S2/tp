@@ -22,6 +22,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkHomeworkAsDoneCommand;
 import seedu.address.logic.commands.MarkHomeworkAsUndoCommand;
+import seedu.address.logic.commands.ViewExamCommand;
 import seedu.address.logic.commands.ViewHomeworkCommand;
 import seedu.address.logic.commands.ViewLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -99,6 +100,8 @@ public class AddressBookParser {
             return new DeleteLessonCommandParser().parse(arguments);
         case CreateExamCommand.COMMAND_WORD:
             return new CreateExamCommandParser().parse(arguments);
+        case ViewExamCommand.COMMAND_WORD:
+            return new ViewExamCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
