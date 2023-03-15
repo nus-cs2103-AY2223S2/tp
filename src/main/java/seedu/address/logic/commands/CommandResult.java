@@ -20,10 +20,16 @@ public class CommandResult {
      * Timetable information should be shown to the user.
      */
     private final boolean showTimetable;
+    
     /**
      * Statistics information should be shown to the user.
      */
     private final boolean showStatistics;
+
+    /**
+     * Reminder list should be shown to the user.
+     */
+    private final boolean showReminderList;
 
     /**
      * The application should exit.
@@ -33,10 +39,13 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable, boolean showStatistics, boolean exit) {
+
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable, boolean showReminderList,
+                         boolean showStaistics, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
+        this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.exit = exit;
     }
@@ -61,8 +70,13 @@ public class CommandResult {
         return showTimetable;
     }
 
+
     public boolean isShowStatistics() {
         return showStatistics;
+    }
+
+    public boolean isShowReminderList() {
+        return showReminderList;
     }
 
     public boolean isExit() {
@@ -85,12 +99,13 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && showTimetable == otherCommandResult.showTimetable
                 && showStatistics == otherCommandResult.showStatistics
+                && showReminderList == otherCommandResult.showReminderList
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, showTimetable, showStatistics, exit);
+        return Objects.hash(feedbackToUser, showHelp, showTimetable, showReminderList, showStatistics, exit);
     }
 
 }
