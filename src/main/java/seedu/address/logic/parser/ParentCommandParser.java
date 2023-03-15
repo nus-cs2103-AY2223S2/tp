@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -15,8 +16,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.parent.ParentAddCommand;
 import seedu.address.logic.commands.parent.ParentCommand;
+import seedu.address.logic.commands.parent.ParentDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
@@ -38,23 +41,29 @@ public class ParentCommandParser {
     /**
      * Parse the parent commands into their respective prefixes
      * @param args User input.
-     * @return ParentAddCommand with an ArgumentMultimap object that is derived from tokenizing the input with Prefixes.
-     * @throws ParseException when there's an unexpected error in parsing the user input.
+     * @return ParentCommand with an ArgumentMultimap object that is derived from tokenizing the input with Prefixes
+     * @throws ParseException when there's an unexpected error in parsing the user input
      */
-    public ParentAddCommand parse(String args) throws ParseException {
+    public ParentCommand parse(String args) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
 
-        ArgumentMultimap argMultimap =
+        ArgumentMultimap argMultimapAdd =
                 ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_ADDRESS,
                         PREFIX_NAME, PREFIX_PARENTAGE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
                         PREFIX_EMAIL);
 
-        if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
-            return addCommand(argMultimap);
+        ArgumentMultimap argMultimapDelete =
+                ArgumentTokenizer.tokenize(args, PREFIX_DELETE, PREFIX_ADDRESS,
+                        PREFIX_NAME, PREFIX_PARENTAGE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
+                        PREFIX_EMAIL);
+
+        if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
+            return addCommand(argMultimapAdd);
+        } else if (argMultimapDelete.getValue(PREFIX_DELETE).isPresent()) {
+            return deleteCommand(argMultimapDelete);
         } else {
             //Rest of logic (Need to edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
@@ -84,6 +93,21 @@ public class ParentCommandParser {
 
         Parent parent = new Parent(name, age, image, email, phone, address, tagList);
         return new ParentAddCommand(parent);
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public ParentDeleteCommand deleteCommand(ArgumentMultimap argMultimap) throws ParseException {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONEPARENT)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+        Phone phoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
+        return new ParentDeleteCommand(phoneNumber);
     }
 
     /**

@@ -58,6 +58,7 @@ public class StudentDeleteCommand extends StudentCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof StudentDeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((StudentDeleteCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((StudentDeleteCommand) other).targetIndex)
+                && studentClass.equals(((StudentDeleteCommand) other).studentClass)); // state check
     }
 }
