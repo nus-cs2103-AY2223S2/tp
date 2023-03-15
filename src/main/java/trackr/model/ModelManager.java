@@ -38,6 +38,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with supplier list: " + supplierList
                 + " and task list: " + taskList
+                + " and order list: " + orderList
                 + " and user prefs " + userPrefs);
 
         this.supplierList = new SupplierList(supplierList);
