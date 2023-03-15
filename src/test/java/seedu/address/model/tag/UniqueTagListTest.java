@@ -100,8 +100,8 @@ public class UniqueTagListTest {
     @Test
     public void setTags_list_replacesOwnListWithProvidedList() {
         uniqueTagList.add(tag);
-        List<Tag> TagList = Collections.singletonList(tag);
-        uniqueTagList.setTags(TagList);
+        List<Tag> tagList = Collections.singletonList(tag);
+        uniqueTagList.setTags(tagList);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
         expectedUniqueTagList.add(tag);
         assertEquals(expectedUniqueTagList, uniqueTagList);

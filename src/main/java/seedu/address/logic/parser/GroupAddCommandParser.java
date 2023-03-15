@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
 
 public class GroupAddCommandParser implements Parser<GroupAddCommand> {
 
-    String MESSAGE_TAG_DOES_NOT_EXIST_PARSE_FAILURE = "Did not specify tag field! \n%1$s";
+    public static String MESSAGE_TAG_DOES_NOT_EXIST_PARSE_FAILURE = "Did not specify tag field! \n%1$s";
 
     /**
      * Parses the given {@code String} of arguments in the context of the GroupAddCommand

@@ -92,6 +92,20 @@ public class GroupAddCommand extends Command {
         return new CommandResult(String.format(GROUP_ADD_PERSON_SUCCESS, personToGroupAdd.getName(), groupsToAdd));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+        // instanceof handles nulls
+        if (!(other instanceof GroupAddCommand)) {
+            return false;
+        }
+        GroupAddCommand e = (GroupAddCommand) other;
+        return index.equals(e.index) && groupsToAdd.equals(e.groupsToAdd);
+    }
+
 
 
 }

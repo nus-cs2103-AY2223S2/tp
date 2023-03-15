@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
@@ -95,6 +96,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTag(Tag t) {
         tags.add(t);
+    }
+
+    /**
+     * Adds all tags to the address book.
+     * The tag must not already exist in the address book.
+     */
+    public void addAllTags(Set<Tag> tags) {
+        for (Tag tag: tags) {
+            tags.add(tag);
+        }
     }
 
 
