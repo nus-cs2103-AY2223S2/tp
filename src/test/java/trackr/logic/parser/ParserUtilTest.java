@@ -376,15 +376,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseOrderQuantity_validValueWithoutWhitespace_returnsTaskStatus() throws Exception {
-        OrderQuantity expectedOrderStatus = new OrderQuantity(VALID_ORDER_QUANTITY);
-        assertEquals(expectedOrderStatus, ParserUtil.parseOrderQuantity(VALID_ORDER_QUANTITY));
+        OrderQuantity expectedOrderQuantity = new OrderQuantity(VALID_ORDER_QUANTITY);
+        assertEquals(expectedOrderQuantity, ParserUtil.parseOrderQuantity(VALID_ORDER_QUANTITY));
     }
 
     @Test
     public void parseOrderQuantity_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
         String orderStatusWithWhitespace = WHITESPACE + VALID_ORDER_QUANTITY + WHITESPACE;
-        OrderQuantity expectedTaskStatus = new OrderQuantity(VALID_ORDER_QUANTITY);
-        assertEquals(expectedTaskStatus, ParserUtil.parseOrderQuantity(orderStatusWithWhitespace));
+        OrderQuantity expectedOrderQuantity = new OrderQuantity(VALID_ORDER_QUANTITY);
+        assertEquals(expectedOrderQuantity, ParserUtil.parseOrderQuantity(orderStatusWithWhitespace));
     }
 
     @Test
@@ -399,15 +399,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseCustomerName_validValueWithoutWhitespace_returnsCustomerName() throws Exception {
-        CustomerName expectedOrderStatus = new CustomerName(VALID_NAME);
-        assertEquals(expectedOrderStatus, ParserUtil.parseCustomerName(VALID_NAME));
+        CustomerName expectedCustomerName = new CustomerName(VALID_NAME);
+        assertEquals(expectedCustomerName, ParserUtil.parseCustomerName(VALID_NAME));
     }
 
     @Test
     public void parseCustomerName_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
         String orderStatusWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        CustomerName expectedTaskStatus = new CustomerName(VALID_NAME);
-        assertEquals(expectedTaskStatus, ParserUtil.parseCustomerName(orderStatusWithWhitespace));
+        CustomerName expectedCustomerName = new CustomerName(VALID_NAME);
+        assertEquals(expectedCustomerName, ParserUtil.parseCustomerName(orderStatusWithWhitespace));
     }
 
     @Test
@@ -422,15 +422,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseCustomerPhone_validValueWithoutWhitespace_returnsCustomerPhone() throws Exception {
-        CustomerPhone expectedOrderStatus = new CustomerPhone(VALID_PHONE);
-        assertEquals(expectedOrderStatus, ParserUtil.parseCustomerPhone(VALID_PHONE));
+        CustomerPhone expectedCustoemrPhone = new CustomerPhone(VALID_PHONE);
+        assertEquals(expectedCustoemrPhone, ParserUtil.parseCustomerPhone(VALID_PHONE));
     }
 
     @Test
     public void parseCustomerPhone_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
-        String orderStatusWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        CustomerPhone expectedTaskStatus = new CustomerPhone(VALID_PHONE);
-        assertEquals(expectedTaskStatus, ParserUtil.parseCustomerPhone(orderStatusWithWhitespace));
+        String customerPhoneWithWhiteSpace = WHITESPACE + VALID_PHONE + WHITESPACE;
+        CustomerPhone expectedCustomerPhone = new CustomerPhone(VALID_PHONE);
+        assertEquals(expectedCustomerPhone, ParserUtil.parseCustomerPhone(customerPhoneWithWhiteSpace));
     }
 
     @Test
@@ -445,14 +445,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseCustomerAddress_validValueWithoutWhitespace_returnsCustomerAddress() throws Exception {
-        CustomerAddress expectedOrderStatus = new CustomerAddress(VALID_ADDRESS);
-        assertEquals(expectedOrderStatus, ParserUtil.parseCustomerAddress(VALID_ADDRESS));
+        CustomerAddress expectedCustomerAddress = new CustomerAddress(VALID_ADDRESS);
+        assertEquals(expectedCustomerAddress, ParserUtil.parseCustomerAddress(VALID_ADDRESS));
     }
 
     @Test
     public void parseCustomerAddress_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
-        String orderStatusWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        CustomerAddress expectedTaskStatus = new CustomerAddress(VALID_ADDRESS);
-        assertEquals(expectedTaskStatus, ParserUtil.parseCustomerAddress(orderStatusWithWhitespace));
+        String customerAddressWithWhiteSpace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
+        CustomerAddress expectedCustomerAddress = new CustomerAddress(VALID_ADDRESS);
+        assertEquals(expectedCustomerAddress, ParserUtil.parseCustomerAddress(customerAddressWithWhiteSpace));
     }
 }
