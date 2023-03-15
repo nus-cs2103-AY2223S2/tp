@@ -118,7 +118,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + ADDRESS_DESC_AMY + NAME_DESC_AMY
-                + START_TIME_DESC_BOB + " " + END_TIME_DESC_BOB
+                + START_TIME_DESC_BOB
+                + END_TIME_DESC_BOB
                 + TAG_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -164,10 +165,17 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // timing
-        userInput = targetIndex.getOneBased() + START_TIME_DESC_AMY + " " + END_TIME_DESC_AMY;
+        // start time
+        userInput = targetIndex.getOneBased() + START_TIME_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder()
-                .withStartTime(VALID_START_TIME_AMY).withEndTime(VALID_END_TIME_AMY).build();
+                .withStartTime(VALID_START_TIME_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // end time
+        userInput = targetIndex.getOneBased() + END_TIME_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder()
+                .withEndTime(VALID_END_TIME_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -182,10 +190,10 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY
-                + START_TIME_DESC_AMY + " " + END_TIME_DESC_AMY
+                + START_TIME_DESC_AMY + END_TIME_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB
-                + START_TIME_DESC_BOB + " " + END_TIME_DESC_BOB
+                + START_TIME_DESC_BOB + END_TIME_DESC_BOB
                 + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
