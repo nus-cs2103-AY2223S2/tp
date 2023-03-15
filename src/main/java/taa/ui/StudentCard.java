@@ -50,8 +50,8 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         attendance.setText(String.format("Attendance: %d/12", this.student.getNumWeeksPresent()));
-        assignment.setText("Latest assignment submission: xxx");
-        groups.setText("Groups: Group xxx");
+        assignment.setText("Latest assignment: None");
+        groups.setText("Groups: None");
         student.getClassTags().stream()
                 .sorted(Comparator.comparing(classTag -> classTag.tagName))
                 .forEach(classTag -> tags.getChildren().add(new Label(classTag.tagName)));

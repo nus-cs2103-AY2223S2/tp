@@ -13,7 +13,7 @@ import taa.model.student.Student;
 public class Assignment {
     private String name;
     private ArrayList<Submission> submissions = new ArrayList<>();
-    private final HashMap<Integer, Submission> submissionMap = new HashMap<>();
+    private final HashMap<Student, Submission> submissionMap = new HashMap<>();
 
 
     /**
@@ -23,9 +23,9 @@ public class Assignment {
     public Assignment(String name, FilteredList<Student> sl) {
         this.name = name;
         for (Student stu : sl) {
-            Submission sub = new Submission(stu.getId());
+            Submission sub = new Submission(stu);
             submissions.add(sub);
-            submissionMap.put(stu.getId(), sub);
+            submissionMap.put(stu, sub);
         }
     }
 
