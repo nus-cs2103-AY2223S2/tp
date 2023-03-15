@@ -48,7 +48,7 @@ public class AssignTaskCommandTest {
         Person person = model.getFilteredPersonList().get(personToAssign.getZeroBased());
 
         String expectedMessage = String.format(MESSAGE_SUCCESS, person.getName().toString(), task.toString());
-        Task assignedTask = createAssignedTask(task, personToAssign, person.getName().toString());
+        Task assignedTask = createAssignedTask(task, personToAssign, person);
 
         model.assignTask(task, assignedTask, taskToAssign);
         assertEquals(assignTaskCommand.execute(model).getFeedbackToUser(), expectedMessage);
@@ -105,11 +105,11 @@ public class AssignTaskCommandTest {
         assertFalse(assignFirstCommand.equals(new AssignTaskCommand(taskToAssign, INDEX_FIRST_PERSON)));
     }
 
-    private static Task createAssignedTask(Task taskToAssign, Index personToAssign, String personName) {
+    private static Task createAssignedTask(Task taskToAssign, Index personToAssign, Person personAssigned) {
         TaskDescription taskDesc = taskToAssign.getDescription();
         Date taskDate = ((DeadlineTask) taskToAssign).getDate();
         Task assignedTask = new DeadlineTask(taskDesc, taskDate);
-        assignedTask.assignPerson(personToAssign, personName);
+        assignedTask.assignPerson(personToAssign, personAssigned);
         return assignedTask;
     }
 

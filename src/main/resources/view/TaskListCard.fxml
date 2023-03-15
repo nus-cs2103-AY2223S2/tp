@@ -30,7 +30,7 @@
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <Label prefHeight="19.0" prefWidth="91.0" style="-fx-font-size: 15px;" text="Assigned to: " />
+            <Label prefHeight="19.0" prefWidth="85.0" style="-fx-font-size: 15px;" text="Assigned to: " />
          <Label fx:id="personAssigned" style="-fx-font-size: 20px;" styleClass="cell_small_label" text="\$personAssigned" />
             <VBox.margin>
                <Insets bottom="10.0" />
@@ -40,8 +40,8 @@
             <children>
                <Label prefHeight="17.0" prefWidth="77.0" style="-fx-font-size: 15px;" text="        Due By: " />
             <Label fx:id="taskDeadline" prefHeight="17.0" prefWidth="80.0" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$taskDeadline" />
-               <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="479.0" />
-            <Label fx:id="personRole" maxWidth="91.0" prefHeight="27.0" prefWidth="59.0" style="-fx-background-color: #A98B3E; padding: 10px; -fx-background-radius: 15%; -fx-label-padding: 5px;" styleClass="cell_small_label" text="\$personRole" />
+               <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="459.0" />
+            <Label fx:id="personRole" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #A98B3E; -fx-background-radius: 10px; -fx-alignment: center; -fx-label-padding: 5px;" styleClass="cell_small_label" text="\$personRole" />
             </children>
          </HBox>
     </VBox>

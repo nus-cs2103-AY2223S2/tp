@@ -71,7 +71,7 @@ public class AssignTaskCommand extends Command {
 
         Task taskToAssign = lastShownList.get(toAssignTask.getZeroBased());
         Person personToAssign = lastShownPersonList.get(toAssignMember.getZeroBased());
-        Task assignedTask = createAssignedTask(taskToAssign, toAssignMember, personToAssign.getName().toString());
+        Task assignedTask = createAssignedTask(taskToAssign, toAssignMember, personToAssign);
 
         //model.assignTask(toAssignTask, toAssignMember);
         model.assignTask(taskToAssign, assignedTask, toAssignTask);
@@ -90,11 +90,11 @@ public class AssignTaskCommand extends Command {
     }
 
 
-    private static Task createAssignedTask(Task taskToAssign, Index personToAssign, String personName) {
+    private static Task createAssignedTask(Task taskToAssign, Index personToAssign, Person personAssigned) {
         TaskDescription taskDesc = taskToAssign.getDescription();
         Date taskDate = ((DeadlineTask) taskToAssign).getDate();
         Task assignedTask = new DeadlineTask(taskDesc, taskDate);
-        assignedTask.assignPerson(personToAssign, personName);
+        assignedTask.assignPerson(personToAssign, personAssigned);
         return assignedTask;
     }
 

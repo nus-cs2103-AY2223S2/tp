@@ -52,7 +52,12 @@ public class TaskCard extends UiPart<Region> {
             personAssigned.setText(task.getPersonAssignedName());
         }
         taskDeadline.setText(((DeadlineTask) task).getDate().toString());
-        personRole.setText("Member");
+
+        if(task.getPersonAssignedRole() == null) {
+            personRole.setText("None");
+        } else {
+            personRole.setText(task.getPersonAssignedRole());
+        }
     }
 
     @Override
