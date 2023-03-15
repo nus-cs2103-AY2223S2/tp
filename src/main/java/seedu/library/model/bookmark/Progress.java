@@ -10,6 +10,7 @@ import static seedu.library.commons.util.AppUtil.checkArgument;
 public class Progress {
 
 
+
     public static final String MESSAGE_CONSTRAINTS =
             "Progress should only contain alphanumeric characters and spaces, and it should not be blank";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
