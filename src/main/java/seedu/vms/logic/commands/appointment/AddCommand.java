@@ -37,14 +37,15 @@ public class AddCommand extends Command {
             + DELIMITER + PREFIX_VACCINATION + " VAX_GROUP\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " "
             + DELIMITER + PREFIX_PATIENT + " 1 "
-            + DELIMITER + PREFIX_STARTTIME + " 2024-01-01 1330"
-            + DELIMITER + PREFIX_ENDTIME + " 2024-01-01 1400"
-            + DELIMITER + PREFIX_VACCINATION + " Mordena\n";
+            + DELIMITER + PREFIX_STARTTIME + " 2024-01-01 1330 "
+            + DELIMITER + PREFIX_ENDTIME + " 2024-01-01 1400 "
+            + DELIMITER + PREFIX_VACCINATION + " Dose 1 (Moderna)\n";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists"
             + " in the appointment manager";
     public static final String MESSAGE_EXISTING_PATIENT_ID = "This patient already has an existing appointment";
+    public static final String MESSAGE_MISSING_VAX_TYPE = "The given vaccine is not in the vaccine manager";
 
     private final Appointment toAdd;
 
@@ -64,6 +65,12 @@ public class AddCommand extends Command {
         Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
         if (!patientList.containsKey(toAdd.getPatient().getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        }
+
+        // Checks if vaxType manager contains the vaccine to be used in the appointment
+        ObservableMap<String, VaxType> vaccinationList = model.getVaxTypeManager().asUnmodifiableObservableMap();
+        if (!vaccinationList.containsKey(toAdd.getVaccination().getName())) {
+            throw new CommandException(MESSAGE_MISSING_VAX_TYPE);
         }
 
         // Checks if appointment manager already contains an appointment from the patient of the given index
