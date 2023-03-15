@@ -22,6 +22,11 @@ public class CommandResult {
     private final boolean showTimetable;
 
     /**
+     * Statistics information should be shown to the user.
+     */
+    private final boolean showStatistics;
+
+    /**
      * Reminder list should be shown to the user.
      */
     private final boolean showReminderList;
@@ -34,12 +39,14 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
+
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable, boolean showReminderList,
-                         boolean exit) {
+                         boolean showStatistics, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
         this.showReminderList = showReminderList;
+        this.showStatistics = showStatistics;
         this.exit = exit;
     }
 
@@ -48,7 +55,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -61,6 +68,11 @@ public class CommandResult {
 
     public boolean isShowTimetable() {
         return showTimetable;
+    }
+
+
+    public boolean isShowStatistics() {
+        return showStatistics;
     }
 
     public boolean isShowReminderList() {
@@ -86,13 +98,14 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && showTimetable == otherCommandResult.showTimetable
+                && showStatistics == otherCommandResult.showStatistics
                 && showReminderList == otherCommandResult.showReminderList
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, showTimetable, showReminderList, exit);
+        return Objects.hash(feedbackToUser, showHelp, showTimetable, showReminderList, showStatistics, exit);
     }
 
 }

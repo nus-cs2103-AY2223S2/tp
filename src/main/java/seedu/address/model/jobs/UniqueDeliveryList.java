@@ -103,6 +103,13 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * @return number of jobs
+     */
+    public int size() {
+        return internalList.size();
+    }
+
     @Override
     public Iterator<DeliveryJob> iterator() {
         return internalList.iterator();
