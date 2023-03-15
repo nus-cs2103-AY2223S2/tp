@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-The Intern’s Ship (TinS) is a **desktop app for managing internships application, optimized for use via a Command Line 
-Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TinS can 
+The Intern’s Ship (TinS) is a **desktop app for managing internships application, optimized for use via a Command Line
+Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TinS can
 help you manage and keep track of your internship applications faster than traditional GUI apps.
 
 * Features (v1.2)
@@ -51,7 +51,7 @@ help you manage and keep track of your internship applications faster than tradi
   e.g `[CONTACT_DETAILS]` meansthat the user input is optional. User can press the enter key to skip the input.
 
 * Question prompts are written in red.<br>
-  e.g. in `INPUT COMPANY NAME: COMPANY_NAME`, `INPUT COMPANY NAME:` is a question prompt by the program. Users are 
+  e.g. in `INPUT COMPANY NAME: COMPANY_NAME`, `INPUT COMPANY NAME:` is a question prompt by the program. Users are
   required to input the necessary information after the prompt.
 
 </div>
@@ -89,8 +89,8 @@ INPUT CONTACT DETAILS: BobTheManager@gmail.com
 
 List all the internships (auto-generated ID, position, company name) in TinS.
 
-* After keying in the `list` command, TinS returns the list of internships in the form of 
-  `1. (<ID>) <POSITION>, <COMPANY NAME>` 
+* After keying in the `list` command, TinS returns the list of internships in the form of
+  `1. (<ID>) <POSITION>, <COMPANY NAME>`
    * `ID` refers to the auto-generated ID created by TinS for this particular internship
 
 Example: TinS should display a similar list to the one below, after the `list` command:
@@ -112,8 +112,8 @@ Format: `view ID`
 * After keying in the `VIEW` command, the program will return the details of the selected internship.
 
 Example: <br>
-After keying in the `view` command followed by an existing `ID`, TinS will output 
-all information of the internship with the specified `ID`, including position, company 
+After keying in the `view` command followed by an existing `ID`, TinS will output
+all information of the internship with the specified `ID`, including position, company
 name, application status and contact info.
 
 ~~~
@@ -141,7 +141,7 @@ Format: `delete ID`
 
 Examples:
 
-`delete SE_G1`  
+`delete SE_G1`
 `ARE YOU SURE YOU WANT TO DELETE SOFTWARE ENGINEER, GOOGLE` : `YES`
 
 ### Exiting the program : `exit`
@@ -166,3 +166,4 @@ Action | Format, Examples
 **Delete** | `delete ID`<br> e.g., `delete SE_G1`
 **List** | `list`
 **View** | `view ID`<br> e.g., `view SE_G1`
+
