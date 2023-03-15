@@ -257,64 +257,78 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* works as a private academic tutor, with 10 students
+* is not tech-savvy but has basic data entry skills to use programs like Excel to track his students
+* doesn’t know how to use the analytics functions of Excel and needs a simple interface to generate analytics
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+* keep track of students, their progress, and any student-specific info (like their weak subject)
+* has simpler interface than Excel
+* handles errors such as wrong data inputs in a user-friendly manner. (guides users / gives suggestions)
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                    | I want to …​                                                                            | So that I can…​                                                |
+| -------- | ------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `* * *`  | new user                  | open the app                                                                           | begin using the app                                           |
+| `* * *`  | new user                  | close the app                                                                          | leave the app                                                 |
+| `* * *`  | new user                  | add a student's name                                                                   | track a student's progress by their name                      |
+| `* * *`  | new user                  | include student's education level when adding the student (eg. P6)                     | keep track of a student's education level                     |
+| `* * *`  | new user                  | include student's phone number when adding the student (eg. 94206942)                  | keep track of a student's phone number                        |
+| `* * *`  | new user                  | include student's email when adding the student (eg. iloveanimegirls@gmail.com)        | keep track of a student's email                               |
+| `* * *`  | new user                  | include student's address when adding the student (eg. Block 69 S642069)               | keep track of a student's address and go to the place easily  |
+| `* * *`  | new user                  | include optional student-specific notes when adding the student (eg. Good in Japanese) | store additional student's descriptive information            |
+| `* * *`  | user with some experience | delete a student entry from my list (by index)                                         | remove all details related to a certain student               |
+| `* * *`  | new user                  | have my changes autosave                                                               | be sure that I won't lose my changes if I crash/close the app |
+| `* * *`  | new user                  | view my list of students                                                               | keep track of who I'm currently teaching                      |
+| `* * *`  | new user                  | View the address of a student                                                          | know where to go if I need to provide tuition at their house  |
+| `* * *`  | new user                  | have my data persist between use sessions                                              | continue my session where I left off                          |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TeachMeSenpai` app and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list students
 
-    Use case ends.
+2.  System shows a list of students
+
+3.  User requests to delete a specific student in the list by their index from the list
+
+4.  System deletes the student
+
+    Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty
 
-  Use case ends.
+  Use case ends
 
-* 3a. The given index is invalid.
+* 3a. The given index is invalid
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. System shows an error message
 
-      Use case resumes at step 2.
+      Use case resumes at step 2
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. A user that is completely new to the application should be able to be familiar with the functionalities within 1 hour.
+2. System should respond within 0.1 second of the user providing an input.
+3. All systems must be able to access the _save file_ ie. Save file should be independent of the OS.
+4. Any information displayed should be concise and structured in a logical manner such that it is easily understandable.
+5. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+6. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+7. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
 
 *{More to be added}*
 
@@ -322,6 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Save FIle**: The file containing all the data (ie. Entries of student information) inputted by the user saved locally on the user's own computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
