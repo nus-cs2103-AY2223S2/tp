@@ -48,8 +48,8 @@ public class ParserUtilTest {
     private static final String VALID_WEIGHT = "23";
     private static final String VALID_GENDER = "m";
 
-    private static final String VALID_APPOINTMENT_1 = "10-10-2023";
-    private static final String VALID_APPOINTMENT_2 = "11-12-2020";
+    private static final String VALID_APPOINTMENT_1 = "10-10-2023 18:30";
+    private static final String VALID_APPOINTMENT_2 = "11-12-2020 18:30";
 
     private static final String WHITESPACE = " \t\r\n";
 
