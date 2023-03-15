@@ -10,7 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * A list of expenses that enforces uniqueness between its elements and 
+ * A list of expenses that enforces uniqueness between its elements and
  * does not allow nulls.
  */
 public class ExpenseList implements Iterable<Expense> {
@@ -54,14 +54,14 @@ public class ExpenseList implements Iterable<Expense> {
         requireAllNonNull(listOfExpenses);
         internalListOfExpenses.setAll(listOfExpenses);
     }
-    
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Expense> asUnmodifiableList() {
         return this.internalUnmodifiableList;
     }
-    
+
     @Override
     public Iterator<Expense> iterator() {
         return this.internalListOfExpenses.iterator();

@@ -36,10 +36,10 @@ class JsonAdaptedCategory {
     }
 
     /**
-     * Converts this Jackson-friendly adapted category object into the model's 
+     * Converts this Jackson-friendly adapted category object into the model's
      * {@code Category} object.
-     * @throws IllegalValueException if there were any data constraints violated 
-     * in the adapted category.
+     * @throws IllegalValueException if there were any data constraints violated
+     *     in the adapted category.
      */
     public Category toModelType() throws IllegalValueException {
 

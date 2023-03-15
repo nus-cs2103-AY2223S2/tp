@@ -1,9 +1,9 @@
 package seedu.address.model.category;
 
 /**
- * Category class to represent categories that expenses are not grouped into a 
- * specific category.
- */
+* Category class to represent categories that expenses are not grouped into a
+* specific category.
+*/
 public class MiscellaneousCategory extends Category {
     /**
      * Constructor for MiscellaneousCategory class.
@@ -17,7 +17,7 @@ public class MiscellaneousCategory extends Category {
     @Override
     public String toString() {
         return "Miscellaneous";
-    } 
+    }
 
     @Override
     public boolean equals(Object other) {

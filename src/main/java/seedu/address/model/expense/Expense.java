@@ -69,7 +69,7 @@ public class Expense {
 
     /**
      * Returns true if a given string is a valid expense name.
-     * @param test String to be tested
+     * @param category Category to be tested
      */
     public static boolean isValidCategory(Category category) {
         return Category.isValidCategoryName(category.getCategoryName());
@@ -77,7 +77,7 @@ public class Expense {
 
     /**
      * Returns true if a given string is a valid expense name.
-     * @param test String to be tested
+     * @param name Name to be tested
      */
     public static boolean isValidName(String name) {
         return name.matches(VALIDATION_REGEX);

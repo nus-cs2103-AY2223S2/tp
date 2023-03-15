@@ -18,7 +18,6 @@ import seedu.address.model.person.Person;
 public interface Logic {
     /**
      * Executes the command and returns the result.
-     * 
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
@@ -28,7 +27,6 @@ public interface Logic {
 
     /**
      * Returns the AddressBook.
-     *
      * @see seedu.address.model.Model#getAddressBook()
      */
     ReadOnlyExpenseTracker getAddressBook();

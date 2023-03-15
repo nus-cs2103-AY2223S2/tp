@@ -31,7 +31,8 @@ public class JsonAddressBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyExpenseTracker> readAddressBook(String filePath) throws Exception {
-        return new JsonExpenseTrackerStorage(Paths.get(filePath)).readExpenseTracker(addToTestDataPathIfNotNull(filePath));
+        return new JsonExpenseTrackerStorage(Paths.get(filePath))
+            .readExpenseTracker(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {

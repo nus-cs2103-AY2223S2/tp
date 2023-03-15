@@ -57,9 +57,9 @@ public class UniqueCategoryList implements Iterable<Category> {
     /**
      * Replaces the category {@code target} in the list with {@code editedCategory}.
      * {@code target} must exist in the list.
-     * The category identity of {@code editedCategory} must not be 
+     * The category identity of {@code editedCategory} must not be
      * the same as another existing category in the list.
-     * @param target Category to replace
+     * @param replacementList List of categories to replace the current list
      */
     public void setCategoryList(UniqueCategoryList replacementList) {
         requireNonNull(replacementList);
@@ -71,7 +71,7 @@ public class UniqueCategoryList implements Iterable<Category> {
      * {@code target} must exist in the list.
      * The category identity of {@code editedCategory} must not be
      * the same as another existing category in the list.
-     * @param target Category to replace
+     * @param listOfCategories List of categories to replace the current list
      */
     public void setCategoryList(List<Category> listOfCategories) {
         requireAllNonNull(listOfCategories);
