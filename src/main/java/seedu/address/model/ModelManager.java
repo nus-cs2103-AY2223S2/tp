@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Group> filteredGroups;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredGroups = new FilteredList<>(this.addressBook.getGroupList());
     }
 
     public ModelManager() {
@@ -105,11 +110,60 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addIsolatedEvent(Person person, IsolatedEvent event) {
+        addressBook.addIsolatedEvent(person, event);
+    }
+
+    @Override
+    public void setIsolatedEvent(Person person, IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
+        requireAllNonNull(person, originalEvent, editedEvent);
+        addressBook.setIsolatedEvent(person, originalEvent, editedEvent);
+
+    }
+
+    @Override
+    public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
+        requireAllNonNull(personToEdit, event);
+        addressBook.deleteIsolatedEvent(personToEdit, event);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
+
+    @Override
+    public void addPersonInGroup(Person person, Group group) {
+        requireAllNonNull(person, group);
+        addressBook.addPersonInGroup(person, group);
+    }
+
+    @Override
+    public void removePersonFromGroup(Person person, Group group) {
+        requireAllNonNull(person, group);
+        addressBook.removePersonFromGroup(person, group);
+    }
+
+    @Override
+    public void addGroup(Group group) {
+        requireNonNull(group);
+        addressBook.addGroup(group);
+    }
+
+    @Override
+    public void deleteGroup(Group group) {
+        requireNonNull(group);
+        addressBook.deleteGroup(group);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public boolean hasGroup(Group group) {
+        requireNonNull(group);
+        return addressBook.hasGroup(group);
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -126,6 +180,27 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Group List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Group} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Group> getFilteredGroupList() {
+        return filteredGroups;
+    }
+
+    @Override
+    public void updateFilteredGroupList(Predicate<Group> predicate) {
+        requireNonNull(predicate);
+        filteredGroups.setPredicate(predicate);
+    }
+
+    @Override
+    public void addRecurringEvent(Person person, RecurringEvent event) {
+        addressBook.addRecurringEvent(person, event);
     }
 
     @Override

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ISOEVENT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -13,16 +14,30 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddIsolatedEventCommand;
+import seedu.address.logic.commands.AddRecurringEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteIsolatedEventCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditIsolatedEventCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.group.GroupCommand;
+import seedu.address.logic.commands.group.GroupCreateCommand;
+import seedu.address.logic.commands.group.GroupDeleteCommand;
+import seedu.address.logic.commands.group.GroupFindCommand;
+import seedu.address.logic.commands.group.GroupListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.group.GroupCommandParser;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupNameContainsKeywordsPredicate;
+import seedu.address.model.person.MemberOfGroupPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -32,6 +47,7 @@ import seedu.address.testutil.PersonUtil;
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
+    private final GroupCommandParser groupParser = new GroupCommandParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -54,12 +70,44 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_isolatedEvent() throws Exception {
+        AddIsolatedEventCommand command = (AddIsolatedEventCommand) parser.parseCommand(
+                AddIsolatedEventCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + "ie/biking" + " " + "f/09/03/2023 14:00" + " " + "t/09/03/2023 15:00");
+        assertTrue(command.COMMAND_WORD == "event_create");
+    }
+
+    @Test
+    public void parseCommand_recurringEvent() throws Exception {
+        AddRecurringEventCommand command = (AddRecurringEventCommand) parser.parseCommand(
+                AddRecurringEventCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + "re/biking" + " " + "d/MONDAY" + " " + "f/14:00" + " " + "t/15:00");
+        assertTrue(command.COMMAND_WORD == "event_create_recur");
+    }
+    @Test
+    public void parseCommand_deleteIsolatedEvent() throws Exception {
+        DeleteIsolatedEventCommand command = (DeleteIsolatedEventCommand) parser.parseCommand(
+                DeleteIsolatedEventCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + INDEX_FIRST_PERSON.getOneBased());
+        assertTrue(command.COMMAND_WORD == "ie_delete");
+
+    }
+
+    @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editIsolatedEvent() throws Exception {
+        EditIsolatedEventCommand command = (EditIsolatedEventCommand) parser.parseCommand(
+                EditIsolatedEventCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ISOEVENT + "biking");
+        assertTrue(command.COMMAND_WORD == "ie_edit");
     }
 
     @Test
@@ -80,6 +128,43 @@ public class AddressBookParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_groupCreate() throws Exception {
+        GroupCreateCommand command = (GroupCreateCommand) parser.parseCommand(GroupCommand.COMMAND_WORD + " "
+                + GroupCreateCommand.SUB_COMMAND_WORD + " g/2103T");
+        GroupCreateCommand command2 = (GroupCreateCommand)
+                groupParser.parse(GroupCreateCommand.SUB_COMMAND_WORD + " g/2103T");
+        assertEquals(new GroupCreateCommand(new Group("2103T")), command);
+        assertEquals(command, command2);
+    }
+
+    @Test
+    public void parseCommand_groupFind() throws Exception {
+        List<String> keywords = Arrays.asList("CS2103T", "CS2101");
+        GroupFindCommand command = (GroupFindCommand) parser.parseCommand(GroupCommand.COMMAND_WORD + " "
+                + GroupFindCommand.SUB_COMMAND_WORD + " "
+                + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new GroupFindCommand(new GroupNameContainsKeywordsPredicate(keywords),
+                new MemberOfGroupPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_groupDelete() throws Exception {
+        GroupDeleteCommand command = (GroupDeleteCommand) parser.parseCommand(GroupCommand.COMMAND_WORD + " "
+                + GroupDeleteCommand.SUB_COMMAND_WORD + " 1");
+        GroupDeleteCommand command2 = (GroupDeleteCommand)
+                groupParser.parse(GroupDeleteCommand.SUB_COMMAND_WORD + " 1");
+        assertEquals(new GroupDeleteCommand(Index.fromOneBased(1)), command);
+        assertEquals(command, command2);
+    }
+
+    @Test
+    public void parseCommand_groupList() throws Exception {
+        assertTrue(parser.parseCommand(GroupCommand.COMMAND_WORD + " "
+                + GroupListCommand.SUB_COMMAND_WORD) instanceof GroupListCommand);
+        assertTrue(parser.parseCommand(GroupCommand.COMMAND_WORD + " list") instanceof GroupListCommand);
     }
 
     @Test

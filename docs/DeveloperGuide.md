@@ -262,30 +262,45 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has a need to keep track of events happening in their life
+* has to manage different projects
+* needs a way view their friend's free time
+* wants to organise their contacts into groups
+* needs a method which is able to compile every group member's FTS
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+* Helps users to keep track of personal and friends timetable 
+* Students find it hard to find FTS within their group of friends in NUS as they have to compare their 
+timetables one by one. WGT then helps students to easily find FTS within their friend groups
+* Students can keep track of group meetings across all modules
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​  | I can …​                                                       | So that I can…​                                                       |
+|----------|----------|----------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new user | see usage instructions                                         | refer to instructions when I forget how to use the App                |
+| `* * *`  | user     | add a new friend                                               | store their events                                                    |
+| `* * *`  | user     | delete a friend                                                | remove entries that I no longer need                                  |
+| `* * `   | user     | find a person by name                                          | locate details of friend without having to go through the entire list |
+| `* * *`  | user     | store my timetable                                             | keep track of my timetable                                            |
+| `* * *`  | user     | store my friends' timetable                                    | keep track of my friends' timetable                                   |
+| `* * *`  | student  | find a FTS within my group of friends                          | know when my friends are free                      |
+| `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better | 
+| `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | Make sure i wouldn't miss a meeting | 
+| `* *`    | user | be able to categorize my contact lists                         | easily find someone | 
+| `*`      | student with a lot of projects | be able to set recurring tasks such as weekly project meetings | Remember my tasks |
+| `*`      | user | easily find out the venue and time of my upcoming lessons      | make my life more convenient |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Where Got Time` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Delete a person**
 
 **MSS**
 
@@ -308,21 +323,101 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use Case: UC02 - Add an event**
+
+**MSS**
+
+1. User requests to list persons
+2. WGT shows a list of persons
+3. User requests to add an event to a specific person in the list
+4. WGT adds event to the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+    
+    Use case ends.
+
+* 3a. The given index is invalid
+
+  * 3a1. WGT shows an error message.
+
+    Use case resumes at step 2.
+
+**Use Case: UC03 - Find FTS**
+
+**MSS**
+
+1. User requests to list persons
+2. WGT shows a list of persons
+3. User requests to find FTS with a specific person in the list
+4. WGT lists the common FTS
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index is invalid
+
+    * 3a1. WGT shows an error message.
+
+      Use case resumes at step 2.
+
+**Use Case: UC04 - Make Group**
+
+**MSS**
+
+1. User requests to list persons
+2. WGT shows a list of persons
+3. User creates group with several specific people in the list
+    Use case ends
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+
+* 3a. One of the given indices is invalid
+
+    * 3a1. WGT shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. Group name given is not unique
+
+    * 3b1.  WGT shows an error message.
+
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Compatibility: The system should be compatible for any _mainstream operating systems_ with Java `11` or above installed
+2.  Capacity: The system should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  Domain rules: The system should ideally be an NUS student.
+4.  Efficiency: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  Performance: The system should respond to user commands within 2 seconds.
+6.  Maintainability: The system shall be designed to allow for easy maintenance and updates.
+7.  Domain rules: The system should ideally be an NUS student.
+8.  Notes about project scope: The product is not required to handle people with the same full name
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **CLI**: Command Line Interface 
+* **FTS**: Free Time Slot
+* **GUI**: Graphical User Interface
+* **MSS**: Main Success Scenario 
+* **API**: Application Programming Interface
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**

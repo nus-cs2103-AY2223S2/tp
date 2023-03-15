@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -89,8 +90,26 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasGroup_groupNotInAddressBook_returnsFalse() {
+        Group group = new Group("2103");
+        assertFalse(modelManager.hasGroup(group));
+    }
+
+    @Test
+    public void hasGroup_groupInAddressBook_returnsTrue() {
+        Group group = new Group("2103");
+        modelManager.addGroup(group);
+        assertTrue(modelManager.hasGroup(group));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredGroupList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredGroupList().remove(0));
     }
 
     @Test

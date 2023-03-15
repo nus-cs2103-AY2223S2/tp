@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -83,11 +84,45 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    public void hasGroupInPerson_returnsTrue() {
+        Group group = new Group("2103T");
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        addressBook.addPersonInGroup(aliceCopy, group);
+        assertTrue(aliceCopy.getGroups().contains(group));
+    }
+
+    @Test
+    public void doNotHaveGroupInPerson_returnsTrue() {
+        Group group = new Group("2103T");
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        addressBook.addPersonInGroup(aliceCopy, group);
+        addressBook.removePersonFromGroup(aliceCopy, group);
+        assertTrue(!aliceCopy.getGroups().contains(group));
+    }
+
+    @Test
+    public void hasGroup_groupInAddressBook_returnsTrue() {
+        Group group = new Group("2103T");
+        addressBook.addGroup(group);
+        assertTrue(addressBook.hasGroup(group));
+    }
+
+    @Test
+    public void doNotHaveGroup_groupInAddressBook_returnsTrue() {
+        Group group = new Group("2103T");
+        addressBook.addGroup(group);
+        addressBook.deleteGroup(group);
+        assertTrue(!addressBook.hasGroup(group));
+    }
+
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Group> groups = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +131,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Group> getGroupList() {
+            return groups;
         }
     }
 
