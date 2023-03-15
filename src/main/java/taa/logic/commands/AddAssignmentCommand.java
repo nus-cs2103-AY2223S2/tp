@@ -26,13 +26,9 @@ public class AddAssignmentCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        try {
-            model.addAssignment(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (CommandException e) {
-            return new CommandResult(e.getMessage());
-        }
+        model.addAssignment(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

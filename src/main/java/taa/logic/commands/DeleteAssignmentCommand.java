@@ -21,13 +21,9 @@ public class DeleteAssignmentCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        try {
-            model.deleteAssignment(assignmentName);
-            return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentName));
-        } catch (CommandException e) {
-            return new CommandResult(e.getMessage());
-        }
+        model.deleteAssignment(assignmentName);
+        return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentName));
     }
 }

@@ -208,7 +208,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void grade(String assignmentName, int studentId, int marks) {
+    public void grade(String assignmentName, int studentId, int marks) throws CommandException {
         assignmentList.grade(assignmentName, studentId, marks);
     }
 }

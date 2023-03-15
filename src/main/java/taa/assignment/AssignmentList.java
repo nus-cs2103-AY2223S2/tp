@@ -44,9 +44,9 @@ public class AssignmentList {
      * @param studentId
      * @param marks
      */
-    public void grade(String assignmentName, int studentId, int marks) {
+    public void grade(String assignmentName, int studentId, int marks) throws CommandException {
         if (!assignmentMap.containsKey(assignmentName)) {
-            System.out.println("Assignment: " + assignmentName + " not found");
+            throw new CommandException("Assignment: " + assignmentName + " not found");
         } else {
             assignmentMap.get(assignmentName).gradeSubmission(studentId, marks);
         }
