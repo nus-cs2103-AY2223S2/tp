@@ -130,12 +130,9 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String region} into the correct {@code Regions} enum
-     *
-     * @param region
-     * @return
      */
     public static Regions parseRegion(String region) throws ParseException {
-        requireNonNull(region);
+        requireNonNull(region); // Do we need to throw a ParserException here?
         String processedInputRegion = region.trim().toUpperCase();
         Regions[] allRegions = Regions.values();
         for (Regions r : allRegions) {
