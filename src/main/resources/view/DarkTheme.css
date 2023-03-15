@@ -176,6 +176,20 @@ Styles SupplierCard and TaskCard
     -fx-font-size: 11;
 }
 
+#orderField {
+    -fx-hgap: 7;
+    -fx-vgap: 5;
+}
+
+#orderField .label {
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-background-color: #cae1ff;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-font-size: 11;
+}
+
 /*-----------------------------------------------------------------------------------------------*\
 scroll-bar
 
