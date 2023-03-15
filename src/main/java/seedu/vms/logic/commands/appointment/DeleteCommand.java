@@ -37,13 +37,13 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Map<Integer, IdData<Appointment>> lastShownList = model.getFilteredAppointmentMap();
+        Map<Integer, IdData<Appointment>> appointmentList = model.getAppointmentManager().getMapView();
 
-        if (!lastShownList.containsKey(targetIndex.getZeroBased())) {
+        if (!appointmentList.containsKey(targetIndex.getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
-        Appointment appointmentToDelete = lastShownList.get(targetIndex.getZeroBased()).getValue();
+        Appointment appointmentToDelete = appointmentList.get(targetIndex.getZeroBased()).getValue();
         model.deleteAppointment(targetIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
     }
