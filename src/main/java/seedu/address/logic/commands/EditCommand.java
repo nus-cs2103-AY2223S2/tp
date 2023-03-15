@@ -103,7 +103,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
 
-        Person p = new Person(updatedName, updatedTags, updatesModules);
+        Person p = new Person(updatedName, updatedTags, updatedModules);
 
         if (editPersonDescriptor.getPhone().isPresent()) {
             p.setPhone(editPersonDescriptor.getPhone().get());

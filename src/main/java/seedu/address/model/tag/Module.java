@@ -18,9 +18,8 @@ public class Module extends Tag {
         super(moduleName, MESSAGE_CONSTRAINTS);
         this.moduleName = moduleName;
     }
-
     /**
-     * {@inheritDoc}
+     * Returns true if a given string is a valid module name.
      */
     public static boolean isValidModuleName(String test) {
         return isValidTagName(test);
