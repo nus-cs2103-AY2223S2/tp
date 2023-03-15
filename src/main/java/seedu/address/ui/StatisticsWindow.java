@@ -15,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.stats.TotalJobs;
+import seedu.address.ui.job.DeliveryJobListPanel;
 import seedu.address.ui.main.ResultDisplay;
 
 /**
@@ -29,6 +30,7 @@ public class StatisticsWindow extends UiPart<Stage> {
     private Logic logic;
 
     private ResultDisplay resultDisplay;
+    private DeliveryJobListPanel deliveryJobListPanel;
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
@@ -40,6 +42,10 @@ public class StatisticsWindow extends UiPart<Stage> {
 
     @FXML
     private Label statsMessage;
+    @FXML
+    private Label totalJob;
+    @FXML
+    private StackPane deliveryJobListPanelPlaceholder;
 
     /**
      * Creates a {@code StatisticsWindow} with the given {@code Stage} and {@code Logic}.
@@ -53,7 +59,7 @@ public class StatisticsWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-        //statsMessage.setText(STATISTICS);
+        statsMessage.setText(STATISTICS);
     }
 
     /**
@@ -105,10 +111,12 @@ public class StatisticsWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
+        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
+        deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
+
         ObservableList<DeliveryJob> list =  logic.getFilteredDeliveryJobList();
-        statsMessage.setText(STATISTICS + "\n" + new TotalJobs(list.size()));
-        //jobListPanel = new jobListPanel(logic.getFilteredjobList());
-        //jobListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
+        totalJob.setText(new TotalJobs(list.size()).toString());
 
         //resultDisplay = new ResultDisplay();
         //resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

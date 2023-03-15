@@ -8,6 +8,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 
 <fx:root resizable="false" title="Statistics" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
@@ -17,23 +19,42 @@
         <Scene>
             <stylesheets>
                 <URL value="@StatisticsWindow.css" />
+                <URL value="@DarkTheme.css" />
             </stylesheets>
+            <VBox>
+                <HBox alignment="CENTER" fx:id="statsMessageContainer">
+                    <children>
+                        <VBox>
+                            <Label fx:id="statsMessage" text="Label">
+                                <HBox.margin>
+                                    <Insets right="5.0"/>
+                                </HBox.margin>
+                            </Label>
+                            <Label fx:id="totalJob" text="Label">
+                                <VBox.margin>
+                                    <Insets top="10" />
+                                </VBox.margin>
+                            </Label>
+                        </VBox>
 
-            <HBox alignment="CENTER" fx:id="statsMessageContainer">
-                <children>
-                    <Label fx:id="statsMessage" text="Label">
-                        <HBox.margin>
-                            <Insets right="5.0" />
-                        </HBox.margin>
-                    </Label>
-                </children>
-                <opaqueInsets>
-                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-                </opaqueInsets>
-                <padding>
-                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-                </padding>
-            </HBox>
+                    </children>
+                    <opaqueInsets>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                    </padding>
+                </HBox>
+
+                <VBox fx:id="personList" maxHeight="1.7976931348623157E308" styleClass="pane-with-border" VBox.vgrow="ALWAYS" alignment="BOTTOM_CENTER">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                    <children>
+                        <StackPane fx:id="deliveryJobListPanelPlaceholder" maxHeight="1.7976931348623157E308" />
+                    </children>
+                </VBox>
+            </VBox>
         </Scene>
     </scene>
 </fx:root>
