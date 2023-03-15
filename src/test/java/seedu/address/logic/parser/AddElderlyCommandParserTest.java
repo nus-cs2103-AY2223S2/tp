@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.AVAILABLE_DATES;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -30,10 +31,12 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_STRONG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISK_LEVEL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -56,58 +59,60 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ElderlyBuilder;
 
 public class AddElderlyCommandParserTest {
-    private AddElderlyCommandParser parser = new AddElderlyCommandParser();
+    private final AddElderlyCommandParser parser = new AddElderlyCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Elderly expectedElderly = new ElderlyBuilder(BOB).withTags(VALID_TAG_STRONG).build();
+        Elderly expectedElderly = new ElderlyBuilder(BOB).withTags(VALID_TAG_STRONG)
+                .withAvailableDates(VALID_START_DATE, VALID_END_DATE).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_STRONG, new AddElderlyCommand(expectedElderly));
+                + TAG_DESC_STRONG + AVAILABLE_DATES + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_STRONG, new AddElderlyCommand(expectedElderly));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_STRONG, new AddElderlyCommand(expectedElderly));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_STRONG, new AddElderlyCommand(expectedElderly));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_STRONG, new AddElderlyCommand(expectedElderly));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
 
         // multiple nrics - last nric accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_AMY + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_STRONG, new AddElderlyCommand(expectedElderly));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
 
         // multiple age - last age accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_STRONG, new AddElderlyCommand(expectedElderly));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
 
         // multiple risk levels - last risk level accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_AMY + RISK_DESC_BOB
-                + TAG_DESC_STRONG, new AddElderlyCommand(expectedElderly));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
 
         // multiple tags - all accepted
         Elderly expectedElderlyMultipleTags = new ElderlyBuilder(BOB).withTags(VALID_TAG_STRONG, VALID_TAG_SINGLE)
+                .withAvailableDates(VALID_START_DATE, VALID_END_DATE)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB + TAG_DESC_SINGLE
-                + TAG_DESC_STRONG, new AddElderlyCommand(expectedElderlyMultipleTags));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddElderlyCommand(expectedElderlyMultipleTags));
     }
 
     @Test
@@ -161,37 +166,37 @@ public class AddElderlyCommandParserTest {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB + TAG_DESC_SINGLE
-                + TAG_DESC_STRONG, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_STRONG + AVAILABLE_DATES, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_SINGLE + TAG_DESC_STRONG, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_SINGLE + TAG_DESC_STRONG, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_SINGLE + TAG_DESC_STRONG, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES, Address.MESSAGE_CONSTRAINTS);
 
         // invalid nric
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_ELDERLY_NRIC_DESC + AGE_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_SINGLE + TAG_DESC_STRONG, Nric.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES, Nric.MESSAGE_CONSTRAINTS);
 
         // invalid age
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_BOB + INVALID_AGE_DESC + RISK_DESC_BOB
-                + TAG_DESC_SINGLE + TAG_DESC_STRONG, Age.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES, Age.MESSAGE_CONSTRAINTS);
 
         // invalid risk level
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + INVALID_RISK_DESC
-                + TAG_DESC_SINGLE + TAG_DESC_STRONG, RiskLevel.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES, RiskLevel.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -206,7 +211,7 @@ public class AddElderlyCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB
-                + RISK_DESC_BOB + TAG_DESC_SINGLE + TAG_DESC_STRONG,
+                + RISK_DESC_BOB + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddElderlyCommand.MESSAGE_USAGE));
     }
 }

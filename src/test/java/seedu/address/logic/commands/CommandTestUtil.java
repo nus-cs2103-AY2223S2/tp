@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
@@ -80,6 +81,8 @@ public class CommandTestUtil {
 
     public static final String TAG_DESC_SINGLE = " " + PREFIX_TAG + VALID_TAG_SINGLE;
     public static final String TAG_DESC_STRONG = " " + PREFIX_TAG + VALID_TAG_STRONG;
+
+    public static final String AVAILABLE_DATES = " " + PREFIX_AVAILABILITY + VALID_START_DATE + "," + VALID_END_DATE;
 
     public static final String NRIC_ELDERLY_DESC_AMY = " " + PREFIX_NRIC_ELDERLY + VALID_NRIC_AMY;
     public static final String NRIC_ELDERLY_DESC_BOB = " " + PREFIX_NRIC_ELDERLY + VALID_NRIC_BOB;

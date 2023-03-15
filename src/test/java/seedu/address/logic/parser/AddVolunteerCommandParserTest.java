@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.AVAILABLE_DATES;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -27,9 +28,11 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_STRONG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -51,52 +54,54 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.VolunteerBuilder;
 
 public class AddVolunteerCommandParserTest {
-    private AddVolunteerCommandParser parser = new AddVolunteerCommandParser();
+    private final AddVolunteerCommandParser parser = new AddVolunteerCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Volunteer expectedVolunteer = new VolunteerBuilder(BOB).withTags(VALID_TAG_STRONG).build();
+        Volunteer expectedVolunteer = new VolunteerBuilder(BOB).withTags(VALID_TAG_STRONG)
+                .withAvailableDates(VALID_START_DATE, VALID_END_DATE).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB
-                + TAG_DESC_STRONG, new AddVolunteerCommand(expectedVolunteer));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddVolunteerCommand(expectedVolunteer));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB
-                + TAG_DESC_STRONG, new AddVolunteerCommand(expectedVolunteer));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddVolunteerCommand(expectedVolunteer));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB
-                + TAG_DESC_STRONG, new AddVolunteerCommand(expectedVolunteer));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddVolunteerCommand(expectedVolunteer));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB
-                + TAG_DESC_STRONG, new AddVolunteerCommand(expectedVolunteer));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddVolunteerCommand(expectedVolunteer));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB
-                + TAG_DESC_STRONG, new AddVolunteerCommand(expectedVolunteer));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddVolunteerCommand(expectedVolunteer));
 
         // multiple nrics - last nric accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_VOLUNTEER_DESC_AMY + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB
-                + TAG_DESC_STRONG, new AddVolunteerCommand(expectedVolunteer));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddVolunteerCommand(expectedVolunteer));
 
         // multiple age - last age accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB
-                + TAG_DESC_STRONG, new AddVolunteerCommand(expectedVolunteer));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddVolunteerCommand(expectedVolunteer));
 
         // multiple tags - all accepted
         Volunteer expectedVolunteerMultipleTags = new VolunteerBuilder(BOB).withTags(VALID_TAG_STRONG, VALID_TAG_SINGLE)
+                .withAvailableDates(VALID_START_DATE, VALID_END_DATE)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB + TAG_DESC_SINGLE + TAG_DESC_STRONG,
+                + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES,
                 new AddVolunteerCommand(expectedVolunteerMultipleTags));
     }
 
@@ -147,32 +152,32 @@ public class AddVolunteerCommandParserTest {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB + TAG_DESC_SINGLE
-                + TAG_DESC_STRONG, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_STRONG + AVAILABLE_DATES, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB + TAG_DESC_SINGLE
-                + TAG_DESC_STRONG, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_STRONG + AVAILABLE_DATES, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB + TAG_DESC_SINGLE
-                + TAG_DESC_STRONG, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_STRONG + AVAILABLE_DATES, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB + TAG_DESC_SINGLE
-                + TAG_DESC_STRONG, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_STRONG + AVAILABLE_DATES, Address.MESSAGE_CONSTRAINTS);
 
         // invalid nric
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_VOLUNTEER_NRIC_DESC + AGE_DESC_BOB + TAG_DESC_SINGLE
-                + TAG_DESC_STRONG, Nric.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_STRONG + AVAILABLE_DATES, Nric.MESSAGE_CONSTRAINTS);
 
         // invalid age
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_VOLUNTEER_DESC_BOB + INVALID_AGE_DESC + TAG_DESC_SINGLE
-                + TAG_DESC_STRONG, Age.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_STRONG + AVAILABLE_DATES, Age.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -187,7 +192,7 @@ public class AddVolunteerCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB
-                        + TAG_DESC_SINGLE + TAG_DESC_STRONG,
+                        + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVolunteerCommand.MESSAGE_USAGE));
     }
 }
