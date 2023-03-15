@@ -2,7 +2,7 @@ package seedu.sudohr.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.sudohr.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.sudohr.testutil.TypicalPersons.getTypicalSudoHr;
 
 import java.nio.file.Path;
 
@@ -55,7 +55,7 @@ public class StorageManagerTest {
          * {@link JsonSudoHrStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonSudoHrStorageTest} class.
          */
-        SudoHr original = getTypicalAddressBook();
+        SudoHr original = getTypicalSudoHr();
         storageManager.saveSudoHr(original);
         ReadOnlySudoHr retrieved = storageManager.readSudoHr().get();
         assertEquals(original, new SudoHr(retrieved));

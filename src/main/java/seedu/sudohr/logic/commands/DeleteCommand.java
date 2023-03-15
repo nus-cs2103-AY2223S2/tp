@@ -26,6 +26,10 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteCommand to delete employee at the specified
+     * {@code targetIndex}
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -41,6 +45,7 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
+        model.cascadeDeleteUserInLeaves(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
@@ -48,6 +53,6 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                        && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
 }

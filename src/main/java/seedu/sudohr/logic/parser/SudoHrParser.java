@@ -7,14 +7,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.sudohr.logic.commands.AddCommand;
+import seedu.sudohr.logic.commands.AddDepartmentCommand;
 import seedu.sudohr.logic.commands.ClearCommand;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.DeleteCommand;
 import seedu.sudohr.logic.commands.EditCommand;
+import seedu.sudohr.logic.commands.EditDepartmentCommand;
 import seedu.sudohr.logic.commands.ExitCommand;
 import seedu.sudohr.logic.commands.FindCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
 import seedu.sudohr.logic.commands.ListCommand;
+import seedu.sudohr.logic.commands.leaveCommands.AddEmployeeToLeaveCommand;
+import seedu.sudohr.logic.commands.leaveCommands.DeleteEmployeeFromLeaveCommand;
+import seedu.sudohr.logic.commands.leaveCommands.ListEmployeeInLeaveCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 
 /**
@@ -53,6 +58,12 @@ public class SudoHrParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case AddDepartmentCommand.COMMAND_WORD:
+            return new AddDepartmentCommandParser().parse(arguments);
+
+        case EditDepartmentCommand.COMMAND_WORD:
+            return new EditDepartmentCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -67,6 +78,15 @@ public class SudoHrParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddEmployeeToLeaveCommand.COMMAND_WORD:
+            return new AddEmployeeToLeaveCommandParser().parse(arguments);
+
+        case DeleteEmployeeFromLeaveCommand.COMMAND_WORD:
+            return new DeleteEmployeeFromLeaveCommandParser().parse(arguments);
+
+        case ListEmployeeInLeaveCommand.COMMAND_WORD:
+            return new ListEmployeeInLeaveCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

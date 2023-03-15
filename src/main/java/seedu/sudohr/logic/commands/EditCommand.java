@@ -3,6 +3,7 @@ package seedu.sudohr.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,13 +22,14 @@ import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.person.Address;
 import seedu.sudohr.model.person.Email;
+import seedu.sudohr.model.person.Id;
 import seedu.sudohr.model.person.Name;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.model.person.Phone;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the sudohr book.
+ * Edits the details of an existing person inside SudoHR.
  */
 public class EditCommand extends Command {
 
@@ -37,6 +39,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -48,7 +51,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the sudohr book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SudoHR.";
+    // TODO DUPLICATED IDENTITY FIELDS
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -82,6 +86,7 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+        model.cascadeUpdateUserInLeaves(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
@@ -93,13 +98,14 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
+        Id updatedId = editPersonDescriptor.getId().orElse(personToEdit.getId());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedId, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -125,19 +131,22 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+        private Id id;
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+            setId(toCopy.id);
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -149,7 +158,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(id, name, phone, email, address, tags);
+        }
+
+        public void setId(Id id) {
+            this.id = id;
+        }
+
+        public Optional<Id> getId() {
+            return Optional.ofNullable(id);
         }
 
         public void setName(Name name) {
@@ -216,7 +233,8 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getId().equals(e.getId())
+                    && getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())

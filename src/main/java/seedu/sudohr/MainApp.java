@@ -62,7 +62,6 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
-
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
@@ -89,7 +88,6 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty SudoHr");
             initialData = new SudoHr();
         }
-
         return new ModelManager(initialData, userPrefs);
     }
 

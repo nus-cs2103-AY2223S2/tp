@@ -6,7 +6,7 @@ import static seedu.sudohr.testutil.Assert.assertThrows;
 import static seedu.sudohr.testutil.TypicalPersons.ALICE;
 import static seedu.sudohr.testutil.TypicalPersons.HOON;
 import static seedu.sudohr.testutil.TypicalPersons.IDA;
-import static seedu.sudohr.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.sudohr.testutil.TypicalPersons.getTypicalSudoHr;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -48,23 +48,34 @@ public class JsonSudoHrStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatSudoHr.json"));
     }
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonSudoHr.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonSudoHr.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidDepartmentAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidDepartmentSudoHr.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidAndValidDepartmentAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () ->
+                readAddressBook("invalidAndValidDepartmentSudoHr.json"));
     }
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        SudoHr original = getTypicalAddressBook();
+        SudoHr original = getTypicalSudoHr();
         JsonSudoHrStorage jsonAddressBookStorage = new JsonSudoHrStorage(filePath);
 
         // Save in new file and read back

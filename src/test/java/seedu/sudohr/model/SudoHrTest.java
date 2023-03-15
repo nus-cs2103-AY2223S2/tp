@@ -6,8 +6,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.sudohr.testutil.Assert.assertThrows;
+import static seedu.sudohr.testutil.TypicalDepartments.ENGINEERING;
+import static seedu.sudohr.testutil.TypicalDepartments.HUMAN_RESOURCES;
+import static seedu.sudohr.testutil.TypicalDepartments.SALES;
+import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 import static seedu.sudohr.testutil.TypicalPersons.ALICE;
-import static seedu.sudohr.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.sudohr.testutil.TypicalPersons.BENSON;
+import static seedu.sudohr.testutil.TypicalPersons.CARL;
+import static seedu.sudohr.testutil.TypicalPersons.GEORGE;
+import static seedu.sudohr.testutil.TypicalPersons.HOON;
+import static seedu.sudohr.testutil.TypicalPersons.IDA;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,8 +26,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.department.exceptions.DuplicateDepartmentException;
+import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
+import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.PersonBuilder;
 
 public class SudoHrTest {
@@ -31,6 +43,8 @@ public class SudoHrTest {
         assertEquals(Collections.emptyList(), sudoHr.getPersonList());
     }
 
+    //// Person tests
+
     @Test
     public void resetData_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> sudoHr.resetData(null));
@@ -38,7 +52,7 @@ public class SudoHrTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        SudoHr newData = getTypicalAddressBook();
+        SudoHr newData = getTypicalSudoHr();
         sudoHr.resetData(newData);
         assertEquals(newData, sudoHr);
     }
@@ -49,7 +63,8 @@ public class SudoHrTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        SudoHrStub newData = new SudoHrStub(newPersons);
+        List<Department> newDepartments = Arrays.asList();
+        SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
 
         assertThrows(DuplicatePersonException.class, () -> sudoHr.resetData(newData));
     }
@@ -83,19 +98,75 @@ public class SudoHrTest {
         assertThrows(UnsupportedOperationException.class, () -> sudoHr.getPersonList().remove(0));
     }
 
+    //// Department tests
+
+    @Test
+    public void resetData_withDuplicateDepartments_throwsDuplicateDepartmentException() {
+        // Two persons with the same identity fields
+        Department editedHumanResources = new DepartmentBuilder(HUMAN_RESOURCES).withDepartmentName("Sales").build();
+        List<Person> newPersons = Arrays.asList(ALICE, BENSON, CARL, GEORGE, HOON, IDA);
+        List<Department> newDepartments = Arrays.asList(editedHumanResources, SALES);
+
+        SudoHrStub newData = new SudoHrStub(newPersons, newDepartments);
+
+        assertThrows(DuplicateDepartmentException.class, () -> sudoHr.resetData(newData));
+    }
+
+    @Test
+    public void hasDepartment_nullDepartment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> sudoHr.hasDepartment(null));
+    }
+
+    @Test
+    public void hasDepartment_departmentNotInAddressBook_returnsFalse() {
+        assertFalse(sudoHr.hasDepartment(HUMAN_RESOURCES));
+    }
+
+    @Test
+    public void hasDepartment_departmentInAddressBook_returnsTrue() {
+        sudoHr.addDepartment(ENGINEERING);
+        assertTrue(sudoHr.hasDepartment(ENGINEERING));
+    }
+
+    @Test
+    public void hasDepartment_departmentWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        sudoHr.addDepartment(HUMAN_RESOURCES);
+        Department editedEngineering = new DepartmentBuilder(ENGINEERING).withDepartmentName("Human Resources")
+                .build();
+        assertTrue(sudoHr.hasDepartment(editedEngineering));
+    }
+
+    @Test
+    public void getDepartmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> sudoHr.getDepartmentList().remove(0));
+    }
+
     /**
-     * A stub ReadOnlySudoHr whose persons list can violate interface constraints.
+     * A stub ReadOnlySudoHr whose persons and departments list can violate interface constraints.
      */
     private static class SudoHrStub implements ReadOnlySudoHr {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Department> departments = FXCollections.observableArrayList();
+        private final ObservableList<Leave> leaves = FXCollections.observableArrayList();
 
-        SudoHrStub(Collection<Person> persons) {
+        SudoHrStub(Collection<Person> persons, Collection<Department> departments) {
             this.persons.setAll(persons);
+            this.departments.setAll(departments);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Leave> getLeavesList() {
+            return leaves;
+        }
+
+        @Override
+        public ObservableList<Department> getDepartmentList() {
+            return departments;
         }
     }
 

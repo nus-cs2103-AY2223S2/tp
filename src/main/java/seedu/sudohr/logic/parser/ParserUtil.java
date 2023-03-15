@@ -2,6 +2,8 @@ package seedu.sudohr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,8 +11,11 @@ import java.util.Set;
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.commons.util.StringUtil;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
+import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.person.Address;
 import seedu.sudohr.model.person.Email;
+import seedu.sudohr.model.person.Id;
 import seedu.sudohr.model.person.Name;
 import seedu.sudohr.model.person.Phone;
 import seedu.sudohr.model.tag.Tag;
@@ -23,8 +28,10 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing
+     * whitespaces will be
      * trimmed.
+     * 
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -33,6 +40,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String id} into a {@code Id}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code id} is invalid.
+     */
+    public static Id parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!Id.isValidId(trimmedId)) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
+        }
+        return new Id(trimmedId);
     }
 
     /**
@@ -120,5 +142,54 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String title} into a {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
+    public static Date parseLeaveDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        LocalDate leaveDate;
+        try {
+            leaveDate = LocalDate.parse(trimmedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Date(leaveDate);
+    }
+
+    /**
+     * Parses {@code employeeIndex} into an {@code Index} and returns it. Leading and trailing
+     * whitespaces will be
+     * trimmed.
+     * 
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseEmployeeIndex(String employeeIndex) throws ParseException {
+        String trimmedIndex = employeeIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code DepartmentName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static DepartmentName parseDepartmentName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!DepartmentName.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new DepartmentName(trimmedName);
     }
 }

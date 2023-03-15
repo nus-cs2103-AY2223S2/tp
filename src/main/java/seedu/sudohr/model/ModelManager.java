@@ -11,6 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
+import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.person.Person;
 
 /**
@@ -22,6 +26,8 @@ public class ModelManager implements Model {
     private final SudoHr sudoHr;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Department> filteredDepartments;
+    private final FilteredList<Leave> filteredLeaves;
 
     /**
      * Initializes a ModelManager with the given sudoHr and userPrefs.
@@ -33,14 +39,18 @@ public class ModelManager implements Model {
 
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
+
         filteredPersons = new FilteredList<>(this.sudoHr.getPersonList());
+        filteredLeaves = new FilteredList<>(this.sudoHr.getLeavesList());
+        filteredDepartments = new FilteredList<>(this.sudoHr.getDepartmentList());
     }
 
     public ModelManager() {
         this(new SudoHr(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -75,7 +85,8 @@ public class ModelManager implements Model {
         userPrefs.setSudoHrFilePath(sudoHrFilePath);
     }
 
-    //=========== SudoHr ================================================================================
+    // =========== SudoHr
+    // ================================================================================
 
     @Override
     public void setSudoHr(ReadOnlySudoHr sudoHr) {
@@ -86,6 +97,8 @@ public class ModelManager implements Model {
     public ReadOnlySudoHr getSudoHr() {
         return sudoHr;
     }
+
+    //=========== Person-Level Operations ==============================================================================
 
     @Override
     public boolean hasPerson(Person person) {
@@ -111,10 +124,90 @@ public class ModelManager implements Model {
         sudoHr.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Leave Commands
+    // =============================================================
+
+    @Override
+    public void addLeave(Leave leave) {
+        requireNonNull(leave);
+        sudoHr.addLeave(leave);
+
+    }
+
+    @Override
+    public boolean hasLeave(Leave leave) {
+        requireNonNull(leave);
+        return sudoHr.hasLeave(leave);
+    }
+
+    @Override
+    public ObservableList<Leave> getLeavesList() {
+        return this.sudoHr.getLeavesList();
+    }
+
+    @Override
+    public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
+        
+        if (sudoHr.hasLeave(leaveToAdd)) {
+            return sudoHr.getLeave(leaveToAdd);
+        } else {
+            sudoHr.addLeave(leaveToAdd);
+            return leaveToAdd;
+        }
+    }
+
+    @Override
+    public boolean hasEmployeeOnLeave(Date date, Person person) {
+        requireAllNonNull(date, person);
+        return sudoHr.hasEmployeeOnLeave(date, person);
+    }
+
+    @Override
+    public void addEmployeeToLeave(Leave leaveToAdd, Person personToAdd) {
+        requireAllNonNull(leaveToAdd, personToAdd);
+
+        sudoHr.addEmployeeToLeave(leaveToAdd, personToAdd);
+    }
+
+    @Override
+    public void deleteEmployeeFromLeave(Leave leaveToDelete, Person personToDelete) {
+        requireAllNonNull(leaveToDelete, personToDelete);
+
+        sudoHr.deleteEmployeeFromLeave(leaveToDelete, personToDelete);
+    }
+
+    @Override
+    public void cascadeUpdateUserInLeaves(Person personToEdit, Person editedPerson) {
+        requireAllNonNull(personToEdit, editedPerson);
+        sudoHr.cascadeUpdateUserInLeaves(personToEdit, editedPerson);
+    }
+
+    @Override
+    public void cascadeDeleteUserInLeaves(Person personToDelete) {
+        requireAllNonNull(personToDelete);
+        sudoHr.cascadeDeleteUserInLeaves(personToDelete);
+    }
+
+    // =========== Filtered Leave List Accessors
+    // =============================================================
+
+    @Override
+    public ObservableList<Leave> getFilteredLeaveList() {
+        return filteredLeaves;
+    }
+
+    @Override
+    public void updateFilteredLeaveList(Predicate<Leave> predicate) {
+        requireNonNull(predicate);
+        filteredLeaves.setPredicate(predicate);
+    }
+
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedSudoHr}
      */
     @Override
@@ -126,6 +219,61 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Department-Level Operations ==========================================================================
+
+    @Override
+    public Department getDepartment(DepartmentName name) {
+        return sudoHr.getDepartment(name);
+    }
+
+    @Override
+    public boolean hasDepartment(Department department) {
+        requireNonNull(department);
+        return sudoHr.hasDepartment(department);
+    }
+
+    @Override
+    public void addDepartment(Department d) {
+        sudoHr.addDepartment(d);
+    }
+
+    @Override
+    public void setDepartment(Department target, Department editedDepartment) {
+        sudoHr.setDepartment(target, editedDepartment);
+    }
+
+    @Override
+    public void removeDepartment(Department key) {
+        sudoHr.removeDepartment(key);
+    }
+
+    @Override
+    public void addEmployeeToDepartment(Person p, Department d) {
+        sudoHr.addEmployeeToDepartment(p, d);
+    }
+
+    @Override
+    public void removeEmployeeFromDepartment(Person p, Department d) {
+        sudoHr.removeEmployeeFromDepartment(p, d);
+    }
+
+    //=========== Filtered Department List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Department} backed by the internal list of
+     * {@code versionedsudoHr}
+     */
+    @Override
+    public ObservableList<Department> getFilteredDepartmentList() {
+        return filteredDepartments;
+    }
+
+    @Override
+    public void updateFilteredDepartmentList(Predicate<Department> predicate) {
+        requireNonNull(predicate);
+        filteredDepartments.setPredicate(predicate);
     }
 
     @Override
@@ -146,5 +294,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

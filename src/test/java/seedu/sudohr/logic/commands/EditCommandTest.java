@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -12,7 +13,7 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.sudohr.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.sudohr.testutil.TypicalPersons.getTypicalSudoHr;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,7 @@ import seedu.sudohr.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSudoHr(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -54,10 +55,10 @@ public class EditCommandTest {
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Person editedPerson = personInList.withId(VALID_ID_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withId(VALID_ID_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
@@ -70,7 +71,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_success() { // allows all fields to be null TODO
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
