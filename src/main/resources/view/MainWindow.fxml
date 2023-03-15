@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Trackr" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Trackr" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -39,14 +39,14 @@
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-               <TabPane minWidth="340.0" prefWidth="340.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+               <TabPane minWidth="340.0" prefHeight="44.0" prefWidth="322.0" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                  <tabs>
                    <Tab text="Home">
-                        <content>
-                      <StackPane fx:id="taskListPanelPlaceholder" />
-                        </content>
+                      <content>
+                        <StackPane fx:id="taskListPanelPlaceholder" styleClass="pane-with-border" />
+                      </content>
                    </Tab>
-                   <Tab text="AddressBook">
+                   <Tab text="Suppliers">
                      <content>
                        <StackPane fx:id="supplierListPanelPlaceholder" />
                      </content>
@@ -55,11 +55,6 @@
                         <content>
                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is a placeholder for ORDERS." />
                         </content></Tab>
-                     <Tab text="Suppliers">
-                        <content>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is a placeholder for SUPPLIERS" />
-                        </content>
-                     </Tab>
                  </tabs>
                </TabPane>
         </VBox>

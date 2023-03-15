@@ -33,16 +33,32 @@
     -fx-padding: 0 0 0 1;
 }
 
-.tab-pane .tab-header-area {
+.tab-pane .tab-header-area .tab-header-background {
     -fx-padding: 0 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
+    -fx-background-color: #f9f9f9;
+    -fx-effect: null;
+}
+
+.tab {
+    -fx-background-color: -fx-background;
+    -fx-background: #f9f9f9;
+    -fx-background-insets: 0, 1;
+}
+
+.tab:hover {
+    -fx-background: #cae1ff;
+}
+
+.tab:selected {
+    -fx-background: #2eabff;
 }
 
 .table-view {
     -fx-base: #f9f9f9;
     -fx-control-inner-background: #f9f9f9;
-    -fx-background-color: #f9f9f9;
+    -fx-background: #f9f9f9;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -90,13 +106,14 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#f9f9f9, 20%);
+    -fx-background-color: derive(#f9f9f9, 100%);
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: #efefef;
 }
 
 .list-cell:filled:even {
@@ -347,7 +364,7 @@
 
 #tags .label {
     -fx-text-fill: rgb(0, 0, 0);
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #cae1ff;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 3;
     -fx-background-radius: 3;
@@ -365,5 +382,5 @@
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 3;
     -fx-background-radius: 3;
-    -fx-font-size: 12;
+    -fx-font-size: 11;
 }
