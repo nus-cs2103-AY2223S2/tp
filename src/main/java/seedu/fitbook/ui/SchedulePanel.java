@@ -14,7 +14,7 @@ import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.ClientAppointmentComparator;
 
 /**
- * Panel containing the list of clients.
+ * Panel containing the list of appointments.
  */
 public class SchedulePanel extends UiPart<Region> {
     private static final String FXML = "SchedulePanel.fxml";
@@ -24,7 +24,7 @@ public class SchedulePanel extends UiPart<Region> {
     private ListView<Client> scheduleView;
 
     /**
-     * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
+     * Creates a {@code SchedulePanel} with the given {@code ObservableList}.
      */
     public SchedulePanel(ObservableList<Client> scheduleList) {
         super(FXML);
@@ -39,7 +39,7 @@ public class SchedulePanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Client} using a {@code ClientCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code ScheduleCard}.
      */
     class ScheduleViewCell extends ListCell<Client> {
         @Override
