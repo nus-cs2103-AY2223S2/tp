@@ -48,14 +48,19 @@ public class ImageUtil {
     }
 
     /**
-     * Delete imag egiven file name.
+     * Delete image given file name.
      * @param fileName Name of file to be deleted.
+     * @return false if image does not exist, true if deletion is successful.
      * @throws IOException when file I/O is unsuccessful.
      */
-    public static void deleteImage(String fileName) throws IOException {
+    public static boolean deleteImage(String fileName) throws IOException {
         try {
             Path path = Paths.get(IMAGE_PATH + fileName);
+            if (!Files.exists(path)) {
+                return false;
+            }
             Files.delete(path);
+            return true;
         } catch (IOException io) {
             throw io;
         }
