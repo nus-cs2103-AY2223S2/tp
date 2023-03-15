@@ -9,6 +9,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -26,6 +27,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private SocialMedia socialMedia;
     private Set<Tag> tags;
     private Birthday birthday;
 
@@ -37,6 +39,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        socialMedia = SocialMedia.create();
         tags = new HashSet<>();
     }
 
@@ -48,6 +51,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone().get();
         email = personToCopy.getEmail().get();
         address = personToCopy.getAddress().get();
+        socialMedia = personToCopy.getSocialMedia().orElse(SocialMedia.create());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -103,6 +107,16 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code SocialMedia} of the {@code Person} that we are building.
+     *
+     * @return a person with the given details.
+     */
+    public PersonBuilder withSocialMedia(SocialMedia socialMedia) {
+        this.socialMedia = socialMedia;
+        return this;
+    }
+
+    /**
      * Builds a person with the given details.
      *
      * @return a person with the given details.
@@ -122,8 +136,13 @@ public class PersonBuilder {
             p.setAddress(address);
         }
 
+        if (socialMedia != null) {
+            p.setSocialMedia(socialMedia);
+        }
+
         if (birthday != null) {
             p.setBirthday(birthday);
+
         }
 
         return p;

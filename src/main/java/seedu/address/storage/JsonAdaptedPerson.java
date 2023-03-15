@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private JsonAdaptedPhone phone = new JsonAdaptedPhone();
     private JsonAdaptedEmail email = new JsonAdaptedEmail();
     private JsonAdaptedAddress address = new JsonAdaptedAddress();
+    private JsonAdaptedSocialMedia socialMedia = new JsonAdaptedSocialMedia();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private JsonAdaptedBirthday birthday = new JsonAdaptedBirthday();
 
@@ -39,6 +41,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") JsonAdaptedPhone phone,
             @JsonProperty("email") JsonAdaptedEmail email, @JsonProperty("address") JsonAdaptedAddress address,
+            @JsonProperty("socialMedia") JsonAdaptedSocialMedia socialMedia,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("birthday") JsonAdaptedBirthday birthday) {
         this.name = name;
@@ -50,6 +53,9 @@ class JsonAdaptedPerson {
         }
         if (address != null) {
             this.address = address;
+        }
+        if (socialMedia != null) {
+            this.socialMedia = socialMedia;
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -78,6 +84,10 @@ class JsonAdaptedPerson {
 
         if (source.getAddress().isPresent()) {
             address = new JsonAdaptedAddress(source.getAddress().get());
+        }
+
+        if (source.getSocialMedia().isPresent()) {
+            socialMedia = new JsonAdaptedSocialMedia(source.getSocialMedia().get());
         }
 
         if (source.getBirthday().isPresent()) {
@@ -134,6 +144,13 @@ class JsonAdaptedPerson {
             Optional<Birthday> modelBirthday = birthday.toModelType();
             if (modelBirthday.isPresent()) {
                 p.setBirthday(modelBirthday.get());
+            }
+        }
+
+        if (socialMedia != null) {
+            Optional<SocialMedia> modelSocialMedia = socialMedia.toModelType();
+            if (modelSocialMedia.isPresent()) {
+                p.setSocialMedia(modelSocialMedia.get());
             }
         }
 

@@ -62,6 +62,16 @@
           <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
         </children>
       </HBox>
+      <HBox id="socialMediaContainer" fx:id="socialMediaContainer" spacing="4">
+        <children>
+          <ImageView fitHeight="57.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../images/socialMedia.png" />
+            </image>
+          </ImageView>
+          <Label fx:id="socialMedia" styleClass="cell_small_label" text="\$socialMedia" />
+        </children>
+      </HBox>
       <HBox id="birthdayContainer" fx:id="birthdayContainer" spacing="4">
         <children>
           <ImageView fitHeight="57.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
