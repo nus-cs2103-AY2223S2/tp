@@ -1,5 +1,5 @@
 .background {
-    -fx-background-color: derive(#ff0000, 20%);
+    -fx-background-color: derive(#f9f9f9, 20%);
     background-color: #f9f9f9; /* Used in the default.html file */
 }
 
@@ -13,14 +13,14 @@
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: rgb(36, 36, 36);
+    -fx-text-fill: #1f1f1f;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: rgb(36, 36, 36);
+    -fx-text-fill: #1f1f1f;
     -fx-opacity: 1;
 }
 
@@ -29,68 +29,68 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+/*-----------------------------------------------------------------------------------------------*\
+pane-with-border
+
+Styles VBox and StackPane that contains elements in the MainWindow
+\*-----------------------------------------------------------------------------------------------*/
+.pane-with-border {
+     -fx-background-color: derive(#f9f9f9, 20%);
+     -fx-border-color: derive(#f9f9f9, 10%);
+     -fx-border-top-width: 0px;
+}
+
+/*-----------------------------------------------------------------------------------------------*\
+TabPane
+
+Styles TabPane that contains ListView of tasks and suppliers
+\*-----------------------------------------------------------------------------------------------*/
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }
 
-.tab-pane .tab-header-area {
+/**
+* TabPane Headers
+*
+* Modifies tab header region to blend in with the background by matching background color
+*/
+.tab-pane .tab-header-area .tab-header-background {
     -fx-padding: 0 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
-}
-
-.table-view {
-    -fx-base: #f9f9f9;
-    -fx-control-inner-background: #f9f9f9;
     -fx-background-color: #f9f9f9;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
+    -fx-effect: null;
 }
 
-.table-view .column-header-background {
-    -fx-background-color: transparent;
+/**
+* Modifies tabs and its states
+*/
+.tab {
+    -fx-background-color: -fx-background;
+    -fx-background: #e1e1e1;
+    -fx-background-insets: 0, 0;
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
 }
 
-.table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 0 0;
-    -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
-    -fx-border-insets: 0 10 1 0;
+.tab:hover {
+    -fx-background: #cae1ff;
 }
 
-.table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: rgb(36, 36, 36);
-    -fx-alignment: center-left;
-    -fx-opacity: 1;
+.tab:selected {
+    -fx-background: #2eabff;
 }
 
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
+/*-----------------------------------------------------------------------------------------------*\
+ListView
 
-.split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#f9f9f9, 20%);
-    -fx-border-color: transparent transparent transparent #f9f9f9;
-}
-
-.split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: derive(#f9f9f9, 20%);
-}
-
+Styles SupplierListPanel and TaskListPanel contained by ListView
+ListView contains `cells`. Contents of `cells` are populated from `{Object}Card`
+\*-----------------------------------------------------------------------------------------------*/
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#f9f9f9, 20%);
+    -fx-background-color: derive(#f9f9f9, 100%);
 }
 
 .list-cell {
@@ -98,6 +98,7 @@
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
 }
+
 
 .list-cell:filled:even {
     -fx-background-color: #f9f9f9;
@@ -109,9 +110,6 @@
 
 .list-cell:filled:selected {
     -fx-background-color: #6bc4ff;
-}
-
-.list-cell:filled:selected #cardPane {
     -fx-border-color: #2eabff;
     -fx-border-width: 1;
 }
@@ -120,43 +118,102 @@
     -fx-text-fill: #1f1f1f;
 }
 
+/* Styles index and name */
 .cell_big_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 16px;
     -fx-text-fill: #1f1f1f;
 }
 
+/* Styles fields */
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #1f1f1f;
 }
 
-.stack-pane {
-    -fx-background-color: derive(#e1e1e1, 20%);
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
+/*-----------------------------------------------------------------------------------------------*\
+Cards
+
+Styles SupplierCard and TaskCard
+\*-----------------------------------------------------------------------------------------------*/
+#cardPane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
 }
 
-.pane-with-border {
-     -fx-background-color: derive(#f9f9f9, 20%);
-     -fx-border-color: derive(#f9f9f9, 10%);
-     -fx-border-top-width: 0px;
+#commandTypeLabel {
+    -fx-font-size: 11px;
+    -fx-text-fill: #6bc4ff;
 }
 
+
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 5;
+}
+
+#tags .label {
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-background-color: #cae1ff;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-font-size: 11;
+}
+
+#taskField {
+    -fx-hgap: 7;
+    -fx-vgap: 5;
+}
+
+#taskField .label {
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-background-color: #cae1ff;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-font-size: 11;
+}
+
+/*-----------------------------------------------------------------------------------------------*\
+scroll-bar
+
+Styles the scroll bar visible. With JavaFX, ListView is automatically scrollable
+\*-----------------------------------------------------------------------------------------------*/
+.scroll-bar {
+    -fx-background-color: derive(#f9f9f9, 20%);
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: derive(#6f6f6f, 50%);
+    -fx-background-insets: 3;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 8 1 8;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 8 1 8 1;
+}
+
+/*-----------------------------------------------------------------------------------------------*\
+status-bar
+
+Styles the StatusBarFooter present at the bottom of the window
+\*-----------------------------------------------------------------------------------------------*/
 .status-bar {
     -fx-background-color: derive(#6bc4ff, 30%);
-}
-
-.result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13pt;
-    -fx-text-fill: #1f1f1f;
-}
-
-.result-display .label {
-    -fx-text-fill: #1f1f1f !important;
 }
 
 .status-bar .label {
@@ -176,24 +233,54 @@
     -fx-text-fill: #1f1f1f;
 }
 
-.grid-pane {
-    -fx-background-color: derive(#f9f9f9, 30%);
-    -fx-border-color: derive(#f9f9f9, 30%);
-    -fx-border-width: 1px;
-}
+/*-----------------------------------------------------------------------------------------------*\
+result-display
 
-.grid-pane .stack-pane {
-    -fx-background-color: derive(#f9f9f9, 30%);
-}
-
-.context-menu {
-    -fx-background-color: derive(#f9f9f9, 50%);
-}
-
-.context-menu .label {
+Styles the ResultDisplay encapsulated by StackPane
+\*-----------------------------------------------------------------------------------------------*/
+.result-display {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13pt;
     -fx-text-fill: #1f1f1f;
 }
 
+.result-display .label {
+    -fx-text-fill: #1f1f1f !important;
+}
+
+#resultDisplay .content {
+    -fx-background-color: derive(#e1e1e1, 20%);
+    -fx-background-radius: 10;
+}
+
+/*-----------------------------------------------------------------------------------------------*\
+commandTextField
+
+Styles the user input in the CommandBox
+Invalid Command highlighted by `CommandBox::handleCommandEntered` with `Extensions.css`
+\*-----------------------------------------------------------------------------------------------*/
+.stack-pane {
+    -fx-background-color: derive(#e1e1e1, 20%);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+
+#commandTextField {
+    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-border-width: 0;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13pt;
+    -fx-text-fill: #1f1f1f;
+}
+
+/*-----------------------------------------------------------------------------------------------*\
+menu-bar
+
+Styles the menu bar and dropdown encapsulated by MenuItem in MainWindow
+\*-----------------------------------------------------------------------------------------------*/
 .menu-bar {
     -fx-border-width: 1px;
     -fx-border-color: derive(#e3e3e3, 20%);
@@ -207,8 +294,15 @@
     -fx-opacity: 0.9;
 }
 
-.menu .left-container {
-    -fx-background-color: #1f1f1f;
+/*
+* Styles the dropdown menu
+*/
+.context-menu {
+    -fx-background-color: derive(#e3e3e3, 50%);
+}
+
+.context-menu .label {
+    -fx-text-fill: #1f1f1f;
 }
 
 /*
@@ -258,126 +352,4 @@
 
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color, 30%);
-}
-
-.dialog-pane {
-    -fx-background-color: #1d1d1d;
-}
-
-.dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1d1d1d;
-}
-
-.dialog-pane > *.label.content {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-}
-
-.dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
-}
-
-.dialog-pane:header *.header-panel *.label {
-    -fx-font-size: 18px;
-    -fx-font-style: italic;
-    -fx-fill: white;
-    -fx-text-fill: white;
-}
-
-.scroll-bar {
-    -fx-background-color: derive(#f9f9f9, 20%);
-}
-
-.scroll-bar .thumb {
-    -fx-background-color: derive(#6f6f6f, 50%);
-    -fx-background-insets: 3;
-}
-
-.scroll-bar .increment-button, .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
-    -fx-padding: 0 0 0 0;
-}
-
-.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
-    -fx-shape: " ";
-}
-
-.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
-}
-
-.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
-}
-
-#cardPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-}
-
-#commandTypeLabel {
-    -fx-font-size: 11px;
-    -fx-text-fill: #6bc4ff;
-}
-
-#commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
-    -fx-background-insets: 0;
-    -fx-border-insets: 0;
-    -fx-border-width: 0;
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13pt;
-    -fx-text-fill: #1f1f1f;
-}
-
-#filterField, #personListPanel, #personWebpage {
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
-}
-
-#resultDisplay .content {
-     -fx-background-color: derive(#e1e1e1, 20%);
-    -fx-background-radius: 10;
-}
-
-#tags {
-    -fx-hgap: 7;
-    -fx-vgap: 5;
-}
-
-#tags .label {
-    -fx-text-fill: rgb(0, 0, 0);
-    -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 3;
-    -fx-background-radius: 3;
-    -fx-font-size: 11;
-}
-
-#taskField {
-    -fx-hgap: 7;
-    -fx-vgap: 5;
-}
-
-#taskField .label {
-    -fx-text-fill: rgb(0, 0, 0);
-    -fx-background-color: #cae1ff;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 3;
-    -fx-background-radius: 3;
-    -fx-font-size: 12;
-}
-
-#orderField {
-    -fx-hgap: 7;
-    -fx-vgap: 5;
-}
-
-#orderField .label {
-    -fx-text-fill: rgb(0, 0, 0);
-    -fx-background-color: #396093;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 3;
-    -fx-background-radius: 3;
-    -fx-font-size: 12;
 }
