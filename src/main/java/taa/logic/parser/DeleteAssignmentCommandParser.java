@@ -15,7 +15,6 @@ import taa.model.student.Name;
  * Parses input arguments and creates a new DeleteStudentCommand object
  */
 public class DeleteAssignmentCommandParser implements Parser<DeleteAssignmentCommand> {
-    // format is asgn_delete n/{name}
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteAssignmentCommand
@@ -30,7 +29,7 @@ public class DeleteAssignmentCommandParser implements Parser<DeleteAssignmentCom
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddStudentCommand.MESSAGE_USAGE));
+                    DeleteAssignmentCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

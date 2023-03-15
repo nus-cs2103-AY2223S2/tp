@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.collections.transformation.FilteredList;
+import taa.logic.commands.exceptions.CommandException;
 import taa.model.student.Student;
 
 /**
@@ -17,9 +18,9 @@ public class AssignmentList {
      * @param assignmentName
      * @param sl
      */
-    public void add(String assignmentName, FilteredList<Student> sl) {
+    public void add(String assignmentName, FilteredList<Student> sl) throws CommandException {
         if (assignmentMap.containsKey(assignmentName)) {
-            System.out.println("Duplicate assignment name: " + assignmentName);
+            throw new CommandException("Duplicate assignment name: " + assignmentName);
         } else {
             Assignment a = new Assignment(assignmentName, sl);
             assignments.add(a);
@@ -30,9 +31,9 @@ public class AssignmentList {
     /**
      * @param assignmentName
      */
-    public void delete(String assignmentName) {
+    public void delete(String assignmentName) throws CommandException {
         if (!assignmentMap.containsKey(assignmentName)) {
-            System.out.println("Assignment: " + assignmentName + " not found");
+            throw new CommandException("Assignment: " + assignmentName + " not found");
         } else {
             assignments.remove(assignmentMap.remove(assignmentName));
         }

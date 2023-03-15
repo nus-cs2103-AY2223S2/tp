@@ -30,7 +30,7 @@ public class AddAssignmentCommandParser implements Parser<AddAssignmentCommand> 
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddStudentCommand.MESSAGE_USAGE));
+                    AddAssignmentCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
