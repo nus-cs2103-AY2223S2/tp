@@ -19,25 +19,25 @@ import seedu.address.model.internship.Internship;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final InternBuddy internBuddy;
     private final UserPrefs userPrefs;
     private final FilteredList<Internship> filteredInternships;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given internBuddy and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyInternBuddy internBuddy, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(internBuddy, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + internBuddy + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.internBuddy = new InternBuddy(internBuddy);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
+        filteredInternships = new FilteredList<>(this.internBuddy.getInternshipList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new InternBuddy(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,42 +65,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getInternBuddyFilePath() {
+        return userPrefs.getInternBuddyFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setInternBuddyFilePath(Path internBuddyFilePath) {
+        requireNonNull(internBuddyFilePath);
+        userPrefs.setInternBuddyFilePath(internBuddyFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== InternBuddy ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setInternBuddy(ReadOnlyInternBuddy internBuddy) {
+        this.internBuddy.resetData(internBuddy);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyInternBuddy getInternBuddy() {
+        return internBuddy;
     }
 
     @Override
     public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
-        return addressBook.hasInternship(internship);
+        return internBuddy.hasInternship(internship);
     }
 
     @Override
     public void deleteInternship(Internship target) {
-        addressBook.removeInternship(target);
+        internBuddy.removeInternship(target);
     }
 
     @Override
     public void addInternship(Internship internship) {
-        addressBook.addInternship(internship);
+        internBuddy.addInternship(internship);
         updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
     }
 
@@ -108,14 +108,14 @@ public class ModelManager implements Model {
     public void setInternship(Internship target, Internship editedInternship) {
         requireAllNonNull(target, editedInternship);
 
-        addressBook.setInternship(target, editedInternship);
+        internBuddy.setInternship(target, editedInternship);
     }
 
     //=========== Filtered Internship List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Internship} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedInternBuddy}
      */
     @Override
     public ObservableList<Internship> getFilteredInternshipList() {
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return internBuddy.equals(other.internBuddy)
                 && userPrefs.equals(other.userPrefs)
                 && filteredInternships.equals(other.filteredInternships);
     }
