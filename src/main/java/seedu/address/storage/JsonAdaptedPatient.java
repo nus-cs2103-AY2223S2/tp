@@ -5,11 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.NRIC;
 import seedu.address.model.patient.Status;
 
-import java.util.Stack;
 
 /**
  * Jackson-friendly version of {@link Patient}.
@@ -62,12 +61,12 @@ class JsonAdaptedPatient {
         final Name modelName = new Name(name);
 
         if (nric == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NRIC.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
         }
-        if (!NRIC.isValidNRIC(nric)) {
-            throw new IllegalValueException(NRIC.MESSAGE_CONSTRAINTS);
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
-        final NRIC modelNric = new NRIC(nric);
+        final Nric modelNric = new Nric(nric);
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));

@@ -12,14 +12,17 @@ import java.util.Objects;
 public class Patient {
 
     // Identity fields
-    private final NRIC nric;
+    private final Nric nric;
     private final Name name;
 
     // Data fields
     private Status status = new Status("GRAY");
     private Ward ward = new Ward("Waiting Room");
 
-    public Patient(NRIC nric, Name name) {
+    /**
+     * Every field must be present and not null.
+     */
+    public Patient(Nric nric, Name name) {
         requireAllNonNull(nric, name);
         this.nric = nric;
         this.name = name;
@@ -32,14 +35,14 @@ public class Patient {
         this.status = status;
     }
 
-    public Patient(NRIC nric, Name name, Ward ward) {
+    public Patient(Nric nric, Name name, Ward ward) {
         requireAllNonNull(nric, name, ward);
         this.nric = nric;
         this.name = name;
         this.ward = ward;
     }
 
-    public Patient(NRIC nric, Name name, Status status, Ward ward) {
+    public Patient(Nric nric, Name name, Status status, Ward ward) {
         requireAllNonNull(nric, name, status, ward);
         this.nric = nric;
         this.name = name;
@@ -47,7 +50,7 @@ public class Patient {
         this.ward = ward;
     }
 
-    public NRIC getNric() {
+    public Nric getNric() {
         return nric;
     }
 
