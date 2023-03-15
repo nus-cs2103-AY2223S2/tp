@@ -22,52 +22,52 @@
                         <Insets bottom="5" left="15" right="5" top="5" />
                     </padding>
                     <children>
-                        <HBox alignment="CENTER_LEFT" spacing="5">
+                        <HBox spacing="5">
                             <children>
                                 <Label styleClass="cell_big_label" text="Name: ">
                                     <minWidth>
                                         <Region fx:constant="USE_PREF_SIZE" />
                                     </minWidth>
                                 </Label>
-                                <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                                <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
                             </children>
                         </HBox>
                         <FlowPane fx:id="languages" />
                         <FlowPane fx:id="tags" />
-                        <HBox alignment="CENTER_LEFT" spacing="5">
+                        <HBox spacing="5">
                             <children>
                                 <Label styleClass="cell_big_label" text="GitHub: ">
                                     <minWidth>
                                         <Region fx:constant="USE_PREF_SIZE" />
                                     </minWidth>
                                 </Label>
-                                <Label fx:id="profile" styleClass="cell_big_label" text="\$GitHub" />
+                                <Label fx:id="profile" styleClass="cell_big_label" text="\$GitHub" wrapText="true" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="5">
+                        <HBox spacing="5">
                             <children>
                                 <Label minWidth="-Infinity" styleClass="cell_big_label" text="Phone:" />
-                                <Label fx:id="phone" styleClass="cell_big_label" text="\$phone" />
+                                <Label fx:id="phone" styleClass="cell_big_label" text="\$phone" wrapText="true" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="5">
+                        <HBox spacing="5">
                             <children>
                                 <Label styleClass="cell_big_label" text="Address:">
                                     <minWidth>
                                         <Region fx:constant="USE_PREF_SIZE" />
                                     </minWidth>
                                 </Label>
-                                <Label fx:id="address" styleClass="cell_big_label" text="\$address" />
+                                <Label fx:id="address" styleClass="cell_big_label" text="\$address" wrapText="true" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="5">
+                        <HBox spacing="5">
                             <children>
                                 <Label styleClass="cell_big_label" text="Email:">
                                     <minWidth>
                                         <Region fx:constant="USE_PREF_SIZE" />
                                     </minWidth>
                                 </Label>
-                                <Label fx:id="email" styleClass="cell_big_label" text="\$email" />
+                                <Label fx:id="email" styleClass="cell_big_label" text="\$email" wrapText="true" />
                             </children>
                         </HBox>
                     </children>
