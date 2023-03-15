@@ -11,6 +11,7 @@ public class Task {
     protected boolean isDone;
     private final TaskDescription description;
     private Index personAssignedIndex;
+    private String personAssignedName;
 
     /**
      * The constructor of the Task that takes in description of the task.
@@ -19,6 +20,7 @@ public class Task {
         this.description = description;
         this.isDone = false;
         this.personAssignedIndex = null;
+        this.personAssignedName = null;
     }
 
     /**
@@ -53,8 +55,9 @@ public class Task {
      *
      * @param personIndex Index of the person to be assigned to the current task
      */
-    public void assignPerson(Index personIndex) {
+    public void assignPerson(Index personIndex, String personName) {
         this.personAssignedIndex = personIndex;
+        this.personAssignedName = personName;
     }
 
     /**
@@ -63,8 +66,19 @@ public class Task {
      * @return Index index of the person assigned to the current task
      */
     public Index getPersonAssignedIndex() {
-        return this.personAssignedIndex;
+        return personAssignedIndex;
     }
+
+    /**
+     * Supplies the name of the person assigned to the current task when requested.
+     *
+     * @return String name of the person assigned to the current task
+     */
+    public String getPersonAssignedName() {
+        return personAssignedName;
+    }
+
+
 
     /**
      * Changes status of current task as done by assigning isDone as true.

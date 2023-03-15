@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -18,6 +17,9 @@ import seedu.address.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -114,12 +116,20 @@ public interface Model {
      */
     void unmarkTask(Task task);
 
+    // /**
+    //  * Assign a task to a person.
+    //  * @param taskIndex
+    //  * @param personIndex
+    //  */
+    // void assignTask(Index taskIndex, Index personIndex);
+
     /**
-     * Assign a task to a person.
+     * Replace the task to be assigned with the assigned task.
+     * @param taskToAssign
+     * @param assignedTask
      * @param taskIndex
-     * @param personIndex
      */
-    void assignTask(Index taskIndex, Index personIndex);
+    void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -137,5 +147,11 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    List<Task> getFilteredTaskList();
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
 }
