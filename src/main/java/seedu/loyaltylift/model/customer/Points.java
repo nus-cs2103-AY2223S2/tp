@@ -7,6 +7,14 @@ import static java.util.Objects.requireNonNull;
  * The minimum points a customer can have is 0.
  */
 public class Points {
+
+    public static final String MESSAGE_CONSTRAINTS = "Points must be a positive integer "
+            + "and can only range from 0 to 999 999";
+
+    public static final Integer MAXIMUM_POINTS = 999999;
+    public static final Integer MINIMUM_POINTS = 0;
+
+
     public final Integer value;
 
     /**
@@ -18,6 +26,14 @@ public class Points {
         requireNonNull(points);
         value = points;
     }
+
+    /**
+     * Returns true if a given point is valid.
+     */
+    public static boolean isValidPoints(Integer test) {
+        return (test >= MINIMUM_POINTS && test <= MAXIMUM_POINTS);
+    }
+
 
     @Override
     public String toString() {
