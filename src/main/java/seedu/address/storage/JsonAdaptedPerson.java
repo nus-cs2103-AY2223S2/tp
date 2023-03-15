@@ -10,7 +10,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Deadline;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Teacher;
+import seedu.address.model.person.TimeSlot;
+import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,7 +100,8 @@ class JsonAdaptedPerson {
         final Type modelType = new Type(type);
 
         if (timeSlot == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeSlot.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TimeSlot.class.getSimpleName()));
         }
         if (!TimeSlot.isValidTimeSlot(timeSlot)) {
             throw new IllegalValueException(TimeSlot.MESSAGE_CONSTRAINTS);
@@ -116,7 +124,8 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
         final Deadline modelDeadline = new Deadline(deadline);
         final Teacher modelTeacher = new Teacher(teacher);
-        return new Person(modelName, modelType, modelTimeSlot, modelAddress, modelTags, modelRemark, modelDeadline, modelTeacher);
+        return new Person(modelName, modelType, modelTimeSlot, modelAddress, modelTags, modelRemark,
+                modelDeadline, modelTeacher);
     }
 
 }
