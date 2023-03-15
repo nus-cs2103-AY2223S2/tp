@@ -41,11 +41,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = parsePrefixIfPresent(argMultimap, PREFIX_PHONE, ParserUtil::parsePhone);
-        //Phone phone = ParserUtil.parsePhone();
         Email email = parsePrefixIfPresent(argMultimap, PREFIX_EMAIL, ParserUtil::parseEmail);
-        //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(null));
         Address address = parsePrefixIfPresent(argMultimap, PREFIX_ADDRESS, ParserUtil::parseAddress);
-        //Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
