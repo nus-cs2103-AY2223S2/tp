@@ -71,7 +71,8 @@ class JsonAdaptedPerson {
         }
     }
 
-    public JsonAdaptedPerson(String name, String phone, String email, String address, String age, List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPerson(String name, String phone, String email, String address,
+                             String age, List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
