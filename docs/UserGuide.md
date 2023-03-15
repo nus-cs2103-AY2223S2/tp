@@ -113,7 +113,7 @@ Examples:
 
 Sets a customer's reward points.
 
-Format: `setpoints INDEX POINTS`
+Format: `setpoints INDEX pt/POINTS`
 
 * Sets the points of the customer at the specified `INDEX` to `POINTS`.
 * Customers by default, have 0 points initially.
@@ -121,10 +121,11 @@ Format: `setpoints INDEX POINTS`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The points refers to the reward points of the customer
 * The points **must be a positive integer** 1, 2, 3, ​​…
+* The points can only range from 0 to 999999
 
 Examples:
-* `listc` followed by `setpoints 2 100` sets the 2nd customer points as 100.
-* `findc Betsy` followed by `setpoints 1 300` sets the 1st customer points as 300 in the results of the `findc` command.
+* `listc` followed by `setpoints 2 pt/100` sets the 2nd customer points as 100.
+* `findc Betsy` followed by `setpoints 1 pt/300` sets the 1st customer points as 300 in the results of the `findc` command.
 
 ### Adding points for a customer / Removing points from a customer : `addpoints`
 
@@ -159,8 +160,10 @@ Format: `settier TIER_NUM POINT_THRESHOLD`
 * The points **must be a positive integer** 1, 2, 3, ​​…
 
 Examples:
-* `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be in tier 1.
-* `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold than tier 2. 
+* `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be
+in tier 1.
+* `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold
+than tier 2.
 
 ### Editing a person : `editc`
 

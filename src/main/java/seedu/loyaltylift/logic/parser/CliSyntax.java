@@ -13,4 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_CUSTOMER_TYPE = new Prefix("ct/");
 
+    public static final Prefix PREFIX_POINTS = new Prefix("pt/");
+
+
 }

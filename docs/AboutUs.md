@@ -26,7 +26,7 @@ as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS210
 
 * Role: Developer
 
-### Dawson Lui
+### Dawson Nui
 
 <img src="images/infrix.png" width="200px">
 

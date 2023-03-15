@@ -14,6 +14,7 @@ import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -135,5 +136,27 @@ public class ParserUtil {
             throw new ParseException(CustomerType.MESSAGE_FAIL_CONVERSION);
         }
         return type;
+    }
+
+    /**
+     * Parses a {@code String points} into an {@code Points}.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static Points parsePoints(String points) throws ParseException {
+        requireNonNull(points);
+        String trimmedPoints = points.trim();
+        Integer integerTrimmedPoints;
+        try {
+            integerTrimmedPoints = Integer.valueOf(trimmedPoints);
+        } catch (NumberFormatException e) {
+            // integerTrimmedPoints is a string that cannot be parsed
+            throw new ParseException(Points.MESSAGE_CONSTRAINTS);
+        }
+        if (!Points.isValidPoints(integerTrimmedPoints) || trimmedPoints.compareTo("-0") == 0) {
+            // integerTrimmedPoints is an integer that is not within the range of 0 to 999999
+            throw new ParseException(Points.MESSAGE_CONSTRAINTS);
+        }
+        return new Points(integerTrimmedPoints);
     }
 }
