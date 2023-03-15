@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -43,7 +44,7 @@ public class UniquePersonListTest {
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
@@ -86,7 +87,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);
@@ -107,6 +108,23 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    }
+
+    @Test
+    public void getPersonByName_nullName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.getPersonByName(null));
+    }
+
+    @Test
+    public void getPersonByName_personNotInList_throwsPersonNotFoundException() {
+        assertNull(uniquePersonList.getPersonByName(ALICE.getName()));
+    }
+
+    @Test
+    public void getPersonByName_personInList_returnsPerson() {
+        uniquePersonList.add(ALICE);
+        Person person = uniquePersonList.getPersonByName(ALICE.getName());
+        assertEquals(ALICE, person);
     }
 
     @Test

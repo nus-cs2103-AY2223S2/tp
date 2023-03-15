@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DESCRIPTION;
@@ -53,7 +54,7 @@ public class AddressBookTest {
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons, Collections.singletonList(MEETING_A));
 
@@ -64,7 +65,7 @@ public class AddressBookTest {
     public void resetData_withDuplicateMeetings_throwsDuplicateMeetingException() {
         // Two meetings with the same identity fields
         Meeting editedMeetingA = new MeetingBuilder(MEETING_A).withLocation(VALID_MEETING_LOCATION)
-                .withDescription(VALID_MEETING_DESCRIPTION).build();
+            .withDescription(VALID_MEETING_DESCRIPTION).build();
         List<Meeting> newMeetings = Arrays.asList(MEETING_A, editedMeetingA);
         AddressBookStub newData = new AddressBookStub(Collections.singletonList(ALICE), newMeetings);
 
@@ -79,6 +80,22 @@ public class AddressBookTest {
     @Test
     public void hasMeeting_nullMeeting_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasMeeting(null));
+    }
+
+    @Test
+    public void getPersonByName_nullName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.getPersonByName(null));
+    }
+
+    @Test
+    public void getPersonByName_personNotInAddressBook_returnsNull() {
+        assertNull(addressBook.getPersonByName(ALICE.getName()));
+    }
+
+    @Test
+    public void getPersonByName_personInAddressBook_returnsPerson() {
+        addressBook.addPerson(ALICE);
+        assertEquals(ALICE, addressBook.getPersonByName(ALICE.getName()));
     }
 
     @Test
@@ -107,7 +124,7 @@ public class AddressBookTest {
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
@@ -115,7 +132,7 @@ public class AddressBookTest {
     public void hasMeeting_meetingWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addMeeting(MEETING_A);
         Meeting editedMeeting = new MeetingBuilder(MEETING_A).withLocation(VALID_MEETING_LOCATION)
-                .withDescription(VALID_MEETING_DESCRIPTION).build();
+            .withDescription(VALID_MEETING_DESCRIPTION).build();
         assertTrue(addressBook.hasMeeting(editedMeeting));
     }
 
@@ -128,6 +145,7 @@ public class AddressBookTest {
     public void getMeetingList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getMeetingList().remove(0));
     }
+
 
     /**
      * A stub ReadOnlyAddressBook whose persons/meetings list can violate interface constraints.
