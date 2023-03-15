@@ -84,7 +84,7 @@ public class LinkContactCommand extends Command {
      * Creates and returns an {@code Event} with details of
      * newly linked contact.
      */
-    public Event createLinkedEvent  (Event eventToEdit, Contact toAdd) {
+    public Event createLinkedEvent(Event eventToEdit, Contact toAdd) {
         Name name = eventToEdit.getName();
         Rate rate = eventToEdit.getRate();
         Address address = eventToEdit.getAddress();
