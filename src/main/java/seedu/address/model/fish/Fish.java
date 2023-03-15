@@ -17,7 +17,7 @@ public class Fish {
 
     // Identity fields
     private final Name name;
-    private final Email email;
+    private final Species species;
 
     // Data fields
     private final Address address;
@@ -27,11 +27,11 @@ public class Fish {
     /**
      * Every field must be present and not null.
      */
-    public Fish(Name name, LastFedDate lastFedDate, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, lastFedDate, email, address, tags);
+    public Fish(Name name, LastFedDate lastFedDate, Species species, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, lastFedDate, species, address, tags);
         this.name = name;
         this.lastFedDate = lastFedDate;
-        this.email = email;
+        this.species = species;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -44,8 +44,8 @@ public class Fish {
         return lastFedDate;
     }
 
-    public Email getEmail() {
-        return email;
+    public Species getSpecies() {
+        return species;
     }
 
     public Address getAddress() {
@@ -90,7 +90,7 @@ public class Fish {
         Fish otherFish = (Fish) other;
         return otherFish.getName().equals(getName())
                 && otherFish.getLastFedDate().equals(getLastFedDate())
-                && otherFish.getEmail().equals(getEmail())
+                && otherFish.getSpecies().equals(getSpecies())
                 && otherFish.getAddress().equals(getAddress())
                 && otherFish.getTags().equals(getTags());
     }
@@ -98,7 +98,7 @@ public class Fish {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, lastFedDate, email, address, tags);
+        return Objects.hash(name, lastFedDate, species, address, tags);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Fish {
         builder.append(getName())
                 .append("; Last Fed Date: ")
                 .append(getLastFedDate())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Species: ")
+                .append(getSpecies())
                 .append("; Address: ")
                 .append(getAddress());
 

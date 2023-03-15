@@ -67,9 +67,9 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new FishBuilder().withName("Alice Bob").build()));
 
-        // Keywords match last fed date, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("06/01/2000", "alice@email.com", "Main", "Street"));
+        // Keywords match last fed date, species and address, but does not match name
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("06/01/2000", "Guppy", "Main", "Street"));
         assertFalse(predicate.test(new FishBuilder().withName("Alice").withLastFedDate("06/01/2000")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+                .withSpecies("Guppy").withAddress("Main Street").build()));
     }
 }

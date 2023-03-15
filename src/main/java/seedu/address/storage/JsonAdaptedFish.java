@@ -11,10 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.fish.Address;
-import seedu.address.model.fish.Email;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,7 +26,7 @@ class JsonAdaptedFish {
 
     private final String name;
     private final String lastFedDate;
-    private final String email;
+    private final String species;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +35,11 @@ class JsonAdaptedFish {
      */
     @JsonCreator
     public JsonAdaptedFish(@JsonProperty("name") String name, @JsonProperty("lastFedDate") String lastFedDate,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("species") String species, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.lastFedDate = lastFedDate;
-        this.email = email;
+        this.species = species;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +52,7 @@ class JsonAdaptedFish {
     public JsonAdaptedFish(Fish source) {
         name = source.getName().fullName;
         lastFedDate = source.getLastFedDate().value;
-        email = source.getEmail().value;
+        species = source.getSpecies().species;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -87,13 +87,13 @@ class JsonAdaptedFish {
         }
         final LastFedDate modelLastFedDate = new LastFedDate(lastFedDate);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (species == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Species.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Species.isValidSpecies(species)) {
+            throw new IllegalValueException(Species.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Species modelSpecies = new Species(species);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -104,7 +104,7 @@ class JsonAdaptedFish {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(fishTags);
-        return new Fish(modelName, modelLastFedDate, modelEmail, modelAddress, modelTags);
+        return new Fish(modelName, modelLastFedDate, modelSpecies, modelAddress, modelTags);
     }
 
 }

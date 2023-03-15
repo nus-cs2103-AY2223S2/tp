@@ -15,22 +15,22 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.fish.Address;
-import seedu.address.model.fish.Email;
 import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_LAST_FED_DATE = "20 Mar 2023";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_SPECIES = "asd123 @!";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_LAST_FED_DATE = "04/01/2022";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_SPECIES = "Guppy";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -126,26 +126,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseSpecies_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSpecies((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseSpecies_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSpecies(INVALID_SPECIES));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseSpecies_validValueWithoutWhitespace_returnsSpecies() throws Exception {
+        Species expectedSpecies = new Species(VALID_SPECIES);
+        assertEquals(expectedSpecies, ParserUtil.parseSpecies(VALID_SPECIES));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseSpecies_validValueWithWhitespace_returnsTrimmedSpecies() throws Exception {
+        String speciesWithWhitespace = WHITESPACE + VALID_SPECIES + WHITESPACE;
+        Species expectedSpecies = new Species(VALID_SPECIES);
+        assertEquals(expectedSpecies, ParserUtil.parseSpecies(speciesWithWhitespace));
     }
 
     @Test

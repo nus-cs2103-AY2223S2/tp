@@ -3,43 +3,43 @@
   "fishes" : [ {
     "name" : "Alice Pauline",
     "lastFedDate": "06/06/2003",
-    "email" : "alice@example.com",
+    "species" : "Guppy",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "lastFedDate": "06/07/2003",
-    "email" : "johnd@example.com",
+    "species" : "Tetra",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "lastFedDate": "08/06/2003",
-    "email" : "heinz@example.com",
+    "species" : "Beta",
     "address" : "wall street",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "lastFedDate": "09/06/2003",
-    "email" : "cornelia@example.com",
+    "species" : "Parrot",
     "address" : "10th street",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "lastFedDate": "10/06/2003",
-    "email" : "werner@example.com",
+    "species" : "Arowana",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "lastFedDate": "11/06/2003",
-    "email" : "lydia@example.com",
+    "species" : "Fighting",
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "lastFedDate": "12/06/2003",
-    "email" : "anna@example.com",
+    "species" : "Beta",
     "address" : "4th street",
     "tagged" : [ ]
   } ]

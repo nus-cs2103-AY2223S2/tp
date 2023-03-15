@@ -8,7 +8,7 @@ public class CliSyntax {
     /* Fish prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_LAST_FED_DATE = new Prefix("lfd/");
-    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
+    public static final Prefix PREFIX_SPECIES = new Prefix("s/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("tg/");
     public static final Prefix PREFIX_TANK = new Prefix("tk/");

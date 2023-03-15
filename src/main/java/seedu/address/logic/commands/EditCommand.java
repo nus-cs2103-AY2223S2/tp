@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FISHES;
 
@@ -20,10 +20,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fish.Address;
-import seedu.address.model.fish.Email;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,12 +39,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_LAST_FED_DATE + "LAST FED DATE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_SPECIES + "SPECIES] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LAST_FED_DATE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_SPECIES + "Guppy ";
 
     public static final String MESSAGE_EDIT_FISH_SUCCESS = "Edited Fish: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,11 +95,11 @@ public class EditCommand extends Command {
 
         Name updatedName = editFishDescriptor.getName().orElse(fishToEdit.getName());
         LastFedDate updatedLastFedDate = editFishDescriptor.getLastFedDate().orElse(fishToEdit.getLastFedDate());
-        Email updatedEmail = editFishDescriptor.getEmail().orElse(fishToEdit.getEmail());
+        Species updatedSpecies = editFishDescriptor.getSpecies().orElse(fishToEdit.getSpecies());
         Address updatedAddress = editFishDescriptor.getAddress().orElse(fishToEdit.getAddress());
         Set<Tag> updatedTags = editFishDescriptor.getTags().orElse(fishToEdit.getTags());
 
-        return new Fish(updatedName, updatedLastFedDate, updatedEmail, updatedAddress, updatedTags);
+        return new Fish(updatedName, updatedLastFedDate, updatedSpecies, updatedAddress, updatedTags);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class EditCommand extends Command {
     public static class EditFishDescriptor {
         private Name name;
         private LastFedDate lastFedDate;
-        private Email email;
+        private Species species;
         private Address address;
         private Set<Tag> tags;
 
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         public EditFishDescriptor(EditFishDescriptor toCopy) {
             setName(toCopy.name);
             setLastFedDate(toCopy.lastFedDate);
-            setEmail(toCopy.email);
+            setSpecies(toCopy.species);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, lastFedDate, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, lastFedDate, species, address, tags);
         }
 
         public void setName(Name name) {
@@ -168,12 +168,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(lastFedDate);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setSpecies(Species species) {
+            this.species = species;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Species> getSpecies() {
+            return Optional.ofNullable(species);
         }
 
         public void setAddress(Address address) {
@@ -218,7 +218,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getLastFedDate().equals(e.getLastFedDate())
-                    && getEmail().equals(e.getEmail())
+                    && getSpecies().equals(e.getSpecies())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
