@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.commons.exceptions.IllegalValueException;
 import trackr.commons.util.JsonUtil;
+import trackr.model.OrderList;
 import trackr.model.SupplierList;
 import trackr.model.TaskList;
 import trackr.testutil.TypicalSuppliers;
@@ -24,6 +25,9 @@ public class JsonSerializableTrackrTest {
     private static final Path TYPICAL_TASKS_FILE = TEST_DATA_FOLDER.resolve("typicalTasksTrackr.json");
     private static final Path INVALID_TASK_FILE = TEST_DATA_FOLDER.resolve("invalidTaskTrackr.json");
     private static final Path DUPLICATE_TASK_FILE = TEST_DATA_FOLDER.resolve("duplicateTaskTrackr.json");
+    private static final Path TYPICAL_ORDERS_FILE = TEST_DATA_FOLDER.resolve("typicalOrdersTrackr.json");
+    private static final Path INVALID_ORDER_FILE = TEST_DATA_FOLDER.resolve("invalidOrderTrackr.json");
+    private static final Path DUPLICATE_ORDER_FILE = TEST_DATA_FOLDER.resolve("duplicateOrderTrackr.json");
 
     @Test
     public void toModelType_typicalSuppliersFile_success() throws Exception {
@@ -71,6 +75,29 @@ public class JsonSerializableTrackrTest {
                 JsonSerializableTrackr.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableTrackr.MESSAGE_DUPLICATE_TASK,
                 dataFromFile::toTaskModelType);
+    }
+
+    @Test
+    public void toOrderModelType_typicalOrderFile_sucess() throws Exception {
+        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(TYPICAL_ORDERS_FILE,
+                JsonSerializableTrackr.class).get();
+        OrderList orderListFromFile = dataFromFile.toOrderModelType();
+        assertEquals(orderListFromFile, orderListFromFile);
+    }
+
+    @Test
+    public void toOrderModelType_invalidOrderFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(INVALID_ORDER_FILE,
+                JsonSerializableTrackr.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toOrderModelType);
+    }
+
+    @Test
+    public void toOrderModelType_duplicateOrders_throwsIllegalValueException() throws Exception {
+        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ORDER_FILE,
+                JsonSerializableTrackr.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTrackr.MESSAGE_DUPLICATE_ORDER,
+                dataFromFile::toOrderModelType);
     }
 
 }

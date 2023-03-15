@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.CARL;
 import static trackr.testutil.TypicalSuppliers.ELLE;
 import static trackr.testutil.TypicalSuppliers.FIONA;
@@ -25,8 +26,10 @@ import trackr.model.supplier.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindSupplierCommandTest {
-    private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
+            getTypicalOrderList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
+            getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void equals() {

@@ -9,10 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import trackr.commons.exceptions.IllegalValueException;
+import trackr.model.OrderList;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.SupplierList;
 import trackr.model.TaskList;
+import trackr.model.order.Order;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 
@@ -24,18 +27,22 @@ class JsonSerializableTrackr {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Suppliers list contains duplicate supplier(s).";
     public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
+    public static final String MESSAGE_DUPLICATE_ORDER = "Tasks list contains duplicate order(s).";
 
     private final List<JsonAdaptedSupplier> suppliers = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTrackr} with the given suppliers and tasks.
      */
     @JsonCreator
     public JsonSerializableTrackr(@JsonProperty("suppliers") List<JsonAdaptedSupplier> suppliers,
-                                  @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+                                  @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+                                  @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
         this.suppliers.addAll(suppliers);
         this.tasks.addAll(tasks);
+        this.orders.addAll(orders);
     }
 
     /**
@@ -43,14 +50,17 @@ class JsonSerializableTrackr {
      *
      * @param sourceSupplier future changes to this will not affect the created {@code JsonSerializableTrackr}.
      * @param sourceTask future changes to this will not affect the created {@code JsonSerializableTrackr}.
+     * @param sourceOrder future changes to this will not affect the created {@code JsonSerializableTrackr}.
      */
-    public JsonSerializableTrackr(ReadOnlySupplierList sourceSupplier, ReadOnlyTaskList sourceTask) {
+    public JsonSerializableTrackr(ReadOnlySupplierList sourceSupplier, ReadOnlyTaskList sourceTask,
+            ReadOnlyOrderList sourceOrder) {
         suppliers.addAll(sourceSupplier
             .getSupplierList()
             .stream()
             .map(JsonAdaptedSupplier::new)
             .collect(Collectors.toList()));
         tasks.addAll(sourceTask.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        orders.addAll(sourceOrder.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
     }
 
     /**
@@ -85,6 +95,23 @@ class JsonSerializableTrackr {
             taskList.addTask(task);
         }
         return taskList;
+    }
+
+    /**
+     * Converts this trackr into the model's {@code OrderList} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated.
+     */
+    public OrderList toOrderModelType() throws IllegalValueException {
+        OrderList orderList = new OrderList();
+        for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
+            Order order = jsonAdaptedOrder.toModelType();
+            if (orderList.hasOrder(order)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
+            }
+            orderList.addOrder(order);
+        }
+        return orderList;
     }
 
 }

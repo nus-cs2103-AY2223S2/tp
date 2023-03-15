@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
+import trackr.model.order.Order;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 
@@ -22,29 +23,35 @@ public class ModelManager implements Model {
 
     private final SupplierList supplierList;
     private final TaskList taskList;
+    private final OrderList orderList;
     private final UserPrefs userPrefs;
     private final FilteredList<Supplier> filteredSuppliers;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Order> filteredOrders;
 
     /**
      * Initializes a ModelManager with the given supplier list, taskList and userPrefs.
      */
-    public ModelManager(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(supplierList, taskList, userPrefs);
+    public ModelManager(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,
+            ReadOnlyOrderList orderList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(supplierList, taskList, orderList, userPrefs);
 
         logger.fine("Initializing with supplier list: " + supplierList
                 + " and task list: " + taskList
+                + " and order list: " + orderList
                 + " and user prefs " + userPrefs);
 
         this.supplierList = new SupplierList(supplierList);
         this.taskList = new TaskList(taskList);
+        this.orderList = new OrderList(orderList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredSuppliers = new FilteredList<>(this.supplierList.getSupplierList());
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
+        filteredOrders = new FilteredList<>(this.orderList.getOrderList());
     }
 
     public ModelManager() {
-        this(new SupplierList(), new TaskList(), new UserPrefs());
+        this(new SupplierList(), new TaskList(), new OrderList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -188,6 +195,59 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate);
     }
 
+    //=========== OrderList ===================================================================================
+
+    @Override
+    public void setOrderList(ReadOnlyOrderList orderList) {
+        this.orderList.resetData(orderList);
+    }
+
+    @Override
+    public ReadOnlyOrderList getOrderList() {
+        return orderList;
+    }
+
+    @Override
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return orderList.hasOrder(order);
+    }
+
+    @Override
+    public void deleteOrder(Order target) {
+        orderList.removeOrder(target);
+    }
+
+    @Override
+    public void addOrder(Order order) {
+        orderList.addOrder(order);
+        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+    }
+
+    @Override
+    public void setOrder(Order target, Order editedOrder) {
+        requireAllNonNull(target, editedOrder);
+
+        orderList.setOrder(target, editedOrder);
+    }
+
+    //=========== Filtered Order List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * {@code versionedOrderList}
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
+    }
+
     //========================================================================================================
 
     @Override
@@ -206,9 +266,11 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return supplierList.equals(other.supplierList)
                 && taskList.equals(other.taskList)
+                && orderList.equals(other.orderList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredSuppliers.equals(other.filteredSuppliers)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredOrders.equals(other.filteredOrders);
     }
 
 }

@@ -15,6 +15,7 @@ import static trackr.logic.commands.EditTaskCommand.MESSAGE_DUPLICATE_TASK;
 import static trackr.logic.commands.EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -24,6 +25,7 @@ import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.model.Model;
 import trackr.model.ModelManager;
+import trackr.model.OrderList;
 import trackr.model.SupplierList;
 import trackr.model.TaskList;
 import trackr.model.UserPrefs;
@@ -34,7 +36,8 @@ import trackr.testutil.TaskDescriptorBuilder;
 
 public class EditTaskCommandTest {
 
-    private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
+                getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredTaskList_success() {
@@ -45,7 +48,8 @@ public class EditTaskCommandTest {
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new UserPrefs());
+                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
+
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
@@ -70,7 +74,8 @@ public class EditTaskCommandTest {
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new UserPrefs());
+                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
+
         expectedModel.setTask(lastTask, editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
@@ -84,7 +89,7 @@ public class EditTaskCommandTest {
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new UserPrefs());
+                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -101,7 +106,8 @@ public class EditTaskCommandTest {
         String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new UserPrefs());
+                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
+
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
