@@ -12,7 +12,6 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.parent.ParentAddCommand;
 import seedu.address.logic.commands.parent.ParentCommand;
 import seedu.address.logic.commands.parent.ParentDeleteCommand;
-import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
@@ -42,6 +41,7 @@ public class ParentCommandParser {
      */
     public ParentCommand parse(String args) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
+        System.out.println("success");
         if (!matcher.matches()) {
             //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
@@ -63,10 +63,11 @@ public class ParentCommandParser {
                         PREFIX_EMAIL);
 
 
-
+        System.out.println("test2");
         if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(studentClass, argMultimapAdd);
-        } else if (argMultimapAdd.getValue(PREFIX_DELETE).isPresent()) {
+        } else if (argMultimapDelete.getValue(PREFIX_DELETE).isPresent()) {
+            System.out.println("test");
             return deleteCommand(argMultimapDelete);
         } else {
             //Rest of logic (Need to edit)
@@ -86,9 +87,9 @@ public class ParentCommandParser {
         Relationship rls = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
         Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_AGE).get()));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGESTUDENT).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONESTUDENT).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAILSTUDENT).get());
+        Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
 

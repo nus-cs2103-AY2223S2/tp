@@ -43,8 +43,7 @@ public class ParentDeleteCommand extends ParentCommand {
         List<Parent> parents = model.getFilteredParentList();
 
         for (Parent parent : parents) {
-            if (parent.getPhone().equals(parentName)
-                    && parent.getStudentClass().equals(phoneNumber)) {
+            if (parent.getStudentClass().equals(phoneNumber)) {
                 model.deleteParent(parent);
                 return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, parent));
             }
