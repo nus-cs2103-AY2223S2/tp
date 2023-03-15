@@ -18,8 +18,8 @@ public class ParentDeleteCommand extends ParentCommand {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student identified by their index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the parent identified by their phone number used in the displayed person list.\n"
+            + "Parameters: PHONE NUMBER (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PARENT_SUCCESS = "Deleted Parent: %1$s";
