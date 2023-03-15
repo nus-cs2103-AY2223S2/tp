@@ -13,6 +13,5 @@ public class Messages {
     public static final String MESSAGE_VIEW_INVALID_PERSON_CONTACT_DETAILS =
             "The person index provided is invalid. Please enter \"list\" again to retrieve the list and try again.";
     public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW = "%1$d contacts listed!";
-
 }
 
