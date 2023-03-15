@@ -168,4 +168,22 @@ public class UniqueSupplierListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueSupplierList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void equals() {
+        uniqueSupplierList.add(ALICE);
+
+        UniqueSupplierList differentUniqueSupplierList = new UniqueSupplierList();
+        differentUniqueSupplierList.add(BOB);
+
+        UniqueSupplierList sameUniqueSupplierList = new UniqueSupplierList();
+        sameUniqueSupplierList.add(ALICE);
+
+        assertTrue(uniqueSupplierList.equals(uniqueSupplierList)); //same object
+        assertTrue(uniqueSupplierList.equals(sameUniqueSupplierList)); //contains the same tasks
+
+        assertFalse(uniqueSupplierList.equals(null)); //null
+        assertFalse(uniqueSupplierList.equals(differentUniqueSupplierList)); //different task lists
+        assertFalse(uniqueSupplierList.equals(1)); //different objects
+    }
 }
