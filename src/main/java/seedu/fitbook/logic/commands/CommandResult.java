@@ -17,6 +17,8 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    //private final boolean showExercise;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +26,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        //this.showExercise = exercise;
     }
 
     /**
@@ -45,6 +48,10 @@ public class CommandResult {
     public boolean isExit() {
         return exit;
     }
+
+    //public boolean isShowExercise() {
+    //    return showExercise;
+    //}
 
     @Override
     public boolean equals(Object other) {

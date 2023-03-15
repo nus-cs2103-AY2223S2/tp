@@ -4,10 +4,14 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.fitbook.commons.core.GuiSettings;
@@ -23,6 +27,8 @@ import seedu.fitbook.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
     private static final String TITLE = "FitBook";
+    private static final String EXERCISE = "Exercise";
+    private static final String SCHEDULE = "Schedule";
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -31,29 +37,56 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
+    @FXML
+    private Label mainTitle;
+
+    @FXML
+    private Label subTitle;
+
+    @FXML
+    private AnchorPane pagePane;
+
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private SchedulePanel schedulePanel;
+    private ExercisePanel exercisePanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    @FXML
+    private Label exercisePanelTitle;
 
+
+    @FXML
+    private HBox exerciseHolder;
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+    @FXML
+    private MenuItem exerciseMenuItem;
 
     @FXML
     private StackPane clientListPanelPlaceholder;
-
     @FXML
-    private StackPane schedulePanelPlaceholder;
+    private StackPane panelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Pane schedulePanelTitleHolder;
+
+    @FXML
+    private Pane exercisePanelTitleHolder;
+
+    @FXML
+    private Label scheduleListListPanelTitle;
+    @FXML
+    private Label exerciseListListPanelTitle;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -119,7 +152,7 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         schedulePanel = new SchedulePanel(logic.getFilteredClientList());
-        schedulePanelPlaceholder.getChildren().add(schedulePanel.getRoot());
+        panelPlaceholder.getChildren().add(schedulePanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -171,8 +204,51 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void setMainTitleText(String text) {
+        mainTitle.setText(text);
+    }
+
+    private void setSubTitle(String text) {
+        subTitle.setText(text);
+    }
+    @FXML
+    private void handleExercise() {
+        resultDisplay.setFeedbackToUser(": Start to handle exercise.");
+
+        setMainTitleText(EXERCISE);
+        setSubTitle(EXERCISE);
+        panelPlaceholder.setManaged(false);
+
+        exercisePanel = new ExercisePanel(logic.getFilteredRoutineList());
+        panelPlaceholder.getChildren().add(exercisePanel.getRoot());
+
+        panelPlaceholder.setManaged(true);
+    }
+
+    @FXML
+    private void handleSchedule() {
+        resultDisplay.setFeedbackToUser(": Start to handle schedule.");
+
+        setMainTitleText(TITLE);
+        setSubTitle(SCHEDULE);
+
+        panelPlaceholder.setManaged(false);
+
+        schedulePanel = new SchedulePanel(logic.getFilteredClientList());
+        panelPlaceholder.getChildren().add(schedulePanel.getRoot());
+
+        panelPlaceholder.setManaged(true);
+    }
+
+
     public ClientListPanel getClientListPanel() {
         return clientListPanel;
+    }
+    public ExercisePanel getExercisePanel() {
+        return exercisePanel;
+    }
+    public SchedulePanel getSchedulePanel() {
+        return schedulePanel;
     }
 
     /**

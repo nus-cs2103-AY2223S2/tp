@@ -49,7 +49,7 @@ public class Exercise {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + exerciseName + ']';
+        return exerciseName;
     }
 
 }
