@@ -6,89 +6,71 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
-import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
- * A Parent Class that creates a Parent / Next-of-kin who is a person
+ * A Parent Class that creates a Parent / Next-of-kin who is also a Person
  */
 public class Parent extends Person {
     private final Age age;
     private final Image image;
-    private final IndexNumber indexNumber;
-    private final Relationship relationship;
-    private final Class sc;
     private final List<Student> children = new ArrayList<>();
 
     /**
-     * A parent / next-of-kin (NOK) constructor.
+     * A constructor that creates a Parent Object with particulars about the Parent.
      *
-     * @param name Name of Parent / NOK.
-     * @param relationship Relationship of Parent object (Parent status / NOK status).
-     * @param age Age of Parent / NOK.
+     * @param name Parent's / NOK's name.
+     * @param age Parent's / NOK's age.
      * @param image Image of Parent / NOK.
-     * @param email Email address of Parent / NOK.
+     * @param email Email Address of Parent / NOK.
      * @param phone Phone number of Parent / NOK.
-     * @param address Residential address of Parent / NOK.
-     * @param tags Tags given to Parent object.
+     * @param address Residential Address of Parent / NOK.
+     * @param tags Tags given to Parent.
      */
-    public Parent(Class sc, IndexNumber indexNumber, Name name, Relationship relationship, Age age, Image image,
+    public Parent(Name name, Age age, Image image,
                   Email email, Phone phone, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
-        this.indexNumber = indexNumber;
-        this.sc = sc;
         this.age = age;
         this.image = image;
-        this.relationship = relationship;
     }
 
     /**
-     * A method that returns the Age of parent / NOK.
+     * A method that returns the Age of Parent / NOK.
      *
-     * @return Parent / NOK age.
+     * @return Age of Parent / NOK.
      */
     public Age getAge() {
         return age;
     }
 
     /**
-     * A method that returns the Image of parent / NOK.
+     * A method that returns the Image of Parent / NOK.
      *
-     * @return Parent / NOK Image.
+     * @return Image of Parent / NOK.
      */
     public Image getImage() {
         return image;
     }
 
     /**
-     * A method that returns the Relationship of parent / NOK.
+     * A method that returns a list of Students the Parent / NOK is related to.
      *
-     * @return Parent / NOK relationship to Student.
-     */
-    public Relationship getRelationship() {
-        return relationship;
-    }
-
-    /**
-     * A method that returns a list of students the parent / NOK is related to.
-     *
-     * @return All students that the Parent / NOK is in-charge of.
+     * @return All Students that the Parent / NOK has relations to.
      */
     public List<Student> getChildren() {
         return children;
     }
 
     /**
-     * A method that adds a student to the parent / NOK.
+     * A method that adds a Student to the Parent / NOK.
      *
-     * @param student Student who is related to this Parent / NOK.
+     * @param student Student who is related to this Parent object.
      */
     public void addStudent(Student student) {
         children.add(student);
@@ -130,9 +112,7 @@ public class Parent extends Person {
                 .append(getEmail())
                 .append("; Parent Phone: ")
                 .append(getPhone())
-                .append("; ")
-                .append(getRelationship())
-                .append(" of:");
+                .append("; Parent/NOK of:");
 
         List<Student> children = getChildren();
         for (Student child : children) {

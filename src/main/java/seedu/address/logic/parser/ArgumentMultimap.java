@@ -43,20 +43,23 @@ public class ArgumentMultimap {
             case "ageS/":
                 Optional<String> missingStudentAge = Optional.of("Insert student age here!");
                 return missingStudentAge;
+            case "ageP/":
+                Optional<String> missingParentAge = Optional.of("Insert parent age here!");
+                return missingParentAge;
             case "imgS/":
                 Optional<String> missingImage = Optional.of("Insert student image here!");
                 return missingImage;
             case "eS/":
                 Optional<String> missingEmail = Optional.of("Insert student email here!");
                 return missingEmail;
-            case "phS/":
+            case "pnS/":
                 Optional<String> missingPhoneNumber = Optional.of("Insert student phone number here!");
                 return missingPhoneNumber;
             case "cca/":
                 Optional<String> missingCca = Optional.of("Insert student CCA here!");
                 return missingCca;
             case "a/":
-                Optional<String> missingAddress = Optional.of("Insert student address here!");
+                Optional<String> missingAddress = Optional.of("Insert Address here!");
                 return missingAddress;
             case "att/":
                 Optional<String> missingAttendance = Optional.of("Insert student attendance here!");
@@ -76,9 +79,6 @@ public class ArgumentMultimap {
             case "hwdone/":
                 Optional<String> missingHwDone = Optional.of("Insert student homework done here!");
                 return missingHwDone;
-            case "p/":
-                Optional<String> missingParentPhone = Optional.of("Insert parent phone here!");
-                return missingParentPhone;
             case "imgP/":
                 Optional<String> missingParentImage = Optional.of("Insert parent image here!");
                 return missingParentImage;

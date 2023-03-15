@@ -25,14 +25,12 @@ public class ParentDeleteCommand extends ParentCommand {
 
     public static final String MESSAGE_DELETE_PARENT_SUCCESS = "Deleted Parent: %1$s";
 
-    private final Class sc;
     private final Phone phoneNumber;
 
     /**
      * Creates a ParentDeleteCommand to delete the specified {@code Parent}
      */
-    public ParentDeleteCommand(Class sc, Phone phoneNumber) {
-        this.sc = sc;
+    public ParentDeleteCommand(Phone phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

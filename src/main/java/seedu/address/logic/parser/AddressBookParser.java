@@ -48,7 +48,7 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-        case ParentCommand.PERSON_WORD:
+            case ParentCommand.COMMAND_WORD:
             return new ParentCommandParser().parse(arguments);
         case StudentCommand.PERSON_WORD:
             return new StudentCommandParser().parse(arguments);
