@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.testutil.Assert.assertThrows;
-import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
@@ -28,7 +28,7 @@ public class AddEmployeeToDepartmentCommandTest {
 
     // Handle adding an employee
     @Test
-    public void execute_employeeAcceptedByDepartment_addSuccessful() throws CommandException{
+    public void execute_employeeAcceptedByDepartment_addSuccessful() throws CommandException {
 
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addPerson(TypicalPersons.ALICE);
@@ -56,8 +56,8 @@ public class AddEmployeeToDepartmentCommandTest {
         new AddEmployeeToDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
                 .execute(modelStub);
 
-        assertThrows(CommandException.class, AddEmployeeToDepartmentCommand.MESSAGE_DUPLICATE_EMPLOYEE,
-                () -> new AddEmployeeToDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
+        assertThrows(CommandException.class, AddEmployeeToDepartmentCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                new AddEmployeeToDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
                 .execute(modelStub));
     }
 
@@ -67,8 +67,8 @@ public class AddEmployeeToDepartmentCommandTest {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addPerson(TypicalPersons.ALICE);
 
-        assertThrows(CommandException.class, AddEmployeeToDepartmentCommand.MESSAGE_DEPARTMENT_NOT_FOUND,
-                () -> new AddEmployeeToDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
+        assertThrows(CommandException.class, AddEmployeeToDepartmentCommand.MESSAGE_DEPARTMENT_NOT_FOUND, () ->
+                new AddEmployeeToDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
                         .execute(modelStub));
     }
 
@@ -79,8 +79,8 @@ public class AddEmployeeToDepartmentCommandTest {
         Department toAdd = new Department(TypicalDepartmentNames.DEPARTMENT_NAME_FIRST);
         modelStub.addDepartment(toAdd);
 
-        assertThrows(CommandException.class, AddEmployeeToDepartmentCommand.MESSAGE_EMPLOYEE_NOT_FOUND,
-                () -> new AddEmployeeToDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
+        assertThrows(CommandException.class, AddEmployeeToDepartmentCommand.MESSAGE_EMPLOYEE_NOT_FOUND, () ->
+                new AddEmployeeToDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
                         .execute(modelStub));
     }
 
@@ -101,7 +101,7 @@ public class AddEmployeeToDepartmentCommandTest {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addPerson(TypicalPersons.ALICE);
 
-        assertThrows(NullPointerException.class, () -> new AddEmployeeToDepartmentCommand(new Id("101"),null));
+        assertThrows(NullPointerException.class, () -> new AddEmployeeToDepartmentCommand(new Id("101"), null));
     }
 
     /**
@@ -233,7 +233,7 @@ public class AddEmployeeToDepartmentCommandTest {
      * A Model stub that always accept the employee being added to the department.
      */
     private class ModelStubAcceptingEmployeeAdded extends ModelStub {
-        public SudoHr sudoHr = new SudoHr();
+        private SudoHr sudoHr = new SudoHr();
 
         @Override
         public void addPerson(Person person) {

@@ -75,7 +75,7 @@ public class SudoHr implements ReadOnlySudoHr {
 
     /**
      * Returns the employee with the given Id.
-     * @param Id The Id to find.
+     * @param id The Id to find.
      * @return The corresponding employee.
      */
     public Person getPerson(Id id) {

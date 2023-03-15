@@ -1,7 +1,6 @@
 package seedu.sudohr.model.department;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 import seedu.sudohr.model.person.Person;

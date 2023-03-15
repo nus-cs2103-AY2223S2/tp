@@ -1,15 +1,18 @@
 package seedu.sudohr.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.sudohr.logic.commands.AddCommand;
-import seedu.sudohr.logic.commands.AddEmployeeToDepartmentCommand;
-import seedu.sudohr.model.department.DepartmentName;
-
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sudohr.logic.commands.CommandTestUtil.*;
+import static seedu.sudohr.logic.commands.CommandTestUtil.DEPARTMENT_NAME_DESC_ENGINEERING;
+import static seedu.sudohr.logic.commands.CommandTestUtil.ID_DESC_AMY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_DEPARTMENT_NAME_DESC;
+import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_ID_DESC;
+import static seedu.sudohr.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.sudohr.logic.commands.AddEmployeeToDepartmentCommand;
+import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.person.Id;
 
 public class AddEmployeeToDepartmentCommandParserTest {

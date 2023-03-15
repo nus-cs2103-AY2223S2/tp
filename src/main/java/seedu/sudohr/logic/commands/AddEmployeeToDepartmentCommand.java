@@ -1,15 +1,15 @@
 package seedu.sudohr.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
+
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.person.Id;
 import seedu.sudohr.model.person.Person;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 
 /**
  * Adds an employee to an existing department inside SudoHR.
@@ -32,6 +32,10 @@ public class AddEmployeeToDepartmentCommand extends Command {
     private final Id toAdd;
     private final DepartmentName departmentName;
 
+    /**
+     * Creates an AddEmployeeToDepartmentCommand to add the specified person with Id {@code toAdd} to the department
+     * with DepartmentName{@code departmentName}
+     */
     public AddEmployeeToDepartmentCommand(Id toAdd, DepartmentName departmentName) {
         requireNonNull(toAdd);
         requireNonNull(departmentName);
