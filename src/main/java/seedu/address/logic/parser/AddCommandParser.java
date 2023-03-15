@@ -28,7 +28,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -40,9 +40,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
+        Phone phone = parsePrefixIfPresent(argMultimap, PREFIX_PHONE, ParserUtil::parsePhone);
+        //Phone phone = ParserUtil.parsePhone();
+        Email email = parsePrefixIfPresent(argMultimap, PREFIX_EMAIL, ParserUtil::parseEmail);
+        //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(null));
+        Address address = parsePrefixIfPresent(argMultimap, PREFIX_ADDRESS, ParserUtil::parseAddress);
+        //Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
@@ -58,4 +61,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    private static <T> T parsePrefixIfPresent(ArgumentMultimap argMultimap, Prefix prefix,
+                                              ParserFunction<String,
+                                                      ? extends T> parserFunction) throws ParseException {
+        String retArg = argMultimap.getValue(prefix).orElse(null);
+        if (retArg == null) {
+            return null;
+        }
+
+        return parserFunction.apply(retArg);
+    }
 }

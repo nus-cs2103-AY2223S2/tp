@@ -30,7 +30,8 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, remark);
+        //requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = Optional.ofNullable(phone);
         this.email = Optional.ofNullable(email);
@@ -43,16 +44,16 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone.orElse(null);
+    public Optional<Phone> getOptionalPhone() {
+        return phone;
     }
 
-    public Email getEmail() {
-        return email.orElse(null);
+    public Optional<Email> getOptionalEmail() {
+        return email;
     }
 
-    public Address getAddress() {
-        return address.orElse(null);
+    public Optional<Address> getOptionalAddress() {
+        return address;
     }
 
     public Remark getRemark() {
@@ -96,9 +97,9 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getOptionalPhone().equals(getOptionalPhone())
+                && otherPerson.getOptionalEmail().equals(getOptionalEmail())
+                && otherPerson.getOptionalAddress().equals(getOptionalAddress())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -111,9 +112,9 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        String phone = getPhone().toString() == "" ? "" : String.format("; Phone: %s", getPhone().toString());
-        String email = getEmail().toString() == "" ? "" : String.format("; Email: %s", getEmail().toString());
-        String address = getAddress().toString() == "" ? "" : String.format("; Address: %s", getAddress().toString());
+        String phone = String.format("; Phone: %s", getOptionalPhone().map(Phone::toString).orElse(""));
+        String email = String.format("; Email: %s", getOptionalEmail().map(Email::toString).orElse(""));
+        String address = String.format("; Address: %s", getOptionalAddress().map(Address::toString).orElse(""));
         builder.append(getName())
                 .append(phone)
                 .append(email)
