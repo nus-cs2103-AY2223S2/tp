@@ -22,7 +22,11 @@ public class DeleteMeetingCommand extends Command {
 
     private final Index index;
 
-    public DeleteMeetingCommand(Index index){
+    /**
+     * Constructs a DeleteMeetingCommand
+     * @param index The one index of the meeting in the address book
+     */
+    public DeleteMeetingCommand(Index index) {
         requireNonNull(index);
         this.index = index;
     }
