@@ -5,6 +5,7 @@ import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
+import static seedu.vms.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -75,6 +76,7 @@ public class EditCommand extends Command {
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
         model.setAppointment(index.getZeroBased(), editedAppointment);
+        // model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }
 
