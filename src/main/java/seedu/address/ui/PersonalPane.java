@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -15,12 +17,12 @@ import seedu.address.model.person.Person;
 public class PersonalPane extends UiPart<Region> {
 
     private static final String FXML = "PersonalPane.fxml";
-    public final Person person;
-    private boolean status;
 
     @FXML
     private HBox personalPane;
 
+    @FXML
+    private ImageView imageView;
     @FXML
     private Label name;
     @FXML
@@ -39,7 +41,8 @@ public class PersonalPane extends UiPart<Region> {
      */
     public PersonalPane(Person person) {
         super(FXML);
-        this.person = person;
+        Image image = new Image("file:" + person.getImage().IMAGE_PATH + person.getImage().imageName);
+        imageView.setImage(image);
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -48,6 +51,4 @@ public class PersonalPane extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-
-
 }

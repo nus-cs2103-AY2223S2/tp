@@ -26,6 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
+
     private final AddressBookParser addressBookParser;
 
     /**
@@ -88,4 +89,6 @@ public class LogicManager implements Logic {
     public int getPersonId() {
         return model.getPersonId();
     }
+
 }
+

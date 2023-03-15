@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -29,11 +31,15 @@ public class PersonCard extends UiPart<Region> {
 
     private final Logic logic;
 
+    private final MainWindow mainWindow;
+
     private final int index;
 
     @FXML
     private HBox cardPane;
 
+    @FXML
+    private ImageView imageView;
     @FXML
     private Label name;
     @FXML
@@ -50,11 +56,14 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex, Logic logic) {
+    public PersonCard(Person person, int displayedIndex, Logic logic, MainWindow mainWindow) {
         super(FXML);
         this.person = person;
         this.logic = logic;
+        this.mainWindow = mainWindow;
         this.index = displayedIndex;
+        Image image = new Image("file:" + person.getImage().IMAGE_PATH + person.getImage().imageName);
+        imageView.setImage(image);
         id.setText(this.index + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
@@ -68,8 +77,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private void showPersonalPane() {
         logic.setPersonId(this.index);
-        UiManager ui = new UiManager(logic);
-        System.out.println(this.index);
+        mainWindow.changeIndividualPane();
     }
 
     @Override

@@ -138,7 +138,7 @@ public class ModelManager implements Model {
 
     @Override
     public int getPersonId() {
-        return this.index;
+        return this.index - 1;
     }
 
     @Override

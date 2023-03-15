@@ -63,6 +63,9 @@ public class AddressBookParser {
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
 
+        case AddImageCommand.COMMAND_WORD:
+            return new AddImageCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
