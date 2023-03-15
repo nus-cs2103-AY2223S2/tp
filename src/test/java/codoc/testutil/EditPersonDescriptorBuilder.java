@@ -6,11 +6,13 @@ import java.util.stream.Stream;
 
 import codoc.logic.commands.EditCommand.EditPersonDescriptor;
 import codoc.model.module.Module;
+import codoc.model.person.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
+import codoc.model.person.Year;
 import codoc.model.skill.Skill;
 
 
@@ -35,6 +37,8 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
+        descriptor.setCourse(person.getCourse());
+        descriptor.setYear(person.getYear());
         descriptor.setGithub(person.getGithub());
         descriptor.setEmail(person.getEmail());
         descriptor.setLinkedin(person.getLinkedin());
@@ -47,6 +51,20 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
+        return this;
+    }
+    /**
+     * Sets the {@code Course} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withCourse(String course) {
+        descriptor.setCourse(new Course(course));
+        return this;
+    }
+    /**
+     * Sets the {@code Year} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withYear(String year) {
+        descriptor.setYear(new Year(year));
         return this;
     }
 

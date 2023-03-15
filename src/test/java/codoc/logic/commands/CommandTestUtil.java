@@ -1,15 +1,19 @@
 package codoc.logic.commands;
 
+import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_NEW;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_OLD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_NEW;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
+import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 import static codoc.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,7 +36,11 @@ import codoc.testutil.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_COURSE_AMY = "Computer Science";
+    public static final String VALID_YEAR_AMY = "2";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_COURSE_BOB = "Business";
+    public static final String VALID_YEAR_BOB = "1";
     public static final String VALID_GITHUB_AMY = "amy-123";
     public static final String VALID_GITHUB_BOB = "bob-456";
     public static final String VALID_EMAIL_AMY = "amy@gmail.com";
@@ -44,6 +52,10 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_AY2223S2_CS2103T = "AY2223S2 CS2103T";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
+    public static final String COURSE_DESC_AMY = " " + PREFIX_COURSE + VALID_COURSE_AMY;
+    public static final String COURSE_DESC_BOB = " " + PREFIX_COURSE + VALID_COURSE_BOB;
+    public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
+    public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String GITHUB_DESC_AMY = " " + PREFIX_GITHUB + VALID_GITHUB_AMY;
     public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;
@@ -51,12 +63,14 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String LINKEDIN_DESC_AMY = " " + PREFIX_LINKEDIN + VALID_LINKEDIN_AMY;
     public static final String LINKEDIN_DESC_BOB = " " + PREFIX_LINKEDIN + VALID_LINKEDIN_BOB;
+    public static final String SKILL_DESC_CSHARP = " " + PREFIX_SKILL + VALID_SKILL_CSHARP;
     public static final String SKILL_ADD_DESC_CSHARP = " " + PREFIX_SKILL_ADD + VALID_SKILL_CSHARP;
     public static final String SKILL_ADD_DESC_JAVA = " " + PREFIX_SKILL_ADD + VALID_SKILL_JAVA;
     public static final String SKILL_OLD_DESC_CSHARP = " " + PREFIX_SKILL_OLD + VALID_SKILL_CSHARP;
     public static final String SKILL_NEW_DESC_CSHARP = " " + PREFIX_SKILL_NEW + VALID_SKILL_CSHARP;
 
-    public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL_ADD + VALID_SKILL_JAVA;
+    public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL + VALID_SKILL_JAVA;
+    public static final String MOD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD + VALID_MODULE_AY2223S2_CS2103T;
     public static final String MOD_ADD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_ADD + VALID_MODULE_AY2223S2_CS2103T;
     public static final String MOD_OLD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_OLD + VALID_MODULE_AY2223S2_CS2103T;
     public static final String MOD_NEW_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_NEW + VALID_MODULE_AY2223S2_CS2103T;
@@ -69,11 +83,17 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_LINKEDIN_DESC = " " + PREFIX_LINKEDIN + "linkedin.com/in/4my sheesh"; // space
     // not allowed for linkedins
-    public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL_ADD + "hubbyü"; // 'ü' not allowed in skills
+    public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL + "hubbyü"; // 'ü' not allowed in skills
+    public static final String INVALID_SKILL_ADD_DESC = " " + PREFIX_SKILL_ADD + "hubbyü"; // 'ü' not allowed in skills
+
     // D must be replaced by number
-    public static final String INVALID_MOD_DESC = " " + PREFIX_MOD_ADD + "AY22D3S2 CS2102";
+    public static final String INVALID_MOD_DESC = " " + PREFIX_MOD + "AY22D3S2 CS2102";
+    public static final String INVALID_MOD_ADD_DESC = " " + PREFIX_MOD_ADD + "AY22D3S2 CS2102";
+
     // last number following S must be replaced by 1 or 2
-    public static final String INVALID_MOD_SEM_DESC = " " + PREFIX_MOD_ADD + "AY2223S3 CS2102";
+    public static final String INVALID_MOD_SEM_DESC = " " + PREFIX_MOD + "AY2223S3 CS2102";
+    public static final String INVALID_MOD_ADD_SEM_DESC = " " + PREFIX_MOD_ADD + "AY2223S3 CS2102";
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

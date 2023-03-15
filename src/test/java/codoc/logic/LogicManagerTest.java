@@ -2,10 +2,12 @@ package codoc.logic;
 
 import static codoc.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static codoc.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static codoc.logic.commands.CommandTestUtil.COURSE_DESC_AMY;
 import static codoc.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static codoc.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
 import static codoc.logic.commands.CommandTestUtil.LINKEDIN_DESC_AMY;
 import static codoc.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
 import static codoc.testutil.Assert.assertThrows;
 import static codoc.testutil.TypicalPersons.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -79,9 +81,14 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + GITHUB_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand =
+                AddCommand.COMMAND_WORD + NAME_DESC_AMY
+                        + COURSE_DESC_AMY + YEAR_DESC_AMY
+                        + GITHUB_DESC_AMY + EMAIL_DESC_AMY
                 + LINKEDIN_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withSkills().withModules().build();
+        //make sure expected person and add command results in the same person
+        Person expectedPerson = new PersonBuilder(AMY)
+                .withSkills().withModules().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

@@ -1,6 +1,8 @@
 package codoc.logic.parser;
 
 import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static codoc.logic.commands.CommandTestUtil.COURSE_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.COURSE_DESC_BOB;
 import static codoc.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static codoc.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static codoc.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
@@ -12,13 +14,13 @@ import static codoc.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static codoc.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
 import static codoc.logic.commands.CommandTestUtil.LINKEDIN_DESC_AMY;
 import static codoc.logic.commands.CommandTestUtil.LINKEDIN_DESC_BOB;
-import static codoc.logic.commands.CommandTestUtil.MOD_ADD_DESC_AY2223S2_CS2103T;
+import static codoc.logic.commands.CommandTestUtil.MOD_DESC_AY2223S2_CS2103T;
 import static codoc.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static codoc.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static codoc.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static codoc.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static codoc.logic.commands.CommandTestUtil.SKILL_ADD_DESC_CSHARP;
-import static codoc.logic.commands.CommandTestUtil.SKILL_ADD_DESC_JAVA;
+import static codoc.logic.commands.CommandTestUtil.SKILL_DESC_CSHARP;
+import static codoc.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
 import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_BOB;
@@ -26,6 +28,8 @@ import static codoc.logic.commands.CommandTestUtil.VALID_MODULE_AY2223S2_CS2103T
 import static codoc.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_CSHARP;
 import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
+import static codoc.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.YEAR_DESC_BOB;
 import static codoc.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static codoc.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static codoc.testutil.TypicalPersons.AMY;
@@ -51,35 +55,47 @@ public class AddCommandParserTest {
                 .withModules(VALID_MODULE_AY2223S2_CS2103T).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB
-                + LINKEDIN_DESC_BOB + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T,
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE
+                        + NAME_DESC_BOB + COURSE_DESC_BOB + YEAR_DESC_BOB
+                        + GITHUB_DESC_BOB + EMAIL_DESC_BOB
+                + LINKEDIN_DESC_BOB + SKILL_DESC_CSHARP + MOD_DESC_AY2223S2_CS2103T,
                 new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB
-                + LINKEDIN_DESC_BOB + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T,
+        assertParseSuccess(parser, NAME_DESC_AMY
+                        + COURSE_DESC_BOB + YEAR_DESC_BOB
+                        + NAME_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB
+                + LINKEDIN_DESC_BOB + SKILL_DESC_CSHARP + MOD_DESC_AY2223S2_CS2103T,
                 new AddCommand(expectedPerson));
 
         // multiple GitHub usernames - last GitHub username accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + GITHUB_DESC_AMY + GITHUB_DESC_BOB + EMAIL_DESC_BOB
-                + LINKEDIN_DESC_BOB + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T,
+        assertParseSuccess(parser, NAME_DESC_BOB
+                        + COURSE_DESC_BOB + YEAR_DESC_BOB
+                        + GITHUB_DESC_AMY + GITHUB_DESC_BOB + EMAIL_DESC_BOB
+                + LINKEDIN_DESC_BOB + SKILL_DESC_CSHARP + MOD_DESC_AY2223S2_CS2103T,
                 new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + LINKEDIN_DESC_BOB + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T,
+        assertParseSuccess(parser, NAME_DESC_BOB
+                        + COURSE_DESC_BOB + YEAR_DESC_BOB
+                        + GITHUB_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
+                + LINKEDIN_DESC_BOB + SKILL_DESC_CSHARP + MOD_DESC_AY2223S2_CS2103T,
                 new AddCommand(expectedPerson));
 
         // multiple linkedins - last linkedin accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB + LINKEDIN_DESC_AMY
-                + LINKEDIN_DESC_BOB + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T,
+        assertParseSuccess(parser, NAME_DESC_BOB
+                        + COURSE_DESC_BOB + YEAR_DESC_BOB
+                        + GITHUB_DESC_BOB + EMAIL_DESC_BOB + LINKEDIN_DESC_AMY
+                        + LINKEDIN_DESC_BOB + SKILL_DESC_CSHARP + MOD_DESC_AY2223S2_CS2103T,
                 new AddCommand(expectedPerson));
 
         // multiple skills - all accepted
         Person expectedPersonMultipleSkills = new PersonBuilder(BOB).withSkills(VALID_SKILL_CSHARP, VALID_SKILL_JAVA)
                 .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB + LINKEDIN_DESC_BOB
-                + SKILL_ADD_DESC_JAVA + SKILL_ADD_DESC_CSHARP + MOD_ADD_DESC_AY2223S2_CS2103T,
+        assertParseSuccess(parser, NAME_DESC_BOB
+                        + COURSE_DESC_BOB + YEAR_DESC_BOB
+                        + GITHUB_DESC_BOB + EMAIL_DESC_BOB + LINKEDIN_DESC_BOB
+                + SKILL_DESC_JAVA + SKILL_DESC_CSHARP + MOD_DESC_AY2223S2_CS2103T,
                 new AddCommand(expectedPersonMultipleSkills));
     }
 
@@ -87,7 +103,13 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero skills
         Person expectedPerson = new PersonBuilder(AMY).withSkills().withModules().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + GITHUB_DESC_AMY + EMAIL_DESC_AMY + LINKEDIN_DESC_AMY,
+        assertParseSuccess(parser,
+                NAME_DESC_AMY
+                        + COURSE_DESC_AMY
+                        + YEAR_DESC_AMY
+                        + GITHUB_DESC_AMY
+                        + EMAIL_DESC_AMY
+                        + LINKEDIN_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -111,32 +133,46 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + GITHUB_DESC_BOB + EMAIL_DESC_BOB + LINKEDIN_DESC_BOB
-                + SKILL_ADD_DESC_JAVA + SKILL_ADD_DESC_CSHARP, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC
+                + COURSE_DESC_BOB + YEAR_DESC_BOB
+                + GITHUB_DESC_BOB + EMAIL_DESC_BOB + LINKEDIN_DESC_BOB
+                + SKILL_DESC_JAVA + SKILL_DESC_CSHARP, Name.MESSAGE_CONSTRAINTS);
 
         // invalid GitHub username
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_GITHUB_DESC + EMAIL_DESC_BOB + LINKEDIN_DESC_BOB
-                + SKILL_ADD_DESC_JAVA + SKILL_ADD_DESC_CSHARP, Github.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB
+                + COURSE_DESC_BOB + YEAR_DESC_BOB
+                + INVALID_GITHUB_DESC + EMAIL_DESC_BOB + LINKEDIN_DESC_BOB
+                + SKILL_DESC_JAVA + SKILL_DESC_CSHARP, Github.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + GITHUB_DESC_BOB + INVALID_EMAIL_DESC + LINKEDIN_DESC_BOB
-                + SKILL_ADD_DESC_JAVA + SKILL_ADD_DESC_CSHARP, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB
+                + COURSE_DESC_BOB + YEAR_DESC_BOB
+                + GITHUB_DESC_BOB + INVALID_EMAIL_DESC + LINKEDIN_DESC_BOB
+                + SKILL_DESC_JAVA + SKILL_DESC_CSHARP, Email.MESSAGE_CONSTRAINTS);
 
         // invalid linkedin
-        assertParseFailure(parser, NAME_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB + INVALID_LINKEDIN_DESC
-                + SKILL_ADD_DESC_JAVA + SKILL_ADD_DESC_CSHARP, Linkedin.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB
+                + COURSE_DESC_BOB + YEAR_DESC_BOB
+                + GITHUB_DESC_BOB + EMAIL_DESC_BOB + INVALID_LINKEDIN_DESC
+                + SKILL_DESC_JAVA + SKILL_DESC_CSHARP, Linkedin.MESSAGE_CONSTRAINTS);
 
         // invalid skill
-        assertParseFailure(parser, NAME_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB + LINKEDIN_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB
+                + COURSE_DESC_BOB + YEAR_DESC_BOB
+                + GITHUB_DESC_BOB + EMAIL_DESC_BOB + LINKEDIN_DESC_BOB
                 + INVALID_SKILL_DESC + VALID_SKILL_CSHARP, Skill.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + GITHUB_DESC_BOB + EMAIL_DESC_BOB + INVALID_LINKEDIN_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC
+                        + COURSE_DESC_BOB + YEAR_DESC_BOB
+                        + GITHUB_DESC_BOB + EMAIL_DESC_BOB + INVALID_LINKEDIN_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB
-                + LINKEDIN_DESC_BOB + SKILL_ADD_DESC_JAVA + SKILL_ADD_DESC_CSHARP,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
+                        + COURSE_DESC_BOB + YEAR_DESC_BOB
+                        + GITHUB_DESC_BOB + EMAIL_DESC_BOB
+                + LINKEDIN_DESC_BOB + SKILL_DESC_JAVA + SKILL_DESC_CSHARP,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

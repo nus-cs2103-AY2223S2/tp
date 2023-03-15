@@ -7,11 +7,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import codoc.model.module.Module;
+import codoc.model.person.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
+import codoc.model.person.Year;
 import codoc.model.skill.Skill;
 import codoc.model.util.SampleDataUtil;
 
@@ -23,6 +25,8 @@ import codoc.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_COURSE = "Computer Science";
+    public static final String DEFAULT_YEAR = "1";
     public static final String DEFAULT_GITHUB = "amy-123";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_LINKEDIN = "linkedin.com/in/4my";
@@ -32,6 +36,8 @@ public class PersonBuilder {
 
 
     private Name name;
+    private Course course;
+    private Year year;
     private Github github;
     private Email email;
     private Linkedin linkedin;
@@ -43,6 +49,8 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        course = new Course(DEFAULT_COURSE);
+        year = new Year(DEFAULT_YEAR);
         github = new Github(DEFAULT_GITHUB);
         email = new Email(DEFAULT_EMAIL);
         linkedin = new Linkedin(DEFAULT_LINKEDIN);
@@ -57,6 +65,8 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        course = personToCopy.getCourse();
+        year = personToCopy.getYear();
         github = personToCopy.getGithub();
         email = personToCopy.getEmail();
         linkedin = personToCopy.getLinkedin();
@@ -77,6 +87,20 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+    /**
+     * Sets the {@code Course} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCourse(String course) {
+        this.course = new Course(course);
+        return this;
+    }
+    /**
+     * Sets the {@code Year} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withYear(String year) {
+        this.year = new Year(year);
         return this;
     }
 
@@ -121,7 +145,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, github, email, linkedin, skills, mods);
+        return new Person(name, course, year, github, email, linkedin, skills, mods);
     }
 
     /**
@@ -130,6 +154,8 @@ public class PersonBuilder {
      */
     public Person buildEditedPerson() {
         name = new Name("Test name");
+        course = new Course("Computer Science");
+        year = new Year("1");
         github = new Github("987654321");
         email = new Email("test@gmail.com");
         linkedin = new Linkedin("linkedin.com/in/test");
@@ -140,7 +166,7 @@ public class PersonBuilder {
         mods.add(DEFAULT_MODULE);
         mods.add(new Module("AY2122S1 GEA1000"));
 
-        return new Person(name, github, email, linkedin, skills, mods);
+        return new Person(name, course, year, github, email, linkedin, skills, mods);
     }
 
 }

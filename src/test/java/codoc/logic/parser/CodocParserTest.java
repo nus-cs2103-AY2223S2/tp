@@ -61,6 +61,7 @@ public class CodocParserTest {
         EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor), originalPerson);
+
         assertEquals(new EditCommand(descriptor), command);
     }
 

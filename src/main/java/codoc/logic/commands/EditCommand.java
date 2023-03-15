@@ -1,5 +1,6 @@
 package codoc.logic.commands;
 
+import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
@@ -12,6 +13,7 @@ import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_DELETE;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_NEW;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
+import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 import static codoc.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
@@ -25,11 +27,13 @@ import codoc.commons.util.CollectionUtil;
 import codoc.logic.commands.exceptions.CommandException;
 import codoc.model.Model;
 import codoc.model.module.Module;
+import codoc.model.person.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
+import codoc.model.person.Year;
 import codoc.model.skill.Skill;
 
 /**
@@ -45,6 +49,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_COURSE + "COURSE] "
+            + "[" + PREFIX_YEAR + "YEAR] "
             + "[" + PREFIX_LINKEDIN + "LINKEDIN] "
             + "[" + PREFIX_SKILL_ADD + "SKILL] "
             + "[" + PREFIX_SKILL_DELETE + "SKILL] "
@@ -113,11 +119,23 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Github updatedGithub = editPersonDescriptor.getGithub().orElse(personToEdit.getGithub());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Course updatedCourse = editPersonDescriptor.getCourse().orElse(personToEdit.getCourse());
+        Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
         Linkedin updatedLinkedin = editPersonDescriptor.getLinkedin().orElse(personToEdit.getLinkedin());
         Set<Skill> updatedSkills = editPersonDescriptor.getSkills().orElse(personToEdit.getSkills());
         Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
 
-        return new Person(updatedName, updatedGithub, updatedEmail, updatedLinkedin, updatedSkills, updatedModules);
+        return new Person(
+                updatedName,
+                updatedCourse,
+                updatedYear,
+                updatedGithub,
+                updatedEmail,
+                updatedLinkedin,
+                updatedSkills,
+                updatedModules
+
+        );
     }
 
     @Override
@@ -145,6 +163,8 @@ public class EditCommand extends Command {
         private Name name;
         private Github github;
         private Email email;
+        private Course course;
+        private Year year;
         private Linkedin linkedin;
         private Set<Skill> skills;
         private Set<Module> modules;
@@ -159,6 +179,8 @@ public class EditCommand extends Command {
             this.name = person.getName();
             this.github = person.getGithub();
             this.email = person.getEmail();
+            this.course = person.getCourse();
+            this.year = person.getYear();
             this.linkedin = person.getLinkedin();
             this.skills = person.getSkills();
             this.modules = person.getModules();
@@ -173,6 +195,8 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setGithub(toCopy.github);
             setEmail(toCopy.email);
+            setYear(toCopy.year);
+            setCourse(toCopy.course);
             setLinkedin(toCopy.linkedin);
             setSkills(toCopy.skills);
             setModules(toCopy.modules);
@@ -200,11 +224,21 @@ public class EditCommand extends Command {
         public Optional<Github> getGithub() {
             return Optional.ofNullable(github);
         }
-
+        public void setCourse(Course course) {
+            this.course = course;
+        }
+        public Optional<Course> getCourse() {
+            return Optional.ofNullable(course);
+        }
+        public void setYear(Year year) {
+            this.year = year;
+        }
+        public Optional<Year> getYear() {
+            return Optional.ofNullable(year);
+        }
         public void setEmail(Email email) {
             this.email = email;
         }
-
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
@@ -256,22 +290,22 @@ public class EditCommand extends Command {
             if (skills != null && skills.size() == 0) {
                 this.skills = skills;
             } else if (skills != null && this.skills != null) {
-                deleteSkillsHelper(skills);
+                if (hasSkills(skills)) {
+                    deleteSkillsHelper(skills);
+                } else {
+                    this.skills = null;
+                }
             }
         }
 
         private void deleteSkillsHelper(Set<Skill> skills) {
-            if (hasSkills(skills)) {
-                Set<Skill> result = new HashSet<>();
-                for (Skill s : this.skills) {
-                    if (!skills.contains(s)) {
-                        result.add(s);
-                    }
+            Set<Skill> result = new HashSet<>();
+            for (Skill s : this.skills) {
+                if (!skills.contains(s)) {
+                    result.add(s);
                 }
-                this.skills = result;
-            } else {
-                this.skills = null;
             }
+            this.skills = result;
         }
 
         /**
@@ -280,26 +314,26 @@ public class EditCommand extends Command {
          */
         public void updateSkills(Set<Skill> oldSkills, Set<Skill> newSkills) {
             if (oldSkills != null && newSkills != null && this.skills != null) {
-                updateSkillsHelper(oldSkills, newSkills);
+                if (hasSkills(oldSkills)) {
+                    updateSkillsHelper(oldSkills, newSkills);
+                } else {
+                    this.skills = null;
+                }
             }
         }
 
         private void updateSkillsHelper(Set<Skill> oldSkills, Set<Skill> newSkills) {
-            if (hasSkills(oldSkills)) {
-                Set<Skill> result = new HashSet<>();
-                for (Skill s : this.skills) {
-                    if (oldSkills.contains(s)) {
-                        Skill newSkill = newSkills.iterator().next();
-                        result.add(newSkill);
-                        newSkills.remove(newSkill);
-                    } else {
-                        result.add(s);
-                    }
+            Set<Skill> result = new HashSet<>();
+            for (Skill s : this.skills) {
+                if (oldSkills.contains(s)) {
+                    Skill newSkill = newSkills.iterator().next();
+                    result.add(newSkill);
+                    newSkills.remove(newSkill);
+                } else {
+                    result.add(s);
                 }
-                this.skills = result;
-            } else {
-                this.skills = null;
             }
+            this.skills = result;
         }
 
         private boolean hasSkills(Set<Skill> oldSkills) {
@@ -336,22 +370,22 @@ public class EditCommand extends Command {
             if (modules != null && modules.size() == 0) {
                 this.modules = modules;
             } else if (modules != null && this.modules != null) {
-                deleteModsHelper(modules);
+                if (hasMods(modules)) {
+                    deleteModsHelper(modules);
+                } else {
+                    this.modules = null;
+                }
             }
         }
 
         private void deleteModsHelper(Set<Module> modules) {
-            if (hasMods(modules)) {
-                Set<Module> result = new HashSet<>();
-                for (Module m : this.modules) {
-                    if (!modules.contains(m)) {
-                        result.add(m);
-                    }
+            Set<Module> result = new HashSet<>();
+            for (Module m : this.modules) {
+                if (!modules.contains(m)) {
+                    result.add(m);
                 }
-                this.modules = result;
-            } else {
-                this.modules = null;
             }
+            this.modules = result;
         }
 
         /**
@@ -360,26 +394,26 @@ public class EditCommand extends Command {
          */
         public void updateMods(Set<Module> oldMods, Set<Module> newMods) {
             if (oldMods != null && newMods != null && this.modules != null) {
-                updateModsHelper(oldMods, newMods);
+                if (hasMods(oldMods)) {
+                    updateModsHelper(oldMods, newMods);
+                } else {
+                    this.modules = null;
+                }
             }
         }
 
         private void updateModsHelper(Set<Module> oldMods, Set<Module> newMods) {
-            if (hasMods(oldMods)) {
-                Set<Module> result = new HashSet<>();
-                for (Module m : this.modules) {
-                    if (oldMods.contains(m)) {
-                        Module newMod = newMods.iterator().next();
-                        result.add(newMod);
-                        newMods.remove(newMod);
-                    } else {
-                        result.add(m);
-                    }
+            Set<Module> result = new HashSet<>();
+            for (Module m : this.modules) {
+                if (oldMods.contains(m)) {
+                    Module newMod = newMods.iterator().next();
+                    result.add(newMod);
+                    newMods.remove(newMod);
+                } else {
+                    result.add(m);
                 }
-                this.modules = result;
-            } else {
-                this.modules = null;
             }
+            this.modules = result;
         }
 
         private boolean hasMods(Set<Module> oldMods) {
@@ -426,6 +460,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getGithub().equals(e.getGithub())
                     && getEmail().equals(e.getEmail())
+                    && getCourse().equals(e.getCourse())
+                    && getYear().equals(e.getYear())
                     && getLinkedin().equals(e.getLinkedin())
                     && getSkills().equals(e.getSkills())
                     && getModules().equals(e.getModules());
