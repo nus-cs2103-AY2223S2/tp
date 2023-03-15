@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             + DELIMITER + PREFIX_STARTTIME + " START_TIME "
             + DELIMITER + PREFIX_ENDTIME + " END_TIME "
             + DELIMITER + PREFIX_VACCINATION + " VAX_GROUP\n"
-            + "Example: " + COMMAND_GROUP + "" + COMMAND_WORD + " "
+            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " "
             + DELIMITER + PREFIX_PATIENT + " 1 "
             + DELIMITER + PREFIX_STARTTIME + " 2024-01-01 1330"
             + DELIMITER + PREFIX_ENDTIME + " 2024-01-01 1400"
