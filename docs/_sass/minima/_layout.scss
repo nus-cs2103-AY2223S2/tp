@@ -174,7 +174,8 @@
 }
 
 .post-content {
-  h1, h2, h3, h4 { margin-bottom: $spacing-unit }
+  h1, h2, h3 { margin-bottom: $spacing-unit }
+  h4 { margin-bottom: $spacing-unit * 0.5 }
   h5, h6 {margin-bottom: 0}
 
   h1, h2, h3 { margin-top: $spacing-unit * 2 }

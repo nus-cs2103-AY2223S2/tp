@@ -25,50 +25,64 @@ Vaccination Management System (VMS) is a **desktop app for managing vaccination 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-<!--    * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app. -->
-
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command syntax
+## Command line syntax
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Command syntaxes presentation**<br>
 
-* Words enclosed in braces, `{` and `}`, represents the name of the parameter to be supplied. It may be accompanied by a type.
-* Words enclosed in triangle brackets `<` and `>` represent a type.
-* Items in square brackets, `[` and `]`, are optional.
-* Items with `?` after them can be used zero or one time.
-* Items with `...` after them can be used zero or more times.
-
-Example:
-
-1. `{component <component>}` would mean a `component` parameter of type `<component>` will have to be supplied
-2. `[{component <component>}]` would meant the same as the first but is optional.
-3. `{component <component>}?` and `{component <component>}...` would mean the same as the above but one or more times and zero or more times respectively.
+* **Pink italicized bolded capitalized words** represents _placeholders_ that the reader will have to replace with a
+  variable. For example, <code><var>PATIENT_ID</var></code> will represent a patient ID in commands or example outputs.
+* **Backslash** (`\`) before line breaks represents a _command continuation_ where the following line break and
+  backslash are to be replaced with aN EMPTY character. For example,<br>
+  <pre>
+  appointment add --p <var>PATIENT_ID</var> \
+      --s <var>START_TIME</var> --e <var>END_TIME</var> \
+      --v <var>VAX_NAME</var> \
+  </pre>
+  would have the same meaning as this
+  <pre>
+  appointment add --p <var>PATIENT_ID</var> --s <var>START_TIME</var> --e <var>END_TIME</var> --v <var>VAX_NAME</var>
+  </pre>
+* **Square brackets** (`[` and `]`) around arguments indicate that the argument is optional. For example,
+  <br><code>[--n <var>NEW_NAME</var>]</code> would mean that <wbr><code>--n <var>NEW_NAME</var></code> is optional.
+* **Three dots with no space** (`...`) <u>after</u> arguments indicates that multiple of the same type of
+  argument can be repeated. For example <wbr><code>[--r <var>REQUIREMENT</var>]...</code> would mean that
+  <code>--r <var>REQUIREMENT</var></code> can appear multiple times.
+* **Three dots with no space** <u>before</u> and <u>after</u> an argument would indicate that a list of that argument
+  is required. The elements of a list are delimited by commas (`,`) and the keyword `{EMPTY}` is used to represent an
+  empty list. For example, <code>--g ...<var>GROUP</var>...</code> would mean that a list of
+  <code><var>GROUP</var></code> is required. Accepted arguments may be
+  <code>--g <var>GROUP_1</var>, <var>GROUP_2</var>, <var>GROUP_3</var></code> for a list of 3 groups or `--g {EMPTY}`
+  for an empty list of groups.'
+* **Triangle brackets** (`<` and `>`) around words represent a [type](#types).
 
 </div>
 
 ### General command syntax
 
-```text
-{component <component>} {command word} [{preamble}] [--{flag name} {argument} [::{argument}]]...
-```
+The general command line syntax is as follows:<br>
 
-* `{component}` may be omitted if it is `basic`.
-* `--` is used to delimit flags.
-* `::` is used to delimit parts of arguments of the same flag.
-* Leading and trailing white spaces of arguments will be stripped off.
+<pre>
+<var>COMPONENT</var> <var>COMMAND_WORD</var> <var>PREAMBLE</var> [--<var>FLAG</var> <var>ARGUMENT</var>]...
+</pre>
+
+* <code><var>COMPONENT</var></code> is a variable of type [`<component>`](#component). It may be omitted if it is
+  [`basic`](#basic---applications-basic-features).
+* <code><var>PREAMBLE</var></code> is any text after <code><var>COMMAND_WORD</var></code> to the end of the command or
+  the first `--` flag delimiter. Its type is command dependent and will be taken to be empty if
+  <code><var>COMMAND_WORD</var></code> is immediately followed by `--`.
+* <code><var>COMMAND_WORD</var></code> and <code><var>FLAG</var></code> are single word arguments that do no accept
+  spaces.
+
+##### Additional points
+
+* `--` is used to delimit flags and cannot be present in any of the argument placeholders.
+* Leading and trailing white spaces in <code><var>ARGUMENTS</var></code> and elements in lists will be ignored.
 
 ### Types
 
@@ -219,27 +233,47 @@ appointment list
 
 #### `add` - Add a vaccination type
 
+Adds a new vaccination type as defined in the command into the system. If any of the optional arguments are omitted,
+they will be set to their default values.
+
+##### Syntax
+
+<pre>
+vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
+    [--s <var>SPACING</var>] [--a <var>ALLERGY_REQ</var>] [--h <var>HISTORY_REQ</var>]...
+</pre>
+
+* <code><var>name</var></code> : `<groupName>` - the vaccination to create.
+* <code><var>groups</var></code> : `<groupName>` - the groups the vaccination type classifies under.
+* <code><var>minAge</var></code> : `<age>` - the minimum required age (inclusive) to take the vaccine.
+* <code><var>maxAge</var></code> : `<age>` - the maximum require age (inclusive) to take the vaccine.
+* <code><var>spacing</var></code> : +ve `<integer>` - the minimum time in days from the last vaccination taken to take
+  this vaccine.
+* <code><var>allergyReq</var></code> : `<requirement>` - the allergy requirement to take the vaccine.
+* <code><var>historyReq</var></code> : `<requirement>` - the vaccination group history requirement to
+  take the vaccine.
+
+##### Example
+
 ```text
-vaccination add {name <groupName>} [{groups <list <groupName>>}] [--lal {minAge <age>}] [--ual {maxAge <age>}] [--s {spacing <integer>}] [--a {allergyReq {requirement}}]... [--h {historyReq <requirement>}]...
+vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION \
+    --lal 5 --s 56 \
+    --a NONE::allergy1, allergy2, allergy3 \
+    --h NONE::DOES 1 \
 ```
 
-* **name** - the name of the vaccination type to create.
-* **groups** - the list of groups the vaccination type classifies under.
-* **minAge** - the minimum required age (inclusive) to take the vaccine.
-* **maxAge** - the maximum require age (inclusive) to take the vaccine.
-* **spacing** - the minimum time in days from the last vaccination taken to take this vaccine.
-* **allergyReq** - the allergy requirement to take the vaccine.
-* **historyReq** - the vaccination group history requirement to take the vaccine.
-
-Example:
-
-* `vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --s 56 --a NONE::allergy1, allergy2, allergy3 --h NONE::DOES 1`
+Copy and paste:<br>
+`vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --s 56 --a NONE::allergy1, allergy2, allergy3 --h NONE::DOES 1`
+<br><br>
+Output:<br>
+{some ss}
 
 ## Advance
 
 VMS data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
 
 Locations:
+
 1. `[JAR file location]/data/patientlist.json`
 2. `[JAR file location]/data/appointmentlist.json`
 
