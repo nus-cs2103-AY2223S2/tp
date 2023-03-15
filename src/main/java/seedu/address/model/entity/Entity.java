@@ -20,8 +20,9 @@ public abstract class Entity {
     /**
      * Every field must be present and not null.
      */
-    public Entity(Name name) {
+    public Entity(Name name, Set<Tag> tags) {
         this.name = name;
+        this.tags.addAll(tags);
     }
 
 
@@ -53,6 +54,11 @@ public abstract class Entity {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    // Not implemented. in other branch temp.
+    public boolean isSameEntity(Entity other) {
+        return true;
     }
 
 
