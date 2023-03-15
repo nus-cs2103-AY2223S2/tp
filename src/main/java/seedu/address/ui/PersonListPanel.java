@@ -68,6 +68,9 @@ public class PersonListPanel extends UiPart<Region> {
         });
     }
 
+    /**
+     * Allows the creation of a column with images
+     */
     public static class PhotoCell extends TableCell<Person, String> {
         private final ImageView imageView = new ImageView();
 

@@ -34,15 +34,13 @@ public class Photo {
     public Photo(String photoFilePath) {
         requireNonNull(photoFilePath);
         GuiSettings guiSettings = new GuiSettings();
-        this.photoFilePath = photoFilePath;
-        /*
+
         //If the url is not a valid image, set it to the default image found in GuiSettings
         if (!isValidPhoto(photoFilePath)) {
             this.photoFilePath = guiSettings.getPhoto();
         } else {
             this.photoFilePath = photoFilePath;
         }
-         */
 
         setDefaultDimensions(guiSettings);
     }
