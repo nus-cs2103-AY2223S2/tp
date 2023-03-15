@@ -76,9 +76,9 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 Displays a comprehensive window detailing the outline of executable commands by user.
 
-A ***TreeView*** on the left window lists the hierarchical ordering of commands, with the description of the command on the right in a ***TextArea***.
+A hierarchical view on the left window lists the different available commands, with the description of the command on the right.
 
-![help interface pic](https://user-images.githubusercontent.com/99934242/221747645-0bbdf6c7-91f3-4adc-b4b7-b6c70c7de540.jpg)
+![image](https://user-images.githubusercontent.com/99934242/225213208-f94de7e4-2085-41e7-9325-9ecef5fe246f.png)
 
 Format: `help`
 
