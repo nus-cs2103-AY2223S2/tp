@@ -21,6 +21,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -84,6 +87,14 @@ public interface Model {
      */
     void setPatient(int id, Patient editedPatient);
 
+    /**
+     * Replaces the given appointment {@code target} with {@code editedAppointment}.
+     * {@code target} must exist in the appointment manager.
+     * The appointment identity of {@code editedAppointment} must not be the same as
+     * another existing appointment in the appointment manager.
+     */
+    void setAppointment(int id, Appointment editedAppointment);
+
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableMap<Integer, IdData<Patient>> getFilteredPatientList();
 
@@ -98,6 +109,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
     /**
      * Adds the given appointment.
