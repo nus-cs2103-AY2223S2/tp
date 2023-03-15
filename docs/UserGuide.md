@@ -76,7 +76,7 @@ your internship hunt!
 
 Shows a message with a link to the help page.
 
-<!--  ![help message](images/helpMessage.png)  -->
+[help message](images/helpMessage.png)
 
 Format: `help`
 
