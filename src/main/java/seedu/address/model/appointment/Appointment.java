@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.id.AppointmentId;
+import seedu.address.model.id.Id;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
@@ -19,6 +21,7 @@ public class Appointment {
     private final Description description;
     private final Patient patient;
     private final Set<Tag> tags = new HashSet<>();
+    private final AppointmentId ID = null;
 
     /**
      * Every field must be present and not null.

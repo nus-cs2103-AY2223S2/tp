@@ -11,6 +11,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.id.PatientId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,6 +28,7 @@ public class Patient {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final PatientId ID = null;
 
     /**
      * Every field must be present and not null.
