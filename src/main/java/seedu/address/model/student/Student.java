@@ -117,6 +117,7 @@ public class Student {
         return examList.asUnmodifiableObservableList();
     }
 
+    //HOMEWORK########################################################################################
     /**
      * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
