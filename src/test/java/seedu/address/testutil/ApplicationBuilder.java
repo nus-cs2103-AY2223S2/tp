@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
 import seedu.address.model.application.Application;
-import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.CompanyEmail;
+import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
 
