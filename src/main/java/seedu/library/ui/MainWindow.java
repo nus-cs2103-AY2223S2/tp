@@ -4,14 +4,18 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+
 import javafx.stage.Stage;
 import seedu.library.commons.core.GuiSettings;
 import seedu.library.commons.core.LogsCenter;
@@ -19,7 +23,8 @@ import seedu.library.logic.Logic;
 import seedu.library.logic.commands.CommandResult;
 import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.logic.parser.exceptions.ParseException;
-import java.time.LocalTime;
+
+import seedu.library.model.bookmark.Bookmark;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -39,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private ZoomView zoomView;
+
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -53,9 +61,13 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private StackPane zoomViewPlaceholder;
 
     @FXML
     private Label date;
+
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -73,6 +85,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -116,6 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         LocalDate today = LocalDate.now();
         DayOfWeek day = today.getDayOfWeek();
         date.setText(day.name());
+
     }
     /**
      * Fills up all the placeholders of this window.
@@ -123,6 +137,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         bookmarkListPanel = new BookmarkListPanel(logic.getFilteredBookmarkList());
         bookmarkListPanelPlaceholder.getChildren().add(bookmarkListPanel.getRoot());
+        bookmarkListPanelPlaceholder.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> handleChange());
+
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -132,6 +149,13 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        zoomView = new ZoomView(bookmarkListPanel.getFirstItem());
+        zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
+
+
+
+
     }
 
     /**
@@ -157,6 +181,20 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
+    public void handleChange() {
+        Bookmark selectedItem = bookmarkListPanel.getSelectedItem();
+        if ( selectedItem == null || bookmarkListPanel.isChangedSelect() == false) {
+            System.out.println("fail");
+        } else {
+            ZoomView newView = new ZoomView(selectedItem);
+            zoomViewPlaceholder.getChildren().add(newView.getRoot());
+            zoomViewPlaceholder.setVisible(true);
+        }
+
+        }
+
+
 
     void show() {
         primaryStage.show();

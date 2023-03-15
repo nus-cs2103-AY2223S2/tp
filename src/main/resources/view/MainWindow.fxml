@@ -8,59 +8,66 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
-    <Image url="@/images/library.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
+    <icons>
+        <Image url="@/images/library.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
 
-      <VBox>
-            <AnchorPane prefHeight="35.0" prefWidth="458.0" style="-fx-background-color: derive(#1d1d1d, 20%);" VBox.vgrow="NEVER">
+            <VBox>
+            <HBox style="-fx-background-color: #F1E4C2;" VBox.vgrow="NEVER">
                <children>
-              <MenuBar fx:id="menuBar">
-                <Menu mnemonicParsing="false" text="File">
-                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-                </Menu>
-      
-              </MenuBar>
-                  <Label fx:id="date" alignment="TOP_RIGHT" blendMode="SCREEN" layoutX="267.0" layoutY="7.0" prefHeight="21.0" prefWidth="405.0" style="-fx-text-fill: White;" text="temporary" textFill="WHITE" />
+                        <MenuBar fx:id="menuBar">
+                            <Menu mnemonicParsing="false" text="File">
+                                <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                                <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                            </Menu>
+
+                              </MenuBar>
+                  <Pane style="-fx-background-color: #F1E4C2;" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="date" alignment="TOP_RIGHT" blendMode="SCREEN" minWidth="100.0" prefHeight="21.0" prefWidth="100.0" style="-fx-text-fill: white;" text="temporary" textFill="WHITE" translateX="-5.0" translateY="7.0" wrapText="true" />
                </children>
-            </AnchorPane>
+            </HBox>
 
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                    <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="115.0" minHeight="100" prefHeight="100.0" prefWidth="340.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
+                      <StackPane fx:id="resultDisplayPlaceholder" maxHeight="115.0" minHeight="100" prefHeight="100.0" prefWidth="340.0" style="-fx-background-color: #FDF6E3;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                    <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                </StackPane>
 
-        <VBox fx:id="BookmarkList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="bookmarkListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </VBox>
+                <VBox fx:id="BookmarkList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                    <HBox VBox.vgrow="ALWAYS">
+                        <children>
+                            <StackPane fx:id="bookmarkListPanelPlaceholder" prefHeight="150.0" prefWidth="665.0" style="-fx-padding: 5,0,0,0;" />
+                            <StackPane fx:id="zoomViewPlaceholder" alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="630.0" />
+                        </children>
+                    </HBox>
+                </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
-    </Scene>
-  </scene>
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+            </VBox>
+        </Scene>
+    </scene>
 </fx:root>

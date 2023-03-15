@@ -3,6 +3,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="bookmarkListView" VBox.vgrow="ALWAYS" />
+<VBox style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-padding: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+  <ListView fx:id="bookmarkListView" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 20; -fx-background-color: #F4F6F8; -fx-border-color: black;" VBox.vgrow="ALWAYS" />
 </VBox>
