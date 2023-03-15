@@ -2,7 +2,6 @@ package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
@@ -10,11 +9,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -55,7 +56,7 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_RELATIONSHIP + "NOK RELATIONSHIP TO STUDENT "
             + "["
             + PREFIX_ADDRESS + "RESIDENTIAL ADDRESS "
-            + PREFIX_AGE + "AGE "
+            + PREFIX_STUDENTAGE + "AGE "
             + PREFIX_IMAGESTUDENT + "IMAGE STUDENT "
             + PREFIX_EMAILSTUDENT + "EMAIL STUDENT "
             + PREFIX_PHONESTUDENT + "PHONE STUDENT "
@@ -69,7 +70,7 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_PHONEPARENT + "91234567 "
             + PREFIX_RELATIONSHIP + "Father "
             + PREFIX_ADDRESS + "Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) "
-            + PREFIX_AGE + "14 "
+            + PREFIX_STUDENTAGE + "14 "
             + PREFIX_IMAGESTUDENT + "C:// "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
             + PREFIX_PHONESTUDENT + "91234567 "
@@ -136,13 +137,12 @@ public class StudentAddCommand extends StudentCommand {
         }
         ArgumentMultimap argMultimap = new ArgumentMultimap();
         try {
-            Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_AGE).get()));
             Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
             Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
+            Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_PARENTAGE).get()));
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            Parent newParent = new Parent(student.getStudentClass(), student.getIndexNumber(), parentName,
-                    student.getRls(), age, image, email, parentNumber,
+            Parent newParent = new Parent(parentName, age, image, email, parentNumber,
                     address, tagList);
             newParent.addStudent(student); //bind student to parent
             model.addParent(newParent);

@@ -146,7 +146,7 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 Adds a student to the database
 
-Format: `add n/<NAME> in/<INDEX_NUMBER> s/<SEX> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<RELATIONSHIP> [age/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> p/<PHONE_NUMBER> cca/<CCA>]`
+Format: `add n/<NAME> in/<INDEX_NUMBER> s/<SEX> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<RELATIONSHIP> [ageS/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> p/<PHONE_NUMBER> cca/<CCA>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -156,7 +156,7 @@ Examples:
 * `student 1A add n/TanAhCow in/03 s/m pn/TanAhNiu pnP/91234567 rls/Father` <br>
 
   *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
-* `student 1B add n/Mary Goh in/23 s/F pn/Goh Siew Mai pnP/91234567 rls/Mother age/15 imgS/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg eS/marygoh@gmail.com p/65656565 cca/Chess Club`
+* `student 1B add n/Mary Goh in/23 s/F pn/Goh Siew Mai pnP/91234567 rls/Mother a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/15 imgS/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg eS/marygoh@gmail.com pnS/65656565 cca/Chess Club`
 
 Note: <br>
 User is able to leave the following categories unfilled by simply leaving a space
@@ -265,9 +265,9 @@ If no descriptions are given, the whole student will be removed from the databas
 
 ## General Command for parent related features
 
-* For all following features that are related to `parent`, start first by typing `parent <CLASS>`  before adding the respective command for the feature.
+* For all following features that are related to `parent`, start first by typing `parent`  before adding the respective command for the feature.
 
-* Note that it is possible to have multiple students with the same parent so specifying the class is necessary
+* Note that it is possible to have multiple students with the same parent and parents are identified via their phone number and *HENCE* `student class` is not used for identification.
 
 
 <a name="addparent"/>
@@ -276,11 +276,11 @@ If no descriptions are given, the whole student will be removed from the databas
 
 Adds a parent to the database
 
-Format: `add <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>] `
+Format: `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/<AGE> imgP/<ABSOLUTE_PATH_TO_IMAGE> e/<EMAIL_ADDRESS> a/<RESIDENTIAL_ADDRESS>] `
 
 Examples:
-* `parent 1A add 03 TanAhCow TanBoonSeng Father`
-* `parent 1B add 23 Mary Goh GohAhBoon Father a/41` <br><br>
+* `parent add n/TanAhNiu pnP/91234567`
+* `parent add n/Tan Ah Niu pnP/91234567 ageP/30 imgP/C:// e/tanahcow@gmail.com a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)` <br><br>
 
 
 <a name = "listparent" />
@@ -292,9 +292,9 @@ Shows a list of all parent in the database
 Format: `list`
 
 Examples:
-* `parent 1A list` <br>
+* `parent list` <br>
   Sample output: <parent name> <parent phone number> <parent email>
-* `parent 401 list` <br><br>
+* `parent list` <br><br>
 
 <a name = "deleteparent" />
 
