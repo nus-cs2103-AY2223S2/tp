@@ -113,11 +113,17 @@ public class Person {
             return true;
         }
 
-        if ((otherPerson instanceof Student) || (otherPerson instanceof Parent)) {
+        if (otherPerson instanceof Student) {
             return otherPerson != null
                     && otherPerson.getStudentClass().equals(getStudentClass())
                     && otherPerson.getIndexNumber().equals(getIndexNumber());
         }
+
+        if (otherPerson instanceof Parent) {
+            return otherPerson != null
+                    && otherPerson.getPhone().equals(getPhone());
+        }
+
         //Need to rethink what constitutes same student
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
