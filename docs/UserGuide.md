@@ -599,7 +599,7 @@ Examples:
    <td>
 <ul>
 
-<li><code>touch recur fornightLabs Labs Friday 10:00 2 0.5</code> 
+<li><code>touch recur fortnightLabs Labs Friday 10:00 2 0.5</code>
 
 <li><code>touch recur biWeeklyConsults Consultations Thursday 16:00 1 2</code>
 
@@ -662,7 +662,7 @@ Examples:
   <tr>
    <td><strong>List non-recurring event</strong>
    </td>
-   <td><code>ls event [task]</code> 
+   <td><code>ls event [task]</code>
    </td>
    <td>
 <ul>
@@ -707,7 +707,7 @@ Examples:
 
 <li><code>:5,10d</code>
 
-<li><code>:%d</code> 
+<li><code>:%d</code>
 
 <li><code>:.,10d</code>
 
@@ -728,7 +728,7 @@ Examples:
 
 <li><code>:delete event 5,10d</code>
 
-<li><code>:delete event %d</code> 
+<li><code>:delete event %d</code>
 
 <li><code>:delete event .,10d</code>
 
@@ -752,24 +752,24 @@ Examples:
    <td>
 <ul>
 
-<li><code>example 1</code> 
+<li><code>example 1</code>
 <ul>
 
 <li><code>:cd weeklyTutorials students</code>
 
 <li><code>:delete student 5</code>
-</li> 
+</li>
 </ul>
 
-<li><code>example 2</code> 
+<li><code>example 2</code>
 <ul>
 
 <li><code>:cd weeklyLabs students</code>
 
 <li><code>:delete student 1</code>
-</li> 
+</li>
 </ul>
-</li> 
+</li>
 </ul>
    </td>
   </tr>
@@ -1008,7 +1008,7 @@ Examples:
    <td>
 <ul>
 
-<li><code>sort student lab alphabetical reverse</code> 
+<li><code>sort student lab alphabetical reverse</code>
 
 <li><code>sort student tutorial participation nonreverse</code>
 
