@@ -214,8 +214,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Tutors**: Private math tuition teachers that will be using the application
 * **Students' progress**: For our current version, the progress of a student is tracked through 
-the number of tasks the student has completed
-* **Students' performance**: A summary of the student's progress to see how well they are doing
+the number of tasks the student has completed 
+* **Students' performance**: For our current version, the performance of a student is tracked through a view
+of the student's scores. In future implementation, a student's performance will be shown in a line chart
 
 *{More to be added}*
 
