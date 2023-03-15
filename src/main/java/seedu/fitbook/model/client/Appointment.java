@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.fitbook.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's appointment time in the address book.
+ * Represents a Client's appointment time in FitBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidAppointment(String)}
  */
 public class Appointment {

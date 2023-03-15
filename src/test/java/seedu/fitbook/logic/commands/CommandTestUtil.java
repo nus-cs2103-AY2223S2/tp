@@ -169,7 +169,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered client list and selected client in {@code actualFitBookModel} remain unchanged
+     * - FitBook, filtered client list and selected client in {@code actualFitBookModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, FitBookModel actualFitBookModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can

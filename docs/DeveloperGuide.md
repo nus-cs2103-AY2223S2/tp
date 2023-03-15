@@ -302,7 +302,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | intermediate user | filter clients by gender or exercise level                           | I can find my client easily                                            |
 | `*`      | Expert user       | link my clients under the same price package or classes              | I know who is under which class or price package                       |
 | `* *`    | Expert user  | add clients into specific groups                                     | it will be easier to track if they are in the same session             |
-| `* *`    | Expert user  | download data collected in the address book                          | I can show results of my services to new potential clients             |
+| `* *`    | Expert user  | download data collected in FitBook                          | I can show results of my services to new potential clients             |
 | `* *`    | Expert user  | view reminder messages                                               | I remember the session I have with my clients for the day              |
 | `* *`    | Expert user  | add the time taken for each exercise for each session of the client  | I can achieve my target time for each exercise                         |
 

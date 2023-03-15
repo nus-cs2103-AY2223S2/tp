@@ -11,7 +11,7 @@ import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 
 /**
- * Deletes a client identified using it's displayed index from the address book.
+ * Deletes a client identified using it's displayed index from FitBook.
  */
 public class DeleteCommand extends Command {
 
