@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "VMS"
 theme: minima
 
 header_pages:
@@ -8,7 +8,10 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+kramdown:
+  toc_levels: 1..4
+
+repository: "AY2223S2-CS2103-F11-3/tp"
 github_icon: "images/github-icon.png"
 
 plugins:

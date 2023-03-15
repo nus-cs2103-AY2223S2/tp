@@ -1,0 +1,13 @@
+{
+  "types": [
+    {
+      "name": "UNCHI",
+      "allergyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": [ ]
+        }
+      ]
+    }
+  ]
+}

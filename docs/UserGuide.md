@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Vaccination Management System (VMS) is a **desktop app for managing vaccination appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, VMS can get your appointments sorted out with great efficiency.
 
 * Table of Contents
 {:toc}
@@ -14,18 +14,18 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `vms.jar` from [here](https://github.com/AY2223S2-CS2103-F11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your VMS.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar vms.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+<!--    * `list` : Lists all contacts.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
@@ -33,161 +33,281 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+   * `exit` : Exits the app. -->
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Command syntax
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Command syntaxes presentation**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words enclosed in braces, `{` and `}`, represents the name of the parameter to be supplied. It may be accompanied by a type.
+* Words enclosed in triangle brackets `<` and `>` represent a type.
+* Items in square brackets, `[` and `]`, are optional.
+* Items with `?` after them can be used zero or one time.
+* Items with `...` after them can be used zero or more times.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+Example:
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+1. `{component <component>}` would mean a `component` parameter of type `<component>` will have to be supplied
+2. `[{component <component>}]` would meant the same as the first but is optional.
+3. `{component <component>}?` and `{component <component>}...` would mean the same as the above but one or more times and zero or more times respectively.
 
 </div>
 
-### Viewing help : `help`
+### General command syntax
 
-Shows a message explaning how to access the help page.
+```text
+{component <component>} {command word} [{preamble}] [--{flag name} {argument} [::{argument}]]...
+```
 
-![help message](images/helpMessage.png)
+* `{component}` may be omitted if it is `basic`.
+* `--` is used to delimit flags.
+* `::` is used to delimit parts of arguments of the same flag.
+* Leading and trailing white spaces of arguments will be stripped off.
 
-Format: `help`
+### Types
 
+#### `<component>`
 
-### Adding a person: `add`
+The list of available components are given in the [components section](#components).
 
-Adds a person to the address book.
+#### `<string>`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Strings can take on any character sequence that do not contain `--` or new line characters.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+#### `<groupName>`
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+A character sequence consisting of only alphanumeric characters, spaces and brackets excluding `<` and `>`.
 
-### Listing all persons : `list`
+#### `<integer>`
 
-Shows a list of all persons in the address book.
+An integer value between `-2147483648` and `2147483647`.
 
-Format: `list`
+#### `<age>`
 
-### Editing a person : `edit`
+An extension of `<integer>`, allowing only positive values (ie. `x >= 0`). Age also has a max value of `200` which is allowed to be exceeded, provided it conforms to `<integer>` restrictions as well. All values of age that exceed the max value will be evaluated to be equal.
 
-Edits an existing person in the address book.
+#### `<date>`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+The supported date formats are:
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* `yyyy-mm-ddThh:mm`<br>
+    eg. 2023-05-03T04:45
+* `yyyy-m-d hhmm` - single and double digit day and months are supported.<br>
+  eg. 2023-5-3 0455
+  * The following formats are also acceptable:
+  * `yyyy-mm-d hhmm`
+  * `yyyy-mm-dd hhmm`
+  * `yyyy-m-dd hhmm`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+#### `<phone-number>`
 
-### Locating persons by name: `find`
+Only 8 digit Singapore numbers are allowed.
 
-Finds persons whose names contain any of the given keywords.
+#### `<requirement>`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+`<requirement>` arguments require 2 and only 2 parts. The general syntax is as follows:
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+```text
+{reqType <reqType>} :: {reqSet <list <groupName>>}
+```
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* The position of `reqType` and `reqSet` arguments are not substitutable.
+* `reqSet` cannot be an empty list
+* Duplicates withing `reqSet` are allowed but are omitted.
 
-### Deleting a person : `delete`
+#### `<reqType>`
 
-Deletes the specified person from the address book.
+Only the following values are allowed:
 
-Format: `delete INDEX`
+* `ALL` - all groups withing the `grpSet` of the requirement are required for a `true` evaluation.
+* `ANY` - at least one occurrence of a group within the `grpSet` of the requirement is required for a `true` evaluation.
+* `NONE` - zero occurrence of any groups in the `grpSet` of the requirement is required for a `true` evaluation.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+## Components
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Below shows a list of components, their supported command words and their usage.
 
-### Clearing all entries : `clear`
+### `basic` - Application's basic features
 
-Clears all entries from the address book.
+#### `exit` - Exit the program
 
-Format: `clear`
+```text
+exit
+```
 
-### Exiting the program : `exit`
+#### `help` - Display help page
 
-Exits the program.
+```text
+help
+```
 
-Format: `exit`
+### `patient` - Patient functionalities
 
-### Saving the data
+#### `add` - Add a patient
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+```text
+patient add --name <string> --phone <phone-number> --dob <date> --bloodtype <string> --allergy <list<string>> --vaccine <list<string>>
+```
 
-### Editing the data file
+Example:
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+
+#### `delete` - Delete a patient
+
+```text
+patient delete --index <integer>
+```
+
+Example:
+
+* `patent delete --index 5`
+
+#### `find` - Locate a patient
+
+Finds patients whose names contain any of the given keywords.
+
+```text
+patient find --name <string>
+```
+
+Example:
+
+* `patient find --name john`
+
+#### `list` - List all patients
+
+```text
+patient list
+```
+
+### `appointment` - Appointment functionalities
+
+#### `add` - Add an appointment
+
+```text
+appointment add --patient <integer> --start <date> --end <date>
+```
+
+Example:
+
+* `appointment add --patient 5 --start 2023-3-5 0700 --end 2023-3-5 0800`
+
+#### `delete` - Delete an appointment
+
+```text
+appointment delete --index <integer>
+```
+
+Example:
+
+* `appointment delete --index 5`
+
+#### `list` - List all appointments
+
+```text
+appointment list
+```
+
+### `vaccination` - Vaccination functionalities
+
+#### `add` - Add a vaccination type
+
+```text
+vaccination add {name <groupName>} [{groups <list <groupName>>}] [--lal {minAge <age>}] [--ual {maxAge <age>}] [--s {spacing <integer>}] [--a {allergyReq {requirement}}]... [--h {historyReq <requirement>}]...
+```
+
+* **name** - the name of the vaccination type to create.
+* **groups** - the list of groups the vaccination type classifies under.
+* **minAge** - the minimum required age (inclusive) to take the vaccine.
+* **maxAge** - the maximum require age (inclusive) to take the vaccine.
+* **spacing** - the minimum time in days from the last vaccination taken to take this vaccine.
+* **allergyReq** - the allergy requirement to take the vaccine.
+* **historyReq** - the vaccination group history requirement to take the vaccine.
+
+Example:
+
+* `vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --s 56 --a NONE::allergy1, allergy2, allergy3 --h NONE::DOES 1`
+
+## Advance
+
+VMS data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
+
+Locations:
+1. `[JAR file location]/data/patientlist.json`
+2. `[JAR file location]/data/appointmentlist.json`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, VMS will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Vaccination type JSON
 
-_Details coming soon ..._
+Vaccination type JSON files will have the following format:
 
---------------------------------------------------------------------------------------------------------------------
+##### Overall file
 
-## FAQ
+| Variable | Is needed | Type                      | Default value |
+| -------- | --------- | ------------------------- | ------------- |
+| `types`  | YES       | List of vaccination types | -             |
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+##### Vaccination type
 
---------------------------------------------------------------------------------------------------------------------
+| Variable      | Is needed | Type                    | Default value |
+| ------------- | --------- | ----------------------- | ------------- |
+| `name`        | YES       | `<groupName>`           | -             |
+| `groups`      | NO        | list of `<groupName>`   | `[]`          |
+| `minAge`      | NO        | `<age>`                 | `0`           |
+| `maxAge`      | NO        | `<age>`                 | `200`         |
+| `minSpacing`  | NO        | `integer`               | `2147483647`  |
+| `historyReqs` | NO        | list of `<requirement>` | `[]`          |
+| `allergyReqs` | NO        | list of `<requirement>` | `[]`          |
 
-## Command summary
+##### Requirement
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Variable  | Is needed             | Type                  | Default value |
+| --------- | --------------------- | --------------------- | ------------- |
+| `reqType` | YES                   | `<reqType>`           | -             |
+| `reqSet`  | YES (cannot be empty) | list of `<groupName>` | -             |
+
+##### Example
+
+```json
+{
+  "types": [
+    {
+      "name": "Dose 1 (Pfizer)",
+      "groups": ["DOSE 1", "Pfizer", "Vaccination"],
+      "minAge": 5,
+      "minSpacing": 56,
+      "historyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": ["DOSE 1"]
+        }
+      ],
+      "allergyReqs": [
+        {
+          "reqType": "NONE",
+          "reqSet": [
+            "ALC-0315",
+            "ALC-0159",
+            "DSPC",
+            "Cholesterol",
+            "Sucrose",
+            "Phosphate",
+            "Tromethamine",
+            "Tromethamine hydrochloride"
+          ]
+        }
+      ]
+    }
+  ]
+}
+```

@@ -1,0 +1,10 @@
+{
+  "patients": [ {
+    "name": "Patient with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "dob": "2020-07-09",
+    "bloodType": "A+",
+    "allergies": ["seafood", "gluten"],
+    "vaccines": []
+} ]
+}

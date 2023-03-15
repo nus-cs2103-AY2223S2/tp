@@ -1,0 +1,17 @@
+{
+  "patients": [ {
+    "name": "Valid Patient",
+    "phone": "9482424",
+    "dob": "2020-07-09",
+    "bloodType": "A+",
+    "allergies": ["seafood", "gluten"],
+    "vaccines": []
+}, {
+    "name": "Patient With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "dob": "2020-07-09",
+    "bloodType": "A+",
+    "allergies": ["seafood", "gluten"],
+    "vaccines": []
+} ]
+}
