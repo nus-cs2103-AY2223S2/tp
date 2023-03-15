@@ -72,17 +72,28 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to ModCheck.
+Adds a person contact details to ModCheck.
 
-Format: `add n/<NAME> d/<DESCRIPTION> e/<EMAIL> p/<CONTACT> t/<tags>…`
+Compulsory Fields:
+* `n/` : name of the person
+* `d/` : description of the person
+* `e/` : email 
+* `p/` : phone number
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of modules (including 0)
+Additional Fields:
+* `t/` : tags 
+* `m/` : module codes
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+
+A person can have any number of tags or modules (including 0)
+
+The order of the fields is not important.
 </div>
 
 Examples:
-* `add n/Messi d/helpful e/leomessi@psg.com p/98101010`
-* `add n/CRonaldo d/smart friendly e/SIUUUUUU@gmail.com p/98070707 t/Prof`
+* `add n/John d/Important friend e/leomessi@psg.com p/98101010`
+* `add n/Gray d/Coolest Prof ever e/SIUUUUUU@gmail.com p/98070707 t/Prof m/CS2103 m/CS3230`
 
 ### Listing all persons : `list`
 
@@ -94,10 +105,10 @@ Format: `list`
 
 View a person's contact details.
 
-Format: `view <name>`
+Format: `view <index>`
 
 Examples: 
-* `view John Doe` returns `John Doe`
+* `view 1` returns the contact details of the first person in the list
 
 ![viewContactDetails](images/view/viewContactDetails.png)
 
@@ -184,19 +195,46 @@ MODCheck data are saved as a JSON file. Advanced users are welcome to update dat
 If your changes to the data file makes its format invalid, MODCheck will discard all data and start with an empty data file at the next run.
 </div>
 
-### Filter persons by tags
+### Filtering contacts
 
-Filters the entries that matches the tag provided. The tag provided can be in uppercase,lowercase or mixed.
+Filters the contacts based on the arguments provided.
 
-Format: `filter [TAG]`
+Formats: 
+1. `filter n/NAME`
+2. `filter p/PHONE_NUMBER`
+3. `filter e/EMAIL_ADDRESS`
+4. `filter d/DESCRIPTION`
+5. `filter t/TAG`
 
 Examples:
 
-* `filter girlfriend` returns `No contacts matches the tag provided!`
-
-![filterGirlfriend](images/filter/filterGirlfriendResult.png)
-* `filter family` returns `Alex Yeoh`
-![filterFamily](images/filter/filterFamilyResult.png)
+* `filter n/Alex` returns `1 contacts listed!`
+* `filter n/Alex Bernice` returns `2 contacts listed!`
+* The search is case-insensitive. e.g hans will match Hans
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+* Only the name is searched.
+* Only full words will be matched e.g. Han will not match Hans
+* Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+![filterByName](images/filter/filterByNameResult.png)
+<br/><br/>
+* `filter p/91031282` returns `1 contacts listed!`
+![filterByPhoneNumber](images/filter/filterByPhoneNumberResult.png)
+<br></br>
+* `filter e/royb@example.com` returns `1 contacts listed!`
+![filterByEmail](images/filter/filterByEmailResult.png)
+<br></br>
+* `filter d/helpful` returns `1 contacts listed!`
+* `filter d/helpful Newgate` returns `2 contacts listed!`
+* The search is case-sensitive. e.g Helpful will match Helpful and not helpful
+* The order of the keywords does not matter. e.g. Helpful Newgate will match Newgate Helpful
+* Only the description is searched.
+* Only full words will be matched.
+* Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Helpful roommate will return Helpful, Helpful friend, lazy roomate
+![filterByDescription](images/filter/filterByDescriptionResult.png)
+<br></br>
+* `filter t/family` returns `1 contacts listed`
+* `filter t/family t/friends t/classmates` returns `3 contacts listed!`
+* ![filterByTags](images/filter/filterByTagsResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -212,10 +250,11 @@ Examples:
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**View** | `view INDEX`<br> e.g., `view 2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Filter** | `filter [TAG]` <br> e.g., `filter Girlfriend`, `filter family`
+**Filter** | `filter n/NAME` <br> `filter p/PHONE_NUMBER`<br> `filter e/EMAIL_ADDRESS` <br> `filter d/DESCRIPTION` <br> `filter t/TAG` <br> e.g. `filter n/Alex` <br> e.g. `filter p/91031282` <br> e.g. `filter e/royb@example.com` <br> e.g. `filter d/helpful` <br> e.g. `filter t/family` <br>
