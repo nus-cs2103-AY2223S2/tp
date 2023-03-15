@@ -57,7 +57,7 @@ public class AddImageCommand extends Command {
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), toAdd);
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
