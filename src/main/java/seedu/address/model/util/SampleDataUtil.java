@@ -11,9 +11,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
-import seedu.address.model.person.fields.NusMod;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.NusMod;
+import seedu.address.model.person.fields.subfields.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

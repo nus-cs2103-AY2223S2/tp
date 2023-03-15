@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.addressbook;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,31 +19,31 @@ import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
-import seedu.address.model.person.fields.NusMod;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.NusMod;
+import seedu.address.model.person.fields.subfields.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
-class JsonAdaptedPerson {
+public class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
-    private final String race;
-    private final String major;
-    private final String gender;
-    private final String comms;
+    protected String name;
+    protected String phone;
+    protected String email;
+    protected String address;
+    protected String race;
+    protected String major;
+    protected String gender;
+    protected String comms;
 
-    private final String isFavorite;
+    protected String isFavorite;
 
-    private final List<JsonAdaptedNusMod> modules = new ArrayList<>();
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    protected final List<JsonAdaptedNusMod> modules = new ArrayList<>();
+    protected final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -117,25 +117,16 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        //if (phone == null) {
-        //throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        //}
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
 
-        //if (email == null) {
-        //throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        //}
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
 
-        //if (address == null) {
-        //throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        //}
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }

@@ -41,7 +41,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Email;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {

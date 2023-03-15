@@ -17,7 +17,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -82,6 +82,34 @@ public class Person {
         this.race = race;
         this.comms = comms;
     }
+
+    /**
+     * Constructor to create a Person with only a name. Will assign the rest of the fields as blank.
+     */
+    public Person(Name name) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.isFavorite = new Favorite(false);
+        this.phone = new Phone("");
+        this.email = new Email("");
+        this.address = new Address("");
+        this.tags.addAll(new HashSet<>());
+        this.gender = new Gender("");
+        this.major = new Major("");
+        this.modules = new Modules(new HashSet<>());
+        this.race = new Race("");
+        this.comms = new CommunicationChannel("");
+    }
+
+    /**
+     * Factory method to create a Person with no fields. Will assign the rest of the fields as blank.
+     * Only for use for UserData. Should not be used anywhere else. Todo: Deprecate
+     */
+    public static Person ofDefaultUser() {
+        return new Person(new Name("Neo"));
+    }
+
+
 
     public Name getName() {
         return name;
