@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -154,12 +153,16 @@ public class FriendlyLinkTest {
 
     @Test
     public void hasPair_pairInFriendlyLink_returnsTrue() {
+        friendlyLink.addElderly(ALICE);
+        friendlyLink.addVolunteer(ELLE);
         friendlyLink.addPair(PAIR1);
         assertTrue(friendlyLink.hasPair(PAIR1));
     }
 
     @Test
     public void hasPair_pairWithSameElderlyAndVolunteer_returnsTrue() {
+        friendlyLink.addElderly(ALICE);
+        friendlyLink.addVolunteer(ELLE);
         friendlyLink.addPair(PAIR1);
         Pair editedPair = new PairBuilder(PAIR1).build();
         assertTrue(friendlyLink.hasPair(editedPair));

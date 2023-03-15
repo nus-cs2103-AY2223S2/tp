@@ -31,6 +31,6 @@ public class TypicalPairs {
     private TypicalPairs() {} // prevents instantiation
 
     public static List<Pair> getTypicalPairs() {
-        return new ArrayList<>(Arrays.asList(PAIR1, PAIR2, PAIR3));
+        return new ArrayList<>(Arrays.asList(PAIR1, PAIR2));
     }
 }

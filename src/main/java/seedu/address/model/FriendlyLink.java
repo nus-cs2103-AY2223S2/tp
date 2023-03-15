@@ -216,7 +216,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param pair Pair to add into FriendlyLink.
      */
     public void addPair(Pair pair) {
-        pairs.add(pair);
+        this.addPair(pair.getElderly().getNric(), pair.getVolunteer().getNric());
     }
 
     /**
@@ -237,6 +237,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
         // no restrictions
         if (elderlyAvailableDates.isEmpty() || volunteerAvailableDates.isEmpty()) {
             pairs.add(new Pair(elderly, volunteer));
+            return;
         }
 
         // find first matching dates
