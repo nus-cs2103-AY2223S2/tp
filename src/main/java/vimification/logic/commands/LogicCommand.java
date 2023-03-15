@@ -21,4 +21,12 @@ public abstract class LogicCommand extends Command {
     public int numOfTask() {
         return taskList.size();
     }
+
+    // Don't think this method will ever be used
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof LogicCommand // instanceof handles nulls
+                && this.taskList.equals(((LogicCommand) other).taskList));
+    }
 }

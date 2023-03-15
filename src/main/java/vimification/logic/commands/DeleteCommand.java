@@ -51,6 +51,11 @@ public class DeleteCommand extends LogicCommand {
                 || (other instanceof DeleteCommand // instanceof handles nulls
                         && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
+
+    // For possible testing. Can be removed prior to production
+    public boolean targetIndexEquals(Object other) {
+        return this.targetIndex.equals(((Index) other));
+    }
 }
 
 //    public static final String COMMAND_WORD = "delete";

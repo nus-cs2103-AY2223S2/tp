@@ -124,6 +124,11 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
+    // Mainly for testing
+    public boolean containsTask(Task task) {
+        return this.taskList.contains(task);
+    }
+
     //=========== Person oriented methods (OLD CODE) =============================================================
 
     @Override

@@ -49,4 +49,9 @@ public class CreateCommand extends LogicCommand {
                 || (other instanceof CreateCommand // instanceof handles nulls
                 && newTask.equals(((CreateCommand) other).newTask)); // state check
     }
+
+    // For possible testing. Can be removed prior to production
+    public boolean newTaskEquals(Object other) {
+        return this.newTask.equals(other);
+    }
 }
