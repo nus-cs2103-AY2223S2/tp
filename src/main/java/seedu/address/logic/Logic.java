@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -49,6 +50,9 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of tutorials */
     ObservableList<Tutorial> getFilteredTutorialList();
+
+    /** Returns an unmodifiable view of the filtered list of labs */
+    ObservableList<Lab> getFilteredLabList();
 }

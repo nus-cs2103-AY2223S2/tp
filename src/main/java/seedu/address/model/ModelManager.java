@@ -195,6 +195,19 @@ public class ModelManager implements Model {
         filteredTutorials.setPredicate(predicate);
     }
 
+    //=========== Filtered Lab List Accessors =============================================================
+
+    @Override
+    public ObservableList<Lab> getFilteredLabList() {
+        return filteredLabs;
+    }
+
+    @Override
+    public void updateFilteredLabList(Predicate<Lab> predicate) {
+        requireNonNull(predicate);
+        filteredLabs.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -212,6 +225,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredTutorials.equals(other.filteredTutorials);
+                && filteredTutorials.equals(other.filteredTutorials)
+                && filteredLabs.equals(other.filteredLabs);
     }
 }
