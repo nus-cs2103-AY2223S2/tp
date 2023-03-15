@@ -73,7 +73,7 @@ public class StudentCommentCommand extends StudentCommand {
         }
         Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
                 studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
-                studentToEdit.getAge(),
+                studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
                 studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
                 studentToEdit.getCca(), studentToEdit.getAddress(), studentToEdit.getAttendance(),
                 studentToEdit.getHomework(), studentToEdit.getTest(), studentToEdit.getTags(), comment);

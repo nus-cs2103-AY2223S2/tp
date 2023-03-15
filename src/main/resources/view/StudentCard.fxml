@@ -38,6 +38,9 @@
             <HBox>
                 <Text text="Class:    " />
                 <Label fx:id="className" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$class" />
+                <Text text = "    " />
+                <Text text = "Index:    " fill="burlywood" />
+                <Label fx:id="index" styleClass="cell_small_label" text="\$index" />
             </HBox>
             <HBox>
                 <Text text="Parent/Next of Kin Name:    " />
@@ -56,12 +59,28 @@
                 <Label fx:id="email" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$email" />
             </HBox>
             <HBox>
-                <Text text="Phone:    " />
-                <Label fx:id="phone" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$phone" />
+                <Text text = "NOK name:    " fill="burlywood" />
+                <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName" />
             </HBox>
             <HBox>
-                <Text text="CCA:    " />
-                <Label fx:id="cca" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$cca" />
+                <Text text = "NOK phone number:    " fill="burlywood" />
+                <Label fx:id="parentPhoneNumber" styleClass="cell_small_label" text="\$parentPhoneNumber" />
+            </HBox>
+            <HBox>
+                <Text text = "Relationship:    " fill="burlywood" />
+                <Label fx:id="rls" styleClass="cell_small_label" text="\$rls" />
+            </HBox>
+            <HBox>
+                <Text text = "Phone:    " fill="burlywood" />
+                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            </HBox>
+            <HBox>
+                <Text text = "Residential Address:    " fill="burlywood" />
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            </HBox>
+            <HBox>
+                <Text text = "CCA:    " fill="burlywood" />
+                <Label fx:id="cca" styleClass="cell_small_label" text="\$cca" />
             </HBox>
             <HBox>
                 <Text text="Comments:    " />

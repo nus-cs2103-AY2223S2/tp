@@ -37,7 +37,9 @@ public class Age {
         if (test.equals("Insert student age here!")) {
             return true;
         }
-
+        if (test.equals("Insert parent age here!")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

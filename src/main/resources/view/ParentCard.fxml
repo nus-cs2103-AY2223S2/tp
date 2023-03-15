@@ -38,8 +38,8 @@
                 <Label fx:id="relationship" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\\$relationship" />
             </HBox>
             <HBox>
-                <Text text="Address:    " />
-                <Label fx:id="address" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$address" />
+                <Text fill="burlywood" text="Residential Address:    " />
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             </HBox>
             <HBox>
                 <Text text="Age:    " />
@@ -53,6 +53,10 @@
             <HBox>
                 <Text text="Phone:    " />
                 <Label fx:id="phone" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$phone" />
+            </HBox>
+            <HBox>
+                <Text text = "Parent/NOK of Students:    " fill="burlywood" />
+                <FlowPane fx:id="students" />
             </HBox>
         </VBox>
       <rowConstraints>

@@ -26,7 +26,6 @@ import seedu.address.model.person.student.Attendance;
 import seedu.address.model.person.student.Cca;
 import seedu.address.model.person.student.Homework;
 import seedu.address.model.person.student.IndexNumber;
-import seedu.address.model.person.student.ParentName;
 import seedu.address.model.person.student.Test;
 import seedu.address.model.tag.Tag;
 
@@ -164,21 +163,6 @@ public class ParserUtil {
             throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
         }
         return new Sex(trimmedSex);
-    }
-
-    /**
-     * Parses parentName to ParentName
-     * @param parentName
-     * @return a ParentName
-     * @throws ParseException
-     */
-    public static ParentName parseParentName(String parentName) throws ParseException {
-        requireNonNull(parentName);
-        String trimmedParentName = parentName.trim();
-        if (!ParentName.isValidParentName(trimmedParentName)) {
-            throw new ParseException(ParentName.MESSAGE_CONSTRAINTS);
-        }
-        return new ParentName(trimmedParentName);
     }
 
     /**
