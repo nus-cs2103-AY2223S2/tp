@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 
 /**
  * Represents a Person in the address book.
@@ -119,5 +120,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }
