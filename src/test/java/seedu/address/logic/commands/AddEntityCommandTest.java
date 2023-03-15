@@ -20,7 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.entity.Entity;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddEntityCommandTest {
@@ -33,27 +33,27 @@ public class AddEntityCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Entity validEntity = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddEntityCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddEntityCommand(validEntity).execute(modelStub);
 
-        assertEquals(String.format(AddEntityCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddEntityCommand.MESSAGE_SUCCESS, validEntity), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validEntity), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddEntityCommand addEntityCommand = new AddEntityCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Entity validEntity = new PersonBuilder().build();
+        AddEntityCommand addEntityCommand = new AddEntityCommand(validEntity);
+        ModelStub modelStub = new ModelStubWithPerson(validEntity);
 
         assertThrows(CommandException.class, AddEntityCommand.MESSAGE_DUPLICATE_PERSON, () -> addEntityCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Entity alice = new PersonBuilder().withName("Alice").build();
+        Entity bob = new PersonBuilder().withName("Bob").build();
         AddEntityCommand addAliceCommand = new AddEntityCommand(alice);
         AddEntityCommand addBobCommand = new AddEntityCommand(bob);
 
@@ -109,7 +109,7 @@ public class AddEntityCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addPerson(Entity entity) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddEntityCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasPerson(Entity entity) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deletePerson(Entity target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setPerson(Entity target, Entity editedEntity) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Entity> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<Entity> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -153,17 +153,17 @@ public class AddEntityCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+        private final Entity entity;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPerson(Entity entity) {
+            requireNonNull(entity);
+            this.entity = entity;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasPerson(Entity entity) {
+            requireNonNull(entity);
+            return this.entity.isSamePerson(entity);
         }
     }
 
@@ -171,18 +171,18 @@ public class AddEntityCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Entity> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasPerson(Entity entity) {
+            requireNonNull(entity);
+            return personsAdded.stream().anyMatch(entity::isSamePerson);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addPerson(Entity entity) {
+            requireNonNull(entity);
+            personsAdded.add(entity);
         }
 
         @Override

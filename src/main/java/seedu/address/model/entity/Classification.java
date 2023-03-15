@@ -1,5 +1,7 @@
 package seedu.address.model.entity;
 
+import java.util.Objects;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -45,6 +47,18 @@ public class Classification {
     @Override
     public int hashCode() {
         return classification.hashCode();
+    }
+
+    public boolean isCharacter() {
+        return Objects.equals(classification, "char");
+    }
+
+    public boolean isItem() {
+        return Objects.equals(classification, "item");
+    }
+
+    public boolean isMob() {
+        return Objects.equals(classification, "mob");
     }
 
 }

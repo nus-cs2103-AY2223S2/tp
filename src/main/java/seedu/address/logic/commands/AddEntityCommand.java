@@ -17,16 +17,17 @@ public class AddEntityCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entity to the management system. "
             + "Parameters: "
             + PREFIX_CLASSIFICATION + "CLASSIFICATION "
-            + PREFIX_NAME + "NAME\n"
+            + PREFIX_NAME + "NAME"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLASSIFICATION + "char "
-            + PREFIX_NAME + "Leeroy Jenkins";
-    /*+ Syntax for tag for future reference
-                + "[" + PREFIX_TAG + "TAG]...\n"*/
+            + PREFIX_NAME + "Leeroy Jenkins"
+            + "[" + PREFIX_TAG + "Orc]...";
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Entity toAdd;
+
 
     /**
      * Creates an AddCommand to add the specified {@code Person}

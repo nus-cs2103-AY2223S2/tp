@@ -90,7 +90,7 @@ A detailed view of a single entity may be entered when specified.
 Format: `view CLASSFICIATION NAME`
 
 Detailed view may be left by entering the command: `back` or `b` while in detailed view.
-### Editing a person : `edit`
+### Editing a entity : `edit`
 
 Enter into edit mode for the specified entity.
 
