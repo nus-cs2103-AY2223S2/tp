@@ -32,5 +32,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DEADLINE = new Prefix("deadline/");
     public static final Prefix PREFIX_WEIGHTAGE = new Prefix("weightage/");
     public static final Prefix PREFIX_HOMEWORKDONE = new Prefix("hwdone/");
+    public static final Prefix PREFIX_GRADEDELETE = new Prefix("gradedelete");
 
 }
