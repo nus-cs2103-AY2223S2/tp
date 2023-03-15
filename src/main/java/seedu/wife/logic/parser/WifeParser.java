@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import seedu.wife.logic.commands.AddCommand;
 import seedu.wife.logic.commands.ClearCommand;
 import seedu.wife.logic.commands.Command;
-import seedu.wife.logic.commands.DeleteCommand;
+import seedu.wife.logic.commands.deleteCommands.DeleteCommand;
 import seedu.wife.logic.commands.EditCommand;
 import seedu.wife.logic.commands.ExitCommand;
 import seedu.wife.logic.commands.FindCommand;

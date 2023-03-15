@@ -1,4 +1,4 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.deleteCommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,6 +7,8 @@ import java.util.List;
 import seedu.wife.commons.core.Messages;
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.logic.commands.exceptions.CommandException;
+import seedu.wife.logic.commands.Command;
+import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.model.Model;
 import seedu.wife.model.food.Food;
 
@@ -15,7 +17,7 @@ import seedu.wife.model.food.Food;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "del";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the food identified by the index number used in the displayed food list.\n"
