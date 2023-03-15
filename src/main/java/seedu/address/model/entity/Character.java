@@ -30,9 +30,13 @@ public class Character extends Entity {
         this.xp = xp;
     }
 
-    public int getLevel() { return this.level; }
+    public int getLevel() {
+        return this.level;
+    }
 
-    public int getXP() { return this.xp; }
+    public int getXP() {
+        return this.xp;
+    }
 
     @Override
     public int hashCode() {

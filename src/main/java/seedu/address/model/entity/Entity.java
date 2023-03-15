@@ -58,9 +58,7 @@ public abstract class Entity {
 
     // Not implemented. in other branch temp.
     public boolean isSameEntity(Entity other) {
-        return true;
+        return false;
     }
-
-
 
 }

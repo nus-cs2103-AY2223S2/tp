@@ -1,4 +1,4 @@
-package seedu.address.model.experimental;
+package seedu.address.experimental.model;
 
 import static java.util.Objects.requireNonNull;
 
@@ -8,8 +8,11 @@ import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 
+// Driver function.
 
-/** Driver function */
+/**
+ * Reroll...
+ */
 public class Reroll implements ReadOnlyReroll {
     private final RerollCharacters characters;
     private final RerollItems items;
@@ -21,14 +24,11 @@ public class Reroll implements ReadOnlyReroll {
         mobs = new RerollMobs();
     }
 
-    /**
-     * TBC
-     */
     public Reroll() {}
 
     /**
-     * TBC
-     * @param toBeCopied TBC
+     * Create Reroll from existing copy
+     * @param toBeCopied
      */
     public Reroll(ReadOnlyReroll toBeCopied) {
         this();
@@ -36,8 +36,8 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     /**
-     * TBC
-     * @param newData TBC
+     * Reset data to newData
+     * @param newData
      */
     public void resetData(ReadOnlyReroll newData) {
         requireNonNull(newData);
@@ -47,37 +47,27 @@ public class Reroll implements ReadOnlyReroll {
         mobs.resetData(newData.getMobs());
     }
 
-    /**
-     * TBC
-     * @return TBC
-     */
     @Override
     public ReadOnlyEntities<Item> getItems() {
         return items;
     }
 
-    /**
-     * TBC
-     * @return TBC
-     */
     @Override
     public ReadOnlyEntities<Character> getCharacters() {
         return characters;
     }
 
-    /**
-     * TBC
-     * @return TBC
-     */
     @Override
-    public ReadOnlyEntities<Mob> getMobs() { return mobs; }
+    public ReadOnlyEntities<Mob> getMobs() {
+        return mobs;
+    }
 
     // Entity level operations ===============
 
     /**
-     * TBC
-     * @param e TBC
-     * @return TBC
+     * Has entity
+     * @param e
+     * @return
      */
     public boolean hasEntity(Entity e) {
         // Switch till it works
@@ -94,8 +84,8 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     /**
-     * TBC
-     * @param e TBC
+     * Add Entity
+     * @param e
      */
     public void addEntity(Entity e) {
         if (e instanceof Item) {
@@ -110,9 +100,9 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     /**
-     * TBC
-     * @param target TBC
-     * @param edited TBC
+     * Set Entity
+     * @param target
+     * @param edited
      */
     public void setEntity(Entity target, Entity edited) {
         if (!target.getClass().equals(edited.getClass())) {
@@ -130,8 +120,8 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     /**
-     * TBC
-     * @param key TBC
+     * Edit entity
+     * @param key
      */
     public void deleteEntity(Entity key) {
         if (key instanceof Item) {
@@ -146,13 +136,17 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     // Misc ====================
-
     /**
-     * TBC
-     * @return TBC
+     * Return some list for the updated list
+     * @return
      */
     public ObservableList<? extends Entity> getList() {
         // not slap at all
         return characters.entities.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public String toString() {
+        return "Characters:" + characters.toString() + "\nItems" + items.toString() + "\nMobs" + mobs.toString();
     }
 }

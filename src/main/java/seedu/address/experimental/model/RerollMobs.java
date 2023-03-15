@@ -1,8 +1,10 @@
-package seedu.address.model.experimental;
+package seedu.address.experimental.model;
 
 import seedu.address.model.entity.Mob;
 
-/** Abstraction of all operations on mobs */
+/**
+ * Abstraction of all Mobs
+ */
 public class RerollMobs extends RerollEntities<Mob> {
 
     // for convenience
