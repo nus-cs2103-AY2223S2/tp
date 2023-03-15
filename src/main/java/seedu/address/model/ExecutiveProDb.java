@@ -9,10 +9,10 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the ExecutivePro database level
  * Duplicates are not allowed (by .isSameEmployee comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
 
     private final UniqueEmployeeList employees;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         employees = new UniqueEmployeeList();
     }
 
-    public AddressBook() {}
+    public ExecutiveProDb() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an ExecutiveProDb using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ExecutiveProDb(ReadOnlyExecutiveProDb toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ExecutiveProDb} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyExecutiveProDb newData) {
         requireNonNull(newData);
 
         setEmployees(newData.getEmployeeList());
@@ -87,7 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ExecutiveProDb}.
      * {@code key} must exist in the address book.
      */
     public void removeEmployee(Employee key) {
@@ -110,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && employees.equals(((AddressBook) other).employees));
+                || (other instanceof ExecutiveProDb // instanceof handles nulls
+                && employees.equals(((ExecutiveProDb) other).employees));
     }
 
     @Override

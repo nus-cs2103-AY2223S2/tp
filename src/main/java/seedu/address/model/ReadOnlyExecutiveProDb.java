@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an ExecutivePro database
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyExecutiveProDb {
 
     /**
      * Returns an unmodifiable view of the employees list.
