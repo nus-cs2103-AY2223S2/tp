@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BUSINESS_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -22,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.BusinessSize;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -44,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_BUSINESS_SIZE + "BUSINESS SIZE] "
+            + "[" + PREFIX_COMPANY + "COMPANY NAME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -101,9 +104,12 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         BusinessSize updatedBusinessSize =
                 editPersonDescriptor.getBusinessSize().orElse(personToEdit.getBusinessSize());
+        Company updatedCompany =
+                editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBusinessSize, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBusinessSize,
+                updatedCompany, updatedTags);
     }
 
     @Override
@@ -134,6 +140,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private BusinessSize businessSize;
+
+        private Company company;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -148,6 +156,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setBusinessSize(toCopy.businessSize);
+            setCompany(toCopy.company);
             setTags(toCopy.tags);
         }
 
@@ -190,8 +199,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setBusinessSize(BusinessSize businessSize) { this.businessSize = businessSize; }
-        public Optional<BusinessSize> getBusinessSize() { return Optional.ofNullable(businessSize); }
+        public void setBusinessSize(BusinessSize businessSize) {
+            this.businessSize = businessSize;
+        }
+        public Optional<BusinessSize> getBusinessSize() {
+            return Optional.ofNullable(businessSize);
+        }
+
+        public void setCompany(Company company) {
+            this.company = company;
+        }
+        public Optional<Company> getCompany() {
+            return Optional.ofNullable(company);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -230,6 +250,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getBusinessSize().equals(e.getBusinessSize())
+                    && getCompany().equals(e.getCompany())
                     && getTags().equals(e.getTags());
         }
 

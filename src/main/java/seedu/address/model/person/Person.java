@@ -23,18 +23,22 @@ public class Person {
     // Data fields
     private final Address address;
     private final BusinessSize businessSize;
+
+    private final Company company;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, BusinessSize businessSize, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, BusinessSize businessSize,
+                  Company company, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, businessSize, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.businessSize = businessSize;
+        this.company = company;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +60,10 @@ public class Person {
 
     public BusinessSize getBusinessSize() {
         return businessSize;
+    }
+
+    public Company getCompany() {
+        return company;
     }
 
     /**
@@ -99,13 +107,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getBusinessSize().equals(getBusinessSize())
+                && otherPerson.getCompany().equals(getCompany())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, businessSize, company, tags);
     }
 
     @Override
@@ -119,7 +128,9 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Business Size: ")
-                .append(getBusinessSize());;
+                .append(getBusinessSize())
+                .append("; Company: ")
+                .append(getCompany());
 
 
         Set<Tag> tags = getTags();
