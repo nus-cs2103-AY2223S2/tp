@@ -13,6 +13,7 @@ import taa.assignment.AssignmentList;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
 import taa.commons.util.CollectionUtil;
+import taa.logic.commands.exceptions.CommandException;
 import taa.model.student.Name;
 import taa.model.student.SameStudentPredicate;
 import taa.model.student.Student;
@@ -197,17 +198,22 @@ public class ModelManager implements Model {
     //=========== AssignmentList Helpers =============================================================
 
     @Override
-    public void addAssignment(String assignmentName) {
+    public void addAssignment(String assignmentName) throws CommandException {
         assignmentList.add(assignmentName, filteredStudents);
     }
 
     @Override
-    public void deleteAssignment(String assignmentName) {
+    public void deleteAssignment(String assignmentName) throws CommandException {
         assignmentList.delete(assignmentName);
     }
 
     @Override
-    public void grade(String assignmentName, int studentId, int marks) {
+    public void grade(String assignmentName, int studentId, int marks) throws CommandException {
         assignmentList.grade(assignmentName, studentId, marks);
+    }
+
+    @Override
+    public String listAssignments() {
+        return assignmentList.list();
     }
 }

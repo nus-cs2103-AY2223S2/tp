@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import taa.commons.core.GuiSettings;
+import taa.logic.commands.exceptions.CommandException;
 import taa.model.student.Student;
 
 /**
@@ -105,9 +106,11 @@ public interface Model {
 
     void updateFilteredClassLists(Predicate<ClassList> predicate);
 
-    void addAssignment(String assignmentName);
+    void addAssignment(String assignmentName) throws CommandException;
 
-    void deleteAssignment(String assignmentName);
+    void deleteAssignment(String assignmentName) throws CommandException;
 
-    void grade(String assignmentName, int studentId, int marks);
+    void grade(String assignmentName, int studentId, int marks) throws CommandException;
+
+    String listAssignments();
 }

@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 import taa.commons.core.Messages;
 import taa.logic.commands.AddAssignmentCommand;
-import taa.logic.commands.AddStudentCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Name;
 
@@ -15,6 +14,7 @@ import taa.model.student.Name;
  * Parses input arguments and creates a new AddStudentCommand object
  */
 public class AddAssignmentCommandParser implements Parser<AddAssignmentCommand> {
+    // format is assn_add n/{name}
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddStudentCommand
@@ -29,7 +29,7 @@ public class AddAssignmentCommandParser implements Parser<AddAssignmentCommand> 
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddStudentCommand.MESSAGE_USAGE));
+                    AddAssignmentCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

@@ -2,6 +2,7 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 
 /**
@@ -9,9 +10,11 @@ import taa.model.Model;
  */
 public class AddAssignmentCommand extends Command {
 
-    public static final String COMMAND_WORD = "asgn_add";
-    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment name already exists.";
-    public static final String MESSAGE_SUCCESS = "Assignment Added.";
+    public static final String COMMAND_WORD = "add_asgn";
+
+    public static final String MESSAGE_SUCCESS = "Assignment %s added.";
+
+    public static final String MESSAGE_USAGE = "Format: asgn_add n/{name}";
     private final String toAdd;
 
     /**
@@ -22,12 +25,10 @@ public class AddAssignmentCommand extends Command {
         toAdd = assignmentName;
     }
 
-    // TODO: handle exceptions.
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.addAssignment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
-
 }

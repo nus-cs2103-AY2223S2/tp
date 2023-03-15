@@ -4,16 +4,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import taa.commons.core.Messages;
+import taa.logic.commands.AddAssignmentCommand;
 import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.ClearCommand;
 import taa.logic.commands.Command;
 import taa.logic.commands.CreateClassCommand;
+import taa.logic.commands.DeleteAssignmentCommand;
 import taa.logic.commands.DeleteStudentCommand;
 import taa.logic.commands.EditStudentCommand;
 import taa.logic.commands.ExitCommand;
 import taa.logic.commands.FindCommand;
+import taa.logic.commands.GradeCommand;
 import taa.logic.commands.HelpCommand;
 import taa.logic.commands.ImportCommand;
+import taa.logic.commands.ListAssignmentCommand;
 import taa.logic.commands.ListByClassCommand;
 import taa.logic.commands.ListCommand;
 import taa.logic.commands.MarkAttendanceCommand;
@@ -89,6 +93,18 @@ public class TaaParser {
 
         case CreateClassCommand.COMMAND_WORD:
             return new CreateClassCommandParser().parse(arguments);
+
+        case AddAssignmentCommand.COMMAND_WORD:
+            return new AddAssignmentCommandParser().parse(arguments);
+
+        case DeleteAssignmentCommand.COMMAND_WORD:
+            return new DeleteAssignmentCommandParser().parse(arguments);
+
+        case GradeCommand.COMMAND_WORD:
+            return new GradeCommandParser().parse(arguments);
+
+        case ListAssignmentCommand.COMMAND_WORD:
+            return new ListAssignmentCommand();
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

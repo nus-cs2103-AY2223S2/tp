@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.collections.transformation.FilteredList;
+import taa.logic.commands.exceptions.CommandException;
 import taa.model.student.Student;
 
 /**
@@ -34,11 +35,20 @@ public class Assignment {
      * @param studentId
      * @param marks
      */
-    public void gradeSubmission(int studentId, int marks) {
+    public void gradeSubmission(int studentId, int marks) throws CommandException {
         if (submissionMap.containsKey(studentId)) {
             submissionMap.get(studentId).grade(marks);
         } else {
-            System.out.println("Submission of " + studentId + "not found");
+            throw new CommandException("Submission of " + studentId + "not found");
         }
+    }
+
+    public ArrayList<Submission> getSubmissions() {
+        return this.submissions;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }
