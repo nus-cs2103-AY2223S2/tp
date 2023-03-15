@@ -20,11 +20,6 @@ public class Telegram {
 
     public final String value;
 
-    // Jackson needs this
-    public Telegram() {
-        value = "";
-    }
-
     private Telegram(String telegram) {
         value = telegram;
     }

@@ -37,6 +37,10 @@ public class Address {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return value;
@@ -53,5 +57,4 @@ public class Address {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

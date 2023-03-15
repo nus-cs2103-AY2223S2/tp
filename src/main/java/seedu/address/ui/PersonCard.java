@@ -17,17 +17,29 @@ public class PersonCard extends UiPart<Region> {
     private static final String FXML = "PersonListCard.fxml";
 
     /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
+     * Note: Certain keywords such as "location" and "resources" are reserved
+     * keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The
+     *      issue on AddressBook level 4</a>
      */
 
     public final Person person;
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private HBox birthdayContainer;
+    @FXML
+    private HBox phoneContainer;
+    @FXML
+    private HBox emailContainer;
+    @FXML
+    private HBox addressContainer;
+    @FXML
+    private HBox socialMediaContainer;
     @FXML
     private Label name;
     @FXML
@@ -42,22 +54,56 @@ public class PersonCard extends UiPart<Region> {
     private Label socialMedia;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label birthday;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to
+     * display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        socialMedia.setText(person.getSocialMedia().toString());
+        if (person.getPhone().isPresent()) {
+            phone.setText(person.getPhone().get().toString());
+        } else {
+            phone.setText("");
+            phoneContainer.setVisible(false);
+            phoneContainer.managedProperty().bind(phoneContainer.visibleProperty());
+        }
+        if (person.getEmail().isPresent()) {
+            email.setText(person.getEmail().get().toString());
+        } else {
+            email.setText("");
+            emailContainer.setVisible(false);
+            emailContainer.managedProperty().bind(emailContainer.visibleProperty());
+        }
+        if (person.getAddress().isPresent()) {
+            address.setText(person.getAddress().get().toString());
+        } else {
+            address.setText("");
+            addressContainer.setVisible(false);
+            addressContainer.managedProperty().bind(addressContainer.visibleProperty());
+        }
+        if (person.getSocialMedia().isPresent()) {
+            socialMedia.setText(person.getSocialMedia().get().toString());
+        } else {
+            socialMedia.setText("");
+            socialMediaContainer.setVisible(false);
+            socialMediaContainer.managedProperty().bind(socialMediaContainer.visibleProperty());
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (person.getBirthday().isPresent()) {
+            birthday.setText(person.getBirthday().get().toString());
+        } else {
+            birthday.setText("");
+            birthdayContainer.setVisible(false);
+            birthdayContainer.managedProperty().bind(birthdayContainer.visibleProperty());
+        }
     }
 
     @Override

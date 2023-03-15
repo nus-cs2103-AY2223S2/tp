@@ -16,11 +16,6 @@ public class WhatsApp {
 
     public final String value;
 
-    // Jackson needs this
-    public WhatsApp() {
-        value = "";
-    }
-
     private WhatsApp(String phone) {
         value = phone;
     }

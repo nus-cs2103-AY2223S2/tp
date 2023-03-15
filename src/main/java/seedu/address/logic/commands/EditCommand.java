@@ -2,10 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -21,6 +24,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -43,7 +47,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_SOCMED_TELEGRAM + "TELEGRAM] "
+        + "[" + PREFIX_SOCMED_INSTAGRAM + "INSTAGRAM] "
+        + "[" + PREFIX_SOCMED_TELEGRAM + "TELEGRAM] "
+        + "[" + PREFIX_SOCMED_WHATSAPP + "WHATSAPP] "
+        + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -57,7 +64,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -97,15 +104,52 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        SocialMedia updatedSocialMedia = personToEdit.getSocialMedia()
-            .updateWith(editPersonDescriptor.getSocialMedia().orElse(null));
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags)
-            .withSocialMedia(updatedSocialMedia);
+        Person p = new Person(updatedName, updatedTags);
+
+        if (editPersonDescriptor.getPhone().isPresent()) {
+            p.setPhone(editPersonDescriptor.getPhone().get());
+        } else {
+            if (personToEdit.getPhone().isPresent()) {
+                p.setPhone(personToEdit.getPhone().get());
+            }
+        }
+
+        if (editPersonDescriptor.getEmail().isPresent()) {
+            p.setEmail(editPersonDescriptor.getEmail().get());
+        } else {
+            if (personToEdit.getEmail().isPresent()) {
+                p.setEmail(personToEdit.getEmail().get());
+            }
+        }
+
+        if (editPersonDescriptor.getAddress().isPresent()) {
+            p.setAddress(editPersonDescriptor.getAddress().get());
+        } else {
+            if (personToEdit.getAddress().isPresent()) {
+                p.setAddress(personToEdit.getAddress().get());
+            }
+        }
+
+        if (editPersonDescriptor.getSocialMedia().isPresent()) {
+            p.setSocialMedia(personToEdit.getSocialMedia().orElse(SocialMedia.create())
+                .updateWith(editPersonDescriptor.getSocialMedia().get()));
+        } else {
+            if (personToEdit.getSocialMedia().isPresent()) {
+                p.setSocialMedia(personToEdit.getSocialMedia().get());
+            }
+        }
+
+        if (editPersonDescriptor.getBirthday().isPresent()) {
+            p.setBirthday(editPersonDescriptor.getBirthday().get());
+        } else {
+            if (personToEdit.getBirthday().isPresent()) {
+                p.setBirthday(personToEdit.getBirthday().get());
+            }
+        }
+
+        return p;
     }
 
     @Override
@@ -127,7 +171,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to edit the person with. Each non-empty field value will
+     * replace the
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
@@ -138,7 +183,10 @@ public class EditCommand extends Command {
         private SocialMedia socialMedia;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        private Birthday birthday;
+
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -151,13 +199,15 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setSocialMedia(toCopy.socialMedia);
             setTags(toCopy.tags);
+
+            setBirthday(toCopy.birthday);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, tags, birthday);
         }
 
         public void setName(Name name) {
@@ -189,7 +239,17 @@ public class EditCommand extends Command {
         }
 
         public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+            return (address != null)
+                    ? Optional.of(address)
+                    : Optional.empty();
+        }
+
+        public void setBirthday(Birthday birthday) {
+            this.birthday = birthday;
+        }
+
+        public Optional<Birthday> getBirthday() {
+            return Optional.ofNullable(birthday);
         }
 
         public void setSocialMedia(SocialMedia socialMedia) {
@@ -209,7 +269,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */

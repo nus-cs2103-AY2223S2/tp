@@ -2,17 +2,12 @@ package seedu.address.model.socialmedia;
 
 import java.util.Optional;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  * Represents all social media entries.
  */
 public class SocialMedia {
-    @JsonProperty("instagram")
     private final Instagram instagram;
-    @JsonProperty("telegram")
     private final Telegram telegram;
-    @JsonProperty("whatsapp")
     private final WhatsApp whatsapp;
 
     /**
@@ -24,7 +19,10 @@ public class SocialMedia {
         whatsapp = null;
     }
 
-    private SocialMedia(Instagram i, Telegram t, WhatsApp w) {
+    /**
+     * Constructs a {@code SocialMedia}.
+     */
+    public SocialMedia(Instagram i, Telegram t, WhatsApp w) {
         instagram = i;
         telegram = t;
         whatsapp = w;

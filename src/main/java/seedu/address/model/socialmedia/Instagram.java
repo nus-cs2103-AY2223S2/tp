@@ -22,11 +22,6 @@ public class Instagram {
 
     public final String value;
 
-    // Jackson needs this
-    public Instagram() {
-        value = "";
-    }
-
     private Instagram(String telegram) {
         value = telegram;
     }

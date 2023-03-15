@@ -4,14 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.socialmedia.Instagram;
 import seedu.address.model.socialmedia.SocialMedia;
-import seedu.address.model.socialmedia.Telegram;
-import seedu.address.model.socialmedia.WhatsApp;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,10 +22,6 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final SocialMedia DEFAULT_SOCIALMEDIA = SocialMedia.create()
-        .withInstagram(Instagram.of("amybee"))
-        .withTelegram(Telegram.of("amy"))
-        .withWhatsapp(WhatsApp.of(DEFAULT_PHONE));
 
     private Name name;
     private Phone phone;
@@ -35,6 +29,7 @@ public class PersonBuilder {
     private Address address;
     private SocialMedia socialMedia;
     private Set<Tag> tags;
+    private Birthday birthday;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,7 +39,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        socialMedia = DEFAULT_SOCIALMEDIA;
+        socialMedia = SocialMedia.create();
         tags = new HashSet<>();
     }
 
@@ -53,10 +48,10 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        socialMedia = personToCopy.getSocialMedia();
+        phone = personToCopy.getPhone().get();
+        email = personToCopy.getEmail().get();
+        address = personToCopy.getAddress().get();
+        socialMedia = personToCopy.getSocialMedia().orElse(SocialMedia.create());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -69,9 +64,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -101,11 +97,55 @@ public class PersonBuilder {
     }
 
     /**
-     * Builds the {@code Person} object.
+     * Sets the {@code Birthday} of the {@code Person} that we are building.
+     *
+     * @return a person with the given details.
+     */
+    public PersonBuilder withBirthday(String birthday) {
+        this.birthday = new Birthday(birthday);
+        return this;
+    }
+
+    /**
+     * Sets the {@code SocialMedia} of the {@code Person} that we are building.
+     *
+     * @return a person with the given details.
+     */
+    public PersonBuilder withSocialMedia(SocialMedia socialMedia) {
+        this.socialMedia = socialMedia;
+        return this;
+    }
+
+    /**
+     * Builds a person with the given details.
+     *
+     * @return a person with the given details.
      */
     public Person build() {
-        return new Person(name, phone, email, address, tags)
-            .withSocialMedia(socialMedia);
+        Person p = new Person(name, tags);
+
+        if (phone != null) {
+            p.setPhone(phone);
+        }
+
+        if (email != null) {
+            p.setEmail(email);
+        }
+
+        if (address != null) {
+            p.setAddress(address);
+        }
+
+        if (socialMedia != null) {
+            p.setSocialMedia(socialMedia);
+        }
+
+        if (birthday != null) {
+            p.setBirthday(birthday);
+
+        }
+
+        return p;
     }
 
 }
