@@ -1,10 +1,6 @@
 package seedu.vms.model.vaccination;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,38 +20,22 @@ public class VaxChecker {
      *
      * @param vaxType - the vaccination type to check.
      * @param age - the age ot the patient.
-     * @param records - the list of {@code VaxRecord} of the patient.
-     * @param time - the time of the shot.
+     * @param takenTypes - the list of {@code VaxRecord} of the patient.
      * @return {@code true} if the patient meets the requirements and
      *      {@code false} otherwise.
      */
     public static boolean check(VaxType vaxType,
-                Age age, HashSet<GroupName> allergies, List<VaxRecord> records, LocalDateTime time) {
+                Age age, HashSet<GroupName> allergies, List<VaxType> takenTypes) {
         boolean isWithinAge = age.compareTo(vaxType.getMinAge()) * vaxType.getMaxAge().compareTo(age) >= 0;
 
-        boolean isSpaced = records.isEmpty();
-        if (!isSpaced) {
-            isSpaced = checkSpacing(vaxType, records, time);
-        }
-
         boolean isAllergiesSatisfied = checkReq(vaxType.getAllergyReqs(), allergies);
-        boolean isHistorySatisfied = checkHistReq(vaxType.getHistoryReqs(), records);
+        boolean isHistorySatisfied = checkHistReq(vaxType.getHistoryReqs(), takenTypes);
 
-        return isWithinAge && isSpaced && isAllergiesSatisfied && isHistorySatisfied;
+        return isWithinAge && isAllergiesSatisfied && isHistorySatisfied;
     }
 
 
-    private static boolean checkSpacing(VaxType vaccination,
-                List<VaxRecord> records, LocalDateTime time) {
-        ArrayList<VaxRecord> recordsCopy = new ArrayList<>(records);
-        recordsCopy.sort(Comparator.naturalOrder());
-        LocalDateTime lastDoseTime = recordsCopy.get(recordsCopy.size() - 1).getTimeTaken();
-        LocalDateTime earliestDoseTime = lastDoseTime.plus(vaccination.getMinSpacing(), ChronoUnit.DAYS);
-        return earliestDoseTime.isBefore(time) || earliestDoseTime.isEqual(time);
-    }
-
-
-    private static boolean checkHistReq(List<Requirement> reqs, List<VaxRecord> records) {
+    private static boolean checkHistReq(List<Requirement> reqs, List<VaxType> records) {
         List<HashSet<GroupName>> grpSets = getHistGrpSet(records);
         ArrayDeque<Requirement> pendingReqs = new ArrayDeque<>(reqs);
         for (HashSet<GroupName> grpSet : grpSets) {
@@ -75,9 +55,9 @@ public class VaxChecker {
     }
 
 
-    private static List<HashSet<GroupName>> getHistGrpSet(List<VaxRecord> records) {
+    private static List<HashSet<GroupName>> getHistGrpSet(List<VaxType> records) {
         List<HashSet<GroupName>> grpSets = records.stream()
-                .map(record -> record.getVaccination().getGroups())
+                .map(record -> record.getGroups())
                 .collect(Collectors.toList());
         if (records.isEmpty()) {
             grpSets.add(new HashSet<>());

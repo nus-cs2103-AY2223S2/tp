@@ -29,7 +29,6 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
     private static final String FIELD_NAME_GRP_SET = "Group set";
     private static final String FIELD_NAME_MIN_AGE = "Min age";
     private static final String FIELD_NAME_MAX_AGE = "Max age";
-    private static final String FIELD_NAME_SPACING = "Spacing";
     private static final String FIELD_NAME_ALLERGY = "Allergy requirements";
     private static final String FIELD_NAME_HISTORY = "History requirements";
 
@@ -48,9 +47,6 @@ public class AddVaxTypeParser implements Parser<AddVaxTypeCommand> {
                 .orElse(builder);
         builder = mapAge(argsMap.getValue(CliSyntax.PREFIX_MAX_AGE), FIELD_NAME_MAX_AGE)
                 .map(builder::setMaxAge)
-                .orElse(builder);
-        builder = mapInteger(argsMap.getValue(CliSyntax.PREFIX_MIN_SPACING), FIELD_NAME_SPACING)
-                .map(builder::setMinSpacing)
                 .orElse(builder);
         builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_ALLERGY_REQ), FIELD_NAME_ALLERGY)
                 .map(builder::setAllergyReqs)

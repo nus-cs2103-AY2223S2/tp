@@ -21,7 +21,6 @@ public class VaxType implements Comparable<VaxType> {
     public static final HashSet<GroupName> DEFAULT_GROUP_SET = new HashSet<>();
     public static final Age DEFAULT_MIN_AGE = Age.MIN_AGE;
     public static final Age DEFAULT_MAX_AGE = Age.MAX_AGE;
-    public static final int DEFAULT_MIN_SPACING = Integer.MAX_VALUE;
     public static final List<Requirement> DEFAULT_HISTORY_REQS = List.of();
     public static final List<Requirement> DEFAULT_ALLERGY_REQS = List.of();
 
@@ -29,7 +28,6 @@ public class VaxType implements Comparable<VaxType> {
     private final HashSet<GroupName> groups;
     private final Age minAge;
     private final Age maxAge;
-    private final int minSpacing;
     private final List<Requirement> historyReqs;
     private final List<Requirement> allergyReqs;
 
@@ -41,26 +39,19 @@ public class VaxType implements Comparable<VaxType> {
      *      {@code minSpacing < 0}.
      */
     public VaxType(GroupName name, HashSet<GroupName> groups,
-                Age minAge, Age maxAge, int minSpacing,
+                Age minAge, Age maxAge,
                 List<Requirement> allergyReqs, List<Requirement> historyReqs) {
         AppUtil.checkArgument(isValidRange(minAge, maxAge), MESSAGE_AGE_CONSTRAINTS);
-        AppUtil.checkArgument(isValidSpacing(minSpacing), MESSAGE_SPACING_CONSTRAINTS);
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
         this.maxAge = maxAge;
-        this.minSpacing = minSpacing;
         this.allergyReqs = allergyReqs;
         this.historyReqs = historyReqs;
     }
 
     public static boolean isValidRange(Age minAge, Age maxAge) {
         return maxAge.compareTo(minAge) >= 0;
-    }
-
-
-    public static boolean isValidSpacing(int minSpacing) {
-        return minSpacing >= 0;
     }
 
 
@@ -86,11 +77,6 @@ public class VaxType implements Comparable<VaxType> {
 
     public Age getMaxAge() {
         return maxAge;
-    }
-
-
-    public int getMinSpacing() {
-        return minSpacing;
     }
 
 
@@ -129,7 +115,6 @@ public class VaxType implements Comparable<VaxType> {
         VaxType casted = (VaxType) other;
         return name.equals(casted.name) && groups.equals(casted.groups)
                 && minAge.equals(casted.minAge) && maxAge.equals(casted.maxAge)
-                && minSpacing == casted.minSpacing
                 && allergyReqs.equals(casted.allergyReqs)
                 && historyReqs.equals(casted.historyReqs);
     }
@@ -137,6 +122,6 @@ public class VaxType implements Comparable<VaxType> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, groups, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
+        return Objects.hash(name, groups, minAge, maxAge, allergyReqs, historyReqs);
     }
 }

@@ -4,7 +4,6 @@
       "name": "Dose 1 (Pfizer)",
       "groups": ["DOSE 1", "Pfizer", "Vaccination"],
       "minAge": 5,
-      "minSpacing": 56,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -31,7 +30,6 @@
       "name": "Dose 2 (Pfizer)",
       "groups": ["DOSE 2", "Pfizer", "Vaccination"],
       "minAge": 5,
-      "minSpacing": 56,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -62,7 +60,6 @@
       "name": "Dose 3 (Pfizer)",
       "groups": ["DOSE 3", "Pfizer", "Vaccination"],
       "minAge": 5,
-      "minSpacing": 56,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -93,7 +90,6 @@
       "name": "Dose 4 (Pfizer)",
       "groups": ["DOSE 4", "Pfizer", "Vaccination"],
       "minAge": 5,
-      "minSpacing": 56,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -127,7 +123,6 @@
       "name": "Dose 1 (Moderna)",
       "groups": ["DOSE 1", "Moderna", "Vaccination"],
       "minAge": 5,
-      "minSpacing": 56,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -155,7 +150,6 @@
       "name": "Dose 2 (Moderna)",
       "groups": ["DOSE 2", "Moderna", "Vaccination"],
       "minAge": 5,
-      "minSpacing": 56,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -187,7 +181,6 @@
       "name": "Dose 3 (Moderna)",
       "groups": ["DOSE 3", "Moderna", "Vaccination"],
       "minAge": 5,
-      "minSpacing": 56,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -219,7 +212,6 @@
       "name": "Dose 4 (Moderna)",
       "groups": ["DOSE 4", "Moderna", "Vaccination"],
       "minAge": 5,
-      "minSpacing": 56,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -254,7 +246,6 @@
       "name": "Dose 1 (Novavax)",
       "groups": ["DOSE 1", "Novavax", "Vaccination"],
       "minAge": 18,
-      "minSpacing": 21,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -284,7 +275,6 @@
       "name": "Dose 2 (Novavax)",
       "groups": ["DOSE 2", "Novavax", "Vaccination"],
       "minAge": 18,
-      "minSpacing": 21,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -318,7 +308,6 @@
       "name": "Dose 3 (Novavax)",
       "groups": ["DOSE 3", "Novavax", "Vaccination"],
       "minAge": 18,
-      "minSpacing": 21,
       "historyReqs": [
         {
           "reqType": "NONE",
@@ -352,7 +341,6 @@
       "name": "Dose 4 (Novavax)",
       "groups": ["DOSE 4", "Novavax", "Vaccination"],
       "minAge": 18,
-      "minSpacing": 21,
       "historyReqs": [
         {
           "reqType": "NONE",
