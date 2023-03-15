@@ -75,6 +75,7 @@ public class TrackrParser {
             return new DeleteTaskCommandParser().parse(arguments);
 
         case ClearSupplierCommand.COMMAND_WORD:
+        case ClearSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new ClearSupplierCommand();
 
         case ClearTaskCommand.COMMAND_WORD:
