@@ -63,7 +63,7 @@ public class BookmarkListPanel extends UiPart<Region> {
             return bookmarks.get(0);
         }
         catch (IndexOutOfBoundsException e){
-            return new Bookmark(new Title("Alex Yeoh"), new Phone("87438807"), new Genre("alexyeoh@example.com"),
+            return new Bookmark(new Title("Alex Yeoh"), new Progress("87438807"), new Genre("alexyeoh@example.com"),
                     new Author("Blk 30 Geylang Street 29, #06-40"),
                     SampleDataUtil.getTagSet("friends"));
 

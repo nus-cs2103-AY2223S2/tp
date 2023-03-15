@@ -48,7 +48,7 @@
                 </font></Label>
             <FlowPane prefHeight="5.0" prefWidth="130.0" prefWrapLength="100.0" />
             <FlowPane fx:id="tags" alignment="CENTER_LEFT" prefWidth="128.0" rowValignment="BASELINE" />
-            <Label fx:id="phone" prefWidth="45.0" styleClass="cell_small_label" text="\\$phone" visible="false" />
+            <Label fx:id="progress" prefWidth="45.0" styleClass="cell_small_label" text="\\$progress" visible="false" />
         </VBox>
         <rowConstraints>
             <RowConstraints />
