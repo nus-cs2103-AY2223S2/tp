@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
+  <GridPane prefHeight="106.0" prefWidth="346.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="86.0" prefHeight="106.0" prefWidth="150.0" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="86.0" prefHeight="106.0" prefWidth="243.0" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
@@ -31,8 +31,8 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" prefHeight="17.0" prefWidth="55.0" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="address" prefHeight="13.0" prefWidth="211.0" styleClass="cell_small_label" text="\$address" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
