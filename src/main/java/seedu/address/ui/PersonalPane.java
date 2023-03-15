@@ -41,7 +41,12 @@ public class PersonalPane extends UiPart<Region> {
      */
     public PersonalPane(Person person) {
         super(FXML);
-        Image image = new Image("file:" + person.getImage().IMAGE_PATH + person.getImage().imageName);
+        Image image;
+        if (person.hasDefaultImage()) {
+            image = new Image(person.getImagePath());
+        } else {
+            image = new Image("file:" + person.getImagePath());
+        }
         imageView.setImage(image);
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
