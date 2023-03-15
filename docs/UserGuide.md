@@ -220,7 +220,7 @@ Meggy Spletzer,Inkling
 John von Neumann,
 ```
 
-### Import data in CSV format: `import` [coming soon]
+### Import data in CSV format: `import` [in dev]
 Import data in CSV format from file.
 
 Format: `import [flag] [file path]`

@@ -23,22 +23,26 @@ import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
 
-
+/**
+ * Import student data in CSV format from file. Each student is separately imported using a {@link AddStudentCommand}
+ * object to reuse duplication detection code.
+ * */
 public class ImportCommand extends Command {
-    public final static String COMMAND_WORD = "import";
-    public final static String MSG_USAGE = COMMAND_WORD + ": Import data in CSV format from file. Parameter: FILE_PATH";
-    public final static String MSG_FILE_NOT_EXIST = "The specified file does not exist.";
-    public final static String MSG_FILE_IS_DIR = "The specified file path is a directory.";
-    public final static String MSG_FILE_CANT_RD = "The specified file does not grant read permission.";
-    public final static String MSG_FILE_ACCESS_DENIED = "Access to the specified file is denied by system.";
-    public final static String MSG_FILE_NOT_FOUND = "The specified file cannot be opened for reading.";
-    public final static String MSG_RD_IO_EXCEPTION = "An IOException occurred while reading specified file.";
-    public final static String MSG_ENTRY_FMT_ERR = "The following entry does not comply with format: ";
-    public final static String MSG_INCONSISTENT_ENTRY = "This entry has more columns than defined fields.";
+    public static final String COMMAND_WORD = "import";
+    public static final String MSG_USAGE = COMMAND_WORD + ": Import data in CSV format from file. Parameter: FILE_PATH";
+    public static final String MSG_FILE_NOT_EXIST = "The specified file does not exist.";
+    public static final String MSG_FILE_IS_DIR = "The specified file path is a directory.";
+    public static final String MSG_FILE_CANT_RD = "The specified file does not grant read permission.";
+    public static final String MSG_FILE_ACCESS_DENIED = "Access to the specified file is denied by system.";
+    public static final String MSG_FILE_NOT_FOUND = "The specified file cannot be opened for reading.";
+    public static final String MSG_RD_IO_EXCEPTION = "An IOException occurred while reading specified file.";
+    public static final String MSG_ENTRY_FMT_ERR = "The following entry does not comply with format: ";
+    public static final String MSG_INCONSISTENT_ENTRY = "This entry has more columns than defined fields.";
     public static final String MSG_SUCCESS = "%d student(s) added.";
     private static final Predicate<String> IS_UNEMPTY = s -> !s.isEmpty();
     private final File f;
 
+    /** Create import command by passing a file. Nothing is checked. */
     public ImportCommand(File f) {
         requireNonNull(f);
         this.f = f;
