@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a employee).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -172,11 +172,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th employee in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new employee. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -184,7 +184,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the employee was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -229,7 +229,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the employee being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -255,44 +255,94 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Human Resource manager that
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of employees
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage employee details faster than a typical GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​         | I want to …​                            | So that I can…​                                          |
+|----------|-----------------|-----------------------------------------|----------------------------------------------------------|
+| `* * *`  | HR manager      | add the details of current employees    | access their data in the future                          |
+| `* * *`  | HR manager      | edit the details of current employees   | keep their details up to date                            |
+| `* * *`  | HR manager      | delete the details of current employees | clear their details if they leave the company            |
+| `* * *`  | HR manager      | list all employee details               | retrieve the whole list of employees                     |
+| `* * *`  | HR manager      | find the details of current employees   | get all relevant information about a particular employee |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Executive Pro` and the **Actor** is the `HR Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add an employee**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  HR Manager requests to add an employee.
+2.  ExecutivePro adds the employee with the given details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. HR Manager leaves out compulsory details of an employee.
+    * 1a1. ExecutivePro displays error message indicating that compulsory details are missing.
+
+      Use case ends.
+
+**Use case: UC2 - Edit details of an employee**
+
+**MSS**
+
+1.  HR Manager requests to edit employee’s details based on the employee's ID number.
+2.  ExecutivePro changes the details of the employee.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given ID number is invalid.
+    * 1a1. ExecutivePro displays error message.
+
+      Use case ends.
+* 1b. HR Manager's request does not contain any details to edit.
+    * 1b1. ExecutivePro shows an error message.
+
+      Use case ends.
+
+**Use case: UC3 - Delete an employee**
+
+**MSS**
+
+1. HR Manager lists employee details (UC4).
+2. HR Manager requests to delete a specific employee from the list based on the employee's ID number.
+3. ExecutivePro deletes the details of the employee.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given ID number is invalid.
+    * 2a1. ExecutivePro displays error message.
+
+      Use case ends.
+
+**Use case: UC4 - List details of employees**
+
+**MSS**
+
+1.  HR Manager requests to list employee details.
+2.  ExecutivePro shows a list of details of employees.
 
     Use case ends.
 
@@ -302,25 +352,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC5 - Find details of an employee**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  HR Manager requests to find details of all employees based on a keyword.
+2.  ExecutivePro shows a list of employees matching the keyword.
 
-*{More to be added}*
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no employee matching the given keyword
+  * 2a1. ExecutivePro displays message indicating that no employee matches the given keyword
+
+    Use case ends.
+
+
+**Use case: UC6 - Exiting the ExecutivePro program**
+
+**MSS**
+
+1. HR Manager requests to exit the program.
+2. ExecutivePro shuts down.
+
+    Use case ends.
+
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### Technical requirements
+1. Should work on any mainstream OS with the same workflow as long as it has Java 11 or above installed.
+
+#### Performance requirements
+1. Should be able to hold records of up to 1000 employees.
+2. The system should be able to execute all commands within a second.
+
+#### Usability requirements
+1. A user with above average typing speed (above 40 WPM) for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. The application should be easy to use by users with little experience of using a command line application.
+3. The application should be accessible and readily available to new users.
 
 *{More to be added}*
 
 ### Glossary
 
+#### *Technical Terminology*
+
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+
+#### *ExecutivePro Terminology*
+* **HR**: Human Resources department of a company responsible for managing employee life cycle and administering employee benefits
+* **HR Manager**: Human Resource Manager will lead and direct the routine functions of the Human Resources (HR) department including hiring and interviewing staff, administering pay, benefits, and leave, and enforcing company policies and practices
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
@@ -351,17 +435,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a employee
 
-1. Deleting a person while all persons are being shown
+1. Deleting a employee while all employees are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
