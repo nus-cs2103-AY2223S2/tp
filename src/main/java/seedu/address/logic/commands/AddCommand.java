@@ -12,8 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
 
-
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.job.Role;
@@ -32,9 +30,9 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_JOBDESCRIPTION + "JOB DESCRIPTION "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
             + PREFIX_SALARY + "SALARY "
-            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_DEADLINE + "DEADLINE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROLE + "Software Engineer Google "
             + PREFIX_CONTACT + "98765432 "
@@ -42,12 +40,12 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
-            + PREFIX_WEBSITE + "www.google.com"
+            + PREFIX_WEBSITE + "www.google.com "
             + PREFIX_JOBDESCRIPTION + "Data Engineering team - penultimate students preferred "
             + PREFIX_TAG + "Tech "
             + PREFIX_SALARY + "4000 "
             + PREFIX_DEADLINE + "2023-10-20 "
-            + PREFIX_EXPERIENCE + "Javascript - 1 Year";
+            + PREFIX_EXPERIENCE + "Javascript - 1 Year ";
 
     public static final String MESSAGE_SUCCESS = "New role added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This role already exists in the Techtrack.";

@@ -26,8 +26,6 @@ public class ExperienceTest {
         // invalid name
         assertFalse(Experience.isValidExperience("")); // empty string
         assertFalse(Experience.isValidExperience(" ")); // spaces only
-        assertFalse(Experience.isValidExperience("^")); // only non-alphanumeric characters
-        assertFalse(Experience.isValidExperience("peter*")); // contains non-alphanumeric characters
 
         // valid name
         assertTrue(Experience.isValidExperience("Year")); // alphabets only

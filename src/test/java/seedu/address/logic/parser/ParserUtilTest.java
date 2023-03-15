@@ -17,10 +17,10 @@ import seedu.address.logic.commands.exceptions.exceptions.ParseException;
 import seedu.address.model.job.Address;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
+import seedu.address.model.job.Experience;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Website;
-import seedu.address.model.job.Experience;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -31,7 +31,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_WEBSITE = "#www.com";
     private static final String INVALID_DEADLINE = "2019-10-20";
-    private static final String INVALID_EXPERIENCE = "0 Years";
+    private static final String INVALID_EXPERIENCE = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";

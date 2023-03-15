@@ -6,12 +6,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EXPERIENCE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.JOBDESCRIPTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SALARY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.WEBSITE;
-import static seedu.address.logic.commands.CommandTestUtil.EXPERIENCE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRoles.AMY;
 
@@ -85,7 +85,8 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + JOBDESCRIPTION_DESC_AMY + WEBSITE + SALARY_DESC_AMY + DEADLINE_DESC_AMY + EXPERIENCE_DESC_AMY;
+                + ADDRESS_DESC_AMY + JOBDESCRIPTION_DESC_AMY + WEBSITE
+                + SALARY_DESC_AMY + DEADLINE_DESC_AMY + EXPERIENCE_DESC_AMY;
         Role expectedRole = new RoleBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addRole(expectedRole);

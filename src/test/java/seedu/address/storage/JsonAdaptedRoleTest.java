@@ -17,7 +17,6 @@ import seedu.address.model.job.Email;
 import seedu.address.model.job.JobDescription;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
-import seedu.address.model.job.Experience;
 
 public class JsonAdaptedRoleTest {
     private static final String INVALID_NAME = "R@chel";
