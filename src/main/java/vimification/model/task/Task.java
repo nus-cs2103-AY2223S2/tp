@@ -3,10 +3,6 @@ package vimification.model.task;
 import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
 
-/**
- * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
- */
 public abstract class Task {
 
     private final Description description;
@@ -81,5 +77,4 @@ public abstract class Task {
                 .append(getStatus());
         return builder.toString();
     }
-
 }
