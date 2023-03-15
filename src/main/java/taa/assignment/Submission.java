@@ -10,14 +10,16 @@ import java.util.Date;
 public class Submission implements Comparable<Submission> {
     private boolean isGraded = false;
     private int marks = 0;
+    private Assignment assignment;
     private Student student;
     private Date time;
 
     /**
      * @param student The student who made this submission.
      */
-    public Submission(Student student) {
+    public Submission(Student student, Assignment assignment) {
         this.student = student;
+        this.assignment = assignment;
         this.time = new Date();
     }
 
@@ -27,6 +29,15 @@ public class Submission implements Comparable<Submission> {
     public void grade(int marks) {
         isGraded = true;
         this.marks = marks;
+        this.time = new Date();
+    }
+
+    /**
+     * Describes the assignment this submission belongs to, along with details of this submission.
+     */
+    public String describeSubmission() {
+        String gradeStatus = this.isGraded ? Integer.toString(marks) : "Ungraded";
+        return String.format("%s (Grade: %s)", this.assignment.toString(), gradeStatus);
     }
 
     @Override

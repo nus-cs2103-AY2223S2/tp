@@ -23,8 +23,9 @@ public class Assignment {
     public Assignment(String name, FilteredList<Student> sl) {
         this.name = name;
         for (Student stu : sl) {
-            Submission sub = new Submission(stu);
+            Submission sub = new Submission(stu, this);
             submissions.add(sub);
+            stu.addSubmission(sub);
             submissionMap.put(stu, sub);
         }
     }

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import taa.assignment.Submission;
 import taa.model.student.Student;
 
 /**
@@ -47,10 +48,12 @@ public class StudentCard extends UiPart<Region> {
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
+        Submission latestSubmission = student.getLatestSubmission();
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         attendance.setText(String.format("Attendance: %d/12", this.student.getNumWeeksPresent()));
-        assignment.setText("Latest assignment: None");
+        assignment.setText("Latest assignment: "
+                + (latestSubmission  == null ? "None" : latestSubmission.describeSubmission()));
         groups.setText("Groups: None");
         student.getClassTags().stream()
                 .sorted(Comparator.comparing(classTag -> classTag.tagName))

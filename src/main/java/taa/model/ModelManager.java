@@ -219,6 +219,9 @@ public class ModelManager implements Model {
     @Override
     public void addAssignment(String assignmentName) throws CommandException {
         assignmentList.add(assignmentName, filteredStudents);
+        for (Student student : filteredStudents) {
+            updateStudent(student);
+        }
     }
 
     @Override
