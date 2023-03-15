@@ -1,13 +1,15 @@
 package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PORTION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_RECIPE;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +26,9 @@ import seedu.recipe.model.recipe.Email;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.RecipeDuration;
+import seedu.recipe.model.recipe.RecipePortion;
+import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -38,13 +43,20 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_DURATION + "DURATION] "
+            + "[" + PREFIX_PORTION + "PORTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_INGREDIENT + "INGREDIENT]...\n"
+            + "[" + PREFIX_STEP + "STEP]...\n"
+
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_NAME + "Cacio e Pepe Pasta "
+            + PREFIX_PORTION + "1 - 2 portions "
+            + PREFIX_DURATION + "15 minutes "
+            + PREFIX_TAG + "Italian "
+            + PREFIX_INGREDIENT + "3 eggs "
+            + PREFIX_INGREDIENT + "parmesan cheese "
+            + PREFIX_INGREDIENT + "125g spaghetti noodles ";
 
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -54,7 +66,7 @@ public class EditCommand extends Command {
     private final EditRecipeDescriptor editRecipeDescriptor;
 
     /**
-     * @param index of the recipe in the filtered recipe list to edit
+     * @param index                of the recipe in the filtered recipe list to edit
      * @param editRecipeDescriptor details to edit the recipe with
      */
     public EditCommand(Index index, EditRecipeDescriptor editRecipeDescriptor) {
@@ -77,6 +89,7 @@ public class EditCommand extends Command {
         Recipe recipeToEdit = lastShownList.get(index.getZeroBased());
         Recipe editedRecipe = createEditedRecipe(recipeToEdit, editRecipeDescriptor);
 
+        // TODO: ensure that these model methods work properly
         if (!recipeToEdit.isSameRecipe(editedRecipe) && model.hasRecipe(editedRecipe)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
         }
@@ -94,11 +107,24 @@ public class EditCommand extends Command {
         assert recipeToEdit != null;
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        List<Ingredient> updatedIngredients = editRecipeDescriptor.getPhone().orElse(recipeToEdit.getIngredient());
-        Email updatedEmail = editRecipeDescriptor.getEmail().orElse(recipeToEdit.getEmail());
-        Address updatedAddress = editRecipeDescriptor.getAddress().orElse(recipeToEdit.getAddress());
-        Set<Tag> updatedTags = editRecipeDescriptor.getTags().orElse(recipeToEdit.getTags());
-        return new Recipe(updatedName, updatedIngredient, updatedEmail, updatedAddress, updatedTags, null);
+        Recipe newRecipe = new Recipe(updatedName);
+
+        RecipeDuration updatedDuration = editRecipeDescriptor.getDuration().orElse(recipeToEdit.getDurationNullable());
+        newRecipe.setDuration(updatedDuration);
+
+        RecipePortion updatedPortion = editRecipeDescriptor.getPortion().orElse(recipeToEdit.getPortionNullable());
+        newRecipe.setPortion(updatedPortion);
+
+        Tag[] updatedTags = editRecipeDescriptor.getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
+        newRecipe.setTags(updatedTags);
+
+        Ingredient[] updatedIngredients = editRecipeDescriptor.getIngredients().orElse(recipeToEdit.getIngredients()).toArray(Ingredient[]::new);
+        newRecipe.setIngredients(updatedIngredients);
+
+        Step[] updatedSteps = editRecipeDescriptor.getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);
+        newRecipe.setSteps(updatedSteps);
+
+        return newRecipe;
     }
 
     @Override
@@ -125,12 +151,14 @@ public class EditCommand extends Command {
      */
     public static class EditRecipeDescriptor {
         private Name name;
-        private List<Ingredient> ingredients;
-        private Email email;
-        private Address address;
+        private RecipeDuration duration;
+        private RecipePortion portion;
         private Set<Tag> tags;
+        private List<Ingredient> ingredients;
+        private List<Step> steps;
 
-        public EditRecipeDescriptor() {}
+        public EditRecipeDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -138,17 +166,18 @@ public class EditCommand extends Command {
          */
         public EditRecipeDescriptor(EditRecipeDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.ingredients);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setDuration(toCopy.duration);
+            setPortion(toCopy.portion);
             setTags(toCopy.tags);
+            setIngredients(toCopy.ingredients);
+            setSteps(toCopy.steps);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, ingredients, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, duration, portion, tags, ingredients, steps);
         }
 
         public void setName(Name name) {
@@ -159,28 +188,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Ingredient ingredient) {
-            this.ingredient = ingredient;
+        public void setDuration(RecipeDuration duration) {
+            this.duration = duration;
         }
 
-        public Optional<Ingredient> getPhone() {
-            return Optional.ofNullable(ingredient);
+        public Optional<RecipeDuration> getDuration() {
+            return Optional.ofNullable(duration);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setPortion(RecipePortion portion) {
+            this.portion = portion;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<RecipePortion> getPortion() {
+            return Optional.ofNullable(portion);
         }
 
         /**
@@ -200,6 +221,22 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setIngredients(List<Ingredient> ingredients) {
+            this.ingredients = (ingredients != null) ? new ArrayList<>(ingredients) : null;
+        }
+
+        public Optional<List<Ingredient>> getIngredients() {
+            return (ingredients != null) ? Optional.of(Collections.unmodifiableList(ingredients)) : Optional.empty();
+        }
+
+        public void setSteps(List<Step> steps) {
+            this.steps = (steps != null) ? new ArrayList<>(steps) : null;
+        }
+
+        public Optional<List<Step>> getSteps() {
+            return (steps != null) ? Optional.of(Collections.unmodifiableList(steps)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -216,10 +253,11 @@ public class EditCommand extends Command {
             EditRecipeDescriptor e = (EditRecipeDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getDuration().equals(e.getDuration())
+                    && getPortion().equals(e.getPortion())
+                    && getTags().equals(e.getTags())
+                    && getIngredients().equals(e.getIngredients())
+                    && getSteps().equals(e.getSteps());
         }
     }
 }
