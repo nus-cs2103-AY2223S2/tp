@@ -31,7 +31,7 @@ public class PerformanceCommandParser implements Parser<PerformanceCommand> {
                     PerformanceCommand.MESSAGE_USAGE), ive);
         }
 
-        String performance = argMultimap.getValue(PREFIX_PERFORMANCE).orElse("");
+        String performance = argMultimap.getValue(PREFIX_PERFORMANCE).orElse("1");
 
         return new PerformanceCommand(index, new Performance(performance));
     }
