@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.tag.Subject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,19 +26,21 @@ public class Person {
     private final Optional<Address> address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Subject> subjects = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark,
+                  Set<Subject> subjects, Set<Tag> tags) {
         requireAllNonNull(name, remark);
-        //requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = Optional.ofNullable(phone);
         this.email = Optional.ofNullable(email);
         this.address = Optional.ofNullable(address);
         this.remark = remark;
         this.tags.addAll(tags);
+        this.subjects.addAll(subjects);
     }
 
     public Name getName() {
@@ -66,6 +69,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Subject> getSubjects() {
+        return Collections.unmodifiableSet(subjects);
     }
 
     /**
@@ -100,32 +111,40 @@ public class Person {
                 && otherPerson.getOptionalPhone().equals(getOptionalPhone())
                 && otherPerson.getOptionalEmail().equals(getOptionalEmail())
                 && otherPerson.getOptionalAddress().equals(getOptionalAddress())
+                && otherPerson.getSubjects().equals(getSubjects())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, subjects, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        String phone = String.format("; Phone: %s", getOptionalPhone().map(Phone::toString).orElse(""));
-        String email = String.format("; Email: %s", getOptionalEmail().map(Email::toString).orElse(""));
-        String address = String.format("; Address: %s", getOptionalAddress().map(Address::toString).orElse(""));
+        String phone = getOptionalPhone().isEmpty() ? "" : String.format("; Phone: %s", getOptionalPhone().get());
+        String email = getOptionalEmail().isEmpty() ? "" : String.format("; Email: %s",getOptionalEmail().get());
+        String address = getOptionalAddress().isEmpty() ? "" : String.format("; Address: %s", getOptionalAddress().get());
         builder.append(getName())
                 .append(phone)
                 .append(email)
                 .append(address)
-                .append(getRemark())
-                .append(" Tags: ");
+                .append(getRemark());
+
+        Set<Subject> subjects = getSubjects();
+        if (!subjects.isEmpty()) {
+            builder.append(" ; Subjects: ");
+            subjects.forEach(builder::append);
+        }
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         return builder.toString();
     }
 

@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.concurrent.Flow;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -44,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private FlowPane subjects;
+    @FXML
     private Label remark;
 
     /**
@@ -58,6 +61,9 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getOptionalAddress().map(Address::toString).orElse(null));
         email.setText(person.getOptionalEmail().map(Email::toString).orElse(null));
         remark.setText(person.getRemark().value);
+        person.getSubjects().stream()
+                .sorted(Comparator.comparing(subject -> subject.subjectName))
+                .forEach(subject -> subjects.getChildren().add(new Label(subject.subjectName)));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
