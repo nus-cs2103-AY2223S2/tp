@@ -81,7 +81,7 @@ Format: `add nric/NRIC name/NAME cond/CONDITION​`
 
 <!-- EXAMPLE OF TIP -->
 <!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A patient can have any number of tags (including 0)
 </div> -->
 
 Examples:
@@ -129,7 +129,7 @@ Delete patient by NRIC.
 
 Format: `delete nric/NRIC`
 
-- Deletes the person at the specified `NRIC`.
+- Deletes the patient at the specified `NRIC`.
 
 Examples:
 
