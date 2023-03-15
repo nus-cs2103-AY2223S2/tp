@@ -9,8 +9,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Nric {
     public static final String MESSAGE_CONSTRAINTS =
-            "NRIC should follow the valid format, and should be 9 characters long";
-    public static final String VALIDATION_REGEX = "^[STFGstfg]\\d{7}[A-Za-z]$";
+            "The structure of the NRIC should be @xxxxxxx#, where:\n"
+            + "1. @ is a letter that can be \"S\", \"T\", \"F\", \"G\" or \"M\"\n"
+            + "2. xxxxxxx is a 7-digit serial number\n"
+            + "3. # is a letter from A-Z";
+    public static final String VALIDATION_REGEX = "^[STFGMstfgm]\\d{7}[A-Za-z]$";
     public final String value;
 
     /**
