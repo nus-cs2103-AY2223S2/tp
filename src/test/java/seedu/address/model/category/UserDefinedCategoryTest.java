@@ -14,7 +14,7 @@ public class UserDefinedCategoryTest {
 
     @Test
     public void getDescriptionTest() {
-        assertEquals("description", userDefinedCategory.getDescription());
+        assertEquals("description", userDefinedCategory.getSummary());
     }
 
     @Test

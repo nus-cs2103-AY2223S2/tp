@@ -1,8 +1,10 @@
 package seedu.address.model.expense;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.category.Category;
+
 
 /**
  * Represents an Expense in the address book.
@@ -18,7 +20,7 @@ public class Expense {
 
     private String name;
     private double amount;
-    private Date date;
+    private LocalDate date;
     private Category category;
 
     /**
@@ -28,7 +30,7 @@ public class Expense {
      * @param date     Date of the expense
      * @param category Category of the expense
      */
-    public Expense(String name, double amount, Date date, Category category) {
+    public Expense(String name, double amount, LocalDate date, Category category) {
         this.name = name;
         this.amount = amount;
         this.date = date;
@@ -43,8 +45,13 @@ public class Expense {
         return amount;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
+    }
+
+    public String getFormattedDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
     }
 
     public Category getCategory() {
@@ -68,6 +75,7 @@ public class Expense {
     public static boolean isValidName(String name) {
         return name.matches(VALIDATION_REGEX);
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -115,7 +123,7 @@ public class Expense {
         this.amount = amount;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

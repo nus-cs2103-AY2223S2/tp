@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -31,9 +32,12 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ExpenseListPanel expenseListPanel;
+    private CategoryListPanel categoryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ResultsHeader resultsHeader;
+    private ResultsDetails resultsDetails;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +46,20 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane resultsHeaderPlaceholder;
+
+    @FXML
+    private StackPane resultsDetailsPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,11 +121,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
+        listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        resultsHeader = new ResultsHeader();
+        resultsHeaderPlaceholder.getChildren().add(resultsHeader.getRoot());
+
+        resultsDetails = new ResultsDetails(logic.getExpenseListCount(), "All", true);
+        resultsDetailsPlaceholder.getChildren().add(resultsDetails.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -163,8 +180,23 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Toggles the display between the expense list and the category list.
+     * @param isExpenseList true if the expense list should be shown, false if the category list should be shown
+     */
+    public void switchListPanel(boolean isExpenseList) {
+        listPanelPlaceholder.getChildren().clear();
+        if (isExpenseList) {
+            resultsHeader.setHeader(true, "All");
+            resultsDetails.setDetails(logic.getExpenseListCount(), "All", true);
+            expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
+            listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
+        } else {
+            resultsHeader.setHeader(false, "");
+            resultsDetails.setDetails(logic.getExpenseListCount(), "", false);
+            categoryListPanel = new CategoryListPanel(logic.getFilteredCategoryList());
+            listPanelPlaceholder.getChildren().add(categoryListPanel.getRoot());
+        }
     }
 
     /**
@@ -177,6 +209,14 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (Objects.equals(commandText, "lcat")) {
+                switchListPanel(false);
+            }
+
+            if (Objects.equals(commandText, "list")) {
+                switchListPanel(true);
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" maxHeight="50.0" minHeight="50.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+    </VBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.hgrow="ALWAYS">
+         <children>
+         <HBox alignment="CENTER_LEFT">
+           <Label fx:id="id" styleClass="cell_label">
+             <minWidth>
+               <!-- Ensures that the label text is never truncated -->
+               <Region fx:constant="USE_PREF_SIZE" />
+             </minWidth>
+                  <HBox.margin>
+                     <Insets right="8.0" />
+                  </HBox.margin>
+           </Label>
+           <Label fx:id="expenseName" minWidth="-Infinity" styleClass="cell_label" text="\$expenseName" />
+         </HBox>
+         <Label fx:id="price" minWidth="-Infinity" styleClass="cell_label" text="\$price" />
+         <Label fx:id="category" minWidth="-Infinity" styleClass="category_tag" text="\$category" />
+         <Label fx:id="date" minWidth="-Infinity" text="\$date">
+               <styleClass>
+                  <String fx:value="cell_label" />
+                  <String fx:value="label_dark" />
+               </styleClass></Label>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>
