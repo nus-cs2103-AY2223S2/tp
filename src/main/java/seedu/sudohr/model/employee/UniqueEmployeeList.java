@@ -45,10 +45,8 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         requireNonNull(toCheck);
         requireNonNull(toExclude);
         for (Employee employee : internalList) {
-            if (!employee.isSameEmployee(toExclude)) {
-                if (employee.isSameEmployee(toCheck)) {
-                    return true;
-                }
+            if (!employee.isSameEmployee(toExclude) && employee.isSameEmployee(toCheck)) {
+                return true;
             }
         }
         return false;
@@ -70,10 +68,8 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         requireNonNull(toCheck);
         requireNonNull(toExclude);
         for (Employee employee : internalList) {
-            if (!employee.isSameEmployee(toExclude)) {
-                if (employee.emailClashes(toCheck)) {
-                    return true;
-                }
+            if (!employee.isSameEmployee(toExclude) && employee.emailClashes(toCheck)) {
+                return true;
             }
         }
         return false;
@@ -95,10 +91,8 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         requireNonNull(toCheck);
         requireNonNull(toExclude);
         for (Employee employee : internalList) {
-            if (!employee.isSameEmployee(toExclude)) {
-                if (employee.phoneClashes(toCheck)) {
-                    return true;
-                }
+            if (!employee.isSameEmployee(toExclude) && employee.phoneClashes(toCheck)) {
+                return true;
             }
         }
         return false;
@@ -234,8 +228,9 @@ public class UniqueEmployeeList implements Iterable<Employee> {
                     return false;
                 }
             }
+            return true;
         }
-        return true;
+        return false;
     }
     @Override
     public int hashCode() {

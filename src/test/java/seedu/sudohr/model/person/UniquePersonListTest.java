@@ -18,6 +18,7 @@ import static seedu.sudohr.testutil.TypicalPersons.AMY;
 import static seedu.sudohr.testutil.TypicalPersons.BOB;
 import static seedu.sudohr.testutil.TypicalPersons.CARL;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -45,6 +46,13 @@ public class UniquePersonListTest {
 
     @Test
     public void equals_bothNull_success() {
+        UniqueEmployeeList list = new UniqueEmployeeList();
+        List<Integer> notList = new ArrayList<>();
+        assertNotEquals(list, notList);
+    }
+
+    @Test
+    public void equals_differentClass_success() {
         UniqueEmployeeList nullListOne = null;
         UniqueEmployeeList nullListTwo = null;
         assertEquals(nullListOne, nullListTwo);
