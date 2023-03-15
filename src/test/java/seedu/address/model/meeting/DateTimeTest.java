@@ -66,9 +66,18 @@ public class DateTimeTest {
         // valid dates/times
         assertTrue(DateTime.isValidDateTime("22052023 13:22"));
         assertTrue(DateTime.isValidDateTime("22-05-2023 13:22"));
-        assertTrue(DateTime.isValidDateTime("22052023"));
-        assertTrue(DateTime.isValidDateTime("22-05-2023"));
         assertTrue(DateTime.isValidDateTime("22/05/2023"));
+        assertTrue(DateTime.isValidDateTime("22-05-2023"));
+        assertTrue(DateTime.isValidDateTime("22.05.2023"));
+        assertTrue(DateTime.isValidDateTime("22052023"));
+        assertTrue(DateTime.isValidDateTime("22/05/23"));
+        assertTrue(DateTime.isValidDateTime("22-05-23"));
+        assertTrue(DateTime.isValidDateTime("22.05.23"));
+        assertTrue(DateTime.isValidDateTime("220523"));
+        assertTrue(DateTime.isValidDateTime("2205"));
+        assertTrue(DateTime.isValidDateTime("22/05"));
+        assertTrue(DateTime.isValidDateTime("22.05"));
+        assertTrue(DateTime.isValidDateTime("22-05"));
         assertTrue(DateTime.isValidDateTime("22/05/2023 13:22"));
         assertTrue(DateTime.isValidDateTime("22/05/2023 1:32AM"));
         assertTrue(DateTime.isValidDateTime("22/05/2023 12:32PM"));

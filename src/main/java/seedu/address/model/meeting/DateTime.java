@@ -8,6 +8,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
@@ -190,8 +191,21 @@ public class DateTime {
 
     private static LocalDate parseDate(String date, String pattern) {
         try {
-            return LocalDate.parse(date, DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH));
-        } catch (DateTimeParseException e) {
+            if (!pattern.equals("ddMM")) {
+                return LocalDate.parse(date, DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH));
+            }
+
+            if (date.length() != 4 && date.length() != 5) {
+                throw new InvalidDateTimeFormatException();
+            }
+
+            String newDate = date + Year.now();
+            if (date.length() == 5) {
+                newDate = date + date.charAt(2) + Year.now();
+            }
+
+            return LocalDate.parse(newDate, DateTimeFormatter.ofPattern(getDateFormat(newDate), Locale.ENGLISH));
+        } catch (DateTimeParseException | InvalidDateTimeFormatException e) {
             return LocalDate.MIN;
         }
     }
@@ -200,7 +214,6 @@ public class DateTime {
         try {
             return LocalTime.parse(time, DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH));
         } catch (DateTimeParseException e) {
-            System.out.println(time + " " + pattern);
             return LocalTime.MIN;
         }
     }
