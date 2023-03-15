@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.UniqueParentList;
@@ -104,6 +106,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasParent(Parent parent) {
         requireNonNull(parent);
         return parents.contains(parent);
+    }
+
+    /**
+     * Returns boolean value true if Phone is currently not attached to any Parent or if Phone and Name matches an
+     * existing Parent.
+     *
+     * @param phone Phone object to be checked with.
+     * @param parentName Name object to be checked with.
+     * @return Boolean value result from the checks.
+     */
+    public boolean canInitialize(Phone phone, Name parentName) {
+        requireNonNull(phone);
+        requireNonNull(parentName);
+        for (Parent p : parents) {
+            if (phone.equals(p.getPhone())) {
+                return p.getName().equals(parentName);
+            }
+        }
+        return true;
     }
 
     /**

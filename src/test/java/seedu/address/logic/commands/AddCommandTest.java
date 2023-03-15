@@ -20,7 +20,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.Student;
 import seedu.address.testutil.PersonBuilder;
@@ -149,6 +151,11 @@ public class AddCommandTest {
         @Override
         public boolean hasParent(Parent parent) {
             return false;
+        }
+
+        @Override
+        public boolean canInitialize(Phone phone, Name parentName) {
+            return true;
         }
 
         @Override
