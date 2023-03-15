@@ -3,7 +3,7 @@ package seedu.library.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -21,17 +21,17 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a bookmark to the library. "
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_GENRE + "GENRE "
             + PREFIX_AUTHOR + "AUTHOR "
+            + PREFIX_PROGRESS + "PROGRESS "
+            + PREFIX_GENRE + "GENRE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_GENRE + "johnd@example.com "
-            + PREFIX_AUTHOR + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TITLE + "Hobbit "
+            + PREFIX_AUTHOR + "J. R. R. Tolkien "
+            + PREFIX_PROGRESS + "Finished "
+            + PREFIX_GENRE + "Fantasy "
+            + PREFIX_TAG + "Literature Reading "
+            + PREFIX_TAG + "Holiday reading list";
 
     public static final String MESSAGE_SUCCESS = "New bookmark added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOKMARK = "This bookmark already exists in the library";

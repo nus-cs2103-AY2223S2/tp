@@ -17,7 +17,7 @@ public class Bookmark {
 
     // Identity fields
     private final Title title;
-    private final Phone phone;
+    private final Progress progress;
     private final Genre genre;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Bookmark {
     /**
      * Every field must be present and not null.
      */
-    public Bookmark(Title title, Phone phone, Genre genre, Author author, Set<Tag> tags) {
-        requireAllNonNull(title, phone, genre, author, tags);
+    public Bookmark(Title title, Progress progress, Genre genre, Author author, Set<Tag> tags) {
+        requireAllNonNull(title, progress, genre, author, tags);
         this.title = title;
-        this.phone = phone;
+        this.progress = progress;
         this.genre = genre;
         this.author = author;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Bookmark {
         return title;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Progress getProgress() {
+        return progress;
     }
 
     public Genre getGenre() {
@@ -89,7 +89,7 @@ public class Bookmark {
 
         Bookmark otherBookmark = (Bookmark) other;
         return otherBookmark.getTitle().equals(getTitle())
-                && otherBookmark.getPhone().equals(getPhone())
+                && otherBookmark.getProgress().equals(getProgress())
                 && otherBookmark.getGenre().equals(getGenre())
                 && otherBookmark.getAuthor().equals(getAuthor())
                 && otherBookmark.getTags().equals(getTags());
@@ -98,15 +98,15 @@ public class Bookmark {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, phone, genre, author, tags);
+        return Objects.hash(title, progress, genre, author, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Progress: ")
+                .append(getProgress())
                 .append("; Genre: ")
                 .append(getGenre())
                 .append("; Author: ")
