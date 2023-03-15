@@ -11,7 +11,7 @@ public class AddAssignmentCommand extends Command {
 
     public static final String COMMAND_WORD = "asgn_add";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment name already exists.";
-    public static final String MESSAGE_SUCCESS = "Assignment Added.";
+    public static final String MESSAGE_SUCCESS = "Assignment %s added.";
     private final String toAdd;
 
     /**

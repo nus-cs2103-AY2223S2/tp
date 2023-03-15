@@ -15,6 +15,7 @@ import taa.model.student.Name;
  * Parses input arguments and creates a new AddStudentCommand object
  */
 public class AddAssignmentCommandParser implements Parser<AddAssignmentCommand> {
+    // format is assn_add n/{name}
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddStudentCommand

@@ -22,6 +22,6 @@ public class DeleteAssignmentCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.deleteAssignment(assignmentName);
-        return new CommandResult(MESSAGE_DELETE_ASSIGNMENT_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentName));
     }
 }

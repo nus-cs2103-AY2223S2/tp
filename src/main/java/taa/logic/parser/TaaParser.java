@@ -4,10 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import taa.commons.core.Messages;
+import taa.logic.commands.AddAssignmentCommand;
 import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.ClearCommand;
 import taa.logic.commands.Command;
 import taa.logic.commands.CreateClassCommand;
+import taa.logic.commands.DeleteAssignmentCommand;
 import taa.logic.commands.DeleteStudentCommand;
 import taa.logic.commands.EditStudentCommand;
 import taa.logic.commands.ExitCommand;
@@ -89,6 +91,12 @@ public class TaaParser {
 
         case CreateClassCommand.COMMAND_WORD:
             return new CreateClassCommandParser().parse(arguments);
+
+        case AddAssignmentCommand.COMMAND_WORD:
+            return new AddAssignmentCommandParser().parse(arguments);
+
+        case DeleteAssignmentCommand.COMMAND_WORD:
+            return new DeleteAssignmentCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
