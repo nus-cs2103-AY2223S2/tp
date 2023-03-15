@@ -1,29 +1,24 @@
 package tfifteenfour.clipboard.ui;
 
-import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.Logic;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
-import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.ViewCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.RosterParser;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
-import tfifteenfour.clipboard.model.student.Student;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -40,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
-    private StudentViewPane studentViewPane;
+    private StudentViewPanel studentViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -63,7 +58,7 @@ public class MainWindow extends UiPart<Stage> {
     private HBox studentPanelPlaceholder;
 
     @FXML
-    private StackPane studentViewPanePlaceholder;
+    private StackPane studentViewPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -178,15 +173,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public StudentListPanel getStudentListPanel() {
-        return studentListPanel;
-    }
 
-    public void refreshViewPane() {
-        studentViewPanePlaceholder.getChildren().clear();
-        studentViewPane = new StudentViewPane(logic.getViewedStudent());
-        studentViewPanePlaceholder.getChildren().add(studentViewPane.getRoot());
-    }
+
 
     /**
      * Executes the command and returns the result.
@@ -198,10 +186,11 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            //use instanceof
 
-            refreshViewPane();
-
+            if (RosterParser.parseCommand(commandText) instanceof ViewCommand) {
+                studentViewPanel = new StudentViewPanel(logic.getViewedStudent());
+                studentViewPanelPlaceholder.getChildren().add(studentViewPanel.getRoot());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

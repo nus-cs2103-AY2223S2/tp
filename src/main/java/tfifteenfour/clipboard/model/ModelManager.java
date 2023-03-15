@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private final Roster roster;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-    private Optional<Student> viewedStudent;
+    private final FilteredList<Student> viewedStudent;
 
     /**
      * Initializes a ModelManager with the given roster and userPrefs.
@@ -36,7 +36,7 @@ public class ModelManager implements Model {
         this.roster = new Roster(roster);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.roster.getStudentList());
-        viewedStudent = Optional.empty();
+        viewedStudent = new FilteredList<>(this.roster.getStudentList());
     }
 
     public ModelManager() {
@@ -152,15 +152,18 @@ public class ModelManager implements Model {
 
     //=========== Viewed Student Accessors =============================================================
     @Override
-    public Optional<Student> getViewedStudent() {
+    public ObservableList<Student> getViewedStudent() {
         return viewedStudent;
     }
 
     @Override
-    public void updateViewedStudent(Student newStudent) {
-        requireNonNull(newStudent);
-        viewedStudent = Optional.of(newStudent);
+    public void updateViewedStudent(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        viewedStudent.setPredicate(predicate);
     }
 
-
+    @Override
+    public void clearViewedStudent() {
+        viewedStudent.clear();
+    }
 }

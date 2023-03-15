@@ -41,7 +41,8 @@ public class ViewCommand extends Command {
 
         Student studentToView = studentList.get(targetIndex.getZeroBased());
         //model.updateFilteredStudentList(isTargetStudent(studentToView));
-        model.updateViewedStudent(studentToView);
+        //model.updateViewedStudent(studentToView);
+        model.updateViewedStudent(isTargetStudent(studentToView));
 
         return new CommandResult(generateSuccessMessage(studentToView));
     }

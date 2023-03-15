@@ -66,8 +66,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Optional<Student> getViewedStudent() {
+    public ObservableList<Student> getViewedStudent() {
         return model.getViewedStudent();
+    }
+
+    @Override
+    public void clearViewedStudent() {
+        model.clearViewedStudent();
     }
 
 

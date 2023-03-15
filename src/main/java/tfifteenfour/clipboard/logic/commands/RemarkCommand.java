@@ -60,7 +60,7 @@ public class RemarkCommand extends Command {
                 studentToEdit.getStudentId(), studentToEdit.getModules(), remark, studentToEdit.getTags());
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        //model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(generateSuccessMessage(editedStudent));
     }

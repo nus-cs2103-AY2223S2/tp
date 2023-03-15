@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="197.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox fx:id="viewPane" style="-fx-background-color: white; -fx-background-radius: 10;" stylesheets="@StudentViewPane.css">
+      <VBox fx:id="viewPane" prefWidth="321.0" style="-fx-background-color: white; -fx-background-radius: 10;" stylesheets="@StudentViewCard.css">
          <children>
             <Label fx:id="title" text="Student Particulars">
                <padding>
