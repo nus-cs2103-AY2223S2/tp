@@ -57,7 +57,7 @@ public interface Model {
 
     //=========== Person-Level Operations ==============================================================================
 
-    public Person getPerson(Id employeeId);
+    Person getPerson(Id employeeId);
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the sudohr book.

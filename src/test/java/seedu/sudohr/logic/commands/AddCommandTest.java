@@ -22,6 +22,7 @@ import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.person.Id;
 import seedu.sudohr.model.person.Person;
 import seedu.sudohr.testutil.PersonBuilder;
 
@@ -122,6 +123,11 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlySudoHr getSudoHr() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getPerson(Id employeeId) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -10,6 +10,7 @@ import static seedu.sudohr.testutil.TypicalDepartments.HUMAN_RESOURCES;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.testutil.DepartmentBuilder;
+import seedu.sudohr.testutil.TypicalPersons;
 
 public class DepartmentTest {
 

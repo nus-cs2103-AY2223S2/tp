@@ -33,6 +33,8 @@ public class AddEmployeeToDepartmentCommand extends Command {
     private final DepartmentName departmentName;
 
     public AddEmployeeToDepartmentCommand(Id toAdd, DepartmentName departmentName) {
+        requireNonNull(toAdd);
+        requireNonNull(departmentName);
         this.toAdd = toAdd;
         this.departmentName = departmentName;
     }
