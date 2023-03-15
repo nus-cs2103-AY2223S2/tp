@@ -24,7 +24,7 @@ import seedu.address.model.person.information.Nric;
 
 
 /**
- * Edits the details of an existing elderly in FriendlyLink.
+ * Edits the details of an existing elderly or volunteer in FriendlyLink.
  */
 public class EditCommand extends Command {
 
@@ -51,7 +51,7 @@ public class EditCommand extends Command {
 
     /**
      * @param nric of the person in volunteer or elderly list to edit
-     * @param editPersonDescriptor details to edit the elderly with
+     * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Nric nric, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(nric);

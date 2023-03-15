@@ -31,7 +31,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditVolunteerDescriptor} with fields containing {@code volunteer}'s details
+     * Returns an {@code EditVolunteerDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditVolunteerDescriptor();

@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_ELDERLY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PERSON_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_PERSON_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -35,7 +35,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_PERSON_AMY.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_PERSON_AMY.equals(DESC_ELDERLY_BOB));
+        assertFalse(DESC_PERSON_AMY.equals(DESC_PERSON_BOB));
 
         // different name -> returns false
         EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_PERSON_AMY)
