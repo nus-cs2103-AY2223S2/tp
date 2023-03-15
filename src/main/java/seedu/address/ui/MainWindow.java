@@ -142,12 +142,11 @@ public class MainWindow extends UiPart<Stage> {
         deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), (idx, job) -> {
             deliveryJobDetailPlaceholder.getChildren().clear();
             DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, idx);
+            detailPane.fillInnerParts(logic.getAddressBook());
             deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
         });
         deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
-
-        DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(logic.getFilteredDeliveryJobList().get(0), 0);
-        deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
+        deliveryJobListPanel.selectItem(0);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

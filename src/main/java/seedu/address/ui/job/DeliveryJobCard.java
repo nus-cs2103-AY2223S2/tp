@@ -49,8 +49,8 @@ public class DeliveryJobCard extends UiPart<Region> {
         this.job = job;
         id.setText(displayedIndex + ". ");
         label.setText(job.getJobId());
-        receipient.setText(job.getRecepient().getName().fullName);
-        address.setText(job.getRecepient().getAddress().value);
+        receipient.setText(job.getRecepientId());
+        address.setText("Refine later");
         deliveryTimeSlot.setText(job.getDeliverSlot());
         earning.setText(job.getEarning().value);
         completedStatus.setText(String.valueOf(job.getDeliveredStatus()));
