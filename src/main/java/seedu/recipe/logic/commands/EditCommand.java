@@ -93,7 +93,7 @@ public class EditCommand extends Command {
                 .orElse(recipeToEdit.getDesc());
         Set<Ingredient> updatedIngredients = editRecipeDescriptor.getIngredients()
                 .orElse(recipeToEdit.getIngredients());
-        Set<Step> updatedSteps = editRecipeDescriptor.getSteps()
+        List<Step> updatedSteps = editRecipeDescriptor.getSteps()
                 .orElse(recipeToEdit.getSteps());
         return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps);
     }
@@ -124,7 +124,7 @@ public class EditCommand extends Command {
         private Title title;
         private Description desc;
         private Set<Ingredient> ingredients;
-        private Set<Step> steps;
+        private List<Step> steps;
 
         public EditRecipeDescriptor() {}
 
@@ -169,12 +169,12 @@ public class EditCommand extends Command {
             return (ingredients != null) ? Optional.of(Collections.unmodifiableSet(ingredients)) : Optional.empty();
         }
 
-        public void setSteps(Set<Step> steps) {
+        public void setSteps(List<Step> steps) {
             this.steps = steps;
         }
 
-        public Optional<Set<Step>> getSteps() {
-            return (steps != null) ? Optional.of(Collections.unmodifiableSet(steps)) : Optional.empty();
+        public Optional<List<Step>> getSteps() {
+            return (steps != null) ? Optional.of(Collections.unmodifiableList(steps)) : Optional.empty();
         }
 
         @Override

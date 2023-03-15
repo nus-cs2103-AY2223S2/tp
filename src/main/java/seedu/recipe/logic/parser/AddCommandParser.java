@@ -6,6 +6,7 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -40,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Ingredient> ingredients = ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT));
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Set<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
+        List<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
 
         Recipe recipe = new Recipe(title, description, ingredients, steps);
 

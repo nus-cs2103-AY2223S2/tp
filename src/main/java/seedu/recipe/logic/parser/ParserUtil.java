@@ -2,8 +2,10 @@ package seedu.recipe.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.recipe.commons.core.index.Index;
@@ -57,13 +59,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code step} is invalid.
      */
-    public static Set<Step> parseSteps(Collection<String> steps) throws ParseException {
+    public static List<Step> parseSteps(Collection<String> steps) throws ParseException {
         requireNonNull(steps);
-        final Set<Step> stepSet = new HashSet<>();
+        final List<Step> stepList = new ArrayList<>();
         for (String stepName : steps) {
-            stepSet.add(parseStepHelper(stepName));
+            stepList.add(parseStepHelper(stepName));
         }
-        return stepSet;
+        return stepList;
     }
 
     /**
