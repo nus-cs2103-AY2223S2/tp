@@ -25,7 +25,7 @@ public enum ValidTag {
      * @return ValidTag as the short-form
      */
     public static ValidTag getShortForm(String tagName) {
-        assert Tag.isValidTagName(tagName);
+        tagName = tagName.replace(" ", "_").toUpperCase();
         ValidTag tag = ValidTag.valueOf(tagName);
         switch (tag) {
         case UNIVERSITY_LEVEL_REQUIREMENTS:
