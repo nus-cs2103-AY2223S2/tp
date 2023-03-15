@@ -107,6 +107,11 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        throw new UnsupportedOperationException("Unimplemented method 'updateFilteredAppointmentList'");
+    }
+
+    @Override
     public VaxTypeManager getVaxTypeManager() {
         throw new UnsupportedOperationException("Unimplemented method 'getVaxTypeManager'");
     }
