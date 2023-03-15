@@ -37,4 +37,8 @@ public class Messages {
 
     public static final String MESSAGE_EXAM_ADDED_SUCCESS = "New exam added: \n%s \n"
             + "To the following students: \n%s";
+    public static final String MESSAGE_EXAMS_LISTED_OVERVIEW = "%d exams from %d students listed: \n%s";
+    public static final String MESSAGE_ALL_EXAMS_LISTED_OVERVIEW = "%d lessons from all students listed:\n%s";
+    public static final String MESSAGE_NO_EXAM_FOUND = "No exam is found!";
+
 }

@@ -8,10 +8,10 @@ title: TutorPro
 
 ![Ui](images/Ui.png)
 
-[![Teacher's Pet](docs/images/Thumbnail.png)](https://youtu.be/Z4yEM05bJnc)
+[![TutorPro](docs/images/Thumbnail.png)]
 
 * TutorPro is a desktop application for managing contacts of students and classes, optimised for use via a Command Line Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-* For the detailed documentation of this project, see the **[TutorPro Website](https://ay2223s1-cs2103t-t09-4.github.io/tp/)**.
+* For the detailed documentation of this project, see the **[TutorPro Website](https://ay2223s2-cs2103t-w13-4.github.io/tp/)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
