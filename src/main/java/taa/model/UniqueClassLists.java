@@ -67,8 +67,14 @@ public class UniqueClassLists implements Iterable<ClassList> {
         for (ClassList lst: this.internalList) {
             if (lst.getClassId().equals(className)) {
                 lst.addStudent(student);
+                return;
             }
         }
+
+        // If we are here, then no such class with the specified className exists.
+        // We shall then proceed to create a new Class List to store this student.
+        ClassList newClassList = new ClassList(className);
+        newClassList.addStudent(student);
     }
 
     /**
