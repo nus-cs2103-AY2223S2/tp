@@ -17,7 +17,7 @@ import seedu.address.experimental.storage.UserPrefsStorage;
 // This is tldr of the initialization for storage.
 
 /***/
-public class Tester {
+public class TesterStorage {
     /***/
     public static void main(String[] args) {
         // Instead of hard coded filepath, MainApp uses Config to get this.
@@ -49,5 +49,6 @@ public class Tester {
         } catch (IOException e) {
             System.out.println("error");
         }
+
     }
 }
