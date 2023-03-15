@@ -1,0 +1,31 @@
+/* =============================================================================================== */
+/* RESULTS (LEFT) SECTION */
+/* =============================================================================================== */
+
+#results-section {
+    -fx-pref-width: 480;
+    -fx-padding: 0 20;
+}
+
+#results-section-header-deco {
+    -fx-max-height: 3;
+
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+
+    -fx-background-color: -white;
+}
+
+#results-section-header-title-container {
+    -fx-padding: 0 20;
+}
+#results-section-header-title {
+    -fx-text-fill: -teal;
+}
+#results-section-header-subtitle {
+    -fx-text-fill: -white;
+}
+
+#results-section-body {
+    -fx-padding: 10;
+}
