@@ -43,7 +43,7 @@ Styles VBox and StackPane that contains elements in the MainWindow
 /*-----------------------------------------------------------------------------------------------*\
 TabPane
 
-Styles TabPane that contains ListView
+Styles TabPane that contains ListView of tasks and suppliers
 \*-----------------------------------------------------------------------------------------------*/
 .tab-pane {
     -fx-padding: 0 0 0 1;
@@ -67,8 +67,10 @@ Styles TabPane that contains ListView
 */
 .tab {
     -fx-background-color: -fx-background;
-    -fx-background: #f9f9f9;
-    -fx-background-insets: 0, 1;
+    -fx-background: #e1e1e1;
+    -fx-background-insets: 0, 0;
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
 }
 
 .tab:hover {
@@ -256,7 +258,7 @@ Styles the ResultDisplay encapsulated by StackPane
 commandTextField
 
 Styles the user input in the CommandBox
-Syntactic highlighting on invalid command handled by `handleCommandEntered` and `Extensions.css`
+Invalid Command highlighted by `CommandBox::handleCommandEntered` with `Extensions.css`
 \*-----------------------------------------------------------------------------------------------*/
 .stack-pane {
     -fx-background-color: derive(#e1e1e1, 20%);
@@ -273,6 +275,7 @@ Syntactic highlighting on invalid command handled by `handleCommandEntered` and 
     -fx-font-size: 13pt;
     -fx-text-fill: #1f1f1f;
 }
+
 /*-----------------------------------------------------------------------------------------------*\
 menu-bar
 
