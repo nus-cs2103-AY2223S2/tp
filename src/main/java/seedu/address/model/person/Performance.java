@@ -25,6 +25,11 @@ public class Performance {
         value = performance;
     }
 
+    /**
+     * Checks if input {@code String performance} is valid
+     * @param performance Input string to check upon
+     * @return Whether the performance is a validated integer
+     */
     public static boolean isValidPerformance(String performance) {
         boolean validInteger = true;
         for (int i = 0; i < performance.length(); i++) {
