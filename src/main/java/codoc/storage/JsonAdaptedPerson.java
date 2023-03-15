@@ -11,12 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import codoc.commons.exceptions.IllegalValueException;
 import codoc.model.module.Module;
+import codoc.model.person.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.person.Person;
+import codoc.model.person.Year;
 import codoc.model.skill.Skill;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -26,6 +29,8 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String course;
+    private final String year;
     private final String github;
     private final String email;
     private final String linkedin;
@@ -37,11 +42,19 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("github") String github,
-            @JsonProperty("email") String email, @JsonProperty("linkedin") String linkedin,
+    public JsonAdaptedPerson(
+            @JsonProperty("name") String name,
+            @JsonProperty("course") String course,
+            @JsonProperty("year") String year,
+            @JsonProperty("github") String github,
+            @JsonProperty("email") String email,
+            @JsonProperty("linkedin") String linkedin,
             @JsonProperty("skills") List<JsonAdaptedSkill> skills,
-            @JsonProperty("modules") List<JsonAdaptedModule> modules) {
+            @JsonProperty("modules") List<JsonAdaptedModule> modules
+    ) {
         this.name = name;
+        this.course = course;
+        this.year = year;
         this.github = github;
         this.email = email;
         this.linkedin = linkedin;
@@ -58,6 +71,8 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        course = source.getCourse().course;
+        year = source.getYear().year;
         github = source.getGithub().value;
         email = source.getEmail().value;
         linkedin = source.getLinkedin().value;
@@ -104,6 +119,16 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+        if (course != null && !Course.isValidCourse(course)) {
+            throw new IllegalValueException(Course.MESSAGE_CONSTRAINTS);
+        }
+        final Course modelCourse = new Course(course);
+
+        if (year != null && !Year.isValidYear(year)) {
+            throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);
+        }
+        final Year modelYear = new Year(year);
+
         if (linkedin != null && !Linkedin.isValidLinkedin(linkedin)) {
             throw new IllegalValueException(Linkedin.MESSAGE_CONSTRAINTS);
         }
@@ -111,7 +136,16 @@ class JsonAdaptedPerson {
 
         final Set<Skill> modelSkills = new HashSet<>(personSkills);
         final Set<Module> modelModules = new HashSet<>(personModules);
-        return new Person(modelName, modelGithub, modelEmail, modelLinkedin, modelSkills, modelModules);
+        return new Person(
+                modelName,
+                modelCourse,
+                modelYear,
+                modelGithub,
+                modelEmail,
+                modelLinkedin,
+                modelSkills,
+                modelModules
+        );
     }
 
 }

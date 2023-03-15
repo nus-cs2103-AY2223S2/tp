@@ -1,5 +1,6 @@
 package codoc.logic.commands;
 
+import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
@@ -12,6 +13,7 @@ import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_NEW;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
+import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 import static codoc.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,7 +36,11 @@ import codoc.testutil.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_COURSE_AMY = "Computer Science";
+    public static final String VALID_YEAR_AMY = "2";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_COURSE_BOB = "Business";
+    public static final String VALID_YEAR_BOB = "1";
     public static final String VALID_GITHUB_AMY = "amy-123";
     public static final String VALID_GITHUB_BOB = "bob-456";
     public static final String VALID_EMAIL_AMY = "amy@gmail.com";
@@ -46,6 +52,10 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_AY2223S2_CS2103T = "AY2223S2 CS2103T";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
+    public static final String COURSE_DESC_AMY = " " + PREFIX_COURSE + VALID_COURSE_AMY;
+    public static final String COURSE_DESC_BOB = " " + PREFIX_COURSE + VALID_COURSE_BOB;
+    public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
+    public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String GITHUB_DESC_AMY = " " + PREFIX_GITHUB + VALID_GITHUB_AMY;
     public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;

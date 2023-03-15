@@ -1,5 +1,6 @@
 package codoc.testutil;
 
+import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
@@ -8,6 +9,7 @@ import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
+import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Set;
 
@@ -35,6 +37,8 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
+        sb.append(PREFIX_COURSE + person.getCourse().course + " ");
+        sb.append(PREFIX_YEAR + person.getYear().year + " ");
         sb.append(PREFIX_GITHUB + person.getGithub().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_LINKEDIN + person.getLinkedin().value + " ");

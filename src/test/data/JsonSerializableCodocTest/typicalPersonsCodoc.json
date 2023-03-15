@@ -2,6 +2,8 @@
   "_comment": "Codoc save file which contains the same Person values as in TypicalPersons#getTypicalCodoc()",
   "persons" : [ {
     "name" : "Alice Pauline",
+    "course": "Computer Science",
+    "year": "1",
     "github" : "alice-Pauline",
     "email" : "alice@example.com",
     "linkedin" : "linkedin.com/in/alice",
@@ -9,6 +11,8 @@
     "modules" : [ ]
   }, {
     "name" : "Benson Meier",
+    "course": "Computer Science",
+    "year": "1",
     "github" : "bensonmeier",
     "email" : "johnd@example.com",
     "linkedin" : "linkedin.com/in/alice",
@@ -16,6 +20,8 @@
     "modules" : ["AY2223S1 CS1101S", "AY2223S1 CS1231S"]
   }, {
     "name" : "Carl Kurz",
+    "course": "Computer Science",
+    "year": "1",
     "github" : "Carl-Kurz",
     "email" : "heinz@example.com",
     "linkedin" : "linkedin.com/in/carl123",
@@ -23,6 +29,8 @@
     "modules" : [ ]
   }, {
     "name" : "Daniel Meier",
+    "course": "Computer Science",
+    "year": "1",
     "github" : "d4nielMeier",
     "email" : "cornelia@example.com",
     "linkedin" : "linkedin.com/in/daniel-Meier",
@@ -30,6 +38,8 @@
     "modules" : [ "AY2223S2 CS2109S" ]
   }, {
     "name" : "Elle Meyer",
+    "course": "Computer Science",
+    "year": "1",
     "github" : "Elle-meyer",
     "email" : "werner@example.com",
     "linkedin" : "linkedin.com/in/elle101",
@@ -37,6 +47,8 @@
     "modules" : [ ]
   }, {
     "name" : "Fiona Kunz",
+    "course": "Computer Science",
+    "year": "1",
     "github" : "F1onaKunz",
     "email" : "lydia@example.com",
     "linkedin" : "linkedin.com/in/FIONA-kunz",
@@ -44,6 +56,8 @@
     "modules" : [ ]
   }, {
     "name" : "George Best",
+    "course": "Computer Science",
+    "year": "1",
     "github" : "george-b3st",
     "email" : "anna@example.com",
     "linkedin" : "linkedin.com/in/GeorGe123",

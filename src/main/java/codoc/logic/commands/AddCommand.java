@@ -1,11 +1,13 @@
 package codoc.logic.commands;
 
+import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
+import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 import static java.util.Objects.requireNonNull;
 
 import codoc.logic.commands.exceptions.CommandException;
@@ -23,6 +25,8 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_COURSE + "COURSE "
+            + PREFIX_YEAR + "YEAR "
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_LINKEDIN + "LINKEDIN]\n"
             + "[" + PREFIX_SKILL + "SKILL]\n"
