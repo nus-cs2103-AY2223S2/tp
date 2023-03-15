@@ -121,7 +121,7 @@ public class CommandTestUtil {
 
     //order fields
     public static final String VALID_ORDER_NAME_CHOCOLATE_COOKIES = "Chocolate Cookies";
-    public static final String VALID_ORDER_DEADLINE_2100 = "01/01/2100";
+    public static final String VALID_ORDER_DEADLINE_2024 = "01/01/2024";
     public static final String VALID_ORDER_STATUS_DONE = "D";
     public static final String VALID_ORDER_STATUS_NOT_DONE = "N";
     public static final String VALID_ORDER_STATUS_IN_PROGRESS = "I";

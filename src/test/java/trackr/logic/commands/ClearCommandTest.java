@@ -1,6 +1,7 @@
 package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -23,8 +24,10 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
+        Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
+                getTypicalOrderList(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
+                getTypicalOrderList(), new UserPrefs());
         expectedModel.setSupplierList(new SupplierList());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

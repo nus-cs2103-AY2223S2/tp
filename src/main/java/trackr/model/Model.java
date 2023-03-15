@@ -1,7 +1,6 @@
 package trackr.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -158,15 +157,51 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
-    ObservableList<Order> getFilteredOrderList();
+    // ================================================= Order =================================================
 
-    boolean hasOrder(Order editedOrder);
-
-    void updateFilteredOrderList(Predicate<Order> predicateShowAllOrders);
-
+    /**
+     * Replaces order list data with the data in {@code orderList}.
+     */
     void setOrderList(ReadOnlyOrderList orderList);
 
+    /**
+     * Returns the OrderList
+     */
     ReadOnlyOrderList getOrderList();
 
-    void setOrder(Order orderToEdit, Order editedOrder);
+    /**
+     * Returns true if an order with the same identity as {@code order} exists in the order list.
+     */
+    boolean hasOrder(Order order);
+
+    /**
+     * Deletes the given order.
+     * The order must exist in the order list.
+     */
+    void deleteOrder(Order target);
+
+    /**
+     * Adds the given order.
+     * {@code order} must not already exist in the order list.
+     */
+    void addOrder(Order order);
+
+    /**
+     * Replaces the given order {@code target} with {@code editedOrder}.
+     * {@code target} must exist in the order list.
+     * The order identity of {@code editedOrder} must not be the same as another existing order in the order list.
+     */
+    void setOrder(Order target, Order editedOrder);
+
+    /**
+     * Returns an unmodifiable view of the filtered order list
+     */
+    ObservableList<Order> getFilteredOrderList();
+
+    /**
+     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOrderList(Predicate<Order> predicate);
 }

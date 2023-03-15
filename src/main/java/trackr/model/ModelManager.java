@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
-import trackr.model.supplier.Supplier;
 import trackr.model.order.Order;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 
 /**
@@ -29,12 +29,12 @@ public class ModelManager implements Model {
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Order> filteredOrders;
 
-
     /**
      * Initializes a ModelManager with the given supplier list, taskList and userPrefs.
      */
-    public ModelManager(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,ReadOnlyOrderList orderList, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(supplierList, taskList, userPrefs);
+    public ModelManager(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,
+            ReadOnlyOrderList orderList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(supplierList, taskList, orderList, userPrefs);
 
         logger.fine("Initializing with supplier list: " + supplierList
                 + " and task list: " + taskList
@@ -178,8 +178,6 @@ public class ModelManager implements Model {
         taskList.setTask(target, editedTask);
     }
 
-
-
     //=========== Filtered Task List Accessors ===============================================================
 
     /**
@@ -198,6 +196,7 @@ public class ModelManager implements Model {
     }
 
     //=========== OrderList ===================================================================================
+
     @Override
     public void setOrderList(ReadOnlyOrderList orderList) {
         this.orderList.resetData(orderList);
@@ -209,28 +208,45 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return orderList.hasOrder(order);
+    }
+
+    @Override
+    public void deleteOrder(Order target) {
+        orderList.removeOrder(target);
+    }
+
+    @Override
+    public void addOrder(Order order) {
+        orderList.addOrder(order);
+        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+    }
+
+    @Override
     public void setOrder(Order target, Order editedOrder) {
         requireAllNonNull(target, editedOrder);
+
         orderList.setOrder(target, editedOrder);
     }
 
-    //=========== Filtered Order List Accessors ===============================================================
+    //=========== Filtered Order List Accessors =============================================================
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * {@code versionedOrderList}
+     */
     @Override
     public ObservableList<Order> getFilteredOrderList() {
         return filteredOrders;
     }
 
     @Override
-    public boolean hasOrder(Order editedOrder) {
-        return false;
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
     }
-
-    @Override
-    public void updateFilteredOrderList(Predicate<Order> predicateShowAllOrders) {
-
-    }
-
 
     //========================================================================================================
 

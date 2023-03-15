@@ -1,0 +1,21 @@
+{
+    "suppliers": [ ],
+    "tasks": [ ],
+    "orders": [ {
+        "orderName": "Chocolate Cookies",
+        "orderDeadline": "01/01/2024",
+        "orderStatus": "N",
+        "orderQuantity": "10",
+        "customerName": "John Doe",
+        "customerPhone": "12345678",
+        "customerAddress": "123 Smith Street"
+    }, {
+        "orderName": "Chocolate Cookies",
+        "orderDeadline": "01/01/2024",
+        "orderStatus": "N",
+        "orderQuantity": "10",
+        "customerName": "John Doe",
+        "customerPhone": "12345678",
+        "customerAddress": "123 Smith Street"
+    } ]
+  }

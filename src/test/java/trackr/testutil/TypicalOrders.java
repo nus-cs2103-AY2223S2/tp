@@ -3,9 +3,9 @@ package trackr.testutil;
 import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_ADDRESS;
 import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_NAME;
 import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_PHONE;
-import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_DEADLINE_2100;
+import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_DEADLINE_2024;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_NAME_CHOCOLATE_COOKIES;
-import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_THREE;
+import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_ONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_NOT_DONE;
 
 import java.util.ArrayList;
@@ -46,9 +46,9 @@ public class TypicalOrders {
             .withCustomerAddress("456 Bedok Street").build();
 
     public static final Order CHOCOLATE_COOKIES = new OrderBuilder().withOrderName(VALID_ORDER_NAME_CHOCOLATE_COOKIES)
-            .withOrderDeadline(VALID_ORDER_DEADLINE_2100)
+            .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
             .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
-            .withOrderQuantity(VALID_ORDER_QUANTITY_THREE)
+            .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
             .withCustomerName(VALID_CUSTOMER_NAME)
             .withCustomerPhone(VALID_CUSTOMER_PHONE)
             .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
