@@ -121,6 +121,7 @@ Format: `setpoints INDEX pt/POINTS`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The points refers to the reward points of the customer
 * The points **must be a positive integer** 1, 2, 3, ​​…
+* The points can only range from 0 to 999999
 
 Examples:
 * `listc` followed by `setpoints 2 pt/100` sets the 2nd customer points as 100.
