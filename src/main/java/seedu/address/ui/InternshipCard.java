@@ -21,7 +21,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Status;
 
 
 /**
@@ -73,7 +72,7 @@ public class InternshipCard extends UiPart<Region> {
         role.setText(ROLE_LABEL + internship.getRole().fullRole);
 
         //Add Date
-        String dateLabel = getDateLabel(internship.getStatus());
+        String dateLabel = getDateLabel();
         date.setText(dateLabel + internship.getDate().fullDate);
 
         //Add Tags
@@ -131,12 +130,11 @@ public class InternshipCard extends UiPart<Region> {
     /**
      * Returns the label for the date field in Internship Card.
      *
-     * @param status
      * @return the corresponding String as a label for the date.
      */
-    public String getDateLabel(Status status) {
+    public String getDateLabel() {
         String dateLabel;
-        switch (status.toString()) {
+        switch (this.internship.getStatus().toString()) {
         case NEW:
             dateLabel = "Date Added: ";
             break;
