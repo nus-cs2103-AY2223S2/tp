@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -35,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_CONTACT, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_JOBDESCRIPTION, PREFIX_SALARY, PREFIX_DEADLINE);
+                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_JOBDESCRIPTION, PREFIX_SALARY, PREFIX_DEADLINE, PREFIX_EXPERIENCE);
         Index index;
 
         try {
@@ -67,6 +68,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editRoleDescriptor.setDeadline(ParserUtil.parseDateline(argMultimap.getValue(PREFIX_DEADLINE).get()));
         }
+        if (argMultimap.getValue(PREFIX_EXPERIENCE).isPresent()) {
+            editRoleDescriptor.setExperience(ParserUtil.parseExperience(argMultimap.getValue(PREFIX_EXPERIENCE).get()));
+        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editRoleDescriptor::setTags);
 
         if (!editRoleDescriptor.isAnyFieldEdited()) {

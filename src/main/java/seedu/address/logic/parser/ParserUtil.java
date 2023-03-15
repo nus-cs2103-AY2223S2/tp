@@ -9,14 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.exceptions.ParseException;
-import seedu.address.model.job.Address;
-import seedu.address.model.job.Deadline;
-import seedu.address.model.job.Email;
-import seedu.address.model.job.JobDescription;
-import seedu.address.model.job.Name;
-import seedu.address.model.job.Phone;
-import seedu.address.model.job.Salary;
-import seedu.address.model.job.Website;
+import seedu.address.model.job.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -186,4 +179,18 @@ public class ParserUtil {
         return new Deadline(trimmedDeadline);
     }
 
+    /**
+     * Parses a {@code String Experience} into an {@code experience}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code experience} is invalid.
+     */
+    public static Experience parseExperience(String experience) throws ParseException {
+        requireNonNull(experience);
+        String trimmedExperience = experience.trim();
+        if (!Experience.isValidExperience(trimmedExperience)) {
+            throw new ParseException(Experience.getMessageConstraint());
+        }
+        return new Experience(trimmedExperience);
+    }
 }

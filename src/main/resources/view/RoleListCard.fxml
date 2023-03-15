@@ -31,14 +31,11 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-<<<<<<< HEAD:src/main/resources/view/PersonListCard.fxml
       <Label fx:id="website" styleClass="cell_small_label" text="\$website" />
-
-=======
       <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
       <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
       <Label fx:id="jobDescription" styleClass="cell_big_label" text="\$jobDescription" />
->>>>>>> 5a372bdd0acc05708b6614ee99f947656d3d44da:src/main/resources/view/RoleListCard.fxml
+      <Label fx:id="experience" styleClass="cell_small_label" text="\$experience" />
     </VBox>
   </GridPane>
 </HBox>

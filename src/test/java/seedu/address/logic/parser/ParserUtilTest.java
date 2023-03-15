@@ -20,6 +20,7 @@ import seedu.address.model.job.Email;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Website;
+import seedu.address.model.job.Experience;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -30,6 +31,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_WEBSITE = "#www.com";
     private static final String INVALID_DEADLINE = "2019-10-20";
+    private static final String INVALID_EXPERIENCE = "0 Years";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -39,6 +41,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_WEBSITE = "www.google.com";
     private static final String VALID_DEADLINE = "2023-10-20";
+    private static final String VALID_EXPERIENCE = "Javascript - 1 Year";
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -174,6 +177,29 @@ public class ParserUtilTest {
         String websiteWithWhitespace = WHITESPACE + VALID_WEBSITE + WHITESPACE;
         Website expectedWebsite = new Website(VALID_WEBSITE);
         assertEquals(expectedWebsite, ParserUtil.parseWebsite(websiteWithWhitespace));
+    }
+
+    @Test
+    public void parseExperience_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseExperience((String) null));
+    }
+
+    @Test
+    public void parseExperience_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExperience(INVALID_EXPERIENCE));
+    }
+
+    @Test
+    public void parseExperience_validValueWithoutWhitespace_returnsExperience() throws Exception {
+        Experience expectedExperience = new Experience(VALID_EXPERIENCE);
+        assertEquals(expectedExperience, ParserUtil.parseExperience(VALID_EXPERIENCE));
+    }
+
+    @Test
+    public void parseExperience_validValueWithWhitespace_returnsTrimmedExperience() throws Exception {
+        String experienceWithWhitespace = WHITESPACE + VALID_EXPERIENCE + WHITESPACE;
+        Experience expectedExperience = new Experience(VALID_EXPERIENCE);
+        assertEquals(expectedExperience, ParserUtil.parseExperience(experienceWithWhitespace));
     }
 
     @Test

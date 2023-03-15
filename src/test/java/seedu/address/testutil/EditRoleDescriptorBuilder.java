@@ -5,15 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditRoleDescriptor;
-import seedu.address.model.job.Address;
-import seedu.address.model.job.Deadline;
-import seedu.address.model.job.Email;
-import seedu.address.model.job.JobDescription;
-import seedu.address.model.job.Name;
-import seedu.address.model.job.Phone;
-import seedu.address.model.job.Role;
-import seedu.address.model.job.Salary;
-import seedu.address.model.job.Website;
+import seedu.address.model.job.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -45,6 +37,7 @@ public class EditRoleDescriptorBuilder {
         descriptor.setTags(role.getTags());
         descriptor.setSalary(role.getSalary());
         descriptor.setDeadline(role.getDeadline());
+        descriptor.setExperience(role.getExperience());
     }
 
     /**
@@ -117,6 +110,14 @@ public class EditRoleDescriptorBuilder {
      */
     public EditRoleDescriptorBuilder withDeadline(String deadline) {
         descriptor.setDeadline(new Deadline(deadline));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Experience} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditRoleDescriptorBuilder withExperience(String experience) {
+        descriptor.setExperience(new Experience(experience));
         return this;
     }
 

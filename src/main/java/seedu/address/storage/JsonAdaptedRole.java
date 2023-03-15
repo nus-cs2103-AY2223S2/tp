@@ -19,6 +19,7 @@ import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
 import seedu.address.model.job.Website;
+import seedu.address.model.job.Experience;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,6 +38,7 @@ class JsonAdaptedRole {
     private final String salary;
     private final String deadline;
     private final String website;
+    private final String experience;
 
     /**
      * Constructs a {@code JsonAdaptedRole} with the given role details.
@@ -47,7 +49,8 @@ class JsonAdaptedRole {
                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                 @JsonProperty("JobDescription") String jd, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                 @JsonProperty("website") String website,
-                @JsonProperty("salary") String salary, @JsonProperty("deadline") String deadline) {
+                @JsonProperty("salary") String salary, @JsonProperty("deadline") String deadline,
+                           @JsonProperty("experience") String experience) {
 
         this.name = name;
         this.phone = phone;
@@ -60,6 +63,7 @@ class JsonAdaptedRole {
         this.salary = salary;
         this.deadline = deadline;
         this.website = website;
+        this.experience = experience;
     }
 
     /**
@@ -77,6 +81,7 @@ class JsonAdaptedRole {
         salary = source.getSalary().salary;
         deadline = source.getDeadline().deadline;
         website = source.getWebsite().value;
+        experience = source.getExperience().value;
     }
 
     /**
@@ -158,8 +163,16 @@ class JsonAdaptedRole {
         }
         final Website modelWebsite = new Website(website);
 
+        if (experience == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Experience.class.getSimpleName()));
+        }
+        if (!Experience.isValidExperience(experience)) {
+            throw new IllegalValueException(Experience.MESSAGE_CONSTRAINTS);
+        }
+        final Experience modelExperience = new Experience(experience);
+
         return new Role(modelName, modelPhone, modelEmail, modelAddress, modelJobDescription, modelTags,
-                modelWebsite, modelSalary, modelDeadline);
+                modelWebsite, modelSalary, modelDeadline, modelExperience);
     }
 
 }
