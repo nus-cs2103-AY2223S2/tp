@@ -4,9 +4,6 @@
     "phone": "9482424",
     "address": "4th street",
     "payRate": "invalidPay",
-    "session": {
-      "startDateTime": "17-03-2022 13:00",
-      "endDateTime": "17-03-2022 14:00"
-    }
+    "sessionString": "15-03-2022 10:00 to 15-03-2022 12:00"
   } ]
 }

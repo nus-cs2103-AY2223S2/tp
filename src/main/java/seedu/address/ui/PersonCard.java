@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Session;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -39,9 +41,12 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label payRate;
     @FXML
-    private FlowPane tags;
-    @FXML
     private Label sessions;
+    @FXML
+    private Label sessionDuration;
+    @FXML
+    private FlowPane tags;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,11 +59,11 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         payRate.setText(person.getPayRate().value);
+        sessions.setText(person.getSession().getStartDateTime() + " to " + person.getSession().getEndDateTime());
+        sessionDuration.setText(person.getSession().getSessionDuration().toString().substring(2));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        sessions.setText(person.getSession().toString());
-        sessions.setText(person.getSession().getSessionDuration().toString());
     }
 
     @Override

@@ -9,10 +9,7 @@
       "tagged": [
         "friends"
       ],
-      "session": {
-        "startDateTime": "15-03-2022 10:00",
-        "endDateTime": "15-03-2022 12:00"
-      }
+      "sessionString": "01-01-2022 12:00 to 01-01-2022 13:00"
     },
     {
       "name": "Benson Meier",
@@ -23,10 +20,7 @@
         "owesMoney",
         "friends"
       ],
-      "session": {
-        "startDateTime": "15-03-2022 13:00",
-        "endDateTime": "15-03-2022 14:00"
-      }
+      "sessionString": "02-01-2022 14:00 to 02-01-2022 15:00"
     },
     {
       "name": "Carl Kurz",
@@ -34,10 +28,7 @@
       "address": "wall street",
       "payRate": "12",
       "tagged": [],
-      "session": {
-        "startDateTime": "16-03-2022 10:00",
-        "endDateTime": "16-03-2022 12:00"
-      }
+      "sessionString": "03-01-2022 16:00 to 03-01-2022 17:00"
     },
     {
       "name": "Daniel Meier",
@@ -47,10 +38,7 @@
       "tagged": [
         "friends"
       ],
-      "session": {
-        "startDateTime": "16-03-2022 13:00",
-        "endDateTime": "16-03-2022 14:00"
-      }
+      "sessionString": "01-01-2022 12:00 to 01-01-2022 13:00"
     },
     {
       "name": "Elle Meyer",
@@ -58,10 +46,7 @@
       "address": "michegan ave",
       "payRate": "14",
       "tagged": [],
-      "session": {
-        "startDateTime": "17-03-2022 10:00",
-        "endDateTime": "17-03-2022 12:00"
-      }
+      "sessionString": "02-01-2022 14:00 to 02-01-2022 15:00"
     },
     {
       "name": "Fiona Kunz",
@@ -69,10 +54,7 @@
       "address": "little tokyo",
       "payRate": "15",
       "tagged": [],
-      "session": {
-        "startDateTime": "17-03-2022 13:00",
-        "endDateTime": "17-03-2022 14:00"
-      }
+      "sessionString": "17-03-2022 13:00 to 17-03-2022 14:00"
     },
     {
       "name": "George Best",
@@ -80,10 +62,8 @@
       "address": "4th street",
       "payRate": "16",
       "tagged": [],
-      "session": {
-        "startDateTime": "18-03-2022 10:00",
-        "endDateTime": "18-03-2022 12:00"
-      }
+      "sessionString": "03-01-2022 16:00 to 03-01-2022 17:00"
     }
   ]
+
 }

@@ -34,10 +34,10 @@ public class TypicalPersons {
             .withPayRate("14").withAddress("michegan ave").withSession("02-01-2022 14:00", "02-01-2022 15:00")
             .build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withPayRate("15").withAddress("little tokyo").withSession("03-01-2022 16:00", "03-01-2022 17:00")
+            .withPayRate("15").withAddress("little tokyo").withSession("17-03-2022 13:00", "17-03-2022 14:00")
             .build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withPayRate("16").withAddress("4th street")
+            .withPayRate("16").withAddress("4th street").withSession("03-01-2022 16:00", "03-01-2022 17:00")
             .build();
 
     // Manually added

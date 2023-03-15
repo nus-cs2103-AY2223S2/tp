@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,6 +34,24 @@ public class Session {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
     }
+
+    public Session(String sessionString) throws IllegalValueException {
+        String[] parts = sessionString.split(" to ");
+        if (parts.length != 2) {
+            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
+        }
+
+        String startDateTime = parts[0];
+        String endDateTime = parts[1];
+
+        if (!Session.isValidDateTimeFormat(startDateTime) || !Session.isValidDateTimeFormat(endDateTime)) {
+            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
+        }
+
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+    }
+
 
     /**
      * Returns true if the given string is a valid date format.
@@ -144,12 +164,20 @@ public class Session {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Start Date Time: ")
                 .append(LocalDateTime.parse(getStartDateTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
-                .append(" End Date Time: ")
+                .append("\n End Date Time: ")
                 .append(LocalDateTime.parse(getEndDateTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER));
         return builder.toString();
     }
 
     public String getCommand(){
         return startDateTime + " to " + endDateTime;
+    }
+
+    public String toCommandString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(LocalDateTime.parse(getStartDateTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
+                .append(" to ")
+                .append(LocalDateTime.parse(getEndDateTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER));
+        return builder.toString();
     }
 }
