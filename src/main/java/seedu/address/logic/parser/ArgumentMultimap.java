@@ -58,12 +58,6 @@ public class ArgumentMultimap {
             case "att/":
                 Optional<String> missingAttendance = Optional.of("Insert student attendance here!");
                 return missingAttendance;
-            case "hw/":
-                Optional<String> missingHomework = Optional.of("Insert student homework here!");
-                return missingHomework;
-            case "test/":
-                Optional<String> missingTest = Optional.of("Insert student test here!");
-                return missingTest;
             case "com/":
                 Optional<String> missingComment = Optional.of("Insert student comment here!");
                 return missingComment;
@@ -88,6 +82,12 @@ public class ArgumentMultimap {
             case "e/":
                 Optional<String> missingParentEmail = Optional.of("Insert parent email here!");
                 return missingParentEmail;
+            case "test/":
+                Optional<String> missingTest = Optional.of("Insert student test here!");
+                return missingTest;
+            case "hw/":
+                Optional<String> missingHomework = Optional.of("Insert student homework here!");
+                return missingHomework;
             default:
                 List<String> values = getAllValues(prefix);
                 return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
