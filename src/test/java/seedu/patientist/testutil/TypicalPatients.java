@@ -32,12 +32,12 @@ public class TypicalPatients {
     public static final Patient ADAM = new PatientBuilder().withName("Adam Sandler")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("adam@example.com")
             .withPhone("94351253").withIdNumber("G73829173B")
-            .withTags("Block1WardA", "Staff").withStatus("Doing fine").build();
+            .withTags("Block1WardA").withStatus("Doing fine").build();
 
     public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB)
             .withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
             .withPhone(VALID_PHONE_BOB).withIdNumber(VALID_PID_BOB).withStatus(VALID_STATUS_BOB)
-            .withTags("Block2WardC", "Patient").build(); //Default status
+            .withTags("Block2WardC").build(); //Default status
 
     public static final Patient CHARLIE = new PatientBuilder().withName("Charlie Sandler")
             .withAddress("123, abc, #08-111").withEmail("charlie@example.com")

@@ -33,6 +33,15 @@ public class Staff extends Person {
     }
 
     @Override
+    public boolean isSamePerson(Person otherStaff) {
+        if (!(otherStaff instanceof Staff)) {
+            return false;
+        }
+
+        return super.isSamePerson(otherStaff);
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(super.toString());
         sb.append("; Type: Staff ");

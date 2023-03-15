@@ -20,6 +20,7 @@ import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.tag.Tag;
 
@@ -35,6 +36,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -43,12 +45,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("patientist") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("address") String address, @JsonProperty("status") String status,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -63,6 +67,12 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         id = source.getIdNumber().toString();
         address = source.getAddress().value;
+        if (source instanceof Patient) {
+            Patient patient = (Patient) source;
+            status = patient.getPatientStatusDetails().getDetails();
+        } else {
+            status = "";
+        }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -124,10 +134,12 @@ class JsonAdaptedPerson {
         if (modelTags.contains(STAFF_TAG)) {
             return new Staff(modelName, modelPhone, modelEmail, modelId, modelAddress, modelTags);
         }
-        if (modelTags.contains(PATIENT_TAG)) {
-            return new Patient(modelEmail, modelName, modelPhone, modelId, modelAddress, modelTags);
+
+        if (modelTags.contains(PATIENT_TAG) && status != null) {
+            final PatientStatusDetails modelDetails = new PatientStatusDetails(status);
+            return new Patient(modelId, modelName, modelPhone, modelEmail, modelAddress, modelDetails, modelTags);
         }
-        return new Person(modelName, modelPhone, modelEmail, modelId, modelAddress, modelTags);
+        return new Patient(modelEmail, modelName, modelPhone, modelId, modelAddress, modelTags);
     }
 
 }

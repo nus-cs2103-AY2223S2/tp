@@ -12,6 +12,8 @@ import seedu.patientist.commons.exceptions.IllegalValueException;
 import seedu.patientist.model.Patientist;
 import seedu.patientist.model.ReadOnlyPatientist;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
 
 /**
  * An Immutable Patientist that is serializable to JSON format.
@@ -52,7 +54,13 @@ class JsonSerializablePatientist {
             if (patientist.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            patientist.addPerson(person);
+            if (person instanceof Staff) {
+                Staff staff = (Staff) person;
+                patientist.addPerson(staff);
+            } else {
+                Patient patient = (Patient) person;
+                patientist.addPerson(patient);
+            }
         }
         return patientist;
     }
