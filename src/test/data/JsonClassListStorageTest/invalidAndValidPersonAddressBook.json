@@ -1,0 +1,7 @@
+{
+  "students": [ {
+    "name": "Valid Person"
+  }, {
+    "name": ""
+  } ]
+}

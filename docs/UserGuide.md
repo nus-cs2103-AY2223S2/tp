@@ -3,191 +3,250 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your teaching assistant tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+_Details coming soon ..._
 
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+## Feature summary
+1. [Attendance](#attendance)
+   * mark
+   * unmark
+2. [Assignments](#assignments)
+   * add
+   * delete
+   * grade
+   * ungrade
+   * exit
+3. [Class List](#class-list)
+   * create
+   * rand_grp
+   * add
+   * delete
+   * list
+   * find
+4. [CSV Parser](#csv-parser)
+   * import
+   * export
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
-<div markdown="block" class="alert alert-info">
+## Attendance
+Directs you to the attendance system. Within the attendance system, you can make the following calls:
+* mark
+* unmark
 
-**:information_source: Notes about the command format:**<br>
+### Mark attendance: `mark`
+Marks the attendance of a student for that week<br>
+Format: `mark {student_number} w/{week_number}`<br>
+Examples
+* `markAtd 1 w/1`
+* `markAtd 2 w/1`
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+### Unmark attendance: `unmark`
+Unmarks the attendance of a student for that week<br>
+Format: `unmark {student_number} w/{week_number}`<br>
+Examples
+* `unmarkAtd 1 w/1`
+* `unmarkAtd 2 w/1`
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+## Assignments
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+Directs you to the assignment system. Within the assignment system, you can call:
+* add
+* delete
+* grade
+* ungrade
+* list
+* exit
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+### Add Assignment: `add`
+Adds an assignment with name, start_date, end_date, percent_weightage, total marks. All assignments will initially be ungraded.
+<br>
+Format: `Format: add {name} {start_date} {end_date} {percent_weightage} {total_marks}`<br>
+Example:
+* `add lab1 01-03-2023 15-03-2023 20 100`
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+### Delete Assignment: `delete`
+Deletes the assignment of assignment_id you provided.<br>
+Format: `delete {assignment_id}`<br>
+Example:
+* `delete 1`
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+### Grade Assignment: `grade`
+Grades the assignment of assignment_id and student_id with a score you provide.<br>
+Format: `grade {assignment_id} {student_id} {score}`<br>
+Example:
+* `grade 1 2 20`
 
-</div>
+### Ungrade Assignment: `ungrade`
+Removes the grade of the assignment of assignment_id and student_id.<br>
+Format: `ungrade {assignment_id} {student_id}`<br>
+Example:
+* `ungrade 1 2`
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
+### List all assignments: `list`
+Lists all assignments and their respective information.
 Format: `list`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
+### Exit assignment system: `exit`
+Exits the assignment system.<br>
 Format: `exit`
 
-### Saving the data
+## Class List
+`class_list`
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Directs you to the class list system.
+In this system, you can call the following commands:
 
-### Editing the data file
+- Create class list: `create`
+- (Random) Groupings: `rand_grp`
+- Adding a student: `add`
+- Deleting a student: `delete`
+- Listing all students: `list`
+- Find student: `find`
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+### Create a class list: `create` [coming soon]
+Creates a class list to store the information about a group of students.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+Format: `create LIST_NAME [STUDENT_NAMES]`
+- The argument `LIST_NAME` should be the name of the new class list
+  The argument `[STUDENT_NAMES]` should consist of a sequence of student names, separated by commas.
 
-### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+Examples:
+- `create cs2103t-t14 Alex, John, Bonnie, Clyde` creates a class list of size 4 with 4 students: Alex, John, Bonnie and Clyde.
+- `create cs6244` creates an empty class list.
+
+
+### Random grouping of students: `rand_grp` [coming soon]
+Forms random groups of a specified size within a given class list.
+
+Format: `rand_grp CLASS_LIST GROUP_SIZE`
+- The argument `CLASS_LIST` should be the name of a given class list
+- The search for `CLASS_LIST` is case-insensitive. e.g. cs2103T will match CS2103T
+- The argument `GROUP_SIZE` will determine the size of the groups to be formed.
+
+
+Examples:
+- `rand_grp cs2103t-t14 2` returns: Group 1: Alex, John; Group 2: Bonnie, Clyde
+- `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
+
+### Adding a student: `add_student`
+Adds a student to a given class list.
+
+Format: `add_student n/STUDENT_NAME cl/CLASS_NAME`
+The argument `STUDENT_NAME` should be the name of the student to be added
+The argument `CLASS_NAME` should be the name of a given class the student belongs to
+
+
+Examples:
+- `add n/Tom cl/cs2103t-t14` adds Tom to the class CS2103T-T14
+- `add n/Harry cl/cs6244` adds Harry to the class CS6244
+
+### Editing a student: `edit_student`
+Edits a student in the active class list.
+
+Format: `edit_student STUDENT_INDEX [n/STUDENT_NAME] [cl/CLASS_NAME]`
+- The `STUDENT_INDEX` is the index of the student that is currently being shown on screen.
+- At least one of the optional fields must be present. (i.e. either `STUDENT_NAME` and/or `CLASS_NAME`)
+
+Examples:
+- `edit_student 3 n/Barry Allen` changes the name of the 3rd student to "Barry Allen"
+- `edit_student 5 cl/Tutorial_T14` assigns the 5th student only to the class "Tutorial_14"
+- `edit_student 12 n/Tom Hanks cl/Lab_L11` changes the name of the 12th student to "Tom Hanks", and assigns
+him to the class "Lab_L11"
+
+
+### Deleting a student: `delete_student`
+Deletes a student from the active class list.
+
+Format: `delete_student STUDENT_INDEX`
+- The `STUDENT_INDEX` is the index of the student that is currently being shown on screen.
+
+Examples:
+- `delete_student 3` removes the 3rd student in the currently active/displayed class list
+
+### Listing all students : `list` [coming soon]
+List the students in the class.
+
+Format: `list CLASS_NAME`
+- List the students in tutorial class indicated by the argument class name
+- There should only be one string following list and nothing else.​
+- The argument class name is not case-sensitive.
+
+
+Examples:
+ - Li Chengyue A0123456K
+
+
+### Find a particular student : `find` [coming soon]
+List the students in the class.
+
+Format: `find FLAG STUDENT_NUMBER` or `find FLAG STUDENT_NAME`
+- Flag -id refers to find by student number
+- Flag -n refers to find by name
+- The format of the command follows find flag String
+- The name or student number of the student are not case-sensitive
+
+
+Examples:
+- find -name john lee
+- find -id a0123456b
+
+
+## CSV Parser
+
+Stores and loads data in with CSV files.
+
+* Import data in CSV format: `import`
+* Export data in CSV format: `export`
+
+Our CSV files follow the following format:
+1. All CSV files are header-less. Student data has exactly 2 columns: name, tags.
+2. If a student has no tags, a comma representing the tags column is still required because [if a column is defined as optional, it means that the column is required to exist, but the value can be blank.](https://www.ibm.com/docs/en/atlas-policy-suite/6.0.3?topic=files-rules-creating-populating-csv) 
+
+Acceptable CSV format example:
+```
+Technoblade, Minecrafter Pig Anarchist
+Meggy Spletzer,Inkling
+John von Neumann,
+```
+
+### Import data in CSV format: `import` [in dev]
+Import data in CSV format from file.
+
+Format: `import [flag] [file path]`
+* Flag -force overwrites existing records.
+* Nothing is changed if file does not exist or file access denied.
+
+### Export data in CSV format: `export` [coming soon]
+Export data in CSV format to file.
+
+Format: `export [flag] [file path]`
+* If file exists, export is blocked unless -force flag is used. Otherwise, create file and export.
+* Flag -force overwrites existing file.
+* Nothing is changed if file access denied.
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+_Details coming soon ..._
