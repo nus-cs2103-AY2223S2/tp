@@ -20,7 +20,7 @@ public class CommandResult {
      * Timetable information should be shown to the user.
      */
     private final boolean showTimetable;
-    
+
     /**
      * Statistics information should be shown to the user.
      */
