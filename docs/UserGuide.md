@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-SalesPunch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+SalesPunch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still 
+having the benefits of a Graphical User Interface (GUI). If you can type fast, SalesPunch can get your contact 
+management tasks done faster than traditional GUI apps.
 
 Salespeople managing client contacts who prefer a CLI
 
@@ -13,7 +15,9 @@ Salespeople managing client contacts who prefer a CLI
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: Users that want to log their sales funnel cycle and keep track of their leads. You can do it faster on a CLI with better NLP. Helps salesperson keep track of all the necessary details and set reminders/alerts, prioritise sales tasks
+**Value proposition**: Users that want to log their sales funnel cycle and keep track of their leads. You can do it 
+faster on a CLI with better NLP. Helps salesperson keep track of all the necessary details and set reminders/alerts, 
+prioritise sales tasks
 
 * Table of Contents
 {:toc}
@@ -24,20 +28,21 @@ Salespeople managing client contacts who prefer a CLI
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `salespunch.jar` from [here](https://github.com/AY2223S2-CS2103-W16-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your SalesPunch.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar salespunch.jar` command to run the application.<br>
+
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com c/company X` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -45,7 +50,7 @@ Salespeople managing client contacts who prefer a CLI
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -88,7 +93,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL c/COMPANY`
+Format: `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact must include name and phone number.
@@ -96,7 +101,7 @@ A contact must include name and phone number.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com c/company X`
-* `add n/Betsy Crowe p/62353535`
+* `add n/Betsy Crowe p/62353535 t/friend`
 
 ### Listing all persons : `list`
 
@@ -108,7 +113,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG] …​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -139,23 +144,38 @@ Examples:
 `status David closed-won` Assigns the status of `David` to be `closed-won`.
 
 
-### Finding a contact: `search`
+### Finding a contact tag: `findtag`
+
+Search for a contact based on their tags.
+
+Format: `findtag [<valid tag>]`
+
+* The search is case-insensitive. e.g `[friends]` will match `[Friends]`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full tags will be matched e.g. `friend` will not match `friends`
+* Persons matching at least one tag will be returned (i.e. `OR` search).
+  e.g. `findtag [friends]` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `findtag [friends]`  -  returns the contact with valid and associated tag, `Dewy Thompson` or `Majorie Dewy`
+
+### Finding a contact name: `find`
 
 Search for a contact based on a keyword, or by specifying its index number.
 
-Format: `search [INDEX or KEYWORD(S)]`
+Format: `find [INDEX or KEYWORD(S)]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The find is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Only the name is found.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `search 1`  -  returns the contact with ID 1, `1 - David Tsao`
-* `search Dewy ` - returns `Dewy Thompson` or `Majorie Dewy`
-
+* `find 1`  -  returns the contact with ID 1, `1 - David Tsao`
+* `find Dewy ` - returns `Dewy Thompson` or `Majorie Dewy`
 
 ### Deleting a person : `delete`
 
@@ -188,8 +208,8 @@ Format: `exit`
 SalesPunch contact data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+<!-- need to update the json -->
+SalesPunch data are saved as a JSON file `[JAR file location]/data/updatethis____.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -214,10 +234,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER` *`e/EMAIL c/COMPANY​`* <br> e.g., `add n/John Doe p/98765432 c/company X`
+**Add** | `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] ...​` <br> e.g., `add n/John Doe p/98765432 c/company X`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Status** | `status INDEX_NUMBER` *`[STATUS …]`*<br> `status NAME` *`[STATUS …]`*<br> e.g., `status 1, status David closed-won`
 **List** | `list`
 **Help** | `help`
