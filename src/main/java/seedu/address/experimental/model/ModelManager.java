@@ -1,4 +1,4 @@
-package seedu.address.model.experimental;
+package seedu.address.experimental.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -11,15 +11,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.entity.Entity;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the Reroll data.
  */
 public class ModelManager implements Model {
-    private static final Logger logger = LogsCenter.getLogger(seedu.address.model.ModelManager.class);
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Reroll reroll;
     private final UserPrefs userPrefs;
@@ -32,7 +30,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyReroll reroll, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(reroll, userPrefs);
 
-        logger.fine("Initializing with address book: " + reroll + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Reroll: " + reroll + " and user prefs " + userPrefs);
 
         this.reroll = new Reroll(reroll);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -72,14 +70,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getRerollFilePath() {
+        return userPrefs.getRerollFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setRerollFilePath(Path rerollFilePath) {
+        requireNonNull(rerollFilePath);
+        userPrefs.setRerollFilePath(rerollFilePath);
     }
 
     //=====================================Rerollllll==============================
@@ -104,6 +102,7 @@ public class ModelManager implements Model {
     public void addEntity(Entity entity) {
         requireNonNull(entity);
         reroll.addEntity(entity);
+        updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
     }
 
     @Override
@@ -116,15 +115,15 @@ public class ModelManager implements Model {
         reroll.setEntity(target, edited);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Entity List Accessors =============================================================
 
     @Override
-    public ObservableList<Entity> getFilteredPersonList() {
+    public ObservableList<Entity> getFilteredEntityList() {
         return filteredEntities;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Entity> predicate) {
+    public void updateFilteredEntityList(Predicate<Entity> predicate) {
         requireNonNull(predicate);
         filteredEntities.setPredicate(predicate);
     }

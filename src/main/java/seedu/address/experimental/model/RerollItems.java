@@ -1,8 +1,11 @@
-package seedu.address.model.experimental;
+package seedu.address.experimental.model;
 
 import seedu.address.model.entity.Item;
 
-/** Abstraction of all operations on items */
+
+/**
+ * Abstraction of all items
+ */
 public class RerollItems extends RerollEntities<Item> {
 
     // For convenience
@@ -14,4 +17,5 @@ public class RerollItems extends RerollEntities<Item> {
                 || (other instanceof RerollItems
                 && items.equals(((RerollItems) other).items));
     }
+
 }
