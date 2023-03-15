@@ -1,13 +1,15 @@
 package seedu.address.logic.commands;
 
-import java.util.ArrayList;
 import static java.util.Objects.requireNonNull;
+
+import static seedu.address.storage.ChsContacts.CHS_CONTACTS;
+import static seedu.address.storage.SocContacts.SOC_CONTACTS;
+
+import java.util.ArrayList;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import static seedu.address.storage.ChsContacts.CHS_CONTACTS;
-import static seedu.address.storage.SocContacts.SOC_CONTACTS;
 
 /**
  * Adds a person to the address book.
