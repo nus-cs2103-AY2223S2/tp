@@ -127,16 +127,16 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name or tag: `find`
+### Locating persons by keyword(s): `find`
 
-Finds persons stored in address book based on the given keywords for the respective fields.
+Finds persons stored in address book based on the given keyword(s) for the respective fields.
 
 Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]`
 
 * The search for keyword(s) is case-insensitive. 
   * e.g `find n/hans` will match `find n/Hans`
   * e.g `find t/cs2103t` will match `find t/CS2103T`
-* There can be one or more keywords for each field. 
+* There can be one or more keyword(s) for each field. 
   * e.g. `find n/Hans Bo` will match all persons whose name contains either `Hans` or `Bo`
 * The order of the keyword(s) and field(s) does not matter.
   * e.g. `find n/Hans Bo` will match `find n/Bo Hans`
