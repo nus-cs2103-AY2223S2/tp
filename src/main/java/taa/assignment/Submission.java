@@ -1,8 +1,8 @@
 package taa.assignment;
 
-import taa.model.student.Student;
-
 import java.util.Date;
+
+import taa.model.student.Student;
 
 /**
  * An assignment submission

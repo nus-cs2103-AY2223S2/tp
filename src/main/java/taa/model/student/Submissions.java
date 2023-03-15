@@ -5,8 +5,11 @@ import java.util.List;
 
 import taa.assignment.Submission;
 
+/**
+ * A list of Submissions belonging to a Student.
+ */
 public class Submissions {
-    List<Submission> submissions;
+    private List<Submission> submissions;
 
     public Submissions() {
         this.submissions = new ArrayList<>();

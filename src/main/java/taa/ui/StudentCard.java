@@ -53,7 +53,7 @@ public class StudentCard extends UiPart<Region> {
         name.setText(student.getName().fullName);
         attendance.setText(String.format("Attendance: %d/12", this.student.getNumWeeksPresent()));
         assignment.setText("Latest assignment: "
-                + (latestSubmission  == null ? "None" : latestSubmission.describeSubmission()));
+                + (latestSubmission == null ? "None" : latestSubmission.describeSubmission()));
         groups.setText("Groups: None");
         student.getClassTags().stream()
                 .sorted(Comparator.comparing(classTag -> classTag.tagName))
