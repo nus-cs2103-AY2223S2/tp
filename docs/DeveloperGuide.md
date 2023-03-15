@@ -256,72 +256,156 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+**Freelance Devs**
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Freelance web developers with postings on multiple online marketplaces for digital services (e.g. Fiverr) who want to manage projects and clients easily while tracking their contract terms and hours spent per project.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+Mycelium strives to be a one-stop shop for freelance web developers to consolidate projects from multiple sources. Manage descriptive yet concise information about each client, all through an intuitive console-first interface. Mycelium is tailored for the modern web developer, enabling you to build strong and trusted relationships with clients.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority | As a …​                                                                                                        | I want to …​                     | So that …​                                                                  |
+|----------|----------------------------------------------------------------------------------------------------------------| ------------------------------ |-----------------------------------------------------------------------------|
+| ***      | user                  | easily access each project by name for convenience.                                                            |                                                                             |
+| ***      | user                   | create new projects and contacts.                                                                              |                                                                             |
+| ***      | user     | delete projects and contacts I no longer need.                                                                 |                                                                             |
+| ***      | user     | use the application on different platforms and operating systems.                                              |                                                                             |
+| *        | new user                  | experience an intuitive user-interface. There should be help messages to guide me around the features.         | I can refer to instructions when I forget how to use the App                |
+| *        | user                  | efficiently log information about a new client                                                                 | I minimise the effort and time needed to start a project.                   |
+| *        | new user              | login using my GitHub account                                                                                  | it is convenient to login.                                                  |
+| *        | new user              | sign up using email and password                                                                               | I can avoid using third party authentication sources, like GitHub or Google. |
+| *        | forgetful user        | be reminded of up coming deadlines                                                                             | I will not miss out any deliverables set by clients.                        |
+| *        | user                  | easily categorise the type of each project I have been working on                                              | it is easier to reflect on in the future and navigate.                      |
+| *        | user                   | view statistics related to productivity (which channel I gain most projects, money from)                       | I know which project to put more focus on to earn better money.             |
+| *        | user                   | track my client’s payment status                                                                               | transaction management would be fuss-free.                                  |
+| *        | user                   | track my project’s progress                                                                                    | I can provide timely updates to my clients.                                 |
+| *        | user                   | track the time I have worked on for each project                                                               | I can ensure I have allocated time for the different projects I am working on. |
+| *        | user                   | easily view all of my freelance job requests from Fiverr and Upwork in one place.                              |                                                                             |
+| *        | user                   | update my availability status for each platform in one place                                                   | I don't miss out on job offers due to scheduling conflicts.                 |
+| *        | user                   | store client information, such as contact details and project specifications, in one place                     | I can quickly access it when needed.                                        |
+| *        | user with many clients | easily communicate with clients through the product                                                            | I can streamline my workflow and avoid having to switch between different platforms. |
+| *        | user                   | receive notifications when I receive new job offers or when deadlines are approaching                          | I can stay on top of my workload.                                           |
+| *        | user                   | easily generate invoices for each freelance job and track payment status                                       | I can manage my finances more effectively.                                  |
+| *        | user                   | easily rate and review clients                                                                                 | I can make informed decisions about which jobs to accept in the future.     |
+| *        | user                   | follow the work of other developers                                                                            | I can find opportunities to collaborate.                                    |
+| *        | user                   | use the app to estimate the amount of time that I will need for a project                                      | I can determine if I have the capacity to take on new projects.             |
+| *        | user                   | keep in contact with other developers                                                                          | I can work on larger projects efficiently.                                  |
+| *       | user     | update details of existing projects and contacts                                                               | I can keep up with changing requirements of clients.                        |
+| *       | user     | personalize my contacts                                                                                        | I can know each client better                                               |
+| *       | user     | export data from the product in different formats, such as CSV or Excel                                        | I can use the information elsewhere.                                        |
+| *       | user     | securely store confidential information, such as client details                                                | I can keep sensitive information safe.                                      |
+| *       | user     | use the product offline                                                                                        | I can access my information when I don't have an internet connection.       |
+| *       | user     | easily search and filter projects based on specific criteria, such as deadline, client name, or project status | I can quickly find the information I need.                                  |
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Mycelium` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Create a project**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters command and submits details for new project
+2. Mycelium creates the project
+3. User can view the new project listed in panel
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Required project details are not provided.
+   * 1a1. Mycelium shows an error message.
 
-  Use case ends.
+   Use case resumes at step 1.
 
-* 3a. The given index is invalid.
+* 1b. Some projet details are invalid.
+   * 1b1. Mycelium shows an error message.
 
-    * 3a1. AddressBook shows an error message.
+   Use case resumes at step 1.
 
-      Use case resumes at step 2.
+**Use case: Create a client**
 
-*{More to be added}*
+**MSS**
+
+1. User enters command and submits details for new client
+2. Mycelium creates the client
+3. User can view the new client listed in panel
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Required client details are not provided.
+   * 1a1. Mycelium shows an error message.
+
+   Use case resumes at step 1.
+
+* 1b. Some project details are invalid.
+   * 1b1. Mycelium shows an error message.
+
+   Use case resumes at step 1.
+
+**Use case: Delete a project**
+
+**MSS**
+
+1. User enters command and submits name of project to delete
+2. Mycelium deletes the project
+3. User can no longer see project listed in panel
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Project with submitted name does not exist.
+   * 1a1. Mycelium shows an error message.
+
+   Use case resumes at step 1.
+
+**Use case: Delete a client**
+
+**MSS**
+
+1. User enters command and submits email of client to delete
+2. Mycelium deletes the client
+3. User can no longer see client listed in panel
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Client with submitted email does not exist.
+   * 1a1. Mycelium shows an error message.
+
+   Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 1000 projects without a noticable sluggishness in performance for typical usage.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  All user operations should complete under 100ms.
+1.  Should not lose any work in case the application crashes.
+1.  Data persists when the application restarts.
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+
+* **Console-first Interface**: An interface with interactions primarily through
+                               text commands
+* **Project**: A freelance software development job
+* **Client**: An individual associated with a particular project
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 

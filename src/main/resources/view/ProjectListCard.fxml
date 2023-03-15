@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label" text="\$id">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
+      </HBox>
+        <FlowPane fx:id="tags">
+            <children>
+                <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
+            </children>
+        </FlowPane>
+        <FlowPane fx:id="emailHolder">
+            <children>
+                <Label fx:id="fieldE" styleClass="cell_small_label" text="Email: "/>
+                <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            </children>
+         </FlowPane>
+         <FlowPane fx:id="sourceHolder">
+            <children>
+                <Label fx:id="fieldS" styleClass="cell_small_label" text="Source: "/>
+                <Label fx:id="source" styleClass="cell_small_label" text="\$source" />
+            </children>
+         </FlowPane>
+        <FlowPane fx:id="descriptionHolder">
+            <children>
+               <Label fx:id="fieldD" styleClass="cell_small_label" text="Description: " />
+               <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+            </children>
+         </FlowPane>
+         <FlowPane fx:id="acceptedOnHolder">
+            <children>
+                <Label fx:id="fieldA" styleClass="cell_small_label" text="Accepted on: " />
+                <Label fx:id="acceptedOn" styleClass="cell_small_label" text="\$acceptedOn" />
+            </children>
+         </FlowPane>
+         <FlowPane fx:id="deadlineHolder">
+             <children>
+             <Label fx:id="fieldDe" styleClass="cell_small_label" text="Deadline: " />
+                <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
+            </children>
+         </FlowPane>
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>
