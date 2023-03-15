@@ -1,19 +1,26 @@
+
+
 #copyButton, #helpMessage {
     -fx-text-fill: white;
+    -fx-font-family: "Arial";
 }
 
 #copyButton {
     -fx-background-color: dimgray;
+    -fx-font-family: "Arial";
 }
 
 #copyButton:hover {
     -fx-background-color: gray;
+    -fx-font-family: "Arial";
 }
 
 #copyButton:armed {
     -fx-background-color: darkgray;
+    -fx-font-family: "Arial";
 }
 
 #helpMessageContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-font-family: "Arial";
 }
