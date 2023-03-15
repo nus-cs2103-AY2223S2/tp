@@ -67,7 +67,7 @@ public class Meeting {
             return false;
         }
         Meeting mt = (Meeting) o;
-        return mt.start.equals(this.start) && mt.end == this.end;
+        return mt.start.equals(this.start) && mt.end.equals(this.end);
     }
 
     @Override
