@@ -1,13 +1,18 @@
 package seedu.patientist.ui;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 
+/**
+ * The UI component that is responsible for a pop-up to show details of Person.
+ */
 public class DetailsPopup {
+
+    /**
+     * Creates a {@code DetailsPopup} with the given {@code personListPanel}.
+     */
     public DetailsPopup(PersonListPanel personListPanel) {
         Stage detailsStage = new Stage();
         detailsStage.setTitle("Details");
