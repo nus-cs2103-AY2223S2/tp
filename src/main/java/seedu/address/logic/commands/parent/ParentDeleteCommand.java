@@ -4,11 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 
@@ -24,39 +25,39 @@ public class ParentDeleteCommand extends ParentCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
+    public static final String MESSAGE_DELETE_PARENT_SUCCESS = "Deleted Parent: %1$s";
 
+    private final Class sc;
     private final Phone phoneNumber;
-    private final Name parentName;
 
     /**
-     * Creates a StudentDeleteCommand to delete the specified {@code Student}
+     * Creates a ParentDeleteCommand to delete the specified {@code Parent}
      */
-    public ParentDeleteCommand(Name parentName, Phone phoneNumber) {
-        this.parentName = parentName;
+    public ParentDeleteCommand(Class sc, Phone phoneNumber) {
+        this.sc = sc;
         this.phoneNumber = phoneNumber;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Parent> parents = model.getFilteredParentList();
+        ObservableList<Parent> parents = model.getFilteredParentList();
+        System.out.println(parents);
 
         for (Parent parent : parents) {
-            if (parent.getStudentClass().equals(phoneNumber)) {
+            if (parent.getPhone().equals(phoneNumber)) {
                 model.deleteParent(parent);
-                return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, parent));
+                return new CommandResult(String.format(MESSAGE_DELETE_PARENT_SUCCESS, parent));
             }
         }
 
-        throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        throw new CommandException(Messages.MESSAGE_INVALID_PARENT_DISPLAYED_NUMBER);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ParentDeleteCommand // instanceof handles nulls
-                && phoneNumber.equals(((ParentDeleteCommand) other).phoneNumber)
-                && parentName.equals(((ParentDeleteCommand) other).parentName)); // state check
+                && phoneNumber.equals(((ParentDeleteCommand) other).phoneNumber)); // state check
     }
 }

@@ -41,7 +41,6 @@ public class ParentCommandParser {
      */
     public ParentCommand parse(String args) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
-        System.out.println("success");
         if (!matcher.matches()) {
             //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
@@ -62,12 +61,10 @@ public class ParentCommandParser {
                         PREFIX_RELATIONSHIP, PREFIX_AGE, PREFIX_IMAGEPARENT, PREFIX_PHONE,
                         PREFIX_EMAIL);
 
-        System.out.println("test2");
         if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(studentClass, argMultimapAdd);
         } else if (argMultimapDelete.getValue(PREFIX_DELETE).isPresent()) {
-            System.out.println("test");
-            return deleteCommand(argMultimapDelete);
+            return deleteCommand(studentClass, argMultimapDelete);
         } else {
             //Rest of logic (Need to edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
@@ -91,17 +88,15 @@ public class ParentCommandParser {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-
         Parent parent = new Parent(sc, indexNumber, name, rls, age, image, email, phone, address, tagList);
         return new ParentAddCommand(parent);
     }
 
-    public ParentDeleteCommand deleteCommand(ArgumentMultimap argMultimap) throws ParseException {
+    public ParentDeleteCommand deleteCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
         try {
-            System.out.println("deleteC");
+            Class sc = ParserUtil.parseStudentClass(studentClass);
             Phone phoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            Name parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            return new ParentDeleteCommand(parentName, phoneNumber);
+            return new ParentDeleteCommand(sc, phoneNumber);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,7 +49,7 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-        case ParentCommand.COMMAND_WORD:
+        case ParentCommand.PERSON_WORD:
             return new ParentCommandParser().parse(arguments);
         case StudentCommand.PERSON_WORD:
             return new StudentCommandParser().parse(arguments);
@@ -57,6 +58,7 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
         case DeleteCommand.COMMAND_WORD:
+            System.out.println("delete");
             return new DeleteCommandParser().parse(arguments);
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
