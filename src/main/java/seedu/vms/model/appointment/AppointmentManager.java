@@ -8,10 +8,15 @@ import seedu.vms.model.StorageModel;
  */
 public class AppointmentManager extends StorageModel<Appointment> implements ReadOnlyAppointmentManager {
 
-    public AppointmentManager() {}
+    /**
+     * Constructs an empty {@code AppointmentManager}.
+     */
+    public AppointmentManager() {
+
+    }
 
     /**
-     * Creates an PatientManager using the Patients in the {@code toBeCopied}
+     * Creates an AppointmentManager using the appointments in the {@code toBeCopied}
      */
     public AppointmentManager(ReadOnlyAppointmentManager toBeCopied) {
         super(toBeCopied);

@@ -1,4 +1,4 @@
-package seedu.vms.logic.commands.patient;
+package seedu.vms.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
 
@@ -11,22 +11,22 @@ import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
-import seedu.vms.model.patient.Patient;
+import seedu.vms.model.appointment.Appointment;
 
 /**
- * Deletes a patient identified using it's displayed index from the patient manager.
+ * Deletes an appointment identified using it's displayed index from the appointment manager.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
-    public static final String COMMAND_GROUP = "patient";
+    public static final String COMMAND_GROUP = "appointment";
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
-            + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
+            + ": Deletes the appointment identified by the index number used in the displayed appointment list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
+    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
 
     private final Index targetIndex;
 
@@ -37,15 +37,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Map<Integer, IdData<Patient>> lastShownList = model.getFilteredPatientList();
+        Map<Integer, IdData<Appointment>> appointmentList = model.getAppointmentManager().getMapView();
 
-        if (!lastShownList.containsKey(targetIndex.getZeroBased())) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        if (!appointmentList.containsKey(targetIndex.getZeroBased())) {
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
-        Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased()).getValue();
-        model.deletePatient(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
+        Appointment appointmentToDelete = appointmentList.get(targetIndex.getZeroBased()).getValue();
+        model.deleteAppointment(targetIndex.getZeroBased());
+        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
     }
 
     @Override

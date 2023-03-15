@@ -114,6 +114,12 @@ public class LogicManager implements Logic {
             results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
         }
 
+        try {
+            storage.saveAppointments(model.getAppointmentManager());
+        } catch (IOException ioe) {
+            results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
+        }
+
         completeExecution(results, command.getFollowUp());
     }
 

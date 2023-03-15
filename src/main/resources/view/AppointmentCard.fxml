@@ -20,15 +20,17 @@
     <children>
         <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" styleClass="card-id-holder" HBox.hgrow="ALWAYS">
             <children>
-                <Label fx:id="titleLabel" styleClass="card-sub-title" />
+                <Label fx:id="idLabel" styleClass="card-sub-title" />
             </children>
         </VBox>
     </children>
     <children>
-        <Label styleClass="card-attribute-label" text="Duration:" wrapText="true" GridPane.rowIndex="1" />
-        <Label fx:id="appointmentTime" minHeight="-Infinity" prefWidth="273.0" text="Appointment Time:" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <Label styleClass="card-attribute-label" text="Vaccine:" wrapText="true" GridPane.rowIndex="2" />
-        <Label fx:id="vaccine" minHeight="-Infinity" prefWidth="273.0" text="Appointment Time:" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Label styleClass="card-attribute-label" text="Patient id:" wrapText="true" GridPane.rowIndex="1" />
+        <Label styleClass="card-attribute-label" text="Duration:" wrapText="true" GridPane.rowIndex="2" />
+        <Label styleClass="card-attribute-label" text="Vaccine:" wrapText="true" GridPane.rowIndex="3" />
+        <Label fx:id="patientId" minHeight="-Infinity" prefWidth="273.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label fx:id="appointmentTime" minHeight="-Infinity" prefWidth="273.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Label fx:id="vaccine" minHeight="-Infinity" prefWidth="273.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
     </children>
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

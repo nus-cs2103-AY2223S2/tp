@@ -105,6 +105,12 @@ public interface Model {
      */
     void addAppointment(Appointment appointment);
 
+    /**
+     * Deletes the given appointment.
+     * The appointment must exist in the appointment manager.
+     */
+    void deleteAppointment(int id);
+
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
 
@@ -113,4 +119,6 @@ public interface Model {
 
     /** Performs the specified action of the {@code VaxTypeManager} that the model is using. */
     VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
+
+    VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException;
 }

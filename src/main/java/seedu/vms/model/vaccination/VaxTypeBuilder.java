@@ -14,8 +14,8 @@ import seedu.vms.model.GroupName;
  * {@link VaxTypeManager}.
  */
 public class VaxTypeBuilder {
-    private static final String MESSAGE_DUPLICATE_TYPE = "Vaccination type already exist";
-    private static final String MESSAGE_MISSING_TYPE = "Vaccination type does not exist";
+    private static final String MESSAGE_DUPLICATE_TYPE = "Vaccination type already exist: %s";
+    private static final String MESSAGE_MISSING_TYPE = "Vaccination type does not exist: %s";
 
     private final GroupName refName;
     private final GroupName name;
@@ -115,7 +115,7 @@ public class VaxTypeBuilder {
      */
     public VaxType create(VaxTypeManager manager) throws IllegalValueException {
         if (manager.contains(refName.toString()) || manager.contains(name.toString())) {
-            throw new IllegalValueException(MESSAGE_DUPLICATE_TYPE);
+            throw new IllegalValueException(String.format(MESSAGE_DUPLICATE_TYPE, name.toString()));
         }
         return build(manager);
     }
@@ -131,9 +131,11 @@ public class VaxTypeBuilder {
      *      already exists.
      */
     public VaxType update(VaxTypeManager manager) throws IllegalValueException {
-        if (!manager.contains(refName.toString())
-                    || (!refName.equals(name) && manager.contains(name.toString()))) {
-            throw new IllegalValueException(MESSAGE_MISSING_TYPE);
+        if (!manager.contains(refName.toString())) {
+            throw new IllegalValueException(String.format(MESSAGE_MISSING_TYPE, refName.toString()));
+        }
+        if (!refName.equals(name) && manager.contains(name.getName())) {
+            throw new IllegalValueException(String.format(MESSAGE_DUPLICATE_TYPE, name.toString()));
         }
         return build(manager);
     }

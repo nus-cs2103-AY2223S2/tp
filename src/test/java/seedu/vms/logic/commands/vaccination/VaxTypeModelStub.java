@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
@@ -76,6 +77,11 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
+    public void deleteAppointment(int id) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void addPatient(Patient patient) {
         throw new UnsupportedOperationException("Unimplemented method 'addPatient'");
     }
@@ -126,6 +132,13 @@ public class VaxTypeModelStub implements Model {
     public AppointmentManager getAppointmentManager() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAppointmentManager'");
+    }
+
+    @Override
+    public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
+        return manager.remove(vaxName.toString())
+                .orElseThrow(() -> new IllegalValueException(String.format(
+                        "Vaccination type does not exist: %s", vaxName.toString())));
     }
 
 }
