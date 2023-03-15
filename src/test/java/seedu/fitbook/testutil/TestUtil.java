@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Routine;
 
 /**
  * A utility class for test cases.
@@ -51,5 +52,12 @@ public class TestUtil {
      */
     public static Client getClient(FitBookModel model, Index index) {
         return model.getFilteredClientList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns the routine in the {@code model}'s routine list at {@code index}.
+     */
+    public static Routine getRoutine(FitBookModel model, Index index) {
+        return model.getFilteredRoutineList().get(index.getZeroBased());
     }
 }

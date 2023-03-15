@@ -16,7 +16,7 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.logic.commands.EditCommand.EditClientDescriptor;
-import seedu.fitbook.testutil.EditClientDescriptorBuilder;
+import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
 
 public class EditClientDescriptorTest {
 

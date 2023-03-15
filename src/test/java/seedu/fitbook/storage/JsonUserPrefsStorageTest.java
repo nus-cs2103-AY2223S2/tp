@@ -74,6 +74,7 @@ public class JsonUserPrefsStorageTest {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
         userPrefs.setFitBookFilePath(Paths.get("fitbook.json"));
+        userPrefs.setFitBookExerciseRoutineFilePath(Paths.get("exerciseroutine.json"));
         return userPrefs;
     }
 

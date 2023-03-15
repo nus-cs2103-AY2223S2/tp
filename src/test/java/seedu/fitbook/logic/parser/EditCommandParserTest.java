@@ -52,7 +52,7 @@ import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.tag.Tag;
-import seedu.fitbook.testutil.EditClientDescriptorBuilder;
+import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
 
 public class EditCommandParserTest {
 

@@ -17,7 +17,7 @@ import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 
 /**
- * Adds a client to the address book.
+ * Adds a client to the FitBook.
  */
 public class AddCommand extends Command {
 
@@ -49,7 +49,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney ";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the FitBook";
 
     private final Client toAdd;
 
@@ -66,7 +66,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
         if (model.hasClient(toAdd)) {
 
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
         model.addClient(toAdd);

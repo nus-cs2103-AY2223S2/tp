@@ -2,8 +2,10 @@ package seedu.fitbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.fitbook.commons.core.index.Index;
@@ -18,6 +20,8 @@ import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.routines.Exercise;
+import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.tag.Tag;
 
 
@@ -54,6 +58,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String routineName} into a {@code RoutineName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code routineName} is invalid.
+     */
+    public static RoutineName parseRoutineName(String routineName) throws ParseException {
+        requireNonNull(routineName);
+        String trimmedRoutineName = routineName.trim();
+        if (!RoutineName.isValidRoutineName(trimmedRoutineName)) {
+            throw new ParseException(RoutineName.MESSAGE_CONSTRAINTS);
+        }
+        return new RoutineName(trimmedRoutineName);
     }
 
     /**
@@ -212,5 +231,32 @@ public class ParserUtil {
             throw new ParseException(Calorie.MESSAGE_CONSTRAINTS);
         }
         return new Calorie(trimmedCalorie);
+    }
+
+    /**
+     * Parses a {@code String exercise} into an {@code Exercise}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code exercise} is invalid.
+     */
+    public static Exercise parseExercise(String exercise) throws ParseException {
+        requireNonNull(exercise);
+        String tirmmedExercise = exercise.trim();
+        if (!Exercise.isValidExerciseName(tirmmedExercise)) {
+            throw new ParseException(Exercise.MESSAGE_CONSTRAINTS);
+        }
+        return new Exercise(tirmmedExercise);
+    }
+
+    /**
+     * Parses {@code Collection<String> exercises} into a {@code List<Exercise>}.
+     */
+    public static List<Exercise> parseExercises(Collection<String> exercises) throws ParseException {
+        requireNonNull(exercises);
+        final List<Exercise> exerciseList = new ArrayList<>();
+        for (String exerciseName : exercises) {
+            exerciseList.add(parseExercise(exerciseName));
+        }
+        return exerciseList;
     }
 }

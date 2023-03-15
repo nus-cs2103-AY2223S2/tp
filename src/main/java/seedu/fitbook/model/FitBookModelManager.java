@@ -12,9 +12,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.fitbook.commons.core.GuiSettings;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Routine;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the FitBook data.
  */
 public class FitBookModelManager implements FitBookModel {
     private static final Logger logger = LogsCenter.getLogger(FitBookModelManager.class);
@@ -22,22 +23,28 @@ public class FitBookModelManager implements FitBookModel {
     private final FitBook fitBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
+    private final FilteredList<Routine> filteredRoutines;
+    private final FitBookExerciseRoutine fitBookExerciseRoutine;
 
     /**
      * Initializes a FitBookModelManager with the given fitBook and userPrefs.
      */
-    public FitBookModelManager(ReadOnlyFitBook fitBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(fitBook, userPrefs);
+    public FitBookModelManager(ReadOnlyFitBook fitBook, ReadOnlyFitBookExerciseRoutine fitBookExerciseRoutine,
+                               ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(fitBook, fitBookExerciseRoutine, userPrefs);
 
-        logger.fine("Initializing with address book: " + fitBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with FitBook: " + fitBook + " , exercises routines "
+                + fitBookExerciseRoutine + " and user prefs " + userPrefs);
 
         this.fitBook = new FitBook(fitBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.fitBookExerciseRoutine = new FitBookExerciseRoutine(fitBookExerciseRoutine);
+        filteredRoutines = new FilteredList<>(this.fitBookExerciseRoutine.getRoutineList());
         filteredClients = new FilteredList<>(this.fitBook.getClientList());
     }
 
     public FitBookModelManager() {
-        this(new FitBook(), new UserPrefs());
+        this(new FitBook(), new FitBookExerciseRoutine(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -78,8 +85,8 @@ public class FitBookModelManager implements FitBookModel {
     //=========== FitBook ================================================================================
 
     @Override
-    public void setFitBook(ReadOnlyFitBook fitBook) {
-        this.fitBook.resetData(fitBook);
+    public void setFitBook(ReadOnlyFitBook addressBook) {
+        this.fitBook.resetData(addressBook);
     }
 
     @Override
@@ -110,6 +117,41 @@ public class FitBookModelManager implements FitBookModel {
         fitBook.setClient(target, editedClient);
     }
 
+    //=========== Exercise Routines ================================================================================
+
+    @Override
+    public void setFitBookExerciseRoutine(ReadOnlyFitBookExerciseRoutine exerciseRoutine) {
+        this.fitBookExerciseRoutine.resetData(exerciseRoutine);
+    }
+
+    @Override
+    public ReadOnlyFitBookExerciseRoutine getFitBookExerciseRoutine() {
+        return fitBookExerciseRoutine;
+    }
+
+    @Override
+    public boolean hasRoutine(Routine routine) {
+        requireNonNull(routine);
+        return fitBookExerciseRoutine.hasRoutine(routine);
+    }
+
+    @Override
+    public void deleteRoutine(Routine target) {
+        fitBookExerciseRoutine.removeRoutine(target);
+    }
+
+    @Override
+    public void addRoutine(Routine routine) {
+        fitBookExerciseRoutine.addRoutine(routine);
+        updateFilteredRoutineList(PREDICATE_SHOW_ALL_ROUTINES);
+    }
+
+    @Override
+    public void setRoutine(Routine target, Routine editedRoutine) {
+        requireAllNonNull(target, editedRoutine);
+        fitBookExerciseRoutine.setRoutine(target, editedRoutine);
+    }
+
     //=========== Filtered Client List Accessors =============================================================
 
     /**
@@ -127,6 +169,23 @@ public class FitBookModelManager implements FitBookModel {
         filteredClients.setPredicate(predicate);
     }
 
+    //=========== Filtered Client List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Routine} backed by the internal list of
+     * {@code versionedFitBookExerciseRoutine}
+     */
+    @Override
+    public ObservableList<Routine> getFilteredRoutineList() {
+        return filteredRoutines;
+    }
+
+    @Override
+    public void updateFilteredRoutineList(Predicate<Routine> predicate) {
+        requireNonNull(predicate);
+        filteredRoutines.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -142,8 +201,10 @@ public class FitBookModelManager implements FitBookModel {
         // state check
         FitBookModelManager other = (FitBookModelManager) obj;
         return fitBook.equals(other.fitBook)
+                && fitBookExerciseRoutine.equals(other.fitBookExerciseRoutine)
                 && userPrefs.equals(other.userPrefs)
-                && filteredClients.equals(other.filteredClients);
+                && filteredClients.equals(other.filteredClients)
+                && filteredRoutines.equals(other.filteredRoutines);
     }
 
 }
