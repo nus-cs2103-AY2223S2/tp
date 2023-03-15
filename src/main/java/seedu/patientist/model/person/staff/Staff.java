@@ -16,6 +16,9 @@ import seedu.patientist.model.tag.Tag;
  * TODO: Implement this
  */
 public class Staff extends Person {
+    /** Tag used to check if a person is a staff member. */
+    public static final Tag STAFF_TAG = new Tag("Staff");
+
     /**
      * Every field must be present and not null.
      *

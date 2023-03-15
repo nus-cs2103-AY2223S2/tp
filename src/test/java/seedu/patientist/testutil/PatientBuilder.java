@@ -99,7 +99,8 @@ public class PatientBuilder extends PersonBuilder {
     /**
      * Sets the {@code Status} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withId(String id) {
+    @Override
+    public PatientBuilder withIdNumber(String id) {
         this.id = new IdNumber(id);
         return this;
     }

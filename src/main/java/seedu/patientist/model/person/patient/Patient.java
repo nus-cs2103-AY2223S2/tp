@@ -16,6 +16,7 @@ import seedu.patientist.model.tag.Tag;
  * TODO: need to guarantee validity of patient id in the PatientIdNumber class
  */
 public class Patient extends Person {
+    public static final Tag PATIENT_TAG = new Tag("Patient");
     private PatientStatusDetails details;
 
     /**

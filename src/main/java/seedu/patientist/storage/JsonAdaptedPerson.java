@@ -1,5 +1,8 @@
 package seedu.patientist.storage;
 
+import static seedu.patientist.model.person.patient.Patient.PATIENT_TAG;
+import static seedu.patientist.model.person.staff.Staff.STAFF_TAG;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,6 +20,7 @@ import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -57,17 +61,11 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        id = source.getIdNumber().toString();
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-
-        if (source instanceof Patient) {
-            Patient patient = (Patient) source;
-            id = patient.getIdNumber().toString();
-        } else {
-            id = "";
-        }
     }
 
     /**
@@ -95,7 +93,7 @@ class JsonAdaptedPerson {
         if (!IdNumber.isValidPid(id)) {
             throw new IllegalValueException(IdNumber.MESSAGE_CONSTRAINTS);
         }
-        final IdNumber modelPid = new IdNumber(id);
+        final IdNumber modelId = new IdNumber(id);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -122,7 +120,14 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelEmail, modelName, modelPhone, modelPid, modelAddress, modelTags);
+
+        if (modelTags.contains(STAFF_TAG)) {
+            return new Staff(modelName, modelPhone, modelEmail, modelId, modelAddress, modelTags);
+        }
+        if (modelTags.contains(PATIENT_TAG)) {
+            return new Patient(modelEmail, modelName, modelPhone, modelId, modelAddress, modelTags);
+        }
+        return new Person(modelName, modelPhone, modelEmail, modelId, modelAddress, modelTags);
     }
 
 }
