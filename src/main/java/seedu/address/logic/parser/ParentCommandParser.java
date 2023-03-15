@@ -18,7 +18,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.parent.ParentAddCommand;
-import seedu.address.logic.commands.parent.ParentCommand;import seedu.address.logic.commands.parent.ParentDeleteCommand;
+import seedu.address.logic.commands.parent.ParentCommand;
+import seedu.address.logic.commands.parent.ParentDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
