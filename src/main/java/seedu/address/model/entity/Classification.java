@@ -1,5 +1,7 @@
 package seedu.address.model.entity;
 
+import java.util.Objects;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
