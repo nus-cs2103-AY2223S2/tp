@@ -50,7 +50,7 @@ public class SampleDataUtil {
 
     public static Group[] getSampleGroups() {
         return new Group[] {
-            new Group("Friends"),
+            new Group("CS2101"),
             new Group("CS2103")
         };
     }

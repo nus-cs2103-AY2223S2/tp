@@ -73,6 +73,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        List<Group> groups = model.getAddressBook().getGroupList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -84,6 +85,12 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        for (Group group : editedPerson.getGroups()) {
+            if (!groups.contains(group)) {
+                throw new CommandException(Messages.MESSAGE_INVALID_GROUP);
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
