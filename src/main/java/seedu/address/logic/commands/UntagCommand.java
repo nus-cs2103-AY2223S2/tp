@@ -25,8 +25,8 @@ public class UntagCommand extends Command {
             + "untag <index> m/<module> : Removes tags from the person of given index in displayed list. \n"
             + "untag n/<module> : Removes tags from your own profile instead.";
 
-    public static final String MESSAGE_UNTAG_PERSON_SUCCESS = "Module(s) untagged to Person!";
-    public static final String MESSAGE_UNTAG_USER_SUCCESS = "Module(s) untagged to User!";
+    public static final String MESSAGE_UNTAG_PERSON_SUCCESS = "Module(s) untagged to Person! \n";
+    public static final String MESSAGE_UNTAG_USER_SUCCESS = "Module(s) untagged to User! \n";
     public static final String MESSAGE_NO_TAGS = "At least one Module must be provided.";
 
     private final ContactIndex index;
@@ -74,8 +74,10 @@ public class UntagCommand extends Command {
         personToEdit.setCommonModules(userModuleTags);
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS,
-                personToEdit.getImmutableModuleTags().toString()));
+        return new CommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS
+                + "Name: " + personToEdit.getName().toString() + '\n'
+                + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
+                + "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString()));
     }
 
     /**
@@ -94,7 +96,9 @@ public class UntagCommand extends Command {
         model.getFilteredPersonList().forEach(person ->
                 person.setCommonModules(editedUser.getImmutableModuleTags()));
 
-        return new CommandResult(String.format(MESSAGE_UNTAG_USER_SUCCESS, editedUser));
+        return new CommandResult(String.format(MESSAGE_UNTAG_USER_SUCCESS
+                + "Name: " + editedUser.getName().toString() + '\n'
+                + "Modules: " + editedUser.getImmutableModuleTags().toString()));
     }
 
 
