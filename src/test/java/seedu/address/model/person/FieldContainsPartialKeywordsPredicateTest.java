@@ -4,14 +4,22 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATOON_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATOON_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RANK_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RANK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,14 +35,14 @@ public class FieldContainsPartialKeywordsPredicateTest {
     public void equals() {
         List<String> firstTagKeywordList = Collections.singletonList(VALID_TAG_FRIEND);
         FieldContainsPartialKeywordsPredicate firstPredicateAmy = new FieldContainsPartialKeywordsPredicate(
-                VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY,
-                firstTagKeywordList
+                VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY, VALID_RANK_AMY, VALID_UNIT_AMY,
+                VALID_COMPANY_AMY, VALID_PLATOON_AMY, firstTagKeywordList
         );
 
         List<String> secondTagKeywordList = Arrays.asList(VALID_TAG_FRIEND, VALID_TAG_HUSBAND);
         FieldContainsPartialKeywordsPredicate secondPredicateBob = new FieldContainsPartialKeywordsPredicate(
-                VALID_NAME_BOB, VALID_PHONE_BOB, VALID_EMAIL_BOB, VALID_ADDRESS_BOB,
-                secondTagKeywordList
+                VALID_NAME_BOB, VALID_PHONE_BOB, VALID_EMAIL_BOB, VALID_ADDRESS_BOB, VALID_RANK_BOB, VALID_UNIT_BOB,
+                VALID_COMPANY_BOB, VALID_PLATOON_BOB, secondTagKeywordList
         );
 
         // same object -> returns true
@@ -42,8 +50,8 @@ public class FieldContainsPartialKeywordsPredicateTest {
 
         // same values -> returns true
         FieldContainsPartialKeywordsPredicate firstPredicateAmyCopy = new FieldContainsPartialKeywordsPredicate(
-                VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY,
-                firstTagKeywordList
+                VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY, VALID_RANK_AMY, VALID_UNIT_AMY,
+                VALID_COMPANY_AMY, VALID_PLATOON_AMY, firstTagKeywordList
         );
         assertTrue(firstPredicateAmy.equals(firstPredicateAmyCopy));
 

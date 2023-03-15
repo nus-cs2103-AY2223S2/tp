@@ -3,20 +3,20 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATOON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RANK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIT;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
+import java.util.List;
 
 import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FilterCommand.FilterDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.PersonDescriptor;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new {@code FilterCommand} object
@@ -30,47 +30,74 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_RANK,
+                        PREFIX_UNIT, PREFIX_COMPANY, PREFIX_PLATOON, PREFIX_TAG);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        PersonDescriptor personDescriptor = new PersonDescriptor();
+        FilterDescriptor filterDescriptor = new FilterDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            personDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            String nameValue = argMultimap.getValue(PREFIX_NAME).get();
+            requireFieldValueNotBlank(nameValue);
+            filterDescriptor.setNameValue(nameValue);
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            personDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            String phoneValue = argMultimap.getValue(PREFIX_PHONE).get();
+            requireFieldValueNotBlank(phoneValue);
+            filterDescriptor.setPhoneValue(phoneValue);
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            personDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            String emailValue = argMultimap.getValue(PREFIX_EMAIL).get();
+            requireFieldValueNotBlank(emailValue);
+            filterDescriptor.setEmailValue(emailValue);
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            personDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            String addressValue = argMultimap.getValue(PREFIX_ADDRESS).get();
+            requireFieldValueNotBlank(addressValue);
+            filterDescriptor.setAddressValue(addressValue);
+        }
+        if (argMultimap.getValue(PREFIX_RANK).isPresent()) {
+            String rankValue = argMultimap.getValue(PREFIX_RANK).get();
+            requireFieldValueNotBlank(rankValue);
+            filterDescriptor.setRankValue(rankValue);
+        }
+        if (argMultimap.getValue(PREFIX_UNIT).isPresent()) {
+            String unitValue = argMultimap.getValue(PREFIX_UNIT).get();
+            requireFieldValueNotBlank(unitValue);
+            filterDescriptor.setUnitValue(unitValue);
+        }
+        if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
+            String companyValue = argMultimap.getValue(PREFIX_COMPANY).get();
+            requireFieldValueNotBlank(companyValue);
+            filterDescriptor.setCompanyValue(companyValue);
+        }
+        if (argMultimap.getValue(PREFIX_PLATOON).isPresent()) {
+            String platoonValue = argMultimap.getValue(PREFIX_PLATOON).get();
+            requireFieldValueNotBlank(platoonValue);
+            filterDescriptor.setPlatoonValue(platoonValue);
         }
 
-        parseTagsForFilter(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(personDescriptor::setTags);
+        List<String> tagValues = argMultimap.getAllValues(PREFIX_TAG);
+        assert tagValues != null;
+        if (tagValues.stream().anyMatch(t -> t.equals(""))) {
+            throw new ParseException(FilterCommand.MESSAGE_EMPTY_FIELD);
+        }
 
-        if (!personDescriptor.hasNonEmptyFields()) {
+        filterDescriptor.setTagValues(tagValues);
+
+        if (!filterDescriptor.hasNonEmptyField()) {
             throw new ParseException(FilterCommand.MESSAGE_NO_FIELD_GIVEN);
         }
-
-        return new FilterCommand(personDescriptor);
+        return new FilterCommand(filterDescriptor);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForFilter(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
+    private String requireFieldValueNotBlank(String fieldValue) throws ParseException {
+        if (fieldValue.isBlank()) {
+            throw new ParseException(FilterCommand.MESSAGE_EMPTY_FIELD);
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        return fieldValue;
     }
+
 }
