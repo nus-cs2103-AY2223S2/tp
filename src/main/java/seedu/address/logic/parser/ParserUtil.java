@@ -9,6 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -121,4 +125,35 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String moduleCode} into a {@code module}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleCode} is invalid.
+     */
+    public static Module parseModule(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModuleCode = moduleCode.trim();
+        if (!ModuleCode.isValidCode(trimmedModuleCode)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        return new Module(new ModuleCode(moduleCode));
+    }
+
+    /**
+     * Parses a {@code String lectureName} into a {@code lecture}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lectureName} is invalid.
+     */
+    public static Lecture parseLecture(String lectureName) throws ParseException {
+        requireNonNull(lectureName);
+        String trimmedLecture = lectureName.trim();
+        if (!LectureName.isValidName(trimmedLecture)) {
+            throw new ParseException(LectureName.MESSAGE_CONSTRAINTS);
+        }
+        return new Lecture(new LectureName(trimmedLecture));
+    }
+
 }

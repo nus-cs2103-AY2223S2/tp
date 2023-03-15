@@ -2,64 +2,66 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+- Table of Contents
+  {:toc}
+
+---
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -79,10 +81,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -93,6 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -110,28 +113,28 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
 
 ### Storage component
 
@@ -140,15 +143,16 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -160,9 +164,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -223,14 +227,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+- **Alternative 1 (current choice):** Saves the entire address book.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+  - Pros: Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
+
+- **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -238,18 +243,17 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -257,73 +261,281 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- NUS Students
+- has a need to manage a significant number of lectures
+- falling behind on lectures
+- feeling unmotivated to watch lectures
+- feeling lost regarding lecture content
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: fun, fast and stress-free way to organise and track lecture material
+- gamified tracking application
+- easily log lecture progress, search for lecture by mod code / keywords / topics for a stress-free learning environment
+- tailored to needs of students: provides additional information specific to lecture media such as watch progress and topics
+- faster than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                              |
+| -------- | ---------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `* * *`  | new user         | access a starter guide on how to use the app                                       |                                                                                              |
+| `* * *`  | forgetful user   | access a help manual easily                                                        | recall on how to use the app                                                                 |
+| `* * *`  | user             | add a module, lecture or video                                                     |                                                                                              |
+| `* * *`  | user             | delete a module, lecture or video                                                  | remove entries that I no longer need                                                         |
+| `* * *`  | user             | search for lectures by relevant keywords (tags)                                    | find a specific lecture easily                                                               |
+| `* * *`  | user             | mark the lecture that I have watched                                               | track the ones that I have missed out                                                        |
+| `* * *`  | user             | unmark lecture that I have previously marked as watched                            | correct my mistakes when I mark a lecture wrongly                                            |
+| `* * *`  | user             | tag lectures                                                                       | find a specific lecture easily                                                               |
+| `* * *`  | user             | tag timestamps on lectures                                                         | find a specific lecture timestamp easily                                                     |
+| `* * *`  | user             | remove tags from lectures                                                          | correct my mistakes when I tag a lecture wrongly                                             |
+| `* * *`  | user             | set my current watch timestamp of a video on a per lecture basis                   | track my current progress for a specific lecture                                             |
+| `* * *`  | user             | see my current watch timestamp of a video on a per lecture basis                   | have an idea of my current progress for a specific lecture and also resume my watch progress |
+| `* * *`  | user             | see my lecture watch progress of a module (lectures watched / over total lectures) | have an idea of my current progress for the module                                           |
+| `* *`    | user             | bookmark the lectures                                                              | find them easily                                                                             |
+| `* *`    | user             | easily access my lecture slides                                                    | refer to them when watching a lecture                                                        |
+| `* *`    | user             | find lecture videos that cover a specific topic                                    | avoid wasting time on non-relevant videos                                                    |
+| `* *`    | seasoned user    | export and archive my progress from previous semesters                             | have a clean tracker but still reference lecture information from past modules if needed     |
+| `* *`    | user             | backup data that I have entered into the app and import previous backups           | restore my tracker should I change my device or wipe my device                               |
+| `* *`    | unmotivated user | feel rewarded for making progress in watching lectures                             | be motivated to keep up or catch up                                                          |
+| `* *`    | user             | group my lectures                                                                  | they appear more organise                                                                    |
+| `* *`    | forgetful user   | constantly be reminded of the "help" command                                       | continue using the app even when I forgot all the other commands                             |
+| `* *`    | seasoned user    | bypass the tutorial and disable any features for helping beginners                 | I am not held back and annoyed by those features                                             |
+| `* *`    | user             | write summaries/notes for lectures I have watched                                  | reference those notes when I'm revising the contents of the lecture                          |
+| `* *`    | user             | collate questions about a specific lecture                                         | pull it up when I have a chance to ask the professor                                         |
+| `* *`    | seasoned user    | look up notes from previous semester lecture content                               | supplement my current semester content                                                       |
+| `* *`    | seasoned user    | delete notes from previous semesters                                               | save my storage space                                                                        |
+| `* *`    | user             | see a quick overview of my current progress for all modules                        |                                                                                              |
+| `*`      | user             | view videos on any device (e.g. laptop, mobile)                                    | access them wherever I am                                                                    |
+| `*`      | user             | allow app notification to notify me when a new lecture is out                      | stay up to date with my lectures                                                             |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a module**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a new module.
+2. User specifies the name and code of the module.
+3. A new module is added into the list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+- 2a. The module name or code is blank.
 
-  Use case ends.
+   - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Module code already exists.
+
+   - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Add a lecture**
+
+**Preconditions**: User has added a module
+
+**MSS**
+
+1. User requests to add a new lecture.
+2. User specifies a name for the lecture with reference to a module code.
+3. A new lecture is appended into the list in that module.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. Lecture name is blank.
+
+  - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Module code does not exist.
+
+  - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Add a video**
+
+**Preconditions**: User has added a module and a lecture
+
+**MSS**
+
+1. User requests to add a new video.
+2. User specifies a name for the video with reference to a module code and that module lecture index number.
+3. A new video is appended into the list in that lecture residing in the module.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. Video name is blank.
+
+   - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Module code does not exist.
+
+   - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. Lecture index does not exist.
+
+   - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Mark/Unmark a video**
+
+**Preconditions**: User has added a module and a lecture and a video
+
+**MSS**
+
+1. User requests to mark/unmark a video as watched.
+2. User specifies the module code, lecture index number and video index number to mark/unmark.
+3. Video shows a marked/unmarked indicator.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. Module code does not exist.
+
+   - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Lecture index does not exist.
+
+   - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. Video index does not exist.
+
+   - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Delete a Lecture**
+
+**MSS**
+
+1.  User requests to list lectures of a specific module
+2.  Le Tracker shows a list of lectures of the specified module
+3.  User requests to delete a specific lecture in the list, while citing the correct _module code_
+4.  Le Tracker deletes the lecture
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no lecture in the specified module.
+
+   Use case ends.
+
+* 2b. There is no such module.
+
+   * 2b1. Le Tracker shows an error message.
+
+      Use case resumes at step 1.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Le Tracker shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 3b. The given module code is invalid.
+
+    * 3b1. Le Tracker shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a Lecture Video**
+
+**MSS**
+
+1.  User requests to list lecture videos of a specific lecture of a specific module
+2.  Le Tracker shows a list of lecture videos of such specifications
+3.  User requests to delete a specific video in the list, while citing the correct _module code_ and _lecture id
+4.  Le Tracker deletes the lecture video
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no video in the specified module lecture.
+
+   Use case ends.
+
+* 2b. There is no such lecture in the module.
+
+   * 2b1. Le Tracker shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. There is no such module.
+
+   * 2c1. Le Tracker shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The given index of the video is invalid.
+
+   * 3a1. Le Tracker shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given index of the lecture is invalid.
+
+   * 3b1. Le Tracker shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given index of the module is invalid.
+
+   * 3c1. Le Tracker shows an error message.
+
+      Use case resumes at step 2.
+
+
+_{More to be added}_
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 lectures without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be easy to navigate through using commands.
+5.  Should be easy to pick up on how to use the application.
+6.  Should allow multiple users to use the application.
+7.  Will not be pulling data from any third party APIs.
 
-*{More to be added}*
+_{More to be added}_
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Module Code**: Unique code for each module
+* **Lecture Index**: Unique identifier for each lecture (Starting from 0)
+* **Video Index**: Unique identifier for each video (Starting from 0)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -347,7 +559,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 

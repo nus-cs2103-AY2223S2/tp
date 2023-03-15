@@ -10,10 +10,13 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.injector.Injector;
+import seedu.address.logic.injector.NavigationInjector;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTracker;
+import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -27,6 +30,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final Injector navigationInjector;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,6 +38,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
+        this.navigationInjector = new NavigationInjector();
         addressBookParser = new AddressBookParser();
     }
 
@@ -42,10 +47,13 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+
+        commandText = navigationInjector.inject(commandText, model);
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
+            // TODO: Replace this
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -55,8 +63,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTracker getTracker() {
+        return model.getTracker();
     }
 
     @Override
@@ -65,8 +73,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<? extends ReadOnlyModule> getFilteredModuleList() {
+        return model.getFilteredModuleList();
+    }
+
+    @Override
+    public Path getTrackerFilePath() {
+        return model.getTrackerFilePath();
     }
 
     @Override

@@ -19,8 +19,18 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyNavigation;
+import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.person.Person;
+import seedu.address.model.video.Video;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -99,12 +109,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTrackerFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTrackerFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -145,6 +155,136 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTracker(ReadOnlyTracker tracker) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyTracker getTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModule(ReadOnlyModule module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModule(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteModule(ReadOnlyModule target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setModule(ReadOnlyModule target, Module editedModule) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLecture(ReadOnlyModule module, Lecture lecture) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteVideo(ReadOnlyLecture lecture, Video video) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addVideo(ReadOnlyLecture lecture, Video video) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<? extends ReadOnlyModule> getFilteredModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyNavigation getNavigation() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public NavigationContext getCurrentNavContext() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateBack() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateToRoot() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateTo(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateTo(ModuleCode moduleCode, LectureName lectureName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateToModFromRoot(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateToLecFromMod(LectureName lectureName) {
             throw new AssertionError("This method should not be called.");
         }
     }
