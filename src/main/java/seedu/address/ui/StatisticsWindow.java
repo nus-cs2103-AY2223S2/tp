@@ -107,6 +107,10 @@ public class StatisticsWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+    public DeliveryJobListPanel getDeliveryJobListPanel() {
+        return deliveryJobListPanel;
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
