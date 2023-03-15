@@ -24,7 +24,7 @@ import trackr.model.supplier.Supplier;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteSupplierCommand}.
  */
-public class DeleteSupplierCommandTest {
+public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
             getTypicalOrderList(), new UserPrefs());
@@ -32,7 +32,7 @@ public class DeleteSupplierCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
-        DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
+        DeleteSupplierCommand deleteCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
 
         String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_SUPPLIER_SUCCESS, supplierToDelete);
 
@@ -40,32 +40,32 @@ public class DeleteSupplierCommandTest {
                 model.getOrderList(), new UserPrefs());
         expectedModel.deleteSupplier(supplierToDelete);
 
-        assertCommandSuccess(deleteSupplierCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredSupplierList().size() + 1);
-        DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(outOfBoundIndex);
+        DeleteSupplierCommand deleteCommand = new DeleteSupplierCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteSupplierCommand, model, Messages.MESSAGE_INVALID_SUPPLIER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_SUPPLIER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
 
-        Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
-        DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
+        Supplier personToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeleteSupplierCommand deleteCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_SUPPLIER_SUCCESS, supplierToDelete);
+        String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_SUPPLIER_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
-        expectedModel.deleteSupplier(supplierToDelete);
+        expectedModel.deleteSupplier(personToDelete);
         showNoSupplier(expectedModel);
 
-        assertCommandSuccess(deleteSupplierCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class DeleteSupplierCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different supplier -> returns false
+        // different Supplier -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

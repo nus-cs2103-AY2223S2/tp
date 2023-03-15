@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import trackr.commons.exceptions.DataConversionException;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
@@ -31,5 +32,9 @@ public interface Storage extends TrackrStorage, UserPrefsStorage {
     Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException;
 
     @Override
-    void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList) throws IOException;
+    Optional<ReadOnlyOrderList> readOrderList() throws DataConversionException, IOException;
+
+    @Override
+    void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
+            ReadOnlyOrderList orderList) throws IOException;
 }
