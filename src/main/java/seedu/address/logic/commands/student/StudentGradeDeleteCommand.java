@@ -37,7 +37,7 @@ public class StudentGradeDeleteCommand extends StudentCommand {
             + PREFIX_TEST + "CA1\n"
             + "student 1A" + COMMAND_WORD + " "
             + PREFIX_INDEXNUMBER + "13 "
-            +PREFIX_HOMEWORK + "Chapter 1";
+            + PREFIX_HOMEWORK + "Chapter 1";
 
     public static final String MESSAGE_SUCCESSTEST = "Test deleted successfully";
     public static final String MESSAGE_SUCCESSHOMEWORK = "Homework deleted successfully";

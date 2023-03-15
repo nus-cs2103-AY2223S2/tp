@@ -234,7 +234,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         }
 
 
-        }
+    }
     /**
      * Function to parse the "student class grade delete" command
      * @param studentClass
