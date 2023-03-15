@@ -155,9 +155,9 @@ This command removes the module stated in the command (“CS2103T”) from the l
 
 ### Tagging a module to contact : `tag`
 
-Adds a module tag to an existing contact.
-Format: `tag n/NAME m/MODULE_TAG`
-Example of usage: `tag n/John Doe m/CS2103T`
+Adds module tag(s) to an existing contact.
+Format: `tag CONTACT_INDEX m/MODULE_TAG`
+Example of usage: `tag 3 m/CS2103T`
 ```
 Name: John Doe (User)
 Modules reading: CS2101 | MA2104 | MA3252 | CFG1002
@@ -174,9 +174,9 @@ Description of outcome: CS2103T is added to John Doe's list of modules. Assuming
 ### Untagging a module from an existing contact : `untag`
 
 Removes a module tag from an existing contact.
-Format: `untag n/NAME m/MODULE_TAG`
+Format: `untag CONTACT_INDEX m/MODULE_TAG`
 
-Example of usage: `untag n/John Doe m/CS2103T`
+Example of usage: `untag 3 m/CS2103T`
 Context:
 
 Expected outcome for CLI:
