@@ -3,9 +3,9 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.ROLE_DESC_ONE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_NAME_DESC_ONE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_EMAIL_DESC_ONE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_NAME_DESC_ONE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.ROLE_DESC_ONE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.STATUS_DESC_ONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalApplications.BYTEDANCE;
@@ -27,9 +27,9 @@ import seedu.address.model.ApplicationModelManager;
 import seedu.address.model.ReadOnlyInternshipBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.application.Application;
+import seedu.address.storage.ApplicationStorageManager;
 import seedu.address.storage.JsonInternshipBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.ApplicationStorageManager;
 import seedu.address.testutil.ApplicationBuilder;
 
 public class ApplicationLogicManagerTest {

@@ -1,14 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_ONE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_TWO;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_EMAIL_ONE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_EMAIL_TWO;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_ONE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_TWO;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_ONE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_TWO;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_ONE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_TWO;
-
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +15,6 @@ import java.util.List;
 
 import seedu.address.model.InternshipBook;
 import seedu.address.model.application.Application;
-import seedu.address.model.application.Role;
 
 /**
  * A utility class containing a list of {@code Application} objects to be used in tests.

@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMAIL;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
 
 import seedu.address.logic.commands.AddApplicationCommand;

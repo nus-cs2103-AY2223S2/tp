@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMAIL;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -14,8 +14,8 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.InternshipBook;
 import seedu.address.model.ApplicationModel;
+import seedu.address.model.InternshipBook;
 import seedu.address.model.application.Application;
 import seedu.address.model.application.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditApplicationDescriptorBuilder;
