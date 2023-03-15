@@ -13,6 +13,7 @@ import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.model.Model;
 import bookopedia.model.ModelManager;
 import bookopedia.model.UserPrefs;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Person;
 
 public class ViewCommandTest {
@@ -38,11 +39,18 @@ public class ViewCommandTest {
         Person testTypicalPerson = listOfTypicalPersons.get(validIndex.getZeroBased());
         ViewCommand testView = new ViewCommand(validIndex);
         CommandResult outputFromTestView = testView.execute(model);
+        StringBuilder parcelsToPrint = new StringBuilder("");
+        for (Parcel p : testTypicalPerson.getParcels()) {
+            parcelsToPrint.append(p.toString());
+            parcelsToPrint.append(" ");
+        }
         //this is temporary again...
         assertTrue(outputFromTestView.getFeedbackToUser().equals(testTypicalPerson.getName().toString() + "\n"
                 + testTypicalPerson.getAddress().toString() + "\n"
                 + testTypicalPerson.getEmail().toString() + "\n"
                 + testTypicalPerson.getPhone().toString() + "\n"
-                + "Parcels:" + "\n"));
+                + "Parcels:" + "\n"
+                + parcelsToPrint + "\n"
+                + testTypicalPerson.getDeliveryStatus().toString() + "\n"));
     }
 }
