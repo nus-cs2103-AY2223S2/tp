@@ -142,10 +142,10 @@ public class Person {
      */
     public boolean hasTime() {
         return this.time != null;
-      
+    }
+
     public Age getAge() {
         return age;
-
     }
 
     public MedicalCondition getMedicalCondition() {
