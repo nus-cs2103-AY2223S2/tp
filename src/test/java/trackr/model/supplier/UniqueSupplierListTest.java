@@ -180,10 +180,10 @@ public class UniqueSupplierListTest {
         sameUniqueSupplierList.add(ALICE);
 
         assertTrue(uniqueSupplierList.equals(uniqueSupplierList)); //same object
-        assertTrue(uniqueSupplierList.equals(sameUniqueSupplierList)); //contains the same tasks
+        assertTrue(uniqueSupplierList.equals(sameUniqueSupplierList)); //contains the same suppliers
 
         assertFalse(uniqueSupplierList.equals(null)); //null
-        assertFalse(uniqueSupplierList.equals(differentUniqueSupplierList)); //different task lists
+        assertFalse(uniqueSupplierList.equals(differentUniqueSupplierList)); //different supplier lists
         assertFalse(uniqueSupplierList.equals(1)); //different objects
     }
 }

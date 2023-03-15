@@ -31,10 +31,10 @@ public class TagTest {
         Tag differentTag = new Tag("second");
 
         assertTrue(tag.equals(tag)); //same object
-        assertTrue(tag.equals(new Tag("first"))); //same task name
+        assertTrue(tag.equals(new Tag("first"))); //same tag
 
         assertFalse(tag.equals(null)); //null
-        assertFalse(tag.equals(differentTag)); //different task name
+        assertFalse(tag.equals(differentTag)); //different tag
         assertFalse(tag.equals(1)); //different type
     }
 }
