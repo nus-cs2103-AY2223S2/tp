@@ -45,6 +45,12 @@ public enum ValidTag {
         }
     }
 
+    /**
+     * Retrieves total credit per requirement.
+     *
+     * @param tagName
+     * @return Total credit
+     */
     public static int getTotalCredit(String tagName) {
         Map<ValidTag, Integer> mappedCredits = Map.of(
                 ULR, 16,
