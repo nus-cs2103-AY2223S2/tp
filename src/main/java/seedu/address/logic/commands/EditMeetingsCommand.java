@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -22,6 +23,7 @@ import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Location;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.Title;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -73,7 +75,7 @@ public class EditMeetingsCommand extends Command {
         }
 
         Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
-        Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
+        Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor, model);
 
         if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
@@ -88,16 +90,29 @@ public class EditMeetingsCommand extends Command {
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
      * edited with {@code editMeetingDescriptor}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
+    private static Meeting createEditedMeeting(
+                    Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor, Model model)
+                    throws CommandException {
         assert meetingToEdit != null;
-
-        Set<Person> updatedAttendees = editMeetingDescriptor.getAttendees().orElse(meetingToEdit.getAttendees());
+        Optional<Set<Name>> updatedAttendees = editMeetingDescriptor.getAttendees();
+        Set<Person> updatedPerson = meetingToEdit.getAttendees();
         Title updatedTitle = editMeetingDescriptor.getTitle().orElse(meetingToEdit.getTitle());
         DateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
         Location updatedLocation = editMeetingDescriptor.getLocation().orElse(meetingToEdit.getLocation());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
-
-        return new Meeting(updatedTitle, updatedDateTime, updatedAttendees, updatedLocation, updatedDescription);
+        if (updatedAttendees.isPresent()) {
+            Set<Name> gotUpdatedAttendees = updatedAttendees.get();
+            Set<Person> attendees = new HashSet<>();
+            for (Name name : gotUpdatedAttendees) {
+                Person person = model.getPersonByName(name);
+                if (person == null) {
+                    throw new CommandException("Person not found: " + name);
+                }
+                attendees.add(person);
+            }
+            return new Meeting(updatedTitle, updatedDateTime, attendees, updatedLocation, updatedDescription);
+        }
+        return new Meeting(updatedTitle, updatedDateTime, updatedPerson, updatedLocation, updatedDescription);
     }
 
     @Override
@@ -123,7 +138,7 @@ public class EditMeetingsCommand extends Command {
      * corresponding field value of the meeting.
      */
     public static class EditMeetingDescriptor {
-        private Set<Person> attendees;
+        private Set<Name> attendees;
         private Title title;
         private DateTime dateTime;
         private Location location;
@@ -165,11 +180,11 @@ public class EditMeetingsCommand extends Command {
             return Optional.ofNullable(dateTime);
         }
 
-        public void setAttendees(Set<Person> attendees) {
+        public void setAttendees(Set<Name> attendees) {
             this.attendees = attendees;
         }
 
-        public Optional<Set<Person>> getAttendees() {
+        public Optional<Set<Name>> getAttendees() {
             return Optional.ofNullable(attendees);
         }
 
