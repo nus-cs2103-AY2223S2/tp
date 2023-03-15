@@ -142,7 +142,7 @@ public class ModelManagerTest {
         createEqualsFilteredList(
                 Prefix.PHONE, ALBERT.getPhone().getValue().split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
-                Prefix.ADDRESS, ALBERT.getAddress().getValue().split("\\s+"), eduMate, userPrefs);
+                Prefix.ADDRESS, ALBERT.getAddress().getValue().getName().split("\\s+"), eduMate, userPrefs);
         createEqualsFilteredList(
                 Prefix.TELEGRAM_HANDLE, ALBERT.getTelegramHandle().getValue().split("\\s+"),
                 eduMate, userPrefs);

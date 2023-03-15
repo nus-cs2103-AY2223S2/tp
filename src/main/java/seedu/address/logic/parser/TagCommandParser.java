@@ -6,9 +6,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.tag.ModuleTag;
 
 /**
@@ -25,10 +25,10 @@ public class TagCommandParser implements Parser<TagCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, Prefix.MODULE_TAG);
 
-        Index index;
+        ContactIndex contactIndex;
 
         try {
-            index = ParserUtil.parseIndex(argMultiMap.getPreamble());
+            contactIndex = ParserUtil.parseContactIndex(argMultiMap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE), pe);
         }
@@ -40,6 +40,6 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException(TagCommand.MESSAGE_NO_TAGS);
         }
 
-        return new TagCommand(index, modulesToAdd.get());
+        return new TagCommand(contactIndex, modulesToAdd.get());
     }
 }

@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -28,26 +27,22 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * Parses {@code Collection<String> tags} into a {@code Set<Index>}.
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        String trimmedIndex = oneBasedIndex.trim();
-        if (trimmedIndex.isEmpty()) {
-            return null;
+    public static Set<ContactIndex> parseIndices(Collection<String> indices) throws ParseException {
+        requireNonNull(indices);
+        final Set<ContactIndex> indexSet = new HashSet<>();
+        for (String index : indices) {
+            indexSet.add(parseContactIndex(index));
         }
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        return indexSet;
     }
 
     /**
      * Returns a ContactIndex from the string index.
      */
-    public static ContactIndex parseContactIndex(String index) throws ParseException {
-        String trimmedIndex = index.trim();
+    public static ContactIndex parseContactIndex(String contactIndex) throws ParseException {
+        String trimmedIndex = contactIndex.trim();
         if (trimmedIndex.isEmpty()) {
             return null;
         }
@@ -56,6 +51,7 @@ public class ParserUtil {
         }
         return new ContactIndex(Integer.parseInt(trimmedIndex));
     }
+
     /**
      * Parses an {@code intString} into an {@code Integer} and returns it.
      * @throws ParseException if the string cannot be converted into an integer.

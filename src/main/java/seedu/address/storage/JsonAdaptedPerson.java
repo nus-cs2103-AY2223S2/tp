@@ -67,7 +67,7 @@ class JsonAdaptedPerson {
         name = source.getName().getValue();
         phone = source.getPhone().getValue();
         email = source.getEmail().getValue();
-        address = source.getAddress().getValue();
+        address = source.getAddress().getValue().getName();
         telegramHandle = source.getTelegramHandle().getValue();
         index = source.getContactIndex().getValue();
         groups.addAll(source.getImmutableGroupTags().stream()

@@ -5,13 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
-import static seedu.address.testutil.TypicalPersons.ANG;
 import static seedu.address.testutil.TypicalPersons.BART;
 import static seedu.address.testutil.TypicalPersons.CLARK;
 import static seedu.address.testutil.TypicalPersons.EDWARD;
 import static seedu.address.testutil.TypicalPersons.FORD;
 import static seedu.address.testutil.TypicalPersons.ISAAC;
-import static seedu.address.testutil.TypicalPersons.JOOKOON;
+import static seedu.address.testutil.TypicalPersons.JUKUN;
 import static seedu.address.testutil.TypicalPersons.KEVIN;
 import static seedu.address.testutil.TypicalPersons.LAVENDER;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
@@ -111,9 +110,9 @@ public class FindCommandTest {
         );
         createMultipleKeywordsMultiplePersonsFound(
                 Prefix.ADDRESS,
-                "91 Joo Koon Circle",
-                Arrays.asList(ANG, JOOKOON),
-                2
+                "Joo Koon",
+                Collections.singletonList(JUKUN),
+                1
         );
         createMultipleKeywordsMultiplePersonsFound(
                 Prefix.PHONE,
@@ -123,8 +122,8 @@ public class FindCommandTest {
         );
         createMultipleKeywordsMultiplePersonsFound(
                 Prefix.TELEGRAM_HANDLE,
-                "@kevinho @jookoon @isaacnewton",
-                Arrays.asList(ISAAC, JOOKOON, KEVIN),
+                "@kevinho @jukun @isaacnewton",
+                Arrays.asList(ISAAC, JUKUN, KEVIN),
                 3
         );
     }
