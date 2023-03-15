@@ -4,10 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -25,7 +27,9 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private SocialMedia socialMedia;
     private Set<Tag> tags;
+    private Birthday birthday;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,6 +39,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        socialMedia = SocialMedia.create();
         tags = new HashSet<>();
     }
 
@@ -43,9 +48,10 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        phone = personToCopy.getPhone().get();
+        email = personToCopy.getEmail().get();
+        address = personToCopy.getAddress().get();
+        socialMedia = personToCopy.getSocialMedia().orElse(SocialMedia.create());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -58,9 +64,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -89,8 +96,56 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Birthday} of the {@code Person} that we are building.
+     *
+     * @return a person with the given details.
+     */
+    public PersonBuilder withBirthday(String birthday) {
+        this.birthday = new Birthday(birthday);
+        return this;
+    }
+
+    /**
+     * Sets the {@code SocialMedia} of the {@code Person} that we are building.
+     *
+     * @return a person with the given details.
+     */
+    public PersonBuilder withSocialMedia(SocialMedia socialMedia) {
+        this.socialMedia = socialMedia;
+        return this;
+    }
+
+    /**
+     * Builds a person with the given details.
+     *
+     * @return a person with the given details.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        Person p = new Person(name, tags);
+
+        if (phone != null) {
+            p.setPhone(phone);
+        }
+
+        if (email != null) {
+            p.setEmail(email);
+        }
+
+        if (address != null) {
+            p.setAddress(address);
+        }
+
+        if (socialMedia != null) {
+            p.setSocialMedia(socialMedia);
+        }
+
+        if (birthday != null) {
+            p.setBirthday(birthday);
+
+        }
+
+        return p;
     }
 
 }

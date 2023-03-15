@@ -44,11 +44,16 @@ public class Email {
         value = email;
     }
 
+
     /**
-     * Returns if a given string is a valid email.
+     * Returns true if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getValue() {
+        return value;
     }
 
     @Override

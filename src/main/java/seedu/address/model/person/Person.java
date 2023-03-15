@@ -5,55 +5,93 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private Optional<Phone> phone;
+    private Optional<Email> email;
 
     // Data fields
-    private final Address address;
+    private Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
+    private Optional<Birthday> birthday;
+
+    // Social media fields
+    private Optional<SocialMedia> socialMedia;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.phone = Optional.empty();
+        this.email = Optional.empty();
+        this.address = Optional.empty();
+        this.socialMedia = Optional.empty();
         this.tags.addAll(tags);
+        this.birthday = Optional.empty();
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = Optional.ofNullable(phone);
+    }
+
+    public void setEmail(Email email) {
+        this.email = Optional.ofNullable(email);
+    }
+
+    public void setAddress(Address address) {
+        this.address = Optional.ofNullable(address);
+    }
+
+    public void setSocialMedia(SocialMedia socialMedia) {
+        this.socialMedia = Optional.ofNullable(socialMedia);
+    }
+
+    public void setBirthday(Birthday birthday) {
+        this.birthday = Optional.ofNullable(birthday);
     }
 
     public Name getName() {
         return name;
     }
 
-    public Phone getPhone() {
+    public Optional<Phone> getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public Optional<Email> getEmail() {
         return email;
     }
 
-    public Address getAddress() {
+    public Optional<Address> getAddress() {
         return address;
     }
 
+    public Optional<Birthday> getBirthday() {
+        return birthday;
+    }
+
+    public Optional<SocialMedia> getSocialMedia() {
+        return socialMedia;
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -109,6 +147,10 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Birthday: ")
+                .append(getBirthday())
+                .append("; Social media: ")
+                .append(getSocialMedia())
                 .append("; Address: ")
                 .append(getAddress());
 

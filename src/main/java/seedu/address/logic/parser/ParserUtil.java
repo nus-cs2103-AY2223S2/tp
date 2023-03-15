@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,22 +13,31 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.socialmedia.Instagram;
+import seedu.address.model.socialmedia.SocialMedia;
+import seedu.address.model.socialmedia.Telegram;
+import seedu.address.model.socialmedia.WhatsApp;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various *Parser
+ * classes.
  */
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -96,6 +108,19 @@ public class ParserUtil {
     }
 
     /**
+     * @throws ParseException
+     */
+    public static Birthday parseBirthday(String birthday) throws ParseException {
+        requireNonNull(birthday);
+        String trimmedBirthday = birthday.trim();
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+        return new Birthday(trimmedBirthday);
+    }
+
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +145,45 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    private static Instagram parseInstagram(String instagram) {
+        if (instagram == null || instagram.isEmpty()) {
+            return null;
+        }
+        return Instagram.of(instagram);
+    }
+
+    private static Telegram parseTelegram(String telegram) {
+        if (telegram == null || telegram.isEmpty()) {
+            return null;
+        }
+        return Telegram.of(telegram);
+    }
+
+    private static WhatsApp parseWhatsApp(String whatsApp) {
+        if (whatsApp == null || whatsApp.isEmpty()) {
+            return null;
+        }
+        return WhatsApp.of(whatsApp);
+    }
+
+    /**
+     * Parses a {@code String socialMedia} into an {@code SocialMedia}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static SocialMedia parseSocialMedia(String socialMediaArgs) {
+        if (socialMediaArgs == null || socialMediaArgs.isBlank()) {
+            return null;
+        }
+
+        ArgumentMultimap argMultimap =
+            ArgumentTokenizer.tokenize(" " + socialMediaArgs.trim(),
+                PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP);
+
+        return SocialMedia.create()
+            .withInstagram(ParserUtil.parseInstagram(argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).orElse("")))
+            .withTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).orElse("")))
+            .withWhatsapp(ParserUtil.parseWhatsApp(argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).orElse("")));
     }
 }
