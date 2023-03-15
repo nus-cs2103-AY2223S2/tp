@@ -2,7 +2,7 @@ package seedu.address.model.experimental;
 
 import seedu.address.model.entity.Character;
 
-// Abstraction of all operations on characters
+/** Abstraction of all operations on characters */
 public class RerollCharacters extends RerollEntities<Character> {
 
     // For convenience

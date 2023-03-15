@@ -1,15 +1,15 @@
 package seedu.address.model.experimental;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 
-import static java.util.Objects.requireNonNull;
 
-// Driver function.
+/** Driver function */
 public class Reroll implements ReadOnlyReroll {
     private final RerollCharacters characters;
     private final RerollItems items;

@@ -122,12 +122,15 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses integer
+     */
     public static int parseInt(String integer) throws ParseException {
         requireNonNull(integer);
         String trimmedInt = integer.trim();
         try {
             return Integer.parseInt(trimmedInt);
-        } catch (NumberFormatException err){
+        } catch (NumberFormatException err) {
             throw new ParseException(err.getMessage());
         }
     }

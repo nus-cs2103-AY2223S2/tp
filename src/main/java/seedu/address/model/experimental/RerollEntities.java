@@ -1,11 +1,12 @@
 package seedu.address.model.experimental;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.entity.Entity;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * TBC
