@@ -32,7 +32,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -123,8 +122,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, VALID_NRIC_AMY + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
-                + VALID_PHONE_AMY + VALID_NRIC_AMY + VALID_AGE_AMY
-                + VALID_RISKLEVEL_AMY, Name.MESSAGE_CONSTRAINTS);
+                + VALID_PHONE_AMY + VALID_NRIC_AMY + VALID_AGE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
