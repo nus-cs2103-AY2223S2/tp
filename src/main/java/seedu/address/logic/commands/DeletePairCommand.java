@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_ELDERLY_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_PAIR_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_VOLUNTEER_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
@@ -31,16 +34,6 @@ public class DeletePairCommand extends Command {
 
     public static final String MESSAGE_DELETE_PAIR_SUCCESS = "Deleted Pair consisting of"
             + " elderly with NRIC %1$s and volunteer with NRIC %2$s";
-
-    public static final String MESSAGE_ELDERLY_NOT_FOUND =
-            "The elderly with NRIC %1$s does not exist in FriendlyLink";
-
-    public static final String MESSAGE_VOLUNTEER_NOT_FOUND =
-            "The volunteer with NRIC %1$s does not exist in FriendlyLink";
-
-    public static final String MESSAGE_PAIR_NOT_FOUND =
-            "The pair consisting of elderly with NRIC %1$s and volunteer with NRIC %2$s"
-                    + " does not exist in FriendlyLink";
 
     private final Nric elderlyNric;
     private final Nric volunteerNric;

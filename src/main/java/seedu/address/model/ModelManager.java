@@ -163,6 +163,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addPair(Nric elderlyNric, Nric volunteerNric) {
+        friendlyLink.addPair(elderlyNric, volunteerNric);
+        // TODO: implement updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
+    }
+
+    @Override
+    public void addPair(Pair pair) {
+        friendlyLink.addPair(pair);
+        // TODO: implement updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
+    }
+
+    @Override
     public void deletePair(Pair target) {
         friendlyLink.removePair(target);
     }
@@ -170,12 +182,6 @@ public class ModelManager implements Model {
     @Override
     public void deletePair(Nric elderlyNric, Nric volunteerNric) {
         friendlyLink.removePair(elderlyNric, volunteerNric);
-    }
-
-    @Override
-    public void addPair(Pair pair) {
-        friendlyLink.addPair(pair);
-        // TODO: implement updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
     }
 
     @Override

@@ -102,16 +102,21 @@ public class TestUtil {
      * Returns a {@code FriendlyLink} with all the typical volunteers, elderly and pairs.
      */
     public static FriendlyLink getTypicalFriendlyLink() {
-        FriendlyLink fl = new FriendlyLink();
-        for (Volunteer volunteer : TypicalVolunteers.getTypicalVolunteers()) {
-            fl.addVolunteer(volunteer);
-        }
-        for (Elderly elderly : TypicalElderly.getTypicalElderly()) {
-            fl.addElderly(elderly);
-        }
-        for (Pair pair : TypicalPairs.getTypicalPairs()) {
-            fl.addPair(pair);
-        }
-        return fl;
+        return new FriendlyLinkBuilder()
+                .withElderly(TypicalElderly.getTypicalElderly())
+                .withVolunteers(TypicalVolunteers.getTypicalVolunteers())
+                .withPairs(TypicalPairs.getTypicalPairs())
+                .build();
     }
+
+    /**
+     * Returns a {@code FriendlyLink} with all the typical volunteers and elderly.
+     */
+    public static FriendlyLink getNoPairsTypicalFriendlyLink() {
+        return new FriendlyLinkBuilder()
+                .withElderly(TypicalElderly.getTypicalElderly())
+                .withVolunteers(TypicalVolunteers.getTypicalVolunteers())
+                .build();
+    }
+
 }

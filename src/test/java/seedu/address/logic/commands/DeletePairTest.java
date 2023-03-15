@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_ELDERLY_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_VOLUNTEER_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalElderly.ALICE;
@@ -54,14 +56,14 @@ public class DeletePairTest {
         //Invalid Elderly
         final DeletePairCommand deletePairCommand1 = new DeletePairCommand(AMY.getNric(), BOB.getNric());
         String expectedMessage =
-                String.format(DeletePairCommand.MESSAGE_ELDERLY_NOT_FOUND, AMY.getNric());
+                String.format(MESSAGE_ELDERLY_NOT_FOUND, AMY.getNric());
         assertThrows(CommandException.class,
                 expectedMessage, () -> deletePairCommand1.execute(model));
         assertTrue(model.hasPair(pair));
 
         //Invalid Volunteer
         expectedMessage =
-                String.format(DeletePairCommand.MESSAGE_VOLUNTEER_NOT_FOUND, BENSON.getNric());
+                String.format(MESSAGE_VOLUNTEER_NOT_FOUND, BENSON.getNric());
         final DeletePairCommand deletePairCommand2 = new DeletePairCommand(ALICE.getNric(), BENSON.getNric());
         assertThrows(CommandException.class,
                 expectedMessage, () -> deletePairCommand2.execute(model));
