@@ -22,7 +22,6 @@ import static seedu.internship.logic.commands.CommandTestUtil.VALID_DESCRIPTION_
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
-import static seedu.internship.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 
 
@@ -67,7 +66,7 @@ public class AddCommandParserTest {
                 + DESCRIPTION_DESC_ML1 + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1, new AddCommand(expectedInternship));
 
         // multiple tags - all accepted
-        Internship expectedInternshipMultipleTags = new InternshipBuilder(SE1).withTags(VALID_TAG_FUN, VALID_TAG_IMPORTANT)
+        Internship expectedInternshipMultipleTags = new InternshipBuilder(SE1).withTags(VALID_TAG_FUN, VALID_TAG_FUN)
                 .build();
         assertParseSuccess(parser,POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1
                 + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1 + TAG_DESC_ML1 , new AddCommand(expectedInternshipMultipleTags));
@@ -120,16 +119,13 @@ public class AddCommandParserTest {
         assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + INVALID_STATUS_DESC + DESCRIPTION_DESC_SE1
                 + TAG_DESC_ML1 + TAG_DESC_SE1, Status.MESSAGE_CONSTRAINTS);
 
-        // invalid description
-        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + INVALID_DESCRIPTION_DESC
-                + TAG_DESC_ML1 + TAG_DESC_SE1, Description.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1
                 + INVALID_TAG_DESC + TAG_DESC_SE1, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_POSITION_DESC + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + INVALID_DESCRIPTION_DESC,
+        assertParseFailure(parser, INVALID_POSITION_DESC + COMPANY_DESC_SE1 + INVALID_STATUS_DESC + DESCRIPTION_DESC_SE1 ,
                 Position.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble

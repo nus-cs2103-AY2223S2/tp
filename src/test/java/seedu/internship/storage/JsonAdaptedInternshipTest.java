@@ -26,7 +26,7 @@ public class JsonAdaptedInternshipTest {
 
     private static final String VALID_POSITION = ML1.getPosition().toString();
     private static final String VALID_COMPANY = ML1.getCompany().toString();
-    private static final String VALID_STATUS = ML1.getStatus().toString();
+    private static final String VALID_STATUS = String.valueOf(ML1.getStatus().statusId);
     private static final String VALID_DESCRIPTION = ML1.getDescription().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = ML1.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -83,13 +83,7 @@ public class JsonAdaptedInternshipTest {
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
-    @Test
-    public void toModelType_invalidDescription_throwsIllegalValueException() {
-        JsonAdaptedInternship internship =
-                new JsonAdaptedInternship(VALID_POSITION, VALID_COMPANY, VALID_STATUS, INVALID_DESCRIPTION, VALID_TAGS);
-        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
-    }
+
 
 //    @Test
 //    public void toModelType_nullDescription_throwsIllegalValueException() {

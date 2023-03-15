@@ -28,7 +28,7 @@ public class InternshipUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_POSITION + internship.getPosition().positionName + " ");
         sb.append(PREFIX_COMPANY + internship.getCompany().companyName + " ");
-        sb.append(PREFIX_STATUS + internship.getStatus().toString() + " ");
+        sb.append(PREFIX_STATUS + String.valueOf(internship.getStatus().statusId) + " ");
         sb.append(PREFIX_DESCRIPTION + internship.getDescription().descriptionMessage + " ");
         internship.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
