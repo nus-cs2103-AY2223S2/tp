@@ -5,6 +5,6 @@
 
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ListView fx:id="personDetailListView" VBox.vgrow="ALWAYS" />
+      <ListView fx:id="personDetailListView" cache="true" pickOnBounds="false" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

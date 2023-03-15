@@ -41,14 +41,11 @@
                 </padding>
                 <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-                  <VBox fx:id="detailPanel" minWidth="200.0" prefWidth="200.0" styleClass="pane-with-border">
+                  <StackPane fx:id="personDetailPanelPlaceholder" minWidth="200.0" prefWidth="200.0">
                      <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
-                     <children>
-                        <StackPane fx:id="personDetailPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
+                  </StackPane>
               </items>
             </SplitPane>
 
