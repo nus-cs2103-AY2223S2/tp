@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
 
+import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.CollectionUtil;
@@ -21,6 +22,8 @@ import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
+import seedu.vms.model.patient.Patient;
+import seedu.vms.model.vaccination.VaxType;
 
 /**
  * Edits the details of an existing patient in the bloodType book.
@@ -44,8 +47,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT =
-            "This appointment already exists in the appointment manager.";
+    public static final String MESSAGE_EXISTING_PATIENT_ID = "This patient already has an existing appointment";
+    public static final String MESSAGE_MISSING_VAX_TYPE = "The given vaccine is not in the vaccine manager";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -74,6 +77,27 @@ public class EditCommand extends Command {
 
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased()).getValue();
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
+
+        // Checks if patient manager contains the given index
+        Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
+        if (!patientList.containsKey(editedAppointment.getPatient().getZeroBased())) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        }
+
+        // Checks if vaxType manager contains the vaccine to be used in the appointment
+        ObservableMap<String, VaxType> vaccinationList = model.getVaxTypeManager().asUnmodifiableObservableMap();
+        if (!vaccinationList.containsKey(editedAppointment.getVaccination().getName())) {
+            throw new CommandException(MESSAGE_MISSING_VAX_TYPE);
+        }
+
+        // Checks if appointment manager already contains an appointment from the patient of the given index
+        Map<Integer, IdData<Appointment>> appointmentList = model.getAppointmentManager().getMapView();
+        for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
+            Appointment appointment = entry.getValue().getValue();
+            if (appointment.getPatient().equals(editedAppointment.getPatient())) {
+                throw new CommandException(MESSAGE_EXISTING_PATIENT_ID);
+            }
+        }
 
         model.setAppointment(index.getZeroBased(), editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
