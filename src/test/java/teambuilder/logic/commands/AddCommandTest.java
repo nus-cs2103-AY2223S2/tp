@@ -81,7 +81,17 @@ public class AddCommandTest {
     private class ModelStub implements Model {
         @Override
         public Momento save() {
-            return null;
+            return new Momento() {
+                @Override
+                public boolean restore() {
+                    return true;
+                }
+
+                @Override
+                public void setDescription(String desc) {
+                    return;
+                }
+            };
         }
 
         @Override

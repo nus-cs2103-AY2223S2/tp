@@ -7,11 +7,11 @@ import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 
 /**
- * Undos a previous command that resulted in change.
+ * Undos a previous modifying command that resulted in change.
  */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
-    public static final String MESSAGE_SUCCESS = "Undid last command";
+    public static final String MESSAGE_SUCCESS = "Undid: ";
     public static final String MESSAGE_FAILURE = "Unable to undo last command";
 
     private final HistoryUtil history = HistoryUtil.getInstance();
@@ -25,7 +25,7 @@ public class UndoCommand extends Command {
             return new CommandResult(MESSAGE_FAILURE);
         }
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS + history.getLastUndoDescription());
     };
 
     @Override

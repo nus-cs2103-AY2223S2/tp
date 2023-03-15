@@ -10,4 +10,11 @@ public interface Momento {
      * @return true if successful, false otherwise
      */
     public boolean restore();
+
+    /**
+     * Sets the description of the momento.
+     *
+     * @param desc The description of the momento in string.
+     */
+    public void setDescription(String desc);
 }

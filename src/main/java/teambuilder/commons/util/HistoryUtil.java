@@ -11,6 +11,7 @@ public class HistoryUtil {
     private static final int MAX_STATE = 10;
     private Momento[] history;
     private int currentNum = -1;
+    private String descriptionUndo;
 
     private HistoryUtil() {
         history = new Momento[MAX_STATE];
@@ -21,16 +22,16 @@ public class HistoryUtil {
     }
 
     private void decreaseCurrentNum() {
-        if (currentNum - 1 < 0) {
-            // Wrap around
-            if (history[MAX_STATE - 1] != null) {
-                currentNum = MAX_STATE - 1;
-                return;
-            }
-            // No wrap around
+        if (currentNum <= -1) {
             currentNum = -1;
             return;
         }
+        // check wrap around
+        if (currentNum - 1 < 0 && history[MAX_STATE - 1] != null) {
+            currentNum = MAX_STATE - 1;
+            return;
+        }
+
         currentNum = currentNum - 1;
     }
 
@@ -49,14 +50,25 @@ public class HistoryUtil {
      * @return true if successful, false otherwise
      */
     public boolean undo() {
-        if (currentNum == -1) {
+        if (currentNum <= -1) {
+            assert currentNum == -1 : "currentNum too negative!";
             return false;
         }
 
         boolean isSuccessful = history[currentNum].restore();
+        descriptionUndo = history[currentNum].toString();
         history[currentNum] = null;
         decreaseCurrentNum();
         return isSuccessful;
+    }
+
+    /**
+     * Retrieves the description of the last successful undo.
+     *
+     * @return The string containing the description of the last successful undo
+     */
+    public String getLastUndoDescription() {
+        return descriptionUndo == null ? "" : descriptionUndo;
     }
 
     /**

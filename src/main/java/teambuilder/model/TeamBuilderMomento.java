@@ -8,6 +8,7 @@ import teambuilder.commons.core.Momento;
 public class TeamBuilderMomento implements Momento {
     private TeamBuilder state;
     private ModelManager origin;
+    private String description;
 
     /**
      * Constructs a TeamBuilderMomento.
@@ -24,5 +25,15 @@ public class TeamBuilderMomento implements Momento {
     public boolean restore() {
         origin.setAddressBook(state);
         return true;
+    }
+
+    @Override
+    public void setDescription(String desc) {
+        description = desc;
+    }
+
+    @Override
+    public String toString() {
+        return description;
     }
 }

@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import teambuilder.commons.core.Messages;
+import teambuilder.commons.core.Momento;
 import teambuilder.commons.core.index.Index;
+import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.person.Person;
@@ -19,8 +21,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
@@ -40,6 +41,11 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        Momento old = model.save();
+        old.setDescription(COMMAND_WORD + " " + personToDelete);
+        HistoryUtil.getInstance().store(old);
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
@@ -48,6 +54,6 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                        && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
 }
