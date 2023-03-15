@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.storage.elderly.JsonAdaptedElderly.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalElderly.BENSON;
@@ -21,6 +22,7 @@ import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.RiskLevel;
 import seedu.address.storage.elderly.JsonAdaptedElderly;
+import seedu.address.storage.volunteer.JsonAdaptedVolunteer;
 
 
 public class JsonAdaptedElderlyTest {
@@ -32,6 +34,7 @@ public class JsonAdaptedElderlyTest {
     private static final String INVALID_AGE = "8950";
     private static final String INVALID_RISK = "hello";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DATE = "#friend to dwadawd";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -194,6 +197,21 @@ public class JsonAdaptedElderlyTest {
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_NRIC, VALID_AGE, VALID_RISK, invalidTags, VALID_DATES);
         assertThrows(IllegalValueException.class, () -> elderly.toModelType(appTestCache));
+    }
+
+    @Test
+    public void toModelType_invalidDate_throwsIllegalValueException() {
+        List<JsonAdaptedAvailableDate> invalidDates = new ArrayList<>(VALID_DATES);
+        try {
+            invalidDates.add(new JsonAdaptedAvailableDate(INVALID_DATE));
+        } catch (IllegalValueException e) {
+            fail();
+        }
+        JsonAdaptedVolunteer volunteer =
+                new JsonAdaptedVolunteer(
+                        VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_NRIC, VALID_AGE, VALID_TAGS, invalidDates);
+        assertThrows(IllegalValueException.class, () -> volunteer.toModelType(appTestCache));
     }
 
 }

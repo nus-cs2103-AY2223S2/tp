@@ -56,6 +56,9 @@ public class CommandTestUtil {
     public static final String VALID_RISK_LEVEL_BOB = "MEDIUM";
 
     public static final String VALID_TAG_SINGLE = "single";
+
+    public static final String VALID_START_DATE = "2022-02-11";
+    public static final String VALID_END_DATE = "2022-02-15";
     public static final String VALID_TAG_STRONG = "strong";
 
     public static final String INVALID_NRIC = "S1234325252B"; // nric has exactly 8 characters

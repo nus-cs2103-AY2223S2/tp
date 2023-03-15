@@ -7,11 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISK_LEVEL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalElderly.ALICE;
@@ -111,6 +113,10 @@ public class ElderlyTest {
 
         // different tags -> returns false
         editedAlice = new ElderlyBuilder(ALICE).withTags(VALID_TAG_SINGLE).build();
+        assertNotEquals(ALICE, editedAlice);
+
+        // different available dates -> returns false
+        editedAlice = new ElderlyBuilder(ALICE).withAvailableDates(VALID_START_DATE, VALID_END_DATE).build();
         assertNotEquals(ALICE, editedAlice);
     }
 }
