@@ -106,15 +106,8 @@ Examples:
 * `find /all` returns the original list of people
 * `find /n john` returns `John Lim` and `John Doe` who both contain the name `John` in their names
 * `find /a serangoon` returns `Alice Tan` and `John Doe` who have an address located in `Serangoon`
-* `find /nric S0078957G` returns `Alice Tan` who has an NRIC of S0078957G
-* `find a ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio` or  `serangoon`
-
-### Get a person: `get`
-Get a person from the records system.
-
-Format: `get i/NRIC`
-
-Examples: `get i/T0012345A` to get patient with NRIC T0012345A from patient records system
+* `find /nric S0078957G` returns `Alice Tan` who has an NRIC of `S0078957G`
+* `find /a ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio` or  `serangoon`
   
 
 ### Clearing all data: `clear`
