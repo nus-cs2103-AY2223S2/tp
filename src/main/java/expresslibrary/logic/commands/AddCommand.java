@@ -1,6 +1,7 @@
 package expresslibrary.logic.commands;
 
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_BOOK;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_NAME;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -31,7 +32,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney "
+            + PREFIX_BOOK + "Diary of a Wimpy Kid";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the express library";
