@@ -131,6 +131,13 @@ public class CommandTestUtil {
     public static final String VALID_CUSTOMER_NAME = "Nigel Wong";
     public static final String VALID_CUSTOMER_PHONE = "91234567";
     public static final String VALID_CUSTOMER_ADDRESS = "Woodlands Street 43";
+    public static final String INVALID_ORDER_NAME= "!@#$%CHIPS";
+    public static final String INVALID_ORDER_DEADLINE = "01/01/999/INVALID";
+    public static final String INVALID_ORDER_STATUS = "T";
+    public static final String INVALID_ORDER_QUANTITY = "9999";
+    public static final String INVALID_CUSTOMER_NAME = "!@*&#";
+    public static final String INVALID_CUSTOMER_PHONE = "912345674554";
+    public static final String INVALID_CUSTOMER_ADDRESS = "  ";
 
     /**
      * Executes the given {@code command}, confirms that <br>
