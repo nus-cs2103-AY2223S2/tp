@@ -166,14 +166,14 @@ public class ParserUtil {
      * @throws ParseException if the given {@code dateTimeText} is invalid.
      */
     public static LocalDateTime parseDateTime(String dateTimeText) throws ParseException {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("To");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
 
         try {
             LocalDateTime dateTime = LocalDateTime.parse(dateTimeText, dateTimeFormatter);
             return dateTime;
 
         } catch (DateTimeParseException e) {
-            throw new ParseException("Date-times should be of the format YYYY-MM-DD hhmm");
+            throw new ParseException("Date-times should be of the format DD-MM-YYYY hhmm");
         }
     }
 
