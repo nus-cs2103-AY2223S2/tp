@@ -59,4 +59,8 @@ public class ModuleUtil {
         }
         return sb.toString();
     }
+
+    public static Module copy(Module mod) {
+        return new ModuleBuilder(mod).build();
+    }
 }
