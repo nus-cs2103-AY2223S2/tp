@@ -29,8 +29,8 @@ public class CreateExamCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "n/John Doe "
             + "e/Math MYE Paper 1 "
-            + "start/2023-03-01 12:00"
-            + "end/2023-03-01 13:00";
+            + "start/2023-03-21 12:00"
+            + " end/2023-03-21 13:00";
 
 
     private final String examDescription;
