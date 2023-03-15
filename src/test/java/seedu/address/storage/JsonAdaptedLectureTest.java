@@ -13,6 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.testutil.TypicalLectures;
 
+// TODO: test when duplictes are detected in videos
+// TODO: test when null is detected in videos
 public class JsonAdaptedLectureTest {
 
     private static final String INVALID_NAME = "Lecture_01**";

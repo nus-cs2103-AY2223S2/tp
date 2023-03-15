@@ -13,6 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.testutil.TypicalModules;
 
+// TODO: test when duplictes are detected in lectures
+// TODO: test when null is detected in lectures
 public class JsonAdaptedModuleTest {
 
     private static final String INVALID_CODE = "Lorem";
