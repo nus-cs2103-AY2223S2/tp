@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class TotalJobs {
 
     public static final String MESSAGE_CONSTRAINTS = "TotalJobs must be a non-negative integer";
-    private int numJobs;
     private static final String OUTPUT_MESSAGE = "Total number of jobs: ";
+    private int numJobs;
 
     /**
      * Constructor to create a Reminder object.
