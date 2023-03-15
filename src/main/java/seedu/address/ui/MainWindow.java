@@ -269,6 +269,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if(commandResult.isShowStatistics()) {
                 handleStats();
+            }
 
             if (commandResult.isShowReminderList()) {
                 handleReminderList();
