@@ -1,12 +1,16 @@
 {
   "persons": [ {
     "name": "Alice",
+    "course": "Computer Science",
+    "year": "1",
     "github": "alice",
     "email": "alice@example.com",
     "linkedin": "linkedin.com/in/alice",
     "skills": [ "python" ]
   }, {
     "name": "Alice Pauline",
+    "course": "Computer Science",
+    "year": "1",
     "github": "alice-Pauline",
     "email": "alice@example.com",
     "linkedin": "linkedin.com/in/alice-pauline"

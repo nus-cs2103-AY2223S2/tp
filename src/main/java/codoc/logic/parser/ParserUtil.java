@@ -10,10 +10,12 @@ import codoc.commons.core.index.Index;
 import codoc.commons.util.StringUtil;
 import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.module.Module;
+import codoc.model.person.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
+import codoc.model.person.Year;
 import codoc.model.skill.Skill;
 
 
@@ -100,7 +102,34 @@ public class ParserUtil {
         }
         return new Email(trimmedEmail);
     }
-
+    /**
+     * Parses a {@code String Course} into an {@code Course}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code course} is invalid.
+     */
+    public static Course parseCourse(String course) throws ParseException {
+        requireNonNull(course);
+        String trimmedCourse = course.trim();
+        if (!Course.isValidCourse(trimmedCourse)) {
+            throw new ParseException(Course.MESSAGE_CONSTRAINTS);
+        }
+        return new Course(trimmedCourse);
+    }
+    /**
+     * Parses a {@code String Year} into an {@code Year}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code year} is invalid.
+     */
+    public static Year parseYear(String year) throws ParseException {
+        requireNonNull(year);
+        String trimmedYear = year.trim();
+        if (!Year.isValidYear(trimmedYear)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
+        }
+        return new Year(trimmedYear);
+    }
     /**
      * Parses a {@code String skill} into a {@code Skill}.
      * Leading and trailing whitespaces will be trimmed.

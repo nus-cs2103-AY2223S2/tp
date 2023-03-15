@@ -23,31 +23,32 @@ public class Person {
 
     // Data fields
     private final Linkedin linkedin;
+    private final Course course;
+    private final Year year;
+
     private final Set<Skill> skills = new HashSet<>();
     private final Set<Module> modules = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Github github, Email email, Linkedin linkedin, Set<Skill> skills, Set<Module> modules) {
-        requireAllNonNull(name, github, email, linkedin, skills, modules);
+    public Person(
+            Name name,
+            Course course,
+            Year year,
+            Github github,
+            Email email,
+            Linkedin linkedin,
+            Set<Skill> skills,
+            Set<Module> modules
+    ) {
+        requireAllNonNull(name, github, email, linkedin, skills, modules, course, year);
         this.name = name;
         this.github = github;
         this.email = email;
         this.linkedin = linkedin;
-        this.skills.addAll(skills);
-        this.modules.addAll(modules);
-    }
-
-    /**
-     * Overloaded constructor to be remove once Mod is fully implemented.
-     */
-    public Person(Name name, Github github, Email email, Linkedin linkedin, Set<Skill> skills) {
-        requireAllNonNull(name, github, email, linkedin, skills);
-        this.name = name;
-        this.github = github;
-        this.email = email;
-        this.linkedin = linkedin;
+        this.course = course;
+        this.year = year;
         this.skills.addAll(skills);
         this.modules.addAll(modules);
     }
@@ -63,7 +64,13 @@ public class Person {
     public Email getEmail() {
         return email;
     }
+    public Course getCourse() {
+        return course;
+    }
 
+    public Year getYear() {
+        return year;
+    }
     public Linkedin getLinkedin() {
         return linkedin;
     }
@@ -115,6 +122,8 @@ public class Person {
                 && otherPerson.getGithub().equals(getGithub())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getLinkedin().equals(getLinkedin())
+                && otherPerson.getCourse().equals(getCourse())
+                && otherPerson.getYear().equals(getYear())
                 && otherPerson.getSkills().equals(getSkills())
                 && otherPerson.getModules().equals(getModules());
     }
@@ -129,6 +138,10 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Year: ")
+                .append(getYear())
+                .append("; Course: ")
+                .append(getCourse())
                 .append("; Github: ")
                 .append(getGithub())
                 .append("; Email: ")
