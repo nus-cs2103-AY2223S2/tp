@@ -9,7 +9,8 @@
     "tagged" : [ "friends" ],
     "website": "www.google.com",
     "salary" : "4000",
-    "deadline" : "2023-10-20"
+    "deadline" : "2023-10-20",
+    "experience" : "Javascript - 2 Years"
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -19,7 +20,8 @@
     "tagged" : [ "owesMoney", "friends" ],
     "website": "www.google.com",
     "salary" : "4000",
-    "deadline" : "2023-10-20"
+    "deadline" : "2023-10-20",
+    "experience" : "C - 1 Year"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -29,7 +31,8 @@
     "tagged" : [ ],
     "website": "www.google.com",
     "salary" : "4000",
-    "deadline" : "2023-10-20"
+    "deadline" : "2023-10-20",
+    "experience" : "Python - 10 Years"
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -39,7 +42,8 @@
     "tagged" : [ "friends" ],
     "website": "www.google.com",
     "salary" : "4000",
-    "deadline" : "2023-10-20"
+    "deadline" : "2023-10-20",
+    "experience" : "Rust - 6 Years"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -49,7 +53,8 @@
     "tagged" : [ ],
     "website": "www.google.com",
     "salary" : "4000",
-    "deadline" : "2023-10-20"
+    "deadline" : "2023-10-20",
+    "experience" : "Lua - 2 Years"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -59,7 +64,8 @@
     "tagged" : [ ],
     "website": "www.google.com",
     "salary" : "4000",
-    "deadline" : "2023-10-20"
+    "deadline" : "2023-10-20",
+    "experience" : "Coffeescript - 3 Years"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -69,6 +75,7 @@
     "tagged" : [ ],
     "website": "www.google.com",
     "salary" : "4000",
-    "deadline" : "2023-10-20"
+    "deadline" : "2023-10-20",
+    "experience" : "Go - 5 Years"
   } ]
 }

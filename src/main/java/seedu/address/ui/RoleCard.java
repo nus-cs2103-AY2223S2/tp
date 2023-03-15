@@ -49,6 +49,8 @@ public class RoleCard extends UiPart<Region> {
     private Label deadline;
     @FXML
     private Label jobDescription;
+    @FXML
+    private Label experience;
 
     /**
      * Creates a {@code RoleCode} with the given {@code Role} and index to display.
@@ -68,6 +70,7 @@ public class RoleCard extends UiPart<Region> {
         salary.setText(role.getSalary().salary);
         deadline.setText(role.getDeadline().deadline);
         jobDescription.setText(role.getJobDescription().value);
+        experience.setText(role.getExperience().value);
     }
 
     @Override

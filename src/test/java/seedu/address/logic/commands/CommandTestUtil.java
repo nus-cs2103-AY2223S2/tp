@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
@@ -49,6 +50,8 @@ public class CommandTestUtil {
     public static final String VALID_SALARY_BOB = "4000";
     public static final String VALID_DEADLINE_AMY = "2023-10-20";
     public static final String VALID_DEADLINE_BOB = "2023-10-20";
+    public static final String VALID_EXPERIENCE_AMY = "Javascript - 1 Years";
+    public static final String VALID_EXPERIENCE_BOB = "C - 2 Years";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_ROLE + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_ROLE + VALID_NAME_BOB;
@@ -67,7 +70,8 @@ public class CommandTestUtil {
     public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
     public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY;
     public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB;
-
+    public static final String EXPERIENCE_DESC_AMY = " " + PREFIX_EXPERIENCE + VALID_EXPERIENCE_AMY;
+    public static final String EXPERIENCE_DESC_BOB = " " + PREFIX_EXPERIENCE + VALID_EXPERIENCE_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_ROLE + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_CONTACT + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -78,6 +82,7 @@ public class CommandTestUtil {
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "dn1"; // Characters not allowed in salaries
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
             + "2023-10-2a"; // Characters not allowed in deadline
+    public static final String INVALID_EXPERIENCE_DESC = " " + PREFIX_EXPERIENCE;
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -89,12 +94,13 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).withWebsite(VALID_WEB_AMY).withJobDescription(VALID_JOBDESCRIPTION_AMY)
                 .withTags(VALID_TAG_FRIEND).withSalary(VALID_SALARY_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).build();
+                .withDeadline(VALID_DEADLINE_AMY).withExperience(VALID_EXPERIENCE_AMY).build();
         DESC_BOB = new EditRoleDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withWebsite(VALID_WEB_BOB)
                 .withJobDescription(VALID_JOBDESCRIPTION_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-                .withSalary(VALID_SALARY_BOB).withDeadline(VALID_DEADLINE_BOB).build();
+                .withSalary(VALID_SALARY_BOB).withDeadline(VALID_DEADLINE_BOB)
+                .withExperience(VALID_EXPERIENCE_BOB).build();
     }
 
     /**

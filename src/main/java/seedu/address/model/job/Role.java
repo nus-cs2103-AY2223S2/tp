@@ -27,13 +27,14 @@ public class Role {
     private final Set<Tag> tags = new HashSet<>();
     private final Salary salary;
     private final Deadline deadline;
+    private final Experience experience;
 
     /**
      * Every field must be present and not null.
      */
     public Role(Name name, Phone phone, Email email, Address address, JobDescription jd, Set<Tag> tags,
-                  Website website, Salary salary, Deadline deadline) {
-        requireAllNonNull(name, phone, email, address, jd, tags, website, salary, deadline);
+                  Website website, Salary salary, Deadline deadline, Experience experience) {
+        requireAllNonNull(name, phone, email, address, jd, tags, website, salary, deadline, experience);
 
         this.name = name;
         this.phone = phone;
@@ -44,6 +45,7 @@ public class Role {
         this.website = website;
         this.salary = salary;
         this.deadline = deadline;
+        this.experience = experience;
     }
 
     public Name getName() {
@@ -90,6 +92,10 @@ public class Role {
         return deadline;
     }
 
+    public Experience getExperience() {
+        return experience;
+    }
+
     /**
      * Returns true if both roles have the same name.
      * This defines a weaker notion of equality between two roles.
@@ -126,14 +132,14 @@ public class Role {
                 && otherRole.getTags().equals(getTags())
                 && otherRole.getWebsite().equals(getWebsite())
                 && otherRole.getSalary().equals(getSalary())
-                && otherRole.getDeadline().equals(getDeadline());
-
+                && otherRole.getDeadline().equals(getDeadline())
+                && otherRole.getExperience().equals(getExperience());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, jobDescription, tags, website, salary, deadline);
+        return Objects.hash(name, phone, email, address, jobDescription, tags, website, salary, deadline, experience);
 
     }
 
@@ -160,7 +166,7 @@ public class Role {
         builder.append("; Website: ").append(getWebsite());
         builder.append("; Salary: ").append(getSalary());
         builder.append("; Deadline: ").append(getDeadline());
+        builder.append("; Experience: ").append(getExperience());
         return builder.toString();
     }
-
 }
