@@ -6,9 +6,12 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
 
@@ -36,6 +39,16 @@ public interface Model {
      * @return The user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Returns Navigation.
+     */
+    ReadOnlyNavigation getNavigation();
+
+    /**
+     * Returns current navigation context.
+     */
+    NavigationContext getCurrentNavContext();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -88,6 +101,14 @@ public interface Model {
     boolean hasModule(ReadOnlyModule module);
 
     /**
+     * Returns true if a module which has {@code moduleCode} exists in the tracker.
+     *
+     * @param moduleCode The code of the module to check if it exist.
+     * @return True if a module that has {@code moduleCode} exists in the tracker. Otherwise, false.
+     */
+    boolean hasModule(ModuleCode moduleCode);
+
+    /**
      * Deletes the given module. <p>
      * The module must exist in the tracker.
      *
@@ -120,6 +141,14 @@ public interface Model {
      * @return True if a lecture with the same name as {@code lecture} exists in {@code module}. Otherwise, false.
      */
     boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture);
+
+    /**
+     * Returns true if a module of {@code moduleCode} has a lecture with {@code lectureName}.
+     *
+     * @param moduleCode The moduleCode of the module that the lecture with {@code lectureName} belongs to .
+     * @return True if a module that has {@code moduleCode} has a lecture with {@code lectureName}. Otherwise, false.
+     */
+    boolean hasLecture(ModuleCode moduleCode, LectureName lectureName);
 
     /**
      * Deletes the given lecture {@code target}.<p>
@@ -200,6 +229,24 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate);
+
+    // TODO: Add JavaDocs
+    void navigateBack();
+
+    // TODO: Add JavaDocs
+    void navigateToRoot();
+
+    // TODO: Add JavaDocs
+    void navigateTo(ModuleCode moduleCode);
+
+    // TODO: Add JavaDocs
+    void navigateTo(ModuleCode moduleCode, LectureName lectureName);
+
+    // TODO: Add JavaDocs
+    void navigateToModFromRoot(ModuleCode moduleCode);
+
+    // TODO: Add JavaDocs
+    void navigateToLecFromMod(LectureName lectureName);
 
     // TODO: Remove this
     /**
