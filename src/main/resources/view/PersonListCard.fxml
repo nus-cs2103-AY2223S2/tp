@@ -25,6 +25,9 @@
                 <ImageView fx:id="imageView" fitWidth="100" preserveRatio="true"></ImageView>
             </VBox>
             <VBox alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets left="10"/>
+                </padding>
                 <HBox>
                     <Label fx:id="id" styleClass="cell_big_label">
                         <minWidth>
