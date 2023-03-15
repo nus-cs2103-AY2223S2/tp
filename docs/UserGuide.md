@@ -302,13 +302,13 @@ Examples:
 
 Deleting parent/ specified parent information from the database
 
-Format: `delete <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP WITH STUDENT> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>]`
+Format: `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/<AGE> imgP/<ABSOLUTE_PATH_TO_IMAGE> e/<EMAIL_ADDRESS> a/<RESIDENTIAL_ADDRESS>] `
 
 Examples:
+* `parent add n/TanAhNiu pnP/91234567` <br>
+  Deletes TanAhNiu from powerConnect
 * `parent 1A 03 delete TanAhCow Mother` <br>
   Deletes TanAhCow’s relationship of Mother with <Index number of student>
-* `parent 1B 23 delete MaryGoh` <br>
-  Deletes the whole of MaryGoh particulars
 
 Throws:
 * WrongParticularException
