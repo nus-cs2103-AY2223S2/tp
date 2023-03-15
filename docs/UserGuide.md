@@ -83,7 +83,7 @@ Adds a person to SOCket.
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of languages/tags (including 0)
 </div>
 
 Examples:
@@ -112,7 +112,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPRO
 * The index refers to the index number shown in the displayed person list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing languages, the existing languages of the person will **not** be removed i.e. adding of languages is cumulative
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is **not** cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
@@ -188,7 +189,6 @@ Format: `clear [t/TAG]...`
 * If no tag is provided, remove all the persons in SOCket.
 * A confirmation prompt will be asked before removal of persons.
 
-
 ### Sorting persons (by other fields) : `sort`
 
 Sorts and displays the persons according to the provided category. Sorts the list of persons by name if no argument is provided.
@@ -198,6 +198,23 @@ Format: `sort [CATEGORY]`
 * If a category is provided, the persons are sorted by that category alphanumerically
   * e.g. sort address will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
 
+### Undoing a change : `undo`
+
+Undoes the last change made to SOCket.
+
+Format: `undo`
+* A message is shown if no changes were made to SOCket
+
+### Redoing an undone change : `redo`
+
+Restores a previously undone change made to SOCket
+
+Format: `redo`
+* A message is shown if no undone changes exist
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Changes made to SOCket are **not** saved upon exit.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -243,3 +260,6 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`
 **List** | `list [t/tag]`
 **Help** | `help`
+**Undo** | `undo`
+**Redo** | `redo`
+**Exit** | `exit`
