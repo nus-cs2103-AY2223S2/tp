@@ -14,6 +14,7 @@ import seedu.wife.logic.commands.EditCommand;
 import seedu.wife.logic.commands.ExitCommand;
 import seedu.wife.logic.commands.FindCommand;
 import seedu.wife.logic.commands.HelpCommand;
+import seedu.wife.logic.commands.ListByTagCommand;
 import seedu.wife.logic.commands.ListCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
 
@@ -61,6 +62,9 @@ public class WifeParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListByTagCommand.COMMAND_WORD:
+            return new ListByTagCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
