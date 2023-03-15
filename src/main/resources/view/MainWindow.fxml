@@ -39,12 +39,12 @@
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-               <TabPane minWidth="340.0" prefWidth="340.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+               <TabPane minWidth="340.0" prefHeight="44.0" prefWidth="322.0" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                  <tabs>
-                   <Tab text="Tasks">
-                        <content>
-                      <StackPane fx:id="taskListPanelPlaceholder" />
-                        </content>
+                   <Tab text="Home">
+                      <content>
+                        <StackPane fx:id="taskListPanelPlaceholder" styleClass="pane-with-border" />
+                      </content>
                    </Tab>
                    <Tab text="Suppliers">
                      <content>
