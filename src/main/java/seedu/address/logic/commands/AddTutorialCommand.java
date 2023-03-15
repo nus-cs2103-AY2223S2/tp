@@ -12,7 +12,7 @@ import seedu.address.model.event.Tutorial;
  */
 public class AddTutorialCommand extends Command {
 
-    public static final String COMMAND_WORD = "touch";
+    public static final String COMMAND_WORD = "Tutorial";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to the address book. "
             + "Parameters: "

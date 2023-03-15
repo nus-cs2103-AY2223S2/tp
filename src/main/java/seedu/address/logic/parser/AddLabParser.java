@@ -28,8 +28,7 @@ public class AddLabParser implements Parser<AddLabCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddLabCommand parse(String args) throws ParseException {
-        String newArgs = args.trim().replaceFirst("Lab ", "");
-        System.out.println(newArgs);
+        String newArgs = args.trim().replaceFirst("Lab", "");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(newArgs, PREFIX_LAB);
 

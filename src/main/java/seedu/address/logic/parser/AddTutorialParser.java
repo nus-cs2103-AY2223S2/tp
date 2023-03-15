@@ -28,8 +28,7 @@ public class AddTutorialParser implements Parser<AddTutorialCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTutorialCommand parse(String args) throws ParseException {
-        String newArgs = args.trim().replaceFirst("Tutorial ", "");
-        System.out.println(newArgs);
+        String newArgs = args.trim().replaceFirst("Tutorial", "");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(newArgs, PREFIX_TUTORIAL);
 
