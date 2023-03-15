@@ -91,8 +91,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Set<Person> parseAttendees(String attendees) throws ParseException {
-        return new HashSet<Person>();
+    public static Set<Name> parseAttendees(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<Name> nameSet = new HashSet<>();
+        for (String name : names) {
+            nameSet.add(parseName(name));
+        }
+
+        return nameSet;
     }
     /**
      * Parses a {@code String address} into an {@code Address}.
