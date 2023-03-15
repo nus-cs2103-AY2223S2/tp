@@ -5,9 +5,10 @@ package seedu.address.model.person;
  */
 public class Image {
 
-    private static final String DEFAULT_IMAGE = "/images/default_image.png";
-    private String imagePath;
-    private final String imageName;
+    public static final String IMAGE_PATH = "data/images/";
+    public static final String DEFAULT_IMAGE = "default_image.png";
+    public static final String DEFAULT_IMAGE_PATH = "images/default_image.png";
+    public final String imageName;
 
     /**
      * Constructs an {@code Image}.
@@ -22,12 +23,18 @@ public class Image {
      * Overloaded constructor for a default image.
      */
     public Image() {
-        this.imagePath = DEFAULT_IMAGE;
         this.imageName = DEFAULT_IMAGE;
     }
 
-    public String getPath() {
-        return this.imagePath;
+    public boolean isDefaultImage() {
+        return this.imageName.equals(DEFAULT_IMAGE);
+    }
+
+    public String getFullString() {
+        if (isDefaultImage()) {
+            return DEFAULT_IMAGE_PATH;
+        }
+        return IMAGE_PATH + imageName;
     }
 
     @Override

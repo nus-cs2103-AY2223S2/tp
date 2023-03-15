@@ -87,7 +87,11 @@ public class Person {
     }
 
     public String getImagePath() {
-        return this.image.getPath();
+        return this.image.getFullString();
+    }
+
+    public boolean hasDefaultImage() {
+        return this.image.isDefaultImage();
     }
 
     /**
