@@ -3,8 +3,10 @@ package seedu.address.testutil;
 import static seedu.address.testutil.TypicalElderly.ALICE;
 import static seedu.address.testutil.TypicalElderly.BENSON;
 import static seedu.address.testutil.TypicalElderly.CARL;
+import static seedu.address.testutil.TypicalElderly.FIONA;
 import static seedu.address.testutil.TypicalVolunteers.DANIEL;
 import static seedu.address.testutil.TypicalVolunteers.ELLE;
+import static seedu.address.testutil.TypicalVolunteers.GEORGE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +25,8 @@ public class TypicalPairs {
             .withVolunteer(DANIEL).build();
     public static final Pair PAIR3 = new PairBuilder().withElderly(BENSON)
             .withVolunteer(ELLE).build();
+    public static final Pair PAIR4 = new PairBuilder().withElderly(FIONA)
+            .withVolunteer(GEORGE).build();
 
     private TypicalPairs() {} // prevents instantiation
 

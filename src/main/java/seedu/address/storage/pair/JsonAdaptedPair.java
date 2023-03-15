@@ -1,5 +1,8 @@
 package seedu.address.storage.pair;
 
+import static seedu.address.commons.core.Messages.MESSAGE_ELDERLY_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_VOLUNTEER_NOT_FOUND;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,6 +11,8 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.exceptions.ElderlyNotFoundException;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 import seedu.address.storage.JsonSerializable;
 
@@ -16,7 +21,7 @@ import seedu.address.storage.JsonSerializable;
  */
 class JsonAdaptedPair implements JsonSerializable<Pair> {
 
-    public static final String MISSING_ELDERLY_FIELD_MESSAGE_FORMAT = "Elderly's %s field is missing!";
+    public static final String MISSING_ELDERLY_FIELD_MESSAGE_FORMAT = "Elderly member's %s field is missing!";
     public static final String MISSING_VOLUNTEER_FIELD_MESSAGE_FORMAT = "Volunteer's %s field is missing!";
 
     private final String elderlyNric;
@@ -57,12 +62,19 @@ class JsonAdaptedPair implements JsonSerializable<Pair> {
         if (!(Nric.isValidNric(elderlyNric) && Nric.isValidNric(volunteerNric))) {
             throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
+
         final Nric modelElderlyNric = new Nric(elderlyNric);
-        Elderly elderly = friendlyLink.getElderly(modelElderlyNric);
-
         final Nric modelVolunteerNric = new Nric(volunteerNric);
-        Volunteer volunteer = friendlyLink.getVolunteer(modelVolunteerNric);
 
-        return new Pair(elderly, volunteer);
+        try {
+            Elderly elderly = friendlyLink.getElderly(modelElderlyNric);
+            Volunteer volunteer = friendlyLink.getVolunteer(modelVolunteerNric);
+            return new Pair(elderly, volunteer);
+        } catch (ElderlyNotFoundException e) {
+            throw new IllegalValueException(String.format(MESSAGE_ELDERLY_NOT_FOUND, modelElderlyNric));
+        } catch (VolunteerNotFoundException e) {
+            throw new IllegalValueException(String.format(MESSAGE_VOLUNTEER_NOT_FOUND, modelVolunteerNric));
+        }
+
     }
 }

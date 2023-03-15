@@ -33,7 +33,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RISK_LEVEL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -149,11 +149,11 @@ public class AddElderlyCommandParserTest {
 
         // missing risk level prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + VALID_RISKLEVEL_BOB, expectedMessage);
+                + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + VALID_RISK_LEVEL_BOB, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB
-                + VALID_NRIC_BOB + VALID_AGE_BOB + VALID_RISKLEVEL_BOB, expectedMessage);
+                + VALID_NRIC_BOB + VALID_AGE_BOB + VALID_RISK_LEVEL_BOB, expectedMessage);
     }
 
     @Test

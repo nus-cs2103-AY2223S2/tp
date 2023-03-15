@@ -1,5 +1,7 @@
 package seedu.address.storage.pair;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PAIR;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +21,6 @@ import seedu.address.storage.JsonSerializable;
  */
 @JsonRootName(value = "pairs")
 public class JsonSerializablePair implements JsonSerializable<FriendlyLink> {
-    public static final String MESSAGE_DUPLICATE_PAIR = "Persons list contains duplicate pair(s).";
 
     private final List<JsonAdaptedPair> pairs = new ArrayList<>();
 
@@ -60,7 +61,8 @@ public class JsonSerializablePair implements JsonSerializable<FriendlyLink> {
         for (JsonAdaptedPair jsonAdaptedPair : pairs) {
             Pair pair = jsonAdaptedPair.toModelType(friendlyLink);
             if (friendlyLink.hasPair(pair)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PAIR);
+                throw new IllegalValueException(String.format(
+                        MESSAGE_DUPLICATE_PAIR, pair.getElderly().getNric(), pair.getVolunteer().getNric()));
             }
             friendlyLink.addPair(pair);
         }

@@ -145,33 +145,40 @@ public interface Model {
     void setVolunteer(Volunteer target, Volunteer editedVolunteer);
 
     /**
-     * Returns true if a pair with the same identity as {@code pair} exists in the address book.
+     * Adds the given pair.
+     * {@code pair} must not already exist in FriendlyLink.
+     */
+    void addPair(Pair pair);
+
+    /**
+     * Adds the given pair.
+     * The pair consisting of elderly with {@code elderlyNric} and volunteer with {@code volunteerNric}
+     * must not already exist in FriendlyLink.
+     */
+    void addPair(Nric elderlyNric, Nric volunteerNric);
+
+    /**
+     * Returns true if a pair with the same identity as {@code pair} exists in FriendlyLink.
      */
     boolean hasPair(Pair pair);
 
     /**
      * Deletes the given pair.
-     * The pair must exist in the address book.
+     * The pair must exist in FriendlyLink.
      */
     void deletePair(Pair target);
 
     /**
      * Deletes the given pair.
      * The pair consisting of elderly with {@code elderlyNric} and volunteer with {@code volunteerNric}
-     * must exist in the address book.
+     * must exist in FriendlyLink.
      */
     void deletePair(Nric elderlyNric, Nric volunteerNric);
 
     /**
-     * Adds the given pair.
-     * {@code pair} must not already exist in the address book.
-     */
-    void addPair(Pair pair);
-
-    /**
      * Replaces the given pair {@code target} with {@code editedPair}.
-     * {@code target} must exist in the address book.
-     * The pair identity of {@code editedPair} must not be the same as another existing pair in the address book.
+     * {@code target} must exist in FriendlyLink.
+     * The pair identity of {@code editedPair} must not be the same as another existing pair in FriendlyLink.
      */
     void setPair(Pair target, Pair editedPair);
 
