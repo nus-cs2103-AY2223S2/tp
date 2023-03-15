@@ -4,18 +4,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="infoPane" fx:id="infoPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="infoPane" fx:id="infoPane" alignment="TOP_CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
-      <VBox alignment="TOP_CENTER">
-         <children>
-            <StackPane fx:id="profilePic" maxWidth="340" minHeight="100" minWidth="340" />
-            <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 32;" text="Label" textAlignment="CENTER">
-               <font>
-                  <Font name="Segoe UI" size="32.0" />
-               </font></Label>
-            <Label fx:id="identity" alignment="CENTER" text="" />
-         </children>
-      </VBox>
-      <StackPane fx:id="detailedInfoPlaceholder" minWidth="340" />
+      <StackPane fx:id="profilePic" maxHeight="50.0" maxWidth="340" minHeight="50.0" minWidth="340" />
+      <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" styleClass="label-header" text="Label" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+            </Label>
+      <Label fx:id="identity" alignment="CENTER" text="Identity">
+         <font>
+            <Font name="Roboto Light" size="12.0" />
+         </font>
+      </Label>
+      <StackPane fx:id="detailedInfoPlaceholder" alignment="TOP_CENTER" minWidth="340" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>
