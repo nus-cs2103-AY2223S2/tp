@@ -144,6 +144,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
+### Checking a student
+
+Displays the information of the student being checked, including their task list and score list.
+
+Format: `check INDEX`
+
+* Checks the student at the specified `INDEX` and displays the task list and score list of the student.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `check 2` checks the 2nd student in the student list.
 
 ### Adding a task for a student: `addTask`
 
@@ -157,7 +169,10 @@ Format: `addTask INDEX t/TASK_NAME`
 
 Examples:
 
-* `addTask 2 t/finish Math Paper 1`
+* `list` followed by `addTask 2 t/finish Math Paper 1` adds the task `finish Math Paper 1` to the 2nd student of the
+  student list.
+* `check 2` followed by `addTask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
+  being checked.
 
 ### Deleting a task of a student: `deleteTask`
 
@@ -167,7 +182,7 @@ Format: `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`
 
 * Deletes the task at the specified `INDEX_OF_TASK` of a specified student (`INDEX_OF_STUDENT`).
 * The first index refers to the index number shown in the displayed student list and
-the second index refers to the index of the task in the displayed task list of the student.
+  the second index refers to the index of the task in the displayed task list of the student.
 * Both indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
@@ -195,7 +210,10 @@ Format: `addScore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 
 Examples:
 
-* `addScore 2 l/Midterm Math Paper v/99.5 d/2023-03-02`
+* `list` followed by `addScore 2 l/Midterm Math Paper v/99.5 d/2023-03-02` adds a `Midterm Math Paper` score with a 
+  value of `99.5` and dated `2022-03-02` to the 2nd student in the student list.
+* `check 5` followed by `addScore 1 l/CA2 A Math v/50 d/2021-09-09` adds a `CA2 A Math` score with a
+  value of `50` and dated `2021-09-09` to the student being checked.
 
 ### Deleting a score of a student: `deleteScore`
 
@@ -257,6 +275,7 @@ _Details coming soon ..._
 | **Add Student**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PARENT_PHONE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/11112222 t/friend t/colleague` |
 | **Delete Student** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                             |
 | **Clear**          | `clear`                                                                                                                                                                                         |
+| **Check**          | `check INDEX`<br> e.g. `check 1`                                                                                                                                                                |
 | **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/PARENT_PHONE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/12348888`                                         |
 | **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                      |
 | **List Students**  | `list`                                                                                                                                                                                          |
