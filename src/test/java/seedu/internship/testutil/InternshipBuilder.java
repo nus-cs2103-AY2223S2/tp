@@ -17,8 +17,8 @@ import seedu.internship.model.util.SampleDataUtil;
  */
 public class InternshipBuilder {
     public static final String DEFAULT_ID = "1";
-    public static final String DEFAULT_POSITION = "Software Engineer";
-    public static final String DEFAULT_COMPANY = "Grab";
+    public static final String DEFAULT_POSITION = "Architect";
+    public static final String DEFAULT_COMPANY = "ABC";
     public static final Integer DEFAULT_STATUS = 1;
     public static final String DEFAULT_DESCRIPTION = "The is a dummy internship. Interview date on DDMMYYYY.";
 
