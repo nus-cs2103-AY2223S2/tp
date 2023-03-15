@@ -29,11 +29,16 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split(" ");
-        Index index = ParserUtil.parseIndex(nameKeywords[INPUT_INDEX]);
-        Tag tag = ParserUtil.parseTag(nameKeywords[TAG_INDEX]);
+        try {
+            String[] nameKeywords = trimmedArgs.split(" ");
+            Index index = ParserUtil.parseIndex(nameKeywords[INPUT_INDEX]);
+            Tag tag = ParserUtil.parseTag(nameKeywords[TAG_INDEX]);
 
-        return new DeleteTagCommand(index, tag);
+            return new DeleteTagCommand(index, tag);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE), pe);
+        }
     }
 
 }

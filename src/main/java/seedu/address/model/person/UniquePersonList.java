@@ -67,9 +67,14 @@ public class UniquePersonList implements Iterable<Person> {
      * @param toDelete The tag to delete.
      */
     public void deleteTag(Person person, Tag toDelete) {
-        requireNonNull(person);
-        requireNonNull(toDelete);
-        findPerson(person).deleteTag(toDelete);
+        requireAllNonNull(person, toDelete);
+        int index = internalList.indexOf(person);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+        Person target = findPerson(person);
+        target.deleteTag(toDelete);
+        internalList.set(index, target);
     }
 
     /**
