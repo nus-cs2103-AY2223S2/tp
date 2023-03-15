@@ -257,29 +257,39 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Our users:
+* have a need to manage any number of students
+* prefer offline desktop apps over other types
+* can type commands fast
+* prefer typing, with some mouse control
+* prefer a more robust, aesthetic GUI, as opposed to a verbose list of students on a command line
+* are reasonably comfortable using CLI
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage students' academic progress faster and more conveniently than a typical mouse/GUI driven app
 
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: 
+- High (must have) - `* * *`
+- Medium (nice to have) - `* *` 
+- Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Category                                                                   | Priority | As a …​ | I want to …​                                                                                          | So that I can…​                                                                                                                                                                                 |
+|:---------------------------------------------------------------------------|----------|---------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Track Student Homework                                                     | `* * *`  | tutor   | Mark homework as completed/uncompleted/half-completed.                                                | I can track what needs to be done in order to give reminders to student.                                                                                                                        |
+|                                                                            | `* * *`  | tutor   | Assign tutor homework deadlines.                                                                      | I can track what homework I have assigned to the tutee and when it needs to be done by to follow the lesson plan                                                                                |
+|                                                                            | `* * *`  | tutor   | Assign school homework deadlines                                                                      | I can track what homework the school has assigned my students, to help them finish and when.                                                                                                    |
+|                                                                            | `* * *`  | tutor   | View completed and uncompleted homework                                                               | I can separately track pending homework.                                                                                                                                                        |
+| Store and access students’ personal info (addresses, personal particulars) | `* *`    | tutor   | Click open a “view profile” button beside a Student to look at his/her home address and phone number. | I can have easy access to the students’ information.                                                                                                                                            |
+|                                                                            | `* *`    | tutor   | Update my students' personal information as needed                                                    | I can keep my records accurate and up-to-date                                                                                                                                                   |
+|                                                                            | `* * *`  | tutor   | Click a button with a student’s name to view his/her upcoming school exams/assignments                | Change my lesson plans accordingly to prepare the student for such tasks. For example, change all sessions of a week to Chemistry lessons to prepare the student for an upcoming Chemistry exam |
+| Lesson Plan Management                                                     | `* * *`  | tutor   | Create lesson plans for future classes                                                                | I can always plan ahead of my lessons                                                                                                                                                           |
+|                                                                            | `* *`    | tutor   | View my students’ lesson history                                                                      | I can recap past lessons with my student.                                                                                                                                                       |
+|                                                                            | `* *`    | tutor   | View the date and time of a past lesson                                                               | I can see how many lessons I’ve had over a period of time                                                                                                                                       |
+|                                                                            | `*`      |         |                                                                                                       |                                                                                                                                                                                                 |
 
-*{More to be added}*
+*{As at v1.2, more to be added}*
 
 ### Use cases
 

@@ -3,41 +3,41 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.logic.commands.ViewLessonCommand;
+import seedu.address.logic.commands.ViewExamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.Lesson;
-import seedu.address.model.student.LessonBelongsToDatePredicate;
-import seedu.address.model.student.LessonDonePredicate;
-import seedu.address.model.student.LessonSubjectPredicate;
+import seedu.address.model.student.Exam;
+import seedu.address.model.student.ExamDatePredicate;
+import seedu.address.model.student.ExamDonePredicate;
+import seedu.address.model.student.ExamPredicate;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 
 /**
  * Parses input arguments and creates a new ViewHomeworkCommand object
  */
-public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
+public class ViewExamCommandParser implements Parser<ViewExamCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewLessonCommand
      * and returns a ViewLessonCommand object for execution.
      * @param args the user input to be parsed into a ViewLessonCommand object.
-     * @return a ViewLessonCommand object.
+     * @return a ViewExamCommand object.
      */
-    public ViewLessonCommand parse(String args) throws ParseException {
+    public ViewExamCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_SUBJECT,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_EXAM,
             PREFIX_DONE);
         Predicate<Student> namePredicate;
-        Predicate<Lesson> subjectPredicate = lesson -> true;
-        Predicate<Lesson> donePredicate = lesson -> true;
+        Predicate<Exam> examPredicate = exam -> true;
+        Predicate<Exam> donePredicate = exam -> true;
         boolean defaultPredicateFlag;
 
         // If name is present, create a predicate to filter by name
@@ -61,26 +61,25 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
             defaultPredicateFlag = true;
         }
 
-        if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
-            String subject = argMultimap.getValue(PREFIX_SUBJECT).get();
-            subjectPredicate = new LessonSubjectPredicate(subject);
+        if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
+            String exam = argMultimap.getValue(PREFIX_EXAM).get();
+            examPredicate = new ExamPredicate(exam);
         }
 
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
             String done = argMultimap.getValue(PREFIX_DONE).get();
-            donePredicate = new LessonDonePredicate(done);
+            donePredicate = new ExamDonePredicate(done);
         }
 
-        // If date is present, create a predicate to filter by status
+        // If date is present, create a predicate to filter by date
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             String date = argMultimap.getValue(PREFIX_DATE).get();
             LocalDate targetDate = ParserUtil.parseDate(date);
-            LessonBelongsToDatePredicate datePredicate = new LessonBelongsToDatePredicate(targetDate);
-            return new ViewLessonCommand(namePredicate, datePredicate, subjectPredicate, donePredicate,
+            ExamDatePredicate datePredicate = new ExamDatePredicate(targetDate);
+            return new ViewExamCommand(namePredicate, datePredicate, examPredicate, donePredicate,
                 defaultPredicateFlag);
         } else {
-            return new ViewLessonCommand(namePredicate, subjectPredicate, donePredicate, defaultPredicateFlag);
+            return new ViewExamCommand(namePredicate, examPredicate, donePredicate, defaultPredicateFlag);
         }
     }
-
 }

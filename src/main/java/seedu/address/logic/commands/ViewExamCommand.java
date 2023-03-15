@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.Lesson;
+import seedu.address.model.student.Exam;
 import seedu.address.model.student.Student;
 
 /**
@@ -16,19 +16,19 @@ import seedu.address.model.student.Student;
  * Displays a list of homework with the ability to filter by student name and homework status.
  * Keyword matching is case-insensitive.
  */
-public class ViewLessonCommand extends Command {
+public class ViewExamCommand extends Command {
 
-    public static final String COMMAND_WORD = "view-lesson";
+    public static final String COMMAND_WORD = "view-exam";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all lessons that match the specified "
-            + "name and date keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: [n/STUDENT_NAME] [date/Date]\n"
-            + "Example: " + COMMAND_WORD + " n/John date/2023-03-29";
-    private static final Predicate<Lesson> SHOW_ALL_LESSONS = lesson -> true;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all exams that match the specified "
+        + "name and date keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: [n/STUDENT_NAME] [date/Date]\n"
+        + "Example: " + COMMAND_WORD + " n/John date/2023-03-29";
+    private static final Predicate<Exam> SHOW_ALL_EXAMS = exam -> true;
     private final Predicate<Student> namePredicate;
-    private final Predicate<Lesson> lessonDatePredicate;
-    private final Predicate<Lesson> subjectPredicate;
-    private final Predicate<Lesson> donePredicate;
+    private final Predicate<Exam> examDatePredicate;
+    private final Predicate<Exam> examNamePredicate;
+    private final Predicate<Exam> donePredicate;
     private final boolean defaultPredicateFlag;
 
 
@@ -38,12 +38,12 @@ public class ViewLessonCommand extends Command {
      * @param namePredicate Predicate to filter students by name.
      * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
-    public ViewLessonCommand(Predicate<Student> namePredicate, Predicate<Lesson> subjectPredicate,
-                             Predicate<Lesson> donePredicate, boolean defaultPredicateFlag) {
+    public ViewExamCommand(Predicate<Student> namePredicate, Predicate<Exam> examNamePredicate,
+                             Predicate<Exam> donePredicate, boolean defaultPredicateFlag) {
         this.namePredicate = namePredicate;
-        this.lessonDatePredicate = SHOW_ALL_LESSONS;
+        this.examDatePredicate = SHOW_ALL_EXAMS;
         this.defaultPredicateFlag = defaultPredicateFlag;
-        this.subjectPredicate = subjectPredicate;
+        this.examNamePredicate = examNamePredicate;
         this.donePredicate = donePredicate;
     }
 
@@ -51,16 +51,16 @@ public class ViewLessonCommand extends Command {
      * Overloaded constructor for ViewLessonCommand.
      *
      * @param namePredicate Predicate to filter students by name.
-     * @param lessonDatePredicate Predicate to filter lessons by date.
+     * @param examDatePredicate Predicate to filter lessons by date.
      * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
-    public ViewLessonCommand(Predicate<Student> namePredicate, Predicate<Lesson> lessonDatePredicate,
-                               Predicate<Lesson> subjectPredicate, Predicate<Lesson> donePredicate,
+    public ViewExamCommand(Predicate<Student> namePredicate, Predicate<Exam> examDatePredicate,
+                             Predicate<Exam> examNamePredicate, Predicate<Exam> donePredicate,
                              boolean defaultPredicateFlag) {
         this.namePredicate = namePredicate;
-        this.lessonDatePredicate = lessonDatePredicate;
+        this.examDatePredicate = examDatePredicate;
         this.defaultPredicateFlag = defaultPredicateFlag;
-        this.subjectPredicate = subjectPredicate;
+        this.examNamePredicate = examNamePredicate;
         this.donePredicate = donePredicate;
     }
 
@@ -85,10 +85,11 @@ public class ViewLessonCommand extends Command {
 
         // Loop through each student and add their lesson to the string builder
         for (Student student : studentList) {
-            List<Lesson> lessonList = student.getFilteredLessonsList(lessonDatePredicate, subjectPredicate,
+            List<Exam> lessonList = student.getFilteredExamList(examDatePredicate, examNamePredicate,
                 donePredicate);
             if (!lessonList.isEmpty()) {
                 sb.append(student.getName().fullName).append(":\n");
+
                 numOfLessons += lessonList.size();
 
                 for (int i = 0; i < lessonList.size(); i++) {
@@ -101,25 +102,26 @@ public class ViewLessonCommand extends Command {
 
         // If no homework is found, throw an exception
         if (numOfLessons == 0) {
-            throw new CommandException(Messages.MESSAGE_NO_LESSON_FOUND);
+            throw new CommandException(Messages.MESSAGE_NO_EXAM_FOUND);
         }
 
         // If the default predicate is used, display a different message
         if (defaultPredicateFlag) {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_ALL_LESSONS_LISTED_OVERVIEW, numOfLessons, sb));
+                String.format(Messages.MESSAGE_ALL_EXAMS_LISTED_OVERVIEW, numOfLessons, sb));
         } else {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_LESSONS_LISTED_OVERVIEW, numOfLessons, numberOfStudents, sb));
+                String.format(Messages.MESSAGE_EXAMS_LISTED_OVERVIEW, numOfLessons, numberOfStudents, sb));
         }
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewLessonCommand // instanceof handles nulls
-                && namePredicate.equals(((ViewLessonCommand) other).namePredicate)
-                && lessonDatePredicate.equals(((ViewLessonCommand) other).lessonDatePredicate)
-                && defaultPredicateFlag == ((ViewLessonCommand) other).defaultPredicateFlag); // state check
+            || (other instanceof ViewExamCommand // instanceof handles nulls
+            && namePredicate.equals(((ViewExamCommand) other).namePredicate)
+            && examDatePredicate.equals(((ViewExamCommand) other).examDatePredicate)
+            && defaultPredicateFlag == ((ViewExamCommand) other).defaultPredicateFlag);
     }
 }
+
