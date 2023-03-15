@@ -64,6 +64,8 @@ public class PersonCard extends UiPart<Region> {
         person.getGroups().stream()
                 .sorted(Comparator.comparing(group -> group.groupName))
                 .forEach(group -> groups.getChildren().add(new Label(group.groupName)));
+        isolatedEventList.setText(person.getIsolatedEventList().toString());
+        recurringEventList.setText(person.getRecurringEventList().toString());
 
     }
 
