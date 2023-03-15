@@ -13,11 +13,13 @@ import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.video.VideoName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -126,6 +128,7 @@ public class ParserUtil {
         return tagSet;
     }
 
+    // TODO: Consider removing this
     /**
      * Parses a {@code String moduleCode} into a {@code module}.
      * Leading and trailing whitespaces will be trimmed.
@@ -138,9 +141,10 @@ public class ParserUtil {
         if (!ModuleCode.isValidCode(trimmedModuleCode)) {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
-        return new Module(new ModuleCode(moduleCode));
+        return new Module(new ModuleCode(trimmedModuleCode));
     }
 
+    // TODO: Consider removing this
     /**
      * Parses a {@code String lectureName} into a {@code lecture}.
      * Leading and trailing whitespaces will be trimmed.
@@ -156,4 +160,58 @@ public class ParserUtil {
         return new Lecture(new LectureName(trimmedLecture));
     }
 
+    /**
+     * Parses a {@code String moduleCode} into a {@code ModuleCode}.<p>
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleCode} is invalid.
+     */
+    public static ModuleCode parseModuleCode(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModuleCode = moduleCode.trim();
+        if (!ModuleCode.isValidCode(trimmedModuleCode)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleCode(trimmedModuleCode);
+    }
+
+    /**
+     * Parses a {@code String moduleName} into a {@code ModuleName}.<p>
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ModuleName parseModuleName(String moduleName) {
+        requireNonNull(moduleName);
+        String trimmedModuleName = moduleName.trim();
+        return new ModuleName(trimmedModuleName);
+    }
+
+    /**
+     * Parses a {@code String lectureName} into a {@code LectureName}.<p>
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lectureName} is invalid.
+     */
+    public static LectureName parseLectureName(String lectureName) throws ParseException {
+        requireNonNull(lectureName);
+        String trimmedLectureName = lectureName.trim();
+        if (!LectureName.isValidName(trimmedLectureName)) {
+            throw new ParseException(LectureName.MESSAGE_CONSTRAINTS);
+        }
+        return new LectureName(trimmedLectureName);
+    }
+
+    /**
+     * Parses a {@code String videoName} into a {@code VideoName}.<p>
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code videoName} is invalid.
+     */
+    public static VideoName parseVideoName(String videoName) throws ParseException {
+        requireNonNull(videoName);
+        String trimmedVideoName = videoName.trim();
+        if (!VideoName.isValidName(trimmedVideoName)) {
+            throw new ParseException(VideoName.MESSAGE_CONSTRAINTS);
+        }
+        return new VideoName(trimmedVideoName);
+    }
 }

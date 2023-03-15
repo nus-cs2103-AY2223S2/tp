@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 public abstract class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE_MODULE = COMMAND_WORD + ": (1) Adds a module to the tracker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": (1) Adds a module to the tracker. "
             + "Parameters: "
             + "{module_code} "
             + "[" + PREFIX_NAME + " {name}] "
