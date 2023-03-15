@@ -8,6 +8,7 @@ import bookopedia.commons.core.Messages;
 import bookopedia.commons.core.index.Index;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.model.Model;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Person;
 
 /**
@@ -37,12 +38,18 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person deliveryToView = lastShownList.get(index.getZeroBased());
+        StringBuilder parcelsToPrint = new StringBuilder("");
+        for (Parcel p : deliveryToView.getParcels()) {
+            parcelsToPrint.append(p.toString());
+            parcelsToPrint.append("\n");
+        }
         // this is temporary
         return new CommandResult(deliveryToView.getName().toString() + "\n"
                 + deliveryToView.getAddress().toString() + "\n"
                 + deliveryToView.getEmail().toString() + "\n"
                 + deliveryToView.getPhone().toString() + "\n"
-                + "Parcels:" + "\n");
+                + "Parcels:" + "\n"
+                + parcelsToPrint + "\n");
     }
 
     @Override
