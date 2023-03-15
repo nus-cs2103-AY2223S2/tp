@@ -1,0 +1,9 @@
+{
+  "tasks": [ {
+    "name": "Valid Task",
+    "description": "Valid Task's description",
+  }, {
+    "name": "Task With Invalid Description",
+    "description": "",
+  } ]
+}
