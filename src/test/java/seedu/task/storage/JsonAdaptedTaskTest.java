@@ -154,7 +154,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullAlertWindow_stillSucceed() throws Exception {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, EMPTY_WINDOW);
+                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, null);
         JsonAdaptedTask task1 =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
                         EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, EMPTY_WINDOW);
