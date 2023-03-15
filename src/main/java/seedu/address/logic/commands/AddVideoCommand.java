@@ -18,12 +18,12 @@ import seedu.address.model.video.Video;
  */
 public class AddVideoCommand extends AddCommand {
 
+    public static final String MESSAGE_SUCCESS = "New video added to module %s of lecture %s: %s";
+    public static final String MESSAGE_DUPLICATE_VIDEO = "This video already exists in lecture %s of module %s";
+
     private final ModuleCode moduleCode;
     private final LectureName lectureName;
     private final Video toAdd;
-
-    public static final String MESSAGE_SUCCESS = "New video added to module %s of lecture %s: %s";
-    public static final String MESSAGE_DUPLICATE_VIDEO = "This video already exists in lecture %s of module %s";
 
     /**
      * Creates an {@code AddVideoCommand} to add {@code video} to the lecture with name {@code lectureName} which
