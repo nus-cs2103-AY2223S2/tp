@@ -15,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.stats.TotalJobs;
+import seedu.address.ui.job.DeliveryJobDetailPane;
 import seedu.address.ui.job.DeliveryJobListPanel;
 import seedu.address.ui.main.ResultDisplay;
 
@@ -46,6 +47,8 @@ public class StatisticsWindow extends UiPart<Stage> {
     private Label totalJob;
     @FXML
     private StackPane deliveryJobListPanelPlaceholder;
+    @FXML
+    private StackPane deliveryJobDetailPlaceholder;
 
     /**
      * Creates a {@code StatisticsWindow} with the given {@code Stage} and {@code Logic}.
@@ -116,7 +119,11 @@ public class StatisticsWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
+        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), (idx, job) -> {
+            deliveryJobDetailPlaceholder.getChildren().clear();
+            DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, idx);
+            deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
+        });
         deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
 
         ObservableList<DeliveryJob> list =  logic.getFilteredDeliveryJobList();
