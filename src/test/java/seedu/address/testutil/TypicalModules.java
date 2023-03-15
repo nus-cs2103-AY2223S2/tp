@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.model.Tracker;
 import seedu.address.model.module.Module;
 
 /**
@@ -22,4 +23,17 @@ public class TypicalModules {
                     TypicalLectures.ST2334_TOPIC_3, TypicalLectures.ST2334_TOPIC_4,
                     TypicalLectures.ST2334_TOPIC_5)
             .build();
+
+    /**
+     * Returns a {@code Tracker} with all typical modules.
+     *
+     * @return A {@code Tracker} with all typical modules.
+     */
+    public static Tracker getTypicalTracker() {
+        Tracker tracker = new Tracker();
+        tracker.addModule(CS2040S);
+        tracker.addModule(ST2334);
+
+        return tracker;
+    }
 }

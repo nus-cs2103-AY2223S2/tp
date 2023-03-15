@@ -29,10 +29,10 @@ public class SampleDataUtil {
 
     public static Module[] getSampleModules() {
         return new Module[] {
-            new Module(new ModuleCode("CS2040S"), new ModuleName("Data Structures & Algorithms"),
-                    getTagSet("Heavy"), Arrays.asList(getSampleLectures1())),
+            new Module(new ModuleCode("CS2040S"), new ModuleName("Data Structures and Algorithms"),
+                    getTagSet("Heavy", "Math", "Analysis"), Arrays.asList(getSampleLectures1())),
             new Module(new ModuleCode("ST2334"), new ModuleName("Probability and Statistics"),
-                    new HashSet<>(), Arrays.asList(getSampleLectures2())),
+                    getTagSet("Math", "Probability"), Arrays.asList(getSampleLectures2())),
         };
     }
 

@@ -192,6 +192,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
+        requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
     }
 
