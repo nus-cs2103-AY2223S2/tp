@@ -26,6 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
+
     private final AddressBookParser addressBookParser;
 
     /**
@@ -78,4 +79,16 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public void setPersonId(int index) {
+        model.setPersonId(index);
+    }
+
+    @Override
+    public int getPersonId() {
+        return model.getPersonId();
+    }
+
 }
+

@@ -134,6 +134,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteImage(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,6 +151,16 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getPersonId() {
+            return 0;
+        }
+
+        @Override
+        public void setPersonId(int index) {
+            System.out.println("Hello world");
         }
     }
 

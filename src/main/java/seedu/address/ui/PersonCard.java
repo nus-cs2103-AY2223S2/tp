@@ -4,9 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,10 +27,19 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    private final Person person;
+
+    private final Logic logic;
+
+    private final MainWindow mainWindow;
+
+    private final int index;
 
     @FXML
     private HBox cardPane;
+
+    @FXML
+    private ImageView imageView;
     @FXML
     private Label name;
     @FXML
@@ -44,10 +56,20 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, Logic logic, MainWindow mainWindow) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        this.logic = logic;
+        this.mainWindow = mainWindow;
+        this.index = displayedIndex;
+        Image image;
+        if (person.hasDefaultImage()) {
+            image = new Image(person.getImagePath());
+        } else {
+            image = new Image("file:" + person.getImagePath());
+        }
+        imageView.setImage(image);
+        id.setText(this.index + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -55,6 +77,12 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    @FXML
+    private void showPersonalPane() {
+        logic.setPersonId(this.index);
+        mainWindow.changeIndividualPane();
     }
 
     @Override

@@ -23,9 +23,30 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Image image;
 
     /**
      * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Image image) {
+        requireAllNonNull(name, phone, email, address, tags, image);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.image = image;
+    }
+
+    /**
+     * Overloaded constructor for Person without an image provided.
+     * A default image will be used for this person.
+     *
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param tags
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -34,6 +55,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.image = new Image();
     }
 
     public Name getName() {
@@ -58,6 +80,18 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public String getImagePath() {
+        return this.image.getFullString();
+    }
+
+    public boolean hasDefaultImage() {
+        return this.image.isDefaultImage();
     }
 
     /**
@@ -110,7 +144,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Image: ")
+                .append(getImage());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
