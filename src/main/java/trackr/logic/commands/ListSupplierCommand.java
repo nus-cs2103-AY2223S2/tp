@@ -8,10 +8,10 @@ import trackr.model.Model;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListCommand extends Command {
+public class ListSupplierCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
-
+    public static final String COMMAND_WORD = "list_supplier";
+    public static final String COMMAND_WORD_SHORTCUT = "list_s";
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
 

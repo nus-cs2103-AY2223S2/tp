@@ -26,7 +26,7 @@ import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindSupplierCommand;
 import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
-import trackr.logic.commands.ListCommand;
+import trackr.logic.commands.ListSupplierCommand;
 import trackr.logic.commands.ListTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
@@ -183,8 +183,8 @@ public class TrackrParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD) instanceof ListSupplierCommand);
+        assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD + " 3") instanceof ListSupplierCommand);
     }
 
     @Test
