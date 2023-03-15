@@ -28,7 +28,7 @@ public class JsonAdaptedCharacter {
     /***/
     public JsonAdaptedCharacter(Character source) {
         name = source.getName().fullName;
-        stats = new JsonAdaptedStats(new Stats(0, 0, 0));
+        stats = new JsonAdaptedStats(source.getStats());
         this.level = source.getLevel();
         this.xp = source.getXP();
     }

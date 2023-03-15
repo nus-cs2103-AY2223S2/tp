@@ -29,7 +29,7 @@ public class JsonAdaptedMob {
     /***/
     public JsonAdaptedMob(Mob source) {
         name = source.getName().fullName;
-        stats = new JsonAdaptedStats(new Stats(0, 0, 0));
+        stats = new JsonAdaptedStats(source.getStats());
         this.challengeRating = source.getChallengeRating();
         this.isLegendary = source.getLegendaryStatus();
     }
