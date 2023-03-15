@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.ModuleTagSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
@@ -29,14 +29,14 @@ public class UntagCommand extends Command {
     public static final String MESSAGE_UNTAG_USER_SUCCESS = "Module(s) untagged to User!";
     public static final String MESSAGE_NO_TAGS = "At least one Module must be provided.";
 
-    private final Index index;
+    private final ContactIndex index;
     private final Set<ModuleTag> moduleTags;
 
     /**
      * @param index of the person in the filtered person list to edit.
      * @param modulesToRemove set of modules to be removed.
      */
-    public UntagCommand(Index index, Set<ModuleTag> modulesToRemove) {
+    public UntagCommand(ContactIndex index, Set<ModuleTag> modulesToRemove) {
         requireNonNull(modulesToRemove);
 
         this.index = index;
@@ -60,13 +60,10 @@ public class UntagCommand extends Command {
      * @throws CommandException if an error occurs during command execution.
      */
     public CommandResult removePersonTags(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        IndexHandler indexHandler = new IndexHandler(model);
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
 
         ModuleTagSet oldModules = personToEdit.getModuleTags();
 

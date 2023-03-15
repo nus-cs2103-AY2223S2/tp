@@ -116,11 +116,11 @@ public class ContainsKeywordsPredicateTest {
 
         createContainsKeywordsReturnsTrue(
                 Prefix.ADDRESS,
-                new PersonBuilder().withAddress("2 Blackmore Drive").build(),
-                Collections.singletonList("Blackmore"),
-                Arrays.asList("2", "Blackmore", "Drive"),
-                Arrays.asList("2", "Blackmore", "Street"),
-                Arrays.asList("2", "bLackMore", "drIve")
+                new PersonBuilder().withAddress("King Albert Park").build(),
+                Collections.singletonList("Albert"),
+                Arrays.asList("Alberto", "Park"),
+                Arrays.asList("AlBert", "Parker"),
+                Arrays.asList("KiNg", "Parker")
         );
 
         createContainsKeywordsReturnsTrue(
@@ -175,8 +175,8 @@ public class ContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         List<String> emptyList = Collections.emptyList();
-        Person person = new PersonBuilder().withName("Albert").withPhone("12345").withEmail("alice@email.com")
-                .withAddress("Main Street").withTelegramHandle("@albertpark")
+        Person person = new PersonBuilder().withName("Albert").withPhone("12345").withEmail("albert@email.com")
+                .withAddress("King Albert Park").withTelegramHandle("@albert")
                 .withModuleTags("CS2030S", "CS2103T", "CS2101").withGroupTags("TA", "CCA").build();
 
         createDoesNotContainKeywordsReturnsFalse(
@@ -200,7 +200,7 @@ public class ContainsKeywordsPredicateTest {
                 person,
                 emptyList,
                 List.of("albertpark@gmail.com"),
-                Arrays.asList("Albert", "12345", "Main", "Street")
+                Arrays.asList("12345", "Main", "Street")
         );
 
         createDoesNotContainKeywordsReturnsFalse(
@@ -208,7 +208,7 @@ public class ContainsKeywordsPredicateTest {
                 person,
                 emptyList,
                 List.of("Side", "Drive"),
-                Arrays.asList("Albert", "12345", "@albertpark", "TA")
+                Arrays.asList("12345", "@albertpark", "TA")
         );
 
         createDoesNotContainKeywordsReturnsFalse(

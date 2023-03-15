@@ -19,7 +19,7 @@ public class TypicalUser {
     public static final User LINUS = new User(new Name("Linus Richards"),
             new Phone("90102030"),
             new Email("linusrichards@gmail.com"),
-            new Address("National University of Singapore"),
+            new Address("NUS"),
             new TelegramHandle("@linusrichards"),
             new ContactIndex(0),
             new HashSet<>() {{
@@ -32,6 +32,7 @@ public class TypicalUser {
                 add(new ModuleTag("CS2103"));
                 add(new ModuleTag("CS2104"));
                 add(new ModuleTag("CS2105"));
+                add(new ModuleTag("CS2106"));
             }});
 
     /**

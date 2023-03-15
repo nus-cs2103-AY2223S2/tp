@@ -1,0 +1,36 @@
+National Library / Central Public Library|1.2976|103.8543
+Ang Mo Kio Public Library|1.3748|103.8455
+Bedok Public Library|1.32695|103.93174
+Bishan Public Library|1.3498|103.8488
+Bukit Batok Public Library|1.35|103.749
+Bukit Panjang Public Library|1.38|103.7643
+Cheng San Public Library|1.37246|103.89389
+Choa Chu Kang Public Library|1.385|103.7452
+Clementi Public Library|1.31466|103.76402
+Geylang East Public Library|1.3174|103.88587
+Jurong Regional Library|1.3329|103.7395
+Jurong West Public Library|1.3403|103.7045
+library@chinatown|1.2852|103.8447
+library@esplanade|1.2898|103.8558
+library@harbourfront|1.2637|103.8234
+library@orchard|1.3005|103.8397
+Marine Parade Public Library|1.30488|103.9095
+Pasir Ris Public Library|1.37281|103.94778
+Punggol Regional Library|1.4087|103.905
+Queenstown Public Library|1.29864|103.80541
+Sembawang Public Library|1.44837|103.81981
+Sengkang Public Libary|1.3917|103.8947
+Serangoon Public Library|1.3508|103.8724
+Tampines Regional Library|1.3522|103.9412
+Toa Payoh Public Library|1.3335|103.8505
+Woodlands Regional Library|1.4349|103.7868
+Yishun Public Library|1.4294|103.83585
+UTown|1.30416|103.77399
+NUS Central Library|1.29650|103.77294
+NUS Science Library|1.29522|103.78009
+NUS Medical Library|1.29524|103.78187
+NUS School of Computing|1.29478|103.77395
+NUS College of Design and Engineering|1.29838|103.77221
+NUS Faculty of Science|1.29653|103.7801
+NUS Business|1.29257|103.77414
+NUS Faculty of Arts and Social Science|1.29519|103.77175

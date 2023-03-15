@@ -15,6 +15,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MeetCommand;
 import seedu.address.logic.commands.SampleCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.TagCommand;
@@ -78,6 +79,15 @@ public class EduMateParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case MeetCommand.EAT_COMMAND_WORD:
+            return new MeetCommandParser(MeetType.EAT).parse(arguments);
+
+        case MeetCommand.STUDY_COMMAND_WORD:
+            return new MeetCommandParser(MeetType.STUDY).parse(arguments);
+
+        case MeetCommand.MEET_COMMAND_WORD:
+            return new MeetCommandParser(MeetType.MEET).parse(arguments);
 
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);

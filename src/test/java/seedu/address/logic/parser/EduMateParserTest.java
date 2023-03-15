@@ -83,8 +83,8 @@ public class EduMateParserTest {
         );
         createParseCommandFind(
                 Prefix.ADDRESS,
-                Arrays.asList("a/91", "Ang", "Mo", "Kio", "Avenue", "4"),
-                Arrays.asList("91", "Ang", "Mo", "Kio", "Avenue", "4")
+                Arrays.asList("a/Ang", "Mo", "Kio"),
+                Arrays.asList("Ang", "Mo", "Kio")
         );
         createParseCommandFind(
                 Prefix.EMAIL,

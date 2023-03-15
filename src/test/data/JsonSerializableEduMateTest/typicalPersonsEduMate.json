@@ -3,8 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "index" : 0,
-    "address": "National University of Singapore",
+    "address": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -15,294 +14,296 @@
       "CS2102",
       "CS2103",
       "CS2104",
-      "CS2105"
-    ]
+      "CS2105",
+      "CS2106"
+    ],
+    "index": 0
   },
   "persons": [
     {
       "name": "Albert Park",
       "email": "albertpark@gmail.com",
       "telegramHandle": "@albertpark",
-      "index" : 1,
-      "address": "2 Blackmore Drive",
+      "address": "King Albert Park",
       "groups": [
         "TA"
       ],
       "phone": "89760441",
+      "index": 57,
       "modules": [
-        "CS2113T",
-        "CE3115",
-        "IS3221",
-        "CS3241",
-        "BT2102",
-        "CE3116"
+        "CS2105",
+        "CS2104",
+        "CS2103",
+        "CS1010",
+        "CHC5338",
+        "BT2103"
       ]
     },
     {
       "name": "Ang Mei Hua",
       "email": "angmeihua@gmail.com",
       "telegramHandle": "@angmeihua",
-      "index" : 2,
-      "address": "91 Ang Mo Kio Avenue 4",
+      "address": "Mayflower",
       "groups": [
-        "Study",
-        "Mayflower"
+        "Study"
       ],
-      "phone": "92752656",
+      "phone": "86203169",
+      "index": 95,
       "modules": [
-        "CE3121",
-        "CS3219",
-        "CS3216",
-        "CE3115",
-        "CS3234",
-        "IS3261"
+        "CS2108",
+        "GEN2061",
+        "CS2107",
+        "DSA2102",
+        "CS2102",
+        "CS2106"
       ]
     },
     {
       "name": "Bart Lee",
       "email": "bartlee@gmail.com",
       "telegramHandle": "@bartlee",
-      "index" : 3,
-      "address": "90 Bartley Road",
+      "address": "Bartley",
       "groups": [
         "CCA"
       ],
       "phone": "82630347",
+      "index": 20,
       "modules": [
         "CE2183",
-        "CS1010XCP",
-        "CS1010R",
-        "CS3223",
-        "CS3245",
-        "CS3211"
+        "CS2108",
+        "PL3551R",
+        "CS2113",
+        "CS2107",
+        "CS3216"
       ]
     },
     {
       "name": "Clark Kee",
       "email": "clarkkee@gmail.com",
       "telegramHandle": "@clarkkee",
-      "index" : 4,
-      "address": "10 Eu Tong Sen Street",
+      "address": "Clarke Quay",
       "groups": [
         "NUS"
       ],
       "phone": "81342028",
+      "index": 94,
       "modules": [
-        "CS2107",
-        "CS3282",
-        "CE3102",
-        "BT2101",
-        "CS3244R",
-        "CS3236"
+        "CS2103",
+        "CE2003",
+        "CS2105",
+        "IE4102",
+        "SC3206",
+        "CS2106"
       ]
     },
     {
-      "name": "Dawson Quentin",
-      "email": "dawsonquentin@gmail.com",
-      "telegramHandle": "@dawsonquentin",
-      "index" : 5,
-      "address": "301 Commonwealth Avenue",
+      "name": "Dakota Dunman",
+      "email": "dakotadunman@gmail.com",
+      "telegramHandle": "@dakotadunman",
+      "address": "Dakota",
       "groups": [
-        "Groupmate"
+        "CCA"
       ],
-      "phone": "87190565",
+      "phone": "86263617",
+      "index": 62,
       "modules": [
-        "IS3261",
-        "BT2010",
-        "CS2030",
-        "CS2040",
-        "CS3245"
+        "GE2102",
+        "QF3101",
+        "LLJ5203",
+        "CS2104",
+        "ST2132",
+        "CM3261"
       ]
     },
     {
       "name": "Edward Richards",
       "email": "edwardrichards@gmail.com",
       "telegramHandle": "@edwardrichards",
-      "index" : 6,
-      "address": "301 South Buona Vista Road",
+      "address": "Kent Ridge",
       "groups": [
         "CCA"
       ],
       "phone": "92463693",
+      "index": 83,
       "modules": [
-        "CS2010",
-        "CE1101",
-        "IS3103",
-        "CS2103",
-        "CS2040",
-        "CS3245"
+        "CS2105",
+        "CS2309",
+        "CS2104",
+        "CS2100",
+        "ST3289",
+        "CE4103"
       ]
     },
     {
       "name": "Ford Canning",
       "email": "fordcanning@gmail.com",
       "telegramHandle": "@fordcanning",
-      "index" : 7,
-      "address": "170 River Valley Road",
+      "address": "Fort Canning",
       "groups": [
         "TA"
       ],
       "phone": "88032666",
+      "index": 76,
       "modules": [
-        "CE3115",
-        "CS1010R",
-        "CS3281",
-        "CS2030",
-        "CS3219",
-        "CS3245R"
+        "CS2101",
+        "CS2103",
+        "CS2108",
+        "CS2030S",
+        "CS2102",
+        "CS2107"
       ]
     },
     {
       "name": "George Richards",
       "email": "georgerichards@gmail.com",
       "telegramHandle": "@georgerichards",
-      "index" : 8,
-      "address": "301 South Buona Vista Road",
+      "address": "Kent Ridge",
       "groups": [
         "CCA"
       ],
       "phone": "98796811",
+      "index": 100,
       "modules": [
-        "CE3165",
-        "IS3261",
-        "IS1103",
-        "IS3103",
-        "CS2309",
-        "CS1010"
+        "CS4249",
+        "CS2105",
+        "GE2103",
+        "BT2101",
+        "CS2108",
+        "CS2103R"
       ]
     },
     {
       "name": "Hong Shan",
       "email": "hongshan@gmail.com",
       "telegramHandle": "@hongshan",
-      "index" : 9,
-      "address": "920 Tiong Bahru Road",
+      "address": "Redhill",
       "groups": [
         "Groupmate"
       ],
       "phone": "91345682",
+      "index": 97,
       "modules": [
-        "CS2107",
-        "BT2010",
-        "CS3235",
-        "CE3121",
-        "CS2220",
-        "BT2101"
+        "MA2101",
+        "CS2104",
+        "CS2113",
+        "LSM3259",
+        "CE2407A",
+        "CS2107"
       ]
     },
     {
       "name": "Isaac Newton",
       "email": "isaacnewton@gmail.com",
       "telegramHandle": "@isaacnewton",
-      "index" : 10,
-      "address": "49 Scotts Road",
+      "address": "Newton",
       "groups": [
-        "TA",
-        "NS"
+        "NS",
+        "TA"
       ],
       "phone": "93175044",
+      "index": 90,
       "modules": [
-        "IS2103",
-        "IS3106",
-        "CS1010X",
-        "CS3233",
-        "CS3245",
+        "CE5315",
+        "CS2109S",
+        "CS2113T",
+        "CS2105",
+        "CS2107",
         "CS2104"
       ]
     },
     {
-      "name": "Joo Koon",
-      "email": "jookoon@gmail.com",
-      "telegramHandle": "@jookoon",
-      "index" : 11,
-      "address": "91 Joo Koon Circle",
+      "name": "Ju Kun",
+      "email": "jukun@gmail.com",
+      "telegramHandle": "@jukun",
+      "address": "Joo Koon",
       "groups": [
         "Groupmate"
       ],
       "phone": "84709651",
+      "index": 7,
       "modules": [
-        "CE3101",
-        "IS1103",
-        "CE2112",
+        "CS2101",
+        "DSA2101",
+        "BN3301",
+        "CS2106",
         "CS2108",
-        "CS3103",
-        "CS2113T"
+        "CS2107"
       ]
     },
     {
       "name": "Kevin Ho",
       "email": "kevinho@gmail.com",
       "telegramHandle": "@kevinho",
-      "index" : 12,
-      "address": "900 Upper Serangoon Road",
+      "address": "Kovan",
       "groups": [
         "NUS"
       ],
       "phone": "99997496",
+      "index": 53,
       "modules": [
-        "CS2220",
-        "CS3223",
-        "CS3242",
-        "CS3203",
-        "CE3165",
-        "CS3281"
+        "IS2101",
+        "CS2030S",
+        "LAC2201",
+        "YSC1207",
+        "CS2113T",
+        "CS2107"
       ]
     },
     {
       "name": "Lavender Crawford",
       "email": "lavendercrawford@gmail.com",
       "telegramHandle": "@lavendercrawford",
-      "index" : 13,
-      "address": "50 Kallang Road",
+      "address": "Lavender",
       "groups": [
         "Groupmate"
       ],
       "phone": "83340546",
+      "index": 11,
       "modules": [
-        "IS3106",
-        "CS1010X",
-        "CS2102",
-        "CS1010J",
-        "CS2103T",
-        "CS2113T"
+        "BT2102",
+        "CS2113T",
+        "CS2113",
+        "CS4243",
+        "CS2100",
+        "IS2103"
       ]
     },
     {
       "name": "Mary Meng",
       "email": "marymeng@gmail.com",
       "telegramHandle": "@marymeng",
-      "index" : 14,
-      "address": "60 Marymount Road",
+      "address": "Marymount",
       "groups": [
         "CCA"
       ],
       "phone": "93816073",
+      "index": 63,
       "modules": [
+        "CS2103",
+        "CS2104",
         "CS2106",
-        "CS3282",
-        "CS2108",
-        "CS3203",
-        "CS2103T",
-        "CS2104"
+        "LL4377V",
+        "CS2102",
+        "ID4106"
       ]
     },
     {
       "name": "Nicole Hai Wei Ting",
       "email": "nicolehaiweiting@gmail.com",
       "telegramHandle": "@nicolehaiweiting",
-      "index" : 15,
-      "address": "20 Republic Avenue",
+      "address": "Nicoll Highway",
       "groups": [
         "CCA"
       ],
       "phone": "92574283",
+      "index": 52,
       "modules": [
-        "CS2101",
-        "IS1103",
-        "CS1010E",
-        "CS3211",
-        "IS3240",
-        "CS1010J"
+        "NGN2001E",
+        "CS3203",
+        "LL5394",
+        "CS2105",
+        "CS3242",
+        "CS2107"
       ]
     }
   ]
