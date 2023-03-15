@@ -1,7 +1,7 @@
 package seedu.fitbook.logic.commands.client;
 
 
-import static seedu.fitbook.logic.commands.ExportCommand.MESSAGE_SUCCESS;
+import static seedu.fitbook.logic.commands.ExportRoutineCommand.MESSAGE_SUCCESS;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
 import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookExerciseRoutine;
 
