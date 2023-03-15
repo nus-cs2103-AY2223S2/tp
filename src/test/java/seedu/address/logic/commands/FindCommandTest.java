@@ -1,4 +1,6 @@
 package seedu.address.logic.commands;
+import org.junit.jupiter.api.Tag;
+import seedu.address.model.person.MultiFieldContainsKeywordsPredicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -9,9 +11,11 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import seedu.address.model.person.MultiFieldContainsKeywordsPredicate;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,10 +33,14 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        MultiFieldContainsKeywordsPredicate firstPredicate =
+                new MultiFieldContainsKeywordsPredicate(Collections.singletonList("first")
+                        //, Arrays.asList("name", "tag")
+                );
+        MultiFieldContainsKeywordsPredicate secondPredicate =
+                new MultiFieldContainsKeywordsPredicate(Collections.singletonList("second")
+                        //, Arrays.asList("name", "tag")
+                );
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -57,27 +65,39 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        MultiFieldContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
+//    @Test
+//    public void execute_multipleKeywords_multiplePersonsFound() {
+//        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+//        MultiFieldContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+//        FindCommand command = new FindCommand(predicate);
+//        expectedModel.updateFilteredPersonList(predicate);
+//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+//        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+//    }
+
+    /**
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     */
+    private MultiFieldContainsKeywordsPredicate preparePredicate(String userInput) {
+
+        return new MultiFieldContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        MultiFieldContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    }
 }

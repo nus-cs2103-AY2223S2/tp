@@ -65,4 +65,16 @@ public class StringUtil {
             return false;
         }
     }
+
+
+    public static boolean containsIgnoreCase(String text, String keyword) {
+        if (keyword.isEmpty()) {
+            return true;
+        }
+
+        String textLowerCase = text.toLowerCase();
+        String keywordLowerCase = keyword.toLowerCase();
+
+        return textLowerCase.contains(keywordLowerCase);
+    }
 }
