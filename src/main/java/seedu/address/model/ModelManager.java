@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.user.User;
+import seedu.address.model.user.UserData;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,23 +23,25 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final UserData userData;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyUserData userData) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.userData = new UserData(userData);
+        filteredPersons = new FilteredList<>(this.addressBook.getData());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new UserData());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -73,6 +77,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getUserDataFilePath() {
+        return this.userPrefs.getUserDataFilePath();
+    }
+
+    @Override
+    public void setUserDataFilePath(Path userDataFilePath) {
+        requireNonNull(userDataFilePath);
+        this.userPrefs.setUserDataFilePath(userDataFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -111,6 +126,23 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== UserData ================================================================================
+
+    @Override
+    public void setUserData(ReadOnlyUserData userData) {
+        this.userData.resetData(userData);
+    }
+
+    @Override
+    public ReadOnlyUserData getUserData() {
+        return this.userData;
+    }
+
+    @Override
+    public void setUser(User user) {
+        this.userData.setUser(user);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -127,6 +159,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+
 
     @Override
     public boolean equals(Object obj) {

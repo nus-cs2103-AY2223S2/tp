@@ -1,4 +1,4 @@
-package seedu.address.model.person.fields;
+package seedu.address.model.person.fields.subfields;
 
 /**
  * Represents a Person's singular mod taken in the address book.
