@@ -3,13 +3,11 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -22,29 +20,26 @@ import seedu.address.logic.commands.parent.ParentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
-import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
-import seedu.address.model.person.parent.Relationship;
-import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.tag.Tag;
 
 /**
  * ParentCommandParser that parses commands starting with "parent"
  */
 public class ParentCommandParser {
-    public static final String HELP_MESSAGE = "Parent command has to include a class and action.\n"
+    public static final String HELP_MESSAGE = "Parent command has to include an action.\n"
             + ParentCommand.MESSAGE_USAGE;
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<class>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<arguments>.*)");
 
     /**
-     * Parse the command into their respective prefixes
-     * @param args the command input by user
-     * @return A StudentCommand
-     * @throws ParseException
+     * Parse the parent commands into their respective prefixes
+     * @param args User input.
+     * @return ParentAddCommand with an ArgumentMultimap object that is derived from tokenizing the input with Prefixes.
+     * @throws ParseException when there's an unexpected error in parsing the user input.
      */
     public ParentAddCommand parse(String args) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
@@ -53,42 +48,41 @@ public class ParentCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
 
-        final String studentClass = matcher.group("class");
-        final String arguments = matcher.group("arguments");
-
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_ADD, PREFIX_ADDRESS,
-                        PREFIX_INDEXNUMBER, PREFIX_NAME,
-                        PREFIX_RELATIONSHIP, PREFIX_AGE, PREFIX_IMAGEPARENT, PREFIX_PHONE,
+                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_ADDRESS,
+                        PREFIX_NAME, PREFIX_PARENTAGE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
                         PREFIX_EMAIL);
 
         if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
-            return addCommand(studentClass, argMultimap);
+            return addCommand(argMultimap);
         } else {
             //Rest of logic (Need to edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
     }
 
-    private ParentAddCommand addCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER, PREFIX_NAME, PREFIX_RELATIONSHIP)
-                || !argMultimap.getPreamble().isEmpty()
-                || studentClass.length() == 0) {
+    /**
+     * Retrieve the relevant information to create a new Parent object from user input and parse it to create a new
+     * Parent object and returns ParentAddCommand with the new Parent object.
+     *
+     * @param argMultimap An ArgumentMultimap object that is derived from tokenizing the user input with Prefixes.
+     * @return ParentAddCommand to add the new Parent into PowerConnect.
+     * @throws ParseException when there's an unexpected error in parsing the user input.
+     */
+    private ParentAddCommand addCommand(ArgumentMultimap argMultimap) throws ParseException {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONEPARENT)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParentAddCommand.MESSAGE_USAGE));
         }
-        Class sc = ParserUtil.parseStudentClass(studentClass);
-        IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Relationship rls = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
-        Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_AGE).get()));
+        Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_PARENTAGE).get()));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-
-        Parent parent = new Parent(sc, indexNumber, name, rls, age, image, email, phone, address, tagList);
+        Parent parent = new Parent(name, age, image, email, phone, address, tagList);
         return new ParentAddCommand(parent);
     }
 

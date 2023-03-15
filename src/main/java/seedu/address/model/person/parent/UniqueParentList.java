@@ -84,7 +84,6 @@ public class UniqueParentList implements Iterable<Parent> {
         if (!parentsAreUnique(parents)) {
             throw new DuplicatePersonException();
         }
-
         internalList.setAll(parents);
     }
 
