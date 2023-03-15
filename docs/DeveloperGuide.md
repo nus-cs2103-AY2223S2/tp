@@ -257,64 +257,153 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* has a need to manage a significant number of deliveries 
+* requires the ability to track, monitor and update the status of deliveries
+* shows a preference for desktop applications
+* has proficient typing skills
+* prefers typing to mouse-based interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: optimize delivery management through an application that utilizes CLI commands,
+providing a more efficient alternative to conventional mouse-driven GUI applications.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                              | I want to …​                                                                | So that I can…​                                                   |
+|----------|--------------------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | parcel delivery rider (basic)        | view all my deliveries                                                      | I can view my future deliveries as well                           |
+| `* * *`  | parcel delivery rider (basic)        | view a specific delivery                                                    | I can view the details of the delivery                            |
+| `* * *`  | parcel delivery rider (basic)        | delete a delivery                                                           | I can delete the delivery if I input it wrongly                   |
+| `* * *`  | parcel delivery rider (basic)        | add deliveries                                                              | I can add new delivery jobs                                       |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery in progess                                                  | I can keep track of which deliveries is in progress               |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery as done                                                     | I can keep track of which deliveries are done                     |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery as failed                                                   | I can keep track of which deliveries have failed to be delivered  |
+| `* * *`  | parcel delivery rider (basic)        | check what specific parcel I need to deliver to a specific address          | I will delivery the correct parcel to the correct customers       |
+| `* * `   | parcel delivery rider (basic)        | view the number of failed attempts                                          | I know which deliveries have multiple failed attempts             |
+| `* * `   | parcel delivery rider (intermediate) | see the weight of the parcels                                               | I can carry the appropriate amount of parcels                     |
+| `* * `   | parcel delivery rider (basic)        | see the phone number of the customer                                        | I can contact the customer if there is no response at the address |
+| `* * `   | parcel delivery rider (intermediate) | find the shortest path that goes through the scheduled delivery for the day | I can complete my job efficiently                                 |
+| `* * `   | customer (basic)                     | be notified when the delivery is in progress                                | I can be there to receive the delivery                            |
+| `* * `   | customer (basic)                     | leave feedback                                                              | get better services in the future                                 |
+| `* * `   | parcel delivery rider (expert)       | sort my deliveries by priority                                              | I know which deliveries I have to deliver first                   |
+| `* * `   | parcel delivery rider (expert)       | view all my deliveries in a map form                                        | I have an overall view of where my deliveries are                 |
+| `* * `   | parcel delivery rider (new riders)   | view the nearest carpark on the map                                         | I know where to park my vehicle                                   |
+| `* * `   | parcel delivery rider                | mark parcels as fragile                                                     | I can be more careful for fragile parcels                         |
+| `* * `   | parcel delivery rider                | get notified to take a break                                                | I know if I am exceeding or under utilizing my breaks             |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Bookopedia` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
 
-**MSS**
+**Use case: UC1 - Add Delivery**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**MSS:**
+1. User requests to add delivery along with the relevant details of delivery name and address
+2. System adds the delivery
+
+    Use case ends
+
+**Extensions:**
+* 1a. User inputs invalid details/address.
+
+    * 1a1. System shows error message.
+
+        Use case resumes at step 1.
+
+**Use Case: UC2 - View Delivery**
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User picks one delivery to view its remaining details
+4. System shows the remaining details of the chosen delivery
+    
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
 
     Use case ends.
+* 3a. The chosen delivery is invalid.
 
-**Extensions**
+    * 3a1. System shows error message.
+    
+      Use case resumes at step 3.
 
-* 2a. The list is empty.
+**Use Case: UC3 - Mark Delivery**
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User request to mark a chosen delivery with the relevant status (i.e. In Progress, Done, Failed)
+4. System marks the delivery with user given status
+
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
+    
+    Use case ends.
+* 3a. User inputs invalid delivery status.
+    * 3a1. System shows error message and list the valid statuses.
+        
+        Use case resumes at step 3.
+* 3b. User chose an invalid delivery.
+    * 3b1. System shows error message
+
+        Use case resumes at step 3.
+
+**Use Case: UC4 - Delete Delivery**
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User choose a delivery to delete
+4. System deletes chosen delivery
+
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
 
   Use case ends.
+* 3a. User chose an invalid delivery.
+    * 3a1. System shows error message
 
-* 3a. The given index is invalid.
+        Use case resumes at step 3.
 
-    * 3a1. AddressBook shows an error message.
+**Use Case: UC5 - List All Deliveries**
 
-      Use case resumes at step 2.
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
 
-*{More to be added}*
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
+
+    Use case ends
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Bookopedia should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Bookopedia should be able to hold up to 50 deliveries without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Bookopedia should work without requiring an installer.
+5. Bookopedia should not depend on your own remote server.
+6. Bookopedia should be packaged into a single _JAR_ file
+7. The file size of the _JAR_ file should be reasonable and not exceed the limit of 100MB.
+8. The _GUI_ should work well and usable under HD screens (1920x1080) at 100% scale.
+9. A _DBMS_ should not be used to store data.
+10. The data should be stored locally and should be in a human editable text file.
+11. Bookopedia should be for a single user i.e. (not a multi-user product).
+12. Bookopedia should respond to commands within 5s.
 
 *{More to be added}*
 
@@ -322,6 +411,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MSS**: Main Success Scenario
+* **JAR**: Java ARchive
+* **GUI**: Graphical User Interface
+* **DBMS**: Database Management System
 
 --------------------------------------------------------------------------------------------------------------------
 
