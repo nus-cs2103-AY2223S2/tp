@@ -10,5 +10,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_FOOD_DISPLAYED_INDEX = "The food item index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_TAG_NOT_FOUND = "There is no %1$s Tag in wife!";
 
 }
