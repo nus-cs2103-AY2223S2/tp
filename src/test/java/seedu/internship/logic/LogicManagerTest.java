@@ -3,6 +3,7 @@ package seedu.internship.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.internship.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 import static seedu.internship.logic.commands.CommandTestUtil.POSITION_DESC_ML1;
 import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_DESC_ML1;
 import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_ML1;
@@ -85,7 +86,7 @@ public class LogicManagerTest {
         Internship expectedInternship = new InternshipBuilder(ML1).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addInternship(expectedInternship);
-        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        String expectedMessage = FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
