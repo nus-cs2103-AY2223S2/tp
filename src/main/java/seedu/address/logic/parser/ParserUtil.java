@@ -139,6 +139,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String performance} into a {@code Performance} object.
+     */
     public static Performance parsePerformance(String performance) throws ParseException {
         requireNonNull(performance);
         String trimmedPerformance = performance.trim();
