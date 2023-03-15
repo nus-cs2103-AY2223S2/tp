@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.storage.ChsContacts.CHS_CONTACTS;
 import static seedu.address.storage.SocContacts.SOC_CONTACTS;
 
