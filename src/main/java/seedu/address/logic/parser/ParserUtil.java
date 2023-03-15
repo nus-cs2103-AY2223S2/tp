@@ -14,6 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
@@ -172,9 +173,20 @@ public class ParserUtil {
     public static MedicalCondition parseMedicalCond(String medicalCondition) throws ParseException {
         requireNonNull(medicalCondition);
         String trimmed = medicalCondition.trim();
-        if (!Tag.isValidTagName(trimmed)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
         return new MedicalCondition(medicalCondition);
+    }
+
+    /**
+     * Parses a {@code int age} into an {@code Age}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code age} is invalid.
+     */
+    public static Age parseAge(String age) throws ParseException {
+        requireNonNull(age);
+        if (!Age.isValidAge(age)) {
+            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+        }
+        return new Age(age);
     }
 }

@@ -59,6 +59,28 @@ public class DeleteCommands extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommands // instanceof handles nulls
-                && indices.equals(((DeleteCommands) other).indices)); // state check
+                && sameArrayList(((DeleteCommands) other).indices)); // state check
+    }
+
+    /**
+     * @param other
+     * @return
+     */
+    public boolean sameArrayList(ArrayList<Index> other) {
+
+        if (other.size() != this.indices.size()) {
+            System.out.println("-----------------");
+            return false;
+
+        } else {
+            for (int x = 0; x < this.indices.size(); x++) {
+                boolean output = indices.get(x).getZeroBased() == other.get(x).getZeroBased();
+
+                if (!output) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
