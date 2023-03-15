@@ -41,25 +41,21 @@
           </padding>
                <TabPane minWidth="340.0" prefWidth="340.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                  <tabs>
-                   <Tab text="Home">
+                   <Tab text="Tasks">
                         <content>
                       <StackPane fx:id="taskListPanelPlaceholder" />
                         </content>
                    </Tab>
-                   <Tab text="AddressBook">
+                   <Tab text="Suppliers">
                      <content>
                        <StackPane fx:id="supplierListPanelPlaceholder" />
                      </content>
                    </Tab>
                    <Tab text="Orders">
                         <content>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is a placeholder for ORDERS." />
-                        </content></Tab>
-                     <Tab text="Suppliers">
-                        <content>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is a placeholder for SUPPLIERS" />
+                          <StackPane fx:id="orderListPanelPlaceholder" />
                         </content>
-                     </Tab>
+                   </Tab>
                  </tabs>
                </TabPane>
         </VBox>
