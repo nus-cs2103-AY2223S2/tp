@@ -30,7 +30,7 @@ public class InternBuddy implements ReadOnlyInternBuddy {
     public InternBuddy() {}
 
     /**
-     * Creates an AddressBook using the Internships in the {@code toBeCopied}
+     * Creates an InternBuddy using the Internships in the {@code toBeCopied}
      */
     public InternBuddy(ReadOnlyInternBuddy toBeCopied) {
         this();
@@ -48,7 +48,7 @@ public class InternBuddy implements ReadOnlyInternBuddy {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code InternBuddy} with {@code newData}.
      */
     public void resetData(ReadOnlyInternBuddy newData) {
         requireNonNull(newData);
@@ -87,7 +87,7 @@ public class InternBuddy implements ReadOnlyInternBuddy {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code InternBuddy}.
      * {@code key} must exist in the address book.
      */
     public void removeInternship(Internship key) {
