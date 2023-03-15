@@ -82,7 +82,15 @@ Example Input: `advance n/John Doe p/(John Doe's number)`
 
 Output: `Successfully advanced John Doe`
 
-2. Wrote test cases for RejectCommand and RejectCommandParser
+2. Wrote test cases for RejectCommand
+
+    - Test cases that covers possible paths taken by `execute(Model model)` and
+   `equals()` in `RejectCommand` class.
+
+3. Wrote test cases for RejectCommandParser
+
+    - Test cases that covers possible paths taken by `parse(String args)` 
+   in `RejectCommandParser` class.
 
 - **Documentation**:
 
