@@ -14,6 +14,7 @@ import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_MA2002;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.module.Module;
@@ -75,6 +76,11 @@ public class TypicalModules {
     }
 
     public static List<Module> getTypicalModules() {
-        return new ArrayList<Module>(Arrays.asList(CS2100, ST2334, MA1521, GEA1000, CS1231, CS1010R, IS1103));
+        return new ArrayList<Module>(Arrays.asList(CS2100, ST2334, MA1521, GEA1000, CS1231, CS1010R, IS1103))
+                .stream()
+                .map((mod) -> {
+                    return ModuleUtil.copy(mod);
+                })
+                .collect(Collectors.toList());
     }
 }
