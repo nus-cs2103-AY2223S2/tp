@@ -1,53 +1,83 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using the displayed name from the address book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    private static String name;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the person identified by their name in the displayed person list.\n"
+            + "Parameters: "
+            + PREFIX_NAME + "NAME\n"
+            + "Example: " + COMMAND_WORD + " n/John Doe";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    private final NameContainsKeywordsPredicate predicate;
 
-    private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    /**
+     * Constructor for DeleteCommand
+     *
+     * @param predicate name after the deleteCommand
+     * @param name      person name
+     */
+    public DeleteCommand(NameContainsKeywordsPredicate predicate, String name) {
+        requireNonNull(predicate);
+        this.predicate = predicate;
+        this.name = name;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        model.updateFilteredPersonList(predicate);
+        List<Person> personsToDelete = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (personsToDelete.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_NAME);
+        } else if (personsToDelete.size() == 1 && personsToDelete.get(0).getName().toString().equals(name.trim())) {
+
+            Person deletedPerson = personsToDelete.get(0);
+            model.deletePerson(deletedPerson);
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, name));
+
+        } else {
+            int index = 0;
+            for (int i = 0; i < personsToDelete.size(); i++) {
+                if (personsToDelete.get(i).getName().toString().equals(name)) {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (personsToDelete.get(index).getName().toString().equals(name)) {
+                Person deletedPerson = personsToDelete.get(index);
+                model.deletePerson(deletedPerson);
+                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, name));
+            } else {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_NAME);
+            }
         }
-
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && predicate.equals(((DeleteCommand) other).predicate)); // state check
     }
 }
