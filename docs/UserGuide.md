@@ -164,15 +164,15 @@ Formats:
 Example of usage: `tag 3 m/CS2103T`
 ```
 Name: John Doe (User)
-Modules reading: CS2101 | MA2104 | MA3252 | CFG1002
+Modules: [CS2101 , MA2104 , MA3252 , CFG1002]
 ```
 
 Expected outcome for CLI:
 ```
 Module(s) tagged to Person!
 Name: John Smith
-Modules: CS2100 | CS2101 | CS2102 | CS2103T
-Module(s) in common: CS2101 | CS2103T
+Modules: [CS2100, CS2101, CS2102, CS2103T]
+Module(s) in common: [CS2101, CS2103T]
 ```
 Description of outcome: 
 
@@ -181,14 +181,14 @@ CS2103T is added to John Doe's list of modules. Assuming the user also takes CS2
 Example of usage: tag m/CS2103T
 ```
 Name: John Doe (user)
-Modules reading: CS2101 | MA2104 | MA3252 | CFG1002
+Modules: [CS2101, MA2104, MA3252, CFG1002]
 ```
 
 Expected outcome for CLI:
 ```
 Module(s) tagged to Person!
 Name: John Doe
-Modules reading: CS2101 | CS2103T | MA2104 | MA3252 | CFG1002
+Modules: [CS2101, CS2103T, MA2104, MA3252, CFG1002]
 ```
 Description of outcome:
 
@@ -205,15 +205,15 @@ Formats:
 Example of usage: `untag 3 m/CS2103T`
 ```
 Name: John Doe (User)
-Modules reading: CS2101 | MA2104 | MA3252 | CFG1002
+Modules: [CS2101, MA2104, MA3252, CFG1002]
 ```
 
 Expected outcome for CLI:
 ```
 "Module(s) untagged to Person!
 Name: John Smith
-Modules: CS2100 | CS2101 | CS2102
-Module(s) in common: CS2101
+Modules: [CS2100, CS2101, CS2102]
+Module(s) in common: [CS2101]
 ```
 Description of outcome: 
 
@@ -222,14 +222,14 @@ CS2103T is removed from John Doe's list of modules. Assuming the user also takes
 Example of usage: untag m/CS2103T
 ```
 Name: John Doe (user)
-Modules reading: CS2101 | CS2103T | MA2104 | MA3252 | CFG1002
+Modules: [CS2101, CS2103T, MA2104, MA3252, CFG1002]
 ```
 
 Expected outcome for CLI:
 ```
 "Module(s) untagged to Person!
 Name: John Doe
-Modules reading: CS2101 | MA2104 | MA3252 | CFG1002
+Modules: [CS2101, MA2104, MA3252, CFG1002]
 ```
 Description of outcome:
 
