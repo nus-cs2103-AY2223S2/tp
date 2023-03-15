@@ -2,20 +2,19 @@ package seedu.modtrek.ui;
 
 import java.util.logging.Logger;
 
-import javafx.event.ActionEvent;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.logic.Logic;
 import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
+import seedu.modtrek.ui.clisection.CliSection;
+import seedu.modtrek.ui.resultssection.ResultsSection;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,24 +30,16 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ModuleListPanel moduleListPanel;
-    private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private CliSection cliSection;
+    private ResultsSection resultsSection;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private VBox resultsSectionPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private VBox cliSectionPlaceholder;
 
-    @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
+    /* add more... */
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -62,65 +53,21 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
-        setAccelerators();
-
-        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
-
-    /**
-     * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
-     */
-    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
-        menuItem.setAccelerator(keyCombination);
-
-        /*
-         * TODO: the code below can be removed once the bug reported here
-         * https://bugs.openjdk.java.net/browse/JDK-8131666
-         * is fixed in later version of SDK.
-         *
-         * According to the bug report, TextInputControl (TextField, TextArea) will
-         * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
-         * not work when the focus is in them because the key event is consumed by
-         * the TextInputControl(s).
-         *
-         * For now, we add following event filter to capture such key events and open
-         * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
-         */
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
-                menuItem.getOnAction().handle(new ActionEvent());
-                event.consume();
-            }
-        });
-    }
-
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
-        personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        resultsSection = new ResultsSection(logic.getFilteredModuleList());
+        resultsSectionPlaceholder.getChildren().add(resultsSection.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getDegreeProgressionFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        cliSection = new CliSection(this::executeCommand);
+        cliSectionPlaceholder.getChildren().add(cliSection.getRoot());
     }
 
     /**
@@ -132,18 +79,6 @@ public class MainWindow extends UiPart<Stage> {
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
-        }
-    }
-
-    /**
-     * Opens the help window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
         }
     }
 
@@ -159,12 +94,9 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
-        primaryStage.hide();
-    }
-
-    public ModuleListPanel getModuleListPanel() {
-        return moduleListPanel;
+        PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
+        delay.setOnFinished(event -> primaryStage.hide());
+        delay.play();
     }
 
     /**
@@ -176,11 +108,8 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
+            // To refresh the graphics section to display updated list of modules
+            resultsSection.displayAllModules(logic.getFilteredModuleList());
 
             if (commandResult.isExit()) {
                 handleExit();
@@ -189,7 +118,6 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

@@ -1,6 +1,5 @@
 package seedu.modtrek.logic.parser;
 
-import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modtrek.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CODE_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;

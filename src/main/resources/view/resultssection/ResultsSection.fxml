@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+
+<?import javafx.scene.control.Label?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="sectionContainer" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" id="results-section" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@results-section.css" />
+    </stylesheets>
+
+    <HBox alignment="CENTER" id="results-section-header">
+        <HBox HBox.hgrow="ALWAYS" id="results-section-header-deco" />
+        <VBox alignment="CENTER" id="results-section-header-title-container">
+            <Label fx:id="headerTitle" id="results-section-header-title" styleClass="h1" />
+            <Label fx:id="headerSubtitle" id="results-section-header-subtitle" styleClass="h2" />
+        </VBox>
+        <HBox HBox.hgrow="ALWAYS" id="results-section-header-deco" />
+    </HBox>
+
+    <VBox fx:id="body" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" id="results-section-body" />
+</VBox>

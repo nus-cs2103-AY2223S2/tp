@@ -12,7 +12,6 @@ import seedu.modtrek.commons.exceptions.IllegalValueException;
 import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.module.Module;
-
 /**
  * An Immutable DegreeProgression that is serializable to JSON format.
  */

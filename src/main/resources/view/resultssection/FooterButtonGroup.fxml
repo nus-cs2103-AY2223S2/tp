@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="footerButtonGroup" alignment="CENTER" styleClass="footer-button-group" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@footer-button-group.css" />
+    </stylesheets>
+</HBox>
