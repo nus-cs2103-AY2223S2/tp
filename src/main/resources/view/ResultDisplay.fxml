@@ -2,7 +2,12 @@
 
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" prefHeight="131.0" prefWidth="512.0" styleClass="result-display" />
+<StackPane fx:id="placeHolder" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+  <TextArea fx:id="resultDisplay" nodeOrientation="LEFT_TO_RIGHT" prefHeight="131.0" prefWidth="512.0" styleClass="result-display">
+      <font>
+         <Font name="System Bold Italic" size="49.0" />
+      </font>
+   </TextArea>
 </StackPane>
