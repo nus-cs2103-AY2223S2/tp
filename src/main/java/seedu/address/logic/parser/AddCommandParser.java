@@ -50,7 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Photo photo = ParserUtil.parsePhoto(argMultimap.getValue(PREFIX_PHOTO).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         
-        Remark remark = new Remark(""); // add command does not allow adding remarks straight away
+        Remark remark = new Remark(); // add command does not allow adding remarks straight away
         Performance performance = ParserUtil.parsePerformance(argMultimap.getValue(PREFIX_PERFORMANCE).get());
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
