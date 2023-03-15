@@ -3,7 +3,6 @@ package vimification.logic.commands;
 import vimification.logic.commands.exceptions.CommandException;
 import vimification.model.Model;
 
-
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
