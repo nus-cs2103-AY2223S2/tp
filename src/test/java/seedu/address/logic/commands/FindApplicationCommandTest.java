@@ -18,8 +18,10 @@ import static seedu.address.testutil.TypicalApplications.*;
  * Contains integration tests (interaction with the Application Model) for {@code FindApplicationCommand}.
  */
 public class FindApplicationCommandTest {
-    private ApplicationModel model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
-    private ApplicationModel expectedModel = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private ApplicationModel model = new ApplicationModelManager(
+            getTypicalInternshipBook(), new UserPrefs());
+    private ApplicationModel expectedModel = new ApplicationModelManager(
+            getTypicalInternshipBook(), new UserPrefs());
 
     @Test
     public void equals() {

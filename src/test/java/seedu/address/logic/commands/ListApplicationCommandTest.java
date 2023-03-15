@@ -1,39 +1,41 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.showApplicationAtIndex;
+import static seedu.address.testutil.TypicalApplicationIndexes.INDEX_FIRST_APPLICATION;
+import static seedu.address.testutil.TypicalApplications.getTypicalInternshipBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import seedu.address.model.ApplicationModel;
+import seedu.address.model.ApplicationModelManager;
 import seedu.address.model.UserPrefs;
-
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the ApplicationModel)
+ * and unit tests for ListApplicationCommand.
  */
-public class ListCommandTest {
+public class ListApplicationCommandTest {
 
-    private Model model;
-    private Model expectedModel;
+    private ApplicationModel model;
+    private ApplicationModel expectedModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+        expectedModel = new ApplicationModelManager(model.getInternshipBook(), new UserPrefs());
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListApplicationCommand(), model,
+                ListApplicationCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        showApplicationAtIndex(model, INDEX_FIRST_APPLICATION);
+        assertCommandSuccess(new ListApplicationCommand(), model,
+                ListApplicationCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

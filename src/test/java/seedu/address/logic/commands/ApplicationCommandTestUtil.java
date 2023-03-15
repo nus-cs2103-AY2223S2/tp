@@ -115,7 +115,7 @@ public class ApplicationCommandTestUtil {
      * Updates {@code model}'s filtered list to show only the application at the given {@code targetIndex} in the
      * {@code model}'s internship book.
      */
-    public static void showPersonAtIndex(ApplicationModel model, Index targetIndex) {
+    public static void showApplicationAtIndex(ApplicationModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredApplicationList().size());
 
         Application application = model.getFilteredApplicationList().get(targetIndex.getZeroBased());
