@@ -138,6 +138,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setAppointment(int id, Appointment editedAppointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableMap<Integer, IdData<Patient>> getFilteredPatientList() {
             throw new AssertionError("This method should not be called.");
         }

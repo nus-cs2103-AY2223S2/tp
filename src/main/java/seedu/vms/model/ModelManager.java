@@ -148,6 +148,13 @@ public class ModelManager implements Model {
         appointmentManager.remove(id);
     }
 
+    @Override
+    public void setAppointment(int id, Appointment editedAppointment) {
+        requireAllNonNull(editedAppointment);
+
+        appointmentManager.set(id, editedAppointment);
+    }
+
     // =========== VaxTypeManager ==============================================================================
 
     @Override
