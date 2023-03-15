@@ -14,8 +14,8 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds module with the specified module code \n"
-            + "Parameters: MODULE CODE \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds module with the specified module code.\n"
+            + "Parameters: MODULE CODE\n"
             + "Example: " + COMMAND_WORD + " CS1101S";
 
     private final ModuleCodePredicate predicate;
