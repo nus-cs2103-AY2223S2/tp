@@ -5,6 +5,6 @@
 
 <VBox spacing="5" styleClass="pane-with-rounded-corner-dark, pa"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="title" styleClass="label-section-header" text="\$title" wrapText="true" />
+    <Label fx:id="title" styleClass="label-h6" text="\$title" wrapText="true" />
     <FlowPane fx:id="modules" prefWidth="-Infinity" />
 </VBox>

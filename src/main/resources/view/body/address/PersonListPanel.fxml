@@ -4,11 +4,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox styleClass="pane-with-rounded-corner"
+<VBox styleClass="pane-with-rounded-corner-light"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="personListView" VBox.vgrow="ALWAYS">
     <placeholder>
-      <Label text="No contacts." styleClass="label-bright" />
+      <Label text="No contacts." styleClass="label-p" />
     </placeholder>
   </ListView>
 </VBox>
