@@ -3,7 +3,7 @@ package seedu.library.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -17,12 +17,12 @@ public class CliSyntaxTest {
 
     @Test
     public void prefixGenre_success() {
-        assertEquals(new Prefix("e/"), PREFIX_GENRE);
+        assertEquals(new Prefix("g/"), PREFIX_GENRE);
     }
 
     @Test
-    public void prefixPhone_success() {
-        assertEquals(new Prefix("p/"), PREFIX_PHONE);
+    public void prefixProgress_success() {
+        assertEquals(new Prefix("p/"), PREFIX_PROGRESS);
     }
 
     @Test

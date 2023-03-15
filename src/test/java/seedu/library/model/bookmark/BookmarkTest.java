@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_BOB;
-import static seedu.library.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_PROGRESS_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.library.testutil.Assert.assertThrows;
@@ -31,8 +31,8 @@ public class BookmarkTest {
         // null -> returns false
         assertFalse(ALICE.isSameBookmark(null));
 
-        // same name, all other attributes different -> returns true
-        Bookmark editedAlice = new BookmarkBuilder(ALICE).withPhone(VALID_PHONE_BOB).withGenre(VALID_GENRE_BOB)
+        // same name, all other attributes different -> retu    rns true
+        Bookmark editedAlice = new BookmarkBuilder(ALICE).withProgress(VALID_PROGRESS_BOB).withGenre(VALID_GENRE_BOB)
                 .withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameBookmark(editedAlice));
 
@@ -72,8 +72,8 @@ public class BookmarkTest {
         Bookmark editedAlice = new BookmarkBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new BookmarkBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        // different progress -> returns false
+        editedAlice = new BookmarkBuilder(ALICE).withProgress(VALID_PROGRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
