@@ -10,6 +10,7 @@ import seedu.address.commons.util.StringUtil;
  */
 public class InternshipContainsKeywordsPredicate implements Predicate<Internship> {
     private final List<String> nameKeywords;
+    private final List<String> roleKeywords;
     private final List<String> statusKeywords;
     private final List<String> tagKeywords;
 
@@ -18,9 +19,10 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
      *
      * @param nameKeywords The keywords to check for in the Internship's company name.
      */
-    public InternshipContainsKeywordsPredicate(List<String> nameKeywords, List<String> statusKeywords,
-                                               List<String> tagKeywords) {
+    public InternshipContainsKeywordsPredicate(List<String> nameKeywords, List<String> roleKeywords,
+                                               List<String> statusKeywords, List<String> tagKeywords) {
         this.nameKeywords = nameKeywords;
+        this.roleKeywords = roleKeywords;
         this.statusKeywords = statusKeywords;
         this.tagKeywords = tagKeywords;
     }
@@ -34,14 +36,16 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
     @Override
     public boolean test(Internship internship) {
         boolean noNameKeywords = this.nameKeywords.isEmpty();
+        boolean noRoleKeywords = this.roleKeywords.isEmpty();
         boolean noStatusKeywords = this.statusKeywords.isEmpty();
         boolean noTagKeywords = this.tagKeywords.isEmpty();
 
-        if (noNameKeywords && noStatusKeywords && noTagKeywords) {
+        if (noNameKeywords && noRoleKeywords && noStatusKeywords && noTagKeywords) {
             return false;
         }
 
         boolean nameCheck = true;
+        boolean roleCheck = true;
         boolean statusCheck = true;
         boolean tagCheck = true;
 
@@ -49,6 +53,12 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
             nameCheck = this.nameKeywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                             internship.getCompanyName().fullCompanyName, keyword));
+        }
+
+        if (!noRoleKeywords) {
+            roleCheck = this.roleKeywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                            internship.getRole().fullRole, keyword));
         }
 
         if (!noStatusKeywords) {
@@ -64,7 +74,7 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
                             .anyMatch(tagName -> StringUtil.containsWordIgnoreCase(keyword, tagName)));
         }
 
-        return nameCheck && statusCheck && tagCheck;
+        return nameCheck && roleCheck && statusCheck && tagCheck;
     }
 
     /**

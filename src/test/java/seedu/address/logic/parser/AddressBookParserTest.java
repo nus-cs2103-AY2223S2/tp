@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -75,15 +76,18 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
+        List<String> roleKeywords = Arrays.asList("blah", "haha");
         List<String> statusKeywords = Arrays.asList("new");
         List<String> tagKeywords = Arrays.asList("boo");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD
                         + " " + PREFIX_COMPANY_NAME + nameKeywords.stream().collect(Collectors.joining(" "))
+                        + " " + PREFIX_ROLE + roleKeywords.stream().collect(Collectors.joining(" "))
                         + " " + PREFIX_STATUS + statusKeywords.stream().collect(Collectors.joining(" "))
                         + " " + PREFIX_TAG + tagKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(
-                new InternshipContainsKeywordsPredicate(nameKeywords, statusKeywords, tagKeywords)), command);
+                new InternshipContainsKeywordsPredicate(nameKeywords, roleKeywords, statusKeywords, tagKeywords)),
+                command);
     }
 
     @Test

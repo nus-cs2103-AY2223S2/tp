@@ -124,6 +124,7 @@ public class CommandTestUtil {
 
         Internship internship = model.getFilteredInternshipList().get(targetIndex.getZeroBased());
         final String[] splitCompanyName = internship.getCompanyName().fullCompanyName.split("\\s+");
+        final String[] splitRole = internship.getRole().fullRole.split("\\s+");
         final String[] splitStatus = internship.getStatus().fullStatus.split("\\s+");
         final String[] splitTag = internship.getTags().isEmpty()
                 ? new String[0]
@@ -132,7 +133,8 @@ public class CommandTestUtil {
                         .map(str -> str.split("\\s+"))
                         .findFirst().get();
         model.updateFilteredInternshipList(new InternshipContainsKeywordsPredicate(
-                Arrays.asList(splitCompanyName[0]), Arrays.asList(splitStatus[0]), Arrays.asList((splitTag[0]))));
+                Arrays.asList(splitCompanyName[0]), Arrays.asList(splitRole[0]), Arrays.asList(splitStatus[0]),
+                Arrays.asList((splitTag[0]))));
 
         assertEquals(1, model.getFilteredInternshipList().size());
     }
