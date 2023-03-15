@@ -14,6 +14,7 @@ public class DeliveryJob {
 
     // Delivery informations
     private final Person recepient;
+    private final Person sender; // aka customer
     private final String deliverSlot; // TODO: Update data type when confirmed
     private final Earning earning;
     private final boolean isDelivered;
@@ -22,12 +23,13 @@ public class DeliveryJob {
      * Constructs a job entity.
      *
      * @param recepient
+     * @param sender
      * @param deliverSlot
      * @param packages
      * @param earning
      */
-    public DeliveryJob(Person recepient, String deliverSlot, String earning) {
-        this(UUID.randomUUID().toString(), recepient, deliverSlot, earning, false);
+    public DeliveryJob(Person recepient, Person sender, String deliverSlot, String earning) {
+        this(UUID.randomUUID().toString(), recepient, sender, deliverSlot, earning, false);
     }
 
     /**
@@ -39,9 +41,11 @@ public class DeliveryJob {
      * @param packages
      * @param earning
      */
-    public DeliveryJob(String jobId, Person recepient, String deliverSlot, String earning, boolean isDelivered) {
+    public DeliveryJob(String jobId, Person recepient, Person sender, String deliverSlot, String earning,
+            boolean isDelivered) {
         this.jobId = jobId;
         this.recepient = recepient;
+        this.sender = sender;
         this.deliverSlot = deliverSlot;
         this.earning = new Earning(earning);
         this.isDelivered = isDelivered;
@@ -53,6 +57,10 @@ public class DeliveryJob {
 
     public Person getRecepient() {
         return recepient;
+    }
+
+    public Person getSender() {
+        return sender;
     }
 
     public String getDeliverSlot() {
@@ -101,8 +109,7 @@ public class DeliveryJob {
                         getRecepient(),
                         getDeliverSlot(),
                         getEarning(),
-                        getDeliveredStatus())
-        );
+                        getDeliveredStatus()));
 
         return builder.toString();
     }

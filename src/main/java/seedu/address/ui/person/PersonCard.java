@@ -58,6 +58,22 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    /**
+     * PersonCard
+     *
+     * @param person
+     * @param displayedPrefix
+     */
+    public PersonCard(Person person, String displayedPrefix) {
+        super(FXML);
+        this.person = person;
+        id.setText(displayedPrefix + ": ");
+        name.setText(person.getName().fullName);
+        phone.setText(person.getPhone().value);
+        address.setText(person.getAddress().value);
+        email.setText(person.getEmail().value);
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

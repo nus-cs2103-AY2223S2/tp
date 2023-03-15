@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.job.DeliveryJobDetailPane;
 import seedu.address.ui.job.DeliveryJobListPanel;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
@@ -40,17 +41,22 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TimetableWindow timetableWindow;
+    private ReminderListWindow reminderListWindow;
     private StatisticsWindow statsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private StackPane deliveryJobDetailPlaceholder;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     @FXML
     private MenuItem timetableMenuItem;
-
+    @FXML
+    private MenuItem reminderListMenuItem;
     @FXML
     private MenuItem statsItem;
 
@@ -83,6 +89,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         timetableWindow = new TimetableWindow(new Stage(), logic);
+        reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
     }
 
@@ -132,8 +139,15 @@ public class MainWindow extends UiPart<Stage> {
         // personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         // personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
+        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), (idx, job) -> {
+            deliveryJobDetailPlaceholder.getChildren().clear();
+            DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, idx);
+            deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
+        });
         deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
+
+        DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(logic.getFilteredDeliveryJobList().get(0), 0);
+        deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -179,6 +193,19 @@ public class MainWindow extends UiPart<Stage> {
             timetableWindow.fillInnerParts();
         } else {
             timetableWindow.focus();
+        }
+    }
+
+    /**
+     * Opens Reminder List window.
+     */
+    @FXML
+    private void handleReminderList() {
+        if (!reminderListWindow.isShowing()) {
+            reminderListWindow.show();
+            reminderListWindow.fillInnerParts();
+        } else {
+            reminderListWindow.focus();
         }
     }
 
@@ -238,6 +265,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowTimetable()) {
                 handleTimetable();
+            }
+
+            if (commandResult.isShowReminderList()) {
+                handleReminderList();
             }
 
             if (commandResult.isExit()) {
