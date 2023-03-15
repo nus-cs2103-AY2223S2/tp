@@ -15,12 +15,16 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.entity.person.Customer;
+import seedu.address.model.entity.person.Person;
+import seedu.address.model.service.Part;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -39,15 +43,6 @@ public class AddCommandTest {
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
-
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -147,8 +142,60 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addCustomer(Customer customer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasCustomer(int customerId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addVehicle(int customerId, Vehicle vehicle) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasVehicle(int vehicleId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addService(int vehicleId, Service service) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasService(int serviceId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPart(Part part) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPart(Part part) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
+
+    // TODO: 3/14/2023 Extend AddCommandTest   ModelStubWithParts ModelStubWithVehicles etc
     /**
      * A Model stub that contains a single person.
      */

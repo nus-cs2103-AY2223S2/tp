@@ -154,83 +154,89 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/Redo Feature
 
-#### Proposed Implementation
+#### Current Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `StackUndoRedo`. The implemented undo/redo feature would be best described as two stacks of commands that the user has performed:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `undoStack` serves to store a "history" of the commands they have performed.
+- `redoStack` is a collection of their commands that lead up to initial condition at which they started performing the undo.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The central concept is to store a stack of commands that essentially functions as a history-list of the commands. Essentially, we leverage on the stack's data structure of the which is a linear data structure that is based on the principle of Last In First Out (LIFO). Based on the implementation described above, `undoStack` is populated by pushing a user's command in the application.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Then, when the user performs an undo, the command is firstly popped from `undoStack` and used to restore previous state, and then we store that command onto `redoStack`.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+`StackUndoRedo` contains 2 stacks, `undoStack` and `redoStack`. The `undoStack` and `redoStack` contain commands that are of type `RedoableCommand`. `RedoableCommand` extends Command and has the following attributes and methods.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+*UndoRedoImage to be added soon*
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+When a `RedoableCommand` is being executed, the methods `saveAddressBookSnapshot(Model model)` will be called. This ensures that the current states are stored within the command.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+After a command is executed, it will be added into the `StackUndoRedo`. The specific process is explained in the activity diagram below.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+*UndoRedoImage to be added soon*
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Next, when undo is being performed, `undoStack` will remove the first command in its stack and add it to `redoStack`. It will then call `RedoableCommand` `undo()` of the command that is removed. The `undo()` method will then set the model to the previous snapshot of `saveAddressBookSnapshot`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Likewise, when redo is being performed, `redoStack` will remove the first command in its stack and add it to `undoStack`. It will then call `RedoableCommand` `redo()` of the command that is removed. The `redo()` method will then execute the command again.
 
-</div>
+Given below is an example of a usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 1. The user launches the application. The `StackUndoRedo` will be initialized.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+*UndoRedoImage to be added soon*
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+Step 2. The user executes delete command. The delete command will be pushed into the `StackUndoRedo`.
 
-</div>
+*UndoRedoImage to be added soon*
+
+Step 3. The user executes add customer command to add a new customer.
+
+*UndoRedoImage to be added soon*
+
+Step 4. The user now decides that adding of customer was a mistake, and decides to undo that action by executing the undo command.
+
+*UndoRedoImage to be added soon*
+
+
+> <b>Note:</b> undoCommand will check if there is any command that can be undone by calling `StackUndoRedo` canUndo() method.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+*UndoRedoImage to be added soon*
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+> <b>Note:</b> The redo command will call `popRedo()` method in `StackUndoRedo`and `redo()` method in `RedoableCommand` .
 
-</div>
+Step 5. The user executes clear. Due to not being an `UndoCommand` or `RedoCommand`, it causes the `redoStack` to be cleared.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+*UndoRedoImage to be added soon*
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+Step 6. User executes list command. Commands that are not undoable are not added into the `undoStack`.
 
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+*UndoRedoImage to be added soon*
 
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Implementation is easy.
+    * Cons: Memory usage may cause performance issues.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Individual command has attached logic that allows it to undo/redo by itself.
+    * Pros: Will use less memory (e.g. just save what is being deleted).
+    * Cons: Must ensure that the implementation of each command is correct. Adds a lot of complexity that may not seem justified as it is to only accomodate the undo/redo feature.
+
+**Aspect: Data structure to support the undo/redo commands:**
+
+* **Alternative 1 (current choice):** Use 2 stacks to store the history of the Models.
+    * Pros: Implementation is easier and the logic would be much more manageable to debug.
+    * Cons: Duplicated Logic.
+
+* **Alternative 2:** Use `HistoryManager` for undo/redo.
+    * Pros: Does not need to maintain separate stacks and able to use what is in the codebase.
+    * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle two different things._
 
 _{more aspects and alternatives to be added}_
 
@@ -257,71 +263,470 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* Auto repair shop owners who want to keep track of their customers, vehicles, logistics and appointments
+* prefers desktop apps over other types
+* fast typist
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is comfortable interacting with CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: AutoM8 provides a platform that allows auto repair shop owners to manage their customer information, service details and logistics
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                  | So that I can…​                                                  |
+| -------- |--------------------------------------------|-----------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | Auto repair shop owner                     | add appointments I'm attending                | Keep track of appointments for the day                           |
+| `* * *`  | Auto repair shop owner                     | add vehicle I want to fix                     | Keep track of vehicle                                            |
+| `* * *`  | Auto repair shop owner                     | add spare parts                               | Keep track of how many spare parts remaining                     |
+| `* * *`  | Auto repair shop owner                     | add customer                                  | Keep track of customer details                                   |
+| `* * *`  | Auto repair shop owner                     | map which car plate belongs to which customer | hand the right car to the appropriate owner                      |
+| `* * *`  | Auto repair shop owner                     | delete a contact                              | remove entries I no longer need                                  |
+| `* * *`  | Auto repair shop owner                     | find a contact                                | locate details of that contact without searching the entire list |
+| `* * *`  | Auto repair shop owner                     | sort vehicles by brand                        | divide the vehicles                                              |
+| `* * *`  | Auto repair shop owner                     | edit a contact                                | make changes in case of mistakes                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+AutoM8 provides the necessary features that support the management of customer, vehicle, servicing, appointment information such as adding, deleting, listing, sorting, finding and editing. The Use Cases listed below demonstrate their usages.
 
-**Use case: Delete a person**
+(For all use cases below, the **System** is `AutoM8` and the **Actor** is the `user`, unless specified otherwise)
+<br/><br/>
+
+**Use case: UC01 - Listing all customers**
 
 **MSS**
+1. User requests to list out all customers.
+2. AutoM8 shows a list of all customers.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
+- 2a. The list is empty.
   Use case ends.
+  <br/><br/>
 
-* 3a. The given index is invalid.
+**Use case: UC02 - Listing all vehicles**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+1. User requests to list out all vehicles.
+2. AutoM8 shows a list of all vehicles.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+  Use case ends.
+  <br/><br/>
+
+**Use case: UC03 - Listing all customer appointments**
+
+**MSS**
+1. User requests to list out all customer appointments.
+2. AutoM8 shows a list of all customer appointments.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+  Use case ends.
+  <br/><br/>
+
+**Use case: UC04 - Listing all spare parts**
+
+**MSS**
+1. User requests to list out all spare parts.
+2. AutoM8 shows a list of all spare parts.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+  Use case ends.
+  <br/><br/>
+
+**Use case: UC05 - Listing all service**
+
+**MSS**
+1. User requests to list out all service .
+2. AutoM8 shows a list of all service.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+  Use case ends.
+  <br/><br/>
+
+**Use case: UC06 - Adding a customer**
+
+**MSS**
+
+1. User requests to add a customer as a contact.
+2. User inputs the information of the customer.
+3. AutoM8 adds the customer as a contact.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The given name already exists in AutoM8.
+    - 3a1. AutoM8 shows an error message.
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC07 - Adding a vehicle**
+
+**MSS**
+
+1. User requests to add a vehicle into the list.
+2. User inputs the information of the vehicle.
+3. AutoM8 adds the vehicle as a contact.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The given plate number already exists in AutoM8.
+    - 3a1. AutoM8 shows an error message.
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC08 - Adding a customer appointment**
+
+**MSS**
+
+1. User requests to add a customer appointment into a list.
+2. User inputs the information of the customer appointment.
+3. AutoM8 adds the customer appointment into the list.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The given customer already has an appointment in AutoM8.
+    - 3a1. AutoM8 shows an error message.
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC09 - Adding a service to a vehicle**
+
+**MSS**
+
+1. User requests to add a service into a list.
+2. User inputs the information of the service.
+3. AutoM8 adds the service into the book.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The given vehicle plate number already has a service assigned in AutoM8.
+    - 3a1. AutoM8 shows an error message.
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC10 - Adding a spare part**
+
+**MSS**
+
+1. User requests to add a spare parts into a list.
+2. User inputs the information of the spare part.
+3. AutoM8 adds the spare part into the list.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The specified spare part name already exist in the list.
+    - 3a1. AutoM8 shows an error message.
+      Use case resumes at step 2.
+      <br/><br/>
+
+
+**Use case: UC11 - Editing a customer's details**
+
+**MSS**
+
+1. User requests to <u>list contacts (UC01)</u>.
+2. AutoM8 shows a list of customers.
+3. User requests to edit a contact on the list.
+4. User inputs the updated information.
+5. AutoM8 updates the contact's details.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
 
       Use case resumes at step 2.
+      <br/><br/>
 
-*{More to be added}*
+**Use case: UC12 - Editing a vehicle's details**
+
+**MSS**
+
+1. User requests to <u>list vehicle contacts (UC02)</u>.
+2. AutoM8 shows a list of vehicles.
+3. User requests to edit a vehicle on the list.
+4. User inputs the updated information.
+5. AutoM8 updates the vehicle's details.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC13 - Editing spare part's details**
+
+**MSS**
+
+1. User requests to <u>list spare parts as contacts (UC04)</u>.
+2. AutoM8 shows a list of spare parts.
+3. User requests to edit a spare part on the list.
+4. User inputs the updated information.
+5. AutoM8 updates the spare part details.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC14 - Editing an appointment detail**
+
+**MSS**
+
+1. User requests to <u>list appointment as contacts (UC03)</u>.
+2. AutoM8 shows a list of appointments.
+3. User requests to edit an appointment on the list.
+4. User inputs the updated information.
+5. AutoM8 updates the appointment details.
+
+   Use case end.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC15 - Editing a service detail**
+
+**MSS**
+
+1. User requests to <u>list of service as contacts (UC05)</u>.
+2. AutoM8 shows a list of service.
+3. User requests to edit a service on the list.
+4. User inputs the updated information.
+5. AutoM8 updates the the appointment details.
+
+   Use case end.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC16 - Deleting a customer**
+
+**MSS**
+1. User requests to <u>list customers (UC01)</u>.
+2. AutoM8 shows a list of customers.
+3. User requests to delete a customer at a given index.
+4. AutoM8 deletes the customer at the index.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC17 - Deleting a vehicle**
+
+**MSS**
+1. User requests to <u>list of vehicles (UC02)</u>.
+2. AutoM8 shows a list of vehicle.
+3. User requests to delete a vehicle at a given index.
+4. AutoM8 deletes the contact at the index.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC18 - Deleting a customer appointment**
+
+**MSS**
+1. User requests to <u>list of appointments (UC03)</u>.
+2. AutoM8 shows a list of appointments.
+3. User requests to delete an appointment at a given index.
+4. AutoM8 deletes the appointment at the index.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC19 - Deleting a spare part**
+
+**MSS**
+1. User requests to <u>list of spare parts (UC04)</u>.
+2. AutoM8 shows a list of spare parts.
+3. User requests to delete a spare part at a given index.
+4. AutoM8 deletes the contact at the index.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+
+**Use case: UC20 - Sorting vehicles**
+
+**MSS**
+1. User requests to <u>list vehicles (UC01)</u>.
+2. AutoM8 shows a list of vehicles.
+3. User requests to sort vehicles in list.
+4. AutoM8 sorts vehicles according to user's requirements.
+
+   Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. No fields are specified.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+**Use case: UC21 - Find a customer**
+
+**MSS**
+
+1. User requests to <u>list of customer as contacts (UC01)</u>.
+2. AutoM8 shows a list of customer.
+3. User requests to find customer on the list.
+4. AutoM8 find customer according to user's requirements.
+
+   Use case end.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+
+**Use case: UC22 - Find a vehicle**
+
+**MSS**
+
+1. User requests to <u>list of vehicle as contacts (UC02)</u>.
+2. AutoM8 shows a list of vehicle.
+3. User requests to find vehicle on the list.
+4. AutoM8 find vehicle according to user's requirements.
+
+   Use case end.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
+
+
+**Use case: UC23 - Exiting the application**
+
+**MSS**
+
+1. User requests to exit AutoM8.
+2. AutoM8 closes.
+
+   Use case ends.
+   <br/><br/>
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. The application should be _free_.
+2. It should be easy to understand and use, even for users with little to no experience.
+3. Offline application used by each person.
+4. The application should be able to operate on any _mainstream OS_ such as Linux, MacOS and Windows so long as Java 11 or above is installed.
+5. The product should be highly testable.
+6. Use of clear and concise English should be observed in the documentation
+7. This product does not necessarily need to be installed but can run as an executable.
+8. Contain clear and easy to understand error messages
+9. Should be able to support up to 1000 persons without any noticeable lag in performance for typical usage.
+10. A user that possess above average typing speed for regular text (i.e. not code, not system admin commands) should be able to achieve majority of the task faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Vehicle**: A 4-wheel machine used to transport people
+* **Plate number**: An identifier put on the front and back of a vehicle
+* **Spare parts**: A duplicate part of a vehicle that can be used to replace a broken part in a car
 
 --------------------------------------------------------------------------------------------------------------------
 
