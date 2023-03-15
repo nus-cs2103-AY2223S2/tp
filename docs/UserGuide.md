@@ -115,12 +115,23 @@ Purges all data from the database
 
 Format: `clear`
 
-### Save data: `save`
-Save the data to different save files
+### Backup data: `backup`
+Backs up the data to a specified slot represented by an index
 
-Format: `save FILE_NO`
+Format: `backup INDEX_NO`
 
-Example: `save 3` saves the data to the 3rd slot
+Examples:
+* `backup 3` backups the data to the 3rd slot
+
+Tip: INDEX_NO can only be an integer between 1 and 10
+
+### Load data: `load`
+Loads the data from a specified slot represented by an index
+
+Format: `load INDEX_NO`
+
+Example: 
+* `load 3` loads the data from the 3rd slot
 
 ### Help menu: `help`
 Help function lists out all the commands available, along with a brief description
@@ -132,6 +143,8 @@ Format: `help`
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -151,8 +164,9 @@ Format: `list`
 | **Get**       | `get i/NRIC` <br/> e.g. get i/T0012345A                                                                                                                                                         |
 | **Clear all** | `clear`                                                                                                                                                                                         |
 | **Delete**    | `delete i/NRIC` <br/> e.g. delete i/T0012345A                                                                                                                                                   |
-| **Edit**      | `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​` <br/> e.g. edit i/T0012345A p/91234567 e/johndoe@example.com                                                     |
+| **Edit**      | `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​` <br/> e.g. edit i/T0012345A p/91234567 e/johndoe@example.com                                          |
 | **Find**      | `filter KEYWORD [MORE_KEYWORDS]` <br/> e.g. find panadol <br/> e.g. find diabetes                                                                                                               |
-| **Save**      | `save FILE_NO` <br/> eg. save 3                                                                                                                                                                 |
-| **List**      | `list`                                                                                                                                                                                          |
-| **Help**      | `help`                                                                                                                                                                                          |
+| **Backup**    | `backup INDEX_NO` <br/> eg. backup 3                                                                                                                                                           |
+| **Save**      | `save INDEX_NO` <br/> eg. save 3                                                                                                                                                             |
+| **List**      | `list`                                                                                                                                                                                         |
+| **Help**      | `help`                                                                                                                                                                                         |
