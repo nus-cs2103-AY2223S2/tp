@@ -1,13 +1,22 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * Tag a video, a lecture, or a module.
@@ -21,9 +30,9 @@ public class TagCommand extends Command {
     //TODO: MODIFY THIS
     public static final String MESSAGE_SUCCESS = "Item tagged";
     public static final String MESSAGE_MODULE_NOT_FOUND = "Module doesn't exist in Le Tracker";
-    private final Tag tag;
+    private final Set<Tag> tags;
 
-    private final VideoName parsedVideoName;
+    private final VideoName VideoName;
     private final LectureName lectureName;
     private final ModuleCode moduleCode;
     private final boolean isTaggingMod;
@@ -35,12 +44,11 @@ public class TagCommand extends Command {
      */
 
 
-    public TagCommand(Tag tag, ModuleCode moduleCode) {
-        requireNonNull(tag);
-        requireNonNull(moduleCode);
+    public TagCommand(Set<Tag> tags, ModuleCode moduleCode) {
+        requireAllNonNull(tags, moduleCode);
 
-        this.tag = tag;
-        this.parsedVideoName = new VideoName("dummy");
+        this.tags = tags;
+        this.VideoName = new VideoName("dummy");
         this.lectureName = new LectureName("dummy");
         this.moduleCode = moduleCode;
         this.isTaggingMod = true;
@@ -48,13 +56,11 @@ public class TagCommand extends Command {
         this.isTaggingVid = false;
     }
 
-    public TagCommand(Tag tag, ModuleCode moduleCode, LectureName lectureName) {
-        requireNonNull(tag);
-        requireNonNull(moduleCode);
-        requireNonNull(lectureName);
+    public TagCommand(Set<Tag> tags, ModuleCode moduleCode, LectureName lectureName) {
+        requireAllNonNull(tags, moduleCode, lectureName);
 
-        this.tag = tag;
-        this.parsedVideoName = new VideoName("dummy");
+        this.tags = tags;
+        this.VideoName = new VideoName("dummy");
         this.lectureName = lectureName;
         this.moduleCode = moduleCode;
         this.isTaggingMod = false;
@@ -62,14 +68,11 @@ public class TagCommand extends Command {
         this.isTaggingVid = false;
     }
 
-    public TagCommand(Tag tag, ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
-        requireNonNull(tag);
-        requireNonNull(moduleCode);
-        requireNonNull(lectureName);
-        requireNonNull(videoName);
+    public TagCommand(Set<Tag> tags, ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
+        requireAllNonNull(tags, moduleCode, lectureName, videoName);
 
-        this.tag = tag;
-        this.parsedVideoName = videoName;
+        this.tags = tags;
+        this.VideoName = videoName;
         this.lectureName = lectureName;
         this.moduleCode = moduleCode;
         this.isTaggingMod = false;
@@ -86,24 +89,48 @@ public class TagCommand extends Command {
         }
 
         if (this.isTaggingMod) {
-            tagModule();
+            tagModule(model);
         } else if (this.isTaggingLec) {
-            tagLecture();
+            tagLecture(model);
         } else if (this.isTaggingLec){
-            tagVideo();
+            tagVideo(model);
         }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    private void tagModule() {
+    private void tagModule(Model model) {
+        ReadOnlyModule taggingModule = model.getModule(this.moduleCode);
 
+        Set<Tag> currentTags = taggingModule.getTags();
+        currentTags.addAll(this.tags);
+
+        List<Lecture> currentLectureList = (List<Lecture>) taggingModule.getLectureList();
+
+        Module taggedModule = new Module(taggingModule.getCode(),
+                taggingModule.getName(), currentTags, currentLectureList);
+        model.setModule(taggingModule, taggedModule);
     }
 
-    private void tagLecture() {
+    private void tagLecture(Model model) {
+        ReadOnlyModule targetModule = model.getModule(this.moduleCode);
+        ReadOnlyLecture taggingLecture = targetModule.getLecture(this.lectureName);
 
+        Set<Tag> currentTags = taggingLecture.getTags();
+        currentTags.addAll(this.tags);
+
+        Lecture taggedLecture = new Lecture(taggingLecture.getName(), currentTags, taggingLecture.getVideoList());
+        model.setLecture(targetModule, taggingLecture, taggedLecture);
     }
 
-    private void tagVideo() {
+    private void tagVideo(Model model) {
+        ReadOnlyModule targetModule = model.getModule(this.moduleCode);
+        ReadOnlyLecture targetLecture = targetModule.getLecture(this.lectureName);
+        Video taggingVideo = targetLecture.getVideo(this.VideoName);
 
+        Set<Tag> currentTags = taggingVideo.getTags();
+        currentTags.addAll(this.tags);
+
+        Video taggedVideo = new Video(taggingVideo.getName(), taggingVideo.hasWatched(), currentTags);
+        model.setVideo(targetLecture, taggingVideo, taggedVideo);
     }
 }

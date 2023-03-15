@@ -130,6 +130,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyModule getModule(ModuleCode moduleCode) {
+        return tracker.getModule(moduleCode);
+    }
+
+    @Override
     public void deleteModule(ReadOnlyModule target) {
         tracker.removeModule(target);
     }

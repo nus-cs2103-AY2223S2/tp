@@ -97,6 +97,14 @@ public interface Model {
      */
     boolean hasModule(ModuleCode moduleCode);
 
+    /**
+     * Returns a module in the tracker with the specified {@code moduleCode}.
+     *
+     * @param moduleCode The code of the module to check if it exist.
+     * @return a module in the tracker with the specified {@code moduleCode}.
+     */
+    ReadOnlyModule getModule(ModuleCode moduleCode);
+
 
     /**
      * Deletes the given module. <p>

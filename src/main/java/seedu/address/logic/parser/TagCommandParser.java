@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,22 +36,22 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
-        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MOD).get());
 
         if (isTaggingMod(presentPrefixes)) {
-            return new TagCommand(tag, moduleCode);
+            return new TagCommand(tags, moduleCode);
         }
 
         else if (isTaggingLec(presentPrefixes)) {
             LectureName lectureName = ParseArgument.parseLecture(argMultimap.getValue(PREFIX_LEC).get());
-            return new TagCommand(tag, moduleCode, lectureName);
+            return new TagCommand(tags, moduleCode, lectureName);
         }
 
         else {
             LectureName lectureName = ParseArgument.parseLecture(argMultimap.getValue(PREFIX_LEC).get());
             VideoName videoName = ParseArgument.parseVideo(argMultimap.getValue(PREFIX_VIDEO).get());
-            return new TagCommand(tag, moduleCode, lectureName, videoName);
+            return new TagCommand(tags, moduleCode, lectureName, videoName);
         }
 
     }
