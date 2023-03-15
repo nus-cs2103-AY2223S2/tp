@@ -135,11 +135,19 @@
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }
+.label {
+     -fx-font-family: "Segoe UI";
+     -fx-font-size: 13px;
+     -fx-text-fill: #010504;
+}
 
 .pane-with-border {
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
+     -fx-font-family: "Segoe UI";
+     -fx-font-size: 13px;
+     -fx-text-fill: #010504;
 }
 
 .status-bar {

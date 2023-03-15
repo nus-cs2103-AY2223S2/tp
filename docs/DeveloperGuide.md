@@ -1,9 +1,26 @@
----
-layout: page
-title: Developer Guide
----
-* Table of Contents
-{:toc}
+### PowerConnect Developer Guide
+
+PowerConnect is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PowerConnect can get your contact management tasks done faster than traditional GUI apps.
+
+##### Table of Contents
+1. [Quick Start](#quickstart)
+2. [Features](#features)
+    1. [Student Features](#student)
+        1. [Add student: `add`](#addstudent)
+        2. [Add students' grade: `grade`](#gradestudent)
+        3. [Add comments to students: `comment`](#commentstudent)
+        4. [Listing all students in a particular class: `list`](#liststudent)
+        5. [Editing a student's particulars: `edit`](#editstudent)
+        6. [Searching students: `find`](#findstudent)
+        7. [Deleting a student: `delete`](#deletestudent)
+    2. [Parent Features](#parent)
+        1. [Add parent/guardian: `add`](#addparent)
+        2. [Listing all parents: `list`](#listparent)
+        3. [Delete a parent/ parent information: `delete`](#deleteparent)
+3. [Viewing help: `help`](#help)
+4. [Exiting program: `exit`](#exit)
+5. [FAQ](#faq)
+6. [Command Summary](#summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -224,13 +241,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -257,71 +274,248 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* This product mainly targets secondary school teachers that prefer CLI over GUI,  manage large groups of students and require ease of access to students' information.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* Have many students in different classes / co-curricular activities (CCAs) that have different phone number that needs to be kept track of
+* Need to keep track of students’ parents / next-of-kins’ contact details for consent forms
+* Teachers may not be able to match students names and faces well and so this app serves as an easy way to identify students (since there are too many students)
+* Keep track of homework given and deadline
+* Streamline administration processes because they have a lot of stuff to keep track of (eg. Attendance, assignments, grades, contact details)
 
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| No  | As a...                     | I can...                                                                    | So that...                                                                                                                                 | Notes                                                                                                                                     | Priority |
+|-----|-----------------------------|-----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| 1   | Teacher                     | Record student’s attendance                                                 | I know that my student is present in class (in school).                                                                                    |                                                                                                                                           | High     |
+| 2   | Teacher                     | Record students’ assessment and test grades.                                | I am able to manage my students’ performance                                                                                               |                                                                                                                                           | High     |
+| 3   | Teacher                     | Have an efficient way to view and track my students’ attendance.            | I will have an easier time managing my students’ attendance over the year                                                                  |                                                                                                                                           | High     |
+| 4   | Teacher                     | Have the option to leave some details empty                                 | I am able to key in my students’ information when there’s missing information                                                              |                                                                                                                                           | High     |
+| 5   | Teacher                     | Document students’ progress                                                 | I am able to record easily the students’ performance                                                                                       |                                                                                                                                           | High     |
+| 6   | Teacher                     | Organise my students by class                                               | I am able to identify which class they belong to                                                                                           | Determine whether to create separate classes: “class” class and “student” class or merge                                                  | High     |
+| 7   | Non tech-savvy teacher      | Learn about new commands                                                    | I am able to use the application effectively and save unnecessary time and effort in recording students’ particulars and searching for it. | Provide User Guide that is easy to understand                                                                                             | High     |
+| 8   | Teacher                     | Recognise my students from different classes through their photos           | I am able to recognise my students' looks                                                                                                  | Long setup process for user as they need to manually input images for individual student<p></p> Keeping separate file / folder for images | Medium   |
+| 9   | Caring Teacher              | Provide comments for each student                                           | I am able to keep track of students who need meaningful feedback and support.                                                              | (comments section on each student)                                                                                                        | Medium   |
+| 10  | Teacher / teacher assistant | Have an efficient way to retrieve my students’ contact details.             | I am able to contact them easily                                                                                                           | Assumption: student details are known to teachers / TAs                                                                                   | Medium   |
+| 11  | Teacher                     | Keep track of students who have submitted assignment                        | I am aware of which student missed the deadline for their work                                                                             |                                                                                                                                           | Medium   |
+| 12  | Motivational teacher        | Sort my students by overall grades                                          | I am able to foster a positive and supportive learning environment                                                                         |                                                                                                                                           | Medium   |
+| 13  | Teacher                     | Use an application that is easy to navigate about and has a nice interface. | I am able to save unnecessary time and effort in recording students’ particulars and searching for it.                                     | Issue under designs                                                                                                                       | Low      |
+| 14  | Responsible Teacher         | Access student records, such as grades and attendance                       | I will be able to make informed decisions about student progress                                                                           | Summary of all students grades for a particular test / class                                                                              | Low      |
+| 15  | Busy teacher                | Have a todo list                                                            | I am able to keep track of what to do                                                                                                      |                                                                                                                                           | Low / NA |
+| 16  | Teacher                     | Use an application with a reminder system                                   | I am able to track the things that needs to be done                                                                                        |                                                                                                                                           | NA       |
+| 17  | Teacher                     | Efficiently and effectively assign assessments and assignments              | I am able to better assess my students’ learning and progress                                                                              |                                                                                                                                           | NA       |
+| 18  | Teacher                     | Managing students’ behaviours and actions                                   | I am able to promote a safe and productive learning space for all                                                                          |                                                                                                                                           | NA       |
+| 19  | Teacher                     | Add individual feedback to students                                         | I am able to provide feedback to parents/guardians effectively                                                                             | Duplicate point to Point 7                                                                                                                | NA       |
+| 20  | Teacher                     | Access my students contacts conveniently                                    | I am able to build a closer relationship with my students and their next of kin                                                            | Too vague                                                                                                                                 | NA       |
+| 21  | Busy Teacher                | Keep track of my teaching feedback                                          | I can keep improving my teaching practices                                                                                                 | Hard to get school admin team on board                                                                                                    | NA       |
+| 22  | Efficient Teacher           | Integrate technology into my teaching                                       | I am able to enrich my student learning                                                                                                    | Vague                                                                                                                                     | NA       |
+| 23  | Teacher assistant           | Retrieve my students contact                                                | I am able to look them up easily                                                                                                           | Duplicate Point to Point 10                                                                                                               | NA       |
+| 24  | Teacher                     | Track the date and time of my classes                                       | I will be able to reach my classes on time                                                                                                 |                                                                                                                                           | NA       |
+| 25  | Forgetful teacher           | Record attendance                                                           | I am able to keep track of my students                                                                                                     | Duplicate to Point 5                                                                                                                      | NA       |
+| 26  | Teacher                     | Identify weaker students                                                    | I can give them more attention in class                                                                                                    | Duplicate to Point 20                                                                                                                     | NA       |
+| 27  | Teacher                     | Manage my consultation timings                                              | I am able to organise my schedule                                                                                                          |                                                                                                                                           | NA       |
+| 28  | Teacher                     | Set reminders for my consultation timings                                   | I am able to ensure I am not late for consultations                                                                                        |                                                                                                                                           | NA       |
+| 29  | Teacher                     | Marks my students’ assignments automatically                                | I am able to use time and effort spent on it on other use, such as thinking of ways to improve my students’ learning                       | Difficult to implement Autograder                                                                                                         | NA       |
+| 30  | Teacher                     | Have an application that is used as CLI instead of GUI                      | I am able to make use of my fast typing speed to sort out all the administrative work                                                      | Too Vague                                                                                                                                 | NA       |
+| 31  | Busy Teacher                | Easily manage my schedule                                                   | I am able to spend more time on other things                                                                                               | Out of scope                                                                                                                              | NA       |
+| 32  | Busy Teacher                | Know which tasks to prioritise                                              | I am able to ensure all of my responsibilities are taken care of in a timely and efficient manner.                                         |                                                                                                                                           | NA       |
+| 33  | Teacher                     | Track the date and time of the classes that I have                          | I am able to reach on time and teach the correct module for the particular lesson slot.                                                    | Out of scope                                                                                                                              | NA       |
+| 34  | Teacher                     | Amend date and time of certain lesson timings                               | I am able to change lesson dates and timings easily when lessons shift                                                                     |                                                                                                                                           | NA       |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+***For all use cases below, the System is PowerConnect and the Actor is the teacher, unless specified otherwise***
 
-**Use case: Delete a person**
+**Preconditions:** `class` and `index number` of the `student`
 
-**MSS**
+**Use Case: UC01 - Adding `grade` for a `student`**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**MSS:**
+1. User keys in the `test` name, `index number` of student and corresponding `grade`
+2. System displays feedback to the user that grade has been successfully added for the student
 
-    Use case ends.
+   Use case ends.
 
-**Extensions**
+**Extensions:**
 
-* 2a. The list is empty.
++ 1a. User keyed in invalid `index number` / does not **SATISFY** Precondition.
+    + 1a1. System displays an error message indicating `index number` is invalid.
+    + 1a2. System output of all `students` particulars in his/her class.
+    + 1a3. User checks for the `index number` of the `student` and keys into the system.
 
-  Use case ends.
+      Use case resumes at step 2.
++ 1b. Test name is invalid.
+    + 1b1. System displays an error message indicating wrong test name.
+    + 1b2. User adds a new test name.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 2.
++ 1c. User gave a `Grade` value that is not of an integer.
+    + 1c1. System displays an error message indicating the wrong grade given.
+    + 1c2. User checks and adds the `grade` input again.
 
-    * 3a1. AddressBook shows an error message.
+      Use case resumes at step 2. <br><br>
+
+**Use Case: UC02 - Adding `comment` for a `student`**
+
+**MSS:**
+1. User keys in the `index number` of student and the corresponding `comment` for the student
+2. If the student has an existing `comment`, the system will request the user to confirm the change of comments. Otherwise, skip to step 3.
+3. System displays feedback to the user that the comment has been successfully added for the `student`.
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User keyed in invalid `index number` / does not **SATISFY** Precondition.
+    + 1a1. System displays an error message indicating the `index number` is invalid.
+    + 1a2. System output of all `students` particulars in his/her class.
+    + 1a3. User checks for the index number of the `student` and keys into the system.
 
       Use case resumes at step 2.
 
-*{More to be added}*
++ 2a. User informs the system to **NOT** change the existing comment for the `student`.
+    + 2a1. System displays an error message indicating the current process of adding a new comment for the `student` has
+      ended.
+
+      Use case ends. <br><br>
+
+**Use Case: UC03 - Adding a new `student` to an existing `class`**
+
+**MSS:**
+1. User keys in **ALL COMPULSORY** details and any other **OPTIONAL** details as part of student’s particulars
+2. System displays feedback to the user that the `student` has been successfully been created and added to the respective `class`
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User did not enter **ALL COMPULSORY** details.
+    + 1a1. System displays an error message to the user indicating that there is insufficient information given to create the new `student`.
+
+      Use case ends.
+
++ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
+    + 1b1. User keys in invalid `SEX` type not supported by system or `SEX` type contain numbers.
+    + 1b2. User keys the same information for the student's `name` and NOK’s `name`.
+    + 1b3. User keys in `age` or `phone number` that are not of an integer.
+    + 1b4. User keys in invalid path to `image`.
+    + 1b5. System displays an error message to the user indicating that he/she has keyed in wrong information for the `student` along with a sample of the correct way to key in information for a new `student`.
+
+      Use case ends.
+
++ 2a. User is trying to create a new `student` whose index number belongs to an existing `student` in the class.
+    + 2a1. System displays an error message to the user indicating that a `student` with the same `index number` already exists in the `class`.
+
+      Use case ends. <br><br>
+
+**Use Case: UC04 - Listing all `students` in the selected `class`**
+
+**MSS:**
+1. User keys in the command to view the list of all `students` in the selected `class`
+2. System displays all `students` particulars in the `class`
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User keys in an invalid `class`.
+    + 1a1. System displays an error message to the user informing him/her the `class` is invalid.
+
+      Use case ends.
+
++ 2a. Selected `class` does not have any `students`
+    + 2a1. System displays an empty list.
+
+      Use case ends.
+
+**Use Case: UC05 - Editing `personal details` of `students`**
+
+**MSS:**
+1. User enters the `type` of personal detail and corresponding `detail` to edit
+2. System displays that the personal detail of the student has been changed successfully
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User did not enter **ALL COMPULSORY** details.
+    + 1a1. System displays an error message
+
+      Use case ends.
+
++ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
+    + 1b1. System displays an error message with an example on how to use the command.
+
+      Use case ends.
+
+**Use Case: UC06 - Finding `student` by `student id`**
+
+**MSS:**
+1. User keys in the `class` and `index number` of the student he/she is finding
+2. System displays the student with all his/her corresponding personal details
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User did not enter **ALL COMPULSORY** details.
+    + 1a1. System displays an error message.
+
+      Use case ends.
+
++ 1b. User keys in invalid **COMPULSORY** information
+    + 1b1. System displays an error message with an example on how to use the command.
+
+      Use case ends.
+
+**Use Case: UC07 - Deleting `student` or `student information` from the `database`**
+
+**MSS:**
+1. User keys in the command to delete a student or student information
+2. System displays that the student or student information has been deleted successfully
+
+   Use case ends.
+
+**Extensions:**
+
++ 1a. User did not enter **ALL COMPULSORY** details.
+    + 1a1. System displays an error message.
+
+      Use case ends.
+
++ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
+    + 1b1. System displays an error message with an example on how to use the command.
+
+      Use case ends.
+
+*{More to be added}* <br><br>
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any mainstream OS as long as it has Java `11` or above installed.
+2. Should be able to handle up to 400 students without a noticeable sluggishness in performance for typical usage.
+3. Should package it as a JAR file that is smaller than 50mb
+4. Should store data in a txt/csv file
+5. PowerConnect should be able to work without any internet access.
+6. PowerConnect should only be used by a single user per installation and not by multiple users.
+7. Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+   able to accomplish the majority of the tasks faster using CLI commands than using the mouse.
+8. PowerConnect should be able to handle all user input errors gracefully.
+9. PowerConnect should be able to display all error messages in a user-friendly manner.
+10. PowerConnect should be able to run on a 32-bit system with 8GB of RAM.
+11. PowerConnect should be able to display all success messages within 1 second.
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+**Attributes**: Information of a student / parent. <br> For example, name, phone number, email address etc <br><br>
+**CLI**: Command Line Interface <br><br>
+**Mainstream OS**: Windows, Linux, Unix, OS-X <br><br>
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -338,15 +532,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -355,16 +549,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -372,6 +566,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
