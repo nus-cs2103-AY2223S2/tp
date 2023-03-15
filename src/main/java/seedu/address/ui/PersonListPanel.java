@@ -27,7 +27,7 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(cardList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        personListView.setStyle("-fx-background-color: #AAAAAA");
+        personListView.setStyle("-fx-background-color: #ededed");
 
     }
 
@@ -44,7 +44,7 @@ public class PersonListPanel extends UiPart<Region> {
 
             } else {
                 setGraphic(new PersonCard(card, getIndex() + 1).getRoot());
-                setStyle("-fx-padding: 10 80 10 80; -fx-background-color:#AAAAAA ");
+                setStyle("-fx-padding: 10 80 10 80; -fx-background-color:#ededed ");
             }
         }
     }

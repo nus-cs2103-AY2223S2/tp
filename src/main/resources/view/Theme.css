@@ -1,12 +1,12 @@
 .background {
-    -fx-background-color: derive(#d3d3d3, 20%);
-    background-color: #d3d3d3; /* Used in the default.html file */
+    -fx-background-color: derive(#f9f9f9, 20%);
+    background-color: #f9f9f9; /* Used in the default.html file */
 }
 
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #d3d3d3;
+    -fx-text-fill: #f9f9f9;
     -fx-opacity: 0.9;
 }
 
@@ -40,9 +40,9 @@
 }
 
 .table-view {
-    -fx-base: #d3d3d3;
-    -fx-control-inner-background: #d3d3d3;
-    -fx-background-color: #d3d3d3;
+    -fx-base: #f9f9f9;
+    -fx-control-inner-background: #f9f9f9;
+    -fx-background-color: #f9f9f9;
     -fx-padding: 5;
 }
 
@@ -74,13 +74,13 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: #d3d3d3;
+    -fx-background-color: #f9f9f9;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: #d3d3d3;
+    -fx-background-color: #f9f9f9;
 }
 
 
@@ -115,8 +115,8 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#d3d3d3, 20%);
-     -fx-border-color: derive(#d3d3d3, 10%);
+     -fx-background-color: derive(#f9f9f9, 20%);
+     -fx-border-color: derive(#f9f9f9, 10%);
 }
 
 
@@ -155,7 +155,7 @@
 
 .grid-pane {
     -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#d3d3d3, 30%);
+    -fx-border-color: derive(#f9f9f9, 30%);
     -fx-border-width: 1px;
 }
 
@@ -291,7 +291,8 @@
 }
 
 #deckPane {
-    -fx-background-color: #aaaaaa;
+    -fx-background-color: #ededed;
+    -fx-text-fill: black;
 }
 
 
@@ -313,7 +314,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #aaaaaa, transparent, #aaaaaa;
+    -fx-background-color: transparent, #ededed, transparent, #ededed;
     -fx-background-radius: 0;
 }
 
