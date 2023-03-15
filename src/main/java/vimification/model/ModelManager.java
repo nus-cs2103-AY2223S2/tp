@@ -9,16 +9,11 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-<<<<<<< HEAD:src/main/java/vimification/model/ModelManager.java
 import vimification.commons.core.GuiSettings;
 import vimification.commons.core.LogsCenter;
 import vimification.model.person.Person;
-=======
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
->>>>>>> b52b837a (Implement execute methods for Create, Delete and Search commands):src/main/java/seedu/address/model/ModelManager.java
+import vimification.model.task.Task;
+
 
 /**
  * Represents the in-memory model of the address book data.
