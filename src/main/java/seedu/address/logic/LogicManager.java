@@ -72,7 +72,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void setViewedPerson(int index) {
-        model.updateViewedPerson(x -> x.isSamePerson(getFilteredPersonList().get(index)));
+        model.updateViewedPerson(getFilteredPersonList().get(index));
     }
 
     @Override

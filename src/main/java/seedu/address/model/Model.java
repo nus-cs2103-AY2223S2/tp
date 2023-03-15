@@ -88,7 +88,11 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void updateViewedPerson(Predicate<Person> predicate);
+    /**
+     * Updates the person to be viewed in filtered person list by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateViewedPerson(Person person);
 
     /**
      * Sorts the list of people by given {@code category}

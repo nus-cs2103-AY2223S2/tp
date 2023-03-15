@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         viewedPerson = new FilteredList<>(this.addressBook.getPersonList());
-        viewedPerson.setPredicate(x -> x.isSamePerson(null));
+        viewedPerson.setPredicate(x -> false);
     }
 
     public ModelManager() {
@@ -138,9 +138,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateViewedPerson(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        viewedPerson.setPredicate(predicate);
+    public void updateViewedPerson(Person person) {
+        viewedPerson.setPredicate(x -> x.isSamePerson(person));
     }
 
     @Override
@@ -165,7 +164,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && viewedPerson.equals(other.viewedPerson);
     }
 
 }
