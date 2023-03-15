@@ -200,6 +200,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointmentMap.filter(predicate);
+    }
+
+    @Override
     public AppointmentManager getAppointmentManager() {
         return appointmentManager;
     }
