@@ -19,6 +19,7 @@ public class JsonSerializableAddressBookTest {
     private static final Path TYPICAL_CLIENTS_FILE = TEST_DATA_FOLDER.resolve("typicalClientsAddressBook.json");
     private static final Path INVALID_CLIENT_FILE = TEST_DATA_FOLDER.resolve("invalidClientAddressBook.json");
     private static final Path DUPLICATE_CLIENT_FILE = TEST_DATA_FOLDER.resolve("duplicateClientAddressBook.json");
+
     /*
     @Test
     public void toModelType_typicalClientsFile_success() throws Exception {
@@ -28,8 +29,7 @@ public class JsonSerializableAddressBookTest {
         AddressBook typicalClientsAddressBook = TypicalClients.getTypicalAddressBook();
         assertEquals(addressBookFromFile, typicalClientsAddressBook);
     }
-     */
-
+    */
     @Test
     public void toModelType_invalidClientFile_throwsIllegalValueException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_CLIENT_FILE,
