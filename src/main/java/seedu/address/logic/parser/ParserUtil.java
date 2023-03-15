@@ -2,6 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +15,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -21,6 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String TIME_FORMAT_INVALID = "Time format should be yyyy-MM-dd HHmm.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -33,6 +39,28 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndex(s)} into an {@code Index} and returns List of Index.
+     * Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static ArrayList<Index> parseindexs(String multiIndex, String separator) throws ParseException {
+        //assume input is 2 3 4 5 6 ....
+        String trimmedIndex = multiIndex.trim();
+        ArrayList<Index> indices = new ArrayList<>();
+        String[] tokens = trimmedIndex.split(separator);
+
+        for (String token : tokens) {
+            if (!StringUtil.isNonZeroUnsignedInteger(token)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            indices.add(Index.fromOneBased(Integer.parseInt(token)));
+        }
+        return indices;
     }
 
     /**
@@ -111,6 +139,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> time} into a {@code LocalDateTime}.
+     */
+    public static LocalDateTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        try {
+            return LocalDateTime.parse(trimmedTime, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(TIME_FORMAT_INVALID);
+        }
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -120,5 +162,19 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * @param medicalCondition string message
+     * @return MedicalCondition type
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static MedicalCondition parseMedicalCond(String medicalCondition) throws ParseException {
+        requireNonNull(medicalCondition);
+        String trimmed = medicalCondition.trim();
+        if (!Tag.isValidTagName(trimmed)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new MedicalCondition(medicalCondition);
     }
 }

@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,9 +24,25 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private LocalDateTime time = null;
+
+    private MedicalCondition medicalCondition;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, medical condition will be created without any tag
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, LocalDateTime time) {
+        requireAllNonNull(name, phone, email, address, tags, time);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+    }
+
+    /**
+     * Alternative constructor for person with scheduled time.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -34,6 +51,21 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.medicalCondition = new MedicalCondition("");
+    }
+
+    /**
+     * Every filed must be present and not null
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  MedicalCondition medicalCondition) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.medicalCondition = medicalCondition;
     }
 
     public Name getName() {
@@ -52,12 +84,29 @@ public class Person {
         return address;
     }
 
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    /**
+     * check if the person has scheduled time.
+     * @return true if the person has time.
+     */
+    public boolean hasTime() {
+        return this.time != null;
+    }
+
+    public MedicalCondition getMedicalCondition() {
+        return medicalCondition;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        Set<Tag> allTags = new HashSet<>(tags);
+        return Collections.unmodifiableSet(allTags);
     }
 
     /**

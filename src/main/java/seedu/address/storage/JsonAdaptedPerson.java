@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -28,15 +30,35 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private String medicalCondition;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private LocalDateTime time = null;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
+
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("time") String time,
+                             @JsonProperty("MedicalCondition") String medicalCondition) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+        if (time != null) {
+            this.time = LocalDateTime.parse(time);
+        }
+        if (medicalCondition != null) {
+            this.medicalCondition = medicalCondition;
+        }
+    }
+
+    public JsonAdaptedPerson(String name, String phone, String email, String address, List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,7 +67,6 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
     }
-
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
@@ -54,9 +75,15 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
+        if (source.hasTime()) {
+            time = source.getTime();
+            if (source.getMedicalCondition().getValue() != null) {
+                medicalCondition = source.getMedicalCondition().getValue();
+            }
+            tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        }
     }
 
     /**
@@ -103,7 +130,15 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        if (time != null) {
+            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, time);
+        }
+        if (medicalCondition != null) {
+            final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
+            return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, new MedicalCondition(medicalCondition));
+        }
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
-
 }

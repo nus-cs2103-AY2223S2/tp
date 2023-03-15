@@ -27,6 +27,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    //private final ObservableList<Person> personList;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
