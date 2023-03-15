@@ -91,6 +91,7 @@ public class TrackrParser {
             return new FindTaskCommandParser().parse(arguments);
 
         case ListSupplierCommand.COMMAND_WORD:
+        case ListSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new ListSupplierCommand();
 
         case ListTaskCommand.COMMAND_WORD:
