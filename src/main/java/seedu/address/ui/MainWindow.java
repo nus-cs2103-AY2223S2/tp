@@ -145,14 +145,14 @@ public class MainWindow extends UiPart<Stage> {
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
         //Listen for new changes to eventListPanel
-        logic.getFilteredTutorialList().addListener((ListChangeListener<Tutorial>) change -> {
-            while (change.next()) {
-                if (change.wasAdded() || change.wasRemoved()) {
-                    eventListPanel = new EventListPanel(filterTutorialList(logic.getFilteredTutorialList()));
-                    eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
-                }
-            }
-        });
+//        logic.getFilteredTutorialList().addListener((ListChangeListener<Tutorial>) change -> {
+//            while (change.next()) {
+//                if (change.wasAdded() || change.wasRemoved()) {
+//                    eventListPanel = new EventListPanel(filterTutorialList(logic.getFilteredTutorialList()));
+//                    eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+//                }
+//            }
+//        });
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
