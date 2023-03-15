@@ -7,7 +7,7 @@ import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.logic.commands.DeleteCommand;
+import seedu.wife.logic.commands.deletecommands.DeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -27,6 +27,10 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(
+            parser,
+            "a",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE)
+        );
     }
 }

@@ -1,4 +1,4 @@
-package seedu.wife.logic.commands.deleteCommands;
+package seedu.wife.logic.commands.deletecommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,9 +6,9 @@ import java.util.List;
 
 import seedu.wife.commons.core.Messages;
 import seedu.wife.commons.core.index.Index;
-import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.logic.commands.Command;
 import seedu.wife.logic.commands.CommandResult;
+import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.model.Model;
 import seedu.wife.model.food.Food;
 
