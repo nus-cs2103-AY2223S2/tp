@@ -26,8 +26,8 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
 
     private final ArrayList<Index> indexes;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteMultipleIndexCommand(Index targetIndex) {
+        super(targetIndex);
     }
 
     @Override
