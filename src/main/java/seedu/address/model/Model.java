@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 
 /**
  * The API of the Model component.
@@ -37,20 +38,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getEduMateFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setEduMateFilePath(Path eduMateFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code eduMate}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setEduMate(ReadOnlyEduMate eduMate);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the EduMate */
+    ReadOnlyEduMate getEduMate();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -75,6 +76,24 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Clears the person list.
+     * Used for sorting the list, as the list needs to be cleared before it can be sorted.
+     */
+    void resetPersons();
+
+    /**
+     * Returns the user object.
+     * User will not be null.
+     */
+    User getUser();
+
+    /**
+     * Sets the user object to the EduMate object.
+     * @param user {@code User} must not be null.
+     */
+    void setUser(User user);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

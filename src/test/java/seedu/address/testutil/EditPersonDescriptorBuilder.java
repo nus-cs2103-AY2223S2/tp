@@ -6,11 +6,14 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -36,7 +39,10 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setContactIndex(person.getContactIndex());
+        descriptor.setGroupTags(person.getImmutableGroupTags());
+        descriptor.setTelegramHandle(person.getTelegramHandle());
+        descriptor.setModuleTags(person.getImmutableModuleTags());
     }
 
     /**
@@ -72,12 +78,38 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Sets the {@code TelegramHandle} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withTelegramHandle(String telegramHandle) {
+        descriptor.setTelegramHandle(new TelegramHandle(telegramHandle));
+        return this;
+    }
+
+    /**
+     * Sets the {@code ContactIndex} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withContactIndex(Integer index) {
+        descriptor.setContactIndex(new ContactIndex(index));
+        return this;
+    }
+
+    /**
+     * Parses the {@code groupTags} into a {@code Set<GroupTag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPersonDescriptorBuilder withGroupTags(String... groupTags) {
+        Set<GroupTag> groupTagSet = Stream.of(groupTags).map(GroupTag::new).collect(Collectors.toSet());
+        descriptor.setGroupTags(groupTagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code groupTags} into a {@code Set<ModuleTag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withModuleTags(String... moduleTags) {
+        Set<ModuleTag> moduleTagSet = Stream.of(moduleTags).map(ModuleTag::new).collect(Collectors.toSet());
+        descriptor.setModuleTags(moduleTagSet);
         return this;
     }
 

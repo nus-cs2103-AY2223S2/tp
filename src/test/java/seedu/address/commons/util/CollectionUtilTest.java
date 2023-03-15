@@ -1,14 +1,18 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
@@ -80,6 +84,20 @@ public class CollectionUtilTest {
         assertFalse(CollectionUtil.isAnyNonNull((Object[]) null));
         assertTrue(CollectionUtil.isAnyNonNull(new Object()));
         assertTrue(CollectionUtil.isAnyNonNull(new Object(), null));
+    }
+
+    @Test
+    public void zip_validStreams_success() {
+        Stream<Integer> firstStream = Stream.of(1, 2, 3);
+        Stream<Integer> secondStream = Stream.of(2, 3, 4);
+        Stream<Integer> outputStream = CollectionUtil.zip(firstStream, secondStream, Integer::sum);
+
+        List<Integer> expectedList = new ArrayList<>();
+        expectedList.add(3);
+        expectedList.add(5);
+        expectedList.add(7);
+
+        assertEquals(outputStream.collect(Collectors.toList()), expectedList);
     }
 
     /**

@@ -1,0 +1,124 @@
+313@Somerset|1.3009|103.8384
+321 Clementi|1.312|103.765
+Alexandra Retail Centre|1.2739|103.8015
+AMK Hub|1.3696|103.8485
+Anchorpoint|1.2888|103.8051
+Aperia|1.3105|103.8642
+Bedok Mall|1.3247|103.9293
+Bedok Point|1.3249|103.9324
+Buangkok Square|1.3843|103.8816
+Bugis Junction|1.2992|103.8553
+Bugis+|1.2996|103.8544
+Bukit Panjang Plaza|1.38|103.7642
+Bukit Timah Plaza|1.3386|103.7786
+Canberra Plaza|1.4433|103.8305
+Cathay Cineleisure Orchard|1.3015|103.8364
+Causeway Point|1.4361|103.7858
+Century Square|1.3524|103.9438
+Changi Airport|1.3458|103.9829
+Changi City Point|1.3343|103.9627
+Chinatown Point|1.2852|103.8449
+City Square Mall|1.3113|103.8566
+Clarke Quay Central|1.289|103.8466
+Clementi Mall|1.3147|103.7643
+Compass One|1.392|103.8951
+Djitsun Mall|1.3729|103.8477
+Djitsun Mall Bedok|1.3261|103.9296
+East Village|1.3318|103.9462
+Eastpoint Mall|1.3427|103.9531
+Elias Mall|1.3786|103.942
+FairPrice Hub|1.3271|103.6784
+Far East Plaza|1.3072|103.8336
+Funan|1.2913|103.8501
+Golden Mile Complex|1.3028|103.8652
+Great World City|1.2936|103.8319
+Greenwich V|1.3874|103.8694
+HarbourFront Centre|1.2642|103.8204
+HDB Hub|1.3324|103.848
+Heartland Mall|1.3595|103.8852
+Hillion Mall|1.3785|103.7633
+HillV2|1.3634|103.7643
+Hougang 1|1.3761|103.8792
+Hougang Mall|1.3725|103.8938
+I12 Katong|1.305|103.9051
+IMM|1.335|103.7471
+ION Orchard|1.304|103.8319
+JCube|1.3333|103.74
+Jem|1.3332|103.7434
+Jewel Changi Airport|1.3602|103.9897
+Jubilee Square|1.3718|103.8478
+Junction 10|1.3803|103.7601
+Junction 8 Shopping Centre|1.3506|103.8488
+Junction 9|1.4331|103.8416
+Jurong Point Shopping Mall|1.34|103.7064
+Kallang Wave Mall|1.3032|103.8729
+KINEX|1.3147|103.8948
+Le Quest|1.3558|103.7412
+Leisure Park Kallang|1.3022|103.8764
+Lot One|1.3852|103.745
+Loyang Point|1.3669|103.9644
+Lucky Plaza|1.3045|103.8339
+Marina Bay Sands Shoppes|1.285|103.8594
+Marina One|1.2772|103.853
+Marina Square|1.2911|103.8575
+Millenia Walk|1.2928|103.8598
+Nex|1.3506|103.8726
+Ngee Ann City|1.3026|103.8346
+Northpoint City|1.4282|103.8361
+Northshore Plaza|1.4168|103.9018
+Velocity @ Novena Square|1.32|103.8439
+Downtown East|1.3768|103.955
+Oasis Terraces|1.4028|103.9132
+One Raffles Place|1.2842|103.8511
+Orchard Central|1.3006|103.8399
+Orchard Gateway|1.3005|103.8394
+Our Tampines Hub|1.3531|103.9405
+Parkway Parade|1.3013|103.9052
+Paya Lebar Quarter|1.3175|103.8928
+Paya Lebar Square|1.3188|103.8926
+Pioneer Mall|1.3419|103.6974
+Plaza Singapura|1.3003|103.8451
+Punggol Plaza|1.3942|103.913
+Raffles City Singapore|1.2936|103.8531
+Rail Mall|1.3581|103.7679
+Rivervale Mall|1.3922|103.9045
+Rivervale Plaza|1.3854|103.9018
+Seletar Mall|1.3915|103.8761
+Sembawang Shopping Centre|1.4419|103.8251
+Shaw House and Centre|1.3058|103.8315
+Singpost Centre|1.319|103.8944
+Square 2|1.3208|103.8441
+Sun Plaza|1.4482|103.8195
+Suntec City|1.295|103.8583
+Tampines 1|1.3542|103.945
+Tampines Mall|1.3525|103.9447
+Tampines Mart|1.3545|103.96
+Tanjong Pagar Centre|1.277|103.8455
+Tekka Place|1.3051|103.8514
+The Cathay|1.2995|103.8478
+The Centrepoint|1.3015|103.8396
+The Paragon|1.3038|103.8355
+The Poiz|1.3313|103.8681
+The Star Vista|1.3068|103.7884
+Thomson Plaza|1.3547|103.8309
+Tiong Bahru Plaza|1.2865|103.8272
+United Square|1.3173|103.8437
+VivoCity|1.2644|103.8222
+Waterway Point|1.4067|103.902
+West Coast Plaza|1.3037|103.7659
+West Mall|1.35|103.7491
+Westgate|1.3341|103.743
+Wheelock Place|1.3045|103.8306
+White Sands|1.3725|103.9497
+Wisma Atria|1.3037|103.8333
+Wisteria Mall|1.4182|103.8412
+Woodlands Mart|1.4456|103.7982
+Woods Square|1.4349|103.7849
+Yew Tee Point|1.3972|103.7468
+Zhongshan Mall|1.3269|103.8466
+The Deck|1.29452|103.77243
+UTown|1.30416|103.77399
+Frontier|1.29637|103.78022
+Techno Edge|1.29791|103.77166
+The Terrace|1.29492|103.77466
+Prince Georges Park|1.29136|103.78021

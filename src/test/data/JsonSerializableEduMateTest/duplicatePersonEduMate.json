@@ -1,0 +1,62 @@
+{
+  "user": {
+    "name": "Linus Richards",
+    "email": "linusrichards@gmail.com",
+    "telegramHandle": "@linusrichards",
+    "address": "NUS",
+    "phone": "90102030",
+    "groups": [
+      "User"
+    ],
+    "modules": [
+      "CS2100",
+      "CS2101",
+      "CS2102",
+      "CS2103",
+      "CS2104",
+      "CS2105",
+      "CS2106"
+    ],
+    "index": 0
+  },
+  "persons": [
+    {
+      "name": "Nee Soon",
+      "email": "neesoon@gmail.com",
+      "telegramHandle": "@neesoon",
+      "address": "Yishun",
+      "groups": [
+        "NS"
+      ],
+      "phone": "83322492",
+      "index": 68,
+      "modules": [
+        "CS2105",
+        "BT2201",
+        "CS2103",
+        "CS2030",
+        "CE2155",
+        "CS2106"
+      ]
+    },
+    {
+      "name": "Nee Soon",
+      "email": "neesoon@gmail.com",
+      "telegramHandle": "@neesoon",
+      "address": "Yishun",
+      "groups": [
+        "NS"
+      ],
+      "phone": "83322492",
+      "index": 68,
+      "modules": [
+        "CS2105",
+        "BT2201",
+        "CS2103",
+        "CS2030",
+        "CE2155",
+        "CS2106"
+      ]
+    }
+  ]
+}

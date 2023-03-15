@@ -14,14 +14,17 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.EduMate;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalUser;
 
 public class AddCommandTest {
 
@@ -33,10 +36,9 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+
         Person validPerson = new PersonBuilder().build();
-
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -52,26 +54,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Person albert = new PersonBuilder().withName("Albert").build();
+        Person bart = new PersonBuilder().withName("Bart").build();
+        AddCommand addAlbertCommand = new AddCommand(albert);
+        AddCommand addBartCommand = new AddCommand(bart);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addAlbertCommand.equals(addAlbertCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addAlbertCommandCopy = new AddCommand(albert);
+        assertTrue(addAlbertCommand.equals(addAlbertCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAlbertCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addAlbertCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAlbertCommand.equals(addBartCommand));
     }
 
     /**
@@ -99,12 +101,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getEduMateFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setEduMateFilePath(Path eduMateFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +116,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setEduMate(ReadOnlyEduMate newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyEduMate getEduMate() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,6 +137,21 @@ public class AddCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetPersons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public User getUser() {
+            return TypicalUser.LINUS;
+        }
+
+        @Override
+        public void setUser(User user) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -172,6 +189,8 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        final EduMate eduMate = new EduMate();
+        final FilteredList<Person> filteredList = new FilteredList<>(eduMate.getPersonList());
 
         @Override
         public boolean hasPerson(Person person) {
@@ -186,8 +205,13 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyEduMate getEduMate() {
+            return new EduMate();
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return filteredList;
         }
     }
 

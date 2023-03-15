@@ -1,12 +1,19 @@
 package seedu.address.commons.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 public class VersionTest {
+
+    private static final int MAJOR = 5;
+    private static final int MINOR = 3;
+    private static final int PATCH = 10;
+    private static final boolean IS_EARLY_ACCESS = true;
+    private static final Version VERSION = new Version(MAJOR, MINOR, PATCH, IS_EARLY_ACCESS);
 
     @Test
     public void versionParsing_acceptableVersionString_parsedVersionCorrectly() {
@@ -126,6 +133,36 @@ public class VersionTest {
         one = new Version(100, 191, 275, true);
         another = new Version(100, 191, 275, true);
         assertTrue(one.equals(another));
+    }
+
+    @Test
+    public void getMajor_validMajor_success() {
+        assertEquals(MAJOR, VERSION.getMajor());
+    }
+
+    @Test
+    public void getMinor_validMinor_success() {
+        assertEquals(MINOR, VERSION.getMinor());
+    }
+
+    @Test
+    public void getPatch_validPatch_success() {
+        assertEquals(PATCH, VERSION.getPatch());
+    }
+
+    @Test
+    public void getIsEarlyAccess_validIsEarlyAccess_success() {
+        assertEquals(IS_EARLY_ACCESS, VERSION.isEarlyAccess());
+    }
+
+    @Test
+    public void equals_null_false() {
+        assertNotEquals(VERSION, null);
+    }
+
+    @Test
+    public void equals_notVersion_false() {
+        assertNotEquals(VERSION, 2);
     }
 
     private void verifyVersionParsedCorrectly(String versionString,

@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Tan Kai Min Russell
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/russelltankaimin.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/russelltankaimin)]
+[[portfolio](team/russelltankaimin.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: TBD
 
-### Jean Doe
+### Izz Hafeez Bin Zek Hazley
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mynameizzhafeez.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/mynameizzhafeez)]
+[[portfolio](team/mynameizzhafeez.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: TBD
+
+### Tan Li Thai Sean
+
+<img src="images/seanfirefox.png" width="200px">
+
+[[github](http://github.com/seanfirefox)]
+[[portfolio](team/seanfirefox.md)]
+
+* Role: Developer
+* Responsibilities: TBD
+
+### Wang Zichen
+
+<img src="images/zichen-3974.png" width="200px">
+
+[[github](http://github.com/zichen-3974)]
+[[portfolio](team/zichen-3974.md)]
+
+* Role: Developer
+* Responsibilities: TBD
+
+### Chon Jin Yong Kenny
+
+<img src="images/kennycjy.png" width="200px">
+
+[[github](http://github.com/kennycjy)]
+[[portfolio](team/kennycjy.md)]
+
+* Role: Developer
+* Responsibilities: TBD

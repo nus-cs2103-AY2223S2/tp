@@ -5,33 +5,63 @@
  '/
 
 
-'T1 through T4 are shades of the original color from lightest to darkest
+'LIGHT through VERY_DARK are shades of the original color from lightest to darkest
 
-!define UI_COLOR #1D8900
-!define UI_COLOR_T1 #83E769
-!define UI_COLOR_T2 #3FC71B
-!define UI_COLOR_T3 #166800
-!define UI_COLOR_T4 #0E4100
+!define UI_COLOR #009645
+!define UI_COLOR_BACKGROUND #e6f5ec
+!define UI_COLOR_LIGHT #4db67d
+!define UI_COLOR_VERY_LIGHT #99d5b5
+!define UI_COLOR_DARK #006930
+!define UI_COLOR_VERY_DARK #003c1c
 
-!define LOGIC_COLOR #3333C4
-!define LOGIC_COLOR_T1 #C8C8FA
-!define LOGIC_COLOR_T2 #6A6ADC
-!define LOGIC_COLOR_T3 #1616B0
-!define LOGIC_COLOR_T4 #101086
+!define LOGIC_COLOR #005EC4
+!define LOGIC_COLOR_BACKGROUND #e6eff9
+!define LOGIC_COLOR_LIGHT #4d8ed6
+!define LOGIC_COLOR_VERY_LIGHT #99bfe7
+!define LOGIC_COLOR_DARK #004289
+!define LOGIC_COLOR_VERY_DARK #00264e
 
-!define MODEL_COLOR #9D0012
-!define MODEL_COLOR_T1 #F97181
-!define MODEL_COLOR_T2 #E41F36
-!define MODEL_COLOR_T3 #7B000E
-!define MODEL_COLOR_T4 #51000A
+!define MODEL_COLOR #D42E12
+!define MODEL_COLOR_BACKGROUND #fbeae7
+!define MODEL_COLOR_LIGHT #e16d59
+!define MODEL_COLOR_VERY_LIGHT #eeaba0
+!define MODEL_COLOR_DARK #94200d
+!define MODEL_COLOR_VERY_DARK #551207
 
-!define STORAGE_COLOR #A38300
-!define STORAGE_COLOR_T1 #FFE374
-!define STORAGE_COLOR_T2 #EDC520
-!define STORAGE_COLOR_T3 #806600
-!define STORAGE_COLOR_T2 #544400
+!define STORAGE_COLOR #FA9E0D
+!define STORAGE_COLOR_BACKGROUND #fff5e7
+!define STORAGE_COLOR_LIGHT #fcbb56
+!define STORAGE_COLOR_VERY_LIGHT #fdd89e
+!define STORAGE_COLOR_DARK #af6f09
+!define STORAGE_COLOR_VERY_DARK #643f05
 
-!define USER_COLOR #000000
+!define COMMONS_COLOR #9D5B25
+!define COMMONS_COLOR_BACKGROUND #f5efe9
+!define COMMONS_COLOR_LIGHT #ba8c66
+!define COMMONS_COLOR_VERY_LIGHT #d8bda8
+!define COMMONS_COLOR_DARK #6e401a
+!define COMMONS_COLOR_VERY_DARK #3f240f
+
+!define USER_COLOR #9900AA
+!define USER_COLOR_BACKGROUND #f5e6f7
+!define USER_COLOR_LIGHT #b84dc4
+!define USER_COLOR_VERY_LIGHT #d699dd
+!define USER_COLOR_DARK #6b0077
+!define USER_COLOR_VERY_DARK #3d0044
+
+!define IMG_COLOR #0099AA
+!define IMG_COLOR_BACKGROUND #e6f5f7
+!define IMG_COLOR_LIGHT #4db8c4
+!define IMG_COLOR_VERY_LIGHT #99d6dd
+!define IMG_COLOR_DARK #006b77
+!define IMG_COLOR_VERY_DARK #003d44
+
+!define MAIN_COLOR #748477
+!define MAIN_COLOR_BACKGROUND #f1f3f1
+!define MAIN_COLOR_LIGHT #9EA9A0
+!define MAIN_COLOR_VERY_LIGHT #C7CEC9
+!define MAIN_COLOR_DARK #515C53
+!define MAIN_COLOR_VERY_DARK #2E3530
 
 skinparam BackgroundColor #FFFFFFF
 
@@ -69,6 +99,7 @@ skinparam ParticipantPadding 10
 skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
+skinparam sequenceReferenceBackgroundColor #C7CEC9
 
 hide footbox
 hide members

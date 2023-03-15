@@ -4,9 +4,9 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-package Storage{
+package Storage {
 
-package "UserPrefs Storage" #F4F6F6{
+package "UserPrefs Storage" MAIN_COLOR_BACKGROUND {
 Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
@@ -14,11 +14,12 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
+package "EduMate Storage" MAIN_COLOR_BACKGROUND {
+Class "<<interface>>\nEduMateStorage" as EduMateStorage
+Class JsonEduMateStorage
+Class JsonSerializableEduMate
 Class JsonAdaptedPerson
+Class JsonAdaptedUser
 Class JsonAdaptedTag
 }
 
@@ -29,15 +30,17 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" EduMateStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> EduMateStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonEduMateStorage .up.|> EduMateStorage
+JsonEduMateStorage ..> JsonSerializableEduMate
+JsonSerializableEduMate --> "*" JsonAdaptedPerson
+JsonSerializableEduMate --> JsonAdaptedUser
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedUser --> "*" JsonAdaptedTag
 
 @enduml
