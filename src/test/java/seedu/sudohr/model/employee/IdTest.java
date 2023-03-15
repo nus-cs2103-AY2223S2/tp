@@ -6,8 +6,6 @@ import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.model.employee.Id;
-
 public class IdTest {
     @Test
     public void constructor_null_throwsNullPointerException() {

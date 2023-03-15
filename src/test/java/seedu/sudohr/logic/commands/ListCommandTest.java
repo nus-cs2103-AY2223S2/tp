@@ -2,8 +2,8 @@ package seedu.sudohr.logic.commands;
 
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.CommandTestUtil.showEmployeeAtIndex;
-import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -12,9 +12,9 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.CommandTestUtil.showEmployeeAtIndex;
+import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
 
 import org.junit.jupiter.api.Test;
 
