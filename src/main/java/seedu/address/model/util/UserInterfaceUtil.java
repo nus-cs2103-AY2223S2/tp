@@ -1,8 +1,8 @@
 package seedu.address.model.util;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Utility class which contains functions for utility purposes, such as conversion of dates and prices
@@ -15,9 +15,9 @@ public class UserInterfaceUtil {
      * @param date the date object to be formatted
      * @return a formatted date string
      */
-    public static String parseDate(Date date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
-        return formatter.format(date);
+    public static String parseDate(LocalDate date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        return date.format(formatter);
     }
 
     /**

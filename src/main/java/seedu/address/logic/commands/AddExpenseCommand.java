@@ -1,12 +1,16 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Adds an expense to FastTrack.
@@ -42,8 +46,13 @@ public class AddExpenseCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Category category = newExpense.getCategory();
-        //TODO find out how to deal with existing categories
+        Category newCategory = newExpense.getCategory();
+        if (model.hasCategory(newCategory.getCategoryName())) {
+            Category existingCategory = model.getCategoryInstance(newCategory.getCategoryName());
+            newExpense.setCategory(existingCategory);
+        } else {
+            model.addCategory(newCategory);
+        }
         model.addExpense(newExpense);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newExpense));
     }

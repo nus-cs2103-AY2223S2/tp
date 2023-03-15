@@ -130,8 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         resultsHeader = new ResultsHeader();
         resultsHeaderPlaceholder.getChildren().add(resultsHeader.getRoot());
 
-        // TODO ensure the filters applied are observable too
-        resultsDetails = new ResultsDetails(15, "All", true);
+        resultsDetails = new ResultsDetails(logic.getExpenseListCount(), "All", true);
         resultsDetailsPlaceholder.getChildren().add(resultsDetails.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -189,13 +188,13 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().clear();
         if (isExpenseList) {
             resultsHeader.setHeader(true, "All");
-            resultsDetails.setDetails(14, "All", true);
+            resultsDetails.setDetails(logic.getExpenseListCount(), "All", true);
             expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
             listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
         } else {
             resultsHeader.setHeader(false, "");
-            resultsDetails.setDetails(20, "", false);
-            categoryListPanel = new CategoryListPanel(logic.getCategoryList());
+            resultsDetails.setDetails(logic.getExpenseListCount(), "", false);
+            categoryListPanel = new CategoryListPanel(logic.getFilteredCategoryList());
             listPanelPlaceholder.getChildren().add(categoryListPanel.getRoot());
         }
     }

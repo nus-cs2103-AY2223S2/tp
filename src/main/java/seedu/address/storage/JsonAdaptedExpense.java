@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
-import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.util.StorageUtility;
 
 /**
  * Jackson-friendly version of {@link Expense}.
@@ -18,21 +18,23 @@ public class JsonAdaptedExpense {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Expense's %s field is missing!";
 
     private final String name;
-    private final double amount;
-    private final Date date;
-    private final Category category;
+    private final String amount;
+    private final String date;
+    private final JsonAdaptedCategory category;
+
+
 
     /**
      * Constructs a {@code JsonAdaptedExpense} with the given expense details.
      */
     @JsonCreator
-    public JsonAdaptedExpense(@JsonProperty("name") String name, @JsonProperty("amount") double amount,
-            @JsonProperty("date") String date, @JsonProperty("category") Category category) {
+    public JsonAdaptedExpense(@JsonProperty("name") String name, @JsonProperty("amount") String amount,
+                              @JsonProperty("date") String date,
+                              @JsonProperty("category") JsonAdaptedCategory category) {
         this.name = name;
         this.amount = amount;
-        Instant instant = Instant.parse(date);
-        this.date = Date.from(instant);
         this.category = category;
+        this.date = date;
     }
 
     /**
@@ -41,9 +43,10 @@ public class JsonAdaptedExpense {
      */
     public JsonAdaptedExpense(Expense source) {
         name = source.getName();
-        amount = source.getAmount();
-        date = source.getDate();
-        category = source.getCategory();
+        amount = Double.toString(source.getAmount());
+        date = source.getFormattedDate();
+        category = new JsonAdaptedCategory(
+                source.getCategory().getCategoryName(), source.getCategory().getSummary());
     }
 
     /**
@@ -60,22 +63,18 @@ public class JsonAdaptedExpense {
         if (!Expense.isValidName(name)) {
             throw new IllegalValueException(Expense.MESSAGE_CONSTRAINTS);
         }
+
         final String modelName = name;
 
-        final double modelAmount = amount;
+        final double modelAmount = Double.parseDouble(amount);
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Date"));
         }
-        final Date modelDate = date;
 
-        if (category == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Category"));
-        }
-        if (!Expense.isValidCategory(category)) {
-            throw new IllegalValueException(Expense.MESSAGE_CONSTRAINTS);
-        }
-        final Category modelCategory = category;
+        final LocalDate modelDate = StorageUtility.parseDateFromJson(date);
+
+        final Category modelCategory = category.toModelType();
 
         return new Expense(modelName, modelAmount, modelDate, modelCategory);
     }

@@ -2,20 +2,14 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.UserDefinedCategory;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Category}.
  */
 class JsonAdaptedCategory {
 

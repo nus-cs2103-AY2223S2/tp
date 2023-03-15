@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +29,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
@@ -59,7 +60,6 @@ public class ParserUtil {
     /**
      * Parses a {@code String expenseName} into a String.
      * Leading and trailing whitespaces will be trimmed.
-     *
      * @throws ParseException if the given {@code expenseName} is invalid.
      */
     public static String parseExpenseName(String expenseName) throws ParseException {
@@ -72,8 +72,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code price} into an {@code Price} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code price} into an {@code Price} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the specified price is invalid (not non-negative and numeric).
      */
     public static Price parsePrice(String price) throws ParseException {
@@ -85,7 +85,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code categoryName} and creates a {@code Category} instance and returns it. Leading and trailing whitespaces will be
+     * Parses {@code categoryName} and creates a {@code Category} instance and returns it.
+     * Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified categoryName does not exist
      */
@@ -101,12 +102,26 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code dateString} into a {@code Date} instance and returns it.
+     * Parses a {@code String category} into a {@code UserDefinedCategory}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code category} is invalid.
+     */
+    public static UserDefinedCategory parseCategory(String category, String summary) throws ParseException {
+        requireNonNull(category);
+        String trimmedCategory = category.trim();
+        if (!Category.isValidCategoryName(category)) {
+            throw new ParseException(Category.MESSAGE_CONSTRAINTS);
+        }
+        return new UserDefinedCategory(trimmedCategory, summary);
+    }
+
+    /**
+     * Parses {@code dateString} into a {@code LocalDate} instance and returns it.
      * @throws ParseException if the date could not be parsed
      */
-    public static Date parseDate(String dateString) throws ParseException {
+    public static LocalDate parseDate(String dateString) throws ParseException {
         String trimmedDate = dateString.trim();
-        Date parsedDate;
+        LocalDate parsedDate;
         try {
             parsedDate = CommandUtility.parseDateFromUserInput(trimmedDate);
         } catch (IllegalArgumentException e) {
@@ -186,20 +201,5 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Parses a {@code String category} into a {@code UserDefinedCategory}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code category} is invalid.
-     */
-    public static UserDefinedCategory parseCategory(String category, String summary) throws ParseException {
-        requireNonNull(category);
-        String trimmedCategory = category.trim();
-        if (!Category.isValidCategoryName(category)) {
-            throw new ParseException(Category.MESSAGE_CONSTRAINTS);
-        }
-        return new UserDefinedCategory(trimmedCategory, summary);
     }
 }

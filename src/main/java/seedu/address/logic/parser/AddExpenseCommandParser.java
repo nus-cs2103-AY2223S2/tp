@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -41,7 +41,7 @@ public class AddExpenseCommandParser implements Parser<AddExpenseCommand> {
 
         Optional<String> dateStringArg = argMultimap.getValue(PREFIX_DATE);
 
-        Date date = new Date();
+        LocalDate date = LocalDate.now();
         if (dateStringArg.isPresent()) {
             date = ParserUtil.parseDate(dateStringArg.get());
         }

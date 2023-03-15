@@ -34,10 +34,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
-    ObservableList<Category> getCategoryList();
+    ObservableList<Category> getFilteredCategoryList();
 
     /** Returns an unmodifiable view of the filtered list of expenses */
     ObservableList<Expense> getFilteredExpenseList();
+
+    int getExpenseListCount();
 
     /**
      * Returns the user prefs' address book file path.

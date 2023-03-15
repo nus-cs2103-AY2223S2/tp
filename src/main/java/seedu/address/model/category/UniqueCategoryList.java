@@ -3,25 +3,34 @@ package seedu.address.model.category;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+/**
+ * A list of categories that enforces uniqueness between its elements and does not allow nulls.
+ */
 public class UniqueCategoryList implements Iterable<Category> {
 
     private final ObservableList<Category> internalListOfCategories = FXCollections.observableArrayList();
 
-    private final ObservableList<Category> internalUnmodifiableList = FXCollections.
-            unmodifiableObservableList(internalListOfCategories);
+    private final ObservableList<Category> internalUnmodifiableList = FXCollections
+            .unmodifiableObservableList(internalListOfCategories);
 
+    /**
+     * Check if a category is contained within the internal list of categories
+     */
     public boolean contains(Category toCheck) {
         requireNonNull(toCheck);
 
         return internalListOfCategories.stream().anyMatch(toCheck::isSameCategory);
     }
 
+    /**
+     * Adds a category to the internal list of categories
+     */
     public void add(Category newCategory) {
         requireNonNull(newCategory);
 
@@ -32,6 +41,9 @@ public class UniqueCategoryList implements Iterable<Category> {
         internalListOfCategories.add(newCategory);
     }
 
+    /**
+     * Removes a category from the internal list of categories
+     */
     public void remove(Category toRemove) {
         requireNonNull(toRemove);
 
@@ -40,11 +52,17 @@ public class UniqueCategoryList implements Iterable<Category> {
         }
     }
 
+    /**
+     * Sets an internal list of categories with a new list of categories
+     */
     public void setCategoryList(UniqueCategoryList replacementList) {
         requireNonNull(replacementList);
         internalListOfCategories.setAll(replacementList.internalListOfCategories);
     }
 
+    /**
+     * Sets an internal list of categories with a new list of categories
+     */
     public void setCategoryList(List<Category> listOfCategories) {
         requireAllNonNull(listOfCategories);
         if (!categoriesAreUnique(listOfCategories)) {
@@ -54,6 +72,9 @@ public class UniqueCategoryList implements Iterable<Category> {
         internalListOfCategories.setAll(listOfCategories);
     }
 
+    /**
+     * Returns true if all categories are unique
+     */
     public boolean categoriesAreUnique(List<Category> listOfCategories) {
         for (int i = 0; i < listOfCategories.size(); i++) {
             for (int j = i + 1; j < listOfCategories.size(); j++) {

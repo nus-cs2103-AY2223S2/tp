@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUMMARY;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
-import seedu.address.model.category.UserDefinedCategory;
 
 /**
  * Adds a person to the address book.

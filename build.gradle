@@ -16,9 +16,9 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
-//checkstyle {
-//    toolVersion = '10.2'
-//}
+checkstyle {
+    toolVersion = '10.2'
+}
 
 //test {
 //    useJUnitPlatform()

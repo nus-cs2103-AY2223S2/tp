@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CATEGORY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
 
@@ -13,7 +12,7 @@ public class ListCategory extends Command {
 
     public static final String COMMAND_WORD = "lcat";
 
-    public static final String MESSAGE_SUCCESS = "Listed all category";
+    public static final String MESSAGE_SUCCESS = "Listed all categories";
 
 
     @Override

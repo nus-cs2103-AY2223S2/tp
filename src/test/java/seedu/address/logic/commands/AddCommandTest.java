@@ -136,6 +136,43 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addExpense(Expense expense) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void deleteExpense(Expense expense) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void addCategory(Category toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteCategory(Category target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public void updateFilteredExpensesList(Predicate<Expense> predicate) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void updateFilteredCategoryList(Predicate<Category> predicate) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+
+        public int getExpenseListCount() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,7 +183,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Category> getCategoryList() {
+        public ObservableList<Category> getFilteredCategoryList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -159,6 +196,22 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Category getCategoryInstance(String categoryName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasCategory(Category category) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public boolean hasCategory(String categoryName) {
+            throw new AssertionError("This method should not be called.");
+        };
+
     }
 
     /**

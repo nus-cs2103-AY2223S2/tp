@@ -55,14 +55,13 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
-//    ReadOnlyCategoryList getAddressBook();
+    //ReadOnlyCategoryList getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
 
-    boolean hasCategory(Category category);
 
     /**
      * Deletes the given person.
@@ -90,17 +89,17 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the category list */
-    ObservableList<Category> getCategoryList();
-
-
     /** Returns whether a category is present in the category list by name*/
     boolean hasCategory(String categoryName);
+
+    boolean hasCategory(Category category);
 
     /** Returns an unmodifiable view of the filtered expense list */
     ObservableList<Expense> getFilteredExpenseList();
 
     ObservableList<Category> getFilteredCategoryList();
+
+    int getExpenseListCount();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -115,4 +114,6 @@ public interface Model {
     void addExpense(Expense expense);
 
     void deleteExpense(Expense expense);
+
+    Category getCategoryInstance(String categoryName);
 }

@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyCategoryList;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.UserDefinedCategory;
 import seedu.address.model.person.Address;
@@ -48,9 +47,9 @@ public class SampleDataUtil {
     }
 
     public static Category[] getSampleCategories() {
-                return new Category[] {
-                new UserDefinedCategory("Testing category name 1", "Description for first test category"),
-                new UserDefinedCategory("Testing category name 2", "Description for second test category")
+        return new Category[] {
+            new UserDefinedCategory("Testing category name 1", "Description for first test category"),
+            new UserDefinedCategory("Testing category name 2", "Description for second test category")
         };
     }
 

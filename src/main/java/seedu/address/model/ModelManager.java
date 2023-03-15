@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -27,6 +29,9 @@ public class ModelManager implements Model {
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Category> filteredCategories;
 
+    private final IntegerProperty expenseListCount = new SimpleIntegerProperty();
+    private final IntegerProperty categoryListCount = new SimpleIntegerProperty();
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -40,10 +45,19 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredExpenses = new FilteredList<>(this.addressBook.getExpenseList());
         filteredCategories = new FilteredList<>(this.addressBook.getCategoryList());
+        updateExpenseListCount();
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
+    }
+
+    public int getExpenseListCount() {
+        return expenseListCount.get();
+    }
+
+    public void updateExpenseListCount() {
+        expenseListCount.set(filteredExpenses.size());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -99,11 +113,6 @@ public class ModelManager implements Model {
         return addressBook.hasPerson(person);
     }
 
-    @Override
-    public boolean hasCategory(Category category) {
-        requireNonNull(category);
-        return addressBook.hasCategory(category);
-    }
 
     @Override
     public void deletePerson(Person target) {
@@ -179,21 +188,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Category> getCategoryList() {
-        return addressBook.getCategoryList();
-    }
-
-    @Override
     public void updateFilteredCategoryList(Predicate<Category> predicate) {
         requireNonNull(predicate);
         filteredCategories.setPredicate(predicate);
     }
 
-
     @Override
     public boolean hasCategory(String categoryName) {
         requireNonNull(categoryName);
         return addressBook.hasCategory(categoryName);
+    }
+
+    @Override
+    public boolean hasCategory(Category category) {
+        requireNonNull(category);
+        return addressBook.hasCategory(category);
     }
 
     //=========== Filtered Expense List Accessors =============================================================
@@ -217,12 +226,18 @@ public class ModelManager implements Model {
     public void addExpense(Expense expense) {
         addressBook.addExpense(expense);
         updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
+        updateExpenseListCount();
     }
 
     @Override
     public void deleteExpense(Expense expense) {
-        addressBook.deleteExpense(expense);
+        addressBook.removeExpense(expense);
         updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
+    }
+
+    @Override
+    public Category getCategoryInstance(String categoryName) {
+        return addressBook.getCategoryInstance(categoryName);
     }
 
 }

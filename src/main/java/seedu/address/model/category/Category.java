@@ -36,6 +36,9 @@ public abstract class Category {
         return this.summary;
     };
 
+    /**
+     * Returns true if a given category matches the current category
+     */
     public boolean isSameCategory(Category toCheck) {
         if (this == toCheck) {
             return true;
@@ -60,8 +63,8 @@ public abstract class Category {
 
         Category otherTypecasted = (Category) other;
 
-        if (this.getCategoryName().equals(otherTypecasted.getCategoryName()) &&
-                this.getSummary().equals(otherTypecasted.getSummary())) {
+        if (this.getCategoryName().equals(otherTypecasted.getCategoryName())
+                && this.getSummary().equals(otherTypecasted.getSummary())) {
             return true;
         }
 

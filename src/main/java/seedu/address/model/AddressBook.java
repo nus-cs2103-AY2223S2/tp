@@ -3,11 +3,12 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
-import seedu.address.model.expense.Expense;
 import seedu.address.model.category.UniqueCategoryList;
+import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.ExpenseList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -35,7 +36,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         expenses = new ExpenseList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -55,9 +57,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setCategories(List<Category> categories) { this.categories.setCategoryList(categories); }
+    public void setCategories(List<Category> categories) {
+        this.categories.setCategoryList(categories);
+    }
 
-    public void setExpenses(List<Expense> expenses) { this.expenses.setExpenseList(expenses); }
+    public void setExpenses(List<Expense> expenses) {
+        this.expenses.setExpenseList(expenses);
+    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -79,9 +85,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    /**
+     * Returns true if the given category exists in the list.
+     *
+     * @param category The category to check for existence in the list.
+     * @return true if the category exists in the list and false otherwise.
+     */
     public boolean hasCategory(Category category) {
         requireNonNull(category);
         return categories.contains(category);
+    }
+
+    /**
+     * Returns true if a category with the given name exists in the list.
+     *
+     * @param categoryName The name of the category to check for existence in the list.
+     * @return true if a category with the given name exists in the list and false otherwise.
+     */
+    public boolean hasCategory(String categoryName) {
+        for (Category c: categories.asUnmodifiableList()) {
+            if (Objects.equals(c.getCategoryName(), categoryName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -92,7 +119,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
     }
 
-    public void addCategory(Category toAdd) { categories.add(toAdd); }
+    public void addCategory(Category toAdd) {
+        categories.add(toAdd);
+    }
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
@@ -152,16 +181,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
-    // TODO merge with Isaac's segment
-    public boolean hasCategory(String categoryName) {
-        return true;
+
+    public Category getCategoryInstance(String categoryName) {
+        for (Category c: categories.asUnmodifiableList()) {
+            if (Objects.equals(c.getCategoryName(), categoryName)) {
+                return c;
+            }
+        }
+        return null;
     }
+
 
     public void addExpense(Expense expense) {
         expenses.add(expense);
     }
 
-    public void deleteExpense(Expense expense) {
+    public void removeExpense(Expense expense) {
         expenses.remove(expense);
     }
 }

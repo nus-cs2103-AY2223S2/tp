@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedExpense.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ import seedu.address.model.expense.Expense;
 public class JsonAdaptedExpenseTest {
     private static final String VALID_NAME = "Benson";
     private static final double VALID_AMOUNT = 23;
-    private static final Date VALID_DATE = new Date(2020, 1, 1, 0, 0, 0);
+    private static final LocalDate VALID_DATE = LocalDate.now();
     private static final Category VALID_CATEGORY = new MiscellaneousCategory();
 
     @Test
