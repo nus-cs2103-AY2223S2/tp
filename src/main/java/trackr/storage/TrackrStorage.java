@@ -33,7 +33,8 @@ public interface TrackrStorage {
     Optional<ReadOnlySupplierList> readSupplierList(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlySupplierList} and {@link ReadOnlyTaskList} to the storage.
+     * Saves the given {@link ReadOnlySupplierList}, {@link ReadOnlyTaskList}
+     * and {@link ReadOnlyOrderList} to the storage.
      * @param addressBook cannot be null.
      * @param taskList cannot be null.
      * @throws IOException if there was any problem writing to the file.

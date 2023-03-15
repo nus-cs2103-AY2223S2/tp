@@ -1,6 +1,7 @@
 package trackr.storage;
 
 import static java.util.Objects.requireNonNull;
+import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -127,9 +128,7 @@ public class JsonTrackrStorage implements TrackrStorage {
     public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
             ReadOnlyOrderList orderList, Path filePath)
             throws IOException {
-        requireNonNull(addressBook);
-        requireNonNull(taskList);
-        requireNonNull(filePath);
+        requireAllNonNull(addressBook, taskList, orderList, filePath);
 
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableTrackr(addressBook, taskList, orderList), filePath);
