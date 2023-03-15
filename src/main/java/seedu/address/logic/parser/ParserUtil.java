@@ -12,7 +12,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Performance;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Photo;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -63,6 +65,21 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String photo} into a {@code Photo}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code photo} is invalid.
+     */
+    public static Photo parsePhoto(String photo) throws ParseException {
+        requireNonNull(photo);
+        String trimmedPhoto = photo.trim();
+        if (!Photo.isValidPhoto(trimmedPhoto)) {
+            throw new ParseException(Photo.MESSAGE_CONSTRAINTS);
+        }
+        return new Photo(trimmedPhoto);
     }
 
     /**
@@ -120,5 +137,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Performance parsePerformance(String performance) throws ParseException {
+        requireNonNull(performance);
+        String trimmedPerformance = performance.trim();
+        if (!Performance.isValidPerformance(trimmedPerformance)) {
+            throw new ParseException(Performance.MESSAGE_CONSTRAINTS);
+        }
+        return new Performance(trimmedPerformance);
     }
 }
