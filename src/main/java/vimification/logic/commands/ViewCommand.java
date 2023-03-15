@@ -9,7 +9,7 @@ public abstract class ViewCommand extends Command {
         this.list = list;
     }
 
-    // Don't think this method will ever be used
+    // For possible testing. Don't think this method will ever be used
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
