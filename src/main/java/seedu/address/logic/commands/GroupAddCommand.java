@@ -70,7 +70,7 @@ public class GroupAddCommand extends Command {
      * Create modified group
      * @param model
      * @param personToModify
-     * @return Set</Tags>
+     * @return Set of tags
      * @throws CommandException
      */
     public Set<Tag> addToModifiedGroup(Model model, Person personToModify) throws CommandException {
