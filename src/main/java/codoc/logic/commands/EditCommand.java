@@ -256,22 +256,22 @@ public class EditCommand extends Command {
             if (skills != null && skills.size() == 0) {
                 this.skills = skills;
             } else if (skills != null && this.skills != null) {
-                deleteSkillsHelper(skills);
+                if (hasSkills(skills)) {
+                    deleteSkillsHelper(skills);
+                } else {
+                    this.skills = null;
+                }
             }
         }
 
         private void deleteSkillsHelper(Set<Skill> skills) {
-            if (hasSkills(skills)) {
-                Set<Skill> result = new HashSet<>();
-                for (Skill s : this.skills) {
-                    if (!skills.contains(s)) {
-                        result.add(s);
-                    }
+            Set<Skill> result = new HashSet<>();
+            for (Skill s : this.skills) {
+                if (!skills.contains(s)) {
+                    result.add(s);
                 }
-                this.skills = result;
-            } else {
-                this.skills = null;
             }
+            this.skills = result;
         }
 
         /**
@@ -280,26 +280,26 @@ public class EditCommand extends Command {
          */
         public void updateSkills(Set<Skill> oldSkills, Set<Skill> newSkills) {
             if (oldSkills != null && newSkills != null && this.skills != null) {
-                updateSkillsHelper(oldSkills, newSkills);
+                if (hasSkills(oldSkills)) {
+                    updateSkillsHelper(oldSkills, newSkills);
+                } else {
+                    this.skills = null;
+                }
             }
         }
 
         private void updateSkillsHelper(Set<Skill> oldSkills, Set<Skill> newSkills) {
-            if (hasSkills(oldSkills)) {
-                Set<Skill> result = new HashSet<>();
-                for (Skill s : this.skills) {
-                    if (oldSkills.contains(s)) {
-                        Skill newSkill = newSkills.iterator().next();
-                        result.add(newSkill);
-                        newSkills.remove(newSkill);
-                    } else {
-                        result.add(s);
-                    }
+            Set<Skill> result = new HashSet<>();
+            for (Skill s : this.skills) {
+                if (oldSkills.contains(s)) {
+                    Skill newSkill = newSkills.iterator().next();
+                    result.add(newSkill);
+                    newSkills.remove(newSkill);
+                } else {
+                    result.add(s);
                 }
-                this.skills = result;
-            } else {
-                this.skills = null;
             }
+            this.skills = result;
         }
 
         private boolean hasSkills(Set<Skill> oldSkills) {
@@ -336,22 +336,22 @@ public class EditCommand extends Command {
             if (modules != null && modules.size() == 0) {
                 this.modules = modules;
             } else if (modules != null && this.modules != null) {
-                deleteModsHelper(modules);
+                if (hasMods(modules)) {
+                    deleteModsHelper(modules);
+                } else {
+                    this.modules = null;
+                }
             }
         }
 
         private void deleteModsHelper(Set<Module> modules) {
-            if (hasMods(modules)) {
-                Set<Module> result = new HashSet<>();
-                for (Module m : this.modules) {
-                    if (!modules.contains(m)) {
-                        result.add(m);
-                    }
+            Set<Module> result = new HashSet<>();
+            for (Module m : this.modules) {
+                if (!modules.contains(m)) {
+                    result.add(m);
                 }
-                this.modules = result;
-            } else {
-                this.modules = null;
             }
+            this.modules = result;
         }
 
         /**
@@ -360,26 +360,26 @@ public class EditCommand extends Command {
          */
         public void updateMods(Set<Module> oldMods, Set<Module> newMods) {
             if (oldMods != null && newMods != null && this.modules != null) {
-                updateModsHelper(oldMods, newMods);
+                if (hasMods(oldMods)) {
+                    updateModsHelper(oldMods, newMods);
+                } else {
+                    this.modules = null;
+                }
             }
         }
 
         private void updateModsHelper(Set<Module> oldMods, Set<Module> newMods) {
-            if (hasMods(oldMods)) {
-                Set<Module> result = new HashSet<>();
-                for (Module m : this.modules) {
-                    if (oldMods.contains(m)) {
-                        Module newMod = newMods.iterator().next();
-                        result.add(newMod);
-                        newMods.remove(newMod);
-                    } else {
-                        result.add(m);
-                    }
+            Set<Module> result = new HashSet<>();
+            for (Module m : this.modules) {
+                if (oldMods.contains(m)) {
+                    Module newMod = newMods.iterator().next();
+                    result.add(newMod);
+                    newMods.remove(newMod);
+                } else {
+                    result.add(m);
                 }
-                this.modules = result;
-            } else {
-                this.modules = null;
             }
+            this.modules = result;
         }
 
         private boolean hasMods(Set<Module> oldMods) {
