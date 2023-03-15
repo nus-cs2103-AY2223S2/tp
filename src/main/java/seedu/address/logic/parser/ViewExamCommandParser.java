@@ -29,7 +29,7 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
      * Parses the given {@code String} of arguments in the context of the ViewLessonCommand
      * and returns a ViewLessonCommand object for execution.
      * @param args the user input to be parsed into a ViewLessonCommand object.
-     * @return a ViewLessonCommand object.
+     * @return a ViewExamCommand object.
      */
     public ViewExamCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -63,13 +63,13 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
-            String exam = argMultimap.getValue(PREFIX_SUBJECT).get();
+            String exam = argMultimap.getValue(PREFIX_EXAM).get();
             examPredicate = new ExamPredicate(exam);
         }
 
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
             String done = argMultimap.getValue(PREFIX_DONE).get();
-            ExamDonePredicate examDonePredicate = new ExamDonePredicate(done);
+            donePredicate = new ExamDonePredicate(done);
         }
 
         // If date is present, create a predicate to filter by date
