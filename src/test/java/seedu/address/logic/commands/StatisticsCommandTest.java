@@ -14,7 +14,8 @@ public class StatisticsCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_STATISTICS_MESSAGE, false, false, false, true, false);
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_STATISTICS_MESSAGE,
+                false, false, false, true, false);
         assertCommandSuccess(new StatisticsCommand(), model, expectedCommandResult, expectedModel);
     }
 }
