@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 
@@ -37,7 +36,7 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
                     CreateExamCommand.MESSAGE_USAGE));
         }
 
-        String examDescription = argMultimap.getValue(PREFIX_HOMEWORK).get();
+        String examDescription = argMultimap.getValue(PREFIX_EXAM).get();
         LocalDateTime startTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_STARTTIME).get());
         LocalDateTime endTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ENDTIME).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
