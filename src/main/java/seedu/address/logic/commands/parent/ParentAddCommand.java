@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 
 import seedu.address.logic.commands.CommandResult;
@@ -28,10 +28,10 @@ public class ParentAddCommand extends ParentCommand {
             + PREFIX_INDEXNUMBER + "STUDENT_INDEX_NUMBER "
             + PREFIX_NAME + "NAME "
             + PREFIX_RELATIONSHIP + "RELATIONSHIP \n"
+            + PREFIX_PHONEPARENT + "PHONE "
             + "["
             + PREFIX_AGE + "AGE "
             + PREFIX_IMAGEPARENT + "IMAGE PARENT "
-            + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "]\n"
@@ -39,9 +39,9 @@ public class ParentAddCommand extends ParentCommand {
             + PREFIX_INDEXNUMBER + "15 "
             + PREFIX_NAME + "Tan Ah Niu "
             + PREFIX_RELATIONSHIP + "Father "
+            + PREFIX_PHONEPARENT + "91234567 "
             + PREFIX_AGE + "30 "
             + PREFIX_IMAGEPARENT + "C:// "
-            + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "tanahcow@gmail.com "
             + PREFIX_ADDRESS + "Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)";
 

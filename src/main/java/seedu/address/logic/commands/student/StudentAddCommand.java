@@ -128,6 +128,9 @@ public class StudentAddCommand extends StudentCommand {
         for (Parent p : parents) {
             if ((p.getPhone().equals(parentNumber)) && (p.getName().equals(parentName))) {
                 student.setParent(p);
+                Parent newParent = p;
+                newParent.addStudent(student); //bind student to parent
+                model.setParent(p, newParent); //update parent in parents
                 return;
             }
         }
@@ -141,6 +144,7 @@ public class StudentAddCommand extends StudentCommand {
             Parent newParent = new Parent(student.getStudentClass(), student.getIndexNumber(), parentName,
                     student.getRls(), age, image, email, parentNumber,
                     address, tagList);
+            newParent.addStudent(student); //bind student to parent
             model.addParent(newParent);
         } catch (ParseException parseException) {
             /*

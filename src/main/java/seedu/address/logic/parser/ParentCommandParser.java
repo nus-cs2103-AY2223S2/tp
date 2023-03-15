@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -59,7 +59,7 @@ public class ParentCommandParser {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_ADD, PREFIX_ADDRESS,
                         PREFIX_INDEXNUMBER, PREFIX_NAME,
-                        PREFIX_RELATIONSHIP, PREFIX_AGE, PREFIX_IMAGEPARENT, PREFIX_PHONE,
+                        PREFIX_RELATIONSHIP, PREFIX_AGE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
                         PREFIX_EMAIL);
 
         if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
@@ -71,7 +71,7 @@ public class ParentCommandParser {
     }
 
     private ParentAddCommand addCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER, PREFIX_NAME, PREFIX_RELATIONSHIP)
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER, PREFIX_NAME, PREFIX_RELATIONSHIP, PREFIX_PHONEPARENT)
                 || !argMultimap.getPreamble().isEmpty()
                 || studentClass.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParentAddCommand.MESSAGE_USAGE));
@@ -83,7 +83,7 @@ public class ParentCommandParser {
         Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_AGE).get()));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

@@ -73,9 +73,11 @@ public class ArgumentMultimap {
             case "hwdone/":
                 Optional<String> missingHwDone = Optional.of("Insert student homework done here!");
                 return missingHwDone;
+            /*
             case "p/":
                 Optional<String> missingParentPhone = Optional.of("Insert parent phone here!");
                 return missingParentPhone;
+             */
             case "imgP/":
                 Optional<String> missingParentImage = Optional.of("Insert parent image here!");
                 return missingParentImage;
