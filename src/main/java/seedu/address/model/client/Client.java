@@ -7,6 +7,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.address.model.client.policy.Policy;
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,17 +27,21 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final UniquePolicyList policyList;
+    private final FilteredList<Policy> filteredPolicies;
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UniquePolicyList policyList) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.policyList = policyList; // TODO: @pangrwa Need to read from Storage
+        filteredPolicies = new FilteredList<>(this.policyList.asUnmodifiableObservableList());
     }
 
     public Name getName() {
@@ -50,6 +58,14 @@ public class Client {
 
     public Address getAddress() {
         return address;
+    }
+
+    public UniquePolicyList getPolicyList() {
+        return policyList;
+    }
+
+    public ObservableList<Policy> getFilteredPolicyList() {
+        return filteredPolicies;
     }
 
 
@@ -93,13 +109,14 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getTags().equals(getTags())
+                && otherClient.getPolicyList().equals(getPolicyList());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, policyList);
     }
 
     @Override
@@ -117,6 +134,10 @@ public class Client {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        if (!policyList.isEmpty()) {
+            builder.append("; Policies: ");
+            policyList.forEach(builder::append);
         }
         return builder.toString();
     }
