@@ -52,7 +52,6 @@ public class VaxTypeLoaderTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL,
                 SampleVaxTypeData.ALLERGY_REQS_REAL);
     }
@@ -67,7 +66,6 @@ public class VaxTypeLoaderTest {
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_HISTORY_REQS,
                 VaxType.DEFAULT_ALLERGY_REQS);
     }
@@ -82,7 +80,6 @@ public class VaxTypeLoaderTest {
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 UNCHI_MAX_AGE,
-                VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_HISTORY_REQS,
                 VaxType.DEFAULT_ALLERGY_REQS);
         vaxType = storage.get(SampleVaxTypeData.NAME_REAL.getName()).get();
@@ -91,7 +88,6 @@ public class VaxTypeLoaderTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL,
                 SampleVaxTypeData.ALLERGY_REQS_REAL);
     }

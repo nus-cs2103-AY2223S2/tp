@@ -56,7 +56,6 @@ public class AddVaxTypeTest {
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_ALLERGY_REQS,
                 VaxType.DEFAULT_HISTORY_REQS);
     }
@@ -69,7 +68,6 @@ public class AddVaxTypeTest {
                 SampleVaxTypeData.GROUPS_1,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_ALLERGY_REQS,
                 VaxType.DEFAULT_HISTORY_REQS);
         checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_MIN_AGE_1,
@@ -77,7 +75,6 @@ public class AddVaxTypeTest {
                 VaxType.DEFAULT_GROUP_SET,
                 SampleVaxTypeData.MIN_AGE_1,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_ALLERGY_REQS,
                 VaxType.DEFAULT_HISTORY_REQS);
         checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_MIN_AGE_1,
@@ -85,7 +82,6 @@ public class AddVaxTypeTest {
                 VaxType.DEFAULT_GROUP_SET,
                 SampleVaxTypeData.MIN_AGE_1,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_ALLERGY_REQS,
                 VaxType.DEFAULT_HISTORY_REQS);
         checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_MAX_AGE_1,
@@ -93,15 +89,6 @@ public class AddVaxTypeTest {
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 SampleVaxTypeData.MAX_AGE_1,
-                VaxType.DEFAULT_MIN_SPACING,
-                VaxType.DEFAULT_ALLERGY_REQS,
-                VaxType.DEFAULT_HISTORY_REQS);
-        checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_MIN_SPACING_1,
-                SampleVaxTypeData.NAME_1,
-                VaxType.DEFAULT_GROUP_SET,
-                VaxType.DEFAULT_MIN_AGE,
-                VaxType.DEFAULT_MAX_AGE,
-                SampleVaxTypeData.MIN_SPACING_1,
                 VaxType.DEFAULT_ALLERGY_REQS,
                 VaxType.DEFAULT_HISTORY_REQS);
         checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_ALLERGY_REQS_1,
@@ -109,7 +96,6 @@ public class AddVaxTypeTest {
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_MIN_SPACING,
                 SampleVaxTypeData.ALLERGY_REQS_1,
                 VaxType.DEFAULT_HISTORY_REQS);
         checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_HISTORY_REQS_1,
@@ -117,7 +103,6 @@ public class AddVaxTypeTest {
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_ALLERGY_REQS,
                 SampleVaxTypeData.HISTORY_REQS_1);
     }
@@ -129,7 +114,6 @@ public class AddVaxTypeTest {
                 SampleVaxTypeData.CMD_NAME_REAL,
                 SampleVaxTypeData.CMD_ALLERGY_REQS_REAL,
                 SampleVaxTypeData.CMD_MIN_AGE_REAL,
-                SampleVaxTypeData.CMD_MIN_SPACING_REAL,
                 SampleVaxTypeData.CMD_HISTORY_REQS_REAL,
                 SampleVaxTypeData.CMD_MAX_AGE_REAL,
                 SampleVaxTypeData.CMD_GROUPS_REAL);
@@ -138,7 +122,6 @@ public class AddVaxTypeTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_REAL,
                 SampleVaxTypeData.ALLERGY_REQS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
     }
@@ -188,9 +171,9 @@ public class AddVaxTypeTest {
 
 
     private void checkExecution(String command, GroupName name, HashSet<GroupName> groups,
-                Age minAge, Age maxAge, int minSpacing,
+                Age minAge, Age maxAge,
                 List<Requirement> allergyReq, List<Requirement> historyReq) throws Exception {
-        VaxType expected = new VaxType(name, groups, minAge, maxAge, minSpacing, allergyReq, historyReq);
+        VaxType expected = new VaxType(name, groups, minAge, maxAge, allergyReq, historyReq);
 
         VaxTypeModelStub model = new VaxTypeModelStub();
         new AddVaxTypeParser().parse(command).execute(model);
