@@ -347,7 +347,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseOrderStatus_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseOrderStatus(Optional.ofNullable(INVALID_ORDER_STATUS)));
+        assertThrows(ParseException.class, () -> ParserUtil
+            .parseOrderStatus(Optional.ofNullable(INVALID_ORDER_STATUS)));
     }
 
     @Test

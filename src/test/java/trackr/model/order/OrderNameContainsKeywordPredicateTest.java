@@ -195,7 +195,8 @@ public class OrderNameContainsKeywordPredicateTest {
                 .withOrderDeadline("01/01/2023")
                 .withOrderNameKeywords(Arrays.asList("Buy", "Food"))
                 .build();
-        assertTrue(predicate.test(new OrderBuilder().withOrderDeadline("01/01/2023").withOrderName("Buy Food").build()));
+        assertTrue(predicate.test(new OrderBuilder().withOrderDeadline("01/01/2023")
+                .withOrderName("Buy Food").build()));
 
         // Same deadline and status
         predicate = new OrderPredicateBuilder()

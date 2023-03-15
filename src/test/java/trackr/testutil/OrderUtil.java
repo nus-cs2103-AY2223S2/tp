@@ -17,7 +17,7 @@ import trackr.model.order.OrderNameContainsKeywordPredicate;
  * utility calss for Order
  */
 public class OrderUtil {
-    
+
     /**
      * returns an AddOrdrCommand string for adding the {@code order}.
      */
@@ -53,7 +53,8 @@ public class OrderUtil {
         descriptor.getOrderName()
                 .ifPresent(orderName -> sb.append(PREFIX_ORDERNAME).append(orderName.value).append(" "));
         descriptor.getOrderDeadline()
-                .ifPresent(orderDeadline -> sb.append(PREFIX_DEADLINE).append(orderDeadline.toJsonString()).append(" "));
+                .ifPresent(orderDeadline -> sb.append(PREFIX_DEADLINE)
+                    .append(orderDeadline.toJsonString()).append(" "));
         descriptor.getOrderStatus()
                 .ifPresent(orderStatus -> sb.append(PREFIX_STATUS).append(orderStatus.toJsonString()).append(" "));
         descriptor.getOrderQuantity()
@@ -74,7 +75,8 @@ public class OrderUtil {
                 .ifPresent(orderNameKeywords -> sb.append(PREFIX_ORDERNAME)
                         .append(String.join(" ", orderNameKeywords)).append(" "));
         descriptor.getOrderDeadline()
-                .ifPresent(orderDeadline -> sb.append(PREFIX_DEADLINE).append(orderDeadline.toJsonString()).append(" "));
+                .ifPresent(orderDeadline -> sb.append(PREFIX_DEADLINE)
+                    .append(orderDeadline.toJsonString()).append(" "));
         descriptor.getOrderStatus()
                 .ifPresent(orderStatus -> sb.append(PREFIX_STATUS).append(orderStatus.toJsonString()).append(" "));
         descriptor.getOrderQuantity()

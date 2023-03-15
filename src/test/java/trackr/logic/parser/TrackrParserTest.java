@@ -113,7 +113,7 @@ public class TrackrParserTest {
                 DeleteSupplierCommand.COMMAND_WORD + " " + INDEX_FIRST_OBJECT.getOneBased());
         assertEquals(new DeleteSupplierCommand(INDEX_FIRST_OBJECT), command);
     }
-    
+
     @Test
     public void parseCommand_deleteTask() throws Exception {
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
