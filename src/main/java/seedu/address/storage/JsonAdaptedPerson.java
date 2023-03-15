@@ -38,10 +38,10 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("status") String status
-            , @JsonProperty("phone") String phone, @JsonProperty("email") String email
-            , @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged
-            , @JsonProperty("image") String image) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("status") String status,
+                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("image") String image) {
         this.name = name;
         this.status = status;
         this.phone = phone;
@@ -68,8 +68,8 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
         image = source.getImage().imageName;
     }
 
@@ -95,7 +95,7 @@ class JsonAdaptedPerson {
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
-        if (!Name.isValidName(status)) {
+        if (!Status.isValidStatus(status)) {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
         final Status modelStatus = new Status(status);

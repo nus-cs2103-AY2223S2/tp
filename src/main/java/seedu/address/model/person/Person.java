@@ -45,14 +45,16 @@ public class Person {
      * A default image will be used for this person.
      *
      * @param name
+     * @param status
      * @param phone
      * @param email
      * @param address
      * @param tags
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Status status, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
+        this.status = status;
         this.phone = phone;
         this.email = email;
         this.address = address;

@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_STATUS + "Year2 computerscience"
+            + PREFIX_STATUS + "Y2 computer science"
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
@@ -66,5 +66,11 @@ public class AddCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd));
+    }
+
+
+    public String getName() {
+        return String.valueOf(toAdd.getName()) + String.valueOf(toAdd.getStatus()) + String.valueOf(toAdd.getPhone())
+            + String.valueOf(toAdd.getEmail()) + String.valueOf(toAdd.getAddress()) + String.valueOf(toAdd.getTags());
     }
 }

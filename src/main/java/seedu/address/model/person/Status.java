@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's status in the address book. Information contains his current year and course of study.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
  */
 public class Status {
 
@@ -29,14 +29,14 @@ public class Status {
     public Status(String statusDetail) {
         System.out.println("status checked pass");
         requireNonNull(statusDetail);
-        checkArgument(isValidName(statusDetail), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStatus(statusDetail), MESSAGE_CONSTRAINTS);
         fullStatusDetail = statusDetail;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidStatus(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

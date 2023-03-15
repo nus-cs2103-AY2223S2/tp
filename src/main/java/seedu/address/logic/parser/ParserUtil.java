@@ -46,7 +46,7 @@ public class ParserUtil {
     public static Status parseStatus(String fullStatus) throws ParseException {
         requireNonNull(fullStatus);
         String trimmedStatus = fullStatus.trim();
-        if (!Status.isValidName(trimmedStatus)) {
+        if (!Status.isValidStatus(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
         return new Status(trimmedStatus);
