@@ -36,7 +36,7 @@ public class BookmarkCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label progress;
     @FXML
     private Label author;
     @FXML
@@ -57,14 +57,15 @@ public class BookmarkCard extends UiPart<Region> {
         this.bookmark = bookmark;
         id.setText(displayedIndex + ". ");
         title.setText(bookmark.getTitle().value);
-        phone.setText(bookmark.getPhone().value);
+
+        progress.setText(bookmark.getPhone().value);
         b1.setText(bookmark.getPhone().toString());
 
-        if (bookmark.getPhone().toString().equals("87438807")) {
+        if (bookmark.getProgress().toString().equals("87438807")) {
             b1.setStyle("-fx-background-color: #50f60a");
-        } else if (bookmark.getPhone().toString().equals("99272758")) {
+        } else if (bookmark.getProgress().toString().equals("99272758")) {
              b1.setStyle("-fx-background-color: #eaf553");
-        } else if (bookmark.getPhone().toString().equals("93210283")) {
+        } else if (bookmark.getProgress().toString().equals("93210283")) {
             b1.setStyle("-fx-background-color: #d83434");
         } else {
             b1.setDisable(true);
@@ -85,6 +86,7 @@ public class BookmarkCard extends UiPart<Region> {
          *
          *
          */
+
         author.setText(bookmark.getAuthor().value);
         genre.setText(bookmark.getGenre().value);
         bookmark.getTags().stream()

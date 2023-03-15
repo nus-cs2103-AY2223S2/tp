@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -32,7 +32,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_PHONE, PREFIX_GENRE, PREFIX_AUTHOR, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE,
+                        PREFIX_PROGRESS, PREFIX_GENRE, PREFIX_AUTHOR, PREFIX_TAG);
 
         Index index;
 
@@ -46,8 +47,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             editBookmarkDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editBookmarkDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (argMultimap.getValue(PREFIX_PROGRESS).isPresent()) {
+            editBookmarkDescriptor.setProgress(ParserUtil.parseProgress(argMultimap.getValue(PREFIX_PROGRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_GENRE).isPresent()) {
             editBookmarkDescriptor.setGenre(ParserUtil.parseGenre(argMultimap.getValue(PREFIX_GENRE).get()));

@@ -3,7 +3,7 @@ package seedu.library.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.library.model.Model.PREDICATE_SHOW_ALL_BOOKMARKS;
@@ -22,7 +22,7 @@ import seedu.library.model.Model;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Phone;
+import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 
@@ -38,13 +38,13 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_PROGRESS + "PROGRESS] "
             + "[" + PREFIX_GENRE + "GENRE] "
             + "[" + PREFIX_AUTHOR + "AUTHOR] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_GENRE + "johndoe@example.com";
+            + PREFIX_PROGRESS + "Finished "
+            + PREFIX_GENRE + "Fantasy";
 
     public static final String MESSAGE_EDIT_BOOKMARK_SUCCESS = "Edited Bookmark: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,12 +95,12 @@ public class EditCommand extends Command {
         assert bookmarkToEdit != null;
 
         Title updatedTitle = editBookmarkDescriptor.getTitle().orElse(bookmarkToEdit.getTitle());
-        Phone updatedPhone = editBookmarkDescriptor.getPhone().orElse(bookmarkToEdit.getPhone());
+        Progress updatedProgress = editBookmarkDescriptor.getProgress().orElse(bookmarkToEdit.getProgress());
         Genre updatedGenre = editBookmarkDescriptor.getGenre().orElse(bookmarkToEdit.getGenre());
         Author updatedAuthor = editBookmarkDescriptor.getAuthor().orElse(bookmarkToEdit.getAuthor());
         Set<Tag> updatedTags = editBookmarkDescriptor.getTags().orElse(bookmarkToEdit.getTags());
 
-        return new Bookmark(updatedTitle, updatedPhone, updatedGenre, updatedAuthor, updatedTags);
+        return new Bookmark(updatedTitle, updatedProgress, updatedGenre, updatedAuthor, updatedTags);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class EditCommand extends Command {
      */
     public static class EditBookmarkDescriptor {
         private Title title;
-        private Phone phone;
+        private Progress progress;
         private Genre genre;
         private Author author;
         private Set<Tag> tags;
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
          */
         public EditBookmarkDescriptor(EditBookmarkDescriptor toCopy) {
             setTitle(toCopy.title);
-            setPhone(toCopy.phone);
+            setProgress(toCopy.progress);
             setGenre(toCopy.genre);
             setAuthor(toCopy.author);
             setTags(toCopy.tags);
@@ -150,7 +150,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, phone, genre, author, tags);
+            return CollectionUtil.isAnyNonNull(title, progress, genre, author, tags);
         }
 
         public void setTitle(Title title) {
@@ -161,12 +161,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setProgress(Progress progress) {
+            this.progress = progress;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Progress> getProgress() {
+            return Optional.ofNullable(progress);
         }
 
         public void setGenre(Genre genre) {
@@ -218,7 +218,7 @@ public class EditCommand extends Command {
             EditBookmarkDescriptor e = (EditBookmarkDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getPhone().equals(e.getPhone())
+                    && getProgress().equals(e.getProgress())
                     && getGenre().equals(e.getGenre())
                     && getAuthor().equals(e.getAuthor())
                     && getTags().equals(e.getTags());

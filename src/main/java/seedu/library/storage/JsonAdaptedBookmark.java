@@ -13,7 +13,7 @@ import seedu.library.commons.exceptions.IllegalValueException;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Phone;
+import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 
@@ -25,7 +25,7 @@ class JsonAdaptedBookmark {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Bookmark's %s field is missing!";
 
     private final String title;
-    private final String phone;
+    private final String progress;
     private final String genre;
     private final String author;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -34,11 +34,11 @@ class JsonAdaptedBookmark {
      * Constructs a {@code JsonAdaptedBookmark} with the given bookmark details.
      */
     @JsonCreator
-    public JsonAdaptedBookmark(@JsonProperty("title") String title, @JsonProperty("phone") String phone,
+    public JsonAdaptedBookmark(@JsonProperty("title") String title, @JsonProperty("progress") String progress,
                                @JsonProperty("genre") String genre, @JsonProperty("author") String author,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
-        this.phone = phone;
+        this.progress = progress;
         this.genre = genre;
         this.author = author;
         if (tagged != null) {
@@ -51,7 +51,7 @@ class JsonAdaptedBookmark {
      */
     public JsonAdaptedBookmark(Bookmark source) {
         title = source.getTitle().value;
-        phone = source.getPhone().value;
+        progress = source.getProgress().value;
         genre = source.getGenre().value;
         author = source.getAuthor().value;
         tagged.addAll(source.getTags().stream()
@@ -78,13 +78,14 @@ class JsonAdaptedBookmark {
         }
         final Title modelTitle = new Title(title);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (progress == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Progress.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Progress.isValidProgress(progress)) {
+            throw new IllegalValueException(Progress.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Progress modelProgress = new Progress(progress);
 
         if (genre == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Genre.class.getSimpleName()));
@@ -103,7 +104,7 @@ class JsonAdaptedBookmark {
         final Author modelAuthor = new Author(author);
 
         final Set<Tag> modelTags = new HashSet<>(bookmarkTags);
-        return new Bookmark(modelTitle, modelPhone, modelGenre, modelAuthor, modelTags);
+        return new Bookmark(modelTitle, modelProgress, modelGenre, modelAuthor, modelTags);
     }
 
 }

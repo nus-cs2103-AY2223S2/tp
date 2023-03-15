@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Phone;
+import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 import seedu.library.model.util.SampleDataUtil;
@@ -17,12 +17,12 @@ import seedu.library.model.util.SampleDataUtil;
 public class BookmarkBuilder {
 
     public static final String DEFAULT_TITLE = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_PROGRESS = "85355255";
     public static final String DEFAULT_GENRE = "amy@gmail.com";
     public static final String DEFAULT_AUTHOR = "123, Jurong West Ave 6, #08-111";
 
     private Title title;
-    private Phone phone;
+    private Progress progress;
     private Genre genre;
     private Author author;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class BookmarkBuilder {
      */
     public BookmarkBuilder() {
         title = new Title(DEFAULT_TITLE);
-        phone = new Phone(DEFAULT_PHONE);
+        progress = new Progress(DEFAULT_PROGRESS);
         genre = new Genre(DEFAULT_GENRE);
         author = new Author(DEFAULT_AUTHOR);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class BookmarkBuilder {
      */
     public BookmarkBuilder(Bookmark bookmarkToCopy) {
         title = bookmarkToCopy.getTitle();
-        phone = bookmarkToCopy.getPhone();
+        progress = bookmarkToCopy.getProgress();
         genre = bookmarkToCopy.getGenre();
         author = bookmarkToCopy.getAuthor();
         tags = new HashSet<>(bookmarkToCopy.getTags());
@@ -74,10 +74,10 @@ public class BookmarkBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Bookmark} that we are building.
+     * Sets the {@code Progress} of the {@code Bookmark} that we are building.
      */
-    public BookmarkBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public BookmarkBuilder withProgress(String progress) {
+        this.progress = new Progress(progress);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class BookmarkBuilder {
     }
 
     public Bookmark build() {
-        return new Bookmark(title, phone, genre, author, tags);
+        return new Bookmark(title, progress, genre, author, tags);
     }
 
 }
