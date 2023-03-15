@@ -90,16 +90,17 @@ public class EditMeetingsCommand extends Command {
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
      * edited with {@code editMeetingDescriptor}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor, Model model) throws CommandException {
+    private static Meeting createEditedMeeting(
+                    Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor, Model model)
+                    throws CommandException {
         assert meetingToEdit != null;
-
         Optional<Set<Name>> updatedAttendees = editMeetingDescriptor.getAttendees();
         Set<Person> updatedPerson = meetingToEdit.getAttendees();
         Title updatedTitle = editMeetingDescriptor.getTitle().orElse(meetingToEdit.getTitle());
         DateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
         Location updatedLocation = editMeetingDescriptor.getLocation().orElse(meetingToEdit.getLocation());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
-        if(updatedAttendees.isPresent()) {
+        if (updatedAttendees.isPresent()) {
             Set<Name> gotUpdatedAttendees = updatedAttendees.get();
             Set<Person> attendees = new HashSet<>();
             for (Name name : gotUpdatedAttendees) {
@@ -111,7 +112,7 @@ public class EditMeetingsCommand extends Command {
             }
             return new Meeting(updatedTitle, updatedDateTime, attendees, updatedLocation, updatedDescription);
         }
-            return new Meeting(updatedTitle, updatedDateTime, updatedPerson, updatedLocation, updatedDescription);
+        return new Meeting(updatedTitle, updatedDateTime, updatedPerson, updatedLocation, updatedDescription);
     }
 
     @Override
