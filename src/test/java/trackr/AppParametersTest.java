@@ -1,6 +1,8 @@
 package trackr;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -35,6 +37,20 @@ public class AppParametersTest {
         parametersStub.namedParameters.put("config", "a\0");
         expected.setConfigPath(null);
         assertEquals(expected, AppParameters.parse(parametersStub));
+    }
+
+    @Test
+    public void equals() {
+        AppParameters appParameters = new AppParameters();
+        AppParameters differentAppParameters = new AppParameters();
+        differentAppParameters.setConfigPath(Paths.get("config.json"));;
+
+        assertTrue(appParameters.equals(appParameters)); //same object
+        assertTrue(appParameters.equals(new AppParameters())); //same config path
+
+        assertFalse(appParameters.equals(null)); //null
+        assertFalse(appParameters.equals(differentAppParameters)); //different config path
+        assertFalse(appParameters.equals("N")); //different types
     }
 
     private static class ParametersStub extends Application.Parameters {
