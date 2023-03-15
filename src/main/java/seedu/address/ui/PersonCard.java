@@ -45,7 +45,11 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        profile.setText(person.getProfile().value);
+        if (!person.getProfile().value.isEmpty()) {
+            profile.setText("@" + person.getProfile().value);
+        } else {
+            profile.setText("Not available");
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -54,7 +54,7 @@ public class PersonDetailCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         person.getLanguages().stream()
                 .sorted(Comparator.comparing(language -> language.languageName))
-                .forEach(language -> languages.getChildren().add(new Label(language.languageName)));
+                .forEach(language -> languages.getChildren().add(new Label(language.languageName + " | ")));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
