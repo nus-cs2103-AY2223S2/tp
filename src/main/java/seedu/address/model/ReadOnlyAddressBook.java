@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -21,4 +22,9 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Tutorial> getTutorialList();
 
+    /**
+     * Returns an unmodifiable view of the labs list.
+     * This list will not contain any duplicate labs.
+     */
+    ObservableList<Lab> getLabList();
 }

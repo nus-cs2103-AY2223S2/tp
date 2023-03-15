@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Lab> filteredLabs;
     private final FilteredList<Tutorial> filteredTutorials;
 
     /**
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredLabs = new FilteredList<>(this.addressBook.getLabList());
         filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
     }
 
@@ -136,6 +139,30 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTutorial);
 
         addressBook.setTutorial(target, editedTutorial);
+    }
+
+    @Override
+    public boolean hasLab(Lab lab) {
+        requireNonNull(lab);
+        return addressBook.hasLab(lab);
+    }
+
+    @Override
+    public void deleteLab(Lab target) {
+        addressBook.removeLab(target);
+    }
+
+    @Override
+    public void addLab(Lab lab) {
+        addressBook.addLab(lab);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setLab(Lab target, Lab editedLab) {
+        requireAllNonNull(target, editedLab);
+
+        addressBook.setLab(target, editedLab);
     }
 
     //=========== Filtered Person List Accessors =============================================================

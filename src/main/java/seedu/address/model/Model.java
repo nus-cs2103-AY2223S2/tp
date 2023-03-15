@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -119,4 +120,38 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTutorialList(Predicate<Tutorial> predicate);
+
+    /**
+     * Returns true if a lab with the same identity as {@code lab} exists in the address book.
+     */
+    boolean hasLab(Lab lab);
+
+    /**
+     * Deletes the given lab.
+     * The lab must exist in the address book.
+     */
+    void deleteLab(Lab target);
+
+    /**
+     * Adds the given lab.
+     * {@code lab} must not already exist in the address book.
+     */
+    void addLab(Lab lab);
+
+    /**
+     * Replaces the given lab {@code target} with {@code editedLab}.
+     * {@code target} must exist in the address book.
+     * The lab identity of {@code editedLab} must not be the same as another
+     * existing lab in the address book.
+     */
+    void setLab(Lab target, Lab editedLab);
+
+    /** Returns an unmodifiable view of the filtered lab list */
+    ObservableList<Lab> getFilteredLabList();
+
+    /**
+     * Updates the filter of the filtered lab list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredLabList(Predicate<Lab> predicate);
 }

@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
+import seedu.address.model.event.UniqueLabList;
 import seedu.address.model.event.UniqueTutorialList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -19,6 +21,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTutorialList tutorials;
+    private final UniqueLabList labs;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         tutorials = new UniqueTutorialList();
+        labs = new UniqueLabList();
     }
 
     public AddressBook() {}
@@ -54,6 +58,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void setTutorials(List<Tutorial> tutorials) {
         this.tutorials.setTutorials(tutorials);
+    }
+
+    public void setLabs(List<Lab> labs) {
+        this.labs.setLabs(labs);
     }
 
     /**
@@ -105,7 +113,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// tutorial-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the address book.
      */
     public boolean hasTutorial(Tutorial tutorial) {
         requireNonNull(tutorial);
@@ -140,12 +148,51 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials.remove(key);
     }
 
+    //// lab-level operations
+
+    /**
+     * Returns true if a lab with the same identity as {@code lab} exists in the address book.
+     */
+    public boolean hasLab(Lab lab) {
+        requireNonNull(lab);
+        return labs.contains(lab);
+    }
+
+    /**
+     * Adds a lab to the address book.
+     * The lab must not already exist in the address book.
+     */
+    public void addLab(Lab p) {
+        labs.add(p);
+    }
+
+    /**
+     * Replaces the given lab {@code target} in the list with {@code editedLab}.
+     * {@code target} must exist in the address book.
+     * The lab identity of {@code editedLab} must not be the same as another existing
+     * lab in the address book.
+     */
+    public void setLab(Lab target, Lab editedLab) {
+        requireNonNull(editedLab);
+
+        labs.setLab(target, editedLab);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeLab(Lab key) {
+        labs.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons "
-                + tutorials.asUnmodifiableObservableList().size() + " tutorials";
+                + tutorials.asUnmodifiableObservableList().size() + " tutorials"
+                + labs.asUnmodifiableObservableList().size() + " labs";
         // TODO: refine later
     }
 
@@ -160,14 +207,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Lab> getLabList() {
+        return labs.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && tutorials.equals(((AddressBook) other).tutorials)
+                && labs.equals(((AddressBook) other).labs));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return persons.hashCode()
+                + tutorials.hashCode()
+                + labs.hashCode();
     }
 }
