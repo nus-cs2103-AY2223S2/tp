@@ -74,10 +74,10 @@ public class UntagCommand extends Command {
         personToEdit.setCommonModules(userModuleTags);
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS +
-                "Name: " + personToEdit.getName().toString() + '\n' +
-                "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n' +
-                "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString()));
+        return new CommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS
+                + "Name: " + personToEdit.getName().toString() + '\n'
+                + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
+                + "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString()));
     }
 
     /**
@@ -96,9 +96,9 @@ public class UntagCommand extends Command {
         model.getFilteredPersonList().forEach(person ->
                 person.setCommonModules(editedUser.getImmutableModuleTags()));
 
-        return new CommandResult(String.format(MESSAGE_UNTAG_USER_SUCCESS +
-                "Name: " + editedUser.getName().toString() + '\n' +
-                "Modules: " + editedUser.getImmutableModuleTags().toString()));
+        return new CommandResult(String.format(MESSAGE_UNTAG_USER_SUCCESS
+                + "Name: " + editedUser.getName().toString() + '\n'
+                + "Modules: " + editedUser.getImmutableModuleTags().toString()));
     }
 
 
