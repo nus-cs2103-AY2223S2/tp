@@ -271,6 +271,35 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredTechnicianList(Predicate<Technician> predicate) {
+        requireNonNull(predicate);
+        filteredTechnicians.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredServiceList(Predicate<Service> predicate) {
+        requireNonNull(predicate);
+        filteredServices.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
+        requireNonNull(predicate);
+        filteredVehicles.setPredicate(predicate);
+    }
+
+    //    @Override
+    //    public void updateFilteredPartList(Predicate<Part> predicate) {
+    //        requireNonNull(predicate);
+    //        filteredParts.setPredicate(predicate);
+    //    }
+
+    //    @Override
+    //    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+    //        requireNonNull(predicate);
+    //        filteredAppointment.setPredicate(predicate);
+    //    }
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
