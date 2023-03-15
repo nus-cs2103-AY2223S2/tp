@@ -17,7 +17,7 @@ public abstract class RerollEntities<T extends Entity> implements ReadOnlyEntiti
     {
         entities = new UniqueEntityList<>();
     }
-    // List level operations
+    // List level operations ==============================
     void setEntities(List<T> entities) {
         this.entities.setPersons(entities);
     }
@@ -28,7 +28,7 @@ public abstract class RerollEntities<T extends Entity> implements ReadOnlyEntiti
         setEntities(newData.getEntityList());
     }
 
-    // Entity level operations
+    // Entity level operations ===============================
 
     boolean hasEntity(T entity) {
         requireNonNull(entity);
