@@ -9,12 +9,12 @@
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <VBox spacing="10" styleClass="pa">
         <HBox spacing="10" alignment="CENTER_LEFT">
-            <Label fx:id="id" styleClass="label-p, tag-light" />
+            <Label fx:id="id" styleClass="label-p, tag-accented" />
             <ImageView fx:id="star" fitHeight="10" fitWidth="10">
                 <Image url="/images/star.png"/>
             </ImageView>
         </HBox>
-        <Label fx:id="name" text="\$first" styleClass="label-header" wrapText="true" minHeight="-Infinity" />
+        <Label fx:id="name" text="\$first" styleClass="label-h1" wrapText="true" minHeight="-Infinity" />
         <VBox fx:id="dataContainer" spacing="10">
             <FlowPane fx:id="tags" />
         </VBox>

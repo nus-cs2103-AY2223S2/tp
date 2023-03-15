@@ -1,37 +1,36 @@
-package seedu.address.storage;
+package seedu.address.storage.addressbook;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.fields.NusMod;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.Tag;
 
 /**
- * Jackson-friendly version of {@link NusMod}.
+ * Jackson-friendly version of {@link Tag}.
  */
-public class JsonAdaptedNusMod {
+public class JsonAdaptedTag {
 
-    private final String modName;
+    private final String tagName;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedNusMod(String modName) {
-        this.modName = modName;
+    public JsonAdaptedTag(String tagName) {
+        this.tagName = tagName;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedNusMod(NusMod source) {
-        this.modName = source.name;
+    public JsonAdaptedTag(Tag source) {
+        tagName = source.tagName;
     }
 
     @JsonValue
-    public String getModName() {
-        return this.modName;
+    public String getTagName() {
+        return tagName;
     }
 
     /**
@@ -39,10 +38,11 @@ public class JsonAdaptedNusMod {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
-    public NusMod toModelType() throws IllegalValueException {
-        if (!NusMod.isValidModName(this.modName)) {
+    public Tag toModelType() throws IllegalValueException {
+        if (!Tag.isValidTagName(tagName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new NusMod(this.modName);
+        return new Tag(tagName);
     }
+
 }

@@ -2,6 +2,6 @@
 
 <?import javafx.scene.layout.*?>
 
-<StackPane fx:id="calendarPlaceholder" styleClass="pane-with-rounded-corner-light, pa-b"
+<StackPane fx:id="calendarPlaceholder" styleClass="pane-with-rounded-corner, pa-b"
            xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml" />
