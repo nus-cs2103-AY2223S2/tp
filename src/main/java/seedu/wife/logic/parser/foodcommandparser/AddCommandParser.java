@@ -1,4 +1,4 @@
-package seedu.wife.logic.parser;
+package seedu.wife.logic.parser.foodcommandparser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
@@ -10,7 +10,12 @@ import static seedu.wife.logic.parser.CliSyntax.PREFIX_UNIT;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.wife.logic.commands.AddCommand;
+import seedu.wife.logic.commands.foodcommands.AddCommand;
+import seedu.wife.logic.parser.ArgumentMultimap;
+import seedu.wife.logic.parser.ArgumentTokenizer;
+import seedu.wife.logic.parser.Parser;
+import seedu.wife.logic.parser.ParserUtil;
+import seedu.wife.logic.parser.Prefix;
 import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.model.food.ExpiryDate;
 import seedu.wife.model.food.Food;

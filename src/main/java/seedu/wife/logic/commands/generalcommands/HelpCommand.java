@@ -1,5 +1,7 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.generalcommands;
 
+import seedu.wife.logic.commands.Command;
+import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.model.Model;
 
 /**

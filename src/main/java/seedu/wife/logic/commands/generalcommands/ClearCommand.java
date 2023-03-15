@@ -1,7 +1,9 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.generalcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.wife.logic.commands.Command;
+import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.model.Model;
 import seedu.wife.model.Wife;
 

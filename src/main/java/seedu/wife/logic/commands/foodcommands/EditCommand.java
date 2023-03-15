@@ -1,4 +1,4 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.foodcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
@@ -17,6 +17,8 @@ import java.util.Set;
 import seedu.wife.commons.core.Messages;
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.commons.util.CollectionUtil;
+import seedu.wife.logic.commands.Command;
+import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.model.Model;
 import seedu.wife.model.food.ExpiryDate;

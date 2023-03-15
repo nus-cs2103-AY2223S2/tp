@@ -1,8 +1,10 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.foodcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.model.Model.PREDICATE_SHOW_ALL_FOODS;
 
+import seedu.wife.logic.commands.Command;
+import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.model.Model;
 
 /**

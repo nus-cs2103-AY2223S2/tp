@@ -1,4 +1,4 @@
-package seedu.wife.logic.parser;
+package seedu.wife.logic.parser.foodcommandparser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -7,7 +7,7 @@ import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.logic.commands.DeleteCommand;
+import seedu.wife.logic.commands.foodcommands.DeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
