@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TestUtil.getNoPairsTypicalFriendlyLink;
+import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -14,6 +17,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.ReadOnlyPair;
 import seedu.address.storage.pair.JsonPairStorage;
+import seedu.address.testutil.TypicalPairs;
 
 public class JsonPairStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonPairStorageTest");
@@ -52,10 +56,35 @@ public class JsonPairStorageTest {
         assertThrows(DataConversionException.class, () -> readPair("invalidPair.json"));
     }
 
-    // TODO: readPair_invalidAndValidPair_throwDataConversionException() test case,
-    //  can follow the one in elderlyStorageTest
+    @Test
+    public void readPair_invalidAndValidPair_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readPair("invalidAndValidPair.json"));
+    }
 
-    // TODO: readAndSavePair_allInOrder_success() test case, can follow the one in elderlyStorageTest
+    @Test
+    public void readAndSavePair_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempPair.json");
+        FriendlyLink original = getTypicalFriendlyLink();
+        JsonPairStorage jsonPairStorage = new JsonPairStorage(filePath);
+
+        // Save in new file and read back
+        jsonPairStorage.savePair(original, filePath);
+        ReadOnlyPair readBack = jsonPairStorage.readPair(filePath, getNoPairsTypicalFriendlyLink()).get();
+        assertEquals(original.getPairList(), readBack.getPairList());
+
+        // Modify data, overwrite exiting file, and read back
+        original.removePair(TypicalPairs.PAIR1);
+        original.addPair(TypicalPairs.PAIR1);
+        jsonPairStorage.savePair(original, filePath);
+        readBack = jsonPairStorage.readPair(filePath, getNoPairsTypicalFriendlyLink()).get();
+        assertEquals(original.getPairList(), readBack.getPairList());
+
+        // Save and read without specifying file path
+        original.addPair(TypicalPairs.PAIR4);
+        jsonPairStorage.savePair(original); // file path not specified
+        readBack = jsonPairStorage.readPair(getNoPairsTypicalFriendlyLink()).get(); // file path not specified
+        assertEquals(original.getPairList(), readBack.getPairList());
+    }
 
     @Test
     public void savePair_nullPair_throwsNullPointerException() {
