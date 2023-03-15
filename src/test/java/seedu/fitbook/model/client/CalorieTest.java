@@ -36,4 +36,12 @@ public class CalorieTest {
         assertTrue(Calorie.isValidCalorie("2500")); // exactly 4 numbers
         assertTrue(Calorie.isValidCalorie("124293842033123")); // long calorie numbers
     }
+
+    @Test
+    public void test_equalsSymmetric() {
+        Calorie calorieA = new Calorie("1300");
+        Calorie calorieB = new Calorie("1300");
+        assertTrue(calorieA.equals(calorieB) && calorieB.equals(calorieA));
+        assertTrue(calorieA.hashCode() == calorieB.hashCode());
+    }
 }

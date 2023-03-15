@@ -1,5 +1,6 @@
 package seedu.fitbook.model.client;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fitbook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,16 @@ public class AppointmentTest {
     /*
     @Test
     public void isValidTagName() {
-        assertThrows(NullPointerException.class, () -> Appointment.isValidAppointment("10-20-1992"));
+        assertThrows(NullPointerException.class, () -> Appointment.isValidAppointment("10-10-1992"));
     }
     */
+
+    @Test
+    public void test_equalsSymmetric() {
+        Appointment appointmentA = new Appointment("13-12-2200");
+        Appointment appointmentB = new Appointment("13-12-2200");
+        assertTrue(appointmentA.equals(appointmentB) && appointmentB.equals(appointmentA));
+        assertTrue(appointmentA.hashCode() == appointmentB.hashCode());
+    }
+
 }

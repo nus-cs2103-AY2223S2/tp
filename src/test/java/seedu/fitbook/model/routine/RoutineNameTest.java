@@ -39,4 +39,5 @@ public class RoutineNameTest {
         assertTrue(RoutineName.isValidRoutineName("Cardio Routine")); // with capital letters
         assertTrue(RoutineName.isValidRoutineName("High Intensity Interval Training Part 2")); // long names
     }
+
 }
