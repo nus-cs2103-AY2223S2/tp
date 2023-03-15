@@ -41,14 +41,14 @@ public class AssignmentList {
 
     /**
      * @param assignmentName
-     * @param studentId
+     * @param student
      * @param marks
      */
-    public void grade(String assignmentName, int studentId, int marks) throws CommandException {
+    public void grade(String assignmentName, Student student, int marks) throws CommandException {
         if (!assignmentMap.containsKey(assignmentName)) {
             throw new CommandException("Assignment: " + assignmentName + " not found");
         } else {
-            assignmentMap.get(assignmentName).gradeSubmission(studentId, marks);
+            assignmentMap.get(assignmentName).gradeSubmission(student, marks);
         }
     }
     // TODO: delete student from classList = must delete all submissions of studentId for all assignments.

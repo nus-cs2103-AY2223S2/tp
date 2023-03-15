@@ -33,14 +33,14 @@ public class Assignment {
     /**
      * Grades a student submission of an assignment.
      *
-     * @param studentId
+     * @param student
      * @param marks
      */
-    public void gradeSubmission(int studentId, int marks) throws CommandException {
-        if (submissionMap.containsKey(studentId)) {
-            submissionMap.get(studentId).grade(marks);
+    public void gradeSubmission(Student student, int marks) throws CommandException {
+        if (submissionMap.containsKey(student)) {
+            submissionMap.get(student).grade(marks);
         } else {
-            throw new CommandException("Submission of " + studentId + "not found");
+            throw new CommandException("Submission of " + student.getName().fullName + " not found");
         }
     }
 
