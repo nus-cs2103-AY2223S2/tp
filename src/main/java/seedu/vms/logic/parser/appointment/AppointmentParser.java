@@ -5,6 +5,7 @@ import static seedu.vms.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.appointment.AddCommand;
 import seedu.vms.logic.commands.appointment.DeleteCommand;
+import seedu.vms.logic.commands.appointment.ListCommand;
 import seedu.vms.logic.parser.FeatureParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
@@ -25,6 +26,9 @@ public class AppointmentParser extends FeatureParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
