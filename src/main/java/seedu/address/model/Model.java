@@ -3,8 +3,12 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.ui.tab.TabInfo;
+import seedu.address.logic.ui.tab.TabUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.user.User;
 
@@ -105,4 +109,12 @@ public interface Model {
     ReadOnlyUserData getUserData();
 
     void setUser(User user);
+
+    boolean isValidTabIndex(Index index);
+
+    TabUtil getTabUtil();
+
+    ReadOnlyObjectProperty<TabInfo> getSelectedTab();
+
+    void setSelectedTab(Index index);
 }

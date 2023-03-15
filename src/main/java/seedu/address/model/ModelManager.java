@@ -7,10 +7,15 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.ui.tab.TabInfo;
+import seedu.address.logic.ui.tab.TabType;
+import seedu.address.logic.ui.tab.TabUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.user.User;
 import seedu.address.model.user.UserData;
@@ -25,6 +30,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final UserData userData;
     private final FilteredList<Person> filteredPersons;
+    private final TabUtil tabUtil;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +44,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.userData = new UserData(userData);
         filteredPersons = new FilteredList<>(this.addressBook.getData());
+        this.tabUtil = new TabUtil(TabType.getAll());
     }
 
     public ModelManager() {
@@ -160,7 +167,28 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Tabs =======================================================================================
 
+
+    @Override
+    public boolean isValidTabIndex(Index index) {
+        return tabUtil.isIndexInRange(index);
+    }
+
+    @Override
+    public TabUtil getTabUtil() {
+        return tabUtil;
+    }
+
+    @Override
+    public ReadOnlyObjectProperty<TabInfo> getSelectedTab() {
+        return tabUtil.getSelectedTab();
+    }
+
+    @Override
+    public void setSelectedTab(Index index) {
+        tabUtil.setSelectedTab(index);
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -178,6 +206,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && tabUtil.equals(other.tabUtil);
     }
 }

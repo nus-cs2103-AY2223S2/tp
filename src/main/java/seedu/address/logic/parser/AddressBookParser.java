@@ -18,6 +18,7 @@ import seedu.address.logic.commands.FavoriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.UnfavoriteCommand;
 import seedu.address.logic.parser.editpersoncommandsparser.EditContactCommandParser;
 import seedu.address.logic.parser.editpersoncommandsparser.EditUserCommandParser;
@@ -85,6 +86,10 @@ public class AddressBookParser {
 
         case EditUserCommand.COMMAND_WORD:
             return new EditUserCommandParser().parse(arguments);
+
+        case TabCommand.COMMAND_WORD:
+            return new TabCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
