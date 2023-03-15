@@ -49,6 +49,9 @@ public class ParserUtil {
         String[] splitIndexes = trimmedIndexes.split(",");
         ArrayList<Index> listOfIndexes = new ArrayList<>();
         for (String index: splitIndexes) {
+            if (!StringUtil.isNonZeroUnsignedInteger(index)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
             Index newIndex = Index.fromOneBased(Integer.parseInt(index));
             listOfIndexes.add(newIndex);
         }

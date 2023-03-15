@@ -23,11 +23,12 @@ abstract public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_USAGE_MULTIPLE_DELETE = "2. Delete Multiple Indexes"
-            + ": Deletes multiple people identified by the index number used in the displayed person list.\n"
+            + ": Deletes multiple people identified by the index numbers used in the displayed person list.\n"
             + "Parameters: INDEXES (must be a positive integer), with each index being separated by a comma \n"
             + "Example: " + COMMAND_WORD + " 1,2,3";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
+            + "\n"
             + MESSAGE_USAGE_SINGLE_DELETE
             + "\nOR\n"
             + MESSAGE_USAGE_MULTIPLE_DELETE;
