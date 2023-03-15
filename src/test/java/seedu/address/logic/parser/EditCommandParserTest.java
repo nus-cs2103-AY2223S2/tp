@@ -5,7 +5,9 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -19,6 +21,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_ADDRESS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_EMAIL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_PHONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -36,7 +41,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -84,7 +88,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
@@ -207,5 +210,41 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_resetAddress_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + EMPTY_ADDRESS_DESC;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_EMPTY_ADDRESS).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+    }
+
+    @Test
+    public void parse_resetEmail_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + EMPTY_EMAIL_DESC;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMPTY_EMAIL).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+    }
+
+    @Test
+    public void parse_resetPhone_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + EMPTY_PHONE_DESC;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_EMPTY_PHONE).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
     }
 }
