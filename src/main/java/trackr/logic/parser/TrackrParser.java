@@ -51,7 +51,7 @@ public class TrackrParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        
+
         case AddOrderCommand.COMMAND_WORD:
         case AddOrderCommand.COMMAND_WORD_SHORTCUT:
             return new AddOrderCommandParser().parse(arguments);
@@ -77,7 +77,7 @@ public class TrackrParser {
         case DeleteTaskCommand.COMMAND_WORD:
         case DeleteTaskCommand.COMMAND_WORD_SHORTCUT:
             return new DeleteTaskCommandParser().parse(arguments);
-        
+
         case DeleteOrderCommand.COMMAND_WORD:
         case DeleteOrderCommand.COMMAND_WORD_SHORTCUT:
             return new DeleteOrderCommandParser().parse(arguments);

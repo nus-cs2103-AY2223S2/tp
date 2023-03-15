@@ -1,13 +1,13 @@
 package trackr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERQUANTITY;
-import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
-import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
-import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
@@ -19,7 +19,7 @@ import trackr.model.order.Order;
 public class AddOrderCommand extends Command {
     public static final String COMMAND_WORD = "add_order";
     public static final String COMMAND_WORD_SHORTCUT = "add_o";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list. "
             + "Parameters: "
             + PREFIX_ORDERNAME + "ORDER NAME "

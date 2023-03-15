@@ -233,6 +233,12 @@ public class ParserUtil {
         return new OrderStatus(trimmedTaskStatus);
     }
 
+    /**
+     * Parses a {@code String OrderQuantity} into a {@code OrderQuantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code OrderQuantity} is invalid.
+     */
     public static OrderQuantity parseOrderQuantity(String orderQuantity) throws ParseException {
         requireNonNull(orderQuantity);
         String trimmedOrderQuantity = orderQuantity.trim();
@@ -242,7 +248,13 @@ public class ParserUtil {
         return new OrderQuantity(trimmedOrderQuantity);
     }
 
-    public static CustomerName parseCustomerName (String customerName) throws ParseException {
+    /**
+     * Parses a {@code String OrderQuantity} into a {@code OrderQuantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code OrderQuantity} is invalid.
+     */
+    public static CustomerName parseCustomerName(String customerName) throws ParseException {
         requireNonNull(customerName);
         String trimmedCustomerName = customerName.trim();
         if (!CustomerName.isValidCustomerName(trimmedCustomerName)) {
@@ -251,7 +263,13 @@ public class ParserUtil {
         return new CustomerName(trimmedCustomerName);
     }
 
-    public static CustomerPhone parseCustomerPhone (String customerPhone) throws ParseException {
+    /**
+     * Parses a {@code String CustomerPhone} into a {@code CustomerPhone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code CustomerPhone} is invalid.
+     */
+    public static CustomerPhone parseCustomerPhone(String customerPhone) throws ParseException {
         requireNonNull(customerPhone);
         String trimmedCustomerPhone = customerPhone.trim();
         if (!CustomerPhone.isValidCustomerPhone(trimmedCustomerPhone)) {
@@ -260,7 +278,13 @@ public class ParserUtil {
         return new CustomerPhone(trimmedCustomerPhone);
     }
 
-    public static CustomerAddress parseCustomerAddress (String customerAddress) throws ParseException {
+    /**
+     * Parses a {@code String CustomerAddress} into a {@code CustomerAddress}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code CustomerAddress} is invalid.
+     */
+    public static CustomerAddress parseCustomerAddress(String customerAddress) throws ParseException {
         requireNonNull(customerAddress);
         String trimmedCustomerAddress = customerAddress.trim();
         if (!CustomerAddress.isValidCustomerAddress(trimmedCustomerAddress)) {

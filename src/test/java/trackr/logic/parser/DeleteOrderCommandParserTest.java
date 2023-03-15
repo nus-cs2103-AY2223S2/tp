@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.DeleteOrderCommand;
-
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
  * outside of the DeleteTaskCommand code. For example, inputs "1" and "1 abc" take the

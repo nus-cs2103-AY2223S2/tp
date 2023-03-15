@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import trackr.testutil.OrderBuilder;
+import trackr.testutil.OrderPredicateBuilder;
 
 public class OrderNameContainsKeywordPredicateTest {
     @Test
@@ -18,17 +19,41 @@ public class OrderNameContainsKeywordPredicateTest {
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
         OrderNameContainsKeywordPredicate firstPredicate =
-                new OrderNameContainsKeywordPredicate(firstPredicateKeywordList);
-        OrderNameContainsKeywordPredicate secondPredicate =
-                new OrderNameContainsKeywordPredicate(secondPredicateKeywordList);
+                new OrderPredicateBuilder()
+                        .withOrderNameKeywords(firstPredicateKeywordList)
+                        .withOrderDeadline("01/01/2024")
+                        .withOrderStatus("N")
+                        .withOrderQuantity("10")
+                        .withCustomerAddress("123 smith street")
+                        .withCustomerName("John Doe")
+                        .withCustomerPhone("12345678")
+                        .build();
+
+        OrderNameContainsKeywordPredicate secondPredicate;
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
         OrderNameContainsKeywordPredicate firstPredicateCopy =
-                new OrderNameContainsKeywordPredicate(firstPredicateKeywordList);
+                        new OrderPredicateBuilder()
+                                .withOrderNameKeywords(firstPredicateKeywordList)
+                                .withOrderDeadline("01/01/2024")
+                                .withOrderStatus("N")
+                                .withOrderQuantity("10")
+                                .withCustomerAddress("123 smith street")
+                                .withCustomerName("John Doe")
+                                .withCustomerPhone("12345678")
+                                .build();
+
         assertTrue(firstPredicate.equals(firstPredicateCopy));
+
+        firstPredicateCopy = new OrderPredicateBuilder(firstPredicate).build();
+        assertTrue(firstPredicate.equals(firstPredicateCopy));
+
+        secondPredicate = new OrderPredicateBuilder().build();
+        OrderNameContainsKeywordPredicate secondPredicateCopy = new OrderPredicateBuilder(secondPredicate).build();
+        assertTrue(secondPredicate.equals(secondPredicateCopy));
 
         // different types -> returns false
         assertFalse(firstPredicate.equals(1));
@@ -37,43 +62,69 @@ public class OrderNameContainsKeywordPredicateTest {
         assertFalse(firstPredicate.equals(null));
 
         // different person -> returns false
+
+        secondPredicate =
+                new OrderPredicateBuilder()
+                        .withOrderNameKeywords(secondPredicateKeywordList)
+                        .withOrderDeadline("01/01/2024")
+                        .withOrderStatus("N")
+                        .withOrderQuantity("10")
+                        .withCustomerAddress("123 smith street")
+                        .withCustomerName("John Doe")
+                        .withCustomerPhone("12345678")
+                        .build();
+
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
-    public void test_orderNameContainsKeywords_returnsTrue() {
+    public void test_oneVariableMatch_returnsTrue() {
+        OrderNameContainsKeywordPredicate predicate;
+
         // One keyword
-        OrderNameContainsKeywordPredicate predicate =
-                new OrderNameContainsKeywordPredicate(Collections.singletonList("Chocolate"));
-        assertTrue(predicate.test(new OrderBuilder().withOrderName("Chocolate Cookies").build()));
+        predicate =
+                new OrderPredicateBuilder().withOrderNameKeywords(Collections.singletonList("Buy")).build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderName("Buy Food").build()));
 
         // Multiple keywords
-        predicate = new OrderNameContainsKeywordPredicate(Arrays.asList("Chocolate", "Cookies"));
-        assertTrue(predicate.test(new OrderBuilder().withOrderName("Chocolate Cookies").build()));
+        predicate =
+                new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("Buy", "Food")).build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderName("Buy Food").build()));
 
         // Only one matching keyword
-        predicate = new OrderNameContainsKeywordPredicate(Arrays.asList("Vanilla", "Cookies"));
-        assertTrue(predicate.test(new OrderBuilder().withOrderName("Chocolate Cookies").build()));
+        predicate =
+                new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("Buy", "flour")).build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderName("Buy Food").build()));
 
         // Mixed-case keywords
-        predicate = new OrderNameContainsKeywordPredicate(Arrays.asList("ChOcOlAte", "cooKiEs"));
-        assertTrue(predicate.test(new OrderBuilder().withOrderName("Chocolate Cookies").build()));
-    }
+        predicate =
+                new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("BuY", "FloUr")).build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderName("Buy Flour").build()));
 
-    @Test
-    public void test_orderNameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        OrderNameContainsKeywordPredicate predicate = new OrderNameContainsKeywordPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new OrderBuilder().withOrderName("Chocolate Cookies").build()));
+        // Deadline only
+        predicate =
+                new OrderPredicateBuilder().withOrderDeadline("01/01/2023").build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderDeadline("01/01/2023").build()));
 
-        // Non-matching keyword
-        predicate = new OrderNameContainsKeywordPredicate(Arrays.asList("Vanilla"));
-        assertFalse(predicate.test(new OrderBuilder().withOrderName("Cheese cake").build()));
+        // Status only
+        predicate =
+                new OrderPredicateBuilder().withOrderStatus("N").build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderStatus("N").build()));
 
-        // Keywords match deadline and status, but does not match name
-        predicate = new OrderNameContainsKeywordPredicate(Arrays.asList("11/11/2024", "N"));
-        assertFalse(predicate.test(new OrderBuilder().withOrderName("Chocolate Cookies")
-                .withOrderDeadline("11/11/2024")
-                .withOrderStatus("N").build()));
+        predicate =
+                new OrderPredicateBuilder().withOrderQuantity("10").build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderQuantity("10").build()));
+
+        predicate =
+                new OrderPredicateBuilder().withCustomerName("JohnDoe").build();
+        assertTrue(predicate.test(new OrderBuilder().withCustomerName("JohnDoe").build()));
+
+        predicate =
+                new OrderPredicateBuilder().withCustomerAddress("123 Smith Street").build();
+        assertTrue(predicate.test(new OrderBuilder().withCustomerAddress("123 Smith Street").build()));
+
+        predicate =
+                new OrderPredicateBuilder().withCustomerPhone("12345678").build();
+        assertTrue(predicate.test(new OrderBuilder().withCustomerPhone("12345678").build()));
     }
 }

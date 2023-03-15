@@ -1,20 +1,18 @@
 package trackr.logic.parser;
 
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERQUANTITY;
-import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
-import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
-import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.stream.Stream;
 
 import trackr.logic.commands.AddOrderCommand;
-import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.Model;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
@@ -25,6 +23,9 @@ import trackr.model.order.customer.CustomerAddress;
 import trackr.model.order.customer.CustomerName;
 import trackr.model.order.customer.CustomerPhone;
 
+/**
+ * Parser for add order command
+ */
 public class AddOrderCommandParser implements Parser<AddOrderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddOrderCommand
@@ -34,14 +35,16 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
      */
     public AddOrderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ORDERNAME, PREFIX_ORDERQUANTITY, PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS);
+                ArgumentTokenizer.tokenize(args, PREFIX_ORDERNAME, PREFIX_ORDERQUANTITY,
+                        PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ORDERNAME, PREFIX_ORDERQUANTITY, PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ORDERNAME, PREFIX_ORDERQUANTITY, PREFIX_DEADLINE,
+                PREFIX_STATUS, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
         }
 
-        OrderName orderName = ParserUtil.parseOrderName(argMultimap.getValue(PREFIX_NAME).get());
+        OrderName orderName = ParserUtil.parseOrderName(argMultimap.getValue(PREFIX_ORDERNAME).get());
         OrderQuantity orderQuantity = ParserUtil.parseOrderQuantity(argMultimap.getValue(PREFIX_ORDERQUANTITY).get());
         OrderDeadline orderDeadline = ParserUtil.parseOrderDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         OrderStatus orderStatus = ParserUtil.parseOrderStatus(argMultimap.getValue(PREFIX_STATUS));

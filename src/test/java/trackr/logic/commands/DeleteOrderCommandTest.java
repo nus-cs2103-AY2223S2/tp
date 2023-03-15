@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static trackr.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
@@ -27,50 +27,50 @@ import trackr.model.order.Order;
 public class DeleteOrderCommandTest {
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
             getTypicalOrderList(), new UserPrefs());
-    
+
     @Test
     public void execute_validIndexUnfilteredOrderList_success() {
-        Order taskToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
 
-        expectedModel.deleteOrder(taskToDelete);
+        expectedModel.deleteOrder(orderToDelete);
 
         assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredTaskList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+    public void execute_invalidIndexUnfilteredOrderList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_validIndexFilteredTaskList_success() {
-        showTaskAtIndex(model, INDEX_FIRST_OBJECT);
+    public void execute_validIndexFilteredOrderList_success() {
+        showOrderAtIndex(model, INDEX_FIRST_OBJECT);
 
-        Order taskToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
-        DeleteOrderCommand deleteTaskCommand = new DeleteOrderCommand(INDEX_FIRST_OBJECT);
+        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
         Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
-        expectedModel.deleteOrder(taskToDelete);
-        showNoTask(expectedModel);
+        expectedModel.deleteOrder(orderToDelete);
+        showNoOrder(expectedModel);
 
-        assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexFilteredTaskList_throwsCommandException() {
-        showTaskAtIndex(model, INDEX_FIRST_OBJECT);
+    public void execute_invalidIndexFilteredOrderList_throwsCommandException() {
+        showOrderAtIndex(model, INDEX_FIRST_OBJECT);
 
         Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of task list
@@ -78,7 +78,7 @@ public class DeleteOrderCommandTest {
 
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -106,9 +106,9 @@ public class DeleteOrderCommandTest {
     /**
      * Updates {@code model}'s filtered task list to show no one.
      */
-    private void showNoTask(Model model) {
-        model.updateFilteredTaskList(p -> false);
+    private void showNoOrder(Model model) {
+        model.updateFilteredOrderList(p -> false);
 
-        assertTrue(model.getFilteredTaskList().isEmpty());
+        assertTrue(model.getFilteredOrderList().isEmpty());
     }
 }
