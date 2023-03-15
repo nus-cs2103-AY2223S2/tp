@@ -594,22 +594,20 @@ Use case ends.
     
    Use case resumes at step 2.
 
-**Use case: UC13 Undo recent delete/clear operation**
+**Use case: UC13 Undo recent changes**
 
 **MSS:**
 
-1. User chooses to delete/clear contact(s).
-2. SOCket deletes respective contact(s).
-3. User requests to get back the recent deleted contact(s).
-4. SOCket undo and restored recent deleted contact(s).
+1. User requests to undo changes.
+2. SOCket undoes changes.
 
    Use case ends.
 
 **Extensions:**
 
-* 3a. SOCket detects user has not done any delete/clear operation before.
+* 1a. No changes exist.
 
-    * 3a1. SOCket shows an error message, no data can be restored.
+    * 1a1. SOCket shows an error message.
 
       Use case ends.
 
