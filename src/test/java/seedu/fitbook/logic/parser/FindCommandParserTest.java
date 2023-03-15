@@ -16,6 +16,7 @@ import seedu.fitbook.model.client.predicate.AppointmentContainsKeywordsPredicate
 import seedu.fitbook.model.client.predicate.CalorieContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.EmailContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.GenderContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.GoalContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.PhoneContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.TagContainsKeywordsPredicate;
@@ -73,6 +74,10 @@ public class FindCommandParserTest {
         FindCommand expectedFindAppointmentCommand =
                 new FindCommand(new AppointmentContainsKeywordsPredicate(Arrays.asList("12-12-2019")));
         assertParseSuccess(parser, "app/12-12-2019", expectedFindAppointmentCommand);
+
+        FindCommand expectedFindGoalCommand =
+                new FindCommand(new GoalContainsKeywordsPredicate(Arrays.asList("lose weight")));
+        assertParseSuccess(parser, "gl/lose weight", expectedFindGoalCommand);
     }
 
 }
