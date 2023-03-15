@@ -1,7 +1,5 @@
 package seedu.address.model.event;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -12,9 +10,39 @@ import java.util.regex.Pattern;
  */
 public class Note {
 
-    private static String EMPTY_CONTENT = "This note is empty";
+    public static String EMPTY_CONTENT = "This note is empty";
+    protected static int LENGTH_LIMIT = 200;
+    private static String PATTERN = "@[a-z]+";
     private String content;
-    private List<String> referees = new ArrayList<>(20); // referenced up to 20 students in the notes
+    private List<String> names = new ArrayList<>(20); // referenced up to 20 students in the notes
+
+    private void decomposePersonNames(String note) {
+        try{
+            Pattern pattern = Pattern.compile(PATTERN, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(note);
+            while (matcher.find()) {
+                String name = matcher.group().toString();
+                name = name.substring(1, name.length()); // get rid of @ char
+                this.names.add(name);
+            }
+        } catch (Exception e) { // TODO: better exception handling
+            e.printStackTrace();
+        }
+    }
+
+    private boolean isEmpty() {
+        return this.content.equals(EMPTY_CONTENT);
+    }
+
+    private String validateContent(String note) {
+        // utf-8 check left to ui input handler
+        if (note.isEmpty()) {
+            note = EMPTY_CONTENT;
+        } else if (note.length() >= LENGTH_LIMIT) {
+            note = note.substring(0, LENGTH_LIMIT);
+        }
+        return note;
+    }
 
     /**
      * Initiates the note object with empty content that can be filled up later
@@ -28,25 +56,8 @@ public class Note {
      * @param note {@code String} object that represents the note contents
      */
     public Note(String note) {
-        requireNonNull(note);
-        this.content = note;
-        decomposePersons(note);
-    }
-
-    private void decomposePersons(String note) {
-        try{
-            Pattern pattern = Pattern.compile("@[a-z]+", Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(note);
-            while (matcher.find()) {
-                this.referees.add(matcher.group());
-            }
-        } catch (Exception e) { // TODO: better exception handling
-            e.printStackTrace();
-        }
-    }
-
-    private boolean isEmpty() {
-        return this.content.equals(EMPTY_CONTENT);
+        this.content = validateContent(note);
+        decomposePersonNames(note);
     }
 
     public String getContent() {
@@ -54,15 +65,24 @@ public class Note {
     }
 
     public List<String> getReferees() {
-        return this.referees;
+        return this.names;
     }
 
     /**
-     * Makes guide of how to leave a note for an event with focus on mentioning people
-     * @return A {@code String} of note-adding guide
+     * Resets the content with new note content
+     * @param newNote New note content to replace the current content
      */
-    public String help() {
-        return "Hint: Use @ to refer to students in the event"; // TODO: Help format to be determined later. @Jiatong
+    public void setContent(String newNote) {
+        this.content = validateContent(newNote);
+        decomposePersonNames(newNote);
+    }
+
+    /**
+     * Clears the content all at once but retains the object
+     */
+    public void clear() {
+        this.content = EMPTY_CONTENT;
+        this.names.clear();
     }
 
     @Override
@@ -75,9 +95,17 @@ public class Note {
                 .append(getContent());
         List<String> referees = getReferees();
         if (!referees.isEmpty()) {
-            builder.append(";\n Referees: ");
-            referees.forEach(builder::append);
+            builder.append(";\n Relevant personnel:");
+            referees.stream().map(s -> " " + s).forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Makes guide of how to leave a note for an event with focus on mentioning people
+     * @return A {@code String} of note-adding guide
+     */
+    public String help() {
+        return "Hint: Use @ to refer to students in the event"; // TODO: Help format to be determined later. @Jiatong
     }
 }
