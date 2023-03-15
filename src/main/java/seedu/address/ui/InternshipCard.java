@@ -1,13 +1,17 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
+import static seedu.address.model.internship.Status.APPLIED;
+import static seedu.address.model.internship.Status.ASSESSMENT;
+import static seedu.address.model.internship.Status.INTERVIEW;
+import static seedu.address.model.internship.Status.NEW;
+import static seedu.address.model.internship.Status.OFFERED;
+import static seedu.address.model.internship.Status.REJECTED;
+
 import java.util.Comparator;
 import java.util.HashMap;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -18,11 +22,12 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import seedu.address.model.internship.Internship;
 
+
 /**
- * An UI component that displays information of a {@code Internship}.
+ * A UI component that displays information of a {@code Internship}.
  */
 public class InternshipCard extends UiPart<Region> {
-
+    public static final String ROLE_LABEL = "Role: ";
     private static final String FXML = "InternshipListCard.fxml";
 
     /**
@@ -34,9 +39,6 @@ public class InternshipCard extends UiPart<Region> {
      */
 
     public final Internship internship;
-
-    private ArrayList<String> internshipCardInformation = new ArrayList<String>();
-
 
     @FXML
     private HBox cardPane;
@@ -62,28 +64,21 @@ public class InternshipCard extends UiPart<Region> {
         this.internship = internship;
         //Add Id
         id.setText(displayedIndex + ". ");
-        internshipCardInformation.add(id.getText());
 
         //Add Company Name
         companyName.setText(internship.getCompanyName().fullCompanyName);
-        internshipCardInformation.add(companyName.getText());
 
         //Add Role
-        role.setText(internship.getRole().fullRole);
-        internshipCardInformation.add(role.getText());
-
+        role.setText(ROLE_LABEL + internship.getRole().fullRole);
 
         //Add Date
-        date.setText(internship.getDate().fullDate);
-        internshipCardInformation.add(date.getText());
+        String dateLabel = getDateLabel();
+        date.setText(dateLabel + internship.getDate().fullDate);
 
         //Add Tags
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        ObservableList<Node> listNodes = tags.getChildren();
-        listNodes.forEach(node -> internshipCardInformation.add(((Label) node).getText()));
 
 
         //Set up status label
@@ -93,7 +88,6 @@ public class InternshipCard extends UiPart<Region> {
         statusLabel.setText(statusString.toUpperCase());
         statusLabel.setBackground(new Background(new BackgroundFill(
                 statusColor, new CornerRadii(10), new Insets(-5))));
-        internshipCardInformation.add(statusLabel.getText());
     }
 
     @Override
@@ -123,20 +117,45 @@ public class InternshipCard extends UiPart<Region> {
     public HashMap<String, Color> setupColours() {
         //Hashmap that stores the colours associated with each status
         HashMap<String, Color> colorMap = new HashMap<String, Color>();
-        colorMap.put("New", Color.rgb(250, 155, 68, 1.0));
-        colorMap.put("Applied", Color.rgb(68, 170, 250, 1.0));
-        colorMap.put("Assessment", Color.rgb(250, 68, 155, 1.0));
-        colorMap.put("Interview", Color.rgb(126, 68, 250, 1.0));
-        colorMap.put("Offered", Color.rgb(42, 174, 79, 1.0));
-        colorMap.put("Rejected", Color.rgb(250, 68, 68, 1.0));
+        colorMap.put(NEW, Color.rgb(250, 155, 68, 1.0));
+        colorMap.put(APPLIED, Color.rgb(68, 170, 250, 1.0));
+        colorMap.put(ASSESSMENT, Color.rgb(250, 68, 155, 1.0));
+        colorMap.put(INTERVIEW, Color.rgb(126, 68, 250, 1.0));
+        colorMap.put(OFFERED, Color.rgb(42, 174, 79, 1.0));
+        colorMap.put(REJECTED, Color.rgb(250, 68, 68, 1.0));
         return colorMap;
     }
 
 
     /**
-     * Gets the list that stores the string information of the internship card
+     * Returns the label for the date field in Internship Card.
+     *
+     * @return the corresponding String as a label for the date.
      */
-    public ArrayList<String> getInternshipCardInformation() {
-        return this.internshipCardInformation;
+    public String getDateLabel() {
+        String dateLabel;
+        switch (this.internship.getStatus().toString()) {
+        case NEW:
+            dateLabel = "Date Added: ";
+            break;
+        case APPLIED:
+            dateLabel = "Date Applied: ";
+            break;
+        case ASSESSMENT:
+            dateLabel = "Date of Assessment: ";
+            break;
+        case INTERVIEW:
+            dateLabel = "Date of Interview: ";
+            break;
+        case OFFERED:
+            dateLabel = "Date of Notice of Offer: ";
+            break;
+        case REJECTED:
+            dateLabel = "Date of Notice of Rejection: ";
+            break;
+        default:
+            dateLabel = "Date: ";
+        }
+        return dateLabel;
     }
 }

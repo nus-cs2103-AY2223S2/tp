@@ -17,10 +17,16 @@ public class Status {
             "Status should only be one of the following: new, applied, assessment, interview, offered or rejected. It"
                     + " should not be blank too.";
 
+    public static final String NEW = "new";
+    public static final String APPLIED = "applied";
+    public static final String ASSESSMENT = "assessment";
+    public static final String INTERVIEW = "interview";
+    public static final String OFFERED = "offered";
+    public static final String REJECTED = "rejected";
     //A set of valid statuses
-    public static final List<String> LISTOFVALIDSTATUSES =
-            Arrays.asList("new", "applied", "assessment", "interview", "offered", "rejected");
-    public static final HashSet<String> SETOFVALIDSTATUSES = new HashSet<String>(LISTOFVALIDSTATUSES);
+    public static final List<String> LIST_OF_VALID_STATUSES =
+            Arrays.asList(NEW, APPLIED, ASSESSMENT, INTERVIEW, OFFERED, REJECTED);
+    public static final HashSet<String> SET_OF_VALID_STATUSES = new HashSet<String>(LIST_OF_VALID_STATUSES);
 
     public final String fullStatus;
 
@@ -48,7 +54,7 @@ public class Status {
         if (test == null) {
             throw new NullPointerException();
         }
-        return SETOFVALIDSTATUSES.contains(test.toLowerCase());
+        return SET_OF_VALID_STATUSES.contains(test.toLowerCase());
     }
 
     /**
@@ -58,7 +64,7 @@ public class Status {
      */
     @Override
     public String toString() {
-        return fullStatus.substring(0, 1).toUpperCase() + fullStatus.substring(1);
+        return this.fullStatus;
     }
 
 
