@@ -77,6 +77,11 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
+    public void deleteAppointment(int id) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void addPatient(Patient patient) {
         throw new UnsupportedOperationException("Unimplemented method 'addPatient'");
     }

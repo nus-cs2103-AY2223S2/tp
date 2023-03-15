@@ -143,6 +143,11 @@ public class ModelManager implements Model {
         appointmentManager.add(appointment);
     }
 
+    @Override
+    public void deleteAppointment(int id) {
+        appointmentManager.remove(id);
+    }
+
     // =========== VaxTypeManager ==============================================================================
 
     @Override
