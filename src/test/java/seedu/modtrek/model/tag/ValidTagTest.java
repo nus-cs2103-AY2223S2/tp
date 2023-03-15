@@ -9,10 +9,9 @@ public class ValidTagTest {
 
     @Test
     public void getShortForm_invalidTagName_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> {
-                    ValidTag.getShortForm("test");
-                });
+        assertThrows(IllegalArgumentException.class, () -> {
+            ValidTag.getShortForm("test");
+        });
     }
 
     @Test
