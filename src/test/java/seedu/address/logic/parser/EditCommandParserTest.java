@@ -113,9 +113,12 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_MODULE} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + MODULE_DESC_CS2101 + MODULE_DESC_CS2103T + MODULE_EMPTY, Module.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MODULE_DESC_CS2103T + MODULE_EMPTY + MODULE_DESC_CS2101, Module.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MODULE_EMPTY + MODULE_DESC_CS2103T + MODULE_DESC_CS2101, Module.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MODULE_DESC_CS2101 + MODULE_DESC_CS2103T + MODULE_EMPTY,
+                Module.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MODULE_DESC_CS2103T + MODULE_EMPTY + MODULE_DESC_CS2101,
+                Module.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MODULE_EMPTY + MODULE_DESC_CS2103T + MODULE_DESC_CS2101,
+                Module.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
@@ -193,8 +196,9 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + MODULE_DESC_CS2103T + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + MODULE_DESC_CS2101 +PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND + MODULE_DESC_CS2103T;
+                + TAG_DESC_FRIEND + PHONE_DESC_AMY + MODULE_DESC_CS2103T + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND + MODULE_DESC_CS2101 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_HUSBAND + MODULE_DESC_CS2103T;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)

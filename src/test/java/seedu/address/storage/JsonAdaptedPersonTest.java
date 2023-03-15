@@ -77,7 +77,6 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalArgumentException.class, expectedMessage, person::toModelType);
     }
-
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedAddress invalidAddress = new JsonAdaptedAddress(INVALID_ADDRESS);
@@ -112,5 +111,4 @@ public class JsonAdaptedPersonTest {
                 VALID_TAGS, invalidModules, VALID_BIRTHDAY);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
-
 }

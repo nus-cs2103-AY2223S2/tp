@@ -35,7 +35,8 @@ public class SampleDataUtil {
         p2.setBirthday(new Birthday("31/05/2000"));
 
         // Sample person 3
-        Person p3 = new Person(new Name("Charlotte Oliveiro"), getTagSet("neighbours"), getModuleSet("CS2105", "ES2660"));
+        Person p3 = new Person(new Name("Charlotte Oliveiro"), getTagSet("neighbours"),
+                getModuleSet("CS2105", "ES2660"));
         p3.setPhone(new Phone("93210283"));
         p3.setEmail(new Email("charlotte@example.com"));
         p3.setAddress(new Address("Blk 11 Ang Mo Kio Street 74, #11-04"));

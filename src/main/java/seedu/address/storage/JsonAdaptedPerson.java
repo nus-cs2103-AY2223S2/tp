@@ -77,7 +77,6 @@ class JsonAdaptedPerson {
         modules.addAll(source.getModules().stream()
                 .map(JsonAdaptedModule::new)
                 .collect(Collectors.toList()));
-                
         if (source.getPhone().isPresent()) {
             phone = new JsonAdaptedPhone(source.getPhone().get());
         }
@@ -138,7 +137,6 @@ class JsonAdaptedPerson {
                 p.setEmail(modelEmail.get());
             }
         }
-        
         if (address != null) {
             Optional<Address> modelAddress = address.toModelType();
             if (modelAddress.isPresent()) {
