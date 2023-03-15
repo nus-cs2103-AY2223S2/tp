@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.SortedSet;
@@ -53,5 +54,16 @@ public class IdGenerator {
 
     public static void setServiceIdUnused(int id) {
         unusedServiceIds.add(id);
+    }
+    public static void setCustomerIdUsed(int id) {
+        usedCustomerIds.add(id);
+    }
+
+    public static void setVehicleIdUsed(int id) {
+        usedVehicleIds.add(id);
+    }
+
+    public static void setServiceIdUsed(int id) {
+        usedServiceIds.add(id);
     }
 }
