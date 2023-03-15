@@ -1,9 +1,9 @@
-package seedu.address.logic.commands;
+package vimification.logic.commands;
 
-import seedu.address.model.Model;
-import seedu.address.model.TaskList;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
+import vimification.model.Model;
+import vimification.model.TaskList;
+import vimification.model.person.Person;
+import vimification.model.task.Task;
 import static java.util.Objects.requireNonNull;
 
 /**
