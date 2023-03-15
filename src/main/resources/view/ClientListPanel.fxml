@@ -11,8 +11,8 @@
       </opaqueInsets>
       <VBox.margin>
          <Insets />
-      </VBox.margin>
-      <padding>
-         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-      </padding></ListView>
+      </VBox.margin></ListView>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="10.0" top="20.0" />
+   </padding>
 </VBox>
