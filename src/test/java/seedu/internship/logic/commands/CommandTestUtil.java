@@ -86,7 +86,7 @@ public class CommandTestUtil {
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "5"; // status can only contain 0, 1, 2 and 3
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "imp and fun"; // spaces not allowed in tags
 
-    public static final String PREAMBLE_WHITESPACE = "\t \r \n";
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     /**
