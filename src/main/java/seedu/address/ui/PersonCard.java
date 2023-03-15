@@ -87,7 +87,7 @@ public class PersonCard extends UiPart<Region> {
             addressContainer.setVisible(false);
             addressContainer.managedProperty().bind(addressContainer.visibleProperty());
         }
-        if (person.getSocialMedia().isPresent()) {
+        if (person.getSocialMedia().isPresent() && !person.getSocialMedia().get().isBlank()) {
             socialMedia.setText(person.getSocialMedia().get().toString());
         } else {
             socialMedia.setText("");

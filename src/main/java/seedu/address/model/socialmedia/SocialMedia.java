@@ -95,19 +95,26 @@ public class SocialMedia {
         return whatsapp;
     }
 
+    /**
+     * Checks if the {@code SocialMedia} holds any value.
+     */
+    public boolean isBlank() {
+        return !(instagram != null || telegram != null || whatsapp != null);
+    }
+
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder("Social media");
-        if (telegram != null) {
-            builder.append("; Telegram: ").append(telegram);
+        final StringBuilder builder = new StringBuilder();
+        if (instagram != null) {
+            builder.append("Instagram: ").append(instagram).append("    ");
         }
 
-        if (instagram != null) {
-            builder.append("; Instagram: ").append(instagram);
+        if (telegram != null) {
+            builder.append("Telegram: ").append(telegram).append("    ");
         }
 
         if (whatsapp != null) {
-            builder.append("; WhatsApp: ").append(whatsapp);
+            builder.append("WhatsApp: ").append(whatsapp).append("    ");
         }
 
         return builder.toString();

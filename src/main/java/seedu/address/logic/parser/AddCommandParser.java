@@ -66,6 +66,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (argMultimap.getValue(PREFIX_SOCMED).isPresent()) {
             SocialMedia socialMedia = ParserUtil.parseSocialMedia(argMultimap.getValue(PREFIX_SOCMED).get());
+            if (socialMedia == null || socialMedia.isBlank()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            }
             person.setSocialMedia(socialMedia);
         }
 
