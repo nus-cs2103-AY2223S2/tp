@@ -18,11 +18,6 @@ import seedu.modtrek.model.tag.Tag;
 
 class TagCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
-
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE);
-
     private final TagCommandParser parser = new TagCommandParser();
 
     @Test
