@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -17,22 +18,25 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Optional<Phone> phone;
+    private final Optional<Email> email;
 
     // Data fields
-    private final Address address;
+    private final Optional<Address> address;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, remark);
+        //requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.phone = Optional.ofNullable(phone);
+        this.email = Optional.ofNullable(email);
+        this.address = Optional.ofNullable(address);
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -40,16 +44,20 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
+    public Optional<Phone> getOptionalPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public Optional<Email> getOptionalEmail() {
         return email;
     }
 
-    public Address getAddress() {
+    public Optional<Address> getOptionalAddress() {
         return address;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -89,9 +97,9 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getOptionalPhone().equals(getOptionalPhone())
+                && otherPerson.getOptionalEmail().equals(getOptionalEmail())
+                && otherPerson.getOptionalAddress().equals(getOptionalAddress())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -104,14 +112,15 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        String phone = String.format("; Phone: %s", getOptionalPhone().map(Phone::toString).orElse(""));
+        String email = String.format("; Email: %s", getOptionalEmail().map(Email::toString).orElse(""));
+        String address = String.format("; Address: %s", getOptionalAddress().map(Address::toString).orElse(""));
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
-
+                .append(phone)
+                .append(email)
+                .append(address)
+                .append(getRemark())
+                .append(" Tags: ");
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");

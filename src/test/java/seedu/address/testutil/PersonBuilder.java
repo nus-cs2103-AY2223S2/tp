@@ -8,6 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,11 +21,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_REMARK = "She likes aardvarks.";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Remark remark;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
 
@@ -43,9 +47,10 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        phone = personToCopy.getOptionalPhone().orElse(null);
+        email = personToCopy.getOptionalEmail().orElse(null);
+        address = personToCopy.getOptionalAddress().orElse(null);
+        remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -69,7 +74,7 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.address = address == null ? null : new Address(address);
         return this;
     }
 
@@ -77,7 +82,7 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = phone == null ? null : new Phone(phone);
         return this;
     }
 
@@ -85,12 +90,20 @@ public class PersonBuilder {
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.email = email == null ? null : new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, remark, tags);
     }
 
 }
