@@ -18,9 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.ContactName;
-import seedu.address.model.contact.ContactPhone;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
