@@ -1,6 +1,5 @@
 package seedu.address.logic;
 
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.SortedSet;
