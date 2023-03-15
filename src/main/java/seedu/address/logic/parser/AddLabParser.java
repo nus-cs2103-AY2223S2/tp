@@ -9,42 +9,42 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHOTO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddTutorialCommand;
+import seedu.address.logic.commands.AddLabCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.Tutorial;
+import seedu.address.model.event.Lab;
 
 /**
- * Parses input arguments and creates a new AddTutorial object
+ * Parses input arguments and creates a new AddLab object
  */
-public class AddTutorialParser implements Parser<AddTutorialCommand> {
+public class AddLabParser implements Parser<AddLabCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddTutorial
-     * and returns an AddTutorial object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddLab
+     * and returns an AddLab object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddTutorialCommand parse(String args) throws ParseException {
-        String newArgs = args.trim().replaceFirst("Tutorial ", "");
+    public AddLabCommand parse(String args) throws ParseException {
+        String newArgs = args.trim().replaceFirst("Lab ", "");
         System.out.println(newArgs);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(newArgs, PREFIX_TUTORIAL);
+                ArgumentTokenizer.tokenize(newArgs, PREFIX_LAB);
 
-        //Make the user not create tutorial and students with the same command
+        //Make the user not create lab and students with the same command
         if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
-                PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL)
+                PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_LAB)
                 || !argMultimap.getPreamble().isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLabCommand.MESSAGE_USAGE));
         }
 
-        String name = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
+        String name = ParserUtil.parseLabName(argMultimap.getValue(PREFIX_LAB).get());
 
-        Tutorial tutorial = new Tutorial(name);
-        return new AddTutorialCommand(tutorial);
+        Lab lab = new Lab(name);
+        return new AddLabCommand(lab);
     }
 
     /**
@@ -56,7 +56,7 @@ public class AddTutorialParser implements Parser<AddTutorialCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes contains command to add students (cannot add student and tutorial
+     * Returns true if none of the prefixes contains command to add students (cannot add student and lab
      * using the same command.)
      * {@code ArgumentMultimap}.
      */
