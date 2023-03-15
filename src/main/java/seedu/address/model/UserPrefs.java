@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path internBuddyFilePath = Paths.get("data" , "addressbook.json");
+    private Path internBuddyFilePath = Paths.get("data" , "internbuddy.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
