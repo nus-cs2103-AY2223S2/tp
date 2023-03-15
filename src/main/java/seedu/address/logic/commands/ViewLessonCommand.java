@@ -24,7 +24,12 @@ public class ViewLessonCommand extends Command {
             + "name and date keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: [n/STUDENT_NAME] [date/Date]\n"
             + "Example: " + COMMAND_WORD + " n/John date/2023-03-29";
+    private static final String SEPERATOR = "--------------------------------------------------\n";
+    private static final String DOT = ". ";
+    private static final String LINE_BREAK = "\n";
+    private static final String NAME_LABEL = "%s:\n";
     private static final Predicate<Lesson> SHOW_ALL_LESSONS = lesson -> true;
+
     private final Predicate<Student> namePredicate;
     private final Predicate<Lesson> lessonDatePredicate;
     private final Predicate<Lesson> subjectPredicate;
@@ -81,21 +86,21 @@ public class ViewLessonCommand extends Command {
         int numberOfStudents = studentList.size();
         int numOfLessons = 0;
         StringBuilder sb = new StringBuilder();
-        sb.append("--------------------------------------------------\n");
+        sb.append(SEPERATOR);
 
         // Loop through each student and add their lesson to the string builder
         for (Student student : studentList) {
             List<Lesson> lessonList = student.getFilteredLessonsList(lessonDatePredicate, subjectPredicate,
                 donePredicate);
             if (!lessonList.isEmpty()) {
-                sb.append(student.getName().fullName).append(":\n");
+                sb.append(String.format(NAME_LABEL, student.getName().fullName)).append(LINE_BREAK);
                 numOfLessons += lessonList.size();
 
                 for (int i = 0; i < lessonList.size(); i++) {
-                    sb.append(i + 1).append(". ").append(lessonList.get(i)).append("\n");
+                    sb.append(i + 1).append(DOT).append(lessonList.get(i)).append(LINE_BREAK);
                 }
 
-                sb.append("--------------------------------------------------\n");
+                sb.append(SEPERATOR);
             }
         }
 

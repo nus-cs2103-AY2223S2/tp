@@ -19,6 +19,9 @@ import seedu.address.ui.UiPart;
 public class HomeworkContent extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(HomeworkContent.class);
     private static final String FXML = "HomeworkContent.fxml";
+    private static final String NAME_LABEL = "Name: %s";
+    private static final String LIST_NAME_LABEL = "Homework List: ";
+    private static final String PIE_CHART_TITLE = "Completed/Uncompleted Homework";
 
     @FXML
     private Label name;
@@ -35,12 +38,12 @@ public class HomeworkContent extends UiPart<Region> {
     public HomeworkContent(Student student) {
         super(FXML);
 
-        name.setText(String.format("Full Name: %s", student.getName().fullName));
-        listName.setText("Student Homework List: ");
+        name.setText(String.format(NAME_LABEL, student.getName().getFirstName()));
+        listName.setText(String.format(LIST_NAME_LABEL));
 
         // Set the homework pie chart to display the homework data of the student
         homeworkPieChart.setData(student.getHomeworkPieChartData());
-        homeworkPieChart.setTitle("Completed/Uncompleted Homework");
+        homeworkPieChart.setTitle(PIE_CHART_TITLE);
 
         // Set the homework list panel to display the homework list of the student
         ObservableList<Homework> homeworkList = student.getHomeworkList();

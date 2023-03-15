@@ -33,11 +33,21 @@ public class Name {
 
     /**
      * Returns true if a given string is a valid name.
+     *
+     * @param test String to be tested for validity as a name.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the first name of the student.
+     *
+     * @return First name of the student.
+     */
+    public String getFirstName() {
+        return fullName.split(" ")[0];
+    }
 
     @Override
     public String toString() {
@@ -55,5 +65,4 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
-
 }

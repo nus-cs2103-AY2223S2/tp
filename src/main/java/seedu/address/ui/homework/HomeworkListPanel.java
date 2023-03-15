@@ -46,4 +46,21 @@ public class HomeworkListPanel extends UiPart<Region> {
             }
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof HomeworkListPanel)) {
+            return false;
+        }
+
+        // state check
+        HomeworkListPanel panel = (HomeworkListPanel) other;
+        return homeworkListView.equals(panel.homeworkListView);
+    }
 }

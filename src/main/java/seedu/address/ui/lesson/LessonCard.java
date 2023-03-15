@@ -11,8 +11,8 @@ import seedu.address.ui.UiPart;
  * A UI component that displays information of a {@code Person}.
  */
 public class LessonCard extends UiPart<Region> {
-
     private static final String FXML = "LessonListCard.fxml";
+    private static final String DOT = ". ";
 
     @FXML
     private HBox cardPane;
@@ -33,7 +33,7 @@ public class LessonCard extends UiPart<Region> {
      */
     public LessonCard(Lesson lesson, int id) {
         super(FXML);
-        this.id.setText(id + ". ");
+        this.id.setText(id + DOT);
         title.setText(lesson.getTitle());
         startTime.setText(lesson.getStartTimeString());
         endTime.setText(lesson.getEndTimeString());

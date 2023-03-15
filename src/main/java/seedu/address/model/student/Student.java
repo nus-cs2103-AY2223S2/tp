@@ -34,7 +34,14 @@ public class Student {
     private final UniqueExamList examList = new UniqueExamList();
 
     /**
-     * Every field must be present and not null.
+     * An overloaded constructor for Student class.
+     * where homeworkList, lessonList and examList are empty.
+     *
+     * @param name name of student.
+     * @param phone phone number of student.
+     * @param email email of student.
+     * @param address address of student.
+     * @param tags tags of student.
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -46,7 +53,17 @@ public class Student {
     }
 
     /**
-     * Every field must be present and not null
+     * An overloaded constructor for Student class.
+     * Every field must be present and not null.
+     *
+     * @param name name of student.
+     * @param phone phone number of student.
+     * @param email email of student.
+     * @param address address of student.
+     * @param tags tags of student.
+     * @param homeworkList list of homework of student.
+     * @param lessonList list of lessons of student.
+     * @param examList list of exams of student.
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Homework> homeworkList,
                    List<Lesson> lessonList, List<Exam> examList) {
@@ -113,7 +130,7 @@ public class Student {
      *
      * @return list of exams
      */
-    public ObservableList<Exam> getExamList() {
+    public ObservableList<Exam> getExamsList() {
         return examList.asUnmodifiableObservableList();
     }
 
@@ -160,7 +177,7 @@ public class Student {
             }
         }
 
-        this.homeworkList.add(homework);
+        this.homeworkList.addHomework(homework);
     }
 
     /**
@@ -180,7 +197,7 @@ public class Student {
      */
     public void deleteHomework(Index index) {
         Homework homeworkToDelete = this.homeworkList.getHomework(index.getZeroBased());
-        this.homeworkList.remove(homeworkToDelete);
+        this.homeworkList.removeHomework(homeworkToDelete);
     }
 
     /**
@@ -456,4 +473,25 @@ public class Student {
 
         return builder.toString();
     }
+
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered homework
+     */
+    public ObservableList<Exam> getPastExamsList() {
+        return examList.getPastExams();
+    }
+
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered homework
+     */
+    public ObservableList<Exam> getUpcomingExamsList() {
+        return examList.getUpcomingExams();
+    }
+
 }

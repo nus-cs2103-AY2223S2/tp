@@ -19,8 +19,11 @@ import seedu.address.ui.homework.HomeworkContent;
  */
 public class LessonsContent extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(HomeworkContent.class);
-
     private static final String FXML = "LessonsContent.fxml";
+    private static final String NAME_LABEL = "Name: %s";
+    private static final String PAST_LESSONS_LIST_NAME = "Past Lessons: ";
+    private static final String UPCOMING_LESSONS_LIST_NAME = "Upcoming Lessons: ";
+
     private final Name studentName;
 
     @FXML
@@ -44,15 +47,15 @@ public class LessonsContent extends UiPart<Region> {
         super(FXML);
         studentName = student.getName();
 
-        name.setText(String.format("Full Name: %s", student.getName().fullName));
-        pastLessonsListName.setText("Past Lessons: ");
+        name.setText(String.format(NAME_LABEL, student.getName().getFirstName()));
+        pastLessonsListName.setText(PAST_LESSONS_LIST_NAME);
 
         // Set the past lessons list panel to display the past lessons of the student
         ObservableList<Lesson> pastLessonsList = student.getPastLessonsList();
         LessonsListPanel pastLessonsListPanel = new LessonsListPanel(pastLessonsList);
         pastLessonsListPlaceholder.getChildren().add(pastLessonsListPanel.getRoot());
 
-        upcomingLessonsListName.setText("Upcoming Lessons: ");
+        upcomingLessonsListName.setText(UPCOMING_LESSONS_LIST_NAME);
 
         // Set the upcoming lessons list panel to display the upcoming lessons of the student
         ObservableList<Lesson> upcomingLessonsList = student.getUpcomingLessonsList();

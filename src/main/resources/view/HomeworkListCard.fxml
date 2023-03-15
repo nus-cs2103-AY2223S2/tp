@@ -11,21 +11,17 @@
     <padding>
         <Insets top="10" right="10" bottom="10" left="10" />
     </padding>
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="200" prefWidth="200.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints />
-            <ColumnConstraints />
-        </columnConstraints>
-        <HBox GridPane.columnIndex="0">
+    <HBox>
+        <HBox alignment="CENTER_LEFT">
+            <ImageView fx:id="statusIcon"  fitHeight="20" fitWidth="20" preserveRatio="true" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+            <padding>
+                <Insets left="10" />
+            </padding>
             <Label fx:id="id" styleClass="cell_big_label" />
             <Label fx:id="description" VBox.vgrow="NEVER" />
             <Label fx:id="deadline" VBox.vgrow="NEVER" />
         </HBox>
-
-        <HBox GridPane.columnIndex="1" alignment="TOP_RIGHT">
-            <ImageView fx:id="statusIcon"  fitHeight="20" fitWidth="20" preserveRatio="true" />
-        </HBox>
-    </GridPane>
+    </HBox>
 </HBox>

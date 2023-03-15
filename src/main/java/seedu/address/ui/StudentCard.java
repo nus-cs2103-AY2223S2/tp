@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
 import seedu.address.ui.detail.ProfileContent;
 import seedu.address.ui.exam.EmptyExamsContent;
+import seedu.address.ui.exam.ExamsContent;
 import seedu.address.ui.homework.EmptyHomeworkContent;
 import seedu.address.ui.homework.HomeworkContent;
 import seedu.address.ui.lesson.EmptyLessonsContent;
@@ -64,7 +65,7 @@ public class StudentCard extends UiPart<Region> {
         this.mainWindow = mainWindow;
 
         id.setText(displayedIndex + ". ");
-        name.setText(student.getName().fullName);
+        name.setText(student.getName().getFirstName());
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -75,20 +76,24 @@ public class StudentCard extends UiPart<Region> {
         viewExamsButton.setOnAction(event -> handleViewExamsClick());
     }
 
-
+    /**
+     * Handles the view profile button click event.
+     * Displays the student profile.
+     */
     @FXML
     private void handleViewProfileClick() {
         mainWindow.setDetailedHeaderBar(String.format("Student Profile: %s",
-                student.getName().fullName), PROFILE_ICON);
+                student.getName().getFirstName()), PROFILE_ICON);
         mainWindow.setDetailedContent(new ProfileContent(student));
     }
 
     /**
      * Handles the view school tasks button click event.
+     * Displays the student homework list with a pie chart of the homework completion status.
      */
     private void handleViewHomeworkClick() {
         mainWindow.setDetailedHeaderBar(String.format("Homework List: %s",
-                student.getName().fullName), HOMEWORK_ICON);
+                student.getName().getFirstName()), HOMEWORK_ICON);
         if (student.getHomeworkList().isEmpty()) {
             mainWindow.setDetailedContent(new EmptyHomeworkContent(student));
         } else {
@@ -98,10 +103,11 @@ public class StudentCard extends UiPart<Region> {
 
     /**
      * Handles the view student lessons button click event
+     * Displays the student past lessons history and upcoming lessons.
      */
     private void handleViewLessonsClick() {
         mainWindow.setDetailedHeaderBar(String.format("Lessons List: %s",
-                student.getName().fullName), LESSONS_ICON);
+                student.getName().getFirstName()), LESSONS_ICON);
         if (student.getLessonsList().isEmpty()) {
             mainWindow.setDetailedContent(new EmptyLessonsContent(student));
         } else {
@@ -111,12 +117,16 @@ public class StudentCard extends UiPart<Region> {
 
     /**
      * Handles the view student exams button click event
+     * Displays all the student exams and upcoming exams in a quick glance.
      */
     private void handleViewExamsClick() {
-        //TODO
         mainWindow.setDetailedHeaderBar(String.format("Exams List: %s",
-                student.getName().fullName), EXAMS_ICON);
-        mainWindow.setDetailedContent(new EmptyExamsContent(student));
+                student.getName().getFirstName()), EXAMS_ICON);
+        if (student.getExamsList().isEmpty()) {
+            mainWindow.setDetailedContent(new EmptyExamsContent(student));
+        } else {
+            mainWindow.setDetailedContent(new ExamsContent(student));
+        }
     }
 
     @Override

@@ -15,8 +15,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-w13-4.github.io/tp/";
+    public static final String HELP_MESSAGE = "Refer to the user guide of TutorPro:\n" + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -64,6 +64,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing help page about the application.");
+        getRoot().setResizable(false);
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -98,5 +99,19 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof HelpWindow)) {
+            return false;
+        }
+
+        HelpWindow other = (HelpWindow) obj;
+        return helpMessage.getText().equals(other.helpMessage.getText());
     }
 }

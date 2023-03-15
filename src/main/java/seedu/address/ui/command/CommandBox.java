@@ -16,6 +16,7 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+    private static final String PROMPT_TEXT = "Enter command here";
 
     private final CommandExecutor commandExecutor;
 
@@ -24,12 +25,15 @@ public class CommandBox extends UiPart<Region> {
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
+     *
+     * @param commandExecutor The command executor to be used.
      */
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.setPromptText("Enter command here");
+        commandTextField.setPromptText(PROMPT_TEXT);
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
 

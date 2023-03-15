@@ -40,8 +40,8 @@ public class Exam {
      * @param status      The status of the exam.
      * @param grade       The grade of the exam.
      */
-    public Exam(String description, LocalDateTime startTime, LocalDateTime endTime, double weightage,
-                ExamStatus status, Grade grade) {
+    public Exam(String description, LocalDateTime startTime, LocalDateTime endTime,
+                double weightage, ExamStatus status, Grade grade) {
         Objects.requireNonNull(description);
         Objects.requireNonNull(startTime);
         Objects.requireNonNull(endTime);
@@ -186,6 +186,15 @@ public class Exam {
         return otherExam != null
                 && otherExam.getDescription().equals(getDescription())
                 && otherExam.getStartTime().equals(getStartTime());
+    }
+
+    /**
+     * Creates a new Exam with the given description, start time, end time, weightage, and status.
+     *
+     * @return The new Exam.
+     */
+    public boolean isPastExam() {
+        return LocalDateTime.now().isAfter(endTime);
     }
 
     @Override

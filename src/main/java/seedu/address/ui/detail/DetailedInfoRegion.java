@@ -14,6 +14,8 @@ import seedu.address.ui.UiPart;
 public class DetailedInfoRegion extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(DetailedInfoRegion.class);
     private static final String FXML = "DetailedInfoRegion.fxml";
+    private static final String DEFAULT_ICON_PATH = "/images/info_icon.png";
+    private static final String DEFAULT_TITLE_TEXT = "Detailed Information";
 
     @FXML
     private StackPane headerBarPlaceholder;
@@ -29,7 +31,7 @@ public class DetailedInfoRegion extends UiPart<Region> {
     public DetailedInfoRegion(String textToDisplay) {
         super(FXML);
 
-        HeaderBar headerBar = new HeaderBar("Detailed Information", "/images/info_icon.png");
+        HeaderBar headerBar = new HeaderBar(DEFAULT_TITLE_TEXT, DEFAULT_ICON_PATH);
         headerBarPlaceholder.getChildren().add(headerBar.getRoot());
 
         UiPart<Region> detailedContent = new WelcomeContent();
@@ -62,7 +64,6 @@ public class DetailedInfoRegion extends UiPart<Region> {
         return other == this // short circuit if same object
                 || (other instanceof DetailedInfoRegion // instanceof handles nulls
                 && headerBarPlaceholder.equals(((DetailedInfoRegion) other).headerBarPlaceholder)
-                && detailedContentPlaceholder
-                        .equals(((DetailedInfoRegion) other).detailedContentPlaceholder)); // state check
+                && detailedContentPlaceholder.equals(((DetailedInfoRegion) other).detailedContentPlaceholder));
     }
 }

@@ -46,4 +46,21 @@ public class LessonsListPanel extends UiPart<Region> {
             }
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof LessonsListPanel)) {
+            return false;
+        }
+
+        // state check
+        LessonsListPanel panel = (LessonsListPanel) other;
+        return lessonsListView.equals(panel.lessonsListView);
+    }
 }

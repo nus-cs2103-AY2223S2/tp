@@ -23,7 +23,6 @@ import seedu.address.model.student.exceptions.EntryNotFoundException;
  * that the homework with exactly the same fields will be removed.
  */
 public class UniqueHomeworkList implements Iterable<Homework> {
-
     private final ObservableList<Homework> internalList = FXCollections.observableArrayList();
     private final ObservableList<Homework> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -45,7 +44,7 @@ public class UniqueHomeworkList implements Iterable<Homework> {
      *
      * @param toAdd the homework to be added
      */
-    public void add(Homework toAdd) {
+    public void addHomework(Homework toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateEntryException();
@@ -80,7 +79,7 @@ public class UniqueHomeworkList implements Iterable<Homework> {
      *
      * @param toRemove the homework to be removed
      */
-    public void remove(Homework toRemove) {
+    public void removeHomework(Homework toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new EntryNotFoundException();
@@ -159,20 +158,10 @@ public class UniqueHomeworkList implements Iterable<Homework> {
         return true;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueHomeworkList // instanceof handles nulls
-                        && internalList.equals(((UniqueHomeworkList) other).internalList));
-    }
-
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
-    }
-
     /**
      * Updates the list of homeworks to only contain homeworks that are not completed.
+     *
+     * @param homeworkStatusPredicate the predicate to filter the homework list
      */
     public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
         requireNonNull(homeworkStatusPredicate);
@@ -199,4 +188,17 @@ public class UniqueHomeworkList implements Iterable<Homework> {
         pieChartData.add(new PieChart.Data("Uncompleted", uncompletedHomework));
         return pieChartData;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UniqueHomeworkList // instanceof handles nulls
+                && internalList.equals(((UniqueHomeworkList) other).internalList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
+    }
+
 }

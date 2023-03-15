@@ -25,6 +25,9 @@ public class HeaderBar extends UiPart<Region> {
 
     /**
      * Creates a {@code HeaderBar} with the given {@code Stage} and {@code Student}.
+     *
+     * @param titleText The text to display in the header bar.
+     * @param iconPath The path to the icon to display in the header bar.
      */
     public HeaderBar(String titleText, String iconPath) {
         super(FXML);

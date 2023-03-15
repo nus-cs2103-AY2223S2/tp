@@ -8,14 +8,17 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.UiUtil;
 
 /**
  * An empty UI component that is displayed when there is no homework to be displayed.
  */
 public class EmptyHomeworkContent extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(EmptyHomeworkContent.class);
-
     private static final String FXML = "EmptyContent.fxml";
+    private static final int MAX_LINE_LENGTH = 40;
+    private static final String MESSAGE = "No homework to display for %s!";
+
     @FXML
     private Label message;
 
@@ -26,7 +29,8 @@ public class EmptyHomeworkContent extends UiPart<Region> {
      */
     public EmptyHomeworkContent(Student student) {
         super(FXML);
-        message.setText("No homework to display for " + student.getName().fullName + "!");
+        String textToDisplay = String.format(MESSAGE, student.getName().fullName);
+        message.setText(UiUtil.addLineBreaksWithoutIndent(textToDisplay, MAX_LINE_LENGTH));
     }
 
     @Override

@@ -8,6 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.UiUtil;
 import seedu.address.ui.lesson.EmptyLessonsContent;
 
 /**
@@ -16,6 +17,8 @@ import seedu.address.ui.lesson.EmptyLessonsContent;
 public class EmptyExamsContent extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(EmptyLessonsContent.class);
     private static final String FXML = "EmptyContent.fxml";
+    private static final int MAX_LINE_LENGTH = 40;
+    private static final String MESSAGE = "No exams to display for %s!";
 
     @FXML
     private Label message;
@@ -27,13 +30,21 @@ public class EmptyExamsContent extends UiPart<Region> {
      */
     public EmptyExamsContent(Student student) {
         super(FXML);
-        message.setText("No exams to display for " + student.getName().fullName + "!");
+        String textToDisplay = String.format(MESSAGE, student.getName().fullName);
+        message.setText(UiUtil.addLineBreaksWithoutIndent(textToDisplay, MAX_LINE_LENGTH));
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EmptyExamsContent // instanceof handles nulls
-                && message.getText().equals(((EmptyExamsContent) other).message.getText())); // state check
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof EmptyExamsContent)) {
+            return false;
+        }
+
+        EmptyExamsContent other = (EmptyExamsContent) obj;
+        return message.getText().equals(other.message.getText());
     }
 }

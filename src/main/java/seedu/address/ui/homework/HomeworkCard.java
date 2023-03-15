@@ -13,8 +13,11 @@ import seedu.address.ui.UiPart;
  * A UI component that displays information of a {@code Person}.
  */
 public class HomeworkCard extends UiPart<Region> {
-
     private static final String FXML = "HomeworkListCard.fxml";
+    private static final String COMPLETED_ICON = "images/completed.png";
+    private static final String UNCOMPLETED_ICON = "images/uncompleted.png";
+    private static final String DOT = ". ";
+    private static final String DEADLINE_LABEL = "Deadline: ";
 
     @FXML
     private HBox cardPane;
@@ -35,15 +38,15 @@ public class HomeworkCard extends UiPart<Region> {
      */
     public HomeworkCard(Homework homework, int id) {
         super(FXML);
-        this.id.setText(id + ". ");
+        this.id.setText(id + DOT);
         description.setText(homework.getDescription());
-        deadline.setText(String.format(" (%s)", homework.getDeadlineString()));
+        deadline.setText(String.format(DEADLINE_LABEL, homework.getDeadlineString()));
 
         // Set the status icon to completed or uncompleted
         if (homework.isCompleted()) {
-            statusIcon.setImage(new Image("images/completed.png"));
+            statusIcon.setImage(new Image(COMPLETED_ICON));
         } else {
-            statusIcon.setImage(new Image("images/uncompleted.png"));
+            statusIcon.setImage(new Image(UNCOMPLETED_ICON));
         }
     }
 

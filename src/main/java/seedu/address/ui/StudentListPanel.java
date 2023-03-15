@@ -47,4 +47,21 @@ public class StudentListPanel extends UiPart<Region> {
             }
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof StudentListPanel)) {
+            return false;
+        }
+
+        // state check
+        StudentListPanel panel = (StudentListPanel) other;
+        return personListView.equals(panel.personListView);
+    }
 }

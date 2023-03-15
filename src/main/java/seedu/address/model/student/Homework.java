@@ -9,8 +9,11 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Homework {
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private static final DateTimeFormatter printFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+    private static final DateTimeFormatter PRINT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+    private static final String TO_STRING_FORMAT = "Status: %s, Description: %s, Deadline: %s";
+    private static final String COMPLETED_TAG = "[X]";
+    private static final String PENDING_TAG = "[ ]";
+
     private final String description;
     private final LocalDateTime deadline;
     private Status status;
@@ -73,7 +76,7 @@ public class Homework {
      * @return A tag to indicate whether the homework is completed or not.
      */
     public String getStatusTag() {
-        return status == Status.COMPLETED ? "[X]" : "[ ]";
+        return status == Status.COMPLETED ? COMPLETED_TAG : PENDING_TAG;
     }
 
     /**
@@ -98,7 +101,7 @@ public class Homework {
      * @return A string representation of the homework.
      */
     public String getDeadlineString() {
-        return deadline.format(printFormatter);
+        return deadline.format(PRINT_FORMATTER);
     }
 
     @Override
@@ -123,7 +126,6 @@ public class Homework {
 
     @Override
     public String toString() {
-        return String.format("Status: %s, Description: %s, Deadline: %s", getStatusTag(), description,
-                deadline.format(formatter));
+        return String.format(TO_STRING_FORMAT, getStatusTag(), getDescription(), getDeadlineString());
     }
 }
