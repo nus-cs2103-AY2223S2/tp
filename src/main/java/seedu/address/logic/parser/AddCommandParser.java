@@ -37,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                    PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SCHEDULE);
+                    PREFIX_ADDRESS, PREFIX_TAG, PREFIX_SCHEDULE, PREFIX_MEDICAL);
         Person person;
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -57,7 +57,12 @@ public class AddCommandParser implements Parser<AddCommand> {
             parsedTime = ParserUtil.parseTime(time.get());
         }
         if (parsedTime != null) {
-            person = new Person(name, phone, email, address, tagList, parsedTime);
+            if (medicalString.isPresent()) {
+                MedicalCondition medicalCondition = ParserUtil.parseMedicalCond(medicalString.get());
+                person = new Person(name, phone, email, address, tagList, parsedTime, medicalCondition);
+            } else {
+                person = new Person(name, phone, email, address, tagList, parsedTime);
+            }
         } else if (medicalString.isPresent()) {
             MedicalCondition medicalCondition = ParserUtil.parseMedicalCond(medicalString.get());
             person = new Person(name, phone, email, address, tagList, medicalCondition);

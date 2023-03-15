@@ -59,6 +59,10 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         if (person.hasTime()) {
             time.setText(person.getTime().toString());
+            if (person.getMedicalCondition() != null) {
+                String s = person.getMedicalCondition().getValue();
+                medicalCondition.setText(s);
+            }
         } else {
             time.setText("");
             if (person.getMedicalCondition() == null) {
@@ -67,11 +71,12 @@ public class PersonCard extends UiPart<Region> {
                 String s = person.getMedicalCondition().getValue();
                 medicalCondition.setText(s);
             }
-            person.getTags().stream()
+        }
+        person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        }
     }
+
 
     @Override
     public boolean equals(Object other) {

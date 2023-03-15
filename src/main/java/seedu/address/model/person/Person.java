@@ -39,6 +39,22 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.time = time;
+        this.medicalCondition = new MedicalCondition("");
+    }
+
+    /**
+     * Every field must be present and not null, medical condition will be created without any tag
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition) {
+        requireAllNonNull(name, phone, email, address, tags, time);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.medicalCondition = medicalCondition;
     }
 
     /**

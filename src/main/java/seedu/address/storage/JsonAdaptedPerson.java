@@ -77,13 +77,13 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         if (source.hasTime()) {
             time = source.getTime();
-            if (source.getMedicalCondition().getValue() != null) {
-                medicalCondition = source.getMedicalCondition().getValue();
-            }
-            tagged.addAll(source.getTags().stream()
+        }
+        if (source.getMedicalCondition().getValue() != null) {
+            medicalCondition = source.getMedicalCondition().getValue();
+        }
+        tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        }
     }
 
     /**
@@ -132,10 +132,13 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (time != null) {
+            if (medicalCondition != null) {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                    modelTags, time, new MedicalCondition(medicalCondition));
+            }
             return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, time);
         }
         if (medicalCondition != null) {
-            final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
             return new Person(modelName, modelPhone, modelEmail, modelAddress,
                 modelTags, new MedicalCondition(medicalCondition));
         }
