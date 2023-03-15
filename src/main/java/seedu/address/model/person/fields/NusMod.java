@@ -18,7 +18,7 @@ public class NusMod {
     //todo: Update modules to only be able to include mods that are a part of NUSMods.
     public static boolean isValidModName(String trimmedTag) {
         try {
-            FileInputStream inputStream = new FileInputStream("moduleListClean.json");
+            FileInputStream inputStream = new FileInputStream(MODULELIST_FILE_PATH);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             String line;
