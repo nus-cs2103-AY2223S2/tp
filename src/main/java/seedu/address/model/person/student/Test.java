@@ -20,7 +20,7 @@ public class Test extends Assignment {
         super(assignmentName, deadline, weightage, score);
     }
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid test.
      */
     public static boolean isValidTest(String test) {
         if (test.equals("Insert student test here!")) {
