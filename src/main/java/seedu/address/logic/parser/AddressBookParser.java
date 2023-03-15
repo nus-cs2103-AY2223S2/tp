@@ -15,7 +15,10 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.navigation.BackNavCommand;
+import seedu.address.logic.commands.navigation.NavCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.navigation.NavCommandParser;
 
 /**
  * Parses user input.
@@ -25,7 +28,7 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -43,6 +46,11 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+        case NavCommand.COMMAND_WORD:
+            return new NavCommandParser().parse(arguments);
+
+        case BackNavCommand.COMMAND_WORD:
+            return new BackNavCommand();
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);

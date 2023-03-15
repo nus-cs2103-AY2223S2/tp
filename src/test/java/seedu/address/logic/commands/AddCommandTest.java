@@ -19,12 +19,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyNavigation;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
 import seedu.address.testutil.PersonBuilder;
@@ -170,6 +174,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModule(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteModule(ReadOnlyModule target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -186,6 +195,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -231,6 +245,46 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyNavigation getNavigation() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public NavigationContext getCurrentNavContext() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateBack() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateToRoot() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateTo(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateTo(ModuleCode moduleCode, LectureName lectureName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateToModFromRoot(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void navigateToLecFromMod(LectureName lectureName) {
             throw new AssertionError("This method should not be called.");
         }
     }

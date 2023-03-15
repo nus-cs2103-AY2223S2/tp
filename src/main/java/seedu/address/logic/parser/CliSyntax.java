@@ -13,5 +13,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_MODULE = new Prefix("/mod");
     public static final Prefix PREFIX_LECTURE = new Prefix("/lec");
-
+    public static final Prefix PREFIX_VIDEO = new Prefix("/vid");
 }
