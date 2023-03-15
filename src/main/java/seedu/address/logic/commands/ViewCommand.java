@@ -16,7 +16,10 @@ import seedu.address.model.person.Person;
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Views the person identified by the index number used in the contact list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";;
 
     public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Viewed Person: %1$s";
     private final Index index;
