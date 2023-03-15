@@ -26,7 +26,6 @@ public class TimetableWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    //private jobListPanel jobListPanel;
     private ResultDisplay resultDisplay;
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -38,7 +37,7 @@ public class TimetableWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     /**
-     * Creates a {@code JobWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code TimeTableWindow} with the given {@code Stage} and {@code Logic}.
      */
     public TimetableWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -76,21 +75,21 @@ public class TimetableWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the job window is currently being shown.
+     * Returns true if the timetable window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the job window.
+     * Hides the timetable window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the job window.
+     * Focuses on the timetable window.
      */
     public void focus() {
         getRoot().requestFocus();

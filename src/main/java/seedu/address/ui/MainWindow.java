@@ -41,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TimetableWindow timetableWindow;
+    private ReminderListWindow reminderListWindow;
     private StatisticsWindow statsWindow;
 
     @FXML
@@ -54,7 +55,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem timetableMenuItem;
-
+    @FXML
+    private MenuItem reminderListMenuItem;
     @FXML
     private MenuItem statsItem;
 
@@ -87,6 +89,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         timetableWindow = new TimetableWindow(new Stage(), logic);
+        reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
     }
 
@@ -193,6 +196,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens Reminder List window.
+     */
+    @FXML
+    private void handleReminderList() {
+        if (!reminderListWindow.isShowing()) {
+            reminderListWindow.show();
+            reminderListWindow.fillInnerParts();
+        } else {
+            reminderListWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -249,6 +265,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowTimetable()) {
                 handleTimetable();
+            }
+
+            if (commandResult.isShowReminderList()) {
+                handleReminderList();
             }
 
             if (commandResult.isExit()) {

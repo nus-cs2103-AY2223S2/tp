@@ -11,13 +11,13 @@ import seedu.address.model.reminder.Reminder;
 /**
  * Adds a reminder to the address book.
  */
-public class AddReminder extends Command {
+public class AddReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "add_reminder";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder.\n"
             + "Parameters: "
-            + PREFIX_DESCRIPTION + "Description "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_TIME + "YYYY-MM-DD HH:MM";
 
     public static final String MESSAGE_SUCCESS = "New reminder added";
@@ -25,9 +25,9 @@ public class AddReminder extends Command {
     private final Reminder toAdd;
 
     /**
-     * Creates an AddReminder to add the specified {@code Reminder}
+     * Creates an AddReminderCommand to add the specified {@code Reminder}
      */
-    public AddReminder(Reminder reminder) {
+    public AddReminderCommand(Reminder reminder) {
         requireNonNull(reminder);
         toAdd = reminder;
     }
@@ -42,7 +42,7 @@ public class AddReminder extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddReminder // instanceof handles nulls
-                && toAdd.equals(((AddReminder) other).toAdd));
+                || (other instanceof AddReminderCommand // instanceof handles nulls
+                && toAdd.equals(((AddReminderCommand) other).toAdd));
     }
 }

@@ -7,17 +7,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddReminder;
+import seedu.address.logic.commands.AddReminderCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteReminder;
+import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListReminder;
+import seedu.address.logic.commands.ListReminderCommand;
 import seedu.address.logic.commands.TimetableCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -72,13 +72,13 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case AddReminder.COMMAND_WORD:
+        case AddReminderCommand.COMMAND_WORD:
             return new AddReminderParser().parse(arguments);
 
-        case ListReminder.COMMAND_WORD:
-            return new ListReminder();
+        case ListReminderCommand.COMMAND_WORD:
+            return new ListReminderCommand();
 
-        case DeleteReminder.COMMAND_WORD:
+        case DeleteReminderCommand.COMMAND_WORD:
             return new DeleteReminderParser().parse(arguments);
 
         case TimetableCommand.COMMAND_WORD:
