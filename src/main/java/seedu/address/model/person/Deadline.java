@@ -1,8 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a Module's deadline.
  */
@@ -12,23 +9,22 @@ public class Deadline {
     public final String value;
 
     /**
-     * Returns if a given string is a valid timeSlot.
-     */
-    public static boolean isValidDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
      * Constructs an {@code Deadline}.
      *
      * @param deadline A valid deadline.
      */
-    public Deadline (String deadline) {
+    public Deadline(String deadline) {
         //deadline is optional and hence we do not requireNonNull.
         //requireNonNull(deadline);
         value = deadline;
     }
 
+    /**
+     * Returns if a given string is a valid timeSlot.
+     */
+    public static boolean isValidDeadline(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
 
     @Override
     public String toString() {

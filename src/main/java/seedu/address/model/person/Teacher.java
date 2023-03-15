@@ -1,8 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents the Teacher of the Module's Lecture or Tutorial.
  */
@@ -14,7 +11,7 @@ public class Teacher {
      *
      * @param teacher A valid name of teacher.
      */
-    public Teacher (String teacher) {
+    public Teacher(String teacher) {
         //teacher is optional and hence we do not requireNonNull.
         //requireNonNull(deadline);
         value = teacher;
