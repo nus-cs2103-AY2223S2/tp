@@ -1,5 +1,6 @@
 package seedu.patientist.testutil;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 import seedu.patientist.model.person.Address;
@@ -9,6 +10,7 @@ import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientIdNumber;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
+import seedu.patientist.model.tag.Tag;
 import seedu.patientist.model.util.SampleDataUtil;
 
 /**
@@ -18,6 +20,7 @@ public class PatientBuilder extends PersonBuilder {
 
     public static final String DEFAULT_STATUS = "Doing good";
     public static final String DEFAULT_ID = "A1234567890B";
+    public static final HashSet<Tag> DEFAULT_TAGS = new HashSet<>(Arrays.asList(new Tag("Patient")));
 
     private PatientStatusDetails status;
     private PatientIdNumber id;
@@ -29,6 +32,7 @@ public class PatientBuilder extends PersonBuilder {
         super();
         this.status = new PatientStatusDetails(DEFAULT_STATUS);
         this.id = new PatientIdNumber(DEFAULT_ID);
+        this.tags = DEFAULT_TAGS;
     }
 
     /**

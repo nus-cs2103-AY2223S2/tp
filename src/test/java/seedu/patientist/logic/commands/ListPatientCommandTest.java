@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.patientist.model.Model;
 import seedu.patientist.model.ModelManager;
 import seedu.patientist.model.UserPrefs;
-import seedu.patientist.model.person.IsPatientPredicate;
+import seedu.patientist.model.person.patient.IsPatientPredicate;
 
 public class ListPatientCommandTest {
     private Model model = new ModelManager(getTypicalPatientist(), new UserPrefs());

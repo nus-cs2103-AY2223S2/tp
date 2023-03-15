@@ -7,14 +7,8 @@ import static seedu.patientist.commons.util.AppUtil.checkArgument;
  * Object representing the ID number of a patient. ID numbers are automatically capitalised when they are created.
  */
 public class PatientIdNumber {
-    public static final String MESSAGE_CONSTRAINTS =
-            "PID should be of the format: letter followed by 5 digits and end with a letter.";
+    public static final String MESSAGE_CONSTRAINTS = "PID should be alnum.";
 
-    /*
-     * First character must be a letter.
-     * Following 5 characters must be digits.
-     * Last character must be a letter.
-     */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}]*";
 
     private final String idNumber;
