@@ -1,26 +1,44 @@
 package vimification.model.task;
 
-/**
- * Represents a Task in the task list.
- * Guarantees: details are present and not null, field values are validated, immutable.
- */
+import java.util.HashSet;
+import java.util.Set;
+
 public class Task {
+    private final Title title;
+    private final Description description;
+    private String deadline;
 
-    private String taskDescription;
+    private Set<String> tags = new HashSet<>();
 
-    public Task(String... taskComponents) {
-        this.taskDescription = taskComponents[0];
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Title title, Description description) {
+        // requireAllNonNull(name, phone, email, address, tags);
+        this.title = title;
+        this.description = description;
+        // this.deadline = deadline;
+        // this.tags.addAll(tags);
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Task // instanceof handles nulls
-                && taskDescription.equals(((Task) other).taskDescription)); // state check
+
+    public Title getTitle() {
+        return title;
     }
 
-    @Override
-    public String toString() {
-        return this.taskDescription;
+
+    public Description getDescription() {
+        return description;
     }
+
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
 }

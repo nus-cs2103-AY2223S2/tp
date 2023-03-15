@@ -1,4 +1,4 @@
-package vimification.ui;
+package vimification.taskui;
 
 import static java.util.Objects.requireNonNull;
 
@@ -15,7 +15,7 @@ import vimification.MainApp;
 public abstract class UiPart<T> {
 
     /** Resource folder where FXML files are stored. */
-    public static final String FXML_FILE_FOLDER = "/oldview/";
+    public static final String FXML_FILE_FOLDER = "/view/";
 
     private final FXMLLoader fxmlLoader = new FXMLLoader();
 

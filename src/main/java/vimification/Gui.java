@@ -1,5 +1,6 @@
 package vimification;
 
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -9,7 +10,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import vimification.commons.core.Config;
 import vimification.commons.core.LogsCenter;
-import vimification.commons.core.Version;
 import vimification.commons.exceptions.DataConversionException;
 import vimification.commons.util.ConfigUtil;
 import vimification.commons.util.StringUtil;
@@ -28,23 +28,19 @@ import vimification.storage.JsonUserPrefsStorage;
 import vimification.storage.Storage;
 import vimification.storage.StorageManager;
 import vimification.storage.UserPrefsStorage;
-import vimification.ui.Ui;
-import vimification.ui.UiManager;
+import vimification.taskui.Ui;
+import vimification.taskui.UiManager;
 
-/**
- * Runs the application.
- */
-public class MainApp extends Application {
-
-    public static final Version VERSION = new Version(0, 2, 0, true);
-
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+public class Gui extends Application {
 
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
     protected Config config;
+
+
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     @Override
     public void init() throws Exception {
@@ -70,6 +66,11 @@ public class MainApp extends Application {
         ui = new UiManager(logic);
     }
 
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        ui.start(primaryStage);
+    }
+
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s address book and
      * {@code userPrefs}. <br>
@@ -81,8 +82,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         try {
-            addressBookOptional = storage.
-                    readAddressBook();
+            addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
@@ -104,11 +104,6 @@ public class MainApp extends Application {
         LogsCenter.init(config);
     }
 
-    /**
-     * Returns a {@code Config} using the file at {@code configFilePath}. <br>
-     * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead if
-     * {@code configFilePath} is null.
-     */
     protected Config initConfig(Path configFilePath) {
         Config initializedConfig;
         Path configFilePathUsed;
@@ -141,6 +136,7 @@ public class MainApp extends Application {
         return initializedConfig;
     }
 
+
     /**
      * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path, or a
      * new {@code UserPrefs} with default configuration if errors occur when reading from the file.
@@ -171,22 +167,5 @@ public class MainApp extends Application {
         }
 
         return initializedPrefs;
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
-        ui.start(primaryStage);
-    }
-
-    @Override
-    public void stop() {
-        logger.info(
-                "============================ [ Stopping Address Book ] =============================");
-        try {
-            storage.saveUserPrefs(model.getUserPrefs());
-        } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
-        }
     }
 }
