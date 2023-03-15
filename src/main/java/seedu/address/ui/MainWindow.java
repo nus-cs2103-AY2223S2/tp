@@ -18,8 +18,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * The Main Window. Provides the basic application layout containing
- * a menu bar and space where other JavaFX elements can be placed.
+ * The Main Window. Provides the basic application layout containing a menu bar and space where other JavaFX elements
+ * can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
 
@@ -32,6 +32,13 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+
+    private ViewModePanel viewModePanel;
+    private EntityListPanel viewModeEntityListPanel;
+
+    private ListModePanel listModePanel;
+    private EntityListPanel listModeEntityListPanel;
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -39,10 +46,16 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private StackPane modePanelPlaceholder;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane entityListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -66,6 +79,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -78,6 +92,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,8 +125,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listModeEntityListPanel = new EntityListPanel(logic.getFilteredPersonList());
+        viewModeEntityListPanel = new EntityListPanel(logic.getFilteredPersonList());
+        listModePanel = new ListModePanel(listModeEntityListPanel);
+        viewModePanel = new ViewModePanel(viewModeEntityListPanel);
+        modePanelPlaceholder.getChildren().add(listModePanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -121,7 +139,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
+
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -157,7 +177,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -165,6 +185,20 @@ public class MainWindow extends UiPart<Stage> {
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+    /**
+     * Switches between list mode and view mode displays.
+     */
+
+    public void switchDisplayMode(boolean isViewMode) {
+        logger.info("switching display mode, isViewMode: " + isViewMode);
+        modePanelPlaceholder.getChildren().remove(0);
+        if (isViewMode) {
+            modePanelPlaceholder.getChildren().add(viewModePanel.getRoot());
+        } else {
+            modePanelPlaceholder.getChildren().add(listModePanel.getRoot());
+        }
     }
 
     /**
@@ -184,6 +218,23 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+            switch (commandResult.getSwitchMode()) {
+
+            case NONE:
+                break;
+            case VIEW:
+                switchDisplayMode(true);
+                break;
+            case LIST:
+                switchDisplayMode(false);
+                break;
+            case TOGGLE:
+                switchDisplayMode(modePanelPlaceholder.getChildren().contains(listModePanel.getRoot()));
+                break;
+            default:
+                logger.info("UiSwitchMode enum switch case defaulted!");
+                assert (false);
             }
 
             return commandResult;

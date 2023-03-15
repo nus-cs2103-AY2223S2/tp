@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<HBox alignment="CENTER" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="entityList" minHeight="100.0" prefWidth="340.0" styleClass="pane-with-border">
+         <children>
+            <StackPane fx:id="entityListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+      <StackPane fx:id="entityDetailsPlaceholder" minHeight="100.0" minWidth="200.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS" />
+   </children>
+   <stylesheets>
+      <URL value="@DarkTheme.css" />
+      <URL value="@Extensions.css" />
+   </stylesheets>
+</HBox>
