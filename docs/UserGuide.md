@@ -146,7 +146,7 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
   * e.g. `t/2103t` will not match `t/cs2103t` 
 * Persons with field values matching at least one keyword for that respective field will be returned (i.e. `OR` search). 
   * e.g. `find n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
-  * e.g. `find n/Hans l/Java` will return persons whose name contains `Hans` or language contains `Java`
+  * e.g. `find n/Hans l/Java` will return persons whose name contains `Hans` or language contains `Java` or both
   * e.g. `find t/friend` will return persons who have either tag `friend` or `best friend` or both
 * If no field is specified, zero persons will be returned.
 

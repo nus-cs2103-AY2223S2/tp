@@ -421,17 +421,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 
-1.  User request to find a contact with the given keywords and tags.
-2.  SOCket shows a list of contacts that contains any of the given keyword and any of the given tags.
+1.  User request to find a contact with the given keywords in their respective fields.
+2.  SOCket shows a list of contacts that contains any of the given keyword in their respective fields.
 
     Use case ends.
 
 **Extensions:**
 
-* 1a. No contact matches any of the given keyword and any of the given tag.
+* 1a. No contact matches any of the given keywords in their respective fields.
 
     * 1a1. SOCket shows an empty list of contacts. 
       
+      Use case ends.
+
+* 1b. No keywords are given for all fields.
+
+    * 1b1. SOCket shows an empty list of contacts.
+
       Use case ends.
 
 **Use case: UC06 Clear contacts/tag**
