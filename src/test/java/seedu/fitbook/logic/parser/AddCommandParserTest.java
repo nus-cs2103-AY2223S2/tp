@@ -96,7 +96,6 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + CALORIE_DESC_AMY + CALORIE_DESC_BOB
                         + WEIGHT_DESC_BOB + GENDER_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + GOAL_DESC_BOB,
-
                 new AddCommand(expectedClient));
 
         // multiple gender - last gender accepted
@@ -110,6 +109,12 @@ public class AddCommandParserTest {
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + CALORIE_DESC_AMY + CALORIE_DESC_BOB
                         + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_AMY + WEIGHT_DESC_BOB + GENDER_DESC_BOB
                         + GOAL_DESC_BOB, new AddCommand(expectedClient));
+
+        // multiple goal - last goal accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + CALORIE_DESC_BOB
+                + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB
+                + GOAL_DESC_AMY + GOAL_DESC_BOB, new AddCommand(expectedClient));
 
         // multiple tags - all accepted
         Client expectedClientMultipleTags = new ClientBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
