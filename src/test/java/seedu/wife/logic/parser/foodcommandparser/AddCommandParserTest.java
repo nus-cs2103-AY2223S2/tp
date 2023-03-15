@@ -1,4 +1,4 @@
-package seedu.wife.logic.parser;
+package seedu.wife.logic.parser.foodcommandparser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.logic.commands.CommandTestUtil.EXPIRY_DATE_DESC_CHOCOLATE;
@@ -13,7 +13,7 @@ import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.logic.commands.AddCommand;
+import seedu.wife.logic.commands.foodcommands.AddCommand;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();

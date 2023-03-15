@@ -1,4 +1,4 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.foodcommands;
 
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.wife.logic.commands.CommandTestUtil.showFoodAtIndex;

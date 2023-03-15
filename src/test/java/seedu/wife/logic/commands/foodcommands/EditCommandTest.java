@@ -1,4 +1,4 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.foodcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,7 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.wife.commons.core.Messages;
 import seedu.wife.commons.core.index.Index;
-import seedu.wife.logic.commands.EditCommand.EditFoodDescriptor;
+import seedu.wife.logic.commands.foodcommands.EditCommand.EditFoodDescriptor;
+import seedu.wife.logic.commands.generalcommands.ClearCommand;
 import seedu.wife.model.Model;
 import seedu.wife.model.ModelManager;
 import seedu.wife.model.UserPrefs;

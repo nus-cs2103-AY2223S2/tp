@@ -1,4 +1,4 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.foodcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,7 +12,7 @@ import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.logic.commands.EditCommand.EditFoodDescriptor;
+import seedu.wife.logic.commands.foodcommands.EditCommand.EditFoodDescriptor;
 import seedu.wife.testutil.EditFoodDescriptorBuilder;
 
 public class EditFoodDescriptorTest {

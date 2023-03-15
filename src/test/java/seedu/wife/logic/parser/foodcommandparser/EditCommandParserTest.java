@@ -1,4 +1,4 @@
-package seedu.wife.logic.parser;
+package seedu.wife.logic.parser.foodcommandparser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_MEIJI;
@@ -11,8 +11,8 @@ import static seedu.wife.testutil.TypicalIndexes.INDEX_THIRD_FOOD;
 import org.junit.jupiter.api.Test;
 
 import seedu.wife.commons.core.index.Index;
-import seedu.wife.logic.commands.EditCommand;
-import seedu.wife.logic.commands.EditCommand.EditFoodDescriptor;
+import seedu.wife.logic.commands.foodcommands.EditCommand;
+import seedu.wife.logic.commands.foodcommands.EditCommand.EditFoodDescriptor;
 import seedu.wife.testutil.EditFoodDescriptorBuilder;
 
 public class EditCommandParserTest {

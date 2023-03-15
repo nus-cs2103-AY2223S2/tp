@@ -1,10 +1,11 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.generalcommands;
 
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.wife.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+import static seedu.wife.logic.commands.generalcommands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.model.Model;
 import seedu.wife.model.ModelManager;
 
