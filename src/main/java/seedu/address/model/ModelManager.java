@@ -280,8 +280,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return tracker.equals(other.tracker)
             && userPrefs.equals(other.userPrefs)
-            && filteredModules.equals(other.filteredModules)
-            && navigation.equals(other.navigation);
+            && filteredModules.equals(other.filteredModules);
     }
 
     // TODO: Remove all code beyond this point
