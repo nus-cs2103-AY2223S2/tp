@@ -12,6 +12,6 @@ public class Messages {
     public static final String MESSAGE_GROUPS_LISTED_OVERVIEW = "%1$d groups listed!";
     public static final String MESSAGE_UNKNOWN_ISOLATED_EVENT = "No such event in isolated event list";
     public static final String MESSAGE_INVALID_GROUP_DISPLAYED_INDEX = "The group index provided is invalid";
+    public static final String MESSAGE_EVENT_ClASH = "You already have an event at this time period:\n%1$s";
     public static final String MESSAGE_INVALID_GROUP = "The group(s) provided does not exist";
-
 }
