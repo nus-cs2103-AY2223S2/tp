@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
@@ -10,6 +11,7 @@ import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Nric;
 
 /**
@@ -226,7 +228,29 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param volunteerNric Nric of volunteer.
      */
     public void addPair(Nric elderlyNric, Nric volunteerNric) {
-        pairs.add(new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric)));
+        Elderly elderly = getElderly(elderlyNric);
+        Volunteer volunteer = getVolunteer(volunteerNric);
+
+        Set<AvailableDate> elderlyAvailableDates = elderly.getAvailableDates();
+        Set<AvailableDate> volunteerAvailableDates = volunteer.getAvailableDates();
+
+        // no restrictions
+        if (elderlyAvailableDates.isEmpty() || volunteerAvailableDates.isEmpty()) {
+            pairs.add(new Pair(elderly, volunteer));
+        }
+
+        // find first matching dates
+        for (AvailableDate date : elderlyAvailableDates) {
+            for (AvailableDate availableDate : volunteerAvailableDates) {
+                if (date.isIntersect(availableDate.getStartDate(), availableDate.getEndDate())) {
+                    pairs.add(new Pair(elderly, volunteer));
+                    return;
+                }
+            }
+        }
+
+        throw new IllegalArgumentException("The elderly cannot be paired with the volunteer "
+                + "due to a clash in availability");
     }
 
     /**

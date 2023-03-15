@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 /**
@@ -13,8 +14,7 @@ import java.util.Arrays;
 public class AvailableDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Please ensure the specified dates follow this format: YYYY-MM-DD";
-    public static final String INVALID_DATES_SPECIFIED = "Invalid dates specified. "
-            + "Please ensure that your start date is before the end date";
+    public static final String INVALID_DATES_SPECIFIED = "Invalid dates specified.";
     public static final String VALIDATION_REGEX =
             "^(?<year>\\d{4})-(?<month>0[0-9]|1[0-2])-(?<day>0[0-9]|1[0-9]|2[0-9]|3[0-1])$";
 
@@ -31,8 +31,12 @@ public class AvailableDate {
         requireNonNull(startDate, endDate);
         checkArgument(isValidDate(startDate, endDate), MESSAGE_CONSTRAINTS);
 
-        this.startDate = LocalDate.parse(startDate);
-        this.endDate = LocalDate.parse(endDate);
+        try {
+            this.startDate = LocalDate.parse(startDate);
+            this.endDate = LocalDate.parse(endDate);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException(INVALID_DATES_SPECIFIED);
+        }
 
         if (this.startDate.isAfter(this.endDate)) {
             throw new IllegalArgumentException(INVALID_DATES_SPECIFIED);
@@ -49,6 +53,10 @@ public class AvailableDate {
 
     public static boolean isValidDate(String ...dates) {
         return Arrays.stream(dates).allMatch(date -> date.matches(VALIDATION_REGEX));
+    }
+
+    public boolean isIntersect(LocalDate ostartDate, LocalDate oendDate) {
+        return !endDate.isBefore(ostartDate) && !oendDate.isBefore(startDate);
     }
 
     @Override
