@@ -170,4 +170,10 @@ public interface Model {
      * @param part Part to check against
      */
     boolean hasPart(Part part);
+
+    void updateFilteredTechnicianList(Predicate<Technician> predicate);
+
+    void updateFilteredServiceList(Predicate<Service> predicate);
+
+    void updateFilteredVehicleList(Predicate<Vehicle> predicate);
 }
