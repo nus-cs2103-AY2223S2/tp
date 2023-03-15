@@ -18,7 +18,10 @@ import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.Logic;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
+import tfifteenfour.clipboard.logic.commands.UploadCommand;
+import tfifteenfour.clipboard.logic.commands.ViewCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.parser.RosterParser;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.student.Student;
 
@@ -60,7 +63,7 @@ public class MainWindow extends UiPart<Stage> {
     private HBox studentPanelPlaceholder;
 
     @FXML
-    private Pane studentViewPanePlaceholder;
+    private StackPane studentViewPanePlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -195,8 +198,13 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            //use instanceof
 
-            if (commandResult.getFeedbackToUser().startsWith("Viewing")) {
+            if (RosterParser.parseCommand(commandText) instanceof ViewCommand) {
+                refreshViewPane();
+            }
+
+            if (RosterParser.parseCommand(commandText) instanceof UploadCommand) {
                 refreshViewPane();
             }
 

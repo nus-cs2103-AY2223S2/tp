@@ -8,12 +8,11 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="clipboard" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="826.0" onCloseRequest="#handleExit" title="clipboard" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/clipboard.PNG" />
   </icons>
@@ -24,7 +23,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox minWidth="850.0" prefHeight="557.0" prefWidth="850.0">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="778.0" prefHeight="575.0">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -33,16 +32,20 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <HBox fx:id="studentPanelPlaceholder" minWidth="850.0" style="-fx-background-color: derive(#a1826d, 20%);">
+            <HBox fx:id="studentPanelPlaceholder" style="-fx-background-color: derive(#a1826d, 50%);" VBox.vgrow="ALWAYS">
                <children>
       
-                    <VBox fx:id="studentList" minWidth="340.0" prefHeight="411.0" prefWidth="421.0">
-                <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-                <StackPane fx:id="personListPanelPlaceholder" minWidth="389.0" prefHeight="391.0" prefWidth="413.0" VBox.vgrow="ALWAYS" />
+                    <VBox fx:id="studentList" prefHeight="463.0" prefWidth="534.0" HBox.hgrow="ALWAYS">
+                <StackPane fx:id="personListPanelPlaceholder" maxHeight="1.7976931348623157E308" minWidth="389.0" prefWidth="413.0" VBox.vgrow="ALWAYS" />
               </VBox>
-                  <Pane fx:id="studentViewPanePlaceholder" minWidth="414.0" prefHeight="411.0" prefWidth="446.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="TOP_RIGHT" prefWidth="536.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <StackPane fx:id="studentViewPanePlaceholder" maxHeight="1.7976931348623157E308" minWidth="389.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
                </children>
             </HBox>
 

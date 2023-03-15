@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@StudentViewPane.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="title" layoutX="16.0" layoutY="7.0" text="Student Particulars" />
-      <Label fx:id="name" layoutX="16.0" layoutY="63.0" text="Name" />
-      <Label fx:id="phone" layoutX="17.0" layoutY="89.0" opacity="0.85" text="Phone" />
-      <Label fx:id="studentId" layoutX="17.0" layoutY="105.0" opacity="0.8" text="StudentId" />
-      <Label fx:id="email" layoutX="17.0" layoutY="122.0" opacity="0.0" text="Email" />
+      <VBox fx:id="viewPane" style="-fx-background-color: white; -fx-background-radius: 10;" stylesheets="@StudentViewPane.css">
+         <children>
+            <Label fx:id="title" text="Student Particulars">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <HBox fx:id="infoPane" prefHeight="158.0" prefWidth="624.0">
+               <children>
+                  <GridPane HBox.hgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox fx:id="studentDetails" prefHeight="142.0" prefWidth="486.0">
+                           <children>
+                              <Label fx:id="name" text="Name" />
+                              <HBox prefHeight="8.0" prefWidth="486.0">
+                                 <children>
+                                    <FlowPane fx:id="modules" prefHeight="25.0" prefWidth="103.0" />
+                                    <FlowPane fx:id="tags" prefHeight="1.0" prefWidth="486.0" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="studentId" text="StudentId" />
+                              <Label fx:id="phone" text="Phone" />
+                              <Label fx:id="email" text="Email" />
+                              <Label fx:id="remarkHeader" text="Remarks:">
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="remark" text="Remark" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <ImageView fx:id="displayPhoto" fitHeight="96.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" top="5.0" />
+         </padding>
+      </VBox>
    </children>
-</AnchorPane>
+</VBox>
