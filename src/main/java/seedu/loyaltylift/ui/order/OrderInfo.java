@@ -33,7 +33,7 @@ public class OrderInfo extends UiPart<ScrollPane> {
     public OrderInfo(Order order) {
         super(FXML);
 
-        orderName.setText(order.getName().name.toUpperCase());
+        orderName.setText(order.getName().fullName.toUpperCase());
 
         Badge orderStatusBadge = Badge.createOrderStatusBadge(order.getStatus());
         orderStatusPlaceholder.getChildren().add(orderStatusBadge.getRoot());

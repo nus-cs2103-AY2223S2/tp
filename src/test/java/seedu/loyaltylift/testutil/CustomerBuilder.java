@@ -3,11 +3,11 @@ package seedu.loyaltylift.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
-import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
