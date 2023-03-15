@@ -15,34 +15,52 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.score.Score;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
 
+    public static final String MESSAGE_DUPLICATE_SCORE = "Score list contains duplicate score(s).";
+    public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s).";
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
+    private final String parentPhone;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTask> taskList = new ArrayList<>();
 
+    private final List<JsonAdaptedScore> scores = new ArrayList<>();
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("parentPhone") String parentPhone,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("taskList") List<JsonAdaptedTask> taskList,
+            @JsonProperty("scores") List<JsonAdaptedScore> scores) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.parentPhone = parentPhone;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (taskList != null) {
+            this.taskList.addAll(taskList);
+        }
+        if (scores != null) {
+            this.scores.addAll(scores);
         }
     }
 
@@ -54,8 +72,15 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        parentPhone = source.getParentPhone().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        taskList.addAll(source.getTaskListAsObservableList().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
+        scores.addAll(source.getScoreListAsObservableList().stream()
+                .map(JsonAdaptedScore::new)
                 .collect(Collectors.toList()));
     }
 
@@ -102,8 +127,34 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-    }
+        if (parentPhone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(parentPhone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelParentPhone = new Phone(parentPhone);
 
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelTags);
+
+        for (JsonAdaptedTask jsonAdaptedTask : taskList) {
+            Task task = jsonAdaptedTask.toModelType();
+            if (person.hasTask(task)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            person.addTask(task);
+        }
+
+        for (JsonAdaptedScore jsonAdaptedScore : scores) {
+            Score score = jsonAdaptedScore.toModelType();
+            if (person.hasScore(score)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SCORE);
+            }
+            person.addScore(score);
+        }
+
+        return person;
+    }
 }

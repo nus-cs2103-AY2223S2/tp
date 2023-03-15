@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -7,7 +8,13 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.address.model.score.Score;
+import seedu.address.model.score.ScoreList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Represents a Person in the address book.
@@ -22,18 +29,40 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Phone parentPhone;
     private final Set<Tag> tags = new HashSet<>();
+    private final TaskList taskList;
+    private final ScoreList scoreList;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Phone parentPhone, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.parentPhone = parentPhone;
         this.tags.addAll(tags);
+        this.taskList = new TaskList();
+        this.scoreList = new ScoreList();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Phone parentPhone, Set<Tag> tags,
+                  TaskList taskList, ScoreList scoreList) {
+        requireAllNonNull(name, phone, email, address, tags, taskList, scoreList);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.parentPhone = parentPhone;
+        this.tags.addAll(tags);
+        this.taskList = taskList;
+        this.scoreList = scoreList;
     }
 
     public Name getName() {
@@ -52,12 +81,24 @@ public class Person {
         return address;
     }
 
+    public Phone getParentPhone() {
+        return parentPhone;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
+    public ObservableList<Task> getTaskListAsObservableList() {
+        return taskList.asUnmodifiableObservableList();
     }
 
     /**
@@ -71,6 +112,92 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskList.contains(task);
+    }
+
+    /**
+     * Adds a task to the list.
+     * The task must not already exist in the list.
+     */
+    public void addTask(Task t) {
+        taskList.add(t);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        taskList.setTask(target, editedTask);
+    }
+
+    /**
+     * Removes {@code key} from this {@code taskList}.
+     * {@code key} must exist in the list.
+     */
+    public void removeTask(Task key) {
+        taskList.remove(key);
+    }
+
+    //=========== Score ================================================================================
+    /**
+     * Returns true if a score with the same identity as {@code score} exists in the person.
+     */
+    public boolean hasScore(Score score) {
+        requireNonNull(score);
+        return scoreList.contains(score);
+    }
+
+    /**
+     * Returns true if a score with the same identity as {@code score} exists in the address book.
+     */
+    public void addScore(Score score) {
+        scoreList.add(score);
+    }
+
+    public ObservableList<Score> getScoreListAsObservableList() {
+        return scoreList.asUnmodifiableObservableList();
+    }
+
+    public ScoreList getScoreList() {
+        return scoreList;
+    }
+    /**
+     * Replaces the given score {@code target} in the list with {@code editedScore}.
+     * {@code target} must exist in the list.
+     * The score identity of {@code editedScore} must not be the same as another existing score in the list.
+     */
+    public void setScore(Score target, Score editedScore) {
+        requireNonNull(editedScore);
+
+        scoreList.setScore(target, editedScore);
+    }
+
+    /**
+     * Removes {@code key} from this {@code scoreList}.
+     * {@code key} must exist in the list.
+     */
+    public void removeScore(Score key) {
+        scoreList.remove(key);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Score} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    public ObservableList<Score> getFilteredScoreList() {
+        FilteredList<Score> filteredScores = new FilteredList<>(this.getScoreListAsObservableList());
+        return filteredScores;
     }
 
     /**
@@ -98,7 +225,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, parentPhone, tags);
     }
 
     @Override
@@ -110,13 +237,16 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; ParentPhone: ")
+                .append(getParentPhone());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         return builder.toString();
     }
 

@@ -8,7 +8,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.score.ScoreList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskList;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -20,12 +22,16 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_PARENT_PHONE = "85647154";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Phone parentPhone;
     private Set<Tag> tags;
+    private TaskList taskList;
+    private ScoreList scoreList;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +41,10 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        parentPhone = new Phone(DEFAULT_PARENT_PHONE);
         tags = new HashSet<>();
+        taskList = new TaskList();
+        scoreList = new ScoreList();
     }
 
     /**
@@ -46,7 +55,10 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        parentPhone = personToCopy.getParentPhone();
         tags = new HashSet<>(personToCopy.getTags());
+        taskList = personToCopy.getTaskList();
+        scoreList = personToCopy.getScoreList();
     }
 
     /**
@@ -89,8 +101,32 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ParentPhone} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withParentPhone(String parentPhone) {
+        this.parentPhone = new Phone(parentPhone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code TaskList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTaskList(TaskList taskList) {
+        this.taskList = taskList;
+        return this;
+    }
+
+    /**
+     * Sets the {@code ScoreList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withScoreList(ScoreList scoreList) {
+        this.scoreList = scoreList;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, parentPhone, tags);
     }
 
 }

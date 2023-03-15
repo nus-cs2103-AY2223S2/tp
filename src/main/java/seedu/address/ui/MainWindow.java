@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TaskListPanel taskListPanel;
+    private ScoreListPanel scoreListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +51,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane scoreListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -121,6 +129,12 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        taskListPanel = new TaskListPanel(logic.findCheckedPerson());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+        scoreListPanel = new ScoreListPanel(logic.findCheckedPerson());
+        scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
     }
 
     /**
@@ -163,10 +177,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -185,6 +195,12 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            taskListPanel = new TaskListPanel(logic.findCheckedPerson());
+            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+            scoreListPanel = new ScoreListPanel(logic.findCheckedPerson());
+            scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
