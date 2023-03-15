@@ -2,12 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -39,7 +40,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TYPE + "TYPE] "
             + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_TEACHER + "TEACHER] ...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TYPE + "91234567 "
             + PREFIX_TIMESLOT + "johndoe@example.com";
@@ -96,10 +100,9 @@ public class EditCommand extends Command {
         TimeSlot updatedTimeSlot = editPersonDescriptor.getTimeSlot().orElse(personToEdit.getTimeSlot());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Remark updatedRemark = personToEdit.getRemark();
-        Deadline updatedDeadline = personToEdit.getDeadline();
-        Teacher updatedTeacher = personToEdit.getTeacher();
-
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
+        Deadline updatedDeadline = editPersonDescriptor.getDeadline().orElse(personToEdit.getDeadline());
+        Teacher updatedTeacher = editPersonDescriptor.getTeacher().orElse(personToEdit.getTeacher());
         return new Person(updatedName, updatedType, updatedTimeSlot, updatedAddress, updatedTags, updatedRemark,
                 updatedDeadline, updatedTeacher);
     }
@@ -131,9 +134,10 @@ public class EditCommand extends Command {
         private Type type;
         private TimeSlot timeSlot;
         private Address address;
+        private Set<Tag> tags;
         private Remark remark;
         private Deadline deadline;
-        private Set<Tag> tags;
+        private Teacher teacher;
 
         public EditPersonDescriptor() {}
 
@@ -149,6 +153,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setRemark(toCopy.remark);
             setDeadline(toCopy.deadline);
+            setTeacher(toCopy.teacher);
         }
 
         /**
@@ -219,6 +224,14 @@ public class EditCommand extends Command {
 
         public Optional<Deadline> getDeadline() { return Optional.ofNullable(deadline); }
 
+        public void setTeacher(Teacher teacher) {
+            this.teacher = teacher;
+        }
+
+        public Optional<Teacher> getTeacher() {
+            return Optional.ofNullable(teacher);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -240,7 +253,8 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
                     && getRemark().equals(e.getRemark())
-                    && getDeadline().equals(e.getDeadline());
+                    && getDeadline().equals(e.getDeadline())
+                    && getTeacher().equals(e.getTeacher());
         }
     }
 }

@@ -10,11 +10,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.TimeSlot;
+import seedu.address.model.person.Deadline;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Teacher;
+import seedu.address.model.person.TimeSlot;
 import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.person.Deadline;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -97,10 +99,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String timeSlot} into an {@code TimeSlot}.
+     * Parses a {@code String deadline} into an {@code Deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code timeSlot} is invalid.
+     * @throws ParseException if the given {@code deadline} is invalid.
      */
     public static Deadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
@@ -109,6 +111,28 @@ public class ParserUtil {
             throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
         return new Deadline(trimmedDeadline);
+    }
+
+    /**
+     * Parses a {@code String remark} into an {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Remark parseRemark(String remark) {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String teacher} into an {@code Teacher}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Teacher parseTeacher(String teacher) {
+        requireNonNull(teacher);
+        String trimmedTeacher = teacher.trim();
+        return new Teacher(trimmedTeacher);
     }
 
     /**

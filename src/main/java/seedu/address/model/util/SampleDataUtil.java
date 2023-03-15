@@ -17,11 +17,11 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("CS4243"), new Type("Lecture"), new TimeSlot("Tuesday 2-4 pm"),
                 new Address("LT19"),
-                getTagSet("Tuesday"), new Remark("level-4000 module"),
+                getTagSet("Lecture"), new Remark("level-4000 module"),
                 new Deadline("Currently none."), new Teacher("Currently none.")),
             new Person(new Name("CS4243"), new Type("Lab"), new TimeSlot("Tuesday 12-2 pm"),
                 new Address("COM 1-B12"),
-                getTagSet("Tuesday"), new Remark("No need to attend"),
+                getTagSet("Lab"), new Remark("No need to attend"),
                 new Deadline("Currently none."), new Teacher("Currently none.")),
             new Person(new Name("CS1231S"), new Type("Tutorial"), new TimeSlot("4pm - 6pm"),
                 new Address("COM1 B1"),

@@ -1,13 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -29,23 +23,26 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TYPE, PREFIX_TIMESLOT, PREFIX_ADDRESS);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TYPE, PREFIX_TIMESLOT, PREFIX_ADDRESS)
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG, PREFIX_TIMESLOT, PREFIX_ADDRESS,
+                        PREFIX_REMARK, PREFIX_DEADLINE, PREFIX_TEACHER);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_TIMESLOT, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-
+        // Compulsory fields.
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Type type = ParserUtil.parseType(argMultimap.getValue(PREFIX_TYPE).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         TimeSlot timeSlot = ParserUtil.parseTimeSlot(argMultimap.getValue(PREFIX_TIMESLOT).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        //Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Deadline deadline = new Deadline("None.");
-        Remark remark = new Remark("None.");
-        Teacher teacher = new Teacher("None.");
+
+        // Optional fields. Hence, we use the Optional.orElse() to handle the case when the field does not have a value.
+        Teacher teacher = ParserUtil.parseTeacher(argMultimap.getValue(PREFIX_TEACHER).orElse("None."));
+        Deadline deadline= ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse("None."));
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse("None."));
+        Type type = ParserUtil.parseType(argMultimap.getValue(PREFIX_TYPE).orElse("None."));
+
         Person person = new Person(name, type, timeSlot, address, tagList, remark, deadline, teacher);
+
 
         return new AddCommand(person);
     }
