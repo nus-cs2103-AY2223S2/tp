@@ -64,6 +64,10 @@ public class CommandResult {
     }
 
     @Override
+    public String toString() {
+        return String.format("Command Result: %s, %b, %b", feedbackToUser, showHelp, exit);
+    }
+    @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }

@@ -6,10 +6,24 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.
+
+The product addresses several challenges faced by managers in the current office environment, such as work overload 
+among subordinates, difficulties in coordinating tasks with a large number of employees, and time-consuming manual 
+tasks like typing and sending emails.
+
+OfficeConnect offers a solution to these problems by providing better visibility into subordinates’ workloads, allowing 
+managers to efficiently delegate tasks in an organised manner. The app also automates the process of planning and 
+communicating with subordinates, making it easier for managers to get things done. Additionally, the app ensures that 
+emails are sent during working hours, so that subordinates will not be disturbed outside of work.
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+OfficeConnect is a brownfield Java project based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) 
+by [se-education.org](https://se-education.org).
+* Libraries used include: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://junit.org/junit5/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,44 +271,140 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* holds a managerial role
+* has a need to manage a significant number of subordinates
+* has a need to assign large number of tasks to subordinates
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+* manage tasks and contacts faster than a typical mouse/GUI driven app
+* able to view all upcoming tasks to be completed at one glance
+* allows efficient delegation of tasks to subordinates in an organised and centralised manner
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                | So that I can…​                                                        |
+| -------- |--------------------------------------------|---------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                      | refer to instructions when I forget how to use the App                 |
+| `* * *`  | manager                                    | add tasks                                   |                                                                        |
+| `* * *`  | manager                                    | delete tasks                                | remove tasks that I no longer need                                     |
+| `* * *`  | manager                                    | find tasks assigned to specific subordinate | better manage my subordinates workload                                 |
+| `* * *`  | manager                                    | check all ongoing tasks available           | better delegate my tasks                                               |
+| `* * *`  | manager                                    | assign tasks to a subordinate               | keep track of which subordinate is in charge of which task             |
+| `* * *`  | manager                                    | add a subordinate                           |                                                                        |
+| `* * *`  | manager                                    | delete a subordinate                        | remove subordinates that I no longer need                              |
+| `* * *`  | manager                                    | find a subordinate by name                  | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details                | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name                        | locate a person easily                                                 |
+
+## Acceptance Criteria
+
+- When I use the "add" command followed by a task name, a new task with the given name should be added to my task list.
+- The task name should be displayed in the task list.
+- The task should be saved to persistent storage so that it is not lost when I exit the app.
+
+## Example Usage
+
+
+> addtask s/Draft proposal c/Complete proposal by 1st March st/false
+- New task added: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
+
+> listtask
+1. Finish report; Status: Undone; Content: Complete report for Mr Chan by 2nd March
+2. Send email to team; Status: Done; Content: Send an email regarding office hours
+
+> findtask report
+1. Finish report
+
+> deletetask 1
+- Task deleted: Finish report
+
+> listtask
+1. Send email to team
+2. Call client
+
+> bye
+- Goodbye!
+
+
+In the example above, the user story is clearly defined at the top, followed by the acceptance criteria for the feature. Below that, we have a series of example usages, shown in a code editor block to provide clarity and context for how the feature would work in practice.
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+<div markdown="span" class="alert alert-info">
 
-**Use case: Delete a person**
+:information_source: **Note:** For all use cases below, the **System** is the `OfficeConnect` and the 
+**Actor** is the `user`, unless specified otherwise.
 
-**MSS**
+</div>
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Use case 1: Add a person**
+
+**Main Success Scenario (MSS):**
+
+1. User requests to add a person.
+
+2. OfficeConnect adds the person to the contact list.
+
+3. OfficeConnect informs user has been successfully added.
+   
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters incomplete or invalid data. 
+
+  * 1a1. OfficeConnect shows an error message.
+
+    Use case ends. 
+---
+**Use case 2: Delete a person**
+
+**Main Success Scenario (MSS):**
+
+1. User requests to list persons.
+
+2. OfficeConnect shows a list of persons.
+
+3. User requests to delete a specific person in the list.
+
+4. OfficeConnect deletes the person.
 
     Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. OfficeConnect shows an error message. 
+  
+    Use case resumes at step 2.
+---
+**Use case 3: Delete a task**
+
+**Main Success Scenario (MSS):**
+
+1. User requests to list tasks.
+
+2. OfficeConnect shows a list of tasks.
+
+3. User requests to delete a specific task in the list.
+
+4. OfficeConnect deletes the task.
+
+   Use case ends.
 
 **Extensions**
 
@@ -304,23 +414,100 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. OfficeConnect shows an error message.
 
       Use case resumes at step 2.
+---
+**Use case 4: Assign a task to a person**
 
-*{More to be added}*
+**Main Success Scenario (MSS):**
+
+1. User requests to list persons.
+
+2. OfficeConnect shows a list of persons.
+
+3. User requests to list tasks.
+
+4. OfficeConnect shows a list of tasks.
+
+5. User requests to assign a specific task to a specific person.
+
+6. OfficeConnect assigns the task to the person.
+
+    Use case ends.
+
+---
+**Use case 5: Consulting Help Window**
+
+**Main Success Scenario (MSS):**
+
+1. User requests for help.
+
+2. OfficeConnect opens help interface with dedicated help instructions.
+
+3. User specifies command he wishes to get help on.
+   
+4. OfficeConnect displays how command works, along with format of queried command to user.
+
+5. User reads closes window after getting required info.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User requests for more info on command.
+
+    * 2a1. Help interface provides link to user guide.
+  
+    * 2a2. User retrieves user guide providing more detail on command.
+  
+      Use case resumes at step 5.
+---
+**Use case 6: Add a task**
+
+**Main Success Scenario (MSS):**
+
+1. User requests to add a task.
+
+2. OfficeConnect adds the task to the task list.
+
+3. OfficeConnect informs user has been successfully added.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters incomplete or invalid data.
+
+    * 1a1. OfficeConnect shows an error message.
+
+      Use case ends.
+---
+**Use case 7: List all tasks**
+
+**Main Success Scenario (MSS):**
+
+1. User requests for a list of all tasks.
+
+2. OfficeConnect displays all tasks stored.
+
+   Use case ends.
+---
 
 ### Non-Functional Requirements
+1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.
+2. Maintainability: The system shall be designed to allow for easy maintenance and updates, with clear documentation and modular architecture.
+3. Compatibility: The system shall be compatible to operating systems with java 11 runtime (e.g. Windows, MacOS, Linux).
+4. Interoperability: The system shall be able to exchange data with other systems using standard formats and protocols.
+5. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more than 2 hours for a new user.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
+#### *M*
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+
+#### *P*
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------

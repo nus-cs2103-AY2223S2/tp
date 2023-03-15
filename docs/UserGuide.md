@@ -2,8 +2,13 @@
 layout: page
 title: User Guide
 ---
+OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+The target users are individuals who are responsible for assigning tasks and overseeing the work of a team.
+
+The product addresses several challenges faced by managers in the current office environment, such as work overload among subordinates, difficulties in coordinating tasks with a large number of employees, and time-consuming manual tasks like typing and sending emails.
+
+OfficeConnect offers a solution to these problems by providing better visibility into subordinates’ workloads, allowing managers to efficiently delegate tasks in an organised manner. The app also automates the process of planning and communicating with subordinates, making it easier for managers to get things done. Additionally, the app ensures that emails are sent during working hours, so that subordinates will not be disturbed outside of work.
 
 * Table of Contents
 {:toc}
@@ -14,11 +19,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `officeconnect.jar` from [OfficeConnect Release Page](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your OfficeConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar officeconnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -27,7 +32,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to OfficeConnect.
+   
+   * `add s/Complete slides c/Finish up slides for meeting st/false` : Adds a task with subject `Complete slides` to OfficeConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -41,7 +48,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+<div class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -51,8 +58,8 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…` can be used as (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -67,9 +74,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Displays a comprehensive window detailing the outline of executable commands by user.
 
-![help message](images/helpMessage.png)
+A ***TreeView*** on the left window lists the hierarchical ordering of commands, with the description of the command on the right in a ***TextArea***.
+
+![help interface pic](https://user-images.githubusercontent.com/99934242/221747645-0bbdf6c7-91f3-4adc-b4b7-b6c70c7de540.jpg)
 
 Format: `help`
 
@@ -78,9 +87,9 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
@@ -90,17 +99,17 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the OfficeConnect.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the OfficeConnect.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -131,13 +140,13 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the OfficeConnect.
 
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
@@ -145,7 +154,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the OfficeConnect.
 
 Format: `clear`
 
@@ -157,17 +166,77 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+OfficeConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+OfficeConnect data are saved as a JSON file `[JAR file location]/data/officeconnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+<div class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, OfficeConnect will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+# Command Summary For OfficeConnect
+
+## Adding a Task: `addtask`
+Format: `addtask s/SUBJECT c/CONTENT st/STATUS`
+
+Adds a task to OfficeConnect.
+
+Examples:
+- `addtask s/Complete slides c/Finish slides for meeting st/false`
+
+## Deleting a Task: `deletetask`
+Format: `deletetask INDEX [MORE_INDEX]`
+
+Deletes the task at the specified INDEX.
+The INDEX refers to the INDEX shown in the displayed task list.
+The INDEX must be a positive integer 1, 2, 3...
+
+Examples:
+- `listtasks` followed by `delete 2` deletes the 2nd task in the task list.
+- `findtasks book` followed by `delete 1` deletes the 1st task in the results of the `findtask` command.
+
+## Finding a Specific Task: `findtask`
+Format: `findtask KEYWORD [MORE_KEYWORDS]`
+
+Finds the task based on given keyword.
+
+Examples:
+- `findtask complete`
+
+## Listing the Tasks: `listtask`
+Format: `listtask`
+
+Lists all the tasks in OfficeConnect.
+
+## Assigning a Task to a Person: `assign`
+Format: `assign ti/ INDEX pi/ INDEX`
+
+Assigns the task at specified index to the person at specified index.
+The index refers to the index number shown in the displayed person/task list.
+The index must be a positive integer 1, 2, 3...
+
+Examples:
+- `assign ti/ 2 pi/ 3` assigns task 2 to person 3.
+
+## Review tasks assigned to a Person: `review`
+Format: `review NAME`
+
+Reviews the list of tasks that are assigned to the person with the specified name.
+
+Examples:
+- `review John Cena` displays all tasks that are assigned to him.
+
+## Review tasks assigned to a Person: `reviewtask`
+Format: `review SUBJECT`
+
+Reviews the list of persons who are assigned to the task with the specified subject.
+
+Examples:
+- `review CS2103 TP` displays everyone who are assigned to this task.
+
+### Archiving data files `[coming in v1.3]`
 
 _Details coming soon ..._
 
@@ -176,18 +245,23 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous OfficeConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action          | Format, Examples                                                                                                                                                     |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Task**    | `addtask s/SUBJECT c/CONTENT st/STATUS` <br> e.g., `addtask s/Draft proposal c/Complete proposal by 1st March st/false`                                              |
+| **Clear**       | `clear`                                                                                                                                                              |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **Help**        | `help`                                                                                                                                                               |
+| **List**        | `list`                                                                                                                                                               |
+| **List All**    | `listall`                                                                                                                                                            |
+| **List Task**   | `listtask`                                                                                                                                                           |
+| **Review**      | `review NAME`<br> e.g., `review James Jake`                                                                                                                          |
+| **Review Task** | `reviewtask SUBJECT`<br> e.g., `reviewtask CS2103 TP`                                                                                                                |

@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
@@ -27,6 +28,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final OfficeConnectModel officeConnectModel;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +37,18 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        this.officeConnectModel = new OfficeConnectModel();
+    }
+
+
+    /**
+     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     */
+    public LogicManager(Model model, Storage storage, OfficeConnectModel officeConnectModel) {
+        this.model = model;
+        this.storage = storage;
+        addressBookParser = new AddressBookParser();
+        this.officeConnectModel = officeConnectModel;
     }
 
     @Override
@@ -43,10 +57,13 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, officeConnectModel);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskBook(officeConnectModel.getTaskModelManager().getReadOnlyRepository());
+            storage.savePersonTaskBook(officeConnectModel.getPersonTaskModelManager().getReadOnlyRepository());
+
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -62,6 +79,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+    @Override
+    public OfficeConnectModel getOfficeConnectModel() {
+        return officeConnectModel;
     }
 
     @Override
