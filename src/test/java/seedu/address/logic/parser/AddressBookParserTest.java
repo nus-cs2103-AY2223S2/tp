@@ -34,7 +34,7 @@ import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
-    private final ExpenseTrackerParser parser = new ExpenseTrackerParser();
+    private final AddressBookParser parser = new AddressBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
