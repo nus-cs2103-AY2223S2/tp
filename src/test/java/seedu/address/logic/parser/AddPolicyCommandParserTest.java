@@ -1,7 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_FREQUENCY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_PREMIUM;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_FREQUENCY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.POLICY_PREMIUM_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
