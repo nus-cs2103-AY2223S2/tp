@@ -22,4 +22,27 @@ public class DateUtil {
         LocalDate localDate = LocalDate.parse(date, formatter);
         return localDate;
     }
+
+    /**
+     * Parses a feeding interval in the format \days\d\hours\h to return the days d
+     * @param feedingInterval a feeding interval in the format \days\d\hours\h
+     * @return number of days d
+     */
+    public static int parseFeedingIntervalDays(String feedingInterval) {
+        int dIndex = feedingInterval.indexOf('d');
+        String daysString = feedingInterval.substring(0, dIndex);
+        return Integer.parseInt(daysString);
+    }
+
+    /**
+     * Parses a feeding interval in the format \days\d\hours\h to return the hours h
+     * @param feedingInterval a feeding interval in the format \days\d\hours\h
+     * @return number of hours h
+     */
+    public static int parseFeedingIntervalHours(String feedingInterval) {
+        int dIndex = feedingInterval.indexOf('d');
+        int hIndex = feedingInterval.indexOf('h');
+        String hoursString = feedingInterval.substring(dIndex + 1, hIndex);
+        return Integer.parseInt(hoursString);
+    }
 }

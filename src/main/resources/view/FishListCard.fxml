@@ -29,8 +29,9 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="lastFedDate" styleClass="cell_small_label" text="\$lastFedDate" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="species" styleClass="cell_small_label" text="\$species" />
+      <Label fx:id="feedingInterval" styleClass="cell_small_label" text="\$feedingInterval" />
+      <Label fx:id="tank" styleClass="cell_small_label" text="\$tank" />
     </VBox>
   </GridPane>
 </HBox>

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -233,7 +234,8 @@ public class AddCommandTest {
         public void setTank(Tank target, Tank editedTank) {}
 
         public ObservableList<Tank> getFilteredTankList() {
-            return null;
+            FilteredList<Tank> ret = new FilteredList<>(tankList.getTankList());
+            return ret;
         }
 
         public void updateFilteredTankList(Predicate<Tank> predicate) {}

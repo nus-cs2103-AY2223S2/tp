@@ -2,13 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,8 +41,12 @@ public class EditFishDescriptorTest {
         editedAmy = new EditFishDescriptorBuilder(DESC_AMY).withSpecies(VALID_SPECIES_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different address -> returns false
-        editedAmy = new EditFishDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        // different feeding interval -> returns false
+        editedAmy = new EditFishDescriptorBuilder(DESC_AMY).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different tank -> returns false
+        editedAmy = new EditFishDescriptorBuilder(DESC_AMY).withTank(VALID_TANK_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

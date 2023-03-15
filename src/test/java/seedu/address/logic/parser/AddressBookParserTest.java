@@ -38,7 +38,8 @@ public class AddressBookParserTest {
     public void parseCommand_add() throws Exception {
         Fish fish = new FishBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(FishUtil.getAddCommand(fish));
-        assertEquals(new AddCommand(fish, Index.fromOneBased(1)), command);
+        AddCommand newCommand = new AddCommand(fish, Index.fromOneBased(1));
+        assertEquals(newCommand, command);
     }
 
     @Test

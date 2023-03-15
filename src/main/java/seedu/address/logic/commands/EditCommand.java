@@ -1,11 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDING_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FISHES;
 
 import java.util.Collections;
@@ -19,15 +20,16 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.fish.Address;
+import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tank.Tank;
 
 /**
- * Edits the details of an existing fish in the address book.
+ * Edits the details of an existing fish in the feedingInterval book.
  */
 public class EditCommand extends Command {
 
@@ -40,15 +42,17 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_LAST_FED_DATE + "LAST FED DATE] "
             + "[" + PREFIX_SPECIES + "SPECIES] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_FEEDING_INTERVAL + "FEEDING INTERVAL] "
+            + "[" + PREFIX_TANK + "TANK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_LAST_FED_DATE + "91234567 "
+            + PREFIX_LAST_FED_DATE + "02/01/2023 "
+            + PREFIX_TANK + "1 "
             + PREFIX_SPECIES + "Guppy ";
 
     public static final String MESSAGE_EDIT_FISH_SUCCESS = "Edited Fish: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_FISH = "This fish already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_FISH = "This fish already exists in the feedingInterval book.";
 
     private final Index index;
     private final EditFishDescriptor editFishDescriptor;
@@ -96,10 +100,13 @@ public class EditCommand extends Command {
         Name updatedName = editFishDescriptor.getName().orElse(fishToEdit.getName());
         LastFedDate updatedLastFedDate = editFishDescriptor.getLastFedDate().orElse(fishToEdit.getLastFedDate());
         Species updatedSpecies = editFishDescriptor.getSpecies().orElse(fishToEdit.getSpecies());
-        Address updatedAddress = editFishDescriptor.getAddress().orElse(fishToEdit.getAddress());
+        FeedingInterval updatedFeedingInterval = editFishDescriptor.getFeedingInterval()
+                .orElse(fishToEdit.getFeedingInterval());
+        Tank updatedTank = editFishDescriptor.getTank().orElse(fishToEdit.getTank());
         Set<Tag> updatedTags = editFishDescriptor.getTags().orElse(fishToEdit.getTags());
 
-        return new Fish(updatedName, updatedLastFedDate, updatedSpecies, updatedAddress, updatedTags);
+        return new Fish(updatedName, updatedLastFedDate, updatedSpecies, updatedFeedingInterval, updatedTank,
+                updatedTags);
     }
 
     @Override
@@ -128,7 +135,8 @@ public class EditCommand extends Command {
         private Name name;
         private LastFedDate lastFedDate;
         private Species species;
-        private Address address;
+        private FeedingInterval feedingInterval;
+        private Tank tank;
         private Set<Tag> tags;
 
         public EditFishDescriptor() {}
@@ -141,7 +149,8 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setLastFedDate(toCopy.lastFedDate);
             setSpecies(toCopy.species);
-            setAddress(toCopy.address);
+            setFeedingInterval(toCopy.feedingInterval);
+            setTank(toCopy.tank);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +158,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, lastFedDate, species, address, tags);
+            return CollectionUtil.isAnyNonNull(name, lastFedDate, species, feedingInterval, tank, tags);
         }
 
         public void setName(Name name) {
@@ -176,12 +185,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(species);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setFeedingInterval(FeedingInterval feedingInterval) {
+            this.feedingInterval = feedingInterval;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<FeedingInterval> getFeedingInterval() {
+            return Optional.ofNullable(feedingInterval);
+        }
+
+        public void setTank(Tank tank) {
+            this.tank = tank;
+        }
+
+        public Optional<Tank> getTank() {
+            return Optional.ofNullable(tank);
         }
 
         /**
@@ -219,7 +236,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getLastFedDate().equals(e.getLastFedDate())
                     && getSpecies().equals(e.getSpecies())
-                    && getAddress().equals(e.getAddress())
+                    && getFeedingInterval().equals(e.getFeedingInterval())
+                    && getTank().equals(e.getTank())
                     && getTags().equals(e.getTags());
         }
     }

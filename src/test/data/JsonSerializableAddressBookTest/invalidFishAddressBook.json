@@ -3,6 +3,7 @@
     "name": "Hans Muster",
     "lastFedDate": "in/valid/date",
     "species": "invalid@species",
-    "address": "4th street"
+    "feedingInterval": "1d1h",
+    "tank": "tank 1"
   } ]
 }
