@@ -1,16 +1,22 @@
 package seedu.vms.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.vms.testutil.Assert.assertThrows;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.logic.parser.exceptions.ParseException;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
@@ -21,11 +27,14 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_DOB = " ";
     private static final String INVALID_BLOODTYPE = "example.com";
+    private static final String INVALID_GROUPNAME = "#potato";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_DOB = "2001-02-23";
     private static final String VALID_BLOODTYPE = "A+";
+    private static final String VALID_GROUPNAME_1 = "moderna";
+    private static final String VALID_GROUPNAME_2 = "chinavax";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -68,7 +77,6 @@ public class ParserUtilTest {
             "UNCHI::",
             "::::",
             "::UNCHI,BANANA::");
-
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -277,4 +285,48 @@ public class ParserUtilTest {
         // not a number
         assertThrows(ParseException.class, () -> ParserUtil.parseInteger("hanya??"));
     }
+
+    @Test
+    public void parseGroupName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGroupName(null));
+    }
+
+    @Test
+    public void parseGroupName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroups(INVALID_GROUPNAME));
+    }
+
+    @Test
+    public void parseGroupName_validValueWithoutWhitespace_returnsGroupName() throws Exception {
+        GroupName expectedGroupName = new GroupName(VALID_GROUPNAME_1);
+        assertEquals(expectedGroupName, ParserUtil.parseGroupName(VALID_GROUPNAME_1));
+    }
+
+    @Test
+    public void parseGroupName_validValueWithWhitespace_returnsTrimmedGroupName() throws Exception {
+        String groupNameWithWhitespace = WHITESPACE + VALID_GROUPNAME_1 + WHITESPACE;
+        GroupName expectedGroupName = new GroupName(VALID_GROUPNAME_1);
+        assertEquals(expectedGroupName, ParserUtil.parseGroupName(groupNameWithWhitespace));
+    }
+
+    @Test
+    public void parseGroupNames_collectionWithInvalidGroupNames_throwsParseException() {
+        assertThrows(ParseException.class,
+                () -> ParserUtil.parseGroups(Arrays.asList(VALID_GROUPNAME_1, INVALID_GROUPNAME)));
+    }
+
+    @Test
+    public void parseGroupNames_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseGroups(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseGroupNames_collectionWithValidGroupNames_returnsGroupNameSet() throws Exception {
+        Set<GroupName> actualGroupNameSet = ParserUtil.parseGroups(Arrays.asList(VALID_GROUPNAME_1, VALID_GROUPNAME_2));
+        Set<GroupName> expectedGroupNameSet = new HashSet<GroupName>(
+                Arrays.asList(new GroupName(VALID_GROUPNAME_1), new GroupName(VALID_GROUPNAME_2)));
+
+        assertEquals(expectedGroupNameSet, actualGroupNameSet);
+    }
+
 }
