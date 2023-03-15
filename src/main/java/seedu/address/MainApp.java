@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
@@ -39,6 +40,7 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(0, 2, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static HostServices services;
 
     protected Ui ui;
     protected Logic logic;
@@ -66,6 +68,8 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
+        services = getHostServices();
     }
 
     /**
@@ -179,5 +183,12 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
+    }
+
+    /**
+     * Opens the given {@code String} URL in a browser.
+     */
+    public static void openUrl(String url) {
+        services.showDocument(url);
     }
 }
