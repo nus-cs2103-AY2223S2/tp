@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Region.Regions;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -192,5 +193,34 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseRegion_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRegion(null));
+    }
+
+    @Test
+    public void parseRegion_validRegionWithoutWhiteSpace_returnsRegion() throws Exception {
+        String central = "cEnTrAl";
+        assertEquals(Regions.CENTRAL, ParserUtil.parseRegion(central));
+    }
+
+    @Test
+    public void parseRegion_validRegionWithWhiteSpace_returnsRegion() throws Exception {
+        String central = "         cEnTrAl   ";
+        assertEquals(Regions.CENTRAL, ParserUtil.parseRegion(central));
+    }
+
+    @Test
+    public void parseRegion_invalidRegionWithWhiteSpace_throwsParseException() throws Exception {
+        String rubbish = "wahdushd         cEnTrAl   bbbbb";
+        assertThrows(ParseException.class, () -> ParserUtil.parseRegion(rubbish));
+    }
+
+    @Test
+    public void parseRegion_invalidRegionWithoutWhiteSpace_throwsParseException() throws Exception {
+        String s = "blahblashblabhalbhaowqjoqoqkowkeoqowe";
+        assertThrows(ParseException.class, () -> ParserUtil.parseRegion(s));
     }
 }

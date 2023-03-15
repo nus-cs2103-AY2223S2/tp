@@ -262,9 +262,10 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has a large number of meetings to keep track of
+* wants to minimise time spent commuting
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage clients and meetings faster than a typical mouse/GUI driven app
 
 ### User stories
 
@@ -272,12 +273,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | financial advisor | see all my meetings for today | plan and prepare for my meetings today effectively                 |
+| `* * *`  | financial advisor | add a new meeting|keep track of a meeting with a client using this app|
+| `* * *`  | financial advisor | filter my meetings | find clients based on some condition|
+| `* * *`  | financial advisor | remove a meeting from my schedule | remove meetings that are no longer relevant |
+| `* * *`    | financial advisor who has to travel to meet their client physically | set which region of singapore my client is in | keep track of the general location of my client
+| `* * *` | financial advisor who prefers physical meetings with clients | see all meetings in a specific region of singapore| minimize travel time by meeting all clients that live close to each other|
+| `* *` | financial advisor | know when the last meeting with a client was | avoid losing a client if they find me too annoying |
+| `* *` | financial advisor | classify my meetings into different types | organise my meetings better
+| `* ` | financial advisor | record my meetings | look back to reflect and improve on my skills | 
+| `* *` | financial advisor | add notes about a client | keep track of things that are important to a client | 
 
 *{More to be added}*
 
@@ -285,7 +290,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: *UC01 Delete a person***
+
+**Actor: User**
 
 **MSS**
 
@@ -308,13 +315,101 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: *UC02 Schedule a meeting with new client***
+
+**Actor: User**
+
+**MSS:**
+
+1. User request to add a new client with relevant information
+2. FAid adds new client’s information to the list
+3. User request to add meeting date and time for the same client
+4. FAid adds meeting date and time for that client
+
+   Use Case Ends
+
+**Extensions:**
+
+* 2a. FAid detects clash in meeting date and time
+   * 2a1. FAid prompts User again to add a different meeting date and time
+   * 2a2. User enters a new meeting date and time
+
+     Use Case resumes at step 4.
+
+**Use Case: *UC03 View meetings for current day***
+
+**Actor: User**
+
+**MSS:**
+
+1. User opens FAid
+2. FAid notifies user of all upcoming meetings for the day
+3. User chooses to view all meetings for the current day
+4. FAid shows all meetings that start on the current day
+
+   Use case ends
+
+**Extensions:**
+* 2a. There are no meetings for the day
+  * 2a1. FAid notifies that there are no upcoming meetings for the day
+
+     Use case ends
+
+**Use Case: *UC04 Find clients residing in a certain region of Singapore***
+
+**Actor: User**
+
+**MSS:**
+
+1. User opens the app
+2. User requests to find clients in a specific region
+3. FAid shows all clients residing in a specific region
+
+   Use case ends
+
+**Extensions:**
+
+* 3a.  FAid cannot find the specified region entered
+  * 3a1. User enters new region name
+  * 3a2. Steps 31-3a1 are repeated until region name entered is valid
+
+    Use case resumes from step 3
+
+**Use Case: *UC05 Get list of clients based on a tag***
+
+**Actor: User**
+
+**MSS:**
+
+1. User opens the app
+2. User wants to see all persons with a certain tag
+3. System requests for the tag
+4. User enters the tag
+5. System displays all persons with the given tag
+
+   Use Case Ends
+
+**Extensions:**
+* 4a. System cannot find the tag supplied by the user
+  * 4a1. System requests for the correct tag
+  * 4a2. User enters a new tag
+
+    Steps 4a1-4a2 are repeated until the user provides a correct tag
+    Use Case resumes from step 5
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A new version of FAid is released every month.
+5. Data stored is not wiped out outside the program's runtime or in the event of an interrupt.
+6. All non-helper functions implemented in FAid have JavaDoc documentation.
+7. All commands and features implemented in FAid should have a visual example in the User Guide.
+8. No command should require more than 5 arguments/options.
+9. Every function is deterministic and has a test case with an expected output.
 
 *{More to be added}*
 
@@ -322,6 +417,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Region** - General Areas in Singapore separated into North, South, East, West, Central
+* **Town** - An area defined by the National Environment Agency
+* **Meeting** - An appointment with the user’s client starting and ending at stipulated times
+* **Day** - Spans from 00:00 to 23:59. Not by conventional office hours.
+* **Client** - potential or actual buyers of insurance sold by the use
+
 
 --------------------------------------------------------------------------------------------------------------------
 

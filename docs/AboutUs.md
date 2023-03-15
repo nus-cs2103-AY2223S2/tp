@@ -9,51 +9,41 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Jane Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sembcorpp.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+[[github](https://github.com/sembcorpp)]
+[[portfolio](team/sembcorpp.md)]
 
-### Jane Doe
+* Role: Developer + Testing
 
-<img src="images/johndoe.png" width="200px">
+### Bokun
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/bokung.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/bokung)]
+[[portfolio](team/bokung.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Dev Ops + Testing
 
-### Jean Doe
+### Muhammad Arshad Shaik
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fireradical22.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/FireRadical22)] [[portfolio](team/fireradical22.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Dev Ops
+
+### Tabriz Pahlavi
+
+<img src="images/tabrizplv.png" width="200px">
+
+[[github](http://github.com/TabrizPlv)]
+[[portfolio](team/tabrizplv.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops + UI
