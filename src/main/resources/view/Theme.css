@@ -290,8 +290,17 @@
     -fx-background-color: #007aff;
 }
 
+#cardPane .label{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
 #deckPane {
     -fx-background-color: #ededed;
+}
+
+#deckPane .label{
+    -fx-font-size: 20px;
     -fx-text-fill: black;
 }
 
