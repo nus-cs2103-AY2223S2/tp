@@ -31,7 +31,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditVolunteerDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptorBuilder} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditVolunteerDescriptor();
@@ -45,7 +45,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditVolunteerDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -53,7 +53,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditVolunteerDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -61,7 +61,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditVolunteerDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -69,7 +69,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditVolunteerDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -77,7 +77,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Nric} of the {@code EditVolunteerDescriptor} that we are building.
+     * Sets the {@code Nric} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withNric(String nric) {
         descriptor.setNric(new Nric(nric));
@@ -85,7 +85,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Age} of the {@code EditVolunteerDescriptor} that we are building.
+     * Sets the {@code Age} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAge(String age) {
         descriptor.setAge(new Age(age));
@@ -93,7 +93,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditVolunteerDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
