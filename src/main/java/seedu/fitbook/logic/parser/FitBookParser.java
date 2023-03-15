@@ -7,15 +7,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.fitbook.logic.commands.AddCommand;
+import seedu.fitbook.logic.commands.AddRoutineCommand;
 import seedu.fitbook.logic.commands.ClearCommand;
+import seedu.fitbook.logic.commands.ClearRoutinesCommand;
 import seedu.fitbook.logic.commands.Command;
 import seedu.fitbook.logic.commands.DeleteCommand;
+import seedu.fitbook.logic.commands.DeleteRoutineCommand;
 import seedu.fitbook.logic.commands.EditCommand;
+import seedu.fitbook.logic.commands.EditRoutineCommand;
 import seedu.fitbook.logic.commands.ExitCommand;
 import seedu.fitbook.logic.commands.ExportCommand;
 import seedu.fitbook.logic.commands.FindCommand;
+import seedu.fitbook.logic.commands.FindRoutineCommand;
 import seedu.fitbook.logic.commands.HelpCommand;
 import seedu.fitbook.logic.commands.ListClientsCommand;
+import seedu.fitbook.logic.commands.ListRoutinesCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,11 +51,17 @@ public class FitBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case AddRoutineCommand.COMMAND_WORD:
+            return new AddRoutineCommandParser().parse(arguments);
+
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case EditRoutineCommand.COMMAND_WORD:
+            return new EditRoutineCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
@@ -57,11 +69,17 @@ public class FitBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case ClearRoutinesCommand.COMMAND_WORD:
+            return new ClearRoutinesCommand();
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListClientsCommand.COMMAND_WORD:
             return new ListClientsCommand();
+
+        case ListRoutinesCommand.COMMAND_WORD:
+            return new ListRoutinesCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -71,6 +89,13 @@ public class FitBookParser {
 
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
+
+        case FindRoutineCommand.COMMAND_WORD:
+            return new FindRoutineCommandParser().parse(arguments);
+
+        case DeleteRoutineCommand.COMMAND_WORD:
+            return new DeleteRoutineCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

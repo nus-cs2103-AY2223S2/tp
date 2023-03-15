@@ -6,6 +6,7 @@ import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.fitbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.fitbook.testutil.Assert.assertThrows;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_ROUTINE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,10 +15,13 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.logic.commands.AddCommand;
+import seedu.fitbook.logic.commands.AddRoutineCommand;
 import seedu.fitbook.logic.commands.ClearCommand;
 import seedu.fitbook.logic.commands.DeleteCommand;
 import seedu.fitbook.logic.commands.EditCommand;
 import seedu.fitbook.logic.commands.EditCommand.EditClientDescriptor;
+import seedu.fitbook.logic.commands.EditRoutineCommand;
+import seedu.fitbook.logic.commands.EditRoutineCommand.EditRoutineDescriptor;
 import seedu.fitbook.logic.commands.ExitCommand;
 import seedu.fitbook.logic.commands.ExportCommand;
 import seedu.fitbook.logic.commands.FindCommand;
@@ -25,10 +29,14 @@ import seedu.fitbook.logic.commands.HelpCommand;
 import seedu.fitbook.logic.commands.ListClientsCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
-import seedu.fitbook.testutil.ClientBuilder;
-import seedu.fitbook.testutil.ClientUtil;
-import seedu.fitbook.testutil.EditClientDescriptorBuilder;
+import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.routines.Routine;
+import seedu.fitbook.testutil.client.ClientBuilder;
+import seedu.fitbook.testutil.client.ClientUtil;
+import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
+import seedu.fitbook.testutil.routine.EditRoutineDescriptorBuilder;
+import seedu.fitbook.testutil.routine.RoutineBuilder;
+import seedu.fitbook.testutil.routine.RoutineUtil;
 
 public class FitBookParserTest {
 
@@ -77,9 +85,9 @@ public class FitBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("foo bar");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -93,6 +101,40 @@ public class FitBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListClientsCommand.COMMAND_WORD) instanceof ListClientsCommand);
         assertTrue(parser.parseCommand(ListClientsCommand.COMMAND_WORD + " 3") instanceof ListClientsCommand);
+    }
+
+    @Test
+    public void parseCommand_editRoutineForExercise() throws Exception {
+        Routine routine = new RoutineBuilder().build();
+        EditRoutineDescriptor descriptor = new EditRoutineDescriptorBuilder(routine).build();
+        descriptor.setRoutineNameNull();
+        EditRoutineCommand command = (EditRoutineCommand) parser.parseCommand(EditRoutineCommand.COMMAND_WORD
+                + " "
+                + INDEX_FIRST_ROUTINE.getOneBased()
+                + " "
+                + RoutineUtil.getEditRoutineDescriptorDetailsForExercise(descriptor));
+        assertEquals(new EditRoutineCommand(INDEX_FIRST_ROUTINE, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editRoutineForRoutineName() throws Exception {
+        Routine routine = new RoutineBuilder().build();
+        EditRoutineDescriptor descriptor = new EditRoutineDescriptorBuilder(routine).build();
+        descriptor.setExerciseNull();
+        descriptor.setExerciseIndexNull();
+        EditRoutineCommand command = (EditRoutineCommand) parser.parseCommand(EditRoutineCommand.COMMAND_WORD
+                + " "
+                + INDEX_FIRST_ROUTINE.getOneBased()
+                + " "
+                + RoutineUtil.getEditRoutineDescriptorDetailsForRoutineName(descriptor));
+        assertEquals(new EditRoutineCommand(INDEX_FIRST_ROUTINE, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_addRoutine() throws Exception {
+        Routine routine = new RoutineBuilder().build();
+        AddRoutineCommand command = (AddRoutineCommand) parser.parseCommand(RoutineUtil.getAddRoutineCommand(routine));
+        assertEquals(new AddRoutineCommand(routine), command);
     }
 
     @Test

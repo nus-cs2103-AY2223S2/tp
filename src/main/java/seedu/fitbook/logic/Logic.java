@@ -9,6 +9,7 @@ import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.ReadOnlyFitBook;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Routine;
 
 /**
  * API of the Logic component
@@ -47,4 +48,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ObservableList<Routine> getFilteredRoutineList();
 }

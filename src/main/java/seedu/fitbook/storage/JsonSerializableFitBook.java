@@ -16,10 +16,10 @@ import seedu.fitbook.model.client.Client;
 /**
  * An Immutable FitBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "fitbook")
 class JsonSerializableFitBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Clients list contains duplicate client(s).";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
 
@@ -50,7 +50,7 @@ class JsonSerializableFitBook {
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
             Client client = jsonAdaptedClient.toFitBookModelType();
             if (addressBook.hasClient(client)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
             addressBook.addClient(client);
         }
