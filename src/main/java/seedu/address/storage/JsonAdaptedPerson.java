@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private JsonAdaptedBirthday birthday = new JsonAdaptedBirthday();
 
     /**
@@ -40,6 +42,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+             @JsonProperty("modules") List<JsonAdaptedModule> modules,
             @JsonProperty("birthday") JsonAdaptedBirthday birthday) {
         this.name = name;
         this.phone = phone;
@@ -47,6 +50,9 @@ class JsonAdaptedPerson {
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (modules != null) {
+            this.modules.addAll(modules);
         }
         if (birthday != null) {
             this.birthday = birthday;
@@ -65,6 +71,10 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
 
+        modules.addAll(source.getModules().stream()
+                .map(JsonAdaptedModule::new)
+                .collect(Collectors.toList()));
+
         if (source.getBirthday().isPresent()) {
             birthday = new JsonAdaptedBirthday(source.getBirthday().get());
         }
@@ -81,6 +91,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Module> personModules = new ArrayList<>();
+        for (JsonAdaptedModule module : modules) {
+            personModules.add(module.toModelType());
         }
 
         if (name == null) {
@@ -116,7 +131,9 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        Person p = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<Module> modelModules = new HashSet<>(personModules);
+
+        Person p = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelModules);
 
         if (birthday != null) {
             Optional<Birthday> modelBirthday = birthday.toModelType();
