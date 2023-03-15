@@ -19,7 +19,7 @@ public abstract class RerollEntities<T extends Entity> implements ReadOnlyEntiti
     }
     // List level operations ==============================
     void setEntities(List<T> entities) {
-        this.entities.setPersons(entities);
+        this.entities.setEntities(entities);
     }
 
     void resetData(ReadOnlyEntities<T> newData) {
@@ -43,7 +43,7 @@ public abstract class RerollEntities<T extends Entity> implements ReadOnlyEntiti
     void setEntity(T target, T edited) {
         requireNonNull(edited);
 
-        entities.setPerson(target, edited);
+        entities.setEntity(target, edited);
     }
 
     void deleteEntity(T entity) {

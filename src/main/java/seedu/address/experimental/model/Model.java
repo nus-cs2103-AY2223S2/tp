@@ -12,7 +12,7 @@ import seedu.address.model.entity.Entity;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Entity> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Entity> PREDICATE_SHOW_ALL_ENTITIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,52 +37,52 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getRerollFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setRerollFilePath(Path rerollFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setReroll(ReadOnlyReroll addressBook);
+    void setReroll(ReadOnlyReroll reroll);
 
     /** Returns the AddressBook */
     ReadOnlyReroll getReroll();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a entity with the same identity as {@code entity} exists in the address book.
      */
-    boolean hasEntity(Entity person);
+    boolean hasEntity(Entity entity);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given entity.
+     * The entity must exist in the address book.
      */
     void deleteEntity(Entity target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given entity.
+     * {@code entity} must not already exist in the address book.
      */
-    void addEntity(Entity person);
+    void addEntity(Entity entity);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given entity {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The entity identity of {@code editedPerson} must not be the same as another existing entity in the address book.
      */
-    void setEntity(Entity target, Entity editedPerson);
+    void setEntity(Entity target, Entity editedEntity);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Entity> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered entity list */
+    ObservableList<Entity> getFilteredEntityList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered entity list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Entity> predicate);
+    void updateFilteredEntityList(Predicate<Entity> predicate);
 
 }
