@@ -50,7 +50,7 @@ public class ExportRoutineCommand extends Command {
         } catch (FileNotFoundException e) {
             throw new CommandException(MESSAGE_FAILURE);
         }
-        return ExportCommand.MESSAGE_SUCCESS;
+        return ExportRoutineCommand.MESSAGE_SUCCESS;
     }
 
     /**
