@@ -26,10 +26,10 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, Logic logic) {
+    public PersonListPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
-        personListView.setItems(personList);
+        personListView.setItems(logic.getFilteredPersonList());
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
