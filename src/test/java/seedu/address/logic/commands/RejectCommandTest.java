@@ -194,6 +194,47 @@ public class RejectCommandTest {
     }
 
     @Test
+    public void execute_invalidNamePhoneCombinationFilteredList_failure() {
+        Person personToReject = model.getFilteredPersonList().get(INDEX_FORTH_PERSON.getZeroBased());
+        Person wrongPerson = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        PersonBuilder personInList = new PersonBuilder(personToReject);
+        PersonBuilder wrongPersonInList = new PersonBuilder(wrongPerson);
+
+        Person rejectedPerson = personInList.withStatus("REJECTED").build();
+        Person wrongRejectedPerson = wrongPersonInList.withStatus("REJECTED").build();
+
+        NamePhoneNumberPredicate namePhonePredicate =
+                new NamePhoneNumberPredicate(rejectedPerson.getName(), wrongRejectedPerson.getPhone());
+        RejectCommand rejectCommand = new RejectCommand(namePhonePredicate);
+
+        String expectedMessage = String.format(Messages.MESSAGE_NO_PERSON_WITH_NAME_AND_PHONE);
+
+        assertCommandFailure(rejectCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_invalidNamePhoneCombinationUnfilteredList_failure() {
+        Person personToReject = model.getFilteredPersonList().get(INDEX_FORTH_PERSON.getZeroBased());
+        Person wrongPerson = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+
+        PersonBuilder personInList = new PersonBuilder(personToReject);
+        PersonBuilder wrongPersonInList = new PersonBuilder(wrongPerson);
+
+        Person rejectedPerson = personInList.withStatus("REJECTED").build();
+        Person wrongRejectedPerson = wrongPersonInList.withStatus("REJECTED").build();
+
+        NamePhoneNumberPredicate namePhonePredicate =
+                new NamePhoneNumberPredicate(rejectedPerson.getName(), wrongRejectedPerson.getPhone());
+        RejectCommand rejectCommand = new RejectCommand(namePhonePredicate);
+
+        String expectedMessage = String.format(Messages.MESSAGE_NO_PERSON_WITH_NAME_AND_PHONE);
+
+        assertCommandFailure(rejectCommand, model, expectedMessage);
+    }
+
+    @Test
     public void equals() {
         final RejectCommand standardCommand = new RejectCommand(NAME_PHONE_PREDICATE_AMY);
 
