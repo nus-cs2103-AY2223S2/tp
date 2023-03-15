@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.category.Category;
+import seedu.address.model.expense.Expense;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +15,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Expense> PREDICATE_SHOW_ALL_EXPENSES = unused -> true;
+    Predicate<Category> PREDICATE_SHOW_ALL_CATEGORY = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -51,11 +55,13 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+    //ReadOnlyCategoryList getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
 
     /**
      * Deletes the given person.
@@ -63,11 +69,15 @@ public interface Model {
      */
     void deletePerson(Person target);
 
+    void deleteCategory(Category target);
+
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    void addCategory(Category toAdd);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -79,9 +89,31 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns whether a category is present in the category list by name*/
+    boolean hasCategory(String categoryName);
+
+    boolean hasCategory(Category category);
+
+    /** Returns an unmodifiable view of the filtered expense list */
+    ObservableList<Expense> getFilteredExpenseList();
+
+    ObservableList<Category> getFilteredCategoryList();
+
+    int getExpenseListCount();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredExpensesList(Predicate<Expense> predicate);
+
+    void updateFilteredCategoryList(Predicate<Category> predicate);
+
+    void addExpense(Expense expense);
+
+    void deleteExpense(Expense expense);
+
+    Category getCategoryInstance(String categoryName);
 }

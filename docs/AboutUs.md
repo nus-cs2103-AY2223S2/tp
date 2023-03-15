@@ -9,51 +9,55 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Shirshajit Sen Gupta
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shirsho-12.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://shirsho-12.github.io)]
+[[github](https://github.com/shirsho-12)]
+[[portfolio](team/gitsac.md)]
 
-* Role: Project Advisor
+* Role: Manage the repository, implement features, perform testing
+* Responsibilities: Project Management, Feature Implementation, Test Management
 
-### Jane Doe
+### Shi Wen Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jinbesan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jinbesan)]
+[[portfolio](team/gitsac.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Feature Implementation
 
-### Jean Doe
+### Randall Ng Hong Rong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/randallnhr.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/randallnhr)] 
+[[portfolio](team/randallnhr.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Logic 
 
-### James Doe
+### Nicholas Lee Jun Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nicleejy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nicleejy)]
+
+[[portfolio](team/nicleejy.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Isaac Chai Han Jie
+
+<img src="images/gitsac.png" width="200px">
+
+[[github](http://github.com/gitsac)]
+[[portfolio](team/gitsac.md)]
+
+* Role: Deliverables
+* Responsibilities: Deliver deliverables
+

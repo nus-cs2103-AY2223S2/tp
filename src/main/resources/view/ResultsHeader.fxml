@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<StackPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox maxHeight="-Infinity" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="resultType" styleClass="results_header" text="Expenses" />
+            <Region maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <Label fx:id="filterType" alignment="CENTER_RIGHT" text="\$filterName">
+               <styleClass>
+                  <String fx:value="results_header" />
+                  <String fx:value="filter_name" />
+               </styleClass>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</StackPane>
