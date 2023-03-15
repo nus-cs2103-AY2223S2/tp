@@ -41,7 +41,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("age") String age,
+                             @JsonProperty("age") String age, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("MedicalCondition") String medicalCondition) {
         this.name = name;
         this.phone = phone;
@@ -66,6 +66,17 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+    }
+
+    public JsonAdaptedPerson(String name, String phone, String email, String address, String age, List<JsonAdaptedTag> tagged) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = age;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -132,6 +143,13 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+
+        if (age == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
+        }
+        if (!Age.isValidAge(age)) {
+            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
+        }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Age modelAge = new Age(age);
