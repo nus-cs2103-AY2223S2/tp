@@ -26,12 +26,12 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="taskDesc" prefHeight="26.0" prefWidth="437.0" style="-fx-font-size: 20px;" styleClass="cell_big_label" text="\$taskDesc">
+        <Label fx:id="taskDesc" prefHeight="26.0" prefWidth="485.0" style="-fx-font-size: 20px;" styleClass="cell_big_label" text="\$taskDesc">
                <font>
                   <Font size="16.0" />
                </font></Label>
             <Label prefHeight="19.0" prefWidth="91.0" style="-fx-font-size: 15px;" text="Assigned to: " />
-         <Label fx:id="personAssigned" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$personAssigned" />
+         <Label fx:id="personAssigned" style="-fx-font-size: 20px;" styleClass="cell_small_label" text="\$personAssigned" />
             <VBox.margin>
                <Insets bottom="10.0" />
             </VBox.margin>

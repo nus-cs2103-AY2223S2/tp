@@ -116,12 +116,20 @@ public interface Model {
      */
     void unmarkTask(Task task);
 
+    // /**
+    //  * Assign a task to a person.
+    //  * @param taskIndex
+    //  * @param personIndex
+    //  */
+    // void assignTask(Index taskIndex, Index personIndex);
+
     /**
-     * Assign a task to a person.
+     * Replace the task to be assigned with the assigned task.
+     * @param taskToAssign
+     * @param assignedTask
      * @param taskIndex
-     * @param personIndex
      */
-    void assignTask(Index taskIndex, Index personIndex);
+    void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

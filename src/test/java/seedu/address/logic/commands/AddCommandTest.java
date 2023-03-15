@@ -177,7 +177,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void assignTask(Index taskIndex, Index personIndex) {
+        public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
             throw new AssertionError("This method should not be called.");
         }
 

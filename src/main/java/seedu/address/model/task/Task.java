@@ -10,14 +10,8 @@ public class Task {
 
     protected boolean isDone;
     private final TaskDescription description;
-<<<<<<< HEAD
-    private Index personAssigned;
-    private String personName;
-    private Date deadlineDate;
-=======
     private Index personAssignedIndex;
->>>>>>>>> Temporary merge branch 2
-
+    private String personAssignedName;
 
     /**
      * The constructor of the Task that takes in description of the task.
@@ -25,13 +19,8 @@ public class Task {
     public Task(TaskDescription description) {
         this.description = description;
         this.isDone = false;
-<<<<<<< HEAD
-        this.personAssigned = null;
-        this.personName = null;
-        this.deadlineDate = deadlineDate;
-=======
         this.personAssignedIndex = null;
->>>>>>>>> Temporary merge branch 2
+        this.personAssignedName = null;
     }
 
     /**
@@ -66,14 +55,9 @@ public class Task {
      *
      * @param personIndex Index of the person to be assigned to the current task
      */
-<<<<<<< HEAD
     public void assignPerson(Index personIndex, String personName) {
-        this.personAssigned = personIndex;
-        this.personName = personName;
-=======
-    public void assignPerson(Index personIndex) {
         this.personAssignedIndex = personIndex;
->>>>>>>>> Temporary merge branch 2
+        this.personAssignedName = personName;
     }
 
     /**
@@ -93,6 +77,8 @@ public class Task {
     public String getPersonAssignedName() {
         return personAssignedName;
     }
+
+
 
     /**
      * Changes status of current task as done by assigning isDone as true.

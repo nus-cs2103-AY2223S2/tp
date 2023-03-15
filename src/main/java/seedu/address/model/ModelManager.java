@@ -150,8 +150,12 @@ public class ModelManager implements Model {
         addressBook.unmarkTask(task);
     }
 
-    public void assignTask(Index taskIndex, Index personIndex) {
-        addressBook.assignTask(taskIndex, personIndex);
+    // public void assignTask(Index taskIndex, Index personIndex) {
+    //     addressBook.assignTask(taskIndex, personIndex);
+    // }
+
+    public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
+        addressBook.assignTask(taskToAssign, assignedTask, taskIndex);
     }
 
     @Override
