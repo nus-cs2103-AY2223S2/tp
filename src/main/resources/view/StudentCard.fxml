@@ -46,16 +46,8 @@
                 <Label fx:id="className" styleClass="cell_small_label" text="\$class" />
             </HBox>
             <HBox>
-                <Text text = "NOK name:    " fill="burlywood" />
-                <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName" />
-            </HBox>
-            <HBox>
-                <Text text = "NOK phone number:    " fill="burlywood" />
-                <Label fx:id="parentPhoneNumber" styleClass="cell_small_label" text="\$parentPhoneNumber" />
-            </HBox>
-            <HBox>
-                <Text text = "Relationship:    " fill="burlywood" />
-                <Label fx:id="rls" styleClass="cell_small_label" text="\$rls" />
+                <Text text = "Residential Address:    " fill="burlywood" />
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             </HBox>
             <HBox>
                 <Text text = "Age:    " fill="burlywood" />
@@ -72,6 +64,18 @@
             <HBox>
                 <Text text = "Phone:    " fill="burlywood" />
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            </HBox>
+            <HBox>
+                <Text text = "NOK name:    " fill="burlywood" />
+                <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName" />
+            </HBox>
+            <HBox>
+                <Text text = "NOK phone number:    " fill="burlywood" />
+                <Label fx:id="parentPhoneNumber" styleClass="cell_small_label" text="\$parentPhoneNumber" />
+            </HBox>
+            <HBox>
+                <Text text = "Relationship:    " fill="burlywood" />
+                <Label fx:id="rls" styleClass="cell_small_label" text="\$rls" />
             </HBox>
             <HBox>
                 <Text text = "CCA:    " fill="burlywood" />

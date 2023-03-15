@@ -11,8 +11,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -54,10 +54,11 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_PHONEPARENT + "NOK CONTACT NUMBER "
             + PREFIX_RELATIONSHIP + "NOK RELATIONSHIP TO STUDENT "
             + "["
+            + PREFIX_ADDRESS + "RESIDENTIAL ADDRESS "
             + PREFIX_AGE + "AGE "
             + PREFIX_IMAGESTUDENT + "IMAGE STUDENT "
             + PREFIX_EMAILSTUDENT + "EMAIL STUDENT "
-            + PREFIX_PHONE + "PHONE STUDENT "
+            + PREFIX_PHONESTUDENT + "PHONE STUDENT "
             + PREFIX_CCA + "CCA "
             + "]\n"
             + "Example: " + "student 1A " + COMMAND_WORD + " "
@@ -67,10 +68,11 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_PARENTNAME + "Tan Ah Niu "
             + PREFIX_PHONEPARENT + "91234567 "
             + PREFIX_RELATIONSHIP + "Father "
+            + PREFIX_ADDRESS + "Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) "
             + PREFIX_AGE + "14 "
             + PREFIX_IMAGESTUDENT + "C:// "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_PHONESTUDENT + "91234567 "
             + PREFIX_CCA + "Captain Ball";
 
     public static final String MESSAGE_SUCCESS = "New student added:";
@@ -141,6 +143,10 @@ public class StudentAddCommand extends StudentCommand {
                     address, tagList);
             model.addParent(newParent);
         } catch (ParseException parseException) {
+            /*
+            IMPORTANT TO DEAL WITH as there an ERROR, eg when Create Student with Same Phone Number as existing Parent
+            but diff Parent Name, WILL STILL CREATE STUDENT as expected but that is not what we want as its ERROR!
+             */
             return;
         }
     }

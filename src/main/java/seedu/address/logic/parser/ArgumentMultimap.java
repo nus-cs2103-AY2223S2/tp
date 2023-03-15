@@ -46,7 +46,7 @@ public class ArgumentMultimap {
             case "eS/":
                 Optional<String> missingEmail = Optional.of("Insert student email here!");
                 return missingEmail;
-            case "phS/":
+            case "pnS/":
                 Optional<String> missingPhoneNumber = Optional.of("Insert student phone number here!");
                 return missingPhoneNumber;
             case "cca/":
