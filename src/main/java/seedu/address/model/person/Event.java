@@ -22,7 +22,8 @@ public class Event {
     // Data fields
     private final Rate rate;
     private final Address address;
-    private final Timing timing;
+    private final Time startTime;
+    private final Time endTime;
     private final Set<Tag> tags = new HashSet<>();
     private Mark mark;
     private Contact contact;
@@ -30,12 +31,13 @@ public class Event {
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, Rate rate, Address address, Timing timing, Set<Tag> tags) {
+    public Event(Name name, Rate rate, Address address, Time startTime, Time endTime, Set<Tag> tags) {
         requireAllNonNull(name, rate, address, tags);
         this.name = name;
         this.rate = rate;
         this.address = address;
-        this.timing = timing;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.tags.addAll(tags);
         this.mark = new Mark();
         this.contact = new Contact();
@@ -52,8 +54,11 @@ public class Event {
     public Address getAddress() {
         return address;
     }
-    public Timing getTiming() {
-        return timing;
+    public Time getStartTime() {
+        return startTime;
+    }
+    public Time getEndTime() {
+        return endTime;
     }
 
     public Mark getMark() {
@@ -99,7 +104,8 @@ public class Event {
 
         return otherEvent != null
                 && otherEvent.getName().equals(getName())
-                && otherEvent.getTiming().equals(getTiming());
+                && otherEvent.getStartTime().equals(getStartTime())
+                && otherEvent.getEndTime().equals(getEndTime());
     }
 
     /**
@@ -120,7 +126,8 @@ public class Event {
         return otherEvent.getName().equals(getName())
                 && otherEvent.getRate().equals(getRate())
                 && otherEvent.getAddress().equals(getAddress())
-                && otherEvent.getTiming().equals(getTiming())
+                && otherEvent.getStartTime().equals(getStartTime())
+                && otherEvent.getEndTime().equals(getEndTime())
                 && otherEvent.getMark().equals(getMark())
                 && otherEvent.getContact().equals(getContact())
                 && otherEvent.getTags().equals(getTags());
@@ -129,7 +136,7 @@ public class Event {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, rate, address, timing, mark, contact, tags);
+        return Objects.hash(name, rate, address, startTime, endTime, mark, contact, tags);
     }
 
     @Override
@@ -141,7 +148,9 @@ public class Event {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Timing: ")
-                .append(getTiming())
+                .append(getStartTime())
+                .append(" to ")
+                .append(getEndTime())
                 .append("; Mark: ")
                 .append(getMark());
 

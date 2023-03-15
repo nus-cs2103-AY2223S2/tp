@@ -4,8 +4,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_END;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 
 import java.util.Set;
 
@@ -34,8 +34,8 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_RATE + Double.toString(person.getRate().value) + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_TIMING_START + person.getTiming().startTime + " ");
-        sb.append(PREFIX_TIMING_END + person.getTiming().endTime + " ");
+        sb.append(PREFIX_TIME_START + person.getStartTime().toString() + " ");
+        sb.append(PREFIX_TIME_END + person.getEndTime().toString() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -50,10 +50,10 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getRate().ifPresent(rate -> sb.append(PREFIX_RATE).append(rate.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getTiming().ifPresent(timing -> sb.append(PREFIX_TIMING_START)
-                .append(timing.startTime).append(" ")
-                .append(PREFIX_TIMING_END)
-                .append(timing.endTime).append(" "));
+        descriptor.getStartTime().ifPresent(startTime -> sb.append(PREFIX_TIME_START)
+                .append(startTime).append(" "));
+        descriptor.getEndTime().ifPresent(endTime -> sb.append(PREFIX_TIME_END)
+                .append(endTime).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

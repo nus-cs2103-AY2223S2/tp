@@ -16,7 +16,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rate;
-import seedu.address.model.person.Timing;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -145,20 +145,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String timingStart} and a {@code String timingEnd} into a {@code Timing}.
+     * Parses a {@code String time} into a {@code Time}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code timingStart} or {@code timingEnd} is invalid.
+     * @throws ParseException if the given {@code time} is invalid.
      */
-    public static Timing parseTiming(String timingStart, String timingEnd) throws ParseException {
-        requireNonNull(timingStart);
-        requireNonNull(timingEnd);
-        String trimmedTimingStart = timingStart.trim();
-        String trimmedTimingEnd = timingEnd.trim();
-        if (!Timing.isValidTiming(trimmedTimingStart, trimmedTimingEnd)) {
-            throw new ParseException(Timing.MESSAGE_CONSTRAINTS);
+    public static Time parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!Time.isValidTime(trimmedTime)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
-        return new Timing(trimmedTimingStart, trimmedTimingEnd);
+        return new Time(trimmedTime);
     }
 
     /**

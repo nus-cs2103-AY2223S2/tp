@@ -61,12 +61,14 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Event editedPerson = personInList.withName(VALID_NAME_BOB).withRate(VALID_PHONE_BOB)
-                .withTiming(VALID_START_TIME_BOB, VALID_END_TIME_BOB)
+                .withStartTime(VALID_START_TIME_BOB)
+                .withEndTime(VALID_END_TIME_BOB)
                 .withMark(VALID_MARK_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withTiming(VALID_START_TIME_BOB, VALID_END_TIME_BOB)
+                .withStartTime(VALID_START_TIME_BOB)
+                .withEndTime(VALID_END_TIME_BOB)
                 .withMark(VALID_MARK_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);

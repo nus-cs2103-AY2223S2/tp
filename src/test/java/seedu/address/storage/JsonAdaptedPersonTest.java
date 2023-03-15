@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
-import seedu.address.model.person.Timing;
+import seedu.address.model.person.Time;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -28,8 +28,8 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_RATE = BENSON.getRate().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_START_TIME = BENSON.getTiming().startTime;
-    private static final String VALID_END_TIME = BENSON.getTiming().endTime;
+    private static final String VALID_START_TIME = BENSON.getStartTime().toString();
+    private static final String VALID_END_TIME = BENSON.getEndTime().toString();
     private static final String VALID_MARK = BENSON.getMark().toString();
     private static final String VALID_CONTACTNUM = BENSON.getContact().getName().fullName + " HP:"
             + BENSON.getContact().getPhone().value;
@@ -104,19 +104,19 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, INVALID_START_TIME, VALID_END_TIME, VALID_MARK,
                 VALID_CONTACTNUM, VALID_TAGS);
-        String expectedMessage = Timing.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Time.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
 
         person = new JsonAdaptedPerson(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, VALID_START_TIME, INVALID_END_TIME, VALID_MARK,
                 VALID_CONTACTNUM, VALID_TAGS);
-        expectedMessage = Timing.MESSAGE_CONSTRAINTS;
+        expectedMessage = Time.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
 
         person = new JsonAdaptedPerson(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, INVALID_START_TIME, INVALID_END_TIME, VALID_MARK,
                 VALID_CONTACTNUM, VALID_TAGS);
-        expectedMessage = Timing.MESSAGE_CONSTRAINTS;
+        expectedMessage = Time.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -126,19 +126,19 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, null, VALID_END_TIME, VALID_MARK, VALID_CONTACTNUM,
                 VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Timing.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
 
         person = new JsonAdaptedPerson(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, VALID_START_TIME, null, VALID_MARK, VALID_CONTACTNUM,
                 VALID_TAGS);
-        expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Timing.class.getSimpleName());
+        expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
 
         person = new JsonAdaptedPerson(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, null, null, VALID_MARK, VALID_CONTACTNUM,
                 VALID_TAGS);
-        expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Timing.class.getSimpleName());
+        expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
