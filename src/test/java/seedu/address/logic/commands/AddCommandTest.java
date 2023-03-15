@@ -174,6 +174,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModule(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteModule(ReadOnlyModule target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -190,6 +195,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -245,16 +255,6 @@ public class AddCommandTest {
 
         @Override
         public NavigationContext getCurrentNavContext() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasModule(ModuleCode moduleCode) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
             throw new AssertionError("This method should not be called.");
         }
 
