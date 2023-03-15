@@ -94,6 +94,14 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building. 
+     */
+    public PersonBuilder withMeeting(ArrayList<Meeting> meetings) {
+        this.meetings = meetings;
+        return this;
+    }
+
     /*
     public PersonBuilder withMeetings() {
 

@@ -40,10 +40,20 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        // Original person should retain their old meetings after using edit command.
+        Person originalPerson = model.getFilteredPersonList().get(0);
+
+        // Expected person can have fields Name, Phone, Email, Address, Tag edited,
+        // but meeting field should NOT change with edit command. 
+        // Using updated expectedPerson enforces this behaviour by setting expectedPerson's 
+        // meeting field to the original person's meeting.
+        Person expectedPerson = new PersonBuilder(editedPerson).withMeeting(originalPerson.getMeetings()).build();
+        
+        // System should call toString() on the expectedPerson instead of the editedPerson
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, expectedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
