@@ -2,7 +2,11 @@ package seedu.library.model.bookmark;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.library.logic.commands.CommandTestUtil.*;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_PROGRESS_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.library.testutil.Assert.assertThrows;
 import static seedu.library.testutil.TypicalBookmarks.ALICE;
 import static seedu.library.testutil.TypicalBookmarks.BOB;

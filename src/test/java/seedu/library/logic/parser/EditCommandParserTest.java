@@ -91,16 +91,21 @@ public class EditCommandParserTest {
 
         // valid progress followed by invalid progress. The test case for invalid progress followed by valid progress
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + PROGRESS_DESC_BOB + INVALID_PROGRESS_DESC, Progress.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + PROGRESS_DESC_BOB + INVALID_PROGRESS_DESC,
+                Progress.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Bookmark} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
+                Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
+                Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+                Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_GENRE_DESC + VALID_AUTHOR_AMY + VALID_PROGRESS_AMY,
+        assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_GENRE_DESC
+                        + VALID_AUTHOR_AMY + VALID_PROGRESS_AMY,
                 Title.MESSAGE_CONSTRAINTS);
     }
 
@@ -123,7 +128,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_BOOKMARK;
         String userInput = targetIndex.getOneBased() + PROGRESS_DESC_BOB + GENRE_DESC_AMY;
 
-        EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withProgress(VALID_PROGRESS_BOB)
+        EditCommand.EditBookmarkDescriptor descriptor =
+                new EditBookmarkDescriptorBuilder().withProgress(VALID_PROGRESS_BOB)
                 .withGenre(VALID_GENRE_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -172,7 +178,8 @@ public class EditCommandParserTest {
                 + TAG_DESC_FRIEND + PROGRESS_DESC_AMY + AUTHOR_DESC_AMY + GENRE_DESC_AMY + TAG_DESC_FRIEND
                 + PROGRESS_DESC_BOB + AUTHOR_DESC_BOB + GENRE_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withProgress(VALID_PROGRESS_BOB)
+        EditCommand.EditBookmarkDescriptor descriptor =
+                new EditBookmarkDescriptorBuilder().withProgress(VALID_PROGRESS_BOB)
                 .withGenre(VALID_GENRE_BOB).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
