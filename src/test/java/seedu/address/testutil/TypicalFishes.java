@@ -1,13 +1,24 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEEDING_INTERVAL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEEDING_INTERVAL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_BOB;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.fish.Fish;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Fish} objects to be used in tests.

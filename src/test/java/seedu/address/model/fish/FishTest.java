@@ -33,7 +33,8 @@ public class FishTest {
 
         // same name, all other attributes different -> returns true
         Fish editedAlice = new FishBuilder(ALICE).withLastFedDate(VALID_LAST_FED_DATE_BOB)
-                .withSpecies(VALID_SPECIES_BOB).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withSpecies(VALID_SPECIES_BOB).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameFish(editedAlice));
 
         // different name, all other attributes same -> returns false

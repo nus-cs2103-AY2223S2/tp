@@ -46,7 +46,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateFishes_throwsDuplicateFishException() {
         // Two fish with the same identity fields
-        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB).withTags(VALID_TAG_HUSBAND)
+        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Fish> newFish = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newFish);
@@ -73,7 +74,8 @@ public class AddressBookTest {
     @Test
     public void hasFish_fishWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addFish(ALICE);
-        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB).withTags(VALID_TAG_HUSBAND)
+        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasFish(editedAlice));
     }

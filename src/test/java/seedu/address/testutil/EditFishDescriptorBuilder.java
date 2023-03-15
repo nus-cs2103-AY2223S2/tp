@@ -6,8 +6,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditFishDescriptor;
 import seedu.address.model.AddressBook;
-import seedu.address.model.fish.*;
 import seedu.address.model.fish.FeedingInterval;
+import seedu.address.model.fish.Fish;
+import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;

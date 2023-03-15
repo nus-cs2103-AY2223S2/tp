@@ -1,7 +1,34 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.FEEDING_INTERVAL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.FEEDING_INTERVAL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_FEEDING_INTERVAL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_LAST_FED_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_SPECIES_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.LAST_FED_DATE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.LAST_FED_DATE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TANK_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.TANK_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TANK_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEEDING_INTERVAL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalFishes.AMY;
@@ -11,8 +38,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.fish.*;
 import seedu.address.model.fish.FeedingInterval;
+import seedu.address.model.fish.Fish;
+import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.FishBuilder;
 
@@ -50,7 +80,7 @@ public class AddCommandParserTest {
 
         // multiple tanks - last tank accepted
         assertParseSuccess(parser, NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + SPECIES_DESC_BOB
-                        + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_AMY +TANK_DESC_BOB + TAG_DESC_FRIEND,
+                        + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_AMY + TANK_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple tags - all accepted
@@ -124,7 +154,7 @@ public class AddCommandParserTest {
 
         // invalid feeding interval
         assertParseFailure(parser, NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + SPECIES_DESC_BOB
-                + INVALID_FEEDING_INTERVAL_DESC + TANK_DESC_BOB+ TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + INVALID_FEEDING_INTERVAL_DESC + TANK_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 FeedingInterval.MESSAGE_CONSTRAINTS);
 
         // invalid tag

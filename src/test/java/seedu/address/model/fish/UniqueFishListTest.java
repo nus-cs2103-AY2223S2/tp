@@ -42,7 +42,8 @@ public class UniqueFishListTest {
     @Test
     public void contains_fishWithSameIdentityFieldsInList_returnsTrue() {
         uniqueFishList.add(ALICE);
-        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB).withTags(VALID_TAG_HUSBAND)
+        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueFishList.contains(editedAlice));
     }
@@ -85,7 +86,8 @@ public class UniqueFishListTest {
     @Test
     public void setFish_editedFishHasSameIdentity_success() {
         uniqueFishList.add(ALICE);
-        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB).withTags(VALID_TAG_HUSBAND)
+        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueFishList.setFish(ALICE, editedAlice);
         UniqueFishList expectedUniqueFishList = new UniqueFishList();

@@ -3,10 +3,12 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.logic.parser.AddCommandParser;
 import seedu.address.model.AddressBook;
-import seedu.address.model.fish.*;
 import seedu.address.model.fish.FeedingInterval;
+import seedu.address.model.fish.Fish;
+import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
@@ -88,12 +90,18 @@ public class FishBuilder {
 
     /**
      * Sets the {@code Species} of the {@code Fish} that we are building.
+     * @param species Species
      */
     public FishBuilder withSpecies(String species) {
         this.species = new Species(species);
         return this;
     }
 
+    /**
+     * Sets the {@code Tank} of the {@code Fish} that we are building.
+     * @param tank tank
+     * @return fishbuilder
+     */
     public FishBuilder withTank(String tank) {
         this.tank = new Tank(new TankName(tank), new AddressBook());
         return this;

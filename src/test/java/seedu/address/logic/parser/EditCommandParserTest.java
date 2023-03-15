@@ -1,7 +1,34 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.FEEDING_INTERVAL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.FEEDING_INTERVAL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_FEEDING_INTERVAL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_LAST_FED_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_SPECIES_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TANK_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.LAST_FED_DATE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.LAST_FED_DATE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TANK_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TANK_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEEDING_INTERVAL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEEDING_INTERVAL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_FED_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -19,7 +46,6 @@ import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
 import seedu.address.testutil.EditFishDescriptorBuilder;
 
@@ -67,7 +93,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_SPECIES_DESC, Species.MESSAGE_CONSTRAINTS); // invalid species
         // invalid feeding interval
         assertParseFailure(parser, "1" + INVALID_FEEDING_INTERVAL_DESC, FeedingInterval.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + INVALID_TANK_DESC, TankName.MESSAGE_CONSTRAINTS);//invalid tank
+        assertParseFailure(parser, "1" + INVALID_TANK_DESC, TankName.MESSAGE_CONSTRAINTS); //invalid tank
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid lastFedDate followed by valid species
@@ -100,7 +126,8 @@ public class EditCommandParserTest {
                 + TANK_DESC_BOB;
 
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withLastFedDate(VALID_LAST_FED_DATE_BOB).withSpecies(VALID_SPECIES_AMY).withFeedingInterval(VALID_FEEDING_INTERVAL_AMY)
+                .withLastFedDate(VALID_LAST_FED_DATE_BOB).withSpecies(VALID_SPECIES_AMY)
+                .withFeedingInterval(VALID_FEEDING_INTERVAL_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withTank(VALID_TANK_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -187,7 +214,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + SPECIES_DESC_BOB + INVALID_LAST_FED_DATE_DESC + FEEDING_INTERVAL_DESC_BOB
+        userInput = targetIndex.getOneBased() + SPECIES_DESC_BOB + INVALID_LAST_FED_DATE_DESC
+                + FEEDING_INTERVAL_DESC_BOB
                 + LAST_FED_DATE_DESC_BOB;
         descriptor = new EditFishDescriptorBuilder().withLastFedDate(VALID_LAST_FED_DATE_BOB)
                 .withSpecies(VALID_SPECIES_BOB).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB).build();
