@@ -94,7 +94,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         photo.setText(person.getPhoto().photoFilePath);
         remark.setText(person.getRemark().value);
-        performance.setText(person.getPerformance().value);
+        performance.setText(String.valueOf(person.getPerformance().value));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

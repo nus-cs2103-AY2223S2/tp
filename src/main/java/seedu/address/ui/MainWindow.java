@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Tutorial;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -139,6 +141,16 @@ public class MainWindow extends UiPart<Stage> {
         eventListPanel = new EventListPanel(filterTutorialList(logic.getFilteredTutorialList()));
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
+        //Listen for new changes to eventListPanel
+        logic.getFilteredTutorialList().addListener((ListChangeListener<Tutorial>) change -> {
+            while (change.next()) {
+                if (change.wasAdded() || change.wasRemoved()) {
+                    eventListPanel = new EventListPanel(filterTutorialList(logic.getFilteredTutorialList()));
+                    eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+                }
+            }
+        });
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -157,6 +169,7 @@ public class MainWindow extends UiPart<Stage> {
      * @return List of ObservableList
      */
     List<ObservableList<Tutorial>> filterTutorialList(ObservableList<Tutorial> tutorialList) {
+
         int skip = 3;
         //Store all the filtered lists into a single list
         List<ObservableList<Tutorial>> filteredList = new ArrayList<>();

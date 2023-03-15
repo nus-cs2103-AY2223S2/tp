@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,6 +16,7 @@ import seedu.address.model.person.Person;
 public class GreetingBar extends UiPart<Region> {
     private static final String FXML = "GreetingBar.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private String greetingText;
 
     @FXML
     private Label greetings;
@@ -34,7 +36,17 @@ public class GreetingBar extends UiPart<Region> {
             size = personList.size();
         }
 
-        String greetingText = "You have " + size + " tasks undone";
+        greetingText = "You have " + size + " students for this event";
         greetings.setText(greetingText);
+
+        personList.addListener((ListChangeListener<Person>) change -> {
+            while (change.next()) {
+                if (change.wasAdded() || change.wasRemoved()) {
+                    size = change.getList().size();
+                    greetingText = "You have " + size + " students for this event";
+                    greetings.setText(greetingText);
+                }
+            }
+        });
     }
 }
