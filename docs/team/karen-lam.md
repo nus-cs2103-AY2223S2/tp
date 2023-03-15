@@ -5,9 +5,9 @@ title: Karen Lam's Project Portfolio Page
 
 ### Project: The Intern's Ship
 
-**The Intern's Ship (TinS)** is a desktop application for computing students looking for internships to more efficiently manage 
-their numerous internship applications. Suited for fast typers, TinS uses a combination of Command Line Interface (CLI) 
-to collect user inputs and Graphic User Interface (GUI) to display relevant information for ease of use.
+**The Intern's Ship (TinS)** is a desktop application for computing students looking for internships to more efficiently
+manage their numerous internship applications. Suited for fast typers, TinS uses a combination of Command Line Interface
+(CLI) to collect user inputs and Graphic User Interface (GUI) to display relevant information for ease of use.
 
 Given below are my contributions to the project.
 
@@ -17,8 +17,8 @@ Given below are my contributions to the project.
     * Justification: This feature is vital for users to efficiently use TinS as it displays only essential information
       of all internship a user has, avoiding screen clutter.
     * Highlights: This enhancement affects existing commands.
-    
-* **New Feature**: 
+
+* **New Feature**:
     * to be added soon...
 
 * **Code contributed**: [link](https://github.com/Karen-Lam/tp)
