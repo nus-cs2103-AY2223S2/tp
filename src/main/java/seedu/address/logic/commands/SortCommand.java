@@ -27,6 +27,7 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.sortPersonList(category);
+        model.commitSocket();
         return new CommandResult(MESSAGE_SUCCESS + category);
     }
 

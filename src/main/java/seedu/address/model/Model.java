@@ -98,4 +98,29 @@ public interface Model {
      * Sorts the list of people by given {@code category}
      */
     void sortPersonList(String category);
+
+    /**
+     * Saves the current {@code Socket} state.
+     */
+    void commitSocket();
+
+    /**
+     * Restores the previous {@code Socket} state.
+     */
+    void undoSocket();
+
+    /**
+     * Restores a previously undone {@code Socket} state.
+     */
+    void redoSocket();
+
+    /**
+     * Check if there are any previous {@code Socket} states to restore.
+     */
+    boolean canUndoSocket();
+
+    /**
+     * Checks if there are any undone {@code Socket} states to restore.
+     */
+    boolean canRedoSocket();
 }
