@@ -1,0 +1,16 @@
+{
+  "persons": [ ],
+  "meetings" : [ {
+    "title" : "Invalid Meeting",
+    "dateTime" : "12/13/2022 12:00",
+    "attendees" : [ {
+      "name" : "Carl Kurz",
+      "phone" : "95352563",
+      "email" : "heinz@example.com",
+      "address" : "wall street",
+      "tagged" : [ ]
+    } ],
+    "location" : "School",
+    "description" : "Study for midterms"
+  } ]
+}

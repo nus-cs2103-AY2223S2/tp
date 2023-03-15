@@ -2,9 +2,11 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalMeetings.MEETING_A;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -89,8 +91,51 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getPersonByName_nullName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.getPersonByName(null));
+    }
+
+    @Test
+    public void getPersonByName_personNotInAddressBook_returnsNull() {
+        assertNull(modelManager.getPersonByName(ALICE.getName()));
+    }
+
+    @Test
+    public void getPersonByName_personInAddressBook_returnsPerson() {
+        modelManager.addPerson(ALICE);
+        assertEquals(ALICE, modelManager.getPersonByName(ALICE.getName()));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void addMeeting_nullMeeting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addMeeting(null));
+    }
+
+    @Test
+    public void addMeeting_meetingInAddressBook_returnsTrue() {
+        modelManager.addMeeting(MEETING_A);
+        assertTrue(modelManager.hasMeeting(MEETING_A));
+    }
+
+    @Test
+    public void hasMeeting_nullMeeting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasMeeting(null));
+    }
+
+    @Test
+    public void hasMeeting_meetingNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasMeeting(MEETING_A));
+    }
+
+    @Test
+    public void hasMeeting_meetingInAddressBook_returnsTrue() {
+        modelManager.addMeeting(MEETING_A);
+        assertTrue(modelManager.hasMeeting(MEETING_A));
     }
 
     @Test
