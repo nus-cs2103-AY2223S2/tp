@@ -36,17 +36,24 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
+    /**
+     * TBC
+     */
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
 
+    /**
+     * TBC
+     */
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
     }
+
 
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {

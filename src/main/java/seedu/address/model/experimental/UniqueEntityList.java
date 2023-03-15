@@ -2,12 +2,12 @@ package seedu.address.model.experimental;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.util.Iterator;
+import java.util.List;
+
 import seedu.address.model.entity.Entity;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-
-import java.util.Iterator;
-import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;

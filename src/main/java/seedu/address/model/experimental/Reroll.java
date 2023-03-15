@@ -22,12 +22,19 @@ public class Reroll implements ReadOnlyReroll {
 
     public Reroll() {}
 
-    // Creates a new Reroll model from an existing one
+    /**
+     * TBC
+     * @param toBeCopied TBC
+     */
     public Reroll(ReadOnlyReroll toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
+    /**
+     * TBC
+     * @param newData TBC
+     */
     public void resetData(ReadOnlyReroll newData) {
         requireNonNull(newData);
 
@@ -36,21 +43,38 @@ public class Reroll implements ReadOnlyReroll {
         mobs.resetData(newData.getMobs());
     }
 
+    /**
+     * TBC
+     * @return TBC
+     */
     @Override
     public ReadOnlyEntities<Item> getItems() {
         return items;
     }
 
+    /**
+     * TBC
+     * @return TBC
+     */
     @Override
     public ReadOnlyEntities<Character> getCharacters() {
         return characters;
     }
 
+    /**
+     * TBC
+     * @return TBC
+     */
     @Override
     public ReadOnlyEntities<Mob> getMobs() { return mobs; }
 
     // Entity level operations ===============
 
+    /**
+     * TBC
+     * @param e TBC
+     * @return TBC
+     */
     public boolean hasEntity(Entity e) {
         // Switch till it works
         if (e instanceof Item) {
@@ -64,6 +88,11 @@ public class Reroll implements ReadOnlyReroll {
             return false;
         }
     }
+
+    /**
+     * TBC
+     * @param e TBC
+     */
     public void addEntity(Entity e) {
         if (e instanceof Item) {
             items.addEntity((Item) e);
@@ -76,6 +105,11 @@ public class Reroll implements ReadOnlyReroll {
         }
     }
 
+    /**
+     * TBC
+     * @param target TBC
+     * @param edited TBC
+     */
     public void setEntity(Entity target, Entity edited) {
         if (!target.getClass().equals(edited.getClass())) {
             return; // throw error.
@@ -91,6 +125,10 @@ public class Reroll implements ReadOnlyReroll {
         }
     }
 
+    /**
+     * TBC
+     * @param key TBC
+     */
     public void deleteEntity(Entity key) {
         if (key instanceof Item) {
             items.deleteEntity((Item) key);
@@ -105,7 +143,10 @@ public class Reroll implements ReadOnlyReroll {
 
     // Misc ====================
 
-    // Returns some list from the 3 choices...
+    /**
+     * TBC
+     * @return TBC
+     */
     public ObservableList<? extends Entity> getList() {
         // not slap at all
         return characters.entities.asUnmodifiableObservableList();
