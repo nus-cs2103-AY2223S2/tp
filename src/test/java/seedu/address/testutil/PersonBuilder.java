@@ -10,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.socialmedia.SocialMedia;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,6 +30,7 @@ public class PersonBuilder {
     private Address address;
     private SocialMedia socialMedia;
     private Set<Tag> tags;
+    private Set<Module> modules;
     private Birthday birthday;
 
     /**
@@ -41,6 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         socialMedia = SocialMedia.create();
         tags = new HashSet<>();
+        modules = new HashSet<>();
     }
 
     /**
@@ -53,6 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress().get();
         socialMedia = personToCopy.getSocialMedia().orElse(SocialMedia.create());
         tags = new HashSet<>(personToCopy.getTags());
+        modules = new HashSet<>(personToCopy.getModules());
     }
 
     /**
@@ -69,6 +73,15 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code modules} into a {@code Set<Module>} and set it to the
+     * {@code Person} that we are building.
+     */
+    public PersonBuilder withModules(String... modules) {
+        this.modules = SampleDataUtil.getModuleSet(modules);
         return this;
     }
 
@@ -122,7 +135,7 @@ public class PersonBuilder {
      * @return a person with the given details.
      */
     public Person build() {
-        Person p = new Person(name, tags);
+        Person p = new Person(name, tags, modules);
 
         if (phone != null) {
             p.setPhone(phone);

@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.socialmedia.SocialMedia;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +27,7 @@ public class Person {
     // Data fields
     private Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Module> modules = new HashSet<>();
     private Optional<Birthday> birthday;
 
     // Social media fields
@@ -34,8 +36,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Set<Tag> tags) {
-        requireAllNonNull(name, tags);
+    public Person(Name name, Set<Tag> tags, Set<Module> modules) {
+        requireAllNonNull(name, tags, modules);
         this.name = name;
         this.phone = Optional.empty();
         this.email = Optional.empty();
@@ -43,6 +45,7 @@ public class Person {
         this.socialMedia = Optional.empty();
         this.tags.addAll(tags);
         this.birthday = Optional.empty();
+        this.modules.addAll(modules);
     }
 
     public void setPhone(Phone phone) {
@@ -99,6 +102,15 @@ public class Person {
     }
 
     /**
+     * Returns an immutable module set, which throws
+     * {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Module> getModules() {
+        return Collections.unmodifiableSet(modules);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -130,13 +142,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getModules().equals(getModules());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, modules);
     }
 
     @Override
@@ -158,6 +171,11 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        Set<Module> modules = getModules();
+        if (!modules.isEmpty()) {
+            builder.append("; Modules: ");
+            modules.forEach(builder::append);
         }
         return builder.toString();
     }

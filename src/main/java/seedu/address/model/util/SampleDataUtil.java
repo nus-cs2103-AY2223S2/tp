@@ -16,6 +16,7 @@ import seedu.address.model.socialmedia.Instagram;
 import seedu.address.model.socialmedia.SocialMedia;
 import seedu.address.model.socialmedia.Telegram;
 import seedu.address.model.socialmedia.WhatsApp;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,9 +24,8 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
-
         // Sample person 1
-        Person p1 = new Person(new Name("Alex Yeoh"), getTagSet("friends"));
+        Person p1 = new Person(new Name("Alex Yeoh"), getTagSet("friends"), getModuleSet("CS2107"));
         p1.setPhone(new Phone("87438807"));
         p1.setEmail(new Email("alexyeoh@example.com"));
         p1.setAddress(new Address("Blk 30 Geylang Street 29, #06-40"));
@@ -33,7 +33,7 @@ public class SampleDataUtil {
         p1.setBirthday(new Birthday("01/01/1990"));
 
         // Sample person 2
-        Person p2 = new Person(new Name("Bernice Yu"), getTagSet("colleagues", "friends"));
+        Person p2 = new Person(new Name("Bernice Yu"), getTagSet("colleagues", "friends"), getModuleSet("CS2105"));
         p2.setPhone(new Phone("99272758"));
         p2.setEmail(new Email("berniceyu@example.com"));
         p2.setAddress(new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"));
@@ -42,7 +42,8 @@ public class SampleDataUtil {
         p2.setBirthday(new Birthday("31/05/2000"));
 
         // Sample person 3
-        Person p3 = new Person(new Name("Charlotte Oliveiro"), getTagSet("neighbours"));
+        Person p3 = new Person(new Name("Charlotte Oliveiro"), getTagSet("neighbours"),
+                getModuleSet("CS2105", "ES2660"));
         p3.setPhone(new Phone("93210283"));
         p3.setEmail(new Email("charlotte@example.com"));
         p3.setAddress(new Address("Blk 11 Ang Mo Kio Street 74, #11-04"));
@@ -51,7 +52,7 @@ public class SampleDataUtil {
         p3.setBirthday(new Birthday("07/07/1993"));
 
         // Sample person 4
-        Person p4 = new Person(new Name("David Li"), getTagSet("family"));
+        Person p4 = new Person(new Name("David Li"), getTagSet("family"), getModuleSet());
         p4.setPhone(new Phone("91031282"));
         p4.setEmail(new Email("lidavid@example.com"));
         p4.setAddress(new Address("Blk 436 Serangoon Gardens Street 26, #16-43"));
@@ -59,7 +60,7 @@ public class SampleDataUtil {
         p4.setBirthday(new Birthday("18/06/1999"));
 
         // Sample person 5
-        Person p5 = new Person(new Name("Irfan Ibrahim"), getTagSet("classmates"));
+        Person p5 = new Person(new Name("Irfan Ibrahim"), getTagSet("classmates"), getModuleSet("CS1101S"));
         p5.setPhone(new Phone("92492021"));
         p5.setEmail(new Email("irfan@example.com"));
         p5.setAddress(new Address("Blk 47 Tampines Street 20, #17-35"));
@@ -68,7 +69,7 @@ public class SampleDataUtil {
         p5.setBirthday(new Birthday("29/02/2004"));
 
         // Sample person 6
-        Person p6 = new Person(new Name("Roy Balakrishnan"), getTagSet("colleagues"));
+        Person p6 = new Person(new Name("Roy Balakrishnan"), getTagSet("colleagues"), getModuleSet("CS1101S"));
         p6.setPhone(new Phone("92624417"));
         p6.setEmail(new Email("royb@example.com"));
         p6.setAddress(new Address("Blk 45 Aljunied Street 85, #11-31"));
@@ -98,4 +99,12 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a module set containing the list of strings given.
+     */
+    public static Set<Module> getModuleSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Module::new)
+                .collect(Collectors.toSet());
+    }
 }
