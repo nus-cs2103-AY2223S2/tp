@@ -41,7 +41,8 @@
     "address" : "michegan ave",
     "nric" : "S7238791J",
     "age" : "28",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "availableDates": ["2022-02-11 to 2022-02-12"]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",

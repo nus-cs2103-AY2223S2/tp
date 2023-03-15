@@ -10,8 +10,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 import static seedu.address.testutil.TypicalElderly.ALICE;
+import static seedu.address.testutil.TypicalElderly.BENSON;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
+import static seedu.address.testutil.TypicalPairs.PAIR3;
 import static seedu.address.testutil.TypicalVolunteers.BOB;
+import static seedu.address.testutil.TypicalVolunteers.ELLE;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,6 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -171,6 +175,14 @@ public class FriendlyLinkTest {
     @Test
     public void getPairList_modifyList_throwsUnsupportedOperationException() {
         // TODO: assertThrows(UnsupportedOperationException.class, () -> addressBook.getPairList().remove(0));
+    }
+
+    @Test
+    public void addPair_noOverlappingDates_throwsIllegalValueException() {
+        friendlyLink.addElderly(BENSON);
+        friendlyLink.addVolunteer(ELLE);
+        assertThrows(IllegalArgumentException.class, () ->
+                friendlyLink.addPair(PAIR3.getElderly().getNric(), PAIR3.getVolunteer().getNric()));
     }
 
 

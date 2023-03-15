@@ -47,7 +47,7 @@ public class TypicalElderly {
             .withNric("S0203151E").withRiskLevel("LOW").build();
     public static final Elderly ELLE = new ElderlyBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withAge("28")
-            .withNric("S7238791J").withRiskLevel("HIGH").build();
+            .withNric("S7238791J").withRiskLevel("HIGH").withAvailableDates("2023-04-01", "2023-04-12").build();
     public static final Elderly FIONA = new ElderlyBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").withAge("26")
             .withNric("S3576311B").withRiskLevel("MEDIUM").build();

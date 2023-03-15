@@ -45,7 +45,8 @@
     "nric" : "S7238791J",
     "age" : "28",
     "riskLevel" : "HIGH",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "availableDates": ["2023-04-01 to 2023-04-12"]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
