@@ -13,6 +13,8 @@ import seedu.vms.model.GroupName;
  * Represents an Appointment in the vaccine management system.
  */
 public class Appointment implements Comparable<Appointment> {
+    public static final String MESSAGE_START_TIME_CONSTRAINTS =
+            "Start time must be after the current time";
     public static final String MESSAGE_DURATION_CONSTRAINTS =
             "Start time must be before the end time";
     private final Index patientId;
@@ -25,6 +27,7 @@ public class Appointment implements Comparable<Appointment> {
      */
     public Appointment(Index patientId, LocalDateTime startTime, LocalDateTime endTime, GroupName vaccine) {
         requireAllNonNull(patientId, startTime, endTime, vaccine);
+        AppUtil.checkArgument(isValidAppointmentTime(startTime), MESSAGE_START_TIME_CONSTRAINTS);
         AppUtil.checkArgument(isValidDuration(startTime, endTime), MESSAGE_DURATION_CONSTRAINTS);
 
         this.patientId = patientId;
@@ -47,6 +50,10 @@ public class Appointment implements Comparable<Appointment> {
 
     public Index getPatient() {
         return patientId;
+    }
+
+    public static boolean isValidAppointmentTime(LocalDateTime startTime) {
+        return startTime.isAfter(LocalDateTime.now());
     }
 
     public static boolean isValidDuration(LocalDateTime startTime, LocalDateTime endTime) {
