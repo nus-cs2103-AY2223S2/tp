@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" maxHeight="1.7976931348623157E308" prefHeight="105.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane prefHeight="105.0" HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane" prefWidth="728.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="0.0" />
     </columnConstraints>
-      <HBox prefHeight="105.0" prefWidth="1416.0">
-         <children>
-          <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="105.0">
-            <padding>
-              <Insets bottom="5" left="15" right="5" top="5" />
-            </padding>
-            <children>
-            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="17.0" prefWidth="269.0" spacing="5">
+    <HBox prefWidth="1416.0">
+      <padding>
+        <Insets left="15.0" right="15.0" />
+      </padding>
+      <children>
+        <VBox alignment="CENTER_LEFT">
+          <children>
+            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="17.0" prefWidth="269.0">
               <Label fx:id="id" styleClass="cell_big_label" />
               <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
             </HBox>
@@ -30,37 +30,25 @@
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-            </children>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-          </VBox>
-            <VBox maxHeight="105.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label fx:id="isolatedEventList" text="\$isolatedEventList" />
-               </children>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </VBox>
-            <VBox maxHeight="105.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label fx:id="recurringEventList" text="\$recurringEventList" />
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </VBox>
-         </children>
-      </HBox>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
+          </children>
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS">
+          <children>
+            <Label fx:id="isolatedEventList" text="\$isolatedEventList" />
+          </children>
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS">
+          <children>
+            <Label fx:id="recurringEventList" text="\$recurringEventList" />
+          </children>
+        </VBox>
+      </children>
+      <GridPane.margin>
+        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+      </GridPane.margin>
+    </HBox>
+    <rowConstraints>
+      <RowConstraints />
+    </rowConstraints>
   </GridPane>
 </HBox>

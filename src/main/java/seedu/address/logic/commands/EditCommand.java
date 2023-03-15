@@ -14,13 +14,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.RecursiveAction;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -111,10 +114,11 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
-        IsolatedEventList isolatedEventList = new IsolatedEventList();
+        List<IsolatedEvent> originalIsolatedEvents = personToEdit.getIsolatedEventList().getList();
+        List<RecurringEvent> originalRecurringEvents = personToEdit.getRecurringEventList().getList();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedGroups,
-                isolatedEventList);
+                originalIsolatedEvents, originalRecurringEvents);
     }
 
     @Override

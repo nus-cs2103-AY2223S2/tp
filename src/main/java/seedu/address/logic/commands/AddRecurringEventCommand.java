@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -52,6 +53,7 @@ public class AddRecurringEventCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         model.addRecurringEvent(personToEdit, eventToAdd);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd) + " to "
                 + personToEdit.getName());

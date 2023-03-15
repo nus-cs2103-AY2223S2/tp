@@ -2,10 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
@@ -38,14 +35,16 @@ public class Person {
      */
 
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Group> groups,
-                  IsolatedEventList isolatedEventList) {
-        requireAllNonNull(name, phone, email, address, tags, groups, isolatedEventList);
+                  List<IsolatedEvent> isolatedEvents, List<RecurringEvent> recurringEvents) {
+        requireAllNonNull(name, phone, email, address, tags, groups, isolatedEvents, recurringEvents);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.groups.addAll(groups);
+        this.isolatedEventList.addAll(isolatedEvents);
+        this.recurringEventList.addAll(recurringEvents);
     }
 
     /**

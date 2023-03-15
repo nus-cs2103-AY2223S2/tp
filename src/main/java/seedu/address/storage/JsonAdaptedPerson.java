@@ -10,7 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.IsolatedEventList;
+import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -32,6 +33,8 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
+    private final List<JsonAdaptedIsolatedEvent> isolatedEvents = new ArrayList<>();
+    private final List<JsonAdaptedRecurringEvent> recurringEvents = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,7 +43,9 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
+            @JsonProperty("groups") List<JsonAdaptedGroup> groups,
+            @JsonProperty("isolatedEvents") List<JsonAdaptedIsolatedEvent> isolatedEvents,
+            @JsonProperty("recurringEvents") List<JsonAdaptedRecurringEvent> recurringEvents) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +55,12 @@ class JsonAdaptedPerson {
         }
         if (groups != null) {
             this.groups.addAll(groups);
+        }
+        if (isolatedEvents != null) {
+            this.isolatedEvents.addAll(isolatedEvents);
+        }
+        if (recurringEvents != null) {
+            this.recurringEvents.addAll(recurringEvents);
         }
     }
 
@@ -67,6 +78,16 @@ class JsonAdaptedPerson {
         groups.addAll(source.getGroups().stream()
                 .map(JsonAdaptedGroup::new)
                 .collect(Collectors.toList()));
+        isolatedEvents.addAll(source.getIsolatedEventList()
+                .getList()
+                .stream()
+                .map(JsonAdaptedIsolatedEvent::new)
+                .collect(Collectors.toList()));
+        recurringEvents.addAll(source.getRecurringEventList()
+                .getList()
+                .stream()
+                .map(JsonAdaptedRecurringEvent::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -83,6 +104,15 @@ class JsonAdaptedPerson {
 
         for (JsonAdaptedGroup group : groups) {
             personGroups.add(group.toModelType());
+        }
+
+        final List<IsolatedEvent> modelIsolatedEvents = new ArrayList<>();
+        final List<RecurringEvent> modelRecurringEvents = new ArrayList<>();
+        for (JsonAdaptedIsolatedEvent isolatedEvent : isolatedEvents) {
+            modelIsolatedEvents.add(isolatedEvent.toModelType());
+        }
+        for (JsonAdaptedRecurringEvent recurringEvent : recurringEvents) {
+            modelRecurringEvents.add(recurringEvent.toModelType());
         }
 
         if (name == null) {
@@ -120,7 +150,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Group> modelGroups = new HashSet<>(personGroups);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelGroups,
-                new IsolatedEventList());
+                modelIsolatedEvents, modelRecurringEvents);
     }
 
 }

@@ -1,7 +1,10 @@
 package seedu.address.model.event;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
@@ -67,6 +70,12 @@ public class IsolatedEventList {
         isolatedEvents.remove(originalEvent);
         isolatedEvents.add(editedEvent);
     }
+    public void addAll(List<IsolatedEvent> isolatedEvents) {
+        this.isolatedEvents.addAll(isolatedEvents);
+    }
+    public ArrayList<IsolatedEvent> getList() {
+        return new ArrayList<>(this.isolatedEvents);
+    }
 
     @Override
     public String toString() {
@@ -74,6 +83,7 @@ public class IsolatedEventList {
         int count = 1;
         for (IsolatedEvent ie : isolatedEvents) {
             output.append(count).append(". ").append(ie.toString()).append("\n");
+            count++;
         }
         return output.toString();
     }
