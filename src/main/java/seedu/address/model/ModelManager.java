@@ -119,7 +119,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Optional<Person> getPersonById(String id){
+    public Optional<Person> getPersonById(String id) {
         requireNonNull(id);
         return addressBook.getPersonById(id);
     }

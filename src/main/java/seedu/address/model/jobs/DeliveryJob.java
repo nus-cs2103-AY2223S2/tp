@@ -2,8 +2,6 @@ package seedu.address.model.jobs;
 
 import java.util.UUID;
 
-import seedu.address.model.person.Person;
-
 /**
  * Represents delivery jobs entities.
  */
@@ -24,7 +22,6 @@ public class DeliveryJob {
      * @param recepient
      * @param sender
      * @param deliverSlot
-     * @param packages
      * @param earning
      */
     public DeliveryJob(String recepient, String sender, String deliverSlot, String earning) {

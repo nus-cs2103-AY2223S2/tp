@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.address.logic.Logic;
-import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
@@ -47,6 +45,11 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
         this.displayedIndex = displayedIndex;
     }
 
+    /**
+     * fillInnerParts.
+     *
+     * @param ab
+     */
     public void fillInnerParts(ReadOnlyAddressBook ab) {
         deliveryJobFullDetail = new DeliveryJobFullDetail(job, displayedIndex);
         fullDeliveryJobDetailPlaceholder.getChildren().add(deliveryJobFullDetail.getRoot());

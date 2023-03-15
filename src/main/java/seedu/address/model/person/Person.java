@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 import seedu.address.model.tag.Tag;
 
@@ -28,6 +27,26 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(String personId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(personId, name, phone, email, address, tags);
+        this.personId = personId;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        this(genPersonId(name, phone), name, phone, email, address, tags);
+    }
+
     private static String genPersonId(Name name, Phone phone) {
         requireAllNonNull(name, phone);
         String prefix = name.fullName.toUpperCase();
@@ -36,23 +55,6 @@ public class Person {
         }
         prefix = prefix.substring(0, 3);
         return prefix.concat(phone.value.substring(0, 3));
-    }
-
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(genPersonId(name, phone), name, phone, email, address, tags);
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Person(String personId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.personId = personId;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
     }
 
     public String getPersonId() {

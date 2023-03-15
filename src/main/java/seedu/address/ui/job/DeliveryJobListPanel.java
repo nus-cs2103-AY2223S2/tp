@@ -45,6 +45,11 @@ public class DeliveryJobListPanel extends UiPart<Region> {
         });
     }
 
+    /**
+     * selectItem
+     *
+     * @param idx
+     */
     public void selectItem(int idx) {
         logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
         deliveryJobListView.getSelectionModel().select(idx);
