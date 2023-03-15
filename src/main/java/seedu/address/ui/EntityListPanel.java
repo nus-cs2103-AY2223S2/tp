@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.entity.Entity;
 
 /**
  * Panel containing the list of persons.
@@ -19,31 +19,31 @@ public class EntityListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(EntityListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Entity> personListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public EntityListPanel(ObservableList<Person> personList) {
+    public EntityListPanel(ObservableList<Entity> entityList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(entityList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<Entity> {
 
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Entity entity, boolean empty) {
+            super.updateItem(entity, empty);
 
-            if (empty || person == null) {
+            if (empty || entity == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(entity, getIndex() + 1).getRoot());
             }
         }
     }

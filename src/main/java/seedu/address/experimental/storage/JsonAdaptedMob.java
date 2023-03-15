@@ -7,25 +7,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
-import seedu.address.model.person.Name;
 
 /***/
 public class JsonAdaptedMob {
+
     private final String name;
     private final JsonAdaptedStats stats;
     private final int challengeRating;
     private final boolean isLegendary;
+
     /***/
     @JsonCreator
     JsonAdaptedMob(@JsonProperty("name") String name, @JsonProperty("stats") JsonAdaptedStats stats,
-                   @JsonProperty("challengeRating") int challengeRating,
-                   @JsonProperty("isLegendary") boolean isLegendary) {
+        @JsonProperty("challengeRating") int challengeRating,
+        @JsonProperty("isLegendary") boolean isLegendary) {
         this.name = name;
         this.stats = stats;
         this.challengeRating = challengeRating;
         this.isLegendary = isLegendary;
     }
+
     /***/
     public JsonAdaptedMob(Mob source) {
         name = source.getName().fullName;
@@ -33,6 +36,7 @@ public class JsonAdaptedMob {
         this.challengeRating = source.getChallengeRating();
         this.isLegendary = source.getLegendaryStatus();
     }
+
     /***/
     public Mob toModelType() throws IllegalValueException {
         // dont care
