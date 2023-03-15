@@ -43,7 +43,6 @@ public class SampleDataUtil {
         User sampleUser = getSampleUser();
         try {
             List<Person> samplePersons = getSamplePersons();
-            Collections.shuffle(samplePersons);
             samplePersons.stream()
                     .filter(Objects::nonNull)
                     .limit(size)
@@ -145,16 +144,22 @@ public class SampleDataUtil {
     public static List<Person> getSamplePersons() throws FileNotFoundException {
         File sampleDataFile = new File("src/main/java/seedu/address/model/util/sampleData.txt");
         Scanner scanner = new Scanner(sampleDataFile);
-        List<Person> personSet = new ArrayList<>();
-        int index = 1;
+        List<String> lines = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
             String nextLine = scanner.nextLine();
-            personSet.add(getSamplePerson(nextLine, index));
-            index++;
+            lines.add(nextLine);
         }
 
-        return personSet;
+        Collections.shuffle(lines);
+
+        List<Person> personList = new ArrayList<>();
+
+        for (int i = 0; i < lines.size(); i++) {
+            personList.add(getSamplePerson(lines.get(i), i + 1));
+        }
+
+        return personList;
     }
 }
 
