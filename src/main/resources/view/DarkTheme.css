@@ -221,6 +221,11 @@
      -fx-background-radius: 10;
 }
 
+.pane-with-rounded-corner-muted {
+     -fx-background-color: -fx-primary-background;
+     -fx-background-radius: 10;
+}
+
 .result-display {
     -fx-background-color: transparent;
 }
