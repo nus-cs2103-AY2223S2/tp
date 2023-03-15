@@ -17,6 +17,7 @@ public class FishCard extends UiPart<Region> {
     private static final String FXML = "FishListCard.fxml";
     private static final String NAME_HEADER = "Name: ";
     private static final String LAST_FED_DATE_HEADER = "Last fed on: ";
+    private static final String SPECIES_HEADER = "Species: ";
 
 
     /**
@@ -40,7 +41,7 @@ public class FishCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private Label species;
     @FXML
     private FlowPane tags;
 
@@ -56,7 +57,8 @@ public class FishCard extends UiPart<Region> {
         String lastFedDateLabelToBeSet = LAST_FED_DATE_HEADER + fish.getLastFedDate().value;
         lastFedDate.setText(lastFedDateLabelToBeSet);
         address.setText(fish.getAddress().value);
-        email.setText(fish.getEmail().value);
+        String speciesLabelToBeSet = SPECIES_HEADER + fish.getSpecies().species;
+        species.setText(speciesLabelToBeSet);
         fish.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
