@@ -109,7 +109,7 @@ public interface Model {
     ReadOnlyUserData getUserData();
 
     void setUser(User user);
-    
+
     boolean isValidTabIndex(Index index);
 
     TabUtil getTabUtil();
