@@ -1,7 +1,7 @@
 .theme-dark {
-    -fx-primary: derive(#1d1d1d, 20%);
-    -fx-primary-light: derive(#1d1d1d, 40%);
-    -fx-primary-dark: #2c2c2c;
+    -fx-primary: #2c2c2c;
+    -fx-primary-foreground: derive(#1d1d1d, 40%);
+    -fx-primary-background: derive(#1d1d1d, 20%);
     -fx-primary-text: white;
     -fx-secondary-text: black;
     -fx-list-odd: #333333;
@@ -11,11 +11,11 @@
 
 .theme-light {
     -fx-primary: #dddddd;
-    -fx-primary-light: derive(#dddddd, 40%);
-    -fx-primary-dark: derive(#dddddd, -10%);
+    -fx-primary-foreground: #eeeeee;
+    -fx-primary-background: white;
     -fx-primary-text: black;
     -fx-secondary-text: white;
-    -fx-list-odd: #cccccc;
+    -fx-list-odd: #cecece;
     -fx-list-even: #dbdbdb;
     -fx-list-selected: derive(#424d5f, 90%);
 }
@@ -206,24 +206,19 @@
 }
 
 .pane-with-border {
-     -fx-background-color: -fx-primary;
-     -fx-border-color: -fx-primary-dark;
-     -fx-border-top-width: 1px;
+     -fx-background-color: -fx-primary-background;
+     -fx-border-color: -fx-primary;
+     -fx-border-width: 1 0 0 0;
 }
 
 .pane-with-rounded-corner {
-     -fx-background-color: -fx-primary;
+     -fx-background-color: -fx-primary-foreground;
      -fx-background-radius: 10;
 }
 
-.pane-with-rounded-corner-light {
-      -fx-background-color: -fx-primary-light;
-      -fx-background-radius: 10;
-}
-
-.pane-with-rounded-corner-dark {
-      -fx-background-color: -fx-primary-dark;
-      -fx-background-radius: 10;
+.pane-with-rounded-corner-accented {
+     -fx-background-color: -fx-primary;
+     -fx-background-radius: 10;
 }
 
 .result-display {
@@ -232,10 +227,6 @@
 
 .result-display .content {
     -fx-background-color: transparent;
-}
-
-.status-bar {
-    -fx-background-color: -fx-primary;
 }
 
 .status-bar .label {
@@ -256,7 +247,7 @@
 }
 
 .context-menu {
-    -fx-background-color: -fx-primary-light;
+    -fx-background-color: -fx-primary-foreground;
     -fx-background-radius: 5;
     -fx-background-insets: 10 0 0 0;
     -fx-padding: 10 0 0 0;
@@ -267,7 +258,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: -fx-primary;
+    -fx-background-color: -fx-primary-background;
     -fx-padding: 5 10 5 10;
 }
 
@@ -281,7 +272,7 @@
 .menu-bar .menu-button:hover,
 .menu-bar .menu-button:focused,
 .menu-bar .menu-button:showing {
-    -fx-background-color: -fx-primary-dark;
+    -fx-background-color: -fx-primary;
     -fx-background-radius: 5;
 }
 
@@ -291,7 +282,7 @@
 
 .menu-item:hover,
 .menu-item:focused {
-    -fx-background-color: -fx-primary-dark;
+    -fx-background-color: -fx-primary;
 }
 
 .menu .left-container {
@@ -423,7 +414,7 @@
 }
 
 .tab:selected {
-    -fx-background-color: -fx-primary-dark;
+    -fx-background-color: -fx-primary;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
@@ -432,23 +423,18 @@
     -fx-text-fill: -fx-primary-text;
 }
 
-.tag-default,
-.tag-dark,
-.tag-light {
+.tag-accented,
+.tag-muted {
     -fx-background-radius: 5;
     -fx-padding: 2 4 2 4;
 }
 
-.tag-default {
+.tag-accented {
     -fx-background-color: -fx-primary;
 }
 
-.tag-dark {
-    -fx-background-color: -fx-primary-dark;
-}
-
-.tag-light {
-    -fx-background-color: -fx-primary-light;
+.tag-muted {
+    -fx-background-color: -fx-primary-foreground;
 }
 
 #cardPane {

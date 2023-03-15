@@ -5,11 +5,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
-<ScrollPane fx:id="scrollContainer" fitToWidth="true" hbarPolicy="NEVER" styleClass="pane-with-rounded-corner-light, p0"
+<ScrollPane fx:id="scrollContainer" fitToWidth="true" hbarPolicy="NEVER" styleClass="pane-with-rounded-corner, p0"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <VBox spacing="10" styleClass="pa">
         <HBox spacing="10" alignment="CENTER_LEFT">
-            <Label fx:id="id" styleClass="label-p, tag-dark" />
+            <Label fx:id="id" styleClass="label-p, tag-accented" />
             <ImageView fx:id="star" fitHeight="10" fitWidth="10">
                 <Image url="/images/star.png"/>
             </ImageView>
