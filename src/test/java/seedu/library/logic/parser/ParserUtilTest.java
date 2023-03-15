@@ -96,10 +96,10 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PROGRESS + WHITESPACE;
+    public void parseProgress_validValueWithWhitespace_returnsTrimmedProgress() throws Exception {
+        String progressWithWhitespace = WHITESPACE + VALID_PROGRESS + WHITESPACE;
         Progress expectedProgress = new Progress(VALID_PROGRESS);
-        assertEquals(expectedProgress, ParserUtil.parseProgress(phoneWithWhitespace));
+        assertEquals(expectedProgress, ParserUtil.parseProgress(progressWithWhitespace));
     }
 
     @Test

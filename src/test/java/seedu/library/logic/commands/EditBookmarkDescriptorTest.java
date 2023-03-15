@@ -40,7 +40,7 @@ public class EditBookmarkDescriptorTest {
                 .withName(VALID_TITLE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different phone -> returns false
+        // different progress -> returns false
         editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY).withProgress(VALID_PROGRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 

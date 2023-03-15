@@ -55,7 +55,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, TITLE_DESC_AMY + TITLE_DESC_BOB + PROGRESS_DESC_BOB + GENRE_DESC_BOB
                 + AUTHOR_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedBookmark));
 
-        // multiple phones - last phone accepted
+        // multiple progresses - last progress accepted
         assertParseSuccess(parser, TITLE_DESC_BOB + PROGRESS_DESC_AMY + PROGRESS_DESC_BOB + GENRE_DESC_BOB
                 + AUTHOR_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedBookmark));
 
@@ -90,7 +90,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_TITLE_BOB + PROGRESS_DESC_BOB + GENRE_DESC_BOB + AUTHOR_DESC_BOB,
                 expectedMessage);
 
-        // missing phone prefix
+        // missing progress prefix
         assertParseFailure(parser, TITLE_DESC_BOB + VALID_PROGRESS_BOB + GENRE_DESC_BOB + AUTHOR_DESC_BOB,
                 expectedMessage);
 

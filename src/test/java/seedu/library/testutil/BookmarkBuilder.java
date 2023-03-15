@@ -74,7 +74,7 @@ public class BookmarkBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Bookmark} that we are building.
+     * Sets the {@code Progress} of the {@code Bookmark} that we are building.
      */
     public BookmarkBuilder withProgress(String progress) {
         this.progress = new Progress(progress);

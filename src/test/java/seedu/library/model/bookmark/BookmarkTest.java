@@ -72,7 +72,7 @@ public class BookmarkTest {
         Bookmark editedAlice = new BookmarkBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
+        // different progress -> returns false
         editedAlice = new BookmarkBuilder(ALICE).withProgress(VALID_PROGRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

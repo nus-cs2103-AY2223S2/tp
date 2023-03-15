@@ -146,7 +146,7 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
+        // progress
         userInput = targetIndex.getOneBased() + PROGRESS_DESC_AMY;
         descriptor = new EditBookmarkDescriptorBuilder().withProgress(VALID_PROGRESS_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
