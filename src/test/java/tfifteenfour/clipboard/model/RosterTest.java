@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_MODULE_CS2105;
-import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
+import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
 import static tfifteenfour.clipboard.testutil.TypicalStudents.ALICE;
 import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalRoster;
@@ -24,63 +24,63 @@ import tfifteenfour.clipboard.testutil.StudentBuilder;
 
 public class RosterTest {
 
-    private final Roster addressBook = new Roster();
+    private final Roster roster = new Roster();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getStudentList());
+        assertEquals(Collections.emptyList(), roster.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> roster.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyRoster_replacesData() {
         Roster newData = getTypicalRoster();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        roster.resetData(newData);
+        assertEquals(newData, roster);
     }
 
     @Test
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
+        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).withTags(VALID_MODULE_CS2105)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         RosterStub newData = new RosterStub(newStudents);
 
-        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> roster.resetData(newData));
     }
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
+        assertThrows(NullPointerException.class, () -> roster.hasStudent(null));
     }
 
     @Test
     public void hasStudent_studentNotInRoster_returnsFalse() {
-        assertFalse(addressBook.hasStudent(ALICE));
+        assertFalse(roster.hasStudent(ALICE));
     }
 
     @Test
     public void hasStudent_studentInRoster_returnsTrue() {
-        addressBook.addStudent(ALICE);
-        assertTrue(addressBook.hasStudent(ALICE));
+        roster.addStudent(ALICE);
+        assertTrue(roster.hasStudent(ALICE));
     }
 
     @Test
     public void hasStudent_studentWithSameIdentityFieldsInRoster_returnsTrue() {
-        addressBook.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
+        roster.addStudent(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).withTags(VALID_MODULE_CS2105)
                 .build();
-        assertTrue(addressBook.hasStudent(editedAlice));
+        assertTrue(roster.hasStudent(editedAlice));
     }
 
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> roster.getStudentList().remove(0));
     }
 
     /**

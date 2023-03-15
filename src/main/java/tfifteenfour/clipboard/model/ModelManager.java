@@ -26,14 +26,14 @@ public class ModelManager implements Model {
     private Optional<Student> viewedStudent;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given roster and userPrefs.
      */
-    public ModelManager(ReadOnlyRoster addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyRoster roster, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(roster, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + roster + " and user prefs " + userPrefs);
 
-        this.roster = new Roster(addressBook);
+        this.roster = new Roster(roster);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.roster.getStudentList());
         viewedStudent = Optional.empty();
@@ -81,8 +81,8 @@ public class ModelManager implements Model {
     //=========== Roster ================================================================================
 
     @Override
-    public void setRoster(ReadOnlyRoster addressBook) {
-        this.roster.resetData(addressBook);
+    public void setRoster(ReadOnlyRoster roster) {
+        this.roster.resetData(roster);
     }
 
     @Override

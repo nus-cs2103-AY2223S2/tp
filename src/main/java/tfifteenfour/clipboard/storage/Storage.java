@@ -27,6 +27,6 @@ public interface Storage extends RosterStorage, UserPrefsStorage {
     Optional<ReadOnlyRoster> readRoster() throws DataConversionException, IOException;
 
     @Override
-    void saveRoster(ReadOnlyRoster addressBook) throws IOException;
+    void saveRoster(ReadOnlyRoster roster) throws IOException;
 
 }

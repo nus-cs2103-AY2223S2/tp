@@ -30,7 +30,7 @@ public class Roster implements ReadOnlyRoster {
     public Roster() {}
 
     /**
-     * Creates an AddressBook using the Students in the {@code toBeCopied}
+     * Creates an Roster using the Students in the {@code toBeCopied}
      */
     public Roster(ReadOnlyRoster toBeCopied) {
         this();
@@ -48,7 +48,7 @@ public class Roster implements ReadOnlyRoster {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Roster} with {@code newData}.
      */
     public void resetData(ReadOnlyRoster newData) {
         requireNonNull(newData);
@@ -87,7 +87,7 @@ public class Roster implements ReadOnlyRoster {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code Roster}.
      * {@code key} must exist in the address book.
      */
     public void removeStudent(Student key) {

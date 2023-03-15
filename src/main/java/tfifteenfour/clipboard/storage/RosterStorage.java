@@ -32,14 +32,14 @@ public interface RosterStorage {
 
     /**
      * Saves the given {@link ReadOnlyRoster} to the storage.
-     * @param addressBook cannot be null.
+     * @param roster cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveRoster(ReadOnlyRoster addressBook) throws IOException;
+    void saveRoster(ReadOnlyRoster roster) throws IOException;
 
     /**
      * @see #saveRoster(ReadOnlyRoster)
      */
-    void saveRoster(ReadOnlyRoster addressBook, Path filePath) throws IOException;
+    void saveRoster(ReadOnlyRoster roster, Path filePath) throws IOException;
 
 }

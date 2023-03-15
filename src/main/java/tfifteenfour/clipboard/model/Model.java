@@ -46,9 +46,9 @@ public interface Model {
     void setRosterFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code roster}.
      */
-    void setRoster(ReadOnlyRoster addressBook);
+    void setRoster(ReadOnlyRoster roster);
 
     /** Returns the Roster */
     ReadOnlyRoster getRoster();
