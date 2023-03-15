@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 Group: AY2223S2-CS2103T-T15-4
 
 # User Guide
