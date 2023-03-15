@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import java.util.Optional;
 import vimification.commons.core.Messages;
 import vimification.commons.core.index.Index;
 import vimification.logic.commands.exceptions.CommandException;
@@ -21,10 +22,12 @@ public class DeleteCommand extends LogicCommand {
 
     private final Index targetIndex;
 
+    private Optional<Task> deletedTask;
 
     public DeleteCommand(TaskList taskList, Index targetIndex) {
         super(taskList);
         this.targetIndex = targetIndex;
+        this.deletedTask = Optional.empty();
     }
 
     @Override
@@ -36,6 +39,7 @@ public class DeleteCommand extends LogicCommand {
         }
 
         Task taskToDelete = super.getTask(targetIndex.getZeroBased());
+        this.setDeletedTask(taskToDelete);
         model.deleteTask(taskToDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskToDelete));
     }
@@ -49,12 +53,23 @@ public class DeleteCommand extends LogicCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                        && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                        && targetIndex.equals(((DeleteCommand) other).targetIndex)
+                        && deletedTask.equals(((DeleteCommand) other).deletedTask)); // state check
     }
 
     // For possible testing. Can be removed prior to production
     public boolean targetIndexEquals(Object other) {
         return this.targetIndex.equals(((Index) other));
+    }
+
+    // For possible testing. Can be removed prior to production
+    public boolean deletedTaskEquals(Task task) {
+        return this.deletedTask.equals(Optional.ofNullable(task));
+    }
+
+    //=========== HELPER FUNC =============================================================
+    private void setDeletedTask(Task toDelete) {
+        this.deletedTask = Optional.ofNullable(toDelete);
     }
 }
 
