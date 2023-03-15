@@ -143,9 +143,9 @@ public class Exam {
      * @throws UnsupportedOperationException If the exam is not finished.
      */
     public Grade getGrade() {
-//        if (!status.equals(ExamStatus.Finished)) {
-//            throw new UnsupportedOperationException("Exam is not finished and does not have a grade.");
-//        }
+        //        if (!status.equals(ExamStatus.Finished)) {
+        //            throw new UnsupportedOperationException("Exam is not finished and does not have a grade.");
+        //        }
         return grade;
     }
 
