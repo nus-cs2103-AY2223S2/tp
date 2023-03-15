@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueTaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        tasks = new UniqueTaskList();
     }
 
     public AddressBook() {}
@@ -48,12 +53,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the task list with {@code tasks}.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setTasks(newData.getTaskList());
     }
 
     //// person-level operations
@@ -67,11 +80,61 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
+    }
+
+    /**
+     * Returns true if a task with the same index as {@code taskIndex} exists in the address book.
+     * @param taskIndex
+     * @return
+     */
+    public boolean hasTaskIndex(Index taskIndex) {
+        requireNonNull(taskIndex);
+        return tasks.checkIndex(taskIndex);
+    }
+
+    /**
+     * Returns true if a person with the same index as {@code personIndex} exists in the address book.
+     * @param personIndex
+     * @return
+     */
+    public boolean hasPersonIndex(Index personIndex) {
+        requireNonNull(personIndex);
+        return persons.checkIndex(personIndex);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    /**
+     * Adds a task to the address book.
+     * The task must not already exist in the address book.
+     */
+    public void addTask(Task p) {
+        tasks.add(p);
+    }
+
+    /**
+     * Marks the given task {@code task} as done.
+     */
+    public void markTask(Task task) {
+        task.mark();
+    }
+
+    /**
+     * Unmarks the given task {@code task} as not done.
+     */
+    public void unmarkTask(Task task) {
+        task.unmark();
     }
 
     /**
@@ -93,6 +156,29 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    // /**
+    //  * Assigns a task to a person.
+    //  * @param taskIndex
+    //  * @param personIndex
+    //  */
+    // public void assignTask(Index taskIndex, Index personIndex) {
+    //     String personName = persons.getPerson(personIndex).getName().toString();
+    //     System.out.println(personName);
+    //     tasks.assignTask(taskIndex, personIndex, personName);
+    // }
+
+    public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
+        tasks.assignTask(taskToAssign, assignedTask, taskIndex);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTask(Task key) {
+        tasks.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -104,6 +190,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
     }
 
     @Override
