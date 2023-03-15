@@ -76,6 +76,17 @@ public class Parent extends Person {
         children.add(student);
     }
 
+    /**
+     * A method that removes a Student from the Parent / NOK.
+     *
+     * @param student Student who is related to this Parent object.
+     */
+    public void removeStudent(Student student) {
+        if (children.contains(student)) {
+            children.remove(student);
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
