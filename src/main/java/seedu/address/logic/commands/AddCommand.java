@@ -7,8 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_END;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -26,15 +26,15 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_RATE + "RATE "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_TIMING_START + "START_TIME "
-            + PREFIX_TIMING_END + "END_TIME "
+            + PREFIX_TIME_START + "START_TIME "
+            + PREFIX_TIME_END + "END_TIME "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "DJ at wedding "
             + PREFIX_RATE + "100 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TIMING_START + "11-03-2023 11:00 "
-            + PREFIX_TIMING_END + "11-03-2023 17:00 "
+            + PREFIX_TIME_START + "11-03-2023 11:00 "
+            + PREFIX_TIME_END + "11-03-2023 17:00 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "dj";
 

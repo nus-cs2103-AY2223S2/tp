@@ -55,7 +55,7 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         rate.setText(Double.toString(person.getRate().value));
         address.setText(person.getAddress().value);
-        timing.setText(person.getTiming().startTime + " - " + person.getTiming().endTime);
+        timing.setText(person.getStartTime().toString() + " - " + person.getEndTime().toString());
         mark.setText(person.getMark().toString());
         contact.setText(person.getContact().toCardString());
         person.getTags().stream()

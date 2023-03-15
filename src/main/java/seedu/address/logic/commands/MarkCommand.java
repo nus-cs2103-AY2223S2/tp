@@ -15,7 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
-import seedu.address.model.person.Timing;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -65,10 +65,12 @@ public class MarkCommand extends Command {
         Rate updatedRate = eventToMark.getRate();
         Address updatedAddress = eventToMark.getAddress();
         Set<Tag> updatedTags = eventToMark.getTags();
-        Timing updatedTiming = eventToMark.getTiming();
+        Time updatedStartTime = eventToMark.getStartTime();
+        Time updatedEndTime = eventToMark.getEndTime();
         Contact updatedContact = eventToMark.getContact();
 
-        Event updatedEvent = new Event(updatedName, updatedRate, updatedAddress, updatedTiming, updatedTags);
+        Event updatedEvent = new Event(
+                updatedName, updatedRate, updatedAddress, updatedStartTime, updatedEndTime, updatedTags);
         updatedEvent.mark();
         updatedEvent.linkContact(updatedContact);
         return updatedEvent;

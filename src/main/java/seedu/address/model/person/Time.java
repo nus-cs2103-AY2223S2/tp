@@ -17,7 +17,7 @@ public class Time {
             "Time should be of the format dd-MM-uuuu hh:mm";
     public static final DateTimeFormatter LOCAL_DATE_TIME_FORMATTER = DateTimeFormatter
             .ofPattern("dd-MM-uuuu HH:mm");
-    public final LocalDateTime time;
+    private final LocalDateTime time;
 
     /**
      * Constructs a {@code Time}.
@@ -26,18 +26,14 @@ public class Time {
      */
     public Time(String time) {
         requireNonNull(time);
-        checkArgument(isValidTiming(time), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
         this.time = parseLocalDateTime(time);
     }
 
     /**
-     * Returns true if given strings give a valid timing.
+     * Returns true if given string gives a valid time.
      */
-    public static boolean isValidTiming(String test) {
-        return isValidTime(test);
-    }
-
-    private static boolean isValidTime(String test) {
+    public static boolean isValidTime(String test) {
         if (test == null) {
             return false;
         }

@@ -17,7 +17,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Rate;
-import seedu.address.model.person.Timing;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -65,8 +65,8 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         rate = Double.toString(source.getRate().value);
         address = source.getAddress().value;
-        startTime = source.getTiming().startTime;
-        endTime = source.getTiming().endTime;
+        startTime = source.getStartTime().toString();
+        endTime = source.getEndTime().toString();
         mark = source.getMark().toString();
         contact = source.getContact().toCardString();
         tagged.addAll(source.getTags().stream()
@@ -110,15 +110,16 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (startTime == null || endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Timing.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        if (!Timing.isValidTiming(startTime, endTime)) {
-            throw new IllegalValueException(Timing.MESSAGE_CONSTRAINTS);
+        if (!Time.isValidTime(startTime) || !Time.isValidTime(endTime)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
-        final Timing modelTiming = new Timing(startTime, endTime);
+        final Time modelStartTime = new Time(startTime);
+        final Time modelEndTime = new Time(endTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        Event event = new Event(modelName, modelRate, modelAddress, modelTiming, modelTags);
+        Event event = new Event(modelName, modelRate, modelAddress, modelStartTime, modelEndTime, modelTags);
         if (mark.equals("[X]")) {
             event.mark();
         }

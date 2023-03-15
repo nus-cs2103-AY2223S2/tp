@@ -7,8 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_END;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMING_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -53,10 +53,10 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_RATE + VALID_PHONE_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String START_TIME_DESC_AMY = " " + PREFIX_TIMING_START + VALID_START_TIME_AMY;
-    public static final String START_TIME_DESC_BOB = " " + PREFIX_TIMING_START + VALID_START_TIME_BOB;
-    public static final String END_TIME_DESC_AMY = " " + PREFIX_TIMING_END + VALID_END_TIME_AMY;
-    public static final String END_TIME_DESC_BOB = " " + PREFIX_TIMING_END + VALID_END_TIME_BOB;
+    public static final String START_TIME_DESC_AMY = " " + PREFIX_TIME_START + VALID_START_TIME_AMY;
+    public static final String START_TIME_DESC_BOB = " " + PREFIX_TIME_START + VALID_START_TIME_BOB;
+    public static final String END_TIME_DESC_AMY = " " + PREFIX_TIME_END + VALID_END_TIME_AMY;
+    public static final String END_TIME_DESC_BOB = " " + PREFIX_TIME_END + VALID_END_TIME_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -64,8 +64,8 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_RATE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     // string not formatted correctly not allowed for time
-    public static final String INVALID_START_TIME_DESC = " " + PREFIX_TIMING_START + " ";
-    public static final String INVALID_END_TIME_DESC = " " + PREFIX_TIMING_END + " ";
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_TIME_START + " ";
+    public static final String INVALID_END_TIME_DESC = " " + PREFIX_TIME_END + " ";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -77,11 +77,13 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTiming(VALID_START_TIME_AMY, VALID_END_TIME_AMY)
+                .withStartTime(VALID_START_TIME_AMY)
+                .withEndTime(VALID_END_TIME_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTiming(VALID_START_TIME_BOB, VALID_END_TIME_BOB)
+                .withStartTime(VALID_START_TIME_BOB)
+                .withEndTime(VALID_END_TIME_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
