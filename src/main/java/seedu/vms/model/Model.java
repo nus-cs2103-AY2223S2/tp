@@ -87,6 +87,14 @@ public interface Model {
      */
     void setPatient(int id, Patient editedPatient);
 
+    /**
+     * Replaces the given appointment {@code target} with {@code editedAppointment}.
+     * {@code target} must exist in the appointment manager.
+     * The appointment identity of {@code editedAppointment} must not be the same as
+     * another existing appointment in the appointment manager.
+     */
+    void setAppointment(int id, Appointment editedAppointment);
+
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableMap<Integer, IdData<Patient>> getFilteredPatientList();
 
