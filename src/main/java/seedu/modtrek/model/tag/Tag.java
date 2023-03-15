@@ -9,6 +9,21 @@ import static seedu.modtrek.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
+<<<<<<< HEAD
+=======
+    /**
+     * Represents all valid tags.
+     */
+    public enum ValidTag {
+        UNIVERSITY_LEVEL_REQUIREMENTS,
+        COMPUTER_SCIENCE_FOUNDATION,
+        COMPUTER_SCIENCE_BREADTH_AND_DEPTH,
+        IT_PROFESSIONALISM,
+        MATHEMATICS_AND_SCIENCES,
+        UNRESTRICTED_ELECTIVES
+    }
+
+>>>>>>> upstream/master
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be one of possible curriculum requirements";
 
     public final String tagName;

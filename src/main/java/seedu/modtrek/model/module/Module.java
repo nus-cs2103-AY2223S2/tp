@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.modtrek.model.tag.Tag;
 
 /**
- * Represents a module in ModTrek
+ * Represents a module in ModTrek.
  */
 public class Module {
 
@@ -127,8 +127,10 @@ public class Module {
                 .append(semesterYear);
 
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            builder.append("; Tags:");
+            for (Tag tag : tags) {
+                builder.append(" ").append(tag);
+            }
         }
 
         if (grade != null) {
