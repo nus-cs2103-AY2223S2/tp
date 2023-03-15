@@ -1,0 +1,8 @@
+{
+  "persons": [ {
+    "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "github": "9482424",
+    "email": "hans@example.com",
+    "linkedin": "linkedin.com/in/hans"
+  } ]
+}
