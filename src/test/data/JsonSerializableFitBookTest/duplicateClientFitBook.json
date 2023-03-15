@@ -8,7 +8,7 @@
     "calorie": "2345",
     "weight": "23",
     "gender": "m",
-    "appointments": [ "12-12-2020" ],
+    "appointments": [ "12-12-2020 18:30" ],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -18,6 +18,6 @@
     "calorie": "3220",
     "weight": "23",
     "gender": "m",
-    "appointments": [ "11-12-2020" ]
+    "appointments": [ "11-12-2020 18:30" ]
   } ]
 }
