@@ -10,17 +10,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * A list of expenses
+ * A list of expenses that enforces uniqueness between its elements and 
+ * does not allow nulls.
  */
 public class ExpenseList implements Iterable<Expense> {
 
     private final ObservableList<Expense> internalListOfExpenses = FXCollections.observableArrayList();
-
     private final ObservableList<Expense> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalListOfExpenses);
 
     /**
      * Adds an expense to the internal list of expenses
+     * @param newExpense Expense to add
      */
     public void add(Expense newExpense) {
         requireNonNull(newExpense);
@@ -29,6 +30,7 @@ public class ExpenseList implements Iterable<Expense> {
 
     /**
      * Removes an expense from the internal list of expenses
+     * @param toRemove Expense to remove
      */
     public void remove(Expense toRemove) {
         requireNonNull(toRemove);
@@ -37,6 +39,7 @@ public class ExpenseList implements Iterable<Expense> {
 
     /**
      * Sets an internal list of expenses with a new list of expenses
+     * @param replacementList List of expenses to replace the current list
      */
     public void setExpenseList(ExpenseList replacementList) {
         requireNonNull(replacementList);
@@ -45,16 +48,20 @@ public class ExpenseList implements Iterable<Expense> {
 
     /**
      * Sets an internal list of expenses with a new list of expenses
+     * @param listOfExpenses List of expenses to replace the current list
      */
     public void setExpenseList(List<Expense> listOfExpenses) {
         requireAllNonNull(listOfExpenses);
         internalListOfExpenses.setAll(listOfExpenses);
     }
-
+    
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
     public ObservableList<Expense> asUnmodifiableList() {
         return this.internalUnmodifiableList;
     }
-
+    
     @Override
     public Iterator<Expense> iterator() {
         return this.internalListOfExpenses.iterator();
@@ -65,13 +72,10 @@ public class ExpenseList implements Iterable<Expense> {
         if (this == other) {
             return true;
         }
-
         if (!(other instanceof ExpenseList)) {
             return false;
         }
-
         ExpenseList otherInUniqueList = (ExpenseList) other;
-
         return this.internalListOfExpenses.equals(otherInUniqueList.internalListOfExpenses);
     }
 

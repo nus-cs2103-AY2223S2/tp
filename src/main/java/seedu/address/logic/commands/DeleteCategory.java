@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a category identified using it's displayed index from the address book.
  */
 public class DeleteCategory extends Command {
 
@@ -26,6 +26,10 @@ public class DeleteCategory extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteCategory to delete the specified {@code Category}
+     * @param targetIndex index of the category in the filtered category list to delete
+     */
     public DeleteCategory(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

@@ -23,7 +23,7 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ExpenseTracker addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Expense> filteredExpenses;
@@ -35,12 +35,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyExpenseTracker addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new ExpenseTracker(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredExpenses = new FilteredList<>(this.addressBook.getExpenseList());
@@ -49,7 +49,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ExpenseTracker(), new UserPrefs());
     }
 
     public int getExpenseListCount() {
@@ -60,7 +60,8 @@ public class ModelManager implements Model {
         expenseListCount.set(filteredExpenses.size());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -95,15 +96,16 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== AddressBook
+    // ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setAddressBook(ReadOnlyExpenseTracker addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyExpenseTracker getAddressBook() {
         return addressBook;
     }
 
@@ -112,7 +114,6 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
-
 
     @Override
     public void deletePerson(Person target) {
@@ -142,10 +143,12 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -153,13 +156,11 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -180,7 +181,8 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
-    //=========== Category List Accessors =============================================================
+    // =========== Category List Accessors
+    // =============================================================
 
     @Override
     public ObservableList<Category> getFilteredCategoryList() {
@@ -205,10 +207,12 @@ public class ModelManager implements Model {
         return addressBook.hasCategory(category);
     }
 
-    //=========== Filtered Expense List Accessors =============================================================
+    // =========== Filtered Expense List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Expense} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Expense} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override

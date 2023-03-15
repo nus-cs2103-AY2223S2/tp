@@ -17,18 +17,21 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ExpenseTracker implements ReadOnlyExpenseTracker {
 
     private final UniquePersonList persons;
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication
+     * between constructors. See
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other
+     * ways to avoid duplication
+     * among constructors.
      */
     {
         persons = new UniquePersonList();
@@ -36,13 +39,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         expenses = new ExpenseList();
     }
 
-    public AddressBook() {
+    public ExpenseTracker() {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an ExpenseTracker using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ExpenseTracker(ReadOnlyExpenseTracker toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -66,9 +69,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ExpenseTracker} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyExpenseTracker newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setExpenses(newData.getExpenseList());
@@ -78,7 +81,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -87,7 +91,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns true if the given category exists in the list.
-     *
      * @param category The category to check for existence in the list.
      * @return true if the category exists in the list and false otherwise.
      */
@@ -98,12 +101,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns true if a category with the given name exists in the list.
-     *
-     * @param categoryName The name of the category to check for existence in the list.
-     * @return true if a category with the given name exists in the list and false otherwise.
+     * @param categoryName The name of the category to check for existence in the
+     *                     list.
+     * @return true if a category with the given name exists in the list and false
+     *         otherwise.
      */
     public boolean hasCategory(String categoryName) {
-        for (Category c: categories.asUnmodifiableList()) {
+        for (Category c : categories.asUnmodifiableList()) {
             if (Objects.equals(c.getCategoryName(), categoryName)) {
                 return true;
             }
@@ -124,9 +128,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with
+     * {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -135,8 +141,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Replaces the given category {@code target} in the list with
+     * {@code editedCategory}.
+     * {@code target} must exist in the address book.
+     * The category identity of {@code editedCategory} must not be the same as
+     * another existing category in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -172,8 +181,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof ExpenseTracker // instanceof handles nulls
+                        && persons.equals(((ExpenseTracker) other).persons));
     }
 
     @Override
@@ -181,16 +190,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
-
     public Category getCategoryInstance(String categoryName) {
-        for (Category c: categories.asUnmodifiableList()) {
+        for (Category c : categories.asUnmodifiableList()) {
             if (Objects.equals(c.getCategoryName(), categoryName)) {
                 return c;
             }
         }
         return null;
     }
-
 
     public void addExpense(Expense expense) {
         expenses.add(expense);

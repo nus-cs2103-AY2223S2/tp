@@ -15,12 +15,12 @@ import javafx.collections.ObservableList;
 public class UniqueCategoryList implements Iterable<Category> {
 
     private final ObservableList<Category> internalListOfCategories = FXCollections.observableArrayList();
-
     private final ObservableList<Category> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalListOfCategories);
 
     /**
-     * Check if a category is contained within the internal list of categories
+     * Returns true if the list contains an equivalent category as the given argument.
+     * @param toCheck Category to check for
      */
     public boolean contains(Category toCheck) {
         requireNonNull(toCheck);
@@ -29,7 +29,8 @@ public class UniqueCategoryList implements Iterable<Category> {
     }
 
     /**
-     * Adds a category to the internal list of categories
+     * Adds a category to the list.
+     * @param newCategory Category to add
      */
     public void add(Category newCategory) {
         requireNonNull(newCategory);
@@ -37,12 +38,13 @@ public class UniqueCategoryList implements Iterable<Category> {
         if (contains(newCategory)) {
             //Throw an exception here later
         }
-
         internalListOfCategories.add(newCategory);
     }
 
     /**
-     * Removes a category from the internal list of categories
+     * Replaces the category {@code target} in the list with {@code editedCategory}.
+     * {@code target} must exist in the list.
+     * @param toRemove Category to remove
      */
     public void remove(Category toRemove) {
         requireNonNull(toRemove);
@@ -53,7 +55,11 @@ public class UniqueCategoryList implements Iterable<Category> {
     }
 
     /**
-     * Sets an internal list of categories with a new list of categories
+     * Replaces the category {@code target} in the list with {@code editedCategory}.
+     * {@code target} must exist in the list.
+     * The category identity of {@code editedCategory} must not be 
+     * the same as another existing category in the list.
+     * @param target Category to replace
      */
     public void setCategoryList(UniqueCategoryList replacementList) {
         requireNonNull(replacementList);
@@ -61,19 +67,24 @@ public class UniqueCategoryList implements Iterable<Category> {
     }
 
     /**
-     * Sets an internal list of categories with a new list of categories
+     * Replaces the category {@code target} in the list with {@code editedCategory}.
+     * {@code target} must exist in the list.
+     * The category identity of {@code editedCategory} must not be
+     * the same as another existing category in the list.
+     * @param target Category to replace
      */
     public void setCategoryList(List<Category> listOfCategories) {
         requireAllNonNull(listOfCategories);
         if (!categoriesAreUnique(listOfCategories)) {
             //Throw an exception here
         }
-
         internalListOfCategories.setAll(listOfCategories);
     }
 
     /**
-     * Returns true if all categories are unique
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * This list will not contain any null categories.
+     * @param listOfCategories List of categories to check for uniqueness
      */
     public boolean categoriesAreUnique(List<Category> listOfCategories) {
         for (int i = 0; i < listOfCategories.size(); i++) {
@@ -85,7 +96,10 @@ public class UniqueCategoryList implements Iterable<Category> {
         }
         return true;
     }
-
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * This list will not contain any null categories.
+     */
     public ObservableList<Category> asUnmodifiableList() {
         return this.internalUnmodifiableList;
     }
@@ -100,13 +114,10 @@ public class UniqueCategoryList implements Iterable<Category> {
         if (this == other) {
             return true;
         }
-
         if (!(other instanceof UniqueCategoryList)) {
             return false;
         }
-
         UniqueCategoryList otherInUniqueList = (UniqueCategoryList) other;
-
         return this.internalListOfCategories.equals(otherInUniqueList.internalListOfCategories);
     }
 

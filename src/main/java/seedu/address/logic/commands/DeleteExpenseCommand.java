@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.expense.Expense;
 
 /**
- * Deletes an expense from FastTrack.
+ * Deletes an expense from the expense tracker.
  */
 public class DeleteExpenseCommand extends Command {
 
@@ -23,9 +23,11 @@ public class DeleteExpenseCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_EXPENSE_SUCCESS = "Deleted expense: %1$s";
-
     private final Index targetIndex;
-
+    /**
+     * Creates an DeleteExpenseCommand to delete the specified {@code Expense}
+     * @param targetIndex index of the expense in the filtered expense list to delete
+     */
     public DeleteExpenseCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

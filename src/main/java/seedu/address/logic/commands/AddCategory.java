@@ -9,12 +9,11 @@ import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 
 /**
- * Adds a person to the address book.
+ * Adds a category to the address book.
  */
 public class AddCategory extends Command {
 
     public static final String COMMAND_WORD = "addcat";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a category to FastTrack. "
             + "Parameters: "
             + PREFIX_CATEGORY + "CATEGORY_NAME"
@@ -22,14 +21,13 @@ public class AddCategory extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CATEGORY + "groceries"
             + PREFIX_SUMMARY + "all expenses related to groceries\n";
-
     public static final String MESSAGE_SUCCESS = "New category added: %1$s";
     public static final String MESSAGE_DUPLICATE_CATEGORY = "This category already exists in FastTrack";
 
     private final Category toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCategory to add the specified {@code Category}
      */
     public AddCategory(Category category) {
         requireNonNull(category);

@@ -26,6 +26,10 @@ public class JsonAdaptedExpense {
 
     /**
      * Constructs a {@code JsonAdaptedExpense} with the given expense details.
+     * @param name Name of the expense.
+     * @param amount Amount of the expense.
+     * @param date Date of the expense.
+     * @param category Category of the expense.
      */
     @JsonCreator
     public JsonAdaptedExpense(@JsonProperty("name") String name, @JsonProperty("amount") String amount,
@@ -40,6 +44,7 @@ public class JsonAdaptedExpense {
     /**
      * Converts a given {@code Expense} into this class for Jackson use.
      * https://stackoverflow.com/questions/530012/how-to-convert-java-util-date-to-java-sql-date
+     * @param source future changes to this will not affect the created {@code JsonAdaptedExpense}.
      */
     public JsonAdaptedExpense(Expense source) {
         name = source.getName();
@@ -50,11 +55,8 @@ public class JsonAdaptedExpense {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's
-     * {@code Expense} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in
-     *                               the adapted person.
+     * Converts this Jackson-friendly adapted expense object into the model's {@code Expense} object.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted expense.
      */
     public Expense toModelType() throws IllegalValueException {
         if (name == null) {
