@@ -1,9 +1,15 @@
+.help-message-card {
+    -fx-background-color: derive(#1d1d1d, 40%);
+    -fx-background-radius: 10;
+}
+
 #copyButton, #helpMessage {
     -fx-text-fill: white;
 }
 
 #copyButton {
     -fx-background-color: dimgray;
+    -fx-background-radius: 5;
 }
 
 #copyButton:hover {
@@ -16,4 +22,14 @@
 
 #helpMessageContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+#helpMessageTitle {
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+}
+
+#helpMessageUrl {
+    -fx-text-fill: lightblue;
+    -fx-font-size: 11pt;
 }

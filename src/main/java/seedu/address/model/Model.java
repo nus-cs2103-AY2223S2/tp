@@ -3,9 +3,14 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.ui.tab.TabInfo;
+import seedu.address.logic.ui.tab.TabUtil;
 import seedu.address.model.person.Person;
+import seedu.address.model.user.User;
 
 /**
  * The API of the Model component.
@@ -84,4 +89,32 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getUserDataFilePath();
+
+    /**
+     * Sets the user prefs' address book file path.
+     */
+    void setUserDataFilePath(Path userDataFilePath);
+
+    /**
+     * Replaces address book data with the data in {@code addressBook}.
+     */
+    void setUserData(ReadOnlyUserData userData);
+
+    /** Returns the UserData */
+    ReadOnlyUserData getUserData();
+
+    void setUser(User user);
+
+    boolean isValidTabIndex(Index index);
+
+    TabUtil getTabUtil();
+
+    ReadOnlyObjectProperty<TabInfo> getSelectedTab();
+
+    void setSelectedTab(Index index);
 }
