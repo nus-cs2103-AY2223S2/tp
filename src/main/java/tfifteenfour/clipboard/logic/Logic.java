@@ -36,8 +36,6 @@ public interface Logic {
 
     Optional<Student> getViewedStudent();
 
-    void removeViewedStudent();
-
     /**
      * Returns the user prefs' address book file path.
      */

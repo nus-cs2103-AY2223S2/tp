@@ -92,5 +92,4 @@ public interface Model {
 
     void updateViewedStudent(Student student);
 
-    void removeViewedStudent();
 }

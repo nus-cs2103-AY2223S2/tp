@@ -70,10 +70,6 @@ public class LogicManager implements Logic {
         return model.getViewedStudent();
     }
 
-    @Override
-    public void removeViewedStudent() {
-        model.removeViewedStudent();
-    }
 
     @Override
     public Path getRosterFilePath() {

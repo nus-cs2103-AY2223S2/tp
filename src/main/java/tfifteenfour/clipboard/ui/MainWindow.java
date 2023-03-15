@@ -200,13 +200,8 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             //use instanceof
 
-            if (RosterParser.parseCommand(commandText) instanceof ViewCommand) {
-                refreshViewPane();
-            }
+            refreshViewPane();
 
-            if (RosterParser.parseCommand(commandText) instanceof UploadCommand) {
-                refreshViewPane();
-            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

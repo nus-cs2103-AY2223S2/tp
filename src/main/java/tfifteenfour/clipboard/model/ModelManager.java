@@ -162,9 +162,5 @@ public class ModelManager implements Model {
         viewedStudent = Optional.of(newStudent);
     }
 
-    @Override
-    public void removeViewedStudent() {
-        viewedStudent = Optional.empty();
-    }
 
 }
