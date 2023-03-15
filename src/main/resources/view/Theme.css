@@ -304,6 +304,10 @@
     -fx-text-fill: black;
 }
 
+#titlePanel{
+    -fx-font-size: 30px;
+}
+
 
 #commandTypeLabel {
     -fx-font-size: 11px;

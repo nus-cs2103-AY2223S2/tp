@@ -24,7 +24,7 @@
       </stylesheets>
 
       <VBox>
-        <TextFlow fx:id="titlePanel" />
+        <TextFlow fx:id="titlePanel"/>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
