@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.APPLE;
-import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalInternships.getTypicalInternBuddy;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.exceptions.DuplicateInternshipException;
 import seedu.address.testutil.InternshipBuilder;
 
-public class AddressBookTest {
+public class InternBuddyTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final InternBuddy internBuddy = new InternBuddy();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getInternshipList());
+        assertEquals(Collections.emptyList(), internBuddy.getInternshipList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> internBuddy.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyInternBuddy_replacesData() {
+        InternBuddy newData = getTypicalInternBuddy();
+        internBuddy.resetData(newData);
+        assertEquals(newData, internBuddy);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Internship editedApple = new InternshipBuilder(APPLE).withDate(VALID_DATE_GOOGLE).withTags(VALID_TAG_BACK)
                 .build();
         List<Internship> newInternships = Arrays.asList(APPLE, editedApple);
-        AddressBookStub newData = new AddressBookStub(newInternships);
+        InternBuddyStub newData = new InternBuddyStub(newInternships);
 
-        assertThrows(DuplicateInternshipException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateInternshipException.class, () -> internBuddy.resetData(newData));
     }
 
     @Test
     public void hasInternship_nullInternship_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasInternship(null));
+        assertThrows(NullPointerException.class, () -> internBuddy.hasInternship(null));
     }
 
     @Test
-    public void hasInternship_internshipNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasInternship(APPLE));
+    public void hasInternship_internshipNotInInternBuddy_returnsFalse() {
+        assertFalse(internBuddy.hasInternship(APPLE));
     }
 
     @Test
-    public void hasInternship_internshipInAddressBook_returnsTrue() {
-        addressBook.addInternship(APPLE);
-        assertTrue(addressBook.hasInternship(APPLE));
+    public void hasInternship_internshipInInternBuddy_returnsTrue() {
+        internBuddy.addInternship(APPLE);
+        assertTrue(internBuddy.hasInternship(APPLE));
     }
 
     @Test
-    public void hasInternship_internshipWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addInternship(APPLE);
+    public void hasInternship_internshipWithSameIdentityFieldsInInternBuddy_returnsTrue() {
+        internBuddy.addInternship(APPLE);
         Internship editedApple = new InternshipBuilder(APPLE).withDate(VALID_DATE_GOOGLE).withTags(VALID_TAG_BACK)
                 .build();
-        assertTrue(addressBook.hasInternship(editedApple));
+        assertTrue(internBuddy.hasInternship(editedApple));
     }
 
     @Test
     public void getInternshipList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getInternshipList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> internBuddy.getInternshipList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose internships list can violate interface constraints.
+     * A stub ReadOnlyInternBuddy whose internships list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class InternBuddyStub implements ReadOnlyInternBuddy {
         private final ObservableList<Internship> internships = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Internship> internships) {
+        InternBuddyStub(Collection<Internship> internships) {
             this.internships.setAll(internships);
         }
 

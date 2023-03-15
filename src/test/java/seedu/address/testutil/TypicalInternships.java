@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.InternBuddy;
 import seedu.address.model.internship.Internship;
 
 /**
@@ -85,10 +85,10 @@ public class TypicalInternships {
     private TypicalInternships() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical internships.
+     * Returns an {@code InternBuddy} with all the typical internships.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static InternBuddy getTypicalInternBuddy() {
+        InternBuddy ab = new InternBuddy();
         for (Internship internship : getTypicalInternships()) {
             ab.addInternship(internship);
         }
