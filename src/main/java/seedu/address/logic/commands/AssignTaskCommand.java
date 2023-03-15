@@ -12,7 +12,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+
 
 /**
  * Assigns a task to a member of the team
@@ -67,8 +71,10 @@ public class AssignTaskCommand extends Command {
 
         Task taskToAssign = lastShownList.get(toAssignTask.getZeroBased());
         Person personToAssign = lastShownPersonList.get(toAssignMember.getZeroBased());
+        Task assignedTask = createAssignedTask(taskToAssign, toAssignMember, personToAssign.getName().toString());
 
-        model.assignTask(toAssignTask, toAssignMember);
+        //model.assignTask(toAssignTask, toAssignMember);
+        model.assignTask(taskToAssign, assignedTask, toAssignTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         String taskString = taskToAssign.toString();
         String personString = personToAssign.getName().toString();
@@ -81,6 +87,15 @@ public class AssignTaskCommand extends Command {
                 || (other instanceof AssignTaskCommand // instanceof handles nulls
                 && toAssignTask.equals(((AssignTaskCommand) other).toAssignTask)
                 && toAssignMember.equals(((AssignTaskCommand) other).toAssignMember));
+    }
+
+
+    private static Task createAssignedTask(Task taskToAssign, Index personToAssign, String personName) {
+        TaskDescription taskDesc = taskToAssign.getDescription();
+        Date taskDate = ((DeadlineTask) taskToAssign).getDate();
+        Task assignedTask = new DeadlineTask(taskDesc, taskDate);
+        assignedTask.assignPerson(personToAssign, personName);
+        return assignedTask;
     }
 
 }

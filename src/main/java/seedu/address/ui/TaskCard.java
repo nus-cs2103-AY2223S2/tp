@@ -46,7 +46,11 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskDesc.setText(task.getDescription().toString());
-        personAssigned.setText(task.getPersonAssignedName());
+        if (task.getPersonAssignedName() == null) {
+            personAssigned.setText("Not Assigned");
+        } else {
+            personAssigned.setText(task.getPersonAssignedName());
+        }
         taskDeadline.setText(((DeadlineTask) task).getDate().toString());
         personRole.setText("Member");
     }
