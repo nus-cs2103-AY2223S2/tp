@@ -75,6 +75,7 @@ public class UniqueClassLists implements Iterable<ClassList> {
         // We shall then proceed to create a new Class List to store this student.
         ClassList newClassList = new ClassList(className);
         newClassList.addStudent(student);
+        this.internalList.add(newClassList);
     }
 
     /**

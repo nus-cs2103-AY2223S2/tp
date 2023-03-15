@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -17,6 +18,7 @@ import taa.logic.commands.exceptions.CommandException;
 import taa.model.student.Name;
 import taa.model.student.SameStudentPredicate;
 import taa.model.student.Student;
+import taa.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -40,26 +42,21 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.classList = new ClassList(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.classList = new ClassList(addressBook);
         UniqueClassLists temp = new UniqueClassLists(this.classList);
         this.tutor = new Tutor(new Name("James"), new HashSet<>(), temp);
         filteredStudents = new FilteredList<>(this.classList.getStudentList());
         filteredClassLists = new FilteredList<ClassList>(this.tutor.getClassList());
+
+        for (Student student : this.classList.getUniqueStudentList()) {
+            addStudentToTaggedClasses(student);
+        }
+
     }
 
     public ModelManager() {
         this(new ClassList(), new UserPrefs());
-    }
-
-    /**
-     * Check whether the tutor already has the class.
-     * @param classList the class name to be checked.
-     * @return Boolean variable indicating whether it's contained.
-     */
-    public boolean hasClassList(ClassList classList) {
-        requireNonNull(classList);
-        return tutor.containsClassList(classList);
     }
 
     @Override
@@ -95,8 +92,6 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== ClassList ================================================================================
-
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.classList.resetData(addressBook);
@@ -125,12 +120,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addClassList(ClassList toAdd) {
-        tutor.addClass(toAdd);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-    }
-
-    @Override
     public void updateStudent(Student target) {
         classList.updateStudent(target);
     }
@@ -140,6 +129,40 @@ public class ModelManager implements Model {
         CollectionUtil.requireAllNonNull(target, editedStudent);
 
         classList.setStudent(target, editedStudent);
+    }
+
+
+    //=========== ClassList ================================================================================
+
+    /**
+     * Check whether the tutor already has the class.
+     * @param classList the class name to be checked.
+     * @return Boolean variable indicating whether it's contained.
+     */
+    public boolean hasClassList(ClassList classList) {
+        requireNonNull(classList);
+        return tutor.containsClassList(classList);
+    }
+
+    @Override
+    public void addClassList(ClassList toAdd) {
+        tutor.addClass(toAdd);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    /**
+     * Adds a student to all the class lists he/she is tagged with.
+     * Creates new class lists to add the student into, if required.
+     * @param student The student to include in all of his/her tagged classes.
+     */
+    public void addStudentToTaggedClasses(Student student) {
+        requireNonNull(student);
+
+        Set<Tag> classTags = student.getClassTags();
+        for (Tag tag : classTags) {
+            String className = tag.tagName;
+            this.tutor.addStudentToClass(student, className);
+        }
     }
 
     //=========== Filtered Student List Accessors =============================================================
