@@ -25,7 +25,7 @@ public class Image {
         this.imageName = DEFAULT_IMAGE;
     }
 
-    public String getPath() {
+    public String getFullString() {
         return IMAGE_PATH + imageName;
     }
 
