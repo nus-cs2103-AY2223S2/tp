@@ -9,5 +9,10 @@
     {
       "name": "lab"
     }
+  ],
+  "labs": [
+    {
+      "name": "tutorial"
+    }
   ]
 }

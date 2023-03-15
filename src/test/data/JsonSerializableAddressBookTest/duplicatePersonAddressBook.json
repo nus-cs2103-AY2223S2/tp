@@ -34,5 +34,19 @@
       "attachments": [],
       "notes": []
     }
-  ]
+  ],
+  "labs" : [ {
+    "name" : "test",
+    "eventDate" : "2023-03-15",
+    "students" : [ ],
+    "attachments" : [ ],
+    "notes" : [ ]
+    },
+    {
+      "name" : "test",
+      "eventDate" : "2023-03-15",
+      "students" : [ ],
+      "attachments" : [ ],
+      "notes" : [ ]
+    } ]
 }

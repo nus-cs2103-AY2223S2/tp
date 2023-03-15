@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -39,7 +38,6 @@ public class EventListPanel extends UiPart<Region> {
 
         eventListViewMidCol.setItems((ObservableList<Lab>) eventList.get(1));
         eventListViewMidCol.setCellFactory(listView -> new LabListViewCell());
-        //bindListViewsScroll();
     }
 
     /**
