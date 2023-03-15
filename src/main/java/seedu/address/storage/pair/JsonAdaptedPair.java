@@ -11,8 +11,6 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
-import seedu.address.model.person.exceptions.ElderlyNotFoundException;
-import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 import seedu.address.storage.JsonSerializable;
 
