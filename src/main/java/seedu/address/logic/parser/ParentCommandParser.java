@@ -1,7 +1,17 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -71,6 +81,13 @@ public class ParentCommandParser {
         }
     }
 
+    /**
+     * Function to parse the "student class add" command
+     * @param studentClass class of student
+     * @param argMultimap mapper for each prefix
+     * @return A ParentAddCommand
+     * @throws ParseException
+     */
     private ParentAddCommand addCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER, PREFIX_NAME, PREFIX_RELATIONSHIP)
                 || !argMultimap.getPreamble().isEmpty()
@@ -92,15 +109,20 @@ public class ParentCommandParser {
         return new ParentAddCommand(parent);
     }
 
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
     public ParentDeleteCommand deleteCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
-        try {
-            Class sc = ParserUtil.parseStudentClass(studentClass);
-            Phone phoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            return new ParentDeleteCommand(sc, phoneNumber);
-        } catch (ParseException pe) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
+        Class sc = ParserUtil.parseStudentClass(studentClass);
+        Phone phoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        return new ParentDeleteCommand(sc, phoneNumber);
     }
 
     /**
