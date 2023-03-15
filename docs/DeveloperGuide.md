@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,42 +258,117 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech-savvy small home-based bakery business owners
+* < 40 years old — receptive to using digital platforms
+* Owns E-commerce businesses that:
+  * Use social media platforms / their own websites (that does not track supplier/customer information) to sell their products
+  * Lack manpower/time to track logistics
+  * Has < 5 employees
+  * Has < 200 customers per month
+  * Restocks from suppliers seasonally
+* Has a need to manage a significant number of contacts
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using _CLI_ apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+Our application:
+* allows for consolidation of contacts & tasks information which makes it easier to manage them. (no real-time automation)
+* serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
+* enables faster contact management compared to a typical mouse/_GUI_ driven app
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a / an …​                                                         | I want to …​                                                                      | So that I can…​                                           |
+|----------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| `* * *`  | new user                                                                | see instructions on how to use the app                                               | refer to the instructions when learning how to use the app   |
+| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                   | easily find them in a single place                           |
+| `* * *`  | home bakery owner                                                       | add orders into my _order_ list                                                      | efficiently keep track of my orders                          |
+| `* * *`  | home bakery owner who has lots of deadlines to meet                     | add _tasks_, such as ordering ingredients                                            | keep track of my to-do list                                  |
+| `* * *`  | familiar user                                                           | delete existing _supplier_ information                                               | ensure that the supplier contacts keyed in are correct       |
+| `* * *`  | familiar user                                                           | delete existing orders from my order list                                            | clear my order list of orders that are not required anymore  |
+| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                              | remove tasks that I no longer need to complete               |
+| `* *`    | expert user                                                             | edit existing supplier information                                                   | keep my records accurate and up-to-date                      |
+| `* *`    | expert user                                                             | edit existing information about orders                                               | keep my order details accurate and up-to-date                |
+| `* *`    | expert user                                                             | edit existing task information                                                       | easily correct any wrong information keyed in                |
+| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                           | have a clearer view of ‘who supplies what’ at a glance       |
+| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details | have a record of everything                                  |
+| `* *`    | business owner on a time crunch                                         | mark tasks as Done or Not Done (Task status)                                         | keep track of my deadlines and plan my time well             |
+| `* *`    | forgetful business owner                                                | look for supplier information using keywords like name, phone number or email        | quickly obtain the details of the contact when I forget them |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Home bakery owner`)
 
-**Use case: Delete a person**
+
+**Use case: Add a new task**
+
+MSS
+
+1. Home bakery owner requests to add a new task.
+2. Home bakery owner enters an add task command with the required information.
+3. Trackr saves the new task to the system.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The Home bakery owner does not enter all required information.
+  Trackr shows an error message.
+
+  Use case ends without adding any task.
+
+**Use case: Add a new supplier**
+
+MSS
+
+1. Home bakery owner requests to add a new supplier information.
+2. Home bakery owner enters an add supplier command with the required information.
+3. Trackr saves the new supplier to the system.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The Home bakery owner does not enter all required information.
+Trackr shows an error message.
+
+  Use case ends without adding any supplier.
+
+**Use case: Add a new order**
+
+MSS
+
+1. Home bakery owner requests to add a new order.
+2. Home bakery owner enters an add order command with the required information.
+3. Trackr saves the new order to the system.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The Home bakery owner does not enter all required information.
+Trackr shows an error message.
+
+    Use case ends without adding any order.
+
+
+**Use case: Delete an order**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Home bakery owner requests to list orders
+2.  Trackr shows a list of orders
+3.  Home bakery owner requests to delete a specific order in the list
+4.  Trackr deletes the order
 
     Use case ends.
 
@@ -304,24 +380,226 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Trackr shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Delete a task in list**
+
+**MSS**
+
+1.  Home bakery owner requests to list todos
+2.  Trackr shows a list of todos
+3.  Home bakery owner requests to delete a specific todo in the list
+4.  Trackr deletes the order
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Trackr shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a supplier**
+
+**MSS**
+
+1.  Home bakery owner requests to list suppliers
+2.  Trackr shows a list of suppliers
+3.  Home bakery owner requests to delete a specific supplier in the list
+4.  Trackr deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Trackr shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit an order**
+
+MSS
+
+1. Home bakery owner requests to list orders
+2. Trackr shows a list of orders
+3. Home bakery owner enters an edit order command with the index of the order and the updated information
+4. Trackr updates the order details with the new information
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+Use case ends.
+* 3a. The Home bakery owner enters an invalid index.
+Trackr displays an error message.
+
+    Use case ends.
+
+
+
+**Use case: Edit a supplier information**
+
+MSS
+
+1. Home bakery owner requests to list suppliers.
+2. Trackr shows a list of suppliers.
+3. Home bakery owner enters an edit supplier command with the index of the supplier and the updated information.
+4. Trackr updates the supplier details with the new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+* 3a. The Home bakery owner enters an invalid index.
+Trackr displays an error message.
+
+    Use case ends.
+
+**Use case: Edit a task information**
+
+MSS
+
+1. Home bakery owner requests to list tasks.
+2. Trackr shows a list of tasks.
+3. Home bakery owner enters an edit task command with the index of the task and the updated information.
+4. Trackr updates the task details with the new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The Home bakery owner enters an invalid index.
+  Trackr displays an error message.
+
+  Use case ends.
+
+
+**Use case: Finding a task**
+
+MSS
+
+1. Home bakery owner requests to find an order.
+2. Home bakery owner enters the find_order command with the desired search criteria.
+3. Trackr searches for orders that match the given criteria.
+4. Trackr displays a list of orders that match the criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The Home bakery owner does not enter any search criteria.
+  Trackr displays an error message.
+  Use case ends.
+* 4a. No order matches the given search criteria.
+  Trackr displays a message indicating no matching order is found.
+
+  Use case ends.
+
+
+**Use case: Finding a supplier**
+
+MSS
+
+1. Home bakery owner requests to find a supplier.
+2. Home bakery owner enters the find_supplier command with the desired search criteria.
+3. Trackr searches for suppliers that match the given criteria.
+4. Trackr displays a list of suppliers that match the criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The Home bakery owner does not enter any search criteria.
+  Trackr displays an error message.
+
+  Use case ends.
+* 4a. No supplier matches the given search criteria.
+  Trackr displays a message indicating no matching supplier is found.
+
+  Use case ends.
+
+**Use case: Finding a task**
+
+MSS
+
+1. Home bakery owner requests to find a task.
+2. Home bakery owner enters the find_task command with the desired search criteria.
+3. Trackr searches for tasks that match the given criteria.
+4. Trackr displays a list of tasks that match the criteria.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The Home bakery owner does not enter any search criteria.
+Trackr displays an error message.
+Use case ends.
+* 4a. No task matches the given search criteria.
+Trackr displays a message indicating no matching task is found.
+
+  Use case ends.
+
+**Use case: Switch to another tab**
+
+MSS
+
+1. Home bakery owner requests to switch to another tab.
+2. Home bakery owner enters the tab command with the target tab.
+3. Trackr switches to the target tab.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The Home bakery owner enters an invalid target tab.
+Trackr displays an error message.
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should be able to hold up to 1000 supplier contacts without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Command-Line Interface
+* **GUI**: Graphical User Interface
+* **Supplier**: Supplier refers to someone who the home bakery owner seasonally or frequently orders goods from
+* **Order**: Order refers to the customers' orders the home bakery owner accepts
+* **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
+* **Tag**: Tags are associated with suppliers, users can tag the supplier with any keyword they want, number of tags are not restricted
+* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted
 
 --------------------------------------------------------------------------------------------------------------------
 

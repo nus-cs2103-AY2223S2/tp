@@ -1,0 +1,13 @@
+{
+  "suppliers": [ ],
+  "tasks" : [ {
+    "taskName": "Valid Task",
+    "taskDeadline": "01/01/2023",
+    "taskStatus": "N"
+  }, {
+    "taskName": "Task with invalid status",
+    "taskDadline": "01/01/2023",
+    "taskStatus": "X"
+  } ],
+  "orders" : [ ]
+}

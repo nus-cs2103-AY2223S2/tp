@@ -1,0 +1,220 @@
+package trackr.model;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static trackr.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static trackr.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static trackr.testutil.Assert.assertThrows;
+import static trackr.testutil.TypicalOrders.CHEESE_CAKES;
+import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES;
+import static trackr.testutil.TypicalSuppliers.ALICE;
+import static trackr.testutil.TypicalSuppliers.BENSON;
+import static trackr.testutil.TypicalTasks.BUY_FLOUR_N;
+import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+import trackr.commons.core.GuiSettings;
+import trackr.model.supplier.NameContainsKeywordsPredicate;
+import trackr.model.task.TaskContainsKeywordsPredicate;
+import trackr.testutil.OrderListBuilder;
+import trackr.testutil.SupplierListBuilder;
+import trackr.testutil.TaskListBuilder;
+
+public class ModelManagerTest {
+
+    private ModelManager modelManager = new ModelManager();
+
+    @Test
+    public void constructor() {
+        assertEquals(new UserPrefs(), modelManager.getUserPrefs());
+        assertEquals(new GuiSettings(), modelManager.getGuiSettings());
+        assertEquals(new SupplierList(), new SupplierList(modelManager.getSupplierList()));
+        assertEquals(new TaskList(), new TaskList(modelManager.getTaskList()));
+        assertEquals(new OrderList(), new OrderList(modelManager.getOrderList()));
+    }
+
+    @Test
+    public void setUserPrefs_nullUserPrefs_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
+    }
+
+    @Test
+    public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
+        UserPrefs userPrefs = new UserPrefs();
+        userPrefs.setTrackrFilePath(Paths.get("trackr/file/path"));
+        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
+        modelManager.setUserPrefs(userPrefs);
+        assertEquals(userPrefs, modelManager.getUserPrefs());
+
+        // Modifying userPrefs should not modify modelManager's userPrefs
+        UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
+        userPrefs.setTrackrFilePath(Paths.get("new/trackr/file/path"));
+        assertEquals(oldUserPrefs, modelManager.getUserPrefs());
+    }
+
+    @Test
+    public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
+    }
+
+    @Test
+    public void setGuiSettings_validGuiSettings_setsGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        modelManager.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, modelManager.getGuiSettings());
+    }
+
+    @Test
+    public void setTrackrFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setTrackrFilePath(null));
+    }
+
+    @Test
+    public void setTrackrFilePath_validPath_setsAddressBookFilePath() {
+        Path path = Paths.get("trackr/file/path");
+        modelManager.setTrackrFilePath(path);
+        assertEquals(path, modelManager.getTrackrFilePath());
+    }
+
+    @Test
+    public void hasPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasSupplier(null));
+    }
+
+    @Test
+    public void hasPerson_personNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasSupplier(ALICE));
+    }
+
+    @Test
+    public void hasPerson_personInAddressBook_returnsTrue() {
+        modelManager.addSupplier(ALICE);
+        assertTrue(modelManager.hasSupplier(ALICE));
+    }
+
+    @Test
+    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredSupplierList().remove(0));
+    }
+
+    @Test
+    public void hasTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
+    }
+
+    @Test
+    public void hasTask_taskNotInTaskList_returnsFalse() {
+        assertFalse(modelManager.hasTask(SORT_INVENTORY_N));
+    }
+
+    @Test
+    public void hasTask_taskInTaskList_returnsTrue() {
+        modelManager.addTask(SORT_INVENTORY_N);
+        assertTrue(modelManager.hasTask(SORT_INVENTORY_N));
+    }
+
+    @Test
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
+    }
+
+    @Test
+    public void hasOrder_nullOrder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasOrder(null));
+    }
+
+    @Test
+    public void hasOrder_orderNotInOrderList_returnsFalse() {
+        assertFalse(modelManager.hasOrder(CHOCOLATE_COOKIES));
+    }
+
+    @Test
+    public void hasOrder_orderInOrderList_returnsTrue() {
+        modelManager.addOrder(CHOCOLATE_COOKIES);
+        assertTrue(modelManager.hasOrder(CHOCOLATE_COOKIES));
+    }
+
+    @Test
+    public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredOrderList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        SupplierList addressBook = new SupplierListBuilder().withSupplier(ALICE).withSupplier(BENSON).build();
+        SupplierList differentAddressBook = new SupplierList();
+        TaskList taskList = new TaskListBuilder().withTask(SORT_INVENTORY_N).withTask(BUY_FLOUR_N).build();
+        TaskList differentTaskList = new TaskList();
+        OrderList orderList = new OrderListBuilder().withOrder(CHOCOLATE_COOKIES).withOrder(CHEESE_CAKES).build();
+        OrderList differentOrderList = new OrderList();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(addressBook, taskList, orderList, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, taskList, orderList, userPrefs);
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+        // same object -> returns true
+        assertTrue(modelManager.equals(modelManager));
+
+        // null -> returns false
+        assertFalse(modelManager.equals(null));
+
+        // different types -> returns false
+        assertFalse(modelManager.equals(5));
+
+        // different addressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, taskList, orderList, userPrefs)));
+
+        // different taskList -> returns false
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentTaskList,
+                differentOrderList, userPrefs)));
+
+        // different filteredPersonList -> returns false
+        String[] personKeywords = ALICE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredSupplierList(new NameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // different filteredTaskList -> returns false
+        String[] taskKeywords = SORT_INVENTORY_N.getTaskName().fullTaskName.split("\\s+");
+        TaskContainsKeywordsPredicate sortPredicate = new TaskContainsKeywordsPredicate();
+        sortPredicate.setTaskNameKeywords(Arrays.asList(taskKeywords));
+        modelManager.updateFilteredTaskList(sortPredicate);
+        assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
+        // different addressBook and different taskList -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentTaskList,
+                differentOrderList, userPrefs)));
+
+        // different filteredPersonList and different filteredTaskList -> returns false
+        personKeywords = ALICE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredSupplierList(new NameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
+        taskKeywords = BUY_FLOUR_N.getTaskName().fullTaskName.split("\\s+");
+        TaskContainsKeywordsPredicate buyPredicate = new TaskContainsKeywordsPredicate();
+        buyPredicate.setTaskNameKeywords(Arrays.asList(taskKeywords));
+        modelManager.updateFilteredTaskList(buyPredicate);
+        assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
+        // different userPrefs -> returns false
+        UserPrefs differentUserPrefs = new UserPrefs();
+        differentUserPrefs.setTrackrFilePath(Paths.get("differentFilePath"));
+
+        assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, differentUserPrefs)));
+    }
+}
