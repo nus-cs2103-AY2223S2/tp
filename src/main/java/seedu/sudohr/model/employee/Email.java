@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Employee's email in the sudohr book.
+ * Represents an Employee's email in SudoHR.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
@@ -36,7 +36,7 @@ public class Email {
     /**
      * Constructs an {@code Email}.
      *
-     * @param email A valid email sudohr.
+     * @param email A valid email address.
      */
     public Email(String email) {
         requireNonNull(email);

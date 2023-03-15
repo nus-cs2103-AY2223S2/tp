@@ -76,7 +76,7 @@ public class AddDepartmentCommandTest {
         // null -> returns false
         assertFalse(addHumanResourcesCommand.equals(null));
 
-        // different person -> returns false
+        // different employee -> returns false
         assertFalse(addHumanResourcesCommand.equals(addEngineeringCommand));
     }
     /**
@@ -139,7 +139,7 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasClashingEmail(Employee person) {
+        public boolean hasClashingEmail(Employee employee) {
             throw new AssertionError("This method should not be called.");
         };
 
@@ -149,7 +149,7 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasClashingPhoneNumber(Employee person) {
+        public boolean hasClashingPhoneNumber(Employee employee) {
             throw new AssertionError("This method should not be called.");
         };
 

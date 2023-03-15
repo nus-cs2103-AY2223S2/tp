@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Employee> getFilteredEmployeeList();
 
     /**
-     * Returns the user prefs' sudohr book file path.
+     * Returns the user prefs' SudoHR file path.
      */
     Path getSudoHrFilePath();
 

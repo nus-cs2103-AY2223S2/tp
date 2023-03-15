@@ -3,10 +3,10 @@ package seedu.sudohr.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.sudohr.testutil.Assert.assertThrows;
-import static seedu.sudohr.testutil.TypicalPersons.ALICE;
-import static seedu.sudohr.testutil.TypicalPersons.HOON;
-import static seedu.sudohr.testutil.TypicalPersons.IDA;
-import static seedu.sudohr.testutil.TypicalPersons.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalEmployees.ALICE;
+import static seedu.sudohr.testutil.TypicalEmployees.HOON;
+import static seedu.sudohr.testutil.TypicalEmployees.IDA;
+import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -52,13 +52,13 @@ public class JsonSudoHrStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonSudoHr.json"));
+    public void readAddressBook_invalidEmployeeAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidEmployeeSudoHr.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonSudoHr.json"));
+    public void readAddressBook_invalidAndValidEmployeeAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidEmployeeSudoHr.json"));
     }
 
     @Test

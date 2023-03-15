@@ -15,7 +15,7 @@ import seedu.sudohr.model.employee.Phone;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code SudoHr} with sample data.
+ * Contains utility methods for populating SudoHR with sample data.
  */
 public class SampleDataUtil {
     public static Employee[] getSampleEmployees() {
@@ -45,11 +45,11 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlySudoHr getSampleSudoHr() {
-        SudoHr sampleAb = new SudoHr();
+        SudoHr sudoHr = new SudoHr();
         for (Employee sampleEmployee : getSampleEmployees()) {
-            sampleAb.addEmployee(sampleEmployee);
+            sudoHr.addEmployee(sampleEmployee);
         }
-        return sampleAb;
+        return sudoHr;
     }
 
     /**

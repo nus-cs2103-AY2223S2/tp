@@ -34,7 +34,7 @@ public class DepartmentTest {
         // different type -> returns false
         assertFalse(HUMAN_RESOURCES.equals(5));
 
-        // different person -> returns false
+        // different employee -> returns false
         assertFalse(HUMAN_RESOURCES.equals(ENGINEERING));
 
         // different name -> returns false

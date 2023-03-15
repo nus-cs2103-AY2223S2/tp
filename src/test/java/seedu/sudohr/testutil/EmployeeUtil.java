@@ -17,26 +17,26 @@ import seedu.sudohr.model.tag.Tag;
 /**
  * A utility class for Employee.
  */
-public class PersonUtil {
+public class EmployeeUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code employee}.
      */
-    public static String getAddCommand(Employee person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Employee employee) {
+        return AddCommand.COMMAND_WORD + " " + getEmployeeDetails(employee);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code employee}'s details.
      */
-    public static String getPersonDetails(Employee person) {
+    public static String getEmployeeDetails(Employee employee) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_ID + person.getId().value + " ");
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_ID + employee.getId().value + " ");
+        sb.append(PREFIX_NAME + employee.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + employee.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + employee.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + employee.getAddress().value + " ");
+        employee.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
@@ -45,7 +45,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditEmployeeDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditEmployeeDescriptor descriptor) {
+    public static String getEditEmployeeDescriptorDetails(EditEmployeeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getId().ifPresent(id -> sb.append(PREFIX_ID).append(id.value).append(" "));
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));

@@ -11,11 +11,11 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import static seedu.sudohr.testutil.Assert.assertThrows;
-import static seedu.sudohr.testutil.TypicalPersons.ALICE;
-import static seedu.sudohr.testutil.TypicalPersons.AMY;
-import static seedu.sudohr.testutil.TypicalPersons.BENSON;
-import static seedu.sudohr.testutil.TypicalPersons.BOB;
-import static seedu.sudohr.testutil.TypicalPersons.CARL;
+import static seedu.sudohr.testutil.TypicalEmployees.ALICE;
+import static seedu.sudohr.testutil.TypicalEmployees.AMY;
+import static seedu.sudohr.testutil.TypicalEmployees.BENSON;
+import static seedu.sudohr.testutil.TypicalEmployees.BOB;
+import static seedu.sudohr.testutil.TypicalEmployees.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,8 +30,8 @@ import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.model.employee.exceptions.DuplicatePhoneNumberException;
 import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
-import seedu.sudohr.testutil.AddressBookBuilder;
-import seedu.sudohr.testutil.PersonBuilder;
+import seedu.sudohr.testutil.EmployeeBuilder;
+import seedu.sudohr.testutil.SudoHrBuilder;
 
 public class ModelManagerTest {
 
@@ -76,147 +76,147 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setSudoHrFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setSudoHrFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setSudoHrFilePath_validPath_setsSudoHrFilePath() {
         Path path = Paths.get("sudohr/book/file/path");
         modelManager.setSudoHrFilePath(path);
         assertEquals(path, modelManager.getSudoHrFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasEmployee_nullEmployee_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasEmployee(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasEmployee_employeeNotInSudoHr_returnsFalse() {
         assertFalse(modelManager.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasEmployee_employeeInSudoHr_returnsTrue() {
         modelManager.addEmployee(ALICE);
         assertTrue(modelManager.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdInAddressBook_returnsTrue() {
+    public void hasEmployee_employeeWithSameIdInSudoHr_returnsTrue() {
         modelManager.addEmployee(BOB);
-        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertTrue(modelManager.hasEmployee(editedAlice));
     }
 
     @Test
-    public void hasClashingEmail_nullPerson_throwsNullPointerException() {
+    public void hasClashingEmail_nullEmployee_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasClashingEmail(null));
     }
 
     @Test
-    public void hasClashingEmail_personNotInAddressBook_returnsFalse() {
+    public void hasClashingEmail_employeeNotInSudoHr_returnsFalse() {
         assertFalse(modelManager.hasClashingEmail(ALICE));
     }
 
     @Test
-    public void hasClashingEmail_personWithSameIdInAddressBook_returnsFalse() {
+    public void hasClashingEmail_employeeWithSameIdInSudoHr_returnsFalse() {
         modelManager.addEmployee(BOB);
-        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertFalse(modelManager.hasClashingEmail(editedAlice));
     }
 
     @Test
-    public void hasClashingEmail_personWithDifferentIdInAddressBook_returnsTrue() {
+    public void hasClashingEmail_employeeWithDifferentIdInSudoHr_returnsTrue() {
         modelManager.addEmployee(ALICE);
-        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertTrue(modelManager.hasClashingEmail(editedAlice));
     }
 
     @Test
-    public void hasClashingEmail_personWithSameEmailOnlyInAddressBook_returnsTrue() {
+    public void hasClashingEmail_employeeWithSameEmailOnlyInSudoHr_returnsTrue() {
         modelManager.addEmployee(BOB);
-        Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .build();
         assertTrue(modelManager.hasClashingEmail(editedAlice));
     }
 
     @Test
-    public void hasClashingPhoneNumber_nullPerson_throwsNullPointerException() {
+    public void hasClashingPhoneNumber_nullEmployee_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasClashingPhoneNumber(null));
     }
 
     @Test
-    public void hasClashingPhoneNumber_personNotInAddressBook_returnsFalse() {
+    public void hasClashingPhoneNumber_employeeNotInSudoHr_returnsFalse() {
         assertFalse(modelManager.hasClashingPhoneNumber(ALICE));
     }
 
     @Test
-    public void hasClashingPhoneNumber_personWithSameIdInAddressBook_returnsFalse() {
+    public void hasClashingPhoneNumber_employeeWithSameIdInSudoHr_returnsFalse() {
         modelManager.addEmployee(BOB);
-        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertFalse(modelManager.hasClashingPhoneNumber(editedAlice));
     }
 
     @Test
-    public void hasClashingPhoneNumber_personWithDifferentIdInAddressBook_returnsTrue() {
+    public void hasClashingPhoneNumber_employeeWithDifferentIdInSudoHr_returnsTrue() {
         modelManager.addEmployee(ALICE);
-        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         assertTrue(modelManager.hasClashingPhoneNumber(editedAlice));
     }
 
     @Test
-    public void hasClashingPhoneNumber_personWithSamePhoneNumberOnlyInAddressBook_returnsTrue() {
+    public void hasClashingPhoneNumber_employeeWithSamePhoneNumberOnlyInSudoHr_returnsTrue() {
         modelManager.addEmployee(BOB);
-        Employee editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withPhone(VALID_PHONE_BOB)
                 .build();
         assertTrue(modelManager.hasClashingPhoneNumber(editedAlice));
     }
 
-    /** Tests adding of a person **/
+    /** Tests adding of a employee **/
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullEmployee_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.addEmployee(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
+    public void add_duplicateEmployee_throwsDuplicateEmployeeException() {
         modelManager.addEmployee(ALICE);
         assertThrows(DuplicateEmployeeException.class, () -> modelManager.addEmployee(ALICE));
     }
 
     @Test
-    public void add_personWithSameId_throwsDuplicatePersonException() {
+    public void add_employeeWithSameId_throwsDuplicateEmployeeException() {
         modelManager.addEmployee(BOB);
-        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        Employee editedAlice = new EmployeeBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertThrows(DuplicateEmployeeException.class, () -> modelManager.addEmployee(editedAlice));
     }
 
     @Test
-    public void add_differentPersonWithSamePhoneNumber_throwsDuplicatePhoneNumberException() {
+    public void add_differentEmployeeWithSamePhoneNumber_throwsDuplicatePhoneNumberException() {
         modelManager.addEmployee(BOB);
-        Employee editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        Employee editedAlice = new EmployeeBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertThrows(DuplicatePhoneNumberException.class, () -> modelManager.addEmployee(editedAlice));
     }
 
     @Test
-    public void add_differentPersonWithSameEmail_throwsDuplicateEmailException() {
+    public void add_differentEmployeeWithSameEmail_throwsDuplicateEmailException() {
         modelManager.addEmployee(BOB);
-        Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        Employee editedAlice = new EmployeeBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertThrows(DuplicateEmailException.class, () -> modelManager.addEmployee(editedAlice));
     }
 
-    // first error accounted is that of duplicate person
+    // first error accounted is that of duplicate employee
     @Test
-    public void add_personWithSameIdEmailPhone_throwsDuplicatePersonException() {
+    public void add_employeeWithSameIdEmailPhone_throwsDuplicateEmployeeException() {
         modelManager.addEmployee(BOB);
-        Employee editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .build();
         assertThrows(DuplicateEmployeeException.class, () -> modelManager.addEmployee(editedAlice));
@@ -224,33 +224,33 @@ public class ModelManagerTest {
 
     // first error accounted is that of duplicate phone
     @Test
-    public void add_personWithSameEmailPhone_throwsDuplicatePhoneNumberException() {
+    public void add_employeeWithSameEmailPhone_throwsDuplicatePhoneNumberException() {
         modelManager.addEmployee(BOB);
-        Employee editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .build();
         assertThrows(DuplicatePhoneNumberException.class, () -> modelManager.addEmployee(editedAlice));
     }
 
 
-    /** Tests editing of a person **/
+    /** Tests editing of a employee **/
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
+    public void setEmployee_nullTargetEmployee_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setEmployee(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
+    public void setEmployee_nullEditedEmployee_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setEmployee(ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
+    public void setEmployee_targetEmployeeNotInList_throwsEmployeeNotFoundException() {
         assertThrows(EmployeeNotFoundException.class, () -> modelManager.setEmployee(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
+    public void setEmployee_editedEmployeeIsSameEmployee_success() {
         modelManager.addEmployee(ALICE);
         modelManager.setEmployee(ALICE, ALICE);
         ModelManager expectedModelManager = new ModelManager();
@@ -259,14 +259,14 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setPerson_editedPersonAlreadyExists_throwsDuplicatePersonException() {
+    public void setEmployee_editedEmployeeAlreadyExists_throwsDuplicateEmployeeException() {
         modelManager.addEmployee(ALICE);
         modelManager.addEmployee(BOB);
         assertThrows(DuplicateEmployeeException.class, () -> modelManager.setEmployee(ALICE, BOB));
     }
 
     @Test
-    public void setPerson_editedPersonChangeAllUnique_success() {
+    public void setEmployee_editedEmployeeChangeAllUnique_success() {
         modelManager.addEmployee(ALICE);
         modelManager.addEmployee(CARL);
         modelManager.setEmployee(ALICE, BOB);
@@ -278,10 +278,10 @@ public class ModelManagerTest {
 
     // edited employee kept same id (ie change every other field)
     @Test
-    public void setPerson_editedPersonHasSameIdentityOnly_success() {
+    public void setEmployee_editedEmployeeHasSameIdentityOnly_success() {
         modelManager.addEmployee(BOB);
         modelManager.addEmployee(CARL);
-        Employee newBob = new PersonBuilder(ALICE).withId(VALID_ID_BOB)
+        Employee newBob = new EmployeeBuilder(ALICE).withId(VALID_ID_BOB)
                 .build();
         modelManager.setEmployee(BOB, newBob);
 
@@ -293,11 +293,11 @@ public class ModelManagerTest {
 
     // edited employee changed id only (ie no change to other fields)
     @Test
-    public void setPerson_editedPersonChangeUniqueIdOnly_success() {
+    public void setEmployee_editedEmployeeChangeUniqueIdOnly_success() {
         modelManager.addEmployee(ALICE);
         modelManager.addEmployee(BOB);
         modelManager.addEmployee(CARL);
-        Employee newBob = new PersonBuilder(BOB).withId(VALID_ID_AMY)
+        Employee newBob = new EmployeeBuilder(BOB).withId(VALID_ID_AMY)
                 .build();
         modelManager.setEmployee(BOB, newBob);
 
@@ -309,13 +309,13 @@ public class ModelManagerTest {
         assertEquals(expectedModelManager, modelManager);
     }
 
-    // edited person actually made no change to its own id
+    // edited employee actually made no change to its own id
     @Test
-    public void setPerson_editedPersonNoChangeToId_success() {
+    public void setEmployee_editedEmployeeNoChangeToId_success() {
         modelManager.addEmployee(BOB);
         modelManager.addEmployee(AMY);
         modelManager.addEmployee(ALICE);
-        Employee newBob = new PersonBuilder(BOB).withId(VALID_ID_BOB)
+        Employee newBob = new EmployeeBuilder(BOB).withId(VALID_ID_BOB)
                 .build();
         modelManager.setEmployee(BOB, newBob);
 
@@ -327,12 +327,12 @@ public class ModelManagerTest {
         assertEquals(expectedModelManager, modelManager);
     }
 
-    // edited person changed to an id that already exists
+    // edited employee changed to an id that already exists
     @Test
-    public void setPerson_editedIdAlreadyExists_throwsDuplicatePersonException() {
+    public void setEmployee_editedIdAlreadyExists_throwsDuplicateEmployeeException() {
         modelManager.addEmployee(ALICE);
         modelManager.addEmployee(BOB);
-        Employee sameIdAsBob = new PersonBuilder().withId(VALID_ID_BOB)
+        Employee sameIdAsBob = new EmployeeBuilder().withId(VALID_ID_BOB)
                 .build();
         assertThrows(DuplicateEmployeeException.class, () -> modelManager.setEmployee(ALICE, sameIdAsBob));
     }
@@ -341,13 +341,13 @@ public class ModelManagerTest {
 
     // TODO test with some fields changed, including id
 
-    // edited person change to non-duplicated phone number
+    // edited employee change to non-duplicated phone number
     @Test
-    public void setPerson_editedPersonNewPhoneIsUnique_success() {
+    public void setEmployee_editedEmployeeNewPhoneIsUnique_success() {
         modelManager.addEmployee(ALICE);
         modelManager.addEmployee(BOB);
         modelManager.addEmployee(CARL);
-        Employee newBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_AMY)
+        Employee newBob = new EmployeeBuilder(BOB).withPhone(VALID_PHONE_AMY)
                 .build();
         modelManager.setEmployee(BOB, newBob);
 
@@ -359,13 +359,13 @@ public class ModelManagerTest {
         assertEquals(expectedModelManager, modelManager);
     }
 
-    // edited person made no change to phone number
+    // edited employee made no change to phone number
     @Test
-    public void setPerson_editedPersonPhoneNoChange_success() {
+    public void setEmployee_editedEmployeePhoneNoChange_success() {
         modelManager.addEmployee(ALICE);
         modelManager.addEmployee(BOB);
         modelManager.addEmployee(CARL);
-        Employee newBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_BOB)
+        Employee newBob = new EmployeeBuilder(BOB).withPhone(VALID_PHONE_BOB)
                 .build();
         modelManager.setEmployee(BOB, newBob);
 
@@ -378,39 +378,39 @@ public class ModelManagerTest {
     }
 
 
-    // edited person change to duplicated phone number shared with someone SudoHR
+    // edited employee change to duplicated phone number shared with someone SudoHR
     @Test
-    public void setPerson_editedPersonDuplicatedPhoneNumber_throwsDuplicatePhoneNumberException() {
+    public void setEmployee_editedEmployeeDuplicatedPhoneNumber_throwsDuplicatePhoneNumberException() {
         modelManager.addEmployee(AMY);
         modelManager.addEmployee(BOB);
         modelManager.addEmployee(CARL);
-        Employee newBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_AMY)
+        Employee newBob = new EmployeeBuilder(BOB).withPhone(VALID_PHONE_AMY)
                 .build();
         assertThrows(DuplicatePhoneNumberException.class, () -> modelManager.setEmployee(BOB, newBob));
     }
 
-    // edited person changed to duplicated phone number and email shared with someone in SudoHR
+    // edited employee changed to duplicated phone number and email shared with someone in SudoHR
     @Test
-    public void setPerson_editedPersonChangeEmailPhone_throwsDuplicatePhoneNumberException() {
+    public void setEmployee_editedEmployeeChangeEmailPhone_throwsDuplicatePhoneNumberException() {
         modelManager.addEmployee(AMY);
         modelManager.addEmployee(BOB);
         modelManager.addEmployee(CARL);
-        Employee newBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_AMY)
+        Employee newBob = new EmployeeBuilder(BOB).withPhone(VALID_PHONE_AMY)
                 .withEmail(VALID_EMAIL_AMY)
                 .build();
         assertThrows(DuplicatePhoneNumberException.class, () -> modelManager.setEmployee(BOB, newBob));
     }
 
-    // TODO edited person changed some fields, including phone number
+    // TODO edited employee changed some fields, including phone number
 
 
-    // edited person change to non-duplicated email
+    // edited employee change to non-duplicated email
     @Test
-    public void setPerson_editedPersonNewEmailIsUnique_success() {
+    public void setEmployee_editedEmployeeNewEmailIsUnique_success() {
         modelManager.addEmployee(ALICE);
         modelManager.addEmployee(BOB);
         modelManager.addEmployee(CARL);
-        Employee newBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+        Employee newBob = new EmployeeBuilder(BOB).withEmail(VALID_EMAIL_AMY)
                 .build();
         modelManager.setEmployee(BOB, newBob);
 
@@ -422,13 +422,13 @@ public class ModelManagerTest {
         assertEquals(expectedModelManager, modelManager);
     }
 
-    // edited person made no change to email
+    // edited employee made no change to email
     @Test
-    public void setPerson_editedPersonEmailNoChange_success() {
+    public void setEmployee_editedEmployeeEmailNoChange_success() {
         modelManager.addEmployee(ALICE);
         modelManager.addEmployee(BOB);
         modelManager.addEmployee(CARL);
-        Employee newBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_BOB)
+        Employee newBob = new EmployeeBuilder(BOB).withEmail(VALID_EMAIL_BOB)
                 .build();
         modelManager.setEmployee(BOB, newBob);
 
@@ -441,27 +441,27 @@ public class ModelManagerTest {
     }
 
 
-    // edited person change to duplicated email as someone SudoHR
+    // edited employee change to duplicated email as someone SudoHR
     @Test
-    public void setPerson_editedPersonDuplicatedEmail_throwsDuplicateEmailException() {
+    public void setEmployee_editedEmployeeDuplicatedEmail_throwsDuplicateEmailException() {
         modelManager.addEmployee(AMY);
         modelManager.addEmployee(BOB);
         modelManager.addEmployee(CARL);
-        Employee newBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+        Employee newBob = new EmployeeBuilder(BOB).withEmail(VALID_EMAIL_AMY)
                 .build();
         assertThrows(DuplicateEmailException.class, () -> modelManager.setEmployee(BOB, newBob));
     }
 
-    // TODO edited person changed some fields, including email
+    // TODO edited employee changed some fields, including email
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredEmployeeList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEmployeeList().remove(0));
     }
 
     @Test
     public void equals() {
-        SudoHr sudoHr = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        SudoHr sudoHr = new SudoHrBuilder().withEmployee(ALICE).withEmployee(BENSON).build();
         SudoHr differentSudoHr = new SudoHr();
         UserPrefs userPrefs = new UserPrefs();
 

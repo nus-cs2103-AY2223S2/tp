@@ -29,31 +29,31 @@ import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.testutil.PersonBuilder;
+import seedu.sudohr.testutil.EmployeeBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullEmployee_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Employee validPerson = new PersonBuilder().build();
+    public void execute_employeeAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+        Employee validEmployee = new EmployeeBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validEmployee).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEmployee), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validEmployee), modelStub.employeesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Employee validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateEmployee_throwsCommandException() {
+        Employee validEmployee = new EmployeeBuilder().build();
+        AddCommand addCommand = new AddCommand(validEmployee);
+        ModelStub modelStub = new ModelStubWithEmployee(validEmployee);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
                 addCommand.execute(modelStub));
@@ -61,12 +61,12 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicateIdOnly_throwsCommandException() {
-        Employee validPerson = new PersonBuilder().build();
-        Employee sameIdPerson = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Employee validEmployee = new EmployeeBuilder().build();
+        Employee sameIdEmployee = new EmployeeBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND)
                 .build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(sameIdPerson);
+        AddCommand addCommand = new AddCommand(validEmployee);
+        ModelStub modelStub = new ModelStubWithEmployee(sameIdEmployee);
 
         assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DUPLICATE_EMPLOYEE, () -> addCommand.execute(modelStub));
@@ -74,24 +74,24 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicateEmailOnly_throwsCommandException() {
-        Employee validPerson = new PersonBuilder().build();
-        Employee sameEmail = new PersonBuilder().withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
+        Employee validEmployee = new EmployeeBuilder().build();
+        Employee sameEmail = new EmployeeBuilder().withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_FRIEND)
                 .build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(sameEmail);
+        AddCommand addCommand = new AddCommand(validEmployee);
+        ModelStub modelStub = new ModelStubWithEmployee(sameEmail);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EMAIL, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void execute_duplicatePhoneNumberOnly_throwsCommandException() {
-        Employee validPerson = new PersonBuilder().build();
-        Employee samePhone = new PersonBuilder().withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
+        Employee validEmployee = new EmployeeBuilder().build();
+        Employee samePhone = new EmployeeBuilder().withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND)
                 .build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(samePhone);
+        AddCommand addCommand = new AddCommand(validEmployee);
+        ModelStub modelStub = new ModelStubWithEmployee(samePhone);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PHONE, () -> addCommand.execute(modelStub));
     }
@@ -99,20 +99,20 @@ public class AddCommandTest {
     // duplicate phone should be identified first
     @Test
     public void execute_differentIdOnly_throwsCommandException() {
-        Employee validPerson = new PersonBuilder().build();
-        Employee diffId = new PersonBuilder().withId(VALID_ID_BOB).build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(diffId);
+        Employee validEmployee = new EmployeeBuilder().build();
+        Employee diffId = new EmployeeBuilder().withId(VALID_ID_BOB).build();
+        AddCommand addCommand = new AddCommand(validEmployee);
+        ModelStub modelStub = new ModelStubWithEmployee(diffId);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PHONE, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        // note default ID for person builder is "0777"
-        Employee alice = new PersonBuilder().withName("Alice").build();
-        Employee bob = new PersonBuilder().withName("Bob").build();
-        Employee differentBob = new PersonBuilder().withName("BOB").withId(VALID_ID_BOB).build();
+        // note default ID for employee builder is "0777"
+        Employee alice = new EmployeeBuilder().withName("Alice").build();
+        Employee bob = new EmployeeBuilder().withName("Bob").build();
+        Employee differentBob = new EmployeeBuilder().withName("BOB").withId(VALID_ID_BOB).build();
 
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
@@ -131,11 +131,11 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // same person id -> returns false
+        // same employee id -> returns false
         // Note: strict equality across every field
         assertFalse(addAliceCommand.equals(addBobCommand));
 
-        // different person id -> returns false
+        // different employee id -> returns false
         assertFalse(addDifferentBobCommand.equals(addAliceCommand));
     }
 
@@ -199,7 +199,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasClashingEmail(Employee person) {
+        public boolean hasClashingEmail(Employee employee) {
             throw new AssertionError("This method should not be called.");
         };
 
@@ -209,7 +209,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasClashingPhoneNumber(Employee person) {
+        public boolean hasClashingPhoneNumber(Employee employee) {
             throw new AssertionError("This method should not be called.");
         };
 
@@ -285,63 +285,63 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single employee.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Employee person;
+    private class ModelStubWithEmployee extends ModelStub {
+        private final Employee employee;
 
-        ModelStubWithPerson(Employee person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithEmployee(Employee employee) {
+            requireNonNull(employee);
+            this.employee = employee;
         }
 
         @Override
         public boolean hasEmployee(Employee employee) {
             requireNonNull(employee);
-            return this.person.isSameEmployee(employee);
+            return this.employee.isSameEmployee(employee);
         }
 
         @Override
-        public boolean hasClashingEmail(Employee person) {
-            requireNonNull(person);
-            return this.person.emailClashes(person);
+        public boolean hasClashingEmail(Employee employee) {
+            requireNonNull(employee);
+            return this.employee.emailClashes(employee);
         }
 
         @Override
-        public boolean hasClashingPhoneNumber(Employee person) {
-            requireNonNull(person);
-            return this.person.phoneClashes(person);
+        public boolean hasClashingPhoneNumber(Employee employee) {
+            requireNonNull(employee);
+            return this.employee.phoneClashes(employee);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the employee being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Employee> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingEmployeeAdded extends ModelStub {
+        final ArrayList<Employee> employeesAdded = new ArrayList<>();
 
         @Override
         public boolean hasEmployee(Employee employee) {
             requireNonNull(employee);
-            return personsAdded.stream().anyMatch(employee::isSameEmployee);
+            return employeesAdded.stream().anyMatch(employee::isSameEmployee);
         }
 
         @Override
-        public boolean hasClashingEmail(Employee person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::emailClashes);
+        public boolean hasClashingEmail(Employee employee) {
+            requireNonNull(employee);
+            return employeesAdded.stream().anyMatch(employee::emailClashes);
         }
 
         @Override
-        public boolean hasClashingPhoneNumber(Employee person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::phoneClashes);
+        public boolean hasClashingPhoneNumber(Employee employee) {
+            requireNonNull(employee);
+            return employeesAdded.stream().anyMatch(employee::phoneClashes);
         }
 
         @Override
-        public void addEmployee(Employee person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addEmployee(Employee employee) {
+            requireNonNull(employee);
+            employeesAdded.add(employee);
         }
 
         @Override

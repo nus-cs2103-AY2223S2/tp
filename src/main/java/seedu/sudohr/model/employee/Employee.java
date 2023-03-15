@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.sudohr.model.tag.Tag;
 
 /**
- * Represents a Employee in the sudohr book.
+ * Represents an Employee in the SudoHR.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Employee {
@@ -102,7 +102,7 @@ public class Employee {
     }
 
     /**
-     * Returns true if a different person shares the same email.
+     * Returns true if a different employee shares the same email.
      */
     public boolean emailClashes(Employee otherPerson) {
         if (!(otherPerson instanceof Employee)) {
@@ -117,7 +117,7 @@ public class Employee {
     }
 
     /**
-     * Returns true if a different person shares the same phone number.
+     * Returns true if a different employee shares the same phone number.
      */
     public boolean phoneClashes(Employee otherPerson) {
         if (!(otherPerson instanceof Employee)) {
