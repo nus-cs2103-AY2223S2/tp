@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -49,9 +47,9 @@ public class ClientLabel extends UiPart<Region> {
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
-//        client.getTags().stream()
-//                .sorted(Comparator.comparing(tag -> tag.tagName))
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //        client.getTags().stream()
+        //                .sorted(Comparator.comparing(tag -> tag.tagName))
+        //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
