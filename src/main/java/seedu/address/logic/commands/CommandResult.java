@@ -41,7 +41,7 @@ public class CommandResult {
      */
 
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable, boolean showReminderList,
-                         boolean showStaistics, boolean exit) {
+                         boolean showStatistics, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;

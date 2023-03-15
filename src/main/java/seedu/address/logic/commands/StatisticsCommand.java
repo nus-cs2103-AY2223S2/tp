@@ -22,7 +22,7 @@ public class StatisticsCommand extends Command {
         requireNonNull(model);
 
 
-        return new CommandResult(SHOWING_STATISTICS_MESSAGE, false, false, true, false);
+        return new CommandResult(SHOWING_STATISTICS_MESSAGE, false, false, false, true, false);
     }
 
 }
