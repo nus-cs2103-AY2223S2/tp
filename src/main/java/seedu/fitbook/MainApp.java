@@ -16,18 +16,23 @@ import seedu.fitbook.commons.util.StringUtil;
 import seedu.fitbook.logic.Logic;
 import seedu.fitbook.logic.LogicManager;
 import seedu.fitbook.model.FitBook;
+import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.ReadOnlyFitBook;
+import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
 import seedu.fitbook.model.ReadOnlyUserPrefs;
 import seedu.fitbook.model.UserPrefs;
 import seedu.fitbook.model.util.SampleDataUtil;
+import seedu.fitbook.model.util.SampleExerciseRoutineDataUtil;
 import seedu.fitbook.storage.FitBookStorage;
 import seedu.fitbook.storage.JsonFitBookStorage;
 import seedu.fitbook.storage.JsonUserPrefsStorage;
 import seedu.fitbook.storage.Storage;
 import seedu.fitbook.storage.StorageManager;
 import seedu.fitbook.storage.UserPrefsStorage;
+import seedu.fitbook.storage.routine.FitBookExerciseRoutineStorage;
+import seedu.fitbook.storage.routine.JsonFitBookExerciseRoutineStorage;
 import seedu.fitbook.ui.Ui;
 import seedu.fitbook.ui.UiManager;
 
@@ -56,8 +61,10 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        FitBookStorage addressBookStorage = new JsonFitBookStorage(userPrefs.getFitBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        FitBookStorage fitBookStorage = new JsonFitBookStorage(userPrefs.getFitBookFilePath());
+        FitBookExerciseRoutineStorage exerciseBookStorage =
+                new JsonFitBookExerciseRoutineStorage(userPrefs.getFitBookExerciseRoutineFilePath());
+        storage = new StorageManager(fitBookStorage, userPrefsStorage, exerciseBookStorage);
 
         initLogging(config);
 
@@ -69,28 +76,74 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code FitBookModelManager} with the data from {@code storage}'s FitBook and {@code userPrefs}. <br>
+     * Returns a {@code FitBookModelManager} with the data from {@code storage}'s FitBook, FitBookExerciseRoutine
+     * and {@code userPrefs}. <br>
      * The data from the sample FitBook will be used instead if {@code storage}'s FitBook is not found,
      * or an empty FitBook will be used instead if errors occur when reading {@code storage}'s FitBook.
      */
     private FitBookModel initFitBookModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        ReadOnlyFitBook initialData;
+        ReadOnlyFitBookExerciseRoutine initialExerciseRoutineData;
+        initialData = initFitBookData(storage);
+        initialExerciseRoutineData = initExerciseRoutineData(storage);
+        return new FitBookModelManager(initialData, initialExerciseRoutineData, userPrefs);
+    }
+
+    /**
+     * Returns a {@code ReadOnlyFitBook} with the initial data from {@code storage}'s FitBook.
+     * The initial data from the sample FitBook will be used instead if {@code storage}'s FitBook is not found,
+     * or an empty FitBook will be used instead if errors occur when reading {@code storage}'s FitBook.
+     */
+    private ReadOnlyFitBook initFitBookData(Storage storage) {
         Optional<ReadOnlyFitBook> addressBookOptional;
         ReadOnlyFitBook initialData;
         try {
             addressBookOptional = storage.readFitBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample FitBook");
+                logger.info("Data file not found for FitBook. Will be starting with a sample FitBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleFitBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty FitBook");
+            logger.warning("Data file not in the correct format for FitBook. "
+                    + "Will be starting with an empty FitBook");
             initialData = new FitBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty FitBook");
+            logger.warning("Problem while reading from the file for FitBook. "
+                    + "Will be starting with an empty FitBook");
             initialData = new FitBook();
         }
+        return initialData;
+    }
 
-        return new FitBookModelManager(initialData, userPrefs);
+    /**
+     * Returns a {@code ReadOnlyFitBookExerciseRoutine} with the initial data from {@code storage}'s
+     * FitBookExerciseRoutine.
+     * The initial data from the sample FitBookExerciseRoutine will be used instead
+     * if {@code storage}'s FitBookExerciseRoutine is not found,
+     * or an empty FitBookExerciseRoutine will be used instead if errors occur
+     * when reading {@code storage}'s FitBookExerciseRoutine.
+     */
+    private ReadOnlyFitBookExerciseRoutine initExerciseRoutineData(Storage storage) {
+        ReadOnlyFitBookExerciseRoutine initialExerciseRoutineData;
+        Optional<ReadOnlyFitBookExerciseRoutine> exerciseRoutineOptional;
+        try {
+            exerciseRoutineOptional = storage.readFitBookExerciseRoutine();
+            if (!exerciseRoutineOptional.isPresent()) {
+                logger.info("Data file not found for Exercise Routine. "
+                        + "Will be starting with a sample Exercise Routine");
+            }
+            initialExerciseRoutineData = exerciseRoutineOptional
+                    .orElseGet(SampleExerciseRoutineDataUtil::getSampleFitBookExerciseRoutine);
+        } catch (DataConversionException e) {
+            logger.warning("Data file for Exercise Routine not in the correct format. "
+                    + "Will be starting with an empty Exercise Routine");
+            initialExerciseRoutineData = new FitBookExerciseRoutine();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file for Exercise Routine."
+                    + " Will be starting with an empty Exercise Routine");
+            initialExerciseRoutineData = new FitBookExerciseRoutine();
+        }
+        return initialExerciseRoutineData;
     }
 
     private void initLogging(Config config) {

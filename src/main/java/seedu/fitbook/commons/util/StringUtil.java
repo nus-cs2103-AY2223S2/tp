@@ -27,15 +27,20 @@ public class StringUtil {
         requireNonNull(sentence);
         requireNonNull(word);
 
-        String preppedWord = word.trim();
+        boolean contains = false;
+
+        String preppedWord = word;
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] wordsInPreppedSentence = {preppedSentence};
 
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        if (Arrays.stream(wordsInPreppedSentence).anyMatch(preppedWord::equalsIgnoreCase)) {
+            contains = true;
+        } else if (preppedSentence.toLowerCase().contains(preppedWord.toLowerCase())) {
+            contains = true;
+        }
+        return contains;
     }
 
     /**

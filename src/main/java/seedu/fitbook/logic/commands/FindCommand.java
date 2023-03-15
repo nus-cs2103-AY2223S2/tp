@@ -2,26 +2,33 @@ package seedu.fitbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.model.FitBookModel;
-import seedu.fitbook.model.client.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.client.Client;
 
 /**
- * Finds and lists all clients in address book whose name contains any of the argument keywords.
+ * Finds and lists all clients in FitBook whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose details matches or contains "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: PREFIX, KEYWORD/S\n"
+            + "Example: " + COMMAND_WORD + " n/alex or " + COMMAND_WORD + " p/91234567";
 
-    private final NameContainsKeywordsPredicate predicate;
+    public static final String PREFIX_USAGE = COMMAND_WORD + ": Finds all clients whose details matches or contains "
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Available Prefixes: n, p, e, a, t, w, g, cal, app\n"
+            + "Example: " + COMMAND_WORD + " n/alex or " + COMMAND_WORD + " p/91234567";
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    private final Predicate<Client> predicate;
+
+    public FindCommand(Predicate<Client> predicate) {
         this.predicate = predicate;
     }
 
