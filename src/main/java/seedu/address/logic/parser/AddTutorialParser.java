@@ -28,9 +28,10 @@ public class AddTutorialParser implements Parser<AddTutorialCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTutorialCommand parse(String args) throws ParseException {
+        //newArgs to trim first word when more commands added to switch-case in AddressBookParser
         String newArgs = args.trim().replaceFirst("Tutorial", "");
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(newArgs, PREFIX_TUTORIAL);
+                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL);
 
         //Make the user not create tutorial and students with the same command
         if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,

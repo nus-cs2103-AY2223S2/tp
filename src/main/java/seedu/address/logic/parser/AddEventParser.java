@@ -20,7 +20,7 @@ import seedu.address.model.event.Lab;
 /**
  * Parses input arguments and creates a new AddLab object
  */
-public class AddLabParser implements Parser<AddLabCommand> {
+public class AddEventParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddLab
@@ -28,10 +28,9 @@ public class AddLabParser implements Parser<AddLabCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddLabCommand parse(String args) throws ParseException {
-        //newArgs to trim first word when more commands added to switch-case in AddressBookParser
         String newArgs = args.trim().replaceFirst("Lab", "");
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_LAB);
+                ArgumentTokenizer.tokenize(newArgs, PREFIX_LAB);
 
         //Make the user not create lab and students with the same command
         if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,

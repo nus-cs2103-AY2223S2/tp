@@ -34,13 +34,15 @@ public class Photo {
     public Photo(String photoFilePath) {
         requireNonNull(photoFilePath);
         GuiSettings guiSettings = new GuiSettings();
-
+        this.photoFilePath = photoFilePath;
+        /*
         //If the url is not a valid image, set it to the default image found in GuiSettings
         if (!isValidPhoto(photoFilePath)) {
             this.photoFilePath = guiSettings.getPhoto();
         } else {
             this.photoFilePath = photoFilePath;
         }
+         */
 
         setDefaultDimensions(guiSettings);
     }
@@ -69,6 +71,10 @@ public class Photo {
             return false;
         }
         return true;
+    }
+
+    public String getUrlPath() {
+        return this.photoFilePath;
     }
 
     //No setters to customise profile picture dimensions in this iteration

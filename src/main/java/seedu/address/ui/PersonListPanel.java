@@ -1,13 +1,17 @@
 package seedu.address.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -31,6 +35,8 @@ public class PersonListPanel extends UiPart<Region> {
     private TableColumn<Person, String> performance;
     @FXML
     private TableColumn<Person, String> remark;
+    @FXML
+    private TableColumn<Person, String> photo;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -45,6 +51,12 @@ public class PersonListPanel extends UiPart<Region> {
                 new SimpleStringProperty(cellData.getValue().getPerformance().toString()));
         remark.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRemark().toString()));
 
+        photo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoto().getUrlPath()));
+
+        photo.setCellFactory(
+                p -> new PhotoCell()
+        );
+
         //to sort
         //
         // name.setSortable(true);
@@ -54,5 +66,17 @@ public class PersonListPanel extends UiPart<Region> {
             TableRow<Person> row = new TableRow<>();
             return row;
         });
+    }
+
+    public static class PhotoCell extends TableCell<Person, String> {
+        private final ImageView imageView = new ImageView();
+
+        @Override
+        protected void updateItem(String url, boolean empty) {
+            super.updateItem("", empty);
+            imageView.setImage(new Image(Objects.requireNonNull(this.getClass()
+                    .getResourceAsStream("/images/students/calendar.png"))));
+            setGraphic(imageView);
+        }
     }
 }

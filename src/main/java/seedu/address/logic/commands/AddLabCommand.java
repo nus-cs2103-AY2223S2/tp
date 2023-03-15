@@ -12,7 +12,7 @@ import seedu.address.model.event.Lab;
  */
 public class AddLabCommand extends Command {
 
-    public static final String COMMAND_WORD = "Lab";
+    public static final String COMMAND_WORD = "vim";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lab to the address book. "
             + "Parameters: "
