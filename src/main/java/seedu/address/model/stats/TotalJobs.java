@@ -3,16 +3,28 @@ package seedu.address.model.stats;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents TotalJobs in Statistics Window.
+ * Guarantees: details are present and not null.
+ */
 public class TotalJobs {
 
     public static final String MESSAGE_CONSTRAINTS = "TotalJobs must be a non-negative integer";
-    public int numJobs;
-    private final String OUTPUT_MESSAGE = "Total number of jobs: ";
+    private int numJobs;
+    private static final String OUTPUT_MESSAGE = "Total number of jobs: ";
 
+    /**
+     * Constructor to create a Reminder object.
+     * @param numJobs Number of jobs in job list. Cannot be negative and cannot be null.
+     */
     public TotalJobs(int numJobs) {
         requireNonNull(numJobs);
         checkArgument(isValidTotalJobs(numJobs), MESSAGE_CONSTRAINTS);
         this.numJobs = numJobs;
+    }
+
+    public int getNumJobs() {
+        return numJobs;
     }
 
     /**

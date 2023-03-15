@@ -267,7 +267,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleTimetable();
             }
 
-            if(commandResult.isShowStatistics()) {
+            if (commandResult.isShowStatistics()) {
                 handleStats();
             }
 
