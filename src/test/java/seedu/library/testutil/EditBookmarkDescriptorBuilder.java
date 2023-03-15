@@ -8,7 +8,7 @@ import seedu.library.logic.commands.EditCommand.EditBookmarkDescriptor;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Phone;
+import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 
@@ -33,7 +33,7 @@ public class EditBookmarkDescriptorBuilder {
     public EditBookmarkDescriptorBuilder(Bookmark bookmark) {
         descriptor = new EditBookmarkDescriptor();
         descriptor.setTitle(bookmark.getTitle());
-        descriptor.setPhone(bookmark.getPhone());
+        descriptor.setProgress(bookmark.getProgress());
         descriptor.setGenre(bookmark.getGenre());
         descriptor.setAuthor(bookmark.getAuthor());
         descriptor.setTags(bookmark.getTags());
@@ -48,10 +48,10 @@ public class EditBookmarkDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditBookmarkDescriptor} that we are building.
+     * Sets the {@code Progress} of the {@code EditBookmarkDescriptor} that we are building.
      */
-    public EditBookmarkDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditBookmarkDescriptorBuilder withProgress(String progress) {
+        descriptor.setProgress(new Progress(progress));
         return this;
     }
 

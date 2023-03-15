@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.library.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_PROGRESS_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -54,11 +54,11 @@ public class EditCommandTest {
         Bookmark lastBookmark = model.getFilteredBookmarkList().get(indexLastBookmark.getZeroBased());
 
         BookmarkBuilder bookmarkInList = new BookmarkBuilder(lastBookmark);
-        Bookmark editedBookmark = bookmarkInList.withTitle(VALID_TITLE_BOB).withPhone(VALID_PHONE_BOB)
+        Bookmark editedBookmark = bookmarkInList.withTitle(VALID_TITLE_BOB).withProgress(VALID_PROGRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withProgress(VALID_PROGRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastBookmark, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOKMARK_SUCCESS, editedBookmark);

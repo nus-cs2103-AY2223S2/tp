@@ -16,19 +16,19 @@ import org.junit.jupiter.api.Test;
 import seedu.library.logic.parser.exceptions.ParseException;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Phone;
+import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_PROGRESS = "+651234";
     private static final String INVALID_AUTHOR = " ";
     private static final String INVALID_GENRE = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PROGRESS = "123456";
     private static final String VALID_AUTHOR = "123 Main Street #0505";
     private static final String VALID_GENRE = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -80,26 +80,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseProgress_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseProgress((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseProgress_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseProgress(INVALID_PROGRESS));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseProgress_validValueWithoutWhitespace_returnsProgress() throws Exception {
+        Progress expectedProgress = new Progress(VALID_PROGRESS);
+        assertEquals(expectedProgress, ParserUtil.parseProgress(VALID_PROGRESS));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+        String phoneWithWhitespace = WHITESPACE + VALID_PROGRESS + WHITESPACE;
+        Progress expectedProgress = new Progress(VALID_PROGRESS);
+        assertEquals(expectedProgress, ParserUtil.parseProgress(phoneWithWhitespace));
     }
 
     @Test

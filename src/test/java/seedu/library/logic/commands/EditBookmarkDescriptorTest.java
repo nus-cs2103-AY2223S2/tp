@@ -6,7 +6,7 @@ import static seedu.library.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_BOB;
-import static seedu.library.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_PROGRESS_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 
@@ -41,7 +41,7 @@ public class EditBookmarkDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY).withProgress(VALID_PROGRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false

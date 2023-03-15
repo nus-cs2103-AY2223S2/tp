@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.library.testutil.Assert.assertThrows;
@@ -28,8 +28,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_AMY = "Amy Bee";
     public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PROGRESS_AMY = "11111111";
+    public static final String VALID_PROGRESS_BOB = "22222222";
     public static final String VALID_GENRE_AMY = "Amy";
     public static final String VALID_GENRE_BOB = "Bob";
     public static final String VALID_AUTHOR_AMY = "Block 312, Amy Street 1";
@@ -39,8 +39,8 @@ public class CommandTestUtil {
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String PROGRESS_DESC_AMY = " " + PREFIX_PROGRESS + VALID_PROGRESS_AMY;
+    public static final String PROGRESS_DESC_BOB = " " + PREFIX_PROGRESS + VALID_PROGRESS_BOB;
     public static final String GENRE_DESC_AMY = " " + PREFIX_GENRE + VALID_GENRE_AMY;
     public static final String GENRE_DESC_BOB = " " + PREFIX_GENRE + VALID_GENRE_BOB;
     public static final String AUTHOR_DESC_AMY = " " + PREFIX_AUTHOR + VALID_AUTHOR_AMY;
@@ -49,7 +49,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_PROGRESS_DESC = " " + PREFIX_PROGRESS + "911*"; // '*' not allowed in progress
     public static final String INVALID_GENRE_DESC = " " + PREFIX_GENRE;
     public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -62,10 +62,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_AMY)
-                .withPhone(VALID_PHONE_AMY).withGenre(VALID_GENRE_AMY).withAuthor(VALID_AUTHOR_AMY)
+                .withProgress(VALID_PROGRESS_AMY).withGenre(VALID_GENRE_AMY).withAuthor(VALID_AUTHOR_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_BOB)
-                .withPhone(VALID_PHONE_BOB).withGenre(VALID_GENRE_BOB).withAuthor(VALID_AUTHOR_BOB)
+                .withProgress(VALID_PROGRESS_BOB).withGenre(VALID_GENRE_BOB).withAuthor(VALID_AUTHOR_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
