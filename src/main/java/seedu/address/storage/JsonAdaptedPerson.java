@@ -28,9 +28,9 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
+    private JsonAdaptedPhone phone = new JsonAdaptedPhone();
+    private JsonAdaptedEmail email = new JsonAdaptedEmail();
+    private JsonAdaptedAddress address = new JsonAdaptedAddress();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private JsonAdaptedBirthday birthday = new JsonAdaptedBirthday();
@@ -39,15 +39,21 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") JsonAdaptedPhone phone,
+            @JsonProperty("email") JsonAdaptedEmail email, @JsonProperty("address") JsonAdaptedAddress address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
              @JsonProperty("modules") List<JsonAdaptedModule> modules,
             @JsonProperty("birthday") JsonAdaptedBirthday birthday) {
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        if (phone != null) {
+            this.phone = phone;
+        }
+        if (email != null) {
+            this.email = email;
+        }
+        if (address != null) {
+            this.address = address;
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -64,9 +70,6 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -74,6 +77,18 @@ class JsonAdaptedPerson {
         modules.addAll(source.getModules().stream()
                 .map(JsonAdaptedModule::new)
                 .collect(Collectors.toList()));
+                
+        if (source.getPhone().isPresent()) {
+            phone = new JsonAdaptedPhone(source.getPhone().get());
+        }
+
+        if (source.getEmail().isPresent()) {
+            email = new JsonAdaptedEmail(source.getEmail().get());
+        }
+
+        if (source.getAddress().isPresent()) {
+            address = new JsonAdaptedAddress(source.getAddress().get());
+        }
 
         if (source.getBirthday().isPresent()) {
             birthday = new JsonAdaptedBirthday(source.getBirthday().get());
@@ -106,38 +121,33 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Module> modelModules = new HashSet<>(personModules);
+        Person p = new Person(modelName, modelTags, modelModules);
 
-        Person p = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelModules);
+        if (phone != null) {
+            Optional<Phone> modelPhone = phone.toModelType();
+            if (modelPhone.isPresent()) {
+                p.setPhone(modelPhone.get());
+            }
+        }
+
+        if (email != null) {
+            Optional<Email> modelEmail = email.toModelType();
+            if (modelEmail.isPresent()) {
+                p.setEmail(modelEmail.get());
+            }
+        }
+        
+        if (address != null) {
+            Optional<Address> modelAddress = address.toModelType();
+            if (modelAddress.isPresent()) {
+                p.setAddress(modelAddress.get());
+            }
+        }
 
         if (birthday != null) {
             Optional<Birthday> modelBirthday = birthday.toModelType();
-
             if (modelBirthday.isPresent()) {
                 p.setBirthday(modelBirthday.get());
             }

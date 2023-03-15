@@ -31,6 +31,14 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private HBox birthdayContainer;
+    @FXML
+    private HBox phoneContainer;
+    @FXML
+    private HBox emailContainer;
+    @FXML
+    private HBox addressContainer;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -55,12 +63,31 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        if (person.getPhone().isPresent()) {
+            phone.setText(person.getPhone().get().toString());
+        } else {
+            phone.setText("");
+            phoneContainer.setVisible(false);
+            phoneContainer.managedProperty().bind(phoneContainer.visibleProperty());
+        }
+        if (person.getEmail().isPresent()) {
+            email.setText(person.getEmail().get().toString());
+        } else {
+            email.setText("");
+            emailContainer.setVisible(false);
+            emailContainer.managedProperty().bind(emailContainer.visibleProperty());
+        }
+        if (person.getAddress().isPresent()) {
+            address.setText(person.getAddress().get().toString());
+        } else {
+            address.setText("");
+            addressContainer.setVisible(false);
+            addressContainer.managedProperty().bind(addressContainer.visibleProperty());
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                
         person.getModules().stream()
                 .sorted(Comparator.comparing(module -> module.tagName))
                 .forEach(module -> tags.getChildren().add(new Label(module.tagName)));
@@ -69,6 +96,8 @@ public class PersonCard extends UiPart<Region> {
             birthday.setText(person.getBirthday().get().toString());
         } else {
             birthday.setText("");
+            birthdayContainer.setVisible(false);
+            birthdayContainer.managedProperty().bind(birthdayContainer.visibleProperty());
         }
     }
 
