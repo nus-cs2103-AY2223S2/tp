@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_IMAGE;
 import static seedu.address.model.util.ImageUtil.importImage;
 
 import java.io.IOException;
+import java.nio.file.InvalidPathException;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -39,6 +40,7 @@ public class AddImageCommandParser implements Parser<AddImageCommand> {
         String path = argMultimap.getValue(PREFIX_ADD_IMAGE).orElse("");
 
         try {
+
             String fileName = importImage(path);
             Image image = new Image(fileName);
             return new AddImageCommand(index, image);
@@ -46,6 +48,8 @@ public class AddImageCommandParser implements Parser<AddImageCommand> {
             throw new ParseException("Upload image failed.");
         } catch (ParseException pe) {
             throw pe;
+        } catch (InvalidPathException ipe) {
+            throw new ParseException("Path to image provided is invalid.");
         }
 
     }
