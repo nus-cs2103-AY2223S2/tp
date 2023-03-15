@@ -51,9 +51,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         checkParseStringFormat(argMultimap, args);
 
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
-        for (String nameKeyword : nameKeywords) {
-            System.out.println(nameKeyword);
-        }
         List<String> phoneKeywords = argMultimap.getAllValues(PREFIX_PHONE);
         List<String> emailKeywords = argMultimap.getAllValues(PREFIX_EMAIL);
         List<String> addressKeywords = argMultimap.getAllValues(PREFIX_ADDRESS);
