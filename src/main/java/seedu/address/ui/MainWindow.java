@@ -1,7 +1,12 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +21,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Meeting;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,6 +122,25 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        ObservableList<Meeting> examppleMeetingList = FXCollections.observableArrayList();
+        try {
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+            examppleMeetingList.add(new Meeting(LocalDateTime.now(), LocalDateTime.now().plusHours(2)));
+        } catch (Exception e) {
+
+        }
+        meetingListPanel = new MeetingListPanel(examppleMeetingList);
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
