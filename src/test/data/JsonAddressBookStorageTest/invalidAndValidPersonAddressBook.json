@@ -1,13 +1,13 @@
 {
-  "persons": [ {
-    "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+  "foods": [ {
+    "name": "Valid food",
+    "unit": "Carton",
+    "quantity": "2",
+    "expiryDate": "13-11-2024"
   }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "name": "M@iji !nval!d N@me",
+    "unit": "Un213it",
+    "quantity": "69",
+    "expiryDate": "13112024"
   } ]
 }
