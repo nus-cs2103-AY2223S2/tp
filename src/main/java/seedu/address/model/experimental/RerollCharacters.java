@@ -1,13 +1,8 @@
 package seedu.address.model.experimental;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.entity.Character;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
-// Abstraction of all operations on characters
+/** Abstraction of all operations on characters */
 public class RerollCharacters extends RerollEntities<Character> {
 
     // For convenience
