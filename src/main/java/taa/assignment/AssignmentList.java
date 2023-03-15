@@ -35,7 +35,9 @@ public class AssignmentList {
         if (!assignmentMap.containsKey(assignmentName)) {
             throw new CommandException("Assignment: " + assignmentName + " not found");
         } else {
-            assignments.remove(assignmentMap.remove(assignmentName));
+            Assignment removed = assignmentMap.remove(assignmentName);
+            removed.delete();
+            assignments.remove(removed);
         }
     }
 
