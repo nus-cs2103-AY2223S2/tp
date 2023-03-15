@@ -9,6 +9,7 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
 import java.util.Map;
 
+import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.Messages;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.CommandResult;
@@ -17,6 +18,7 @@ import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
+import seedu.vms.model.vaccination.VaxType;
 
 /**
  * Adds an appointment to the patient manager.
@@ -42,6 +44,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists"
             + " in the appointment manager";
+    public static final String MESSAGE_EXISTING_PATIENT_ID = "This patient already has an existing appointment";
 
     private final Appointment toAdd;
 
@@ -57,13 +60,21 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        // Checks if patient manager contains the given index
         Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
-        int patientId = toAdd.getPatient().getZeroBased();
-        if (!patientList.containsKey(patientId)) {
+        if (!patientList.containsKey(toAdd.getPatient().getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        Patient patient = patientList.get(patientId).getValue();
+        // Checks if appointment manager already contains an appointment from the patient of the given index
+        Map<Integer, IdData<Appointment>> appointmentList = model.getAppointmentManager().getMapView();
+        for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
+            Appointment appointment = entry.getValue().getValue();
+            if (appointment.getPatient().equals(toAdd.getPatient())) {
+                throw new CommandException(MESSAGE_EXISTING_PATIENT_ID);
+            }
+        }
+
 
         model.addAppointment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
