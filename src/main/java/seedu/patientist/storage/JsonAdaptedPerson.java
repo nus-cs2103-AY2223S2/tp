@@ -31,6 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -39,12 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("patientist") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("patientist") String address, @JsonProperty("status") String status,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -65,8 +68,10 @@ class JsonAdaptedPerson {
         if (source instanceof Patient) {
             Patient patient = (Patient) source;
             id = patient.getPatientIdNumber().getIdNumber();
+            status = patient.getPatientStatusDetails().getDetails();
         } else {
             id = "";
+            status = "";
         }
     }
 
