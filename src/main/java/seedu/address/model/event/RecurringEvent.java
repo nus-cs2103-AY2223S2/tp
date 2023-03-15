@@ -149,6 +149,20 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
         }
     }
 
+    /**
+     * Check if the recurring events has the same attributes
+     * @param otherEvent the other event to check with
+     * @return true if they have the same attributes or false otherwise
+     */
+    public boolean equals(RecurringEvent otherEvent) {
+        boolean isEventNameSame = getEventName().equals(otherEvent.getEventName());
+        boolean isDayOfWeekSame = getDayOfWeek().equals(otherEvent.getDayOfWeek());
+        boolean isStartTimeSame = getStartTime().equals(otherEvent.getStartTime());
+        boolean isEndTimeSame = getEndTime().equals(otherEvent.getEndTime());
+
+        return isEventNameSame && isDayOfWeekSame && isStartTimeSame && isEndTimeSame;
+    }
+
     @Override
     public String toString() {
         return getEventName() + " on " + this.dayOfWeek.name() + " from " + startTime.toString() + " to "

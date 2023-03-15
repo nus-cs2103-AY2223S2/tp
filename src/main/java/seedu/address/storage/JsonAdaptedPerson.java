@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -31,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
+    private final List<JsonAdaptedRecurringEvent> recurringEvents = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +42,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
+            @JsonProperty("groups") List<JsonAdaptedGroup> groups,
+            @JsonProperty("recurringEvents") List<JsonAdaptedRecurringEvent> recurringEvents) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +54,11 @@ class JsonAdaptedPerson {
         if (groups != null) {
             this.groups.addAll(groups);
         }
+
+        if (recurringEvents != null) {
+            this.recurringEvents.addAll(recurringEvents);
+        }
+
     }
 
     /**
@@ -66,6 +75,9 @@ class JsonAdaptedPerson {
         groups.addAll(source.getGroups().stream()
                 .map(JsonAdaptedGroup::new)
                 .collect(Collectors.toList()));
+        recurringEvents.addAll(source.getRecurringEventSetVersion().stream()
+                .map(JsonAdaptedRecurringEvent::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -76,12 +88,20 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         final List<Group> personGroups = new ArrayList<>();
+        final List<RecurringEvent> personRecurringEvent = new ArrayList<>();
+
+        RecurringEventList modelRecurringEventList = new RecurringEventList();
+
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
 
         for (JsonAdaptedGroup group : groups) {
             personGroups.add(group.toModelType());
+        }
+
+        for (JsonAdaptedRecurringEvent recurringEvent : recurringEvents) {
+            modelRecurringEventList.insert(recurringEvent.toModelType());
         }
 
         if (name == null) {
@@ -109,7 +129,8 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -118,7 +139,9 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Group> modelGroups = new HashSet<>(personGroups);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelGroups);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                modelGroups, modelRecurringEventList);
     }
 
 }

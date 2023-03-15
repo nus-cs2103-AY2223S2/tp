@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
@@ -31,14 +32,16 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final IsolatedEventList isolatedEventList = new IsolatedEventList();
-    private final RecurringEventList recurringEventList = new RecurringEventList();
+    private final RecurringEventList recurringEventList;
     private Set<Group> groups = new HashSet<>();
 
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null except for groups and event lists.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Group> groups) {
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Group> groups,
+                  RecurringEventList recurringEventList) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -46,6 +49,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.groups.addAll(groups);
+        this.recurringEventList = recurringEventList;
     }
 
     /**
@@ -114,11 +118,19 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable group set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Group> getGroups() {
         return Collections.unmodifiableSet(groups);
+    }
+
+    /**
+     * Return the all recurring events in a tree set
+     * @return a tree set of recurring events
+     */
+    public TreeSet<RecurringEvent> getRecurringEventSetVersion() {
+        return getRecurringEventList().getRecurringEvents();
     }
 
     /**
@@ -154,7 +166,8 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getGroups().equals(getGroups());
+                && otherPerson.getGroups().equals(getGroups())
+                && otherPerson.getRecurringEventList().equals(getRecurringEventList());
     }
 
     @Override
