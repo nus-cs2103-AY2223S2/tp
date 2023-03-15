@@ -21,6 +21,12 @@ public class UniqueClassLists implements Iterable<ClassList> {
     private final ObservableList<ClassList> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    public UniqueClassLists(ClassList classList) {
+        this.internalList.add(classList);
+    }
+
+    public UniqueClassLists() {
+    }
     /**
      * Returns true if the list contains an equivalent student as the given argument.
      */
@@ -49,6 +55,19 @@ public class UniqueClassLists implements Iterable<ClassList> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new StudentNotFoundException();
+        }
+    }
+
+    /**
+     * Adds a student to a class.
+     * @param student The student to be added.
+     * @param className The name of the class that the student joins.
+     */
+    public void addStudent(Student student, String className) {
+        for (ClassList lst: this.internalList) {
+            if (lst.getClassId().equals(className)) {
+                lst.addStudent(student);
+            }
         }
     }
 

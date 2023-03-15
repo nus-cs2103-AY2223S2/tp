@@ -13,6 +13,7 @@ import taa.model.student.Student;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
+    Predicate<ClassList> PREDICATE_SHOW_ALL_CLASSES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -57,6 +58,9 @@ public interface Model {
      */
     boolean hasStudent(Student student);
 
+
+    boolean hasClassList(ClassList tocheck);
+
     /**
      * Deletes the given student.
      * The student must exist in the address book.
@@ -68,6 +72,8 @@ public interface Model {
      * {@code student} must not already exist in the address book.
      */
     void addStudent(Student student);
+
+    void addClassList(ClassList toAdd);
 
     /**
      * Updates the student list to propagate change to the rest of the model.
@@ -88,12 +94,16 @@ public interface Model {
      */
     ObservableList<Student> getFilteredStudentList();
 
+    ObservableList<Student> getFilteredClassList();
+
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    void updateFilteredClassLists(Predicate<ClassList> predicate);
 
     void addAssignment(String assignmentName);
 

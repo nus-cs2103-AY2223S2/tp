@@ -7,12 +7,14 @@ import taa.commons.core.Messages;
 import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.ClearCommand;
 import taa.logic.commands.Command;
+import taa.logic.commands.CreateClassCommand;
 import taa.logic.commands.DeleteStudentCommand;
 import taa.logic.commands.EditStudentCommand;
 import taa.logic.commands.ExitCommand;
 import taa.logic.commands.FindCommand;
 import taa.logic.commands.HelpCommand;
 import taa.logic.commands.ImportCommand;
+import taa.logic.commands.ListByClassCommand;
 import taa.logic.commands.ListCommand;
 import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.commands.RemarkCommand;
@@ -81,6 +83,12 @@ public class TaaParser {
 
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
+
+        case ListByClassCommand.COMMAND_WORD:
+            return new ListByClassCommandParser().parse(arguments);
+
+        case CreateClassCommand.COMMAND_WORD:
+            return new CreateClassCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
