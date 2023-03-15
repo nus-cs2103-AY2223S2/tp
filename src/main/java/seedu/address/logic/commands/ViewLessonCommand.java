@@ -85,10 +85,10 @@ public class ViewLessonCommand extends Command {
 
         // Loop through each student and add their lesson to the string builder
         for (Student student : studentList) {
-            if (student.hasLesson()) {
+            List<Lesson> lessonList = student.getFilteredLessonsList(lessonDatePredicate, subjectPredicate,
+                donePredicate);
+            if (!lessonList.isEmpty()) {
                 sb.append(student.getName().fullName).append(":\n");
-                List<Lesson> lessonList = student.getFilteredLessonsList(lessonDatePredicate, subjectPredicate,
-                    donePredicate);
                 numOfLessons += lessonList.size();
 
                 for (int i = 0; i < lessonList.size(); i++) {
