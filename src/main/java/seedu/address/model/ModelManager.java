@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.tutee.Tutee;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,25 +19,25 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TuteeManagingSystem tuteeManagingSystem;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Tutee> filteredTutees;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given tuteeManagingSystem and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTuteeManagingSystem tuteeManagingSystem, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(tuteeManagingSystem, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + tuteeManagingSystem + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.tuteeManagingSystem = new TuteeManagingSystem(tuteeManagingSystem);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTutees = new FilteredList<>(this.tuteeManagingSystem.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TuteeManagingSystem(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,67 +65,67 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTuteeManagingSystemPath() {
+        return userPrefs.getTuteeManagingSystemPath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTuteeManagingSystemPath(Path tuteeManagingSystemPath) {
+        requireNonNull(tuteeManagingSystemPath);
+        userPrefs.setAddressBookFilePath(tuteeManagingSystemPath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TuteeManagingSystem ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setTuteeManagingSystem(ReadOnlyTuteeManagingSystem tuteeManagingSystem) {
+        this.tuteeManagingSystem.resetData(tuteeManagingSystem);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyTuteeManagingSystem getTuteeManagingSystem() {
+        return tuteeManagingSystem;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasTutee(Tutee tutee) {
+        requireNonNull(tutee);
+        return tuteeManagingSystem.hasPerson(tutee);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteTutee(Tutee target) {
+        tuteeManagingSystem.removePerson(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addTutee(Tutee tutee) {
+        tuteeManagingSystem.addPerson(tutee);
+        updateFilteredTuteeList(PREDICATE_SHOW_ALL_TUTEES);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setTutee(Tutee target, Tutee editedTutee) {
+        requireAllNonNull(target, editedTutee);
+
+        tuteeManagingSystem.setPerson(target, editedTutee);
+    }
+
+    //=========== Filtered Tutee List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Tutee} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Tutee> getFilteredTuteeList() {
+        return filteredTutees;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredTuteeList(Predicate<Tutee> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTutees.setPredicate(predicate);
     }
 
     @Override
@@ -142,9 +142,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return tuteeManagingSystem.equals(other.tuteeManagingSystem)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredTutees.equals(other.filteredTutees);
     }
 
 }

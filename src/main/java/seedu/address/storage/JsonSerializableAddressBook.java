@@ -9,17 +9,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyTuteeManagingSystem;
+import seedu.address.model.TuteeManagingSystem;
+import seedu.address.model.tutee.Tutee;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable TuteeManagingSystem that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate tutee(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
@@ -32,29 +32,29 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTuteeManagingSystem} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlyTuteeManagingSystem source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code TuteeManagingSystem} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public TuteeManagingSystem toModelType() throws IllegalValueException {
+        TuteeManagingSystem tuteeManagingSystem = new TuteeManagingSystem();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            Tutee tutee = jsonAdaptedPerson.toModelType();
+            if (tuteeManagingSystem.hasPerson(tutee)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            tuteeManagingSystem.addPerson(tutee);
         }
-        return addressBook;
+        return tuteeManagingSystem;
     }
 
 }
