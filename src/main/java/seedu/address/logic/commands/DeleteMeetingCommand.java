@@ -40,9 +40,7 @@ public class DeleteMeetingCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
         Meeting meetingToDelete = lastShownList.get(index.getZeroBased());
-        System.out.println("Reached here 1");
         model.removeMeeting(meetingToDelete);
-        System.out.println("Reached here 2");
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToDelete));
     }
 
