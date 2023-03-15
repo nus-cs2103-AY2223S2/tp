@@ -20,7 +20,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 
-
+/**
+ * Adds a person to a group to in the address book.
+ */
 public class GroupAddCommand extends Command {
 
     public static final String COMMAND_WORD = "groupadd";
@@ -31,13 +33,15 @@ public class GroupAddCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "varsity";
     public static final String GROUP_ADD_PERSON_SUCCESS = "Added Person: %1$s to Groups: %2$s";
-    public static final String GROUP_NOT_FOUND_FAILURE = "Groups: %1$s cannot be found. Here are the list of existing groups: %2$s";
+    public static final String GROUP_NOT_FOUND_FAILURE = "Groups: %1$s cannot be found. "
+            + "Here are the list of existing groups: %2$s";
     public static final String STUDENT_ALREADY_ADDED_FAILURE = "Student already belongs to %1$s";
 
     private Set<Tag> groupsToAdd;
     private Index index;
 
     /**
+     * command constructor
      * @param index                of the person in the filtered person list to edit
      * @param groupsToAdd details to edit the person with
      */
@@ -46,6 +50,12 @@ public class GroupAddCommand extends Command {
         this.groupsToAdd = groupsToAdd;
     }
 
+    /**
+     * creates a modified person
+     * @param person
+     * @param groups
+     * @return
+     */
     public Person createModifiedPerson(Person person, Set<Tag> groups) {
         Name updatedName = person.getName();
         Phone updatedPhone = person.getPhone();
@@ -56,6 +66,13 @@ public class GroupAddCommand extends Command {
         return new Person(updatedName, updatedPhone, updatedAddress, updatedPayRate, updatedTags);
     }
 
+    /**
+     * Create modified group
+     * @param model
+     * @param personToModify
+     * @return Set of Tags
+     * @throws CommandException
+     */
     public Set<Tag> addToModifiedGroup(Model model, Person personToModify) throws CommandException {
         Set<Tag> existingGroup = personToModify.getTags();
         Set<Tag> modifiedGroup = new HashSet<>();
@@ -105,7 +122,4 @@ public class GroupAddCommand extends Command {
         GroupAddCommand e = (GroupAddCommand) other;
         return index.equals(e.index) && groupsToAdd.equals(e.groupsToAdd);
     }
-
-
-
 }
