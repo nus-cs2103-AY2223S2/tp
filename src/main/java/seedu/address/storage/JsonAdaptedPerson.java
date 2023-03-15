@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -28,15 +30,38 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private String medicalCondition;
+    private String age;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
+
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("age") String age,
+                             @JsonProperty("MedicalCondition") String medicalCondition) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+
+        if (age != null) {
+            this.age = age;
+        } else {
+            this.age = "";
+        }
+
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+        if (medicalCondition != null) {
+            this.medicalCondition = medicalCondition;
+        }
+    }
+    public JsonAdaptedPerson(String name, String phone, String email, String address, List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,6 +79,12 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        if (source.getAge().getAge() != null) {
+            age = source.getAge().getAge();
+        }
+        if (source.getMedicalCondition().getValue() != null) {
+            medicalCondition = source.getMedicalCondition().getValue();
+        }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -103,6 +134,19 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Age modelAge = new Age(age);
+        final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
+
+        if (age != null && medicalCondition != null) {
+            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelMedical);
+        }
+        if (age != null && medicalCondition == null) {
+            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags);
+        }
+        if (age == null && medicalCondition != null) {
+            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedical);
+        }
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
