@@ -42,4 +42,13 @@ public class Assignment {
             throw new CommandException("Submission of " + studentId + "not found");
         }
     }
+
+    public ArrayList<Submission> getSubmissions() {
+        return this.submissions;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

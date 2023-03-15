@@ -111,4 +111,6 @@ public interface Model {
     void deleteAssignment(String assignmentName) throws CommandException;
 
     void grade(String assignmentName, int studentId, int marks) throws CommandException;
+
+    String listAssignments();
 }

@@ -211,4 +211,9 @@ public class ModelManager implements Model {
     public void grade(String assignmentName, int studentId, int marks) throws CommandException {
         assignmentList.grade(assignmentName, studentId, marks);
     }
+
+    @Override
+    public String listAssignments() {
+        return assignmentList.list();
+    }
 }

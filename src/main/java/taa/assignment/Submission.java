@@ -22,4 +22,10 @@ public class Submission {
         isGraded = true;
         this.marks = marks;
     }
+
+    @Override
+    public String toString() {
+        char gradeChar = isGraded ? 'X' : ' ';
+        return String.format("[%c] Student %d: %d marks.",gradeChar,studentId,marks);
+    }
 }

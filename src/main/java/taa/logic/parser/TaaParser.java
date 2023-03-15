@@ -85,6 +85,9 @@ public class TaaParser {
         case GradeCommand.COMMAND_WORD:
             return new GradeCommandParser().parse(arguments);
 
+        case ListAssignmentCommand.COMMAND_WORD:
+            return new ListAssignmentCommand();
+
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
