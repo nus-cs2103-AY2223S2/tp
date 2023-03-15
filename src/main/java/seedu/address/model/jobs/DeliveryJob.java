@@ -1,5 +1,6 @@
 package seedu.address.model.jobs;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import seedu.address.model.person.Person;
@@ -65,6 +66,10 @@ public class DeliveryJob {
     public boolean getDeliveredStatus() {
         return isDelivered;
     }
+    public LocalDate getDeliverDate() {
+        return LocalDate.now();
+    }
+
 
     /**
      * isSameDeliveryJob.

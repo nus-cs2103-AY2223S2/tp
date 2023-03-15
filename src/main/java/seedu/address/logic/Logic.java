@@ -1,6 +1,9 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -26,6 +29,8 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException;
+
     /**
      * Returns the AddressBook.
      *
@@ -49,6 +54,13 @@ public interface Logic {
     ObservableList<Reminder> getReminderList();
 
     /**
+     * Returns a map of delivery job list in the week
+     */
+    Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList();
+
+    ArrayList<ArrayList<DeliveryJob>> getDayofWeekJob(int dayOfWeek);
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
@@ -62,4 +74,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 }

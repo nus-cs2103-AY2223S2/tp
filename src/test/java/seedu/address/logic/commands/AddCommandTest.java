@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -174,12 +175,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateWeekDeliveryJobList(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<DeliveryJob> getSortedDeliveryJobList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Map<String, ArrayList<DeliveryJob>> getSortedDeliveryJobListByDate() {
+        public Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getSortedDeliveryJobListByDate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<ArrayList<DeliveryJob>> getDayOfWeekJob(int dayOfWeek) {
             throw new AssertionError("This method should not be called.");
         }
 

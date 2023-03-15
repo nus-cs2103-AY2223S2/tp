@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Map;
@@ -115,8 +116,11 @@ public interface Model {
     void updateFilteredDeliveryJobList(Predicate<DeliveryJob> predicate);
     void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter);
     void updateSortedDeliveryJobListByDate();
+    void updateWeekDeliveryJobList(LocalDate date);
     ObservableList<DeliveryJob> getSortedDeliveryJobList();
-    Map<String, ArrayList<DeliveryJob>> getSortedDeliveryJobListByDate();
+    Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getSortedDeliveryJobListByDate();
+    Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList();
+    ArrayList<ArrayList<DeliveryJob>> getDayOfWeekJob(int dayOfWeek);
 
 
 

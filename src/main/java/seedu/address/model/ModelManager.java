@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -27,7 +28,7 @@ import seedu.address.model.reminder.Reminder;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    public static final SortbyTime SORTER_BY_SLOT = new SortbyTime();
+    public static final SortbyTime SORTER_BY_DATE = new SortbyTime();
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
@@ -38,7 +39,10 @@ public class ModelManager implements Model {
     private final FilteredList<DeliveryJob> filteredDeliveryJobs;
     private final List<DeliveryJob> sortedDeliveryJobs;
     private final ObservableList<Reminder> reminderList;
-    private final Map<String, ArrayList<DeliveryJob>> jobListGroupedByDate;
+    private final Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> jobListGroupedByDate;
+    private final Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> weekJobListGroupedByDate;
+    private LocalDate focusDate;
+
 
 
     /**
@@ -59,8 +63,11 @@ public class ModelManager implements Model {
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredDeliveryJobs = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
         this.sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
-        this.jobListGroupedByDate = new HashMap<String, ArrayList<DeliveryJob>>();
+        updateSortedDeliveryJobListByDate();
+        this.jobListGroupedByDate = getSortedDeliveryJobListByDate();
+        this.weekJobListGroupedByDate = new HashMap<LocalDate, ArrayList<ArrayList<DeliveryJob>>>();
         this.reminderList = this.addressBook.getReminderList();
+        this.focusDate = LocalDate.now();
     }
 
     /**
@@ -220,23 +227,81 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedDeliveryJobListByDate() {
-        updateSortedDeliveryJobList(SORTER_BY_SLOT);
+        updateSortedDeliveryJobList(SORTER_BY_DATE);
+
         for (int i = 0; i < sortedDeliveryJobs.size(); i++) {
+            LocalDate jobDate = sortedDeliveryJobs.get(i).getDeliverDate();
             String jobSlot = sortedDeliveryJobs.get(i).getDeliverSlot();
+            int slotIndex = Integer.parseInt(jobSlot) - 1;
             DeliveryJob toAdd = sortedDeliveryJobs.get(i);
-            if (jobListGroupedByDate.containsKey(jobSlot)) {
-                ArrayList<DeliveryJob> jobsInCurrentSlot = jobListGroupedByDate.get(jobSlot);
-                jobsInCurrentSlot.add(toAdd);
-                jobListGroupedByDate.put(jobSlot, jobsInCurrentSlot);
+            if (jobListGroupedByDate.containsKey(jobDate)) {
+                ArrayList<ArrayList<DeliveryJob>> jobsInCurrentSlot = jobListGroupedByDate.get(jobDate);
+                if (jobsInCurrentSlot.size() == 0) {
+                    jobsInCurrentSlot = createEmptyDayJobList();
+                }
+                jobsInCurrentSlot.get(slotIndex).add(toAdd);
+                jobListGroupedByDate.put(jobDate, jobsInCurrentSlot);
             } else {
-                jobListGroupedByDate.put(jobSlot, new ArrayList<DeliveryJob>(List.of(toAdd)));
+                ArrayList<ArrayList<DeliveryJob>> newDateJobList = createEmptyDayJobList();
+                newDateJobList.get(slotIndex).add(toAdd);
+                jobListGroupedByDate.put(jobDate, newDateJobList);
             }
         }
     }
 
+    /**
+     * Update list of week delivery job list,
+     * period spans from 1 week before given date
+     * to 1 week after given date
+     * @param date given/focused date
+     */
     @Override
-    public Map<String, ArrayList<DeliveryJob>> getSortedDeliveryJobListByDate() {
+    public void updateWeekDeliveryJobList(LocalDate date) {
+        requireNonNull(date);
+        weekJobListGroupedByDate.clear();
+        this.focusDate = date;
+
+        LocalDate lastWeek = date.minusWeeks(1);
+        LocalDate nextWeek = date.plusWeeks(1);
+        int focusDayOfWeek = date.getDayOfWeek().getValue();
+        int dayOfWeekTracker = 1;
+
+        while (dayOfWeekTracker < 8) {
+            int dayToAdd = dayOfWeekTracker - focusDayOfWeek;
+            LocalDate dayInWeek = date.plusDays(dayToAdd);
+            addWeekJobList(dayInWeek);
+            dayOfWeekTracker++;
+        }
+    }
+
+    private void addWeekJobList(LocalDate dayToAdd) {
+        if (jobListGroupedByDate.containsKey(dayToAdd)) {
+            ArrayList<ArrayList<DeliveryJob>> currentJobList = jobListGroupedByDate.get(dayToAdd);
+            weekJobListGroupedByDate.put(dayToAdd, currentJobList);
+        } else {
+            weekJobListGroupedByDate.put(dayToAdd, null);
+        }
+    }
+
+    private ArrayList<ArrayList<DeliveryJob>> createEmptyDayJobList() {
+        return new ArrayList<ArrayList<DeliveryJob>>(100);
+    }
+
+    @Override
+    public Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getSortedDeliveryJobListByDate() {
         return jobListGroupedByDate;
+    }
+
+    @Override
+    public Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList() {
+        return weekJobListGroupedByDate;
+    }
+
+    @Override
+    public ArrayList<ArrayList<DeliveryJob>> getDayOfWeekJob(int dayOfWeek) {
+        int focusDayOfWeek = focusDate.getDayOfWeek().getValue();
+        LocalDate dayToAdd = focusDate.plusDays(dayOfWeek - focusDayOfWeek);
+        return weekJobListGroupedByDate.get(dayToAdd);
     }
 
     //=========== ReminderList Accessors =============================================================
