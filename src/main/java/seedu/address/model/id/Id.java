@@ -2,6 +2,10 @@ package seedu.address.model.id;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * represents an id in the addressbook
+ * guarantees: id is immutable.
+ */
 public abstract class Id {
     private static final AtomicInteger idCounter = new AtomicInteger();
 
