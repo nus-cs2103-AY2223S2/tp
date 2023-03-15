@@ -74,7 +74,7 @@ public class LinkContactCommand extends Command {
                 && eventIndex.equals(((LinkContactCommand) other).eventIndex)
                 && addContact.equals(((LinkContactCommand) other).addContact));
     }
-    
+
     public Event createLinkedEvent (Event eventToEdit, Contact toAdd) {
         Name name = eventToEdit.getName();
         Rate rate = eventToEdit.getRate();
