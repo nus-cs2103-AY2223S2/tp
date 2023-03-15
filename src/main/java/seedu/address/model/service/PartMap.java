@@ -10,7 +10,7 @@ import seedu.address.model.service.exception.PartNotFoundException;
  * Mapping between part name and the part in storage
  */
 public class PartMap {
-    private final Map<String, Part> map;
+    private final Map<String, Integer> map;
 
     public PartMap() {
         this.map = new HashMap<>();
@@ -29,30 +29,40 @@ public class PartMap {
      * Get part with suitable description
      *
      * @param partName Part name
-     * @return part
-     * @throws PartNotFoundException If part not in list
+     * @return Quantity of part
+     * @throws PartNotFoundException If part not in Set
      */
-    public Part getPart(String partName) throws PartNotFoundException {
+    public int getPartQuantity(String partName) {
         if (!contains(partName)) {
-            throw new PartNotFoundException();
+            return 0;
         }
         return map.get(partName);
     }
 
-    public Set<Map.Entry<String, Part>> getEntrySet() {
+    public Set<Map.Entry<String, Integer>> getEntrySet() {
         return map.entrySet();
     }
 
     /**
-     * Adds/Sets part into mapping.
-     * <p>
-     * NOTE: Could overwrite existing part mapping
+     * Adds parts into mapping.
      *
      * @param partName Part name
-     * @param part     Part
+     * @param quantity Quantity of part to add
      */
-    public void addPart(String partName, Part part) {
-        this.map.put(partName, part);
+    public void addParts(String partName, int quantity) {
+        if (this.map.containsKey(partName)) {
+            this.map.put(partName, map.get(partName) + quantity);
+        }
+        this.map.put(partName, quantity);
     }
 
+    /**
+     * Replaces contents of partMap with another map
+     *
+     * @param other Map to replace with
+     */
+    public void replace(Map<String, Integer> other) {
+        this.map.clear();
+        this.map.putAll(other);
+    }
 }
