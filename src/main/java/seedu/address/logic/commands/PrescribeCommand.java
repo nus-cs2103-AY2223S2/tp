@@ -82,9 +82,20 @@ public class PrescribeCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof PrescribeCommand // instanceof handles nulls
-                && medication.equals(((PrescribeCommand) other).medication)); // state check
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PrescribeCommand)) {
+            return false;
+        }
+
+        // state check
+        PrescribeCommand e = (PrescribeCommand) other;
+        return index.equals(e.index)
+                && medication.equals(e.medication);
     }
 
 }
