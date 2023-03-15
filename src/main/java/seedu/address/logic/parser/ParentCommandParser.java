@@ -62,7 +62,6 @@ public class ParentCommandParser {
                         PREFIX_RELATIONSHIP, PREFIX_AGE, PREFIX_IMAGEPARENT, PREFIX_PHONE,
                         PREFIX_EMAIL);
 
-
         System.out.println("test2");
         if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(studentClass, argMultimapAdd);
@@ -99,6 +98,7 @@ public class ParentCommandParser {
 
     public ParentDeleteCommand deleteCommand(ArgumentMultimap argMultimap) throws ParseException {
         try {
+            System.out.println("deleteC");
             Phone phoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             Name parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             return new ParentDeleteCommand(parentName, phoneNumber);
