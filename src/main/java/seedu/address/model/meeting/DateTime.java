@@ -53,6 +53,11 @@ public class DateTime {
     private static final String HHMM_AM_PM_TEMPLATE = "h" + SEPARATOR_PLACEHOLDER + "mma";
 
     private final LocalDate meetingDate;
+
+    /**
+     * If meetingTime is not specified in the input, {@code meetingTime} will
+     * be set to {@code LocalTime.MIN}.
+     */
     private final LocalTime meetingTime;
 
     /**
@@ -121,6 +126,10 @@ public class DateTime {
         }
     }
 
+    /**
+     * Returns a {@code string} representation of the Date and Time (if exists) stored
+     * in this class.
+     */
     public String getDateTime() {
         if (!meetingTime.equals(LocalTime.MIN)) {
             return meetingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT))
@@ -152,6 +161,14 @@ public class DateTime {
     }
 
     /**
+     * Returns true if a given string is a valid date/time.
+     */
+    public static boolean isValidDuration(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return !Duration.between(startDateTime, endDateTime).isNegative()
+                && !Duration.between(startDateTime, endDateTime).isZero();
+    }
+
+    /**
      * Returns true if a given string is a valid date.
      */
     private static boolean isValidDate(String test) {
@@ -163,14 +180,6 @@ public class DateTime {
      */
     private static boolean isValidTime(String test) {
         return test.matches(VALIDATION_REGEX) && !stringToLocalTime(test).equals(LocalTime.MIN);
-    }
-
-    /**
-     * Returns true if a given string is a valid date/time.
-     */
-    public static boolean isValidDuration(LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        return !Duration.between(startDateTime, endDateTime).isNegative()
-                && !Duration.between(startDateTime, endDateTime).isZero();
     }
 
     private static LocalDate stringToLocalDate(String date) {
@@ -256,7 +265,6 @@ public class DateTime {
             }
 
             if (!parseTime(time, hhmmampmPattern).equals(LocalTime.MIN)) {
-                System.out.println("testt" + " " + hhmmampmPattern);
                 timeFormat = hhmmampmPattern;
             }
         }

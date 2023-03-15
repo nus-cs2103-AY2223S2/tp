@@ -1,10 +1,12 @@
 package seedu.address.model.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
+import java.time.Year;
 
 import org.junit.jupiter.api.Test;
 
@@ -96,5 +98,28 @@ public class DateTimeTest {
 
         // valid dates/times
         assertTrue(DateTime.isValidDuration(LocalDateTime.MIN, LocalDateTime.MAX));
+    }
+
+    @Test
+    public void getDateTime() {
+        assertEquals(new DateTime("22/02/2022").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("22-02-2022").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("22.02.2022").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("22022022").getDateTime(), "22/02/2022");
+
+        assertEquals(new DateTime("22/02/22").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("22-02-22").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("22.02.22").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("220222").getDateTime(), "22/02/2022");
+
+        assertEquals(new DateTime("22/02").getDateTime(), "22/02/" + Year.now());
+        assertEquals(new DateTime("22-02").getDateTime(), "22/02/" + Year.now());
+        assertEquals(new DateTime("22.02").getDateTime(), "22/02/" + Year.now());
+        assertEquals(new DateTime("2202").getDateTime(), "22/02/" + Year.now());
+
+        assertEquals(new DateTime("22022022 13:00").getDateTime(), "22/02/2022 13:00");
+        assertEquals(new DateTime("22022022 13.00").getDateTime(), "22/02/2022 13:00");
+        assertEquals(new DateTime("22022022 1:00AM").getDateTime(), "22/02/2022 01:00");
+        assertEquals(new DateTime("22022022 1:00PM").getDateTime(), "22/02/2022 13:00");
     }
 }
