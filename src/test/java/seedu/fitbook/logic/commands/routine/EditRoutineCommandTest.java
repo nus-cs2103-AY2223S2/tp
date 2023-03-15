@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fitbook.logic.commands.CommandTestUtil.DESC_CARDIO;
 import static seedu.fitbook.logic.commands.CommandTestUtil.DESC_STRENGTH;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EXERCISE_INDEX;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_NAME_CARDIO;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_NAME_STRENGTH;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.fitbook.logic.commands.CommandTestUtil.showRoutineAtIndex;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_ROUTINE;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_ROUTINE;
@@ -27,6 +30,7 @@ import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.testutil.routine.EditRoutineDescriptorBuilder;
+import seedu.fitbook.testutil.routine.RoutineBuilder;
 
 /**
  * Contains integration tests (interaction with the FitBookModel) and unit tests for EditCommand.
@@ -36,49 +40,27 @@ public class EditRoutineCommandTest {
     private FitBookModel model = new FitBookModelManager(getTypicalFitBook(),
             getTypicalFitBookExerciseRoutine(), new UserPrefs());
 
-    //TODO Find function needs to be implemented first
-    /*
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Routine editedRoutine = new RoutineBuilder().build();
-        EditRoutineDescriptor descriptor = new EditRoutineDescriptorBuilder(editedRoutine).build();
-        EditRoutineCommand editRoutineCommand = new EditRoutineCommand(INDEX_FIRST_ROUTINE, descriptor);
-
+        EditRoutineDescriptor descriptorRoutineName = new EditRoutineDescriptorBuilder(editedRoutine).build();
+        descriptorRoutineName.setExerciseIndexNull();
+        descriptorRoutineName.setExerciseNull();
+        EditRoutineDescriptor descriptorExercise = new EditRoutineDescriptorBuilder(editedRoutine).build();
+        descriptorExercise.setRoutineNameNull();
+        EditRoutineCommand editRoutineCommandRoutine =
+                new EditRoutineCommand(INDEX_FIRST_ROUTINE, descriptorRoutineName);
+        EditRoutineCommand editRoutineCommandExercise = new EditRoutineCommand(INDEX_FIRST_ROUTINE, descriptorExercise);
         String expectedMessage = String.format(EditRoutineCommand.MESSAGE_EDIT_ROUTINE_SUCCESS, editedRoutine);
 
         FitBookModel expectedFitBookExerciseRoutineModel = new FitBookModelManager(new FitBook(model.getFitBook()),
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
+        editedRoutine.withExercises("Plank", "4x5 1km Run");
         expectedFitBookExerciseRoutineModel.setRoutine(model.getFilteredRoutineList().get(0), editedRoutine);
 
-        assertCommandSuccess(editRoutineCommand, model, expectedMessage, expectedFitBookExerciseRoutineModel);
+        assertCommandSuccess(editRoutineCommandRoutine, editRoutineCommandExercise,
+                model, expectedMessage, expectedFitBookExerciseRoutineModel);
     }
-    */
-
-    //TODO Find function needs to be implemented first
-    /*
-    @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastRoutine = Index.fromOneBased(model.getFilteredRoutineList().size());
-        Routine lastRoutine = model.getFilteredRoutineList().get(indexLastRoutine.getZeroBased());
-
-        RoutineBuilder routineInList = new RoutineBuilder(lastRoutine);
-        Routine editedRoutine = routineInList.withRoutineName(VALID_ROUTINE_NAME_STRENGTH)
-                .withExercises(VALID_EXERCISE_SITUP).build();
-
-        EditRoutineDescriptor descriptor = new EditRoutineDescriptorBuilder()
-                .withRoutineName(VALID_ROUTINE_NAME_STRENGTH).withExercise(VALID_EXERCISE_SITUP)
-                .build();
-        EditRoutineCommand editRoutineCommand = new EditRoutineCommand(indexLastRoutine, descriptor);
-
-        String expectedMessage = String.format(EditRoutineCommand.MESSAGE_EDIT_ROUTINE_SUCCESS, editedRoutine);
-
-        FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()),
-                new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
-        expectedFitBookModel.setRoutine(lastRoutine, editedRoutine);
-
-        assertCommandSuccess(editRoutineCommand, model, expectedMessage, expectedFitBookModel);
-    }
-     */
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
@@ -94,8 +76,6 @@ public class EditRoutineCommandTest {
         assertCommandSuccess(editRoutineCommand, model, expectedMessage, expectedFitBookModel);
     }
 
-    //TODO Find function needs to be implemented first
-    /*
     @Test
     public void execute_filteredList_success() {
         showRoutineAtIndex(model, INDEX_FIRST_ROUTINE);
@@ -103,18 +83,22 @@ public class EditRoutineCommandTest {
         Routine routineInFilteredList = model.getFilteredRoutineList().get(INDEX_FIRST_ROUTINE.getZeroBased());
         Routine editedRoutine = new RoutineBuilder(routineInFilteredList).withRoutineName(VALID_ROUTINE_NAME_CARDIO)
                 .build();
-        EditRoutineCommand editRoutineCommand = new EditRoutineCommand(INDEX_FIRST_ROUTINE,
-                new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_NAME_STRENGTH).build());
+        EditRoutineCommand editRoutineCommandExercise = new EditRoutineCommand(INDEX_FIRST_ROUTINE,
+                new EditRoutineDescriptorBuilder().withExercise("Plank")
+                        .withExercisesIndex(VALID_EXERCISE_INDEX).build());
+        EditRoutineCommand editRoutineCommandRoutine = new EditRoutineCommand(INDEX_FIRST_ROUTINE,
+                new EditRoutineDescriptorBuilder().withRoutineName(VALID_ROUTINE_NAME_CARDIO).build());
 
         String expectedMessage = String.format(EditRoutineCommand.MESSAGE_EDIT_ROUTINE_SUCCESS, editedRoutine);
 
         FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()),
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
+        editedRoutine.withExercises("Plank", "4x5 1km Run");
         expectedFitBookModel.setRoutine(model.getFilteredRoutineList().get(0), editedRoutine);
 
-        assertCommandSuccess(editRoutineCommand, model, expectedMessage, expectedFitBookModel);
+        assertCommandSuccess(editRoutineCommandRoutine, editRoutineCommandExercise, model,
+                expectedMessage, expectedFitBookModel);
     }
-     */
 
     @Test
     public void execute_duplicateRoutineUnfilteredList_failure() {
@@ -125,8 +109,6 @@ public class EditRoutineCommandTest {
         assertCommandFailure(editRoutineCommand, model, EditRoutineCommand.MESSAGE_DUPLICATE_ROUTINE);
     }
 
-    //TODO Find function needs to be implemented first
-    /*
     @Test
     public void execute_duplicateRoutineFilteredList_failure() {
         showRoutineAtIndex(model, INDEX_FIRST_ROUTINE);
@@ -139,7 +121,6 @@ public class EditRoutineCommandTest {
 
         assertCommandFailure(editRoutineCommand, model, EditRoutineCommand.MESSAGE_DUPLICATE_ROUTINE);
     }
-     */
 
     @Test
     public void execute_invalidRoutineIndexUnfilteredList_failure() {
@@ -155,8 +136,6 @@ public class EditRoutineCommandTest {
      * Edit filtered list where index is larger than size of filtered list,
      * but smaller than size of FitBook
      */
-    //TODO Find function needs to be implemented first
-    /*
     @Test
     public void execute_invalidRoutineIndexFilteredList_failure() {
         showRoutineAtIndex(model, INDEX_FIRST_ROUTINE);
@@ -169,7 +148,6 @@ public class EditRoutineCommandTest {
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ROUTINE_DISPLAYED_INDEX);
     }
-     */
 
     @Test
     public void equals() {
