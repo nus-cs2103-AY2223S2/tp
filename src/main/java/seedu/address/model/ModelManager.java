@@ -139,11 +139,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markTask(Task task) {
+        requireNonNull(task);
+        addressBook.markTask(task);
+    }
+
+    @Override
+    public void unmarkTask(Task task) {
+        requireNonNull(task);
+        addressBook.unmarkTask(task);
+    }
+
     public void assignTask(Index taskIndex, Index personIndex) {
         addressBook.assignTask(taskIndex, personIndex);
     }
-
-
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
@@ -172,6 +181,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override
