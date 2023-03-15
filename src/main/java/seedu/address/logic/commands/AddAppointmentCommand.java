@@ -12,7 +12,7 @@ import seedu.address.model.service.appointment.Appointment;
 /**
  * Manages adding appointments
  */
-public class AddAppointmentCommand extends Command {
+public class AddAppointmentCommand extends RedoableCommand {
 
     public static final String COMMAND_WORD = "addappointment";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds appointment with customer. "
@@ -47,7 +47,7 @@ public class AddAppointmentCommand extends Command {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasCustomer(toAdd.getCustomerId())) {
             throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
