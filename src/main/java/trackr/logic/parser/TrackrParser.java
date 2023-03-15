@@ -21,6 +21,7 @@ import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
 import trackr.logic.commands.ListCommand;
 import trackr.logic.commands.ListTaskCommand;
+import trackr.logic.commands.*;
 import trackr.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +68,10 @@ public class TrackrParser {
 
         case DeleteSupplierCommand.COMMAND_WORD:
             return new DeleteSupplierCommandParser().parse(arguments);
+        case EditOrderCommand.COMMAND_WORD:
+        case EditOrderCommand.COMMAND_WORD_SHORTCUT:
+            return new EditOrderCommandParser().parse(arguments);
+
 
         case DeleteTaskCommand.COMMAND_WORD:
         case DeleteTaskCommand.COMMAND_WORD_SHORTCUT:

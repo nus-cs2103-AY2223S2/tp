@@ -1,10 +1,12 @@
 package trackr.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
+import trackr.model.order.Order;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 
@@ -21,6 +23,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     // ================================================= User Prefs =================================================
 
@@ -150,4 +157,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    ObservableList<Order> getFilteredOrderList();
+
+    boolean hasOrder(Order editedOrder);
+
+    void updateFilteredOrderList(Predicate<Order> predicateShowAllOrders);
+
+    void setOrderList(ReadOnlyOrderList orderList);
+
+    ReadOnlyOrderList getOrderList();
+
+    void setOrder(Order orderToEdit, Order editedOrder);
 }

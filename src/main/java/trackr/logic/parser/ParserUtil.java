@@ -14,6 +14,10 @@ import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.Name;
 import trackr.model.supplier.Phone;
+import trackr.model.order.OrderDeadline;
+import trackr.model.order.OrderName;
+import trackr.model.order.OrderStatus;
+
 import trackr.model.tag.Tag;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
@@ -175,4 +179,54 @@ public class ParserUtil {
         }
         return new TaskStatus(trimmedTaskStatus);
     }
+
+    /**
+     * Parses a {@code String orderName} into a {@code OrderName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code orderName} is invalid.
+     */
+    public static OrderName parseOrderName(String orderName) throws ParseException {
+        requireNonNull(orderName);
+        String trimmedOrderName = orderName.trim();
+        if (!OrderName.isValidOrderName(trimmedOrderName)) {
+            throw new ParseException(OrderName.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderName(trimmedOrderName);
+    }
+
+    /**
+     * Parses a {@code String orderDeadline} into a {@code OrderDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code orderDeadline} is invalid.
+     */
+    public static OrderDeadline parseOrderDeadline(String orderDeadline) throws ParseException {
+        requireNonNull(orderDeadline);
+        String trimmedOrderDeadline = orderDeadline.trim();
+        if (!OrderDeadline.isValidOrderDeadline(trimmedOrderDeadline)) {
+            throw new ParseException(OrderDeadline.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderDeadline(trimmedOrderDeadline);
+    }
+
+    /**
+     * Parses a {@code String orderStatus} into a {@code OrderStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code orderStatus} is invalid.
+     */
+    public static OrderStatus parseOrderStatus(Optional<String> orderStatus) throws ParseException {
+        requireNonNull(orderStatus);
+        if (!orderStatus.isPresent()) {
+            return new OrderStatus();
+        }
+
+        String trimmedOrderStatus = orderStatus.get().trim();
+        if (!OrderStatus.isValidOrderStatus(trimmedOrderStatus)) {
+            throw new ParseException(OrderStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderStatus(trimmedOrderStatus);
+    }
+
 }
