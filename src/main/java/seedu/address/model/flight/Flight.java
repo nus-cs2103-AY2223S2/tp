@@ -16,6 +16,7 @@ public class Flight implements Item {
     private static final String CODE_STRING = "Code";
     private static final String DEPARTURE_STRING = "Depart from";
     private static final String ARRIVE_STRING = "Arrive at";
+    private static final String NOT_SPECIFIED_STRING = "Not Specified";
 
     private final String code;
     private final String id;
@@ -114,7 +115,7 @@ public class Flight implements Item {
      * @param arrivalLocation the arrival location to link to
      */
     public void linkArrivalLocation(Location arrivalLocation) {
-        this.arrivalLocation = arrivalLocation; 
+        this.arrivalLocation = arrivalLocation;
     }
 
     /**
@@ -147,19 +148,59 @@ public class Flight implements Item {
         return arrivalLocation;
     }
 
-    private String getDepartureLocationName() {
+    /**
+     * Returns the id of the departure location.
+     * @return the id of the departure location
+     */
+    public String getDepartureLocationId() {
         if (departureLocation == null) {
-            return "null";
+            return NOT_SPECIFIED_STRING;
+        } else {
+            return departureLocation.getId();
+        }
+    }
+
+    /**
+     * Returns departure location name.
+     * @return the name of the departure location
+     */
+    public String getDepartureLocationName() {
+        if (departureLocation == null) {
+            return NOT_SPECIFIED_STRING;
         } else {
             return departureLocation.getName();
         }
     }
 
+    /**
+     * Returns the id of the arrival location.
+     * @return the id of the arrival location
+     */
+    public String getArrivalLocationId() {
+        if (departureLocation == null) {
+            return NOT_SPECIFIED_STRING;
+        } else {
+            return arrivalLocation.getId();
+        }
+    }
+
+    /**
+     * Returns arrival location name.
+     * @return the name of the arrival location
+     */
     private String getArrivalLocationName() {
         if (arrivalLocation == null) {
-            return "null";
+            return NOT_SPECIFIED_STRING;
         } else {
             return arrivalLocation.getName();
         }
+    }
+
+    /**
+     * Returns whether the location has linked locations
+     * @return true if there are linked locations
+     */
+    public boolean hasLinkedLocations() {
+        return arrivalLocation != null && departureLocation != null;
     }
 }
