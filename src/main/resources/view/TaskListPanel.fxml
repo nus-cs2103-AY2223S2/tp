@@ -1,6 +1,9 @@
-<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
 <?import javafx.scene.control.ListView?>
-
+<?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@TaskListView.css" />
+    </stylesheets>
     <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" />
 </VBox>
