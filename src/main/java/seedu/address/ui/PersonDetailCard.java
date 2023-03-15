@@ -10,11 +10,10 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays brief information of a {@code Person}.
+ * An UI component that displays all information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
-
-    private static final String FXML = "PersonListCard.fxml";
+public class PersonDetailCard extends UiPart<Region> {
+    private static final String FXML = "PersonDetailCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,31 +24,37 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-
     @FXML
-    private HBox cardPane;
+    private HBox detailPane;
     @FXML
     private Label name;
     @FXML
-    private Label id;
-    @FXML
     private Label profile;
+    @FXML
+    private Label phone;
+    @FXML
+    private Label address;
+    @FXML
+    private Label email;
+    @FXML
+    private FlowPane languages;
     @FXML
     private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonDetailCard(Person person) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        if (!person.getProfile().value.isEmpty()) {
-            profile.setText("@" + person.getProfile().value);
-        } else {
-            profile.setText("Not available");
-        }
+        profile.setText(person.getProfile().value);
+        phone.setText(person.getPhone().value);
+        address.setText(person.getAddress().value);
+        email.setText(person.getEmail().value);
+        person.getLanguages().stream()
+                .sorted(Comparator.comparing(language -> language.languageName))
+                .forEach(language -> languages.getChildren().add(new Label(language.languageName + " | ")));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -69,7 +74,6 @@ public class PersonCard extends UiPart<Region> {
 
         // state check
         PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+        return person.equals(card.person);
     }
 }

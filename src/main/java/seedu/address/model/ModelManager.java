@@ -23,6 +23,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private FilteredList<Person> filteredPersons;
 
+    private FilteredList<Person> viewedPerson;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +36,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        viewedPerson = new FilteredList<>(this.addressBook.getPersonList());
+        viewedPerson.setPredicate(x -> false);
     }
 
     public ModelManager() {
@@ -129,6 +133,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Person> getViewedPerson() {
+        return viewedPerson;
+    }
+
+    @Override
+    public void updateViewedPerson(Person person) {
+        viewedPerson.setPredicate(x -> x.isSamePerson(person));
+    }
+
+    @Override
     public void sortPersonList(String category) {
         addressBook.sort(category);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -150,7 +164,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && viewedPerson.equals(other.viewedPerson);
     }
 
 }
