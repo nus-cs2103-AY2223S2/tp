@@ -5,7 +5,9 @@ import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.flight.Flight;
+import seedu.address.model.flight.exceptions.FlightNotFoundException;
 import seedu.address.model.location.Location;
+import seedu.address.model.location.exceptions.LocationNotFoundException;
 
 
 /**
@@ -42,9 +44,31 @@ public class LinkLocationCommand implements Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Flight flightToLink = model.getFlightById(flightId);
-        Location departureLocationToLink = model.getLocationById(departureLocationId);
-        Location arrivalLocationToLink = model.getLocationById(arrivalLocationId);
+        Flight flightToLink;
+        try {
+            flightToLink = model.getFlightById(flightId);
+        } catch (FlightNotFoundException e) {
+            return new CommandResult(String.format("Flight id %s not found.", flightId));
+        }
+
+        Location departureLocationToLink;
+        try {
+            departureLocationToLink = model.getLocationById(departureLocationId);
+        } catch (LocationNotFoundException e) {
+            return new CommandResult(String.format("Departure location id %s not found.", departureLocationId));
+        }
+
+        Location arrivalLocationToLink;
+        try {
+            arrivalLocationToLink = model.getLocationById(arrivalLocationId);
+        } catch (LocationNotFoundException e) {
+            return new CommandResult(String.format("Arrival location id %s not found.", arrivalLocationId));
+        }
+
+        if (departureLocationToLink.equals(arrivalLocationToLink)) {
+            return new CommandResult("Departure and arrival locations cannot be the same.");
+        }
+
         model.linkFlightToLocations(flightToLink, departureLocationToLink, arrivalLocationToLink);
         return new CommandResult(
                 String.format("Linked departure location %s and arrival location %s to flight %s.",
