@@ -72,9 +72,9 @@ class JsonAdaptedRecipe {
         for (JsonAdaptedIngredient ingredient : ingredients) {
             recipeIngredients.add(ingredient.toModelType());
         }
-        final List<Step> recipeSteps = new ArrayList<>();
+        final List<Step> modelSteps = new ArrayList<>();
         for (JsonAdaptedStep step : steps) {
-            recipeSteps.add(step.toModelType());
+            modelSteps.add(step.toModelType());
         }
 
         if (title == null) {
@@ -94,7 +94,6 @@ class JsonAdaptedRecipe {
         }
         final Description modelDesc = new Description(desc);
         final Set<Ingredient> modelIngredients = new HashSet<>(recipeIngredients);
-        final Set<Step> modelSteps = new HashSet<>(recipeSteps);
         return new Recipe(modelTitle, modelDesc, modelIngredients, modelSteps);
     }
 

@@ -1,5 +1,6 @@
 package seedu.recipe.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +25,7 @@ public class SampleDataUtil {
                     new HashSet<Ingredient>(Arrays.asList(
                             new Ingredient("eggs"),
                             new Ingredient("flour"))),
-                    new HashSet<Step>(Arrays.asList(
+                    new ArrayList<Step>(Arrays.asList(
                             new Step("Test1"),
                             new Step("Test2"))))
         };
