@@ -1,9 +1,12 @@
 package taa.logic.commands;
 
-import taa.model.Model;
-
 import static java.util.Objects.requireNonNull;
 
+import taa.model.Model;
+
+/**
+ * Command that lists out all assignments.
+ */
 public class ListAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "list_asgn";
 

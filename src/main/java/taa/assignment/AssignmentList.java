@@ -53,10 +53,13 @@ public class AssignmentList {
     }
     // TODO: delete student from classList = must delete all submissions of studentId for all assignments.
 
+    /**
+     * @return A list of all assignments and submissions
+     */
     public String list() {
         StringBuilder sb = new StringBuilder();
         for (Assignment a : assignments) {
-            sb.append("Assignment " +  a + ":\n");
+            sb.append("Assignment " + a + ":\n");
             for (Submission s : a.getSubmissions()) {
                 sb.append("  " + s + "\n");
             }

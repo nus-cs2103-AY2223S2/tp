@@ -1,9 +1,9 @@
 package taa.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Grades a student submission of an assignment.
@@ -31,9 +31,9 @@ public class GradeCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.grade(assignmentName, studentId, marks);
-        return new CommandResult(String.format(MESSAGE_SUCCESS,assignmentName,studentId,marks));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, assignmentName, studentId, marks));
     }
 }

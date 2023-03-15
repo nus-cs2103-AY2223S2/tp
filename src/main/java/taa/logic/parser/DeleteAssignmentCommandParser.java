@@ -6,7 +6,6 @@ import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.stream.Stream;
 
 import taa.commons.core.Messages;
-import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.DeleteAssignmentCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Name;

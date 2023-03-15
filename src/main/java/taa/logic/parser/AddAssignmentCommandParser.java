@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 import taa.commons.core.Messages;
 import taa.logic.commands.AddAssignmentCommand;
-import taa.logic.commands.AddStudentCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Name;
 

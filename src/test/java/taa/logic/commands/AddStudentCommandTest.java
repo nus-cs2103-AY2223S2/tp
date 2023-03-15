@@ -183,6 +183,11 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public String listAssignments() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addClassList(ClassList toAdd) {
             throw new AssertionError("This method should not be called.");
         }
