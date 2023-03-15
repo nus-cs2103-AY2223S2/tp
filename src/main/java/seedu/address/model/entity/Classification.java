@@ -3,9 +3,15 @@ package seedu.address.model.entity;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
+/**
+ * Represents the classification of an entity: char, item or mob
+ */
 public class Classification {
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Classifications can only be char, item or mob, and should not be left blank.";
+        "Classifications can only be char, item or mob, and should not be left blank.";
 
     public static final String VALIDATION_REGEX = "char|item|mob";
 
@@ -38,13 +44,25 @@ public class Classification {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Classification // instanceof handles nulls
-                && classification.equals(((Classification) other).classification)); // state check
+            || (other instanceof Classification // instanceof handles nulls
+            && classification.equals(((Classification) other).classification)); // state check
     }
 
     @Override
     public int hashCode() {
         return classification.hashCode();
+    }
+
+    public boolean isCharacter() {
+        return Objects.equals(classification, "char");
+    }
+
+    public boolean isItem() {
+        return Objects.equals(classification, "item");
+    }
+
+    public boolean isMob() {
+        return Objects.equals(classification, "mob");
     }
 
 }

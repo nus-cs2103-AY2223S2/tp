@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.entity.Entity;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -27,19 +27,19 @@ public class AddEntityCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Entity validEntity = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addPerson(validEntity);
 
-        assertCommandSuccess(new AddEntityCommand(validPerson), model,
-                String.format(AddEntityCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddEntityCommand(validEntity), model,
+                String.format(AddEntityCommand.MESSAGE_SUCCESS, validEntity), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddEntityCommand(personInList), model, AddEntityCommand.MESSAGE_DUPLICATE_PERSON);
+        Entity entityInList = model.getAddressBook().getPersonList().get(0);
+        assertCommandFailure(new AddEntityCommand(entityInList), model, AddEntityCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }
