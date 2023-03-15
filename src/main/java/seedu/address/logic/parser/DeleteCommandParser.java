@@ -11,7 +11,7 @@ import seedu.address.logic.commands.DeleteSingleIndexCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteCommand type object
  */
 public class DeleteCommandParser implements Parser<DeleteCommand> {
 
