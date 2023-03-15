@@ -3,7 +3,11 @@ package seedu.address.model.util;
 import static seedu.address.model.person.Image.IMAGE_PATH;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,7 +23,6 @@ public class ImageUtil {
      * @throws IOException when file I/O is unsuccessful.
      */
     public static String importImage(String stringPath) throws IOException, ParseException, InvalidPathException {
-
         Path path = Paths.get(stringPath);
         if (!Files.exists(path)) {
             throw new ParseException("Referenced file does not exist.");
