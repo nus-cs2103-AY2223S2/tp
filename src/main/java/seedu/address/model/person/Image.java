@@ -4,8 +4,8 @@ package seedu.address.model.person;
  * Represents a Person's image in the address book.
  */
 public class Image {
-    private static final String IMAGE_PATH = "";
-    private static final String DEFAULT_IMAGE = "johndoe.png";
+    public static final String IMAGE_PATH = "data/images/";
+    public static final String DEFAULT_IMAGE = "default_image.png";
     public final String imageName;
 
     /**
