@@ -77,6 +77,11 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
+    public void deleteAppointment(int id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteAppointment'");
+    }
+
+    @Override
     public void addPatient(Patient patient) {
         throw new UnsupportedOperationException("Unimplemented method 'addPatient'");
     }
@@ -84,6 +89,11 @@ public class VaxTypeModelStub implements Model {
     @Override
     public void setPatient(int id, Patient editedPatient) {
         throw new UnsupportedOperationException("Unimplemented method 'setPatient'");
+    }
+
+    @Override
+    public void setAppointment(int id, Appointment editedAppointment) {
+        throw new UnsupportedOperationException("Unimplemented method 'setAppointment'");
     }
 
     @Override
@@ -99,6 +109,11 @@ public class VaxTypeModelStub implements Model {
     @Override
     public void updateFilteredPatientList(Predicate<Patient> predicate) {
         throw new UnsupportedOperationException("Unimplemented method 'updateFilteredPatientList'");
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        throw new UnsupportedOperationException("Unimplemented method 'updateFilteredAppointmentList'");
     }
 
     @Override

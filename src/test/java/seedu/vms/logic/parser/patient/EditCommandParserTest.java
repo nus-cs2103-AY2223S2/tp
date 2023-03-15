@@ -38,6 +38,7 @@ import org.junit.jupiter.api.Test;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.logic.commands.patient.EditCommand.EditPatientDescriptor;
+import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
@@ -100,11 +101,11 @@ public class EditCommandParserTest {
         // while parsing {@code PREFIX_ALLERGY} alone will reset the allergies of the {@code Patient} being edited,
         // parsing it together with a valid allergy results in error
         assertParseFailure(parser, "1" + ALLERGY_DESC_GLUTEN + ALLERGY_DESC_SEAFOOD + ALLERGY_EMPTY,
-                GroupName.MESSAGE_CONSTRAINTS);
+                ParserUtil.MESSAGE_BLANK_ELEMENT);
         assertParseFailure(parser, "1" + ALLERGY_DESC_GLUTEN + ALLERGY_EMPTY + ALLERGY_DESC_SEAFOOD,
-                GroupName.MESSAGE_CONSTRAINTS);
+                ParserUtil.MESSAGE_BLANK_ELEMENT);
         assertParseFailure(parser, "1" + ALLERGY_EMPTY + ALLERGY_DESC_GLUTEN + ALLERGY_DESC_SEAFOOD,
-                GroupName.MESSAGE_CONSTRAINTS);
+                ParserUtil.MESSAGE_BLANK_ELEMENT);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DOB_DESC + VALID_BLOODTYPE_AMY + VALID_PHONE_AMY,

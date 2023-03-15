@@ -1,6 +1,7 @@
 package seedu.vms.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_DOB;
@@ -36,20 +37,22 @@ import seedu.vms.model.patient.Phone;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_GROUP = "patient";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
+    public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
+            + ": Edits the details of the patient identified "
             + "by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_DOB + "Date of Birth] "
-            + "[" + PREFIX_BLOODTYPE + "BLOODTYPE] "
-            + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
-            + "[" + PREFIX_VACCINATION + "VACCINE]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_DOB + "2000-02-18";
+            + "[" + DELIMITER + PREFIX_NAME + " NAME] "
+            + "[" + DELIMITER + PREFIX_PHONE + " PHONE] "
+            + "[" + DELIMITER + PREFIX_DOB + " Date of Birth] "
+            + "[" + DELIMITER + PREFIX_BLOODTYPE + " BLOODTYPE] "
+            + "[" + DELIMITER + PREFIX_ALLERGY + " ALLERGY]...\n"
+            + "[" + DELIMITER + PREFIX_VACCINATION + " VACCINE]...\n"
+            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1 "
+            + DELIMITER + PREFIX_PHONE + " 91234567 "
+            + DELIMITER + PREFIX_DOB + " 2000-02-18";
 
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -59,7 +62,8 @@ public class EditCommand extends Command {
     private final EditPatientDescriptor editPatientDescriptor;
 
     /**
-     * @param index of the patient in the filtered patient list to edit
+     * @param index                 of the patient in the filtered patient list to
+     *                              edit
      * @param editPatientDescriptor details to edit the patient with
      */
     public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
@@ -88,7 +92,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
+     * Creates and returns a {@code Patient} with the details of
+     * {@code patientToEdit}
      * edited with {@code editPatientDescriptor}.
      */
     private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
@@ -123,7 +128,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the patient with. Each non-empty field value will replace the
+     * Stores the details to edit the patient with. Each non-empty field value will
+     * replace the
      * corresponding field value of the patient.
      */
     public static class EditPatientDescriptor {
@@ -134,7 +140,8 @@ public class EditCommand extends Command {
         private Set<GroupName> allergies;
         private Set<GroupName> vaccines;
 
-        public EditPatientDescriptor() {}
+        public EditPatientDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -197,7 +204,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable allergy set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable allergy set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code allergies} is null.
          */
@@ -214,7 +222,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable vaccine set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable vaccine set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code vaccines} is null.
          */

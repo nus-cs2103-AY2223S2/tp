@@ -19,19 +19,21 @@ import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
 
 /**
- * Adds a patient to the patient manager.
+ * Adds an appointment to the patient manager.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_GROUP = "appointment";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the patient manager. "
+    public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
+            + ": Adds an appointment to the patient manager. "
             + "Parameters: "
-            + DELIMITER + PREFIX_PATIENT + " PATIENT ID "
-            + DELIMITER + PREFIX_STARTTIME + " START TIME "
-            + DELIMITER + PREFIX_ENDTIME + " END TIME "
-            + DELIMITER + PREFIX_VACCINATION + " VAX GROUP\n"
-            + "Example: appointment " + COMMAND_WORD + " "
+            + DELIMITER + PREFIX_PATIENT + " PATIENT_ID "
+            + DELIMITER + PREFIX_STARTTIME + " START_TIME "
+            + DELIMITER + PREFIX_ENDTIME + " END_TIME "
+            + DELIMITER + PREFIX_VACCINATION + " VAX_GROUP\n"
+            + "Example: " + COMMAND_GROUP + "" + COMMAND_WORD + " "
             + DELIMITER + PREFIX_PATIENT + " 1 "
             + DELIMITER + PREFIX_STARTTIME + " 2024-01-01 1330"
             + DELIMITER + PREFIX_ENDTIME + " 2024-01-01 1400"
@@ -44,7 +46,7 @@ public class AddCommand extends Command {
     private final Appointment toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Patient}
+     * Creates an AddCommand to add the specified {@code Appointment}
      */
     public AddCommand(Appointment appointment) {
         requireNonNull(appointment);

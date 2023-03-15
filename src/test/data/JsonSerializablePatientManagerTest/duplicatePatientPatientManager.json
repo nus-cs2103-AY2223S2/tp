@@ -6,7 +6,7 @@
       "patient": {
         "name": "Alice Pauline",
         "phone": "94351253",
-        "dob": "2020-07-09",
+        "dob": "2020-07-09T00:00:00",
         "bloodType": "A+",
         "allergies": ["seafood", "gluten"],
         "vaccines": []
@@ -18,7 +18,7 @@
       "patient": {
         "name": "Benson Meier",
         "phone": "98765432",
-        "dob": "2011-10-11",
+        "dob": "2011-10-11T00:00:00",
         "bloodType": "A-",
         "allergies": ["seafood"],
         "vaccines": []

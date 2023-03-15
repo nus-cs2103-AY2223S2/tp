@@ -128,7 +128,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteAppointment(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPatient(int id, Patient editedPatient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAppointment(int id, Appointment editedAppointment) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -139,6 +149,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPatientList(Predicate<Patient> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

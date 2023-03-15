@@ -280,7 +280,7 @@ public class ParserUtil {
 
         final Set<GroupName> groups = new HashSet<>();
         for (String grpString : args) {
-            groups.add(parseGroupName(grpString));
+            groups.addAll(parseGroups(grpString));
         }
 
         return groups;

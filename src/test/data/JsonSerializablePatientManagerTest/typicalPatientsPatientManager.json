@@ -7,7 +7,7 @@
       "patient": {
         "name": "Alice Pauline",
         "phone": "94351253",
-        "dob": "2020-07-09",
+        "dob": "2020-07-09T00:00:00",
         "bloodType": "A+",
         "allergies": ["seafood", "gluten"],
         "vaccines": []
@@ -19,7 +19,7 @@
       "patient": {
         "name": "Benson Meier",
         "phone": "98765432",
-        "dob": "2011-10-11",
+        "dob": "2011-10-11T00:00:00",
         "bloodType": "A-",
         "allergies": ["seafood"],
         "vaccines": []
@@ -31,7 +31,7 @@
       "patient": {
         "name": "Carl Kurz",
         "phone": "95352563",
-        "dob": "1999-12-30",
+        "dob": "1999-12-30T00:00:00",
         "bloodType": "B+",
         "allergies": ["seafood", "gluten"],
         "vaccines": ["Moderna", "Pfizer"]
@@ -43,7 +43,7 @@
       "patient": {
         "name": "Daniel Meier",
         "phone": "87652533",
-        "dob": "1994-02-27",
+        "dob": "1994-02-27T00:00:00",
         "bloodType": "B-",
         "allergies": ["seafood"],
         "vaccines": ["Moderna"]
@@ -55,7 +55,7 @@
       "patient": {
         "name": "Elle Meyer",
         "phone": "9482224",
-        "dob": "1989-09-19",
+        "dob": "1989-09-19T00:00:00",
         "bloodType": "AB+",
         "allergies": [],
         "vaccines": ["Moderna", "Pfizer"]
@@ -67,7 +67,7 @@
       "patient": {
         "name": "Fiona Kunz",
         "phone": "9482427",
-        "dob": "1988-04-30",
+        "dob": "1988-04-30T00:00:00",
         "bloodType": "AB-",
         "allergies": [],
         "vaccines": ["Moderna"]
@@ -79,7 +79,7 @@
       "patient": {
         "name": "George Best",
         "phone": "9482442",
-        "dob": "1981-09-20",
+        "dob": "1981-09-20T00:00:00",
         "bloodType": "O+",
         "allergies": [],
         "vaccines": []

@@ -92,6 +92,21 @@ An integer value between `-2147483648` and `2147483647`.
 
 An extension of `<integer>`, allowing only positive values (ie. `x >= 0`). Age also has a max value of `200` which is allowed to be exceeded, provided it conforms to `<integer>` restrictions as well. All values of age that exceed the max value will be evaluated to be equal.
 
+#### `<bloodType>`
+
+The list of blood types are:
+
+* A+
+* A-
+* B+
+* B-
+* AB+
+* AB-
+* O+
+* O-
+
+All other values will be rejected
+
 #### `<date>`
 
 The supported date formats are:
@@ -149,15 +164,28 @@ help
 
 ### `patient` - Patient functionalities
 
+##### Patient data
+
+| Variable      | Is needed | Type                  | Accept multiple |
+| ------------- | --------- | --------------------- | --------------- |
+| `name`        | YES       | `<name>`              | NO              |
+| `phone`       | YES       | `<phone-number>`      | NO              |
+| `dateOfBirth` | YES       | `<date>`              | NO              |
+| `bloodType`   | YES       | `<bloodType>`         | NO              |
+| `allergy`     | NO        | list of `<groupName>` | YES             |
+| `vaccine`     | NO        | list of `<groupName>` | YES             |
+
 #### `add` - Add a patient
 
 ```text
-patient add --name <string> --phone <phone-number> --dob <date> --bloodtype <string> --allergy <list<string>> --vaccine <list<string>>
+patient add --name <string> --phone <phone-number> --d <date> --bloodtype <string> --a <groupName> --v <groupName>
+patient add --name <string> --phone <phone-number> --d <date> --bloodtype <string>
 ```
 
 Example:
 
 * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
 
 #### `delete` - Delete a patient
 

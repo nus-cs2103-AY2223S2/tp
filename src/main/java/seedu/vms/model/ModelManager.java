@@ -38,30 +38,32 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given patientManager and userPrefs.
      */
     public ModelManager(ReadOnlyPatientManager patientManager, VaxTypeManager vaxTypeManager,
-            ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(patientManager, userPrefs);
+            AppointmentManager appointmentManager, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(patientManager, vaxTypeManager, appointmentManager, userPrefs);
 
         logger.fine("Initializing with patient manager: " + patientManager + " and user prefs " + userPrefs);
 
         this.patientManager = new PatientManager(patientManager);
-        this.userPrefs = new UserPrefs(userPrefs);
         filteredPatientMap = new FilteredIdDataMap<>(this.patientManager.getMapView());
 
-        appointmentManager = new AppointmentManager();
-        filteredAppointmentMap = new FilteredIdDataMap<>(appointmentManager.getMapView());
+        this.appointmentManager = new AppointmentManager(appointmentManager);
+        filteredAppointmentMap = new FilteredIdDataMap<>(this.appointmentManager.getMapView());
+
         this.vaxTypeManager = vaxTypeManager;
+
+        this.userPrefs = new UserPrefs(userPrefs);
     }
 
     /**
      * Convenience constructor to construct a {@code ModelManager} with an
-     * empty {@code VaxTypeManager}.
+     * empty {@code VaxTypeManager} and {@code AppointmentManager}.
      */
     public ModelManager(ReadOnlyPatientManager patientManager, ReadOnlyUserPrefs userPrefs) {
-        this(patientManager, new VaxTypeManager(), userPrefs);
+        this(patientManager, new VaxTypeManager(), new AppointmentManager(), userPrefs);
     }
 
     public ModelManager() {
-        this(new PatientManager(), new VaxTypeManager(), new UserPrefs());
+        this(new PatientManager(), new VaxTypeManager(), new AppointmentManager(), new UserPrefs());
     }
 
     // =========== UserPrefs ==================================================================================
@@ -139,6 +141,19 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         appointmentManager.add(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public void deleteAppointment(int id) {
+        appointmentManager.remove(id);
+    }
+
+    @Override
+    public void setAppointment(int id, Appointment editedAppointment) {
+        requireAllNonNull(editedAppointment);
+
+        appointmentManager.set(id, editedAppointment);
     }
 
     // =========== VaxTypeManager ==============================================================================
@@ -190,6 +205,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
         return filteredAppointmentMap.asUnmodifiableObservableMap();
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointmentMap.filter(predicate);
     }
 
     @Override
