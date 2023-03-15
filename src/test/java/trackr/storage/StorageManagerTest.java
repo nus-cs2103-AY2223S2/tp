@@ -2,6 +2,7 @@ package trackr.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -12,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import trackr.commons.core.GuiSettings;
+import trackr.model.OrderList;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.SupplierList;
@@ -59,11 +62,14 @@ public class StorageManagerTest {
          */
         SupplierList originalAddressBook = getTypicalSupplierList();
         TaskList originalTaskList = getTypicalTaskList();
-        storageManager.saveTrackr(originalAddressBook, originalTaskList);
+        OrderList originalOrderList = getTypicalOrderList();
+        storageManager.saveTrackr(originalAddressBook, originalTaskList, originalOrderList);
         ReadOnlySupplierList retrievedAddressBook = storageManager.readSupplierList().get();
         assertEquals(originalAddressBook, new SupplierList(retrievedAddressBook));
         ReadOnlyTaskList retrievedTaskList = storageManager.readTaskList().get();
         assertEquals(originalTaskList, new TaskList(retrievedTaskList));
+        ReadOnlyOrderList retrievedOrderList = storageManager.readOrderList().get();
+        assertEquals(originalOrderList, new OrderList(retrievedOrderList));
     }
 
     @Test

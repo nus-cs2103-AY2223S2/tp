@@ -7,6 +7,7 @@ import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -25,7 +26,8 @@ import trackr.model.supplier.Supplier;
  */
 public class DeleteSupplierCommandTest {
 
-    private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
+            getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +36,8 @@ public class DeleteSupplierCommandTest {
 
         String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_SUPPLIER_SUCCESS, supplierToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
+                model.getOrderList(), new UserPrefs());
         expectedModel.deleteSupplier(supplierToDelete);
 
         assertCommandSuccess(deleteSupplierCommand, model, expectedMessage, expectedModel);
@@ -57,7 +60,8 @@ public class DeleteSupplierCommandTest {
 
         String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_SUPPLIER_SUCCESS, supplierToDelete);
 
-        Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
+                model.getOrderList(), new UserPrefs());
         expectedModel.deleteSupplier(supplierToDelete);
         showNoSupplier(expectedModel);
 

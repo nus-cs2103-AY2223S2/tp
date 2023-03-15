@@ -3,6 +3,7 @@ package trackr.logic.commands;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
+import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -23,8 +24,10 @@ public class ListSupplierCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
-        expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(), new UserPrefs());
+        model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
+                getTypicalOrderList(), new UserPrefs());
+        expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
+                model.getOrderList(), new UserPrefs());
     }
 
     @Test

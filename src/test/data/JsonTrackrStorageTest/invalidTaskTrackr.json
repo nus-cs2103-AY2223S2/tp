@@ -1,8 +1,9 @@
 {
-  "persons": [ ],
+  "suppliers": [ ],
   "tasks" : [ {
     "taskName": "Person with invalid name field: Ha!ns Mu@ster",
     "taskDeadline": "01/01/2023",
     "taskStatus": "N"
-  } ]
+  } ],
+  "orders" : [ ]
 }

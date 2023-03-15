@@ -17,10 +17,12 @@ import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
+import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.SupplierList;
+import trackr.model.order.Order;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.testutil.SupplierBuilder;
@@ -189,6 +191,46 @@ public class AddSupplierCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setOrderList(ReadOnlyOrderList orderList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyOrderList getOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteOrder(Order target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setOrder(Order target, Order editedOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Order> getFilteredOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

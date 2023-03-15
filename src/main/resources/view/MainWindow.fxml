@@ -53,8 +53,9 @@
                    </Tab>
                    <Tab text="Orders">
                         <content>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is a placeholder for ORDERS." />
-                        </content></Tab>
+                          <StackPane fx:id="orderListPanelPlaceholder" />
+                        </content>
+                   </Tab>
                  </tabs>
                </TabPane>
         </VBox>

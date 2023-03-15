@@ -2,6 +2,7 @@ package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -23,14 +24,16 @@ public class AddSupplierCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(), new UserPrefs());
+        model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
+                getTypicalOrderList(), new UserPrefs());
     }
 
     @Test
     public void execute_newSupplier_success() {
         Supplier validSupplier = new SupplierBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSupplierList(),
+                model.getTaskList(), model.getOrderList(), new UserPrefs());
         expectedModel.addSupplier(validSupplier);
 
         assertCommandSuccess(new AddSupplierCommand(validSupplier), model,
