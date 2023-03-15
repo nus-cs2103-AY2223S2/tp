@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.control.Label?>
+
+<HBox fx:id="systemDialogContainer" styleClass="system-dialog-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@system-dialog.css" />
+    </stylesheets>
+
+    <HBox fx:id="systemDialogResponseIndicator" styleClass="system-dialog-response-indicator" />
+    <Label fx:id="systemDialogText" wrapText="true" styleClass="system-dialog-text" />
+</HBox>

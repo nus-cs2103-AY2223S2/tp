@@ -1,0 +1,23 @@
+.system-dialog-container {
+    -fx-spacing: 10;
+    -fx-padding: 0 0 15 0;
+}
+
+.system-dialog-response-indicator {
+    -fx-min-width: 5;
+
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.system-dialog-response-indicator-success {
+    -fx-background-color: -teal;
+}
+
+.system-dialog-response-indicator-error {
+    -fx-background-color: -red;
+}
+
+.system-dialog-text {
+    -fx-padding: 3 0;
+}

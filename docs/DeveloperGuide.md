@@ -2,8 +2,22 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+<br>
+<img src="images/logo.png" width="200px"><br>
+
+ModTrek is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
+
+## Table of Contents
+
+1. [Appendix: Requirements](#appendix)
+   1. [Product Scope](#product-scope)
+        1. Target User Profile
+      1. Value Proposition
+   1. [User Stories](#user-stories)
+   1. [Use Cases](#use-cases)
+   1. [Non-Functional Requirements](#non-functional-requirements)
+   1. [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -253,46 +267,98 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Requirements**
 
+
 ### Product scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a mainstream NUS Computer Science student
+* has a need to track their degree progress, modules and grades
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* wants an overview of their academic progress quickly
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: Manage module grades and credits faster than typical GUI/app
+
+* All module information taken by student is recorded in a single platform and can be referred to easily
+* Offers a higher level of convenience, since the user can access module features within clicks on a keyboard
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority |   As a…  |                                                  I want to…                                                   |                             So that I can…                             |
+|:--------:|:--------:|:-------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------:|
+|  * * *   | New user |                                            see usage instructions                                             | refer to instructions when I forget how to use the App                 |
+|  * * *   | User     |                              add a new module to a current or previous semester                               | track what modules I have already taken                                |
+|  * * *   | User     |                                             list out all modules                                              | view what modules I have already taken                                 |
+|  * * *   | User     | tag a module with  degree requirements (e.g. University Level Requirements, Computer Science Foundation etc). | track which degree requirement each module fulfils                     |
+|  * * *   | User     |                                                delete a module                                                | remove modules that I have wrongly added                               |
+|   * *    | User     |                             find a module by code, grade, semester and/or credits                             | locate details of modules without having to go through the entire list |
+|  * * *   | User     |                                              edit module details                                              | correct mistakes in details I previously added                         |
+|   * *    | User     |                                      view a graph of my degree progress                                       | find out which type of modules I need to take in future semesters      |
+
 
 *{More to be added}*
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ModTrek` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+<br>
+
+#### Use case: Add a module
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a module
+2.  ModTrek adds the module
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given module code or semester is missing or invalid.
+
+    * 1a1. ModTrek shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+#### Use case: Edit a module
+
+**MSS**
+
+1.  User requests to edit a module’s details
+2.  ModTrek edits the module’s details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given module code or semester is missing or invalid
+
+    * 1a1. ModTrek shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+#### Use case: Delete a module
+
+**MSS**
+
+1.  User requests to list modules
+2.  ModTrek shows a list of modules
+3.  User requests to delete a specific module in the list
+4.  ModTrek deletes the module
 
     Use case ends.
 
@@ -302,26 +368,126 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given module code is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ModTrek shows an error message.
 
       Use case resumes at step 2.
 
+* 3b. User wants to delete all modules.
+
+    * 3b1. User requests to delete all modules.
+    * 3b2. ModTrek clears the list of modules.
+
+      Use case ends.
+
+<br>
+
+#### Use case: Find modules
+
+**MSS**
+
+1.  User requests to find modules
+2.  ModTrek finds the modules and displays them
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given module code or semester is missing.
+
+    * 1a1. ModTrek shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. No matching modules were found.
+
+    * 2a1. ModTrek shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+#### Use case: Tag module
+
+**MSS**
+
+1.  User requests to tag a module with mapping requirements.
+2.  ModTrek tags the module and displays it.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given module code is missing.
+
+    * 1a1. ModTrek shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The module already has the tag.
+
+    * 2a1. ModTrek shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+#### Use case: List modules
+
+**MSS**
+
+1. User requests to list modules
+2. ModTrek shows the list of modules
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: View a graph of degree progress**
+
+
+**MSS**
+
+1. User requests to view a graph showing degree progress
+2. ModTrek shows the graph
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list of modules is empty.
+
+  Use case ends.
+
 *{More to be added}*
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+1.  The application should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  The application should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The graph for degree progress should be rendered within two seconds.
+5. The application should be fast for expert users who frequently use a CLI.
+6. The application is not required to allocate modules to their mapping requirement automatically.
+7. The application is not required to handle any conflicts (eg. preclusion, prerequisites, corequisites) for any modules.
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+|        Term        |                                                                                                                             Explanation                                                                                                                            |
+|:------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Mainstream OS      | Windows, Linux, Unix, OS-X                                                                                                                                                                                                                                         |
+| Degree Requirement | Each module can be tagged into a degree requirement (or category) of any of the following types: University Level Requirements, Computer Science Foundation, Computer Science Breadth & Depth, IT Professionalism, Mathematics & Sciences, Unrestricted Electives. |
+| Degree Progress    | The completion status of each degree requirement, Cumulative Average Point (CAP), total MCs completed and remaining MCs needed to complete the degree.                                                                                                             |
 
 --------------------------------------------------------------------------------------------------------------------
 

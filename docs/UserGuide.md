@@ -3,191 +3,150 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+<br>
+<img src="images/logo.png" width="200px"><br>
 
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+ModTrek is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Table of Contents
+
+1. [Quick Start](#quick-start)
+2. [Features](#features)
+    1. Add a module: `add`
+    2. Remove a/all module: `delete`
+    3. Change module details: `edit`
+    4. Tag a module: `tag`
+    5. Display all modules: `list`
+    6. Find specific module by module code: `find`
+    7. Exiting the program: `exit`
+    8. Saving the data
+    9. Editing the data file
+3. [Frequently Asked Questions (FAQ)](#faq)
+4. [Command Summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick Start <a name="quick-start"></a>
+
+1. Ensure you have Java 11 or above installed in your Computer.
+1. Download `modtrek.jar` here. (To be inserted)
+1. Copy the file to the folder you want to use as the _home folder_ for ModTrek
+1. Open a command terminal, `cd` to the folder you put your jar file in, and use `java -jar modtrek.jar` to run the application
+1. A GUI similar to the below should appear in a few seconds.
+1. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable commands, refer to the [Features / Commands Section](#features).
+![Ui QuickStart](images/Ui-quickstart.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features <a name="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
+### Notes about command format:<br>
+- Words enclosed by `<>` are the parameters to be supplied by the user.<br>
+   - E.g. in `add /m <code> /c <credits> /y <year-semester> /g <grade> /t <tag>...`, `<code>`, `<credits>`, `<year-semester>`, `<grade>`, `<tag>` are parameters which can be used as `add /m CS2103T /c 4 /y Y2S2 /g A+ /t University Level Requirements /t Computer Science Foundation`
+- Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `delete all`) will be ignored.
+- Parameters encapsulated in between brackets ('()') are optional.
 </div>
 
-### Viewing help : `help`
+### MODTrek supports the following features:
 
-Shows a message explaning how to access the help page.
+#### Add a Module : `add`
 
-![help message](images/helpMessage.png)
+Adds a module to the module list. Modules must be distinct.
 
-Format: `help`
+Command syntax: `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
 
+:exclamation: For `...`, specify one or more tags to be added, separated by space (' ').
 
-### Adding a person: `add`
+Example: `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`
 
-Adds a person to the address book.
+#### Delete a Module : `delete`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Deletes all/the specified module(s) from the module list.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Command syntax: _To delete specific modules:_ `delete /m <code1> (/m <code2>) ...` <br><br> :exclamation: For `...`, specify one or more module codes of modules to be deleted, separated by space (' '). <br><br>_To delete all modules:_ `delete all`
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Example: `delete /m CS2100 /m CS2040S`
 
-### Listing all persons : `list`
+#### Edit a Module : `edit`
 
-Shows a list of all persons in the address book.
+Edits an existing module in the module list.
 
-Format: `list`
+Command syntax: `edit <code> ...`<br><br>_Specify one or more parameters in `...` :_<br>- `/m <new code>`<br>- `/c <credits>`<br>- `/y <year-semester>`<br>- `/g <grade>`<br>- `/t <tag>`
 
-### Editing a person : `edit`
+Example: `edit ES2660 /m CS2101 /g B+`
 
-Edits an existing person in the address book.
+:exclamation: Past data will be overridden and not be saved
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+#### Tag a Module : `tag`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Command syntax:_To include tags:_ `tag /m <code> include <tag1> (<tag2>) ...` <br><br>_To remove tags:_ `tag /m <code> remove <tag1> (<tag2>) ...` <br><br>:exclamation: For `...`, specify one or more tags to be included or removed, separated by space (' ').
 
-### Locating persons by name: `find`
+Example:
+* `tag CS2030S include cs_foundation`
+* `tag ES2660 remove university_level it_professionalism`
 
-Finds persons whose names contain any of the given keywords.
+#### List modules : `list`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Displays all the modules taken by the user.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Command syntax: `list`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+#### Find modules : `find`
 
-### Deleting a person : `delete`
+Displays specific module(s) satisfying the search query (by code, credits, year-semester, and/or grade) and their details previously logged by the user.
 
-Deletes the specified person from the address book.
+Command syntax: `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)`
 
-Format: `delete INDEX`
+Example:
+* `find /c 4 /g A+`
+* `find /y y2s2`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
+#### Exit MODTrek : `exit`
 
 Exits the program.
 
-Format: `exit`
+Command syntax: `exit`
 
-### Saving the data
+#### Saving MODTrek data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Saves the modified data regarding the modules into the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing MODTrek data
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.<br> <br>:warning: **Caution!** If your changes to the data file makes its format invalid, ModTrek will discard all data and start with an empty data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## Frequently Asked Questions (FAQ) <a name="faq"></a>
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: Why is it that I can add in modules not offered in NUS<br>
+**A**: Unfortunately we do not have a database to store all the available modules in NUS.
+We can only check if the module code is formatted correctly, and we trust users to key in modules that
+are provided only by NUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary <a name="command_summary"></a>
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+
+| Action                   | Format, Examples                                                                                                                                                                                  |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)` <br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`                                                                                             |
+| **Delete**               | `delete /m <code1> (/m <code2>) ...` or `delete all` <br> e.g. `delete /m CS2100 /m CS2040S`                                                                                                                  |
+| **Edit**                 | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                                                                  |
+| **Tag**                  | `tag /m <code> include <tag1> (<tag2>) ...` or `tag /m <code> remove <tag1> (<tag2>) ...` <br> e.g., `tag CS2030S include cs_foundation`, `tag ES2660 remove university_level it_professionalism` |
+| **List**                 | `list`                                                                                                                                                                                            |
+| **Find**                 | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `find A+`                                                                                                          |
+| **View Degree Progress** | `view progress`                                                                                                                                                                                   |
+| **Exit**                 | `exit`                                                                                                                                                                                            |
+
+
+<br>**Notes:**
+- Parameters encapsulated in between brackets `()` are optional.
+- For `edit`, at least one optional parameter has to be specified.
