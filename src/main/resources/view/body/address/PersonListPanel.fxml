@@ -8,7 +8,7 @@
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="personListView" VBox.vgrow="ALWAYS">
     <placeholder>
-      <Label text="No contacts." styleClass="label-bright" />
+      <Label text="No contacts." styleClass="label-p" />
     </placeholder>
   </ListView>
 </VBox>
