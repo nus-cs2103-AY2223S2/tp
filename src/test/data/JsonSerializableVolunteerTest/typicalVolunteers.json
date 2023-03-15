@@ -7,7 +7,8 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "nric" : "S9673908G",
     "age" : "20",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "availableDates": ["2023-05-01 to 2023-05-12", "2023-05-12 to 2023-05-15", "2023-05-02 to 2023-05-14"]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -15,7 +16,8 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "nric" : "S6878241D",
     "age" : "23",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "availableDates": ["2023-05-02 to 2023-05-10", "2023-05-01 to 2023-05-12"]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",

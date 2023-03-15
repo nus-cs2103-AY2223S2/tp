@@ -29,11 +29,17 @@ public class TypicalVolunteers {
     public static final Volunteer ALICE = new VolunteerBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").withAge("20").withNric("S9673908G").build();
+            .withTags("friends").withAge("20").withNric("S9673908G")
+            .withAvailableDates("2023-05-01", "2023-05-12")
+            .withAvailableDates("2023-05-02", "2023-05-14")
+            .withAvailableDates("2023-05-12", "2023-05-15").build();
     public static final Volunteer BENSON = new VolunteerBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withAge("23").withNric("S6878241D").build();
+            .withTags("owesMoney", "friends").withAge("23").withNric("S6878241D")
+            .withAvailableDates("2023-05-01", "2023-05-12")
+            .withAvailableDates("2023-05-02", "2023-05-10")
+            .build();
     public static final Volunteer CARL = new VolunteerBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withAge("31").withNric("S3634466J").build();
     public static final Volunteer DANIEL = new VolunteerBuilder().withName("Daniel Meier").withPhone("87652533")

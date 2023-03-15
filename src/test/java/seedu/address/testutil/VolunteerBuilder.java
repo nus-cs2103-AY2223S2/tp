@@ -48,6 +48,6 @@ public class VolunteerBuilder extends PersonBuilderScaffold<VolunteerBuilder> {
     }
 
     public Volunteer build() {
-        return new Volunteer(name, phone, email, address, nric, age, tags);
+        return new Volunteer(name, phone, email, address, nric, age, tags, availableDates);
     }
 }

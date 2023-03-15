@@ -11,6 +11,7 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -60,8 +61,9 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
         Set<Tag> modelTags = super.getTagSet(friendlyLink);
         Nric modelNric = super.getModelNric(MISSING_FIELD_MESSAGE_FORMAT);
         Age modelAge = super.getModelAge(MISSING_FIELD_MESSAGE_FORMAT);
+        Set<AvailableDate> modelAvailableDates = super.getAvailableDateSet();
 
         return new Volunteer(modelName, modelPhone, modelEmail, modelAddress,
-                modelNric, modelAge, modelTags);
+                modelNric, modelAge, modelTags, modelAvailableDates);
     }
 }

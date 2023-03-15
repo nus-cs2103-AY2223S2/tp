@@ -95,8 +95,8 @@ public abstract class Person {
             return true;
         }
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getNric().equals(getNric());
+                && otherPerson.getName().equals(name)
+                && otherPerson.getNric().equals(nric);
     }
 
     /**

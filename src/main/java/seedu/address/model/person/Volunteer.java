@@ -67,7 +67,9 @@ public class Volunteer extends Person {
                 .append("; NRIC: ")
                 .append(getNric())
                 .append("; Age: ")
-                .append(getAge());
+                .append(getAge())
+                .append("; Dates Available: ")
+                .append(getAvailableDates());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

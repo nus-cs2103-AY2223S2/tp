@@ -20,7 +20,6 @@ import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.storage.volunteer.JsonAdaptedVolunteer;
-import seedu.address.testutil.TypicalElderly;
 
 
 public class JsonAdaptedVolunteerTest {
@@ -31,6 +30,7 @@ public class JsonAdaptedVolunteerTest {
     private static final String INVALID_NRIC = "AAAAA";
     private static final String INVALID_AGE = "8950";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DATE = "0239-12-12";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -38,10 +38,9 @@ public class JsonAdaptedVolunteerTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_NRIC = BENSON.getNric().toString();
     private static final String VALID_AGE = BENSON.getAge().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
-            .map(JsonAdaptedTag::new)
-            .collect(Collectors.toList());
-    private static final List<JsonAdaptedAvailableDate> VALID_DATES = TypicalElderly.BENSON.getAvailableDates()
+    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags()
+            .stream().map(JsonAdaptedTag::new).collect(Collectors.toList());
+    private static final List<JsonAdaptedAvailableDate> VALID_DATES = BENSON.getAvailableDates()
             .stream().map(JsonAdaptedAvailableDate::new).collect(Collectors.toList());
 
     private static final FriendlyLink appTestCache = new FriendlyLink();
