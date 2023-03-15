@@ -17,9 +17,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Exam;
 import seedu.address.model.student.ExamDatePredicate;
 import seedu.address.model.student.ExamDonePredicate;
+import seedu.address.model.student.ExamPredicate;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.ExamPredicate;
 
 /**
  * Parses input arguments and creates a new ViewHomeworkCommand object
