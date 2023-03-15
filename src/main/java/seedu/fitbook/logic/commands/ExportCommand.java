@@ -27,8 +27,8 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
-        writeToCsvFile(model);
-        return new CommandResult(MESSAGE_SUCCESS);
+        String feedback = writeToCsvFile(model);
+        return new CommandResult(feedback);
     }
 
     /**
@@ -36,7 +36,7 @@ public class ExportCommand extends Command {
      * @param model model {@code FitBookModel} which the command should operate on.
      * @throws CommandException If an error occurs during command execution.
      */
-    public static void writeToCsvFile(FitBookModel model) throws CommandException {
+    public static String writeToCsvFile(FitBookModel model) throws CommandException {
         List<Client> clients = model.getFilteredClientList().stream().collect(Collectors.toList());
         try {
             File csv = new File(FILE_NAME + CSV_EXTENSION);
@@ -46,6 +46,7 @@ public class ExportCommand extends Command {
         } catch (FileNotFoundException e) {
             throw new CommandException(MESSAGE_FAILURE);
         }
+        return ExportCommand.MESSAGE_SUCCESS;
     }
 
     /**
