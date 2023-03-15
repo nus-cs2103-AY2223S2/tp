@@ -66,15 +66,15 @@ class JsonAdaptedPair implements JsonSerializable<Pair> {
         final Nric modelElderlyNric = new Nric(elderlyNric);
         final Nric modelVolunteerNric = new Nric(volunteerNric);
 
-        try {
-            Elderly elderly = friendlyLink.getElderly(modelElderlyNric);
-            Volunteer volunteer = friendlyLink.getVolunteer(modelVolunteerNric);
-            return new Pair(elderly, volunteer);
-        } catch (ElderlyNotFoundException e) {
+        Elderly elderly = friendlyLink.getElderly(modelElderlyNric);
+        Volunteer volunteer = friendlyLink.getVolunteer(modelVolunteerNric);
+        if (elderly == null) {
             throw new IllegalValueException(String.format(MESSAGE_ELDERLY_NOT_FOUND, modelElderlyNric));
-        } catch (VolunteerNotFoundException e) {
+        }
+        if (volunteer == null) {
             throw new IllegalValueException(String.format(MESSAGE_VOLUNTEER_NOT_FOUND, modelVolunteerNric));
         }
+        return new Pair(elderly, volunteer);
 
     }
 }
