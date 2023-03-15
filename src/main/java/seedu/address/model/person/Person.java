@@ -144,9 +144,7 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress())
-                .append("; Image: ")
-                .append(getImage());
+                .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
