@@ -92,13 +92,20 @@ Examples:
 
 ### Listing all persons : `list`
 
-Lists all persons in SOCket based on tag.
+Lists all persons in SOCket or based on language and tag.
 
-Format: `list [t/TAG]`
+Format: `list [l/LANGUAGE] [t/TAG]`
 
-* The search for a tag is case insensitive
-* If no tag is given, all persons are displayed
-* Tags given are specific, e.g. `list t/school` will only list out persons tagged with school and not those tagged with `school friend`
+* The search for language or tag is case sensitive. 
+* If no language or tag are given, all persons are displayed. 
+  * e.g. `list` will list out all persons 
+* There can be one or more keywords for each field (language/ tag).
+  * e.g. `list l/Python l/Java` will match out all persons whose language contains `Python` AND `Java`
+  * e.g. `list l/Python t/friend` will match out all persons whose language contains `Python` AND tag contains `friend`
+* Languages and tags given are specific.
+  *  e.g. `list t/school` will not match `list t/school friend`
+* Persons with field values matching all keyword for that respective field will be returned (i.e. `AND` search). 
+  * e.g. `list t/friend l/C++` will return Persons containing tag `friend` AND language `C++`
 * Each person is accompanied by an index number in the list
 * The list by default is sorted by time added  i.e most recently added person being last in the list
 
