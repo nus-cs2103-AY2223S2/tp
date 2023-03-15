@@ -5,6 +5,7 @@ import static seedu.vms.storage.JsonAdaptedPatient.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.vms.testutil.Assert.assertThrows;
 import static seedu.vms.testutil.TypicalPatients.BENSON;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,12 +22,12 @@ public class JsonAdaptedPatientTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_DOB = "123-03-23";
+    private static final LocalDateTime INVALID_DOB = LocalDateTime.now().plusDays(1);
     private static final String INVALID_ALLERGY = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_DOB = BENSON.getDob().toString();
+    private static final LocalDateTime VALID_DOB = BENSON.getDob().value;
     private static final String VALID_BLOODTYPE = BENSON.getBloodType().toString();
     private static final List<JsonAdaptedGroupName> VALID_ALLERGIES = BENSON.getAllergy().stream()
             .map(JsonAdaptedGroupName::fromModelType)

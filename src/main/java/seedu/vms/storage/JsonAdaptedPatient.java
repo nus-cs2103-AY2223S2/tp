@@ -1,5 +1,6 @@
 package seedu.vms.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +27,7 @@ class JsonAdaptedPatient {
 
     private final String name;
     private final String phone;
-    private final String dob;
+    private final LocalDateTime dob;
     private final String bloodType;
     private final List<JsonAdaptedGroupName> allergies = new ArrayList<>();
     private final List<JsonAdaptedGroupName> vaccines = new ArrayList<>();
@@ -37,7 +38,7 @@ class JsonAdaptedPatient {
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name,
             @JsonProperty("phone") String phone,
-            @JsonProperty("dob") String dob,
+            @JsonProperty("dob") LocalDateTime dob,
             @JsonProperty("bloodType") String bloodType,
             @JsonProperty("allergies") List<JsonAdaptedGroupName> allergies,
             @JsonProperty("vaccines") List<JsonAdaptedGroupName> vaccines) {
@@ -59,7 +60,7 @@ class JsonAdaptedPatient {
     public JsonAdaptedPatient(Patient source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        dob = source.getDob().toString();
+        dob = source.getDob().value;
         bloodType = source.getBloodType().toString();
         allergies.addAll(source.getAllergy().stream()
                 .map(JsonAdaptedGroupName::fromModelType)
