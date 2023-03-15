@@ -89,8 +89,8 @@ public class AddressBookTest {
     @Test
     public void linkContact_linkContactToEvent_success() {
         addressBook.addPerson(ALICE);
-        addressBook.linkContact(ALICE, new Contact(new ContactName("ALICE"), new ContactPhone("91234567")));
         Event editedAlice = new PersonBuilder(ALICE).withContact("ALICE", "91234567").build();
+        addressBook.linkContact(ALICE, editedAlice);
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 

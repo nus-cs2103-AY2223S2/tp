@@ -120,5 +120,5 @@ public interface Model {
 
     void updateFilteredContactList(Predicate<Contact> contact);
 
-    void linkContact(Event event, Contact contact);
+    void linkContact(Event event, Event linkedEvent);
 }

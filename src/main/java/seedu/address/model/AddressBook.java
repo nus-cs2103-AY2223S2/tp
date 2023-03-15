@@ -102,8 +102,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.mark(target, markedEvent);
     }
 
-    public void linkContact(Event event, Contact contact) {
-        event.linkContact(contact);
+    public void linkContact(Event event, Event linkedEvent) {
+        persons.linkContact(event, linkedEvent);
     }
 
     //// util methods

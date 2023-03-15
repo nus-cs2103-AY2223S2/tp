@@ -178,8 +178,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void linkContact(Event event, Contact contact) {
-        addressBook.linkContact(event, contact);
+    public void linkContact(Event event, Event linkedEvent) {
+        addressBook.linkContact(event, linkedEvent);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

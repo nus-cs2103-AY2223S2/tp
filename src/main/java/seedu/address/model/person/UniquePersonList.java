@@ -88,6 +88,15 @@ public class UniquePersonList implements Iterable<Event> {
         setPerson(toMark, markedEvent);
     }
 
+    /**
+     * Links the equivalent event from the list.
+     * The event must exist in the list
+     */
+    public void linkContact(Event toLink, Event linkedEvent) {
+        requireNonNull(toLink);
+        setPerson(toLink, linkedEvent);
+    }
+
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
