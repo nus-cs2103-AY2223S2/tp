@@ -27,7 +27,6 @@ public class Appointment implements Comparable<Appointment> {
      */
     public Appointment(Index patientId, LocalDateTime startTime, LocalDateTime endTime, GroupName vaccine) {
         requireAllNonNull(patientId, startTime, endTime, vaccine);
-        AppUtil.checkArgument(isValidAppointmentTime(startTime), MESSAGE_START_TIME_CONSTRAINTS);
         AppUtil.checkArgument(isValidDuration(startTime, endTime), MESSAGE_DURATION_CONSTRAINTS);
 
         this.patientId = patientId;
