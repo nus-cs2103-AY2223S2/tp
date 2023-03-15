@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import bookopedia.model.parcel.Parcel;
 import org.junit.jupiter.api.Test;
 
 import bookopedia.commons.core.index.Index;
@@ -14,6 +13,7 @@ import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.model.Model;
 import bookopedia.model.ModelManager;
 import bookopedia.model.UserPrefs;
+import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Person;
 
 public class ViewCommandTest {
@@ -42,7 +42,7 @@ public class ViewCommandTest {
         StringBuilder parcelsToPrint = new StringBuilder("");
         for (Parcel p : testTypicalPerson.getParcels()) {
             parcelsToPrint.append(p.toString());
-            parcelsToPrint.append("\n");
+            parcelsToPrint.append(" ");
         }
         //this is temporary again...
         assertTrue(outputFromTestView.getFeedbackToUser().equals(testTypicalPerson.getName().toString() + "\n"

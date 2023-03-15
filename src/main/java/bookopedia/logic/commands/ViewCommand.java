@@ -41,7 +41,7 @@ public class ViewCommand extends Command {
         StringBuilder parcelsToPrint = new StringBuilder("");
         for (Parcel p : deliveryToView.getParcels()) {
             parcelsToPrint.append(p.toString());
-            parcelsToPrint.append("\n");
+            parcelsToPrint.append(" ");
         }
         // this is temporary
         return new CommandResult(deliveryToView.getName().toString() + "\n"
