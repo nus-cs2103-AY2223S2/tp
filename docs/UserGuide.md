@@ -156,7 +156,11 @@ This command removes the module stated in the command (“CS2103T”) from the l
 ### Tagging a module to contact : `tag`
 
 Adds module tag(s) to an existing contact.
-Format: `tag CONTACT_INDEX m/MODULE_TAG`
+
+Formats: 
+* `tag CONTACT_INDEX m/MODULE_TAG`
+* `tag m/MODULE_TAG`
+
 Example of usage: `tag 3 m/CS2103T`
 ```
 Name: John Doe (User)
@@ -165,28 +169,71 @@ Modules reading: CS2101 | MA2104 | MA3252 | CFG1002
 
 Expected outcome for CLI:
 ```
-Name: John Doe
+Module(s) tagged to Person!
+Name: John Smith
 Modules: CS2100 | CS2101 | CS2102 | CS2103T
-1 Common Module: CS2101 | CS2103T
+Module(s) in common: CS2101 | CS2103T
 ```
-Description of outcome: CS2103T is added to John Doe's list of modules. Assuming the user also takes CS2101 and CS2103T, which are represented as the modules in common.
+Description of outcome: 
+
+CS2103T is added to John Doe's list of modules. Assuming the user also takes CS2101 and CS2103T, which are represented as the modules in common.
+
+Example of usage: tag m/CS2103T
+```
+Name: John Doe (user)
+Modules reading: CS2101 | MA2104 | MA3252 | CFG1002
+```
+
+Expected outcome for CLI:
+```
+Module(s) tagged to Person!
+Name: John Doe
+Modules reading: CS2101 | CS2103T | MA2104 | MA3252 | CFG1002
+```
+Description of outcome:
+
+CS2103T is added to John Doe's, the user, list of modules.
 
 ### Untagging a module from an existing contact : `untag`
 
 Removes a module tag from an existing contact.
-Format: `untag CONTACT_INDEX m/MODULE_TAG`
+
+Formats: 
+* `untag CONTACT_INDEX m/MODULE_TAG`
+* `untag m/MODULE_TAG`
 
 Example of usage: `untag 3 m/CS2103T`
-Context:
+```
+Name: John Doe (User)
+Modules reading: CS2101 | MA2104 | MA3252 | CFG1002
+```
 
 Expected outcome for CLI:
 ```
-Name: John Doe
+"Module(s) untagged to Person!
+Name: John Smith
 Modules: CS2100 | CS2101 | CS2102
-1 Common Module: CS2101
+Module(s) in common: CS2101
 ```
-Description of outcome: CS2103T is removed from John Doe's list of modules. Assuming the user also takes CS2101, which is represented as the modules in common.
+Description of outcome: 
 
+CS2103T is removed from John Doe's list of modules. Assuming the user also takes CS2101, which is represented as the modules in common.
+
+Example of usage: untag m/CS2103T
+```
+Name: John Doe (user)
+Modules reading: CS2101 | CS2103T | MA2104 | MA3252 | CFG1002
+```
+
+Expected outcome for CLI:
+```
+"Module(s) untagged to Person!
+Name: John Doe
+Modules reading: CS2101 | MA2104 | MA3252 | CFG1002
+```
+Description of outcome:
+
+CS2103T is added to John Doe's, the user, list of modules.
 
 ### Locating persons by keyowrds : `find`
 
