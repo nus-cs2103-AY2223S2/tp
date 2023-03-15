@@ -17,20 +17,20 @@ public class Fish {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Address address;
+    private final LastFedDate lastFedDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Fish(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Fish(Name name, LastFedDate lastFedDate, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, lastFedDate, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.lastFedDate = lastFedDate;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Fish {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public LastFedDate getLastFedDate() {
+        return lastFedDate;
     }
 
     public Email getEmail() {
@@ -89,7 +89,7 @@ public class Fish {
 
         Fish otherFish = (Fish) other;
         return otherFish.getName().equals(getName())
-                && otherFish.getPhone().equals(getPhone())
+                && otherFish.getLastFedDate().equals(getLastFedDate())
                 && otherFish.getEmail().equals(getEmail())
                 && otherFish.getAddress().equals(getAddress())
                 && otherFish.getTags().equals(getTags());
@@ -98,15 +98,15 @@ public class Fish {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, lastFedDate, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Last Fed Date: ")
+                .append(getLastFedDate())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")

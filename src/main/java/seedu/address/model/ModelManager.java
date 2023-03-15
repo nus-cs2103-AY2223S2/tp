@@ -76,6 +76,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setGuiMode(GuiSettings.GuiMode newMode) {
+        requireNonNull(newMode);
+        GuiSettings currentSettings = userPrefs.getGuiSettings();
+        userPrefs.setGuiSettings(currentSettings.changeGuiMode(newMode));
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }

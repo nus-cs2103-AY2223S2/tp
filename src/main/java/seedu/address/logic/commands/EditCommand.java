@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FISHES;
 
@@ -22,8 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.fish.Address;
 import seedu.address.model.fish.Email;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
-import seedu.address.model.fish.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,12 +38,12 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_LAST_FED_DATE + "LAST FED DATE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_LAST_FED_DATE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_FISH_SUCCESS = "Edited Fish: %1$s";
@@ -94,12 +94,12 @@ public class EditCommand extends Command {
         assert fishToEdit != null;
 
         Name updatedName = editFishDescriptor.getName().orElse(fishToEdit.getName());
-        Phone updatedPhone = editFishDescriptor.getPhone().orElse(fishToEdit.getPhone());
+        LastFedDate updatedLastFedDate = editFishDescriptor.getLastFedDate().orElse(fishToEdit.getLastFedDate());
         Email updatedEmail = editFishDescriptor.getEmail().orElse(fishToEdit.getEmail());
         Address updatedAddress = editFishDescriptor.getAddress().orElse(fishToEdit.getAddress());
         Set<Tag> updatedTags = editFishDescriptor.getTags().orElse(fishToEdit.getTags());
 
-        return new Fish(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Fish(updatedName, updatedLastFedDate, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
      */
     public static class EditFishDescriptor {
         private Name name;
-        private Phone phone;
+        private LastFedDate lastFedDate;
         private Email email;
         private Address address;
         private Set<Tag> tags;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
          */
         public EditFishDescriptor(EditFishDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setLastFedDate(toCopy.lastFedDate);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, lastFedDate, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -160,12 +160,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setLastFedDate(LastFedDate lastFedDate) {
+            this.lastFedDate = lastFedDate;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<LastFedDate> getLastFedDate() {
+            return Optional.ofNullable(lastFedDate);
         }
 
         public void setEmail(Email email) {
@@ -217,7 +217,7 @@ public class EditCommand extends Command {
             EditFishDescriptor e = (EditFishDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
+                    && getLastFedDate().equals(e.getLastFedDate())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());

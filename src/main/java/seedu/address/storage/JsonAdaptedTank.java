@@ -45,6 +45,6 @@ class JsonAdaptedTank {
             throw new IllegalValueException(TankName.MESSAGE_CONSTRAINTS);
         }
         final TankName modelTankName = new TankName(tankName);
-        return new Tank(modelTankName);
+        return new Tank(modelTankName, null);
     }
 }
