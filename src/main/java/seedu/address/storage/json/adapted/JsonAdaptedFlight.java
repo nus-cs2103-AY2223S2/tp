@@ -1,7 +1,5 @@
 package seedu.address.storage.json.adapted;
 
-
-import com.fasterxml.jackson.annotation.JacksonAnnotation;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
