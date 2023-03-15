@@ -59,7 +59,6 @@ public class UnmarkAttendanceCommand extends Command {
         studentAtd.unmarkAttendance(this.week.getZeroBased());
 
         model.updateStudent(studentToEdit);
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(SUCCESS_MSG);
     }
 }

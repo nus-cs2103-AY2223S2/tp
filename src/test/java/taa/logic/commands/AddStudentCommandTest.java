@@ -192,6 +192,10 @@ public class AddStudentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void addStudentToTaggedClasses(Student student) {
+            requireNonNull(student);
+        }
 
         @Override
         public void grade(String assignmentName, int studentId, int marks) {

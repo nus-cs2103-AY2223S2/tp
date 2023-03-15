@@ -143,8 +143,10 @@ Examples:
 Adds a student to a given class list.
 
 Format: `add_student n/STUDENT_NAME cl/CLASS_NAME`
-The argument `STUDENT_NAME` should be the name of the student to be added
-The argument `CLASS_NAME` should be the name of a given class the student belongs to
+- The argument `STUDENT_NAME` should be the name of the student to be added
+- The argument `CLASS_NAME` should be the name of a given class the student belongs to
+- If the class list `CLASS_NAME` does not exist, it will automatically be created with student
+`STUDENT_NAME` as its first student
 
 
 Examples:
