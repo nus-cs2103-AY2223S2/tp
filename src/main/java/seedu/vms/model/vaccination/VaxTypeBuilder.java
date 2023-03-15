@@ -14,28 +14,26 @@ import seedu.vms.model.GroupName;
  * {@link VaxTypeManager}.
  */
 public class VaxTypeBuilder {
-    private static final String MESSAGE_DUPLICATE_TYPE = "Vaccination type already exist";
-    private static final String MESSAGE_MISSING_TYPE = "Vaccination type does not exist";
+    private static final String MESSAGE_DUPLICATE_TYPE = "Vaccination type already exist: %s";
+    private static final String MESSAGE_MISSING_TYPE = "Vaccination type does not exist: %s";
 
     private final GroupName refName;
     private final GroupName name;
     private final Optional<HashSet<GroupName>> setGrps;
     private final Optional<Age> setMinAge;
     private final Optional<Age> setMaxAge;
-    private final Optional<Integer> setMinSpacing;
     private final Optional<List<Requirement>> setAllergyReqs;
     private final Optional<List<Requirement>> setHistoryReqs;
 
 
     private VaxTypeBuilder(GroupName refName, GroupName name, Optional<HashSet<GroupName>> setGrps,
-                Optional<Age> setMinAge, Optional<Age> setMaxAge, Optional<Integer> setMinSpacing,
+                Optional<Age> setMinAge, Optional<Age> setMaxAge,
                 Optional<List<Requirement>> setAllergyReqs, Optional<List<Requirement>> setHistoryReqs) {
         this.refName = refName;
         this.name = name;
         this.setGrps = setGrps.map(HashSet::new);
         this.setMinAge = setMinAge;
         this.setMaxAge = setMaxAge;
-        this.setMinSpacing = setMinSpacing;
         this.setAllergyReqs = setAllergyReqs.map(Requirement::copy);
         this.setHistoryReqs = setHistoryReqs.map(Requirement::copy);
     }
@@ -51,7 +49,7 @@ public class VaxTypeBuilder {
     public static VaxTypeBuilder of(GroupName refName, GroupName name) {
         return new VaxTypeBuilder(refName, name,
                 Optional.empty(), Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
 
@@ -67,49 +65,42 @@ public class VaxTypeBuilder {
 
     public VaxTypeBuilder setName(GroupName name) {
         return new VaxTypeBuilder(refName, name, setGrps,
-                setMinAge, setMaxAge, setMinSpacing,
+                setMinAge, setMaxAge,
                 setAllergyReqs, setHistoryReqs);
     }
 
 
     public VaxTypeBuilder setGroups(HashSet<GroupName> grps) {
         return new VaxTypeBuilder(refName, name, Optional.ofNullable(grps),
-                setMinAge, setMaxAge, setMinSpacing,
+                setMinAge, setMaxAge,
                 setAllergyReqs, setHistoryReqs);
     }
 
 
     public VaxTypeBuilder setMinAge(Age minAge) {
         return new VaxTypeBuilder(refName, name, setGrps,
-                Optional.ofNullable(minAge), setMaxAge, setMinSpacing,
+                Optional.ofNullable(minAge), setMaxAge,
                 setAllergyReqs, setHistoryReqs);
     }
 
 
     public VaxTypeBuilder setMaxAge(Age maxAge) {
         return new VaxTypeBuilder(refName, name, setGrps,
-                setMinAge, Optional.ofNullable(maxAge), setMinSpacing,
-                setAllergyReqs, setHistoryReqs);
-    }
-
-
-    public VaxTypeBuilder setMinSpacing(int minSpacing) {
-        return new VaxTypeBuilder(refName, name, setGrps,
-                setMinAge, setMaxAge, Optional.ofNullable(minSpacing),
+                setMinAge, Optional.ofNullable(maxAge),
                 setAllergyReqs, setHistoryReqs);
     }
 
 
     public VaxTypeBuilder setAllergyReqs(List<Requirement> allergyReqs) {
         return new VaxTypeBuilder(refName, name, setGrps,
-                setMinAge, setMaxAge, setMinSpacing,
+                setMinAge, setMaxAge,
                 Optional.ofNullable(allergyReqs), setHistoryReqs);
     }
 
 
     public VaxTypeBuilder setHistoryReqs(List<Requirement> historyReqs) {
         return new VaxTypeBuilder(refName, name, setGrps,
-                setMinAge, setMaxAge, setMinSpacing,
+                setMinAge, setMaxAge,
                 setAllergyReqs, Optional.ofNullable(historyReqs));
     }
 
@@ -124,7 +115,7 @@ public class VaxTypeBuilder {
      */
     public VaxType create(VaxTypeManager manager) throws IllegalValueException {
         if (manager.contains(refName.toString()) || manager.contains(name.toString())) {
-            throw new IllegalValueException(MESSAGE_DUPLICATE_TYPE);
+            throw new IllegalValueException(String.format(MESSAGE_DUPLICATE_TYPE, name.toString()));
         }
         return build(manager);
     }
@@ -140,9 +131,11 @@ public class VaxTypeBuilder {
      *      already exists.
      */
     public VaxType update(VaxTypeManager manager) throws IllegalValueException {
-        if (!manager.contains(refName.toString())
-                    || (!refName.equals(name) && manager.contains(name.toString()))) {
-            throw new IllegalValueException(MESSAGE_MISSING_TYPE);
+        if (!manager.contains(refName.toString())) {
+            throw new IllegalValueException(String.format(MESSAGE_MISSING_TYPE, refName.toString()));
+        }
+        if (!refName.equals(name) && manager.contains(name.getName())) {
+            throw new IllegalValueException(String.format(MESSAGE_DUPLICATE_TYPE, name.toString()));
         }
         return build(manager);
     }
@@ -160,9 +153,6 @@ public class VaxTypeBuilder {
         Age maxAge = setMaxAge.orElse(refVaxType
                 .map(VaxType::getMaxAge)
                 .orElse(VaxType.DEFAULT_MAX_AGE));
-        Integer minSpacing = setMinSpacing.orElse(refVaxType
-                .map(VaxType::getMinSpacing)
-                .orElse(VaxType.DEFAULT_MIN_SPACING));
         List<Requirement> allergyReqs = setAllergyReqs.orElse(refVaxType
                 .map(VaxType::getAllergyReqs)
                 .orElse(VaxType.DEFAULT_ALLERGY_REQS));
@@ -174,7 +164,7 @@ public class VaxTypeBuilder {
             throw new IllegalValueException(VaxType.MESSAGE_AGE_CONSTRAINTS);
         }
 
-        VaxType vaxType = new VaxType(name, grps, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
+        VaxType vaxType = new VaxType(name, grps, minAge, maxAge, allergyReqs, historyReqs);
         manager.add(vaxType);
         return vaxType;
     }

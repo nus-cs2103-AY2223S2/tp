@@ -8,6 +8,7 @@ import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.model.IdData;
+import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
@@ -45,6 +46,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered map of vaccination types. */
     ObservableMap<String, VaxType> getFilteredVaxTypeMap();
+
+    /** Returns an unmodifiable view of the filtered map of Appointments. */
+    ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap();
 
     /**
      * Returns the user prefs' patient manager file path.

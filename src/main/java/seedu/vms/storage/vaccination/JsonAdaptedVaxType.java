@@ -24,7 +24,6 @@ public class JsonAdaptedVaxType {
     private final List<JsonAdaptedGroupName> groups;
     private final JsonAdaptedAge minAge;
     private final JsonAdaptedAge maxAge;
-    private final Integer minSpacing;
     private final List<JsonAdaptedVaxRequirement> allergyReqs;
     private final List<JsonAdaptedVaxRequirement> historyReqs;
 
@@ -36,14 +35,12 @@ public class JsonAdaptedVaxType {
                 @JsonProperty("groups") List<JsonAdaptedGroupName> groups,
                 @JsonProperty("minAge") JsonAdaptedAge minAge,
                 @JsonProperty("maxAge") JsonAdaptedAge maxAge,
-                @JsonProperty("minSpacing") Integer minSpacing,
                 @JsonProperty("allergyReqs") List<JsonAdaptedVaxRequirement> allergyReqs,
                 @JsonProperty("historyReqs") List<JsonAdaptedVaxRequirement> historyReqs) {
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
         this.maxAge = maxAge;
-        this.minSpacing = minSpacing;
         this.allergyReqs = allergyReqs;
         this.historyReqs = historyReqs;
     }
@@ -58,11 +55,10 @@ public class JsonAdaptedVaxType {
         List<JsonAdaptedGroupName> groups = JsonAdaptedGroupName.fromModelCollection(vaxType.getGroups());
         JsonAdaptedAge minAge = JsonAdaptedAge.fromModelType(vaxType.getMinAge());
         JsonAdaptedAge maxAge = JsonAdaptedAge.fromModelType(vaxType.getMaxAge());
-        Integer minSpacing = vaxType.getMinSpacing();
         List<JsonAdaptedVaxRequirement> allergyReqs = convertToAdaptedReq(vaxType.getAllergyReqs());
         List<JsonAdaptedVaxRequirement> historyReqs = convertToAdaptedReq(vaxType.getHistoryReqs());
 
-        return new JsonAdaptedVaxType(name, groups, minAge, maxAge, minSpacing, allergyReqs, historyReqs);
+        return new JsonAdaptedVaxType(name, groups, minAge, maxAge, allergyReqs, historyReqs);
     }
 
 
@@ -95,10 +91,6 @@ public class JsonAdaptedVaxType {
 
         if (maxAge != null) {
             builder = builder.setMaxAge(maxAge.toModelType());
-        }
-
-        if (minSpacing != null) {
-            builder = builder.setMinSpacing(minSpacing);
         }
 
         if (allergyReqs != null) {

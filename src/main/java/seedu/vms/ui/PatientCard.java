@@ -26,7 +26,7 @@ public class PatientCard extends UiPart<Region> {
      */
     public PatientCard(Patient patient, int id) {
         super(FXML);
-        idLabel.setText(String.format("#%d", id));
+        idLabel.setText(String.format("#%04d", id));
         nameLabel.setText(patient.getName().toString());
         dobLabel.setText(patient.getDob().toString());
         bloodTypeLabel.setText(patient.getBloodType().toString());

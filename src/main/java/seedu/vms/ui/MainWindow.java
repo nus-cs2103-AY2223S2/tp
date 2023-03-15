@@ -16,8 +16,10 @@ import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.logic.Logic;
 import seedu.vms.model.IdData;
+import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.vaccination.VaxType;
+import seedu.vms.ui.appointment.AppointmentCard;
 import seedu.vms.ui.vaccination.VaxTypeCard;
 
 /**
@@ -36,6 +38,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
     // Independent Ui parts residing in this Ui container
     private ListViewPanel<IdData<Patient>> patientListPanel;
     private ListViewPanel<VaxType> vaxTypeListPanel;
+    private ListViewPanel<IdData<Appointment>> appointmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,6 +48,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
 
     @FXML private StackPane patientListPanelPlaceholder;
     @FXML private StackPane vaxTypeListPanelPlaceholder;
+    @FXML private StackPane appointmentListPanelPlaceholder;
 
     @FXML private VBox resultDisplayPlaceholder;
 
@@ -78,6 +82,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
         resultDisplay.refresh();
         patientListPanel.refresh();
         vaxTypeListPanel.refresh();
+        appointmentListPanel.refresh();
     }
 
 
@@ -128,6 +133,11 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
                 logic.getFilteredVaxTypeMap(),
                 vaxType -> new VaxTypeCard(vaxType).getRoot());
         vaxTypeListPanelPlaceholder.getChildren().add(vaxTypeListPanel);
+
+        appointmentListPanel = new ListViewPanel<>(
+                logic.getFilteredAppointmentMap(),
+                idData -> new AppointmentCard(idData.getValue(), idData.getId() + 1).getRoot());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel);
 
         resultDisplay = new ResultDisplay();
         Region resultDisplayRegion = resultDisplay.getRoot();

@@ -10,6 +10,7 @@ import seedu.vms.logic.commands.CommandResult;
 public class ResultMessageBox extends UiPart<Region> {
     private static final String FXML_FILE = "ResultMessageBox.fxml";
 
+    private static final String STYLE_CLASS_DEATH = "result-message-death-color";
     private static final String STYLE_CLASS_ERROR = "result-message-error-color";
     private static final String STYLE_CLASS_WARNING = "result-message-warning-color";
     private static final String STYLE_CLASS_INFO = "result-message-info-color";
@@ -34,6 +35,10 @@ public class ResultMessageBox extends UiPart<Region> {
 
         case WARNING:
             colorStyleClass = STYLE_CLASS_WARNING;
+            break;
+
+        case DEATH:
+            colorStyleClass = STYLE_CLASS_DEATH;
             break;
 
         default:

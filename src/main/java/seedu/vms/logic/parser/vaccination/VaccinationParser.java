@@ -20,6 +20,12 @@ public class VaccinationParser extends FeatureParser {
         case AddVaxTypeParser.COMMAND_WORD:
             return new AddVaxTypeParser().parse(arguments);
 
+        case DeleteVaxTypeParser.COMMAND_WORD:
+            return new DeleteVaxTypeParser().parse(arguments);
+
+        case EditVaxTypeParser.COMMAND_WORD:
+            return new EditVaxTypeParser().parse(arguments);
+
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

@@ -7,8 +7,10 @@ import java.util.logging.Logger;
 import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
+import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxTypeManager;
+import seedu.vms.storage.appointment.AppointmentStorage;
 import seedu.vms.storage.vaccination.VaxTypeStorage;
 
 /**
@@ -19,6 +21,7 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private PatientManagerStorage patientManagerStorage;
     private VaxTypeStorage vaxTypeStorage;
+    private AppointmentStorage appointmentStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
@@ -27,9 +30,11 @@ public class StorageManager implements Storage {
     public StorageManager(
             PatientManagerStorage patientManagerStorage,
             VaxTypeStorage vaxTypeStorage,
+            AppointmentStorage appointmentStorage,
             UserPrefsStorage userPrefsStorage) {
         this.patientManagerStorage = patientManagerStorage;
         this.vaxTypeStorage = vaxTypeStorage;
+        this.appointmentStorage = appointmentStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -98,4 +103,15 @@ public class StorageManager implements Storage {
         vaxTypeStorage.saveVaxTypes(manager);
     }
 
+    // ================ Appointment methods ===========================
+
+    @Override
+    public AppointmentManager loadAppointments() throws IOException {
+        return appointmentStorage.loadAppointments();
+    }
+
+    @Override
+    public void saveAppointments(AppointmentManager manager) throws IOException {
+        appointmentStorage.saveAppointments(manager);
+    }
 }

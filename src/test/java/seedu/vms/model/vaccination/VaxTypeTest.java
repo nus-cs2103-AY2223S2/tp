@@ -16,7 +16,6 @@ import seedu.vms.testutil.SampleVaxTypeData;
 public class VaxTypeTest {
     private static final Age INVALID_MIN_AGE = new Age(100);
     private static final Age INVALID_MAX_AGE = new Age(99);
-    private static final int INVALID_MIN_SPACING = -5;
 
 
     @Test
@@ -26,20 +25,6 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_1,
                 INVALID_MIN_AGE,
                 INVALID_MAX_AGE,
-                SampleVaxTypeData.MIN_SPACING_1,
-                SampleVaxTypeData.ALLERGY_REQS_1,
-                SampleVaxTypeData.HISTORY_REQS_1));
-    }
-
-
-    @Test
-    public void constructor_invalidMinSpacing_throwsException() {
-        assertThrows(IllegalArgumentException.class, () -> new VaxType(
-                SampleVaxTypeData.NAME_1,
-                SampleVaxTypeData.GROUPS_1,
-                SampleVaxTypeData.MIN_AGE_1,
-                SampleVaxTypeData.MAX_AGE_1,
-                INVALID_MIN_SPACING,
                 SampleVaxTypeData.ALLERGY_REQS_1,
                 SampleVaxTypeData.HISTORY_REQS_1));
     }
@@ -54,7 +39,6 @@ public class VaxTypeTest {
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_ALLERGY_REQS,
                 VaxType.DEFAULT_HISTORY_REQS);
         VaxType t2 = new VaxType(
@@ -62,7 +46,6 @@ public class VaxTypeTest {
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_MIN_SPACING,
                 VaxType.DEFAULT_ALLERGY_REQS,
                 VaxType.DEFAULT_HISTORY_REQS);
         assertTrue(t1.compareTo(t2) > 0);
@@ -76,7 +59,6 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_REAL,
                 SampleVaxTypeData.ALLERGY_REQS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         List<VaxType> vaxTypes = permutateVaxType();
@@ -107,7 +89,6 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_REAL,
                 SampleVaxTypeData.ALLERGY_REQS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t2 = new VaxType(
@@ -115,7 +96,6 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_REAL,
                 SampleVaxTypeData.ALLERGY_REQS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t3 = new VaxType(
@@ -123,7 +103,6 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_1,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_REAL,
                 SampleVaxTypeData.ALLERGY_REQS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t4 = new VaxType(
@@ -131,7 +110,6 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_1,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_REAL,
                 SampleVaxTypeData.ALLERGY_REQS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t5 = new VaxType(
@@ -139,7 +117,6 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_1,
-                SampleVaxTypeData.MIN_SPACING_REAL,
                 SampleVaxTypeData.ALLERGY_REQS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t6 = new VaxType(
@@ -147,25 +124,15 @@ public class VaxTypeTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_1,
-                SampleVaxTypeData.ALLERGY_REQS_REAL,
+                SampleVaxTypeData.ALLERGY_REQS_1,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
         VaxType t7 = new VaxType(
                 SampleVaxTypeData.NAME_REAL,
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_REAL,
-                SampleVaxTypeData.ALLERGY_REQS_1,
-                SampleVaxTypeData.HISTORY_REQS_REAL);
-        VaxType t8 = new VaxType(
-                SampleVaxTypeData.NAME_REAL,
-                SampleVaxTypeData.GROUPS_REAL,
-                SampleVaxTypeData.MIN_AGE_REAL,
-                SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.MIN_SPACING_REAL,
                 SampleVaxTypeData.ALLERGY_REQS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_1);
-        return List.of(t1, t2, t3, t4, t5, t6, t7, t8);
+        return List.of(t1, t2, t3, t4, t5, t6, t7);
     }
 }

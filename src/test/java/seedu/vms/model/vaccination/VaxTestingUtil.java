@@ -19,18 +19,16 @@ public class VaxTestingUtil {
      * @param groups - the expected groups.
      * @param minAge - the expected min age.
      * @param maxAge - the expected max age.
-     * @param minSpacing - the expected min spacing.
      * @param historyReqs - the expected history requirements.
      * @param allergyReqs - the expected allergy requirements.
      */
     public static void assertVaxType(VaxType vaxType,
-            GroupName name, HashSet<GroupName> groups, Age minAge, Age maxAge, int minSpacing,
+            GroupName name, HashSet<GroupName> groups, Age minAge, Age maxAge,
             List<Requirement> historyReqs, List<Requirement> allergyReqs) {
         assertEquals(name, vaxType.getGroupName(), "Name");
         assertEquals(groups, vaxType.getGroups(), "Groups");
         assertEquals(minAge, vaxType.getMinAge(), "Min age");
         assertEquals(maxAge, vaxType.getMaxAge(), "Max age");
-        assertEquals(minSpacing, vaxType.getMinSpacing(), "Min spacing");
         assertEquals(historyReqs, vaxType.getHistoryReqs(), "History requirements");
         assertEquals(allergyReqs, vaxType.getAllergyReqs(), "Allergy requirements");
     }

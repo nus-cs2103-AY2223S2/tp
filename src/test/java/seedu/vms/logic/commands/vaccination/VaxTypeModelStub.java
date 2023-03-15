@@ -6,10 +6,12 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.appointment.Appointment;
+import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
@@ -75,6 +77,11 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
+    public void deleteAppointment(int id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteAppointment'");
+    }
+
+    @Override
     public void addPatient(Patient patient) {
         throw new UnsupportedOperationException("Unimplemented method 'addPatient'");
     }
@@ -82,6 +89,11 @@ public class VaxTypeModelStub implements Model {
     @Override
     public void setPatient(int id, Patient editedPatient) {
         throw new UnsupportedOperationException("Unimplemented method 'setPatient'");
+    }
+
+    @Override
+    public void setAppointment(int id, Appointment editedAppointment) {
+        throw new UnsupportedOperationException("Unimplemented method 'setAppointment'");
     }
 
     @Override
@@ -100,6 +112,11 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        throw new UnsupportedOperationException("Unimplemented method 'updateFilteredAppointmentList'");
+    }
+
+    @Override
     public VaxTypeManager getVaxTypeManager() {
         throw new UnsupportedOperationException("Unimplemented method 'getVaxTypeManager'");
     }
@@ -113,6 +130,25 @@ public class VaxTypeModelStub implements Model {
     public void addAppointment(Appointment appointment) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addAppointment'");
+    }
+
+    @Override
+    public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getFilteredAppointmentMap'");
+    }
+
+    @Override
+    public AppointmentManager getAppointmentManager() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAppointmentManager'");
+    }
+
+    @Override
+    public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
+        return manager.remove(vaxName.toString())
+                .orElseThrow(() -> new IllegalValueException(String.format(
+                        "Vaccination type does not exist: %s", vaxName.toString())));
     }
 
 }

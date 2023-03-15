@@ -19,6 +19,7 @@ import seedu.vms.logic.parser.VmsParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
+import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
@@ -62,7 +63,19 @@ public class LogicManager implements Logic {
         }
         isExecuting = true;
         String commandText = commandQueue.poll();
-        new Thread(() -> parseCommand(commandText)).start();
+        new Thread(() -> attemptProcess(
+                () -> parseCommand(commandText))).start();
+    }
+
+
+    private void attemptProcess(Runnable process) {
+        try {
+            process.run();
+        } catch (Throwable deathEx) {
+            completeExecution(List.of(new CommandResult(
+                    deathEx.toString(),
+                    CommandResult.State.DEATH)));
+        }
     }
 
 
@@ -101,6 +114,12 @@ public class LogicManager implements Logic {
             results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
         }
 
+        try {
+            storage.saveAppointments(model.getAppointmentManager());
+        } catch (IOException ioe) {
+            results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
+        }
+
         completeExecution(results, command.getFollowUp());
     }
 
@@ -110,10 +129,11 @@ public class LogicManager implements Logic {
     }
 
 
-    private void completeExecution(List<CommandResult> results, Optional<Command> followUp) {
+    private synchronized void completeExecution(List<CommandResult> results, Optional<Command> followUp) {
         onExecutionComplete.accept(results);
         if (followUp.isPresent()) {
-            new Thread(() -> execute(followUp.get())).start();
+            new Thread(() -> attemptProcess(
+                    () -> execute(followUp.get()))).start();
             return;
         }
         isExecuting = false;
@@ -140,6 +160,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableMap<String, VaxType> getFilteredVaxTypeMap() {
         return model.getFilteredVaxTypeMap();
+    }
+
+    @Override
+    public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
+        return model.getFilteredAppointmentMap();
     }
 
     @Override
