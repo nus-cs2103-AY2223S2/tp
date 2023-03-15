@@ -3,11 +3,14 @@ package seedu.recipe.logic.parser;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.parser.CliSyntax.*;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.recipe.logic.commands.AddCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
+import seedu.recipe.logic.parser.functional.TryUtil;
 import seedu.recipe.model.recipe.*;
 import seedu.recipe.model.tag.Tag;
 
@@ -23,20 +26,44 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_STEP);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION, PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STEP)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Ingredient ingredient = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Step step = ParserUtil.parseStep(argMultimap.getValue(PREFIX_STEP).get());
-        Recipe recipe = new Recipe(name, ingredient, email, address, tagList, step);
+        Recipe recipe = new Recipe(name);
+
+        // 1. Parse Duration
+        argMultimap.getValue(PREFIX_DURATION).ifPresent(durationString -> {
+            Optional<RecipeDuration> recipeDuration =
+                TryUtil.safeCompute(ParserUtil::parseDuration, durationString);
+            recipeDuration.ifPresent(recipe::setDuration);
+        });
+
+        // 2. Parse Portion
+        argMultimap.getValue(PREFIX_PORTION).ifPresent(portionString -> {
+            Optional<RecipePortion> recipeDuration =
+                    TryUtil.safeCompute(ParserUtil::parsePortion, portionString);
+            recipeDuration.ifPresent(recipe::setPortion);
+        });
+
+        // 3. Parse Tags
+        Tag[] tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))
+                .toArray(Tag[]::new);
+        recipe.setTags(tags);
+
+        // 4. Parse Ingredients
+        Ingredient[] ingredients = ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT))
+                .toArray(Ingredient[]::new);
+        recipe.setIngredients(ingredients);
+
+        // 5. Parse Steps
+        Step[] steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP))
+                .toArray(Step[]::new);
+        recipe.setSteps(steps);
 
         return new AddCommand(recipe);
     }

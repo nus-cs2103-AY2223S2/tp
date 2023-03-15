@@ -2,14 +2,14 @@ package seedu.recipe.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.Duration;
+import java.util.*;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.StringUtil;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.*;
+import seedu.recipe.model.recipe.unit.PortionUnit;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -48,48 +48,63 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Ingredient}.
+     * Parses a {@code String name} into a {@code Duration}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static RecipeDuration parseDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+        if (!RecipeDuration.isValidRecipeDuration(trimmedDuration)) {
+            throw new ParseException(RecipeDuration.MESSAGE_CONSTRAINTS);
+        }
+        return RecipeDuration.of(trimmedDuration);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Portion}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static RecipePortion parsePortion(String portion) throws ParseException {
+        requireNonNull(portion);
+        String trimmedPortion = portion.trim();
+        if (!RecipePortion.isValidRecipePortion(trimmedPortion)) {
+            throw new ParseException(RecipePortion.MESSAGE_CONSTRAINTS);
+        }
+        return RecipePortion.of(trimmedPortion);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Ingredient}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Ingredient parseIngredient(String ingredient) throws ParseException {
+        requireNonNull(ingredient);
+        String trimmedIngredient = ingredient.trim();
+        if (!Ingredient.isValidIngredient(trimmedIngredient)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Ingredient(trimmedIngredient);
+    }
+
+    /**
+     * Parses a {@code String in} into a {@code Ingredient}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Ingredient parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Ingredient.isValidIngredient(trimmedPhone)) {
-            throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+    public static List<Ingredient> parseIngredients(Collection<String> ingredients) throws ParseException {
+        requireNonNull(ingredients);
+        List<Ingredient> ingredientList = new ArrayList<>();
+        for (String ingredientName: ingredients) {
+            ingredientList.add(parseIngredient(ingredientName));
         }
-        return new Ingredient(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
+        return ingredientList;
     }
 
     /**
@@ -125,5 +140,14 @@ public class ParserUtil {
             throw new ParseException(Step.MESSAGE_CONSTRAINTS);
         }
         return new Step(step);
+    }
+
+    public static List<Step> parseSteps(Collection<String> steps) throws ParseException {
+        requireNonNull(steps);
+        List<Step> stepList = new ArrayList<>();
+        for (String stepDescription: steps) {
+            stepList.add(parseStep(stepDescription));
+        }
+        return stepList;
     }
 }
