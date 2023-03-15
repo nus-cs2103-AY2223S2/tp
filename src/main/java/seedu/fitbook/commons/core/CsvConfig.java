@@ -1,5 +1,8 @@
 package seedu.fitbook.commons.core;
 
+/**
+ * Container for Csv related extensions.
+ */
 public class CsvConfig {
 
     public static final String CSV_EXTENSION = ".csv";

@@ -1,9 +1,9 @@
 package seedu.fitbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.fitbook.commons.core.CsvConfig.COMMA_SEPARATOR;
 import static seedu.fitbook.commons.core.CsvConfig.CSV_EXTENSION;
 import static seedu.fitbook.commons.core.CsvConfig.FILE_NAME_ROUTINE;
-import static seedu.fitbook.commons.core.CsvConfig.COMMA_SEPARATOR;
 import static seedu.fitbook.commons.core.CsvConfig.NEW_LINE;
 import static seedu.fitbook.commons.core.CsvConfig.WHITE_SPACE;
 
@@ -70,8 +70,8 @@ public class ExportRoutineCommand extends Command {
         StringBuilder s = new StringBuilder("");
         for (Routine routine : routines) {
             s.append(routine.getRoutineName().toString() + COMMA_SEPARATOR);
-            for(Exercise exercise : routine.getExercises()) {
-                s.append(exercise.exerciseName + WHITE_SPACE );
+            for (Exercise exercise : routine.getExercises()) {
+                s.append(exercise.exerciseName + WHITE_SPACE);
             }
             s.append(NEW_LINE);
         }
