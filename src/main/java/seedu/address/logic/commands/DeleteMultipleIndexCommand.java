@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -49,6 +49,12 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
                 && indexes.equals(((DeleteMultipleIndexCommand) other).indexes)); // state check
     }
 
+    /**
+     * Checks if all the indexes in the list of indexes are valid.
+     * @param lastShownList
+     * @return validity of the list of indexes.
+     * @throws CommandException
+     */
     public boolean isIndexesValid(List<Person> lastShownList) throws CommandException {
         for (Index targetIndex : indexes) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
