@@ -10,6 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* ControlsFX (https://github.com/controlsfx/controlsfx)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -121,7 +122,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and `Reminder` Objects (which are contained in a `ReminderList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -258,15 +259,16 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* prefer desktop apps over other mediums
 * can type fast
-* prefers typing to mouse interactions
+* prefers typing over mouse interactions
 * is reasonably comfortable using CLI apps
 * delivery man with >50 deliveries in a day
 * drives constanly with a laptop in the van
 * lazy, doesn't like to micromanage
+* forgetful
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Also helps delivery men to plan the most efficient delivery route and retain customer relations.
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Also helps delivery men to stay on track with their delivery schedule.
 
 
 ### User stories
@@ -281,10 +283,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | delivery driver                                                   | add a new person               | keep in touch with my clients                                          |
 | `* * *`  | delivery driver                                                   | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | organised delivery driver                                         | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | forgetful person                                                  | be reminded of upcoming tasks and deadlines  | complete all my jobs on time |
+| `* *`    | busy person                                                       | be reminded of my next task    | focus on my current task and not remember too much stuff |
 | `* *`    | delivery driver                                                   | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | delivery driver who wants to provide better service for customers | chat with my clients           | retain custormer relations and maintain more customers.                |
 | `* *`    | delivery driver who wants to learn how to maximise his earnings   | view my aggregated information | track my earnings and other statistics                                 |
 | `*`      | delivery driver with many customers in the address book           | sort persons by name           | locate a person/client easily and thus increase delivery efficiency    |
+| `*`      | user                                                              | adjust how my notifications are shown | have a clutter free desktop |
 
 *{More to be added}*
 
@@ -363,6 +367,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </pre>
 </details>
 
+<details>
+<summary><b>[RE1] Receive reminders</b></summary>
+<pre>
+<b>MSS</b>
+1. User starts up System.
+2. System loads address book from memory.
+3. System checks from address book, list of reminders. If the current date and time has pass or is equal to the date specified in the reminder, a notification will pop up.
+4. System runs in the background to check against the list of reminders before each block in the timetable.
+   System will repeat the check at step 3a.
+   Use case ends.
+   
+<b>Extensions:>/b>
+3a. A few minutes before the next schedule, System will check if there is an job.
+    3a1. If there is an upcoming job, fire a pop up notification
+    Use case resumes from step 4.
+</pre>
+</details>
+ 
+<details>
+<summary><b>[RE2] Add reminders</b></summary>
+<pre>
+<b>MSS</b>
+1. User details the description, date and time of a reminder to the System.
+2. System adds the reminder into the reminder list.
+   Use case ends.
+   
+<b>Extensions:>/b>
+2a. date and time of reminder is not provide.
+    2a1. System will promopt user again.
+    Use case resumes from step 1.
+</pre>
+</details>
+ 
+ <details>
+<summary><b>[RE3] Delete reminders</b></summary>
+<pre>
+<b>MSS</b>
+1. User specifies a reminder to be deleted based on its index number.
+2. System finds the corresponding reminder, and deletes it from the reminder list.
+   Use case ends.
+   
+<b>Extensions:>/b>
+2a. Index provided by user is not found in reminder list.
+    2a1. System will promopt user again.
+    Use case resumes from step 1.
+</pre>
+</details>
+ 
+<details>
+<summary><b>[RE4] List reminders</b></summary>
+<pre>
+<b>MSS</b>
+1. User request System to show all reminders in reminder list.
+2. System displays all reminders.
+   Use case ends.
+</pre>
+</details>
 
 *{More to be added}*
 
