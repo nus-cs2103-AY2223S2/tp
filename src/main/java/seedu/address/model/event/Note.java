@@ -10,14 +10,31 @@ import java.util.regex.Pattern;
  */
 public class Note {
 
-    public static String EMPTY_CONTENT = "This note is empty";
-    protected static int LENGTH_LIMIT = 200;
-    private static String PATTERN = "@[a-z]+";
+    public static final String EMPTY_CONTENT = "This note is empty";
+    protected static final int LENGTH_LIMIT = 200;
+    private static final String PATTERN = "@[a-z]+";
     private String content;
     private List<String> names = new ArrayList<>(20); // referenced up to 20 students in the notes
 
+
+    /**
+     * Initates the note object with actual content and parsed referees
+     * @param note {@code String} object that represents the note contents
+     */
+    public Note(String note) {
+        this.content = validateContent(note);
+        decomposePersonNames(note);
+    }
+
+    /**
+     * Initiates the note object with empty content that can be filled up later
+     */
+    public Note() {
+        this.content = EMPTY_CONTENT;
+    }
+
     private void decomposePersonNames(String note) {
-        try{
+        try {
             Pattern pattern = Pattern.compile(PATTERN, Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(note);
             while (matcher.find()) {
@@ -42,22 +59,6 @@ public class Note {
             note = note.substring(0, LENGTH_LIMIT);
         }
         return note;
-    }
-
-    /**
-     * Initiates the note object with empty content that can be filled up later
-     */
-    public Note() {
-        this.content = EMPTY_CONTENT;
-    }
-
-    /**
-     * Initates the note object with actual content and parsed referees
-     * @param note {@code String} object that represents the note contents
-     */
-    public Note(String note) {
-        this.content = validateContent(note);
-        decomposePersonNames(note);
     }
 
     public String getContent() {
