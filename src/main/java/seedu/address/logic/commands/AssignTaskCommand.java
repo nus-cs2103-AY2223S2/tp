@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -11,7 +12,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+
 
 /**
  * Assigns a task to a member of the team
@@ -20,12 +25,12 @@ public class AssignTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to a particular user "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to a particular user.\n"
             + "Parameters: "
             + PREFIX_TASK_INDEX + "TASK_ID "
-            + PREFIX_PERSON_INDEX + "MEMBER_ID"
+            + PREFIX_PERSON_INDEX + "MEMBER_ID\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TASK_INDEX + "3"
+            + PREFIX_TASK_INDEX + "3 "
             + PREFIX_PERSON_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "Assigned task to %s \n %s";
@@ -66,8 +71,11 @@ public class AssignTaskCommand extends Command {
 
         Task taskToAssign = lastShownList.get(toAssignTask.getZeroBased());
         Person personToAssign = lastShownPersonList.get(toAssignMember.getZeroBased());
+        Task assignedTask = createAssignedTask(taskToAssign, toAssignMember, personToAssign);
 
-        model.assignTask(toAssignTask, toAssignMember);
+        //model.assignTask(toAssignTask, toAssignMember);
+        model.assignTask(taskToAssign, assignedTask, toAssignTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         String taskString = taskToAssign.toString();
         String personString = personToAssign.getName().toString();
         return new CommandResult(String.format(MESSAGE_SUCCESS, personString, taskString));
@@ -79,6 +87,15 @@ public class AssignTaskCommand extends Command {
                 || (other instanceof AssignTaskCommand // instanceof handles nulls
                 && toAssignTask.equals(((AssignTaskCommand) other).toAssignTask)
                 && toAssignMember.equals(((AssignTaskCommand) other).toAssignMember));
+    }
+
+
+    private static Task createAssignedTask(Task taskToAssign, Index personToAssign, Person personAssigned) {
+        TaskDescription taskDesc = taskToAssign.getDescription();
+        Date taskDate = ((DeadlineTask) taskToAssign).getDate();
+        Task assignedTask = new DeadlineTask(taskDesc, taskDate);
+        assignedTask.assignPerson(personToAssign, personAssigned);
+        return assignedTask;
     }
 
 }

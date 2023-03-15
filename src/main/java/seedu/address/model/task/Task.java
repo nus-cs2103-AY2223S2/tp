@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Person;
 
 /**
  * This class is the parent class of tasks that make up the tasklist.
@@ -11,6 +12,8 @@ public class Task {
     protected boolean isDone;
     private final TaskDescription description;
     private Index personAssignedIndex;
+    private String personAssignedName;
+    private String personAssignedRole;
 
     /**
      * The constructor of the Task that takes in description of the task.
@@ -19,6 +22,8 @@ public class Task {
         this.description = description;
         this.isDone = false;
         this.personAssignedIndex = null;
+        this.personAssignedName = null;
+        this.personAssignedRole = null;
     }
 
     /**
@@ -53,8 +58,10 @@ public class Task {
      *
      * @param personIndex Index of the person to be assigned to the current task
      */
-    public void assignPerson(Index personIndex) {
+    public void assignPerson(Index personIndex, Person personToAssign) {
         this.personAssignedIndex = personIndex;
+        this.personAssignedName = personToAssign.getName().toString();
+        this.personAssignedRole = personToAssign.getRole();
     }
 
     /**
@@ -63,7 +70,24 @@ public class Task {
      * @return Index index of the person assigned to the current task
      */
     public Index getPersonAssignedIndex() {
-        return this.personAssignedIndex;
+        return personAssignedIndex;
+    }
+
+    /**
+     * Supplies the name of the person assigned to the current task when requested.
+     *
+     * @return String name of the person assigned to the current task
+     */
+    public String getPersonAssignedName() {
+        return personAssignedName;
+    }
+
+    /**
+     * Supplies the role of the person assigned to the current task when requested.
+     * @return
+     */
+    public String getPersonAssignedRole() {
+        return personAssignedRole;
     }
 
     /**

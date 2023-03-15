@@ -48,7 +48,7 @@ public class Role {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + roleName + ']';
+        return roleName;
     }
 
 }

@@ -10,7 +10,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -181,16 +180,20 @@ public class DeadlineCommandTest {
         }
 
         @Override
-        public void assignTask(Index taskIndex, Index personIndex) {
+        public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public List<Task> getFilteredTaskList() {
+        public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called");
         }
 
         @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void markTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }

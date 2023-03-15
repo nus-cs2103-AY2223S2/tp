@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -14,6 +15,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -30,8 +33,8 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
-    // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +45,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Label panelLabel;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -76,10 +82,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
-    /**
-     * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
-     */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
 
@@ -107,11 +109,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up all the placeholders of this window.
+     * Fills up all the tasks placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -167,6 +169,10 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public TaskListPanel getTaskListPanel() {
+        return taskListPanel;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -177,6 +183,21 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            // TODO: refine later
+            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS)) {
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+                listPanelPlaceholder.getChildren().clear();
+                listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+                panelLabel.setText("Persons");
+            }
+
+            if (commandResult.getFeedbackToUser().equals(ViewCommand.MESSAGE_SUCCESS)) {
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+                listPanelPlaceholder.getChildren().clear();
+                listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+                panelLabel.setText("Tasks");
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

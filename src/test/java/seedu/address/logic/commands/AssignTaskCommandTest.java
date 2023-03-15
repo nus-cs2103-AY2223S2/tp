@@ -19,8 +19,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
 import seedu.address.testutil.DeadlineTaskBuilder;
 
 
@@ -44,11 +46,11 @@ public class AssignTaskCommandTest {
 
         Task task = model.getFilteredTaskList().get(taskToAssign.getZeroBased());
         Person person = model.getFilteredPersonList().get(personToAssign.getZeroBased());
-        System.out.println(task.toString() + " " + person.toString());
 
         String expectedMessage = String.format(MESSAGE_SUCCESS, person.getName().toString(), task.toString());
+        Task assignedTask = createAssignedTask(task, personToAssign, person);
 
-        model.assignTask(Index.fromZeroBased(taskToAssign.getZeroBased()), personToAssign);
+        model.assignTask(task, assignedTask, taskToAssign);
         assertEquals(assignTaskCommand.execute(model).getFeedbackToUser(), expectedMessage);
     }
 
@@ -103,6 +105,13 @@ public class AssignTaskCommandTest {
         assertFalse(assignFirstCommand.equals(new AssignTaskCommand(taskToAssign, INDEX_FIRST_PERSON)));
     }
 
+    private static Task createAssignedTask(Task taskToAssign, Index personToAssign, Person personAssigned) {
+        TaskDescription taskDesc = taskToAssign.getDescription();
+        Date taskDate = ((DeadlineTask) taskToAssign).getDate();
+        Task assignedTask = new DeadlineTask(taskDesc, taskDate);
+        assignedTask.assignPerson(personToAssign, personAssigned);
+        return assignedTask;
+    }
 
 
 }

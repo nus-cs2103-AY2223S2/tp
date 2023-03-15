@@ -61,6 +61,13 @@ public class Person {
     }
 
     /**
+     * Returns the first role in the set of roles.
+     */
+    public String getRole() {
+        return roles.iterator().next().toString();
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
