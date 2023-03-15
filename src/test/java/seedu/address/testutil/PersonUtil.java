@@ -46,6 +46,7 @@ public class PersonUtil {
      */
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
+        assert(descriptor.getContactIndex() != null);
         descriptor.getName().ifPresent(name -> sb.append(Prefix.NAME).append(name.getValue()).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(Prefix.PHONE).append(phone.getValue()).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(Prefix.EMAIL).append(email.getValue()).append(" "));
