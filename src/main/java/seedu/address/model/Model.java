@@ -77,11 +77,11 @@ public interface Model {
      */
     void setListing(Listing target, Listing editedListing);
 
-    /** Returns an unmodifiable view of the filtered listing list */
+    /** Returns an unmodifiable view of the filtered listing book */
     ObservableList<Listing> getFilteredListingList();
 
     /**
-     * Updates the filter of the filtered listing list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered listing book to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredListingList(Predicate<Listing> predicate);

@@ -33,14 +33,14 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the listing in the {@code model}'s listing list.
+     * Returns the middle index of the listing in the {@code model}'s listing book.
      */
     public static Index getMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredListingList().size() / 2);
     }
 
     /**
-     * Returns the last index of the listing in the {@code model}'s listing list.
+     * Returns the last index of the listing in the {@code model}'s listing book.
      */
     public static Index getLastIndex(Model model) {
         return Index.fromOneBased(model.getFilteredListingList().size());
