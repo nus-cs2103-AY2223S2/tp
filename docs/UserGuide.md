@@ -146,7 +146,7 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 Adds a student to the database
 
-Format: `add n/<NAME> in/<INDEX_NUMBER> s/<SEX> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<RELATIONSHIP> [age/<AGE> img/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> p/<PHONE_NUMBER> cca/<CCA>]`
+Format: `add n/<NAME> in/<INDEX_NUMBER> s/<SEX> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<RELATIONSHIP> [age/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> p/<PHONE_NUMBER> cca/<CCA>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)

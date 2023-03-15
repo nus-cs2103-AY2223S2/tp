@@ -14,6 +14,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
+import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.tag.Tag;
 
@@ -36,6 +37,7 @@ public class Student extends Person {
     private Set<Test> test = new HashSet<>();
     private Set<Tag> tags;
     private Comment comment;
+    private Parent parent;
 
     /**
      * Returns a Student object that stores information about the student particulars.
@@ -78,6 +80,14 @@ public class Student extends Person {
         this.rls = rls;
     }
 
+    /**
+     * A method that is used to bind a Parent / NOK to the student.
+     *
+     * @param parent Parent / NOK that is related to the Student.
+     */
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
     /**
      * A method that returns the Parent / NOK name.
      *
