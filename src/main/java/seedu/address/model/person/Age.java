@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Person's age in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAge(String)}
@@ -17,6 +20,8 @@ public class Age {
      * @param age A valid age.
      */
     public Age(String age) {
+        requireNonNull(age);
+        checkArgument(isValidAge(age), MESSAGE_CONSTRAINTS);
         this.age = age;
     }
 
@@ -27,6 +32,7 @@ public class Age {
         if (age == "") {
             return true;
         }
+        requireNonNull(age);
         // check if valid age
         try {
             Integer.parseInt(age);
