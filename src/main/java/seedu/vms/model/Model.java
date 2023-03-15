@@ -105,6 +105,12 @@ public interface Model {
      */
     void addAppointment(Appointment appointment);
 
+    /**
+     * Deletes the given appointment.
+     * The appointment must exist in the appointment manager.
+     */
+    void deleteAppointment(int id);
+
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
 
