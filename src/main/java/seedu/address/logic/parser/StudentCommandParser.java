@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEDELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORKDONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
@@ -31,12 +32,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.student.StudentAddCommand;
 import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.commands.student.StudentCommentCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.commands.student.StudentGradeCommand;
+import seedu.address.logic.commands.student.StudentGradeDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
@@ -99,6 +100,9 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         ArgumentMultimap argMultimapGrade =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_GRADE, PREFIX_INDEXNUMBER, PREFIX_TEST,
                         PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE, PREFIX_HOMEWORKDONE);
+        ArgumentMultimap argMultimapGradeDelete =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_GRADEDELETE, PREFIX_INDEXNUMBER, PREFIX_TEST,
+                        PREFIX_HOMEWORK);
 
         if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(studentClass, argMultimapAdd);
@@ -106,8 +110,11 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             return deleteCommand(studentClass, argMultimapDelete);
         } else if (argMultimap.getValue(PREFIX_COMMENTCOMMAND).isPresent()) {
             return commentCommand(studentClass, argMultimap);
-        } else if (argMultimapGrade.getValue(PREFIX_GRADE).isPresent()) {
+        } else if (argMultimapGrade.getValue(PREFIX_GRADE).isPresent()
+            && !argMultimapGradeDelete.getValue(PREFIX_GRADEDELETE).isPresent()) {
             return gradeCommand(studentClass, argMultimapGrade);
+        } else if (argMultimapGradeDelete.getValue(PREFIX_GRADEDELETE).isPresent()) {
+            return gradeDeleteCommand(studentClass, argMultimapGradeDelete);
         } else {
             //Rest of logic (Need to edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
@@ -184,14 +191,14 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public StudentDeleteCommand deleteCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
-        try {
-            Class sc = ParserUtil.parseStudentClass(studentClass);
-            IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
-            return new StudentDeleteCommand(indexNumber, sc);
-        } catch (ParseException pe) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentDeleteCommand.MESSAGE_USAGE));
         }
+        Class sc = ParserUtil.parseStudentClass(studentClass);
+        IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
+        return new StudentDeleteCommand(indexNumber, sc);
     }
 
     /**
@@ -202,28 +209,66 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      * @throws ParseException
      */
     public StudentGradeCommand gradeCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER, PREFIX_GRADE)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if ((arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER, PREFIX_TEST)
+                || arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER, PREFIX_HOMEWORK))
+                && argMultimap.getPreamble().isEmpty()) {
+            Class sc = ParserUtil.parseStudentClass(studentClass);
+            IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
+            String score = argMultimap.getValue(PREFIX_SCORE).get();
+            String deadline = argMultimap.getValue(PREFIX_DEADLINE).get();
+            String weightage = argMultimap.getValue(PREFIX_WEIGHTAGE).get();
+            String homeworkDone = argMultimap.getValue(PREFIX_HOMEWORKDONE).get();
+            Test test = ParserUtil.parseTest(argMultimap.getValue(PREFIX_TEST).get(), score, deadline, weightage);
+            Homework homework = ParserUtil.parseHomework(argMultimap.getValue(PREFIX_HOMEWORK).get(), score, deadline,
+                    weightage, homeworkDone);
+            if (homework.getName() == "Insert student homework here!"
+                    && test.getName() == "Insert student test here!") {
+                throw new ParseException("Please enter a test(test/) or homework(hw/)!");
+            } else if (test.getName() == "Insert student test here!") {
+                return new StudentGradeCommand(sc, indexNumber, homework);
+            } else {
+                return new StudentGradeCommand(sc, indexNumber, test);
+            }
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StudentGradeCommand.MESSAGE_USAGE));
         }
-        Class sc = ParserUtil.parseStudentClass(studentClass);
-        IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
-        String score = argMultimap.getValue(PREFIX_SCORE).get();
-        String deadline = argMultimap.getValue(PREFIX_DEADLINE).get();
-        String weightage = argMultimap.getValue(PREFIX_WEIGHTAGE).get();
-        String homeworkDone = argMultimap.getValue(PREFIX_HOMEWORKDONE).get();
-        Test test = ParserUtil.parseTest(argMultimap.getValue(PREFIX_TEST).get(), score, deadline, weightage);
-        Homework homework = ParserUtil.parseHomework(argMultimap.getValue(PREFIX_HOMEWORK).get(), score, deadline,
-                weightage, homeworkDone);
-        if (homework.getName() == "Insert student homework here!" && test.getName() == "Insert student test here!") {
-            throw new ParseException("Please enter a test or homework!");
-        } else if (test.getName() == "Insert student test here!") {
-            return new StudentGradeCommand(sc, indexNumber, homework);
-        } else {
-            return new StudentGradeCommand(sc, indexNumber, test);
-        }
 
+    }
+
+    /**
+     * Function to parse the "student class grade delete" command
+     * @param studentClass
+     * @param argMultimap
+     * @return A StudentGradeDeleteCommand
+     * @throws ParseException
+     */
+    public StudentGradeDeleteCommand gradeDeleteCommand(String studentClass, ArgumentMultimap argMultimap)
+            throws ParseException {
+        if ((arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER, PREFIX_TEST)
+                || arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER, PREFIX_HOMEWORK))
+                && argMultimap.getPreamble().isEmpty()) {
+            Class sc = ParserUtil.parseStudentClass(studentClass);
+            IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
+            Test test = ParserUtil.parseTest(argMultimap.getValue(PREFIX_TEST).get(),
+                    "Insert student score here!", argMultimap.getValue(PREFIX_DEADLINE).get(),
+                    "Insert student weightage here!");
+            Homework homework = ParserUtil.parseHomework(argMultimap.getValue(PREFIX_HOMEWORK).get(),
+                    "Insert student score here!", argMultimap.getValue(PREFIX_DEADLINE).get(),
+                    "Insert student weightage here!", "Insert student homework done here!");
+            if (homework.getName() == "Insert student homework here!"
+                    && test.getName() == "Insert student test here!") {
+                throw new ParseException("Please enter a test(test/) or homework(hw/)!");
+            } else if (test.getName() == "Insert student test here!") {
+                return new StudentGradeDeleteCommand(sc, indexNumber, homework);
+            } else {
+                return new StudentGradeDeleteCommand(sc, indexNumber, test);
+            }
+
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    StudentGradeDeleteCommand.MESSAGE_USAGE));
+        }
     }
 
 
