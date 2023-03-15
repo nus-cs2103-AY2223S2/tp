@@ -73,6 +73,11 @@ public class Client {
         return gender;
     }
 
+    public boolean isAppointmentEmpty() {
+        return appointments.isEmpty();
+    }
+
+
     /**
      * Returns an immutable appointment set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
