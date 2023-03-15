@@ -121,9 +121,7 @@ Examples:
 
 ### Locating clients by name: `find`
 
-
 Finds Clients in Fitbook whose details contain any of the given keywords.
-
 
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER] [cal/CALORIE] [t/TAG]
 [app/APPOINTMENT]…​`
@@ -134,6 +132,17 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER] [ca
 * Details containing the keyword will also be matched, even if both do not match exactly.
   e.g. `Han` will match `Hans`, `John` will match `John Li` and `John Tan`,
   `19` will match `1900` and `0190`
+
+Available Prefixes:
+* `n` filters by Name
+* `p` filters by Phone
+* `e` filers by Email
+* `a` filters by Address
+* `t` filters by Tag
+* `w` filters by Weight
+* `g` filters by Gender
+* `cal` filters by Calorie
+* `app` filters by Appointment
 
 Examples:
 * `find n/Alex` returns every client with 'Alex' in their name.

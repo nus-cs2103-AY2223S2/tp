@@ -48,8 +48,9 @@
           </VBox.margin>
         </Pane>
 
-        <HBox fx:id="clientListHolder" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
-          <VBox fx:id="clientList" minWidth="340" prefHeight="200" prefWidth="400" styleClass="pane-with-border" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+          <children>
+          <VBox fx:id="clientList" minWidth="340" prefHeight="200" prefWidth="500" styleClass="pane-with-border" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="5" left="10" right="10" top="5" />
             </padding>
@@ -67,6 +68,25 @@
             </Pane>
             <StackPane fx:id="clientListPanelPlaceholder" style="-fx-background-radius: 10 10 0 0; -fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
           </VBox>
+            <VBox fx:id="ScheduleList" minWidth="340" prefHeight="200" prefWidth="600" styleClass="pane-with-border" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets bottom="5" left="10" right="10" top="5" />
+              </padding>
+              <Pane fx:id="schedulePanelTitleHolder" minHeight="40.0" prefHeight="40.0" style="-fx-background-color: derive(#F88017, 20%); -fx-background-radius: 10 10 0 0; -fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);">
+                <children>
+                  <Label fx:id="schedulePanelTitle" alignment="CENTER_LEFT" contentDisplay="CENTER" prefHeight="40.0" prefWidth="${schedulePanelTitleHolder.width}" styleClass="subTitle" text="Schedules" textAlignment="CENTER">
+                    <padding>
+                      <Insets left="10.0" right="5.0" />
+                    </padding>
+                  </Label>
+                </children>
+                <padding>
+                  <Insets bottom="5.0" />
+                </padding>
+              </Pane>
+              <StackPane fx:id="schedulePanelPlaceholder" style="-fx-background-radius: 10 10 0 0; -fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+            </VBox>
+          </children>
         </HBox>
 
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="120" maxWidth="1.7976931348623157E308" minHeight="50" prefHeight="100" style="-fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
@@ -78,7 +98,7 @@
           </VBox.margin>
         </StackPane>
 
-        <StackPane fx:id="commandBoxPlaceholder" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <VBox.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" top=" 0.0" />
           </VBox.margin>
