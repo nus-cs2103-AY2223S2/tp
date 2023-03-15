@@ -42,6 +42,13 @@ public class Age {
     public String toString() {
         return age == "" ? "" : "(age: " + age + ")";
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Age // instanceof handles nulls
+                && age.equals(((Age) other).age)); // state check
+    }
     @Override
     public int hashCode() {
         return age.hashCode();
