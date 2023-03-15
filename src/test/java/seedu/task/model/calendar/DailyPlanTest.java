@@ -17,21 +17,21 @@ public class DailyPlanTest {
 
     @Test
     public void getCurrentWorkload_test() {
-        DailyPlan p1 = new DailyPlan(8, LOCAL_DATE_FOURTH);
+        DailyPlan p1 = new DailyPlan(30, LOCAL_DATE_FOURTH);
 
         p1.addTask(TypicalTasks.AMY);
-        assertEquals(2, p1.getCurrentWorkload());
+        assertEquals(24, p1.getCurrentWorkload());
 
         p1.addTask(TypicalTasks.BENSON);
-        assertEquals(6, p1.getCurrentWorkload());
+        assertEquals(28, p1.getCurrentWorkload());
 
         p1.addTask(TypicalTasks.BOB);
-        assertEquals(8, p1.getCurrentWorkload());
+        assertEquals(52, p1.getCurrentWorkload());
     }
 
     @Test
     public void getSpareTime_test() {
-        DailyPlan p1 = new DailyPlan(8, LOCAL_DATE_FOURTH);
+        DailyPlan p1 = new DailyPlan(30, LOCAL_DATE_FOURTH);
 
         p1.addTask(TypicalTasks.AMY);
 
@@ -44,7 +44,7 @@ public class DailyPlanTest {
         p2.addTask(TypicalTasks.BOB);
 
         // Overloaded day
-        assertEquals(-1, p2.getSpareTime());
+        assertEquals(-45, p2.getSpareTime());
     }
 
     @Test
