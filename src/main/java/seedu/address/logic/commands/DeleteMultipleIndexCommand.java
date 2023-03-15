@@ -16,12 +16,6 @@ import seedu.address.model.person.Person;
  */
 public class DeleteMultipleIndexCommand extends DeleteCommand {
 
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes multiple people identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
-
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted People Successfully ";
 
     private final ArrayList<Index> indexes;
@@ -34,16 +28,16 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        isIndexesValid(lastShownList);
 
+        ArrayList<Person> listOfPeople = new ArrayList<Person>();
         for (Index targetIndex : this.indexes) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
 
-            ArrayList<Person> listOfPeople = new ArrayList<Person>();
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-            model.deletePerson(personToDelete);
             listOfPeople.add(personToDelete);
+        }
+        for (Person personToDelete : listOfPeople) {
+            model.deletePerson(personToDelete);
         }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS));
     }
@@ -53,5 +47,14 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
         return other == this // short circuit if same object
                 || (other instanceof DeleteMultipleIndexCommand // instanceof handles nulls
                 && indexes.equals(((DeleteMultipleIndexCommand) other).indexes)); // state check
+    }
+
+    public boolean isIndexesValid(List<Person> lastShownList) throws CommandException {
+        for (Index targetIndex : indexes) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+        }
+        return true;
     }
 }
