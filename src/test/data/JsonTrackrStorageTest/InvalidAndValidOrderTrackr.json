@@ -1,5 +1,5 @@
 {
-    "persons": [ ],
+    "suppliers": [ ],
     "tasks": [ ],
     "orders": [ {
         "orderName": "Valid Order",

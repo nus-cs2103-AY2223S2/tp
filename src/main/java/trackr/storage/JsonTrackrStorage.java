@@ -12,8 +12,8 @@ import trackr.commons.exceptions.DataConversionException;
 import trackr.commons.exceptions.IllegalValueException;
 import trackr.commons.util.FileUtil;
 import trackr.commons.util.JsonUtil;
-import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyOrderList;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 
 /**
@@ -34,17 +34,17 @@ public class JsonTrackrStorage implements TrackrStorage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlySupplierList> readSupplierList() throws DataConversionException {
+        return readSupplierList(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook}.
+     * Similar to {@link #readSupplierList}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlySupplierList> readSupplierList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableTrackr> jsonTrackr = JsonUtil.readJsonFile(
@@ -118,13 +118,13 @@ public class JsonTrackrStorage implements TrackrStorage {
     }
 
     @Override
-    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+    public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
             ReadOnlyOrderList orderList) throws IOException {
         saveTrackr(addressBook, taskList, orderList, filePath);
     }
 
     @Override
-    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+    public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
             ReadOnlyOrderList orderList, Path filePath)
             throws IOException {
         requireNonNull(addressBook);

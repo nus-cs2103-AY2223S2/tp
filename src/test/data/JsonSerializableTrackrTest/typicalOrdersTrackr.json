@@ -1,6 +1,6 @@
 {
     "_comment": "Trackr save file which contains the same Order values as in TypicalOrders#getTypicalOrderList()",
-    "persons": [ ],
+    "suppliers": [ ],
     "tasks": [ ],
     "orders": [ {
         "orderName": "Chocolate Cookies",

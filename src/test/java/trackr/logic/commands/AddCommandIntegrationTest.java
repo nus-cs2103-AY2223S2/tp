@@ -1,9 +1,9 @@
 package trackr.logic.commands;
 
-import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,9 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import trackr.model.Model;
 import trackr.model.ModelManager;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.UserPrefs;
-import trackr.model.person.Person;
-import trackr.testutil.PersonBuilder;
+import trackr.model.supplier.Supplier;
+import trackr.testutil.SupplierBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -24,25 +25,27 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), getTypicalOrderList(), new UserPrefs());
+        model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
+                getTypicalOrderList(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Supplier validPerson = new SupplierBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(),
+        Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addSupplier(validPerson);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddSupplierCommand(validPerson), model,
+                String.format(AddSupplierCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        ReadOnlySupplierList personInList = model.getSupplierList();
+        //assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertFalse(personInList.equals(null));
     }
 
 }

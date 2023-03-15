@@ -7,11 +7,11 @@ import trackr.commons.core.GuiSettings;
 import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyOrderList;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.order.Order;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 
 /**
@@ -28,14 +28,14 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the SupplierList.
      *
-     * @see trackr.model.Model#getAddressBook()
+     * @see trackr.model.Model#getSupplierList()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlySupplierList getSupplierList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of suppliers */
+    ObservableList<Supplier> getFilteredSupplierList();
 
     /**
      * Returns the OrderList

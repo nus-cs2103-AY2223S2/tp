@@ -4,7 +4,7 @@ import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
-import static trackr.testutil.TypicalPersons.getTypicalAddressBook;
+import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,9 +24,9 @@ public class ListTaskCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(),
+        model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
                 getTypicalOrderList(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(),
+        expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
     }
 

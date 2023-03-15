@@ -1,21 +1,21 @@
 package trackr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 import static trackr.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
-import java.util.Optional;
 
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
-import trackr.commons.util.CollectionUtil;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
 import trackr.model.task.Task;
 import trackr.model.task.TaskDeadline;
+import trackr.model.task.TaskDescriptor;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
 
@@ -43,18 +43,17 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
 
     private final Index index;
-    private final EditTaskDescriptor editTaskDescriptor;
+    private final TaskDescriptor editTaskDescriptor;
 
     /**
      * @param index of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
-    public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editTaskDescriptor);
+    public EditTaskCommand(Index index, TaskDescriptor editTaskDescriptor) {
+        requireAllNonNull(index, editTaskDescriptor);
 
         this.index = index;
-        this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
+        this.editTaskDescriptor = new TaskDescriptor(editTaskDescriptor);
     }
 
     @Override
@@ -82,15 +81,15 @@ public class EditTaskCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(Task taskToEdit, TaskDescriptor taskDescriptor) {
         assert taskToEdit != null;
 
         TaskName updatedTaskName =
-                editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
+                taskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
         TaskDeadline updatedTaskDeadline =
-                editTaskDescriptor.getTaskDeadline().orElse(taskToEdit.getTaskDeadline());
+                taskDescriptor.getTaskDeadline().orElse(taskToEdit.getTaskDeadline());
         TaskStatus updatedTaskStatus =
-                editTaskDescriptor.getTaskStatus().orElse(taskToEdit.getTaskStatus());
+                taskDescriptor.getTaskStatus().orElse(taskToEdit.getTaskStatus());
 
         return new Task(updatedTaskName, updatedTaskDeadline, updatedTaskStatus);
     }
@@ -111,77 +110,5 @@ public class EditTaskCommand extends Command {
         EditTaskCommand e = (EditTaskCommand) other;
         return index.equals(e.index)
                 && editTaskDescriptor.equals(e.editTaskDescriptor);
-    }
-
-    /**
-     * Stores the details to edit the task with. Each non-empty field value will replace the
-     * corresponding field value of the task.
-     */
-    public static class EditTaskDescriptor {
-        private TaskName taskName;
-        private TaskDeadline taskDeadline;
-        private TaskStatus taskStatus;
-
-        public EditTaskDescriptor() {}
-
-        /**
-         * Copy constructor.
-         */
-        public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            setTaskName(toCopy.taskName);
-            setTaskDeadline(toCopy.taskDeadline);
-            setTaskStatus(toCopy.taskStatus);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(taskName, taskDeadline, taskStatus);
-        }
-
-        public void setTaskName(TaskName taskName) {
-            this.taskName = taskName;
-        }
-
-        public Optional<TaskName> getTaskName() {
-            return Optional.ofNullable(taskName);
-        }
-
-        public void setTaskDeadline(TaskDeadline taskDeadline) {
-            this.taskDeadline = taskDeadline;
-        }
-
-        public Optional<TaskDeadline> getTaskDeadline() {
-            return Optional.ofNullable(taskDeadline);
-        }
-
-        public void setTaskStatus(TaskStatus taskStatus) {
-            this.taskStatus = taskStatus;
-        }
-
-        public Optional<TaskStatus> getTaskStatus() {
-            return Optional.ofNullable(taskStatus);
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditTaskDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditTaskDescriptor e = (EditTaskDescriptor) other;
-
-            return getTaskName().equals(e.getTaskName())
-                    && getTaskDeadline().equals(e.getTaskDeadline())
-                    && getTaskStatus().equals(e.getTaskStatus());
-        }
     }
 }

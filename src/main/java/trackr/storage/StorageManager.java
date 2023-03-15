@@ -7,8 +7,8 @@ import java.util.logging.Logger;
 
 import trackr.commons.core.LogsCenter;
 import trackr.commons.exceptions.DataConversionException;
-import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyOrderList;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.UserPrefs;
@@ -56,14 +56,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(trackrStorage.getTrackrFilePath());
+    public Optional<ReadOnlySupplierList> readSupplierList() throws DataConversionException, IOException {
+        return readSupplierList(trackrStorage.getTrackrFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlySupplierList> readSupplierList(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return trackrStorage.readAddressBook(filePath);
+        return trackrStorage.readSupplierList(filePath);
     }
 
     @Override
@@ -89,13 +89,13 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+    public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
             ReadOnlyOrderList orderList) throws IOException {
         saveTrackr(addressBook, taskList, orderList, trackrStorage.getTrackrFilePath());
     }
 
     @Override
-    public void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+    public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
             ReadOnlyOrderList orderList, Path filePath)
             throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);

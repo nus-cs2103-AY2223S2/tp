@@ -13,11 +13,11 @@ import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.TrackrParser;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
-import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyOrderList;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.order.Order;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.storage.Storage;
 
@@ -50,7 +50,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveTrackr(model.getAddressBook(), model.getTaskList(), model.getOrderList());
+            storage.saveTrackr(model.getSupplierList(), model.getTaskList(), model.getOrderList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -59,13 +59,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlySupplierList getSupplierList() {
+        return model.getSupplierList();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Supplier> getFilteredSupplierList() {
+        return model.getFilteredSupplierList();
     }
 
     @Override

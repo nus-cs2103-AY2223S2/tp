@@ -17,13 +17,13 @@ import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
-import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyOrderList;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.TaskList;
 import trackr.model.order.Order;
-import trackr.model.person.Person;
+import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
 import trackr.testutil.TaskBuilder;
 
@@ -115,42 +115,42 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addSupplier(Supplier person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setSupplierList(ReadOnlySupplierList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlySupplierList getSupplierList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasSupplier(Supplier person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteSupplier(Supplier target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setSupplier(Supplier target, Supplier editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Supplier> getFilteredSupplierList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

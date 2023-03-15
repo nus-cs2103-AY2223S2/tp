@@ -5,12 +5,12 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import trackr.commons.exceptions.DataConversionException;
-import trackr.model.ReadOnlyAddressBook;
 import trackr.model.ReadOnlyOrderList;
+import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 
 /**
- * Represents a storage for {@link trackr.model.AddressBook} and {@link trackr.model.TaskList}.
+ * Represents a storage for {@link trackr.model.SupplierList} and {@link trackr.model.TaskList}.
  */
 public interface TrackrStorage {
 
@@ -20,31 +20,31 @@ public interface TrackrStorage {
     Path getTrackrFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns SupplierList data as a {@link ReadOnlySupplierList}.
      * Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlySupplierList> readSupplierList() throws DataConversionException, IOException;
 
     /**
      * @see #getTrackrFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlySupplierList> readSupplierList(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} and {@link ReadOnlyTaskList} to the storage.
+     * Saves the given {@link ReadOnlySupplierList} and {@link ReadOnlyTaskList} to the storage.
      * @param addressBook cannot be null.
      * @param taskList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+    void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
             ReadOnlyOrderList orderList) throws IOException;
 
     /**
-     * @see #saveTrackr(ReadOnlyAddressBook, ReadOnlyTaskList)
+     * @see #saveTrackr(ReadOnlySupplierList, ReadOnlyTaskList)
      */
-    void saveTrackr(ReadOnlyAddressBook addressBook, ReadOnlyTaskList taskList,
+    void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
             ReadOnlyOrderList orderList, Path filePath) throws IOException;
 
     /**
@@ -72,5 +72,4 @@ public interface TrackrStorage {
      * @throws IOException if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyOrderList> readOrderList() throws DataConversionException, IOException;
-
 }
