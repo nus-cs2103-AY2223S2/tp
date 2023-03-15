@@ -41,16 +41,20 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
         if (argMultimap.getValue(PREFIX_PATIENT).isPresent()) {
-            editAppointmentDescriptor.setPatient(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT).get()));
+            editAppointmentDescriptor.setPatient(ParserUtil
+                    .parseIndex(argMultimap.getValue(PREFIX_PATIENT).get()));
         }
         if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
-            editAppointmentDescriptor.setStartTime(ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTTIME).get()));
+            editAppointmentDescriptor.setStartTime(ParserUtil
+                    .parseDate(argMultimap.getValue(PREFIX_STARTTIME).get()));
         }
         if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
-            editAppointmentDescriptor.setEndTime(ParserUtil.parseDate(argMultimap.getValue(PREFIX_ENDTIME).get()));
+            editAppointmentDescriptor.setEndTime(ParserUtil
+                    .parseDate(argMultimap.getValue(PREFIX_ENDTIME).get()));
         }
         if (argMultimap.getValue(PREFIX_VACCINATION).isPresent()) {
-            editAppointmentDescriptor.setVaccine(ParserUtil.parseGroupName(argMultimap.getValue(PREFIX_VACCINATION).get()));
+            editAppointmentDescriptor.setVaccine(ParserUtil
+                    .parseGroupName(argMultimap.getValue(PREFIX_VACCINATION).get()));
         }
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {

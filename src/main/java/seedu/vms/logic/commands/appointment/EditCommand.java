@@ -43,7 +43,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the appointment manager.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT =
+            "This appointment already exists in the appointment manager.";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -82,12 +83,15 @@ public class EditCommand extends Command {
      * {@code appointmentToEdit}
      * edited with {@code editAppointmentDescriptor}.
      */
-    private static Appointment createEditedAppointment(Appointment appointmentToEdit, EditAppointmentDescriptor editAppointmentDescriptor) {
+    private static Appointment createEditedAppointment(Appointment appointmentToEdit,
+                                                       EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
         Index patientId = editAppointmentDescriptor.getPatient().orElse(appointmentToEdit.getPatient());
-        LocalDateTime startTime = editAppointmentDescriptor.getStartTime().orElse(appointmentToEdit.getAppointmentTime());
-        LocalDateTime endTime = editAppointmentDescriptor.getEndTime().orElse(appointmentToEdit.getAppointmentEndTime());
+        LocalDateTime startTime = editAppointmentDescriptor.getStartTime()
+                .orElse(appointmentToEdit.getAppointmentTime());
+        LocalDateTime endTime = editAppointmentDescriptor.getEndTime()
+                .orElse(appointmentToEdit.getAppointmentEndTime());
         GroupName vaccine = editAppointmentDescriptor.getVaccine().orElse(appointmentToEdit.getVaccination());
 
         return new Appointment(patientId, startTime, endTime, vaccine);
