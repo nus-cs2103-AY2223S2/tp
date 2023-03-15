@@ -56,8 +56,12 @@ public class PersonCard extends UiPart<Region> {
         this.logic = logic;
         this.mainWindow = mainWindow;
         this.index = displayedIndex;
-        Image image = person.getImage() != null ? new Image("/images/spongbob.png")
-                : new Image(person.getImage().toString());
+        Image image;
+        if (person.hasDefaultImage()) {
+            image = new Image(person.getImagePath());
+        } else {
+            image = new Image("file:" + person.getImagePath());
+        }
         imageView.setImage(image);
         id.setText(this.index + ". ");
         name.setText(person.getName().fullName);

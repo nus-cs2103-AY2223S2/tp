@@ -93,6 +93,23 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes the image of {@code target} from this {@code AddressBook}.
+     *
+     * @param target The person whose image is to be removed.
+     */
+    public void removeImage(Person target) {
+        Person newPerson = new Person(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getAddress(),
+                target.getTags()
+        );
+        persons.setPerson(target, newPerson);
+
+    }
+
     //// util methods
 
     @Override
