@@ -11,7 +11,7 @@ import seedu.recipe.model.RecipeBook;
 /**
  * Represents a storage for {@link RecipeBook}.
  */
-public interface AddressBookStorage {
+public interface RecipeBookStorage {
 
     /**
      * Returns the file path of the data file.

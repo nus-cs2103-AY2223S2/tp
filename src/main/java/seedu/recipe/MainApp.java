@@ -22,8 +22,8 @@ import seedu.recipe.model.ReadOnlyRecipeBook;
 import seedu.recipe.model.ReadOnlyUserPrefs;
 import seedu.recipe.model.UserPrefs;
 import seedu.recipe.model.util.SampleDataUtil;
-import seedu.recipe.storage.AddressBookStorage;
-import seedu.recipe.storage.JsonAddressBookStorage;
+import seedu.recipe.storage.RecipeBookStorage;
+import seedu.recipe.storage.JsonRecipeBookStorage;
 import seedu.recipe.storage.JsonUserPrefsStorage;
 import seedu.recipe.storage.Storage;
 import seedu.recipe.storage.StorageManager;
@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getRecipeBookFilePath());
+        RecipeBookStorage addressBookStorage = new JsonRecipeBookStorage(userPrefs.getRecipeBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
