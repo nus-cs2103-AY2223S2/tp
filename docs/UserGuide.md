@@ -72,7 +72,7 @@ your internship hunt!
 
 </div>
 
-### Viewing help : `help` `[coming in v1.2]`
+### Viewing help : `help`
 
 Shows a message with a link to the help page.
 
@@ -81,11 +81,11 @@ Shows a message with a link to the help page.
 Format: `help`
 
 
-### Adding an application: `add` `[coming in v1.2]`
+### Adding an application: `add` 
 
 Adds an internship application to be tracked.
 
-Format: `add r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [j/JOB_DESCRIPTION] [d/DEADLINE] [t/TAG]…​`
+Format: `add r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Job Description and Deadline are optional fields for an application.
@@ -93,8 +93,8 @@ An application can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested d/01-01-2023`
-* `add r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com s/Applied j/Conversion to full time in 12 months`
+* `add r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested`
+* `add r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com`
 
 
 ### Listing all internship applications : `list`
@@ -110,14 +110,14 @@ Example:
 
 Edits an existing internship application to be tracked.
 
-Format: `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/EMAIL] [s/STATUS] [j/JOB_DESCRIPTION] [d/DEADLINE] [t/TAG]…​`
+Format: `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`
 
 * Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed application list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+<!--* At least one of the optional fields must be provided.-->
 * Existing values will be updated to the input values.
-* When editing job description, deadline and tags, the existing corresponding values of the these fields in the application will be removed i.e. adding of tags is not cumulative.
-* You can remove all the application’s job description, deadline and tags by typing `j/` `d/` `t/` without
-    specifying any values after it.
+<!--* When editing job description, deadline and tags, the existing corresponding values of the these fields in the application will be removed i.e. adding of tags is not cumulative.-->
+<!--* You can remove all the application’s job description, deadline and tags by typing `j/` `d/` `t/` without
+    specifying any values after it.-->
 
 Examples:
 *  `edit 1 r/Cloud Engineer e/goggleHR@example.com` Edits the role and email address of the 1st application to be `Cloud Engineer` and `goggleHR@gmail.com` respectively.
@@ -137,7 +137,7 @@ Examples:
 * `find Goggle` returns internship applications for `Goggle` and `Goggle LLC`.
 * `find Goggle Mata` returns internship applications for `Goggle LLC`, `Mata Platforms`.<br>
 
-### Deleting an application : `delete` `[coming in v1.2]`
+### Deleting an application : `delete` 
 
 Deletes the specified application from the internship book.
 
@@ -190,12 +190,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [j/JOB_DESCRIPTION] [d/DEADLINE] [t/TAG]…​` <br> e.g., `add r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered j/CS3230 Tutorial Tutor d/01-01-2023 t/algorithms`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/EMAIL] [s/STATUS] [j/JOB_DESCRIPTION] [d/DEADLINE] [t/TAG]…​`<br> e.g., `edit 1 r/Research Intern e/example@bstar.com.sg`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Mata`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                          |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS​` <br> e.g., `add r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered`                                    |
+| **Clear**  | `clear`                                                                                                                                                                   |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                       |
+| **Edit**   | `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`<br> e.g., `edit 1 r/Research Intern e/example@bstar.com.sg` |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Mata`                                                                                                                      |
+| **List**   | `list`                                                                                                                                                                    |
+| **Help**   | `help`                                                                                                                                                                    |
