@@ -13,6 +13,7 @@ import taa.logic.commands.EditStudentCommand;
 import taa.logic.commands.ExitCommand;
 import taa.logic.commands.FindCommand;
 import taa.logic.commands.HelpCommand;
+import taa.logic.commands.ImportCommand;
 import taa.logic.commands.ListByClassCommand;
 import taa.logic.commands.ListCommand;
 import taa.logic.commands.MarkAttendanceCommand;
@@ -80,11 +81,15 @@ public class TaaParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommandParser().parse(arguments);
+
         case ListByClassCommand.COMMAND_WORD:
             return new ListByClassCommandParser().parse(arguments);
 
         case CreateClassCommand.COMMAND_WORD:
             return new CreateClassCommandParser().parse(arguments);
+
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

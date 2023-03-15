@@ -1,4 +1,4 @@
-package taa.model.util;
+package taa.commons.util;
 
 import java.util.Arrays;
 import java.util.HashSet;
