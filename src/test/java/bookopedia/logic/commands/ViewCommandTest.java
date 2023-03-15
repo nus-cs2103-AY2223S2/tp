@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import bookopedia.model.parcel.Parcel;
 import org.junit.jupiter.api.Test;
 
 import bookopedia.commons.core.index.Index;
@@ -38,11 +39,18 @@ public class ViewCommandTest {
         Person testTypicalPerson = listOfTypicalPersons.get(validIndex.getZeroBased());
         ViewCommand testView = new ViewCommand(validIndex);
         CommandResult outputFromTestView = testView.execute(model);
+        StringBuilder parcelsToPrint = new StringBuilder("");
+        for (Parcel p : testTypicalPerson.getParcels()) {
+            parcelsToPrint.append(p.toString());
+            parcelsToPrint.append("\n");
+        }
         //this is temporary again...
         assertTrue(outputFromTestView.getFeedbackToUser().equals(testTypicalPerson.getName().toString() + "\n"
                 + testTypicalPerson.getAddress().toString() + "\n"
                 + testTypicalPerson.getEmail().toString() + "\n"
                 + testTypicalPerson.getPhone().toString() + "\n"
-                + "Parcels:" + "\n"));
+                + "Parcels:" + "\n"
+                + parcelsToPrint + "\n"
+                + testTypicalPerson.getDeliveryStatus().toString() + "\n"));
     }
 }
