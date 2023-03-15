@@ -10,35 +10,37 @@ import org.junit.jupiter.api.Test;
 
 import seedu.internship.commons.exceptions.IllegalValueException;
 import seedu.internship.commons.util.JsonUtil;
+import seedu.internship.model.InternshipCatalogue;
+import seedu.internship.testutil.TypicalInternships;
 
 public class JsonSerializableAddressBookTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableInternshipCatalogueTest");
+    private static final Path TYPICAL_INTERNSHIP_FILE = TEST_DATA_FOLDER.resolve("typicalInternshipsInternshipCatalogue.json");
+    private static final Path INVALID_INTERNSHIP_FILE = TEST_DATA_FOLDER.resolve("invalidInternshipInternshipCatalogue.json");
+    private static final Path DUPLICATE_INTERNSHIP_FILE = TEST_DATA_FOLDER.resolve("duplicateInternshipInternshipCatalogue.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
-                JsonSerializableAddressBook.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+    public void toModelType_typicalInternshipsFile_success() throws Exception {
+        JsonSerializableInternshipCatalogue dataFromFile = JsonUtil.readJsonFile(TYPICAL_INTERNSHIP_FILE,
+                JsonSerializableInternshipCatalogue.class).get();
+        InternshipCatalogue internshipCatalogueFromFile = dataFromFile.toModelType();
+        InternshipCatalogue typicalInternshipsInternshipCatalogue = TypicalInternships.getTypicalInternshipCatalogue();
+        assertEquals(internshipCatalogueFromFile, typicalInternshipsInternshipCatalogue);
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
+    public void toModelType_invalidInternshipsFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableInternshipCatalogue dataFromFile = JsonUtil.readJsonFile(INVALID_INTERNSHIP_FILE,
+                JsonSerializableInternshipCatalogue.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+    public void toModelType_duplicateInternships_throwsIllegalValueException() throws Exception {
+        JsonSerializableInternshipCatalogue dataFromFile = JsonUtil.readJsonFile(DUPLICATE_INTERNSHIP_FILE,
+                JsonSerializableInternshipCatalogue.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableInternshipCatalogue.MESSAGE_DUPLICATE_INTERNSHIP,
                 dataFromFile::toModelType);
     }
 
