@@ -56,7 +56,7 @@ public class JsonSerializablePairTest {
                 MESSAGE_DUPLICATE_PAIR, PAIR1.getElderly().getNric(), PAIR1.getVolunteer().getNric());
 
         assertThrows(IllegalValueException.class,
-                expectedMessage, ()  -> dataFromFile.toModelType(appTestCache));
+                expectedMessage, () -> dataFromFile.toModelType(appTestCache));
     }
 
 }
