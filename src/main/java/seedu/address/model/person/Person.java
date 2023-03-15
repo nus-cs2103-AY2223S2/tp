@@ -4,16 +4,21 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.Email;
+import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Nric;
+import seedu.address.model.person.information.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public abstract class Person {
 
     // Identity fields
     private final Name name;
@@ -22,17 +27,22 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Nric nric;
+    private final Age age;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Nric nric, Age age, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.nric = nric;
+        this.age = age;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +62,14 @@ public class Person {
         return address;
     }
 
+    public Nric getNric() {
+        return nric;
+    }
+
+    public Age getAge() {
+        return age;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -68,9 +86,9 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
-
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getNric().equals(getNric());
     }
 
     /**
@@ -88,36 +106,13 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
+        return otherPerson.getName().equals(name)
+                && otherPerson.getPhone().equals(phone)
+                && otherPerson.getEmail().equals(email)
+                && otherPerson.getAddress().equals(address)
+                && otherPerson.getNric().equals(nric)
+                && otherPerson.getAge().equals(age)
+                && otherPerson.getTags().equals(tags);
     }
 
 }
