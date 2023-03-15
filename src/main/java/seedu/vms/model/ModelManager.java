@@ -141,6 +141,7 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         appointmentManager.add(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
@@ -204,6 +205,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
         return filteredAppointmentMap.asUnmodifiableObservableMap();
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointmentMap.filter(predicate);
     }
 
     @Override
