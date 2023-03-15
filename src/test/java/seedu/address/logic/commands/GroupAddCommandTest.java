@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -132,5 +133,31 @@ public class GroupAddCommandTest {
         expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandSuccess(groupAddCommand, model, commandResult, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        final GroupAddCommand standardCommand = new GroupAddCommand(INDEX_FIRST_PERSON, tagSet);
+
+        final Set<Tag> diffTagSet = new HashSet<>(Arrays.asList(new Tag("Poo")));
+
+        // same values -> returns true
+        GroupAddCommand commandWithSameValues = new GroupAddCommand(INDEX_FIRST_PERSON, tagSet);
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
+
+        // different index -> returns false
+        assertFalse(standardCommand.equals(new GroupAddCommand(INDEX_SECOND_PERSON, tagSet)));
+
+        // different descriptor -> returns false
+        assertFalse(standardCommand.equals(new GroupAddCommand(INDEX_FIRST_PERSON, diffTagSet)));
     }
 }

@@ -106,7 +106,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addAllTags(Set<Tag> tags) {
         for (Tag tag: tags) {
-            tags.add(tag);
+            addTag(tag);
         }
     }
 
