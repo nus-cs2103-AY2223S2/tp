@@ -51,7 +51,13 @@ public class StudentGradeCommand extends StudentCommand {
             + PREFIX_TEST + "CA1 "
             + PREFIX_SCORE + "75 "
             + PREFIX_DEADLINE + "15/05/2023 "
-            + PREFIX_WEIGHTAGE + "20 ";
+            + PREFIX_WEIGHTAGE + "20\n"
+            + "student 1A " + COMMAND_WORD + " "
+            + PREFIX_INDEXNUMBER + "13 "
+            + PREFIX_HOMEWORK + "Chapter 1 "
+            + PREFIX_SCORE + "90 "
+            + PREFIX_DEADLINE + "20/03/2023 "
+            + PREFIX_WEIGHTAGE + "10";
 
     public static final String MESSAGE_SUCCESSTEST = "New test added:";
     public static final String MESSAGE_SUCCESSHOMEWORK = "New homework added:";
