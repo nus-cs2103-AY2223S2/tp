@@ -25,13 +25,13 @@ Contact nUS is a **desktop app for managing NUS student's schedule, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try: [all coming soon]
 
-   * `list` : Shows all the items inside the address book.
+   * `list` : Shows all the items inside the module tracker.
 
-   * `add lecture CS2103T /date Friday 10am ` : Adds a lecture named `CS2103T` to the Address Book.
+   * `add n/CS2103T t/Tutorial e/Wednesday 10-11am a/COM1-0210` : Adds a lecture named `CS2103T` with `Tutorial` on `Wednesday 10-11am` at `COM1-0210` to the Module Tracker.
 
    * `delete 3` : Deletes the 3rd item shown in the current list.
 
-   * `edit 1 m/CS2103T i/Tutorial d/22 Feb 2023` : Edits the module name, item type and date of the 1st item to be CS2103T, Tutorial and 22 Fev 2022 respectively.
+   * `edit 1 n/CS2101 t/Tutorial` : Edits the module name, item type and date of the 1st item to be `CS2101` and `Tutorial` respectively.
 
 <!--    * `clear` : Deletes all items.
 
@@ -48,61 +48,68 @@ Contact nUS is a **desktop app for managing NUS student's schedule, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/MODULE_NAME`, `MODULE_NAME` is a parameter which can be used as `add n/CS1231S`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/MODULE_NAME [t/TAG]` can be used as `n/CS1010S t/Can attend online :)` or as `n/CS1010S`.
 
 <!-- * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc. -->
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Lecture`, `t/Lecture t/Lab` etc. -->
 
 <!-- * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable. -->
+  e.g. if the command specifies `n/MODULE_NAME t/TYPE`, `t/TYPE n/MODULE_NAME` is also acceptable. -->
 
 <!-- * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. -->
+  e.g. if you specify `e/Monday 10am-12pm e/Tuesday 2-4pm`, only `e/Tuesday 2-4pm` will be taken. -->
 
 <!-- * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`. -->
 
 </div>
 
-<!-- ### Viewing help : `help`
+### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help` -->
+Format: `help` 
 
 
 ### Adding a person: `add`
 
-Adds an item to the address book.
+Adds an item to the module tracker.
 
-Format: `add ITEMTYPE ITEMNAME [DETAILS] [d/DATE]`
+Format: `add n/MODULE_NAME t/TYPE e/TIMESLOT a/VENUE [s/TEACHER] [d/DEADLINES] [r/REMARKS]`
 
-* ITEMTYPE is either one of the three:  lecture, tutorial, or deadline
+* MODULE_NAME is the name of the module to be added into the module tracker.
+* TYPE is either one of the three, Lecture, Tutorial, or Lab.
+* TIMESLOT represents when the event takes place.
+* VENUE is the location of the classroom or auditorium the class is held.
+* TEACHER is the name of the lecturer or TA conducting the class.
+* DEADLINES contain the details of a task with deadline.
+* REMARKS are additional details about the class you want to add.
 
 <!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div> -->
 
 Examples:
-* `add lecture CS2103T /date Friday 10am`
-* `add tutorial CS2103T /date Tuesday 10am`
+* `add n/CS2103T t/Lecture e/Friday 2-4pm a/i3-AUD`
+* `add n/CS1101S t/Tutorial e/Monday 10am-12pm a/COM1-0217 s/Sam Wan`
+* `add n/CS2030S t/Lab e/Thursday 12-2pm a/COM1-B112 d/LAB DUE TUESDAY 23:59 r/Attendance not compulsory :)`
 
 ### Listing all persons : `list`
 
-Shows a list of all items in the address book.
+Shows a list of all items in the module tracker.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing item in the address book.
+Edits an existing item in the module tracker.
 
-Format: `edit Index [m/MODULE_NAME] [i/ITEM_TYPE] [d/DATE] [t/TIME]`
+Format: `edit INDEX [n/MODULE_NAME] [t/TYPE] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS]`
 
 * Edits the items at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -111,8 +118,9 @@ Format: `edit Index [m/MODULE_NAME] [i/ITEM_TYPE] [d/DATE] [t/TIME]`
 
 
 Examples:
-*  `edit 1 m/CS2103T i/Tutorial d/22 Feb 2023 ` Edits the module name, item type and date of the 1st item to be CS2103T, Tutorial and 22 Fev 2022 respectively..
-*  `edit 2 m/CS2103T i/Lecture` Edits the module name and item type of the 2nd item.
+*  `edit 1 n/CS2101 t/Tutorial` Edits the module name, item type and date of the 1st item to be `CS2101` and `Tutorial` respectively.
+*  `edit 2 a/COM3-B110 s/Professor Franklin Stein r/Funny lecturer haha` Edits the venue, teacher and remark of the 2nd item to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
+*  `edit 5 n/CS1231S d/Assignment 1: due 06/09/2023` Edits the module name and deadline of the 5th item to be `CS1231S` and `Assignment 1: due 06/09/2023` respectively.
 
 <!-- ### Locating persons by name: `find`
 
@@ -134,7 +142,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified item from the address book.
+Deletes the specified item from the module tracker.
 
 Format: `delete INDEX`
 
@@ -143,11 +151,11 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the module tracker.
 
 <!-- ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the module tracker. -->
 
 Format: `clear`
 
@@ -159,7 +167,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Contact nUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -167,7 +175,7 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div> -->
+</div> 
 
 <!-- ### Archiving data files `[coming in v2.0]`
 
@@ -186,11 +194,11 @@ _Details coming soon ..._ -->
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `n/MODULE_NAME t/TYPE e/TIMESLOT a/VENUE [s/TEACHER] [d/DEADLINES] [r/REMARKS]…​` <br> e.g., `add n/CS2103T t/Lecture e/Friday 2-4pm a/i3-AUD s/Professor Damith d/Weekly Quiz due Friday 13:59 r/Can attend online!`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/MODULE_NAME] [t/TYPE] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS]​`<br> e.g.,`edit 2 s/Low Mai Khye r/Funny TA`
 **List** | `list`
-
+**Exit** | `exit`
 
 <!-- **Clear** | `clear` -->
 <!-- **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` -->
