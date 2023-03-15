@@ -135,6 +135,13 @@ public class LogicManagerTest {
 
     @Test
     public void getGuiSettings() {
+        GuiSettings expected = new GuiSettings(0, 0, 0, 0);
+        logic.setGuiSettings(expected);
+        assertEquals(expected, logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings() {
         GuiSettings expected = model.getGuiSettings();
         assertEquals(expected, logic.getGuiSettings());
     }
