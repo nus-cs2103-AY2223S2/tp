@@ -77,15 +77,17 @@ public class ViewHomeworkCommand extends Command {
 
         // Loop through each student and add their homework to the string builder
         for (Student student : studentList) {
-            sb.append(student.getName().fullName).append(":\n");
             List<Homework> homeworkList = student.getFilteredHomeworkList(homeworkStatusPredicate);
-            numberOfHomework += homeworkList.size();
+            if (!homeworkList.isEmpty()) {
+                sb.append(student.getName().fullName).append(":\n");
+                numberOfHomework += homeworkList.size();
 
-            for (int i = 0; i < homeworkList.size(); i++) {
-                sb.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
+                for (int i = 0; i < homeworkList.size(); i++) {
+                    sb.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
+                }
+
+                sb.append("--------------------------------------------------\n");
             }
-
-            sb.append("--------------------------------------------------\n");
         }
 
         // If no homework is found, throw an exception

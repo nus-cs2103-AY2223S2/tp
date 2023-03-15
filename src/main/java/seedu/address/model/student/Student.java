@@ -326,13 +326,19 @@ public class Student {
      *
      * @return list of filtered exams
      */
-    public List<Exam> getFilteredExamList(Predicate<Exam> predicate) {
+    public List<Exam> getFilteredExamList(Predicate<Exam>... predicates) {
         List<Exam> filteredExamList = new ArrayList<>();
 
-        // filter homework list for homework that matches predicate
-        for (Exam exam : examList) {
-            if (predicate.test(exam)) {
-                filteredExamList.add(exam);
+        for (Exam e : examList) {
+            boolean allPredicatesMatch = true;
+            for (Predicate<Exam> predicate : predicates) {
+                if (!predicate.test(e)) {
+                    allPredicatesMatch = false;
+                    break;
+                }
+            }
+            if (allPredicatesMatch) {
+                filteredExamList.add(e);
             }
         }
 
