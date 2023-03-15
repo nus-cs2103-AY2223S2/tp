@@ -52,7 +52,7 @@ public class MainApp extends Application {
         logger.info("=============================[ Initializing CoDoc ]===========================");
         super.init();
 
-        Font.loadFont(MainApp.class.getResource("/font/JetBrainsMono-Bold.ttf").toExternalForm(), 10);
+        Font test = Font.loadFont(getClass().getResourceAsStream("/font/JetBrainsMono_Bold.ttf"), 10);
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());

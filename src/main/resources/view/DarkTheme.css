@@ -132,6 +132,12 @@
     -fx-text-fill: #010504;
 }
 
+.module_label {
+    -fx-font-family: 'JetBrains Mono', monospace;
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }

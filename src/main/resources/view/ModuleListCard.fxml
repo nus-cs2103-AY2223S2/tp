@@ -20,7 +20,7 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$mod_name" />
+                <Label fx:id="name" styleClass="module_label" text="\$mod_name" />
             </HBox>
         </VBox>
       <rowConstraints>
