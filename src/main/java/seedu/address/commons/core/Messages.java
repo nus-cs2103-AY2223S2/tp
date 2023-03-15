@@ -10,5 +10,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DOES_NOT_EXIST = "%1$s does not exist";
+    public static final String MESSAGE_MODULE_DOES_NOT_EXIST = "Module %1$s does not exist";
+    public static final String MESSAGE_LECTURE_DOES_NOT_EXIST = "Lecture %1$s of module %2$s does not exist";
+    public static final String MESSAGE_VIDEO_DOES_NOT_EXIST =
+            "Video %1$s of lecture %2$s of module %3$s does not exist";
 
 }
