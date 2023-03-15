@@ -10,6 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Event;
 import seedu.address.model.event.Tutorial;
 
 /**
@@ -31,15 +32,12 @@ public class EventListPanel extends UiPart<Region> {
     /**
      * Creates a {@code EventListPanel} with the given {@code ObservableList}.
      */
-    public EventListPanel(List<ObservableList<Tutorial>> eventList) {
+    public EventListPanel(List<ObservableList<? extends Event>> eventList) {
         super(FXML);
 
         listOfEventListView = Arrays.asList(eventListViewLeftCol, eventListViewMidCol, eventListViewRightCol);
-        for (int i = 0; i < eventList.size(); i++) {
-            ObservableList<Tutorial> filteredEventList = eventList.get(i);
-            listOfEventListView.get(i).setItems(filteredEventList);
-            listOfEventListView.get(i).setCellFactory(listView -> new EventListViewCell());
-        }
+        listOfEventListView.get(0).setItems((ObservableList<Tutorial>) eventList.get(0));
+        listOfEventListView.get(0).setCellFactory(listView -> new EventListViewCell());
         //bindListViewsScroll();
     }
 
