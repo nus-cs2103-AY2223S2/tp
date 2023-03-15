@@ -17,11 +17,14 @@ import seedu.address.model.entity.Entity;
  * Represents the in-memory model of the Reroll data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Reroll reroll;
     private final UserPrefs userPrefs;
     private final FilteredList<Entity> filteredEntities;
+
+    private Entity currentSelectedEntity;
 
     /**
      * Initializes a ModelManager with the given reroll and userPrefs.
@@ -126,5 +129,17 @@ public class ModelManager implements Model {
     public void updateFilteredEntityList(Predicate<Entity> predicate) {
         requireNonNull(predicate);
         filteredEntities.setPredicate(predicate);
+    }
+
+    //=========== Edit Mode =============================================================
+
+    @Override
+    public Entity getCurrentSelectedEntity() {
+        return currentSelectedEntity;
+    }
+
+    @Override
+    public void setCurrentSelectedEntity(Entity newSelection) {
+        currentSelectedEntity = newSelection;
     }
 }
