@@ -1,0 +1,8 @@
+{
+  "Fishes": [ {
+    "name": "Fish with invalid name field: Ha!ns Mu@ster",
+    "lastFedDate": "9482424",
+    "species": "Guppy",
+    "address": "4th street"
+  } ]
+}

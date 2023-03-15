@@ -1,0 +1,14 @@
+{
+  "fishes": [ {
+    "name": "Alice Pauline",
+    "lastFedDate": "06/06/2003",
+    "species": "Guppy",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "lastFedDate": "06/06/2003",
+    "species": "Guppy",
+    "address": "4th street"
+  } ]
+}

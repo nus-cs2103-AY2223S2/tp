@@ -19,14 +19,24 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTankList;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TankList;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.SampleTankUtil;
+import seedu.address.model.util.SampleTaskUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonTankListStorage;
+import seedu.address.storage.JsonTaskListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.TankListStorage;
+import seedu.address.storage.TaskListStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -57,7 +67,10 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
+        TankListStorage tankListStorage = new JsonTankListStorage(userPrefs.getTankListFilePath());
+
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage, tankListStorage);
 
         initLogging(config);
 
@@ -90,7 +103,39 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<ReadOnlyTaskList> taskListOptional;
+        ReadOnlyTaskList initialTaskList;
+        try {
+            taskListOptional = storage.readTaskList();
+            if (taskListOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample TaskList");
+            }
+            initialTaskList = taskListOptional.orElseGet(SampleTaskUtil::getSampleTaskList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TaskList");
+            initialTaskList = new TaskList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskList");
+            initialTaskList = new TaskList();
+        }
+
+        Optional<ReadOnlyTankList> tankListOptional;
+        ReadOnlyTankList initialTankList;
+        try {
+            tankListOptional = storage.readTankList();
+            if (tankListOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample TankList");
+            }
+            initialTankList = tankListOptional.orElseGet(SampleTankUtil::getSampleTankList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TankList");
+            initialTankList = new TankList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TankList");
+            initialTankList = new TankList();
+        }
+
+        return new ModelManager(initialData, userPrefs, initialTaskList, initialTankList);
     }
 
     private void initLogging(Config config) {

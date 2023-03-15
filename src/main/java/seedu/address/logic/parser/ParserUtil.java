@@ -9,11 +9,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.AddressBook;
+import seedu.address.model.fish.Address;
+import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.TankName;
+import seedu.address.model.task.Description;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -51,18 +55,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String lastFedDate} into a {@code LastFedDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code lastFedDate} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static LastFedDate parseLastFedDate(String lastFedDate) throws ParseException {
+        requireNonNull(lastFedDate);
+        String trimmedLastFedDate = lastFedDate.trim();
+        if (!LastFedDate.isValidLastFedDate(trimmedLastFedDate)) {
+            throw new ParseException(LastFedDate.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new LastFedDate(trimmedLastFedDate);
     }
 
     /**
@@ -81,18 +85,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String species} into an {@code Species}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code species} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Species parseSpecies(String species) throws ParseException {
+        requireNonNull(species);
+        String trimmedSpecies = species.trim();
+        if (!Species.isValidSpecies(trimmedSpecies)) {
+            throw new ParseException(Species.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Species(trimmedSpecies);
     }
 
     /**
@@ -120,5 +124,52 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String} into an {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String} into an {@code TankName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code fullTankName} is invalid.
+     */
+    public static TankName parseTankName(String fullTankName) throws ParseException {
+        requireNonNull(fullTankName);
+        String trimmedDescription = fullTankName.trim();
+        if (!Description.isValidDescription(fullTankName)) {
+            throw new ParseException(TankName.MESSAGE_CONSTRAINTS);
+        }
+        return new TankName(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String} into an {@code Tank}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     *
+     * @throws ParseException If the given {@code tank} is invalid.
+     */
+    public static Tank parseTank(String tank) throws ParseException {
+        requireNonNull(tank);
+        String trimmedTank = tank.trim();
+        if (!TankName.isValidTankName(trimmedTank)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Tank(new TankName(trimmedTank), new AddressBook());
+
     }
 }

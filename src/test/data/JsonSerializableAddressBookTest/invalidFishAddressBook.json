@@ -1,0 +1,8 @@
+{
+  "fishes": [ {
+    "name": "Hans Muster",
+    "lastFedDate": "in/valid/date",
+    "species": "invalid314species",
+    "address": "4th street"
+  } ]
+}
