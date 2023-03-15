@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.logic.commands.ClearCommand;
-import seedu.wife.logic.commands.DeleteCommand;
-import seedu.wife.logic.commands.ExitCommand;
-import seedu.wife.logic.commands.FindCommand;
-import seedu.wife.logic.commands.HelpCommand;
-import seedu.wife.logic.commands.ListCommand;
+import seedu.wife.logic.commands.foodcommands.DeleteCommand;
+import seedu.wife.logic.commands.foodcommands.FindCommand;
+import seedu.wife.logic.commands.foodcommands.ListCommand;
+import seedu.wife.logic.commands.generalcommands.ClearCommand;
+import seedu.wife.logic.commands.generalcommands.ExitCommand;
+import seedu.wife.logic.commands.generalcommands.HelpCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.model.food.NameContainsKeywordsPredicate;
 

@@ -6,19 +6,22 @@ import static seedu.wife.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.wife.logic.commands.AddCommand;
-import seedu.wife.logic.commands.ClearCommand;
 import seedu.wife.logic.commands.Command;
-import seedu.wife.logic.commands.DeleteCommand;
-import seedu.wife.logic.commands.EditCommand;
-import seedu.wife.logic.commands.ExitCommand;
-import seedu.wife.logic.commands.FindCommand;
-import seedu.wife.logic.commands.HelpCommand;
 import seedu.wife.logic.commands.ListByTagCommand;
-import seedu.wife.logic.commands.ListCommand;
 import seedu.wife.logic.commands.deletecommands.DeleteByTagCommand;
+import seedu.wife.logic.commands.foodcommands.AddCommand;
+import seedu.wife.logic.commands.foodcommands.DeleteCommand;
+import seedu.wife.logic.commands.foodcommands.EditCommand;
+import seedu.wife.logic.commands.foodcommands.FindCommand;
+import seedu.wife.logic.commands.foodcommands.ListCommand;
+import seedu.wife.logic.commands.generalcommands.ClearCommand;
+import seedu.wife.logic.commands.generalcommands.ExitCommand;
+import seedu.wife.logic.commands.generalcommands.HelpCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
-
+import seedu.wife.logic.parser.foodcommandparser.AddCommandParser;
+import seedu.wife.logic.parser.foodcommandparser.DeleteCommandParser;
+import seedu.wife.logic.parser.foodcommandparser.EditCommandParser;
+import seedu.wife.logic.parser.foodcommandparser.FindCommandParser;
 /**
  * Parses user input.
  */

@@ -1,4 +1,4 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.foodcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.wife.commons.core.GuiSettings;
+import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.model.Model;
 import seedu.wife.model.ReadOnlyUserPrefs;

@@ -1,10 +1,11 @@
-package seedu.wife.logic.parser;
+package seedu.wife.logic.parser.foodcommandparser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import seedu.wife.logic.commands.FindCommand;
+import seedu.wife.logic.commands.foodcommands.FindCommand;
+import seedu.wife.logic.parser.Parser;
 import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.model.food.NameContainsKeywordsPredicate;
 
