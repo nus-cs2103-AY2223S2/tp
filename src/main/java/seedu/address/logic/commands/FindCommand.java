@@ -18,7 +18,8 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attribute"
             + " contain any of the specified keywords (case-insensitive) and displays them as a list with"
-            + " index numbers. Attribute is specified with /n, /a or /nric representing name, address and nric respectively\n"
+            + " index numbers. Attribute is specified with /n, /a or /nric representing name, address "
+            + " and nric respectively\n"
             + "Parameters: ATTRIBUTE KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " /n" + " alice bob charlie" + "\n"
             + "Example: " + COMMAND_WORD + " /a" + " 30 serangoon" + "\n"
