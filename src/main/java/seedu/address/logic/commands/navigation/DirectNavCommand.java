@@ -1,7 +1,9 @@
 package seedu.address.logic.commands.navigation;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -17,6 +19,11 @@ public class DirectNavCommand extends NavCommand {
     private final Optional<ModuleCode> moduleCode;
     private final Optional<LectureName> lectureName;
 
+    /**
+     * Constructs a command that directly navigates to the specified {@code moduleCode} or {@code lectureName}.
+     * @param moduleCode moduleCode of target module
+     * @param lectureName lectureName of target lecture
+     */
     public DirectNavCommand(Optional<ModuleCode> moduleCode, Optional<LectureName> lectureName) {
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;

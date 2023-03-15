@@ -1,17 +1,14 @@
 package seedu.address.logic.commands.navigation;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.lecture.LectureName;
-import seedu.address.model.module.ModuleCode;
 import seedu.address.model.navigation.NavigationContext;
 
+/**
+ * Navigates to specified location.
+ */
 public abstract class NavCommand extends Command {
 
     public static final String COMMAND_WORD = "nav";

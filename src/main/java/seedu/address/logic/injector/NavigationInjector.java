@@ -1,7 +1,7 @@
 package seedu.address.logic.injector;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.regex.Matcher;
 
@@ -12,9 +12,12 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.model.Model;
 import seedu.address.model.navigation.NavigationContext;
 
+/**
+ * Injects context-sensitive prefixes into the user command
+ */
 public class NavigationInjector extends Injector {
 
-    private final String[] WHITELIST = {NavCommand.COMMAND_WORD};
+    private static final String[] WHITELIST = {NavCommand.COMMAND_WORD};
 
     @Override
     public String inject(String commandText, Model model) {
@@ -41,11 +44,11 @@ public class NavigationInjector extends Injector {
         NavigationContext navContext = model.getCurrentNavContext();
 
         if (!argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            commandText += navContext.getModulePrefixArg();
+            commandText += " " + navContext.getModulePrefixArg();
         }
 
         if (!argMultimap.getValue(PREFIX_LECTURE).isPresent()) {
-            commandText += navContext.getLecturePrefixArg();
+            commandText += " " + navContext.getLecturePrefixArg();
         }
 
         return commandText;

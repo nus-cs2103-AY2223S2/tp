@@ -9,6 +9,9 @@ import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.navigation.NavigationContext;
 
+/**
+ * Navigates to a target which can be a module or lecture depending on current context.
+ */
 public class RelativeNavCommand extends NavCommand {
 
     private final String target;
