@@ -109,8 +109,8 @@ Syntax: `add_task n/TASK_DESCRIPTION d/DEADLINE [s/STATUS]`
 * If no status is provided, it is defaulted to `N` (Not done).
 
 Examples:
-* `add_task d/Buy cookie cutter d/2022-12-22`
-* `add_t d/Buy a card d/2023-12-23 s/D`
+* `add_task n/Buy cookie cutter d/2022-12-22`
+* `add_t n/Buy a card d/2023-12-23 s/D`
 
 ### Adding tags to a supplier: `tag_supplier` / `tag_s`
 
@@ -174,7 +174,7 @@ Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 * When editing status, the existing status of the order will be removed and replaced with the given status.
 
 Examples:
-* `edit_task 1 d/Get creamer` edits the 1st task description to be get creamer
+* `edit_task 1 n/Get creamer` edits the 1st task description to be get creamer
 * `edit_t 3 d/2023-12-31 s/N` edits the 3rd task deadline to 2023-12-31 and sets the status as not done
 
 ### Finding a supplier : `find_supplier` / `find_s`
