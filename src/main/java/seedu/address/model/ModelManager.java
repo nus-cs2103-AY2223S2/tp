@@ -124,8 +124,12 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+//        requireNonNull(predicate);
+        if (predicate == null) {
+            filteredPersons.setPredicate(null);
+        } else {
+            filteredPersons.setPredicate(predicate);
+        }
     }
 
     @Override
