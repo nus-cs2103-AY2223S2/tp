@@ -38,7 +38,7 @@ public class JsonAdaptedStudentTest {
     private static final List<JsonAdaptedLesson> VALID_LESSON_LIST = BENSON.getLessonsList().stream()
         .map(JsonAdaptedLesson::new)
         .collect(Collectors.toList());
-    private static final List<JsonAdaptedExam> VALID_EXAM_LIST = BENSON.getExamsList().stream()
+    private static final List<JsonAdaptedExam> VALID_EXAM_LIST = BENSON.getExamList().stream()
             .map(JsonAdaptedExam::new)
             .collect(Collectors.toList());
 
