@@ -10,14 +10,13 @@ import java.util.Set;
 import trackr.commons.core.index.Index;
 import trackr.commons.util.StringUtil;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.order.OrderDeadline;
+import trackr.model.order.OrderName;
+import trackr.model.order.OrderStatus;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.Name;
 import trackr.model.supplier.Phone;
-import trackr.model.order.OrderDeadline;
-import trackr.model.order.OrderName;
-import trackr.model.order.OrderStatus;
-
 import trackr.model.tag.Tag;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;

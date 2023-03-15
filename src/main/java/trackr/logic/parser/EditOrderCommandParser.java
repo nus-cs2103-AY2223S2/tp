@@ -3,7 +3,11 @@ package trackr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static trackr.logic.parser.CliSyntax.*;
+import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
+import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
+import static trackr.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.EditOrderCommand;

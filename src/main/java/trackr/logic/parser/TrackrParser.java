@@ -13,6 +13,7 @@ import trackr.logic.commands.ClearTaskCommand;
 import trackr.logic.commands.Command;
 import trackr.logic.commands.DeleteSupplierCommand;
 import trackr.logic.commands.DeleteTaskCommand;
+import trackr.logic.commands.EditOrderCommand;
 import trackr.logic.commands.EditSupplierCommand;
 import trackr.logic.commands.EditTaskCommand;
 import trackr.logic.commands.ExitCommand;
@@ -21,7 +22,6 @@ import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
 import trackr.logic.commands.ListCommand;
 import trackr.logic.commands.ListTaskCommand;
-import trackr.logic.commands.*;
 import trackr.logic.parser.exceptions.ParseException;
 
 /**
