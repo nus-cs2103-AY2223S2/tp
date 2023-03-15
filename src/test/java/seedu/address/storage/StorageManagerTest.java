@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -11,9 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTracker;
+import seedu.address.model.Tracker;
 import seedu.address.model.UserPrefs;
+import seedu.address.testutil.TypicalModules;
 
 public class StorageManagerTest {
 
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonTrackerStorage jsonTrackerStorage = new JsonTrackerStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(jsonTrackerStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void trackerReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonTrackerStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTrackerStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        Tracker original = TypicalModules.getTypicalTracker();
+        storageManager.saveTracker(original);
+        ReadOnlyTracker retrieved = storageManager.readTracker().get();
+        assertEquals(original, new Tracker(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getTrackerFilePath() {
+        assertNotNull(storageManager.getTrackerFilePath());
     }
 
 }

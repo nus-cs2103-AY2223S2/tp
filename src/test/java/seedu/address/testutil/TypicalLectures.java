@@ -45,4 +45,19 @@ public class TypicalLectures {
             .withTags("Sampling")
             .withVideos(TypicalVideos.CONTENT_VIDEO).build();
 
+    public static final Lecture CS2107_LECTURE_1 = new LectureBuilder().withName("Lecture 1")
+            .withTags("Intro")
+            .withVideos(TypicalVideos.INTRO_VIDEO).build();
+    public static final Lecture CS2107_LECTURE_2 = new LectureBuilder().withName("Lecture 2")
+            .withTags("Encryption")
+            .withVideos(TypicalVideos.CONTENT_VIDEO).build();
+    public static final Lecture CS2107_LECTURE_3 = new LectureBuilder().withName("Lecture 3")
+            .withTags("EntityAuthentication")
+            .withVideos(TypicalVideos.CONTENT_VIDEO).build();
+    public static final Lecture CS2107_LECTURE_4 = new LectureBuilder().withName("Lecture 4")
+            .withTags("Authenticity")
+            .withVideos(TypicalVideos.CONTENT_VIDEO).build();
+    public static final Lecture CS2107_LECTURE_5 = new LectureBuilder().withName("Lecture 5")
+            .withTags("PublicKey")
+            .withVideos(TypicalVideos.CONTENT_VIDEO).build();
 }

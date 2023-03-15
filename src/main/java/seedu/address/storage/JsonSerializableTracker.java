@@ -19,7 +19,7 @@ import seedu.address.model.module.Module;
 @JsonRootName(value = "tracker")
 class JsonSerializableTracker {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Module list contains duplicate module(s).";
+    public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
 
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
@@ -51,7 +51,7 @@ class JsonSerializableTracker {
             Module module = jsonAdaptedModule.toModelType();
 
             if (tracker.hasModule(module)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
 
             tracker.addModule(module);

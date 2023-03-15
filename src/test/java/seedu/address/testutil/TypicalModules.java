@@ -24,6 +24,15 @@ public class TypicalModules {
                     TypicalLectures.ST2334_TOPIC_5)
             .build();
 
+    // Not included in typical tracker
+    public static final Module CS2107 = new ModuleBuilder()
+            .withCode("CS2107").withName("Introduction to Information Security")
+            .withTags("Security", "ContentHeavy")
+            .withLectures(TypicalLectures.CS2107_LECTURE_1, TypicalLectures.CS2107_LECTURE_2,
+                    TypicalLectures.CS2107_LECTURE_3, TypicalLectures.CS2107_LECTURE_4,
+                    TypicalLectures.CS2107_LECTURE_5)
+            .build();
+
     /**
      * Returns a {@code Tracker} with all typical modules.
      *
