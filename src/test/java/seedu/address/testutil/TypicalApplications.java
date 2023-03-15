@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_ONE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_TWO;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_ONE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_TWO;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_EMAIL_ONE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_EMAIL_TWO;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_ONE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_TWO;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_ONE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_TWO;
 
