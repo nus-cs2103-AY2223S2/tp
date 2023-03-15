@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.employee;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,10 +10,10 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents an Employee in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Employee {
 
     // Identity fields
     private final Name name;
@@ -29,8 +29,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, EmployeeId employeeId, Phone phone, Email email, Address address,
-                  Department department, Set<Tag> tags) {
+    public Employee(Name name, EmployeeId employeeId, Phone phone, Email email, Address address,
+                    Department department, Set<Tag> tags) {
         requireAllNonNull(name, employeeId, phone, email, address, department, tags);
         this.name = name;
         this.employeeId = employeeId;
@@ -74,34 +74,34 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same employee ID.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both employees have the same employee ID.
+     * This defines a weaker notion of equality between two employees.
      */
-    public boolean isSameEmployeeID(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameEmployeeID(Employee otherEmployee) {
+        if (otherEmployee == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getEmployeeId().equals(getEmployeeId());
+        return otherEmployee != null
+                && otherEmployee.getEmployeeId().equals(getEmployeeId());
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both employees have the same name.
+     * This defines a weaker notion of equality between two employees.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameEmployee(Employee otherEmployee) {
+        if (otherEmployee == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherEmployee != null
+                && otherEmployee.getName().equals(getName());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both employees have the same identity and data fields.
+     * This defines a stronger notion of equality between two employees.
      */
     @Override
     public boolean equals(Object other) {
@@ -109,18 +109,18 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Employee)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getEmployeeId().equals(getEmployeeId())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getDepartment().equals(getDepartment())
-                && otherPerson.getTags().equals(getTags());
+        Employee otherEmployee = (Employee) other;
+        return otherEmployee.getName().equals(getName())
+                && otherEmployee.getEmployeeId().equals(getEmployeeId())
+                && otherEmployee.getPhone().equals(getPhone())
+                && otherEmployee.getEmail().equals(getEmail())
+                && otherEmployee.getAddress().equals(getAddress())
+                && otherEmployee.getDepartment().equals(getDepartment())
+                && otherEmployee.getTags().equals(getTags());
     }
 
     @Override

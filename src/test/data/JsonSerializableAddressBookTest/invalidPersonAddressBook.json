@@ -1,17 +1,19 @@
 {
-  "persons": [ {
+  "employees": [ {
     "name": "Hans Muster",
     "employeeId": "1",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "address": "4th street",
+    "department" : "Marketing"
   },  {
     "name": "Person With Invalid Employee ID Field",
     "employeeId": "2a",
     "phone": "9482424",
     "email": "hans@example.com",
     "position": "Worker",
-    "address": "4th street"
+    "address": "4th street",
+    "department" : "Marketing"
   },
     {
       "name": "Person With Invalid Phone Field",
@@ -19,7 +21,8 @@
       "phone": "948asdf2424",
       "email": "hans@example.com",
       "position": "Worker",
-      "address": "4th street"
+      "address": "4th street",
+      "department" : "Marketing"
     },
     {
       "name": "Person With Invalid Email Field",
@@ -27,7 +30,8 @@
       "phone": "948asdf2424",
       "email": "h#ns@ex@mple.com",
       "position": "Worker",
-      "address": "4th street"
+      "address": "4th street",
+      "department" : "Marketing"
     },
     {
       "name": "Person With Invalid Position Field",
@@ -35,7 +39,8 @@
       "phone": "948asdf2424",
       "email": "hans@example.com",
       "position": "",
-      "address": "4th street"
+      "address": "4th street",
+      "department" : "Marketing"
     },
     {
       "name": "Person With Invalid Address Field",
@@ -43,7 +48,8 @@
       "phone": "948asdf2424",
       "email": "hans@example.com",
       "position": "Worker",
-      "address": ""
+      "address": "",
+      "department" : "Marketing"
     }
   ]
 }]
