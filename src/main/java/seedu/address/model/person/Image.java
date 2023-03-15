@@ -21,6 +21,10 @@ public class Image {
         this.imageName = DEFAULT_IMAGE;
     }
 
+    public String getFullString() {
+        return IMAGE_PATH + imageName;
+    }
+
     @Override
     public String toString() {
         return imageName;
