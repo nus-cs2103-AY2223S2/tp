@@ -55,18 +55,23 @@ public class DateTimeTest {
         assertFalse(DateTime.isValidDateTime("")); // empty string
         assertFalse(DateTime.isValidDateTime(" ")); // spaces only
         assertFalse(DateTime.isValidDateTime(" 22/05/2023")); // starts with a space
-        assertFalse(DateTime.isValidDateTime("22/05/2023"));
-        assertFalse(DateTime.isValidDateTime("22-05-2023"));
-        assertFalse(DateTime.isValidDateTime("22052023"));
-        assertFalse(DateTime.isValidDateTime("22-05-2023 13:22"));
-        assertFalse(DateTime.isValidDateTime("22052023 13:22"));
         assertFalse(DateTime.isValidDateTime("22/05/2023 1:32am"));
         assertFalse(DateTime.isValidDateTime("22/05/2023 1:32pm"));
+        assertFalse(DateTime.isValidDateTime("22/05/2023 1:32 AM"));
+        assertFalse(DateTime.isValidDateTime("22/05/2023 1:32 PM"));
         assertFalse(DateTime.isValidDateTime("next thursday")); // NLP
         assertFalse(DateTime.isValidDateTime("this coming friday 2:30pm")); // NLP
+        assertFalse(DateTime.isValidDateTime("22/05/2023 13:32PM"));
 
         // valid dates/times
+        assertTrue(DateTime.isValidDateTime("22052023 13:22"));
+        assertTrue(DateTime.isValidDateTime("22-05-2023 13:22"));
+        assertTrue(DateTime.isValidDateTime("22052023"));
+        assertTrue(DateTime.isValidDateTime("22-05-2023"));
+        assertTrue(DateTime.isValidDateTime("22/05/2023"));
         assertTrue(DateTime.isValidDateTime("22/05/2023 13:22"));
+        assertTrue(DateTime.isValidDateTime("22/05/2023 1:32AM"));
+        assertTrue(DateTime.isValidDateTime("22/05/2023 12:32PM"));
     }
 
     @Test
