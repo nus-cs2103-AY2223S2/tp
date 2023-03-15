@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.AddTaskCommand;
-import trackr.logic.commands.ClearCommand;
+import trackr.logic.commands.ClearSupplierCommand;
 import trackr.logic.commands.ClearTaskCommand;
 import trackr.logic.commands.Command;
 import trackr.logic.commands.DeleteSupplierCommand;
@@ -74,8 +74,8 @@ public class TrackrParser {
         case DeleteTaskCommand.COMMAND_WORD_SHORTCUT:
             return new DeleteTaskCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ClearSupplierCommand.COMMAND_WORD:
+            return new ClearSupplierCommand();
 
         case ClearTaskCommand.COMMAND_WORD:
         case ClearTaskCommand.COMMAND_WORD_SHORTCUT:

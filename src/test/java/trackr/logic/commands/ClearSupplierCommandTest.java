@@ -12,14 +12,14 @@ import trackr.model.ModelManager;
 import trackr.model.SupplierList;
 import trackr.model.UserPrefs;
 
-public class ClearCommandTest {
+public class ClearSupplierCommandTest {
 
     @Test
     public void execute_emptyAddressBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearSupplierCommand(), model, ClearSupplierCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class ClearCommandTest {
                 getTypicalOrderList(), new UserPrefs());
         expectedModel.setSupplierList(new SupplierList());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearSupplierCommand(), model, ClearSupplierCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

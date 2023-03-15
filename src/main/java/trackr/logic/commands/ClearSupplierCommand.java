@@ -8,9 +8,10 @@ import trackr.model.SupplierList;
 /**
  * Clears the supplier list.
  */
-public class ClearCommand extends Command {
+public class ClearSupplierCommand extends Command {
 
-    public static final String COMMAND_WORD = "clear";
+    public static final String COMMAND_WORD = "clear_supplier";
+    public static final String COMMAND_WORD_SHORTCUT = "clear_s";
     public static final String MESSAGE_SUCCESS = "Supplier list has been cleared!";
 
 
