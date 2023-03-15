@@ -10,12 +10,13 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NricContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<property>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<attribute>\\S+)(?<keywords>.*)");
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -24,24 +25,32 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         args = args.replace("\n", "").trim();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args);
+
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-
-        final String property = matcher.group("property").trim();
-        final String trimmedArgs = matcher.group("arguments").trim();
-
-        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        final String attribute = matcher.group("attribute").trim();
+        final String trimmedKeywords = matcher.group("keywords").trim();
 
-        if (property.equals("a")) {
-            return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else if (property.equals("n")) {
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        if (trimmedKeywords.isEmpty()) {
+            if (args.equals("/all")) {
+                return new FindCommand(null);
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+        }
+
+        String[] keywords = trimmedKeywords.split("\\s+");
+
+        if (attribute.equals("/a")) {
+            return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(keywords)));
+        } else if (attribute.equals("/n")) {
+            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        } else if (attribute.equals("/nric")) {
+            return new FindCommand(new NricContainsKeywordsPredicate(Arrays.asList(keywords)));
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
