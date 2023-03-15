@@ -62,7 +62,7 @@ public class JsonAdaptedGroupName {
      */
     public GroupName toModelType() throws IllegalValueException {
         if (!GroupName.isValidName(name)) {
-            throw new IllegalValueException(GroupName.MESSAGE_CONSTRAINT);
+            throw new IllegalValueException(GroupName.MESSAGE_CONSTRAINTS);
         }
         return new GroupName(name);
     }

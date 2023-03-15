@@ -22,8 +22,7 @@ import seedu.vms.logic.parser.ArgumentTokenizer;
 import seedu.vms.logic.parser.Parser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.model.patient.Allergy;
-import seedu.vms.model.patient.Vaccine;
+import seedu.vms.model.GroupName;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -73,11 +72,13 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> allergies} into a {@code Set<Allergy>} if {@code allergies} is non-empty.
-     * If {@code allergies} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Allergy>} containing zero allergies.
+     * Parses {@code Collection<String> allergies} into a {@code Set<GroupName>} if
+     * {@code allergies} is non-empty.
+     * If {@code allergies} contain only one element which is an empty string, it
+     * will be parsed into a
+     * {@code Set<GroupName>} containing zero allergies.
      */
-    private Optional<Set<Allergy>> parseAllergiesForEdit(Collection<String> allergies) throws ParseException {
+    private Optional<Set<GroupName>> parseAllergiesForEdit(Collection<String> allergies) throws ParseException {
         assert allergies != null;
 
         if (allergies.isEmpty()) {
@@ -85,15 +86,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> allergySet = allergies.size() == 1 && allergies.contains("") ? Collections.emptySet()
                 : allergies;
-        return Optional.of(ParserUtil.parseAllergies(allergySet));
+        return Optional.of(ParserUtil.parseGroups(allergySet));
     }
 
     /**
-     * Parses {@code Collection<String> vaccines} into a {@code Set<Vaccine>} if {@code vaccines} is non-empty.
-     * If {@code vaccines} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Vaccine>} containing zero vaccines.
+     * Parses {@code Collection<String> vaccines} into a {@code Set<GroupName>} if
+     * {@code vaccines} is non-empty.
+     * If {@code vaccines} contain only one element which is an empty string, it
+     * will be parsed into a
+     * {@code Set<GroupName>} containing zero vaccines.
      */
-    private Optional<Set<Vaccine>> parseVaccinesForEdit(Collection<String> vaccines) throws ParseException {
+    private Optional<Set<GroupName>> parseVaccinesForEdit(Collection<String> vaccines) throws ParseException {
         assert vaccines != null;
 
         if (vaccines.isEmpty()) {
@@ -101,7 +104,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> vaccineSet = vaccines.size() == 1 && vaccines.contains("") ? Collections.emptySet()
                 : vaccines;
-        return Optional.of(ParserUtil.parseVaccines(vaccineSet));
+        return Optional.of(ParserUtil.parseGroups(vaccineSet));
     }
 
 }

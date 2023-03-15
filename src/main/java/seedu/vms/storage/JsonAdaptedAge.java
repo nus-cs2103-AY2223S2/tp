@@ -48,7 +48,7 @@ public class JsonAdaptedAge {
      */
     public Age toModelType() throws IllegalValueException {
         if (!Age.isValid(value)) {
-            throw new IllegalValueException(Age.MESSAGE_CONSTRAINT);
+            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
         }
         return new Age(value);
     }

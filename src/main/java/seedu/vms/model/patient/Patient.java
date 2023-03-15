@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.vms.model.GroupName;
+
 /**
  * Represents a Patient in the patient manager.
  * Guarantees: details are present and not null,
@@ -22,14 +24,14 @@ public class Patient {
 
     // Medical fields
     private final BloodType bloodType;
-    private final Set<Allergy> allergies = new HashSet<>();
-    private final Set<Vaccine> vaccines = new HashSet<>();
+    private final Set<GroupName> allergies = new HashSet<>();
+    private final Set<GroupName> vaccines = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Dob dob, BloodType bloodType, Set<Allergy> allergies,
-            Set<Vaccine> vaccines) {
+    public Patient(Name name, Phone phone, Dob dob, BloodType bloodType, Set<GroupName> allergies,
+            Set<GroupName> vaccines) {
         requireAllNonNull(name, phone, dob, bloodType, allergies, vaccines);
         this.name = name;
         this.phone = phone;
@@ -60,7 +62,7 @@ public class Patient {
      * which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Allergy> getAllergy() {
+    public Set<GroupName> getAllergy() {
         return Collections.unmodifiableSet(allergies);
     }
 
@@ -69,7 +71,7 @@ public class Patient {
      * which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Vaccine> getVaccine() {
+    public Set<GroupName> getVaccine() {
         return Collections.unmodifiableSet(vaccines);
     }
 
@@ -80,7 +82,7 @@ public class Patient {
      */
     public Set<String> getAllergyAsString() {
         Set<String> allergyStrings = new HashSet<>();
-        for (Allergy allergy : allergies) {
+        for (GroupName allergy : allergies) {
             allergyStrings.add(allergy.toString());
         }
         return Collections.unmodifiableSet(allergyStrings);
@@ -93,7 +95,7 @@ public class Patient {
      */
     public Set<String> getVaccineAsString() {
         Set<String> vaccineStrings = new HashSet<>();
-        for (Vaccine vaccine : vaccines) {
+        for (GroupName vaccine : vaccines) {
             vaccineStrings.add(vaccine.toString());
         }
         return Collections.unmodifiableSet(vaccineStrings);
@@ -157,12 +159,12 @@ public class Patient {
                 .append("; BloodType: ")
                 .append(getBloodType());
 
-        Set<Allergy> allergySet = getAllergy();
+        Set<GroupName> allergySet = getAllergy();
         if (!allergySet.isEmpty()) {
             builder.append("; Allergies: ");
             allergySet.forEach(builder::append);
         }
-        Set<Vaccine> vaccineSet = getVaccine();
+        Set<GroupName> vaccineSet = getVaccine();
         if (!vaccineSet.isEmpty()) {
             builder.append("; Vaccines: ");
             vaccineSet.forEach(builder::append);

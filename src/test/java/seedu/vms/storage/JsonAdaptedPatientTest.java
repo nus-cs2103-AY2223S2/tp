@@ -5,6 +5,7 @@ import static seedu.vms.storage.JsonAdaptedPatient.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.vms.testutil.Assert.assertThrows;
 import static seedu.vms.testutil.TypicalPatients.BENSON;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,18 +22,18 @@ public class JsonAdaptedPatientTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_DOB = "123-03-23";
+    private static final LocalDateTime INVALID_DOB = LocalDateTime.now().plusDays(1);
     private static final String INVALID_ALLERGY = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_DOB = BENSON.getDob().toString();
+    private static final LocalDateTime VALID_DOB = BENSON.getDob().value;
     private static final String VALID_BLOODTYPE = BENSON.getBloodType().toString();
-    private static final List<JsonAdaptedAllergy> VALID_ALLERGIES = BENSON.getAllergy().stream()
-            .map(JsonAdaptedAllergy::new)
+    private static final List<JsonAdaptedGroupName> VALID_ALLERGIES = BENSON.getAllergy().stream()
+            .map(JsonAdaptedGroupName::fromModelType)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedVaccine> VALID_VACCINES = BENSON.getVaccine().stream()
-            .map(JsonAdaptedVaccine::new)
+    private static final List<JsonAdaptedGroupName> VALID_VACCINES = BENSON.getVaccine().stream()
+            .map(JsonAdaptedGroupName::fromModelType)
             .collect(Collectors.toList());
 
     @Test
@@ -107,8 +108,8 @@ public class JsonAdaptedPatientTest {
 
     @Test
     public void toModelType_invalidAllergies_throwsIllegalValueException() {
-        List<JsonAdaptedAllergy> invalidAllergies = new ArrayList<>(VALID_ALLERGIES);
-        invalidAllergies.add(new JsonAdaptedAllergy(INVALID_ALLERGY));
+        List<JsonAdaptedGroupName> invalidAllergies = new ArrayList<>(VALID_ALLERGIES);
+        invalidAllergies.add(new JsonAdaptedGroupName(INVALID_ALLERGY));
         JsonAdaptedPatient patient = new JsonAdaptedPatient(VALID_NAME, VALID_PHONE, VALID_DOB, VALID_BLOODTYPE,
                 invalidAllergies, VALID_VACCINES);
         assertThrows(IllegalValueException.class, patient::toModelType);
