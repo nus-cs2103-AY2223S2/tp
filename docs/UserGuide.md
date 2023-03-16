@@ -274,30 +274,28 @@ they will be set to their default values.
 
 <pre>
 vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
-    [--s <var>SPACING</var>] [--a <var>ALLERGY_REQ</var>] [--h <var>HISTORY_REQ</var>]...
+    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
 </pre>
 
-* <code><var>name</var></code> : `<groupName>` - the vaccination to create.
-* <code><var>groups</var></code> : `<groupName>` - the groups the vaccination type classifies under.
-* <code><var>minAge</var></code> : `<age>` - the minimum required age (inclusive) to take the vaccine.
-* <code><var>maxAge</var></code> : `<age>` - the maximum require age (inclusive) to take the vaccine.
-* <code><var>spacing</var></code> : +ve `<integer>` - the minimum time in days from the last vaccination taken to take
-  this vaccine.
-* <code><var>allergyReq</var></code> : `<requirement>` - the allergy requirement to take the vaccine.
-* <code><var>historyReq</var></code> : `<requirement>` - the vaccination group history requirement to
+* <code><var>VAX_NAME</var></code> : `<groupName>` - the vaccination to create.
+* <code><var>GROUP</var></code> : `<groupName>` - the groups the vaccination type classifies under.
+* <code><var>MIN_AGE</var></code> : `<age>` - the minimum required age (inclusive) to take the vaccine.
+* <code><var>MAX_AGE</var></code> : `<age>` - the maximum require age (inclusive) to take the vaccine.
+* <code><var>INGREDIENT</var></code> : `<requirement>` - ingredient of the vaccine.
+* <code><var>HISTORY_REQ</var></code> : `<requirement>` - the vaccination group history requirement to
   take the vaccine.
 
 ##### Example
 
 ```text
 vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION \
-    --lal 5 --s 56 \
-    --a NONE::allergy1, allergy2, allergy3 \
+    --lal 5 \
+    --a allergy1, allergy2, allergy3 \
     --h NONE::DOES 1 \
 ```
 
 Copy and paste:<br>
-`vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --s 56 --a NONE::allergy1, allergy2, allergy3 --h NONE::DOES 1`
+`vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --a allergy1, allergy2, allergy3 --h NONE::DOES 1`
 <br><br>
 Output:<br>
 {some ss}
