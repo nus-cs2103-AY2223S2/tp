@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import teambuilder.commons.core.GuiSettings;
+import teambuilder.commons.core.Momento;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.ReadOnlyTeamBuilder;
@@ -78,6 +79,21 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        @Override
+        public Momento save() {
+            return new Momento() {
+                @Override
+                public boolean restore() {
+                    return true;
+                }
+
+                @Override
+                public void setDescription(String desc) {
+                    return;
+                }
+            };
+        }
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");

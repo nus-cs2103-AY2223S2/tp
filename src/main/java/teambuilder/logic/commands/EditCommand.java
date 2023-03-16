@@ -16,8 +16,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import teambuilder.commons.core.Messages;
+import teambuilder.commons.core.Momento;
 import teambuilder.commons.core.index.Index;
 import teambuilder.commons.util.CollectionUtil;
+import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.person.Address;
@@ -35,6 +37,7 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
+    // @formatter:off
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -48,6 +51,7 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
+    // @formatter:on
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -84,14 +88,18 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        Momento old = model.save();
+        old.setDescription(COMMAND_WORD + " " + editedPerson);
+        HistoryUtil.getInstance().store(old);
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Person} with the details of {@code personToEdit} edited with
+     * {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
@@ -120,13 +128,12 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+        return index.equals(e.index) && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the person with. Each non-empty field value will replace the corresponding field value
+     * of the person.
      */
     public static class EditPersonDescriptor {
         private Name name;
@@ -136,11 +143,11 @@ public class EditCommand extends Command {
         private Major major;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * Copy constructor. A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
@@ -199,17 +206,15 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code tags} to this object's {@code tags}. A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException} if modification is
+         * attempted. Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
@@ -230,12 +235,14 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
+            // @formatter:off
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getMajor().equals(e.getMajor())
                     && getTags().equals(e.getTags());
+            // @formatter:on
         }
     }
 }

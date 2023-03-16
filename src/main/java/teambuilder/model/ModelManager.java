@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import teambuilder.commons.core.GuiSettings;
 import teambuilder.commons.core.LogsCenter;
+import teambuilder.commons.core.Momento;
 import teambuilder.model.person.Person;
 
 /**
@@ -76,6 +77,11 @@ public class ModelManager implements Model {
     }
 
     //=========== AddressBook ================================================================================
+
+    @Override
+    public Momento save() {
+        return new TeamBuilderMomento(new TeamBuilder(addressBook), this);
+    }
 
     @Override
     public void setAddressBook(ReadOnlyTeamBuilder addressBook) {

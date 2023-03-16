@@ -8,6 +8,8 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_NAME;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
 
+import teambuilder.commons.core.Momento;
+import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.person.Person;
@@ -19,6 +21,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
+    // @formatter:off
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -57,6 +60,10 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        Momento old = model.save();
+        old.setDescription(COMMAND_WORD + " " + toAdd);
+        HistoryUtil.getInstance().store(old);
+
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
@@ -65,6 +72,6 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                        && toAdd.equals(((AddCommand) other).toAdd));
     }
 }
