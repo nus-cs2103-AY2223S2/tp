@@ -13,11 +13,11 @@ import seedu.socket.MainApp;
 import seedu.socket.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * Controller for a Help Window.
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://nus-cs2103-ay2223s2.github.io/tp/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t12-4.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "COMMAND LIST\n"
             + "\n"
             + "1. Adding a person: add\n"
