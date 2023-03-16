@@ -149,6 +149,9 @@ public class Project implements IsSame<Project> {
         return Objects.hash(name, status, clientEmail, source, description, acceptedOn, deadline);
     }
 
-    // TODO implement a user-friendly toString()
+    @Override
+    public String toString() {
+        return String.format("%s from client %s", name, clientEmail);
+    }
 }
 
