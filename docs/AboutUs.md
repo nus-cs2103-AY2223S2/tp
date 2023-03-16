@@ -38,15 +38,15 @@ You can reach us at the email `what email should we put here?`
 - Role: Developer
 - Responsibilities: UI, Integration
 
-## Jean Doe
+## Daniel Ling Zhi Yuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/daniellingzy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/daniellingzy)]
+[[portfolio](team/daniellingzy.md)]
 
-- Role: Developer
-- Responsibilities: Dev Ops + Threading
+- Role: Test Engineer 
+- Responsibilities: Software Development Testing
 
 ## James Doe
 
