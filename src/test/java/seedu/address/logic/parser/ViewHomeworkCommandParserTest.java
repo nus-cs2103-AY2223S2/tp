@@ -18,7 +18,7 @@ class ViewHomeworkCommandParserTest {
 
     @Test
     public void parse_validArgsWithMultipleKeywords_returnsViewHomeworkCommand() throws ParseException {
-        String args = " n/alice n/bob n/charlie " + PREFIX_STATUS + " completed";
+        String args = " name/alice name/bob name/charlie " + PREFIX_STATUS + " completed";
         ViewHomeworkCommand expectedCommand = new ViewHomeworkCommand(new NameContainsKeywordsPredicate(
                 List.of("alice", "bob", "charlie")), new HomeworkIsCompletePredicate(true), false);
         assertEquals(expectedCommand, new ViewHomeworkCommandParser().parse(args));
