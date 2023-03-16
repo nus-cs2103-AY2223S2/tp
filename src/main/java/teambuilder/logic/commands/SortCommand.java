@@ -14,10 +14,10 @@ import static java.util.Objects.requireNonNull;
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons according to specified order "
+            + "(case-insensitive) and sort by (case-insensitive), displays them as a list with index numbers.\n"
+            + "Parameters: ORDER SORT_BY\n"
+            + "Example: " + COMMAND_WORD + " desc tcount";
 
     public static final String MESSAGE_SUCCESS = "Sorted all persons.";
     private final String order;
@@ -63,7 +63,7 @@ public class SortCommand extends Command {
 
     /* Helper function to process sort by */
     private boolean processSortBy() {
-        if (sortByString.equals("tCount")) {
+        if (sortByString.equals("tcount")) {
             sortBy = SortBy.TAG_COUNT;
             return true;
         }
