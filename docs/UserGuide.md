@@ -1,9 +1,9 @@
 ---
 layout: page
-title: sprINT User Guide
+title: User Guide
 ---
 
-Welcome to **sprINT's User Guide**. sprINT  is a **desktop application** for managing internship applications,
+Welcome to **sprINT's User Guide**. sprINT is a **desktop application** for managing internship applications,
 optimized for use via a Command Line Interface (CLI) while still incorporating the benefits of a Graphical User
 Interface (GUI).
 
@@ -19,7 +19,7 @@ your internship hunt!
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `sprint.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases).
+2. Download the latest `sprint.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.2).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your sprINT application.
 
@@ -72,20 +72,20 @@ your internship hunt!
 
 </div>
 
-### Viewing help : `help` `[coming in v1.2]`
+### Viewing help : `help`
 
-Shows a message with a link to the help page.
+Shows a message with a link to the user guide.
 
-<!--  ![help message](images/helpMessage.png)  -->
+![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding an application: `add` `[coming in v1.2]`
+### Adding an application: `add` 
 
 Adds an internship application to be tracked.
 
-Format: `add r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [j/JOB_DESCRIPTION] [d/DEADLINE] [t/TAG]…​`
+Format: `add r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Job Description and Deadline are optional fields for an application.
@@ -93,8 +93,8 @@ An application can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested d/01-01-2023`
-* `add r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com s/Applied j/Conversion to full time in 12 months`
+* `add r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested`
+* `add r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com`
 
 
 ### Listing all internship applications : `list`
@@ -110,14 +110,14 @@ Example:
 
 Edits an existing internship application to be tracked.
 
-Format: `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/EMAIL] [s/STATUS] [j/JOB_DESCRIPTION] [d/DEADLINE] [t/TAG]…​`
+Format: `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`
 
 * Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed application list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+<!--* At least one of the optional fields must be provided.-->
 * Existing values will be updated to the input values.
-* When editing job description, deadline and tags, the existing corresponding values of the these fields in the application will be removed i.e. adding of tags is not cumulative.
-* You can remove all the application’s job description, deadline and tags by typing `j/` `d/` `t/` without
-    specifying any values after it.
+<!--* When editing job description, deadline and tags, the existing corresponding values of the these fields in the application will be removed i.e. adding of tags is not cumulative.-->
+<!--* You can remove all the application’s job description, deadline and tags by typing `j/` `d/` `t/` without
+    specifying any values after it.-->
 
 Examples:
 *  `edit 1 r/Cloud Engineer e/goggleHR@example.com` Edits the role and email address of the 1st application to be `Cloud Engineer` and `goggleHR@gmail.com` respectively.
@@ -137,7 +137,7 @@ Examples:
 * `find Goggle` returns internship applications for `Goggle` and `Goggle LLC`.
 * `find Goggle Mata` returns internship applications for `Goggle LLC`, `Mata Platforms`.<br>
 
-### Deleting an application : `delete` `[coming in v1.2]`
+### Deleting an application : `delete` 
 
 Deletes the specified application from the internship book.
 
@@ -165,14 +165,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Data in the internship book are automatically saved in the hard disk after any command that modifies the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Data in the internship book are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update their data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -184,18 +184,18 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous internship book's home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [j/JOB_DESCRIPTION] [d/DEADLINE] [t/TAG]…​` <br> e.g., `add r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered j/CS3230 Tutorial Tutor d/01-01-2023 t/algorithms`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                          |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS​` <br> e.g., `add r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered`                                    |
+| **Clear**  | `clear`                                                                                                                                                                   |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                       |
+| **Edit**   | `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`<br> e.g., `edit 1 r/Research Intern e/example@bstar.com.sg` |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Mata`                                                                                                                      |
+| **List**   | `list`                                                                                                                                                                    |
+| **Help**   | `help`                                                                                                                                                                    |
