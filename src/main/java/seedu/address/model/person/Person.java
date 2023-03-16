@@ -59,9 +59,13 @@ public class Person {
         return address;
     }
 
-    public Remark getRemark() {return remark; }
+    public Remark getRemark() {
+        return remark;
+    }
 
-    public Deadline getDeadline() {return deadline;}
+    public Deadline getDeadline() {
+        return deadline;
+    }
 
     public Teacher getTeacher() {
         return teacher;
