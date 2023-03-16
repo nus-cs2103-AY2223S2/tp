@@ -7,7 +7,7 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opt
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `goodmatch.jar` from [here](https://github.com/se-edu/addressbook-level3/releases). //change the link for this
 3. Copy the file to the folder you want to use as the *home folder* for your GoodMatch.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application. 
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.
 
 
 A GUI similar to the one below should appear in a few seconds.
@@ -45,7 +45,7 @@ Shows a message explaining how to access the help page.
 
 Lists out all the jobs that are currently in the listing book.
 
-**Format:** `list` 
+**Format:** `list`
 
 ## Adding a job listing: `add`
 
@@ -72,11 +72,11 @@ Edits the details of a job listing.
 
 - Ensure that `NUMBER` is valid (ie. its is non-negative and not greater than the number of tasks) or an error will occur!
 - Only the details included in the command will be edited. eg. if the command entered is:
-    
+
      `edit 1 t/Chicken Rice Uncle d/Cooks tasty chicken rice`
-    
+
     then only the title and the description of task 1 will be edited (the applicants will remain unchanged)
-    
+
 
 **************Examples:**************
 
@@ -131,7 +131,7 @@ Sort job listings by the field specified by the user and display the sorted list
 
 - `sort by/num_of_applicants`
 
-### 
+###
 
 ## Filtering job listings: `filter`
 
@@ -151,7 +151,7 @@ Sort job listings by the field specified by the user and display the sorted list
 
 ## Tagging a job listing [coming soon]
 
-Adds tags to 
+Adds tags to
 
 | Recruiter | add tag indicating relevant hiring department to the job listing |  |
 | --- | --- | --- |
