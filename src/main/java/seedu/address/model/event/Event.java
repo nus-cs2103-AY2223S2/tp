@@ -97,6 +97,10 @@ public abstract class Event {
         return this.name;
     }
 
+    public boolean hasMatchByName(String name) {
+        return this.name.equals(name);
+    }
+
     /* *************************************************************************
      *                                                                         *
      * Methods to manipulate students in an event                              *

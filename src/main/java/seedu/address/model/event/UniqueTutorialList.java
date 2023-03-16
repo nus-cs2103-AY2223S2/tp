@@ -37,6 +37,15 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
         return internalList.stream().anyMatch(toCheck::isSameTutorial);
     }
 
+    // todo: probably try remove get and size methods to preserve abstraction barrier
+    public Tutorial get(int index) {
+        return this.internalList.get(index);
+    }
+
+    public int size() {
+        return this.internalList.size();
+    }
+
     /**
      * Adds a tutorial to the list.
      * The tutorial must not already exist in the list.
