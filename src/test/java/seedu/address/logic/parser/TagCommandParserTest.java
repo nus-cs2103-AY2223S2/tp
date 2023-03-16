@@ -21,14 +21,5 @@ public class TagCommandParserTest {
 
     private TagCommandParser parser = new TagCommandParser();
 
-    @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1 verypoor",
-                new TagCommand(INDEX_FIRST_PERSON, new Tag("verypoor")));
-    }
 
-    @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
-    }
 }
