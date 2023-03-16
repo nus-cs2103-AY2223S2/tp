@@ -71,11 +71,11 @@ public class Event {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append(getName())
-            .append("Date: ")
+            .append("\nDate: ")
             .append(getDate())
-            .append("\nStart: ")
+            .append("\nStart Time: ")
             .append(getStartTime())
-            .append("\nEnd: ")
+            .append("\nEnd End: ")
             .append(getEndTime());
         return sb.toString();
     }

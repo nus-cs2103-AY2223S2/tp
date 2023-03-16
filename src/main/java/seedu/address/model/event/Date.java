@@ -13,9 +13,9 @@ import java.time.format.DateTimeFormatter;
 public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Date should only contain numeric characters, follows the format dd-MM-yyyy, and it should not be blank";
+        "Date should only contain numeric characters, follows the format yyyy-MM-dd, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "^\\d{2}-\\d{2}-\\d{4}$";
+    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
 
     public final LocalDate date;
 
@@ -27,7 +27,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.date = LocalDate.parse(date, formatter);
     }
 

@@ -19,7 +19,7 @@ import seedu.address.model.event.Event;
 @JsonRootName(value = "addressbook")
 class JsonSerializableScheduler {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate event(s).";
+    public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
@@ -50,7 +50,7 @@ class JsonSerializableScheduler {
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
             Event event = jsonAdaptedEvent.toModelType();
             if (addressBook.hasEvent(event)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
             addressBook.addEvent(event);
         }

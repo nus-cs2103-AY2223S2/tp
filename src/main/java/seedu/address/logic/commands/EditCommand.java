@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliEventSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliEventSyntax.PREFIX_END;
-import static seedu.address.logic.parser.CliEventSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliEventSyntax.PREFIX_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.List;
@@ -37,7 +37,7 @@ public class EditCommand extends Command {
         + PREFIX_END + "END TIME "
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_NAME + "TENNIS "
-        + PREFIX_DATE + "20-12-2023 "
+        + PREFIX_DATE + "2023-20-12 "
         + PREFIX_START + "18:00 "
         + PREFIX_END + "20:00";
 
