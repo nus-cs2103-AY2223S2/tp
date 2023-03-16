@@ -15,6 +15,8 @@ import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.patient.PatientIdNumber;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -25,22 +27,27 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String id;
     private final String phone;
     private final String email;
     private final String address;
+    private final String status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("patientist") String address,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id,
+            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+            @JsonProperty("patientist") String address, @JsonProperty("status") String status,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.id = id;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -57,6 +64,15 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+
+        if (source instanceof Patient) {
+            Patient patient = (Patient) source;
+            id = patient.getPatientIdNumber().getIdNumber();
+            status = patient.getPatientStatusDetails().getDetails();
+        } else {
+            id = "";
+            status = "";
+        }
     }
 
     /**
@@ -77,6 +93,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!PatientIdNumber.isValidPid(id)) {
+            throw new IllegalValueException(PatientIdNumber.MESSAGE_CONSTRAINTS);
+        }
+        final PatientIdNumber modelPid = new PatientIdNumber(id);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -103,7 +127,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Patient(modelPid, modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

@@ -1,0 +1,19 @@
+{
+  "persons" : [ {
+    "name" : "Adam Sandler",
+    "phone" : "94351253",
+    "email" : "adam@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "Block1WardA" ],
+    "status" : "Doing fine",
+    "id" : "G73829173B"
+  }, {
+    "name" : "Adam Sandler",
+    "phone" : "94351253",
+    "email" : "adam@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "Block1WardA" ],
+    "status" : "Doing fine",
+    "id" : "G73829173B"
+  }]
+}

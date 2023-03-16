@@ -7,24 +7,28 @@ import static seedu.patientist.commons.util.AppUtil.checkArgument;
  * Object representing the ID number of a patient. ID numbers are automatically capitalised when they are created.
  */
 public class PatientIdNumber {
+    public static final String MESSAGE_CONSTRAINTS = "PID should be alnum.";
 
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    public static final String MESSAGE_CONSTRAINTS = "ID must be alphanumeric";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}]*";
 
     private final String idNumber;
 
     /**
-     * Constructs a PatientIdNumber while checking it is alphanumeric and non null
-     * @param idNumber alphanumeric string that is patient id
+     * Constructor for PatientIdNumber.
+     * @param idNumber String to be converted.
      */
+    //TODO: include error checking for invalid ID numbers
     public PatientIdNumber(String idNumber) {
         requireNonNull(idNumber);
-        checkArgument(isValidIdNumber(idNumber), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPid(idNumber), MESSAGE_CONSTRAINTS);
         this.idNumber = idNumber.toUpperCase();
     }
 
-    public boolean isValidIdNumber(String idNumber) {
-        return idNumber.matches(VALIDATION_REGEX);
+    /**
+     * Returns true if a given string is a valid patient id.
+     */
+    public static boolean isValidPid(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     public String getIdNumber() {

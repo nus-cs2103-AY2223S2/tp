@@ -103,7 +103,7 @@ public class Patient extends Person {
         }
 
         Patient otherPat = (Patient) other;
-        return this.id.equals(otherPat.id);
+        return this.id.equals(otherPat.id) && this.getName().equals(otherPat.getName());
     }
 
     /**
@@ -113,7 +113,16 @@ public class Patient extends Person {
      */
     @Override
     public boolean isSamePerson(Person otherPerson) {
-        return this.equals(otherPerson);
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (!(otherPerson instanceof Patient)) {
+            return false;
+        }
+
+        Patient otherPat = (Patient) otherPerson;
+        return super.isSamePerson(otherPerson) && this.id.equals(otherPat.id);
     }
 
 }

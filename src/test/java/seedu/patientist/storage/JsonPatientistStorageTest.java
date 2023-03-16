@@ -3,10 +3,10 @@ package seedu.patientist.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.patientist.testutil.Assert.assertThrows;
-import static seedu.patientist.testutil.TypicalPersons.ALICE;
-import static seedu.patientist.testutil.TypicalPersons.HOON;
-import static seedu.patientist.testutil.TypicalPersons.IDA;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalPatients.ADAM;
+import static seedu.patientist.testutil.TypicalPatients.AMY;
+import static seedu.patientist.testutil.TypicalPatients.CHARLIE;
+import static seedu.patientist.testutil.TypicalPatients.getTypicalPatientist;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -72,14 +72,14 @@ public class JsonPatientistStorageTest {
         assertEquals(original, new Patientist(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addPerson(CHARLIE);
+        original.removePerson(ADAM);
         jsonAddressBookStorage.savePatientist(original, filePath);
         readBack = jsonAddressBookStorage.readPatientist(filePath).get();
         assertEquals(original, new Patientist(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addPerson(AMY);
         jsonAddressBookStorage.savePatientist(original); // file path not specified
         readBack = jsonAddressBookStorage.readPatientist().get(); // file path not specified
         assertEquals(original, new Patientist(readBack));
