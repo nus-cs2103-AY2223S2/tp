@@ -33,13 +33,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label github;
+    private Label course;
     @FXML
-    private Label linkedin;
+    private Label year;
     @FXML
     private Label email;
-    @FXML
-    private FlowPane skills;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,12 +47,9 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        github.setText(person.getGithub().value);
-        linkedin.setText(person.getLinkedin().value);
+        year.setText("Year " + person.getYear().year);
+        course.setText(person.getCourse().course);
         email.setText(person.getEmail().value);
-        person.getSkills().stream()
-                .sorted(Comparator.comparing(skill -> skill.skillName))
-                .forEach(skill -> skills.getChildren().add(new Label(skill.skillName)));
     }
 
     @Override
