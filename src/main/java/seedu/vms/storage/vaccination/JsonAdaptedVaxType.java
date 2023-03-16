@@ -94,7 +94,7 @@ public class JsonAdaptedVaxType {
         }
 
         if (allergyReqs != null) {
-            builder = builder.setGroups(JsonAdaptedGroupName.toModelSet(allergyReqs));
+            builder = builder.setAllergyReqs(JsonAdaptedGroupName.toModelSet(allergyReqs));
         }
 
         if (historyReqs != null) {

@@ -34,7 +34,7 @@ public class VaxTypeBuilder {
         this.setGrps = setGrps.map(HashSet::new);
         this.setMinAge = setMinAge;
         this.setMaxAge = setMaxAge;
-        this.setAllergyReqs = setGrps.map(HashSet::new);
+        this.setAllergyReqs = setAllergyReqs.map(HashSet::new);
         this.setHistoryReqs = setHistoryReqs.map(Requirement::copy);
     }
 
