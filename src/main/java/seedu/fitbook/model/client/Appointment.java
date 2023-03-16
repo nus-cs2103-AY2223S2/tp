@@ -46,7 +46,6 @@ public class Appointment implements Comparable<Appointment> {
         return localDateTime.format(dateTimeFormatter);
     }
 
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

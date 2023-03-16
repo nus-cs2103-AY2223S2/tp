@@ -29,6 +29,7 @@ public class ScheduleCard extends UiPart<Region> {
      */
 
     public final Client client;
+    private LocalDateTime currentTime;
 
     @FXML
     private HBox cardPane;
@@ -40,7 +41,6 @@ public class ScheduleCard extends UiPart<Region> {
     private Label appointments;
     @FXML
     private FlowPane tags;
-
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -62,6 +62,19 @@ public class ScheduleCard extends UiPart<Region> {
         for (LocalDateTime dateTime : dateTimeList) {
             sb.append(dateTime.format(f));
             sb.append("\n");
+        }
+
+        currentTime = LocalDateTime.now();
+        boolean isExpired = true;
+        for (LocalDateTime dateTime: dateTimeList) {
+            if (currentTime.isBefore(dateTime)) {
+                isExpired = false;
+                break;
+            }
+        }
+
+        if (isExpired) {
+            getRoot().setStyle("-fx-background-color: derive(#888888, 20%); -fx-border-color: #BEBEBE;");
         }
 
         String dateTimeString = sb.toString();

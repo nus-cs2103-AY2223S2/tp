@@ -31,7 +31,6 @@ public class ExerciseCard extends UiPart<Region> {
     @FXML
     private Label routineName;
 
-
     /**
      * Creates a {@code RoutineCode} with the given {@code Rountine} and index to display.
      */
@@ -42,7 +41,6 @@ public class ExerciseCard extends UiPart<Region> {
         routineName.setText(routine.getRoutineName().routineName);
         exercises.setText(routine.exerciseListToString().toString());
     }
-
 
     @Override
     public boolean equals(Object other) {
