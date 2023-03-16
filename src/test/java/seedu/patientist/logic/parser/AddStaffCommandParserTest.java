@@ -46,12 +46,12 @@ import seedu.patientist.model.tag.Tag;
 import seedu.patientist.testutil.StaffBuilder;
 
 public class AddStaffCommandParserTest {
-    private final String STAFF_TAG = "Staff";
+    private final String staffTag = "Staff";
     private AddStaffCommandParser parser = new AddStaffCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Staff expectedStaff = new StaffBuilder(BOB).withTags(VALID_TAG_FRIEND, STAFF_TAG).build();
+        Staff expectedStaff = new StaffBuilder(BOB).withTags(VALID_TAG_FRIEND, staffTag).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -74,7 +74,7 @@ public class AddStaffCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB, new AddStaffCommand(expectedStaff));
 
         // multiple tags - all accepted
-        Staff expectedStaffMultipleTags = new StaffBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND, STAFF_TAG)
+        Staff expectedStaffMultipleTags = new StaffBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND, staffTag)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB,
@@ -84,7 +84,7 @@ public class AddStaffCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Staff expectedPatient = new StaffBuilder(AMY).withTags(STAFF_TAG).build();
+        Staff expectedPatient = new StaffBuilder(AMY).withTags(staffTag).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PID_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY, new AddStaffCommand(expectedPatient));
     }
