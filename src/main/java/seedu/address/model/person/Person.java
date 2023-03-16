@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,11 +24,57 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private LocalDateTime time = null;
 
     private MedicalCondition medicalCondition;
     private Age age;
     /**
      * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, LocalDateTime time) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.medicalCondition = new MedicalCondition("");
+    }
+
+    /**
+     * Every field must be present and not null, medical condition will be created without any tag
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.medicalCondition = medicalCondition;
+    }
+
+    /**
+     * Every field must be present and not null, medical condition will be created without any tag
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.age = age;
+        this.medicalCondition = medicalCondition;
+    }
+
+    /**
+     * Alternative constructor for person with scheduled time.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -36,6 +83,22 @@ public class Person {
         this.email = email;
         this.address = address;
         this.age = new Age("");
+        this.tags.addAll(tags);
+        this.medicalCondition = new MedicalCondition("");
+    }
+
+    /**
+     * Alternative constructor for person with scheduled time.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age,
+                  Set<Tag> tags, LocalDateTime time) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = age;
+        this.time = time;
         this.tags.addAll(tags);
         this.medicalCondition = new MedicalCondition("");
     }
@@ -100,6 +163,19 @@ public class Person {
         return address;
     }
 
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    /**
+     * check if the person has scheduled time.
+     * @return true if the person has time.
+     */
+    public boolean hasTime() {
+        return this.time != null;
+    }
+
     public Age getAge() {
         return age;
     }
@@ -107,6 +183,7 @@ public class Person {
     public MedicalCondition getMedicalCondition() {
         return medicalCondition;
     }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

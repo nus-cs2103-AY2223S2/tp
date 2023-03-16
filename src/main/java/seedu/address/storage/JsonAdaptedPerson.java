@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,6 +34,7 @@ class JsonAdaptedPerson {
     private String medicalCondition;
     private String age;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private LocalDateTime time = null;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,7 +43,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("age") String age, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("time") String time,
+                             @JsonProperty("age") String age,
                              @JsonProperty("MedicalCondition") String medicalCondition) {
         this.name = name;
         this.phone = phone;
@@ -57,10 +60,14 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        if (time != null) {
+            this.time = LocalDateTime.parse(time);
+        }
         if (medicalCondition != null) {
             this.medicalCondition = medicalCondition;
         }
     }
+
     public JsonAdaptedPerson(String name, String phone, String email, String address, List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -91,6 +98,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        if (source.hasTime()) {
+            time = source.getTime();
+        }
         if (source.getAge().getAge() != null) {
             age = source.getAge().getAge();
         }
@@ -157,16 +167,27 @@ class JsonAdaptedPerson {
         final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
 
         if (age != null && medicalCondition != null) {
-            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelMedical);
+            if (time == null) {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelMedical);
+            } else {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                    modelAge, modelTags, time, modelMedical);
+            }
         }
         if (age != null && medicalCondition == null) {
-            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags);
+            if (time == null) {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags);
+            } else {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, time);
+            }
         }
         if (age == null && medicalCondition != null) {
-            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedical);
+            if (time == null) {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedical);
+            } else {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, time, modelMedical);
+            }
         }
-
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
-
 }
