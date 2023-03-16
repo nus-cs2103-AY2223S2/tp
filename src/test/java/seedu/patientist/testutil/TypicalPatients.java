@@ -47,7 +47,7 @@ public class TypicalPatients {
     public static Patientist getTypicalPatientist() {
         Patientist pt = new Patientist();
         for (Patient pat : getTypicalPatients()) {
-            pt.addPerson(pat);
+            //pt.addPerson(pat); todo
         }
         return pt;
     }

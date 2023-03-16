@@ -33,11 +33,11 @@ public class IdNumberTest {
 
     @Test
     public void constructor_invalidIdNumberInput() {
-        assertThrows(IllegalArgumentException.class, () -> new PatientIdNumber("Invalid as there are spaces"));
+        assertThrows(IllegalArgumentException.class, () -> new IdNumber("Invalid as there are spaces"));
     }
 
     @Test
     public void constructor_nullInput() {
-        assertThrows(NullPointerException.class, () -> new PatientIdNumber(null));
+        assertThrows(NullPointerException.class, () -> new IdNumber(null));
     }
 }

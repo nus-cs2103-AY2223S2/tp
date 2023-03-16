@@ -56,10 +56,10 @@ class JsonSerializablePatientist {
             }
             if (person instanceof Staff) {
                 Staff staff = (Staff) person;
-                patientist.addPerson(staff);
+                //patientist.addPerson(staff);
             } else {
                 Patient patient = (Patient) person;
-                patientist.addPerson(patient);
+                //patientist.addPerson(patient);
             }
         }
         return patientist;

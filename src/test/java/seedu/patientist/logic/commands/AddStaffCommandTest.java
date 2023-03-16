@@ -21,7 +21,9 @@ import seedu.patientist.model.Patientist;
 import seedu.patientist.model.ReadOnlyPatientist;
 import seedu.patientist.model.ReadOnlyUserPrefs;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.staff.Staff;
+import seedu.patientist.model.ward.Ward;
 import seedu.patientist.testutil.StaffBuilder;
 
 public class AddStaffCommandTest {
@@ -110,10 +112,10 @@ public class AddStaffCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
+        //@Override
+        //public void addPerson(Person person) {
+        //throw new AssertionError("This method should not be called.");
+        //}
 
         @Override
         public void setPatientist(ReadOnlyPatientist patientist) {
@@ -131,12 +133,77 @@ public class AddStaffCommandTest {
         }
 
         @Override
+        public boolean hasPerson(Person person, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteStaff(Staff target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteStaff(Staff target, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePatient(Patient target, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public void deletePerson(Person target, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPatient(Patient patient, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStaff(Staff staff, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPatient(Patient target, Patient edited) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setStaff(Staff target, Staff edited) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasWard(Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addWard(Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteWard(Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setWard(Ward target, Ward editedWard) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -181,11 +248,11 @@ public class AddStaffCommandTest {
             return staffAdded.stream().anyMatch(x -> x.isSamePerson(person));
         }
 
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            staffAdded.add((Staff) person);
-        }
+        //@Override
+        //public void addPerson(Person person) {
+        //requireNonNull(person);
+        //staffAdded.add((Staff) person);
+        //}
 
         @Override
         public ReadOnlyPatientist getPatientist() {

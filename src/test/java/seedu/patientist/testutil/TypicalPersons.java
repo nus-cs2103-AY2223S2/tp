@@ -65,7 +65,7 @@ public class TypicalPersons {
     public static Patientist getTypicalPatientist() {
         Patientist ab = new Patientist();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            //ab.addPerson(person); todo
         }
         return ab;
     }

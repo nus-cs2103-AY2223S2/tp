@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.exceptions.DuplicatePersonException;
+import seedu.patientist.model.ward.Ward;
 import seedu.patientist.testutil.PersonBuilder;
 
 public class PatientistTest {
@@ -66,13 +67,13 @@ public class PatientistTest {
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        patientist.addPerson(ALICE);
+        //patientist.addPerson(ALICE);
         assertTrue(patientist.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        patientist.addPerson(ALICE);
+        //patientist.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(patientist.hasPerson(editedAlice));
@@ -88,6 +89,7 @@ public class PatientistTest {
      */
     private static class PatientistStub implements ReadOnlyPatientist {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Ward> wards = FXCollections.observableArrayList();
 
         PatientistStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +98,11 @@ public class PatientistTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Ward> getWardList() {
+            return wards;
         }
     }
 

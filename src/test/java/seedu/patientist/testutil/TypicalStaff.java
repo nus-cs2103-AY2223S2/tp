@@ -49,7 +49,7 @@ public class TypicalStaff {
     public static Patientist getTypicalPatientist() {
         Patientist pt = new Patientist();
         for (Staff staff : getTypicalStaff()) {
-            pt.addPerson(staff);
+            //pt.addPerson(staff); todo
         }
         return pt;
     }

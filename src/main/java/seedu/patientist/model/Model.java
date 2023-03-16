@@ -81,6 +81,10 @@ public interface Model {
      */
     void deleteStaff(Staff target, Ward ward);
 
+    // not meaningful to have a deletePatient(Patient) method because that will
+    // serve same purpose as deletePatient(Patient, Ward) since patient can only
+    // exist in 1 ward
+
     /**
      * Deletes the given patient.
      * Ward must exist, and patient must be in the ward.
@@ -97,9 +101,11 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
-     * Deletes the given person from the ward specified.
+     * Deletes the given person from the ward specified. This method exists for convenience sake.
      * The ward must exist in the patientist book.
      * The person must exist in the patientist book.
+     * This is functionally identical to Model::deleteStaff(Staff, Ward) when target is a Staff
+     * This is functionally identical to Model::deletePatient(Patient, Ward) when target is a Patient
      */
     void deletePerson(Person target, Ward ward);
 
@@ -132,6 +138,9 @@ public interface Model {
     /**
      * Replaces target Person with edited Person throughout Patientist.
      * Target person must exist in Patientist, and edited person must not already exist.
+     * This is a method for convenience that works for both Staff and Patient,
+     * also for backward compatibility with old AB3 code. Try to avoid using this.
+     * This method should be deleted if possible as it may be bug-prone.
      */
     void setPerson(Person target, Person edited);
 
