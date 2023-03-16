@@ -453,27 +453,87 @@ Examples:
 
 ### Add or remove a label from a contact `tag`
 
-Edits the profile of a contact.
+Adds module tag(s) to an existing contact.
 
-<div markdown="block" class="alert alert-info">
+Formats: 
+* `tag CONTACT_INDEX m/MODULE_TAG`
+* `tag m/MODULE_TAG`
 
-:information_source: You can use this command if:
-*
+Example of usage: `tag 3 m/CS2103T`
+```
+Name: John Doe (User)
+Modules: [CS2101 , MA2104 , MA3252 , CFG1002]
+```
 
-</div>
+Expected outcome for CLI:
+```
+Module(s) tagged to Person!
+Name: John Smith
+Modules: [CS2100, CS2101, CS2102, CS2103T]
+Module(s) in common: [CS2101, CS2103T]
+```
+Description of outcome: 
 
-Formats:
-*
+CS2103T is added to John Doe's list of modules. Assuming the user also takes CS2101 and CS2103T, which are represented as the modules in common.
 
-What you should see:<br>
-{GUI}<br>
-{Explanation}
+Example of usage: tag m/CS2103T
+```
+Name: John Doe (user)
+Modules: [CS2101, MA2104, MA3252, CFG1002]
+```
 
-Examples:
+Expected outcome for CLI:
+```
+Module(s) tagged to Person!
+Name: John Doe
+Modules: [CS2101, CS2103T, MA2104, MA3252, CFG1002]
+```
+Description of outcome:
 
-## Search Commands
+CS2103T is added to John Doe's, the user, list of modules.
 
-### Find contacts that match your criteria `find`
+### Untagging a module from an existing contact : `untag`
+
+Removes a module tag from an existing contact.
+
+Formats: 
+* `untag CONTACT_INDEX m/MODULE_TAG`
+* `untag m/MODULE_TAG`
+
+Example of usage: `untag 3 m/CS2103T`
+```
+Name: John Doe (User)
+Modules: [CS2101, MA2104, MA3252, CFG1002]
+```
+
+Expected outcome for CLI:
+```
+"Module(s) untagged to Person!
+Name: John Smith
+Modules: [CS2100, CS2101, CS2102]
+Module(s) in common: [CS2101]
+```
+Description of outcome: 
+
+CS2103T is removed from John Doe's list of modules. Assuming the user also takes CS2101, which is represented as the modules in common.
+
+Example of usage: untag m/CS2103T
+```
+Name: John Doe (user)
+Modules: [CS2101, CS2103T, MA2104, MA3252, CFG1002]
+```
+
+Expected outcome for CLI:
+```
+"Module(s) untagged to Person!
+Name: John Doe
+Modules: [CS2101, MA2104, MA3252, CFG1002]
+```
+Description of outcome:
+
+CS2103T is added to John Doe's, the user, list of modules.
+
+### Locating persons by keyowrds : `find`
 
 Finds persons whose specified fields contain any of the given keywords.
 

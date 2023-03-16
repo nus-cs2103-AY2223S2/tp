@@ -24,22 +24,25 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
     public static final HashMap<String, String> LINUS = new HashMap<>() {{
             put("name", "Linus Richards");
-            put("phone", "11111111");
+            put("phone", "90102030");
             put("email", "linusrichards@gmail.com");
             put("address", "National University of Singapore");
             put("telegramHandle", "@linusrichards");
         }};
 
-    public static final String NAME_ALEX = "Alex Quentin";
-    public static final String NAME_BEN = "Benjamin DeMeer";
-    public static final String PHONE_ALEX = "81121128";
-    public static final String PHONE_BEN = "87965051";
-    public static final String EMAIL_ALEX = "alexquentin@gmail.com";
-    public static final String EMAIL_BEN = "benjamindemeer@gmail.com";
-    public static final String ADDRESS_ALEX = "301 Commonwealth Avenue";
-    public static final String ADDRESS_BEN = "11 Kallang Bahru";
-    public static final String TELEGRAM_HANDLE_ALEX = "@alexquentin";
-    public static final String TELEGRAM_HANDLE_BEN = "@benjamindemeer";
+    public static final String NAME_ALEX = "Alex Quinn";
+    public static final String NAME_BEN = "Benjamin Khoo";
+    public static final String PHONE_ALEX = "94587551";
+    public static final String PHONE_BEN = "92552446";
+    public static final String EMAIL_ALEX = "alexquinn@gmail.com";
+    public static final String EMAIL_BEN = "benjaminkhoo@gmail.com";
+    public static final String ADDRESS_ALEX = "Queenstown";
+    public static final String ADDRESS_BEN = "Bencoolen";
+    public static final String TELEGRAM_HANDLE_ALEX = "@alexquinn";
+    public static final String TELEGRAM_HANDLE_BEN = "@benjaminkhoo";
+    public static final Integer INDEX_ALEX = 16;
+    public static final Integer INDEX_BEN = 17;
+
     public static final String VALID_GROUP_1 = "Groupmate";
     public static final String VALID_GROUP_2 = "TA";
     public static final String VALID_MODULE_1 = "CS2100";
@@ -81,11 +84,13 @@ public class CommandTestUtil {
         DESC_ALEX = new EditPersonDescriptorBuilder().withName(NAME_ALEX)
                 .withPhone(PHONE_ALEX).withEmail(EMAIL_ALEX).withAddress(ADDRESS_ALEX)
                 .withTelegramHandle(TELEGRAM_HANDLE_ALEX)
+                .withContactIndex(INDEX_ALEX)
                 .withGroupTags(VALID_GROUP_2)
                 .withModuleTags(VALID_MODULE_1, VALID_MODULE_2).build();
         DESC_BEN = new EditPersonDescriptorBuilder().withName(NAME_BEN)
                 .withPhone(PHONE_BEN).withEmail(EMAIL_BEN)
                 .withAddress(ADDRESS_BEN)
+                .withContactIndex(INDEX_BEN)
                 .withTelegramHandle(TELEGRAM_HANDLE_BEN)
                 .withGroupTags(VALID_GROUP_1, VALID_GROUP_2)
                 .withModuleTags(VALID_MODULE_2).build();

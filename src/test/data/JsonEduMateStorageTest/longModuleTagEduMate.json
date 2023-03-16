@@ -3,7 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "National University of Singapore",
+    "address": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -14,22 +14,25 @@
       "CS2102",
       "CS2103",
       "CS2104",
-      "CS2105"
-    ]
+      "CS2105",
+      "CS2106"
+    ],
+    "index": 0
   },
   "persons": [
     {
-      "name": "Melania Walker",
-      "email": "melaniawalker@gmail.com",
-      "telegramHandle": "@melaniawalker",
-      "address": "Millenia Walk",
+      "name": "Joo Rong",
+      "email": "joorong@gmail.com",
+      "telegramHandle": "@joorong",
+      "address": "Jurong East",
       "groups": [
-        "Enemy"
+        "NS"
       ],
-      "phone": "82724009",
+      "phone": "94044861",
+      "index": 65,
       "modules": [
         "CS2100",
-        "DSAI1101"
+        "DSAIS1101"
       ]
     }
   ]

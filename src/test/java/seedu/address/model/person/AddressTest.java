@@ -21,16 +21,31 @@ public class AddressTest {
 
     @Test
     public void isValidAddress() {
-        // null address
-        assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
-
         // invalid addresses
         assertFalse(Address.isValidAddress("")); // empty string
         assertFalse(Address.isValidAddress(" ")); // spaces only
 
         // valid addresses
-        assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(Address.isValidAddress("-")); // one character
-        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Address.isValidAddress("Punggol"));
+        assertTrue(Address.isValidAddress("Pasir Ris"));
+        assertTrue(Address.isValidAddress("Sixth Avenue"));
+
+        // wrong case but still works
+        assertTrue(Address.isValidAddress("punGGol"));
+        assertTrue(Address.isValidAddress("pasir ris"));
+        assertTrue(Address.isValidAddress("SIXTH avenue"));
+
+        // untrimmed still works
+        assertTrue(Address.isValidAddress("   Punggol"));
+        assertTrue(Address.isValidAddress("Pasir Ris   "));
+
+        // wrong spacing
+        assertFalse(Address.isValidAddress("Pasir  Ris"));
+        assertFalse(Address.isValidAddress("   Sixth     Avenue  "));
+
+        // looks valid, but is wrong
+        assertFalse(Address.isValidAddress("Pungol"));
+        assertFalse(Address.isValidAddress("Paris Ris"));
+        assertFalse(Address.isValidAddress("Fifth Avenue"));
     }
 }
