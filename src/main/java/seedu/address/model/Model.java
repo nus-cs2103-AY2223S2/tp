@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -62,6 +63,13 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
+
+    /**
+     * Deletes all the people in the list.
+     * All the people in the list must exist in the address book.
+     * @param listOfPeople ArrayList of Person.
+     */
+    void deleteMultiplePersons(ArrayList<Person> listOfPeople);
 
     /**
      * Adds the given person.

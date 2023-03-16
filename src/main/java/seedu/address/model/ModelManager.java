@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -104,6 +105,14 @@ public class ModelManager implements Model {
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
         undoManager.addToHistory(this.addressBook, String.format("Delete %1$s", target));
+    }
+
+    @Override
+    public void deleteMultiplePersons(ArrayList<Person> list) {
+        for (Person target: list) {
+            addressBook.removePerson(target);
+        }
+        undoManager.addToHistory(this.addressBook, String.format("Deleted list of people"));
     }
 
     @Override
