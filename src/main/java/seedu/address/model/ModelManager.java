@@ -63,7 +63,7 @@ public class ModelManager implements Model {
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredDeliveryJobs = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
         this.sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
-        updateSortedDeliveryJobListByDate();
+        //updateSortedDeliveryJobListByDate();
         this.jobListGroupedByDate = getSortedDeliveryJobListByDate();
         this.weekJobListGroupedByDate = new HashMap<LocalDate, ArrayList<ArrayList<DeliveryJob>>>();
         this.reminderList = this.addressBook.getReminderList();
@@ -302,6 +302,11 @@ public class ModelManager implements Model {
         int focusDayOfWeek = focusDate.getDayOfWeek().getValue();
         LocalDate dayToAdd = focusDate.plusDays(dayOfWeek - focusDayOfWeek);
         return weekJobListGroupedByDate.get(dayToAdd);
+    }
+
+    @Override
+    public LocalDate getFocusDate(){
+        return focusDate;
     }
 
     //=========== ReminderList Accessors =============================================================

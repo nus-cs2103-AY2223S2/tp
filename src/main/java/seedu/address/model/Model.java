@@ -121,7 +121,7 @@ public interface Model {
     Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getSortedDeliveryJobListByDate();
     Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList();
     ArrayList<ArrayList<DeliveryJob>> getDayOfWeekJob(int dayOfWeek);
-
+    LocalDate getFocusDate();
 
 
 

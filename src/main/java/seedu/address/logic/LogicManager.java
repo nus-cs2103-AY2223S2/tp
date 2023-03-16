@@ -127,4 +127,14 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public void setWeekDeliveryJobList(LocalDate focusDate) {
+        model.updateWeekDeliveryJobList(focusDate);
+    }
+
+    @Override
+    public LocalDate getFocusDate() {
+        return model.getFocusDate();
+    }
 }

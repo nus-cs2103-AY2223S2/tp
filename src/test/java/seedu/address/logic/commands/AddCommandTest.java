@@ -200,6 +200,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public LocalDate getFocusDate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setDeliveryJobSystem'");

@@ -2,9 +2,7 @@ package seedu.address.ui;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -76,6 +74,27 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
 
     @FXML
     private StackPane deliveryJobListPanelPlaceholder7;
+
+    @FXML
+    private Text day1;
+
+    @FXML
+    private Text day2;
+
+    @FXML
+    private Text day3;
+
+    @FXML
+    private Text day4;
+
+    @FXML
+    private Text day5;
+
+    @FXML
+    private Text day6;
+
+    @FXML
+    private Text day7;
 
     /**
      * Creates a {@code JobWindow} with the given {@code Stage} and {@code Logic}.
@@ -150,6 +169,9 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         year.setText(String.valueOf(focusDate.getYear()));
         month.setText(String.valueOf(focusDate.getMonth()));
 
+        focusDate = logic.getFocusDate();
+        setDayText();
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -159,6 +181,7 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        logic.setWeekDeliveryJobList(focusDate);
         Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> weekJobList = logic.getWeekDeliveryJobList();
 
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder1, logic.getDayofWeekJob(1));
@@ -168,8 +191,29 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder5, logic.getDayofWeekJob(5));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder6, logic.getDayofWeekJob(6));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder7, logic.getDayofWeekJob(7));
+
     }
 
+    private void setDayText() {
+        int focusDayOfWeek = focusDate.getDayOfWeek().getValue();
+
+        int day1Text = focusDate.plusDays(1 - focusDayOfWeek).getDayOfMonth();
+        int day2Text = focusDate.plusDays(2 - focusDayOfWeek).getDayOfMonth();
+        int day3Text = focusDate.plusDays(3 - focusDayOfWeek).getDayOfMonth();
+        int day4Text = focusDate.plusDays(4 - focusDayOfWeek).getDayOfMonth();
+        int day5Text = focusDate.plusDays(5 - focusDayOfWeek).getDayOfMonth();
+        int day6Text = focusDate.plusDays(6 - focusDayOfWeek).getDayOfMonth();
+        int day7Text = focusDate.plusDays(7 - focusDayOfWeek).getDayOfMonth();
+
+        day1.setText(String.valueOf(day1Text));
+        day2.setText(String.valueOf(day2Text));
+        day3.setText(String.valueOf(day3Text));
+        day4.setText(String.valueOf(day4Text));
+        day5.setText(String.valueOf(day5Text));
+        day6.setText(String.valueOf(day6Text));
+        day7.setText(String.valueOf(day7Text));
+
+    }
     private void addJobSlotsToPanel(StackPane panelPlaceholder, ArrayList<ArrayList<DeliveryJob>> jobListInDay) {
         for (int i = 0; i < jobListInDay.size(); i++) {
             ObservableList<DeliveryJob> jobListInSlot = FXCollections.observableList(jobListInDay.get(i));
@@ -180,11 +224,23 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
             deliveryJobListPanelPlaceholder.getChildren().add(slotNo);
             deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
             panelPlaceholder.getChildren().add(deliveryJobListPanelPlaceholder);
-            if (i == focusDayOfWeek - 1) {
-                panelPlaceholder.setStyle("-fx-background-color: YELLOW");
-            }
         }
     }
+
+    /*private void addDayTextToTimetableStackPane() {
+        logic.setWeekDeliveryJobList(focusDate);
+        Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> weekJobList = logic.getWeekDeliveryJobList();
+        List<LocalDate> dates = new ArrayList<LocalDate>(7);
+        weekJobList.forEach((k,v) -> {
+            dates.add(k);
+        });
+        for (int i = 0; i < dates.size(); i++) {
+            Text date = new Text(String.valueOf(dates.get(i)));
+          //  double textTranslationY = - (deliveryJobListPanelPlaceholder1.getHeight() / 2) * 0.75;
+          //  date.setTranslateY(textTranslationY);
+            deliveryJobListPanelPlaceholder1.getChildren().add(date);
+        }
+    }*/
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -223,7 +279,7 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
 
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.executeTimetableCommand(commandText);
+            CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

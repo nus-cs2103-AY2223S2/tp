@@ -75,4 +75,11 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    void setWeekDeliveryJobList(LocalDate focusDate);
+
+    /**
+     * Get user input focus date
+     * @return focus date
+     */
+    LocalDate getFocusDate();
 }
