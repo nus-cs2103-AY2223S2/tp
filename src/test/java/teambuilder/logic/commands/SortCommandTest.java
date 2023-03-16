@@ -1,6 +1,7 @@
 package teambuilder.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static teambuilder.testutil.TypicalPersons.getTypicalAddressBook;
@@ -49,6 +50,28 @@ public class SortCommandTest {
     public void execute_allArgumentsSpecifiedSuccessfully_success() throws CommandException {
         CommandResult commandResult = new SortCommand("desc", "tcount").execute(model);
         assertEquals(SortCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void equals() {
+        final SortCommand standardCommand = new SortCommand("desc", "tcount");
+
+        // same values -> returns true
+        SortCommand sameCommand = new SortCommand("desc", "tcount");
+        assertTrue(standardCommand.equals(sameCommand));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
+
+        // different order -> returns false
+        assertFalse(standardCommand.equals(new SortCommand("asc", "tcount")));
+
     }
 
 }
