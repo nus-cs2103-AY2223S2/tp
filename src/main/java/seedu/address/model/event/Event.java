@@ -5,16 +5,23 @@ package seedu.address.model.event;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Event {
-
     private final Name name;
     private final Date date;
     private final Time startTime;
     private final Time endTime;
-
+    
     /**
      * Every field must be present and not null.
      */
     public Event(Name name, Date date, Time startTime, Time endTime) {
+        this.name = name;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.date = "To be confirmed";
+    }
+    
+    public Event(Name name, String date, String startTime, String endTime) {
         this.name = name;
         this.date = date;
         this.startTime = startTime;
@@ -24,6 +31,7 @@ public class Event {
     public Name getName() {
         return name;
     }
+    public String getDate() {return date;}
 
     public Date getDate() {
         return date;
@@ -55,11 +63,11 @@ public class Event {
         if (other == this) {
             return true;
         }
-
+    
         if (!(other instanceof Event)) {
             return false;
         }
-
+    
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
             && otherEvent.getDate().equals(getDate())
