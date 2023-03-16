@@ -582,7 +582,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 3a1. System replaces the previous date with the new date.
 
       Use case ends.
-      
+
 **Use case: UC9 - Edit Event**
 
 **MSS**

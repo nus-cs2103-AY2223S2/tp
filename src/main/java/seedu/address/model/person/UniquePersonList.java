@@ -98,7 +98,7 @@ public class UniquePersonList implements Iterable<Event> {
         toUnmark.unmark();
         setPerson(toUnmark, toUnmark);
     }
-    
+
     /**
      * Links the equivalent event from the list.
      * The event must exist in the list

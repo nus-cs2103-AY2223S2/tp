@@ -32,7 +32,7 @@ public class Mark {
      */
     public void setUndone() {
         isDone = false;
-    } 
+    }
 
     @Override
     public String toString() {
