@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 
 /**
- * Represents a Fish in the feedingInterval book.
+ * Represents a Fish in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Fish {
