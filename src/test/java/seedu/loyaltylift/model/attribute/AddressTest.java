@@ -1,12 +1,10 @@
-package seedu.loyaltylift.model.customer;
+package seedu.loyaltylift.model.attribute;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.loyaltylift.model.attribute.Address;
 
 public class AddressTest {
 

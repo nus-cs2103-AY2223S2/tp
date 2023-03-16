@@ -113,7 +113,7 @@ Examples:
 
 Sets a customer's reward points.
 
-Format: `setpoints INDEX POINTS`
+Format: `setpoints INDEX pt/POINTS`
 
 * Sets the points of the customer at the specified `INDEX` to `POINTS`.
 * Customers by default, have 0 points initially.
@@ -121,10 +121,11 @@ Format: `setpoints INDEX POINTS`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The points refers to the reward points of the customer
 * The points **must be a positive integer** 1, 2, 3, ​​…
+* The points can only range from 0 to 999999
 
 Examples:
-* `listc` followed by `setpoints 2 100` sets the 2nd customer points as 100.
-* `findc Betsy` followed by `setpoints 1 300` sets the 1st customer points as 300 in the results of the `findc` command.
+* `listc` followed by `setpoints 2 pt/100` sets the 2nd customer points as 100.
+* `findc Betsy` followed by `setpoints 1 pt/300` sets the 1st customer points as 300 in the results of the `findc` command.
 
 ### Adding points for a customer / Removing points from a customer : `addpoints`
 
@@ -159,8 +160,10 @@ Format: `settier TIER_NUM POINT_THRESHOLD`
 * The points **must be a positive integer** 1, 2, 3, ​​…
 
 Examples:
-* `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be in tier 1.
-* `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold than tier 2. 
+* `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be
+in tier 1.
+* `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold
+than tier 2.
 
 ### Editing a person : `editc`
 
@@ -208,11 +211,90 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Adding an order : `addo`
 
-Clears all entries from the address book.
+Adds an order tagged to a customer, to the list of orders.
 
-Format: `clear`
+Format: `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS] [s/status]`
+
+* Adds an order, tagged to CUSTOMER_INDEX.
+* ADDRESS is optional and will be set to the customer's address by default
+* The index **must be a valid integer** (i.e. if there is 1 customer, CUSTOMER_INDEX can only be 1)
+* QUANTITY is optional and will be set to 1 by default. Otherwise, it must be a positive integer 1, 2, 3...
+* STATUS is optional and will be set to a default of "pending".
+
+Examples:
+* addo n/Banana Cake 1 q/2 s/paid
+  * Adds the order, 2 x Banana cakes to the list, tags it to customer 1, and status is "paid", address is the customer's address.
+* addo n/Strawberry ice cream 4
+  * Adds the order 1 x Strawberry ice cream, tags it to customer 4, and sets status to "pending"
+
+### Listing all customers : `listo`
+
+Shows a list of all orders
+
+Format: `listo [s or f/STATUS]`
+
+* If `listo s`, then sort by status, starting from pending, followed by paid, shipped and received
+* If `listo f/STATUS` then show only the given status
+
+Examples:
+* `listo` shows all orders.
+* `listo s` shows all orders, sorted by status.
+* `listo f/pending` shows all orders with "pending" status.
+
+### Editing an order : `edito`
+
+Edits an existing order in LoyaltyLift.
+
+Format: `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS] [s/STATUS]`
+
+* Edits the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+
+Examples:
+*  `edito 1 s/paid` Edits order of id 1, and changes the status to "paid".
+*  `edito 2 n/Brownies q/10` Edits the name of the 2nd order to be `Brownies` and the quantity to 10.
+
+### Locating orders by name: `findo`
+
+Finds persons whose names contain any of the given keywords.
+
+Format: `findo KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `chocolate` will match `Chocolate`
+* The order of the keywords does not matter. e.g. `chocolate cake` will match ` cake chocolate`.
+* Only the order name is searched.
+* Only full words will be matched e.g. `chocolate` will not match `chocolatey`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `chocolate cake` will return `chocolate muffin`, `crepe cake`
+
+Examples:
+* `findo chocolate` returns `chocolate cake` and `chocolate muffin`
+* `findo banana muffin` returns `banana cake`, `chocolate muffin`<br>
+
+### Deleting an order : `deleteo`
+
+Deletes the specified person from the address book.
+
+Format: `deleteo ORDER_INDEX`
+
+* Deletes the order at the specified `ORDER_INDEX`.
+* The index refers to the index number shown in the displayed order list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listo` followed by `delete 2` deletes the 2nd order on the displayed order list.
+* `findo chocolate` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+
+### Clearing all entries : `clearo`
+
+Clears all order entries from the address book.
+
+Format: `clearo`
 
 ### Exiting the program : `exit`
 

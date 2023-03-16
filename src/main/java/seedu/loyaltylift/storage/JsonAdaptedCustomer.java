@@ -16,6 +16,7 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -32,6 +33,8 @@ class JsonAdaptedCustomer {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
+    private final Integer points;
+
     /**
      * Constructs a {@code JsonAdaptedCustomer} with the given customer details.
      */
@@ -39,12 +42,14 @@ class JsonAdaptedCustomer {
     public JsonAdaptedCustomer(@JsonProperty("customerType") String customerType, @JsonProperty("name") String name,
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address,
-                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                               @JsonProperty("points") Integer points) {
         this.customerType = customerType;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.points = points;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -62,6 +67,7 @@ class JsonAdaptedCustomer {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        points = source.getPoints().value;
     }
 
     /**
@@ -119,7 +125,16 @@ class JsonAdaptedCustomer {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return new Customer(modelCustomerType, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (points == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Points.class.getSimpleName()));
+        }
+        if (!Points.isValidPoints(points)) {
+            throw new IllegalValueException(Points.MESSAGE_CONSTRAINTS);
+        }
+        final Points modelPoints = new Points(points);
+
+        return new Customer(modelCustomerType, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPoints);
     }
 
 }

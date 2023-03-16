@@ -27,6 +27,7 @@ public class Customer {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final Points points;
     /**
      * Every field must be present and not null.
      */
@@ -38,6 +39,22 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.points = new Points(0);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Customer(CustomerType customerType, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                    Points points) {
+        requireAllNonNull(name, phone, email, address, tags, points);
+        this.customerType = customerType;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.points = points;
     }
 
     public CustomerType getCustomerType() {
@@ -66,6 +83,10 @@ public class Customer {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Points getPoints() {
+        return points;
     }
 
     /**
@@ -121,7 +142,9 @@ public class Customer {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Points: ")
+                .append(getPoints());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

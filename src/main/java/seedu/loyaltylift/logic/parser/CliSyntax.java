@@ -15,4 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_QUANTITY = new Prefix("q/");
     public static final Prefix PREFIX_STATUS = new Prefix("s/");
 
+    public static final Prefix PREFIX_POINTS = new Prefix("pt/");
+
+
 }

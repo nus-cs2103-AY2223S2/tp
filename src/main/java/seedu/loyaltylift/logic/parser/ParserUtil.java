@@ -17,6 +17,7 @@ import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.order.Status;
 import seedu.loyaltylift.model.order.StatusValue;
+import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -25,6 +26,7 @@ import seedu.loyaltylift.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -165,5 +167,27 @@ public class ParserUtil {
             throw new ParseException(StatusValue.MESSAGE_FAIL_CONVERSION);
         }
         return status;
+    }
+
+    /**
+     * Parses a {@code String points} into an {@code Points}.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static Points parsePoints(String points) throws ParseException {
+        requireNonNull(points);
+        String trimmedPoints = points.trim();
+        Integer integerTrimmedPoints;
+        try {
+            integerTrimmedPoints = Integer.valueOf(trimmedPoints);
+        } catch (NumberFormatException e) {
+            // integerTrimmedPoints is a string that cannot be parsed
+            throw new ParseException(Points.MESSAGE_CONSTRAINTS);
+        }
+        if (!Points.isValidPoints(integerTrimmedPoints) || trimmedPoints.compareTo("-0") == 0) {
+            // integerTrimmedPoints is an integer that is not within the range of 0 to 999999
+            throw new ParseException(Points.MESSAGE_CONSTRAINTS);
+        }
+        return new Points(integerTrimmedPoints);
     }
 }

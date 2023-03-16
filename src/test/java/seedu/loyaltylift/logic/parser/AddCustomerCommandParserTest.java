@@ -35,10 +35,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
-import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 import seedu.loyaltylift.testutil.CustomerBuilder;
