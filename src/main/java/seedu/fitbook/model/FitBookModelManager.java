@@ -201,9 +201,9 @@ public class FitBookModelManager implements FitBookModel {
         // state check
         FitBookModelManager other = (FitBookModelManager) obj;
         return fitBook.equals(other.fitBook)
-                && fitBookExerciseRoutine.equals(other.fitBookExerciseRoutine)
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients)
+                && fitBookExerciseRoutine.equals(other.fitBookExerciseRoutine)
                 && filteredRoutines.equals(other.filteredRoutines);
     }
 

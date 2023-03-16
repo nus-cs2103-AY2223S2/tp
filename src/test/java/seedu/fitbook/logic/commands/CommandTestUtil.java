@@ -113,6 +113,7 @@ public class CommandTestUtil {
     // For Routine
     public static final String VALID_ROUTINE_NAME_CARDIO = "Cardio";
     public static final String VALID_ROUTINE_NAME_STRENGTH = "Strength";
+    public static final String VALID_ROUTINE_NAME_SWIM = "Swim";
     public static final String VALID_EXERCISE_PUSHUP = "3x10 Push Ups";
     public static final String VALID_EXERCISE_SITUP = "4x15 Sit ups";
     public static final String VALID_EXERCISE_INDEX = "1";
@@ -162,6 +163,7 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, FitBookModel actualFitBookModel, String expectedMessage,
             FitBookModel expectedFitBookModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+
         assertCommandSuccess(command, actualFitBookModel, expectedCommandResult, expectedFitBookModel);
     }
 

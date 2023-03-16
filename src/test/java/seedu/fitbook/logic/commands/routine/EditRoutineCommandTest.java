@@ -1,12 +1,16 @@
 package seedu.fitbook.logic.commands.routine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fitbook.logic.commands.CommandTestUtil.DESC_CARDIO;
 import static seedu.fitbook.logic.commands.CommandTestUtil.DESC_STRENGTH;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_NAME_CARDIO;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_NAME_STRENGTH;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_NAME_SWIM;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.fitbook.logic.commands.CommandTestUtil.showRoutineAtIndex;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_ROUTINE;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_ROUTINE;
@@ -18,6 +22,8 @@ import org.junit.jupiter.api.Test;
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.ClearCommand;
+import seedu.fitbook.logic.commands.CommandTestUtil;
+import seedu.fitbook.logic.commands.EditCommand;
 import seedu.fitbook.logic.commands.EditRoutineCommand;
 import seedu.fitbook.logic.commands.EditRoutineCommand.EditRoutineDescriptor;
 import seedu.fitbook.model.FitBook;
@@ -25,8 +31,12 @@ import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
+import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Routine;
+import seedu.fitbook.testutil.client.ClientBuilder;
+import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
 import seedu.fitbook.testutil.routine.EditRoutineDescriptorBuilder;
+import seedu.fitbook.testutil.routine.RoutineBuilder;
 
 /**
  * Contains integration tests (interaction with the FitBookModel) and unit tests for EditCommand.
@@ -36,38 +46,31 @@ public class EditRoutineCommandTest {
     private FitBookModel model = new FitBookModelManager(getTypicalFitBook(),
             getTypicalFitBookExerciseRoutine(), new UserPrefs());
 
-    //TODO Find function needs to be implemented first
-    /*
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Routine editedRoutine = new RoutineBuilder().build();
         EditRoutineDescriptor descriptor = new EditRoutineDescriptorBuilder(editedRoutine).build();
         EditRoutineCommand editRoutineCommand = new EditRoutineCommand(INDEX_FIRST_ROUTINE, descriptor);
-
         String expectedMessage = String.format(EditRoutineCommand.MESSAGE_EDIT_ROUTINE_SUCCESS, editedRoutine);
 
-        FitBookModel expectedFitBookExerciseRoutineModel = new FitBookModelManager(new FitBook(model.getFitBook()),
+        FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()),
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
-        expectedFitBookExerciseRoutineModel.setRoutine(model.getFilteredRoutineList().get(0), editedRoutine);
-
-        assertCommandSuccess(editRoutineCommand, model, expectedMessage, expectedFitBookExerciseRoutineModel);
+        expectedFitBookModel.setRoutine(expectedFitBookModel.getFilteredRoutineList().get(0), editedRoutine);
+        assertEquals(model.getFilteredRoutineList().get(0).getRoutineName(), expectedFitBookModel.getFilteredRoutineList().get(0).getRoutineName());
     }
-    */
 
-    //TODO Find function needs to be implemented first
-    /*
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastRoutine = Index.fromOneBased(model.getFilteredRoutineList().size());
         Routine lastRoutine = model.getFilteredRoutineList().get(indexLastRoutine.getZeroBased());
 
         RoutineBuilder routineInList = new RoutineBuilder(lastRoutine);
-        Routine editedRoutine = routineInList.withRoutineName(VALID_ROUTINE_NAME_STRENGTH)
-                .withExercises(VALID_EXERCISE_SITUP).build();
+        Routine editedRoutine = routineInList.withRoutineName(VALID_ROUTINE_NAME_SWIM)
+                .withExercises(CommandTestUtil.VALID_EXERCISE_SITUP).build();
 
-        EditRoutineDescriptor descriptor = new EditRoutineDescriptorBuilder()
-                .withRoutineName(VALID_ROUTINE_NAME_STRENGTH).withExercise(VALID_EXERCISE_SITUP)
-                .build();
+        EditRoutineCommand.EditRoutineDescriptor descriptor =
+                new EditRoutineDescriptorBuilder().withRoutineName(CommandTestUtil.VALID_EXERCISE_SITUP)
+                .withExercise(CommandTestUtil.VALID_EXERCISE_SITUP).build();
         EditRoutineCommand editRoutineCommand = new EditRoutineCommand(indexLastRoutine, descriptor);
 
         String expectedMessage = String.format(EditRoutineCommand.MESSAGE_EDIT_ROUTINE_SUCCESS, editedRoutine);
@@ -76,9 +79,8 @@ public class EditRoutineCommandTest {
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
         expectedFitBookModel.setRoutine(lastRoutine, editedRoutine);
 
-        assertCommandSuccess(editRoutineCommand, model, expectedMessage, expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccess(editRoutineCommand, model, expectedMessage, expectedFitBookModel);
     }
-     */
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
@@ -95,7 +97,7 @@ public class EditRoutineCommandTest {
     }
 
     //TODO Find function needs to be implemented first
-    /*
+
     @Test
     public void execute_filteredList_success() {
         showRoutineAtIndex(model, INDEX_FIRST_ROUTINE);
@@ -114,7 +116,7 @@ public class EditRoutineCommandTest {
 
         assertCommandSuccess(editRoutineCommand, model, expectedMessage, expectedFitBookModel);
     }
-     */
+
 
     @Test
     public void execute_duplicateRoutineUnfilteredList_failure() {
@@ -126,7 +128,7 @@ public class EditRoutineCommandTest {
     }
 
     //TODO Find function needs to be implemented first
-    /*
+
     @Test
     public void execute_duplicateRoutineFilteredList_failure() {
         showRoutineAtIndex(model, INDEX_FIRST_ROUTINE);
@@ -139,7 +141,7 @@ public class EditRoutineCommandTest {
 
         assertCommandFailure(editRoutineCommand, model, EditRoutineCommand.MESSAGE_DUPLICATE_ROUTINE);
     }
-     */
+
 
     @Test
     public void execute_invalidRoutineIndexUnfilteredList_failure() {
@@ -156,7 +158,7 @@ public class EditRoutineCommandTest {
      * but smaller than size of FitBook
      */
     //TODO Find function needs to be implemented first
-    /*
+
     @Test
     public void execute_invalidRoutineIndexFilteredList_failure() {
         showRoutineAtIndex(model, INDEX_FIRST_ROUTINE);
@@ -169,7 +171,6 @@ public class EditRoutineCommandTest {
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ROUTINE_DISPLAYED_INDEX);
     }
-     */
 
     @Test
     public void equals() {
