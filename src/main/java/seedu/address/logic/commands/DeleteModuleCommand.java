@@ -30,15 +30,17 @@ public class DeleteModuleCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ReadOnlyModule moduleToDelete = model.getTracker().getModule(targetModuleCode);
+        if (model.hasModule(targetModuleCode)) {
 
-        if (moduleToDelete == null) {
+            ReadOnlyModule moduleToDelete = model.getModule(targetModuleCode);
+            model.deleteModule(moduleToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
+
+        } else {
+
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, targetModuleCode));
+
         }
-
-        model.deleteModule(moduleToDelete);
-
-        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
     }
 
     @Override
