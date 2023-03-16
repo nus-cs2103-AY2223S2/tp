@@ -42,7 +42,7 @@
 
                 <HBox>
                     <VBox fx:id="personList" styleClass="pane-with-border" maxWidth="400" prefWidth="400"
-                          minHeight="500" VBox.vgrow="ALWAYS">
+                          minHeight="450" VBox.vgrow="ALWAYS">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
@@ -50,7 +50,7 @@
                     </VBox>
 
                     <VBox fx:id="personalPane" styleClass="pane-with-border" maxWidth="350" prefWidth="350"
-                          minHeight="500" VBox.vgrow="ALWAYS">
+                          minHeight="450" VBox.vgrow="ALWAYS">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
@@ -58,7 +58,8 @@
                     </VBox>
                 </HBox>
 
-                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border">
+                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                           minHeight="200">
                     <padding>
                         <Insets top="5" right="10" bottom="5" left="10"/>
                     </padding>
