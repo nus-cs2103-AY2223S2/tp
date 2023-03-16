@@ -61,7 +61,7 @@ public class UniqueApplicationList implements Iterable<Application> {
             throw new ApplicationNotFoundException();
         }
 
-        if (contains(editedApplication)) {
+        if (!target.equals(editedApplication) && contains(editedApplication)) {
             throw new DuplicateApplicationException();
         }
 
