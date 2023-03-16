@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/ksunil2001.png" width="200px">
 
-[[github](http://github.com/ksunil2001)] 
+[[github](http://github.com/ksunil2001)]
 [[portfolio](team/ksunil2001.md)]
 
 - Role: Developer
