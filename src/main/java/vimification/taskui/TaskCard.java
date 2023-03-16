@@ -21,11 +21,11 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label title;
+    private Label description;
     @FXML
     private Label id;
-    @FXML
-    private FlowPane tags;
+    // @FXML
+    // private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -34,7 +34,7 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         // this.task = task;
         id.setText(displayedIndex + ". ");
-        title.setText(task.getDescription().description);
+        description.setText(task.getDescription().description);
 
         // phone.setText(task.getPhone().value);
         // address.setText(task.getAddress().value);

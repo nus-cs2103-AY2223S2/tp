@@ -97,7 +97,8 @@ public class MainScreen extends UiPart<VBox> {
         commandInput = new CommandInput(this.getRoot());
         commandInputComponent.getChildren().add(commandInput.getRoot());
 
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         // personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        // leftComponent.getChildren().add(taskListPanel.getRoot());
+        leftComponent.getChildren().add(taskListPanel.getRoot());
     }
 }
