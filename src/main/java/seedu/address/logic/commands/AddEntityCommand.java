@@ -1,13 +1,11 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entity.Entity;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Adds a person to the address book.
@@ -19,7 +17,7 @@ public class AddEntityCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entity to the management system. "
         + "Parameters: "
         + PREFIX_CLASSIFICATION + "CLASSIFICATION "
-        + PREFIX_NAME + "NAME"
+        + PREFIX_NAME + "NAME "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_CLASSIFICATION + "char "

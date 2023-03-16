@@ -1,16 +1,18 @@
 package seedu.address.model.entity;
 
+import seedu.address.model.tag.Tag;
+
 import java.util.Objects;
 import java.util.Set;
-
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents an item, which is a child class of Entity
  */
 public class Item extends Entity {
     private final int cost;
+    public static final int  DEFAULT_COST = 0;
     private final float weight;
+    public static final int  DEFAULT_WEIGHT = 0;
 
     /**
      * Every field should be present and non-null.

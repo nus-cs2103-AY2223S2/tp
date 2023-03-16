@@ -1,19 +1,18 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import seedu.address.logic.commands.AddEntityCommand;
+import seedu.address.logic.commands.AddItemCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entity.Classification;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Name;
+import seedu.address.model.tag.Tag;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddEntityCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entity.Classification;
-import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.Name;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -41,17 +40,19 @@ public class AddEntityCommandParser implements Parser<AddEntityCommand> {
             argMultimap.getValue(PREFIX_CLASSIFICATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Entity entity = new Entity(name, tagList);
-        return new AddEntityCommand(entity);
-        /*
         if (classification.isCharacter()) {
             //Call AddCharacterCommmand
+            return null;
         } else if (classification.isItem()) {
-            return new AddItemCommand(entity);
+            Item item = new Item(name, Item.DEFAULT_COST,Item.DEFAULT_WEIGHT, tagList);
+            return new AddItemCommand(item);
         } else if (classification.isMob()) {
             // Call AddMobCommand
+            return null;
         } else {
-        }*/
+            return null;
+        }
+
 
     }
 
