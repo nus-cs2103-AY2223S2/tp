@@ -22,8 +22,7 @@ public class SampleVaxTypeData {
     public static final List<Requirement> HISTORY_REQS_REAL = List.of(
             new Requirement(RequirementType.NONE, new HashSet<>(List.of(
                     new GroupName("DOSE 1")))));
-    public static final List<Requirement> ALLERGY_REQS_REAL = List.of(
-            new Requirement(RequirementType.NONE, new HashSet<>(List.of(
+    public static final HashSet<GroupName> ALLERGY_REQS_REAL = new HashSet<>(List.of(
                     new GroupName("ALC-0315"),
                     new GroupName("ALC-0159"),
                     new GroupName("DSPC"),
@@ -31,7 +30,7 @@ public class SampleVaxTypeData {
                     new GroupName("Sucrose"),
                     new GroupName("Phosphate"),
                     new GroupName("Tromethamine"),
-                    new GroupName("Tromethamine hydrochloride")))));
+                    new GroupName("Tromethamine hydrochloride")));
     public static final VaxType TYPE_REAL = new VaxType(
             NAME_REAL,
             GROUPS_REAL,
@@ -46,7 +45,7 @@ public class SampleVaxTypeData {
             + "Vaccination";
     public static final String CMD_MIN_AGE_REAL = "--" + CliSyntax.PREFIX_MIN_AGE.getPrefix() + " 5";
     public static final String CMD_MAX_AGE_REAL = "";
-    public static final String CMD_ALLERGY_REQS_REAL = "--" + CliSyntax.PREFIX_ALLERGY_REQ.getPrefix() + " none::"
+    public static final String CMD_ALLERGY_REQS_REAL = "--" + CliSyntax.PREFIX_ALLERGY_REQ.getPrefix() + " "
             + "ALC-0315,"
             + "ALC-0159,"
             + "DSPC,"
@@ -67,9 +66,8 @@ public class SampleVaxTypeData {
     public static final List<Requirement> HISTORY_REQS_1 = List.of(
             new Requirement(RequirementType.NONE, new HashSet<>(List.of(
                     new GroupName("UNCHI")))));
-    public static final List<Requirement> ALLERGY_REQS_1 = List.of(
-            new Requirement(RequirementType.NONE, new HashSet<>(List.of(
-                    new GroupName("UNCHI")))));
+    public static final HashSet<GroupName> ALLERGY_REQS_1 = new HashSet<>(List.of(
+                    new GroupName("UNCHI")));
     public static final VaxType TYPE_1 = new VaxType(
             NAME_1,
             GROUPS_1,
@@ -81,7 +79,7 @@ public class SampleVaxTypeData {
     public static final String CMD_GROUPS_1 = "--" + CliSyntax.PREFIX_VAX_GROUPS.getPrefix() + " UNCHI";
     public static final String CMD_MIN_AGE_1 = "--" + CliSyntax.PREFIX_MIN_AGE.getPrefix() + " 35";
     public static final String CMD_MAX_AGE_1 = "--" + CliSyntax.PREFIX_MAX_AGE.getPrefix() + " 45";
-    public static final String CMD_ALLERGY_REQS_1 = "--" + CliSyntax.PREFIX_ALLERGY_REQ.getPrefix() + " none::UNCHI";
+    public static final String CMD_ALLERGY_REQS_1 = "--" + CliSyntax.PREFIX_ALLERGY_REQ.getPrefix() + " UNCHI";
     public static final String CMD_HISTORY_REQS_1 = "--" + CliSyntax.PREFIX_HISTORY_REQ.getPrefix() + " none::UNCHI";
 
 }

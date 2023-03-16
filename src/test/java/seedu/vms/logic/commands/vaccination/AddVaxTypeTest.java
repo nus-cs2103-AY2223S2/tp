@@ -42,10 +42,10 @@ public class AddVaxTypeTest {
             CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
             "NONE::UNCHI, i am invalid ( ^)o(^ )b, BANANA");
     private static final String INVALID_REQ_CMD_TOO_FEW_PARTS = String.format("UNCHI --%s %s",
-            CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
+            CliSyntax.PREFIX_HISTORY_REQ.getPrefix(),
             "NONE");
     private static final String INVALID_REQ_CMD_TOO_MANY_PARTS = String.format("UNCHI --%s %s",
-            CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
+            CliSyntax.PREFIX_HISTORY_REQ.getPrefix(),
             "NONE::UNCHI, BANANA::NONE::pear");
 
 
@@ -172,7 +172,7 @@ public class AddVaxTypeTest {
 
     private void checkExecution(String command, GroupName name, HashSet<GroupName> groups,
                 Age minAge, Age maxAge,
-                List<Requirement> allergyReq, List<Requirement> historyReq) throws Exception {
+                HashSet<GroupName> allergyReq, List<Requirement> historyReq) throws Exception {
         VaxType expected = new VaxType(name, groups, minAge, maxAge, allergyReq, historyReq);
 
         VaxTypeModelStub model = new VaxTypeModelStub();

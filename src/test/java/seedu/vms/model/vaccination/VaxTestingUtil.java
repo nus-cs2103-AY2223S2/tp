@@ -24,7 +24,7 @@ public class VaxTestingUtil {
      */
     public static void assertVaxType(VaxType vaxType,
             GroupName name, HashSet<GroupName> groups, Age minAge, Age maxAge,
-            List<Requirement> historyReqs, List<Requirement> allergyReqs) {
+            List<Requirement> historyReqs, HashSet<GroupName> allergyReqs) {
         assertEquals(name, vaxType.getGroupName(), "Name");
         assertEquals(groups, vaxType.getGroups(), "Groups");
         assertEquals(minAge, vaxType.getMinAge(), "Min age");
