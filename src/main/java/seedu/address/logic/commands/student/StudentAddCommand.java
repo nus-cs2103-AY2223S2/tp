@@ -34,6 +34,7 @@ import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.DuplicatePhoneException;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
@@ -99,9 +100,14 @@ public class StudentAddCommand extends StudentCommand {
     public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
 
-        if ((model.hasStudent(toAdd)) || !model.canInitialize(toAdd.getParentNumber(), toAdd.getParentName())) {
+        if (model.hasStudent(toAdd)) {
             throw new DuplicatePersonException();
         }
+
+        if (!model.canInitialize(toAdd.getParentNumber(), toAdd.getParentName())) {
+            throw new DuplicatePhoneException();
+        }
+
         model.addStudent(toAdd);
         ObservableList<Parent> parents = model.getFilteredParentList();
         setParent(parents, toAdd, model);
