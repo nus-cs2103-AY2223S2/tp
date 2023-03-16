@@ -16,7 +16,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyRepository;
 import seedu.address.model.Repository;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
@@ -33,7 +33,7 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonTaskStorage taskStorage = new JsonTaskStorage(getTempFilePath("test_task"));
-        JsonPersonTaskStorage personTaskStorage = new JsonPersonTaskStorage(getTempFilePath("test_person_task"));
+        JsonAssignTaskStorage personTaskStorage = new JsonAssignTaskStorage(getTempFilePath("test_person_task"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage, taskStorage, personTaskStorage);
     }
@@ -84,15 +84,15 @@ public class StorageManagerTest {
     public void personTaskBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonPersonTaskStorage} class.
+         * {@link JsonAssignTaskStorage} class.
          */
         Task task = TaskBuilder.ofRandomTask();
         Person person = new PersonBuilder().build();
-        Repository<PersonTask> original = new Repository<>();
-        original.addItem(new PersonTask(person.getId(), task.getId()));
+        Repository<AssignTask> original = new Repository<>();
+        original.addItem(new AssignTask(person.getId(), task.getId()));
         storageManager.savePersonTaskBook(original);
 
-        ReadOnlyRepository<PersonTask> retrieved = storageManager.readPersonTaskBook().get();
+        ReadOnlyRepository<AssignTask> retrieved = storageManager.readPersonTaskBook().get();
         assertEquals(original, Repository.of(retrieved));
     }
 

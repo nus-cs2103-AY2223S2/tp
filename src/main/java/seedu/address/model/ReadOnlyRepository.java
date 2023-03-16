@@ -10,6 +10,6 @@ public interface ReadOnlyRepository<T> {
     /**
      * Returns an unmodifiable view of the repository.
      */
-    ObservableList<T> getReadOnlyRepository();
+    ObservableList<T> getData();
 
 }

@@ -62,7 +62,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveTaskBook(officeConnectModel.getTaskModelManager().getReadOnlyRepository());
-            storage.savePersonTaskBook(officeConnectModel.getPersonTaskModelManager().getReadOnlyRepository());
+            storage.savePersonTaskBook(officeConnectModel.getAssignTaskModelManager().getReadOnlyRepository());
 
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);

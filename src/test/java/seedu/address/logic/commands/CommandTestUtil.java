@@ -246,9 +246,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getTaskModelManager().getFilteredItemList().size());
 
         Task task = model.getTaskModelManager().getFilteredItemList().get(targetIndex.getZeroBased());
-        String taskSubject = task.getSubject().getValue();
-        model.getTaskModelManager().updateFilteredItemList(x -> x.getSubject().getValue().equals(taskSubject)
-            ? true : false);
+        String taskSubject = task.getTitle().getValue();
+        model.getTaskModelManager().updateFilteredItemList(x -> x.getTitle().getValue().equals(taskSubject));
         assertEquals(1, model.getTaskModelManager().getFilteredItemList().size());
 
     }

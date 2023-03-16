@@ -9,7 +9,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyRepository;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.task.Task;
 
 /**
@@ -36,8 +36,8 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
 
     void saveTaskBook(ReadOnlyRepository<Task> taskBook) throws IOException;
 
-    Optional<ReadOnlyRepository<PersonTask>> readPersonTaskBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyRepository<AssignTask>> readPersonTaskBook() throws DataConversionException, IOException;
 
-    void savePersonTaskBook(ReadOnlyRepository<PersonTask> personTaskBook) throws IOException;
+    void savePersonTaskBook(ReadOnlyRepository<AssignTask> personTaskBook) throws IOException;
 
 }

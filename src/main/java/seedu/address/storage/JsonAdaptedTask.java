@@ -10,8 +10,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.shared.Id;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
-import seedu.address.model.task.Subject;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -22,8 +22,8 @@ public class JsonAdaptedTask {
     @JsonProperty("id")
 
     private final String id;
-    @JsonProperty("subject")
-    private final String subject;
+    @JsonProperty("title")
+    private final String title;
     @JsonProperty("content")
 
     private final String content;
@@ -36,10 +36,10 @@ public class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("id") String id, @JsonProperty("subject") String subject,
+    public JsonAdaptedTask(@JsonProperty("id") String id, @JsonProperty("title") String title,
                            @JsonProperty("content") String content, @JsonProperty("status") String status) {
         this.id = id;
-        this.subject = subject;
+        this.title = title;
         this.content = content;
         this.status = status;
     }
@@ -48,7 +48,7 @@ public class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        subject = source.getSubject().getValue();
+        title = source.getTitle().getValue();
         content = source.getContent().getValue();
         status = String.valueOf(source.getStatus().isValue());
         id = source.getId().getValue().toString();
@@ -68,11 +68,11 @@ public class JsonAdaptedTask {
         if (Id.isInValidId(id)) {
             throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
         }
-        if (subject == null) {
+        if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Subject.isValidSubject(subject)) {
-            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
+        if (!Title.isValidTitle(title)) {
+            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
 
         if (content == null) {
@@ -90,12 +90,12 @@ public class JsonAdaptedTask {
         }
 
         final Id modeId = new Id(id);
-        final Subject modelSubject = new Subject(subject);
+        final Title modelTitle = new Title(title);
         final Content modelContent = new Content(content);
         final Status modelStatus = new Status(Boolean.parseBoolean(status));
 
 
-        return new Task(modelSubject, modelContent, modelStatus, modeId);
+        return new Task(modelTitle, modelContent, modelStatus, modeId);
     }
 
 }

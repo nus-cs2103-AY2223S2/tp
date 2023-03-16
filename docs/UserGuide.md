@@ -34,7 +34,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to OfficeConnect.
    
-   * `add s/Complete slides c/Finish up slides for meeting st/false` : Adds a task with subject `Complete slides` to OfficeConnect.
+   * `add s/Complete slides c/Finish up slides for meeting st/false` : Adds a task with title `Complete slides` to OfficeConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -182,7 +182,7 @@ If your changes to the data file makes its format invalid, OfficeConnect will di
 
 Adds a task to OfficeConnect.
 
-Format: `addtask s/SUBJECT c/CONTENT st/STATUS`
+Format: `addtask s/TITLE c/CONTENT st/STATUS`
 
 Examples:
 - `addtask s/Complete slides c/Finish slides for meeting st/false`
@@ -265,11 +265,12 @@ Examples:
 
 ## Review tasks assigned to a Person: `reviewtask`
 
+
 Shows a list of persons assigned to an existing task in OfficeConnect.
 
-Format: `reviewtask SUBJECT`
+Format: `reviewtask TITLE`
 
-* Reviews the list of persons who are assigned to the task with the specified subject.
+* Reviews the list of persons who are assigned to the task with the specified title.
 
 Examples:
 - `reviewtask CS2103 TP` displays everyone who are assigned to this task.
@@ -292,7 +293,7 @@ _Details coming soon ..._
 | Action          | Format, Examples                                                                                                                                                     |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Task**    | `addtask s/SUBJECT c/CONTENT st/STATUS` <br> e.g., `addtask s/Draft proposal c/Complete proposal by 1st March st/false`                                              |
+| **Add Task**    | `addtask s/TITLE c/CONTENT st/STATUS` <br> e.g., `addtask s/Draft proposal c/Complete proposal by 1st March st/false`                                              |
 | **Clear**       | `clear`                                                                                                                                                              |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
 | **Delete Task** | `deletetask INDEX`<br/> e.g. `deletetask 2`                                                                                                                          |
@@ -306,4 +307,4 @@ _Details coming soon ..._
 | **List All**    | `listall`                                                                                                                                                            |
 | **List Task**   | `listtask`                                                                                                                                                           |
 | **Review**      | `review NAME`<br> e.g., `review James Jake`                                                                                                                          |
-| **Review Task** | `reviewtask SUBJECT`<br> e.g., `reviewtask CS2103 TP`                                                                                                                |
+| **Review Task** | `reviewtask TITLE`<br> e.g., `reviewtask CS2103 TP`                                                                                                                |

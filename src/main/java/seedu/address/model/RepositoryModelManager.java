@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.LogsCenter;
@@ -18,7 +17,7 @@ public class RepositoryModelManager<T extends Relationship<T>> {
     private static final Logger logger = LogsCenter.getLogger(RepositoryModelManager.class);
     private final Repository<T> repo;
     private final FilteredList<T> itemFilteredList;
-    private final ObservableList<T> internalUnmodifiableList;
+    // private final ObservableList<T> internalUnmodifiableList;
 
     /**
      * Initializes an empty RepositoryModelManager
@@ -27,8 +26,8 @@ public class RepositoryModelManager<T extends Relationship<T>> {
 
         logger.fine("Initializing with repo: ");
         this.repo = Repository.of(new Repository<T>());
-        this.itemFilteredList = new FilteredList<>(this.repo.getReadOnlyRepository());
-        this.internalUnmodifiableList = FXCollections.unmodifiableObservableList(itemFilteredList);
+        this.itemFilteredList = new FilteredList<>(this.repo.getData());
+        // this.internalUnmodifiableList = FXCollections.unmodifiableObservableList(itemFilteredList);
     }
 
     /**
@@ -40,8 +39,8 @@ public class RepositoryModelManager<T extends Relationship<T>> {
         logger.fine("Initializing with repo: " + repo);
 
         this.repo = Repository.of(repo);
-        itemFilteredList = new FilteredList<>(this.repo.getReadOnlyRepository());
-        this.internalUnmodifiableList = FXCollections.unmodifiableObservableList(itemFilteredList);
+        itemFilteredList = new FilteredList<>(this.repo.getData());
+        // this.internalUnmodifiableList = FXCollections.unmodifiableObservableList(itemFilteredList);
 
     }
 

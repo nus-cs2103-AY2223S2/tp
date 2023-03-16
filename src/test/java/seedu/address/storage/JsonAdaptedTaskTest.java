@@ -12,8 +12,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.shared.Id;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
-import seedu.address.model.task.Subject;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 
 class JsonAdaptedTaskTest {
 
@@ -30,7 +30,7 @@ class JsonAdaptedTaskTest {
     @Test
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
         JsonAdaptedTask jsonTask = new JsonAdaptedTask(VALID_ID, VALID_SUBJECT, VALID_CONTENT, VALID_STATUS);
-        Task expectedTask = new Task(new Subject(VALID_SUBJECT), new Content(VALID_CONTENT),
+        Task expectedTask = new Task(new Title(VALID_SUBJECT), new Content(VALID_CONTENT),
             new Status(true), new Id(VALID_ID));
         assertEquals(expectedTask, jsonTask.toModelType());
     }

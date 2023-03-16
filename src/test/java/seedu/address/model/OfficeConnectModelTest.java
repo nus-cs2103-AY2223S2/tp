@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
@@ -15,14 +15,14 @@ import seedu.address.testutil.TaskBuilder;
 class OfficeConnectModelTest {
     private OfficeConnectModel officeModel;
     private Task testTask;
-    private PersonTask testPersonTask;
+    private AssignTask testAssignTask;
 
     @BeforeEach
     void setUp() {
         officeModel = new OfficeConnectModel();
         Person testPerson = new PersonBuilder().build();
         testTask = TaskBuilder.ofRandomTask();
-        testPersonTask = new PersonTask(testPerson.getId(), testTask.getId());
+        testAssignTask = new AssignTask(testPerson.getId(), testTask.getId());
 
     }
 
@@ -41,16 +41,16 @@ class OfficeConnectModelTest {
 
     @Test
     void addPersonTask_validPersonTask_returnsTrue() {
-        officeModel.getPersonTaskModelManager().addItem(testPersonTask);
-        assertTrue(officeModel.getPersonTaskModelManager().hasItem(testPersonTask));
+        officeModel.getAssignTaskModelManager().addItem(testAssignTask);
+        assertTrue(officeModel.getAssignTaskModelManager().hasItem(testAssignTask));
     }
 
     @Test
     void removePersonTask_validPersonTask_returnsTrue() {
-        officeModel.getPersonTaskModelManager().addItem(testPersonTask);
-        officeModel.getPersonTaskModelManager().deleteItem(testPersonTask);
+        officeModel.getAssignTaskModelManager().addItem(testAssignTask);
+        officeModel.getAssignTaskModelManager().deleteItem(testAssignTask);
 
-        assertFalse(officeModel.getPersonTaskModelManager().hasItem(testPersonTask));
+        assertFalse(officeModel.getAssignTaskModelManager().hasItem(testAssignTask));
     }
 
 

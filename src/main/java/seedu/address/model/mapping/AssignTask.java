@@ -13,14 +13,14 @@ import seedu.address.model.shared.Id;
  * valid Object.
  * TODO BUT THIS CODE HAS NOT IMPLEMENT THE LOGIC TO VERIFY THE TIGHT BOUND OF VALID RELATIONSHIP
  */
-public class PersonTask implements Relationship<PersonTask> {
+public class AssignTask implements Relationship<AssignTask> {
     private final Id personId;
     private final Id taskId;
 
     /**
      * Every field must be present and not null.
      */
-    public PersonTask(Id personId, Id taskId) {
+    public AssignTask(Id personId, Id taskId) {
         requireAllNonNull(personId, taskId);
         this.personId = personId;
         this.taskId = taskId;
@@ -33,7 +33,7 @@ public class PersonTask implements Relationship<PersonTask> {
     public Id getTaskId() {
         return taskId;
     }
-    public boolean hasSameId(PersonTask obj) {
+    public boolean hasSameId(AssignTask obj) {
         return equals(obj);
     }
     @Override
@@ -42,13 +42,13 @@ public class PersonTask implements Relationship<PersonTask> {
             return true;
         }
 
-        if (!(other instanceof PersonTask)) {
+        if (!(other instanceof AssignTask)) {
             return false;
         }
 
-        PersonTask otherPersonTask = (PersonTask) other;
-        return otherPersonTask.getPersonId().equals(getPersonId())
-            && otherPersonTask.getTaskId().equals(getTaskId());
+        AssignTask otherAssignTask = (AssignTask) other;
+        return otherAssignTask.getPersonId().equals(getPersonId())
+            && otherAssignTask.getTaskId().equals(getTaskId());
     }
 
     @Override
@@ -57,7 +57,7 @@ public class PersonTask implements Relationship<PersonTask> {
     }
 
     @Override
-    public boolean isSame(PersonTask obj) {
+    public boolean isSame(AssignTask obj) {
         return equals(obj);
     }
 
