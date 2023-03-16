@@ -24,7 +24,7 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(
                     new Name("Alex Yeoh"),
-                    new Course("Computer Science"),
+                    new Course("CS"),
                     new Year("1"),
                     new Github("alexyeoh"),
                     new Email("alexyeoh@example.com"),
@@ -34,7 +34,7 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("Bernice Yu"),
-                    new Course("Business"),
+                    new Course("BZA"),
                     new Year("2"),
                     new Github("bernice-yu"),
                     new Email("berniceyu@example.com"),
@@ -44,7 +44,7 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("Charlotte Oliveiro"),
-                    new Course("FASS"),
+                    new Course("CS"),
                     new Year("3"),
                     new Github("ch4rl0tt3"),
                     new Email("charlotte@example.com"),
@@ -54,7 +54,7 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("David Li"),
-                    new Course("Engineering"),
+                    new Course("INFOSYS"),
                     new Year("4"),
                     new Github("David-Li"),
                     new Email("lidavid@example.com"),
@@ -64,8 +64,8 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("Irfan Ibrahim"),
-                    new Course("Engineering"),
-                    new Year("4"),
+                    new Course("INFOSEC"),
+                    new Year("2"),
                     new Github("iRf4n"),
                     new Email("irfan@example.com"),
                     new Linkedin("linkedin.com/in/1rf4n"),
@@ -74,8 +74,8 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("Roy Balakrishnan"),
-                    new Course("Engineering"),
-                    new Year("4"),
+                    new Course("CEG"),
+                    new Year("2"),
                     new Github("b4l4Kr15H-n4n"),
                     new Email("royb@example.com"),
                     new Linkedin("linkedin.com/in/Roy"),
