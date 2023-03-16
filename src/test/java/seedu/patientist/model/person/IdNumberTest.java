@@ -1,4 +1,4 @@
-package seedu.patientist.model.person.patient;
+package seedu.patientist.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,17 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 
-public class PatientIdNumberTest {
-    private static final PatientIdNumber PID1_UPPER = new PatientIdNumber("A12345B");
-    private static final PatientIdNumber PID1_LOWER = new PatientIdNumber("a12345b");
-    private static final PatientIdNumber PID2_UPPER = new PatientIdNumber("C67890D");
-    private static final PatientIdNumber PID2_LOWER = new PatientIdNumber("c67890d");
+public class IdNumberTest {
+    private static final IdNumber PID1_UPPER = new IdNumber("A12345B");
+    private static final IdNumber PID1_LOWER = new IdNumber("a12345b");
+    private static final IdNumber PID2_UPPER = new IdNumber("C67890D");
+    private static final IdNumber PID2_LOWER = new IdNumber("c67890d");
 
 
     @Test
     public void equals_sameId_true() {
         assertTrue(PID1_UPPER.equals(PID1_UPPER));
-        assertTrue(PID1_UPPER.equals(new PatientIdNumber("A12345B")));
+        assertTrue(PID1_UPPER.equals(new IdNumber("A12345B")));
     }
 
     @Test

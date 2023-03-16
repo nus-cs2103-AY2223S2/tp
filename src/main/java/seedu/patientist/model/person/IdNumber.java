@@ -1,24 +1,25 @@
-package seedu.patientist.model.person.patient;
+package seedu.patientist.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.patientist.commons.util.AppUtil.checkArgument;
 
 /**
- * Object representing the ID number of a patient. ID numbers are automatically capitalised when they are created.
+ * API for an id number associated with a person.
  */
-public class PatientIdNumber {
-    public static final String MESSAGE_CONSTRAINTS = "PID should be alnum.";
+public class IdNumber {
+    public static final String MESSAGE_CONSTRAINTS = "ID should be of the format: alphanumeric";
 
+    /** ID should be alphanumeric. */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}]*";
 
-    private final String idNumber;
+    protected final String idNumber;
 
     /**
-     * Constructor for PatientIdNumber.
-     * @param idNumber String to be converted.
+     * Creates an idNumber.
+     *
+     * @param idNumber The idNumber in text form.
      */
-    //TODO: include error checking for invalid ID numbers
-    public PatientIdNumber(String idNumber) {
+    public IdNumber(String idNumber) {
         requireNonNull(idNumber);
         checkArgument(isValidPid(idNumber), MESSAGE_CONSTRAINTS);
         this.idNumber = idNumber.toUpperCase();
@@ -29,10 +30,6 @@ public class PatientIdNumber {
      */
     public static boolean isValidPid(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    public String getIdNumber() {
-        return idNumber;
     }
 
     @Override
@@ -50,9 +47,9 @@ public class PatientIdNumber {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof PatientIdNumber)) {
+        if (!(other instanceof IdNumber)) {
             return false;
         }
-        return this.idNumber.equals(((PatientIdNumber) other).idNumber);
+        return this.idNumber.equals(((IdNumber) other).idNumber);
     }
 }

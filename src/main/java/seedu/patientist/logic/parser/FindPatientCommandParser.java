@@ -1,8 +1,8 @@
 package seedu.patientist.logic.parser;
 
 import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PID;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -25,15 +25,15 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
      */
     public FindPatientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PID);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID);
 
-        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PID) || !argMultimap.getPreamble().isEmpty()
-                || areBothPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PID)) {
+        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID) || !argMultimap.getPreamble().isEmpty()
+                || areBothPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
         }
 
         Optional<String> name = argMultimap.getValue(PREFIX_NAME);
-        Optional<String> idNumber = argMultimap.getValue(PREFIX_PID);
+        Optional<String> idNumber = argMultimap.getValue(PREFIX_ID);
 
         if (idNumber.isEmpty()) {
             String[] nameKeywords = name.get().trim().split("\\s+");
