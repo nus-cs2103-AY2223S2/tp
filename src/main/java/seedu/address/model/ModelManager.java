@@ -162,16 +162,16 @@ public class ModelManager implements Model {
         //        }
     }
 
-        @Override
-        public void deleteCustomer(Customer target) {
-            this.shop.removeCustomer(target);
-        }
+    @Override
+    public void deleteCustomer(Customer target) {
+        this.shop.removeCustomer(target);
+    }
 
-        @Override
-        public void setCustomer(Customer target, Customer editedPerson) {
-            requireAllNonNull(target, editedPerson);
-            this.shop.setCustomer(target, editedPerson);
-        }
+    @Override
+    public void setCustomer(Customer target, Customer editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        this.shop.setCustomer(target, editedPerson);
+    }
 
     // ==== For Vehicles ==
     /**
