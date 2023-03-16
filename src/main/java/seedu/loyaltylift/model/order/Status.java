@@ -1,51 +1,27 @@
 package seedu.loyaltylift.model.order;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.loyaltylift.commons.util.AppUtil.checkArgument;
+
 /**
- * Represents an Order's status in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidStatus(StatusValue)}
+ * Represents the possible values for an Order's Status.
  */
-public class Status {
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Status can be any one of the predetermined values as defined in StatusValues, and it should not be null";
-
-    public final StatusValue value;
+public enum Status {
+    PENDING, PAID, SHIPPED, COMPLETED, CANCELLED;
 
     /**
-     * Constructs a {@code Status}.
+     * Returns a {@code Status} based on the given string.
      *
-     * @param status A valid status.
+     * @param status The given string.
      */
-    public Status(StatusValue status) {
+    public static Status fromString(String status) {
         requireNonNull(status);
-        checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
-        value = status;
-    }
-
-    /**
-     * Returns true if a given string is a valid status.
-     */
-    public static boolean isValidStatus(StatusValue test) {
-        return test != null;
+        return valueOf(status.toUpperCase());
     }
 
     @Override
     public String toString() {
-        return value.toString();
+        String str = super.toString();
+        return str.substring(0, 1).toUpperCase()
+                + str.substring(1).toLowerCase();
     }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Status // instanceof handles nulls
-                && value.equals(((Status) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }

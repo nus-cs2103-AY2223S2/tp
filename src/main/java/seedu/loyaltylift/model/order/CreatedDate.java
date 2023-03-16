@@ -3,9 +3,8 @@ package seedu.loyaltylift.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.util.AppUtil.checkArgument;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an Order's created date in the address book.
@@ -14,16 +13,16 @@ import java.util.Date;
 public class CreatedDate {
 
     public static final String MESSAGE_CONSTRAINTS = "CreatedDate can be any date not in the future";
-    public static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-    public final Date value;
+    public final LocalDate value;
 
     /**
      * Constructs a {@code CreatedDate}.
      *
      * @param date A valid date.
      */
-    public CreatedDate(Date date) {
+    public CreatedDate(LocalDate date) {
         requireNonNull(date);
         checkArgument(isValidCreatedDate(date), MESSAGE_CONSTRAINTS);
         value = date;
@@ -32,14 +31,14 @@ public class CreatedDate {
     /**
      * Returns true if a given string is a valid created date.
      */
-    public static boolean isValidCreatedDate(Date test) {
-        Date now = new Date();
-        return test.equals(now) || test.before(new Date());
+    public static boolean isValidCreatedDate(LocalDate test) {
+        LocalDate now = LocalDate.now();
+        return test.isEqual(now) || test.isBefore(now);
     }
 
     @Override
     public String toString() {
-        return DATE_FORMAT.format(value);
+        return value.format(DATE_FORMATTER);
     }
 
     @Override

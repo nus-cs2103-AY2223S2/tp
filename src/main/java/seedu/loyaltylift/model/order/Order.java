@@ -2,7 +2,7 @@ package seedu.loyaltylift.model.order;
 
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.loyaltylift.model.attribute.Address;
@@ -24,7 +24,7 @@ public class Order {
      * Order constructor with created date set to today.
      */
     public Order(Name name, Quantity quantity, Status status, Address address) {
-        this(name, quantity, status, address, new CreatedDate(new Date()));
+        this(name, quantity, status, address, new CreatedDate(LocalDate.now()));
     }
 
     /**
