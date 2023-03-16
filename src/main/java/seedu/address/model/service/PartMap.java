@@ -106,8 +106,12 @@ public class PartMap {
      *
      * @param partName Part name to increase quantity of
      * @param quantity Amount to increase
+     * @throws PartNotFoundException If part not in Set
      */
-    public void increasePartQuantity(String partName, int quantity) {
+    public void increasePartQuantity(String partName, int quantity) throws PartNotFoundException {
+        if (!this.map.containsKey(partName)) {
+            throw new PartNotFoundException(partName);
+        }
         this.map.put(partName, map.get(partName) + quantity);
     }
 
