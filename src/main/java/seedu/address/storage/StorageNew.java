@@ -6,19 +6,19 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUltron;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.ReadOnlyUserPrefsNew;
+import seedu.address.model.UserPrefsNew;
 
 /**
  * API of the Storage component
  */
-public interface StorageNew extends UltronStorage, UserPrefsStorage {
+public interface StorageNew extends UltronStorage, UserPrefsStorageNew {
 
     @Override
-    Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
+    Optional<UserPrefsNew> readUserPrefs() throws DataConversionException, IOException;
 
     @Override
-    void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
+    void saveUserPrefs(ReadOnlyUserPrefsNew userPrefs) throws IOException;
 
     @Override
     Path getUltronFilePath();

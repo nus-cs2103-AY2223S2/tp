@@ -34,13 +34,9 @@ public class Date {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        String[] date = test.split("@");
-        if (date.length != 2) {
-            return false;
-        }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            dateFormat.parse(date[1]);
+            dateFormat.parse(test);
             return true;
         } catch (ParseException e) {
             return false;

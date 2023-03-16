@@ -13,84 +13,84 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.LogicManagerNew;
-import seedu.address.logic.LogicNew;
-import seedu.address.model.ModelManagerNew;
-import seedu.address.model.ModelNew;
-import seedu.address.model.ReadOnlyUltron;
-import seedu.address.model.ReadOnlyUserPrefsNew;
-import seedu.address.model.Ultron;
-import seedu.address.model.UserPrefsNew;
-import seedu.address.model.util.SampleDataUtilNew;
-import seedu.address.storage.JsonUltronStorage;
-import seedu.address.storage.JsonUserPrefsStorageNew;
-import seedu.address.storage.StorageManagerNew;
-import seedu.address.storage.StorageNew;
-import seedu.address.storage.UltronStorage;
-import seedu.address.storage.UserPrefsStorageNew;
+import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
-import seedu.address.ui.UiManagerNew;
+import seedu.address.ui.UiManager;
 
 /**
  * Runs the application.
  */
-public class MainApp extends Application {
+public class MainAppOld extends Application {
 
     public static final Version VERSION = new Version(0, 2, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
-    protected LogicNew logic;
-    protected StorageNew storage;
-    protected ModelNew model;
+    protected Logic logic;
+    protected Storage storage;
+    protected Model model;
     protected Config config;
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing Ultron ]===========================");
+        logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
-        UserPrefsStorageNew userPrefsStorage = new JsonUserPrefsStorageNew(config.getUserPrefsFilePath());
-        UserPrefsNew userPrefs = initPrefs(userPrefsStorage);
-        UltronStorage ultronStorage = new JsonUltronStorage(userPrefs.getUltronFilePath());
-        storage = new StorageManagerNew(ultronStorage, userPrefsStorage);
+        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
+        UserPrefs userPrefs = initPrefs(userPrefsStorage);
+        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManagerNew(model, storage);
+        logic = new LogicManager(model, storage);
 
-        ui = new UiManagerNew(logic);
+        ui = new UiManager(logic);
     }
 
     /**
-     * Returns a {@code ModelManagerNew} with the data from {@code storage}'s  ultron and {@code userPrefs}. <br>
-     * The data from the sample ultron will be used instead if {@code storage}'s ultron is not found,
-     * or an empty ultron will be used instead if errors occur when reading {@code storage}'s ultron.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
+     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private ModelNew initModelManager(StorageNew storage, ReadOnlyUserPrefsNew userPrefs) {
-        Optional<ReadOnlyUltron> ultronOptional;
-        ReadOnlyUltron initialData;
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyAddressBook> addressBookOptional;
+        ReadOnlyAddressBook initialData;
         try {
-            ultronOptional = storage.readUltron();
-            if (!ultronOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample Ultron");
+            addressBookOptional = storage.readAddressBook();
+            if (!addressBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = ultronOptional.orElseGet(SampleDataUtilNew::getSampleUltron);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty Ultron");
-            initialData = new Ultron();
+            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            initialData = new AddressBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty Ultron");
-            initialData = new Ultron();
+            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            initialData = new AddressBook();
         }
 
-        return new ModelManagerNew(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -138,21 +138,21 @@ public class MainApp extends Application {
      * or a new {@code UserPrefs} with default configuration if errors occur when
      * reading from the file.
      */
-    protected UserPrefsNew initPrefs(UserPrefsStorageNew storage) {
+    protected UserPrefs initPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
         logger.info("Using prefs file : " + prefsFilePath);
 
-        UserPrefsNew initializedPrefs;
+        UserPrefs initializedPrefs;
         try {
-            Optional<UserPrefsNew> prefsOptional = storage.readUserPrefs();
-            initializedPrefs = prefsOptional.orElse(new UserPrefsNew());
+            Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
+            initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
                     + "Using default user prefs");
-            initializedPrefs = new UserPrefsNew();
+            initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty Ultron");
-            initializedPrefs = new UserPrefsNew();
+            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            initializedPrefs = new UserPrefs();
         }
 
         //Update prefs file in case it was missing to begin with or there are new/unused fields
@@ -167,13 +167,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting Ultron " + MainApp.VERSION);
+        logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Ultron ] =============================");
+        logger.info("============================ [ Stopping Address Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
