@@ -8,15 +8,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.event.Lab;
 import seedu.address.model.event.Note;
-import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
 /**
- * Jackson-friendly version of {@link Tutorial}.
+ * Jackson-friendly version of {@link Lab}.
  */
-class JsonAdaptedTutorial {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutorial's %s field is missing!";
+class JsonAdaptedLab {
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Lab's %s field is missing!";
 
     private final String name;
     private final LocalDate eventDate;
@@ -28,10 +28,10 @@ class JsonAdaptedTutorial {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTutorial(@JsonProperty("name") String name, @JsonProperty("eventDate") LocalDate eventDate,
-                             @JsonProperty("students") List<Person> students,
-                            @JsonProperty("attachments") List<File> attachments,
-                             @JsonProperty("notes") List<Note> notes) {
+    public JsonAdaptedLab(@JsonProperty("name") String name, @JsonProperty("eventDate") LocalDate eventDate,
+                               @JsonProperty("students") List<Person> students,
+                               @JsonProperty("attachments") List<File> attachments,
+                               @JsonProperty("notes") List<Note> notes) {
         this.name = name;
         this.eventDate = eventDate;
         this.students = students;
@@ -40,9 +40,9 @@ class JsonAdaptedTutorial {
     }
 
     /**
-     * Converts a given {@code Tutorial} into this class for Jackson use.
+     * Converts a given {@code Lab} into this class for Jackson use.
      */
-    public JsonAdaptedTutorial(Tutorial source) {
+    public JsonAdaptedLab(Lab source) {
         name = source.getName();
         eventDate = source.getDate();
         students = source.getStudents();
@@ -51,11 +51,11 @@ class JsonAdaptedTutorial {
     }
 
     /**
-     * Converts this Jackson-friendly adapted event object into the model's {@code Tutorial} object.
+     * Converts this Jackson-friendly adapted event object into the model's {@code Lab} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
-    public Tutorial toModelType() throws IllegalValueException {
+    public Lab toModelType() throws IllegalValueException {
         /*
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -64,7 +64,7 @@ class JsonAdaptedTutorial {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
          */
-        return new Tutorial(name, eventDate, students, attachments, notes);
+        return new Lab(name, eventDate, students, attachments, notes);
     }
 
 }

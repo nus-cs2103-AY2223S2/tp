@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Lab> filteredLabs;
     private final FilteredList<Tutorial> filteredTutorials;
 
     /**
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredLabs = new FilteredList<>(this.addressBook.getLabList());
         filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
     }
 
@@ -138,6 +141,30 @@ public class ModelManager implements Model {
         addressBook.setTutorial(target, editedTutorial);
     }
 
+    @Override
+    public boolean hasLab(Lab lab) {
+        requireNonNull(lab);
+        return addressBook.hasLab(lab);
+    }
+
+    @Override
+    public void deleteLab(Lab target) {
+        addressBook.removeLab(target);
+    }
+
+    @Override
+    public void addLab(Lab lab) {
+        addressBook.addLab(lab);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setLab(Lab target, Lab editedLab) {
+        requireAllNonNull(target, editedLab);
+
+        addressBook.setLab(target, editedLab);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -168,6 +195,19 @@ public class ModelManager implements Model {
         filteredTutorials.setPredicate(predicate);
     }
 
+    //=========== Filtered Lab List Accessors =============================================================
+
+    @Override
+    public ObservableList<Lab> getFilteredLabList() {
+        return filteredLabs;
+    }
+
+    @Override
+    public void updateFilteredLabList(Predicate<Lab> predicate) {
+        requireNonNull(predicate);
+        filteredLabs.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -185,6 +225,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredTutorials.equals(other.filteredTutorials);
+                && filteredTutorials.equals(other.filteredTutorials)
+                && filteredLabs.equals(other.filteredLabs);
     }
 }

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +23,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Event;
 import seedu.address.model.event.Tutorial;
 
 /**
@@ -137,18 +137,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        eventListPanel = new EventListPanel(filterTutorialList(logic.getFilteredTutorialList()));
+        eventListPanel = new EventListPanel(combineEvents());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
-
-        //Listen for new changes to eventListPanel
-        logic.getFilteredTutorialList().addListener((ListChangeListener<Tutorial>) change -> {
-            while (change.next()) {
-                if (change.wasAdded() || change.wasRemoved()) {
-                    eventListPanel = new EventListPanel(filterTutorialList(logic.getFilteredTutorialList()));
-                    eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
-                }
-            }
-        });
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -158,6 +148,13 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    List<ObservableList<? extends Event>> combineEvents() {
+        List<ObservableList<? extends Event>> events = new ArrayList<>();
+        events.add(logic.getFilteredTutorialList());
+        events.add(logic.getFilteredLabList());
+        return events;
     }
 
     /**

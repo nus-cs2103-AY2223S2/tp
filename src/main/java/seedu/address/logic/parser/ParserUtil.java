@@ -139,6 +139,37 @@ public class ParserUtil {
         return tagSet;
     }
 
+    //Parse event commands
+    /**
+     * Parses a {@code String name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseTutorialName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedName;
+    }
+
+    /**
+     * Parses a {@code String name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseLabName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedName;
+    }
+
     /**
      * Parses {@code String performance} into a {@code Performance} object.
      */
