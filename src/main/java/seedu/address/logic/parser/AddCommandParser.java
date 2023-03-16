@@ -7,8 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -37,8 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_AGE, PREFIX_TAG, PREFIX_MEDICAL);
-
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_AGE, PREFIX_TAG, PREFIX_SCHEDULE, PREFIX_MEDICAL);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -51,26 +52,49 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Optional<String> medicalAge = argMultimap.getValue(PREFIX_AGE);
         Optional<String> medicalString = argMultimap.getValue(PREFIX_MEDICAL);
+        Optional<String> time = argMultimap.getValue(PREFIX_SCHEDULE);
+        Person person;
+        LocalDateTime parsedTime = null;
+        if (time.isPresent()) {
+            if (time.get().trim().length() > 0) {
+                parsedTime = ParserUtil.parseTime(time.get());
+            }
+        }
         if (medicalString.isEmpty()) {
             if (medicalAge.isEmpty()) {
-                Person person = new Person(name, phone, email, address, tagList);
-                return new AddCommand(person);
+                if (time.isEmpty()) {
+                    person = new Person(name, phone, email, address, tagList);
+                } else {
+                    person = new Person(name, phone, email, address, tagList, parsedTime);
+                }
             } else {
                 Age age = ParserUtil.parseAge(medicalAge.get().toString());
-                Person person = new Person(name, phone, email, address, age, tagList);
-                return new AddCommand(person);
+                if (time.isEmpty()) {
+                    person = new Person(name, phone, email, address, age, tagList);
+                } else {
+                    person = new Person(name, phone, email, address, age, tagList, parsedTime);
+                }
             }
         } else {
             MedicalCondition medicalCondition = ParserUtil.parseMedicalCond(medicalString.get());
             if (medicalAge.isEmpty()) {
-                Person person = new Person(name, phone, email, address, tagList, medicalCondition);
-                return new AddCommand(person);
+                if (time.isEmpty()) {
+                    person = new Person(name, phone, email, address, tagList, medicalCondition);
+                } else {
+                    person = new Person(name, phone, email, address, tagList,
+                        parsedTime, medicalCondition);
+                }
             } else {
                 Age age = ParserUtil.parseAge(medicalAge.get().toString());
-                Person person = new Person(name, phone, email, address, age, tagList, medicalCondition);
-                return new AddCommand(person);
+                if (time.isEmpty()) {
+                    person = new Person(name, phone, email, address, age, tagList, medicalCondition);
+                } else {
+                    person = new Person(name, phone, email, address, age, tagList,
+                        parsedTime, medicalCondition);
+                }
             }
         }
+        return new AddCommand(person);
     }
 
     /**

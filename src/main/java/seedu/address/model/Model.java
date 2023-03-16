@@ -14,6 +14,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that filter out person with scheduled time */
+    Predicate<Person> PREDICATE_SCHEDULED = Person::hasTime;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -85,5 +88,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /** Returns an unmodifiable view of the persons arranged by scheduled time */
+    void updateScheduledList(Predicate<Person> predicate);
+
     void updateFilteredPersonListByName(Predicate<Person> predicate);
+
 }
