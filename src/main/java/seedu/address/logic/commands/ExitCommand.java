@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.logic.parser.UiSwitchMode;
-import seedu.address.model.Model;
+import seedu.address.experimental.model.Model;
 
 /**
  * Terminates the program.

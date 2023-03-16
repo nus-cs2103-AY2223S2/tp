@@ -125,8 +125,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        listModeEntityListPanel = new EntityListPanel(logic.getFilteredPersonList());
-        viewModeEntityListPanel = new EntityListPanel(logic.getFilteredPersonList());
+        listModeEntityListPanel = new EntityListPanel(logic.getFilteredEntityList());
+        viewModeEntityListPanel = new EntityListPanel(logic.getFilteredEntityList());
         listModePanel = new ListModePanel(listModeEntityListPanel);
         viewModePanel = new ViewModePanel(viewModeEntityListPanel);
         modePanelPlaceholder.getChildren().add(listModePanel.getRoot());
@@ -134,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getRerollFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

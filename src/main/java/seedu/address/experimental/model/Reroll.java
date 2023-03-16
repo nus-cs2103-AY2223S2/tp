@@ -14,6 +14,7 @@ import seedu.address.model.entity.Mob;
  * Reroll...
  */
 public class Reroll implements ReadOnlyReroll {
+
     private final RerollCharacters characters;
     private final RerollItems items;
     private final RerollMobs mobs;
@@ -24,10 +25,12 @@ public class Reroll implements ReadOnlyReroll {
         mobs = new RerollMobs();
     }
 
-    public Reroll() {}
+    public Reroll() {
+    }
 
     /**
      * Create Reroll from existing copy
+     *
      * @param toBeCopied
      */
     public Reroll(ReadOnlyReroll toBeCopied) {
@@ -37,6 +40,7 @@ public class Reroll implements ReadOnlyReroll {
 
     /**
      * Reset data to newData
+     *
      * @param newData
      */
     public void resetData(ReadOnlyReroll newData) {
@@ -66,6 +70,7 @@ public class Reroll implements ReadOnlyReroll {
 
     /**
      * Has entity
+     *
      * @param e
      * @return
      */
@@ -85,14 +90,19 @@ public class Reroll implements ReadOnlyReroll {
 
     /**
      * Add Entity
+     *
      * @param e
      */
     public void addEntity(Entity e) {
+        System.out.println("adding " + e.getName());
         if (e instanceof Item) {
+            System.out.println("adding item" + e.getName());
             items.addEntity((Item) e);
         } else if (e instanceof Character) {
+            System.out.println("adding character" + e.getName());
             characters.addEntity((Character) e);
         } else if (e instanceof Mob) {
+            System.out.println("adding mob" + e.getName());
             mobs.addEntity((Mob) e);
         } else {
 
@@ -101,6 +111,7 @@ public class Reroll implements ReadOnlyReroll {
 
     /**
      * Set Entity
+     *
      * @param target
      * @param edited
      */
@@ -121,6 +132,7 @@ public class Reroll implements ReadOnlyReroll {
 
     /**
      * Edit entity
+     *
      * @param key
      */
     public void deleteEntity(Entity key) {
@@ -136,8 +148,10 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     // Misc ====================
+
     /**
      * Return some list for the updated list
+     *
      * @return
      */
     public ObservableList<? extends Entity> getList() {

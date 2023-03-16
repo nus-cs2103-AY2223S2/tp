@@ -17,13 +17,14 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.experimental.model.ReadOnlyEntities;
+import seedu.address.experimental.model.RerollEntities;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.UiSwitchMode;
 import seedu.address.model.Model;
+import seedu.address.model.entity.Entity;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -36,11 +37,44 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Toggled view mode";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+        + ": Deletes the person identified by the index number used in the displayed person list.\n"
+        + "Parameters: CLASSIFICATION (char, mob or item)\n"
+        + "Example: " + COMMAND_WORD + " item short dagger";
+
+    private final String toEditName;
+    private final String toEditClassification;
+
+    public EditCommand(String toEditClassification, String toEditName) {
+        this.toEditClassification = toEditClassification;
+        this.toEditName = toEditName;
+    }
 
     @Override
-    public CommandResult execute(seedu.address.experimental.model.Model model) {
+    public CommandResult execute(seedu.address.experimental.model.Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, UiSwitchMode.TOGGLE);
+        ReadOnlyEntities rerollEntities;
+        switch (toEditClassification) {
+        case "char":
+            rerollEntities = model.getReroll().getCharacters();
+            break;
+        case "mob":
+            rerollEntities = model.getReroll().getMobs();
+            break;
+        case "item":
+            rerollEntities = model.getReroll().getItems();
+            break;
+        default:
+            throw new CommandException("Invalid Classification!");
+        }
+        for (Object entity : rerollEntities.getEntityList()) {
+            if (((Entity) entity).getName().fullName.equals(toEditName)) {
+                model.setCurrentSelectedEntity((Entity) entity);
+                return new CommandResult(MESSAGE_SUCCESS, false, false, UiSwitchMode.VIEW);
+            }
+        }
+
+        throw new CommandException(String.format("No such entity in %s!", toEditClassification));
     }
 }
 

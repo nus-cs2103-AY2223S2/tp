@@ -10,8 +10,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddEntityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 import seedu.address.model.tag.Tag;
 
@@ -39,20 +42,19 @@ public class AddEntityCommandParser implements Parser<AddEntityCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Classification classification = ParserUtil.parseClassification(
             argMultimap.getValue(PREFIX_CLASSIFICATION).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Entity entity = new Entity(name, tagList);
-        return new AddEntityCommand(entity);
-        /*
+        Entity entity = new Entity(name, tagSet);
+
         if (classification.isCharacter()) {
             //Call AddCharacterCommmand
+            entity = new Character(name, tagSet);
         } else if (classification.isItem()) {
-            return new AddItemCommand(entity);
+            entity = new Item(name, tagSet);
         } else if (classification.isMob()) {
-            // Call AddMobCommand
-        } else {
-        }*/
-
+            entity = new Mob(name, tagSet);
+        }
+        return new AddEntityCommand(entity);
     }
 
     /**

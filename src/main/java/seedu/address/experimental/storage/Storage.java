@@ -7,7 +7,7 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.experimental.model.ReadOnlyReroll;
 import seedu.address.experimental.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.experimental.model.UserPrefs;
 
 /**
  * API of the Storage component

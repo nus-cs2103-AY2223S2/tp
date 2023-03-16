@@ -17,10 +17,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
 import seedu.address.experimental.model.Model;
 import seedu.address.model.entity.Entity;
-import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -58,7 +58,7 @@ public class EditValueCommand extends Command {
         requireNonNull(editEntityDescriptor);
 
         this.entityToEdit = entity;
-        this.editEntityDescriptor = new EditEntityDescriptor(editEntityDescriptor);
+        this.editEntityDescriptor = editEntityDescriptor;
     }
 
     @Override
@@ -234,6 +234,11 @@ public class EditValueCommand extends Command {
         private Integer level;
         private Integer xp;
 
+        public EditCharacterDescriptor() {
+        }
+
+        ;
+
         public EditCharacterDescriptor(EditCharacterDescriptor toCopy) {
             super(toCopy);
             setStats(toCopy.stats);
@@ -293,6 +298,11 @@ public class EditValueCommand extends Command {
         private int challengeRating;
         private Boolean isLegendary;
 
+        public EditMobDescriptor() {
+        }
+
+        ;
+
         public EditMobDescriptor(EditMobDescriptor toCopy) {
             super(toCopy);
             setStats(toCopy.stats);
@@ -351,6 +361,9 @@ public class EditValueCommand extends Command {
 
         private Integer cost;
         private Float weight;
+
+        public EditItemDescriptor() {
+        }
 
         public EditItemDescriptor(EditItemDescriptor toCopy) {
             super(toCopy);

@@ -33,7 +33,7 @@ public class AddEntityCommandIntegrationTest {
         expectedModel.addPerson(validEntity);
 
         assertCommandSuccess(new AddEntityCommand(validEntity), model,
-                String.format(AddEntityCommand.MESSAGE_SUCCESS, validEntity), expectedModel);
+            String.format(AddEntityCommand.MESSAGE_SUCCESS, validEntity), expectedModel);
     }
 
     @Test
