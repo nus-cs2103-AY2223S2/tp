@@ -40,7 +40,8 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        if (personToDelete.isSamePerson(model.getViewedPerson().get(0))) {
+        if (!model.getViewedPerson().isEmpty()
+                && personToDelete.isSamePerson(model.getViewedPerson().get(0))) {
             model.updateViewedPerson(null);
         }
         model.deletePerson(personToDelete);
