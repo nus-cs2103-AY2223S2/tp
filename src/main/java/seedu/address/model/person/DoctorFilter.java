@@ -67,4 +67,16 @@ public class DoctorFilter {
 
         return result;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DoctorFilter // instanceof handles nulls
+                && this.nameFilter.equals(((DoctorFilter) other).nameFilter)
+                && this.phoneFilter.equals(((DoctorFilter) other).phoneFilter)
+                && this.emailFilter.equals(((DoctorFilter) other).emailFilter)
+                && this.specialtyFilter.equals(((DoctorFilter) other).specialtyFilter)
+                && this.yoeFilter.equals(((DoctorFilter) other).yoeFilter)
+                && this.tagsFilter.equals(((DoctorFilter) other).tagsFilter)); // state check
+    }
 }
