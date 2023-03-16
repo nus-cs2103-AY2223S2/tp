@@ -17,7 +17,7 @@ import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 
 
 /**
@@ -34,9 +34,9 @@ public class ListAllCommandTest {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         officeConnectModel = new OfficeConnectModel(new RepositoryModelManager<>(getTypicalTaskRepository()),
-                new RepositoryModelManager<>(new Repository<PersonTask>()));
+                new RepositoryModelManager<>(new Repository<AssignTask>()));
         expectedofficeConnectModel = new OfficeConnectModel(officeConnectModel.getTaskModelManager(),
-                new RepositoryModelManager<>(new Repository<PersonTask>()));
+                new RepositoryModelManager<>(new Repository<AssignTask>()));
     }
     @Test
     public void execute_listIsNotFiltered_showsSameList() {

@@ -13,8 +13,8 @@ import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.shared.Id;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
-import seedu.address.model.task.Subject;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 
 /**
  * Unmarks a marked task as uncompleted
@@ -59,11 +59,11 @@ public class UnmarkCommand extends Command {
     private static Task createUnmarkedTask(Task taskToUnmark) {
         assert taskToUnmark != null;
 
-        Subject subject = taskToUnmark.getSubject();
+        Title title = taskToUnmark.getTitle();
         Content content = taskToUnmark.getContent();
         Status doneStatus = new Status(false);
         Id id = taskToUnmark.getId();
-        return new Task(subject, content, doneStatus, id);
+        return new Task(title, content, doneStatus, id);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertTaskCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertTaskCommandSuccess;
@@ -16,16 +17,17 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.task.Task;
 
 public class DeleteTaskCommandTest {
 
-    private OfficeConnectModel model = new OfficeConnectModel(new RepositoryModelManager<>(getTypicalTaskRepository()),
-            new RepositoryModelManager<>(new Repository<PersonTask>()));
-    private OfficeConnectModel expectedModel = new OfficeConnectModel(new
-            RepositoryModelManager<>(model.getTaskModelManager().getReadOnlyRepository()),
-            new RepositoryModelManager<>(new Repository<PersonTask>()));
+    private final OfficeConnectModel model = new OfficeConnectModel(
+        new RepositoryModelManager<>(getTypicalTaskRepository()),
+        new RepositoryModelManager<>(new Repository<AssignTask>()));
+    private final OfficeConnectModel expectedModel = new OfficeConnectModel(new
+        RepositoryModelManager<>(model.getTaskModelManager().getReadOnlyRepository()),
+        new RepositoryModelManager<>(new Repository<AssignTask>()));
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -67,7 +69,7 @@ public class DeleteTaskCommandTest {
         Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased()
-                < model.getTaskModelManager().getReadOnlyRepository().getReadOnlyRepository().size());
+                < model.getTaskModelManager().getReadOnlyRepository().getData().size());
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
 
@@ -81,20 +83,20 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand deleteSecondCommand = new DeleteTaskCommand(INDEX_SECOND);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertEquals(deleteFirstCommand, deleteFirstCommand);
 
         // same values -> returns true
         DeleteTaskCommand deleteFirstCommandCopy = new DeleteTaskCommand(INDEX_FIRST);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertNotEquals(1, deleteFirstCommand);
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertNotEquals(null, deleteFirstCommand);
 
         // different task -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertNotEquals(deleteFirstCommand, deleteSecondCommand);
     }
 
     /**

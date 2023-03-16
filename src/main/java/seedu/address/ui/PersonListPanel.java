@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.model.OfficeConnectModel;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 
 
@@ -44,25 +44,10 @@ public class PersonListPanel extends UiPart<Region> {
             this.officeConnectModel = officeConnectModel;
         }
 
-        // @Override
-        // public void updateSelected(boolean selected) {
-        //     super.updateSelected(selected);
-        //     if (selected) {
-        //         Logger logger = LogsCenter.getLogger(PersonListPanel.class);
-        //         logger.info("An item selected: " + this.getItem().toString());
-        //
-        //         ObservableList<PersonTask> personTasks = officeConnectModel.getPersonTaskModelManager()
-        //             .getFilteredItemList().filtered(personTask ->
-        //                 personTask.getPersonId().equals(super.getItem().getId()));
-        //
-        //         officeConnectModel.getTaskModelManager().updateFilteredItemList(task -> personTasks.stream()
-        //             .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
-        //     }
-        // }
-
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
+            Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
             if (empty || person == null) {
                 setGraphic(null);
@@ -70,19 +55,18 @@ public class PersonListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
                 setOnMouseClicked(event -> {
-                    if (event.getClickCount() == 1) {
-                        System.out.println("Single click on item: " + PersonListViewCell.super.getItem());
-                        Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+                    if (event.getClickCount() == 1) { // Single Click
                         logger.info("An item selected: " + PersonListViewCell.super.getItem().toString());
 
-                        ObservableList<PersonTask> personTasks = officeConnectModel.getPersonTaskModelManager()
+                        ObservableList<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager()
                             .getFilteredItemList().filtered(personTask ->
                                 personTask.getPersonId().equals(PersonListViewCell.super.getItem().getId()));
 
-                        officeConnectModel.getTaskModelManager().updateFilteredItemList(task -> personTasks.stream()
+                        officeConnectModel.getTaskModelManager().updateFilteredItemList(task -> assignTasks.stream()
                             .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
-                    } else if (event.getClickCount() == 2) {
-                        System.out.println("Double click on item: " + PersonListViewCell.super.getItem());
+                    } else if (event.getClickCount() == 2) { //Double Click
+                        logger.info("A double Click triggered");
+
                     }
                 });
             }

@@ -22,7 +22,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -38,7 +38,7 @@ class AddTaskCommandTest {
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         RepositoryModelManagerStub repoModelManagerStub = new RepositoryModelManagerStub();
         OfficeConnectModel testModel = new OfficeConnectModel(repoModelManagerStub,
-                new RepositoryModelManager<PersonTask>(new Repository<PersonTask>()));
+                new RepositoryModelManager<AssignTask>(new Repository<AssignTask>()));
         Task validTask = new TaskBuilder().build();
 
         CommandResult commandResult = new AddTaskCommand(validTask).execute(new ModelStub(), testModel);
@@ -54,7 +54,7 @@ class AddTaskCommandTest {
         RepositoryModelManagerStubWithTask repositoryModelManagerStubWithTask =
                 new RepositoryModelManagerStubWithTask(validTask);
         OfficeConnectModel testModel = new OfficeConnectModel(repositoryModelManagerStubWithTask,
-                new RepositoryModelManager<PersonTask>(new Repository<PersonTask>()));
+                new RepositoryModelManager<AssignTask>(new Repository<AssignTask>()));
 
         assertThrows(CommandException.class, AddTaskCommand.MESSAGE_DUPLICATE_TASK, () ->
                 addTaskCommand.execute(new ModelStub(), testModel));

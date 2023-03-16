@@ -8,7 +8,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyRepository;
 import seedu.address.model.Repository;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -18,8 +18,9 @@ import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
-import seedu.address.model.task.Subject;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
+
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -50,18 +51,18 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Subject("Task 1"), new Content("Content 1"), new Status(true),
+            new Task(new Title("Task 1"), new Content("Content 1"), new Status(true),
                 new Id("c916334d-1111-4dbd-9372-e553116b3892")),
-            new Task(new Subject("Task 2"), new Content("Content 2"), new Status(false),
+            new Task(new Title("Task 2"), new Content("Content 2"), new Status(false),
                 new Id("a716334d-0000-4dbd-9372-e553116b3893"))
         };
     }
 
-    public static PersonTask[] getSamplePersonTask() {
-        return new PersonTask[] {
-            new PersonTask(new Id("f26605e3-613d-4d6b-946c-43e496f07f76"),
+    public static AssignTask[] getSampleAssignTasks() {
+        return new AssignTask[] {
+            new AssignTask(new Id("f26605e3-613d-4d6b-946c-43e496f07f76"),
                 new Id("c916334d-1111-4dbd-9372-e553116b3892")),
-            new PersonTask(new Id("c916334d-0b63-4dbd-9372-e553116b3892"),
+            new AssignTask(new Id("c916334d-0b63-4dbd-9372-e553116b3892"),
                 new Id("a716334d-0000-4dbd-9372-e553116b3893")),
         };
     }
@@ -74,12 +75,12 @@ public class SampleDataUtil {
         return sampleTasksRepo;
     }
 
-    public static ReadOnlyRepository<PersonTask> getSamplePersonTasksRepo() {
-        Repository<PersonTask> samplePersonTasksRepo = new Repository<>();
-        for (PersonTask personTask : getSamplePersonTask()) {
-            samplePersonTasksRepo.addItem(personTask);
+    public static ReadOnlyRepository<AssignTask> getSampleAssignTaskRepo() {
+        Repository<AssignTask> sampleAssignTaskRepo = new Repository<>();
+        for (AssignTask assignTask : getSampleAssignTasks()) {
+            sampleAssignTaskRepo.addItem(assignTask);
         }
-        return samplePersonTasksRepo;
+        return sampleAssignTaskRepo;
     }
 
 

@@ -33,3 +33,12 @@
     -fx-border-radius: 3px;
     -fx-font-size: 12px;
 }
+
+.progress-indicator .percentage {
+    -fx-fill: black;
+}
+
+.progress-indicator  {
+    -fx-padding: 0 0 -16 0;
+    visibility: true;
+}

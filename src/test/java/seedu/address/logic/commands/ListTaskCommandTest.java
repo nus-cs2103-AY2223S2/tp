@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 
 /**
  * Contains integration tests (interaction with OfficeConnectModel) and unit tests for ListTaskCommand.
@@ -24,9 +24,9 @@ public class ListTaskCommandTest {
     @BeforeEach
     public void setUp() {
         model = new OfficeConnectModel(new RepositoryModelManager<>(getTypicalTaskRepository()),
-                new RepositoryModelManager<>(new Repository<PersonTask>()));
+                new RepositoryModelManager<>(new Repository<AssignTask>()));
         expectedModel = new OfficeConnectModel(model.getTaskModelManager(),
-                new RepositoryModelManager<>(new Repository<PersonTask>()));
+                new RepositoryModelManager<>(new Repository<AssignTask>()));
     }
 
     @Test

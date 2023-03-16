@@ -3,10 +3,10 @@
 <?import java.net.URL?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.Label?>
-<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
+<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11"
            xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
-    <URL value="@ResultDisplay.css" />
+    <URL value="@../css/ResultDisplay.css" />
   </stylesheets>
 
   <Label fx:id="resultDisplay" styleClass="result-display"/>

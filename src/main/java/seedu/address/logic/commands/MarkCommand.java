@@ -13,8 +13,8 @@ import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.shared.Id;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
-import seedu.address.model.task.Subject;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 
 /**
  * Marks a task as completed
@@ -59,11 +59,11 @@ public class MarkCommand extends Command {
     private static Task createMarkedTask(Task taskToMark) {
         assert taskToMark != null;
 
-        Subject subject = taskToMark.getSubject();
+        Title title = taskToMark.getTitle();
         Content content = taskToMark.getContent();
         Status doneStatus = new Status(true);
         Id id = taskToMark.getId();
-        return new Task(subject, content, doneStatus, id);
+        return new Task(title, content, doneStatus, id);
     }
 
     @Override

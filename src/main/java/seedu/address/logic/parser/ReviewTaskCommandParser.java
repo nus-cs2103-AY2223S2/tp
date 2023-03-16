@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.ReviewTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.SubjectContainsExactKeywordsPredicate;
+import seedu.address.model.task.TitleContainsExactKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ReviewTaskCommand object
@@ -28,7 +28,7 @@ public class ReviewTaskCommandParser implements Parser<ReviewTaskCommand> {
 
         String[] subjectKeywords = trimmedArgs.split("\\s+");
 
-        return new ReviewTaskCommand(new SubjectContainsExactKeywordsPredicate(Arrays.asList(subjectKeywords)));
+        return new ReviewTaskCommand(new TitleContainsExactKeywordsPredicate(Arrays.asList(subjectKeywords)));
 
     }
 

@@ -2,7 +2,7 @@
 /* Credit https://www.freepik.com/ for free image */
 
 .pane-with-border {
-    -fx-background-image: url("grassland.png");
+    -fx-background-image: url("../images/grassland.png");
     -fx-background-size: 100% auto; /* Scale the background image horizontally to fit the width of the container */
     -fx-background-repeat: no-repeat;
     -fx-background-position: center; /* Center the background image vertically */

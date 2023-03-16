@@ -10,7 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.RepositoryModelManager;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsExactKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -62,7 +62,7 @@ public class ReviewCommand extends Command {
         Id pId = person.getId();
         Name name = person.getName();
 
-        ObservableList<PersonTask> assignedTaskList = getAssignedTaskList(officeConnectModel, pId);
+        ObservableList<AssignTask> assignedTaskList = getAssignedTaskList(officeConnectModel, pId);
 
         displayAssignedTaskAndPerson(model, officeConnectModel, assignedTaskList, pId);
 
@@ -74,19 +74,18 @@ public class ReviewCommand extends Command {
     }
 
     private static void displayAssignedTaskAndPerson(Model model, OfficeConnectModel officeConnectModel,
-                                                     ObservableList<PersonTask> assignedTaskList, Id pId) {
+                                                     ObservableList<AssignTask> assignedTaskList, Id pId) {
         RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
         model.updateFilteredPersonList(person -> person.getId().equals(pId));
         taskModelManager.updateFilteredItemList(task -> assignedTaskList.stream()
                 .anyMatch(personTask -> personTask.getTaskId().equals(task.getId())));
     }
 
-    private static ObservableList<PersonTask> getAssignedTaskList(OfficeConnectModel officeConnectModel, Id pId) {
-        RepositoryModelManager<PersonTask> personTaskModelManager = officeConnectModel.getPersonTaskModelManager();
-        ObservableList<PersonTask> assignedTaskList = personTaskModelManager
+    private static ObservableList<AssignTask> getAssignedTaskList(OfficeConnectModel officeConnectModel, Id pId) {
+        RepositoryModelManager<AssignTask> personTaskModelManager = officeConnectModel.getAssignTaskModelManager();
+        return personTaskModelManager
                 .getFilteredItemList()
                 .filtered(persontask -> persontask.getPersonId().equals(pId));
-        return assignedTaskList;
     }
 
     @Override

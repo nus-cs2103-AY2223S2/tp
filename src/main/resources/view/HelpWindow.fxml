@@ -15,14 +15,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@HelpWindow.css" />
+        <URL value="@../css/HelpWindow.css" />
       </stylesheets>
 
       <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="302.0" prefWidth="632.0">
@@ -31,7 +31,7 @@
                   <top>
                      <VBox BorderPane.alignment="CENTER">
                         <children>
-                           <HBox stylesheets="@HelpWindow.css">
+                           <HBox stylesheets="@../css/HelpWindow.css">
                               <children>
                             <Label fx:id="helpMessage" text="Label">
                               <HBox.margin>

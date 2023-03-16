@@ -13,23 +13,23 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyRepository;
-import seedu.address.model.mapping.PersonTask;
+import seedu.address.model.mapping.AssignTask;
 
 
 /**
- * A class to access PersonTaskBook data stored as a json file on the hard disk.
+ * A class to access AssignTask data stored as a json file on the hard disk.
  */
-public class JsonPersonTaskStorage implements RepositoryStorage<PersonTask> {
+public class JsonAssignTaskStorage implements RepositoryStorage<AssignTask> {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonPersonTaskStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonAssignTaskStorage.class);
     private final Path filePath;
-    public JsonPersonTaskStorage(Path filePath) {
+    public JsonAssignTaskStorage(Path filePath) {
         this.filePath = filePath;
     }
 
 
     @Override
-    public Optional<ReadOnlyRepository<PersonTask>> readRepository() throws DataConversionException {
+    public Optional<ReadOnlyRepository<AssignTask>> readRepository() throws DataConversionException {
         return readRepository(filePath);
     }
 
@@ -40,17 +40,17 @@ public class JsonPersonTaskStorage implements RepositoryStorage<PersonTask> {
      * @throws DataConversionException if the file is not in the correct format.
      */
     @Override
-    public Optional<ReadOnlyRepository<PersonTask>> readRepository(Path filePath) throws
+    public Optional<ReadOnlyRepository<AssignTask>> readRepository(Path filePath) throws
             DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializablePersonTaskBook> jsonPersonTaskBook = JsonUtil.readJsonFile(
-            filePath, JsonSerializablePersonTaskBook.class);
-        if (jsonPersonTaskBook.isEmpty()) {
+        Optional<JsonSerializableAssignTasks> jsonAssignTasks = JsonUtil.readJsonFile(
+            filePath, JsonSerializableAssignTasks.class);
+        if (jsonAssignTasks.isEmpty()) {
             return Optional.empty();
         }
         try {
-            return Optional.of(jsonPersonTaskBook.get().toModelType());
+            return Optional.of(jsonAssignTasks.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -58,7 +58,7 @@ public class JsonPersonTaskStorage implements RepositoryStorage<PersonTask> {
     }
 
     @Override
-    public void saveRepository(ReadOnlyRepository<PersonTask> repository) throws IOException {
+    public void saveRepository(ReadOnlyRepository<AssignTask> repository) throws IOException {
         saveRepository(repository, filePath);
 
     }
@@ -68,11 +68,11 @@ public class JsonPersonTaskStorage implements RepositoryStorage<PersonTask> {
      * @param filePath location of the data. Cannot be null.
      */
     @Override
-    public void saveRepository(ReadOnlyRepository<PersonTask> repository, Path filePath) throws IOException {
+    public void saveRepository(ReadOnlyRepository<AssignTask> repository, Path filePath) throws IOException {
         requireNonNull(repository);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializablePersonTaskBook(repository), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAssignTasks(repository), filePath);
     }
 }

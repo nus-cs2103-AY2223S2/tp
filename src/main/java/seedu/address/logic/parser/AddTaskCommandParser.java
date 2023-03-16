@@ -11,8 +11,9 @@ import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
-import seedu.address.model.task.Subject;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
+
 
 /**
  * Parses input arguments and creates a new AddTaskCommand object
@@ -31,8 +32,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Content content = ParserUtil.parseContent(argMultimap.getValue(PREFIX_CONTENT).get());
-        Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
-        Task task = new Task(subject, content, status);
+        Title title = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
+        Task task = new Task(title, content, status);
         return new AddTaskCommand(task);
     }
 

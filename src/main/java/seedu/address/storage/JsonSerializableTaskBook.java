@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
 /**
  * An Immutable task_book that is serializable to JSON format.
  */
-@JsonRootName(value = "task_book")
+@JsonRootName(value = "taskRepo")
 class JsonSerializableTaskBook {
 
     public static final String MESSAGE_DUPLICATE = "Tasks list contains duplicate task(s).";
@@ -38,7 +38,7 @@ class JsonSerializableTaskBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableTaskBook}.
      */
     public JsonSerializableTaskBook(ReadOnlyRepository<Task> source) {
-        tasks.addAll(source.getReadOnlyRepository().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        tasks.addAll(source.getData().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
