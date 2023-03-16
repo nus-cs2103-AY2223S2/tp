@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalModules.getTypicalTracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.ListCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -28,7 +29,7 @@ public class ListCommandTest {
     private Model expectedModel;
 
     private ListCommand listCommand;
-    private final Module CS2040S = new ModuleBuilder()
+    private final Module module = new ModuleBuilder()
             .withCode("CS2040S").withName("Data Structures and Algorithms")
             .withTags("Heavy", "Math", "Analysis")
             .withLectures(TypicalLectures.CS2040S_WEEK_1, TypicalLectures.CS2040S_WEEK_2,
@@ -56,7 +57,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsLectures() {
-        ModuleCode moduleCode = CS2040S.getCode();
+        ModuleCode moduleCode = module.getCode();
         String input = String.format("list /mod %s", moduleCode);
         try {
             listCommand = new ListCommandParser().parse(input);
@@ -70,8 +71,8 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsVideos() {
-        ModuleCode moduleCode = CS2040S.getCode();
-        LectureName lectureName = CS2040S.getLectureList().get(0).getName();
+        ModuleCode moduleCode = module.getCode();
+        LectureName lectureName = module.getLectureList().get(0).getName();
         String input = String.format("list /mod %s /lec %s", moduleCode, lectureName);
         try {
             listCommand = new ListCommandParser().parse(input);
