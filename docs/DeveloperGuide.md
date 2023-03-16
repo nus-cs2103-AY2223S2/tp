@@ -287,7 +287,6 @@ Priorities:
 | Lesson Plan Management                                                     | `* * *`  | tutor   | Create lesson plans for future classes                                                                | I can always plan ahead of my lessons                                                                                                                                                           |
 |                                                                            | `* *`    | tutor   | View my students’ lesson history                                                                      | I can recap past lessons with my student.                                                                                                                                                       |
 |                                                                            | `* *`    | tutor   | View the date and time of a past lesson                                                               | I can see how many lessons I’ve had over a period of time                                                                                                                                       |
-|                                                                            | `*`      |         |                                                                                                       |                                                                                                                                                                                                 |
 
 *{As at v1.2, more to be added}*
 
@@ -295,12 +294,132 @@ Priorities:
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a new student**
+
+**MSS**
+
+1.  User enters new-student command with NAME, ADDRESS, PHONE, EMAIL and (optionally) School, Grade Level.
+2.  TutorPro adds the new student to the student list.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. A student with the same name already exists.
+    * 2a1. TutorPro notifies the user of a duplicate.
+    * 2a2. TutorPro continues to take input.
+      
+    Use case continues at step 1.
+
+* 2b. The wrong formatting was used.
+    * 2b1. TutorPro notifies the user of wrong formatting.
+    * 2b2. TutorPro continues to take input.
+      
+    Use case continues at step 1.
+
+
+**Use case: Delete a student**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  TutorPro shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  AddressBook deletes the person
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+      
+    Use case resumes at step 2.
+
+
+**Use case: Update a student's particulars**
+
+**MSS**
+
+1.  User enters new-student command with NAME, ADDRESS, PHONE, EMAIL and (optionally) School, Grade Level.
+2.  TutorPro adds the new student to the student list.
+    Use case ends.
+
+**Extensions**
+
+* 2a. The wrong formatting was used.
+    * 2b1. TutorPro notifies the user of wrong formatting.
+    * 2b2. TutorPro continues to take input.
+      Use case continues at step 1.
+
+
+**Use case: View a student's profile**
+
+**MSS**
+
+1.  User requests to list persons
+2.  TutorPro shows a list of persons
+3.  User clicks on **Profile** button of a particular student
+4.  TutorPro displays the profile of that student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+**Use case: Assign homework for a student**
+
+**MSS**
+
+1.  User requests to list persons
+2.  TutorPro shows a list of persons
+3.  User enters assign-homework command with student name and homework title.
+4.  TutorPro assigns the homework to that particular student.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given name does not exist in the list.
+* 3b. The user used invalid command format.
+
+    * 3*1. TutorPro shows an error message.
+
+  Use case resumes at step 3.
+
+**Use case: View a Student's Homework**
+
+**MSS**
+
+1.  User enters view-homework command with a student's name.
+2.  TutorPro shows all the completed/incomplete homework of that student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Alternatively, the user clicks on the **Homework** button next to the student name.
+
+  Use case resumes at 2.
+
+**Use case: Delete a student**
+
+**MSS**
+
+1.  User requests to list persons
+2.  TutorPro shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
 
@@ -316,8 +435,7 @@ Priorities:
 
     * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
-
+  Use case resumes at step 2.
 *{More to be added}*
 
 ### Non-Functional Requirements
