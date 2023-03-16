@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+
+<StackPane fx:id="detailedContent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+    <VBox fx:id="profileContent" spacing="10">
+        <Label fx:id="name" alignment="TOP_LEFT" styleClass="studentNameLabel" text="Name" />
+        <Label fx:id="phone" alignment="TOP_LEFT" text="Phone" />
+        <Label fx:id="address" alignment="TOP_LEFT" text="Address"/>
+        <Label fx:id="email" alignment="TOP_LEFT" text="Email" />
+
+        <VBox fx:id="tagsContainer" spacing="5" />
+    </VBox>
+</StackPane>

@@ -60,7 +60,7 @@ public class StudentBuilder {
         tags = new HashSet<>(studentToCopy.getTags());
         homeworkList = new ArrayList<>(studentToCopy.getHomeworkList());
         lessonList = new ArrayList<>(studentToCopy.getLessonsList());
-        examList = new ArrayList<>(studentToCopy.getExamList());
+        examList = new ArrayList<>(studentToCopy.getExamsList());
     }
 
     /**

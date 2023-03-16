@@ -9,7 +9,7 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Lesson {
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private final String title;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
@@ -44,6 +44,24 @@ public class Lesson {
     }
 
     /**
+     * Returns the start time of the lesson in a String format.
+     *
+     * @return The start time of the lesson in a String format.
+     */
+    public String getStartTimeString() {
+        return startTime.format(formatter);
+    }
+
+    /**
+     * Returns the end time of the lesson in a String format.
+     *
+     * @return
+     */
+    public String getEndTimeString() {
+        return endTime.format(formatter);
+    }
+
+    /**
      * Returns true if the 2 lessons' timeslot conflict with each other.
      * @param otherLesson The other lesson to compare with.
      * @return True if the lessons' timeslots overlap each other.
@@ -71,6 +89,15 @@ public class Lesson {
         return otherLesson.getTitle().equals(getTitle())
             && otherLesson.getStartTime().equals(getStartTime())
             && otherLesson.getEndTime().equals(getEndTime());
+    }
+
+    /**
+     * Returns true if the lesson has ended.
+     *
+     * @return True if the lesson has ended.
+     */
+    public boolean isPastLesson() {
+        return getEndTime().isBefore(LocalDateTime.now());
     }
 
     @Override

@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -178,5 +179,41 @@ public class UniqueExamList implements Iterable<Exam> {
     public void updateFilteredExamList(Predicate<Exam> examStatusPredicate) {
         requireNonNull(examStatusPredicate);
         internalList.removeIf(examStatusPredicate.negate());
+    }
+
+    /**
+     * Returns a list of past exams.
+     * The list is sorted by start time and capped at 3 exams.
+     *
+     * @return a list of past exams.
+     */
+    public ObservableList<Exam> getPastExams() {
+        ObservableList<Exam> pastExams = FXCollections.observableArrayList();
+        for (Exam exam : internalList) {
+            if (exam.isPastExam()) {
+                pastExams.add(exam);
+            }
+        }
+        return pastExams;
+    }
+
+    /**
+     * Returns a list of upcoming exams.
+     * The list is sorted by start time and capped at 3 exams.
+     *
+     * @return a list of upcoming exams.
+     */
+    public ObservableList<Exam> getUpcomingExams() {
+        List<Exam> upcomingExams = FXCollections.observableArrayList();
+        for (Exam exam : internalList) {
+            if (!exam.isPastExam()) {
+                upcomingExams.add(exam);
+            }
+        }
+        upcomingExams.sort(Comparator.comparing(Exam::getStartTime));
+        if (upcomingExams.size() > 3) {
+            upcomingExams = upcomingExams.subList(0, 3);
+        }
+        return FXCollections.observableArrayList(upcomingExams);
     }
 }

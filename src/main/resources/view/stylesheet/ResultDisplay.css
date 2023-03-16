@@ -1,0 +1,20 @@
+#resultDisplay {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-fill: #1d1d1d;
+    -fx-opacity: 1;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 7;
+    -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 2, 3);
+}
+
+#resultDisplay .content {
+    -fx-background-color: transparent, #fffceb, transparent, #fffceb;
+    -fx-background-radius: 7;
+}
+
+#result-display .label {
+    -fx-text-fill: black !important;
+}

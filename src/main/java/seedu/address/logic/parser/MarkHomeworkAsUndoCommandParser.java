@@ -21,6 +21,9 @@ public class MarkHomeworkAsUndoCommandParser implements Parser<MarkHomeworkAsUnd
     /**
      * Parses the given {@code String} of arguments in the context of the MarkHomeworkAsDoneCommand
      * and returns a MarkHomeworkAsDoneCommand object for execution.
+     *
+     * @param args the user input to be parsed.
+     * @return MarkHomeworkAsUndoCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public MarkHomeworkAsUndoCommand parse(String args) throws ParseException {
