@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.parser.UiSwitchMode;
 import seedu.address.experimental.model.Model;
+import seedu.address.logic.parser.UiSwitchMode;
 
 /**
  * Format full help instructions for every command for display.
