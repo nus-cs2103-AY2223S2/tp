@@ -3,6 +3,9 @@ package seedu.address.model.person.fields;
 import seedu.address.model.person.fields.subfields.NusMod;
 import java.util.Set;
 
+import seedu.address.model.person.fields.subfields.NusMod;
+
+
 /**
  * Represents a Person's modules taken in the address book.
  */

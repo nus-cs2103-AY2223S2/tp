@@ -11,13 +11,17 @@ import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditContactCommand;
+import seedu.address.logic.commands.EditUserCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FavoriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.UnfavoriteCommand;
+import seedu.address.logic.parser.editpersoncommandsparser.EditContactCommandParser;
+import seedu.address.logic.parser.editpersoncommandsparser.EditUserCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -50,8 +54,8 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditContactCommand.COMMAND_WORD:
+            return new EditContactCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
@@ -79,6 +83,12 @@ public class AddressBookParser {
 
         case UnfavoriteCommand.COMMAND_WORD:
             return new UnfavoriteCommandParser().parse(arguments);
+
+        case EditUserCommand.COMMAND_WORD:
+            return new EditUserCommandParser().parse(arguments);
+
+        case TabCommand.COMMAND_WORD:
+            return new TabCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

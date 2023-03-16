@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.editpersoncommandsparser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -19,38 +19,48 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditContactCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Modules;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Abstract class to inherit from for parser classes which parse objects of the {@link Person} class
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public abstract class EditPersonCommandParser {
+
+    public abstract Optional<Index> parseIndex(String index) throws ParseException;
+
+    protected abstract String getMessageUsage();
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * and returns an EditPersonDescriptor for edit commands to use.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditPersonDescriptor parseForTags(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                         PREFIX_GENDER, PREFIX_MAJOR, PREFIX_MODULES, PREFIX_RACE, PREFIX_COMMS);
 
-        Index index;
+        Optional<Index> index;
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = this.parseIndex(argMultimap.getPreamble());
+            editPersonDescriptor.setIndex(index);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, this.getMessageUsage()), pe
+            );
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -81,11 +91,12 @@ public class EditCommandParser implements Parser<EditCommand> {
 
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditContactCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return editPersonDescriptor;
     }
+
 
     private Optional<Modules> parseModulesForEdit(Collection<String> mods) throws ParseException {
         assert mods != null;
@@ -113,3 +124,4 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
 }
+

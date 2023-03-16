@@ -20,10 +20,10 @@ import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
-import seedu.address.model.person.fields.NusMod;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.NusMod;
+import seedu.address.model.person.fields.subfields.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -31,6 +31,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static final String MESSAGE_NO_PREAMBLE_REQUIRED = "There is no need for a preamble for this command";
 
     /**
      * Formatter for String to LocalDateTime.
@@ -64,6 +66,7 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
+
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);

@@ -157,10 +157,10 @@ public class PersonListPanel extends UiPart<Region> {
             if (needsUpdate) {
                 if (personCard != null) {
                     setGraphic(personCard.getRoot());
-                    setDisable(false);
+                    setMouseTransparent(false);
                 } else if (personListDivider != null) {
                     setGraphic(personListDivider.getRoot());
-                    setDisable(true);
+                    setMouseTransparent(true);
                 } else {
                     setGraphic(null);
                 }
