@@ -295,7 +295,6 @@ Priorities:
 
 ## Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 ### Add a new student
 
