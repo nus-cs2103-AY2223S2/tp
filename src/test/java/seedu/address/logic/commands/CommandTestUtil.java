@@ -21,9 +21,10 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditPersonDescriptor;
+import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
@@ -40,6 +41,7 @@ import seedu.address.model.person.predicates.PhoneContainsDigitsPredicate;
 import seedu.address.model.person.predicates.RiskLevelIsEqualPredicate;
 import seedu.address.model.person.predicates.TagIsEqualPredicate;
 import seedu.address.testutil.EditElderlyDescriptorBuilder;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditVolunteerDescriptorBuilder;
 
 /**
@@ -63,8 +65,8 @@ public class CommandTestUtil {
     public static final String VALID_AGE_AMY = "68";
     public static final String VALID_AGE_BOB = "85";
 
-    public static final String VALID_RISKLEVEL_AMY = "LOW";
-    public static final String VALID_RISKLEVEL_BOB = "MEDIUM";
+    public static final String VALID_RISK_LEVEL_AMY = "LOW";
+    public static final String VALID_RISK_LEVEL_BOB = "MEDIUM";
 
     public static final String VALID_TAG_SINGLE = "single";
     public static final String VALID_TAG_STRONG = "strong";
@@ -83,8 +85,8 @@ public class CommandTestUtil {
     public static final String AGE_DESC_AMY = " " + PREFIX_AGE + VALID_AGE_AMY;
     public static final String AGE_DESC_BOB = " " + PREFIX_AGE + VALID_AGE_BOB;
 
-    public static final String RISK_DESC_AMY = " " + PREFIX_RISK + VALID_RISKLEVEL_AMY;
-    public static final String RISK_DESC_BOB = " " + PREFIX_RISK + VALID_RISKLEVEL_BOB;
+    public static final String RISK_DESC_AMY = " " + PREFIX_RISK + VALID_RISK_LEVEL_AMY;
+    public static final String RISK_DESC_BOB = " " + PREFIX_RISK + VALID_RISK_LEVEL_BOB;
 
     public static final String TAG_DESC_SINGLE = " " + PREFIX_TAG + VALID_TAG_SINGLE;
     public static final String TAG_DESC_STRONG = " " + PREFIX_TAG + VALID_TAG_STRONG;
@@ -93,6 +95,8 @@ public class CommandTestUtil {
     public static final String NRIC_ELDERLY_DESC_BOB = " " + PREFIX_NRIC_ELDERLY + VALID_NRIC_BOB;
     public static final String NRIC_VOLUNTEER_DESC_AMY = " " + PREFIX_NRIC_VOLUNTEER + VALID_NRIC_AMY;
     public static final String NRIC_VOLUNTEER_DESC_BOB = " " + PREFIX_NRIC_VOLUNTEER + VALID_NRIC_BOB;
+    public static final String NRIC_PERSON_DESC_AMY = " " + PREFIX_NRIC + VALID_NRIC_AMY;
+    public static final String NRIC_PERSON_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -113,6 +117,8 @@ public class CommandTestUtil {
 
     public static final EditVolunteerDescriptor DESC_VOLUNTEER_AMY;
     public static final EditVolunteerDescriptor DESC_VOLUNTEER_BOB;
+    public static final EditPersonDescriptor DESC_PERSON_AMY;
+    public static final EditPersonDescriptor DESC_PERSON_BOB;
 
     public static final NameContainsKeywordPredicate<Person> PREDICATE_HAS_NAME =
             new NameContainsKeywordPredicate<>(ALICE.getName().fullName);
@@ -134,12 +140,12 @@ public class CommandTestUtil {
     static {
         DESC_ELDERLY_AMY = new EditElderlyDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRiskLevel(VALID_RISKLEVEL_AMY)
+                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRiskLevel(VALID_RISK_LEVEL_AMY)
                 .withTags(VALID_TAG_STRONG).build();
 
         DESC_ELDERLY_BOB = new EditElderlyDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISKLEVEL_BOB)
+                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISK_LEVEL_BOB)
                 .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
 
         DESC_VOLUNTEER_AMY = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -148,6 +154,16 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_STRONG).build();
 
         DESC_VOLUNTEER_BOB = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
+                .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
+
+        DESC_PERSON_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY)
+                .withTags(VALID_TAG_STRONG).build();
+
+        DESC_PERSON_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
                 .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();

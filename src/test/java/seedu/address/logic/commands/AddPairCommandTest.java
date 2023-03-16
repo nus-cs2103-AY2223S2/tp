@@ -3,19 +3,27 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PAIR;
+import static seedu.address.commons.core.Messages.MESSAGE_ELDERLY_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_VOLUNTEER_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_CHARLIE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPairs.PAIR1;
+import static seedu.address.testutil.TypicalPairs.PAIR2;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.pair.Pair;
+import seedu.address.model.pair.exceptions.DuplicatePairException;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.exceptions.ElderlyNotFoundException;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.PairBuilder;
 
@@ -42,8 +50,31 @@ public class AddPairCommandTest {
         Volunteer volunteer = validPair.getVolunteer();
         ModelStubAcceptingPairAdded modelStub = new ModelStubAcceptingPairAdded(elderly, volunteer);
         CommandResult commandResult = new AddPairCommand(elderly.getNric(), volunteer.getNric()).execute(modelStub);
-        assertEquals(String.format(AddPairCommand.MESSAGE_SUCCESS, validPair), commandResult.getFeedbackToUser());
+        String expectedMessage = String.format(AddPairCommand.MESSAGE_ADD_PAIR_SUCCESS,
+                elderly.getNric(), volunteer.getNric());
+        assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         assertEquals(validPair, modelStub.pair);
+    }
+
+    @Test
+    public void execute_invalidPerson_throwsCommandException() {
+        Nric pair1ElderlyNric = PAIR1.getElderly().getNric();
+        Nric pair1VolunteerNric = PAIR1.getVolunteer().getNric();
+        Nric pair2ElderlyNric = PAIR2.getElderly().getNric();
+        Nric pair2VolunteerNric = PAIR2.getVolunteer().getNric();
+        ModelStub modelStub = new ModelStubAcceptingPairAdded(PAIR1.getElderly(), PAIR1.getVolunteer());
+
+        // Invalid elderly -> throws exception
+        AddPairCommand addPairCommand1 = new AddPairCommand(pair2ElderlyNric, pair1VolunteerNric);
+        String expectedMessage = String.format(MESSAGE_ELDERLY_NOT_FOUND, pair2ElderlyNric);
+        assertThrows(CommandException.class,
+                expectedMessage, () -> addPairCommand1.execute(modelStub));
+
+        // Invalid volunteer -> throws exception
+        AddPairCommand addPairCommand2 = new AddPairCommand(pair1ElderlyNric, pair2VolunteerNric);
+        expectedMessage = String.format(MESSAGE_VOLUNTEER_NOT_FOUND, pair2VolunteerNric);
+        assertThrows(CommandException.class,
+                expectedMessage, () -> addPairCommand2.execute(modelStub));
     }
 
     @Test
@@ -53,15 +84,16 @@ public class AddPairCommandTest {
         Nric elderlyNric = validPair.getElderly().getNric();
         Nric volunteerNric = validPair.getVolunteer().getNric();
         AddPairCommand addPairCommand = new AddPairCommand(elderlyNric, volunteerNric);
-
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_PAIR, elderlyNric, volunteerNric);
         assertThrows(CommandException.class,
-                AddPairCommand.MESSAGE_DUPLICATE_PAIR, () -> addPairCommand.execute(modelStub));
+                expectedMessage, () -> addPairCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         AddPairCommand addPair1Command = new AddPairCommand(validAmyNric, validBobNric);
         AddPairCommand addPair2Command = new AddPairCommand(validAmyNric, validCharlieNric);
+        AddPairCommand addPair3Command = new AddPairCommand(validBobNric, validAmyNric);
 
         // same object -> returns true
         assertEquals(addPair1Command, addPair1Command);
@@ -78,6 +110,7 @@ public class AddPairCommandTest {
 
         // different person -> returns false
         assertNotEquals(addPair1Command, addPair2Command);
+        assertNotEquals(addPair1Command, addPair3Command);
     }
 
     /**
@@ -106,6 +139,15 @@ public class AddPairCommandTest {
             requireNonNull(pair);
             return this.pair.isSamePair(pair);
         }
+
+        @Override
+        public void addPair(Nric elderlyNric, Nric volunteerNric) {
+            if (pair.getElderly().getNric().equals(elderlyNric)
+                && pair.getVolunteer().getNric().equals(volunteerNric)) {
+                throw new DuplicatePairException();
+            }
+        }
+
     }
 
     /**
@@ -129,9 +171,17 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public void addPair(Pair pair) {
-            requireNonNull(pair);
-            this.pair = pair;
+        public void addPair(Nric elderlyNric, Nric volunteerNric) {
+            if (!elderlyNric.equals(elderly.getNric())) {
+                throw new ElderlyNotFoundException();
+            } else if (!volunteerNric.equals(volunteer.getNric())) {
+                throw new VolunteerNotFoundException();
+            } else if (pair != null
+                    && pair.getElderly().getNric().equals(elderlyNric)
+                    && pair.getVolunteer().getNric().equals(volunteerNric)) {
+                throw new DuplicatePairException();
+            }
+            this.pair = new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric));
         }
 
         @Override

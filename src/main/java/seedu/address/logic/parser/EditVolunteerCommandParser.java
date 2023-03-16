@@ -13,13 +13,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditVolunteerCommand;
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
+import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditVolunteerCommand object
  */
-public class EditVolunteerCommandParser extends EditCommandParser implements Parser<EditVolunteerCommand> {
+public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditVolunteerCommand
@@ -66,7 +66,7 @@ public class EditVolunteerCommandParser extends EditCommandParser implements Par
             editVolunteerDescriptor.setAge(
                     ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
         }
-        super.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
+        EditCommandParser.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
                 .ifPresent(editVolunteerDescriptor::setTags);
 
         if (!editVolunteerDescriptor.isAnyFieldEdited()) {

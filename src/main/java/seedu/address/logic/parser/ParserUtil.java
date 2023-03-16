@@ -106,11 +106,11 @@ public class ParserUtil {
      */
     public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
-        String trimmednric = nric.trim();
+        String trimmedNric = nric.trim();
         if (!Nric.isValidNric(nric)) {
             throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
-        return new Nric(trimmednric);
+        return new Nric(trimmedNric);
     }
 
     /**

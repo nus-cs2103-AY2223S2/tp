@@ -34,7 +34,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RISK_LEVEL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -49,7 +49,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditElderlyCommand;
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
@@ -123,7 +123,7 @@ public class EditElderlyCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
                 + VALID_PHONE_AMY + VALID_NRIC_AMY + VALID_AGE_AMY
-                + VALID_RISKLEVEL_AMY, Name.MESSAGE_CONSTRAINTS);
+                + VALID_RISK_LEVEL_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -136,7 +136,7 @@ public class EditElderlyCommandParserTest {
         EditElderlyDescriptor descriptor = new EditElderlyDescriptorBuilder()
                 .withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY)
-                .withRiskLevel(VALID_RISKLEVEL_AMY).withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
+                .withRiskLevel(VALID_RISK_LEVEL_AMY).withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
 
         EditElderlyCommand expectedCommand = new EditElderlyCommand(targetIndex, descriptor);
 
@@ -196,7 +196,7 @@ public class EditElderlyCommandParserTest {
 
         // risk level
         userInput = targetIndex.getOneBased() + RISK_DESC_AMY;
-        descriptor = new EditElderlyDescriptorBuilder().withRiskLevel(VALID_RISKLEVEL_AMY).build();
+        descriptor = new EditElderlyDescriptorBuilder().withRiskLevel(VALID_RISK_LEVEL_AMY).build();
         expectedCommand = new EditElderlyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

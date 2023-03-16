@@ -10,12 +10,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RISK_LEVEL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.testutil.EditElderlyDescriptorBuilder;
 public class EditElderlyDescriptorTest {
 
@@ -69,7 +69,7 @@ public class EditElderlyDescriptorTest {
 
         // different risk level -> returns false
         editedAmy = new EditElderlyDescriptorBuilder(DESC_ELDERLY_AMY)
-                .withRiskLevel(VALID_RISKLEVEL_BOB).build();
+                .withRiskLevel(VALID_RISK_LEVEL_BOB).build();
         assertFalse(DESC_ELDERLY_AMY.equals(editedAmy));
 
         // different tags -> returns false
