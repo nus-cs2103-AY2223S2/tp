@@ -96,13 +96,12 @@ public class StudentAddCommand extends StudentCommand {
      * @throws CommandException When there's an unexpected situation occurring.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
 
-        if (model.hasStudent(toAdd)) {
+        if ((model.hasStudent(toAdd)) || !model.canInitialize(toAdd.getParentNumber(), toAdd.getParentName())) {
             throw new DuplicatePersonException();
         }
-
         model.addStudent(toAdd);
         ObservableList<Parent> parents = model.getFilteredParentList();
         setParent(parents, toAdd, model);
@@ -123,7 +122,7 @@ public class StudentAddCommand extends StudentCommand {
      * @param student Student that needs the binding of Parent/NOK to.
      * @param model {@code Model} which the command should operate on.
      */
-    public void setParent(ObservableList<Parent> parents, Student student, Model model) {
+    public void setParent(ObservableList<Parent> parents, Student student, Model model) throws ParseException {
         Phone parentNumber = student.getParentNumber();
         Name parentName = student.getParentName();
         for (Parent p : parents) {
@@ -136,22 +135,14 @@ public class StudentAddCommand extends StudentCommand {
             }
         }
         ArgumentMultimap argMultimap = new ArgumentMultimap();
-        try {
-            Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-            Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
-            Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_PARENTAGE).get()));
-            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            Parent newParent = new Parent(parentName, age, image, email, parentNumber,
-                    address, tagList);
-            newParent.addStudent(student); //bind student to parent
-            model.addParent(newParent);
-        } catch (ParseException parseException) {
-            /*
-            IMPORTANT TO DEAL WITH as there an ERROR, eg when Create Student with Same Phone Number as existing Parent
-            but diff Parent Name, WILL STILL CREATE STUDENT as expected but that is not what we want as its ERROR!
-             */
-            return;
-        }
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
+        Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_PARENTAGE).get()));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Parent newParent = new Parent(parentName, age, image, email, parentNumber,
+                address, tagList); //create new parent as there isnt any matching parent
+        newParent.addStudent(student); //bind student to parent
+        model.addParent(newParent);
     }
 }
