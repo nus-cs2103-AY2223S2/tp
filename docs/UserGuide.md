@@ -21,17 +21,6 @@ TutorPro is a **desktop app designed to help private tutors manage their student
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -44,10 +33,10 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 
 Creates a new profile for a student given the student’s name.
 
-Format: `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE] [email/EMAIL] [school/SCHOOL] [level/GRADE_LEVEL]
+Format: `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE] [email/EMAIL] [school/SCHOOL] [level/GRADE_LEVEL]`
 
 Example:
-`new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/1234 5678 school/ACJC level/sec8`
+`new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8`
 
 * SCHOOL and GRADE_LEVEL are optional.
 * SCHOOL and GRADE_LEVEL consist of numbers and letters only (no symbols or spaces).
