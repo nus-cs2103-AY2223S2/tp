@@ -4,13 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.text.TextFlow;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.library.model.bookmark.Bookmark;
-import javafx.scene.control.Hyperlink;
 
 /**
  * An UI component that displays information of a {@code Bookmark}.
@@ -64,14 +63,14 @@ public class BookmarkCard extends UiPart<Region> {
         if (bookmark.getProgress().toString().equals("Finished")) {
             b1.setStyle("-fx-background-color: #50f60a");
         } else if (bookmark.getProgress().toString().equals("In progress")) {
-             b1.setStyle("-fx-background-color: #eaf553");
+            b1.setStyle("-fx-background-color: #eaf553");
         } else if (bookmark.getProgress().toString().equals("Not started")) {
             b1.setStyle("-fx-background-color: #d83434");
         } else {
             b1.setDisable(true);
             b1.setVisible(false);
         }
-        /**
+        /*
          * what its supposed to be:
          * if (bookmark.getProgress().toString().equals("Done")) {
          *     b1.setStyle("-fx-background-color: #50f60a");
