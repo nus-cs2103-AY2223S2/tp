@@ -9,10 +9,11 @@ import java.util.Set;
  * Represents an item, which is a child class of Entity
  */
 public class Item extends Entity {
-    private final int cost;
+
     public static final int  DEFAULT_COST = 0;
-    private final float weight;
     public static final int  DEFAULT_WEIGHT = 0;
+    private final int cost;
+    private final float weight;
 
     /**
      * Every field should be present and non-null.
@@ -25,6 +26,12 @@ public class Item extends Entity {
         super(name, tags);
         this.cost = cost;
         this.weight = weight;
+    }
+
+    public Item(Name name, Set<Tag> tags) {
+        super(name, tags);
+        cost = DEFAULT_COST;
+        weight = DEFAULT_WEIGHT;
     }
 
     public int getCost() { return this.cost; }
