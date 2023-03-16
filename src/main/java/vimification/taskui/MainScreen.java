@@ -1,6 +1,9 @@
 package vimification.taskui;
 
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
@@ -19,11 +22,7 @@ public class MainScreen extends UiPart<VBox> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
-
-    // private TaskListPanel personListPanel;
-
     private TaskCreationPanel taskCreationPanel;
-
     private CommandInput commandInput;
 
     @FXML
@@ -51,11 +50,16 @@ public class MainScreen extends UiPart<VBox> {
      */
     @FXML
     private void handleKeyPressed(KeyEvent event) {
+        KeyCodeCombination colonKey =
+                new KeyCodeCombination(KeyCode.SEMICOLON, KeyCombination.SHIFT_DOWN);
+        boolean isKeyPressedColon = colonKey.match(event);
+
+        if (isKeyPressedColon) {
+            handleCommand();
+            return;
+        }
 
         switch (event.getText()) {
-        case ":":
-            handleCommand();
-            break;
         case "i":
             System.out.println("You've created a task!");
             handleTaskCreation();
@@ -93,12 +97,17 @@ public class MainScreen extends UiPart<VBox> {
     private void init() {
         this.getRoot().setFocusTraversable(true); // Important
 
-        // Initialize commandInputComponent
+        intializeCommandInput();
+        initializeTaskListPanel();
+    }
+
+    private void initializeTaskListPanel() {
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        leftComponent.getChildren().add(taskListPanel.getRoot());
+    }
+
+    private void intializeCommandInput() {
         commandInput = new CommandInput(this.getRoot());
         commandInputComponent.getChildren().add(commandInput.getRoot());
-
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        // personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        leftComponent.getChildren().add(taskListPanel.getRoot());
     }
 }
