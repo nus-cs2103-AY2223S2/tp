@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import teambuilder.commons.exceptions.IllegalValueException;
 import teambuilder.model.person.Address;
 import teambuilder.model.person.Email;
-import teambuilder.model.person.Major;
 import teambuilder.model.person.Name;
 import teambuilder.model.person.Phone;
 
@@ -23,7 +22,6 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_MAJOR = "Com!";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();

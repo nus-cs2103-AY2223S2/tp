@@ -1,13 +1,18 @@
 package teambuilder.testutil;
 
+import static teambuilder.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_NAME;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.Set;
 
 import teambuilder.logic.commands.AddCommand;
 import teambuilder.logic.commands.EditCommand.EditPersonDescriptor;
 import teambuilder.model.person.Person;
 import teambuilder.model.tag.Tag;
-
-import static teambuilder.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Person.
