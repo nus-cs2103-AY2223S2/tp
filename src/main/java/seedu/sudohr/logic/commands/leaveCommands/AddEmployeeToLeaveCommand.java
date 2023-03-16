@@ -1,4 +1,4 @@
-package seedu.sudohr.logic.commands.leaveCommands;
+package seedu.sudohr.logic.commands.leavecommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,8 +10,8 @@ import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
-import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
 import seedu.sudohr.model.person.Person;
 

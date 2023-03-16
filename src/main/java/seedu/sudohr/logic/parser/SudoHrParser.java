@@ -17,9 +17,9 @@ import seedu.sudohr.logic.commands.ExitCommand;
 import seedu.sudohr.logic.commands.FindCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
 import seedu.sudohr.logic.commands.ListCommand;
-import seedu.sudohr.logic.commands.leaveCommands.AddEmployeeToLeaveCommand;
-import seedu.sudohr.logic.commands.leaveCommands.DeleteEmployeeFromLeaveCommand;
-import seedu.sudohr.logic.commands.leaveCommands.ListEmployeeInLeaveCommand;
+import seedu.sudohr.logic.commands.leavecommands.AddEmployeeToLeaveCommand;
+import seedu.sudohr.logic.commands.leavecommands.DeleteEmployeeFromLeaveCommand;
+import seedu.sudohr.logic.commands.leavecommands.ListEmployeeInLeaveCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 
 /**

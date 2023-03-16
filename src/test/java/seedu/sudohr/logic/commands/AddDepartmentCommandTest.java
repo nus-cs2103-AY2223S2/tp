@@ -254,12 +254,6 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public ObservableList<Leave> getLeaveList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getLeaveList'");
-        }
-
-        @Override
         public void deleteEmployeeFromLeave(Leave leaveToDelete, Person personToDelete) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'deleteEmployeeFromLeave'");
@@ -281,6 +275,12 @@ public class AddDepartmentCommandTest {
         public void cascadeDeleteUserInLeaves(Person personToDelete) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'cascadeDeleteUserInLeaves'");
+        }
+
+        @Override
+        public ObservableList<Leave> getLeavesList() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getLeavesList'");
         }
 
 

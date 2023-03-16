@@ -247,7 +247,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Leave> getLeaveList() {
+        public ObservableList<Leave> getLeavesList() {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getLeaveList'");
         }

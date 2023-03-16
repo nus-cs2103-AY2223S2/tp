@@ -1,13 +1,13 @@
 package seedu.sudohr.logic.parser;
 
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE_INDEX;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE_INDEX;
 
 import java.util.stream.Stream;
 
 import seedu.sudohr.commons.core.index.Index;
-import seedu.sudohr.logic.commands.leaveCommands.AddEmployeeToLeaveCommand;
+import seedu.sudohr.logic.commands.leavecommands.AddEmployeeToLeaveCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.leave.Date;
 
@@ -21,7 +21,7 @@ public class AddEmployeeToLeaveCommandParser implements Parser<AddEmployeeToLeav
      * Parses the given {@code String} of arguments in the context of the
      * AddEmployeeToLeaveCommandParser
      * and returns an AddEmployeeToLeaveCommandParser object for execution.
-     * 
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddEmployeeToLeaveCommand parse(String args) throws ParseException {

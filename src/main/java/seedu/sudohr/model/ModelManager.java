@@ -147,7 +147,6 @@ public class ModelManager implements Model {
 
     @Override
     public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
-        
         if (sudoHr.hasLeave(leaveToAdd)) {
             return sudoHr.getLeave(leaveToAdd);
         } else {

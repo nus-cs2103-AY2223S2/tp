@@ -83,7 +83,7 @@ public class UniqueLeaveList implements Iterable<Leave> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new LeaveNotFoundException();
-        } 
+        }
     }
 
     public void setLeaves(UniqueLeaveList replacement) {
