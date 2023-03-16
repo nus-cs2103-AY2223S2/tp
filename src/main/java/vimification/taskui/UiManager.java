@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import vimification.MainApp;
+import vimification.Gui;
 import vimification.commons.core.LogsCenter;
 import vimification.commons.util.StringUtil;
 import vimification.logic.Logic;
@@ -50,7 +50,7 @@ public class UiManager implements Ui {
     }
 
     private Image getImage(String imagePath) {
-        return new Image(MainApp.class.getResourceAsStream(imagePath));
+        return new Image(Gui.class.getResourceAsStream(imagePath));
     }
 
 }

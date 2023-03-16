@@ -11,11 +11,12 @@ import java.time.format.DateTimeFormatter;
 public class DateTime {
 
     public static final String MESSAGE_CONSTRAINTS = "";
-    public static final String VALIDATION_REGEX ="";
+    public static final String VALIDATION_REGEX = "";
 
     public final LocalDateTime dateTime;
     public final String value;
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter dateTimeFormatter =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Constructs an {@code DateTime}.
@@ -24,7 +25,8 @@ public class DateTime {
      */
     public DateTime(String date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        // TODO : UNSUPPRESS checking
+        // checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(date, dateTimeFormatter);
         value = dateTimeFormatter.format(this.dateTime);
     }
@@ -45,7 +47,7 @@ public class DateTime {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateTime // instanceof handles nulls
-                && dateTime.equals(((DateTime) other).dateTime)); // state check
+                        && dateTime.equals(((DateTime) other).dateTime)); // state check
     }
 
 }

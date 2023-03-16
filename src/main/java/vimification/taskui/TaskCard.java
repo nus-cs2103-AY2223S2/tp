@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import vimification.model.task.Description;
 import vimification.model.task.Task;
-import vimification.ui.UiPart;
+import vimification.taskui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Task}.
@@ -18,16 +18,14 @@ public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskCard.fxml";
 
-    public final Task task = new Task(new Title("hi"), new Description("hi"));
-
     @FXML
     private HBox cardPane;
     @FXML
-    private Label title;
+    private Label description;
     @FXML
     private Label id;
-    @FXML
-    private FlowPane tags;
+    // @FXML
+    // private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -36,7 +34,7 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         // this.task = task;
         id.setText(displayedIndex + ". ");
-        title.setText(task.getTitle().fullTitle);
+        description.setText(task.getDescription().description);
 
         // phone.setText(task.getPhone().value);
         // address.setText(task.getAddress().value);
@@ -60,8 +58,12 @@ public class TaskCard extends UiPart<Region> {
         }
 
         // state check
-        TaskCard card = (TaskCard) other;
-        return id.getText().equals(card.id.getText())
-                && task.equals(card.task);
+        // TODO: FIX CLASH WITH JIAYUE
+        // TaskCard card = (TaskCard) other;
+        // return id.getText().equals(card.id.getText())
+        // && task.equals(card.task);
+
+        // TODO: REMOVE THIS AFTER FIX ABOVE
+        return false;
     }
 }

@@ -5,7 +5,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 import vimification.logic.Logic;
-import vimification.ui.PersonListPanel;
+// import vimification.ui.PersonListPanel;
 
 /**
  * The Main Scene. Provides the basic application layout containing a menu bar and space where other
@@ -18,9 +18,9 @@ public class MainScreen extends UiPart<VBox> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    // private TaskListPanel taskListPanel;
+    private TaskListPanel taskListPanel;
 
-    private PersonListPanel personListPanel;
+    // private TaskListPanel personListPanel;
 
     private TaskCreationPanel taskCreationPanel;
 
@@ -97,7 +97,8 @@ public class MainScreen extends UiPart<VBox> {
         commandInput = new CommandInput(this.getRoot());
         commandInputComponent.getChildren().add(commandInput.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        leftComponent.getChildren().add(personListPanel.getRoot());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        // personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        leftComponent.getChildren().add(taskListPanel.getRoot());
     }
 }

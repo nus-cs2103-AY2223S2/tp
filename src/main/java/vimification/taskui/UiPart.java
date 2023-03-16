@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
-import vimification.MainApp;
+import vimification.Gui;
 
 /**
  * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc. It
@@ -85,7 +85,7 @@ public abstract class UiPart<T> {
     private static URL getFxmlFileUrl(String fxmlFileName) {
         requireNonNull(fxmlFileName);
         String fxmlFileNameWithFolder = FXML_FILE_FOLDER + fxmlFileName;
-        URL fxmlFileUrl = MainApp.class.getResource(fxmlFileNameWithFolder);
+        URL fxmlFileUrl = Gui.class.getResource(fxmlFileNameWithFolder);
         return requireNonNull(fxmlFileUrl);
     }
 
