@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -25,7 +26,8 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-
+    @FXML
+    private ProgressIndicator progressIndicator;
     @FXML
     private HBox cardPane;
     @FXML
@@ -53,8 +55,17 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> {
+                Label label = new Label(tag.tagName);
+                label.getStyleClass().add("cell_small_label");
+                tags.getChildren().add(label);
+            });
+
+        progressIndicator.setProgress(0.5); // set progress value between 0.0 and 1.0
+
+
+
     }
 
     @Override
