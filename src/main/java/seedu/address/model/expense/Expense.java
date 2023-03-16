@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.category.Category;
 
-
 /**
  * Represents an Expense in the address book.
  * Guarantees: details are present and not null, field values are validated,
@@ -68,14 +67,21 @@ public class Expense {
                 + '}';
     }
 
+    /**
+     * Returns true if a given string is a valid expense name.
+     * @param category Category to be tested
+     */
     public static boolean isValidCategory(Category category) {
         return Category.isValidCategoryName(category.getCategoryName());
     }
 
+    /**
+     * Returns true if a given string is a valid expense name.
+     * @param name Name to be tested
+     */
     public static boolean isValidName(String name) {
         return name.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -87,7 +93,6 @@ public class Expense {
         }
 
         Expense expense = (Expense) o;
-
         if (Double.compare(expense.amount, amount) != 0) {
             return false;
         }

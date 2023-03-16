@@ -14,9 +14,7 @@ import seedu.address.model.category.UserDefinedCategory;
 class JsonAdaptedCategory {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Category's %s field is missing!";
-
     private final String categoryName;
-
     private final String summary;
 
     /**
@@ -38,9 +36,10 @@ class JsonAdaptedCategory {
     }
 
     /**
-     * Converts this Jackson-friendly adapted category object into the model's {@code Category} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted category.
+     * Converts this Jackson-friendly adapted category object into the model's
+     * {@code Category} object.
+     * @throws IllegalValueException if there were any data constraints violated
+     *     in the adapted category.
      */
     public Category toModelType() throws IllegalValueException {
 
@@ -49,13 +48,11 @@ class JsonAdaptedCategory {
         }
 
         final String modelCategoryName = categoryName;
-
         if (summary == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
         }
 
         final String modelDescription = summary;
-
         return new UserDefinedCategory(modelCategoryName, modelDescription);
     }
 

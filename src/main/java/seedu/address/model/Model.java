@@ -51,17 +51,17 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyExpenseTracker addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
-    //ReadOnlyCategoryList getAddressBook();
+    ReadOnlyExpenseTracker getAddressBook();
+    // ReadOnlyCategoryList getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     boolean hasPerson(Person person);
-
 
     /**
      * Deletes the given person.
@@ -82,14 +82,15 @@ public interface Model {
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns whether a category is present in the category list by name*/
+    /** Returns whether a category is present in the category list by name */
     boolean hasCategory(String categoryName);
 
     boolean hasCategory(Category category);
@@ -102,7 +103,8 @@ public interface Model {
     int getExpenseListCount();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);

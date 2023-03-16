@@ -1,54 +1,70 @@
 {
-  "categories" : [ {
-    "categoryName" : "a",
-    "summary" : "ijifnbinbsg"
-  }, {
-    "categoryName" : "b",
-    "summary" : "sjibtsbgr"
-  }, {
-    "categoryName" : "fbjsgbg",
-    "summary" : ""
-  }, {
-    "categoryName" : "sbfad",
-    "summary" : ""
-  }, {
-    "categoryName" : "agbrsbb",
-    "summary" : ""
-  }, {
-    "categoryName" : "argaebsb",
-    "summary" : ""
-  } ],
-  "expenses" : [ {
-    "name" : "fgsgbsgns",
-    "amount" : "4.8",
-    "date" : "2023-03-15",
-    "category" : {
-      "categoryName" : "fbjsgbg",
-      "summary" : ""
+  "categories": [
+    {
+      "categoryName": "a",
+      "summary": "ijifnbinbsg"
+    },
+    {
+      "categoryName": "b",
+      "summary": "sjibtsbgr"
+    },
+    {
+      "categoryName": "fbjsgbg",
+      "summary": ""
+    },
+    {
+      "categoryName": "sbfad",
+      "summary": ""
+    },
+    {
+      "categoryName": "agbrsbb",
+      "summary": ""
+    },
+    {
+      "categoryName": "argaebsb",
+      "summary": ""
+    },
+    {
+      "categoryName": "new cat",
+      "summary": "safag"
     }
-  }, {
-    "name" : "adfbb",
-    "amount" : "4.5",
-    "date" : "2023-03-15",
-    "category" : {
-      "categoryName" : "sbfad",
-      "summary" : ""
+  ],
+  "expenses": [
+    {
+      "name": "fgsgbsgns",
+      "amount": "4.8",
+      "date": "2023-03-15",
+      "category": {
+        "categoryName": "fbjsgbg",
+        "summary": ""
+      }
+    },
+    {
+      "name": "adfbb",
+      "amount": "4.5",
+      "date": "2023-03-15",
+      "category": {
+        "categoryName": "sbfad",
+        "summary": ""
+      }
+    },
+    {
+      "name": "argaeb",
+      "amount": "4.5",
+      "date": "2023-03-15",
+      "category": {
+        "categoryName": "agbrsbb",
+        "summary": ""
+      }
+    },
+    {
+      "name": "sadfvbq",
+      "amount": "6.79",
+      "date": "2023-03-15",
+      "category": {
+        "categoryName": "argaebsb",
+        "summary": ""
+      }
     }
-  }, {
-    "name" : "argaeb",
-    "amount" : "4.5",
-    "date" : "2023-03-15",
-    "category" : {
-      "categoryName" : "agbrsbb",
-      "summary" : ""
-    }
-  }, {
-    "name" : "sadfvbq",
-    "amount" : "6.79",
-    "date" : "2023-03-15",
-    "category" : {
-      "categoryName" : "argaebsb",
-      "summary" : ""
-    }
-  } ]
+  ]
 }

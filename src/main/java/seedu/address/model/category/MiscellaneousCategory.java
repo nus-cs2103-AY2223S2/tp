@@ -1,12 +1,15 @@
 package seedu.address.model.category;
 
 /**
- * Default miscellaneous category.
- */
+* Category class to represent categories that expenses are not grouped into a
+* specific category.
+*/
 public class MiscellaneousCategory extends Category {
-    private final String categoryName = "Miscellaneous";
-    private final String summary = "Placeholder Description";
-
+    /**
+     * Constructor for MiscellaneousCategory class.
+     * @param categoryName Name of the category
+     * @param description Short description of the category
+     */
     public MiscellaneousCategory() {
         super("Miscellaneous", "Placeholder Description");
     }

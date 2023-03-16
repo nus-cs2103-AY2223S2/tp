@@ -13,12 +13,11 @@ import seedu.address.model.expense.Expense;
 
 
 /**
- * Adds an expense to FastTrack.
+ * Adds an expense to the Expense Tracker.
  */
 public class AddExpenseCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an expense to FastTrack "
             + "Parameters: "
             + PREFIX_NAME + "EXPENSE NAME "

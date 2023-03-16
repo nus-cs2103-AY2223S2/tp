@@ -26,7 +26,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ExpenseTracker addressBook = new ExpenseTracker();
 
     @Test
     public void constructor() {
@@ -40,7 +40,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        ExpenseTracker newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -86,9 +86,10 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose persons list can violate interface
+     * constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class AddressBookStub implements ReadOnlyExpenseTracker {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Category> categories = FXCollections.observableArrayList();
         private final ObservableList<Expense> expenses = FXCollections.observableArrayList();
@@ -101,10 +102,12 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+
         @Override
         public ObservableList<Category> getCategoryList() {
             return categories;
         }
+
         @Override
         public ObservableList<Expense> getExpenseList() {
             return expenses;

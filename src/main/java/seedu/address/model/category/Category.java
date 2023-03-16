@@ -16,7 +16,7 @@ public abstract class Category {
     /**
      * Constructor for Category class.
      * @param categoryName Name of the category
-     * @param description Description of the category
+     * @param summary Short description of the category
      */
     public Category(String categoryName, String description) {
         this.categoryName = categoryName;

@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ExpenseTracker;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
@@ -116,12 +116,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyExpenseTracker newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyExpenseTracker getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -154,7 +154,6 @@ public class AddCommandTest {
         public void deleteCategory(Category target) {
             throw new AssertionError("This method should not be called.");
         }
-
 
         @Override
         public void updateFilteredExpensesList(Predicate<Expense> predicate) {
@@ -251,8 +250,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyExpenseTracker getAddressBook() {
+            return new ExpenseTracker();
         }
     }
 
