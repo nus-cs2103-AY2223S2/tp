@@ -1,9 +1,13 @@
 package seedu.address.model.link;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.deepCopy;
+import static seedu.address.commons.util.CollectionUtil.deepCopyMapDq;
+import static seedu.address.commons.util.CollectionUtil.unmodifiableMapDq;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
@@ -70,9 +74,9 @@ class Link<K, T extends Item,
      */
     public Link(Map<K, Integer> shape,
         Map<K, Deque<String>> contents, R resolver) throws LinkException {
-        checkSanity(shape, contents);
-        this.shape = shape;
-        this.contents = contents;
+        fitShapeOrThrow(shape, contents);
+        this.shape = deepCopy(shape);
+        this.contents = deepCopyMapDq(contents);
         this.resolver = resolver;
         fill(this.shape, this.contents);
     }
@@ -93,7 +97,7 @@ class Link<K, T extends Item,
      * @param contents the contents of teh link.
      * @throws LinkException if the contents does not fit the shape.
      */
-    private static <K> void checkSanity(Map<K, Integer> shape,
+    private static <K> void fitShapeOrThrow(Map<K, Integer> shape,
         Map<K, Deque<String>> contents) throws LinkException {
         for (K key : contents.keySet()) {
             if (!shape.containsKey(key)) {
@@ -129,8 +133,17 @@ class Link<K, T extends Item,
      *
      * @return the unmodifiable view of this link content.
      */
-    public Map<K, Deque<String>> getUnmodifiableContents() {
-        return Collections.unmodifiableMap(this.contents);
+    public Map<K, Collection<String>> getUnmodifiableContents() {
+        return unmodifiableMapDq(contents);
+    }
+
+    /**
+     * Gets a copy of the contents of this link.
+     *
+     * @return the copy of this link content.
+     */
+    public Map<K, Deque<String>> getCopiedContents() {
+        return deepCopyMapDq(contents);
     }
 
     /**
@@ -140,6 +153,15 @@ class Link<K, T extends Item,
      */
     public Set<K> getUnmodifiableKeys() {
         return Collections.unmodifiableSet(this.shape.keySet());
+    }
+
+    /**
+     * Gets the shape of this link as an unmodifiable shape.
+     *
+     * @return the unmodifiable shape of this link.
+     */
+    public Map<K, Integer> getUnmodifiableShape() {
+        return Collections.unmodifiableMap(this.shape);
     }
 
     /**
@@ -268,9 +290,9 @@ class Link<K, T extends Item,
         Deque<String> ids = this.contents.get(key);
         if (remainingSize == 0) {
             ids.pop();
-            ids.push(id);
+            ids.add(id);
         } else {
-            ids.push(id);
+            ids.add(id);
         }
     }
 
@@ -279,7 +301,8 @@ class Link<K, T extends Item,
      *
      * @param key the key.
      */
-    public void clear(K key) {
+    public void clear(K key) throws LinkException {
+        keyValidOrThrow(key);
         contents.get(key).clear();
     }
 
@@ -288,7 +311,7 @@ class Link<K, T extends Item,
      */
     public void clear() {
         for (K key : contents.keySet()) {
-            clear(key);
+            contents.get(key).clear();
         }
     }
 
@@ -316,6 +339,7 @@ class Link<K, T extends Item,
         if (!contents.get(key).contains(id)) {
             throw new LinkItemNotFoundException(key.toString(), id);
         }
+        contents.get(key).remove(id);
     }
 
     /**
@@ -343,6 +367,9 @@ class Link<K, T extends Item,
      * @throws LinkException if the key is not valid.
      */
     public List<T> getAndRemoveInvalid(K key) throws LinkException {
+        _logger.warning(
+            "getAndRemoveInvalid is not tested, use with caution."
+        );
         keyValidOrThrow(key);
         final List<T> result = new ArrayList<>();
         final List<String> tbd = new ArrayList<>();
