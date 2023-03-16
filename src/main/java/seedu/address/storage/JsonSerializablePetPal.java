@@ -28,7 +28,7 @@ class JsonSerializablePetPal {
      */
     @JsonCreator
     public JsonSerializablePetPal(@JsonProperty("pets") List<JsonAdaptedPet> pets) {
-        this.pets.addAll(pets);
+//        this.pets.addAll(pets);
     }
 
     /**

@@ -62,12 +62,13 @@ public class JsonPetPalStorageTest {
 
     @Test
     public void readAndSavePetPal_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempPetPal.json");
+        Path filePath = TEST_DATA_FOLDER.resolve("TempPetPal.json");
         PetPal original = getTypicalPetPal();
         JsonPetPalStorage jsonPetPalStorage = new JsonPetPalStorage(filePath);
 
         // Save in new file and read back
         jsonPetPalStorage.savePetPal(original, filePath);
+
         ReadOnlyPetPal readBack = jsonPetPalStorage.readPetPal(filePath).get();
         assertEquals(original, new PetPal(readBack));
 
