@@ -8,8 +8,8 @@ import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.ReadOnlySudoHr;
-import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * API of the Logic component
