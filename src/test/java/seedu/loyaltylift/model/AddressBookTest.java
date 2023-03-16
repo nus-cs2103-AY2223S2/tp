@@ -8,6 +8,7 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalCustomers.ALICE;
 import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
+import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_A;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,6 +22,7 @@ import javafx.collections.ObservableList;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.exceptions.DuplicateCustomerException;
 import seedu.loyaltylift.model.order.Order;
+import seedu.loyaltylift.model.order.exceptions.DuplicateOrderException;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 
 public class AddressBookTest {
@@ -50,9 +52,17 @@ public class AddressBookTest {
         Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Customer> newCustomers = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newCustomers);
+        AddressBookStub newData = new AddressBookStub(newCustomers, Arrays.asList());
 
         assertThrows(DuplicateCustomerException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateOrders_throwsDuplicateOrderException() {
+        List<Order> newOrders = Arrays.asList(ORDER_A, ORDER_A);
+        AddressBookStub newData = new AddressBookStub(Arrays.asList(), newOrders);
+
+        assertThrows(DuplicateOrderException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -91,8 +101,9 @@ public class AddressBookTest {
         private final ObservableList<Customer> customers = FXCollections.observableArrayList();
         private final ObservableList<Order> orders = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Customer> customers) {
+        AddressBookStub(Collection<Customer> customers, Collection<Order> orders) {
             this.customers.setAll(customers);
+            this.orders.setAll(orders);
         }
 
         @Override

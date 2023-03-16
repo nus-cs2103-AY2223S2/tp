@@ -26,6 +26,9 @@ import seedu.loyaltylift.testutil.EditCustomerDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    // customer
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -68,6 +71,19 @@ public class CommandTestUtil {
 
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
+
+    // order
+
+    public static final String VALID_NAME_A = "Strawberry Shortcake";
+    public static final String VALID_NAME_B = "Banana Split";
+    public static final String VALID_QUANTITY_A = "5";
+    public static final String VALID_QUANTITY_B = "2";
+    public static final String VALID_STATUS_A = "Pending";
+    public static final String VALID_STATUS_B = "Paid";
+    public static final String VALID_ADDRESS_A = "10 Summer Drive, Singapore 3098812";
+    public static final String VALID_ADDRESS_B = "11 Fabordrive, Singapore 3001298";
+    public static final String VALID_CREATED_DATE_A = "2023/01/09";
+    public static final String VALID_CREATED_DATE_B = "2022/12/20";
 
     static {
         DESC_AMY = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
