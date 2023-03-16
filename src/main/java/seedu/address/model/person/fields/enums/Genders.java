@@ -9,10 +9,15 @@ public enum Genders {
     FEMALE("female"),
     DNS("dns");
 
-    private final String gender;
+    public final String gender;
 
     Genders(String gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return this.gender;
     }
 
 }
