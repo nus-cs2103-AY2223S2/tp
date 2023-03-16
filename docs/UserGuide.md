@@ -105,21 +105,6 @@ Examples:
 
 
 
-### 5. View a student’s upcoming homework: `view-homework`
-
-Displays the list of upcoming exams / school assignments of a student.
-
-Format: `view-homework [name/STUDENT_NAME]`
-
-* Can also be done by clicking the `Homework` button to view a student's upcoming homeworks.
-* `name` is optional, but can be used to only view homework from a particular student.
-
-Examples:
-`view-homework s/John` Displays all homework of the student named `John`.
-`view-homework` Displays all homework for all students.
-
-
-
 ### 6. Create a new Lesson plan for upcoming lesson: `new-lesson`
 
 Creates a new lesson for a given student, with a lesson title and time.
