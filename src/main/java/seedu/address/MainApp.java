@@ -85,9 +85,9 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         FriendlyLink applicationCache = new FriendlyLink();
         try {
-            storage.readPair(applicationCache);
             storage.readElderly(applicationCache);
             storage.readVolunteer(applicationCache);
+            storage.readPair(applicationCache);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty FriendlyLink");
         } catch (IOException e) {

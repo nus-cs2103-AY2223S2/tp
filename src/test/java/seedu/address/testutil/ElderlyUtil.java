@@ -14,7 +14,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddElderlyCommand;
 import seedu.address.logic.commands.EditElderlyCommand;
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.tag.Tag;
 

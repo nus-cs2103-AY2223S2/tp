@@ -141,7 +141,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public Elderly getElderly(Nric nric) {
         requireNonNull(nric);
-        return elderly.getElderly(nric);
+        return elderly.get(nric);
     }
 
     /**
@@ -153,7 +153,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public Volunteer getVolunteer(Nric nric) {
         requireNonNull(nric);
-        return volunteers.getVolunteer(nric);
+        return volunteers.get(nric);
     }
 
     /**
@@ -180,7 +180,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Removes {@code key} from {@code FriendlyLink}.
-     * {@code key} must exist in the elderly's list.
+     * {@code key} must exist in the elderly list.
      */
     public void removeElderly(Elderly key) {
         elderly.remove(key);
@@ -208,13 +208,25 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
 
     /**
-     * Adds a {@pair} to {@code FriendlyLink}.
+     * Adds a {@code pair} to {@code FriendlyLink}.
      * The pair must not already exist in {@code FriendlyLink}.
      *
      * @param pair Pair to add into FriendlyLink.
      */
     public void addPair(Pair pair) {
         pairs.add(pair);
+    }
+
+    /**
+     * Adds a pair consisting of elderly with {@code elderlyNric} and volunteer with {@code volunteerNric}
+     * to {@code FriendlyLink}.
+     * The pair must not already exist in {@code FriendlyLink}.
+     *
+     * @param elderlyNric Nric of elderly.
+     * @param volunteerNric Nric of volunteer.
+     */
+    public void addPair(Nric elderlyNric, Nric volunteerNric) {
+        pairs.add(new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric)));
     }
 
     /**

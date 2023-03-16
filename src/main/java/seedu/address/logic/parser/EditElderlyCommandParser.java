@@ -15,13 +15,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditElderlyCommand;
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditElderlyCommand object
  */
-public class EditElderlyCommandParser extends EditCommandParser implements Parser<EditElderlyCommand> {
+public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditElderlyCommand
@@ -76,7 +76,7 @@ public class EditElderlyCommandParser extends EditCommandParser implements Parse
             editElderlyDescriptor.setRiskLevel(
                     ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).get()));
         }
-        super.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
+        EditCommandParser.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
                 .ifPresent(editElderlyDescriptor::setTags);
 
         if (!editElderlyDescriptor.isAnyFieldEdited()) {

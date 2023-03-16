@@ -15,7 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
+import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.testutil.EditVolunteerDescriptorBuilder;
 
 public class EditVolunteerDescriptorTest {

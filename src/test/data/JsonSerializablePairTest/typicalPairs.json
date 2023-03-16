@@ -1,13 +1,13 @@
 {
   "_comment": "Pairs save file which contains the same Pair values as in TypicalPairs#getTypicalPairs()",
   "pairs" : [ {
-    "elderlyNric": "S1234567A",
+    "elderlyNric": "S9186983G",
     "volunteerNric": "S7238791J"
   }, {
-    "elderlyNric": "T3456789D",
+    "elderlyNric": "S1604578J",
     "volunteerNric": "S0203151E"
   }, {
-    "elderlyNric": "T2345678C",
+    "elderlyNric": "S0116088E",
     "volunteerNric": "S7238791J"
   } ]
 }
