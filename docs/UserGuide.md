@@ -9,6 +9,7 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opt
 3. Copy the file to the folder you want to use as the *home folder* for your GoodMatch.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application. 
 
+
 A GUI similar to the one below should appear in a few seconds. 
     
     ![Screenshot 2023-03-15 at 1.02.55 AM.png](User%20Guide%2023950683b3cc4950a36706df6ae00bf4/Screenshot_2023-03-15_at_1.02.55_AM.png)
