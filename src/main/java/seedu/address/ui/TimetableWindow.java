@@ -22,7 +22,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
-import seedu.address.ui.job.SimpleDeliveryJobListPanel;
+import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
@@ -225,8 +225,10 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
     private void addJobSlotsToPanel(StackPane panelPlaceholder, ArrayList<ArrayList<DeliveryJob>> jobListInDay) {
         for (int i = 0; i < jobListInDay.size(); i++) {
             ObservableList<DeliveryJob> jobListInSlot = FXCollections.observableList(jobListInDay.get(i));
-            SimpleDeliveryJobListPanel deliveryJobListPanel = new SimpleDeliveryJobListPanel(jobListInSlot);
             StackPane deliveryJobListPanelPlaceholder = new StackPane();
+
+            DeliveryJobListPanel deliveryJobListPanel = new DeliveryJobListPanel(jobListInSlot);
+
             Text slotNo = new Text();
             slotNo.setText(String.format("Slot %d", i + 1));
             deliveryJobListPanelPlaceholder.getChildren().add(slotNo);

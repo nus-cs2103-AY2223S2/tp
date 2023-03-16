@@ -1,6 +1,7 @@
-package seedu.address.ui.job;
+package seedu.address.ui.jobs;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -9,6 +10,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.jobs.DeliveryJob;
@@ -29,11 +32,13 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     /**
      * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
      */
-    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList, BiConsumer<Integer, DeliveryJob> handler) {
+    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList,
+            BiConsumer<Integer, DeliveryJob> selectHandler,
+            Consumer<DeliveryJob> deleteHandler) {
         super(FXML);
         deliveryJobListView.setItems(jobList);
         deliveryJobListView.setCellFactory(listView -> new DeliveryJobListViewCell());
-        this.onSelectHandler = handler;
+        this.onSelectHandler = selectHandler;
 
         deliveryJobListView.setOnMouseClicked(new EventHandler<Event>() {
 
@@ -42,6 +47,27 @@ public class DeliveryJobListPanel extends UiPart<Region> {
                 selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
             }
 
+        });
+
+        deliveryJobListView.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.DELETE)) {
+                    deleteHandler.accept(deliveryJobListView.getSelectionModel().getSelectedItem());
+                }
+            }
+
+        });
+    }
+
+    /**
+     * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}
+     * without any event handler.
+     */
+    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList) {
+        this(jobList, (job, idx) -> {
+        }, (job) -> {
         });
     }
 
