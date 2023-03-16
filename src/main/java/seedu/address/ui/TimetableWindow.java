@@ -22,6 +22,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
@@ -189,7 +190,7 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         logic.setWeekDeliveryJobList(focusDate);
-        Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> weekJobList = logic.getWeekDeliveryJobList();
+        Map<LocalDate, DeliveryList> weekJobList = logic.getWeekDeliveryJobList();
 
         /*addJobSlotsToPanel(deliveryJobListPanelPlaceholder1, logic.getDayofWeekJob(1));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder2, logic.getDayofWeekJob(2));

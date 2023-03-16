@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
@@ -11,6 +10,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -122,9 +122,9 @@ public interface Model {
     void updateWeekDeliveryJobList(LocalDate date);
     void updateFocusDate(LocalDate jobDate);
     ObservableList<DeliveryJob> getSortedDeliveryJobList();
-    Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getSortedDeliveryJobListByDate();
-    Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList();
-    ArrayList<ArrayList<DeliveryJob>> getDayOfWeekJob(int dayOfWeek);
+    Map<LocalDate, DeliveryList> getSortedDeliveryJobListByDate();
+    Map<LocalDate, DeliveryList> getWeekDeliveryJobList();
+    DeliveryList getDayOfWeekJob(int dayOfWeek);
     LocalDate getFocusDate();
 
 

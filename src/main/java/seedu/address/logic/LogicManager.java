@@ -3,7 +3,6 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -19,6 +18,7 @@ import seedu.address.logic.parser.timetable.TimetableParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.storage.Storage;
@@ -99,12 +99,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList() {
+    public Map<LocalDate, DeliveryList> getWeekDeliveryJobList() {
         return model.getWeekDeliveryJobList();
     }
 
     @Override
-    public ArrayList<ArrayList<DeliveryJob>> getDayofWeekJob(int dayOfWeek) {
+    public DeliveryList getDayofWeekJob(int dayOfWeek) {
         return model.getDayOfWeekJob(dayOfWeek);
     }
 

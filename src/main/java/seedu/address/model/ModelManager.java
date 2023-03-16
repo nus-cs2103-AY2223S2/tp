@@ -21,6 +21,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.jobs.sorters.SortbyTime;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -40,8 +41,8 @@ public class ModelManager implements Model {
     private final FilteredList<DeliveryJob> filteredDeliveryJobs;
     private final List<DeliveryJob> sortedDeliveryJobs;
     private final ObservableList<Reminder> reminderList;
-    private final Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> jobListGroupedByDate;
-    private final Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> weekJobListGroupedByDate;
+    private final Map<LocalDate, DeliveryList> jobListGroupedByDate;
+    private final Map<LocalDate, DeliveryList> weekJobListGroupedByDate;
     private LocalDate focusDate;
 
 
@@ -66,7 +67,7 @@ public class ModelManager implements Model {
         this.sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
         //updateSortedDeliveryJobListByDate();
         this.jobListGroupedByDate = getSortedDeliveryJobListByDate();
-        this.weekJobListGroupedByDate = new HashMap<LocalDate, ArrayList<ArrayList<DeliveryJob>>>();
+        this.weekJobListGroupedByDate = new HashMap<LocalDate, DeliveryList>();
         this.reminderList = this.addressBook.getReminderList();
         this.focusDate = LocalDate.now();
     }
@@ -242,14 +243,14 @@ public class ModelManager implements Model {
             int slotIndex = Integer.parseInt(jobSlot) - 1;
             DeliveryJob toAdd = sortedDeliveryJobs.get(i);
             if (jobListGroupedByDate.containsKey(jobDate)) {
-                ArrayList<ArrayList<DeliveryJob>> jobsInCurrentSlot = jobListGroupedByDate.get(jobDate);
+                DeliveryList jobsInCurrentSlot = jobListGroupedByDate.get(jobDate);
                 if (jobsInCurrentSlot.size() == 0) {
                     jobsInCurrentSlot = createEmptyDayJobList();
                 }
                 jobsInCurrentSlot.get(slotIndex).add(toAdd);
                 jobListGroupedByDate.put(jobDate, jobsInCurrentSlot);
             } else {
-                ArrayList<ArrayList<DeliveryJob>> newDateJobList = createEmptyDayJobList();
+                DeliveryList newDateJobList = createEmptyDayJobList();
                 newDateJobList.get(slotIndex).add(toAdd);
                 jobListGroupedByDate.put(jobDate, newDateJobList);
             }
@@ -287,29 +288,30 @@ public class ModelManager implements Model {
     }
     private void addWeekJobList(LocalDate dayToAdd) {
         if (jobListGroupedByDate.containsKey(dayToAdd)) {
-            ArrayList<ArrayList<DeliveryJob>> currentJobList = jobListGroupedByDate.get(dayToAdd);
+            DeliveryList currentJobList = jobListGroupedByDate.get(dayToAdd);
             weekJobListGroupedByDate.put(dayToAdd, currentJobList);
         } else {
             weekJobListGroupedByDate.put(dayToAdd, null);
         }
     }
 
-    private ArrayList<ArrayList<DeliveryJob>> createEmptyDayJobList() {
-        return new ArrayList<ArrayList<DeliveryJob>>(100);
+    private DeliveryList createEmptyDayJobList() {
+        ArrayList<ArrayList<DeliveryJob>> newEmptyArr = new ArrayList<ArrayList<DeliveryJob>>(100);
+        return new DeliveryList(newEmptyArr);
     }
 
     @Override
-    public Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getSortedDeliveryJobListByDate() {
+    public Map<LocalDate, DeliveryList> getSortedDeliveryJobListByDate() {
         return jobListGroupedByDate;
     }
 
     @Override
-    public Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList() {
+    public Map<LocalDate, DeliveryList> getWeekDeliveryJobList() {
         return weekJobListGroupedByDate;
     }
 
     @Override
-    public ArrayList<ArrayList<DeliveryJob>> getDayOfWeekJob(int dayOfWeek) {
+    public DeliveryList getDayOfWeekJob(int dayOfWeek) {
         int focusDayOfWeek = focusDate.getDayOfWeek().getValue();
         LocalDate dayToAdd = focusDate.plusDays(dayOfWeek - focusDayOfWeek);
         return weekJobListGroupedByDate.get(dayToAdd);

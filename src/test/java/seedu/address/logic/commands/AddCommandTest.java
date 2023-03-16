@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDeliveryJobSystem;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.PersonBuilder;
@@ -192,17 +193,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getSortedDeliveryJobListByDate() {
+        public Map<LocalDate, DeliveryList> getSortedDeliveryJobListByDate() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList() {
+        public Map<LocalDate, DeliveryList> getWeekDeliveryJobList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ArrayList<ArrayList<DeliveryJob>> getDayOfWeekJob(int dayOfWeek) {
+        public DeliveryList getDayOfWeekJob(int dayOfWeek) {
             throw new AssertionError("This method should not be called.");
         }
 

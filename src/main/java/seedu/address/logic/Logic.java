@@ -2,7 +2,6 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
@@ -12,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -56,9 +56,9 @@ public interface Logic {
     /**
      * Returns a map of delivery job list in the week
      */
-    Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList();
+    Map<LocalDate, DeliveryList> getWeekDeliveryJobList();
 
-    ArrayList<ArrayList<DeliveryJob>> getDayofWeekJob(int dayOfWeek);
+    DeliveryList getDayofWeekJob(int dayOfWeek);
 
     /**
      * Returns the user prefs' address book file path.
