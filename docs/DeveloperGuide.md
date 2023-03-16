@@ -287,22 +287,104 @@ Priorities:
 | Lesson Plan Management                                                     | `* * *`  | tutor   | Create lesson plans for future classes                                                                | I can always plan ahead of my lessons                                                                                                                                                           |
 |                                                                            | `* *`    | tutor   | View my students’ lesson history                                                                      | I can recap past lessons with my student.                                                                                                                                                       |
 |                                                                            | `* *`    | tutor   | View the date and time of a past lesson                                                               | I can see how many lessons I’ve had over a period of time                                                                                                                                       |
-|                                                                            | `*`      |         |                                                                                                       |                                                                                                                                                                                                 |
+| Track Student Exams                                                        | `* *`    | tutor   | Assign and view school exam dates to my students                                                      | I can keep track of how long my student has to prepare for an exam.                                                                                                                             |
+|                                                                            | `* *`    | tutor   | View all my students' exams at a glance                                                               | I can provide extra instruction to students that have exams coming up.                                                                                                                          |
+
 
 *{As at v1.2, more to be added}*
 
-### Use cases
+## Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+### Add a new student
+
+**MSS**
+
+1.  User enters new-student command with NAME, ADDRESS, PHONE, EMAIL and (optionally) School, Grade Level.
+2.  TutorPro adds the new student to the student list.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. A student with the same name already exists.
+    * 2a1. TutorPro notifies the user of a duplicate.
+    * 2a2. TutorPro continues to take input.
+      
+    Use case continues at step 1.
+
+* 2b. The wrong formatting was used.
+    * 2b1. TutorPro notifies the user of wrong formatting.
+    * 2b2. TutorPro continues to take input.
+      
+    Use case continues at step 1.
+
+
+### Delete a student
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  TutorPro shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+      
+    Use case resumes at step 2.
+
+
+### Update a student's particulars
+
+**MSS**
+
+1.  User enters new-student command with NAME, ADDRESS, PHONE, EMAIL and (optionally) School, Grade Level.
+2.  TutorPro adds the new student to the student list.
+    Use case ends.
+
+**Extensions**
+
+* 2a. The wrong formatting was used.
+    * 2b1. TutorPro notifies the user of wrong formatting.
+    * 2b2. TutorPro continues to take input.
+      Use case continues at step 1.
+
+
+### View a student's profile
+
+**MSS**
+
+1.  User requests to list persons
+2.  TutorPro shows a list of persons
+3.  User clicks on **Profile** button of a particular student
+4.  TutorPro displays the profile of that student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+### Assign homework for a student
+
+**MSS**
+
+1.  User requests to list persons
+2.  TutorPro shows a list of persons
+3.  User enters assign-homework command with student name and homework title.
+4.  TutorPro assigns the homework to that particular student.
 
     Use case ends.
 
@@ -312,26 +394,206 @@ Priorities:
 
   Use case ends.
 
+* 3a. The given name does not exist in the list.
+* 3b. The user used invalid command format.
+
+    * 3*1. TutorPro shows an error message.
+
+  Use case resumes at step 3.
+
+### View a Student's Homework
+
+**MSS**
+
+1.  User enters view-homework command with a student's name.
+2.  TutorPro shows all the completed/incomplete homework of that student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Alternatively, the user clicks on the **Homework** button next to the student name.
+
+  Use case resumes at 2.
+
+### Mark a Homework as DONE
+
+**MSS**
+
+1. User clicks on **Homeworks** button of a student.
+2. TutorPro shows that student's homeworks.
+3. User enters mark-homework with student name, and homework index.
+4. TutorPro updates the status of that homework as DONE.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The student's homework list is empty.
+
+    Use case ends.
+
 * 3a. The given index is invalid.
 
     * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 3.
+
+
+### Mark a Homework as NOT DONE
+
+**MSS**
+
+1. User clicks on **Homeworks** button of a student.
+2. TutorPro shows that student's homeworks.
+3. User enters unmark-homework with student name, and homework index.
+4. TutorPro updates the status of that homework as NOT DONE.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The student's homework list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+  Use case resumes at step 3.
+
+### View a particular Student's Lessons 
+
+**MSS**
+
+1. User clicks on **Lessons** button of a student.
+2. TutorPro shows that student's past and upcoming Lessons.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The student's lesson list is empty.
+
+  Use case ends.
+
+### View all Students' Lesson history
+
+**MSS**
+
+1. User enters view-lesson command without any arguments.
+2. TutorPro shows all students' past and upcoming Lessons.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. None of the students have any lessons.
+  * 2a1. TutorPro shows an empty Lesson list.
+
+    Use case ends.
+
+### Add Lesson
+
+**MSS**
+
+1. User enters new-lesson command with student name, lesson title and start and end times.
+2. TutorPro adds the lesson to that student's Lesson list..
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The named student does not exist
+  * 1a1. TutorPro returns an error message.
+  
+    Use case resumes at 1.
+  
+* 1b. The start/end time is in the past.
+  * 1b1. TutorPro returns an error message.
+
+    Use case resumes at 1.
+
+* 1c. The start/end time format is invalid.
+    * 1c1. TutorPro returns an error message showing the accepted time formats.
+
+      Use case resumes at 1.
+
+### Add Exam
+
+**MSS**
+
+1. User enters new-exam command with student name, exam title and start and end times.
+2. TutorPro adds the exam to that student's exam list..
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The named student does not exist
+    * 1a1. TutorPro returns an error message.
+
+      Use case resumes at 1.
+
+* 1b. The start/end time is in the past.
+    * 1b1. TutorPro returns an error message.
+
+      Use case resumes at 1.
+
+* 1c. The start/end time format is invalid.
+    * 1c1. TutorPro returns an error message showing the accepted time formats.
+
+      Use case resumes at 1.
+
+### View a particular Student's Exams
+
+**MSS**
+
+1. User clicks on **Exams** button of a student.
+2. TutorPro shows that student's past and upcoming Exams.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The student's exam list is empty.
+
+  Use case ends.
 
 *{More to be added}*
+
+### View all Students' Exams
+
+**MSS**
+
+1. User enters view-exam command without any arguments.
+2. TutorPro shows all students' past and upcoming exams.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. None of the students have any lessons.
+    * 2a1. TutorPro shows an empty Lesson list.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Commands should be easy to remember(close to English words) and not cryptic for non-tech users to remember.
+5.  Commands should not be verbose.
+6.  Results should be easy to read for non-tech users (e.g. should not look like long, cluttered log files).
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
