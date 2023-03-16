@@ -11,7 +11,6 @@ import seedu.socket.model.person.Person;
  */
 public class TagContainsKeywordsPredicate implements Predicate<Person> {
 
-
     private final Set<Tag> tags;
 
     public TagContainsKeywordsPredicate(Set<Tag> keywords) {
@@ -34,7 +33,6 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         return tagsPresent;
 
     }
-
 
     @Override
     public boolean equals(Object other) {

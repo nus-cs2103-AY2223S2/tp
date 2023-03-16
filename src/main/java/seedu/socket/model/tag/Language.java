@@ -10,6 +10,9 @@ import static seedu.socket.commons.util.AppUtil.checkArgument;
 public class Language {
     public static final String MESSAGE_CONSTRAINTS = "Language names should be a minimum of 1 character, start with a "
             + "letter and consist of alphanumeric characters and/or -, +, #.";
+    /**
+     * Should be a minimum of 1 character, start with a letter and consist of alphanumeric characters and/or -, +, #.
+     */
     public static final String VALIDATION_REGEX = "^(?=[a-zA-Z])[-+#a-zA-Z0-9]+";
 
     public final String languageName;
