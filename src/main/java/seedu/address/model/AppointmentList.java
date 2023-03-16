@@ -1,13 +1,17 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.UniqueAppointmentList;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Wraps all appointment related data
+ * Duplicates are not allowed (by .isSameAppointment comparison)
+ */
 public class AppointmentList implements ReadOnlyAppointmentList {
     private final UniqueAppointmentList appointments;
 
@@ -17,6 +21,9 @@ public class AppointmentList implements ReadOnlyAppointmentList {
 
     public AppointmentList() {}
 
+    /**
+     * Creates an AppointmentList using the Appointments in the {@code toBeCopied}
+     */
     public AppointmentList(ReadOnlyAppointmentList toBeCopied) {
         this();
         resetData(toBeCopied);
@@ -26,11 +33,17 @@ public class AppointmentList implements ReadOnlyAppointmentList {
         this.appointments.setAppointments(appointments);
     }
 
+    /**
+     * Resets the existing data of this {@code AppointmentList} with {@code newData}.
+     */
     public void resetData(ReadOnlyAppointmentList newData) {
         requireNonNull(newData);
         setAppointments(newData.getAppointmentList());
     }
 
+    /**
+     * Returns true if a appointment with the same identity as {@code appointment} exists in the appointment list.
+     */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointments.contains(appointment);
