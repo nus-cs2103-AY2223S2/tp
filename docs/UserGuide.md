@@ -31,7 +31,7 @@ Contact nUS is a **desktop app for managing NUS student's schedule, optimized fo
 
    * `delete 3` : Deletes the 3rd item shown in the current list.
 
-   * `edit 1 n/CS2101 t/Tutorial` : Edits the module name, item type and date of the 1st item to be `CS2101` and `Tutorial` respectively.
+   * `edit 1 n/CS2101 t/Tutorial` : Edits the module name and item type of the 1st item to be `CS2101` and `Tutorial` respectively.
 
 <!--    * `clear` : Deletes all items.
 
