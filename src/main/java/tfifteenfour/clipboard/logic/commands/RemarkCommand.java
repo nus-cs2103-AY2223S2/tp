@@ -29,7 +29,7 @@ public class RemarkCommand extends Command {
 
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to student: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to student: %1$s, Remark: %2$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from student: %1$s";
 
     private final Index index;
@@ -71,7 +71,7 @@ public class RemarkCommand extends Command {
      */
     private String generateSuccessMessage(Student studentToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, studentToEdit.getName().fullName) + ", Remark: " + studentToEdit.getRemark();
+        return String.format(message, studentToEdit.getName().fullName, studentToEdit.getRemark().value);
     }
 
     @Override
