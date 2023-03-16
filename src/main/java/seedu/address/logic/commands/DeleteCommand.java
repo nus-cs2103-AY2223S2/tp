@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -35,9 +33,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        Person personToDelete = Nric.hasNric(lastShownList, nric);
+        Person personToDelete = model.findPersonByNric(nric);
 
         if (personToDelete == null) {
             throw new CommandException(Messages.MESSAGE_NRIC_DOES_NOT_EXIST);

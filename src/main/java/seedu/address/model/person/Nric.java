@@ -43,18 +43,6 @@ public class Nric {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns person with specified NRIC from records if exists otherwise returns null.
-     */
-    public static Person hasNric(List<Person> persons, Nric nric) { // might need to create a new person list class
-        for (Person p: persons) {
-            if (p.getNric().equals(nric)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
     @Override
     public String toString() {
         return fullNric;
