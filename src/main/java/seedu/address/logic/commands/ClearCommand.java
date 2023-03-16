@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.experimental.model.Reroll;
 import seedu.address.experimental.model.Model;
+import seedu.address.experimental.model.Reroll;
 
 /**
  * Clears the address book.
