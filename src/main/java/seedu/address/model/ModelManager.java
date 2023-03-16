@@ -121,7 +121,7 @@ public class ModelManager implements Model {
     public void deleteTag(Person person, Tag tag) {
         addressBook.deleteTag(person, tag);
     }
-    
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

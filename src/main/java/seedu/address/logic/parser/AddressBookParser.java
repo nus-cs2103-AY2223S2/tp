@@ -14,12 +14,11 @@ import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.TagCommand;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -47,10 +46,6 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        
-        /**
-         * If the user's command fits a keyword for a command, create a parser
-         */
         if (AddCommand.COMMAND_WORD.contains(commandWord)) {
             return new AddCommandParser().parse(arguments);
         } else if (EditCommand.COMMAND_WORD.contains(commandWord)) {
@@ -69,7 +64,8 @@ public class AddressBookParser {
             return new HelpCommand();
         } else if (ExportCommand.COMMAND_WORD.contains(commandWord)) {
             return new ExportCommand();
-        }
+        } else {
         throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
     }
 }

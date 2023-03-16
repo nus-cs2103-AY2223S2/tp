@@ -17,7 +17,7 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
     /**
      * Creates a DeleteTagCommand to parse the argument from user input
      * and delete the corresponding tag from the person.
-     * 
+     *
      * @param args The input from user.
      * @return DeleteTagCommand with the Person and Tag objects correspond to input.
      * @throws ParseException If the command is in invalid format.
@@ -29,11 +29,16 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split(" ");
-        Index index = ParserUtil.parseIndex(nameKeywords[INPUT_INDEX]);
-        Tag tag = ParserUtil.parseTag(nameKeywords[TAG_INDEX]);
+        try {
+            String[] nameKeywords = trimmedArgs.split(" ");
+            Index index = ParserUtil.parseIndex(nameKeywords[INPUT_INDEX]);
+            Tag tag = ParserUtil.parseTag(nameKeywords[TAG_INDEX]);
 
-        return new DeleteTagCommand(index, tag);
+            return new DeleteTagCommand(index, tag);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE), pe);
+        }
     }
 
 }

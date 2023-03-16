@@ -23,7 +23,8 @@ public class TagCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1 verypoor", new TagCommand(INDEX_FIRST_PERSON, new Tag("verypoor")));
+        assertParseSuccess(parser, "1 verypoor",
+                new TagCommand(INDEX_FIRST_PERSON, new Tag("verypoor")));
     }
 
     @Test
