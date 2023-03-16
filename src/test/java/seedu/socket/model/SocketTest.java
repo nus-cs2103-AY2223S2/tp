@@ -7,7 +7,7 @@ import static seedu.socket.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.socket.testutil.Assert.assertThrows;
 import static seedu.socket.testutil.TypicalPersons.ALICE;
-import static seedu.socket.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class SocketTest {
 
     @Test
     public void resetData_withValidReadOnlySocket_replacesData() {
-        Socket newData = getTypicalAddressBook();
+        Socket newData = getTypicalSocket();
         socket.resetData(newData);
         assertEquals(newData, socket);
     }

@@ -8,7 +8,7 @@ import static seedu.socket.model.person.Person.CATEGORY_EMAIL;
 import static seedu.socket.model.person.Person.CATEGORY_GITHUB;
 import static seedu.socket.model.person.Person.CATEGORY_NAME;
 import static seedu.socket.model.person.Person.CATEGORY_PHONE;
-import static seedu.socket.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ class SortCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalSocket(), new UserPrefs());
         expectedModel = new ModelManager(model.getSocket(), new UserPrefs());
     }
     @Test

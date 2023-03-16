@@ -1,7 +1,7 @@
 package seedu.socket.logic.commands;
 
 import static seedu.socket.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.socket.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ import seedu.socket.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptySocket_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,9 +21,9 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    public void execute_nonEmptySocket_success() {
+        Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSocket(), new UserPrefs());
         expectedModel.setSocket(new Socket());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

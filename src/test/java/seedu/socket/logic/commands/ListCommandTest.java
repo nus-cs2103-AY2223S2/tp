@@ -10,7 +10,7 @@ import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.socket.testutil.TypicalPersons.ALICE;
 import static seedu.socket.testutil.TypicalPersons.BENSON;
 import static seedu.socket.testutil.TypicalPersons.DANIEL;
-import static seedu.socket.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,8 +40,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalSocket(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalSocket(), new UserPrefs());
     }
 
 

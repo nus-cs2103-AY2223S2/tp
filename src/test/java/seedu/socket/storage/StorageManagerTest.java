@@ -2,7 +2,7 @@ package seedu.socket.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.socket.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
 
 import java.nio.file.Path;
 
@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonSocketStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonSocketStorageTest} class.
          */
-        Socket original = getTypicalAddressBook();
+        Socket original = getTypicalSocket();
         storageManager.saveSocket(original);
         ReadOnlySocket retrieved = storageManager.readSocket().get();
         assertEquals(original, new Socket(retrieved));

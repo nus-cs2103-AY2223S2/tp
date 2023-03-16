@@ -10,7 +10,7 @@ import static seedu.socket.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.socket.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.socket.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ import seedu.socket.testutil.RemovePersonDescriptorBuilder;
  */
 public class RemoveCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

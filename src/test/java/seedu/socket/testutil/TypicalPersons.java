@@ -114,7 +114,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code Socket} with all the typical persons.
      */
-    public static Socket getTypicalAddressBook() {
+    public static Socket getTypicalSocket() {
         Socket ab = new Socket();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);

@@ -44,7 +44,7 @@ public interface Logic {
     /**
      * Returns the user prefs' SOCket file path.
      */
-    Path getAddressBookFilePath();
+    Path getSocketFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

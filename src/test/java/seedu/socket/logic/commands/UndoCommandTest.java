@@ -3,7 +3,7 @@ package seedu.socket.logic.commands;
 import static seedu.socket.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.socket.logic.commands.CommandTestUtil.deletePersonIndexOne;
 import static seedu.socket.testutil.Assert.assertThrows;
-import static seedu.socket.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ class UndoCommandTest {
     public void execute_hasChangesToRevert_success() {
         UndoCommand undoCommand = new UndoCommand();
 
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
         Model expectedModel = new ModelManager(new Socket(model.getSocket()), new UserPrefs());
 
         deletePersonIndexOne(model);
@@ -40,7 +40,7 @@ class UndoCommandTest {
     public void execute_hasMultipleChangesToRevert_success() {
         UndoCommand undoCommand = new UndoCommand();
 
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
         Model expectedModel = new ModelManager(new Socket(model.getSocket()), new UserPrefs());
 
         deletePersonIndexOne(model);

@@ -75,7 +75,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getSocketFilePath() {
         return model.getSocketFilePath();
     }
 

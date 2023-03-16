@@ -25,7 +25,7 @@ public class JsonSerializableSocketTest {
         JsonSerializableSocket dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableSocket.class).get();
         Socket socketFromFile = dataFromFile.toModelType();
-        Socket typicalPersonsSocket = TypicalPersons.getTypicalAddressBook();
+        Socket typicalPersonsSocket = TypicalPersons.getTypicalSocket();
         assertEquals(socketFromFile, typicalPersonsSocket);
     }
 

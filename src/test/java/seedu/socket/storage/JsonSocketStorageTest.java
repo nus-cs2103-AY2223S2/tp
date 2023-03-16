@@ -6,7 +6,7 @@ import static seedu.socket.testutil.Assert.assertThrows;
 import static seedu.socket.testutil.TypicalPersons.ALICE;
 import static seedu.socket.testutil.TypicalPersons.HOON;
 import static seedu.socket.testutil.TypicalPersons.IDA;
-import static seedu.socket.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -63,7 +63,7 @@ public class JsonSocketStorageTest {
     @Test
     public void readAndSaveSocket_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        Socket original = getTypicalAddressBook();
+        Socket original = getTypicalSocket();
         JsonSocketStorage jsonAddressBookStorage = new JsonSocketStorage(filePath);
 
         // Save in new file and read back

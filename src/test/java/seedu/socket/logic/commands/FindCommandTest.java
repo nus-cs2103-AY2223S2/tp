@@ -8,7 +8,7 @@ import static seedu.socket.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.socket.testutil.TypicalPersons.CARL;
 import static seedu.socket.testutil.TypicalPersons.ELLE;
 import static seedu.socket.testutil.TypicalPersons.FIONA;
-import static seedu.socket.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,8 +25,8 @@ import seedu.socket.model.person.predicate.PersonContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalSocket(), new UserPrefs());
 
     @Test
     public void testEquals() {
