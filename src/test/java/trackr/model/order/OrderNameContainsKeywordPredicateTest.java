@@ -18,7 +18,7 @@ public class OrderNameContainsKeywordPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        OrderNameContainsKeywordPredicate firstPredicate =
+        OrderContainsKeywordsPredicate firstPredicate =
                 new OrderPredicateBuilder()
                         .withOrderNameKeywords(firstPredicateKeywordList)
                         .withOrderDeadline("01/01/2024")
@@ -29,13 +29,13 @@ public class OrderNameContainsKeywordPredicateTest {
                         .withCustomerPhone("12345678")
                         .build();
 
-        OrderNameContainsKeywordPredicate secondPredicate;
+        OrderContainsKeywordsPredicate secondPredicate;
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        OrderNameContainsKeywordPredicate firstPredicateCopy =
+        OrderContainsKeywordsPredicate firstPredicateCopy =
                         new OrderPredicateBuilder()
                                 .withOrderNameKeywords(firstPredicateKeywordList)
                                 .withOrderDeadline("01/01/2024")
@@ -52,7 +52,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         secondPredicate = new OrderPredicateBuilder().build();
-        OrderNameContainsKeywordPredicate secondPredicateCopy = new OrderPredicateBuilder(secondPredicate).build();
+        OrderContainsKeywordsPredicate secondPredicateCopy = new OrderPredicateBuilder(secondPredicate).build();
         assertTrue(secondPredicate.equals(secondPredicateCopy));
 
         // different types -> returns false
@@ -79,7 +79,7 @@ public class OrderNameContainsKeywordPredicateTest {
 
     @Test
     public void test_oneVariableMatch_returnsTrue() {
-        OrderNameContainsKeywordPredicate predicate;
+        OrderContainsKeywordsPredicate predicate;
 
         // One keyword
         predicate =
@@ -130,7 +130,7 @@ public class OrderNameContainsKeywordPredicateTest {
 
     @Test
     public void test_oneVariableDoesNotMatch_returnsFalse() {
-        OrderNameContainsKeywordPredicate predicate;
+        OrderContainsKeywordsPredicate predicate;
         Order testTask;
 
         // Zero keywords
@@ -188,7 +188,7 @@ public class OrderNameContainsKeywordPredicateTest {
 
     @Test
     public void test_twoVariableMatch_returnsTrue() {
-        OrderNameContainsKeywordPredicate predicate;
+        OrderContainsKeywordsPredicate predicate;
 
         // Same name and deadline
         predicate = new OrderPredicateBuilder()
@@ -219,7 +219,7 @@ public class OrderNameContainsKeywordPredicateTest {
 
     @Test
     public void test_twoVariableDoesNotMatch_returnsFalse() {
-        OrderNameContainsKeywordPredicate predicate;
+        OrderContainsKeywordsPredicate predicate;
         Order testTask;
 
         // Same name, different deadline and status
@@ -264,7 +264,7 @@ public class OrderNameContainsKeywordPredicateTest {
 
     @Test
     public void test_threeVariableMatch_returnsTrue() {
-        OrderNameContainsKeywordPredicate predicate;
+        OrderContainsKeywordsPredicate predicate;
 
         // Same name, deadline and status
         predicate = new OrderPredicateBuilder()
@@ -282,7 +282,7 @@ public class OrderNameContainsKeywordPredicateTest {
 
     @Test
     public void test_threeVariableDoesNotMatch_returnsFalse() {
-        OrderNameContainsKeywordPredicate predicate;
+        OrderContainsKeywordsPredicate predicate;
 
         // Different name, deadline and status
         predicate = new OrderPredicateBuilder()
@@ -300,7 +300,7 @@ public class OrderNameContainsKeywordPredicateTest {
 
     @Test
     public void test_atLeastOneFieldPresent_returnsTrue() {
-        OrderNameContainsKeywordPredicate predicate;
+        OrderContainsKeywordsPredicate predicate;
 
         // taskNameKeywords present
         predicate = new OrderPredicateBuilder()
@@ -323,7 +323,7 @@ public class OrderNameContainsKeywordPredicateTest {
 
     @Test
     public void test_noFieldPresent_returnsFalse() {
-        OrderNameContainsKeywordPredicate predicate;
+        OrderContainsKeywordsPredicate predicate;
 
         // taskNameKeywords present
         predicate = new OrderPredicateBuilder().build();

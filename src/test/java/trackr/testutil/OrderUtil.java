@@ -10,8 +10,8 @@ import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.logic.commands.AddOrderCommand;
 import trackr.model.order.Order;
+import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.order.OrderDescriptor;
-import trackr.model.order.OrderNameContainsKeywordPredicate;
 
 /**
  * utility calss for Order
@@ -19,7 +19,7 @@ import trackr.model.order.OrderNameContainsKeywordPredicate;
 public class OrderUtil {
 
     /**
-     * returns an AddOrdrCommand string for adding the {@code order}.
+     * Returns an AddOrderCommand string for adding the {@code order}.
      */
     public static String getAddOrderCommand(Order order) {
         return AddOrderCommand.COMMAND_WORD + " " + getOrderDetails(order);
@@ -47,8 +47,8 @@ public class OrderUtil {
         return sb.toString();
     }
 
-    // Returns the part of command string for the given {@code TaskDescriptor}'s details.
-    public static String getTaskDescriptorDetails(OrderDescriptor descriptor) {
+    // Returns the part of command string for the given {@code OrderDescriptor}'s details.
+    public static String getOrderDescriptorDetails(OrderDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getOrderName()
                 .ifPresent(orderName -> sb.append(PREFIX_ORDERNAME).append(orderName.value).append(" "));
@@ -69,7 +69,7 @@ public class OrderUtil {
     }
 
     // Returns the part of command string for the given {@code TaskContainsKeywordsPredicate}'s details.
-    public static String getTaskPredicateDetails(OrderNameContainsKeywordPredicate descriptor) {
+    public static String getOrderPredicateDetails(OrderContainsKeywordsPredicate descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getOrderNameKeywords()
                 .ifPresent(orderNameKeywords -> sb.append(PREFIX_ORDERNAME)

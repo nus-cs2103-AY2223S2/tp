@@ -20,7 +20,7 @@ import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
 import trackr.model.SupplierList;
 import trackr.model.order.Order;
-import trackr.model.order.OrderNameContainsKeywordPredicate;
+import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
@@ -223,7 +223,7 @@ public class CommandTestUtil {
 
         Order task = model.getFilteredOrderList().get(targetIndex.getZeroBased());
         final String[] splitOrderName = task.getOrderName().value.split("\\s+");
-        OrderNameContainsKeywordPredicate predicate = new OrderNameContainsKeywordPredicate();
+        OrderContainsKeywordsPredicate predicate = new OrderContainsKeywordsPredicate();
         predicate.setOrderNameKeywords(Arrays.asList(splitOrderName[0]));
         model.updateFilteredOrderList(predicate);
 

@@ -200,10 +200,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String taskDeadline} into a {@code OrderDeadline}.
+     * Parses a {@code String OrderDeadline} into a {@code OrderDeadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code taskDeadline} is invalid.
+     * @throws ParseException if the given {@code OrderDeadline} is invalid.
      */
     public static OrderDeadline parseOrderDeadline(String orderDeadline) throws ParseException {
         requireNonNull(orderDeadline);
@@ -215,10 +215,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String taskStatus} into a {@code TaskStatus}.
+     * Parses a {@code String OrderStatus} into a {@code OrderStatus}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code taskStatus} is invalid.
+     * @throws ParseException if the given {@code OrderStatus} is invalid.
      */
     public static OrderStatus parseOrderStatus(Optional<String> orderStatus) throws ParseException {
         requireNonNull(orderStatus);
@@ -226,11 +226,11 @@ public class ParserUtil {
             return new OrderStatus();
         }
 
-        String trimmedTaskStatus = orderStatus.get().trim();
-        if (!OrderStatus.isValidOrderStatus(trimmedTaskStatus)) {
-            throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
+        String trimmedOrderStatus = orderStatus.get().trim();
+        if (!OrderStatus.isValidOrderStatus(trimmedOrderStatus)) {
+            throw new ParseException(OrderStatus.MESSAGE_CONSTRAINTS);
         }
-        return new OrderStatus(trimmedTaskStatus);
+        return new OrderStatus(trimmedOrderStatus);
     }
 
     /**
@@ -249,16 +249,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String OrderQuantity} into a {@code OrderQuantity}.
+     * Parses a {@code String CustomerName} into a {@code CustomerName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code OrderQuantity} is invalid.
+     * @throws ParseException if the given {@code CustomerName} is invalid.
      */
     public static CustomerName parseCustomerName(String customerName) throws ParseException {
         requireNonNull(customerName);
         String trimmedCustomerName = customerName.trim();
         if (!CustomerName.isValidCustomerName(trimmedCustomerName)) {
-            throw new ParseException(OrderQuantity.MESSAGE_CONSTRAINTS);
+            throw new ParseException(CustomerName.MESSAGE_CONSTRAINTS);
         }
         return new CustomerName(trimmedCustomerName);
     }
@@ -273,7 +273,7 @@ public class ParserUtil {
         requireNonNull(customerPhone);
         String trimmedCustomerPhone = customerPhone.trim();
         if (!CustomerPhone.isValidCustomerPhone(trimmedCustomerPhone)) {
-            throw new ParseException(OrderQuantity.MESSAGE_CONSTRAINTS);
+            throw new ParseException(CustomerPhone.MESSAGE_CONSTRAINTS);
         }
         return new CustomerPhone(trimmedCustomerPhone);
     }
@@ -288,7 +288,7 @@ public class ParserUtil {
         requireNonNull(customerAddress);
         String trimmedCustomerAddress = customerAddress.trim();
         if (!CustomerAddress.isValidCustomerAddress(trimmedCustomerAddress)) {
-            throw new ParseException(OrderQuantity.MESSAGE_CONSTRAINTS);
+            throw new ParseException(CustomerAddress.MESSAGE_CONSTRAINTS);
         }
         return new CustomerAddress(trimmedCustomerAddress);
     }

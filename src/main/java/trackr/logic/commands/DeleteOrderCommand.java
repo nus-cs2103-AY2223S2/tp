@@ -39,9 +39,9 @@ public class DeleteOrderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
-        Order taskToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteOrder(taskToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, taskToDelete));
+        Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteOrder(orderToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete));
     }
 
     @Override

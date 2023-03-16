@@ -20,7 +20,7 @@ public class AddOrderCommand extends Command {
     public static final String COMMAND_WORD = "add_order";
     public static final String COMMAND_WORD_SHORTCUT = "add_o";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a order to the order list. "
             + "Parameters: "
             + PREFIX_ORDERNAME + "ORDER NAME "
             + PREFIX_ORDERQUANTITY + "ORDER QUANTITY"
@@ -39,7 +39,7 @@ public class AddOrderCommand extends Command {
             + PREFIX_ADDRESS + "123 Smith Street ";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the task list";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order list";
 
     private final Order toAdd;
 

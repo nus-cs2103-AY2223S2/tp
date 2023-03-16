@@ -9,17 +9,17 @@ import trackr.commons.util.StringUtil;
 /**
  * Tests that a {@code Order}'s {@code OrderName} matches any of the keywords given.
  */
-public class OrderNameContainsKeywordPredicate extends OrderDescriptor implements Predicate<Order> {
+public class OrderContainsKeywordsPredicate extends OrderDescriptor implements Predicate<Order> {
     private List<String> orderNameKeywords;
 
-    public OrderNameContainsKeywordPredicate() {
+    public OrderContainsKeywordsPredicate() {
         super();
     }
 
     /**
      * Copy constructor
      */
-    public OrderNameContainsKeywordPredicate(OrderNameContainsKeywordPredicate toCopy) {
+    public OrderContainsKeywordsPredicate(OrderContainsKeywordsPredicate toCopy) {
         setOrderNameKeywords(toCopy.orderNameKeywords);
         setOrderDeadline(toCopy.getOrderDeadline().isPresent() ? toCopy.getOrderDeadline().get() : null);
         setOrderStatus(toCopy.getOrderStatus().isPresent() ? toCopy.getOrderStatus().get() : null);
@@ -105,11 +105,11 @@ public class OrderNameContainsKeywordPredicate extends OrderDescriptor implement
             return true;
         }
 
-        if (!(other instanceof OrderNameContainsKeywordPredicate)) {
+        if (!(other instanceof OrderContainsKeywordsPredicate)) {
             return false;
         }
 
-        OrderNameContainsKeywordPredicate predicate = (OrderNameContainsKeywordPredicate) other;
+        OrderContainsKeywordsPredicate predicate = (OrderContainsKeywordsPredicate) other;
 
         return getCustomerAddress().equals(predicate.getCustomerAddress())
                 && getCustomerName().equals(predicate.getCustomerName())

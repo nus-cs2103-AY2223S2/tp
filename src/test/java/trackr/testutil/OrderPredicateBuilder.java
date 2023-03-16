@@ -3,9 +3,9 @@ package trackr.testutil;
 import java.util.Arrays;
 import java.util.List;
 
+import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
-import trackr.model.order.OrderNameContainsKeywordPredicate;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.order.customer.CustomerAddress;
@@ -17,14 +17,14 @@ import trackr.model.order.customer.CustomerPhone;
  */
 public class OrderPredicateBuilder {
 
-    private OrderNameContainsKeywordPredicate orderPredicate;
+    private OrderContainsKeywordsPredicate orderPredicate;
 
     public OrderPredicateBuilder() {
-        orderPredicate = new OrderNameContainsKeywordPredicate();
+        orderPredicate = new OrderContainsKeywordsPredicate();
     }
 
-    public OrderPredicateBuilder(OrderNameContainsKeywordPredicate orderPredicate) {
-        this.orderPredicate = new OrderNameContainsKeywordPredicate(orderPredicate);
+    public OrderPredicateBuilder(OrderContainsKeywordsPredicate orderPredicate) {
+        this.orderPredicate = new OrderContainsKeywordsPredicate(orderPredicate);
     }
 
     /**
@@ -117,7 +117,7 @@ public class OrderPredicateBuilder {
         return this;
     }
 
-    public OrderNameContainsKeywordPredicate build() {
+    public OrderContainsKeywordsPredicate build() {
         return orderPredicate;
     }
 }

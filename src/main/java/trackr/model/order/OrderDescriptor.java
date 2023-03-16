@@ -8,7 +8,7 @@ import trackr.model.order.customer.CustomerName;
 import trackr.model.order.customer.CustomerPhone;
 
 /**
- * Stores the details of an order. Each non-empty field value will replace the corresponding field value of the task.
+ * Stores the details of an order. Each non-empty field value will replace the corresponding field value of the order.
  */
 public class OrderDescriptor {
     private OrderName orderName;
