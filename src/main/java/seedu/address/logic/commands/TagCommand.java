@@ -25,15 +25,17 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Tag added: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";
-    
+
     private final Tag tagToAdd;
     private final Index targetIndex;
 
+    /**
+     * Creates an TagCommand to add the specified tag to the person {@code Tag}
+     */
     public TagCommand(Index index, Tag tag) {
         this.tagToAdd = tag;
         this.targetIndex = index;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -52,7 +54,8 @@ public class TagCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TagCommand // instanceof handles nulls
-                && targetIndex.equals(((TagCommand) other).targetIndex) && tagToAdd.equals(((TagCommand) other).tagToAdd));
+                        && targetIndex.equals(((TagCommand) other).targetIndex)
+                        && tagToAdd.equals(((TagCommand) other).tagToAdd));
     }
 
 }

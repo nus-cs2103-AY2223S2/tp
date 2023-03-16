@@ -37,7 +37,8 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address, @JsonProperty("income") String income,
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("income") String income,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -64,9 +65,11 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
@@ -109,7 +112,7 @@ class JsonAdaptedPerson {
         if (income == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Income.class.getSimpleName()));
         }
-        if(!Income.isValidIncome(income)) {
+        if (!Income.isValidIncome(income)) {
             throw new IllegalValueException(Income.MESSAGE_CONSTRAINTS);
         }
         final Income modelIncome = new Income(income);

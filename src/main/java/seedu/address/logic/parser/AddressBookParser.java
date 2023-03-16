@@ -45,39 +45,39 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            case EditCommand.COMMAND_WORD:
+                return new EditCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            case DeleteCommand.COMMAND_WORD:
+                return new DeleteCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case FindCommand.COMMAND_WORD:
+                return new FindCommandParser().parse(arguments);
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-        
-        case TagCommand.COMMAND_WORD:
-            return new TagCommandParser().parse(arguments);
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-        case ExportCommand.COMMAND_WORD:
-            return new ExportCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            case TagCommand.COMMAND_WORD:
+                return new TagCommandParser().parse(arguments);
+
+            case ExportCommand.COMMAND_WORD:
+                return new ExportCommand();
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 

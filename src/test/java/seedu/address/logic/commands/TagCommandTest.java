@@ -18,6 +18,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code TagCommand}.
@@ -39,10 +40,11 @@ public class TagCommandTest {
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }
+
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        
+
         TagCommand tagCommand = new TagCommand(outOfBoundIndex, tagToAdd);
 
         assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -53,7 +55,7 @@ public class TagCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToTag = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        TagCommand tagCommand = new TagCommand(INDEX_FIRST_PERSON,tagToAdd);
+        TagCommand tagCommand = new TagCommand(INDEX_FIRST_PERSON, tagToAdd);
 
         String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS, personToTag);
 
