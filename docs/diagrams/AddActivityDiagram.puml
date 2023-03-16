@@ -1,0 +1,17 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters add command;
+if () then ([else])
+  :Error: Invalid command format;
+  stop
+([Person arguments are valid]) elseif () then ([else])
+  :Error: Duplicated person;
+  stop
+else ([Person name is unique])
+endif
+  :Person is created.;
+  :Person is added to EduMate.;
+stop
+
+@enduml

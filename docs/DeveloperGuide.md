@@ -374,15 +374,23 @@ How the `Logic` component works:
 ### **Commands**
 #### **Add Command**
 
+The `add` command creates a new `Person` in EduMate, which enables us to use all the other functions in the application.
+
+The activity diagram is as such:
+
+|  <img src="images/AddActivityDiagram.png" style="width:90vw">  |
+|:--------------------------------------------------------------:|
+| _Figure 4.4.2a_ *Activity Diagram* for a typical `add` command |
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("add n/Bart...")` API call.
 
-| <img src="images/AddSequenceDiagram.png" style="width:90vw">  |
-|:-------------------------------------------------------------:|
-| _Figure 4.4.2_ *Sequence Diagram* for a typical `add` command |
+|  <img src="images/AddSequenceDiagram.png" style="width:90vw">  |
+|:--------------------------------------------------------------:|
+| _Figure 4.4.2b_ *Sequence Diagram* for a typical `add` command |
 
 |  <img src="images/AddParserSequenceDiagram.png" style="width:90vw">   |
 |:---------------------------------------------------------------------:|
-| _Figure 4.4.2a_ *Sequence Diagram* for parsing `AddCommand` arguments |
+| _Figure 4.4.2c_ *Sequence Diagram* for parsing `AddCommand` arguments |
 
 <div markdown="span" class="alert alert-info">
 
