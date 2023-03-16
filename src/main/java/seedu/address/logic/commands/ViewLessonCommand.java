@@ -20,10 +20,14 @@ public class ViewLessonCommand extends Command {
 
     public static final String COMMAND_WORD = "view-lesson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all lessons that match the specified "
-            + "name and date keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: [n/STUDENT_NAME] [date/Date]\n"
-            + "Example: " + COMMAND_WORD + " n/John date/2023-03-29";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all exams filtered by\n"
+        + "* name of student (case-insensitive) and/or\n"
+        + "* date and/or\n"
+        + "* subject and/or\n"
+        + "* whether it is done\n"
+        + "and displays them as a list with index numbers.\n"
+        + "Parameters: [n/STUDENT_NAME] [date/Date] [sub/Subject] [done/COMPLETED_KEYWORD]\n"
+        + "Example: " + COMMAND_WORD + " n/John date/2023-03-29 sub/Biology done/done";
     private static final String SEPERATOR = "--------------------------------------------------\n";
     private static final String DOT = ". ";
     private static final String LINE_BREAK = "\n";

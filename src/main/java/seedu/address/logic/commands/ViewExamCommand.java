@@ -26,7 +26,7 @@ public class ViewExamCommand extends Command {
         + "* exam name and/or\n"
         + "* whether it is done\n"
         + "and displays them as a list with index numbers.\n"
-        + "Parameters: [n/STUDENT_NAME] [date/Date] [e/EXAM_NAME] [done/COMPLETED_KEYWORD]"
+        + "Parameters: [n/STUDENT_NAME] [date/Date] [e/EXAM_NAME] [done/COMPLETED_KEYWORD]\n"
         + "Example: " + COMMAND_WORD + " n/John date/2023-03-29 e/Biology done/done";
     private static final Predicate<Exam> SHOW_ALL_EXAMS = exam -> true;
     private final Predicate<Student> namePredicate;

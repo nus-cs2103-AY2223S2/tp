@@ -20,10 +20,13 @@ public class ViewHomeworkCommand extends Command {
 
     public static final String COMMAND_WORD = "view-homework";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all homework that match the specified "
-            + "name and status keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: [n/STUDENT_NAME] [st/Status]\n"
-            + "Example: " + COMMAND_WORD + " n/John st/pending";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all exams filtered by\n"
+        + "* name of student (case-insensitive) and/or\n"
+        + "* date and/or\n"
+        + "* whether it is done\n"
+        + "and displays them as a list with index numbers.\n"
+        + "Parameters: [n/STUDENT_NAME] [date/Date] [st/Status]\n"
+        + "Example: " + COMMAND_WORD + " n/John st/pending";
     private static final String SEPERATOR = "--------------------------------------------------\n";
     private static final String DOT = ". ";
     private static final String LINE_BREAK = "\n";
