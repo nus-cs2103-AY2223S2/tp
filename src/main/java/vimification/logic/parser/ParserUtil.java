@@ -8,10 +8,6 @@ import java.util.Set;
 
 import vimification.commons.core.index.Index;
 import vimification.commons.util.StringUtil;
-import vimification.model.person.Address;
-import vimification.model.person.Email;
-import vimification.model.person.Name;
-import vimification.model.person.Phone;
 import vimification.model.tag.Tag;
 
 /**

@@ -5,7 +5,7 @@ import static vimification.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.util.Arrays;
 
 import vimification.logic.commands.FindCommand;
-import vimification.model.person.NameContainsKeywordsPredicate;
+import vimification.model.task.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

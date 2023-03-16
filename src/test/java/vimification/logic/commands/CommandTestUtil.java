@@ -17,8 +17,7 @@ import vimification.commons.core.index.Index;
 import vimification.logic.commands.exceptions.CommandException;
 import vimification.model.AddressBook;
 import vimification.model.Model;
-import vimification.model.person.NameContainsKeywordsPredicate;
-import vimification.model.person.Person;
+import vimification.model.task.NameContainsKeywordsPredicate;
 import vimification.testutil.EditPersonDescriptorBuilder;
 
 /**

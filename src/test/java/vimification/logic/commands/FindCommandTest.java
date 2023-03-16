@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import vimification.model.Model;
 import vimification.model.ModelManager;
 import vimification.model.UserPrefs;
-import vimification.model.person.NameContainsKeywordsPredicate;
+import vimification.model.task.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

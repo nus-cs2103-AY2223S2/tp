@@ -1,7 +1,6 @@
 package vimification.testutil;
 
 import vimification.model.AddressBook;
-import vimification.model.person.Person;
 
 /**
  * A utility class to help with building Addressbook objects. Example usage: <br>

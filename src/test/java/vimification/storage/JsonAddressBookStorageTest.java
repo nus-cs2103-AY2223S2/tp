@@ -17,7 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import vimification.commons.exceptions.DataConversionException;
 import vimification.model.AddressBook;
-import vimification.model.ReadOnlyAddressBook;
+import vimification.model.ReadOnlyTaskPlanner;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER =
@@ -31,7 +31,7 @@ public class JsonAddressBookStorageTest {
         assertThrows(NullPointerException.class, () -> readAddressBook(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath)
+    private java.util.Optional<ReadOnlyTaskPlanner> readAddressBook(String filePath)
             throws Exception {
         return new JsonAddressBookStorage(Paths.get(filePath))
                 .readAddressBook(addToTestDataPathIfNotNull(filePath));
@@ -74,7 +74,7 @@ public class JsonAddressBookStorageTest {
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        ReadOnlyTaskPlanner readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
@@ -100,7 +100,7 @@ public class JsonAddressBookStorageTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
+    private void saveAddressBook(ReadOnlyTaskPlanner addressBook, String filePath) {
         try {
             new JsonAddressBookStorage(Paths.get(filePath))
                     .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));

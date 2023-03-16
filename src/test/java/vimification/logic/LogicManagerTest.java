@@ -8,7 +8,7 @@ import static vimification.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static vimification.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static vimification.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static vimification.testutil.Assert.assertThrows;
-import static vimification.testutil.TypicalPersons.AMY;
+import static vimification.testutil.TypicalTasks.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -24,13 +24,12 @@ import vimification.logic.commands.exceptions.CommandException;
 import vimification.logic.parser.ParseException;
 import vimification.model.Model;
 import vimification.model.ModelManager;
-import vimification.model.ReadOnlyAddressBook;
+import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.UserPrefs;
-import vimification.model.person.Person;
 import vimification.storage.JsonAddressBookStorage;
 import vimification.storage.JsonUserPrefsStorage;
 import vimification.storage.StorageManager;
-import vimification.testutil.PersonBuilder;
+import vimification.testutil.TaskBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -84,7 +83,7 @@ public class LogicManagerTest {
         String addCommand =
                 AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Person expectedPerson = new TaskBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -167,7 +166,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
+        public void saveAddressBook(ReadOnlyTaskPlanner addressBook, Path filePath)
                 throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }

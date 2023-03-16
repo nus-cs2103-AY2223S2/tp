@@ -19,11 +19,6 @@ import vimification.commons.core.index.Index;
 import vimification.commons.util.CollectionUtil;
 import vimification.logic.commands.exceptions.CommandException;
 import vimification.model.Model;
-import vimification.model.person.Address;
-import vimification.model.person.Email;
-import vimification.model.person.Name;
-import vimification.model.person.Person;
-import vimification.model.person.Phone;
 import vimification.model.tag.Tag;
 
 /**

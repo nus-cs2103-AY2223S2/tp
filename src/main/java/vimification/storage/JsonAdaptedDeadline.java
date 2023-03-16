@@ -4,7 +4,7 @@ import vimification.commons.exceptions.IllegalValueException;
 import vimification.model.task.Description;
 import vimification.model.task.Status;
 import vimification.model.task.Task;
-import vimification.model.task.Date;
+import vimification.model.task.DateTime;
 import vimification.model.task.Deadline;
 
 public class JsonAdaptedDeadline extends JsonAdaptedTask {
@@ -31,12 +31,12 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
         final Status modelStatus = new Status(status);
 
         if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName()));
         }
-        if (!Date.isValidDate(deadline)) {
+        if (!DateTime.isValidDate(deadline)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Date modelDate = new Date(deadline);
+        final DateTime modelDate = new DateTime(deadline);
 
         return new Deadline(modelDescription, modelStatus, modelDate);
     }

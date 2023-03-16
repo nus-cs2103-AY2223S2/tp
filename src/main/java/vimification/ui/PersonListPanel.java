@@ -8,7 +8,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import vimification.commons.core.LogsCenter;
-import vimification.model.person.Person;
 
 /**
  * Panel containing the list of persons.

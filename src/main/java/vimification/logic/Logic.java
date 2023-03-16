@@ -7,8 +7,7 @@ import vimification.commons.core.GuiSettings;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.commands.exceptions.CommandException;
 import vimification.logic.parser.ParseException;
-import vimification.model.ReadOnlyAddressBook;
-import vimification.model.person.Person;
+import vimification.model.ReadOnlyTaskPlanner;
 
 /**
  * API of the Logic component
@@ -29,7 +28,7 @@ public interface Logic {
      *
      * @see vimification.model.Model#getAddressBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTaskPlanner getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();

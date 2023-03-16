@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static vimification.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static vimification.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static vimification.testutil.Assert.assertThrows;
-import static vimification.testutil.TypicalPersons.ALICE;
-import static vimification.testutil.TypicalPersons.BOB;
+import static vimification.testutil.TypicalTasks.ALICE;
+import static vimification.testutil.TypicalTasks.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,9 +15,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import vimification.model.person.exceptions.DuplicatePersonException;
-import vimification.model.person.exceptions.PersonNotFoundException;
-import vimification.testutil.PersonBuilder;
+import vimification.model.task.UniquePersonList;
+import vimification.model.task.exceptions.DuplicateTaskException;
+import vimification.model.task.exceptions.TaskNotFoundException;
+import vimification.testutil.TaskBuilder;
 
 public class UniquePersonListTest {
 
@@ -43,7 +44,7 @@ public class UniquePersonListTest {
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
         Person editedAlice =
-                new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                         .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
@@ -56,7 +57,7 @@ public class UniquePersonListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+        assertThrows(DuplicateTaskException.class, () -> uniquePersonList.add(ALICE));
     }
 
     @Test
@@ -71,7 +72,7 @@ public class UniquePersonListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+        assertThrows(TaskNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
     }
 
     @Test
@@ -87,7 +88,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice =
-                new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                         .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
@@ -108,7 +109,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateTaskException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
     }
 
     @Test
@@ -118,7 +119,7 @@ public class UniquePersonListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+        assertThrows(TaskNotFoundException.class, () -> uniquePersonList.remove(ALICE));
     }
 
     @Test
@@ -163,7 +164,7 @@ public class UniquePersonListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class,
+        assertThrows(DuplicateTaskException.class,
                 () -> uniquePersonList.setPersons(listWithDuplicatePersons));
     }
 

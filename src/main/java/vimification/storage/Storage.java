@@ -28,5 +28,4 @@ public interface Storage extends TaskPlannerStorage, UserPrefsStorage {
 
     @Override
     void saveTaskList(ReadOnlyTaskPlanner taskList) throws IOException;
-
 }
