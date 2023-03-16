@@ -26,7 +26,9 @@ public class CommandTestUtil {
 
     // valid applicant info
     public static final String VALID_APPLICANT_NAME_BENEDICT = "Benedict Green";
+    public static final String VALID_APPLICANT_NAME_BENEDICT_DESC = " " + PREFIX_APPLICANT + VALID_APPLICANT_NAME_BENEDICT;
     public static final String VALID_APPLICANT_NAME_CHRIS = "Chris Toper";
+    public static final String VALID_APPLICANT_NAME_CHRIS_DESC = " " + PREFIX_APPLICANT + VALID_APPLICANT_NAME_CHRIS;
 
     public static final String VALID_TITLE =
             "Entry Level Software Developer – Mentorship program and option to work remotely!";
@@ -83,7 +85,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the listing book, filtered listing list and selected listing in {@code actualModel} remain unchanged
+     * - the listing book, filtered listing book and selected listing in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
