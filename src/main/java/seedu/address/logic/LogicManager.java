@@ -13,11 +13,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.ReadOnlyPCClass;
 import seedu.address.model.person.parent.Parent;
+import seedu.address.model.person.parent.ReadOnlyParents;
 import seedu.address.model.person.student.Student;
-import seedu.address.storage.ClassStorage;
+import seedu.address.storage.Storage;
 
 /**
  * The main LogicManager of the app.
@@ -27,13 +28,13 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
-    private final ClassStorage storage;
+    private final Storage storage;
     private final AddressBookParser addressBookParser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code ClassStorage}.
+     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, ClassStorage storage) {
+    public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
@@ -48,7 +49,8 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.savePC(model.getPCClass());
+            storage.saveParents(model.getParents());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,14 +58,40 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    /**
+     * Returns the parents.
+     *
+     * @see Model#getParents()
+     */
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyParents getParents() {
+        return model.getParents();
     }
 
+    /**
+     * Returns the PCClass.
+     *
+     * @see Model#getPCClass()
+     */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ReadOnlyPCClass getPCClass() {
+        return model.getPCClass();
+    }
+
+    /**
+     * Returns the user prefs' PCClass file path.
+     */
+    @Override
+    public Path getPCClassFilePath() {
+        return model.getPCClassFilePath();
+    }
+
+    /**
+     * Returns the user prefs' parents file path.
+     */
+    @Override
+    public Path getParentsFilePath() {
+        return model.getParentFilePath();
     }
 
     @Override
@@ -74,11 +102,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Parent> getFilteredParentList() {
         return model.getFilteredParentList();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
     }
 
     @Override
