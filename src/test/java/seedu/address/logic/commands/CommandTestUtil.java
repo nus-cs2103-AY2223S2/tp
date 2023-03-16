@@ -79,7 +79,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -94,7 +94,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -124,15 +124,17 @@ public class CommandTestUtil {
 
         Internship internship = model.getFilteredInternshipList().get(targetIndex.getZeroBased());
         final String[] splitCompanyName = internship.getCompanyName().fullCompanyName.split("\\s+");
+        final String[] splitRole = internship.getRole().fullRole.split("\\s+");
         final String[] splitStatus = internship.getStatus().fullStatus.split("\\s+");
         final String[] splitTag = internship.getTags().isEmpty()
                 ? new String[0]
                 : internship.getTags().stream()
-                        .map(tag -> tag.tagName)
-                        .map(str -> str.split("\\s+"))
-                        .findFirst().get();
+                .map(tag -> tag.tagName)
+                .map(str -> str.split("\\s+"))
+                .findFirst().get();
         model.updateFilteredInternshipList(new InternshipContainsKeywordsPredicate(
-                Arrays.asList(splitCompanyName[0]), Arrays.asList(splitStatus[0]), Arrays.asList((splitTag[0]))));
+                Arrays.asList(splitCompanyName[0]), Arrays.asList(splitRole[0]), Arrays.asList(splitStatus[0]),
+                Arrays.asList((splitTag[0]))));
 
         assertEquals(1, model.getFilteredInternshipList().size());
     }
