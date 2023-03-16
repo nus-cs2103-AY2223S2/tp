@@ -9,9 +9,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.logic.commands.ViewExamCommand;
 import seedu.address.logic.commands.ViewHomeworkCommand;
-import seedu.address.logic.commands.ViewLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.HomeworkIsCompletePredicate;
 import seedu.address.model.student.NameContainsKeywordsPredicate;

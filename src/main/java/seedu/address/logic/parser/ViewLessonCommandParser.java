@@ -4,10 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
@@ -15,7 +12,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.logic.commands.CreateLessonCommand;
 import seedu.address.logic.commands.ViewLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Lesson;
