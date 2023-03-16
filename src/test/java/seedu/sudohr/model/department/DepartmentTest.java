@@ -9,10 +9,10 @@ import static seedu.sudohr.testutil.TypicalDepartments.HUMAN_RESOURCES;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.testutil.DepartmentBuilder;
-import seedu.sudohr.testutil.PersonBuilder;
-import seedu.sudohr.testutil.TypicalPersons;
+import seedu.sudohr.testutil.EmployeeBuilder;
+import seedu.sudohr.testutil.TypicalEmployees;
 
 public class DepartmentTest {
 
@@ -26,43 +26,43 @@ public class DepartmentTest {
     public void execute_addEmployee_success() {
         Department department = new DepartmentBuilder().build();
 
-        department.addEmployee(TypicalPersons.ALICE);
-        assertTrue(department.hasEmployee(TypicalPersons.ALICE));
+        department.addEmployee(TypicalEmployees.ALICE);
+        assertTrue(department.hasEmployee(TypicalEmployees.ALICE));
     }
 
     @Test
     public void execute_addDuplicateEmployee_throwsException() {
         Department department = new DepartmentBuilder().build();
 
-        department.addEmployee(new PersonBuilder().build());
+        department.addEmployee(new EmployeeBuilder().build());
 
-        assertThrows(DuplicatePersonException.class, () -> department.addEmployee(new PersonBuilder().build()));
+        assertThrows(DuplicateEmployeeException.class, () -> department.addEmployee(new EmployeeBuilder().build()));
     }
 
     @Test
     public void execute_addExactDuplicateEmployee_throwsException() {
         Department department = new DepartmentBuilder().build();
 
-        department.addEmployee(TypicalPersons.ALICE);
+        department.addEmployee(TypicalEmployees.ALICE);
 
-        assertThrows(DuplicatePersonException.class, () -> department.addEmployee(TypicalPersons.ALICE));
+        assertThrows(DuplicateEmployeeException.class, () -> department.addEmployee(TypicalEmployees.ALICE));
     }
 
     @Test
     public void execute_removeEmployee_success() {
         Department department = new DepartmentBuilder().build();
-        department.addEmployee(new PersonBuilder().build());
+        department.addEmployee(new EmployeeBuilder().build());
 
-        department.removeEmployee(new PersonBuilder().build());
+        department.removeEmployee(new EmployeeBuilder().build());
         assertTrue(department.equals(new DepartmentBuilder().build()));
     }
 
     @Test
     public void execute_removeExactEmployee_success() {
         Department department = new DepartmentBuilder().build();
-        department.addEmployee(TypicalPersons.ALICE);
+        department.addEmployee(TypicalEmployees.ALICE);
 
-        department.removeEmployee(TypicalPersons.ALICE);
+        department.removeEmployee(TypicalEmployees.ALICE);
         assertTrue(department.equals(new DepartmentBuilder().build()));
     }
 
@@ -81,7 +81,7 @@ public class DepartmentTest {
         // different type -> returns false
         assertFalse(HUMAN_RESOURCES.equals(5));
 
-        // different person -> returns false
+        // different employee -> returns false
         assertFalse(HUMAN_RESOURCES.equals(ENGINEERING));
 
         // different name -> returns false

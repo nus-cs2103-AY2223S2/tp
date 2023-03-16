@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.logic.commands.AddEmployeeToDepartmentCommand;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.Id;
+import seedu.sudohr.model.employee.Id;
 
 public class AddEmployeeToDepartmentCommandParserTest {
     private AddEmployeeToDepartmentCommandParser parser = new AddEmployeeToDepartmentCommandParser();

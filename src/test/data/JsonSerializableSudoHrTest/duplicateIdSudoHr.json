@@ -1,0 +1,17 @@
+{
+  "employees": [ {
+    "id": "999",
+    "name": "Jer En",
+    "phone": "94351253",
+    "email": "jerren@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ]
+  }, {
+    "id": "999",
+    "name": "Kenneth",
+    "phone": "67679931",
+    "email": "kiang@example.com",
+    "address": "4th street"
+  } ],
+  "departments": []
+}

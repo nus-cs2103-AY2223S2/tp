@@ -3,10 +3,10 @@ package seedu.sudohr.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.sudohr.testutil.Assert.assertThrows;
-import static seedu.sudohr.testutil.TypicalPersons.ALICE;
-import static seedu.sudohr.testutil.TypicalPersons.HOON;
-import static seedu.sudohr.testutil.TypicalPersons.IDA;
-import static seedu.sudohr.testutil.TypicalPersons.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalEmployees.ALICE;
+import static seedu.sudohr.testutil.TypicalEmployees.HOON;
+import static seedu.sudohr.testutil.TypicalEmployees.IDA;
+import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -27,11 +27,11 @@ public class JsonSudoHrStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readSudoHr_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readSudoHr(null));
     }
 
-    private java.util.Optional<ReadOnlySudoHr> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlySudoHr> readSudoHr(String filePath) throws Exception {
         return new JsonSudoHrStorage(Paths.get(filePath)).readSudoHr(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -43,70 +43,70 @@ public class JsonSudoHrStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readSudoHr("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatSudoHr.json"));
+        assertThrows(DataConversionException.class, () -> readSudoHr("notJsonFormatSudoHr.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonSudoHr.json"));
+    public void readSudoHr_invalidEmployeeSudoHr_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readSudoHr("invalidEmployeeSudoHr.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonSudoHr.json"));
+    public void readSudoHr_invalidAndValidEmployeeSudoHr_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readSudoHr("invalidAndValidEmployeeSudoHr.json"));
     }
 
     @Test
-    public void readAddressBook_invalidDepartmentAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidDepartmentSudoHr.json"));
+    public void readSudoHr_invalidDepartmentSudoHr_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readSudoHr("invalidDepartmentSudoHr.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidDepartmentAddressBook_throwDataConversionException() {
+    public void readSudoHr_invalidAndValidDepartmentSudoHr_throwDataConversionException() {
         assertThrows(DataConversionException.class, () ->
-                readAddressBook("invalidAndValidDepartmentSudoHr.json"));
+                readSudoHr("invalidAndValidDepartmentSudoHr.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveSudoHr_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempSudoHr.json");
         SudoHr original = getTypicalSudoHr();
-        JsonSudoHrStorage jsonAddressBookStorage = new JsonSudoHrStorage(filePath);
+        JsonSudoHrStorage jsonSudoHrStorage = new JsonSudoHrStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveSudoHr(original, filePath);
-        ReadOnlySudoHr readBack = jsonAddressBookStorage.readSudoHr(filePath).get();
+        jsonSudoHrStorage.saveSudoHr(original, filePath);
+        ReadOnlySudoHr readBack = jsonSudoHrStorage.readSudoHr(filePath).get();
         assertEquals(original, new SudoHr(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
-        jsonAddressBookStorage.saveSudoHr(original, filePath);
-        readBack = jsonAddressBookStorage.readSudoHr(filePath).get();
+        original.addEmployee(HOON);
+        original.removeEmployee(ALICE);
+        jsonSudoHrStorage.saveSudoHr(original, filePath);
+        readBack = jsonSudoHrStorage.readSudoHr(filePath).get();
         assertEquals(original, new SudoHr(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
-        jsonAddressBookStorage.saveSudoHr(original); // file path not specified
-        readBack = jsonAddressBookStorage.readSudoHr().get(); // file path not specified
+        original.addEmployee(IDA);
+        jsonSudoHrStorage.saveSudoHr(original); // file path not specified
+        readBack = jsonSudoHrStorage.readSudoHr().get(); // file path not specified
         assertEquals(original, new SudoHr(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveSudoHr_nullSudoHr_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveSudoHr(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlySudoHr addressBook, String filePath) {
+    private void saveSudoHr(ReadOnlySudoHr addressBook, String filePath) {
         try {
             new JsonSudoHrStorage(Paths.get(filePath))
                     .saveSudoHr(addressBook, addToTestDataPathIfNotNull(filePath));
@@ -116,7 +116,7 @@ public class JsonSudoHrStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new SudoHr(), null));
+    public void saveSudoHr_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveSudoHr(new SudoHr(), null));
     }
 }

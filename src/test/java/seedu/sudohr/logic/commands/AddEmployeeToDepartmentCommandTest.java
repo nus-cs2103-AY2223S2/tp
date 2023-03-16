@@ -19,10 +19,10 @@ import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.Id;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.testutil.TypicalDepartmentNames;
-import seedu.sudohr.testutil.TypicalPersons;
+import seedu.sudohr.testutil.TypicalEmployees;
 
 public class AddEmployeeToDepartmentCommandTest {
 
@@ -31,7 +31,7 @@ public class AddEmployeeToDepartmentCommandTest {
     public void execute_employeeAcceptedByDepartment_addSuccessful() throws CommandException {
 
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
-        modelStub.addPerson(TypicalPersons.ALICE);
+        modelStub.addEmployee(TypicalEmployees.ALICE);
         Department toAdd = new Department(TypicalDepartmentNames.DEPARTMENT_NAME_FIRST);
         modelStub.addDepartment(toAdd);
 
@@ -39,17 +39,17 @@ public class AddEmployeeToDepartmentCommandTest {
                 TypicalDepartmentNames.DEPARTMENT_NAME_FIRST).execute(modelStub);
 
         assertEquals(String.format(AddEmployeeToDepartmentCommand.MESSAGE_ADD_EMPLOYEE_TO_DEPARTMENT_SUCCESS,
-                TypicalPersons.ALICE, TypicalDepartmentNames.DEPARTMENT_NAME_FIRST),
+                TypicalEmployees.ALICE, TypicalDepartmentNames.DEPARTMENT_NAME_FIRST),
                 commandResult.getFeedbackToUser());
         assertTrue(modelStub.sudoHr.getDepartment(TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
-                .hasEmployee(TypicalPersons.ALICE));
+                .hasEmployee(TypicalEmployees.ALICE));
     }
     // Handle adding duplicate employee
     @Test
     public void execute_duplicateEmployeeInDepartment_throwsCommandException() throws CommandException {
 
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
-        modelStub.addPerson(TypicalPersons.ALICE);
+        modelStub.addEmployee(TypicalEmployees.ALICE);
         Department toAdd = new Department(TypicalDepartmentNames.DEPARTMENT_NAME_FIRST);
         modelStub.addDepartment(toAdd);
 
@@ -65,7 +65,7 @@ public class AddEmployeeToDepartmentCommandTest {
     @Test
     public void execute_addEmployeeToNonExistentDepartment_throwsCommandException() {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
-        modelStub.addPerson(TypicalPersons.ALICE);
+        modelStub.addEmployee(TypicalEmployees.ALICE);
 
         assertThrows(CommandException.class, AddEmployeeToDepartmentCommand.MESSAGE_DEPARTMENT_NOT_FOUND, () ->
                 new AddEmployeeToDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
@@ -99,7 +99,7 @@ public class AddEmployeeToDepartmentCommandTest {
     @Test
     public void execute_addEmployeeToNullDepartment_throwsCommandException() throws CommandException {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
-        modelStub.addPerson(TypicalPersons.ALICE);
+        modelStub.addEmployee(TypicalEmployees.ALICE);
 
         assertThrows(NullPointerException.class, () -> new AddEmployeeToDepartmentCommand(new Id("101"), null));
     }
@@ -139,7 +139,7 @@ public class AddEmployeeToDepartmentCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -154,32 +154,56 @@ public class AddEmployeeToDepartmentCommandTest {
         }
 
         @Override
-        public Person getPerson(Id employeeId) {
+        public Employee getEmployee(Id employeeId) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public boolean hasEmployee(Employee employee, Employee excludeFromCheck) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public boolean hasClashingEmail(Employee employee) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public boolean hasClashingEmail(Employee employee, Employee excludeFromCheck) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public boolean hasClashingPhoneNumber(Employee employee) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public boolean hasClashingPhoneNumber(Employee employee, Employee excludeFromCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void deleteEmployee(Employee target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void setEmployee(Employee target, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Employee> getFilteredEmployeeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -209,12 +233,12 @@ public class AddEmployeeToDepartmentCommandTest {
         }
 
         @Override
-        public void addEmployeeToDepartment(Person p, Department d) {
+        public void addEmployeeToDepartment(Employee p, Department d) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void removeEmployeeFromDepartment(Person p, Department d) {
+        public void removeEmployeeFromDepartment(Employee p, Department d) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -236,14 +260,14 @@ public class AddEmployeeToDepartmentCommandTest {
         private SudoHr sudoHr = new SudoHr();
 
         @Override
-        public void addPerson(Person person) {
-            sudoHr.addPerson(person);
+        public void addEmployee(Employee employee) {
+            sudoHr.addEmployee(employee);
         }
 
         @Override
-        public Person getPerson(Id employeeId) {
+        public Employee getEmployee(Id employeeId) {
             requireNonNull(employeeId);
-            return sudoHr.getPerson(employeeId);
+            return sudoHr.getEmployee(employeeId);
         }
 
         @Override

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the sudohr book.
+ * Represents a Tag in SudoHR.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {

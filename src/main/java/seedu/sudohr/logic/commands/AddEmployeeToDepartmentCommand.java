@@ -8,8 +8,8 @@ import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.Id;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 
 /**
  * Adds an employee to an existing department inside SudoHR.
@@ -46,7 +46,7 @@ public class AddEmployeeToDepartmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Person employee = model.getPerson(toAdd);
+        Employee employee = model.getEmployee(toAdd);
         Department department = model.getDepartment(departmentName);
 
         if (employee == null) {

@@ -1,14 +1,14 @@
 package seedu.sudohr.testutil;
 
-import static seedu.sudohr.testutil.TypicalPersons.ALICE;
-import static seedu.sudohr.testutil.TypicalPersons.BENSON;
-import static seedu.sudohr.testutil.TypicalPersons.CARL;
-import static seedu.sudohr.testutil.TypicalPersons.DANIEL;
-import static seedu.sudohr.testutil.TypicalPersons.ELLE;
-import static seedu.sudohr.testutil.TypicalPersons.FIONA;
-import static seedu.sudohr.testutil.TypicalPersons.GEORGE;
-import static seedu.sudohr.testutil.TypicalPersons.HOON;
-import static seedu.sudohr.testutil.TypicalPersons.IDA;
+import static seedu.sudohr.testutil.TypicalEmployees.ALICE;
+import static seedu.sudohr.testutil.TypicalEmployees.BENSON;
+import static seedu.sudohr.testutil.TypicalEmployees.CARL;
+import static seedu.sudohr.testutil.TypicalEmployees.DANIEL;
+import static seedu.sudohr.testutil.TypicalEmployees.ELLE;
+import static seedu.sudohr.testutil.TypicalEmployees.FIONA;
+import static seedu.sudohr.testutil.TypicalEmployees.GEORGE;
+import static seedu.sudohr.testutil.TypicalEmployees.HOON;
+import static seedu.sudohr.testutil.TypicalEmployees.IDA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,10 +16,10 @@ import java.util.List;
 
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Employee} objects to be used in tests.
  */
 public class TypicalDepartments {
 
@@ -35,12 +35,12 @@ public class TypicalDepartments {
     private TypicalDepartments() {} // prevents instantiation
 
     /**
-     * Returns an {@code SudoHr} with all the typical persons and departments.
+     * Returns an {@code SudoHr} with all the typical employees and departments.
      */
     public static SudoHr getTypicalSudoHr() {
         SudoHr sh = new SudoHr();
-        for (Person person : TypicalPersons.getTypicalPersons()) {
-            sh.addPerson(person);
+        for (Employee employee : TypicalEmployees.getTypicalEmployees()) {
+            sh.addEmployee(employee);
         }
 
         for (Department department : getTypicalDepartments()) {

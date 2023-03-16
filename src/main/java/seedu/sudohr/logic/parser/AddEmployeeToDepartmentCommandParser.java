@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import seedu.sudohr.logic.commands.AddEmployeeToDepartmentCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.Id;
+import seedu.sudohr.model.employee.Id;
 
 /**
  * Parses input arguments and creates a new AddEmployeeToDepartmentCommand object

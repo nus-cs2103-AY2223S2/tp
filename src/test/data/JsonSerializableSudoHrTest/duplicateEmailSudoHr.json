@@ -1,0 +1,17 @@
+{
+  "employees": [ {
+    "id": "123",
+    "name": "Jer En",
+    "phone": "94351253",
+    "email": "pseudohr@gmail.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ]
+  }, {
+    "id": "456",
+    "name": "Kenneth",
+    "phone": "67679931",
+    "email": "pseudohr@gmail.com",
+    "address": "4th street"
+  } ],
+  "departments": []
+}
