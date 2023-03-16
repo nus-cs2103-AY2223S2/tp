@@ -6,8 +6,14 @@ Patientist is a desktop app used for managing patients and staff within a medica
 for use via a Command Line Interface (CLI), while still having a Graphical User Interface (GUI) for users to fall back 
 on. If you are a strong typist and are familiar with the system, Patientist can get your tasks done faster and more 
 reliably than traditional GUI based apps.
+
+![LogInPage](../docs/images/LogIn.jpeg)
+![MainScreen](../docs/images/MainScreen.jpeg)
+
 * Table of Contents
 {:toc}
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
