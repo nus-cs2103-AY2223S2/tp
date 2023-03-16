@@ -111,6 +111,12 @@ public class ModelManager implements Model {
         petPal.setPet(target, editedPet);
     }
 
+    @Override
+    public void archivePet(Pet petToArchive) {
+        requireNonNull(petToArchive);
+
+    }
+
     //=========== Filtered Pet List Accessors =============================================================
 
     /**

@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_OWNER_NAME + "Alice "
             + PREFIX_NAME + "Doggo "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "example@gmail.com"
+            + PREFIX_EMAIL + "example@gmail.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "Dog "
             + PREFIX_TAG + "Chihuahua";

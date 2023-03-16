@@ -86,4 +86,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPetList(Predicate<Pet> predicate);
+
+    /**
+     * Deletes the given pet
+     * This pet must exist in the PetPal list
+     * @param petToArchive Pet object to archive
+     */
+    void archivePet(Pet petToArchive);
 }
