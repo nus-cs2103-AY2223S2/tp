@@ -49,12 +49,12 @@ public class AssignCommand extends Command {
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
         requireAllNonNull(model, officeConnectModel);
 
-        List<Person> personList = model.getFilteredPersonList();
+        List<Person> personList = model.getAddressBook().getPersonList();
         if (personIndex.getZeroBased() >= personList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        List<Task> taskList = officeConnectModel.getTaskModelManager().getFilteredItemList();
+        List<Task> taskList = officeConnectModel.getTaskModelManager().getReadOnlyRepository().getData();
         if (taskIndex.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }

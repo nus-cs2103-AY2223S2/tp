@@ -574,7 +574,38 @@ In the example above, the user story is clearly defined at the top, followed by 
 
       Use case ends.
 ---
+**Use case 10: Review task assigned to an individual**
 
+**Main Success Scenario (MSS):**
+
+1. User reviews the list of tasks assigned to a specific person.
+
+2. OfficeConnect displays all the tasks assigned to the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+---
+**Use case 11: Review the group of individuals assigned to a task**
+
+**Main Success Scenario (MSS):**
+
+1. User reviews the list of people assigned to a specific task.
+
+2. OfficeConnect displays all the individuals assigned to the task.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.
