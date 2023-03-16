@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.order.Order;
 
 /**
@@ -42,17 +41,6 @@ public class TypicalOrders {
 
     private TypicalOrders() {
     } // prevents instantiation
-
-    /**
-     * Returns an {@code AddressBook} with all the typical orders.
-     */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Order order : getTypicalOrders()) {
-            ab.addOrder(order);
-        }
-        return ab;
-    }
 
     public static List<Order> getTypicalOrders() {
         return new ArrayList<>(Arrays.asList(ORDER_A, ORDER_B, ORDER_C, ORDER_D));
