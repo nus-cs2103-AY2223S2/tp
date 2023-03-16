@@ -17,6 +17,7 @@ import static seedu.address.testutil.TypicalListings.getTypicalListingBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -60,7 +61,8 @@ public class EditCommandTest {
 
         ListingBuilder listingInList = new ListingBuilder(lastListing);
         Listing editedListing = listingInList.withTitle(VALID_TITLE).withDescription(VALID_DESCRIPTION)
-                .withApplicants(new ArrayList<>(Arrays.asList(new Applicant(new Name(VALID_APPLICANT_NAME_BENEDICT))))).build();
+                .withApplicants(new ArrayList<>(Arrays.
+                        asList(new Applicant(new Name(VALID_APPLICANT_NAME_BENEDICT))))).build();
 
         EditListingDescriptor descriptor = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE)
                 .withJobDescription(VALID_DESCRIPTION).withApplicants(VALID_APPLICANT_NAME_BENEDICT).build();

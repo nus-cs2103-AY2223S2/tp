@@ -27,9 +27,11 @@ public class CommandTestUtil {
 
     // valid applicant info
     public static final String VALID_APPLICANT_NAME_BENEDICT = "Benedict Green";
-    public static final String VALID_APPLICANT_NAME_BENEDICT_DESC = " " + PREFIX_APPLICANT + VALID_APPLICANT_NAME_BENEDICT;
+    public static final String VALID_APPLICANT_NAME_BENEDICT_DESC = " " + PREFIX_APPLICANT
+            + VALID_APPLICANT_NAME_BENEDICT;
     public static final String VALID_APPLICANT_NAME_CHRIS = "Chris Toper";
-    public static final String VALID_APPLICANT_NAME_CHRIS_DESC = " " + PREFIX_APPLICANT + VALID_APPLICANT_NAME_CHRIS;
+    public static final String VALID_APPLICANT_NAME_CHRIS_DESC = " " + PREFIX_APPLICANT
+            + VALID_APPLICANT_NAME_CHRIS;
 
     public static final String VALID_TITLE =
             "Entry Level Software Developer – Mentorship program and option to work remotely!";
@@ -37,12 +39,14 @@ public class CommandTestUtil {
             "Entry Level Software Engineer – Mentorship program and option to work remotely!";
     public static final String VALID_DESCRIPTION =
             "We’re looking for a full-time entry-level software developer. "
-                    + "The ideal candidate is someone who’s just out of school and looking for some quality career experience. "
+                    + "The ideal candidate is someone who’s just out of school "
+                    + "and looking for some quality career experience. "
                     + "Salary is $35,000 a year with opportunity for advancement, bonuses and paid sick leave. "
                     + "Remote work is possible.";
     public static final String VALID_DESCRIPTION_ALT =
             "We’re looking for a full-time entry-level software engineer. "
-                    + "The ideal candidate is someone who’s just out of school and looking for some quality career experience. "
+                    + "The ideal candidate is someone who’s just out of school "
+                    + "and looking for some quality career experience. "
                     + "Salary is $35,000 a year with opportunity for advancement, bonuses and paid sick leave. "
                     + "Remote work is possible.";
     public static final ArrayList<Applicant> VALID_NO_APPLICANTS = new ArrayList<>();

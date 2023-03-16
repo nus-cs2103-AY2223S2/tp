@@ -29,8 +29,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditListingDescriptor;
 import seedu.address.model.applicant.Name;
-import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.JobDescription;
+import seedu.address.model.listing.JobTitle;
 import seedu.address.testutil.EditListingDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -71,22 +71,30 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_TITLE_DESC, JobTitle.MESSAGE_CONSTRAINTS); // invalid job title
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, JobDescription.MESSAGE_CONSTRAINTS); // invalid job description
-        assertParseFailure(parser, "1" + INVALID_APPLICANT_DESC, Name.MESSAGE_CONSTRAINTS); // invalid applicant
+        assertParseFailure(parser, "1" + INVALID_TITLE_DESC,
+                JobTitle.MESSAGE_CONSTRAINTS); // invalid job title
+        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC,
+                JobDescription.MESSAGE_CONSTRAINTS); // invalid job description
+        assertParseFailure(parser, "1" + INVALID_APPLICANT_DESC,
+                Name.MESSAGE_CONSTRAINTS); // invalid applicant
 
         // invalid job description followed by valid job title
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC + VALID_TITLE_DESC, JobDescription.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC + VALID_TITLE_DESC,
+                JobDescription.MESSAGE_CONSTRAINTS);
 
-        // valid job title followed by invalid job description. The test case for invalid job description followed by valid job title
-        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + VALID_TITLE_DESC + INVALID_DESCRIPTION_DESC, JobDescription.MESSAGE_CONSTRAINTS);
+        // valid job title followed by invalid job description. The test case for invalid job description followed
+        // by valid job title is tested at {@code parse_invalidValueFollowedByValidValue_success()}
+        assertParseFailure(parser, "1" + VALID_TITLE_DESC + INVALID_DESCRIPTION_DESC,
+                JobDescription.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_APPLICANT} alone will reset the applicants of the {@code Listing} being edited,
         // parsing it together with a valid applicant results in error
-        assertParseFailure(parser, "1" + VALID_APPLICANT_NAME_BENEDICT_DESC + VALID_APPLICANT_NAME_CHRIS_DESC + APPLICANT_EMPTY, Name.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + VALID_APPLICANT_NAME_BENEDICT_DESC + APPLICANT_EMPTY + VALID_APPLICANT_NAME_CHRIS_DESC, Name.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + APPLICANT_EMPTY + VALID_APPLICANT_NAME_BENEDICT_DESC + VALID_APPLICANT_NAME_CHRIS_DESC, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VALID_APPLICANT_NAME_BENEDICT_DESC + VALID_APPLICANT_NAME_CHRIS_DESC
+                + APPLICANT_EMPTY, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VALID_APPLICANT_NAME_BENEDICT_DESC + APPLICANT_EMPTY
+                + VALID_APPLICANT_NAME_CHRIS_DESC, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + APPLICANT_EMPTY + VALID_APPLICANT_NAME_BENEDICT_DESC
+                + VALID_APPLICANT_NAME_CHRIS_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_DESCRIPTION_DESC,
@@ -100,8 +108,8 @@ public class EditCommandParserTest {
                 + VALID_TITLE_DESC + VALID_APPLICANT_NAME_BENEDICT_DESC;
 
         EditListingDescriptor descriptor = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE)
-                .withJobDescription(VALID_DESCRIPTION).
-                withApplicants(VALID_APPLICANT_NAME_CHRIS, VALID_APPLICANT_NAME_BENEDICT).build();
+                .withJobDescription(VALID_DESCRIPTION)
+                .withApplicants(VALID_APPLICANT_NAME_CHRIS, VALID_APPLICANT_NAME_BENEDICT).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -149,7 +157,8 @@ public class EditCommandParserTest {
                 + VALID_TITLE_DESC_ALT + VALID_DESCRIPTION_DESC_ALT + VALID_APPLICANT_NAME_CHRIS_DESC;
 
         EditListingDescriptor descriptor = new EditListingDescriptorBuilder().withJobDescription(VALID_DESCRIPTION_ALT)
-                .withJobTitle(VALID_TITLE_ALT).withApplicants(VALID_APPLICANT_NAME_BENEDICT, VALID_APPLICANT_NAME_CHRIS)
+                .withJobTitle(VALID_TITLE_ALT).withApplicants(VALID_APPLICANT_NAME_BENEDICT,
+                        VALID_APPLICANT_NAME_CHRIS)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -161,7 +170,8 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_LISTING;
         String userInput = targetIndex.getOneBased() + INVALID_DESCRIPTION_DESC + VALID_DESCRIPTION_DESC;
-        EditListingDescriptor descriptor = new EditListingDescriptorBuilder().withJobDescription(VALID_DESCRIPTION).build();
+        EditListingDescriptor descriptor = new EditListingDescriptorBuilder()
+                .withJobDescription(VALID_DESCRIPTION).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
