@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import codoc.model.person.Person;
 
+/**
+ * Tests that a {@code Person}'s {@code Skill} matches any of the keywords given.
+ */
 public class SkillContainsKeywordPredicate implements Predicate<Person> {
     private final List<String> keywords;
 

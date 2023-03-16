@@ -6,7 +6,6 @@ import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.Arrays;
 
-import codoc.logic.commands.EditCommand;
 import codoc.logic.commands.FindCommand;
 import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.NameContainsKeywordsPredicate;
