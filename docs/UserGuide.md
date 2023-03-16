@@ -36,7 +36,7 @@ Some example commands you can try:
 
 Shows a message explaining how to access the help page.
 
-![Untitled](User%20Guide%2023950683b3cc4950a36706df6ae00bf4/Untitled.png)
+![Untitled](User%20Guide%2023950683b3cc4950a36706df6ae00bf4/helpMessage.png)
 
 ****************Format:**************** `help`
 
