@@ -1,5 +1,6 @@
 package seedu.address.model.transaction;
 
+
 //import javax.management.Descriptor;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -46,6 +47,7 @@ public class Transaction {
     public Owner getOwner() {
         return owner;
     }
+
 
     /**
      * Returns true if the other transaction has the same description and value.
@@ -99,6 +101,7 @@ public class Transaction {
                 .append(getStatus())
                 .append("; Owner: ")
                 .append(getOwner());
+
         return builder.toString();
     }
 }

@@ -131,6 +131,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         //personTransactionRelation.addRelation(t);
         //TODO: Add customer-transaction relationship
+        
         transactions.add(t);
     }
 
