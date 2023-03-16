@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.OfficeConnectModel.PREDICATE_SHOW_ALL_TASKS;
+
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.RepositoryModelManager;
@@ -15,8 +18,8 @@ public class ListTaskCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) {
-        RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
-        taskModelManager.updateFilteredItemList(OfficeConnectModel.PREDICATE_SHOW_ALL_TASKS);
+        requireAllNonNull(model, officeConnectModel);
+        officeConnectModel.getTaskModelManager().updateFilteredItemList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

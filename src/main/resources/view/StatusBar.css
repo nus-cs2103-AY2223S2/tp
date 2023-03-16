@@ -1,0 +1,19 @@
+/* Style the GridPane with status-bar class */
+/* Credit https://www.freepik.com/ for free image */
+
+.status-bar {
+    -fx-background-image: url("wave.png");
+    -fx-background-size: 100% auto; /* Scale the background image horizontally to fit the width of the container */
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center; /* Center the background image vertically */
+    -fx-border-color: #5d99c6;
+    -fx-border-width: 1px 0px;
+    -fx-padding: 5px 10px;
+}
+
+/* Style the Label inside the GridPane */
+.status-bar .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 1, 0.0 , 1 , 1 );
+}
