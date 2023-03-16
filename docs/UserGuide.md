@@ -11,7 +11,7 @@ GoodMatch (GM) is a  **desktop app for managing applicants and job listings, opt
 
 A GUI similar to the one below should appear in a few seconds.
 
-![https://images.unsplash.com/photo-1508739773434-c26b3d09e071?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb](https://images.unsplash.com/photo-1508739773434-c26b3d09e071?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb)
+![Mock Up](./images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing  **`help`**  and pressing Enter will open the help window.
 
