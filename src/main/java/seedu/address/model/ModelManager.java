@@ -40,8 +40,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
 
         filteredPersonsByName = new FilteredList<>(this.addressBook.getPersonListByName());
-        persons = FXCollections.observableArrayList(addressBook.getPersonList());
-        filteredPersons = new FilteredList<>(persons);
+        persons = FXCollections.observableArrayList(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -115,7 +115,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
