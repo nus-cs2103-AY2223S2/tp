@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,6 +7,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+
 
 /**
  * Represents a Session in the address book.
@@ -18,9 +19,10 @@ public class Session {
 
     public static final String MESSAGE_CONSTRAINTS = "Start date time should be before end date time.";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    private String command;
     private final String startDateTime;
     private final String endDateTime;
-    public String command;
+
 
     /**
      * Every field must be present and not null.
@@ -35,6 +37,12 @@ public class Session {
         }
     }
 
+    /**
+     * Represents a session that a person can have.
+     * A session consists of a start date time and an end date time.
+     * @param sessionString
+     * @throws IllegalValueException
+     */
     public Session(String sessionString) throws IllegalValueException {
         String[] parts = sessionString.split(" to ");
         if (parts.length != 2) {
@@ -137,12 +145,15 @@ public class Session {
         }
 
         Session otherSession = (Session) other;
-        return  otherSession.getStartDateTime().equals(getStartDateTime())
+        return otherSession.getStartDateTime().equals(getStartDateTime())
                 && otherSession.getEndDateTime().equals(getEndDateTime());
     }
 
     public boolean isValidSession() {
-        return LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).isBefore(LocalDateTime.parse(endDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
+        return LocalDateTime.parse(startDateTime, DateTimeFormatter
+                        .ofPattern("dd-MM-yyyy HH:mm"))
+                .isBefore(LocalDateTime.parse(endDateTime, DateTimeFormatter
+                        .ofPattern("dd-MM-yyyy HH:mm")));
     }
 
     /**
@@ -150,7 +161,10 @@ public class Session {
      * @return duration of the session.
      */
     public Duration getSessionDuration() {
-        return Duration.between(LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")), LocalDateTime.parse(endDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
+        return Duration.between(LocalDateTime.parse(startDateTime,
+                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")),
+                LocalDateTime.parse(endDateTime,
+                        DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
     }
 
     @Override
@@ -163,21 +177,30 @@ public class Session {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Start Date Time: ")
-                .append(LocalDateTime.parse(getStartDateTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
+                .append(LocalDateTime.parse(getStartDateTime(),
+                        DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
                 .append("\n End Date Time: ")
-                .append(LocalDateTime.parse(getEndDateTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER));
+                .append(LocalDateTime.parse(getEndDateTime(),
+                        DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER));
         return builder.toString();
     }
 
-    public String getCommand(){
+    public String getCommand() {
         return startDateTime + " to " + endDateTime;
     }
 
+    /**
+     * Returns a command string representation of this {@code Session} object.
+     * The command string is in the format of "start date time to end date time".
+     * @return a command string representation of this {@code Session} object.
+     */
     public String toCommandString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(LocalDateTime.parse(getStartDateTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
+        builder.append(LocalDateTime.parse(getStartDateTime(),
+                        DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
                 .append(" to ")
-                .append(LocalDateTime.parse(getEndDateTime(), DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER));
+                .append(LocalDateTime.parse(getEndDateTime(),
+                        DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER));
         return builder.toString();
     }
 }
