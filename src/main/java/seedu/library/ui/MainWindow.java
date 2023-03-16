@@ -4,18 +4,15 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-
 import javafx.stage.Stage;
 import seedu.library.commons.core.GuiSettings;
 import seedu.library.commons.core.LogsCenter;
@@ -23,7 +20,6 @@ import seedu.library.logic.Logic;
 import seedu.library.logic.commands.CommandResult;
 import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.logic.parser.exceptions.ParseException;
-
 import seedu.library.model.bookmark.Bookmark;
 
 /**
@@ -125,7 +121,7 @@ public class MainWindow extends UiPart<Stage> {
             }
         });
     }
-    void setDate(){
+    void setDate() {
         LocalDate today = LocalDate.now();
         DayOfWeek day = today.getDayOfWeek();
         date.setText(day.name());
@@ -182,17 +178,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Event handler that triggers when the selected bookmark is possibly changed.
+     */
     public void handleChange() {
         Bookmark selectedItem = bookmarkListPanel.getSelectedItem();
-        if ( selectedItem == null || bookmarkListPanel.isChangedSelect() == false) {
+        if (selectedItem == null || !bookmarkListPanel.isChangedSelect()) {
             System.out.println("fail");
         } else {
             ZoomView newView = new ZoomView(selectedItem);
             zoomViewPlaceholder.getChildren().add(newView.getRoot());
             zoomViewPlaceholder.setVisible(true);
         }
-
-        }
+    }
 
 
 
