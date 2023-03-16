@@ -83,7 +83,6 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        
         if (this.internship != null && otherCommandResult.internship != null ) {
             return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                     && showHelp == otherCommandResult.showHelp
