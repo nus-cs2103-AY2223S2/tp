@@ -45,7 +45,7 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().getValue());
         content.setText(task.getContent().getValue());
-        status.setText(task.getStatus().toString());
+        setStatusSymbol(task.getStatus().isValue());
     }
 
     @Override
@@ -64,5 +64,15 @@ public class TaskCard extends UiPart<Region> {
         TaskCard card = (TaskCard) other;
         return id.getText().equals(card.id.getText())
             && task.equals(card.task);
+    }
+
+    private void setStatusSymbol(boolean isDone) {
+        if (isDone) {
+            status.setText("✓"); // Unicode character for the tick symbol
+            status.setStyle("-fx-text-fill: green;"); // Color the tick symbol green
+        } else {
+            status.setText("✗"); // Unicode character for the cross symbol
+            status.setStyle("-fx-text-fill: red;"); // Color the cross symbol red
+        }
     }
 }

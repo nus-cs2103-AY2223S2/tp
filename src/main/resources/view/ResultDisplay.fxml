@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
+<?import java.net.URL?>
 <?import javafx.scene.layout.StackPane?>
-
+<?import javafx.scene.control.Label?>
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
+           xmlns:fx="http://javafx.com/fxml/1">
+  <stylesheets>
+    <URL value="@ResultDisplay.css" />
+  </stylesheets>
+
+  <Label fx:id="resultDisplay" styleClass="result-display"/>
 </StackPane>

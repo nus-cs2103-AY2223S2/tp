@@ -312,13 +312,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## Example Usage
 
 
-> addtask n/Finish report
-- Task added: Finish report
+> addtask s/Draft proposal c/Complete proposal by 1st March st/false
+- New task added: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
 
 > listtask
-1. Finish report
-2. Send email to team
-3. Call client
+1. Finish report; Status: Undone; Content: Complete report for Mr Chan by 2nd March
+2. Send email to team; Status: Done; Content: Send an email regarding office hours
 
 > findtask report
 1. Finish report
@@ -347,6 +346,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 </div>
 
+---
 **Use case 1: Add a person**
 
 **Main Success Scenario (MSS):**
@@ -437,6 +437,22 @@ In the example above, the user story is clearly defined at the top, followed by 
 
     Use case ends.
 
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. The list is empty.
+
+  Use case ends.
+
+* 5a. The given index is invalid.
+
+    * 5a1. OfficeConnect shows an error message.
+
+      Use case resumes at step 2.
+
 ---
 **Use case 5: Consulting Help Window**
 
@@ -484,6 +500,81 @@ In the example above, the user story is clearly defined at the top, followed by 
 
       Use case ends.
 ---
+**Use case 7: List all tasks**
+
+**Main Success Scenario (MSS):**
+
+1. User requests for a list of all tasks.
+
+2. OfficeConnect displays all tasks stored.
+
+   Use case ends.
+---
+**Use case 8: Mark a tasks**
+
+**Main Success Scenario (MSS):**
+
+1. User requests for a list of all tasks.
+
+2. OfficeConnect displays all tasks stored.
+
+3. User requests to mark a specific task.
+
+4. OfficeConnect marks the task as completed.
+   
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. OfficeConnect shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3b. The task at the given index is already marked as completed.
+
+    * 3b1. OfficeConnect shows an error message.
+        
+      Use case ends.
+---
+**Use case 9: Unmark a tasks**
+
+**Main Success Scenario (MSS):**
+
+1. User requests for a list of all tasks.
+
+2. OfficeConnect displays all tasks stored.
+
+3. User requests to unmark a specific task.
+
+4. OfficeConnect unmarks the task as uncompleted.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. OfficeConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The task at the given index is already marked as uncompleted.
+
+    * 3b1. OfficeConnect shows an error message.
+
+      Use case ends.
+---
+
 
 ### Non-Functional Requirements
 1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.

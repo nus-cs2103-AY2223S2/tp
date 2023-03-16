@@ -1,0 +1,21 @@
+/* Style the StackPane */
+.stack-pane {
+    -fx-background-color: #f7f2e7; /* Light cream color */
+}
+
+/* Style the TextField */
+.stack-pane .text-field {
+    -fx-background-color: #fff3e9; /* Lighter cream color */
+    -fx-text-fill: #6a492b; /* Chocolate color */
+    -fx-border-color: #6a492b; /* Chocolate color */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #9d7c63; /* Lighter chocolate color */
+}
+
+/* Style the TextField when focused */
+.stack-pane .text-field:focused {
+    -fx-border-color: #9d7c63; /* Lighter chocolate color */
+}
