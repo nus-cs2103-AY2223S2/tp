@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -57,7 +58,7 @@ public class LinkContactCommandTest {
         Contact contact = model.getContactList().getContactList().get(0);
         Event linkedEvent = new PersonBuilder(event).build();
         linkedEvent.linkContact(contact);
-        LinkContactCommand linkContactCommand = new LinkContactCommand(INDEX_FIRST_PERSON, "85355255");
+        LinkContactCommand linkContactCommand = new LinkContactCommand(INDEX_FIRST_PERSON, "94351253");
         Event linkEvent = linkContactCommand.createLinkedEvent(event, contact);
 
         assertTrue(linkEvent.equals(linkedEvent));
