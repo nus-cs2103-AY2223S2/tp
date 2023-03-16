@@ -11,6 +11,7 @@ public enum ProjectStatus {
     public static final String MESSAGE_CONSTRAINTS = "Project status should be one of the following: "
             + "not_started, in_progress, done.";
 
+
     /**
      * Parses a project's status from its string representation. Throws an
      * {@code IllegalArgumentException} if the input string is not valid. To
@@ -39,6 +40,7 @@ public enum ProjectStatus {
      * Checks if a string represents a valid project status.
      */
     public static boolean isValidProjectStatus(String test) {
+        // TODO add a note in UG about this - that the case doesn't matter
         test = test.toLowerCase();
         return test.equals("not_started") || test.equals("in_progress") || test.equals("done");
     }
