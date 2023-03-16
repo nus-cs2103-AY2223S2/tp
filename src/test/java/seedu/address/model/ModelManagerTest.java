@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
-import seedu.address.testutil.InternBuddyBuilder;
+import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
@@ -27,7 +27,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new InternBuddy(), new InternBuddy(modelManager.getInternBuddy()));
+        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
     }
 
     @Test
@@ -38,14 +38,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setInternBuddyFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setInternBuddyFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -62,15 +62,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setInternBuddyFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setInternBuddyFilePath(null));
+    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
     }
 
     @Test
-    public void setInternBuddyFilePath_validPath_setsInternBuddyFilePath() {
+    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setInternBuddyFilePath(path);
-        assertEquals(path, modelManager.getInternBuddyFilePath());
+        modelManager.setAddressBookFilePath(path);
+        assertEquals(path, modelManager.getAddressBookFilePath());
     }
 
     @Test
@@ -79,12 +79,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasInternship_internshipNotInInternBuddy_returnsFalse() {
+    public void hasInternship_internshipNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasInternship(APPLE));
     }
 
     @Test
-    public void hasInternship_internshipInInternBuddy_returnsTrue() {
+    public void hasInternship_internshipInAddressBook_returnsTrue() {
         modelManager.addInternship(APPLE);
         assertTrue(modelManager.hasInternship(APPLE));
     }
@@ -97,13 +97,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        InternBuddy internBuddy = new InternBuddyBuilder().withInternship(APPLE).withInternship(GOOGLE).build();
-        InternBuddy differentInternBuddy = new InternBuddy();
+        AddressBook addressBook = new AddressBookBuilder().withInternship(APPLE).withInternship(GOOGLE).build();
+        AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(internBuddy, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(internBuddy, userPrefs);
+        modelManager = new ModelManager(addressBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -115,21 +115,21 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different internBuddy -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentInternBuddy, userPrefs)));
+        // different addressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = APPLE.getCompanyName().fullCompanyName.split("\\s+");
         modelManager.updateFilteredInternshipList(new InternshipContainsKeywordsPredicate(Arrays.asList(keywords),
                 Collections.emptyList(), Collections.emptyList(), Collections.emptyList()));
-        assertFalse(modelManager.equals(new ModelManager(internBuddy, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setInternBuddyFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(internBuddy, differentUserPrefs)));
+        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
 }
