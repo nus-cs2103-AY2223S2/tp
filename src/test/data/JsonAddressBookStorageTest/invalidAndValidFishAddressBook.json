@@ -3,17 +3,20 @@
     "name": "Valid Fish",
     "lastFedDate": "01/01/2000",
     "species": "Guppy",
-    "address": "4th street"
+    "feedingInterval": "1d0h",
+    "tank": "tank 1"
   }, {
     "name": "Fish With Invalid lastFedDate Field",
     "lastFedDate": "948asdf2424",
     "species": "Guppy",
-    "address": "4th street"
+    "feedingInterval": "1d0h",
+    "tank": "tank 1"
   },
   {
     "name": "Fish With Invalid species Field",
     "lastFedDate": "01/01/2000",
-    "species": "947asdf1803",
-    "address": "4th street"
+    "species": "947@1803",
+    "feedingInterval": "1d0h",
+    "tank": "tank 1"
   } ]
 }

@@ -70,6 +70,6 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match last fed date, species and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("06/01/2000", "Guppy", "Main", "Street"));
         assertFalse(predicate.test(new FishBuilder().withName("Alice").withLastFedDate("06/01/2000")
-                .withSpecies("Guppy").withAddress("Main Street").build()));
+                .withSpecies("Guppy").withFeedingInterval("1d1h").withTank("tank 1").build()));
     }
 }

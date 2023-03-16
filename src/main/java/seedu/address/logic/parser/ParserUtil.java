@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
-import seedu.address.model.fish.Address;
+import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
@@ -70,18 +70,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String feedingInterval} into an {@code FeedingInterval}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code feedingInterval} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static FeedingInterval parseFeedingInterval(String feedingInterval) throws ParseException {
+        requireNonNull(feedingInterval);
+        String trimmedFeedingInterval = feedingInterval.trim();
+        if (!FeedingInterval.isValidFeedingInterval(trimmedFeedingInterval)) {
+            throw new ParseException(FeedingInterval.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new FeedingInterval(trimmedFeedingInterval);
     }
 
     /**

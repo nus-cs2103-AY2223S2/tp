@@ -3,7 +3,7 @@ package seedu.address.model.fish;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEEDING_INTERVAL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFishes.ALICE;
@@ -42,7 +42,8 @@ public class UniqueFishListTest {
     @Test
     public void contains_fishWithSameIdentityFieldsInList_returnsTrue() {
         uniqueFishList.add(ALICE);
-        Fish editedAlice = new FishBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueFishList.contains(editedAlice));
     }
@@ -85,7 +86,8 @@ public class UniqueFishListTest {
     @Test
     public void setFish_editedFishHasSameIdentity_success() {
         uniqueFishList.add(ALICE);
-        Fish editedAlice = new FishBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueFishList.setFish(ALICE, editedAlice);
         UniqueFishList expectedUniqueFishList = new UniqueFishList();

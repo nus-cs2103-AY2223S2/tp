@@ -3,12 +3,15 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.fish.Address;
+import seedu.address.model.AddressBook;
+import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.TankName;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -19,12 +22,14 @@ public class FishBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_LAST_FED_DATE = "01/01/2000";
     public static final String DEFAULT_SPECIES = "Guppy";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_FEEDING_INTERVAL = "0d15h";
+    public static final String DEFAULT_TANK = "Saltwater Tank 1";
 
     private Name name;
     private LastFedDate lastFedDate;
     private Species species;
-    private Address address;
+    private FeedingInterval feedingInterval;
+    private Tank tank;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +39,8 @@ public class FishBuilder {
         name = new Name(DEFAULT_NAME);
         lastFedDate = new LastFedDate(DEFAULT_LAST_FED_DATE);
         species = new Species(DEFAULT_SPECIES);
-        address = new Address(DEFAULT_ADDRESS);
+        feedingInterval = new FeedingInterval(DEFAULT_FEEDING_INTERVAL);
+        tank = new Tank(new TankName(DEFAULT_TANK), new AddressBook());
         tags = new HashSet<>();
     }
 
@@ -45,7 +51,8 @@ public class FishBuilder {
         name = fishToCopy.getName();
         lastFedDate = fishToCopy.getLastFedDate();
         species = fishToCopy.getSpecies();
-        address = fishToCopy.getAddress();
+        feedingInterval = fishToCopy.getFeedingInterval();
+        tank = fishToCopy.getTank();
         tags = new HashSet<>(fishToCopy.getTags());
     }
 
@@ -66,10 +73,10 @@ public class FishBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Fish} that we are building.
+     * Sets the {@code FeedingInterval} of the {@code Fish} that we are building.
      */
-    public FishBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public FishBuilder withFeedingInterval(String feedingInterval) {
+        this.feedingInterval = new FeedingInterval(feedingInterval);
         return this;
     }
 
@@ -83,14 +90,25 @@ public class FishBuilder {
 
     /**
      * Sets the {@code Species} of the {@code Fish} that we are building.
+     * @param species Species
      */
     public FishBuilder withSpecies(String species) {
         this.species = new Species(species);
         return this;
     }
 
+    /**
+     * Sets the {@code Tank} of the {@code Fish} that we are building.
+     * @param tank tank
+     * @return fishbuilder
+     */
+    public FishBuilder withTank(String tank) {
+        this.tank = new Tank(new TankName(tank), new AddressBook());
+        return this;
+    }
+
     public Fish build() {
-        return new Fish(name, lastFedDate, species, address, tags);
+        return new Fish(name, lastFedDate, species, feedingInterval, tank, tags);
     }
 
 }

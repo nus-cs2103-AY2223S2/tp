@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDING_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
@@ -39,8 +39,10 @@ public class CommandTestUtil {
     public static final String VALID_LAST_FED_DATE_BOB = "02/01/2000";
     public static final String VALID_SPECIES_AMY = "Guppy";
     public static final String VALID_SPECIES_BOB = "Tetra";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_FEEDING_INTERVAL_AMY = "0d15h";
+    public static final String VALID_FEEDING_INTERVAL_BOB = "2d0h";
+    public static final String VALID_TANK_AMY = "1";
+    public static final String VALID_TANK_BOB = "2";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -50,8 +52,10 @@ public class CommandTestUtil {
     public static final String LAST_FED_DATE_DESC_BOB = " " + PREFIX_LAST_FED_DATE + VALID_LAST_FED_DATE_BOB;
     public static final String SPECIES_DESC_AMY = " " + PREFIX_SPECIES + VALID_SPECIES_AMY;
     public static final String SPECIES_DESC_BOB = " " + PREFIX_SPECIES + VALID_SPECIES_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String FEEDING_INTERVAL_DESC_AMY = " " + PREFIX_FEEDING_INTERVAL + VALID_FEEDING_INTERVAL_AMY;
+    public static final String FEEDING_INTERVAL_DESC_BOB = " " + PREFIX_FEEDING_INTERVAL + VALID_FEEDING_INTERVAL_BOB;
+    public static final String TANK_DESC_AMY = " " + PREFIX_TANK + VALID_TANK_AMY;
+    public static final String TANK_DESC_BOB = " " + PREFIX_TANK + VALID_TANK_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -59,7 +63,9 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_LAST_FED_DATE_DESC = " " + PREFIX_LAST_FED_DATE + "11 Mar 2000"; //not dd/mm/yyyy
     public static final String INVALID_SPECIES_DESC = " " + PREFIX_SPECIES + "guppy!"; // '!' not allowed in species
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_FEEDING_INTERVAL_DESC = " "
+            + PREFIX_FEEDING_INTERVAL; // empty string not allowed for feeding intervals
+    public static final String INVALID_TANK_DESC = " " + PREFIX_TANK; // empty string not allowed for tanks
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -70,10 +76,12 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditFishDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withLastFedDate(VALID_LAST_FED_DATE_AMY).withSpecies(VALID_SPECIES_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withLastFedDate(VALID_LAST_FED_DATE_AMY).withSpecies(VALID_SPECIES_AMY)
+                .withFeedingInterval(VALID_FEEDING_INTERVAL_AMY).withTank(VALID_TANK_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditFishDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withLastFedDate(VALID_LAST_FED_DATE_BOB).withSpecies(VALID_SPECIES_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withLastFedDate(VALID_LAST_FED_DATE_BOB).withSpecies(VALID_SPECIES_BOB)
+                .withFeedingInterval(VALID_FEEDING_INTERVAL_BOB).withTank(VALID_TANK_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
