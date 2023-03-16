@@ -108,6 +108,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearTracker() {
+        tracker.clear();
+    }
+
+    @Override
     public boolean hasModule(ReadOnlyModule module) {
         return tracker.hasModule(module);
     }

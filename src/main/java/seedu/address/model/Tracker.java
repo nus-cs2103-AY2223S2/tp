@@ -51,6 +51,13 @@ public class Tracker implements ReadOnlyTracker {
     }
 
     /**
+     * Clears the exisitng data of this {@code Tracker}
+     */
+    public void clear() {
+        setModules(List.of());
+    }
+
+    /**
      * Resets the existing data of this {@code Tracker} with {@code newData}.
      *
      * @param newData The tracker whose data is to be copied to this tracker.

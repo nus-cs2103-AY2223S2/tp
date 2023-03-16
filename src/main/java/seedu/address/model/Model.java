@@ -94,6 +94,11 @@ public interface Model {
     ReadOnlyTracker getTracker();
 
     /**
+     * Clears the tracker.
+     */
+    void clearTracker();
+
+    /**
      * Returns true if a module with the same code as {@code module} exists in the tracker.
      *
      * @param module The module to check if exist.
