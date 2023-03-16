@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
@@ -19,39 +20,39 @@ import seedu.address.model.video.VideoName;
  * Parses input arguments and creates a new TagCommand object
  */
 
-public class TagCommandParser implements Parser<TagCommand> {
+public class UntagCommandParser implements Parser<UntagCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the TagCommand
      * and returns an TagCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
 
-    public TagCommand parse(String args) throws ParseException {
+    public UntagCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_MOD, PREFIX_LEC, PREFIX_VIDEO);
 
         List<Prefix> presentPrefixes = streamOfPrefixesPresent(argMultimap,PREFIX_TAG, PREFIX_MOD, PREFIX_LEC, PREFIX_VIDEO);
 
-        if (!isValidTagCommand(presentPrefixes) || !argMultimap.getPreamble().isEmpty()) {
+        if (!isValidUntagCommand(presentPrefixes) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
-        Set<Tag> tags = ParseArgument.parseMultiTags(argMultimap.getValue(PREFIX_TAG).get());
+        Tag tag = ParseArgument.parseSingleTag(argMultimap.getValue(PREFIX_TAG).get());
         ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MOD).get());
 
-        if (isTaggingMod(presentPrefixes)) {
-            return new TagCommand(tags, moduleCode);
+        if (isUntaggingMod(presentPrefixes)) {
+            return new UntagCommand(tag, moduleCode);
         }
 
-        else if (isTaggingLec(presentPrefixes)) {
+        else if (isUntaggingLec(presentPrefixes)) {
             LectureName lectureName = ParseArgument.parseLecture(argMultimap.getValue(PREFIX_LEC).get());
-            return new TagCommand(tags, moduleCode, lectureName);
+            return new UntagCommand(tag, moduleCode, lectureName);
         }
 
         else {
             LectureName lectureName = ParseArgument.parseLecture(argMultimap.getValue(PREFIX_LEC).get());
             VideoName videoName = ParseArgument.parseVideo(argMultimap.getValue(PREFIX_VIDEO).get());
-            return new TagCommand(tags, moduleCode, lectureName, videoName);
+            return new UntagCommand(tag, moduleCode, lectureName, videoName);
         }
 
     }
@@ -60,12 +61,12 @@ public class TagCommandParser implements Parser<TagCommand> {
         return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).collect(Collectors.toList());
     }
 
-    private boolean isValidTagCommand(List<Prefix> presentPrefixes) {
-        return Stream.of(isTaggingMod(presentPrefixes), isTaggingLec(presentPrefixes),
-                isTaggingVideo(presentPrefixes)).allMatch(isPresent -> isPresent);
+    private boolean isValidUntagCommand(List<Prefix> presentPrefixes) {
+        return Stream.of(isUntaggingMod(presentPrefixes), isUntaggingLec(presentPrefixes),
+                isUntaggingVideo(presentPrefixes)).allMatch(isPresent -> isPresent);
     }
 
-    private boolean isTaggingMod(List<Prefix> presentPrefixes) {
+    private boolean isUntaggingMod(List<Prefix> presentPrefixes) {
         if (presentPrefixes.contains(PREFIX_TAG) &&
                 presentPrefixes.contains(PREFIX_MOD) &&
                 !presentPrefixes.contains(PREFIX_VIDEO) &&
@@ -75,7 +76,7 @@ public class TagCommandParser implements Parser<TagCommand> {
         return false;
     }
 
-    private boolean isTaggingLec(List<Prefix> presentPrefixes) {
+    private boolean isUntaggingLec(List<Prefix> presentPrefixes) {
         if (presentPrefixes.contains(PREFIX_TAG) &&
                 presentPrefixes.contains(PREFIX_MOD) &&
                 presentPrefixes.contains(PREFIX_LEC) &&
@@ -85,7 +86,7 @@ public class TagCommandParser implements Parser<TagCommand> {
         return false;
     }
 
-    private boolean isTaggingVideo(List<Prefix> presentPrefixes) {
+    private boolean isUntaggingVideo(List<Prefix> presentPrefixes) {
         if (presentPrefixes.contains(PREFIX_TAG) &&
                 presentPrefixes.contains(PREFIX_MOD) &&
                 presentPrefixes.contains(PREFIX_LEC) &&

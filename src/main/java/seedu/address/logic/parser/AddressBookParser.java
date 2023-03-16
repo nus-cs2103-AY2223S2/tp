@@ -35,6 +35,8 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+            case UntagCommand.COMMAND_WORD:
+                return new UntagCommandParser().parse(arguments);
             case TagCommand.COMMAND_WORD:
                 return new TagCommandParser().parse(arguments);
 

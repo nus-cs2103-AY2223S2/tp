@@ -3,7 +3,15 @@ package seedu.address.logic.parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.video.VideoName;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.Objects.requireNonNull;
 
@@ -57,6 +65,39 @@ public class ParseArgument {
             throw new ParseException(VideoName.MESSAGE_CONSTRAINTS);
         }
         return new VideoName(trimmedVideoName);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+
+    public static Tag parseSingleTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String} of comma-separated tags into a {@code Set} of {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+
+    public static Set<Tag> parseMultiTags(String tags) throws ParseException {
+        requireNonNull(tags);
+        String[] arrayOfTags = tags.split(",");
+        List<Tag> listOfTags = Arrays.stream(arrayOfTags)
+                .map(tag -> tag.trim())
+                .map(trimmedtag -> new Tag(trimmedtag))
+                .collect(Collectors.toList());
+        return new HashSet<>(listOfTags);
     }
 
 }
