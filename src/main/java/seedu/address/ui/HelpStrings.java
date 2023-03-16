@@ -1,9 +1,5 @@
 package seedu.address.ui;
 
-import seedu.address.commons.core.*;
-
-import java.util.logging.*;
-
 public class HelpStrings {
     public static final String HELP_MESSAGE = "For more help, Refer to the user guide: " + HelpStrings.USERGUIDE_URL;
 
