@@ -58,6 +58,56 @@
       "tagged": []
     }
   ],
-  "projects": [],
-  "clients": []
+  "projects": [
+    {
+      "name": "Bard",
+      "status": "NOT_STARTED",
+      "clientEmail": "jamar@bard.org",
+      "source": null,
+      "description": null,
+      "acceptedOn": "14/03/2022",
+      "deadline": null
+    },
+    {
+      "name": "Bing",
+      "status": "IN_PROGRESS",
+      "clientEmail": "jamal@bing.org",
+      "source": "fiverr.com",
+      "description": "Bing the new Google",
+      "acceptedOn": "14/03/2022",
+      "deadline": "14/04/2022"
+    },
+    {
+      "name": "Bose",
+      "status": "DONE",
+      "clientEmail": "jamae@bose.org",
+      "source": null,
+      "description": "Audiophile headphones site",
+      "acceptedOn": "20/04/2022",
+      "deadline": null
+    }
+  ],
+  "clients": [
+    {
+      "name": "Rantaro Futanari",
+      "email": "Futanari@example.com",
+      "yearOfBirth": "1958",
+      "source": "www.nippon.com",
+      "mobileNumber": "99910102"
+    },
+    {
+      "name": "Rantaro Futanari",
+      "email": "Rantaro@example.com",
+      "yearOfBirth": "1958",
+      "source": "www.futanariinflation.com",
+      "mobileNumber": "99923442"
+    },
+    {
+      "name": "Kanye West",
+      "email": "alice@example.com",
+      "yearOfBirth": "2000",
+      "source": "www.kanyewest.com",
+      "mobileNumber": "99923444"
+    }
+  ]
 }
