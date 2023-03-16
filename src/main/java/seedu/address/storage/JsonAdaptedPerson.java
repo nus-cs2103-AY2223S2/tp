@@ -43,7 +43,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("telegramHandle") String telegramHandle,
-            @JsonProperty("index") int index,
+            @JsonProperty("index") Integer index,
             @JsonProperty("groups") List<JsonAdaptedGroupTag> groups,
             @JsonProperty("modules") List<JsonAdaptedModuleTag> modules) {
         this.name = name;

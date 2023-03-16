@@ -40,7 +40,4 @@ public class IndexHandler {
         return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
     }
 
-    public Model getModel() {
-        return model;
-    }
 }
