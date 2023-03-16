@@ -1,0 +1,13 @@
+{
+  "persons": [],
+  "projects": [],
+  "clients": [
+	{
+      "name": "jamal@hogriders.org is not a valid name!!!",
+      "email": "jamal@hogriders.org",
+      "yearOfBirth": "1958",
+      "source": "hogriders.org",
+      "mobileNumber": "99910102"
+    }
+  ]
+}
