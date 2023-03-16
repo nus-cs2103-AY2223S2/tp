@@ -29,9 +29,6 @@ public class StudentIdTest {
         assertFalse(StudentId.isValidStudentId(" ")); // spaces only
 
         // valid addresses
-        assertTrue(StudentId.isValidStudentId("Blk 456, Den Road, #01-355"));
-        assertTrue(StudentId.isValidStudentId("-")); // one character
-        assertTrue(StudentId.isValidStudentId("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
-        // long address
+        assertTrue(StudentId.isValidStudentId("A12345678J"));
     }
 }

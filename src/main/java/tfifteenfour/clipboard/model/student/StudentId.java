@@ -9,13 +9,8 @@ import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
  */
 public class StudentId {
 
-    public static final String MESSAGE_CONSTRAINTS = "StudentId can take any values, and it should not be blank";
-
-    /*
-     * The first character of the studentId must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS = "Student Ids should be alphanumeric with no underscores";
+    public static final String VALIDATION_REGEX = "[^\\W_]+";
 
     public final String value;
 
@@ -27,7 +22,7 @@ public class StudentId {
     public StudentId(String studentId) {
         requireNonNull(studentId);
         checkArgument(isValidStudentId(studentId), MESSAGE_CONSTRAINTS);
-        value = studentId;
+        value = studentId.toUpperCase().trim();
     }
 
     /**
