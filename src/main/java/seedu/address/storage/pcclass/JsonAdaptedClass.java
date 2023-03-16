@@ -14,6 +14,7 @@ import seedu.address.storage.person.JsonAdaptedStudent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JsonAdaptedClass implements JsonAdapted<Class> {
     private final String className;
@@ -30,6 +31,15 @@ public class JsonAdaptedClass implements JsonAdapted<Class> {
                             @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.className = className;
         this.students.addAll(students);
+    }
+
+    public JsonAdaptedClass(Class pcClass) {
+        this.className = pcClass.getClassName();
+        this.students.addAll(pcClass.getStudents()
+                        .asUnmodifiableObservableList()
+                        .stream()
+                        .map(JsonAdaptedStudent::new)
+                        .collect(Collectors.toList()));
     }
 
     /**

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.PCClass;
 import seedu.address.model.person.ReadOnlyPCClass;
 import seedu.address.model.person.student.Student;
@@ -20,15 +21,14 @@ import java.util.stream.Collectors;
 public class JsonSerializablePCClass {
     public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
 
-    private final JsonAdaptedClass jsonAdaptedClass;
-    private final List<JsonAdaptedStudent> students = new ArrayList<>();
+    private final List<JsonAdaptedClass> jsonAdaptedClasses = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializablePCClass} with the given students.
      */
     @JsonCreator
-    public JsonSerializablePCClass(@JsonProperty("class") JsonAdaptedClass jsonAdaptedClass) {
-         this.jsonAdaptedClass = jsonAdaptedClass;
+    public JsonSerializablePCClass(@JsonProperty("classes") List<JsonAdaptedClass> jsonAdaptedClass) {
+         this.jsonAdaptedClasses.addAll(jsonAdaptedClass);
     }
 
     /**
@@ -37,23 +37,23 @@ public class JsonSerializablePCClass {
      * @param source future changes to this will not affect the created {@code JsonSerializablePCClass}.
      */
     public JsonSerializablePCClass(ReadOnlyPCClass source) {
-        students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
-        jsonAdaptedClass = new JsonAdaptedClass(source.getPcClass().getClassName(), students);
+        this.jsonAdaptedClasses.addAll(source.getClassList().stream().map(JsonAdaptedClass::new)
+                .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this tea pet into the model's {@code PCClass} object.
+     * Converts this serializable class into the model's {@code PCClass} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public PCClass toModelType() throws IllegalValueException {
         PCClass pcClass = new PCClass();
-        for (JsonAdaptedStudent jsonAdaptedStudent : students) {
-            Student student = jsonAdaptedStudent.toModelType();
-            if (pcClass.hasStudent(student)) {
+        for (JsonAdaptedClass jsonAdaptedClass : this.jsonAdaptedClasses) {
+            Class classToAdd = jsonAdaptedClass.toModelType();
+            if (pcClass.hasClass(classToAdd)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            pcClass.addStudent(student);
+            pcClass.addClass(classToAdd);
         }
         return pcClass;
     }

@@ -30,10 +30,10 @@ public interface PCClassStorage {
 
     /**
      * Saves the given {@link ReadOnlyPCClass} to the storage.
-     * @param teaPet cannot be null.
+     * @param readOnlyPCClass cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void savePC(ReadOnlyPCClass teaPet) throws IOException;
+    void savePC(ReadOnlyPCClass readOnlyPCClass) throws IOException;
 
-    void savePC(ReadOnlyPCClass teaPet, Path filePath) throws IOException;
+    void savePC(ReadOnlyPCClass readOnlyPCClass, Path filePath) throws IOException;
 }
