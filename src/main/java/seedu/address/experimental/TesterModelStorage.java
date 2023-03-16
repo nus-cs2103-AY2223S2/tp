@@ -17,10 +17,12 @@ import seedu.address.experimental.storage.Storage;
 import seedu.address.experimental.storage.StorageManager;
 import seedu.address.experimental.storage.UserPrefsStorage;
 import seedu.address.model.entity.Character;
-import seedu.address.model.entity.Stats;
 import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Stats;
 
+/***/
 public class TesterModelStorage {
+    /***/
     public static void main(String[] args) {
         // Instead of hard coded filepath, MainApp uses Config to get this.
         UserPrefsStorage ups = new JsonUserPrefsStorage(Paths.get("preferences.json"));
