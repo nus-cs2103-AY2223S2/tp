@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: #FDF6E3; -fx-padding: 10,0,0,0; -fx-background-color: #FDF6E3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: #FDF6E3; -fx-padding: 10,0,0,0; -fx-background-color: #FDF6E3;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="340.0" prefWidth="570.0" style="-fx-background-color: #F4F6F8; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black;">
          <children>
             <HBox fx:id="zoomed" maxWidth="1.7976931348623157E308">
                <children>
                   <Label style="-fx-label-padding: 5; -fx-font-family: 'Britannic Bold'; -fx-font-size: 30; -fx-text-fill: black;" text="Title:" translateX="10.0" translateY="10.0" />
-                  <Label fx:id="view_Title" style="-fx-font-family: 'Britannic Bold'; -fx-font-size: 30; -fx-text-fill: black;" text="Label" translateX="8.0" translateY="15.0" />
+                  <Label fx:id="viewTitle" style="-fx-font-family: 'Britannic Bold'; -fx-font-size: 30; -fx-text-fill: black;" text="Label" translateX="8.0" translateY="15.0" />
                </children>
             </HBox>
             <HBox prefHeight="29.0" prefWidth="630.0">
@@ -31,7 +31,7 @@
             <HBox prefHeight="35.0" prefWidth="640.0">
                <children>
                   <Label style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Genre:" translateX="15.0" />
-                  <Label fx:id="GenreView" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="18.0" />
+                  <Label fx:id="genreView" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="18.0" />
                </children>
             </HBox>
             <HBox>
