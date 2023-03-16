@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_SPORTS;
 import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_SPORTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTENT_SPORTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_SPORTS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_SPORTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_SPORTS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class AddTaskCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
 
         // missing subject prefix
-        assertParseFailure(parser, VALID_SUBJECT_SPORTS + CONTENT_DESC_SPORTS + STATUS_DESC_SPORTS,
+        assertParseFailure(parser, VALID_TITLE_SPORTS + CONTENT_DESC_SPORTS + STATUS_DESC_SPORTS,
                 expectedMessage);
 
         // missing content prefix

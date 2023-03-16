@@ -182,10 +182,10 @@ If your changes to the data file makes its format invalid, OfficeConnect will di
 
 Adds a task to OfficeConnect.
 
-Format: `addtask s/TITLE c/CONTENT st/STATUS`
+Format: `addtask title/TITLE c/CONTENT st/STATUS`
 
 Examples:
-- `addtask s/Complete slides c/Finish slides for meeting st/false`
+- `addtask title/Complete slides c/Finish slides for meeting st/false`
 
 ## Deleting a Task: `deletetask`
 
@@ -293,7 +293,7 @@ _Details coming soon ..._
 | Action          | Format, Examples                                                                                                                                                     |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Task**    | `addtask s/TITLE c/CONTENT st/STATUS` <br> e.g., `addtask s/Draft proposal c/Complete proposal by 1st March st/false`                                              |
+| **Add Task**    | `addtask title/TITLE c/CONTENT st/STATUS` <br> e.g., `addtask title/Draft proposal c/Complete proposal by 1st March st/false`                                        |
 | **Clear**       | `clear`                                                                                                                                                              |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
 | **Delete Task** | `deletetask INDEX`<br/> e.g. `deletetask 2`                                                                                                                          |
@@ -307,4 +307,4 @@ _Details coming soon ..._
 | **List All**    | `listall`                                                                                                                                                            |
 | **List Task**   | `listtask`                                                                                                                                                           |
 | **Review**      | `review NAME`<br> e.g., `review James Jake`                                                                                                                          |
-| **Review Task** | `reviewtask TITLE`<br> e.g., `reviewtask CS2103 TP`                                                                                                                |
+| **Review Task** | `reviewtask TITLE`<br> e.g., `reviewtask CS2103 TP`                                                                                                                  |

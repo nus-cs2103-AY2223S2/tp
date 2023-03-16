@@ -61,8 +61,8 @@ class AddTaskCommandTest {
     }
     @Test
     public void equals() {
-        Task taskEat = new TaskBuilder().withSubject("Recreation Day").build();
-        Task taskDrink = new TaskBuilder().withSubject("Project RUN").build();
+        Task taskEat = new TaskBuilder().withTitle("Recreation Day").build();
+        Task taskDrink = new TaskBuilder().withTitle("Project RUN").build();
         AddTaskCommand addTaskEatCommand = new AddTaskCommand(taskEat);
         AddTaskCommand addTaskDrinkCommand = new AddTaskCommand(taskDrink);
 
