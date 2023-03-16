@@ -275,20 +275,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                           | I want to …​                   | So that I can…​                                                        |
-|----------|-------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new delivery driver and Duke Driver user                          | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | delivery driver                                                   | add/delete jobs                | keep track of my upcoming and old jobs                                 |
-| `* * *`  | delivery driver                                                   | mark/unmark jobs               | keep track of completed jobs                                           |
-| `* * *`  | delivery driver                                                   | add a new person               | keep in touch with my clients                                          |
-| `* * *`  | delivery driver                                                   | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | organised delivery driver                                         | find a person by name          | locate details of persons without having to go through the entire list |
-| `* * *`  | forgetful person                                                  | be reminded of upcoming tasks and deadlines  | complete all my jobs on time |
-| `* *`    | busy person                                                       | be reminded of my next task    | focus on my current task and not remember too much stuff |
-| `* *`    | delivery driver                                                   | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | delivery driver who wants to learn how to maximise his earnings   | view my aggregated information | track my earnings and other statistics                                 |
-| `*`      | delivery driver with many customers in the address book           | sort persons by name           | locate a person/client easily and thus increase delivery efficiency    |
-| `*`      | user                                                              | adjust how my notifications are shown | have a clutter free desktop |
+| Priority | As a …​                                                         | I want to …​                                | So that I can…​                                                        |
+|----------|-----------------------------------------------------------------|---------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                      | refer to instructions when I forget how to use the App                 |
+| `* * *`  | delivery driver                                                 | add/delete jobs                             | keep track of my upcoming and old jobs                                 |
+| `* * *`  | delivery driver                                                 | mark/unmark jobs                            | keep track of completed jobs                                           |
+| `* * *`  | delivery driver                                                 | add a new person                            | keep in touch with my clients                                          |
+| `* * *`  | delivery driver                                                 | delete a person                             | remove entries that I no longer need                                   |
+| `* * *`  | organised delivery driver                                       | find a person by name                       | locate details of persons without having to go through the entire list |
+| `* * *`  | forgetful person                                                | be reminded of upcoming tasks and deadlines | complete all my jobs on time                                           |
+| `* * *`  | organised user                                                  | be reminded of upcoming tasks and deadlines | complete all my jobs on time                                           |
+| `* *`    | busy person                                                     | view timetable of my tasks in a week        | organise my timetable and complete everything on time                  |
+| `* *`    | delivery driver                                                 | hide private contact details                | minimize chance of someone else seeing them by accident                |
+| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information              | track my earnings and other statistics                                 |
+| `*`      | delivery driver with many customers in the address book         | sort persons by name                        | locate a person/client easily and thus increase delivery efficiency    |
+| `*`      | user                                                            | adjust how my notifications are shown       | have a clutter free desktop                                            |
 
 *{More to be added}*
 
@@ -357,15 +358,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 <details>
-<summary><b>[TT1] Display timetable and scheduling tasks</b></summary>
+<summary><b>[TT1] Display timetable and scheduling tasks of current week</b></summary>
 <pre>
 <b>MSS</b>
 1. User requests to display timetable by selecting Timetable option on homepage.
-2. System displays timetable of uncompleted/upcoming jobs.
+2. System displays timetable of uncompleted/upcoming jobs in current week.
    Use case ends.
 
 </pre>
 </details>
+
+<details>
+<summary><b>[TT2] Display timetable and scheduling tasks of specific week</b></summary>
+<pre>
+<b>MSS</b>
+1. User requests to display timetable of specific week by requesting to show timetable of a date in that week.
+2. System displays timetable of uncompleted/upcoming jobs in the week.
+   Use case ends.
+
+</pre>
+</details>
+
 
 <details>
 <summary><b>[RE1] Receive reminders</b></summary>
