@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/seedu/wife/logic/commands/foodcommands/DeleteCommand.java
 package seedu.wife.logic.commands.foodcommands;
-========
-package seedu.wife.logic.commands.deleteCommands;
->>>>>>>> 88446f9c (Move DeleteCommand to deleteCommands):src/main/java/seedu/wife/logic/commands/deleteCommands/DeleteCommand.java
 
 import static java.util.Objects.requireNonNull;
 
@@ -23,7 +19,7 @@ import seedu.wife.model.food.Food;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "del";
+    public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the food identified by the index number used in the displayed food list.\n"

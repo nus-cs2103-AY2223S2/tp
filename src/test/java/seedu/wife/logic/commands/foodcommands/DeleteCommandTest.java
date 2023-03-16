@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.wife.commons.core.Messages;
 import seedu.wife.commons.core.index.Index;
+import seedu.wife.logic.commands.deletecommands.DeleteCommand;
 import seedu.wife.model.Model;
 import seedu.wife.model.ModelManager;
 import seedu.wife.model.UserPrefs;
@@ -68,7 +69,7 @@ public class DeleteCommandTest {
         showFoodAtIndex(model, INDEX_FIRST_FOOD);
 
         Index outOfBoundIndex = INDEX_SECOND_FOOD;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of wife list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getWife().getFoodList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
@@ -94,7 +95,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different food -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
