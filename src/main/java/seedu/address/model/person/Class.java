@@ -25,6 +25,7 @@ public class Class {
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     private static final List<Class> classes = new ArrayList<>();
 
+    // TODO: Change type to Name
     private final String className;
     private UniqueStudentList students;
     private UniqueParentList parents;

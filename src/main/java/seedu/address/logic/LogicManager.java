@@ -17,7 +17,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.Student;
-import seedu.address.storage.Storage;
+import seedu.address.storage.ClassStorage;
 
 /**
  * The main LogicManager of the app.
@@ -27,13 +27,13 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
-    private final Storage storage;
+    private final ClassStorage storage;
     private final AddressBookParser addressBookParser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     * Constructs a {@code LogicManager} with the given {@code Model} and {@code ClassStorage}.
      */
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, ClassStorage storage) {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();

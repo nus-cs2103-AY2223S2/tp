@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.student.Assignment;
+import seedu.address.storage.JsonAdapted;
 
 import java.time.format.DateTimeFormatter;
 
 /**
  * Jackson-friendly version of {@link Assignment}.
  */
-abstract class JsonAdaptedAssignment {
+abstract class JsonAdaptedAssignment implements JsonAdapted<Assignment> {
 
     private final String assignmentName;
     private final String deadline;
