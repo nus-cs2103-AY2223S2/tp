@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
@@ -35,6 +36,12 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_EXAM,
             PREFIX_DONE);
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ViewExamCommand.MESSAGE_USAGE));
+        }
+
         Predicate<Student> namePredicate;
         Predicate<Exam> examPredicate = exam -> true;
         Predicate<Exam> donePredicate = exam -> true;
