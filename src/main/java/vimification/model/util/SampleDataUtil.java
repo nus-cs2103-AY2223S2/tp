@@ -1,6 +1,7 @@
 package vimification.model.util;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Random;
@@ -25,63 +26,62 @@ import vimification.model.ReadOnlyTaskPlanner;
 public class SampleDataUtil {
     // 57 sample tasks in total
     private static String[] samples = new String[] {
-            "Do ES2660 essay.",
-            "Project meeting.",
-            "Feed my dog, Bobby.",
-            "Buy grocery.",
-            "Go post office pay the bill.",
-            "Help mum run errands.",
-            "Meet Prof Ng for career advice.",
-            "Abs workout.",
+            "Tidy up my room",
             "FOW proposal review.",
-            "Check in with Rag's PD.",
-            "Finish up CS2109 mini-project.",
+            "Practise meditation",
+            "Abs workout.",
+            "Do ES2660 essay.",
+            "Pick up guitar",
+            "Read Deep Work by Cal Newport",
+            "Meet Prof Ng for career advice.",
             "Practise OP2 presentation.",
-            "Search & apply for internships.",
-            "Do research to see which model to get as my new phone.",
-            "Go Sim Lim Square to upgrade my laptop.",
+            "Get started on CS2109 ps6",
+            "Go to the gym.",
+            "Revise Operating System knowledge.",
+            "Go to the park to play with my dog.",
+            "Shave my moustache.",
+            "Research on class divide in Singapore",
+            "FOW cohesion day.",
+            "Piano practice.",
+            "Check in with Rag's PD.",
+            "Go to the library to study.",
+            "Go to the supermarket to buy groceries.",
+            "Learn advance hooks in React.",
+            "HTHT with Jon",
+            "Project meeting.",
             "Play badminton with the boys.",
             "Daily Leetcode practice.",
-            "Work on Bridge game side-project.",
-            "Learn aadvance hooks in React.",
+            "Do CS2103T quiz.",
+            "Search & apply for internships.",
+            "Cut my fingernails.",
+            "Go to the dentist.",
+            "Organise my closet",
+            "Go Sim Lim Square to upgrade my laptop.",
+            "Schedule a date night with your partner",
             "Buy birthday present for Kai Xuan.",
+            "Learn Django on youtube.",
+            "Help mum run errands.",
+            "Send an important email to Prof Aaron",
+            "Attend CAPT graduation ceremony",
             "Frisbee training with Amos.",
             "Revise for CS4225 midterms.",
-            "Learn Django on youtube.",
-            "Do CS2103T quiz.",
-            "Have High-Tea session with my mum.",
-            "Go to the gym.",
-            "Go to the library to study.",
-            "Touch up my portfolio website.",
-            "Piano practice.",
-            "Go to the gym.",
-            "Go to the park to play with my dog.",
-            "Go to the supermarket to buy groceries.",
-            "Revise Operating System knowledge.",
-            "FOW cohesion day.",
-            "Cut my fingernails.",
-            "Shave my moustache.",
-            "Go to the dentist.",
-            "HTHT with Jon",
-            "Plan a summer vacation getaway",
-            "Tidy up my room",
-            "Practise meditation",
-            "Read Deep Work by Cal Newport",
-            "Watch the latest movie, Suzume no Shizuku",
-            "Pick up guitar",
-            "Complete a home improvement task",
-            "Schedule a date night with your partner",
-            "Send an important email to Prof Aaron",
-            "Ask Prof Kelvin to write a letter of recommendation",
-            "Update my resume/linkedin profile",
-            "Organise my closet",
-            "Pay rent for this month",
-            "Research on class divide in Singapore",
-            "Attend CAPT graduation ceremony",
-            "Complete lab report for PC1431",
-            "Get started on CS2109 ps6",
+            "Go post office pay the bill.",
             "Finish up CS2105 assignment",
-            "Revise Data Sturctures and Algorithms knowledge"
+            "Revise Data Sturctures and Algorithms knowledge",
+            "Complete a home improvement task",
+            "Do research to see which model to get as my new phone.",
+            "Update my resume/linkedin profile",
+            "Plan a summer vacation getaway",
+            "Pay rent for this month",
+            "Touch up my portfolio website.",
+            "Feed my dog, Bobby.",
+            "Complete lab report for PC1431",
+            "Work on Bridge game side-project.",
+            "Ask Prof Kelvin to write a letter of recommendation",
+            "Watch the latest movie, Suzume no Shizuku",
+            "Finish up CS2109 mini-project.",
+            "Buy grocery.",
+            "Have High-Tea session with my mum."
     };
     private static int length = samples.length;
 
@@ -135,7 +135,8 @@ public class SampleDataUtil {
 
         Random random = new Random();
         return startDateTime.plusSeconds(random.nextInt(
-                (int) (endDateTime.toEpochSecond(null) - startDateTime.toEpochSecond(null))));
+                (int) (endDateTime.toEpochSecond(ZoneOffset.UTC) -
+                        startDateTime.toEpochSecond(ZoneOffset.UTC))));
     }
 
     private static DateTime toDateTime(LocalDateTime ldt) {
