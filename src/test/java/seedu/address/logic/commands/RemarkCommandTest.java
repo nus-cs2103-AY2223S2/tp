@@ -37,7 +37,8 @@ public class RemarkCommandTest {
         Patient firstPatient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         Patient editedPatient = new PatientBuilder(firstPatient).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PATIENT, new Remark(editedPatient.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PATIENT,
+                new Remark(editedPatient.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPatient);
 
@@ -68,10 +69,11 @@ public class RemarkCommandTest {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
 
         Patient firstPatient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
-        Patient editedPatient = new PatientBuilder(model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased()))
-                .withRemark(REMARK_STUB).build();
+        Patient editedPatient = new PatientBuilder(model.getFilteredPatientList().get(
+                INDEX_FIRST_PATIENT.getZeroBased())).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PATIENT, new Remark(editedPatient.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PATIENT,
+                new Remark(editedPatient.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPatient);
 
