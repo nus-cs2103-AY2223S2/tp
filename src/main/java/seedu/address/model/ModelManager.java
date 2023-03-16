@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
@@ -19,6 +20,7 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -157,6 +159,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasLecture(ReadOnlyModule module, LectureName lecture) {
+        requireNonNull(module);
+        return module.getLecture(lecture) != null;
+    }
+
+    @Override
     public void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target) {
         requireNonNull(module);
         //CHECKSTYLE.OFF: SeparatorWrap
@@ -184,6 +192,12 @@ public class ModelManager implements Model {
     public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
         requireNonNull(lecture);
         return lecture.hasVideo(video);
+    }
+
+    @Override
+    public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
+        requireNonNull(lecture);
+        return lecture.getVideo(video) != null;
     }
 
     @Override

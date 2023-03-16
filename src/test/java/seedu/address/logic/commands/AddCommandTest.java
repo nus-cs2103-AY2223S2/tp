@@ -22,12 +22,14 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -201,6 +203,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasLecture(ReadOnlyModule module, LectureName lecture) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -217,6 +224,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
             throw new AssertionError("This method should not be called.");
         }
 

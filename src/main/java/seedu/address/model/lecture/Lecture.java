@@ -69,11 +69,6 @@ public class Lecture implements ReadOnlyLecture {
     }
 
     @Override
-    public boolean hasVideo(VideoName video) {
-        return getVideo(video) != null;
-    }
-
-    @Override
     public boolean isSameLecture(Lecture other) {
         if (other == this) {
             return true;

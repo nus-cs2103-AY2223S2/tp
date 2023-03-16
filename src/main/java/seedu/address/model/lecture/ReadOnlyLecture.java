@@ -51,14 +51,6 @@ public interface ReadOnlyLecture {
     public boolean hasVideo(Video video);
 
     /**
-     * Returns true if a video with the same name as {@code video} exists in the lecture.
-     *
-     * @param video The video to check if it is in the lecture.
-     * @return True if a video with the same name as {@code video} exists in the lecture. Otherwise, false.
-     */
-    public boolean hasVideo(VideoName video);
-
-    /**
      * Returns true if both lectures have the same name.<p>
      * This defines a weaker notion of equality between two lectures.
      *

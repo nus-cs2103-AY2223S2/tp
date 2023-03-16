@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
@@ -13,6 +14,7 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 
 /**
  * The API of the Model component.
@@ -141,6 +143,15 @@ public interface Model {
     boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture);
 
     /**
+     * Returns true if a lecture with the same name as {@code lecture} exists in {@code module}.
+     *
+     * @param module The module to check if it contains the lecture.
+     * @param lecture The lecture to check if exist.
+     * @return True if a lecture with the same name as {@code lecture} exists in {@code module}. Otherwise, false.
+     */
+    boolean hasLecture(ReadOnlyModule module, LectureName lecture);
+
+    /**
      * Deletes the given lecture {@code target}.<p>
      * The lecture must exist in {@code module}.
      *
@@ -176,6 +187,15 @@ public interface Model {
      * @return True if a video with the same name as {@code video} exists in {@code lecture}. Otherwise, false.
      */
     boolean hasVideo(ReadOnlyLecture lecture, Video video);
+
+    /**
+     * Returns true if a video with the same name as {@code video} exists in {@code lecture}.
+     *
+     * @param lecture The lecture to check if it contains the video.
+     * @param video The video to check if exist.
+     * @return True if a video with the same name as {@code video} exists in {@code lecture}. Otherwise, false.
+     */
+    boolean hasVideo(ReadOnlyLecture lecture, VideoName video);
 
     /**
      * Deletes the given video {@code target}.<p>
