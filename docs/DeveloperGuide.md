@@ -290,11 +290,11 @@ Priorities:
 
 *{As at v1.2, more to be added}*
 
-### Use cases
+## Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new student**
+### Add a new student
 
 **MSS**
 
@@ -318,7 +318,7 @@ Priorities:
     Use case continues at step 1.
 
 
-**Use case: Delete a student**
+### Delete a student
 
 **MSS**
 
@@ -342,7 +342,7 @@ Priorities:
     Use case resumes at step 2.
 
 
-**Use case: Update a student's particulars**
+### Update a student's particulars
 
 **MSS**
 
@@ -358,7 +358,7 @@ Priorities:
       Use case continues at step 1.
 
 
-**Use case: View a student's profile**
+### View a student's profile
 
 **MSS**
 
@@ -375,7 +375,7 @@ Priorities:
 
   Use case ends.
 
-**Use case: Assign homework for a student**
+### Assign homework for a student
 
 **MSS**
 
@@ -399,7 +399,7 @@ Priorities:
 
   Use case resumes at step 3.
 
-**Use case: View a Student's Homework**
+### View a Student's Homework
 
 **MSS**
 
