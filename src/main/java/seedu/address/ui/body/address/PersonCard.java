@@ -42,6 +42,7 @@ public class PersonCard extends UiPart<Region> {
     private ImageView star;
 
     private Person person;
+    private int index;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -51,9 +52,18 @@ public class PersonCard extends UiPart<Region> {
         setPerson(person, displayedIndex);
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
     public void setPerson(Person person, int displayedIndex) {
         Objects.requireNonNull(person);
         this.person = person;
+        this.index = displayedIndex;
 
         id.setText(String.valueOf(displayedIndex));
         name.setText(person.getName().fullName);
@@ -81,7 +91,7 @@ public class PersonCard extends UiPart<Region> {
 
         // state check
         PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
+        return index == card.index
                 && person.equals(card.person);
     }
 }

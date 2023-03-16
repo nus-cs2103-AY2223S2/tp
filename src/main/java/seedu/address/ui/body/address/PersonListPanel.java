@@ -1,25 +1,20 @@
 package seedu.address.ui.body.address;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
@@ -56,16 +51,16 @@ public class PersonListPanel extends UiPart<Region> {
             }
         });
 
-        fillListView(personList);
         personList.addListener((ListChangeListener<Person>) c -> fillListView(c.getList()));
+        fillListView(personList);
 
         /* Updates PersonDetailPanel accordingly
          * when the selected Person and index changes.
          */
         MultipleSelectionModel<PersonListCellData> model = personListView.getSelectionModel();
         model.selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            panel.setPerson(extractPersonFromData(newValue));
-            panel.setDisplayedIndex(extractIndexFromData(newValue));
+            panel.setPerson(newValue.getPerson());
+            panel.setDisplayedIndex(newValue.getIndex());
         });
     }
 
@@ -92,140 +87,148 @@ public class PersonListPanel extends UiPart<Region> {
             return;
         }
 
-        List<PersonListCellData> allData = assignIndices(people);
-        List<PersonListCellData> favoriteData = getFavoriteData(allData);
+        List<PersonListCardData> allData = assignIndices(people);
+        List<PersonListCardData> favoriteData = getFavoriteData(allData);
         if (!favoriteData.isEmpty()) {
-            items.add(PersonListCellData.ofDivider(String.format(DIVIDER_FAVORITE, favoriteData.size())));
+            items.add(new PersonListDividerData(String.format(DIVIDER_FAVORITE, favoriteData.size())));
             items.addAll(favoriteData);
         }
         if (!allData.isEmpty()) {
-            items.add(PersonListCellData.ofDivider(String.format(DIVIDER_ALL, allData.size())));
+            items.add(new PersonListDividerData(String.format(DIVIDER_ALL, allData.size())));
             items.addAll(allData);
         }
     }
 
-    private List<PersonListCellData> assignIndices(Collection<? extends Person> people) {
-        List<PersonListCellData> indexedData = new LinkedList<>();
+    private List<PersonListCardData> assignIndices(Collection<? extends Person> people) {
+        List<PersonListCardData> indexedData = new LinkedList<>();
         int index = 1;
         for (Person person : people) {
-            indexedData.add(PersonListCellData.ofPerson(index, person));
+            indexedData.add(new PersonListCardData(person, index));
             index += 1;
         }
         return indexedData;
     }
 
-    private List<PersonListCellData> getFavoriteData(Collection<PersonListCellData> data) {
-        return data.stream().filter(d -> {
-            Person person = d.getPerson().orElse(null);
-            if (person == null) {
-                return false;
-            }
-            return person.getIsFavorite().getFavoriteStatus();
-        }).collect(Collectors.toList());
-    }
-
-    private Person extractPersonFromData(PersonListCellData data) {
-        if (data == null || !data.hasPerson()) {
-            return null;
-        }
-        return data.getPerson().orElse(null);
-    }
-
-    private int extractIndexFromData(PersonListCellData data) {
-        return data == null ? EMPTY_INDEX : data.getIndex();
+    private List<PersonListCardData> getFavoriteData(Collection<PersonListCardData> data) {
+        return data.stream()
+                .filter(d -> d.getPerson().getIsFavorite().getFavoriteStatus())
+                .map(d -> new PersonListCardData(d.getPerson(), d.getIndex()))
+                .collect(Collectors.toList());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     static class PersonListCell extends ListCell<PersonListCellData> {
-        private PersonCard personCard;
-        private PersonListDivider personListDivider;
+        private PersonListCellData data;
 
         @Override
-        protected void updateItem(PersonListCellData data, boolean empty) {
-            super.updateItem(data, empty);
+        protected void updateItem(PersonListCellData newData, boolean empty) {
+            super.updateItem(newData, empty);
 
-            if (empty || data == null) {
-                personCard = null;
-                personListDivider = null;
+            if (empty || newData == null) {
+                data = null;
                 setGraphic(null);
                 setText(null);
                 return;
             }
+            if (data == newData) {
+                return;
+            }
 
-            boolean needsUpdate;
-            Person person = data.getPerson().orElse(null);
-            if (person == null) { // data represents a divider
-                needsUpdate = personListDivider == null;
-                switchVariant(data.getTitle());
-            } else { // data represents a Person to be displayed
-                needsUpdate = personCard == null;
-                switchVariant(person, data.getIndex());
-            }
-            if (needsUpdate) {
-                if (personCard != null) {
-                    setGraphic(personCard.getRoot());
-                    setMouseTransparent(false);
-                } else if (personListDivider != null) {
-                    setGraphic(personListDivider.getRoot());
-                    setMouseTransparent(true);
-                } else {
-                    setGraphic(null);
-                }
-            }
-        }
-
-        private void switchVariant(Person person, int index) {
-            personListDivider = null;
-            if (personCard == null) {
-                personCard = new PersonCard(person, index);
-            }
-            personCard.setPerson(person, index);
-        }
-
-        private void switchVariant(String title) {
-            personCard = null;
-            if (personListDivider == null) {
-                personListDivider = new PersonListDivider(title);
-            }
-            personListDivider.setTitle(title);
+            data = newData;
+            setGraphic(data.getUiPart().getRoot());
+            setMouseTransparent(data.isMouseTransparent());
         }
     }
 
-    private static class PersonListCellData {
-        private final int index;
-        private final String title;
-        private final Person person;
+    private interface PersonListCellData {
+        UiPart<Region> getUiPart();
 
-        private PersonListCellData(int index, String title, Person person) {
-            this.index = index;
-            this.title = title;
-            this.person = person;
+        boolean isMouseTransparent();
+
+        Person getPerson();
+
+        int getIndex();
+    }
+
+    private static class PersonListDividerData implements PersonListCellData {
+        private final PersonListDivider divider;
+
+        public PersonListDividerData(String title) {
+            divider = new PersonListDivider(title);
         }
 
-        public static PersonListCellData ofPerson(int index, Person person) {
-            return new PersonListCellData(index, person.getName().toString(), person);
+        @Override
+        public UiPart<Region> getUiPart() {
+            return divider;
         }
 
-        public static PersonListCellData ofDivider(String title) {
-            return new PersonListCellData(EMPTY_INDEX, title, null);
+        @Override
+        public boolean isMouseTransparent() {
+            return true;
         }
 
+        @Override
+        public Person getPerson() {
+            return null;
+        }
+
+        @Override
         public int getIndex() {
-            return index;
+            return EMPTY_INDEX;
         }
 
-        public Optional<Person> getPerson() {
-            return Optional.ofNullable(person);
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+            if (!(other instanceof PersonListDividerData)) {
+                return false;
+            }
+            PersonListDividerData that = (PersonListDividerData) other;
+            return divider.equals(that.divider);
+        }
+    }
+
+    private static class PersonListCardData implements PersonListCellData {
+        private final PersonCard card;
+
+        public PersonListCardData(Person person, int index) {
+            card = new PersonCard(person, index);
         }
 
-        public boolean hasPerson() {
-            return getPerson().isPresent();
+        @Override
+        public Person getPerson() {
+            return card.getPerson();
         }
 
-        public String getTitle() {
-            return title;
+        @Override
+        public int getIndex() {
+            return card.getIndex();
+        }
+
+        @Override
+        public UiPart<Region> getUiPart() {
+            return card;
+        }
+
+        @Override
+        public boolean isMouseTransparent() {
+            return false;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+            if (!(other instanceof PersonListCardData)) {
+                return false;
+            }
+            PersonListCardData that = (PersonListCardData) other;
+            return card.equals(that.card);
         }
     }
 }
