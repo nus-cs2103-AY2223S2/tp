@@ -59,7 +59,7 @@ public class NoteTest {
                 + "Please remind me that I have to send report to @Jim, @Lin by next meeting \n"
                 + "And I need to regrade tutorial for @Han.");
 
-        assertEquals("Notes: \n"
+        assertEquals("Contents: \n"
                 + "This is my first note!! \n"
                 + "Please remind me that I have to send report to @Jim, @Lin by next meeting \n"
                 + "And I need to regrade tutorial for @Han."
