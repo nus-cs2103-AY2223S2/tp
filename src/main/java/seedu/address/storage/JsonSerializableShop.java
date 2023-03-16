@@ -12,6 +12,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.shop.Shop;
+import seedu.address.model.service.Part;
+import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 
 /**
@@ -22,18 +24,26 @@ class JsonSerializableShop {
 
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "Customer list contains duplicate customer(s).";
     public static final String MESSAGE_DUPLICATE_VEHICLE = "Vehicle list contains duplicate vehicle(s).";
+    public static final String MESSAGE_DUPLICATE_SERVICE = "Service list contains duplicate service(s).";
+    public static final String MESSAGE_DUPLICATE_PART = "Part list contains duplicate part(s).";
 
     private final List<JsonAdaptedCustomer> customers = new ArrayList<>();
     private final List<JsonAdaptedVehicle> vehicles = new ArrayList<>();
+    private final List<JsonAdaptedService> services = new ArrayList<>();
+    private final List<JsonAdaptedPart> parts = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableShop} with the given customers and vehicles.
      */
     @JsonCreator
     public JsonSerializableShop(@JsonProperty("customers") List<JsonAdaptedCustomer> customers,
-                                @JsonProperty("vehicles") List<JsonAdaptedVehicle> vehicles) {
+                                @JsonProperty("vehicles") List<JsonAdaptedVehicle> vehicles,
+                                @JsonProperty("services") List<JsonAdaptedService> services,
+                                @JsonProperty("parts") List<JsonAdaptedPart> parts) {
         this.customers.addAll(customers);
         this.vehicles.addAll(vehicles);
+        this.services.addAll(services);
+        this.parts.addAll(parts);
     }
 
     /**
@@ -44,6 +54,8 @@ class JsonSerializableShop {
     public JsonSerializableShop(ReadOnlyShop source) {
         customers.addAll(source.getCustomerList().stream().map(JsonAdaptedCustomer::new).collect(Collectors.toList()));
         vehicles.addAll(source.getVehicleList().stream().map(JsonAdaptedVehicle::new).collect(Collectors.toList()));
+        services.addAll(source.getServiceList().stream().map(JsonAdaptedService::new).collect(Collectors.toList()));
+        source.getPartMap().getEntrySet().forEach(entry -> parts.add(new JsonAdaptedPart(entry.getValue())));
     }
 
     /**
@@ -67,6 +79,22 @@ class JsonSerializableShop {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_VEHICLE);
             }
             shop.addVehicle(vehicle);
+        }
+
+        for (JsonAdaptedService jsonAdaptedService : services) {
+            Service service = jsonAdaptedService.toModelType();
+            if (shop.hasService(service)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SERVICE);
+            }
+            shop.addService(service);
+        }
+
+        for (JsonAdaptedPart jsonAdaptedPart : parts) {
+            Part part = jsonAdaptedPart.toModelType();
+            if (shop.hasPart(part.getName())) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PART);
+            }
+            shop.addPart(part);
         }
         return shop;
     }

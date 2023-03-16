@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +14,9 @@ import seedu.address.model.entity.person.Address;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Phone;
+import seedu.address.model.service.PartType;
+import seedu.address.model.service.ServiceStatus;
+import seedu.address.model.service.VehicleType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +29,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -120,5 +125,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static int parseInt(String rawInt) throws ParseException {
+        try {
+            return Integer.parseInt(rawInt);
+        } catch (NumberFormatException ex) {
+            throw new ParseException("Input not a number");
+        }
+    }
+
+    public static VehicleType parseVehicleType(String rawType) throws ParseException {
+        requireNonNull(rawType);
+        switch (rawType) {
+        case "car":
+            return VehicleType.CAR;
+        case "motorbike":
+            return VehicleType.MOTORBIKE;
+        default:
+            throw new ParseException(VehicleType.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    public static ServiceStatus parseServiceStatus(String rawStatus) throws ParseException {
+        requireNonNull(rawStatus);
+        for (ServiceStatus p: ServiceStatus.values()) {
+            if (p.isEqual(rawStatus)) {
+                return p;
+            }
+        }
+        throw new ParseException(ServiceStatus.MESSAGE_CONSTRAINTS);
     }
 }

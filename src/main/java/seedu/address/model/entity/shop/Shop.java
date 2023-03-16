@@ -33,7 +33,9 @@ public class Shop implements ReadOnlyShop {
 
     //TODO: Implement immutable list for appointments
     private final List<Appointment> appointments;
-    private final PartMap partMap;
+
+    //TODO: convert back to final, after figuring out how to properly implement setPartMap immutably
+    private PartMap partMap;
 
 
     /**
@@ -54,6 +56,15 @@ public class Shop implements ReadOnlyShop {
 
     // --------------------------------------------------
     //// Service-level operations
+    /**
+     * Adds service to the system
+     *
+     * @param service   Service to be added to the system
+     */
+    public void addService(Service service) {
+        this.services.add(service);
+    }
+
     /**
      * Adds service to a vehicle
      *
@@ -82,9 +93,26 @@ public class Shop implements ReadOnlyShop {
                 .anyMatch(s -> s.getId() == serviceId);
     }
 
+    /**
+     * Wrapper function to also check if service already added
+     * but using Service param
+     *
+     * @param service Service to check
+     */
+    public boolean hasService(Service service) {
+        return this.hasService(service.getId());
+    }
+
     @Override
     public ObservableList<Service> getServiceList() {
         return this.services.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Replaces the contents of the service list with {@code services}.
+     */
+    public void setServices(List<Service> services) {
+        this.services.setServices(services);
     }
 
     // --------------------------------------------------
@@ -116,11 +144,7 @@ public class Shop implements ReadOnlyShop {
 
     // --------------------------------------------------
     //// part-level operations
-    /**
-     * Get part map
-     *
-     * @return part map
-     */
+    @Override
     public PartMap getPartMap() {
         return this.partMap;
     }
@@ -153,10 +177,11 @@ public class Shop implements ReadOnlyShop {
         return this.partMap.contains(partName);
     }
 
-    @Override
-    public ObservableList<Part> getPartList() {
-        //        return this.appointments.asUnmodifiableObservableList();
-        return null;
+    /**
+     * Replaces the contents of the part map with {@code parts}.
+     */
+    public void setParts(PartMap parts) {
+        this.partMap = parts;
     }
 
     // --------------------------------------------------
@@ -362,6 +387,8 @@ public class Shop implements ReadOnlyShop {
 
         setCustomers(newData.getCustomerList());
         setVehicles(newData.getVehicleList());
+        setParts(newData.getPartMap());
+        setServices(newData.getServiceList());
         setTechnicians(newData.getTechnicianList());
     }
 

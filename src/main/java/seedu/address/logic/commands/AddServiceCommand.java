@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_ID;
@@ -13,12 +14,13 @@ import seedu.address.model.service.Service;
 /**
  * Manages adding services
  */
-public class AddServiceCommand extends Command {
+public class AddServiceCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "addservice";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a service to the shop. "
             + "Parameters: "
             + PREFIX_VEHICLE_ID + "VEHICLE ID "
             + PREFIX_SERVICE_TYPE + "TYPE "
+            + PREFIX_SERVICE_DURATION + "SERVICE DURATION "
             + "Optional: " + PREFIX_SERVICE_STATUS + "STATUS "
             + "Optional: " + PREFIX_SERVICE_DESCRIPTION + "DESCRIPTION "
             + "Example: " + COMMAND_WORD + " "
@@ -50,7 +52,7 @@ public class AddServiceCommand extends Command {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasVehicle(toAdd.getVehicleId())) {
             throw new CommandException(String.format(MESSAGE_VEHICLE_NOT_FOUND, toAdd.getVehicleId()));

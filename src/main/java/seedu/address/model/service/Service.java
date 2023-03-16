@@ -20,7 +20,23 @@ public class Service {
     private final String description;
     private LocalDate estimatedFinishDate;
     private final Set<Integer> assignedToIds = new HashSet<>();
-    private boolean isComplete = false;
+
+    private ServiceStatus status;
+
+    /**
+     * This method is the constructor for a Service.
+     */
+    public Service(int id, int vehicleId, LocalDate entryDate,
+                   List<Part> requiredParts, String description,
+                   LocalDate estimatedFinishDate, ServiceStatus status) {
+        this.id = id;
+        this.vehicleId = vehicleId;
+        this.entryDate = entryDate;
+        this.requiredParts = requiredParts;
+        this.description = description;
+        this.estimatedFinishDate = estimatedFinishDate;
+        this.status = status;
+    }
 
     /**
      * This method is the constructor for a Service.
@@ -34,6 +50,7 @@ public class Service {
         this.description = description;
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
         requiredParts = new ArrayList<Part>();
+        this.status = ServiceStatus.TO_REPAIR;
     }
 
     /**
@@ -60,6 +77,11 @@ public class Service {
      */
     public Service(int id, int vehicleId) {
         this(id, vehicleId, 7, "");
+    }
+
+    public Service(int id, int vehicleId, int serviceDuration, String serviceDesc, ServiceStatus serviceStatus) {
+        this(id, vehicleId, serviceDuration, new HashSet<>(), serviceDesc);
+        this.status = serviceStatus;
     }
 
     /**
@@ -181,6 +203,15 @@ public class Service {
     }
 
     /**
+     * This method returns the status of this service.
+     *
+     * @return the status of this service.
+     */
+    public ServiceStatus getStatus() {
+        return status;
+    }
+
+    /**
      * This method adds a technician to this service.
      *
      * @param technician The technician assigned to this service.
@@ -196,24 +227,6 @@ public class Service {
      */
     public void removeTechnician(Technician technician) {
         this.assignedToIds.remove(technician.getId());
-    }
-
-    /**
-     * This method returns whether this task is completed or not.
-     *
-     * @return whether this task is completed or not.
-     */
-    public boolean isComplete() {
-        return isComplete;
-    }
-
-    /**
-     * This method sets whether this task is completed or not.
-     *
-     * @param complete the value to set this task to.
-     */
-    public void setComplete(boolean complete) {
-        isComplete = complete;
     }
 
     /**
@@ -256,7 +269,7 @@ public class Service {
         if (technicians.length() > 0) {
             technicians = technicians.substring(1);
         }
-        String status = this.isComplete() ? "COMPLETE" : "INCOMPLETE";
+        String status = this.status.getValue();
         String formatter = "<<Service>>" + newline
                 + "ID: %d" + newline
                 + "Desc: %s" + newline

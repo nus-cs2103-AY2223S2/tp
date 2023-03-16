@@ -9,7 +9,7 @@ import seedu.address.model.entity.person.Customer;
 /**
  * Manages adding of customers
  */
-public class AddCustomerCommand extends Command {
+public class AddCustomerCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "addcustomer";
     public static final String MESSAGE_USAGE = AddCommand.MESSAGE_USAGE;
     public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
@@ -34,7 +34,7 @@ public class AddCustomerCommand extends Command {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasCustomer(toAdd.getId())) {
