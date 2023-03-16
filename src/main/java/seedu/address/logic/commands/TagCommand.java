@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing person in the e-lister.
  */
 public class TagCommand extends Command {
 
