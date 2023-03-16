@@ -150,6 +150,13 @@ public interface Model {
     // ================ Location methods ==============================
 
     /**
+     * Returns location object by location id
+     * @param id the location id
+     * @return the location object with the id
+     */
+    Location getLocationById(String id);
+
+    /**
      * Returns true if the location is in the location list
      *
      * @param location a location object to be checked
@@ -185,6 +192,8 @@ public interface Model {
 
     void updateFilteredLocationList(Predicate<Location> predicate);
 
+    void linkFlightToLocations(Flight flight, Location departureLocation, Location arrivalLocation);
+    void unlinkFlightToLocations(Flight flight);
 
     // ================ Crew methods ==============================
 
@@ -258,6 +267,13 @@ public interface Model {
 
 
     // ================ Flight methods ==============================
+
+    /**
+     * Returns flight object by flight id
+     * @param id the flight id
+     * @return the flight object with the id
+     */
+    Flight getFlightById(String id);
 
     /**
      * Returns the flight manager

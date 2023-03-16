@@ -15,6 +15,8 @@ import seedu.address.logic.flight.linkplane.LinkPlaneCommandFactory;
 import seedu.address.logic.flight.unlinkplane.UnlinkPlaneCommandFactory;
 import seedu.address.logic.location.addlocation.AddLocationCommandFactory;
 import seedu.address.logic.location.deletelocation.DeleteLocationCommandFactory;
+import seedu.address.logic.location.linklocation.LinkLocationCommandFactory;
+import seedu.address.logic.location.unlinklocation.UnlinkLocationCommandFactory;
 import seedu.address.logic.pilot.addpilot.AddPilotCommandFactory;
 import seedu.address.logic.pilot.deletepilot.DeletePilotCommandFactory;
 import seedu.address.logic.plane.addplane.AddPlaneCommandFactory;
@@ -45,7 +47,9 @@ public class WingmanParser extends FactoryParser {
         )),
         new CommandGroup(OperationMode.LOCATION, List.of(
                 new AddLocationCommandFactory(),
-                new DeleteLocationCommandFactory()
+                new DeleteLocationCommandFactory(),
+                new LinkLocationCommandFactory(),
+                new UnlinkLocationCommandFactory()
         )),
         new CommandGroup(OperationMode.FLIGHT, List.of(
                 new AddFlightCommandFactory(),
