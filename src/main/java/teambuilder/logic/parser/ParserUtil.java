@@ -11,6 +11,7 @@ import teambuilder.commons.util.StringUtil;
 import teambuilder.logic.parser.exceptions.ParseException;
 import teambuilder.model.person.Address;
 import teambuilder.model.person.Email;
+import teambuilder.model.person.Major;
 import teambuilder.model.person.Name;
 import teambuilder.model.person.Phone;
 import teambuilder.model.tag.Tag;
@@ -93,6 +94,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String major} into an {@code Major}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code major} is invalid.
+     */
+    public static Major parseMajor(String major) throws ParseException {
+        requireNonNull(major);
+        String trimmedMajor = major.trim();
+        if (!Major.isValidMajor(trimmedMajor)) {
+            throw new ParseException(Major.MESSAGE_CONSTRAINTS);
+        }
+        return new Major(trimmedMajor);
     }
 
     /**
