@@ -12,15 +12,12 @@ jobs:
     steps:
       - name: Set up repository
         uses: actions/checkout@main
-        if: github.event_name == 'pull_request'
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Set up repository
         uses: actions/checkout@main
-        if: github.even_name == 'push'
+        if: github.event_name == 'pull_request'
         with:
-          ref: ${{ github.event.push.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
 
       # - name: Run repository-wide tests
       #   if: runner.os == 'Linux'
