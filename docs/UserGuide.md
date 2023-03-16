@@ -127,16 +127,16 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name or tag: `find`
+### Locating persons by keyword(s): `find`
 
-Finds persons stored in address book based on the given keywords for the respective fields.
+Finds persons stored in address book based on the given keyword(s) for the respective fields.
 
 Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]`
 
 * The search for keyword(s) is case-insensitive. 
   * e.g `find n/hans` will match `find n/Hans`
   * e.g `find t/cs2103t` will match `find t/CS2103T`
-* There can be one or more keywords for each field. 
+* There can be one or more keyword(s) for each field. 
   * e.g. `find n/Hans Bo` will match all persons whose name contains either `Hans` or `Bo`
 * The order of the keyword(s) and field(s) does not matter.
   * e.g. `find n/Hans Bo` will match `find n/Bo Hans`
@@ -146,7 +146,7 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
   * e.g. `t/2103t` will not match `t/cs2103t` 
 * Persons with field values matching at least one keyword for that respective field will be returned (i.e. `OR` search). 
   * e.g. `find n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
-  * e.g. `find n/Hans l/Java` will return persons whose name contains `Hans` or language contains `Java`
+  * e.g. `find n/Hans l/Java` will return persons whose name contains `Hans` or language contains `Java` or both
   * e.g. `find t/friend` will return persons who have either tag `friend` or `best friend` or both
 * If no field is specified, zero persons will be returned.
 
@@ -223,6 +223,14 @@ Format: `redo`
 Changes made to SOCket are **not** saved upon exit.
 </div>
 
+### Viewing a person's detailed infomation: `view`
+
+Views a person's details whose in the filtered list
+
+Format: `view INDEX`
+* Views the person's detailed information at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -256,17 +264,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Remove** | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g., `remove 1 t/ l/Java e/`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Sort** | `sort [CATEGORY]`<br> e.g. `sort address`
-**Find** | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`
-**List** | `list [t/tag]`
-**Help** | `help`
-**Undo** | `undo`
-**Redo** | `redo`
-**Exit** | `exit`
+|  Action    | Format, Examples                                                                                                                                                                                                 |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| **Add**    | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python`  |
+| **Clear**  | `clear`                                                                                                                                                                                                          |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                              |
+| **Remove** | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g., `remove 1 t/ l/Java e/`                                                                        |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                    |
+| **Sort**   | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                                                        |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`                                                                                                                           |
+| **List**   | `list [t/tag]`                                                                                                                                                                                                   |
+| **Help**   | `help`                                                                                                                                                                                                           |
+| **Undo**   | `undo`                                                                                                                                                                                                           |
+| **Redo**   | `redo`                                                                                                                                                                                                           |
+| **View**   | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                  |
+| **Exit**   | `exit`                                                                                                                                                                                                           |

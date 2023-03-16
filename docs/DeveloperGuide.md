@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T12-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,14 +86,14 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `SocketParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,23 +110,23 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `SocketParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SocketParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the `Socket` data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Socket`, which `Person` references. This allows `Socket` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -135,18 +135,18 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both 'Socket' data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `SocketStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.socket.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,41 +154,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+This feature was implemented as proposed in [AddressBook-Level3](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature) 
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedSocket`. It extends `Socket` with an undo/redo history, stored internally as an `socketStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedSocket#commit()` — Saves the current 'Socket' state in its history.
+* `VersionedSocket#undo()` — Restores the previous 'Socket' state from its history.
+* `VersionedSocket#redo()` — Restores a previously undone 'Socket' state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitSocket()`, `Model#undoSocket()` and `Model#redoSocket()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedSocket` will be initialized with the initial `Socket` state, and the `currentStatePointer` pointing to that single `Socket` state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in 'Socket'. The `delete` command calls `Model#commitSocket()`, causing the modified state of `Socket` after the `delete 5` command executes to be saved in the `socketStateList`, and the `currentStatePointer` is shifted to the newly inserted `Socket` state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitSocket()`, causing another modified `Socket` state to be saved into the `socketStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitSocket()`, so the `Socket` state will not be saved into the `socketStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoSocket()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous `Socket` state, and restores `Socket` to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `Socket` state, then there are no previous `Socket` states to restore. The `undo` command uses `Model#canUndoSocket()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -201,17 +201,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoSocket()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores `Socket` to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `socketStateList.size() - 1`, pointing to the latest `Socket` state, then there are no undone `Socket` states to restore. The `redo` command uses `Model#canRedoSocket()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the `Socket`, such as `list`, will usually not call `Model#commitSocket()`, `Model#undoSocket()` or `Model#redoSocket()`. Thus, the `socketStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitSocket()`. Since the `currentStatePointer` is not pointing at the end of the `socketStateList`, all `Socket` states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -223,7 +223,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire `Socket`.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -231,8 +231,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -384,7 +382,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. SOCket shows an error message.
 
-      Use case resumes from step 2.
+      Use case resumes at step 2.
 
 **Use case: UC04 Sort contacts**
 
@@ -423,17 +421,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 
-1.  User request to find a contact with the given keywords and tags.
-2.  SOCket shows a list of contacts that contains any of the given keyword and any of the given tags.
+1.  User request to find a contact with the given keywords in their respective fields.
+2.  SOCket shows a list of contacts that contains any of the given keyword in their respective fields.
 
     Use case ends.
 
 **Extensions:**
 
-* 1a. No contact matches any of the given keyword and any of the given tag.
+* 1a. No contact matches any of the given keywords in their respective fields.
 
     * 1a1. SOCket shows an empty list of contacts. 
       
+      Use case ends.
+
+* 1b. No keywords are given for all fields.
+
+    * 1b1. SOCket shows an empty list of contacts.
+
       Use case ends.
 
 **Use case: UC06 Clear contacts/tag**
@@ -459,7 +463,7 @@ Use case ends.
 
   * 1b2. SOCket request to delete all the contacts under the correct tags.
     
-    Use case resumes from step 2.
+    Use case resumes at step 2.
 
 * 1c. All the given tag are not present in SOCket.
 
@@ -469,17 +473,17 @@ Use case ends.
   
       Steps 1c1-1c2 are repeated until a tag is entered correctly.
 
-      Use case resumes from step 2.
+      Use case resumes at step 2.
 
 * 1d. No tag is provided.
 
     * 1d1. SOCket request to delete all the contacts.
 
-      Use case resumes from step 2.
+      Use case resumes at step 2.
   
 * *a. At any time, User choose to cancel the operation.
 
-    * *a1. SOCKet stop the operation.
+    * *a1. SOCKet stops the operation.
 
       Use case ends.
 
@@ -489,24 +493,28 @@ Use case ends.
 
 1. User requests to list contacts.
 2. SOCket shows a list of contacts.
-3. User requests to list contacts by tag.
-4. SOCket shows a list of contacts with given tag.
+3. User requests to list contacts by language(s) and tag(s).
+4. SOCket shows a list of contacts with given language(s) and tag(s).
 
    Use case ends.
 
 **Extensions:**
 
-* 3a. The given tag is invalid.
+* 3a. The given tag(s) or language(s) is invalid.
 
     * 3a1. SOCket shows an error message.
 
       Use case resumes at step 2.
+      
+* 3b. No contact matches the given language(s) or tag(s). 
 
-* 3b. No category is given.
-
-  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+    * 3b1. SOCket shows an empty list of contacts. 
     
-     Use case ends.
+      Use case resumes at step 2. 
+
+* 3c. No category is given.
+      
+  Use case resumes at step 2. 
 
 **Use case: UC08 Access Help page**
 
@@ -594,28 +602,43 @@ Use case ends.
 
 * 3a. The contact does not have github information.
     
-   Use case resumes from step 2.
+   Use case resumes at step 2.
 
-**Use case: UC13 Undo recent delete/clear operation**
+**Use case: UC13 Undo recent changes**
 
 **MSS:**
 
-1. User chooses to delete/clear contact(s).
-2. SOCket deletes respective contact(s).
-3. User requests to get back the recent deleted contact(s).
-4. SOCket undo and restored recent deleted contact(s).
+1. User requests to undo changes.
+2. SOCket undoes changes.
 
    Use case ends.
 
 **Extensions:**
 
-* 3a. SOCket detects user has not done any delete/clear operation before.
+* 1a. No changes exist.
 
-    * 3a1. SOCket shows an error message, no data can be restored.
+    * 1a1. SOCket shows an error message.
 
       Use case ends.
 
-**Use case: UC14 Tagging a contact**
+**Use case: UC14 Redo recent undone changes**
+
+**MSS:**
+
+1. User requests to restore recent undone changes.
+2. SOCket restores undone changes.
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. No undone changes exist.
+
+    * 1a1. SOCket shows an error message.
+
+      Use case ends.
+
+**Use case: UC15 Tagging a contact**
 
 **MSS:**
 
@@ -625,11 +648,11 @@ Use case ends.
 
     Use case ends.
 
-**Use case: UC15 Set deadlines & responsibilities**
+**Use case: UC16 Set deadlines & responsibilities**
 
 **MSS:**
 
-1. User has a team project and creates a event.
+1. User has a team project and creates an event.
 2. SOCket creates the event.
 3. User request to groups all the team members contact under the event created.
 4. SOCket groups the contacts together.
@@ -646,9 +669,36 @@ Use case ends.
 
     * 5a1. SOCket shows an error message.
   
-      Use case resume from 6 when the date entered are correct.
+      Use case resume at step 6 when the date entered is correct.
 
    Use case resumes at step 2.
+
+**Use case: UC17 Removing tag/language(s)**
+
+**MSS**
+
+1. User found that he/she has place a wrong tag to a person.
+2. User request to remove the specific tag.
+3. SOCket find the person and removes the tag associated to it.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. SOCket detects that user inputs an empty field after the tag prefix.
+
+    * 2a1. SOCket removes all tags associated to it.
+
+      Use case ends.
+
+**Use case: UC18 Viewing a person's detail**
+
+**MSS**
+
+1. User <ins>find contact(s) (UC05)</ins> he/she wishes to view.
+2. SOCket lists out all the contact associated to the category.
+3. User wishes to view the first contact in the list.
+4. SOCket displays all the person's information at the detail display window.
 
 *{More to be added}*
 
