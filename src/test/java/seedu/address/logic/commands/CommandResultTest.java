@@ -33,6 +33,9 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+
+        //different theme value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", "theme")));
     }
 
     @Test
@@ -50,5 +53,8 @@ public class CommandResultTest {
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+
+        // different theme value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", "theme").hashCode());
     }
 }
