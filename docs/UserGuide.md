@@ -67,7 +67,8 @@ E-Lister is a **desktop app for managing contacts, optimized for use via a Comma
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a help message detailing the various commands available in E-Lister. 
+A link can also bring the user to the online user guide for more detailed help.
 
 ![help message](images/helpMessage.png)
 
@@ -120,14 +121,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Partial words will also be matched. e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Grub Ya` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find mart On` returns `Martin Henz`, `Ong Wai Kit`
 
 ### Deleting a person : `delete`
 
@@ -178,9 +180,10 @@ Format: `delete_tag INDEX [t/TAG]`
 * Deletes `TAG` on the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The tag must be existed.
 
 Examples:
-* `list` followed by `delete_tag 2 banker` deletes the tag “banker” from the 2nd person.
+* `list` followed by `delete_tag 3 teacher` deletes the tag “teacher” from the 2nd person.
 
 ### Filter by tag : `filter`
 
@@ -255,5 +258,5 @@ Action | Format, Examples
 **List** | `list`
 **Remark** | `remark INDEX [r/remark]`
 **Tag** | `tag INDEX [t/TAG]`
-**Delete tag** | `delete_tag INDEX`
+**Delete tag** | `delete_tag INDEX` [t/TAG]`
 **Help** | `help`
