@@ -12,6 +12,7 @@ import seedu.address.logic.commands.AddEntityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Name;
 import seedu.address.model.tag.Tag;
 
@@ -41,18 +42,18 @@ public class AddEntityCommandParser implements Parser<AddEntityCommand> {
             argMultimap.getValue(PREFIX_CLASSIFICATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Entity entity = new Entity(name, tagList);
-        return new AddEntityCommand(entity);
-        /*
+        Entity entity = null;
+
         if (classification.isCharacter()) {
             //Call AddCharacterCommmand
         } else if (classification.isItem()) {
-            return new AddItemCommand(entity);
+            entity = new Item(name, tagList);
         } else if (classification.isMob()) {
             // Call AddMobCommand
         } else {
-        }*/
+        }
 
+        return new AddEntityCommand(entity);
     }
 
     /**

@@ -19,7 +19,7 @@ public class AddEntityCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entity to the management system. "
         + "Parameters: "
         + PREFIX_CLASSIFICATION + "CLASSIFICATION "
-        + PREFIX_NAME + "NAME"
+        + PREFIX_NAME + "NAME "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_CLASSIFICATION + "char "
