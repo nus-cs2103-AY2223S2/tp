@@ -21,4 +21,12 @@ public class Modules {
     public static boolean isValidModules(String trimmedModules) {
         return true;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Modules // instanceof handles nulls
+                // Uses Java's definition of equality between Sets.
+                && this.mods.equals(((Modules) other).mods)); // state check
+    }
 }
