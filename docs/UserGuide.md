@@ -190,12 +190,12 @@ Example:
 #### `delete` - Delete a patient
 
 ```text
-patient delete --index <integer>
+patient delete <integer>
 ```
 
 Example:
 
-* `patent delete --index 5`
+* `patent delete 5`
 
 #### `find` - Locate a patient
 
@@ -230,12 +230,12 @@ Example:
 #### `delete` - Delete an appointment
 
 ```text
-appointment delete --index <integer>
+appointment delete <integer>
 ```
 
 Example:
 
-* `appointment delete --index 5`
+* `appointment delete 5`
 
 #### `list` - List all appointments
 
