@@ -50,7 +50,9 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isShowDetails() { return showDetails; }
+    public boolean isShowDetails() {
+        return showDetails;
+    }
 
     @Override
     public boolean equals(Object other) {

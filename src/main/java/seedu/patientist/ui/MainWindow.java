@@ -135,8 +135,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public void handleDetails(PersonListPanel personListPanel) {
-        DetailsPopup detailsStage = new DetailsPopup(personListPanel);
+    public void handleDetails() {
+        DetailsPopup detailsStage = new DetailsPopup(logic.getFilteredPersonList());
     }
 
     /**
@@ -183,7 +183,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowDetails()) {
-                handleDetails(personListPanel);
+                handleDetails();
             }
 
             if (commandResult.isShowHelp()) {
