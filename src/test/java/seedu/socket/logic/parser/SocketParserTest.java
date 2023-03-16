@@ -50,9 +50,9 @@ import seedu.socket.testutil.PersonBuilder;
 import seedu.socket.testutil.PersonUtil;
 import seedu.socket.testutil.RemovePersonDescriptorBuilder;
 
-public class AddressBookParserTest {
+public class SocketParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final SocketParser parser = new SocketParser();
 
     @Test
     public void parseCommand_add() throws Exception {
