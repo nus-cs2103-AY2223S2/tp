@@ -133,16 +133,6 @@ public class LogicManagerTest {
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void assertReadOnlyInternBuddySuccess() {
-        assertEquals(logic.getInternBuddy(), model.getInternBuddy());
-    }
-
-    @Test
-    public void assertGetInternBuddyFilePathSuccess() {
-        assertEquals(logic.getInternBuddyFilePath(), model.getInternBuddyFilePath());
-    }
-
     /**
      * Executes the command and confirms that
      * - the {@code expectedException} is thrown <br>
@@ -154,6 +144,16 @@ public class LogicManagerTest {
             String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
+    }
+
+    @Test
+    public void assertReadOnlyInternBuddySuccess() {
+        assertEquals(logic.getInternBuddy(), model.getInternBuddy());
+    }
+
+    @Test
+    public void assertGetInternBuddyFilePathSuccess() {
+        assertEquals(logic.getInternBuddyFilePath(), model.getInternBuddyFilePath());
     }
 
     /**
