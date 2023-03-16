@@ -109,15 +109,12 @@ Examples:
 
 Creates a new lesson for a given student, with a lesson title and time.
 
-Format: `new-lesson [/sSTUDENT_NAME] [t/LESSON_TITLE] [at/TIME]`
+Format: `new-lesson [name/STUDENT_NAME] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
 
-* All three fields are mandatory.
-  *Time format is dd-mm-yy-hhmm
-
-* if any parameters are missing in order, the command will display potential parameter options.
+* All fields are mandatory.
 
 Examples:
-`new-lesson s/John Doe t/The Water Cycle at/25-03-23-1300`
+`new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500`
 
 
 
