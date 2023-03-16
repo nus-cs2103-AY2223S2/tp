@@ -8,8 +8,10 @@ import static seedu.fitbook.testutil.Assert.assertThrows;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_ROUTINE;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -29,6 +31,7 @@ import seedu.fitbook.logic.commands.ListClientsCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.PhoneContainsKeywordsPredicate;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.testutil.client.ClientBuilder;
 import seedu.fitbook.testutil.client.ClientUtil;
@@ -78,10 +81,15 @@ public class FitBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo bar");
+        List<String> nameKeywords = Arrays.asList("alex");
+        List<String> phoneKeywords = Arrays.asList("123");
+        List<Predicate<Client>> predicates = new ArrayList<>();
+        predicates.add(new NameContainsKeywordsPredicate(nameKeywords));
+        predicates.add(new PhoneContainsKeywordsPredicate(phoneKeywords));
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " n/" + nameKeywords.stream().collect(Collectors.joining(" "))
+                        + " p/" + phoneKeywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(predicates), command);
     }
 
     @Test
