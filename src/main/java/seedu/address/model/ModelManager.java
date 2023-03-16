@@ -19,7 +19,9 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -117,6 +119,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyModule getModule(ModuleCode moduleCode) {
+        return tracker.getModule(moduleCode);
+    }
+
+    @Override
     public void deleteModule(ReadOnlyModule target) {
         tracker.removeModule(target);
     }
@@ -142,6 +149,12 @@ public class ModelManager implements Model {
     public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
         ReadOnlyModule mod = tracker.getModule(moduleCode);
         return mod != null && mod.getLecture(lectureName) != null;
+    }
+
+    @Override
+    public boolean hasLecture(ReadOnlyModule module, LectureName lecture) {
+        requireNonNull(module);
+        return module.getLecture(lecture) != null;
     }
 
     @Override
@@ -175,6 +188,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
+        requireNonNull(lecture);
+        return lecture.getVideo(video) != null;
+    }
+
+    @Override
     public void deleteVideo(ReadOnlyLecture lecture, Video video) {
         requireNonNull(lecture);
         //CHECKSTYLE.OFF: SeparatorWrap
@@ -197,7 +216,6 @@ public class ModelManager implements Model {
         ((Lecture) lecture).setVideo(target, editedVideo);
         //CHECKSTYLE.ON: SeparatorWrap
     }
-
 
     //=========== Filtered Module List Accessors =============================================================
 

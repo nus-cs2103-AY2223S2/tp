@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag of a lecture.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
@@ -17,12 +17,12 @@ public class Tag {
     /**
      * Constructs a {@code Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param tagDescription A valid tag name.
      */
-    public Tag(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+    public Tag(String tagDescription) {
+        requireNonNull(tagDescription);
+        checkArgument(isValidTagName(tagDescription), MESSAGE_CONSTRAINTS);
+        this.tagName = tagDescription;
     }
 
     /**
@@ -32,12 +32,6 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
-    }
 
     @Override
     public int hashCode() {

@@ -13,7 +13,9 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 
 /**
  * The API of the Model component.
@@ -109,6 +111,16 @@ public interface Model {
     boolean hasModule(ModuleCode moduleCode);
 
     /**
+
+     * Returns a module in the tracker with the specified {@code moduleCode}.
+     *
+     * @param moduleCode The code of the module to check if it exist.
+     * @return a module in the tracker with the specified {@code moduleCode}.
+     */
+    ReadOnlyModule getModule(ModuleCode moduleCode);
+
+
+    /**
      * Deletes the given module. <p>
      * The module must exist in the tracker.
      *
@@ -151,6 +163,16 @@ public interface Model {
     boolean hasLecture(ModuleCode moduleCode, LectureName lectureName);
 
     /**
+     * Returns true if a {@code Module} has a lecture with name {@code lecture}.
+     *
+     * @param module The module to check if it contains the lecture.
+     * @param lecture The lecture to check if exist.
+     * @return True if a lecture with the same name as {@code lecture} exists in {@code module}. Otherwise, false.
+     */
+    boolean hasLecture(ReadOnlyModule module, LectureName lecture);
+
+
+    /**
      * Deletes the given lecture {@code target}.<p>
      * The lecture must exist in {@code module}.
      *
@@ -188,6 +210,15 @@ public interface Model {
     boolean hasVideo(ReadOnlyLecture lecture, Video video);
 
     /**
+     * Returns true if a video with the same name as {@code video} exists in {@code lecture}.
+     *
+     * @param lecture The lecture to check if it contains the video.
+     * @param video The video to check if exist.
+     * @return True if a video with the same name as {@code video} exists in {@code lecture}. Otherwise, false.
+     */
+    boolean hasVideo(ReadOnlyLecture lecture, VideoName video);
+
+    /**
      * Deletes the given video {@code target}.<p>
      * The video must exist in {@code lecture}.
      *
@@ -215,11 +246,7 @@ public interface Model {
      */
     void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo);
 
-    /**
-     * Returns an unmodifiable view of the filtered module list.
-     *
-     * @return An unmodifiable view of the filtered module list.
-     */
+
     ObservableList<? extends ReadOnlyModule> getFilteredModuleList();
 
     /**
