@@ -28,6 +28,15 @@ public class Entity {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Initial declaration of entity
+     * @param name name of the entity
+     */
+    public Entity(Name name) {
+        requireAllNonNull(name);
+        this.name = name;
+    }
+
     public Name getName() {
         return name;
     }

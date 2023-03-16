@@ -29,6 +29,14 @@ public class Character extends Entity {
         this.xp = xp;
     }
 
+    /**
+     * Initial declaration of Character
+     * @param name name of Character
+     */
+    public Character(Name name) {
+        super(name);
+    }
+
     public int getLevel() {
         return this.level;
     }

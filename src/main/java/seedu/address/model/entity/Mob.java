@@ -9,10 +9,10 @@ import seedu.address.model.tag.Tag;
  * Represents a mob, which is a child class of Entity
  */
 public class Mob extends Entity {
-    private final Stats stats;
+    private Stats stats;
     // A higher challenge rating (CR) represents an increased difficulty to defeat a mob
-    private final int challengeRating;
-    private final boolean isLegendary;
+    private int challengeRating;
+    private boolean isLegendary;
 
     /**
      * Every field should be present and non-null.
@@ -27,6 +27,14 @@ public class Mob extends Entity {
         this.stats = stats;
         this.challengeRating = challengeRating;
         this.isLegendary = isLegendary;
+    }
+
+    /**
+     * Initial declaration of Mob
+     * @param name name of Mob
+     */
+    public Mob(Name name) {
+        super(name);
     }
 
     public int getChallengeRating() { return this.challengeRating; }
