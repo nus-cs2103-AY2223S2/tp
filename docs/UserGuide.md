@@ -220,12 +220,12 @@ patient list
 #### `add` - Add an appointment
 
 ```text
-appointment add --patient <integer> --start <date> --end <date>
+appointment add --p <integer> --s <date> --e <date> --v <string>
 ```
 
 Example:
 
-* `appointment add --patient 5 --start 2023-3-5 0700 --end 2023-3-5 0800`
+* `appointment add --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Mordena`
 
 #### `delete` - Delete an appointment
 
