@@ -21,58 +21,59 @@ import seedu.patientist.model.Patientist;
 import seedu.patientist.model.ReadOnlyPatientist;
 import seedu.patientist.model.ReadOnlyUserPrefs;
 import seedu.patientist.model.person.Person;
-import seedu.patientist.model.person.patient.Patient;
-import seedu.patientist.testutil.PatientBuilder;
+import seedu.patientist.model.person.staff.Staff;
+import seedu.patientist.testutil.StaffBuilder;
 
-public class AddCommandTest {
+public class AddStaffCommandTest {
 
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddStaffCommand(null));
     }
 
     @Test
     public void execute_patientAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Patient validPatient = new PatientBuilder().build();
+        ModelStubAcceptingStaffAdded modelStub = new ModelStubAcceptingStaffAdded();
+        Staff validStaff = new StaffBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
+        CommandResult commandResult = new AddStaffCommand(validStaff).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPatient), modelStub.personsAdded);
+        assertEquals(String.format(AddStaffCommand.MESSAGE_SUCCESS, validStaff), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validStaff), modelStub.staffAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Patient validPatient = new PatientBuilder().build();
-        AddCommand addCommand = new AddCommand(validPatient);
-        ModelStub modelStub = new ModelStubWithPerson(validPatient);
+        Staff validStaff = new StaffBuilder().build();
+        AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff);
+        ModelStub modelStub = new ModelStubWithPerson(validStaff);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddStaffCommand.MESSAGE_DUPLICATE_PERSON,
+                () -> addStaffCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Patient alice = new PatientBuilder().withName("Alice").build();
-        Patient bob = new PatientBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Staff alex = new StaffBuilder().withName("Alex").build();
+        Staff billy = new StaffBuilder().withName("Billy").build();
+        AddStaffCommand addStaffAlexCommand = new AddStaffCommand(alex);
+        AddStaffCommand addStaffBillyCommand = new AddStaffCommand(billy);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addStaffAlexCommand.equals(addStaffAlexCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddStaffCommand addStaffAlexCommandCopy = new AddStaffCommand(alex);
+        assertTrue(addStaffAlexCommand.equals(addStaffAlexCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addStaffAlexCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addStaffAlexCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addStaffAlexCommand.equals(addStaffBillyCommand));
     }
 
     /**
@@ -154,36 +155,36 @@ public class AddCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+        private final Staff staff;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPerson(Staff staff) {
+            requireNonNull(staff);
+            this.staff = staff;
         }
 
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return this.staff.isSamePerson(person);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingStaffAdded extends ModelStub {
+        final ArrayList<Staff> staffAdded = new ArrayList<>();
 
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return staffAdded.stream().anyMatch(x -> x.isSamePerson(person));
         }
 
         @Override
         public void addPerson(Person person) {
             requireNonNull(person);
-            personsAdded.add(person);
+            staffAdded.add((Staff) person);
         }
 
         @Override
@@ -192,3 +193,4 @@ public class AddCommandTest {
         }
     }
 }
+

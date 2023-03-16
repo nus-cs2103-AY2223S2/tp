@@ -27,7 +27,7 @@ import seedu.patientist.model.tag.Tag;
  * Parses input arguments and creates a new AddStaffCommand object
  */
 
-public class AddStaffCommandParser {
+public class AddStaffCommandParser implements Parser<AddStaffCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddStaffCommand
      * and returns an AddCommand object for execution.
