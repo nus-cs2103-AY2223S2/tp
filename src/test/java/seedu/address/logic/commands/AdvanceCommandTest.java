@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Optional;
@@ -11,8 +15,10 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -76,36 +82,72 @@ public class AdvanceCommandTest {
             advanceCommand.execute(model);
         });
 
-        assertEquals(String.format(Messages.MESSAGE_PERSON_CANNOT_BE_ADVANCED, personToAdvance.getName().fullName),
+        assertEquals(String.format(AdvanceCommand.MESSAGE_PERSON_CANNOT_BE_ADVANCED, personToAdvance.getName().fullName),
                 exceptionThrown.getMessage());
         model.deletePerson(personToAdvance);
     }
 
     @Test
+    public void execute_duplicateInterviewDateApplicant_failure() throws Exception {
+        Person personToAdvance = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person clashingPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+
+        InterviewDateTime clashingDateTime = new InterviewDateTime("02-03-2023 14:00");
+
+        NamePhoneNumberPredicate namePhonePredicate =
+                new NamePhoneNumberPredicate(personToAdvance.getName(), personToAdvance.getPhone());
+        NamePhoneNumberPredicate clashingNamePhonePredicate =
+                new NamePhoneNumberPredicate(clashingPerson.getName(), clashingPerson.getPhone());
+        AdvanceCommand advanceCommand = new AdvanceCommand(namePhonePredicate, Optional.of(clashingDateTime));
+
+        String expectedMessage = String.format(Messages.MESSAGE_DUPLICATE_INTERVIEW_DATE,
+                clashingPerson.getName());
+        model.refreshListWithPredicate(clashingNamePhonePredicate);
+
+        assertCommandFailure(advanceCommand, model, expectedMessage);
+    }
+
+    @Test
     public void execute_validShortlistedPerson_shouldAdvanceToAccepted() throws Exception {
-        Person personToAdvance = new PersonBuilder().withStatus(String.valueOf(Status.SHORTLISTED)).build();
-        model.addPerson(personToAdvance);
-        AdvanceCommand advanceCommand = new AdvanceCommand(new NamePhoneNumberPredicate(
-                personToAdvance.getName(), personToAdvance.getPhone()), Optional.empty());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        advanceCommand.execute(model);
+        Person personToAdvance = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        PersonBuilder personInList = new PersonBuilder(personToAdvance);
+        Person advancedPerson = personInList.withStatus("ACCEPTED").build();
+        NamePhoneNumberPredicate namePhonePredicate =
+                new NamePhoneNumberPredicate(advancedPerson.getName(), advancedPerson.getPhone());
+        AdvanceCommand advanceCommand = new AdvanceCommand(namePhonePredicate, Optional.empty());
 
-        assertEquals(Status.ACCEPTED, personToAdvance.getStatus());
-        model.deletePerson(personToAdvance);
+        String expectedMessage = String.format(AdvanceCommand.MESSAGE_ADVANCE_PERSON_SUCCESS,
+                personToAdvance.getName());
+
+        expectedModel.setPerson(personToAdvance, advancedPerson);
+        expectedModel.updateFilteredPersonList(namePhonePredicate);
+
+        assertCommandSuccess(advanceCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_validAppliedPersonWithInterviewDate_shouldAdvanceToShortlisted() throws Exception {
-        Person personToAdvance = new PersonBuilder().withStatus(String.valueOf(Status.APPLIED)).build();
-        model.addPerson(personToAdvance);
-        InterviewDateTime dateTime = new InterviewDateTime("01-01-2023 12:00");
-        AdvanceCommand advanceCommand = new AdvanceCommand(new NamePhoneNumberPredicate(
-                personToAdvance.getName(), personToAdvance.getPhone()), Optional.ofNullable(dateTime));
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        advanceCommand.execute(model);
+        Person personToAdvance = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        PersonBuilder personInList = new PersonBuilder(personToAdvance);
+        InterviewDateTime dateTime = new InterviewDateTime("01-01-2023 13:00");
+        Person advancedPerson = personInList.withStatus("SHORTLISTED")
+                .withInterviewDateTime("01-01-2023 13:00").build();
 
-        assertEquals(Status.SHORTLISTED, personToAdvance.getStatus());
-        model.deletePerson(personToAdvance);
+        NamePhoneNumberPredicate namePhonePredicate =
+                new NamePhoneNumberPredicate(advancedPerson.getName(), advancedPerson.getPhone());
+        AdvanceCommand advanceCommand = new AdvanceCommand(namePhonePredicate, Optional.of(dateTime));
+
+        String expectedMessage = String.format(AdvanceCommand.MESSAGE_ADVANCE_PERSON_SUCCESS,
+                personToAdvance.getName());
+
+        expectedModel.setPerson(personToAdvance, advancedPerson);
+        expectedModel.updateFilteredPersonList(namePhonePredicate);
+
+        assertCommandSuccess(advanceCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

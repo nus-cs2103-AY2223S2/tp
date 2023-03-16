@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import seedu.address.logic.commands.AdvanceCommand;
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -54,5 +55,12 @@ public class InterviewDateTime {
     @Override
     public String toString() {
         return DateTimeParser.datetimeFormatter(dateTime);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof InterviewDateTime // instanceof handles nulls
+                && dateTime.equals(((InterviewDateTime) other).dateTime)); // state check
     }
 }

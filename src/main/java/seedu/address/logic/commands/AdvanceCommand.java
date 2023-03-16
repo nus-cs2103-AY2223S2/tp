@@ -1,8 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_INTERVIEWDATE;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSON_CANNOT_BE_ADVANCED;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_INTERVIEW_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -34,6 +33,10 @@ public class AdvanceCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_DATETIME + "08-03-2023 18:00";
+
+    public static final String MESSAGE_ADVANCE_PERSON_SUCCESS = "Advanced Applicant: %1$s";
+
+    public static final String MESSAGE_PERSON_CANNOT_BE_ADVANCED = "%s's status cannot be advanced!";
 
     private final NamePhoneNumberPredicate predicate;
     private final Optional<InterviewDateTime> interviewDateTime;
@@ -72,7 +75,8 @@ public class AdvanceCommand extends Command {
             advancedPerson = createAdvancedPerson(personToAdvance, this.interviewDateTime);
             model.setPerson(personToAdvance, advancedPerson);
         }
-        return new CommandResult("Successfully advanced " + personToAdvance.getName());
+        model.refreshListWithPredicate(predicate);
+        return new CommandResult(String.format(MESSAGE_ADVANCE_PERSON_SUCCESS, personToAdvance.getName()));
     }
 
     /**
@@ -112,7 +116,8 @@ public class AdvanceCommand extends Command {
      */
     private boolean isValidForAdvanceWithDateTime(Model model, Person personToAdvance,
             InterviewDateTime interviewDateTime) throws CommandException {
-        return personToAdvance.getStatus() == Status.APPLIED && !isDuplicateDateTime(model, interviewDateTime);
+        return personToAdvance.getStatus() == Status.APPLIED && !isDuplicateDateTime(model,
+                personToAdvance, interviewDateTime);
     }
 
 
@@ -121,13 +126,16 @@ public class AdvanceCommand extends Command {
      *
      * @param interviewDateTime new date and time of the interview for the applicant
      */
-    private boolean isDuplicateDateTime(Model model, InterviewDateTime interviewDateTime) throws CommandException{
+    private boolean isDuplicateDateTime(
+            Model model, Person personToAdvance, InterviewDateTime interviewDateTime) throws CommandException{
         Predicate<Person> shortlistedPredicate = person -> (person.getStatus() == Status.SHORTLISTED);
         model.refreshListWithPredicate(shortlistedPredicate);
         ObservableList<Person> shortlistedApplicants = model.getFilteredPersonList();
         for (Person applicant : shortlistedApplicants) {
             if (applicant.getInterviewDateTime().get().equals(interviewDateTime)) {
-                throw new CommandException(String.format(MESSAGE_DUPLICATE_INTERVIEWDATE, applicant.getName()));
+                Predicate<Person> samePersonPredicate = person -> (person.equals(applicant));
+                model.refreshListWithPredicate(samePersonPredicate);
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_INTERVIEW_DATE, applicant.getName()));
             }
         }
         return false;
@@ -151,17 +159,7 @@ public class AdvanceCommand extends Command {
     private static Person createAdvancedPerson(Person personToAdvance, Optional<InterviewDateTime> interviewDateTime) {
         assert personToAdvance != null;
 
-        Name updatedName = personToAdvance.getName();
-        Phone updatedPhone = personToAdvance.getPhone();
-        Email updatedEmail = personToAdvance.getEmail();
-        Address updatedAddress = personToAdvance.getAddress();
-        Status updatedStatus = personToAdvance.getStatus(); //User not allowed to edit applicant status directly
-        Set<Note> updatedNotes = personToAdvance.getNotes();
-
-        Person advancedPerson = new Person(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedStatus, interviewDateTime, updatedNotes);
-        advancedPerson.advancePerson();
-        return advancedPerson;
+        return personToAdvance.advancePerson(interviewDateTime);
     }
 
     @Override

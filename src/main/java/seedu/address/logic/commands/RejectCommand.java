@@ -90,19 +90,7 @@ public class RejectCommand extends Command {
      */
     private static Person createRejectedPerson(Person personToReject) {
         assert personToReject != null;
-
-        Name updatedName = personToReject.getName();
-        Phone updatedPhone = personToReject.getPhone();
-        Email updatedEmail = personToReject.getEmail();
-        Address updatedAddress = personToReject.getAddress();
-        Status updatedStatus = personToReject.getStatus(); //User not allowed to edit applicant status directly
-        Optional<InterviewDateTime> interviewDateTime = personToReject.getInterviewDateTime();
-        Set<Note> updatedNotes = personToReject.getNotes();
-
-        Person rejectedPerson = new Person(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedStatus, interviewDateTime, updatedNotes);
-        rejectedPerson.rejectPerson();
-        return rejectedPerson;
+        return personToReject.rejectPerson();
     }
 
     @Override
