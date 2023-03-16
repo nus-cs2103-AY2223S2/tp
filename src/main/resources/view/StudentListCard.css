@@ -54,5 +54,6 @@
 }
 
 #studentId {
+    -fx-font-size: 11;
     -fx-text-fill:  "white";
 }

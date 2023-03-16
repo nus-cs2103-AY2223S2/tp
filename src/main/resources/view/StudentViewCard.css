@@ -43,7 +43,7 @@
 .label {
     -fx-font-size: 12;
     -fx-font-family: "Open Sans Medium";
-    -fx-text-fill:  derive(#a1826d, 0%);
+    -fx-text-fill:  #7f5a41;
 }
 
 #title {
@@ -54,7 +54,7 @@
 
 #name {
     -fx-font-family: "Open Sans Bold";
-    -fx-text-fill:  derive(#a1826d, 0%);
+    -fx-text-fill: #574539;
 }
 
 #remarkHeader {

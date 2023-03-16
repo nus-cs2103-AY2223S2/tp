@@ -43,7 +43,6 @@
             </HBox>
             <HBox fx:id="studentPanelPlaceholder" style="-fx-background-color: derive(#a1826d, 50%);" VBox.vgrow="ALWAYS">
                <children>
-      
                     <VBox fx:id="studentList" prefHeight="463.0" prefWidth="534.0" HBox.hgrow="ALWAYS">
                 <StackPane fx:id="personListPanelPlaceholder" maxHeight="1.7976931348623157E308" minWidth="389.0" prefWidth="413.0" VBox.vgrow="ALWAYS">
                         <padding>

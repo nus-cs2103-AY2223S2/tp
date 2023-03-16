@@ -402,8 +402,9 @@
 }
 
 #tags .label {
-    -fx-text-fill: #665A48;
-    -fx-background-color: #C8DBBE;
+    -fx-font-family: "Open Sans Bold";
+    -fx-text-fill: #7f5a41;
+    -fx-background-color: #c9b180;
     -fx-padding: 3 3 3 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -416,8 +417,9 @@
 }
 
 #modules .label {
+    -fx-font-family: "Open Sans Bold";
     -fx-text-fill: white;
-    -fx-background-color: #594545;
+    -fx-background-color: #4b96e9;
     -fx-padding: 3 3 3 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
