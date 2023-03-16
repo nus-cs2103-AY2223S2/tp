@@ -31,6 +31,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final Navigation navigation;
     private final FilteredList<? extends ReadOnlyModule> filteredModules;
+    private FilteredList<? extends ReadOnlyLecture> filteredLectures;
 
     private AddressBook addressBook; // TODO: Remove this
     private FilteredList<Person> filteredPersons; // TODO: Remove this
@@ -210,6 +211,25 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+        filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+    }
+
+    //=========== Filtered Lecture List Accessors =============================================================
+
+    @Override
+    public ObservableList<? extends ReadOnlyLecture> getFilteredLectureList() {
+        return filteredLectures;
+    }
+
+    @Override
+    public void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate, ReadOnlyModule module) {
+        requireNonNull(predicate);
+        if (filteredLectures == null) {
+            filteredLectures = new FilteredList<>(module.getLectureList());
+        }
+        requireNonNull(filteredLectures);
+        filteredLectures.setPredicate(predicate);
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
     }
 
     //=========== Navigation =================================================================================

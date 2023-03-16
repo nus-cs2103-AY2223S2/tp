@@ -1,13 +1,19 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
+import seedu.address.model.Level;
 import seedu.address.model.Model;
-import seedu.address.model.module.ModuleContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleLectureContainsKeywordsPredicate;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.module.LecturePredicate;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ReadOnlyModule;
+
 
 /**
  * Lists all persons in the address book to the user.
@@ -27,9 +33,13 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_VIDEOS = "Listed all videos from module: %s, lecture: %s";
 
-    private ModuleContainsKeywordsPredicate modulePredicate;
+    public static final String MESSAGE_FAIL_CODE = "Module code format is invalid";
 
-    private ModuleLectureContainsKeywordsPredicate moduleLecturePredicate;
+    private ModuleCode moduleCode;
+
+    private LectureName lectureName;
+
+    private Exception error;
 
     /**
      * Creates an empty ListCommand
@@ -37,34 +47,50 @@ public class ListCommand extends Command {
     public ListCommand() {}
 
     /**
-     * Creates an ListCommand to add the specified {@code ModuleContainsKeywordsPredicate}
+     * Creates an ListCommand to add the specified {@code ModuleCode}
      */
-    public ListCommand(ModuleContainsKeywordsPredicate predicate) {
-        modulePredicate = predicate;
+    public ListCommand(ModuleCode moduleCode) {
+        this.moduleCode = moduleCode;
     }
 
     /**
-     * Creates an ListCommand to add the specified {@code ModuleLectureContainsKeywordsPredicate}
+     * Creates an ListCommand to add the specified {@code ModuleCode, LectureName}
      */
-    public ListCommand(ModuleLectureContainsKeywordsPredicate predicate) {
-        moduleLecturePredicate = predicate;
+    public ListCommand(ModuleCode moduleCode, LectureName lectureName) {
+        this.moduleCode = moduleCode;
+        this.lectureName = lectureName;
+    }
+
+    /**
+     * Creates an ListCommand with invalid inputs
+     */
+    public ListCommand(IllegalArgumentException e) {
+        error = e;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (moduleLecturePredicate != null) {
-            model.updateFilteredModuleList(moduleLecturePredicate);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_VIDEOS,
-                moduleLecturePredicate.getModuleCode(), moduleLecturePredicate.getLectureName()));
+        if (error != null) {
+            return new CommandResult(MESSAGE_FAIL_CODE, Level.MODULE);
         }
-        if (modulePredicate != null) {
-            model.updateFilteredModuleList(modulePredicate);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_LECTURES,
-                modulePredicate.getModuleCode()));
+        if (moduleCode != null && lectureName != null) {
+            if (!model.hasLecture(moduleCode, lectureName)) {
+                return new CommandResult(String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, moduleCode, lectureName), Level.MODULE);
+            }
+            // Update filtered videos and show
+            return new CommandResult(String.format(MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName), Level.VIDEO);
+        }
+        if (moduleCode != null) {
+            if (!model.hasModule(moduleCode)) {
+                return new CommandResult(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode), Level.LECTURE);
+            }
+            ReadOnlyModule module = model.getTracker().getModule(moduleCode);
+            model.updateFilteredLectureList(new LecturePredicate(module), module);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_LECTURES, moduleCode), Level.LECTURE);
         }
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(MESSAGE_SUCCESS_MODULES);
+        return new CommandResult(MESSAGE_SUCCESS_MODULES, Level.MODULE);
     }
 
     @Override
@@ -74,14 +100,14 @@ public class ListCommand extends Command {
         }
         if (other instanceof ListCommand) {
             ListCommand otherCommand = (ListCommand) other;
-            if (modulePredicate != null && otherCommand.modulePredicate != null) {
-                return modulePredicate.equals(otherCommand.modulePredicate);
+            if (moduleCode != null && otherCommand.moduleCode != null) {
+                return moduleCode.equals(otherCommand.moduleCode);
             }
-            if (moduleLecturePredicate != null && otherCommand.moduleLecturePredicate != null) {
-                return moduleLecturePredicate.equals(otherCommand.moduleLecturePredicate);
+            if (lectureName != null && otherCommand.lectureName != null) {
+                return lectureName.equals(otherCommand.lectureName);
             }
-            return (modulePredicate == null && moduleLecturePredicate == null)
-                && (otherCommand.modulePredicate == null && otherCommand.moduleLecturePredicate == null);
+            return (moduleCode == null && lectureName == null)
+                && (otherCommand.moduleCode == null && otherCommand.lectureName == null);
         }
         return false;
     }

@@ -17,6 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Level;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
 
 /**
@@ -34,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ModuleListPanel moduleListPanel;
+    private LectureListPanel lectureListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane moduleListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,9 +114,16 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        moduleListPanel = new ModuleListPanel((ObservableList<ReadOnlyModule>) logic.getFilteredModuleList());
-        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+    @SuppressWarnings("unchecked")
+    void fillInnerParts(Level level) {
+        if (level.equals(Level.MODULE)) {
+            this.moduleListPanel = new ModuleListPanel((ObservableList<ReadOnlyModule>) logic.getFilteredModuleList());
+            listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        }
+        if (level.equals(Level.LECTURE)) {
+        this.lectureListPanel = new LectureListPanel((ObservableList<ReadOnlyLecture>) logic.getFilteredLectureList());
+            listPanelPlaceholder.getChildren().add(lectureListPanel.getRoot());
+        }
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -179,6 +189,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            fillInnerParts(commandResult.getLevel());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -26,6 +26,10 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<? super ReadOnlyModule> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
+    Predicate<? super ReadOnlyModule> PREDICATE_HIDE_ALL_MODULES = unused -> false;
+
+    Predicate<? super ReadOnlyLecture> PREDICATE_HIDE_ALL_LECTURES = unused -> false;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      *
@@ -222,6 +226,14 @@ public interface Model {
      */
     ObservableList<? extends ReadOnlyModule> getFilteredModuleList();
 
+     /**
+     * Returns an unmodifiable view of the filtered lecture list.
+     *
+     * @param module The module to get the lecture list from
+     * @return An unmodifiable view of the filtered lecture list.
+     */
+    ObservableList<? extends ReadOnlyLecture> getFilteredLectureList();
+
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      *
@@ -229,6 +241,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate);
+
+    /**
+     * Updates the filter of the filtered lecture list to filter by the given {@code predicate}.
+     *
+     * @param predicate The predicate to filter lecture by.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate, ReadOnlyModule module);
 
     // TODO: Add JavaDocs
     void navigateBack();

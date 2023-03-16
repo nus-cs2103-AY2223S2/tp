@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTracker;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
 
@@ -37,6 +38,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of modules */
     ObservableList<? extends ReadOnlyModule> getFilteredModuleList();
+
+    /** Returns an unmodifiable view of the filtered list of lectures */
+    ObservableList<? extends ReadOnlyLecture> getFilteredLectureList();
 
     /**
      * Returns the user prefs' tracker file path.
