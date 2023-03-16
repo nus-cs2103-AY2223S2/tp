@@ -42,23 +42,23 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
      * Constructs a {@code JsonAdaptedFlight} with the given flight details.
      * This is intended for Jackson to use.
      *
-     * @param id   The id of the flight.
-     * @param code The name of the flight.
-     * @param hasLinkedLocations Whether the flight is linked to locations.
-     * @param departureLocationId The id of the departure location.
+     * @param id                    The id of the flight.
+     * @param code                  The name of the flight.
+     * @param hasLinkedLocations    Whether the flight is linked to locations.
+     * @param departureLocationId   The id of the departure location.
      * @param departureLocationName The name of the departure location.
-     * @param arrivalLocationId The id of the arrival location.
-     * @param arrivalLocationName The name of the arrival location.
+     * @param arrivalLocationId     The id of the arrival location.
+     * @param arrivalLocationName   The name of the arrival location.
      */
     @JsonCreator
     public JsonAdaptedFlight(@JsonProperty("id") String id,
-                             @JsonProperty("code") String code,
-                             @JsonProperty("plane") String plane,
-                             @JsonProperty("hasLinkedLocations") boolean hasLinkedLocations,
-                             @JsonProperty("departureLocationId") String departureLocationId,
-                             @JsonProperty("departureLocationName") String departureLocationName,
-                             @JsonProperty("arrivalLocationId") String arrivalLocationId,
-                             @JsonProperty("arrivalLocationName") String arrivalLocationName) {
+        @JsonProperty("code") String code,
+        @JsonProperty("plane") String plane,
+        @JsonProperty("hasLinkedLocations") boolean hasLinkedLocations,
+        @JsonProperty("departureLocationId") String departureLocationId,
+        @JsonProperty("departureLocationName") String departureLocationName,
+        @JsonProperty("arrivalLocationId") String arrivalLocationId,
+        @JsonProperty("arrivalLocationName") String arrivalLocationName) {
         this.id = id;
         this.code = code;
         this.plane = plane;
