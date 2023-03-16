@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Command that manages adding parts
  */
-public class AddPartCommand extends Command {
+public class AddPartCommand extends RedoableCommand {
 
     public static final String COMMAND_WORD = "addpart";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a part to the shop. "
@@ -46,7 +46,7 @@ public class AddPartCommand extends Command {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         if (model.hasPart(partName)) {
             model.addPart(partName, quantity);

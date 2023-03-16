@@ -13,7 +13,7 @@ import seedu.address.model.service.Vehicle;
 /**
  * Manages adding vehicles
  */
-public class AddVehicleCommand extends Command {
+public class AddVehicleCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "addvehicle";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a vehicle to the shop. "
             + "Parameters: "
@@ -50,7 +50,7 @@ public class AddVehicleCommand extends Command {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasCustomer(toAdd.getOwnerId())) {
             throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
