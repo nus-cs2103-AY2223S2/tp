@@ -1,17 +1,26 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSON_CANNOT_BE_REJECTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.note.Note;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewDateTime;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NamePhoneNumberPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
+
 
 /**
  * Rejects an applicant in HMHero.
@@ -26,6 +35,10 @@ public class RejectCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432";
+    public static final String MESSAGE_REJECT_PERSON_SUCCESS = "Rejected Applicant: %1$s";
+
+    public static final String MESSAGE_PERSON_CANNOT_BE_REJECTED = "%s has already been rejected!";
+
 
     private final NamePhoneNumberPredicate predicate;
 
@@ -44,17 +57,20 @@ public class RejectCommand extends Command {
         assert personList.size() <= 1;
 
         if (personList.isEmpty()) {
-            return new CommandResult(Messages.MESSAGE_NO_PERSON_WITH_NAME_AND_PHONE);
+            throw new CommandException(Messages.MESSAGE_NO_PERSON_WITH_NAME_AND_PHONE);
         }
 
         Person personToReject = personList.get(0);
+        Person rejectedPerson;
 
         /* this if-statement will check whether the applicant can be rejected.
         If applicant cannot be rejected, CommandException will be thrown */
         if (canRejectApplicant(model, personToReject)) {
-            rejectApplicant(model, personToReject);
+            rejectedPerson = createRejectedPerson(personToReject);
+            model.setPerson(personToReject, rejectedPerson);
         }
-        return new CommandResult("Successfully rejected " + personToReject.getName());
+        model.refreshListWithPredicate(predicate);
+        return new CommandResult(String.format(MESSAGE_REJECT_PERSON_SUCCESS, personToReject.getName()));
     }
 
     /**
@@ -69,9 +85,24 @@ public class RejectCommand extends Command {
         return true;
     }
 
-    private void rejectApplicant(Model model, Person personToReject) {
-        personToReject.rejectPerson();
-        model.refreshListWithPredicate(predicate);
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToReject}
+     */
+    private static Person createRejectedPerson(Person personToReject) {
+        assert personToReject != null;
+
+        Name updatedName = personToReject.getName();
+        Phone updatedPhone = personToReject.getPhone();
+        Email updatedEmail = personToReject.getEmail();
+        Address updatedAddress = personToReject.getAddress();
+        Status updatedStatus = personToReject.getStatus(); //User not allowed to edit applicant status directly
+        Optional<InterviewDateTime> interviewDateTime = personToReject.getInterviewDateTime();
+        Set<Note> updatedNotes = personToReject.getNotes();
+
+        Person rejectedPerson = new Person(updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedStatus, interviewDateTime, updatedNotes);
+        rejectedPerson.rejectPerson();
+        return rejectedPerson;
     }
 
     @Override

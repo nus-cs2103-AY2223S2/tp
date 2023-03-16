@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -88,7 +89,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Person} with the details of {@code personToReject}
      * edited with {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
@@ -99,9 +100,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Status updatedStatus = personToEdit.getStatus(); //User not allowed to edit applicant status directly
+        //TODO: command to edit interview date time
+        Optional<InterviewDateTime> interviewDateTime = personToEdit.getInterviewDateTime();
         Set<Note> updatedNotes = editPersonDescriptor.getNotes().orElse(personToEdit.getNotes());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus, updatedNotes);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus,
+                interviewDateTime, updatedNotes);
     }
 
     @Override
