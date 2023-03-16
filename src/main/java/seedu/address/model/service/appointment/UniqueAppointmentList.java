@@ -8,8 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.entity.person.Staff;
-import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.person.exceptions.DuplicatePersonException;
 import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
 import seedu.address.model.service.appointment.exceptions.AppointmentNotFoundException;
@@ -17,18 +15,16 @@ import seedu.address.model.service.appointment.exceptions.DuplicateAppointmentEx
 
 
 /**
- * A list of technicians that enforces uniqueness between its elements and does not allow nulls.
- * A technician is considered unique by comparing using
- * {@code Technician#isSameTechnician(Customer)}. As such, adding and updating of
- * technicians uses Technician#isSameStaff(Staff) for equality so as to
- * ensure that the technician being added or updated is
- * unique in terms of identity in the UniqueTechnicianList. However, the removal of a technician uses
- * Staff#equals(Object) so
- * that we ensure technicians with the same staff id will be removed.
+ * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
+ * A appointment is considered unique by comparing using
+ * {@code Appointment#isSameAppointment(Appointment)}. As such, adding and updating of
+ * appointment uses Appointment#isSameAppointment(Appointment) for equality so as to
+ * ensure that the appointment being added or updated is
+ * unique in terms of identity in the UniqueAppointmentList.
  *
  * Supports a minimal set of list operations.
  *
- * @see Technician#isSameStaff(Staff)
+ * @see Appointment#isSameAppointment(Appointment)
  */
 public class UniqueAppointmentList implements Iterable<Appointment> {
 
@@ -37,7 +33,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent Technician as the given argument.
+     * Returns true if the list contains an equivalent Appointment as the given argument.
      */
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
@@ -45,8 +41,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Adds a technician to the list.
-     * The technician must not already exist in the list.
+     * Adds an appointment  to the list.
+     * The appointment must not already exist in the list.
      */
     public void add(Appointment toAdd) {
         requireNonNull(toAdd);
@@ -57,9 +53,9 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Replaces the technician {@code target} in the list with {@code editedTechnician}.
+     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
-     * The identity of {@code editedTechnician} must not be the same as another existing technician in the list.
+     * The identity of {@code editedAppointment} must not be the same as another existing appointment in the list.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
@@ -87,7 +83,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
         }
     }
 
-    public void setTechnicians(UniqueAppointmentList replacement) {
+    public void setAppointments(UniqueAppointmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -96,13 +92,13 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
      * Replaces the contents of this list with {@code appointments}.
      * {@code appointments} must not contain duplicate appointments.
      */
-    public void setTechnicians(List<Appointment> technicians) {
-        requireAllNonNull(technicians);
-        if (!appointmentsAreUnique(technicians)) {
+    public void setAppointments(List<Appointment> appointments) {
+        requireAllNonNull(appointments);
+        if (!appointmentsAreUnique(appointments)) {
             throw new DuplicateAppointmentException();
         }
 
-        internalList.setAll(technicians);
+        internalList.setAll(appointments);
     }
 
     /**

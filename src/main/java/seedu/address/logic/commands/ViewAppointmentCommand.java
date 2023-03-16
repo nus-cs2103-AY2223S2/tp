@@ -7,15 +7,13 @@ import seedu.address.model.Model;
 import seedu.address.model.service.appointment.AppointmentIdPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and returns the appointment details of the provided id.
  */
 public class ViewAppointmentCommand extends RedoableCommand {
 
     public static final String COMMAND_WORD = "viewappointment";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display customer details given the customer id (not"
-            + "vehicle plate).\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display appointment details given appointment id."
             + "Parameters: ID\n"
             + "Example: " + COMMAND_WORD + " 8";
 

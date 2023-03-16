@@ -8,13 +8,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.person.CustomerIdPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new ViewCustomerCommand object
  */
 public class ViewCustomerCommandParser implements Parser<ViewCustomerCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ViewCustomerCommand
+     * and returns a ViewCustomerCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCustomerCommand parse(String args) throws ParseException {

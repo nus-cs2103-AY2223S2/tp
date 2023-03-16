@@ -7,15 +7,13 @@ import seedu.address.model.Model;
 import seedu.address.model.service.PartIdPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and returns the part details of the provided id.
  */
 public class ViewPartCommand extends RedoableCommand {
 
     public static final String COMMAND_WORD = "viewpart";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display vehicle details given the vehicle id (not"
-            + "vehicle plate).\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display part details given the part id."
             + "Parameters: ID\n"
             + "Example: " + COMMAND_WORD + " 8";
 

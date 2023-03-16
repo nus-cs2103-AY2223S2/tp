@@ -7,8 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.VehicleIdPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and returns the vehicle details of the provided id.
  */
 public class ViewVehicleCommand extends RedoableCommand {
 
