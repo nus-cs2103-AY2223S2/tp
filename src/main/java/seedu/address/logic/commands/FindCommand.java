@@ -79,7 +79,7 @@ public class FindCommand extends Command {
 
         model.updateFilteredElderlyList(combinedElderlyPredicate);
         model.updateFilteredVolunteerList(combinedVolunteerPredicate);
-        syncPairList(model);
+        model.updateFilteredPairList(getPairPredicate(model));
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_LISTED_OVERVIEW, model.getFilteredVolunteerList().size(),
@@ -87,19 +87,18 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Updates the pair list to match the relevant filtered volunteers and elderly.
+     * Returns the pair predicate based on the filtered volunteers and elderly.
      *
      * @param model FriendlyLink model.
      */
-    private void syncPairList(Model model) {
+    private Predicate<Pair> getPairPredicate(Model model) {
         List<Elderly> listOfFilteredElderly = model.getFilteredElderlyList();
-        System.out.println(listOfFilteredElderly.size());
         List<Volunteer> listOfFilteredVolunteers = model.getFilteredVolunteerList();
 
         Predicate<Pair> predicate = pair -> (listOfFilteredElderly.contains(pair.getElderly())
                 || listOfFilteredVolunteers.contains(pair.getVolunteer()));
 
-        model.updateFilteredPairList(predicate);
+        return predicate;
     }
 
     @Override
