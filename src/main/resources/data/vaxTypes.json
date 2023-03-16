@@ -10,7 +10,7 @@
           "reqSet": ["DOSE 1"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "ALC-0315",
         "ALC-0159",
         "DSPC",
@@ -35,7 +35,7 @@
           "reqSet": ["DOSE 1", "Pfizer"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "ALC-0315",
         "ALC-0159",
         "DSPC",
@@ -60,7 +60,7 @@
           "reqSet": ["DOSE 2"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "ALC-0315",
         "ALC-0159",
         "DSPC",
@@ -85,7 +85,7 @@
           "reqSet": ["DOSE 3"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "ALC-0315",
         "ALC-0159",
         "DSPC",
@@ -109,7 +109,7 @@
           "reqSet": ["DOSE 1"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "SM-102",
         "DMG-PEG 2000",
         "Cholesterol",
@@ -135,7 +135,7 @@
           "reqSet": ["DOSE 1", "Moderna"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "SM-102",
         "DMG-PEG 2000",
         "Cholesterol",
@@ -161,7 +161,7 @@
           "reqSet": ["DOSE 2"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "SM-102",
         "DMG-PEG 2000",
         "Cholesterol",
@@ -187,7 +187,7 @@
           "reqSet": ["DOSE 3"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "SM-102",
         "DMG-PEG 2000",
         "Cholesterol",
@@ -212,7 +212,7 @@
           "reqSet": ["DOSE 1"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "Matrix-M1 adjuvant",
         "Phosphatidylcholine",
         "MKP",
@@ -240,7 +240,7 @@
           "reqSet": ["DOSE 1", "Novavax"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "Matrix-M1 adjuvant",
         "Phosphatidylcholine",
         "MKP",
@@ -268,7 +268,7 @@
           "reqSet": ["DOSE 2"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "Matrix-M1 adjuvant",
         "Phosphatidylcholine",
         "MKP",
@@ -296,7 +296,7 @@
           "reqSet": ["DOSE 3"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "Matrix-M1 adjuvant",
         "Phosphatidylcholine",
         "MKP",

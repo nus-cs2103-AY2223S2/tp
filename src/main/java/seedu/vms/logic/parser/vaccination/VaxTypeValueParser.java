@@ -70,8 +70,8 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
         builder = mapAge(argsMap.getValue(CliSyntax.PREFIX_MAX_AGE), FIELD_NAME_MAX_AGE)
                 .map(builder::setMaxAge)
                 .orElse(builder);
-        builder = mapGroupSet(argsMap.getAllValues(CliSyntax.PREFIX_ALLERGY_REQ), FIELD_NAME_ALLERGY)
-                .map(builder::setAllergyReqs)
+        builder = mapGroupSet(argsMap.getAllValues(CliSyntax.PREFIX_INGREDIENTS), FIELD_NAME_ALLERGY)
+                .map(builder::setIngredients)
                 .orElse(builder);
         builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_HISTORY_REQ), FIELD_NAME_HISTORY)
                 .map(builder::setHistoryReqs)

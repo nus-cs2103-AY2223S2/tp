@@ -22,19 +22,19 @@ public class VaxTypeBuilder {
     private final Optional<HashSet<GroupName>> setGrps;
     private final Optional<Age> setMinAge;
     private final Optional<Age> setMaxAge;
-    private final Optional<HashSet<GroupName>> setAllergyReqs;
+    private final Optional<HashSet<GroupName>> setIngredients;
     private final Optional<List<Requirement>> setHistoryReqs;
 
 
     private VaxTypeBuilder(GroupName refName, GroupName name, Optional<HashSet<GroupName>> setGrps,
                 Optional<Age> setMinAge, Optional<Age> setMaxAge,
-                Optional<HashSet<GroupName>> setAllergyReqs, Optional<List<Requirement>> setHistoryReqs) {
+                Optional<HashSet<GroupName>> setIngredients, Optional<List<Requirement>> setHistoryReqs) {
         this.refName = refName;
         this.name = name;
         this.setGrps = setGrps.map(HashSet::new);
         this.setMinAge = setMinAge;
         this.setMaxAge = setMaxAge;
-        this.setAllergyReqs = setAllergyReqs.map(HashSet::new);
+        this.setIngredients = setIngredients.map(HashSet::new);
         this.setHistoryReqs = setHistoryReqs.map(Requirement::copy);
     }
 
@@ -66,32 +66,32 @@ public class VaxTypeBuilder {
     public VaxTypeBuilder setName(GroupName name) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 setMinAge, setMaxAge,
-                setAllergyReqs, setHistoryReqs);
+                setIngredients, setHistoryReqs);
     }
 
 
     public VaxTypeBuilder setGroups(HashSet<GroupName> grps) {
         return new VaxTypeBuilder(refName, name, Optional.ofNullable(grps),
                 setMinAge, setMaxAge,
-                setAllergyReqs, setHistoryReqs);
+                setIngredients, setHistoryReqs);
     }
 
 
     public VaxTypeBuilder setMinAge(Age minAge) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 Optional.ofNullable(minAge), setMaxAge,
-                setAllergyReqs, setHistoryReqs);
+                setIngredients, setHistoryReqs);
     }
 
 
     public VaxTypeBuilder setMaxAge(Age maxAge) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 setMinAge, Optional.ofNullable(maxAge),
-                setAllergyReqs, setHistoryReqs);
+                setIngredients, setHistoryReqs);
     }
 
 
-    public VaxTypeBuilder setAllergyReqs(HashSet<GroupName> allergyReqs) {
+    public VaxTypeBuilder setIngredients(HashSet<GroupName> allergyReqs) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 setMinAge, setMaxAge,
                 Optional.ofNullable(allergyReqs), setHistoryReqs);
@@ -101,7 +101,7 @@ public class VaxTypeBuilder {
     public VaxTypeBuilder setHistoryReqs(List<Requirement> historyReqs) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 setMinAge, setMaxAge,
-                setAllergyReqs, Optional.ofNullable(historyReqs));
+                setIngredients, Optional.ofNullable(historyReqs));
     }
 
 
@@ -153,9 +153,9 @@ public class VaxTypeBuilder {
         Age maxAge = setMaxAge.orElse(refVaxType
                 .map(VaxType::getMaxAge)
                 .orElse(VaxType.DEFAULT_MAX_AGE));
-        HashSet<GroupName> allergyReqs = setAllergyReqs.orElse(refVaxType
-                .map(VaxType::getAllergyReqs)
-                .orElse(VaxType.DEFAULT_ALLERGY_REQS));
+        HashSet<GroupName> ingredients = setIngredients.orElse(refVaxType
+                .map(VaxType::getIngredients)
+                .orElse(VaxType.DEFAULT_INGREDIENTS));
         List<Requirement> historyReqs = setHistoryReqs.orElse(refVaxType
                 .map(VaxType::getHistoryReqs)
                 .orElse(VaxType.DEFAULT_HISTORY_REQS));
@@ -164,7 +164,7 @@ public class VaxTypeBuilder {
             throw new IllegalValueException(VaxType.MESSAGE_AGE_CONSTRAINTS);
         }
 
-        VaxType vaxType = new VaxType(name, grps, minAge, maxAge, allergyReqs, historyReqs);
+        VaxType vaxType = new VaxType(name, grps, minAge, maxAge, ingredients, historyReqs);
         manager.add(vaxType);
         return vaxType;
     }

@@ -15,7 +15,7 @@
           "reqSet": ["DOSE 1"]
         }
       ],
-      "allergyReqs": [
+      "ingredients": [
         "ALC-0315",
         "ALC-0159",
         "DSPC",

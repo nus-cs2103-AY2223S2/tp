@@ -24,7 +24,7 @@ public class JsonAdaptedVaxType {
     private final List<JsonAdaptedGroupName> groups;
     private final JsonAdaptedAge minAge;
     private final JsonAdaptedAge maxAge;
-    private final List<JsonAdaptedGroupName> allergyReqs;
+    private final List<JsonAdaptedGroupName> ingredients;
     private final List<JsonAdaptedVaxRequirement> historyReqs;
 
 
@@ -35,13 +35,13 @@ public class JsonAdaptedVaxType {
                 @JsonProperty("groups") List<JsonAdaptedGroupName> groups,
                 @JsonProperty("minAge") JsonAdaptedAge minAge,
                 @JsonProperty("maxAge") JsonAdaptedAge maxAge,
-                @JsonProperty("allergyReqs") List<JsonAdaptedGroupName> allergyReqs,
+                @JsonProperty("ingredients") List<JsonAdaptedGroupName> ingredients,
                 @JsonProperty("historyReqs") List<JsonAdaptedVaxRequirement> historyReqs) {
         this.name = name;
         this.groups = groups;
         this.minAge = minAge;
         this.maxAge = maxAge;
-        this.allergyReqs = allergyReqs;
+        this.ingredients = ingredients;
         this.historyReqs = historyReqs;
     }
 
@@ -55,7 +55,7 @@ public class JsonAdaptedVaxType {
         List<JsonAdaptedGroupName> groups = JsonAdaptedGroupName.fromModelCollection(vaxType.getGroups());
         JsonAdaptedAge minAge = JsonAdaptedAge.fromModelType(vaxType.getMinAge());
         JsonAdaptedAge maxAge = JsonAdaptedAge.fromModelType(vaxType.getMaxAge());
-        List<JsonAdaptedGroupName> allergyReqs = JsonAdaptedGroupName.fromModelCollection(vaxType.getAllergyReqs());
+        List<JsonAdaptedGroupName> allergyReqs = JsonAdaptedGroupName.fromModelCollection(vaxType.getIngredients());
         List<JsonAdaptedVaxRequirement> historyReqs = convertToAdaptedReq(vaxType.getHistoryReqs());
 
         return new JsonAdaptedVaxType(name, groups, minAge, maxAge, allergyReqs, historyReqs);
@@ -93,8 +93,8 @@ public class JsonAdaptedVaxType {
             builder = builder.setMaxAge(maxAge.toModelType());
         }
 
-        if (allergyReqs != null) {
-            builder = builder.setAllergyReqs(JsonAdaptedGroupName.toModelSet(allergyReqs));
+        if (ingredients != null) {
+            builder = builder.setIngredients(JsonAdaptedGroupName.toModelSet(ingredients));
         }
 
         if (historyReqs != null) {

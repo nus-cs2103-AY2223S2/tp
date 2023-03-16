@@ -43,7 +43,7 @@ public class VaxTypeCard extends UiPart<Region> {
                 .map(GroupName::getName)
                 .collect(Collectors.toList())));
         allergyBox.getChildren().add(new TagFlowView(
-                vaxType.getAllergyReqs()
+                vaxType.getIngredients()
                     .stream()
                     .map(GroupName::toString)
                     .collect(Collectors.toList()),
