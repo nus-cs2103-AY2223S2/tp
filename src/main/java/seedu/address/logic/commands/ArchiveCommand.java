@@ -12,6 +12,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Archives the Pet to an archive file
+ * stored in data/archive.json
  */
 public class ArchiveCommand extends Command {
     public static final String COMMAND_WORD = "archive";
