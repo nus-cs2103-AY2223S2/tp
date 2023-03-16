@@ -23,13 +23,12 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream().anyMatch(keyword ->
-                        person.getName().fullName.toLowerCase().contains(keyword.toLowerCase())
+                person.getName().fullName.toLowerCase().contains(keyword.toLowerCase()));
                 /*
                         || person.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase().contains(keyword.toLowerCase()))
                         || person.getAddress().value.toLowerCase().contains(keyword.toLowerCase())
                         || person.getPhone().value.toLowerCase().contains(keyword.toLowerCase())
                 */
-        );
     }
 
     @Override
