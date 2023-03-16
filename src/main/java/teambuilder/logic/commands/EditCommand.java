@@ -20,7 +20,12 @@ import teambuilder.commons.core.index.Index;
 import teambuilder.commons.util.CollectionUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
-import teambuilder.model.person.*;
+import teambuilder.model.person.Address;
+import teambuilder.model.person.Email;
+import teambuilder.model.person.Major;
+import teambuilder.model.person.Name;
+import teambuilder.model.person.Person;
+import teambuilder.model.person.Phone;
 import teambuilder.model.tag.Tag;
 
 /**

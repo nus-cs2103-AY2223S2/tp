@@ -10,7 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import teambuilder.commons.exceptions.IllegalValueException;
-import teambuilder.model.person.*;
+import teambuilder.model.person.Address;
+import teambuilder.model.person.Email;
+import teambuilder.model.person.Major;
+import teambuilder.model.person.Name;
+import teambuilder.model.person.Person;
+import teambuilder.model.person.Phone;
 import teambuilder.model.tag.Tag;
 
 /**

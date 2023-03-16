@@ -9,7 +9,11 @@ import java.util.Set;
 import teambuilder.commons.core.index.Index;
 import teambuilder.commons.util.StringUtil;
 import teambuilder.logic.parser.exceptions.ParseException;
-import teambuilder.model.person.*;
+import teambuilder.model.person.Address;
+import teambuilder.model.person.Email;
+import teambuilder.model.person.Major;
+import teambuilder.model.person.Name;
+import teambuilder.model.person.Phone;
 import teambuilder.model.tag.Tag;
 
 /**

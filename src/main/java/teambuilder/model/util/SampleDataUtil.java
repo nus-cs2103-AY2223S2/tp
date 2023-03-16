@@ -6,7 +6,12 @@ import java.util.stream.Collectors;
 
 import teambuilder.model.ReadOnlyTeamBuilder;
 import teambuilder.model.TeamBuilder;
-import teambuilder.model.person.*;
+import teambuilder.model.person.Address;
+import teambuilder.model.person.Email;
+import teambuilder.model.person.Major;
+import teambuilder.model.person.Name;
+import teambuilder.model.person.Person;
+import teambuilder.model.person.Phone;
 import teambuilder.model.tag.Tag;
 
 /**
