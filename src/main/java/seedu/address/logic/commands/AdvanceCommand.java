@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_INTERVIEWDATE;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSON_CANNOT_BE_ADVANCED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -8,14 +9,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.InterviewDateTime;
-import seedu.address.model.person.NamePhoneNumberPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Status;
+import seedu.address.model.note.Note;
+import seedu.address.model.person.*;
 
 /**
  * Advances an applicant in HMHero.
@@ -60,13 +62,15 @@ public class AdvanceCommand extends Command {
         }
 
         Person personToAdvance = personList.get(0);
+        Person advancedPerson;
 
         /* this if-statement will check whether the applicant can be advanced and also whether
         the interview datetime input is valid.
         If any exception occurs along the way, then CommandException will be thrown */
         if (canAdvanceApplicant(model, personToAdvance)
-                && isValidInterviewDateInput(personToAdvance, this.interviewDateTime)) {
-            advanceApplicant(model, personToAdvance, this.interviewDateTime);
+                && isValidInterviewDateInput(model, personToAdvance, this.interviewDateTime)) {
+            advancedPerson = createAdvancedPerson(personToAdvance, this.interviewDateTime);
+            model.setPerson(personToAdvance, advancedPerson);
         }
         return new CommandResult("Successfully advanced " + personToAdvance.getName());
     }
@@ -78,11 +82,12 @@ public class AdvanceCommand extends Command {
      * @param interviewDateTime the interview date-time input
      * @throws CommandException if there is a mismatch of whether interview date-time is required
      */
-    private boolean isValidInterviewDateInput(Person personToAdvance, Optional<InterviewDateTime> interviewDateTime)
-            throws CommandException {
+    private boolean isValidInterviewDateInput(Model model, Person personToAdvance,
+            Optional<InterviewDateTime> interviewDateTime) throws CommandException {
+
         // interviewDateTime is only required if the applicant's status is Applied
         if (interviewDateTime.isPresent()) {
-            if (personToAdvance.getStatus() == Status.APPLIED) {
+            if (isValidForAdvanceWithDateTime(model, personToAdvance, interviewDateTime.get())) {
                 return true;
             } else {
                 throw new CommandException(Messages.MESSAGE_INTERVIEW_DATETIME_NOT_REQUIRED);
@@ -97,6 +102,38 @@ public class AdvanceCommand extends Command {
     }
 
     /**
+     * Checks whether applicant that user wants to advance is of status {@code APPLIED}
+     * Checks whether the interview date time has any clashes with current applicants who have the
+     * status {@code SHORTLISTED}
+     *
+     * @param model current state of the model
+     * @param personToAdvance Applicant that user wants to advance to the next stage in application cycle
+     * @param interviewDateTime date and time of the interview for the applicant
+     */
+    private boolean isValidForAdvanceWithDateTime(Model model, Person personToAdvance,
+            InterviewDateTime interviewDateTime) throws CommandException {
+        return personToAdvance.getStatus() == Status.APPLIED && !isDuplicateDateTime(model, interviewDateTime);
+    }
+
+
+    /**
+     * Checks with the current list of Shortlisted applicants to see if there are any clashing interview date timings.
+     *
+     * @param interviewDateTime new date and time of the interview for the applicant
+     */
+    private boolean isDuplicateDateTime(Model model, InterviewDateTime interviewDateTime) throws CommandException{
+        Predicate<Person> shortlistedPredicate = person -> (person.getStatus() == Status.SHORTLISTED);
+        model.refreshListWithPredicate(shortlistedPredicate);
+        ObservableList<Person> shortlistedApplicants = model.getFilteredPersonList();
+        for (Person applicant : shortlistedApplicants) {
+            if (applicant.getInterviewDateTime().get().equals(interviewDateTime)) {
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_INTERVIEWDATE, applicant.getName()));
+            }
+        }
+        return false;
+    }
+
+    /**
      * Checks whether applicant can be advanced
      * @throws CommandException if applicant cannot be advanced any further in the application cycle
      */
@@ -108,10 +145,23 @@ public class AdvanceCommand extends Command {
         return true;
     }
 
-    private void advanceApplicant(Model model, Person personToAdvance, Optional<InterviewDateTime> interviewDateTime) {
-        personToAdvance.setInterviewDateTime(interviewDateTime);
-        personToAdvance.advancePerson();
-        model.refreshListWithPredicate(predicate);
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToAdvance}
+     */
+    private static Person createAdvancedPerson(Person personToAdvance, Optional<InterviewDateTime> interviewDateTime) {
+        assert personToAdvance != null;
+
+        Name updatedName = personToAdvance.getName();
+        Phone updatedPhone = personToAdvance.getPhone();
+        Email updatedEmail = personToAdvance.getEmail();
+        Address updatedAddress = personToAdvance.getAddress();
+        Status updatedStatus = personToAdvance.getStatus(); //User not allowed to edit applicant status directly
+        Set<Note> updatedNotes = personToAdvance.getNotes();
+
+        Person advancedPerson = new Person(updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedStatus, interviewDateTime, updatedNotes);
+        advancedPerson.advancePerson();
+        return advancedPerson;
     }
 
     @Override
