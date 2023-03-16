@@ -22,19 +22,23 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Session session;
     private final Set<Tag> tags = new HashSet<>();
+
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Address address, PayRate payRate, Set<Tag> tags) {
-        requireAllNonNull(name, phone, payRate, address, tags);
+    public Person(Name name, Phone phone, Address address, PayRate payRate, Session session, Set<Tag> tags) {
+        requireAllNonNull(name, phone, payRate, address, session, tags);
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.payRate = payRate;
+        this.session = session;
         this.tags.addAll(tags);
     }
+
 
     public Name getName() {
         return name;
@@ -52,6 +56,9 @@ public class Person {
         return address;
     }
 
+    public Session getSession() {
+        return session;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -92,13 +99,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getPayRate().equals(getPayRate())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getSession().equals(getSession())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, payRate, tags);
+        return Objects.hash(name, phone, address, payRate, session, tags);
     }
 
     @Override
@@ -110,7 +118,9 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Pay Rate: ")
-                .append(getPayRate());
+                .append(getPayRate())
+                .append("; Session: ")
+                .append(getSession());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

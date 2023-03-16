@@ -51,7 +51,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setTags(List<Tag> tags) { this.tags.setTags(tags); }
+    public void setTags(List<Tag> tags) {
+        this.tags.setTags(tags);
+    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.

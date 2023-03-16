@@ -8,6 +8,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,11 +21,16 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_PAY_RATE = "15";
+    public static final String DEFAULT_SESSION_START = "28-02-2022 12:00";
+    public static final String DEFAULT_SESSION_END = "28-02-2022 14:00";
+
+
 
     private Name name;
     private Phone phone;
     private Address address;
     private PayRate payRate;
+    private Session session;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +41,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
         payRate = new PayRate(DEFAULT_PAY_RATE);
+        session = new Session(DEFAULT_SESSION_START, DEFAULT_SESSION_END);
         tags = new HashSet<>();
     }
 
@@ -46,6 +53,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         address = personToCopy.getAddress();
         payRate = personToCopy.getPayRate();
+        session = personToCopy.getSession();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -82,6 +90,15 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Session} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSession(String startDateTime, String endDateTime) {
+        this.session = new Session(startDateTime, endDateTime);
+        return this;
+    }
+
+
+    /**
      * Sets the {@code Pay Rate} of the {@code Person} that we are building.
      */
     public PersonBuilder withPayRate(String payRate) {
@@ -90,7 +107,8 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, address, payRate, tags);
+        return new Person(name, phone, address, payRate, session, tags);
     }
+
 
 }

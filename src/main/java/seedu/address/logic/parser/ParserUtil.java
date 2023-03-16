@@ -9,10 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Address; // create a new import group for Address
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -79,6 +80,33 @@ public class ParserUtil {
         }
         return new Address(trimmedAddress);
     }
+
+    /**
+     * Parses a {@code String session} into an {@code Session}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code session} is invalid.
+     */
+    public static Session parseSession(String session) throws ParseException {
+        requireNonNull(session);
+        String trimmedSession = session.trim();
+        String[] dateTime = trimmedSession.split(" to ");
+        if (dateTime.length != 2) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        String[] startDateAndTime = dateTime[0].split(" ");
+        String[] endDateAndTime = dateTime[1].split(" ");
+        if (startDateAndTime.length != 2 || endDateAndTime.length != 2
+                || !Session.isValidDateFormat(startDateAndTime[0].trim())
+                || !Session.isValidDateFormat(endDateAndTime[0].trim())
+                || !Session.isValidTimeFormat(startDateAndTime[1].trim())
+                || !Session.isValidTimeFormat(endDateAndTime[1].trim())) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        return new Session(startDateAndTime[0].trim() + " " + startDateAndTime[1].trim(),
+                endDateAndTime[0].trim() + " " + endDateAndTime[1].trim());
+    }
+
 
     /**
      * Parses a {@code String email} into an {@code Email}.

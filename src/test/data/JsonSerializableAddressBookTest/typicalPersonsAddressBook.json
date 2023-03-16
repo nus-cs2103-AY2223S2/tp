@@ -1,46 +1,69 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "payRate" : "10",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "payRate" : "11",
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "address" : "wall street",
-    "payRate" : "12",
-    "tagged" : [ ]
-  }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "address" : "10th street",
-    "payRate" : "13",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "address" : "michegan ave",
-    "payRate" : "14",
-    "tagged" : [ ]
-  }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "address" : "little tokyo",
-    "payRate" : "15",
-    "tagged" : [ ]
-  }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "address" : "4th street",
-    "payRate" : "16",
-    "tagged" : [ ]
-  } ]
+  "persons": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "payRate": "10",
+      "tagged": [
+        "friends"
+      ],
+      "sessionString": "01-01-2022 12:00 to 01-01-2022 13:00"
+    },
+    {
+      "name": "Benson Meier",
+      "phone": "98765432",
+      "address": "311, Clementi Ave 2, #02-25",
+      "payRate": "11",
+      "tagged": [
+        "owesMoney",
+        "friends"
+      ],
+      "sessionString": "02-01-2022 14:00 to 02-01-2022 15:00"
+    },
+    {
+      "name": "Carl Kurz",
+      "phone": "95352563",
+      "address": "wall street",
+      "payRate": "12",
+      "tagged": [],
+      "sessionString": "03-01-2022 16:00 to 03-01-2022 17:00"
+    },
+    {
+      "name": "Daniel Meier",
+      "phone": "87652533",
+      "address": "10th street",
+      "payRate": "13",
+      "tagged": [
+        "friends"
+      ],
+      "sessionString": "01-01-2022 12:00 to 01-01-2022 13:00"
+    },
+    {
+      "name": "Elle Meyer",
+      "phone": "9482224",
+      "address": "michegan ave",
+      "payRate": "14",
+      "tagged": [],
+      "sessionString": "02-01-2022 14:00 to 02-01-2022 15:00"
+    },
+    {
+      "name": "Fiona Kunz",
+      "phone": "9482427",
+      "address": "little tokyo",
+      "payRate": "15",
+      "tagged": [],
+      "sessionString": "17-03-2022 13:00 to 17-03-2022 14:00"
+    },
+    {
+      "name": "George Best",
+      "phone": "9482442",
+      "address": "4th street",
+      "payRate": "16",
+      "tagged": [],
+      "sessionString": "03-01-2022 16:00 to 03-01-2022 17:00"
+    }
+  ]
+
 }

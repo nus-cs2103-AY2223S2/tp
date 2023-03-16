@@ -3,11 +3,19 @@
     "name": "Valid Person",
     "phone": "9482424",
     "address": "4th street",
-    "payRate": "30"
+    "payRate": "30",
+    "session": {
+      "startDateTime": "17-03-2022 13:00",
+      "endDateTime": "17-03-2022 14:00"
+    }
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "address": "4th street",
-    "payRate": "10"
+    "payRate": "10",
+    "session": {
+      "startDateTime": "17-03-2022 13:00",
+      "endDateTime": "17-03-2022 14:00"
+    }
   } ]
 }

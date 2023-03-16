@@ -3,6 +3,7 @@
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "address": "4th street",
-    "payRate": "10"
+    "payRate": "10",
+    "sessionString": "17-03-2022 13:00 to 17-03-2022 14:00"
   } ]
 }
