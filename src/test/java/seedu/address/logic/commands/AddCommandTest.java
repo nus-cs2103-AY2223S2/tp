@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
@@ -170,6 +171,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModule(ModuleCode module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteModule(ReadOnlyModule target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -181,6 +187,11 @@ public class AddCommandTest {
 
         @Override
         public void setModule(ReadOnlyModule target, Module editedModule) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyModule getModule(ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
 

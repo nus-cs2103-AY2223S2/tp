@@ -76,6 +76,6 @@ public class ParseArgumentTest {
     @Test
     public void parseVideo_validValue_returnsVideoName() throws Exception {
         VideoName expectedVideo = new VideoName(VALID_VIDEO_NAME);
-        assertEquals(expectedVideo, ParseArgument.parseLecture(VALID_VIDEO_NAME));
+        assertEquals(expectedVideo, ParseArgument.parseVideo(VALID_VIDEO_NAME));
     }
 }
