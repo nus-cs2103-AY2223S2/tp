@@ -1,6 +1,7 @@
 package seedu.address.model.flight;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import seedu.address.model.flight.exceptions.LinkedPlaneNotFoundException;
