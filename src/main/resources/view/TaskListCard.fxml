@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <HBox id="taskCardPane" fx:id="taskCardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
-        <URL value="@TaskCardView.css" />
+        <URL value="@../css/TaskCardView.css" />
     </stylesheets>
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>

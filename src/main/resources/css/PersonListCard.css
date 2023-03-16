@@ -33,13 +33,6 @@
     -fx-border-radius: 3px;
     -fx-font-size: 12px;
 }
-.progress-indicator,
-.progress-indicator:hover,
-.progress-indicator:focused,
-.progress-indicator:selected {
-    -fx-text-fill: yellow;
-    -fx-opacity: 1;
-}
 
 .progress-indicator .percentage {
     -fx-fill: black;
@@ -47,4 +40,5 @@
 
 .progress-indicator  {
     -fx-padding: 0 0 -16 0;
+    visibility: true;
 }

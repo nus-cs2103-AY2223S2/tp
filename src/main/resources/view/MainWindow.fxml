@@ -19,7 +19,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@MainWindow.css" />
+        <URL value="@../css/MainWindow.css" />
       </stylesheets>
 
       <VBox>

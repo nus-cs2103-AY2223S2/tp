@@ -66,7 +66,7 @@ public class UiManager implements Ui {
     private static void showAlertDialogAndWait(Stage owner, String headerText,
                                                String contentText) {
         final Alert alert = new Alert(AlertType.ERROR);
-        alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
+        alert.getDialogPane().getStylesheets().add("css/DarkTheme.css");
         alert.initOwner(owner);
         alert.setTitle("Fatal error during initializing");
         alert.setHeaderText(headerText);

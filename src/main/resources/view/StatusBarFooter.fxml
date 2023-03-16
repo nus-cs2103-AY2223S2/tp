@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <GridPane styleClass="status-bar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
-    <URL value="@StatusBar.css" />
+    <URL value="@../css/StatusBar.css" />
   </stylesheets>
 
   <columnConstraints>

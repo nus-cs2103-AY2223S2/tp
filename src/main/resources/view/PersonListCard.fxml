@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
-    <URL value="@CardView.css" />
+    <URL value="@../css/PersonListCard.css" />
   </stylesheets>
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>

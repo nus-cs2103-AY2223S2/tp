@@ -22,7 +22,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@HelpWindow.css" />
+        <URL value="@../css/HelpWindow.css" />
       </stylesheets>
 
       <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="302.0" prefWidth="632.0">
@@ -31,7 +31,7 @@
                   <top>
                      <VBox BorderPane.alignment="CENTER">
                         <children>
-                           <HBox stylesheets="@HelpWindow.css">
+                           <HBox stylesheets="@../css/HelpWindow.css">
                               <children>
                             <Label fx:id="helpMessage" text="Label">
                               <HBox.margin>
