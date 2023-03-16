@@ -135,9 +135,6 @@ public class InternshipCard extends UiPart<Region> {
     public String getDateLabel() {
         String dateLabel;
         switch (this.internship.getStatus().toString()) {
-        case NEW:
-            dateLabel = "Date Added: ";
-            break;
         case APPLIED:
             dateLabel = "Date Applied: ";
             break;
@@ -154,7 +151,7 @@ public class InternshipCard extends UiPart<Region> {
             dateLabel = "Date of Notice of Rejection: ";
             break;
         default:
-            dateLabel = "Date: ";
+            dateLabel = "Date Added: ";
         }
         return dateLabel;
     }
