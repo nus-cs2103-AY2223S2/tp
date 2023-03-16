@@ -59,6 +59,7 @@ class RemarkCommandTest {
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new Roster(model.getRoster()), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -115,6 +116,7 @@ class RemarkCommandTest {
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new Roster(model.getRoster()), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);

@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.logic.commands;
 
 import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNull;
-import static tfifteenfour.clipboard.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
