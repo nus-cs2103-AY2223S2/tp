@@ -110,7 +110,7 @@ public class InternshipContainsKeywordsPredicateTest {
 
         // One tag keyword
         predicate = new InternshipContainsKeywordsPredicate(Collections.emptyList(), Collections.emptyList(),
-                Collections.emptyList(), Collections.singletonList("python"));
+                        Collections.emptyList(), Collections.singletonList("python"));
         assertTrue(predicate.test(new InternshipBuilder().withTags("python", "java").build()));
 
         // Multiple tag keywords

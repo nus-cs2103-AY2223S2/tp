@@ -86,7 +86,7 @@ public class AddressBookParserTest {
                         + " " + PREFIX_STATUS + statusKeywords.stream().collect(Collectors.joining(" "))
                         + " " + PREFIX_TAG + tagKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(
-                        new InternshipContainsKeywordsPredicate(nameKeywords, roleKeywords, statusKeywords, tagKeywords)),
+                new InternshipContainsKeywordsPredicate(nameKeywords, roleKeywords, statusKeywords, tagKeywords)),
                 command);
     }
 
