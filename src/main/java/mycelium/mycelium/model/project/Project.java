@@ -55,6 +55,7 @@ public class Project implements IsSame<Project> {
      * values.
      */
     public Project(String name, Email clientEmail) {
+        // TODO we should probably enforce an invariant that the name is non-empty?
         this.name = name;
         this.status = ProjectStatus.NOT_STARTED;
         this.clientEmail = clientEmail;
