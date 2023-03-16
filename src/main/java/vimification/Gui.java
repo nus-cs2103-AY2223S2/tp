@@ -22,7 +22,6 @@ import vimification.model.ReadOnlyAddressBook;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 import vimification.model.util.SampleDataUtil;
-import vimification.storage.AddressBookStorage;
 import vimification.storage.JsonAddressBookStorage;
 import vimification.storage.JsonUserPrefsStorage;
 import vimification.storage.Storage;

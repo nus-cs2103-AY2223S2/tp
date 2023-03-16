@@ -12,21 +12,19 @@ import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of TaskPlanner data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private TaskPlannerStorage taskPlannerStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and
-     * {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code TaskPlannerStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage,
-            UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(TaskPlannerStorage taskPlannerStorage, UserPrefsStorage userPrefsStorage) {
+        this.taskPlannerStorage = taskPlannerStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -48,35 +46,34 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ TaskPlanner methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getTaskListFilePath() {
+        return taskPlannerStorage.getTaskListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyTaskPlanner> readAddressBook()
-            throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTaskPlanner> readTaskList() throws DataConversionException, IOException {
+        return readTaskList(taskPlannerStorage.getTaskListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTaskPlanner> readAddressBook(Path filePath)
-            throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaskPlanner> readTaskList(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return taskPlannerStorage.readTaskList(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTaskPlanner addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+
+    public void saveTaskList(ReadOnlyTaskPlanner taskPlanner) throws IOException {
+        saveTaskList(taskPlanner, taskPlannerStorage.getTaskListFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTaskPlanner addressBook, Path filePath) throws IOException {
+    public void saveTaskList(ReadOnlyTaskPlanner taskPlanner, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        taskPlannerStorage.saveTaskList(taskPlanner, filePath);
     }
 
 }

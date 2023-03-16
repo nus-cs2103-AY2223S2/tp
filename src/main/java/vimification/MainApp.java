@@ -22,7 +22,6 @@ import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 import vimification.model.util.SampleDataUtil;
-import vimification.storage.AddressBookStorage;
 import vimification.storage.JsonAddressBookStorage;
 import vimification.storage.JsonUserPrefsStorage;
 import vimification.storage.Storage;
@@ -81,7 +80,8 @@ public class MainApp extends Application {
         Optional<ReadOnlyTaskPlanner> addressBookOptional;
         ReadOnlyTaskPlanner initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.
+                    readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }

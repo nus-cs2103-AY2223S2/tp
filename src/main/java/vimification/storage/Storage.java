@@ -12,7 +12,7 @@ import vimification.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends TaskPlannerStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,11 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getTaskListFilePath();
 
     @Override
-    Optional<ReadOnlyTaskPlanner> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaskPlanner> readTaskList() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyTaskPlanner addressBook) throws IOException;
-
+    void saveTaskList(ReadOnlyTaskPlanner taskList) throws IOException;
 }
