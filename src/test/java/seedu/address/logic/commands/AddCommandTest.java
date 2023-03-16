@@ -21,7 +21,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
-import seedu.address.model.service.Part;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -199,12 +198,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPart(Part part) {
+        public void addPart(String partName, int quantity) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPart(Part part) {
+        public boolean hasPart(String partName) {
             throw new AssertionError("This method should not be called.");
         }
 

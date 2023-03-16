@@ -8,7 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
-import seedu.address.model.service.Part;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -24,7 +24,7 @@ public interface Model {
 
     Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
     Predicate<Technician> PREDICATE_SHOW_ALL_TECHNICIANS = unused -> true;
-    Predicate<Part> PREDICATE_SHOW_ALL_PARTS = unused -> true;
+    Predicate<PartMap> PREDICATE_SHOW_ALL_PARTS = unused -> true;
     Predicate<Service> PREDICATE_SHOW_ALL_SERVICES = unused -> true;
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
     Predicate<Vehicle> PREDICATE_SHOW_ALL_VEHICLES = unused -> true;
@@ -166,16 +166,18 @@ public interface Model {
     /**
      * Adds part
      *
-     * @param part Part to add
+     * @param partName Name of the part to add
+     * @param quantity Quantity of the part to add
      */
-    void addPart(Part part);
+    void addPart(String partName, int quantity);
 
     /**
      * Checks if part already exists
      *
-     * @param part Part to check against
+     * @param partName Name of the part to check against
      */
-    boolean hasPart(Part part);
+    boolean hasPart(String partName);
 
     void updateFilteredVehicleList(Predicate<Vehicle> predicate);
+
 }
