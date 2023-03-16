@@ -4,7 +4,7 @@ import seedu.address.model.InternBuddy;
 import seedu.address.model.internship.Internship;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building InternBuddy objects.
  * Example usage: <br>
  *     {@code InternBuddy ab = new InternBuddyBuilder().withInternship("Apple", "Google").build();}
  */
