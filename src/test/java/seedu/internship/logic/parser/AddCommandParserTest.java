@@ -1,39 +1,39 @@
 package seedu.internship.logic.parser;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.logic.commands.CommandTestUtil.POSITION_DESC_SE1;
-import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_DESC_SE1;
-import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_SE1;
-import static seedu.internship.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SE1;
-import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_SE1;
-import static seedu.internship.logic.commands.CommandTestUtil.POSITION_DESC_ML1;
 import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_DESC_ML1;
-import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_DESC_SE1;
 import static seedu.internship.logic.commands.CommandTestUtil.DESCRIPTION_DESC_ML1;
-import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_ML1;
-import static seedu.internship.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.internship.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_FUN;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_COMPANY_SE1;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_POSITION_SE1;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_STATUS_SE1;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SE1;
-import static seedu.internship.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
+import static seedu.internship.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SE1;
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.internship.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-
-
+import static seedu.internship.logic.commands.CommandTestUtil.POSITION_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.POSITION_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.internship.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_COMPANY_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_POSITION_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_STATUS_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_FUN;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.internship.testutil.TypicalInternships.SE1;
 import static seedu.internship.testutil.TypicalInternships.ML1;
+import static seedu.internship.testutil.TypicalInternships.SE1;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.internship.logic.commands.AddCommand;
-import seedu.internship.logic.commands.CommandTestUtil;
-import seedu.internship.model.internship.*;
+import seedu.internship.model.internship.Company;
+import seedu.internship.model.internship.Internship;
+import seedu.internship.model.internship.Position;
+import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
 import seedu.internship.testutil.InternshipBuilder;
 
@@ -68,8 +68,8 @@ public class AddCommandParserTest {
         // multiple tags - all accepted
         Internship expectedInternshipMultipleTags = new InternshipBuilder(SE1).withTags(VALID_TAG_FUN, VALID_TAG_FUN)
                 .build();
-        assertParseSuccess(parser,POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1
-                + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1 + TAG_DESC_ML1 , new AddCommand(expectedInternshipMultipleTags));
+        assertParseSuccess(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1
+                + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1 + TAG_DESC_SE1 , new AddCommand(expectedInternshipMultipleTags));
     }
 
     @Test
@@ -108,28 +108,34 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid position
-        assertParseFailure(parser, INVALID_POSITION_DESC + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1
+        assertParseFailure(parser, INVALID_POSITION_DESC + COMPANY_DESC_SE1 + STATUS_DESC_SE1
+                + DESCRIPTION_DESC_SE1
                 + TAG_DESC_ML1 + TAG_DESC_SE1, Position.MESSAGE_CONSTRAINTS);
 
         // invalid company
-        assertParseFailure(parser, POSITION_DESC_SE1 + INVALID_COMPANY_DESC + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1
+        assertParseFailure(parser, POSITION_DESC_SE1 + INVALID_COMPANY_DESC + STATUS_DESC_SE1
+                + DESCRIPTION_DESC_SE1
                 + TAG_DESC_ML1 + TAG_DESC_SE1, Company.MESSAGE_CONSTRAINTS);
 
         // invalid status
-        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + INVALID_STATUS_DESC + DESCRIPTION_DESC_SE1
+        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + INVALID_STATUS_DESC
+                + DESCRIPTION_DESC_SE1
                 + TAG_DESC_ML1 + TAG_DESC_SE1, Status.MESSAGE_CONSTRAINTS);
 
 
         // invalid tag
-        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1
+        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1
+                + DESCRIPTION_DESC_SE1
                 + INVALID_TAG_DESC + TAG_DESC_SE1, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_POSITION_DESC + COMPANY_DESC_SE1 + INVALID_STATUS_DESC + DESCRIPTION_DESC_SE1 ,
+        assertParseFailure(parser, INVALID_POSITION_DESC + COMPANY_DESC_SE1 + INVALID_STATUS_DESC
+                        + DESCRIPTION_DESC_SE1 ,
                 Position.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + POSITION_DESC_SE1 + COMPANY_DESC_SE1
+                        + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1
                         + TAG_DESC_ML1 + TAG_DESC_SE1,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }

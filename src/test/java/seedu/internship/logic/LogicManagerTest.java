@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.internship.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
-import static seedu.internship.logic.commands.CommandTestUtil.POSITION_DESC_ML1;
 import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_DESC_ML1;
-import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_ML1;
 import static seedu.internship.logic.commands.CommandTestUtil.DESCRIPTION_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.POSITION_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_ML1;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalInternships.ML1;
 
@@ -74,15 +75,16 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonInternshipCatalogueStorage internshipCatalogueStorage =
-                new JsonInternshipCatalogueIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionInternshipCatalogue.json"));
+                new JsonInternshipCatalogueIoExceptionThrowingStub(temporaryFolder
+                        .resolve("ioExceptionInternshipCatalogue.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + POSITION_DESC_ML1 + COMPANY_DESC_ML1 + STATUS_DESC_ML1 +
-                DESCRIPTION_DESC_ML1;
+        String addCommand = AddCommand.COMMAND_WORD + POSITION_DESC_ML1 + COMPANY_DESC_ML1 + STATUS_DESC_ML1
+                + DESCRIPTION_DESC_ML1 + TAG_DESC_ML1;
         Internship expectedInternship = new InternshipBuilder(ML1).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addInternship(expectedInternship);
@@ -157,7 +159,8 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue, Path filePath) throws IOException {
+        public void saveInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue, Path filePath)
+                throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
