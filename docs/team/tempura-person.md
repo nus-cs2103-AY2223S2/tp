@@ -28,8 +28,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
 
 * **Documentation**:
-    * User Guide:
-    * Developer Guide:
+    * User Guide: Features as of v1.2b
+    * Developer Guide: Features as of v1.2b
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#1](https://github.com/nus-cs2103-AY2223S2/ip/pull/268/files/4ab762fcdf788b39ccd9a54756e40336b1284ef4), [\#2](https://github.com/nus-cs2103-AY2223S2/ip/pull/236/files/c28028a6dfb59dee69061e00e77305dad24c2931)

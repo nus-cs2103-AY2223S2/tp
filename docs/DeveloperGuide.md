@@ -274,93 +274,205 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                 | So that I can…​                                                 |
-|----------|-----------------------------------|------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | new coach                         | see usage instructions       | refer to instructions when I forget how to use the App                |
-| `* * *`  | coach                             | add a new student            | record his/her profile                                                |
-| `* * *`  | coach                             | delete a student             | remove students that I no longer teach                                |
-| `* * *`  | coach                             | edit a student               | update a student's details                                            |
-| `* *`    | coach                             | find a student by name       | locate details of student without having to go through the entire list |
-| `* *`    | coach                             | hide private contact details | minimize chance of someone else seeing them by accident               |
-| `*`      | coach with many students          | sort students by name        | locate a student easily                                               |
-| `*`      | coach with many training sessions | I would like to view my schedule as a calendar                             | to better plan my week.   |
+| Priority | As a …​                           | I want to …​                                   | So that I can…​                                                        |
+|----------|-----------------------------------|------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new coach                         | see usage instructions                         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | coach                             | add a new student                              | record his/her profile                                                 |
+| `* * *`  | coach                             | delete a student                               | remove students that I no longer teach                                 |
+| `* * *`  | coach                             | edit a student                                 | update a student's details                                             |
+| `* *`    | coach                             | find a student by name                         | locate details of student without having to go through the entire list |
+| `* *`    | coach                             | hide private contact details                   | minimize chance of someone else seeing them by accident                |
+| `*`      | coach with many students          | sort students by name                          | locate a student easily                                                |
+| `*`      | coach with many training sessions | I would like to view my schedule as a calendar | to better plan my week.                                                |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `SportSync` and the **Actor** is the `coach`, unless specified otherwise)
+(For all use cases below, the **System** is `SportSync` and the **Actor** is the `coach`, unless specified otherwise)
 
-**Use case: Add a student**
-
-**MSS**
-
-1. Coach requests to add a new student in the list
-2. SportSync add the student
-
-    Use case ends.
-
-**Use case: Delete a student**
+### Use case: Ask for help
 
 **MSS**
 
-1. Coach requests to list students
-2. SportSync shows a list of students
-3. Coach requests to delete a specific student in the list
-4. SportSync deletes the student
+1. Coach requests for help.
+2. SportSync displays a link to the SportSync User Guide.
 
     Use case ends.
 
-**Use case: Edit a student**
+### Use case: Add a student
 
 **MSS**
 
-1.  Coach requests to list students
-2.  SportSync shows a list of students
-3.  Coach requests to edit a specific student's profile attribute in the list
-4.  SportSync edit the student's attribute
+1. Coach requests to add a new student in the list.
+2. SportSync add the student.
 
-    Use case ends.
-
-**Features**
-
-**Group**
-
-Format: group [GROUPNAME]
-
-- Creates a group to add users to
-- Creates a group of *GROUPNAME*
-- Name fields must be provided
-
-**Show**
-
-Format: group [GROUPNAME1] [GROUPNAME2] . . .
-
-- Shows all users belonging to at least one of the groups specified
-- Filters out all individuals belonging to that specific group
-- At least one group name must be provided
-
-**Display**
-
-Format: display
-
-- Listing all existing groups in address book
-- Displays all existing groups in command message
-- Working in progress need to add “add user to group” functionality
-
-*{More to be added}*
+   Use case ends.
 
 **Extensions**
+
+* 1a. Not enough details of the student were given.
+
+    * 1a1. SportSync shows an error message.
+
+      Use case resumes at step 1.
+
+### Use case: Delete a student
+
+**MSS**
+
+1. Coach requests to delete a specific student in the list.
+2. SportSync deletes the student.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. SportSync shows an error message.
+
+      Use case resumes at step 1.
 
 * 2a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+### Use case: Edit a student
 
-    * 3a1. SportSync shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. Coach requests to edit a specific student's attribute in the list.
+2. SportSync edits the student's specified attribute.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index/attribute(s) are invalid.
+
+    * 1a1. SportSync shows an error message.
+
+      Use case resumes at step 1.
+
+### Use case: Find a student
+
+**MSS**
+
+1. Coach requests to find a specific student by name, in the list.
+2. SportSync displays the search results.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. SportSync shows an error message.
+
+      Use case resumes at step 1.
+
+## Use case: Clear the list
+
+**MSS**
+
+1.  Coach requests to clear all students from the list.
+2.  SportSync clears all students from the list.
+
+    Use case ends.
+
+### Use case: Sort the list
+
+**MSS**
+
+1.  Coach requests to sort all students in the list by attribute.
+2.  SportSync sorts all students in the list by attribute.
+
+    Use case ends.
+
+### Use case: Create new group
+
+**MSS**
+
+1. Coach requests to create a new group with specified group name.
+2. SportSync creates a new group with the specified group name.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The group already exists.
+
+    * 1a1. SportSync shows an error message.
+
+      Use case resumes at step 1.
+
+### Use case: Add student to group
+
+**MSS**
+
+1. Coach requests to add a student to the group with specified group name.
+2. SportSync adds the student to the group with the specified group name.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The student already belongs to the group, the student does not exist, or the group does not exist.
+
+    * 1a1. SportSync shows an error message.
+
+      Use case resumes at step 1.
+
+### Use case: Display all groups
+
+**MSS**
+
+1. Coach requests to display all groups by name.
+2. SportSync displays all group names.
+
+   Use case ends.
+
+### Use case: Display all students belonging to group(s)
+
+**MSS**
+
+1. Coach requests to display all students belonging to specified group(s) by name.
+2. SportSync displays all students belonging to one or more of the specified group(s).
+
+   Use case ends.
+
+### Features
+
+**Group**
+
+Format: `group t/GROUPNAME`
+
+* Creates a group of name `GROUPNAME`
+* Name field **must be provided.**
+
+**Group Add**
+
+Format: `groupadd INDEX t/GROUPNAME`
+
+* Adds a person at the specified `INDEX` to the group with specified `GROUPNAME`.
+* Both index and group **must already exist and be provided.**
+* A person cannot be added to a group they are already in.
+
+**Show**
+
+Format: `show [TAG1]…​`
+
+* Filters list of contacts to only contain persons belonging to the specific tag(s).
+* At least one tag **must be provided.**
+
+**Display**
+
+Format: `display`
+
+* Lists all groups created by the user.
+* Displays all existing user-created groups in the command message.
+
 
 *{More to be added}*
 

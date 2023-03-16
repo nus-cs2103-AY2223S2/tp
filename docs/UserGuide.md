@@ -6,7 +6,7 @@ title: User Guide
 SportSync is a **desktop app for managing training sessions and athletes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SportSync can get your training management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,15 +25,15 @@ SportSync is a **desktop app for managing training sessions and athletes, optimi
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/6` : Adds athlete `John Doe` to SportSync.
+    * `add n/John Doe p/98765432 a/311, Clementi Ave 2, r/35 s/10-03-2022 10:00 to 10-03-2022 11:00 t/friends t/owesMoney` : Adds athlete `John Doe` to SportSync.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -78,15 +78,15 @@ Format: `help`
 
 Adds a person to SportSync.
 
-Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/PAY_RATE [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/PAY_RATE s/SESSION [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 r/44 a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend a/Newgate Prison p/1234567 t/criminal r/5`
+* `add n/John Doe p/98765432 r/44 a/John street, block 123, #01-01, s/22-12-2022 10:00 to 22-12-2022 11:00`
+* `add n/Betsy Crowe t/friend a/Newgate Prison p/1234567 t/criminal r/5, s/11-05-2023 11:00 to 11-05-2023 13:00`
 
 ### Listing all persons : `list`
 
@@ -98,14 +98,14 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [r/PAY_RATE] [a/ADDRESS] [s/SESSION] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 r/3` Edits the phone number and payRate of the 1st person to be `91234567` and `3` respectively.
@@ -120,7 +120,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Full and partial words will be matched e.g. `Han` and `Hans` will both match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -161,13 +161,59 @@ Sorts all entries in the address book.
 
 Format: `sort`
 
+### Creating a group : `group`
+
+Creates a group to add persons to.
+
+Format: `group t/GROUPNAME`
+
+* Creates a group of name `GROUPNAME`
+* Name field **must be provided.**
+
+Examples:
+* `group n/Team Dynamite` creates a group of name `Team Dynamite`.
+
+### Adding persons to a group : `groupadd`
+
+Adds a person to a group.
+
+Format: `groupadd INDEX t/GROUPNAME`
+
+* Adds a person at the specified `INDEX` to the group with specified `GROUPNAME`.
+* Both index and group **must already exist and be provided.**
+* A person cannot be added to a group they are already in.
+
+Examples:
+* `groupadd 2 n/Team Dynamite` adds the 2nd person in the address book to the group named `Team Dynamite`.
+
+### Showing persons from a tag : `show`
+
+Shows all persons belonging to at least one of the groups specified.
+
+Format: `show [TAG1]…​`
+
+* Filters list of contacts to only contain persons belonging to the specific tag(s).
+* At least one tag **must be provided.**
+
+Examples:
+* `show n/neighbours` shows people belonging to tag `neighbours`.
+
+### Listing all groups in SportSync : `display`
+
+Lists all groups created by the user.
+
+Format: `display`
+
+* Displays all existing user-created groups in the command message.
+
+
 ### Saving the data
 
 SportSync data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-SportSync data are saved as a JSON file `[JAR file location]/data/sportsync.json`. Advanced users are welcome to update data directly by editing that data file.
+SportSync data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SportSync will discard all data and start with an empty data file at the next run.
@@ -188,12 +234,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                       |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER r/PAY_RATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 r/7 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                    |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee r/3`                                            |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                             |
-| **List**   | `list`                                                                                                                                                 |
-| **Help**   | `help`                                                                                                                                                 |
+| Action        | Format, Examples                                                                                                                                                                                        |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME p/PHONE_NUMBER r/PAY_RATE a/ADDRESS s/SESSION [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 r/7 a/123, Clementi Rd, 1234665 s/10-03-2022 10:00 to 10-03-2022 11:00 t/friend t/colleague` |
+| **Clear**     | `clear`                                                                                                                                                                                                 |
+| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                     |
+| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [s/SESSION] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee r/3`                                                                                 |
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                              |
+| **List**      | `list`                                                                                                                                                                                                  |
+| **Help**      | `help`                                                                                                                                                                                                  |
+| **Sort**      | `sort`                                                                                                                                                                                                  |
+| **Group**     | `group t/GROUPNAME`<br> e.g., `group t/Team Dynamite`                                                                                                                                                   |
+| **Group Add** | `groupadd INDEX t/GROUPNAME`<br> e.g., `groupadd 3 t/Varsity`                                                                                                                                           |
+| **Show**      | `show [TAG1]…​`<br> e.g., `show Hall…​`                                                                                                                                                                 |
+| **Display**   | `display`                                                                                                                                                                                               |
