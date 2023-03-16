@@ -3,7 +3,6 @@ package codoc.model.skill;
 import java.util.List;
 import java.util.function.Predicate;
 
-import codoc.commons.util.StringUtil;
 import codoc.model.person.Person;
 
 public class SkillContainsKeywordPredicate implements Predicate<Person> {
@@ -15,16 +14,10 @@ public class SkillContainsKeywordPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        /*return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
-*/
-
         if (person.getSkills().isEmpty()) {
             return false;
         }
-        return keywords.stream()
-                .anyMatch(keyword -> person.getSkills().contains(new Skill(keyword)));
-        //return person.getSkills().stream().anyMatch(skill -> keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(skill.toString(), keyword)));
+        return keywords.stream().anyMatch(keyword -> person.getSkills().contains(new Skill(keyword)));
     }
 
     @Override
@@ -33,5 +26,4 @@ public class SkillContainsKeywordPredicate implements Predicate<Person> {
                 || (other instanceof SkillContainsKeywordPredicate // instanceof handles nulls
                 && keywords.equals(((SkillContainsKeywordPredicate) other).keywords)); // state check
     }
-
 }

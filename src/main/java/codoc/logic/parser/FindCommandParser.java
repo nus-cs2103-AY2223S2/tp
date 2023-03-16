@@ -6,6 +6,7 @@ import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.Arrays;
 
+import codoc.logic.commands.EditCommand;
 import codoc.logic.commands.FindCommand;
 import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.NameContainsKeywordsPredicate;
@@ -31,6 +32,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SKILL);
 
         if (argMultimap.getValue(PREFIX_SKILL).isPresent()) {
+            if (argMultimap.getAllValues(PREFIX_SKILL).get(0).isEmpty()) {
+                throw new ParseException(MESSAGE_FIND_SKILL_NO_ARGUMENT);
+            }
             return new FindCommand(new SkillContainsKeywordPredicate(argMultimap.getAllValues(PREFIX_SKILL)));
         }
 
