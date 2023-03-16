@@ -90,7 +90,7 @@ A detailed view of a single entity may be entered when specified.
 Format: `view CLASSFICIATION NAME`
 
 Detailed view may be left by entering the command: `back` or `b` while in detailed view.
-### Editing a person : `edit`
+### Editing a entity : `edit`
 
 Enter into edit mode for the specified entity.
 
@@ -170,13 +170,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Make** | `make CLASSIFICATION NAME` <br> e.g., `make char BigMcLargeHuge`
-**Clear** | `clear`
-**Delete** | `kill CLASSIFICATION NAME`<br> e.g., `delete char BigMcLargeHuge`
-**Enter Edit Mode** | `edit CLASSIFICATION NAME`<br> e.g.,`edit char BigMcLargeHuge`
-**Edit field (in Edit Mode)** | `FIELD NEW_VALUE` <br> e.g., `name SmallMcTinyMicro`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Large`
-**List entities** | `view CLASSIFICATION` <br> e.g., `view items`
-**Help** | `help`
+| Action                        | Format, Examples                                                  |
+|-------------------------------|-------------------------------------------------------------------|
+| **Make**                      | `make CLASSIFICATION NAME` <br> e.g., `make char BigMcLargeHuge`  |
+| **Clear**                     | `clear`                                                           |
+| **Delete**                    | `kill CLASSIFICATION NAME`<br> e.g., `delete char BigMcLargeHuge` |
+| **Enter Edit Mode**           | `edit CLASSIFICATION NAME`<br> e.g.,`edit char BigMcLargeHuge`    |
+| **Edit field (in Edit Mode)** | `FIELD NEW_VALUE` <br> e.g., `name SmallMcTinyMicro`              |
+| **Find**                      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Large`             |
+| **List entities**             | `view CLASSIFICATION` <br> e.g., `view items`                     |
+| **Help**                      | `help`                                                            |

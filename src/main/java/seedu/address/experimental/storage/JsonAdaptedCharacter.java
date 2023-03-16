@@ -7,11 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
-import seedu.address.model.person.Name;
+
 
 /***/
 public class JsonAdaptedCharacter {
+
     private final String name;
     private final JsonAdaptedStats stats;
     private final int level;
@@ -19,12 +21,13 @@ public class JsonAdaptedCharacter {
 
     @JsonCreator
     JsonAdaptedCharacter(@JsonProperty("name") String name, @JsonProperty("stats") JsonAdaptedStats stats,
-                         @JsonProperty("level") int level, @JsonProperty("xp") int xp) {
+        @JsonProperty("level") int level, @JsonProperty("xp") int xp) {
         this.name = name;
         this.stats = stats;
         this.level = level;
         this.xp = xp;
     }
+
     /***/
     public JsonAdaptedCharacter(Character source) {
         name = source.getName().fullName;
@@ -32,6 +35,7 @@ public class JsonAdaptedCharacter {
         this.level = source.getLevel();
         this.xp = source.getXP();
     }
+
     /***/
     public Character toModelType() throws IllegalValueException {
         // dont care about error...
