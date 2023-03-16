@@ -1,5 +1,6 @@
 package seedu.address.model.entity;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -34,6 +35,16 @@ public class Item extends Entity {
      */
     public Item(Name name, Set<Tag> tags) {
         super(name, tags);
+        cost = DEFAULT_COST;
+        weight = DEFAULT_WEIGHT;
+    }
+
+    /**
+     * Every field should be present and non-null.
+     * @param name name of the character
+     */
+    public Item(Name name) {
+        super(name, new HashSet<>());
         cost = DEFAULT_COST;
         weight = DEFAULT_WEIGHT;
     }
