@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -53,19 +54,25 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<String> medicalString = argMultimap.getValue(PREFIX_MEDICAL);
         Optional<String> time = argMultimap.getValue(PREFIX_SCHEDULE);
         Person person;
+        LocalDateTime parsedTime = null;
+        if (time.isPresent()) {
+            if (time.get().trim().length() > 0) {
+                parsedTime = ParserUtil.parseTime(time.get());
+            }
+        }
         if (medicalString.isEmpty()) {
             if (medicalAge.isEmpty()) {
                 if (time.isEmpty()) {
                     person = new Person(name, phone, email, address, tagList);
                 } else {
-                    person = new Person(name, phone, email, address, tagList, ParserUtil.parseTime(time.get()));
+                    person = new Person(name, phone, email, address, tagList, parsedTime);
                 }
             } else {
                 Age age = ParserUtil.parseAge(medicalAge.get().toString());
                 if (time.isEmpty()) {
                     person = new Person(name, phone, email, address, age, tagList);
                 } else {
-                    person = new Person(name, phone, email, address, age, tagList, ParserUtil.parseTime(time.get()));
+                    person = new Person(name, phone, email, address, age, tagList, parsedTime);
                 }
             }
         } else {
@@ -75,7 +82,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                     person = new Person(name, phone, email, address, tagList, medicalCondition);
                 } else {
                     person = new Person(name, phone, email, address, tagList,
-                        ParserUtil.parseTime(time.get()), medicalCondition);
+                        parsedTime, medicalCondition);
                 }
             } else {
                 Age age = ParserUtil.parseAge(medicalAge.get().toString());
@@ -83,7 +90,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                     person = new Person(name, phone, email, address, age, tagList, medicalCondition);
                 } else {
                     person = new Person(name, phone, email, address, age, tagList,
-                        ParserUtil.parseTime(time.get()), medicalCondition);
+                        parsedTime, medicalCondition);
                 }
             }
         }

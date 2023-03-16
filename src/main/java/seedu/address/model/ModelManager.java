@@ -148,9 +148,8 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonListByName(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        persons.setAll(addressBook.getPersonList());
-        filteredPersons.setPredicate(predicate);
-        persons.setAll(filteredPersonsByName);
+        addressBook.setPersons(this.addressBook.getPersonListByName());
+        updateScheduledList(predicate);
     }
 
     @Override

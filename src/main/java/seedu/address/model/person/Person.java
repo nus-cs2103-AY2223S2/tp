@@ -32,7 +32,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, LocalDateTime time) {
-        requireAllNonNull(name, phone, email, address, tags, time);
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,7 +47,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                   LocalDateTime time, MedicalCondition medicalCondition) {
-        requireAllNonNull(name, phone, email, address, tags, time);
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -62,7 +62,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
                   LocalDateTime time, MedicalCondition medicalCondition) {
-        requireAllNonNull(name, phone, email, address, tags, time);
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
