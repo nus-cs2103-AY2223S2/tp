@@ -46,6 +46,18 @@ class IdGeneratorTest {
     }
 
     @Test
+    void generateAppointmentId() {
+        IdGenerator.reset();
+        int a = IdGenerator.generateAppointmentId();
+        int b = IdGenerator.generateAppointmentId();
+        assertEquals(1, a);
+        assertEquals(2, b);
+        IdGenerator.setAppointmentIdUnused(b);
+        int c = IdGenerator.generateAppointmentId();
+        assertEquals(2, c);
+    }
+
+    @Test
     void saveState() throws IOException, ClassCastException, ClassNotFoundException {
         IdGenerator.reset();
         Path path = Path.of("src", "test", "data", "IdGeneratorStateTest");

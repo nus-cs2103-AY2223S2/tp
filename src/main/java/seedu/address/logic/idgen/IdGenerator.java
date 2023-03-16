@@ -5,7 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -16,11 +16,13 @@ import java.util.TreeSet;
 public class IdGenerator {
     private static final String FILE_NAME = "IdGenState.ser";
     private static final SortedSet<Integer> usedCustomerIds = new TreeSet<>();
-    private static final Queue<Integer> unusedCustomerIds = new LinkedList<>();
+    private static final Queue<Integer> unusedCustomerIds = new PriorityQueue<>();
     private static final SortedSet<Integer> usedVehicleIds = new TreeSet<>();
-    private static final Queue<Integer> unusedVehicleIds = new LinkedList<>();
+    private static final Queue<Integer> unusedVehicleIds = new PriorityQueue<>();
     private static final SortedSet<Integer> usedServiceIds = new TreeSet<>();
-    private static final Queue<Integer> unusedServiceIds = new LinkedList<>();
+    private static final Queue<Integer> unusedServiceIds = new PriorityQueue<>();
+    private static final SortedSet<Integer> usedAppointmentIds = new TreeSet<>();
+    private static final Queue<Integer> unusedAppointmentIds = new PriorityQueue<>();
 
     private IdGenerator() {
     }
@@ -48,6 +50,10 @@ public class IdGenerator {
 
     public static int generateServiceId() {
         return generateId(usedServiceIds, unusedServiceIds);
+    }
+
+    public static int generateAppointmentId() {
+        return generateId(usedAppointmentIds, unusedAppointmentIds);
     }
 
     /**
@@ -103,6 +109,10 @@ public class IdGenerator {
 
     public static void setServiceIdUnused(int id) {
         unusedServiceIds.add(id);
+    }
+
+    public static void setAppointmentIdUnused(int id) {
+        unusedAppointmentIds.add(id);
     }
 
     /**
