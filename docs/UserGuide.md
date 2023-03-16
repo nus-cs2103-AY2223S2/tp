@@ -74,9 +74,9 @@ your internship hunt!
 
 ### Viewing help : `help`
 
-Shows a message with a link to the help page.
+Shows a message with a link to the user guide.
 
-[help message](images/helpMessage.png)
+![help message](images/helpMessage.png)
 
 Format: `help`
 
