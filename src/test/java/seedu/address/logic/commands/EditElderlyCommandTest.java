@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_ELDERLY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ELDERLY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKLEVEL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RISK_LEVEL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -58,11 +58,11 @@ public class EditElderlyCommandTest {
 
         ElderlyBuilder elderlyInList = new ElderlyBuilder(lastElderly);
         Elderly editedElderly = elderlyInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withRiskLevel(VALID_RISKLEVEL_BOB).withTags(VALID_TAG_SINGLE).build();
+                .withRiskLevel(VALID_RISK_LEVEL_BOB).withTags(VALID_TAG_SINGLE).build();
 
         EditElderlyDescriptor descriptor = new EditElderlyDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
-                .withRiskLevel(VALID_RISKLEVEL_BOB)
+                .withRiskLevel(VALID_RISK_LEVEL_BOB)
                 .withTags(VALID_TAG_SINGLE).build();
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(indexLastElderly, descriptor);
 

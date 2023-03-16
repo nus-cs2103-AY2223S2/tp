@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;

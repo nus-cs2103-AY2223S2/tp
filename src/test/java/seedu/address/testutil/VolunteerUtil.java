@@ -13,7 +13,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.EditVolunteerCommand;
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
+import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.tag.Tag;
 
