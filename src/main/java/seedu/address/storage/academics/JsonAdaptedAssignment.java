@@ -1,4 +1,4 @@
-package seedu.address.storage.adaptedassignment;
+package seedu.address.storage.academics;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

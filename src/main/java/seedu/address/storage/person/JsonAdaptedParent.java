@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.person;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Jackson-friendly version of {@link Parent}.
  */
-class JsonAdaptedParent extends JsonAdaptedPerson {
+public class JsonAdaptedParent extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Parent's %s field is missing!";
     private final String age;

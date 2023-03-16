@@ -72,6 +72,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setParents(newData.getParentList());
+        setStudents(newData.getStudentList());
     }
 
     //// person-level operations
@@ -173,17 +175,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: refine later
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list
+     * @return ObservableList of Person
+     */
     @Override
     public ObservableList<Person> getPersonList() {
 
         return persons.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list
+     * @return ObservableList of Student
+     */
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Parent} backed by the internal list
+     * @return ObservableList of Parent
+     */
+    @Override
     public ObservableList<Parent> getParentList() {
         return parents.asUnmodifiableObservableList();
     }
