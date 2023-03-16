@@ -2,7 +2,6 @@ package seedu.address.model.timetable;
 
 import org.joda.time.LocalTime;
 
-
 import seedu.address.model.location.Location;
 
 /**

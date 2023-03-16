@@ -11,8 +11,8 @@ public class Timetable {
 
     private HashMap<SchoolDay, ArrayList<TimeSlot>> schedule;
     private String[] startTimings = new String[] {
-            "0800", "0900", "1000", "1100", "1200", "1300", "1400",
-            "1500", "1600", "1700", "1800", "1900", "2000", "2100"
+        "0800", "0900", "1000", "1100", "1200", "1300", "1400",
+        "1500", "1600", "1700", "1800", "1900", "2000", "2100"
     };
 
     /**

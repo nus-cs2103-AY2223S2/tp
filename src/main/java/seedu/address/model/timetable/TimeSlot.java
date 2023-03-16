@@ -3,6 +3,7 @@ package seedu.address.model.timetable;
 import java.util.Optional;
 
 import org.joda.time.LocalTime;
+
 import seedu.address.model.timetable.exceptions.LessonClashException;
 import seedu.address.model.timetable.exceptions.WrongTimeException;
 
