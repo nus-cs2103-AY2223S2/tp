@@ -65,16 +65,16 @@ public class NoteList {
      * Removes the specified note
      * @param note The note to remove from the list
      */
-    public void remove(Note note) {
-        getNotes().remove(note);
+    public boolean remove(Note note) {
+        return getNotes().remove(note);
     }
 
     /**
      * Removes the indexed note
      * @param index Integer for index
      */
-    public void remove(int index) {
-        getNotes().remove(index);
+    public Note remove(int index) throws IndexOutOfBoundsException {
+        return getNotes().remove(index);
     }
 
     /**
