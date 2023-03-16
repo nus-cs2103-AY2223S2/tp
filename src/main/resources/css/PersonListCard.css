@@ -40,5 +40,5 @@
 
 .progress-indicator  {
     -fx-padding: 0 0 -16 0;
-    visibility: true;
+    visibility: false;
 }
