@@ -149,9 +149,9 @@ public class Person implements Comparable<Person> {
 
     @Override
     public int compareTo(Person other) {
-        if (other.performance.getUrgency() > performance.getUrgency()) {
+        if (other.performance.calculateUrgency() > performance.calculateUrgency()) {
             return 1;
-        } else if (other.performance.getUrgency() < performance.getUrgency()) {
+        } else if (other.performance.calculateUrgency() < performance.calculateUrgency()) {
             return -1;
         } else {
             return name.toString().compareTo(other.name.toString());
