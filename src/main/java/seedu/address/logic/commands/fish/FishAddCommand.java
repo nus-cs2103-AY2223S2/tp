@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.fish;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDING_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
@@ -13,6 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.tank.Tank;
 
 /**
  * Parses input arguments and creates a new FishAddCommand object
@@ -22,19 +23,18 @@ public class FishAddCommand extends FishCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a fish to the address book. "
             + "Parameters: "
-            + PREFIX_TANK + "TANKINDEX "
             + PREFIX_NAME + "NAME "
             + PREFIX_LAST_FED_DATE + "LAST FED DATE "
             + PREFIX_SPECIES + "SPECIES "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_FEEDING_INTERVAL + "FEEDING INTERVAL "
+            + PREFIX_TANK + "TANK INDEX"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TANK + "1"
             + PREFIX_NAME + "John Doe "
-            + PREFIX_LAST_FED_DATE + "98765432 "
+            + PREFIX_LAST_FED_DATE + "01/01/2023 "
             + PREFIX_SPECIES + "Guppy "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
+            + PREFIX_FEEDING_INTERVAL + "0d5h "
+            + PREFIX_TANK + "1"
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New fish added: %1$s";
@@ -61,11 +61,8 @@ public class FishAddCommand extends FishCommand {
             throw new CommandException(MESSAGE_DUPLICATE_FISH);
         }
 
-        /* Failed attempt at adding fish to tank.
-        Instead, change address of fish to tank, and sort filtered predicate.
         Tank tank;
         try {
-            ObservableList<Tank> list = model.getFilteredTankList();
             tank = model.getFilteredTankList().get(tankIndex.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_MISSING_TANK);
@@ -73,8 +70,7 @@ public class FishAddCommand extends FishCommand {
         // check that tank is non-null
         requireNonNull(tank);
         // assigns fish to tank
-        // tank.addFish(toAdd);
-        */
+        toAdd.setTank(tank);
 
         model.addFish(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
