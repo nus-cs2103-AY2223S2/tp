@@ -101,7 +101,4 @@ public class NoteList {
                 .forEach(builder::append);
         return builder.toString();
     }
-
-//    public void saveNotesToDisk() {
-//    }
 }
