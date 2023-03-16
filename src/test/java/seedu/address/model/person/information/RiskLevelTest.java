@@ -14,7 +14,7 @@ class RiskLevelTest {
     //    }
 
     @Test
-    public void constructor_invalidAge_throwsIllegalArgumentException() {
+    public void constructor_invalidRisk_throwsIllegalArgumentException() {
         String invalidRisk = "";
         assertThrows(IllegalArgumentException.class, () -> new RiskLevel(invalidRisk));
     }
@@ -24,12 +24,12 @@ class RiskLevelTest {
         // null address
         assertThrows(NullPointerException.class, () -> RiskLevel.isValidRisk(null));
 
-        // invalid age
+        // invalid risk
         assertFalse(RiskLevel.isValidRisk("")); // empty string
         assertFalse(RiskLevel.isValidRisk(" ")); // spaces only
         assertFalse(RiskLevel.isValidRisk("hello")); // random letters
 
-        // valid age
+        // valid risk
         assertTrue(RiskLevel.isValidRisk("low"));
         assertTrue(RiskLevel.isValidRisk("HIGH"));
         assertTrue(RiskLevel.isValidRisk("meDIum")); // low, high or medium

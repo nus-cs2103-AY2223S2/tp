@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ELDERLY_NRIC_
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_REGION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RISK_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -20,6 +21,8 @@ import static seedu.address.logic.commands.CommandTestUtil.NRIC_ELDERLY_DESC_AMY
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_ELDERLY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.REGION_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.REGION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.RISK_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_STRONG;
@@ -34,6 +37,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISK_LEVEL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
@@ -56,6 +61,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.person.information.RiskLevel;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditElderlyDescriptorBuilder;
@@ -104,6 +110,7 @@ public class EditElderlyCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_ELDERLY_NRIC_DESC, Nric.MESSAGE_CONSTRAINTS); // invalid nric
         assertParseFailure(parser, "1" + INVALID_AGE_DESC, Age.MESSAGE_CONSTRAINTS); // invalid age
+        assertParseFailure(parser, "1" + INVALID_REGION_DESC, Region.MESSAGE_CONSTRAINTS); // invalid region
         assertParseFailure(parser, "1" + INVALID_RISK_DESC, RiskLevel.MESSAGE_CONSTRAINTS); // invalid risk level
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
@@ -122,21 +129,22 @@ public class EditElderlyCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
-                + VALID_PHONE_AMY + VALID_NRIC_AMY + VALID_AGE_AMY
+                + VALID_PHONE_AMY + VALID_NRIC_AMY + VALID_AGE_AMY + VALID_REGION_AMY
                 + VALID_RISK_LEVEL_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_SINGLE
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_SINGLE + REGION_DESC_AMY
                 + NRIC_ELDERLY_DESC_AMY + EMAIL_DESC_AMY + AGE_DESC_AMY + ADDRESS_DESC_AMY
                 + NAME_DESC_AMY + TAG_DESC_STRONG + RISK_DESC_AMY;
 
         EditElderlyDescriptor descriptor = new EditElderlyDescriptorBuilder()
                 .withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY)
-                .withRiskLevel(VALID_RISK_LEVEL_AMY).withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
+                .withRegion(VALID_REGION_AMY).withRiskLevel(VALID_RISK_LEVEL_AMY)
+                .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
 
         EditElderlyCommand expectedCommand = new EditElderlyCommand(targetIndex, descriptor);
 
@@ -194,6 +202,12 @@ public class EditElderlyCommandParserTest {
         expectedCommand = new EditElderlyCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // region
+        userInput = targetIndex.getOneBased() + REGION_DESC_AMY;
+        descriptor = new EditElderlyDescriptorBuilder().withRegion(VALID_REGION_AMY).build();
+        expectedCommand = new EditElderlyCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // risk level
         userInput = targetIndex.getOneBased() + RISK_DESC_AMY;
         descriptor = new EditElderlyDescriptorBuilder().withRiskLevel(VALID_RISK_LEVEL_AMY).build();
@@ -213,11 +227,13 @@ public class EditElderlyCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_STRONG + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_STRONG
                 + NRIC_ELDERLY_DESC_AMY + NRIC_ELDERLY_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB
+                + REGION_DESC_AMY + REGION_DESC_BOB
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_SINGLE;
 
         EditElderlyDescriptor descriptor = new EditElderlyDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
+                .withRegion(VALID_REGION_BOB)
                 .withTags(VALID_TAG_STRONG, VALID_TAG_SINGLE).build();
 
         EditElderlyCommand expectedCommand = new EditElderlyCommand(targetIndex, descriptor);

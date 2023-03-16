@@ -13,6 +13,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,6 +42,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setNric(person.getNric());
         descriptor.setAge(person.getAge());
+        descriptor.setRegion(person.getRegion());
         descriptor.setTags(person.getTags());
     }
 
@@ -89,6 +91,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAge(String age) {
         descriptor.setAge(new Age(age));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Region} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRegion(String region) {
+        descriptor.setRegion(new Region(region));
         return this;
     }
 

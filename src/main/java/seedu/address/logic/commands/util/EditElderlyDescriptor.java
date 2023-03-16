@@ -11,6 +11,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.person.information.RiskLevel;
 import seedu.address.model.tag.Tag;
 
@@ -45,6 +46,7 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(elderlyToEdit.getAddress());
         Nric updatedNric = editPersonDescriptor.getNric().orElse(elderlyToEdit.getNric());
         Age updatedAge = editPersonDescriptor.getAge().orElse(elderlyToEdit.getAge());
+        Region updateRegion = editPersonDescriptor.getRegion().orElse(elderlyToEdit.getRegion());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(elderlyToEdit.getTags());
         // Setting elderly-specific attributes
         RiskLevel updatedRiskLevel = elderlyToEdit.getRiskLevel();
@@ -54,7 +56,7 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
                     .orElse(elderlyToEdit.getRiskLevel());
         }
         return new Elderly(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updatedRiskLevel, updatedTags);
+                updatedNric, updatedAge, updateRegion, updatedRiskLevel, updatedTags);
     }
 
 
@@ -94,6 +96,7 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
                 && getAddress().equals(e.getAddress())
                 && getNric().equals(e.getNric())
                 && getAge().equals(e.getAge())
+                && getRegion().equals(e.getRegion())
                 && getRiskLevel().equals(e.getRiskLevel())
                 && getTags().equals(e.getTags());
     }

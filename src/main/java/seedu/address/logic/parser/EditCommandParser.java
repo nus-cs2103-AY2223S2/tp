@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -35,7 +36,7 @@ public class EditCommandParser implements Parser <EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC, PREFIX_AGE, PREFIX_TAG);
+                        PREFIX_NRIC, PREFIX_AGE, PREFIX_REGION, PREFIX_TAG);
 
         Nric nric;
         try {
@@ -69,6 +70,10 @@ public class EditCommandParser implements Parser <EditCommand> {
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
             editPersonDescriptor.setAge(
                     ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_REGION).isPresent()) {
+            editPersonDescriptor.setRegion(
+                    ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
                 .ifPresent(editPersonDescriptor::setTags);

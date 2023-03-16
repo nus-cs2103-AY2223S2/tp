@@ -7,6 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "nric" : "S9186983G",
     "age" : "20",
+    "region": "NORTH",
     "riskLevel" : "LOW",
     "tagged" : [ "friends" ]
   }, {
@@ -16,6 +17,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "nric" : "S0116088E",
     "age" : "23",
+    "region": "NORTHEAST",
     "riskLevel" : "MEDIUM",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -25,6 +27,7 @@
     "address" : "wall street",
     "nric" : "S1604578J",
     "age" : "31",
+    "region": "CENTRAL",
     "riskLevel" : "HIGH",
     "tagged" : [ ]
   }, {
@@ -34,6 +37,7 @@
     "address" : "10th street",
     "nric" : "S6414118Z",
     "age" : "25",
+    "region": "WEST",
     "riskLevel" : "LOW",
     "tagged" : [ "friends" ]
   }, {
@@ -43,6 +47,7 @@
     "address" : "michegan ave",
     "nric" : "S3271607E",
     "age" : "28",
+    "region": "EAST",
     "riskLevel" : "HIGH",
     "tagged" : [ ]
   }, {
@@ -52,6 +57,7 @@
     "address" : "little tokyo",
     "nric" : "S4862780C",
     "age" : "26",
+    "region": "CENTRAL",
     "riskLevel" : "MEDIUM",
     "tagged" : [ ]
   }, {
@@ -61,6 +67,7 @@
     "address" : "4th street",
     "nric" : "S2241030Z",
     "age" : "24",
+    "region": "NORTH",
     "riskLevel" : "LOW",
     "tagged" : [ ]
   } ]

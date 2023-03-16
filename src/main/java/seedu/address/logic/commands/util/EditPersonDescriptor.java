@@ -12,6 +12,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -24,6 +25,7 @@ public class EditPersonDescriptor {
     private Address address;
     private Nric nric;
     private Age age;
+    private Region region;
     private Set<Tag> tags;
 
     public EditPersonDescriptor() {}
@@ -39,6 +41,7 @@ public class EditPersonDescriptor {
         setAddress(toCopy.address);
         setNric(toCopy.nric);
         setAge(toCopy.age);
+        setRegion(toCopy.region);
         setTags(toCopy.tags);
     }
 
@@ -47,7 +50,7 @@ public class EditPersonDescriptor {
      */
     public boolean isAnyFieldEdited() {
         return CollectionUtil.isAnyNonNull(name, phone,
-                email, address, nric, age, tags);
+                email, address, nric, age, region, tags);
     }
 
     public void setName(Name name) {
@@ -98,6 +101,14 @@ public class EditPersonDescriptor {
         return Optional.ofNullable(age);
     }
 
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
+    public Optional<Region> getRegion() {
+        return Optional.ofNullable(region);
+    }
+
     /**
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
@@ -136,6 +147,7 @@ public class EditPersonDescriptor {
                 && getAddress().equals(e.getAddress())
                 && getNric().equals(e.getNric())
                 && getAge().equals(e.getAge())
+                && getRegion().equals(e.getRegion())
                 && getTags().equals(e.getTags());
     }
 }

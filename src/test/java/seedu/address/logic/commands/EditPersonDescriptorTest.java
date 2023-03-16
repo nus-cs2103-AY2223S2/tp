@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_ELDERLY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PERSON_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PERSON_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -10,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 
 import org.junit.jupiter.api.Test;
@@ -66,6 +68,12 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_PERSON_AMY)
                 .withAge(VALID_AGE_BOB).build();
         assertFalse(DESC_PERSON_AMY.equals(editedAmy));
+
+        // different region -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_PERSON_AMY)
+                .withRegion(VALID_REGION_BOB).build();
+        assertFalse(DESC_ELDERLY_AMY.equals(editedAmy));
+
 
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_PERSON_AMY)

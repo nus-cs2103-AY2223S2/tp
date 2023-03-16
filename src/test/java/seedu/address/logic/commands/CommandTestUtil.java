@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -54,6 +55,9 @@ public class CommandTestUtil {
     public static final String VALID_AGE_AMY = "68";
     public static final String VALID_AGE_BOB = "85";
 
+    public static final String VALID_REGION_AMY = "NORTH";
+    public static final String VALID_REGION_BOB = "CENTRAL";
+
     public static final String VALID_RISK_LEVEL_AMY = "LOW";
     public static final String VALID_RISK_LEVEL_BOB = "MEDIUM";
 
@@ -73,6 +77,9 @@ public class CommandTestUtil {
 
     public static final String AGE_DESC_AMY = " " + PREFIX_AGE + VALID_AGE_AMY;
     public static final String AGE_DESC_BOB = " " + PREFIX_AGE + VALID_AGE_BOB;
+
+    public static final String REGION_DESC_AMY = " " + PREFIX_REGION + VALID_REGION_AMY;
+    public static final String REGION_DESC_BOB = " " + PREFIX_REGION + VALID_REGION_BOB;
 
     public static final String RISK_DESC_AMY = " " + PREFIX_RISK + VALID_RISK_LEVEL_AMY;
     public static final String RISK_DESC_BOB = " " + PREFIX_RISK + VALID_RISK_LEVEL_BOB;
@@ -95,6 +102,7 @@ public class CommandTestUtil {
     public static final String INVALID_VOLUNTEER_NRIC_DESC = " " + PREFIX_NRIC_VOLUNTEER + INVALID_NRIC;
     public static final String INVALID_ELDERLY_NRIC_DESC = " " + PREFIX_NRIC_ELDERLY + INVALID_NRIC;
     public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "1835";
+    public static final String INVALID_REGION_DESC = " " + PREFIX_REGION + "south";
     public static final String INVALID_RISK_DESC = " " + PREFIX_RISK + "safe";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "single*"; // '*' not allowed in tags
 
@@ -112,22 +120,23 @@ public class CommandTestUtil {
     static {
         DESC_ELDERLY_AMY = new EditElderlyDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRiskLevel(VALID_RISK_LEVEL_AMY)
-                .withTags(VALID_TAG_STRONG).build();
+                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRegion(VALID_REGION_AMY)
+                .withRiskLevel(VALID_RISK_LEVEL_AMY).withTags(VALID_TAG_STRONG).build();
 
         DESC_ELDERLY_BOB = new EditElderlyDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISK_LEVEL_BOB)
+                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
+                .withRegion(VALID_REGION_BOB).withRiskLevel(VALID_RISK_LEVEL_BOB)
                 .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
 
         DESC_VOLUNTEER_AMY = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY)
+                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRegion(VALID_REGION_AMY)
                 .withTags(VALID_TAG_STRONG).build();
 
         DESC_VOLUNTEER_BOB = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
+                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRegion(VALID_REGION_BOB)
                 .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
 
         DESC_PERSON_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
