@@ -71,7 +71,14 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-
+    public static final String INVALID_POLICY_NAME = " " + PREFIX_POLICY_NAME
+            + "Life Insurance*"; // '*' not allowed in policy names
+    public static final String INVALID_POLICY_DATE = " " + PREFIX_POLICY_START_DATE
+            + "01/01/2020"; // '/' not allowed in policy dates
+    public static final String INVALID_POLICY_PREMIUM = " " + PREFIX_POLICY_PREMIUM
+            + "$203"; // '$' not allowed in policy premiums
+    public static final String INVALID_POLICY_FREQUENCY = " " + PREFIX_POLICY_FREQUENCY
+            + "daily"; // 'weekly' not allowed in policy frequencies
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
