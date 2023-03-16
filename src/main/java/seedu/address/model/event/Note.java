@@ -102,6 +102,13 @@ public class Note {
         return builder.toString();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Note // instanceof handles nulls
+                && content.equals(((Note) other).content));
+    }
+
     /**
      * Makes guide of how to leave a note for an event with focus on mentioning people
      * @return A {@code String} of note-adding guide

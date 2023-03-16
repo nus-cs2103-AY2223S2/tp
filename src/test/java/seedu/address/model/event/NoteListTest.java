@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 public class NoteListTest {
 
-    private static List<Note> notes = new ArrayList<>();
+    private static List<Note> notes = new LinkedList<>();
     @Test
     public void noteList_validInput_createsNonemptyObject() {
         return;
