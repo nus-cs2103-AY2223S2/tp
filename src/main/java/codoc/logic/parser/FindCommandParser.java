@@ -1,12 +1,14 @@
 package codoc.logic.parser;
 
 import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.Arrays;
 
 import codoc.logic.commands.FindCommand;
 import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.NameContainsKeywordsPredicate;
+import codoc.model.skill.SkillContainsKeywordPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -23,6 +25,12 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SKILL);
+
+        if (argMultimap.getValue(PREFIX_SKILL).isPresent()) {
+            System.out.println("test");
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
