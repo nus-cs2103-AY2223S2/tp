@@ -33,6 +33,7 @@ public class ReminderListWindow extends UiPart<Stage> {
         this.stage = root;
         this.logic = logic;
         reminderList = new ListView<>(logic.getReminderList());
+        stage.setScene(new Scene(reminderList));
     }
 
     /**
@@ -96,7 +97,6 @@ public class ReminderListWindow extends UiPart<Stage> {
                 }
             }
         });
-        stage.setScene(new Scene(reminderList));
         stage.show();
     }
 }
