@@ -82,87 +82,15 @@
     "tagged" : [ ]
   } ],
   "tutorials" : [ {
-    "name" : "Tutorial 1",
-    "eventDate" : null,
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "Tutorial 2",
-    "eventDate" : null,
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "Tutorial 3",
-    "eventDate" : null,
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "Tutorial 4",
-    "eventDate" : null,
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "test",
-    "eventDate" : "2023-03-15",
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "lab",
-    "eventDate" : "2023-03-15",
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "hello",
-    "eventDate" : "2023-03-15",
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "hell",
-    "eventDate" : "2023-03-15",
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "h",
-    "eventDate" : "2023-03-15",
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "bye",
-    "eventDate" : "2023-03-15",
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "ta",
-    "eventDate" : "2023-03-15",
+    "name" : "tut",
+    "eventDate" : "2023-03-16",
     "students" : [ ],
     "attachments" : [ ],
     "notes" : [ ]
   } ],
   "labs" : [ {
-    "name" : "test",
-    "eventDate" : "2023-03-15",
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "a",
-    "eventDate" : "2023-03-15",
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  }, {
-    "name" : "lab2",
-    "eventDate" : "2023-03-15",
+    "name" : "lab",
+    "eventDate" : "2023-03-16",
     "students" : [ ],
     "attachments" : [ ],
     "notes" : [ ]
