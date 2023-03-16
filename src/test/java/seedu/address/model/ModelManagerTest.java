@@ -17,6 +17,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.person.Event;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.ContactListBuilder;
@@ -125,6 +127,19 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void linkContact() {
+        modelManager.addContact(AMY);
+        modelManager.addPerson(ALICE);
+        Event event = modelManager.getAddressBook().getPersonList().get(0);
+        Contact contact = modelManager.getContactList().getContactList().get(0);
+        Event before = event;
+        event.linkContact(contact);
+        Event linkedEvent = event;
+        modelManager.linkContact(before, linkedEvent);
+        assertTrue(modelManager.getFilteredPersonList().get(0).equals(linkedEvent));
     }
 
     @Test

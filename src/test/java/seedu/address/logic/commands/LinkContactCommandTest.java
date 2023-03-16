@@ -17,6 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.Event;
 import seedu.address.testutil.PersonBuilder;
 
@@ -36,8 +37,8 @@ public class LinkContactCommandTest {
 
     @Test
     public void execute_contactNotFound_throwsCommandException() {
-        Event eventToAddContact = new PersonBuilder().build();
-        model.addPerson(eventToAddContact);
+        Event eventToLinkContact = new PersonBuilder().build();
+        model.addPerson(eventToLinkContact);
         LinkContactCommand linkContactCommand = new LinkContactCommand(INDEX_FIRST_PERSON,
                 "99999999"); // phone number that does not exist in contact list
         assertThrows(CommandException.class, () -> linkContactCommand.execute(model));
@@ -48,6 +49,32 @@ public class LinkContactCommandTest {
         LinkContactCommand linkContactCommand = new LinkContactCommand(Index.fromOneBased(1), "91234568");
 
         assertThrows(CommandException.class, () -> linkContactCommand.execute(model));
+    }
+
+    @Test
+    public void execute_validContact() {
+        Event event = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Contact contact = model.getContactList().getContactList().get(0);
+        Event linkedEvent = new PersonBuilder(event).build();
+        linkedEvent.linkContact(contact);
+        LinkContactCommand linkContactCommand = new LinkContactCommand(INDEX_FIRST_PERSON, "94351253");
+        Event linkEvent = linkContactCommand.createLinkedEvent(event, contact);
+
+        assertTrue(linkEvent.equals(linkedEvent));
+    }
+
+    @Test
+    public void execute_markValidContact() {
+        Event event = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Contact contact = model.getContactList().getContactList().get(0);
+        Event markEvent = new PersonBuilder(event).build();
+        markEvent.mark();
+        model.markEvent(event, markEvent);
+        markEvent.linkContact(contact);
+        LinkContactCommand linkContactCommand = new LinkContactCommand(INDEX_FIRST_PERSON, "94351253");
+        Event linkEvent = linkContactCommand.createLinkedEvent(markEvent, contact);
+
+        assertTrue(linkEvent.equals(markEvent));
     }
 
     @Test

@@ -182,7 +182,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void linkContact(Event event, Contact contact) {
+        public void linkContact(Event event, Event linkedEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
