@@ -118,8 +118,8 @@ public class UntagCommand extends Command {
             UntagCommand otherCommand = (UntagCommand) other;
             return otherCommand.getIndex().equals(getIndex())
                     && otherCommand.getModules().equals(getModules());
-        } else {
-            return false;
         }
+        return false;
+
     }
 }

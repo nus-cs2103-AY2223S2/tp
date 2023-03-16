@@ -121,9 +121,9 @@ public class TagCommand extends Command {
             TagCommand otherCommand = (TagCommand) other;
             return otherCommand.getIndex().equals(getIndex())
                     && otherCommand.getModules().equals(getModules());
-        } else {
-            return false;
         }
+
+        return false;
     }
 
 }
