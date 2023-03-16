@@ -47,7 +47,7 @@ public class AddEntityCommandParser implements Parser<AddEntityCommand> {
         if (classification.isCharacter()) {
             //Call AddCharacterCommmand
         } else if (classification.isItem()) {
-            entity = new Item(name, Item.DEFAULT_COST,Item.DEFAULT_WEIGHT, tagList);
+            entity = new Item(name, tagList);
         } else if (classification.isMob()) {
             // Call AddMobCommand
         } else {
