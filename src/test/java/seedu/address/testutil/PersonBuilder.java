@@ -3,7 +3,15 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.*;
+
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Deadline;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Teacher;
+import seedu.address.model.person.TimeSlot;
+import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -97,16 +105,25 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
     public PersonBuilder withRemark(String remark) {
         this.remark = new Remark(remark);
         return this;
     }
 
+    /**
+     * Sets the {@code Deadline} of the {@code Person} that we are building.
+     */
     public PersonBuilder withDeadline(String deadline) {
         this.deadline = new Deadline(deadline);
         return this;
     }
 
+    /**
+     * Sets the {@code Teacher} of the {@code Person} that we are building.
+     */
     public PersonBuilder withTeacher(String teacher) {
         this.teacher = new Teacher(teacher);
         return this;
