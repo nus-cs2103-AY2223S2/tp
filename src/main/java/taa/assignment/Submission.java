@@ -1,18 +1,26 @@
 package taa.assignment;
 
+import java.util.Date;
+
+import taa.model.student.Student;
+
 /**
  * An assignment submission
  */
-public class Submission {
+public class Submission implements Comparable<Submission> {
     private boolean isGraded = false;
     private int marks = 0;
-    private int studentId;
+    private Assignment assignment;
+    private Student student;
+    private Date time;
 
     /**
-     * @param studentId
+     * @param student The student who made this submission.
      */
-    public Submission(int studentId) {
-        this.studentId = studentId;
+    public Submission(Student student, Assignment assignment) {
+        this.student = student;
+        this.assignment = assignment;
+        this.time = new Date();
     }
 
     /**
@@ -21,11 +29,25 @@ public class Submission {
     public void grade(int marks) {
         isGraded = true;
         this.marks = marks;
+        this.time = new Date();
+    }
+
+    /**
+     * Describes the assignment this submission belongs to, along with details of this submission.
+     */
+    public String describeSubmission() {
+        String gradeStatus = this.isGraded ? Integer.toString(marks) : "Ungraded";
+        return String.format("%s (Grade: %s)", this.assignment.toString(), gradeStatus);
     }
 
     @Override
     public String toString() {
         char gradeChar = isGraded ? 'X' : ' ';
-        return String.format("[%c] Student %d: %d marks.", gradeChar, studentId, marks);
+        return String.format("[%c] %s: %d marks.", gradeChar, student.getName().fullName, marks);
+    }
+
+    @Override
+    public int compareTo(Submission otherSubmission) {
+        return this.time.compareTo(otherSubmission.time);
     }
 }

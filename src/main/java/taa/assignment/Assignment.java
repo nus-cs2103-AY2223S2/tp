@@ -13,7 +13,7 @@ import taa.model.student.Student;
 public class Assignment {
     private String name;
     private ArrayList<Submission> submissions = new ArrayList<>();
-    private final HashMap<Integer, Submission> submissionMap = new HashMap<>();
+    private final HashMap<Student, Submission> submissionMap = new HashMap<>();
 
 
     /**
@@ -23,28 +23,38 @@ public class Assignment {
     public Assignment(String name, FilteredList<Student> sl) {
         this.name = name;
         for (Student stu : sl) {
-            Submission sub = new Submission(stu.getId());
+            Submission sub = new Submission(stu, this);
             submissions.add(sub);
-            submissionMap.put(stu.getId(), sub);
+            stu.addSubmission(sub);
+            submissionMap.put(stu, sub);
         }
     }
 
     /**
      * Grades a student submission of an assignment.
      *
-     * @param studentId
+     * @param student
      * @param marks
      */
-    public void gradeSubmission(int studentId, int marks) throws CommandException {
-        if (submissionMap.containsKey(studentId)) {
-            submissionMap.get(studentId).grade(marks);
+    public void gradeSubmission(Student student, int marks) throws CommandException {
+        if (submissionMap.containsKey(student)) {
+            submissionMap.get(student).grade(marks);
         } else {
-            throw new CommandException("Submission of " + studentId + "not found");
+            throw new CommandException("Submission of " + student.getName().fullName + " not found");
         }
     }
 
     public ArrayList<Submission> getSubmissions() {
         return this.submissions;
+    }
+
+    /**
+     * Ties up loose end to prepare this Assignment for deletion.
+     */
+    public void delete() {
+        submissionMap.forEach((student, submission) -> {
+            student.deleteSubmission(submission);
+        });
     }
 
     @Override

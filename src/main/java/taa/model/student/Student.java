@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import taa.assignment.Submission;
 import taa.commons.util.CollectionUtil;
 import taa.model.tag.Tag;
 
@@ -19,10 +20,10 @@ public class Student {
     private final Name name;
     private final int id;
 
-    private final Attendance atd;
-
     // Data fields
+    private final Attendance atd;
     private final Set<Tag> classTags = new HashSet<>();
+    private final Submissions submissions;
 
     /**
      * Every field must be present and not null.
@@ -33,6 +34,7 @@ public class Student {
         this.name = name;
         this.atd = new Attendance();
         this.classTags.addAll(classTags);
+        this.submissions = new Submissions();
     }
 
     public int getId() {
@@ -64,6 +66,27 @@ public class Student {
      */
     public void addClassTag(Tag newClass) {
         this.classTags.add(newClass);
+    }
+
+    /**
+     * Attributes a new submission to this student.
+     */
+    public void addSubmission(Submission submission) {
+        this.submissions.addSubmission(submission);
+    }
+
+    /**
+     * Removes a submission attributed to this student.
+     */
+    public void deleteSubmission(Submission submission) {
+        this.submissions.deleteSubmission(submission);
+    }
+
+    /**
+     * Returns the latest submission by this student.
+     */
+    public Submission getLatestSubmission() {
+        return this.submissions.getLatestSubmission();
     }
 
     /**

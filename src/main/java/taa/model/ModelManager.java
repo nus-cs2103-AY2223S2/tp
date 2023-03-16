@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import taa.assignment.AssignmentList;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
+import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.student.Name;
@@ -219,16 +220,24 @@ public class ModelManager implements Model {
     @Override
     public void addAssignment(String assignmentName) throws CommandException {
         assignmentList.add(assignmentName, filteredStudents);
+        for (Student student : filteredStudents) {
+            updateStudent(student);
+        }
     }
 
     @Override
     public void deleteAssignment(String assignmentName) throws CommandException {
         assignmentList.delete(assignmentName);
+        for (Student student : filteredStudents) {
+            updateStudent(student);
+        }
     }
 
     @Override
     public void grade(String assignmentName, int studentId, int marks) throws CommandException {
-        assignmentList.grade(assignmentName, studentId, marks);
+        Student student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
+        assignmentList.grade(assignmentName, student, marks);
+        updateStudent(student);
     }
 
     @Override

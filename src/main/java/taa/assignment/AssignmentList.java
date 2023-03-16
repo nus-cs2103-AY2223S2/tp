@@ -35,20 +35,22 @@ public class AssignmentList {
         if (!assignmentMap.containsKey(assignmentName)) {
             throw new CommandException("Assignment: " + assignmentName + " not found");
         } else {
-            assignments.remove(assignmentMap.remove(assignmentName));
+            Assignment removed = assignmentMap.remove(assignmentName);
+            removed.delete();
+            assignments.remove(removed);
         }
     }
 
     /**
      * @param assignmentName
-     * @param studentId
+     * @param student
      * @param marks
      */
-    public void grade(String assignmentName, int studentId, int marks) throws CommandException {
+    public void grade(String assignmentName, Student student, int marks) throws CommandException {
         if (!assignmentMap.containsKey(assignmentName)) {
             throw new CommandException("Assignment: " + assignmentName + " not found");
         } else {
-            assignmentMap.get(assignmentName).gradeSubmission(studentId, marks);
+            assignmentMap.get(assignmentName).gradeSubmission(student, marks);
         }
     }
     // TODO: delete student from classList = must delete all submissions of studentId for all assignments.
