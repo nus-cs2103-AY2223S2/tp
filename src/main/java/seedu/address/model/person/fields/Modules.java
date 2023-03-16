@@ -22,7 +22,7 @@ public class Modules {
      */
     public static boolean isValidModules(Set<NusMod> mods) {
         for (NusMod mod : mods) {
-            if (NusMod.isValidModName(mod.name)) {
+            if (!NusMod.isValidModName(mod.name)) {
                 return false;
             }
         }
