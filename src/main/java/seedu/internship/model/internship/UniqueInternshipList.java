@@ -113,9 +113,20 @@ public class UniqueInternshipList implements Iterable<Internship> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueInternshipList // instanceof handles nulls
-                && internalList.equals(((UniqueInternshipList) other).internalList));
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof UniqueInternshipList) {
+            UniqueInternshipList otherList = (UniqueInternshipList) other;
+            boolean res = true;
+            for (Internship listing : this.internalList) {
+                res = res && otherList.contains(listing);
+            }
+            return res;
+        }
+        return false;
+
+
     }
 
     @Override

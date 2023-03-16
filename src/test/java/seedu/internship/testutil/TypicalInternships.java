@@ -87,7 +87,7 @@ public class TypicalInternships {
     }
 
     public static List<Internship> getTypicalInternships() {
-        return new ArrayList<>(Arrays.asList(ML2, SE3, SE4, DS1, BE1, ST1, DA2, ML1, SE1, DA1, SD1));
+        return new ArrayList<>(Arrays.asList(ML2, SE3, SE4, DS1, BE1, ST1, DA2));
     }
 }
 
