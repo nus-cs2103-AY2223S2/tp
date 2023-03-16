@@ -105,18 +105,7 @@ Examples:
 
 
 
-### 5. Viewing Student Profile: `view-profile`
-
-Allows a user to view a student's home address and phone number.
-
-Format: `view-profile [s/STUDENT_NAME]`
-
-* Click on the "view profile" button next to a student to access the student's profile.
-* The student's home address and phone number will be displayed.
-* Profile can also be accessed by clicking on a student’s name.
-
-
-### 6. View a student’s upcoming homework: `view-homework`
+### 5. View a student’s upcoming homework: `view-homework`
 
 Displays the list of upcoming exams / school assignments of a student.
 
@@ -131,7 +120,7 @@ Examples:
 
 
 
-### 7. Create a new Lesson plan for upcoming lesson: `new-lesson`
+### 6. Create a new Lesson plan for upcoming lesson: `new-lesson`
 
 Creates a new lesson for a given student, with a lesson title and time.
 
@@ -147,7 +136,7 @@ Examples:
 
 
 
-### 8. View Lesson History: `view-lesson`
+### 7. View Lesson History: `view-lesson`
 
 Displays the lesson history for a given student/all students.
 
@@ -162,7 +151,7 @@ Examples:
 * `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then asks which one to show..
 
 
-### 9. View the lesson details of a past lesson: `view-lesson`
+### 8. View the lesson details of a past lesson: `view-lesson`
 
 Displays the date, time, and other information about a past lesson
 
