@@ -15,7 +15,7 @@
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="SudoHR" minWidth="450" minHeight="600" onCloseRequest="#handleExit" >
   <icons>
-    <Image url="@/images/SudoHR_icon.png" />
+    <Image url="@/images/SudoHR_icon.png"/>
   </icons>
   <scene>
     <Scene>
@@ -47,12 +47,13 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="employeeList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="employeeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <HBox>
+          <VBox fx:id="employeeList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="employeeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
 
           <VBox fx:id="departmentList" styleClass="pane-with-border" minWidth="340" prefWidth="400" VBox.vgrow="ALWAYS">
             <padding>
@@ -61,6 +62,8 @@
             <StackPane fx:id="departmentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>
+
+
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
