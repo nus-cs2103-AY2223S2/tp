@@ -227,6 +227,16 @@ Example:
 
 * `appointment add --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Mordena`
 
+#### `edit` - Edit an appointment
+
+```text
+appointment edit 1 --p <integer> --s <date> --e <date> --v <string>
+```
+
+Example:
+
+* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Pfizer`
+
 #### `delete` - Delete an appointment
 
 ```text
