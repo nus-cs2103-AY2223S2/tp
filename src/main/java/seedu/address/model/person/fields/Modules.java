@@ -14,8 +14,18 @@ public class Modules {
         this.mods = mods;
     }
 
-    //todo: Update modules to only be able to include mods that are a part of NUSMods.
-    public static boolean isValidModules(String trimmedModules) {
+    /**
+     * Checks whether all the mods are valid NUSMods
+     *
+     * @param mods the set of modules to be checked
+     * @return false if there is at least one invalid module
+     */
+    public static boolean isValidModules(Set<NusMod> mods) {
+        for (NusMod mod : mods) {
+            if (NusMod.isValidModName(mod.name)) {
+                return false;
+            }
+        }
         return true;
     }
 }

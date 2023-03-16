@@ -15,7 +15,12 @@ public class NusMod {
         this.name = modsString;
     }
 
-    //todo: Update modules to only be able to include mods that are a part of NUSMods.
+    /**
+     * Checks whether a module is a valid NUSMod by comapring the String name to the module list data
+     *
+     * @param trimmedTag The module name to be checked
+     * @return false if the module does not exist in NUSMods
+     */
     public static boolean isValidModName(String trimmedTag) {
         try {
             FileInputStream inputStream = new FileInputStream(MODULELIST_FILE_PATH);
