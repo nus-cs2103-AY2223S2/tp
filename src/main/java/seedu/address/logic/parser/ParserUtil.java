@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -168,6 +169,37 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return trimmedName;
+    }
+
+    /**
+     * Parses a {@code String name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseRecurName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        //Add custom regex
+//        if (!Name.isValidName(trimmedName)) {
+//            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+//        }
+        return trimmedName;
+    }
+
+    /**
+     * Parses a {@code String name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static int parseRecurCount(String count) throws ParseException {
+        requireNonNull(count);
+        String trimmedCount = count.trim();
+        if (!Event.isValidCount(trimmedCount)) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+        }
+        return Integer.parseInt(trimmedCount);
     }
 
     /**

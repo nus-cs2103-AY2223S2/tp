@@ -39,6 +39,10 @@ public class Lab extends Event {
         return super.getName();
     }
 
+    public void SetName(String name) {
+        super.setName(name);
+    }
+
     /**
      * Gets the list of students
      *

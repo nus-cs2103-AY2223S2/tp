@@ -18,6 +18,8 @@ public abstract class Event {
     private final List<Person> students;
     private final List<File> attachments;
     private final List<Note> notes;
+
+    public static final String MESSAGE_CONSTRAINTS = "Repititon for recur must be a number between 0 and 10";
     /**
      * Constructor with name parameter only. The time of the event will be
      * assumed to be the current time the constructor is executed
@@ -97,6 +99,9 @@ public abstract class Event {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
     /* *************************************************************************
      *                                                                         *
      * Methods to manipulate students in an event                              *
@@ -207,6 +212,32 @@ public abstract class Event {
 
     public void removeNote(Note note) {
         notes.remove(note);
+    }
+
+    /**
+     * Checks if input {@code String count} is valid
+     * @param count Input string to check upon
+     * @return Whether the count event is a validated integer
+     */
+    public static boolean isValidCount(String count) {
+        boolean validInteger = true;
+        for (int i = 0; i < count.length(); i++) {
+            if (!Character.isDigit(count.charAt(i))) {
+                validInteger = false;
+            }
+        }
+        int convertedNumber = 0;
+        try {
+            convertedNumber = Integer.parseInt(count);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        if (validInteger) {
+            if (convertedNumber < 0 || convertedNumber > 10) {
+                validInteger = false;
+            }
+        }
+        return validInteger;
     }
 
 }

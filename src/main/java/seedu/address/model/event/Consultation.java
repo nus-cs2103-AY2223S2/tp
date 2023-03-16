@@ -38,6 +38,10 @@ public class Consultation extends Event {
         return super.getName();
     }
 
+    public void SetName(String name) {
+        super.setName(name);
+    }
+
     /**
      * Gets the list of students
      * @return students

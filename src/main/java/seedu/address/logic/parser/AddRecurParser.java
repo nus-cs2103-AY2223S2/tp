@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -15,10 +16,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddLabCommand;
 import seedu.address.logic.commands.AddRecurCommand;
-import seedu.address.logic.commands.AddTutorialCommand;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
@@ -37,41 +35,48 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
     public AddRecurCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_RECUR);
-
-        //Make the user not create lab and students with the same command
+        //Make the user not create (lab or tutorial) and students with the same command
         if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
                 PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_RECUR)
                 || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecurCommand.MESSAGE_USAGE));
         }
-
-        String name;
-        if (isLab(args)) {
-            name = ParserUtil.parseLabName(argMultimap.getValue(PREFIX_LAB).get());
-            Lab lab = new Lab(name);
-            return new AddRecurCommand(lab, true, false, false);
+        String name = " " + ParserUtil.parseRecurName(argMultimap.getValue(PREFIX_RECUR).get());
+        if (isLab(name)) {
+            return parseEvent(name, PREFIX_LAB);
         } else {
-            name = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
-            Tutorial tutorial = new Tutorial(name);
-            return new AddRecurCommand(tutorial, false, true, false);
+            return parseEvent(name, PREFIX_TUTORIAL);
         }
-        //When isConsultation is added, need to check for 3 conditions instead
-        /*
-        else if (isTutorial(args)) {
-            name = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
-            Tutorial tutorial = new Tutorial(name);
-            return new AddTutorialCommand(tutorial);
-        }
-        */
     }
 
-    boolean isLab(String args) {
-        return args.trim().split(" ")[0].equals("Lab");
+    public AddRecurCommand parseEvent(String newArgs, Prefix prefix) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(newArgs, prefix, PREFIX_COUNT);
+        //Make the user not create (lab or tutorial) and students with the same command
+        if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
+                PREFIX_TAG) && (!arePrefixesPresent(argMultimap, prefix)
+                || !argMultimap.getPreamble().isEmpty())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecurCommand.MESSAGE_USAGE));
+        }
+        int count = ParserUtil.parseRecurCount(argMultimap.getValue(PREFIX_COUNT).get());
+        String name = ParserUtil.parseLabName(argMultimap.getValue(prefix).get());
+        if (prefix.getPrefix().equals("Lab/")) {
+            Lab lab = new Lab(name);
+            return new AddRecurCommand(lab, true, false, false, count);
+        } else {
+            Tutorial tutorial = new Tutorial(name);
+            return new AddRecurCommand(tutorial, false, true, false, count);
+        }
     }
 
-    boolean isTutorial(String args) {
-        return args.trim().split(" ")[0].equals("Tutorial");
+    boolean isLab(String newArgs) {
+        return newArgs.trim().split("/")[0].equals("Lab");
+    }
+
+    boolean isTutorial(String newArgs) {
+        return newArgs.trim().split(" ")[0].equals("Tutorial");
     }
 
     /**
