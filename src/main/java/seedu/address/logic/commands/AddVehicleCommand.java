@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_TYPE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.service.Vehicle;
 
@@ -56,6 +57,7 @@ public class AddVehicleCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasCustomer(toAdd.getOwnerId())) {
+            IdGenerator.setVehicleIdUnused(toAdd.getId());
             throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
         }
         if (model.hasVehicle(toAdd.getId())) {

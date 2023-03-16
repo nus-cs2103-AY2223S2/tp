@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_ID;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.service.Service;
 
@@ -55,6 +56,7 @@ public class AddServiceCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasVehicle(toAdd.getVehicleId())) {
+            IdGenerator.setServiceIdUnused(toAdd.getId());
             throw new CommandException(String.format(MESSAGE_VEHICLE_NOT_FOUND, toAdd.getVehicleId()));
         }
         if (model.hasService(toAdd.getId())) {
