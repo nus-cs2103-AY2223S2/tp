@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -25,11 +26,11 @@ public class InterviewDateTime {
      * @return null if empty String, InterviewDateTime object otherwise
      * @throws ParseException if dateTime String cannot be parsed
      */
-    public static InterviewDateTime createInterviewDateTime(String dateTime) throws ParseException {
+    public static Optional<InterviewDateTime> createInterviewDateTime(String dateTime) throws ParseException {
         if (dateTime.equals("")) {
-            return null;
+            return Optional.empty();
         } else {
-            return new InterviewDateTime(dateTime);
+            return Optional.of(new InterviewDateTime(dateTime));
         }
     }
 

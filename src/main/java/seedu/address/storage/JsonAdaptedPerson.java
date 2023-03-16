@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String status;
-    private String interviewDate;
+    private final String interviewDate;
     private final List<JsonAdaptedNote> notes = new ArrayList<>();
 
     /**
@@ -129,7 +130,7 @@ class JsonAdaptedPerson {
         }
 
         //will not throw ParseException as it has been checked in previous line
-        final InterviewDateTime interviewDateTime = InterviewDateTime.createInterviewDateTime(interviewDate);
+        final Optional<InterviewDateTime> interviewDateTime = InterviewDateTime.createInterviewDateTime(interviewDate);
 
         final Set<Note> modelNotes = new HashSet<>(personNotes);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, interviewDateTime, modelNotes);

@@ -31,14 +31,14 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Status status,
-                  InterviewDateTime interviewDateTime, Set<Note> notes) {
+                  Optional<InterviewDateTime> interviewDateTime, Set<Note> notes) {
         requireAllNonNull(name, phone, email, address, notes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.status = status;
-        this.interviewDateTime = Optional.ofNullable(interviewDateTime);
+        this.interviewDateTime = interviewDateTime;
         this.notes.addAll(notes);
     }
 
