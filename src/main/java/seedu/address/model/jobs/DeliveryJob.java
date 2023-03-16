@@ -1,6 +1,7 @@
 package seedu.address.model.jobs;
 
 import java.time.LocalDate;
+import static java.util.Objects.requireNonNull;
 import java.util.UUID;
 
 /**
@@ -26,7 +27,7 @@ public class DeliveryJob {
      * @param earning
      */
     public DeliveryJob(String recepient, String sender, String deliverSlot, String earning) {
-        this(UUID.randomUUID().toString(), recepient, sender, deliverSlot, earning, false);
+        this(genJobId(recepient, sender), recepient, sender, deliverSlot, earning, false);
     }
 
     /**
@@ -46,6 +47,14 @@ public class DeliveryJob {
         this.deliverSlot = deliverSlot;
         this.earning = new Earning(earning);
         this.isDelivered = isDelivered;
+    }
+
+    private static String genJobId(String recepient, String sender) {
+        requireNonNull(recepient, sender);
+        return recepient.substring(0, 2)
+                .concat(sender.substring(0, 2))
+                .concat(UUID.randomUUID().toString().substring(0, 6))
+                .toUpperCase();
     }
 
     public String getJobId() {

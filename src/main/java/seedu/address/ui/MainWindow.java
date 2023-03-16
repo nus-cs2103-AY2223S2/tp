@@ -15,9 +15,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.jobs.DeleteDeliveryJobCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.job.DeliveryJobDetailPane;
-import seedu.address.ui.job.DeliveryJobListPanel;
+import seedu.address.ui.jobs.DeliveryJobDetailPane;
+import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
@@ -144,7 +145,16 @@ public class MainWindow extends UiPart<Stage> {
             DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, idx);
             detailPane.fillInnerParts(logic.getAddressBook());
             deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
+        }, job -> {
+            try {
+                executeCommand(DeleteDeliveryJobCommand.COMMAND_WORD + " " + job.getJobId());
+            } catch (ParseException e) {
+                logger.warning(e.getMessage());
+            } catch (CommandException e) {
+                logger.warning(e.getMessage());
+            }
         });
+
         deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
         deliveryJobListPanel.selectItem(0);
 
