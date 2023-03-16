@@ -14,7 +14,7 @@ import seedu.fitbook.model.client.Appointment;
 import seedu.fitbook.model.client.Client;
 
 /**
- * An UI component that displays information of a {@code Appointment}.
+ * A UI component that displays information of a {@code Appointment}.
  */
 public class ScheduleCard extends UiPart<Region> {
 
@@ -29,6 +29,7 @@ public class ScheduleCard extends UiPart<Region> {
      */
 
     public final Client client;
+    private LocalDateTime currentTime;
 
     @FXML
     private HBox cardPane;
@@ -41,15 +42,13 @@ public class ScheduleCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-
     /**
-     * Creates a {@code ClientCode} with the given {@code Client} and index to display.
+     * Creates a {@code ScheduleCard} with the given {@code Client} and index to display.
      */
     public ScheduleCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
 
-        // Sort the appointments by datetime
         ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList(client.getAppointments());
         ObservableList<LocalDateTime> dateTimeList = FXCollections.observableArrayList();
         for (Appointment appointment : appointmentsList) {
@@ -62,6 +61,19 @@ public class ScheduleCard extends UiPart<Region> {
         for (LocalDateTime dateTime : dateTimeList) {
             sb.append(dateTime.format(f));
             sb.append("\n");
+        }
+
+        currentTime = LocalDateTime.now();
+        boolean isExpired = true;
+        for (LocalDateTime dateTime: dateTimeList) {
+            if (currentTime.isBefore(dateTime)) {
+                isExpired = false;
+                break;
+            }
+        }
+
+        if (isExpired) {
+            getRoot().setStyle("-fx-background-color: derive(#888888, 20%); -fx-border-color: #BEBEBE;");
         }
 
         String dateTimeString = sb.toString();
