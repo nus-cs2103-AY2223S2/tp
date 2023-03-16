@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import teambuilder.logic.commands.EditCommand.EditPersonDescriptor;
 import teambuilder.model.person.Address;
 import teambuilder.model.person.Email;
+import teambuilder.model.person.Major;
 import teambuilder.model.person.Name;
 import teambuilder.model.person.Person;
 import teambuilder.model.person.Phone;
@@ -36,6 +37,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setMajor(person.getMajor());
         descriptor.setTags(person.getTags());
     }
 
@@ -68,6 +70,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Major} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMajor(String major) {
+        descriptor.setMajor(new Major(major));
         return this;
     }
 

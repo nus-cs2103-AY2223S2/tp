@@ -5,6 +5,7 @@ import java.util.Set;
 
 import teambuilder.model.person.Address;
 import teambuilder.model.person.Email;
+import teambuilder.model.person.Major;
 import teambuilder.model.person.Name;
 import teambuilder.model.person.Person;
 import teambuilder.model.person.Phone;
@@ -20,11 +21,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_MAJOR = "computer science";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Major major;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        major = new Major(DEFAULT_MAJOR);
         tags = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        major = personToCopy.getMajor();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -74,6 +79,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Major} of the {@code Major} that we are building.
+     */
+    public PersonBuilder withMajor(String major) {
+        this.major = new Major(major);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -90,7 +103,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, major, tags);
     }
 
 }
