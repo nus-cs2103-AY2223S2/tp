@@ -1,0 +1,7 @@
+{
+  "patients": [ {
+    "name": "Patient with invalid nric",
+    "nric": "X1234567A",
+    "status": "GRAY"
+  } ]
+}

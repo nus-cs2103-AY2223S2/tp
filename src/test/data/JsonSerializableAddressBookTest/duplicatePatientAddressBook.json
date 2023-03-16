@@ -1,0 +1,11 @@
+{
+  "patients": [ {
+    "name" : "Alex Smith",
+    "nric" : "S1334567A",
+    "status" : "GRAY"
+  }, {
+    "name" : "Alex Smith",
+    "nric" : "S1334567A",
+    "status" : "GRAY"
+  } ]
+}

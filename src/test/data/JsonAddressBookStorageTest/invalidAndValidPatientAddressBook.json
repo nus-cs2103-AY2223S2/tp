@@ -1,0 +1,11 @@
+{
+  "patients": [ {
+    "name": "Valid Patient",
+    "nric": "S1234567A",
+    "status": "GRAY"
+  }, {
+    "name": "Patient With Invalid Status",
+    "nric": "S1234567A",
+    "status": "CYAN"
+  } ]
+}

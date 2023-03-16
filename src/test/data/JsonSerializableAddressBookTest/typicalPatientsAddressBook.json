@@ -1,0 +1,32 @@
+{
+  "_comment": "AddressBook save file which contains the same Patient values as in TypicalPatient#getTypicalAddressBook()",
+  "patients" : [ {
+    "name" : "Alex Smith",
+    "nric" : "S1334567A",
+    "status" : "GRAY"
+  }, {
+    "name" : "Benson Tillman",
+    "nric" : "S7654321F",
+    "status" : "GRAY"
+  }, {
+    "name" : "Carl Leigh",
+    "nric" : "S2468024G",
+    "status" : "GRAY"
+  }, {
+    "name" : "Daniel Wellington",
+    "nric" : "S1244567A",
+    "status" : "GRAY"
+  }, {
+    "name" : "Elle Schmidt",
+    "nric" : "S1235567A",
+    "status" : "GRAY"
+  }, {
+    "name" : "Fiona Shrekt",
+    "nric" : "S6969696B",
+    "status" : "GRAY"
+  }, {
+    "name" : "George Townsend",
+    "nric" : "S1224567A",
+    "status" : "GRAY"
+  } ]
+}
