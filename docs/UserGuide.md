@@ -151,19 +151,6 @@ Examples:
 * `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then asks which one to show..
 
 
-### 8. View the lesson details of a past lesson: `view-lesson`
-
-Displays the date, time, and other information about a past lesson
-
-Format: `view-lesson [l/LESSON_INDEX]
-
-* The LESSON_INDEX is from the list of lessons displayed after calling the command `history` in feature 8.
-
-* This command can only be used when the user has just used the command `View Lesson History`
-
-Examples:
-`view-lesson l/2` Displays the lesson history of the lesson with index 2
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
