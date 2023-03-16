@@ -52,9 +52,5 @@
     "eventName" : "Concert B",
     "startDateTime" : "02-05-2023 17:00",
     "endDateTime" : "02-05-2023 18:00"
-  }, {
-    "eventName" : "hahaha",
-    "startDateTime" : "01-01-2023 23:59",
-    "endDateTime" : "02-01-2023 23:59"
   } ]
 }
