@@ -25,7 +25,6 @@ public class Service {
 
     /**
      * This method is the constructor for a Service.
-     *
      */
     public Service(int id, int vehicleId, LocalDate entryDate,
                    List<Part> requiredParts, String description,
@@ -78,6 +77,11 @@ public class Service {
      */
     public Service(int id, int vehicleId) {
         this(id, vehicleId, 7, "");
+    }
+
+    public Service(int id, int vehicleId, int serviceDuration, String serviceDesc, ServiceStatus serviceStatus) {
+        this(id, vehicleId, serviceDuration, new HashSet<>(), serviceDesc);
+        this.status = serviceStatus;
     }
 
     /**

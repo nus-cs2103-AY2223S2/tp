@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_ID;
@@ -19,6 +20,7 @@ public class AddServiceCommand extends RedoableCommand {
             + "Parameters: "
             + PREFIX_VEHICLE_ID + "VEHICLE ID "
             + PREFIX_SERVICE_TYPE + "TYPE "
+            + PREFIX_SERVICE_DURATION + "SERVICE DURATION "
             + "Optional: " + PREFIX_SERVICE_STATUS + "STATUS "
             + "Optional: " + PREFIX_SERVICE_DESCRIPTION + "DESCRIPTION "
             + "Example: " + COMMAND_WORD + " "
