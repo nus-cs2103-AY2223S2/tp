@@ -32,7 +32,7 @@ public class DeleteModuleCommand extends DeleteCommand {
 
         ReadOnlyModule moduleToDelete = model.getTracker().getModule(targetModuleCode);
 
-        if (moduleToDelete.equals(null)) {
+        if (moduleToDelete == null) {
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, targetModuleCode));
         }
 

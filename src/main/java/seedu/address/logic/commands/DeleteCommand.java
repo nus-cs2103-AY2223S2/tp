@@ -13,11 +13,11 @@ public abstract class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ":\n"
             + DeleteModuleCommand.MESSAGE_USAGE
-            + "(2) Deletes the lecture of the module identified by the lecture name and module code\n"
+            + "(2) Deletes the lecture of the module identified by the lecture name and module code.\n"
             + "Parameters: lecture name, module code\n"
             + "Example: " + COMMAND_WORD + " Lecture 01 " + PREFIX_MODULE + " CS2103/T\n"
             + "(3) Deletes the video of the lecture of the module identified.\n"
-            + "Parameters: video name, lecture name, module code"
+            + "Parameters: video name, lecture name, module code\n"
             + "Example: " + COMMAND_WORD + " Video 01 " + PREFIX_MODULE + " CS2102 " + PREFIX_LECTURE + " Lecture 01";
 
 
