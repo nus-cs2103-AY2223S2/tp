@@ -17,7 +17,7 @@ public class AddClientCommand extends Command {
 
     public static final String COMMAND_ACRONYM = "c";
     public static final String MESSAGE_USAGE =
-        COMMAND_ACRONYM + ": Adds a client to Mycelium. "
+        COMMAND_ACRONYM + ": Adds a client to Mycelium.\n"
 
             + "Compulsory Arguments: "
             + CliSyntax.PREFIX_CLIENT_NAME + "CLIENT NAME "
