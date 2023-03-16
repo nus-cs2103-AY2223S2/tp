@@ -4,11 +4,15 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import java.util.function.Predicate;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.NricContainsKeywordsPredicate;
+import seedu.address.model.patient.StatusContainsKeywordsPredicate;
+import seedu.address.model.patient.Status;
 
 /**
  * Finds and lists all patients in MedInfo whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
@@ -19,9 +23,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(Predicate predicate) {
         this.predicate = predicate;
     }
 
