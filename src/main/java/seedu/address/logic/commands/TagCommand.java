@@ -15,6 +15,8 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -92,7 +94,7 @@ public class TagCommand extends Command {
             tagModule(model);
         } else if (this.isTaggingLec) {
             tagLecture(model);
-        } else if (this.isTaggingLec){
+        } else if (this.isTaggingVid){
             tagVideo(model);
         }
         return new CommandResult(MESSAGE_SUCCESS);
@@ -106,12 +108,15 @@ public class TagCommand extends Command {
         ReadOnlyModule taggingModule = model.getModule(this.moduleCode);
 
         Set<Tag> currentTags = taggingModule.getTags();
-        currentTags.addAll(this.tags);
+
+        Set<Tag> newTags = new HashSet<>();
+        newTags.addAll(this.tags);
+        newTags.addAll(currentTags);
 
         List<Lecture> currentLectureList = (List<Lecture>) taggingModule.getLectureList();
 
         Module taggedModule = new Module(taggingModule.getCode(),
-                taggingModule.getName(), currentTags, currentLectureList);
+                taggingModule.getName(), newTags, currentLectureList);
         model.setModule(taggingModule, taggedModule);
     }
 
@@ -129,9 +134,11 @@ public class TagCommand extends Command {
         ReadOnlyLecture taggingLecture = targetModule.getLecture(this.lectureName);
 
         Set<Tag> currentTags = taggingLecture.getTags();
-        currentTags.addAll(this.tags);
+        Set<Tag> newTags = new HashSet<>();
+        newTags.addAll(this.tags);
+        newTags.addAll(currentTags);
 
-        Lecture taggedLecture = new Lecture(taggingLecture.getName(), currentTags, taggingLecture.getVideoList());
+        Lecture taggedLecture = new Lecture(taggingLecture.getName(), newTags, taggingLecture.getVideoList());
         model.setLecture(targetModule, taggingLecture, taggedLecture);
     }
 
@@ -155,9 +162,11 @@ public class TagCommand extends Command {
         Video taggingVideo = targetLecture.getVideo(this.videoName);
 
         Set<Tag> currentTags = taggingVideo.getTags();
-        currentTags.addAll(this.tags);
+        Set<Tag> newTags = new HashSet<>();
+        newTags.addAll(this.tags);
+        newTags.addAll(currentTags);
 
-        Video taggedVideo = new Video(taggingVideo.getName(), taggingVideo.hasWatched(), currentTags);
+        Video taggedVideo = new Video(taggingVideo.getName(), taggingVideo.hasWatched(), newTags);
         model.setVideo(targetLecture, taggingVideo, taggedVideo);
     }
 }

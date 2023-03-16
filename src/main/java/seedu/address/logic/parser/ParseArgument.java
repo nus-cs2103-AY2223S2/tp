@@ -97,6 +97,12 @@ public class ParseArgument {
                 .map(tag -> tag.trim())
                 .map(trimmedtag -> new Tag(trimmedtag))
                 .collect(Collectors.toList());
+
+        for (Tag tag : listOfTags) {
+            if (!Tag.isValidTagName(tag.tagName)) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+        }
         return new HashSet<>(listOfTags);
     }
 

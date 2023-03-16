@@ -58,6 +58,7 @@ public class AddressBookParser {
 
             case UntagCommand.COMMAND_WORD:
                 return new UntagCommandParser().parse(arguments);
+
             case TagCommand.COMMAND_WORD:
                 return new TagCommandParser().parse(arguments);
 

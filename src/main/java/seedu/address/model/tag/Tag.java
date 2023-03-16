@@ -1,5 +1,7 @@
 package seedu.address.model.tag;
 
+import seedu.address.model.module.Module;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -26,10 +28,40 @@ public class Tag {
     }
 
     /**
+     * Return the name of a {@code Tag}
+     * @return the tag name
+     */
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if both tags have the same {@code tagName}.<p>
+     * This defines a stronger notion of equality between two modules.
+     *
+     * @param other The module to check if it is equivalent to this module.
+     * @return True if both modules have the same fields. Otherwise, false.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Tag)) {
+            return false;
+        }
+
+        Tag otherTag = (Tag) other;
+        return otherTag.getTagName().equals(this.tagName);
     }
 
 

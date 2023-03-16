@@ -29,29 +29,32 @@ public class UntagCommandParser implements Parser<UntagCommand> {
 
     public UntagCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_MODULE, PREFIX_LECTURE, PREFIX_VIDEO);
+                ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_MODULE, PREFIX_LECTURE);
 
-        List<Prefix> presentPrefixes = streamOfPrefixesPresent(argMultimap,PREFIX_TAG, PREFIX_MODULE, PREFIX_LECTURE, PREFIX_VIDEO);
+        List<Prefix> presentPrefixes = streamOfPrefixesPresent(argMultimap,
+                PREFIX_TAG, PREFIX_MODULE, PREFIX_LECTURE);
 
-        if (!isValidUntagCommand(presentPrefixes) || !argMultimap.getPreamble().isEmpty()) {
+        if (!isValidUntagCommand(presentPrefixes)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
         Tag tag = ParseArgument.parseSingleTag(argMultimap.getValue(PREFIX_TAG).get());
-        ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
 
         if (isUntaggingMod(presentPrefixes)) {
+            ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getPreamble());
             return new UntagCommand(tag, moduleCode);
         }
 
         else if (isUntaggingLec(presentPrefixes)) {
-            LectureName lectureName = ParseArgument.parseLecture(argMultimap.getValue(PREFIX_LECTURE).get());
+            ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
+            LectureName lectureName = ParseArgument.parseLecture(argMultimap.getPreamble());
             return new UntagCommand(tag, moduleCode, lectureName);
         }
 
         else {
+            ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
             LectureName lectureName = ParseArgument.parseLecture(argMultimap.getValue(PREFIX_LECTURE).get());
-            VideoName videoName = ParseArgument.parseVideo(argMultimap.getValue(PREFIX_VIDEO).get());
+            VideoName videoName = ParseArgument.parseVideo(argMultimap.getPreamble());
             return new UntagCommand(tag, moduleCode, lectureName, videoName);
         }
 
@@ -63,13 +66,12 @@ public class UntagCommandParser implements Parser<UntagCommand> {
 
     private boolean isValidUntagCommand(List<Prefix> presentPrefixes) {
         return Stream.of(isUntaggingMod(presentPrefixes), isUntaggingLec(presentPrefixes),
-                isUntaggingVideo(presentPrefixes)).allMatch(isPresent -> isPresent);
+                isUntaggingVideo(presentPrefixes)).anyMatch(isPresent -> true);
     }
 
     private boolean isUntaggingMod(List<Prefix> presentPrefixes) {
         if (presentPrefixes.contains(PREFIX_TAG) &&
-                presentPrefixes.contains(PREFIX_MODULE) &&
-                !presentPrefixes.contains(PREFIX_VIDEO) &&
+                !presentPrefixes.contains(PREFIX_MODULE) &&
                 !presentPrefixes.contains(PREFIX_LECTURE)) {
             return true;
         }
@@ -79,8 +81,7 @@ public class UntagCommandParser implements Parser<UntagCommand> {
     private boolean isUntaggingLec(List<Prefix> presentPrefixes) {
         if (presentPrefixes.contains(PREFIX_TAG) &&
                 presentPrefixes.contains(PREFIX_MODULE) &&
-                presentPrefixes.contains(PREFIX_LECTURE) &&
-                !presentPrefixes.contains(PREFIX_VIDEO)) {
+                !presentPrefixes.contains(PREFIX_LECTURE)) {
             return true;
         }
         return false;
@@ -89,8 +90,7 @@ public class UntagCommandParser implements Parser<UntagCommand> {
     private boolean isUntaggingVideo(List<Prefix> presentPrefixes) {
         if (presentPrefixes.contains(PREFIX_TAG) &&
                 presentPrefixes.contains(PREFIX_MODULE) &&
-                presentPrefixes.contains(PREFIX_LECTURE) &&
-                presentPrefixes.contains(PREFIX_VIDEO)) {
+                presentPrefixes.contains(PREFIX_LECTURE)) {
             return true;
         }
         return false;
