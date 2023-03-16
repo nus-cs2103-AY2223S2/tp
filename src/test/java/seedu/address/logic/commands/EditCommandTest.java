@@ -118,7 +118,7 @@ public class EditCommandTest {
     public void execute_duplicateListingFilteredList_failure() {
         showListingAtIndex(model, INDEX_FIRST_LISTING);
 
-        // edit listing in filtered list into a duplicate in address book
+        // edit listing in filtered list into a duplicate in listing book
         Listing listingInList = model.getListingBook().getListingList().get(INDEX_SECOND_LISTING.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_LISTING,
                 new EditListingDescriptorBuilder(listingInList).build());
@@ -137,13 +137,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of listing book
      */
     @Test
     public void execute_invalidListingIndexFilteredList_failure() {
         showListingAtIndex(model, INDEX_FIRST_LISTING);
         Index outOfBoundIndex = INDEX_SECOND_LISTING;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of listing book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getListingBook().getListingList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,

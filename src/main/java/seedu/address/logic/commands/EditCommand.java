@@ -42,13 +42,15 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_LISTING_SUCCESS = "Edited Listing: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_LISTING = "This listing already exists in the listing book";
+    public static final String MESSAGE_DUPLICATE_LISTING =
+            "It seems that the changes you made did not modify the original version! "
+            + "Please review your edits and ensure that they are reflecting the intended changes!";
 
     private final Index index;
     private final EditListingDescriptor editListingDescriptor;
 
     /**
-     * Creates an AddCommand to add the specified {@code Listing}
+     * Creates an EditCommand to edit the specified {@code Listing}
      */
     public EditCommand(Index index, EditListingDescriptor editListingDescriptor) {
         requireNonNull(index);
