@@ -17,7 +17,6 @@ public class Flight implements Item {
     private static final String DEPARTURE_STRING = "Depart from";
     private static final String ARRIVE_STRING = "Arrive at";
     private static final String NOT_SPECIFIED_STRING = "Not Specified";
-
     private final String code;
     private final String id;
     private Plane plane;
