@@ -10,7 +10,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX = "The elderly index provided is invalid";
     public static final String MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX = "The volunteer index provided is invalid";
     public static final String MESSAGE_INVALID_NRIC = "The %s NRIC provided is invalid";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_LISTED_OVERVIEW = "%1$d volunteer, %2$d elderly and %3$d pair listed!";
     public static final String MESSAGE_NRIC_NOT_EXIST = "There is no such person with the given NRIC!";
     public static final String MESSAGE_DUPLICATE_ELDERLY = "This elderly already exists in the database";
     public static final String MESSAGE_DUPLICATE_VOLUNTEER = "This volunteer already exists in the database";
