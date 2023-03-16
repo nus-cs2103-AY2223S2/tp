@@ -29,7 +29,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 
 /**
- * Edits the details of an existing fish in the feedingInterval book.
+ * Edits the details of an existing fish in the address book.
  */
 public class EditCommand extends Command {
 
@@ -52,7 +52,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_FISH_SUCCESS = "Edited Fish: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_FISH = "This fish already exists in the feedingInterval book.";
+    public static final String MESSAGE_DUPLICATE_FISH = "This fish already exists in the address book.";
 
     private final Index index;
     private final EditFishDescriptor editFishDescriptor;
