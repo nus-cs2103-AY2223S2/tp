@@ -1,4 +1,4 @@
-package seedu.address.model.person.fields;
+package seedu.address.model.person.fields.subfields;
 
 import java.io.*;
 
