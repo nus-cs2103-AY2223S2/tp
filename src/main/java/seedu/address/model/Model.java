@@ -98,6 +98,10 @@ public interface Model {
      */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Customer> getFilteredCustomerList();
+
+    ObservableList<Vehicle> getFilteredVehicleList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
@@ -170,10 +174,6 @@ public interface Model {
      * @param part Part to check against
      */
     boolean hasPart(Part part);
-
-    void updateFilteredTechnicianList(Predicate<Technician> predicate);
-
-    void updateFilteredServiceList(Predicate<Service> predicate);
 
     void updateFilteredVehicleList(Predicate<Vehicle> predicate);
 }

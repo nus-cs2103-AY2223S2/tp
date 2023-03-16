@@ -17,6 +17,9 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.ViewCustomerCommand;
+import seedu.address.logic.commands.ViewPartCommand;
+import seedu.address.logic.commands.ViewVehicleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -70,11 +73,22 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+            // todo: port to new parser ? (i.e. shop)
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+
+        case ViewVehicleCommand.COMMAND_WORD:
+            return new ViewVehicleCommandParser().parse(arguments);
+
+        case ViewCustomerCommand.COMMAND_WORD:
+            return new ViewCustomerCommandParser().parse(arguments);
+
+        case ViewPartCommand.COMMAND_WORD:
+            return new ViewPartCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
