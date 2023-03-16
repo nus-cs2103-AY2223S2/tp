@@ -1,60 +1,100 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Optional;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddLectureCommand;
+import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.commands.AddVideoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new {@code AddCommand} object
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * and returns an {@code AddCommand} object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
+        Optional<String> moduleCodeOpt = argMultimap.getValue(PREFIX_MODULE);
+        Optional<String> lectureNameOpt = argMultimap.getValue(PREFIX_LECTURE);
+
+        if (lectureNameOpt.isPresent()) {
+            return parseAddVideoCommand(argMultimap.getPreamble(), lectureNameOpt, moduleCodeOpt);
+        } else if (moduleCodeOpt.isPresent()) {
+            return parseAddLectureCommand(argMultimap.getPreamble(), moduleCodeOpt);
+        } else {
+            return parseAddModuleCommand(argMultimap.getPreamble(), argMultimap.getValue(PREFIX_NAME));
+        }
+    }
+
+    private AddCommand parseAddVideoCommand(String videoNameStr, Optional<String> lectureNameOpt,
+            Optional<String> moduleCodeOpt) throws ParseException {
+
+        if (!moduleCodeOpt.isPresent() || !lectureNameOpt.isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        String moduleCodeStr = moduleCodeOpt.get();
+        String lectureNameStr = lectureNameOpt.get();
 
-        Person person = new Person(name, phone, email, address, tagList);
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
+        LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
+        VideoName videoName = ParserUtil.parseVideoName(videoNameStr);
 
-        return new AddCommand(person);
+        Video video = new Video(videoName, false, new HashSet<>());
+
+        return new AddVideoCommand(moduleCode, lectureName, video);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private AddCommand parseAddLectureCommand(String lectureNameStr, Optional<String> moduleCodeOpt)
+            throws ParseException {
+
+        if (!moduleCodeOpt.isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        String moduleCodeStr = moduleCodeOpt.get();
+
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
+        LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
+
+        Lecture lecture = new Lecture(lectureName, new HashSet<>(), new ArrayList<>());
+
+        return new AddLectureCommand(moduleCode, lecture);
+    }
+
+    private AddCommand parseAddModuleCommand(String moduleCodeStr, Optional<String> moduleNameOpt)
+            throws ParseException {
+
+        String moduleNameStr = moduleNameOpt.orElse("");
+
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
+        ModuleName moduleName = ParserUtil.parseModuleName(moduleNameStr);
+
+        Module module = new Module(moduleCode, moduleName, new HashSet<>(), new ArrayList<>());
+
+        return new AddModuleCommand(module);
     }
 
 }

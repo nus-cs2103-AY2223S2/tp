@@ -12,7 +12,7 @@ public class Messages {
     public static final String MESSAGE_DOES_NOT_EXIST = "%1$s does not exist";
     public static final String MESSAGE_MODULE_DOES_NOT_EXIST = "Module "
             + String.format(MESSAGE_DOES_NOT_EXIST, "%1$s");
-    public static final String MESSAGE_LECTURE_DOES_NOT_EXIST = "Lecture %1$s in "
+    public static final String MESSAGE_LECTURE_DOES_NOT_EXIST = "Lecture %1$s of "
             + String.format(MESSAGE_MODULE_DOES_NOT_EXIST, "%2$s");
     public static final String MESSAGE_VIDEO_DOES_NOT_EXIST = "Video %1$s of "
             + String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, "%2$s", "%3$s");

@@ -31,6 +31,7 @@ public class Module implements ReadOnlyModule {
 
     private final UniqueLectureList lectures = new UniqueLectureList();
 
+    // TODO: Consider removing this, also it is buggy
     /**
      * Constructs a {@code Module}.<p>
      * Every field must be not null.
