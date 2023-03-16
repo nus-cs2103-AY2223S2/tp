@@ -14,13 +14,9 @@ public class DateTimeParserTest {
     private final LocalDateTime template = LocalDateTime.of(2023, 02, 12, 18, 0);
 
     @Test
-    public void createDateTime_validFormat() {
-        try {
-            LocalDateTime dateTime = DateTimeParser.parseDateTime("12-02-2023 18:00");
-            assertEquals(template, dateTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void createDateTime_validFormat() throws ParseException {
+        LocalDateTime dateTime = DateTimeParser.parseDateTime("12-02-2023 18:00");
+        assertEquals(template, dateTime);
     }
 
     @Test
@@ -29,19 +25,13 @@ public class DateTimeParserTest {
     }
 
     @Test
-    public void createDateTime_emptyString_returnNull() {
-        try {
-            LocalDateTime dateTime = DateTimeParser.parseDateTime("");
-            assertEquals(dateTime, null);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void createDateTime_emptyString_nullDateTimeField() throws ParseException {
+        LocalDateTime dateTime = DateTimeParser.parseDateTime("");
+        assertEquals(dateTime, null);
     }
 
     @Test void dateTimeFormatter_formatsDateTimeInValidFormat() {
         String formattedDateTime = DateTimeParser.datetimeFormatter(template);
         assertEquals(formattedDateTime, templateDateTimeString);
     }
-
-
 }
