@@ -461,6 +461,64 @@ Priorities:
 
   Use case resumes at step 3.
 
+### View a particular Student's Lessons 
+
+**MSS**
+
+1. User clicks on **Lessons** button of a student.
+2. TutorPro shows that student's past and upcoming Lessons.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The student's lesson list is empty.
+
+  Use case ends.
+
+### View all Students' Lesson history
+
+**MSS**
+
+1. User enters view-lesson command without any arguments.
+2. TutorPro shows all students' past and upcoming Lessons.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. None of the students have any lessons.
+  * 2a1. TutorPro shows an empty Lesson list.
+
+    Use case ends.
+
+### Add Lesson
+
+**MSS**
+
+1. User enters new-lesson command with student name, lesson title and start and end times.
+2. TutorPro adds the lesson to that student's Lesson list..
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The named student does not exist
+  * 1a1. TutorPro returns an error message.
+  
+    Use case resumes at 1.
+  
+* 1b. The start/end time is in the past.
+  * 1b1. TutorPro returns an error message.
+
+    Use case resumes at 1.
+
+* 1c. The start/end time format is invalid.
+    * 1c1. TutorPro returns an error message showing the accepted time formats.
+
+      Use case resumes at 1.
+
+
 *{More to be added}*
 
 
