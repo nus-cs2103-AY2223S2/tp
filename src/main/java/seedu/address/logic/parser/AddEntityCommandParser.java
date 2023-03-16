@@ -6,8 +6,12 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddEntityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entity.*;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Classification;
+import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Name;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -33,8 +37,7 @@ public class AddEntityCommandParser implements Parser<AddEntityCommand> {
         if (classification.isCharacter()) {
             newEntity = new Character(name);
         } else if (classification.isItem()) {
-            //newEntity = new Item(name);
-            newEntity = new Entity(name);
+            newEntity = new Item(name);
         } else if (classification.isMob()) {
             newEntity = new Mob(name);
         }

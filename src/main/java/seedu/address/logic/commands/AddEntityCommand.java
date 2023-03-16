@@ -18,6 +18,7 @@ public class AddEntityCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New entity added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTITY = "This entity already exists in the address book";
 
+
     private final Entity toAdd;
 
 
