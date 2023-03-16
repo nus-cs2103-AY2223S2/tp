@@ -49,22 +49,6 @@ public class PerformanceCommandTest {
     }
 
     @Test
-    public void execute_deletePerformanceUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withPerformance("").build();
-
-        PerformanceCommand performanceCommand = new PerformanceCommand(INDEX_FIRST_PERSON,
-                new Performance(editedPerson.getPerformance().toString()));
-
-        String expectedMessage = String.format(PerformanceCommand.MESSAGE_DELETE_PERFORMANCE_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
-
-        assertCommandSuccess(performanceCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 

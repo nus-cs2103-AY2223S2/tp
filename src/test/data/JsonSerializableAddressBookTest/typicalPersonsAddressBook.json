@@ -1,96 +1,92 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "photo" : "https://picsum.photos/id/342/200/300",
+    "photo" : "https://picsum.photos/id/65/200/300",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "remark" : "",
-    "performance": "1",
+    "remark" : "She likes aardvarks.",
+    "performance" : "1",
     "tagged" : [ "friends" ]
   }, {
-    "name" : "Benson Meier",
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "photo" : "https://picsum.photos/id/177/200/300",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "remark" : "None yet!",
+    "performance" : "4",
+    "tagged" : [ "neighbours" ]
+  }, {
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "photo" : "https://picsum.photos/id/209/200/300",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "remark" : "None yet!",
+    "performance" : "3",
+    "tagged" : [ "family" ]
+  }, {
+    "name" : "Irfan Ibrahim",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "photo" : "https://picsum.photos/id/281/200/300",
+    "address" : "Blk 47 Tampines Street 20, #17-35",
+    "remark" : "None yet!",
+    "performance" : "8",
+    "tagged" : [ "classmates" ]
+  }, {
+    "name" : "Roy Balakrishnan",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "photo" : "https://picsum.photos/id/342/200/300",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "remark" : "None yet!",
+    "performance" : "2",
+    "tagged" : [ "colleagues" ]
+  }, {
+    "name" : "John Doe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "photo" : "https://picsum.photos/id/342/200/300",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "remark" : "",
-    "performance": "1",
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "photo" : "https://picsum.photos/id/342/200/300",
-    "address" : "wall street",
-    "remark" : "",
-    "performance": "1",
+    "photo" : "https://picsum.photos/200/300",
+    "address" : "John street, block 123, #01-01",
+    "remark" : "None yet!",
+    "performance" : "2",
     "tagged" : [ ]
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "photo" : "https://picsum.photos/id/342/200/300",
-    "address" : "10th street",
-    "remark" : "",
-    "performance": "1",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "photo" : "https://picsum.photos/id/342/200/300",
-    "address" : "michegan ave",
-    "remark" : "",
-    "performance": "1",
+    "name" : "Johnoe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "photo" : "https://picsum.photos/200/300",
+    "address" : "John street, block 123, #01-01",
+    "remark" : "None yet!",
+    "performance" : "1",
     "tagged" : [ ]
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "photo" : "https://picsum.photos/id/342/200/300",
-    "address" : "little tokyo",
-    "remark" : "",
-    "performance": "1",
+    "name" : "JohnDsoe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "photo" : "https://picsum.photos/200/300",
+    "address" : "John street, block 123, #01-01",
+    "remark" : "None yet!",
+    "performance" : "2",
     "tagged" : [ ]
   }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "photo" : "https://picsum.photos/id/342/200/300",
-    "address" : "4th street",
-    "remark" : "",
-    "performance": "1",
+    "name" : "Jooe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "photo" : "https://picsum.photos/200/300",
+    "address" : "John street, block 123, #01-01",
+    "remark" : "None yet!",
+    "performance" : "20",
     "tagged" : [ ]
   } ],
   "tutorials" : [ {
-    "name": "Tutorial 1",
-    "date": "05/02/2023",
-    "students": [
-    ],
-    "attachments": [],
-    "notes": []
-  }, {
-    "name": "Tutorial 2",
-    "date": "10/02/2023",
-    "students": [
-    ],
-    "attachments": [],
-    "notes": []
-  }, {
-    "name": "Tutorial 3",
-    "date": "10/02/2023",
-    "students": [
-    ],
-    "attachments": [],
-    "notes": []
-  }, {
-    "name": "Tutorial 4",
-    "date": "10/02/2023",
-    "students": [
-    ],
-    "attachments": [],
-    "notes": []
-  } ]
+    "name" : "tut",
+    "eventDate" : "2023-03-16",
+    "students" : [ ],
+    "attachments" : [ ],
+    "notes" : [ ]
+  } ],
+  "labs" : [ ]
 }

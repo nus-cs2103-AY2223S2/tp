@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -32,7 +32,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Photo photo, Address address,
                   Remark remark, Performance performance, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags, photo);
+        requireAllNonNull(name, phone, email, address, tags, photo, performance);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -119,7 +119,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, photo, address, tags);
+        return Objects.hash(name, phone, email, photo, performance, address, tags);
     }
 
     @Override
@@ -145,6 +145,17 @@ public class Person {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Person other) {
+        if (other.performance.calculateUrgency() > performance.calculateUrgency()) {
+            return 1;
+        } else if (other.performance.calculateUrgency() < performance.calculateUrgency()) {
+            return -1;
+        } else {
+            return name.toString().compareTo(other.name.toString());
+        }
     }
 
 }

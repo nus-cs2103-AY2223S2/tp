@@ -8,6 +8,7 @@
    <TableView fx:id="table">
       <columns>
          <TableColumn fx:id="name" editable="false" text="Name" />
+         <TableColumn fx:id="photo" editable="false" text="Photo" style="-fx-alignment: CENTER;"/>
          <TableColumn fx:id="email" text="Email" />
          <TableColumn fx:id="address" text="Address" />
          <TableColumn editable="false" text="Statistics">

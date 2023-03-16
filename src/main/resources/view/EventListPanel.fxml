@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -8,30 +9,42 @@
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <HBox prefWidth="400.0" VBox.vgrow="ALWAYS">
         <children>
-            <ListView fx:id="eventListViewLeftCol" prefHeight="6662.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
+         <VBox prefHeight="400.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+           <Label HBox.hgrow="ALWAYS" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="133.0" text="Tutorials" textFill="WHITE" />
+           <children>
+                  <ListView fx:id="eventListViewLeftCol" prefHeight="6662.0" prefWidth="70.0">
+                      <padding>
+                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                      </padding>
+                  </ListView>
+            </children>
+         </VBox>
+          <VBox prefHeight="400.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+            <children>
+              <Label HBox.hgrow="ALWAYS" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="133.0" text="Labs" textFill="WHITE" />
+              <ListView fx:id="eventListViewMidCol" prefHeight="6662.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
+                <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
                 <HBox.margin>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </HBox.margin>
+              </ListView>
+            </children>
+          </VBox>
+          <VBox prefHeight="400.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+            <children>
+              <Label HBox.hgrow="ALWAYS" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="133.0" text="Consultations" textFill="WHITE" />
+              <ListView fx:id="eventListViewRightCol" prefHeight="6662.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
+                <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </HBox.margin>
                 <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </padding>
-            </ListView>
-            <ListView fx:id="eventListViewMidCol" prefHeight="100.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
-                <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                </padding>
-                <HBox.margin>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                </HBox.margin>
-            </ListView>
-            <ListView fx:id="eventListViewRightCol" prefHeight="100.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
-                <HBox.margin>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                </HBox.margin>
-                <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                </padding>
-            </ListView>
+              </ListView>
+            </children>
+          </VBox>
         </children>
     </HBox>
 </VBox>

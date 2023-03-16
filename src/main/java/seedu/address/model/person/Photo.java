@@ -71,6 +71,10 @@ public class Photo {
         return true;
     }
 
+    public String getUrlPath() {
+        return this.photoFilePath;
+    }
+
     //No setters to customise profile picture dimensions in this iteration
 
     /**
