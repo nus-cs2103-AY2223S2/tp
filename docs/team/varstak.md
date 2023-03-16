@@ -5,15 +5,15 @@ title: Varstak's Project Portfolio Page
 
 ### Project: Ultron
 
-Ultron is a system which helps students keep track of their internship applications by helping them 
-sort their internships and check the status of each application. 
+Ultron is a system which helps students keep track of their internship applications by helping them
+sort their internships and check the status of each application.
 
 Given below are my contributions to the project.
 
 * **New Feature**:
     * To be added soon
 
-* **Code contributed**: 
+* **Code contributed**:
     * To be added soon
 
 * **Project management**:
