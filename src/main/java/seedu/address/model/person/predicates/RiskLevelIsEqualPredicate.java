@@ -1,5 +1,6 @@
 package seedu.address.model.person.predicates;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.Elderly;
@@ -30,5 +31,10 @@ public class RiskLevelIsEqualPredicate<T extends Elderly> implements Predicate<T
         return other == this // short circuit if same object
                 || (other instanceof RiskLevelIsEqualPredicate // instanceof handles nulls
                 && risk.equals(((RiskLevelIsEqualPredicate<?>) other).risk)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(risk);
     }
 }

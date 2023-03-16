@@ -1,5 +1,6 @@
 package seedu.address.model.person.predicates;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.Person;
@@ -29,5 +30,10 @@ public class AgeIsEqualPredicate<T extends Person> implements Predicate<T> {
         return other == this // short circuit if same object
                 || (other instanceof AgeIsEqualPredicate // instanceof handles nulls
                 && age.equals(((AgeIsEqualPredicate<?>) other).age)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(age);
     }
 }

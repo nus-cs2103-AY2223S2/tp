@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -108,5 +109,11 @@ public class FindCommand extends Command {
                 && sharedFilterList.equals(((FindCommand) other).sharedFilterList)
                 && elderlyOnlyFilterList.equals(((FindCommand) other).elderlyOnlyFilterList)
                 && volunteerOnlyFilterList.equals(((FindCommand) other).volunteerOnlyFilterList)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sharedFilterList,
+                elderlyOnlyFilterList, volunteerOnlyFilterList);
     }
 }

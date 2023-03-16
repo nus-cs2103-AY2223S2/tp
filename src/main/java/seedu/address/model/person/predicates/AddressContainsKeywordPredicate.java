@@ -1,5 +1,6 @@
 package seedu.address.model.person.predicates;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.Person;
@@ -29,5 +30,10 @@ public class AddressContainsKeywordPredicate<T extends Person> implements Predic
         return other == this // short circuit if same object
                 || (other instanceof AddressContainsKeywordPredicate // instanceof handles nulls
                 && keyword.equals(((AddressContainsKeywordPredicate<?>) other).keyword)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(keyword);
     }
 }

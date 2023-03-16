@@ -1,5 +1,6 @@
 package seedu.address.model.person.predicates;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.Person;
@@ -29,5 +30,10 @@ public class PhoneContainsDigitsPredicate<T extends Person> implements Predicate
         return other == this // short circuit if same object
                 || (other instanceof PhoneContainsDigitsPredicate // instanceof handles nulls
                 && digits.equals(((PhoneContainsDigitsPredicate<?>) other).digits)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(digits);
     }
 }
