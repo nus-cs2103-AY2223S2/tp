@@ -171,6 +171,57 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+
+### Adding a transaction: `addtxn`
+
+Adds a transaction record to the address book.
+
+Format: `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+All field must be provided, and transaction status should be either 'open' or 'closed'.
+</div>
+
+Examples:
+* `addtxn td/Sample Transaction tv/100 ts/open to/John Doe`
+
+
+### Listing all transaction records : `listtxn`
+
+Shows a list of all transaction records in the sales book.
+
+Format: `listtxn`
+
+
+### Editing a transaction record : `edittxn`
+
+Edits an existing transaction record in the sales book.
+
+Format: `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]​`
+
+* Edits the transaction record at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed transaction list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edittxn 1 ts/closed` Edits the transaction status of the 1st transaction record to be 'closed'.
+
+
+### Deleting a transaction record : `deletetxn`
+
+Deletes the specified transaction record from the sales book.
+
+Format: `deletetxn INDEX`
+
+* Deletes the transaction record at the specified `INDEX`.
+* The index refers to the index number shown in the displayed transaction list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listtxn` followed by `deletetxn 2` deletes the 2nd transaction record in the sales book.
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+//import java.time.format.DecimalStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +20,12 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Description;
+import seedu.address.model.transaction.Owner;
+import seedu.address.model.transaction.TxnStatus;
+import seedu.address.model.transaction.Value;
+
+//import javax.xml.validation.Validator;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -190,5 +197,57 @@ public class ParserUtil {
             throw new ParseException(Industry.MESSAGE_CONSTRAINTS);
         }
         return new Industry(industry);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        if (!Description.isValidDescription(description)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(description);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code TxnStatus}.
+     *
+     * @throws ParseException if the given {@code txnStatus} is invalid.
+     */
+    public static TxnStatus parseTxnStatus(String status) throws ParseException {
+        requireNonNull(status);
+        if (!TxnStatus.isValidTxnStatus(status)) {
+            throw new ParseException(TxnStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new TxnStatus(status);
+    }
+
+    /**
+     * Parses a {@code String value} into a {@code Value}.
+     *
+     * @throws ParseException if the given {@code value} is invalid.
+     */
+    public static Value parseValue(String value) throws ParseException {
+        requireNonNull(value);
+        if (!Value.isValidValue(value)) {
+            throw new ParseException(Value.MESSAGE_CONSTRAINTS);
+        }
+        return new Value(value);
+    }
+
+    /**
+     * Parses a {@code String value} into a {@code Value}.
+     *
+     * @throws ParseException if the given {@code value} is invalid.
+     */
+    public static Owner parseOwner(String owner) throws ParseException {
+        requireNonNull(owner);
+        if (!Owner.isValidName(owner)) {
+            throw new ParseException(Owner.MESSAGE_CONSTRAINTS);
+        }
+        return new Owner(owner);
     }
 }
