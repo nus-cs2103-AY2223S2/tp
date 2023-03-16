@@ -1,10 +1,17 @@
 package seedu.address.logic.commands.student;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddCommandTest;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -17,17 +24,7 @@ import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.UniqueParentList;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.UniqueStudentList;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.StudentBuilder;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 class StudentAddCommandTest {
 

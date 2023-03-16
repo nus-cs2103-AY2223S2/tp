@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Class;
@@ -7,7 +10,6 @@ import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
 import seedu.address.model.person.exceptions.DuplicateClassException;
@@ -22,9 +24,9 @@ import seedu.address.model.person.student.Test;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
-import java.util.HashSet;
-import java.util.Set;
-
+/**
+ * A utility class to help with building Student objects.
+ */
 public class StudentBuilder {
     public static final String DEFAULT_NAME = "Tan Ah Cow";
     public static final String DEFAULT_INDEXNUMBER = "13";
@@ -40,7 +42,7 @@ public class StudentBuilder {
     public static final String DEFAULT_PARENTAGE = "41";
     public static final String DEFAULT_STUDENTPHONE = "91234567";
     public static final String DEFAULT_CCA = "Captain Ball";
-    public static final String DEFAULT_PARENTEMAIl = "Insert parent email here!";
+    public static final String DEFAULT_PARENTEMAIL = "Insert parent email here!";
     public static final String DEFAULT_PARENTADDRESS = "Insert Address here!";
     public static final String DEFAULT_CLASS = "1A";
     public static final String DEFAULT_STUDENTEMAIL = "tanahcow@gmail.com";
@@ -85,7 +87,7 @@ public class StudentBuilder {
         parentPhone = new Phone(DEFAULT_PARENTPHONE);
         cca = new Cca(DEFAULT_CCA);
         parentImage = new Image(DEFAULT_IMAGEPARENT);
-        parentEmail = new Email(DEFAULT_PARENTEMAIl);
+        parentEmail = new Email(DEFAULT_PARENTEMAIL);
         parentAddress = new Address(DEFAULT_PARENTADDRESS);
         tags = new HashSet<>();
         relationship = new Relationship(DEFAULT_RELATIONSHIP);
@@ -100,9 +102,9 @@ public class StudentBuilder {
         } catch (DuplicateClassException dc) {
             dc.printStackTrace();
         }
-        parent = new Parent(parentName, parentAge, parentImage, parentEmail,parentPhone, parentAddress, tags);
+        parent = new Parent(parentName, parentAge, parentImage, parentEmail, parentPhone, parentAddress, tags);
         student = new Student(name, studentClass, indexNumber, sex, parentName, parentPhone, relationship, age,
-                studentImage, studentEmail, studentPhone, cca, studentAddress,  studentAttendance, homework, test,
+                studentImage, studentEmail, studentPhone, cca, studentAddress, studentAttendance, homework, test,
                 tags, comment);
     }
 
@@ -157,9 +159,13 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Test} of the {@code Person} that we are building.
+     * @return Student
+     */
     public Student build() {
         return new Student(name, studentClass, indexNumber, sex, parentName, parentPhone, relationship, age,
-                studentImage, studentEmail, studentPhone, cca, studentAddress,  studentAttendance, homework, test,
+                studentImage, studentEmail, studentPhone, cca, studentAddress, studentAttendance, homework, test,
                 tags, comment);
     }
 }
