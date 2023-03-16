@@ -47,7 +47,8 @@ public class DeleteLectureCommand extends DeleteCommand {
         }
 
         if (!model.hasLecture(moduleCode, targetLectureName)) {
-            throw new CommandException(String.format(Messages.MESSAGE_LECTURE_DOES_NOT_EXIST, targetLectureName, moduleCode));
+            throw new CommandException(String.format(Messages.MESSAGE_LECTURE_DOES_NOT_EXIST,
+                                targetLectureName, moduleCode));
         }
 
         ReadOnlyModule module = model.getModule(moduleCode);
@@ -63,6 +64,7 @@ public class DeleteLectureCommand extends DeleteCommand {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof DeleteLectureCommand)
+                && moduleCode.equals(((DeleteLectureCommand) other).moduleCode)
                 && targetLectureName.equals(((DeleteLectureCommand) other).targetLectureName);
     }
 

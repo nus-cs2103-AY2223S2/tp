@@ -9,10 +9,11 @@ import java.util.Optional;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteLectureCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
+import seedu.address.logic.commands.DeleteVideoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
-// import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoName;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -28,7 +29,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_LECTURE);
 
         Optional<String> moduleCodeOptional = argMultimap.getValue(PREFIX_MODULE);
-        // Optional<String> lectureNameOptional = argMultimap.getValue(PREFIX_LECTURE);
+        Optional<String> lectureNameOptional = argMultimap.getValue(PREFIX_LECTURE);
         String preamble = argMultimap.getPreamble();
 
         try {
@@ -36,14 +37,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             if (moduleCodeOptional.isPresent()) {
                 ModuleCode moduleCode = new ModuleCode(moduleCodeOptional.get());
 
-                // if (lectureNameOptional.isPresent()) {
-                //     LectureName lectureName = new LectureName(lectureNameOptional.get());
-                //     VideoName videoName = new VideoName(preamble);
-                //     return new DeleteVideoCommand(videoName, moduleCode, lectureName);
-                // } else {
-                LectureName lectureName = new LectureName(preamble);
-                return new DeleteLectureCommand(lectureName, moduleCode);
-                // }
+                if (lectureNameOptional.isPresent()) {
+                    LectureName lectureName = new LectureName(lectureNameOptional.get());
+                    VideoName videoName = new VideoName(preamble);
+                    return new DeleteVideoCommand(videoName, moduleCode, lectureName);
+                } else {
+                    LectureName lectureName = new LectureName(preamble);
+                    return new DeleteLectureCommand(lectureName, moduleCode);
+                }
             } else {
                 ModuleCode moduleCode = ParserUtil.parseModuleCode(preamble);
                 return new DeleteModuleCommand(moduleCode);

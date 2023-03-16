@@ -1,10 +1,7 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a module, lecture or video specified in command from le Tracker
  */
 public abstract class DeleteCommand extends Command {
 
@@ -14,7 +11,5 @@ public abstract class DeleteCommand extends Command {
             + ":\n"
             + DeleteModuleCommand.MESSAGE_USAGE
             + DeleteLectureCommand.MESSAGE_USAGE
-            + "(3) Deletes the video of the lecture of the module identified.\n"
-            + "Parameters: video name, lecture name, module code\n"
-            + "Example: " + COMMAND_WORD + " Video 01 " + PREFIX_MODULE + " CS2102 " + PREFIX_LECTURE + " Lecture 01";
+            + DeleteVideoCommand.MESSAGE_USAGE;
 }

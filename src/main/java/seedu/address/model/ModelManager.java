@@ -20,6 +20,7 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -182,6 +183,18 @@ public class ModelManager implements Model {
     public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
         requireNonNull(lecture);
         return lecture.hasVideo(video);
+    }
+
+    @Override
+    public boolean hasVideo(ReadOnlyLecture lecture, VideoName videoName) {
+        requireNonNull(lecture);
+        return lecture.hasVideo(videoName);
+    }
+
+    @Override
+    public Video getVideo(ReadOnlyLecture lecture, VideoName videoName) {
+        requireNonNull(lecture);
+        return lecture.getVideo(videoName);
     }
 
     @Override
