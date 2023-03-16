@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalModules.getTypicalTracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.ListCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -15,7 +16,7 @@ import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.testutil.ModuleBuilder;
-import seedu.address.testutil.TypicalLectures;
+import seedu.address.testutil.TypicalModules;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -26,14 +27,7 @@ public class ListCommandTest {
     private Model expectedModel;
 
     private ListCommand listCommand;
-    private final Module module = new ModuleBuilder()
-            .withCode("CS2040S").withName("Data Structures and Algorithms")
-            .withTags("Heavy", "Math", "Analysis")
-            .withLectures(TypicalLectures.CS2040S_WEEK_1, TypicalLectures.CS2040S_WEEK_2,
-                    TypicalLectures.CS2040S_WEEK_3, TypicalLectures.CS2040S_WEEK_4,
-                    TypicalLectures.CS2040S_WEEK_5, TypicalLectures.CS2040S_WEEK_6,
-                    TypicalLectures.CS2040S_WEEK_7)
-            .build();
+    private final Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
 
     @BeforeEach
     public void setUp() {

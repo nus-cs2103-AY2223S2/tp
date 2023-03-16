@@ -16,8 +16,7 @@ public class LecturePredicate implements Predicate<ReadOnlyLecture> {
 
     @Override
     public boolean test(ReadOnlyLecture lecture) {
-        boolean res = module.hasLecture(lecture);
-        return  res;
+        return module.hasLecture(lecture);
     }
 
     @Override

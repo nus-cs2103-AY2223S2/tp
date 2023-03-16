@@ -19,7 +19,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** List level to be displayed (MODULE, LECTURES, VIDEOS) */
+    /** The level list to be displayed */
     private Level level;
 
     /**

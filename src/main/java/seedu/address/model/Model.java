@@ -226,10 +226,9 @@ public interface Model {
      */
     ObservableList<? extends ReadOnlyModule> getFilteredModuleList();
 
-     /**
+    /**
      * Returns an unmodifiable view of the filtered lecture list.
      *
-     * @param module The module to get the lecture list from
      * @return An unmodifiable view of the filtered lecture list.
      */
     ObservableList<? extends ReadOnlyLecture> getFilteredLectureList();

@@ -117,11 +117,13 @@ public class MainWindow extends UiPart<Stage> {
     @SuppressWarnings("unchecked")
     void fillInnerParts(Level level) {
         if (level.equals(Level.MODULE)) {
-            this.moduleListPanel = new ModuleListPanel((ObservableList<ReadOnlyModule>) logic.getFilteredModuleList());
+            this.moduleListPanel = new ModuleListPanel(
+                (ObservableList<ReadOnlyModule>) logic.getFilteredModuleList());
             listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         }
         if (level.equals(Level.LECTURE)) {
-        this.lectureListPanel = new LectureListPanel((ObservableList<ReadOnlyLecture>) logic.getFilteredLectureList());
+            this.lectureListPanel = new LectureListPanel(
+                (ObservableList<ReadOnlyLecture>) logic.getFilteredLectureList());
             listPanelPlaceholder.getChildren().add(lectureListPanel.getRoot());
         }
 
