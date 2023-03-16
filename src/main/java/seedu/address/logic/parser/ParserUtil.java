@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -11,6 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Name;
@@ -23,6 +27,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String TIME_FORMAT_INVALID = "Time format should be yyyy-MM-dd HHmm.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -135,6 +140,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> time} into a {@code LocalDateTime}.
+     */
+    public static LocalDateTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        try {
+            return LocalDateTime.parse(trimmedTime, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(TIME_FORMAT_INVALID);
+        }
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -154,9 +173,20 @@ public class ParserUtil {
     public static MedicalCondition parseMedicalCond(String medicalCondition) throws ParseException {
         requireNonNull(medicalCondition);
         String trimmed = medicalCondition.trim();
-        if (!Tag.isValidTagName(trimmed)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
         return new MedicalCondition(medicalCondition);
+    }
+
+    /**
+     * Parses a {@code int age} into an {@code Age}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code age} is invalid.
+     */
+    public static Age parseAge(String age) throws ParseException {
+        requireNonNull(age);
+        if (!Age.isValidAge(age)) {
+            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+        }
+        return new Age(age);
     }
 }

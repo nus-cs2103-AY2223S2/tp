@@ -1,4 +1,4 @@
----
+_---_
 layout: page
 title: User Guide
 ---
@@ -49,7 +49,7 @@ If you can type fast, MM can get your contact management tasks done faster than 
 
    * `list` : Lists all patients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to the Patient List.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/Jo0hn street, block 123, #01-01 ag/20 t/classmate m/cough` : Adds a patient named `John Doe` to the Patient List.
 
    * `delete 3` : Deletes the 3rd patient shown in the current list.
 
@@ -101,9 +101,10 @@ Format: `help`
 Adds a patient to the address book:
 * Enter the patient's name, phone number, email, and address.
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
-* To record a patient's age, gender, or medical condition, add them as additional tags to the patient's profile.
+* You can also add patient's age, medical condition and time for first meeting.
+* To record a patient's other information, add them as additional tags to the patient's profile.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE [t/TAG]…​ m/MEDICAL_CONDITION`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of tags (including 0)
@@ -111,10 +112,14 @@ A patient can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 t/criminal m/cough`
+
+The first example contains strictly required information to identify a patient.
+
+The second example contains more information relevant to that patient.
 
 ### Adding patient scheduled time : `addTime`
-_Details coming in v1.2 soon ..._
+_Details coming in v1.3 soon ..._
 
 ### Listing all patients : `list`
 
@@ -230,7 +235,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE [t/TAG]…​ m/MEDICAL_CONDITION` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
