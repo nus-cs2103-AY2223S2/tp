@@ -37,6 +37,15 @@ public class UniqueLabList implements Iterable<Lab> {
         return internalList.stream().anyMatch(toCheck::isSameLab);
     }
 
+    // todo: probably try remove get and size methods to preserve abstraction barrier
+    public Lab get(int index) {
+        return this.internalList.get(index);
+    }
+
+    public int size() {
+        return this.internalList.size();
+    }
+
     /**
      * Adds a lab to the list.
      * The lab must not already exist in the list.
