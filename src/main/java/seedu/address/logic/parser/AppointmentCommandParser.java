@@ -1,33 +1,33 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.AppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 
-import seedu.address.model.person.*;
 import seedu.address.model.appointment.Booking;
+import seedu.address.model.person.Nric;
 
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
 
 public class AppointmentCommandParser implements Parser<AppointmentCommand> {
     public AppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_BOOKING);
+                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_BOOKING);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_BOOKING)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_BOOKING)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Booking booking = ParserUtil.parseBooking(argMultimap.getValue(PREFIX_BOOKING).get());
 
-        Appointment appointment = new Appointment(name, booking);
+        Appointment appointment = new Appointment(nric, booking);
 
         return new AppointmentCommand(appointment);
     }

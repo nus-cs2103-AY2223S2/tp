@@ -9,7 +9,6 @@ import seedu.address.model.person.*;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class AppointmentCommand extends Command {
@@ -32,7 +31,7 @@ public class AppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasPersonByName(appointment.getName())) { // todo hasPerson by name not person
+        if (!model.hasPatientByNric(appointment.getPatientNric())) { // todo hasPerson by name not person
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
 
@@ -40,13 +39,18 @@ public class AppointmentCommand extends Command {
         if (model.hasAppointment(appointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
-        Name patientNameAppointment = appointment.getName();
-        List<Person> patients = model.getFilteredPersonList();
-        Person appointmentPatient = null;
-        for (Person patient : patients) {
-            Name otherPatientNameAppointment = patient.getName();
-            if (patientNameAppointment.equals(otherPatientNameAppointment)) {
-                appointmentPatient = patient;
+
+        Nric patientNricAppointment = appointment.getPatientNric();
+        List<Person> persons = model.getFilteredPersonList();
+
+        Patient appointmentPatient = null;
+        for (Person person : persons) {
+            if (person.isDoctor()) {
+                continue;
+            }
+            Nric otherPatientNricAppointment = person.getNric();
+            if (patientNricAppointment.equals(otherPatientNricAppointment)) {
+                appointmentPatient = (Patient) person;
             }
         }
         try {
@@ -55,23 +59,23 @@ public class AppointmentCommand extends Command {
         } catch (DuplicateAppointmentException e) {
         }
         // String s = appointmentPatient.patientAppointmentstoString();
-        Person editedPatient = new Person(appointmentPatient.getName(), appointmentPatient.getPhone(),
-                appointmentPatient.getEmail(), appointmentPatient.getAddress(), appointmentPatient.getTags(),
-                appointmentPatient.getPatientAppointments());
+        Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
+                appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
+                appointmentPatient.getTags(), appointmentPatient.getPatientAppointments());
 
         model.setPerson(appointmentPatient, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(fullSuccessMessage(appointment), appointment));
     }
 
-    public String getPatientName(Appointment appointment) {
-        Name patientName = appointment.getName();
-        String patientNameStr = patientName.toString();
+    public String getPatientNric(Appointment appointment) {
+        Nric patientNric = appointment.getPatientNric();
+        String patientNameStr = patientNric.toString();
         return patientNameStr;
     }
 
     public String fullSuccessMessage(Appointment appointment) {
-        String fullMessage = MESSAGE_SUCCESS + getPatientName(appointment);
+        String fullMessage = MESSAGE_SUCCESS + getPatientNric(appointment); // todo show the name instead of ic
         return fullMessage;
     }
 }

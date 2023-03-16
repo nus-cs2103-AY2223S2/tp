@@ -12,29 +12,30 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public abstract class Person {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
 
+    private final Nric nric;
+
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
-    private final ArrayList<Appointment> patientAppointments;
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Appointment> patientAppointments) {
-        requireAllNonNull(name, phone, email, address, tags, patientAppointments);
+    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, nric, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.nric = nric;
         this.address = address;
         this.tags.addAll(tags);
-        this.patientAppointments = patientAppointments;
     }
 
     public Name getName() {
@@ -49,6 +50,10 @@ public class Person {
         return email;
     }
 
+    public Nric getNric() {
+        return nric;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -61,7 +66,6 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public ArrayList<Appointment> getPatientAppointments() { return patientAppointments; }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -75,13 +79,13 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
-    public boolean isSamePersonByName(Name otherName) {
-        if (otherName == this.getName()) {
+    public boolean isSamePersonByNric(Nric otherNric) {
+        if (otherNric == this.getNric()) {
             return true;
         }
 
-        return otherName != null
-                && otherName.equals(this.getName());
+        return otherNric != null
+                && otherNric.equals(this.getNric());
     }
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -101,6 +105,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getNric().equals(getNric())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -119,6 +124,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Nric: ")
+                .append(getNric())
                 .append("; Address: ")
                 .append(getAddress());
 
@@ -130,17 +137,11 @@ public class Person {
         return builder.toString();
     }
 
-    public void addPatientAppointment(Appointment appointment) {
-        patientAppointments.add(appointment);
+    public boolean isDoctor() {
+        return false;
     }
 
-    public String patientAppointmentstoString() {
-        ArrayList<Appointment> patientAppointments = getPatientAppointments();
-        String string = "";
-        for (Appointment appointment : patientAppointments) {
-            String appointmentBooking = appointment.getBooking().toString();
-            string += appointmentBooking + "\n";
-        }
-        return string;
+    public boolean isPatient() {
+        return false;
     }
 }

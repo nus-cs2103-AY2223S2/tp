@@ -12,8 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.*;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -96,9 +95,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPersonByName(Name name) {
-        requireNonNull(name);
-        return addressBook.hasPersonByName(name);
+    public boolean hasPatientByNric(Nric nric) {
+        requireNonNull(nric);
+        return addressBook.hasPersonByNric(nric);
+    }
+
+    @Override
+    public boolean hasPatient(Patient patient) {
+        requireNonNull(patient);
+        return addressBook.hasPatient(patient);
+    }
+
+    @Override
+    public boolean hasDoctor(Doctor doctor) {
+        requireNonNull(doctor);
+        return addressBook.hasDoctor(doctor);
     }
 
     @Override
@@ -109,6 +120,18 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addPatient(Patient patient) {
+        addressBook.addPatient(patient);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addDoctor(Doctor doctor) {
+        addressBook.addDoctor(doctor);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
