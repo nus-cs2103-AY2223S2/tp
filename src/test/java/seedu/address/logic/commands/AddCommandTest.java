@@ -139,6 +139,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Customer> getFilteredCustomerList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Vehicle> getFilteredVehicleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,6 +156,11 @@ public class AddCommandTest {
         @Override
         public void updateFilteredCustomerList(Predicate<Customer> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+
         }
 
         @Override
@@ -191,6 +206,11 @@ public class AddCommandTest {
         @Override
         public boolean hasPart(Part part) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
+
         }
     }
 

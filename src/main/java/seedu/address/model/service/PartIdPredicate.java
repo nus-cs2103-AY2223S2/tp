@@ -1,8 +1,8 @@
 package seedu.address.model.service;
 
-import seedu.address.commons.core.index.Index;
-
 import java.util.function.Predicate;
+
+import seedu.address.commons.core.index.Index;
 
 /**
  * Tests that a {@code Part}'s id matches the id given.
@@ -11,7 +11,7 @@ public class PartIdPredicate implements Predicate<Part> {
     private final int id;
 
     public PartIdPredicate(Index id) {
-        this.id = id.getZeroBased();  //todo: assess if index is zero-based.
+        this.id = id.getZeroBased();
     }
 
     @Override

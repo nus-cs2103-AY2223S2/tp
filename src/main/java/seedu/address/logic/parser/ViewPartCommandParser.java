@@ -1,13 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ViewPartCommand;
-import seedu.address.logic.commands.ViewVehicleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.service.PartIdPredicate;
-import seedu.address.model.service.VehicleIdPredicate;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new FindCommand object

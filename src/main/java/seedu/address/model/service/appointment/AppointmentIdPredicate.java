@@ -1,9 +1,8 @@
 package seedu.address.model.service.appointment;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.service.Vehicle;
-
 import java.util.function.Predicate;
+
+import seedu.address.commons.core.index.Index;
 
 /**
  * Tests that a {@code Appointment}'s id matches the id given.
@@ -12,7 +11,7 @@ public class AppointmentIdPredicate implements Predicate<Appointment> {
     private final int id;
 
     public AppointmentIdPredicate(Index id) {
-        this.id = id.getZeroBased();  // starts from 1 but getOne adds 1.
+        this.id = id.getZeroBased();
     }
 
     @Override

@@ -1,5 +1,11 @@
 package seedu.address.model.service.appointment;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.person.Staff;
@@ -9,11 +15,6 @@ import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
 import seedu.address.model.service.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.service.appointment.exceptions.DuplicateAppointmentException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of technicians that enforces uniqueness between its elements and does not allow nulls.

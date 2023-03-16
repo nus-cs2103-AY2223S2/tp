@@ -1,7 +1,5 @@
 package seedu.address.model.service.appointment;
 
-import seedu.address.model.entity.person.Staff;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
