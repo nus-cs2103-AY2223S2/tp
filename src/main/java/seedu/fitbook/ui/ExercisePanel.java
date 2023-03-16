@@ -20,7 +20,7 @@ public class ExercisePanel extends UiPart<Region> {
     private ListView<Routine> exerciseView;
 
     /**
-     * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ExercisePanel} with the given {@code ObservableList}.
      */
     public ExercisePanel(ObservableList<Routine> routineList) {
         super(FXML);
@@ -29,7 +29,7 @@ public class ExercisePanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Client} using a {@code ClientCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Routine} using a {@code ExerciseCard}.
      */
     class RoutineListViewCell extends ListCell<Routine> {
         @Override

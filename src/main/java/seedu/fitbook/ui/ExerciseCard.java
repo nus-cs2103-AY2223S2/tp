@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.fitbook.model.routines.Routine;
 
 /**
- * An UI component that displays information of a {@code Routine}.
+ * A UI component that displays information of a {@code Routine}.
  */
 public class ExerciseCard extends UiPart<Region> {
     private static final String FXML = "ExerciseCard.fxml";

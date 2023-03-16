@@ -14,7 +14,7 @@ import seedu.fitbook.model.client.Appointment;
 import seedu.fitbook.model.client.Client;
 
 /**
- * An UI component that displays information of a {@code Appointment}.
+ * A UI component that displays information of a {@code Appointment}.
  */
 public class ScheduleCard extends UiPart<Region> {
 
@@ -43,13 +43,12 @@ public class ScheduleCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code ClientCode} with the given {@code Client} and index to display.
+     * Creates a {@code ScheduleCard} with the given {@code Client} and index to display.
      */
     public ScheduleCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
 
-        // Sort the appointments by datetime
         ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList(client.getAppointments());
         ObservableList<LocalDateTime> dateTimeList = FXCollections.observableArrayList();
         for (Appointment appointment : appointmentsList) {

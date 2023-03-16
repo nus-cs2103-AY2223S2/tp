@@ -55,7 +55,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label exercisePanelTitle;
 
-
     @FXML
     private HBox exerciseHolder;
     @FXML
@@ -239,7 +238,6 @@ public class MainWindow extends UiPart<Stage> {
 
         panelPlaceholder.setManaged(true);
     }
-
 
     public ClientListPanel getClientListPanel() {
         return clientListPanel;
