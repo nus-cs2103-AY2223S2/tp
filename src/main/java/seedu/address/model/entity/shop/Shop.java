@@ -130,6 +130,9 @@ public class Shop implements ReadOnlyShop {
         return this.appointments.asUnmodifiableObservableList();
     }
 
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
+    }
     // --------------------------------------------------
     //// part-level operations
     @Override

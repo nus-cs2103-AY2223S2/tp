@@ -7,42 +7,42 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Deletes a vehicle identified using it's displayed index from viewvehicle.
  */
-public class DeleteVehicleCommand extends RedoableCommand {
+public class DeleteAppointmentCommand extends RedoableCommand {
 
-    public static final String COMMAND_WORD = "deletevehicle";
+    public static final String COMMAND_WORD = "deleteappointment";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the vehicle identified by the id number displayed by the list command.\n"
+            + ": Deletes the appointment identified by the id number displayed by the list command.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_VEHICLE_SUCCESS = "Deleted Vehicle: %1$s";
+    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteVehicleCommand(Index targetIndex) {
+    public DeleteAppointmentCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        List<Vehicle> lastShownList = model.getFilteredVehicleList();
+        List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
-        Vehicle vehicleToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteVehicle(vehicleToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_VEHICLE_SUCCESS, vehicleToDelete));
+        Appointment appointmentToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteAppointment(appointmentToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteVehicleCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteVehicleCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteAppointmentCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteAppointmentCommand) other).targetIndex)); // state check
     }
 }

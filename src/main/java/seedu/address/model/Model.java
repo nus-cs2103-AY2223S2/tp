@@ -102,6 +102,8 @@ public interface Model {
 
     ObservableList<Vehicle> getFilteredVehicleList();
 
+    ObservableList<Appointment> getFilteredAppointmentList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
@@ -129,6 +131,10 @@ public interface Model {
      */
     boolean hasCustomer(int customerId);
 
+    void deleteCustomer(Customer target);
+
+    void setCustomer(Customer target, Customer editedPerson);
+
     /**
      * Adds vehicle to the shop
      *
@@ -143,6 +149,8 @@ public interface Model {
      */
     boolean hasVehicle(int vehicleId);
 
+    void deleteVehicle(Vehicle target);
+
     /**
      * Adds service
      *
@@ -155,6 +163,8 @@ public interface Model {
      * @return Whether service already in the system
      */
     boolean hasService(int serviceId);
+
+    void deleteAppointment(Appointment target);
 
     /**
      * Adds appointment

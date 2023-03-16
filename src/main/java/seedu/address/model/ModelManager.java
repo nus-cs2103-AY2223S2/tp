@@ -162,16 +162,16 @@ public class ModelManager implements Model {
         //        }
     }
 
-    //    @Override
-    //    public void deleteCustomer(Customer target) {
-    //        addressBook.removeCustomer(target);
-    //    }
-    //
-    //    @Override
-    //    public void setCustomer(Customer target, Customer editedPerson) {
-    //        requireAllNonNull(target, editedPerson);
-    //        addressBook.setCustomer(target, editedPerson);
-    //    }
+        @Override
+        public void deleteCustomer(Customer target) {
+            this.shop.removeCustomer(target);
+        }
+
+        @Override
+        public void setCustomer(Customer target, Customer editedPerson) {
+            requireAllNonNull(target, editedPerson);
+            this.shop.setCustomer(target, editedPerson);
+        }
 
     // ==== For Vehicles ==
     /**
@@ -194,6 +194,12 @@ public class ModelManager implements Model {
         return this.shop.hasVehicle(vehicleId);
     }
 
+    @Override
+    public void deleteVehicle(Vehicle target) {
+        this.shop.removeVehicle(target);
+    }
+
+
     // -------------
     /**
      * Adds service
@@ -214,6 +220,11 @@ public class ModelManager implements Model {
         return this.shop.hasService(serviceId);
     }
 
+    @Override
+    public void deleteAppointment(Appointment target) {
+        this.shop.removeAppointment(target);
+    }
+
     // -------------
 
     /**
@@ -225,6 +236,7 @@ public class ModelManager implements Model {
     public void addAppointment(Appointment appointment) {
         this.shop.addAppointment(appointment);
     }
+
 
     // -------------
     /**
@@ -267,6 +279,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Vehicle> getFilteredVehicleList() {
         return filteredVehicles;
+    }
+
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointment;
     }
 
     @Override
