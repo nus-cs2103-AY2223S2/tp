@@ -1,4 +1,18 @@
 package seedu.address.testutil;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAY_RATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAY_RATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_END_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_END_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_START_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_START_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,9 +20,10 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Session;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+
+
+
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -51,9 +66,13 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withPayRate(VALID_PAY_RATE_AMY).withAddress(VALID_ADDRESS_AMY).withSession(VALID_SESSION_START_AMY, VALID_SESSION_END_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withPayRate(VALID_PAY_RATE_AMY)
+            .withAddress(VALID_ADDRESS_AMY).withSession(VALID_SESSION_START_AMY,
+                    VALID_SESSION_END_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withPayRate(VALID_PAY_RATE_BOB).withAddress(VALID_ADDRESS_BOB).withSession(VALID_SESSION_START_BOB, VALID_SESSION_END_BOB).withTags(VALID_TAG_HUSBAND,
+            .withPayRate(VALID_PAY_RATE_BOB)
+            .withAddress(VALID_ADDRESS_BOB).withSession(VALID_SESSION_START_BOB,
+                    VALID_SESSION_END_BOB).withTags(VALID_TAG_HUSBAND,
                 VALID_TAG_FRIEND)
             .build();
 

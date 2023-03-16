@@ -1,7 +1,33 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PAY_RATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_SESSION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PAY_RATE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PAY_RATE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.SESSION_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.SESSION_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAY_RATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -10,7 +36,12 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -43,7 +74,8 @@ public class AddCommandParserTest {
 
         // multiple sessions - last session accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB
-                + PAY_RATE_DESC_BOB + SESSION_DESC_AMY + SESSION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + PAY_RATE_DESC_BOB + SESSION_DESC_AMY + SESSION_DESC_BOB
+                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
@@ -56,7 +88,8 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY + PAY_RATE_DESC_AMY + SESSION_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY
+                        + PHONE_DESC_AMY + ADDRESS_DESC_AMY + PAY_RATE_DESC_AMY + SESSION_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -81,11 +114,13 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // missing session prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + PAY_RATE_DESC_BOB + VALID_SESSION_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB
+                        + ADDRESS_DESC_BOB + PAY_RATE_DESC_BOB + VALID_SESSION_BOB,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_ADDRESS_BOB + VALID_PAY_RATE_BOB + VALID_SESSION_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB
+                        + VALID_PHONE_BOB + VALID_ADDRESS_BOB + VALID_PAY_RATE_BOB + VALID_SESSION_BOB,
                 expectedMessage);
     }
 
@@ -116,7 +151,8 @@ public class AddCommandParserTest {
                 + INVALID_SESSION_DESC + VALID_TAG_FRIEND, Session.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + INVALID_ADDRESS_DESC + PAY_RATE_DESC_BOB + SESSION_DESC_BOB,
+        assertParseFailure(parser, INVALID_NAME_DESC
+                        + PHONE_DESC_BOB + INVALID_ADDRESS_DESC + PAY_RATE_DESC_BOB + SESSION_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
