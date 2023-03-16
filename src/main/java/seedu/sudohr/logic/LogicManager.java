@@ -14,6 +14,7 @@ import seedu.sudohr.logic.parser.SudoHrParser;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.storage.Storage;
 
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Employee> getFilteredEmployeeList() {
         return model.getFilteredEmployeeList();
+    }
+
+    @Override
+    public ObservableList<Department> getFilteredDepartmentList() {
+        return model.getFilteredDepartmentList();
     }
 
     @Override

@@ -8,6 +8,7 @@ import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.ReadOnlySudoHr;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
 
 /**
@@ -32,6 +33,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of employees. */
     ObservableList<Employee> getFilteredEmployeeList();
+
+    /** Returns an unmodifiable view of the filtered list of departments */
+    ObservableList<Department> getFilteredDepartmentList();
 
     /**
      * Returns the user prefs' SudoHR file path.
