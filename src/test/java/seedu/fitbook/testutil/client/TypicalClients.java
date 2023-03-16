@@ -35,19 +35,19 @@ public class TypicalClients {
 
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withAppointments("13-02-1999").withWeight("50.0").withGender("M")
+            .withPhone("94351253").withAppointments("13-02-1999 18:30").withWeight("50.0").withGender("M")
             .withGoal("lose-weight").withTags("friends").withCalorie("2310").build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withWeight("50.0").withGender("M")
-            .withGoal("lose-weight").withTags("owesMoney", "friends").withAppointments("13-02-2020", "14-01-2021")
-            .withCalorie("2424").build();
+            .withGoal("lose-weight").withTags("owesMoney", "friends")
+            .withAppointments("13-02-2020 18:30", "14-01-2021 18:30").withCalorie("2424").build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withWeight("50.0").withGender("M").withGoal("lose-weight").withCalorie("2111").build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
-            .withWeight("50.0").withGender("M").withAppointments("12-12-2020")
+            .withWeight("50.0").withGender("M").withAppointments("12-12-2020 18:30")
             .withGoal("lose-weight").withTags("friends").withCalorie("2103").build();
 
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer").withPhone("9482224")

@@ -29,8 +29,8 @@ public class AppointmentTest {
 
     @Test
     public void test_equalsSymmetric() {
-        Appointment appointmentA = new Appointment("13-12-2200");
-        Appointment appointmentB = new Appointment("13-12-2200");
+        Appointment appointmentA = new Appointment("13-12-2200 18:00");
+        Appointment appointmentB = new Appointment("13-12-2200 18:00");
         assertTrue(appointmentA.equals(appointmentB) && appointmentB.equals(appointmentA));
         assertTrue(appointmentA.hashCode() == appointmentB.hashCode());
     }

@@ -76,6 +76,11 @@ public class Client {
         return goal;
     }
 
+    public boolean isAppointmentEmpty() {
+        return appointments.isEmpty();
+    }
+
+
     /**
      * Returns an immutable appointment set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

@@ -2,6 +2,7 @@ package seedu.fitbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.fitbook.commons.core.Messages;
@@ -26,16 +27,17 @@ public class FindCommand extends Command {
             + "Available Prefixes: n, p, e, a, t, w, g, cal, app, gl\n"
             + "Example: " + COMMAND_WORD + " n/alex or " + COMMAND_WORD + " p/91234567";
 
-    private final Predicate<Client> predicate;
+    private List<Predicate<Client>> predicateList;
 
-    public FindCommand(Predicate<Client> predicate) {
-        this.predicate = predicate;
+    public FindCommand(List<Predicate<Client>> predicateList) {
+        this.predicateList = predicateList;
     }
 
     @Override
     public CommandResult execute(FitBookModel model) {
         requireNonNull(model);
-        model.updateFilteredClientList(predicate);
+        Predicate<Client> combinedPredicates = predicateList.stream().reduce(x -> false, Predicate::or);
+        model.updateFilteredClientList(combinedPredicates);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredClientList().size()));
     }
@@ -44,6 +46,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && predicateList.equals(((FindCommand) other).predicateList)); // state check
     }
 }

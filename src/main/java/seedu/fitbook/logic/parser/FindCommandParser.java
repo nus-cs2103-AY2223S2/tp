@@ -2,13 +2,27 @@ package seedu.fitbook.logic.parser;
 
 import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_PREFIX;
-import static seedu.fitbook.commons.core.Messages.MESSAGE_NO_ARGS;
+import static seedu.fitbook.commons.core.Messages.MESSAGE_NO_KEYWORD;
 import static seedu.fitbook.commons.core.Messages.MESSAGE_NO_PREFIX;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_CALORIE;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GOAL;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import seedu.fitbook.logic.commands.FindCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
+import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.predicate.AddressContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.AppointmentContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.CalorieContainsKeywordsPredicate;
@@ -31,64 +45,96 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
 
-        checkParseStringFormat(trimmedArgs);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE, PREFIX_TAG,
+                        PREFIX_GOAL);
 
-        String prefix = trimmedArgs.substring(0, trimmedArgs.indexOf('/'));
-        String[] allKeywords = {trimmedArgs.substring(trimmedArgs.indexOf('/') + 1)};
-        if (prefix.length() == 1) {
-            char prefixChar = prefix.charAt(0);
-            switch (prefixChar) {
-            case NameContainsKeywordsPredicate.PREFIX_PREDICATE:
-                return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-            case PhoneContainsKeywordsPredicate.PREFIX_PREDICATE:
-                return new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-            case EmailContainsKeywordsPredicate.PREFIX_PREDICATE:
-                return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-            case AddressContainsKeywordsPredicate.PREFIX_PREDICATE:
-                return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-            case TagContainsKeywordsPredicate.PREFIX_PREDICATE:
-                return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-            case WeightContainsKeywordsPredicate.PREFIX_PREDICATE:
-                return new FindCommand(new WeightContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-            case GenderContainsKeywordsPredicate.PREFIX_PREDICATE:
-                return new FindCommand(new GenderContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-            default:
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_PREFIX, FindCommand.PREFIX_USAGE));
-            }
-        } else if (prefix.length() > 1) {
-            if (prefix.equals(CalorieContainsKeywordsPredicate.PREFIX_PREDICATE)) {
-                return new FindCommand(new CalorieContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-            } else if (prefix.equals(AppointmentContainsKeywordsPredicate.PREFIX_PREDICATE)) {
-                return new FindCommand(new AppointmentContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-            } else if (prefix.equals(GoalContainsKeywordsPredicate.PREFIX_PREDICATE)) {
-                return new FindCommand(new GoalContainsKeywordsPredicate(Arrays.asList(allKeywords)));
-            }
+        checkParseStringFormat(argMultimap, args);
+
+        List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+        List<String> phoneKeywords = argMultimap.getAllValues(PREFIX_PHONE);
+        List<String> emailKeywords = argMultimap.getAllValues(PREFIX_EMAIL);
+        List<String> addressKeywords = argMultimap.getAllValues(PREFIX_ADDRESS);
+        List<String> tagKeywords = argMultimap.getAllValues(PREFIX_TAG);
+        List<String> weightKeywords = argMultimap.getAllValues(PREFIX_WEIGHT);
+        List<String> genderKeywords = argMultimap.getAllValues(PREFIX_GENDER);
+        List<String> calorieKeywords = argMultimap.getAllValues(PREFIX_CALORIE);
+        List<String> goalKeywords = argMultimap.getAllValues(PREFIX_GOAL);
+        List<String> appointmentKeywords = argMultimap.getAllValues(PREFIX_APPOINTMENT);
+
+        List<Predicate<Client>> predicates = new ArrayList<>();
+        if (!nameKeywords.isEmpty()) {
+            predicates.add(new NameContainsKeywordsPredicate(nameKeywords));
         }
-        throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        if (!phoneKeywords.isEmpty()) {
+            predicates.add(new PhoneContainsKeywordsPredicate(phoneKeywords));
+        }
+        if (!emailKeywords.isEmpty()) {
+            predicates.add(new EmailContainsKeywordsPredicate(emailKeywords));
+        }
+        if (!addressKeywords.isEmpty()) {
+            predicates.add(new AddressContainsKeywordsPredicate(addressKeywords));
+        }
+        if (!tagKeywords.isEmpty()) {
+            predicates.add(new TagContainsKeywordsPredicate(tagKeywords));
+        }
+        if (!weightKeywords.isEmpty()) {
+            predicates.add(new WeightContainsKeywordsPredicate(weightKeywords));
+        }
+        if (!genderKeywords.isEmpty()) {
+            predicates.add(new GenderContainsKeywordsPredicate(genderKeywords));
+        }
+        if (!calorieKeywords.isEmpty()) {
+            predicates.add(new CalorieContainsKeywordsPredicate(calorieKeywords));
+        }
+        if (!goalKeywords.isEmpty()) {
+            predicates.add(new GoalContainsKeywordsPredicate(goalKeywords));
+        }
+        if (!appointmentKeywords.isEmpty()) {
+            predicates.add(new AppointmentContainsKeywordsPredicate(appointmentKeywords));
+        }
+        return new FindCommand(predicates);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean areAvailablePrefixes(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
      * Checks the format of the given {@code String} of arguments in the context of the FindCommand.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public void checkParseStringFormat(String trimmedString) throws ParseException {
-        if (trimmedString.isEmpty()) {
+    public void checkParseStringFormat(ArgumentMultimap argMultimap, String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        if (args.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_NO_ARGS, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        if (!trimmedString.contains("/")) {
+        if (trimmedArgs.substring(trimmedArgs.indexOf('/') + 1).isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_NO_PREFIX, FindCommand.PREFIX_USAGE));
+                    String.format(MESSAGE_NO_KEYWORD, FindCommand.MESSAGE_USAGE));
         }
 
-        if (trimmedString.substring(trimmedString.indexOf('/') + 1).isEmpty()) {
+        if (!trimmedArgs.contains("/")) {
             throw new ParseException(
-                    String.format(MESSAGE_NO_ARGS, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_NO_PREFIX, FindCommand.MESSAGE_USAGE));
+        }
+
+        if (!areAvailablePrefixes(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_WEIGHT,
+                PREFIX_GENDER, PREFIX_EMAIL, PREFIX_TAG, PREFIX_APPOINTMENT, PREFIX_CALORIE, PREFIX_CALORIE,
+                PREFIX_GOAL)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, FindCommand.PREFIX_USAGE));
+        }
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 }

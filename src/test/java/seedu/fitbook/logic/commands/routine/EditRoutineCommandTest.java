@@ -23,7 +23,6 @@ import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.ClearCommand;
 import seedu.fitbook.logic.commands.CommandTestUtil;
-import seedu.fitbook.logic.commands.EditCommand;
 import seedu.fitbook.logic.commands.EditRoutineCommand;
 import seedu.fitbook.logic.commands.EditRoutineCommand.EditRoutineDescriptor;
 import seedu.fitbook.model.FitBook;
@@ -31,10 +30,7 @@ import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
-import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Routine;
-import seedu.fitbook.testutil.client.ClientBuilder;
-import seedu.fitbook.testutil.client.EditClientDescriptorBuilder;
 import seedu.fitbook.testutil.routine.EditRoutineDescriptorBuilder;
 import seedu.fitbook.testutil.routine.RoutineBuilder;
 
@@ -56,7 +52,8 @@ public class EditRoutineCommandTest {
         FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()),
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
         expectedFitBookModel.setRoutine(expectedFitBookModel.getFilteredRoutineList().get(0), editedRoutine);
-        assertEquals(model.getFilteredRoutineList().get(0).getRoutineName(), expectedFitBookModel.getFilteredRoutineList().get(0).getRoutineName());
+        assertEquals(model.getFilteredRoutineList().get(0).getRoutineName(),
+                expectedFitBookModel.getFilteredRoutineList().get(0).getRoutineName());
     }
 
     @Test

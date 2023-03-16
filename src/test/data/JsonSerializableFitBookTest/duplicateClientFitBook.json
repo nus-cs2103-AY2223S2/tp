@@ -9,7 +9,7 @@
     "weight": "23",
     "gender": "m",
     "goal": "lose weight",
-    "appointments": [ "12-12-2020" ],
+    "appointments": [ "12-12-2020 18:30" ],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -20,6 +20,7 @@
     "weight": "23",
     "gender": "m",
     "goal": "lose weight",
-    "appointments": [ "11-12-2020" ]
+    "appointments": [ "11-12-2020 18:30" ]
+
   } ]
 }

@@ -46,10 +46,11 @@ public class AppointmentContainsKeywordsPredicateTest {
         // One keyword
         AppointmentContainsKeywordsPredicate predicate = new AppointmentContainsKeywordsPredicate(
                 Collections.singletonList("12-12-2020"));
-        assertTrue(predicate.test(new ClientBuilder().withAppointments("12-12-2020").build()));
+        assertTrue(predicate.test(new ClientBuilder().withAppointments("12-12-2020 18:30").build()));
 
-        predicate = new AppointmentContainsKeywordsPredicate(Arrays.asList("12-12-2020", "11-12-2020"));
-        assertTrue(predicate.test(new ClientBuilder().withAppointments("12-12-2020", "11-12-2020").build()));
+        predicate = new AppointmentContainsKeywordsPredicate(Arrays.asList("12-12-2020 18:30", "11-12-2020 18:30"));
+        assertTrue(predicate.test(
+                new ClientBuilder().withAppointments("12-12-2020 18:30", "11-12-2020 18:30").build()));
     }
 
     @Test
@@ -57,10 +58,11 @@ public class AppointmentContainsKeywordsPredicateTest {
         // Zero keywords
         AppointmentContainsKeywordsPredicate predicate = new AppointmentContainsKeywordsPredicate(
                 Collections.emptyList());
-        assertFalse(predicate.test(new ClientBuilder().withAppointments("12-12-2020").build()));
+        assertFalse(predicate.test(new ClientBuilder().withAppointments("12-12-2020 18:30").build()));
 
         // Non-matching keyword
-        predicate = new AppointmentContainsKeywordsPredicate(Collections.singletonList("12-12-2020"));
-        assertFalse(predicate.test(new ClientBuilder().withAppointments("10-12-2020", "11-12-2020").build()));
+        predicate = new AppointmentContainsKeywordsPredicate(Collections.singletonList("12-12-2020 18:30"));
+        assertFalse(predicate.test(
+                new ClientBuilder().withAppointments("10-12-2020 18:30", "11-12-2020 18:30").build()));
     }
 }
