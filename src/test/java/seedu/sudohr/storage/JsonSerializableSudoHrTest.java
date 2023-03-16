@@ -11,12 +11,17 @@ import org.junit.jupiter.api.Test;
 import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.commons.util.JsonUtil;
 import seedu.sudohr.model.SudoHr;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
+import seedu.sudohr.model.employee.exceptions.DuplicatePhoneNumberException;
+import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.sudohr.testutil.TypicalDepartments;
 import seedu.sudohr.testutil.TypicalEmployees;
 
 public class JsonSerializableSudoHrTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableSudoHrTest");
+    private static final Path TEST_DATA_FOLDER = Paths
+            .get("src", "test", "data", "JsonSerializableSudoHrTest");
     private static final Path TYPICAL_EMPLOYEES_FILE = TEST_DATA_FOLDER.resolve("typicalEmployeesSudoHr.json");
     private static final Path INVALID_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("invalidEmployeeSudoHr.json");
     private static final Path DUPLICATE_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("duplicateEmployeeSudoHr.json");
@@ -28,6 +33,15 @@ public class JsonSerializableSudoHrTest {
     private static final Path TYPICAL_DEPARTMENTS_FILE = TEST_DATA_FOLDER.resolve("typicalDepartmentsSudoHr.json");
     private static final Path INVALID_DEPARTMENT_FILE = TEST_DATA_FOLDER.resolve("invalidDepartmentSudoHr.json");
     private static final Path DUPLICATE_DEPARTMENT_FILE = TEST_DATA_FOLDER.resolve("duplicateDepartmentSudoHr.json");
+    private static final Path DUPLICATE_EMPLOYEE_IN_DEPARTMENT_FILE = TEST_DATA_FOLDER.resolve("duplicateEmployeeInDepartmentSudoHr.json");
+    private static final Path CLASHING_EMPLOYEE_ID_IN_DEPARTMENT_FILE = TEST_DATA_FOLDER
+            .resolve("clashingEmployeeIdInDepartmentSudoHr.json");
+    private static final Path CLASHING_EMPLOYEE_PHONE_IN_DEPARTMENT_FILE = TEST_DATA_FOLDER
+            .resolve("clashingEmployeePhoneInDepartmentSudoHr.json");
+    private static final Path CLASHING_EMPLOYEE_EMAIL_IN_DEPARTMENT_FILE = TEST_DATA_FOLDER
+            .resolve("clashingEmployeeEmailInDepartmentSudoHr.json");
+    private static final Path NON_EXISTENT_EMPLOYEE_IN_DEPARTMENT_FILE = TEST_DATA_FOLDER
+            .resolve("nonExistentEmployeeInDepartmentSudoHr.json");
 
     //// employee-level tests
 
@@ -113,4 +127,38 @@ public class JsonSerializableSudoHrTest {
                 dataFromFile::toModelType);
     }
 
+    @Test
+    public void toModelType_nonExistentEmployeeInDepartment_throwsEmployeeNotFoundException() throws Exception {
+        JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(NON_EXISTENT_EMPLOYEE_IN_DEPARTMENT_FILE,
+                JsonSerializableSudoHr.class).get();
+        assertThrows(EmployeeNotFoundException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateEmployeeInDepartment_throwsDuplicateEmployeeException() throws Exception {
+        JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EMPLOYEE_IN_DEPARTMENT_FILE,
+                JsonSerializableSudoHr.class).get();
+        assertThrows(DuplicateEmployeeException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_clashingEmployeeIdInDepartment_throwsDuplicateEmployeeException() throws Exception {
+        JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(CLASHING_EMPLOYEE_ID_IN_DEPARTMENT_FILE,
+                JsonSerializableSudoHr.class).get();
+        assertThrows(DuplicateEmployeeException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_clashingEmployeePhoneInDepartment_throwsDuplicatePhoneNumberException() throws Exception {
+        JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(CLASHING_EMPLOYEE_PHONE_IN_DEPARTMENT_FILE,
+                JsonSerializableSudoHr.class).get();
+        assertThrows(DuplicatePhoneNumberException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_clashingEmployeeEmailInDepartment_throwsDuplicateEmailException() throws Exception {
+        JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(CLASHING_EMPLOYEE_EMAIL_IN_DEPARTMENT_FILE,
+                JsonSerializableSudoHr.class).get();
+        assertThrows(DuplicateEmailException.class, dataFromFile::toModelType);
+    }
 }
