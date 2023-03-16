@@ -8,7 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.module.ReadOnlyModule;
-import seedu.address.model.person.Person;
 
 /**
  * A UI component that displapys information of a {@code Module}.
