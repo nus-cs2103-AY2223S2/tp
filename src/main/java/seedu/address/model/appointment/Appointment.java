@@ -46,6 +46,9 @@ public class Appointment {
         return patient;
     }
 
+    public AppointmentId getId() {
+        return id;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

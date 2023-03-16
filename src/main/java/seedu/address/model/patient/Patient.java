@@ -28,13 +28,14 @@ public class Patient {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final PatientId ID = null;
+    private final PatientId id;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Patient(PatientId id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(id, name, phone, email, address, tags);
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,6 +57,10 @@ public class Patient {
 
     public Address getAddress() {
         return address;
+    }
+
+    public PatientId getId() {
+        return id;
     }
 
     /**
