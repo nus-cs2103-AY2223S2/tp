@@ -3,16 +3,16 @@ import java.util.function.Predicate;
 
 
 /**
- * Tests whether position and company of two internships are the same
+ * Predicate filters to give you a List with one required internship.
  */
 public class InternshipByPositionCompanyPredicate implements Predicate<Internship> {
     private final Position pos;
     private final Company cmp;
 
     /**
-     * Constructor for the class
-     * @param pos
-     * @param cmp
+     * Intialises Predicate with position and company.
+     * @param pos position of the internship
+     * @param cmp company of the internship
      */
     public InternshipByPositionCompanyPredicate(Position pos, Company cmp) {
         this.pos = pos;

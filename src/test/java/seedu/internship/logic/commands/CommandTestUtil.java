@@ -4,22 +4,19 @@ package seedu.internship.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.internship.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.internship.commons.core.index.Index;
-import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.model.Model;
-
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.InternshipByPositionCompanyPredicate;
 
@@ -81,9 +78,9 @@ public class CommandTestUtil {
     public static final String TAG_DESC_SD1 = " " + PREFIX_TAG + VALID_TAG_IMPORTANT;
 
 
-    public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION + "Engineer&"; // '&' not allowed in position
+    public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION + "Engineer&";
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + ""; // company cannot be empty
-    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "5"; // status can only contain 0, 1, 2 and 3
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "5";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "imp and fun"; // spaces not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -139,7 +136,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredInternshipList().size());
 
         Internship internship = model.getFilteredInternshipList().get(targetIndex.getZeroBased());
-        model.updateFilteredInternshipList(new InternshipByPositionCompanyPredicate(internship.getPosition(), internship.getCompany()));
+        model.updateFilteredInternshipList(new InternshipByPositionCompanyPredicate(internship.getPosition(),
+                internship.getCompany()));
 
         assertEquals(1, model.getFilteredInternshipList().size());
     }

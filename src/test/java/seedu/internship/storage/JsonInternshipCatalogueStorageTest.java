@@ -3,9 +3,8 @@ package seedu.internship.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.internship.testutil.Assert.assertThrows;
-import static seedu.internship.testutil.TypicalInternships.ML1;
-import static seedu.internship.testutil.TypicalInternships.SE1;
 import static seedu.internship.testutil.TypicalInternships.DA1;
+import static seedu.internship.testutil.TypicalInternships.ML1;
 import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
 
 import java.io.IOException;
@@ -20,7 +19,8 @@ import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
 
 public class JsonInternshipCatalogueStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonInternshipCatalogueStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonInternshipCatalogueStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -31,7 +31,8 @@ public class JsonInternshipCatalogueStorageTest {
     }
 
     private java.util.Optional<ReadOnlyInternshipCatalogue> readInternshipCatalogue(String filePath) throws Exception {
-        return new JsonInternshipCatalogueStorage(Paths.get(filePath)).readInternshipCatalogue(addToTestDataPathIfNotNull(filePath));
+        return new JsonInternshipCatalogueStorage(Paths.get(filePath)).readInternshipCatalogue(
+                addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -47,17 +48,20 @@ public class JsonInternshipCatalogueStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readInternshipCatalogue("notJsonFormatInternshipCatalogue.json"));
+        assertThrows(DataConversionException.class, () -> readInternshipCatalogue(
+                "notJsonFormatInternshipCatalogue.json"));
     }
 
     @Test
     public void readInternshipCatalogue_invalidInternshipInternshipCatalogue_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readInternshipCatalogue("invalidInternshipInternshipCatalogue.json"));
+        assertThrows(DataConversionException.class, () -> readInternshipCatalogue(
+                "invalidInternshipInternshipCatalogue.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidInternshipInternshipCatalogue_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readInternshipCatalogue("invalidAndValidInternshipInternshipCatalogue.json"));
+        assertThrows(DataConversionException.class, () -> readInternshipCatalogue(
+                "invalidAndValidInternshipInternshipCatalogue.json"));
     }
 
     @Test
@@ -88,7 +92,8 @@ public class JsonInternshipCatalogueStorageTest {
 
     @Test
     public void saveInternshipCatalogue_nullInternshipCatalogue_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveInternshipCatalogue(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveInternshipCatalogue(
+                null, "SomeFile.json"));
     }
 
     /**
@@ -105,7 +110,8 @@ public class JsonInternshipCatalogueStorageTest {
 
     @Test
     public void saveInternshipCatalogue_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveInternshipCatalogue(new InternshipCatalogue(), null));
+        assertThrows(NullPointerException.class, () -> saveInternshipCatalogue(
+                new InternshipCatalogue(), null));
     }
 }
 
