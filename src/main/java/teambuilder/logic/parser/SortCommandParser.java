@@ -1,12 +1,9 @@
 package teambuilder.logic.parser;
 
+import static teambuilder.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import teambuilder.logic.commands.SortCommand;
 import teambuilder.logic.parser.exceptions.ParseException;
-import teambuilder.model.person.NameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-
-import static teambuilder.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new SortCommand object

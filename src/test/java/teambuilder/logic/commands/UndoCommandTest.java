@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -155,15 +156,20 @@ public class UndoCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getSortedPersonList() {
 
-            throw new UnsupportedOperationException("Unimplemented method 'getFilteredPersonList'");
+            throw new UnsupportedOperationException("Unimplemented method 'getSortedPersonList'");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
 
             throw new UnsupportedOperationException("Unimplemented method 'updateFilteredPersonList'");
+        }
+
+        @Override
+        public void updateSort(Comparator<Person> comparator) {
+            throw new UnsupportedOperationException("Unimplemented method 'updateSort'");
         }
 
     }

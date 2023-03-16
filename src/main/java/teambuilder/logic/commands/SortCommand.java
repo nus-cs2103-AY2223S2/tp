@@ -1,16 +1,18 @@
 package teambuilder.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Comparator;
+
 import teambuilder.commons.core.Messages;
+import teambuilder.logic.commands.enums.SortBy;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.person.Person;
 
-import teambuilder.logic.commands.enums.SortBy;
-
-import java.util.Comparator;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Sorts all persons in the address book.
+ */
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
@@ -24,6 +26,9 @@ public class SortCommand extends Command {
     private final String sortByString;
     private SortBy sortBy;
 
+    /**
+     * Constructor for SortCommand
+     */
     public SortCommand(String order, String sortByString) {
         requireNonNull(order);
         requireNonNull(sortByString);
