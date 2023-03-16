@@ -263,6 +263,24 @@ Example:
 
 * `vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --s 56 --a NONE::allergy1, allergy2, allergy3 --h NONE::DOES 1`
 
+#### `edit` - Edit a vaccination type
+
+```text
+vaccination edit <groupName> [{--name <groupName>}] [{groups <list <groupName>>}] [--lal {minAge <age>}] [--ual {maxAge <age>}] [--s {spacing <integer>}] [--a {allergyReq {requirement}}]... [--h {historyReq <requirement>}]...
+```
+
+* **name** - the name of the vaccination type to edit.
+* **groups** - the list of groups the vaccination type classifies under.
+* **minAge** - the minimum required age (inclusive) to take the vaccine.
+* **maxAge** - the maximum require age (inclusive) to take the vaccine.
+* **spacing** - the minimum time in days from the last vaccination taken to take this vaccine.
+* **allergyReq** - the allergy requirement to take the vaccine.
+* **historyReq** - the vaccination group history requirement to take the vaccine.
+
+Example:
+
+* `vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) --groups DOSE 2, PFIZER, VACCINATION --lal 5 --s 56 --a NONE::allergy1, allergy2, allergy4 --h NONE::DOES 1`
+
 ## Advance
 
 VMS data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
