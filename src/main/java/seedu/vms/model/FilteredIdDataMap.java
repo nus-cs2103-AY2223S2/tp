@@ -23,7 +23,7 @@ public class FilteredIdDataMap<T> {
 
 
     /**
-     * Constructs a {@code FilteredIdDataMap} that is binded to the given map.
+     * Constructs a {@code FilteredIdDataMap} that is bound to the given map.
      *
      * @param source - the map to bind to.
      */
