@@ -12,6 +12,10 @@ public class Remark {
 
     public final String value;
 
+    /**
+     * Parameterized constructor to create a new Remark.
+     * @param remark The remark to wrap.
+     */
     public Remark(String remark) {
         requireNonNull(remark);
         value = remark;
