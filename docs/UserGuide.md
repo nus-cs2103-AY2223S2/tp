@@ -15,7 +15,8 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
             * Get notified as soon as you open the app
          * Timetable:
             * Linked with list of jobs
-            * Display timetable of all scheduled/upcoming jobs
+            * Sort job list by date and slot
+            * Display timetable of all scheduled/upcoming jobs in the week
          * Stats dashboard:
             * List all jobs
             * Show total number of jobs
@@ -175,7 +176,7 @@ Format: `add_reminder d/DESCRIPTION time/YYYY-MM-DD HH:mm`
 Examples:
 * `add_reminder` followed by `d/Submit homework time/2023-12-12 12:00` adds a reminder that will remind the user to submit their homework. The reminder will occur at 12pm, 12 December 2023.
 
-### Delete a reminder : `delete_reminder`
+### Deleting a reminder : `delete_reminder`
 
 Deletes a reminder into the address book.
 
@@ -187,6 +188,24 @@ Format: `delete_reminder INDEX`
 
 Examples:
 * `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
+
+### Showing timetable : `timetable`
+
+Shows timetable of jobs, with the week shown being current week.
+
+Format: `timetable`
+
+### Showing timetable of specific date: `timetable_date`
+
+Shows timetable of specific week containing a specific date
+
+Format: `timetable_date date/YYYY-mm-DD`
+
+* Shows timetable of the week containing the given date
+
+Examples:
+* `timetable` followed by `2023-03-16` shows timetable of jobs in week from 13th - 19th March 2023.
+
 
 ### Clearing all entries : `clear`
 

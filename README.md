@@ -13,8 +13,8 @@ Features
 * Reminder and notifications:
     - Set remainder for upcoming deadlines
     - Get notified as soon as you open the app
-* Job scheduling :
-    - Schedule jobs for each day
+* Timetable:
+    - Displays timetable for the week specified by users
 * Stats dashboard:
     - List all jobs
     - Show total number of jobs

@@ -15,6 +15,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListReminderCommand;
 import seedu.address.logic.commands.StatisticsCommand;
 import seedu.address.logic.commands.TimetableCommand;
+import seedu.address.logic.commands.TimetableDateCommand;
 import seedu.address.logic.commands.jobs.AddDeliveryJobCommand;
 import seedu.address.logic.commands.jobs.DeleteDeliveryJobCommand;
 import seedu.address.logic.commands.person.AddCommand;
@@ -29,6 +30,7 @@ import seedu.address.logic.parser.person.AddCommandParser;
 import seedu.address.logic.parser.person.DeleteCommandParser;
 import seedu.address.logic.parser.person.EditCommandParser;
 import seedu.address.logic.parser.person.FindCommandParser;
+import seedu.address.logic.parser.timetable.TimetableDateCommandParser;
 
 /**
  * Parses user input.
@@ -92,6 +94,9 @@ public class DukeDriverParser {
 
         case TimetableCommand.COMMAND_WORD:
             return new TimetableCommand();
+
+        case TimetableDateCommand.COMMAND_WORD:
+            return new TimetableDateCommandParser().parse(arguments);
 
         case AddDeliveryJobCommand.COMMAND_WORD:
             return new AddDeliveryJobCommandParser().parse(arguments);
