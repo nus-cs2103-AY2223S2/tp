@@ -32,7 +32,7 @@ public class TagCommandParserTest {
 
     }
 
-    public void createValidArgsReturnsTagCommand(ContactIndex index, Set<ModuleTag> modules, String userInput) {
+    private void createValidArgsReturnsTagCommand(ContactIndex index, Set<ModuleTag> modules, String userInput) {
         TagCommand expectedTagCommand = new TagCommand(index, modules);
 
         assertParseSuccess(parser, userInput, expectedTagCommand);

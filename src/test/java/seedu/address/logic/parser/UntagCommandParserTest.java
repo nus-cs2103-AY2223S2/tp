@@ -30,7 +30,7 @@ public class UntagCommandParserTest {
                 "1 m/CS1234");
     }
 
-    public void createValidArgsReturnsUntagCommand(ContactIndex index, Set<ModuleTag> modules, String userInput) {
+    private void createValidArgsReturnsUntagCommand(ContactIndex index, Set<ModuleTag> modules, String userInput) {
         UntagCommand expectedUntagCommand = new UntagCommand(index, modules);
 
         assertParseSuccess(parser, userInput, expectedUntagCommand);
