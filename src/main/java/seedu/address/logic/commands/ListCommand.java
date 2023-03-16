@@ -21,7 +21,11 @@ public class ListCommand extends Command {
             + PREFIX_MODULE + "cs2103 "
             + PREFIX_LECTURE + "lecture-1 ";
 
-    public static final String MESSAGE_SUCCESS = "Listed all modules";
+    public static final String MESSAGE_SUCCESS_MODULES = "Listed all modules";
+
+    public static final String MESSAGE_SUCCESS_LECTURES = "Listed all lectures from module: %s";
+
+    public static final String MESSAGE_SUCCESS_VIDEOS = "Listed all videos from module: %s, lecture: %s";
 
     private ModuleContainsKeywordsPredicate modulePredicate;
 
@@ -49,14 +53,18 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        if (moduleLecturePredicate != null) {
+            model.updateFilteredModuleList(moduleLecturePredicate);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_VIDEOS,
+                moduleLecturePredicate.getModuleCode(), moduleLecturePredicate.getLectureName()));
+        }
         if (modulePredicate != null) {
             model.updateFilteredModuleList(modulePredicate);
-        } else if (moduleLecturePredicate != null) {
-            model.updateFilteredModuleList(moduleLecturePredicate);
-        } else {
-            model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_LECTURES,
+                modulePredicate.getModuleCode()));
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        return new CommandResult(MESSAGE_SUCCESS_MODULES);
     }
 
     @Override

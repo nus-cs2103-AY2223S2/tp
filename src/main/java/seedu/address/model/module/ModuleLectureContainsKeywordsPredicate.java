@@ -21,6 +21,14 @@ public class ModuleLectureContainsKeywordsPredicate implements Predicate<ReadOnl
         this.lectureName = new LectureName(lectureName);
     }
 
+    public ModuleCode getModuleCode() {
+        return this.moduleCode;
+    }
+
+    public LectureName getLectureName() {
+        return this.lectureName;
+    }
+
     @Override
     public boolean test(ReadOnlyModule module) {
         return this.moduleCode.equals(module.getCode())
