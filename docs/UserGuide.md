@@ -11,12 +11,13 @@ Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the per
 - [Quick start](#quick-start)
 - [Features](#features)
   - [Viewing help : `help`](#viewing-help--help)
-  - [Adding a person: `add`](#adding-a-person-add)
+  - [Adding a person : `add`](#adding-a-person--add)
   - [Listing all persons : `list`](#listing-all-persons--list)
   - [Editing a person : `edit`](#editing-a-person--edit)
-  - [Locating persons by name: `find`](#locating-persons-by-name-find)
+  - [Locating persons by name : `find`](#locating-persons-by-name--find)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  - [Undo last modification : `undo`](#undo-last-modification--undo)
   - [Exiting the program : `exit`](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
@@ -100,7 +101,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a person: `add`
+### Adding a person : `add`
 
 Adds a person to the FAILS.
 
@@ -166,7 +167,7 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -205,6 +206,18 @@ Examples:
 Clears all entries from the FAILS.
 
 Format: `clear`
+
+### Undo last modification : `undo`
+
+Undoes the last modification done to FAILS.
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Caution:** Once the FAILS is closed, the undo history will be lost.
+
+</div>
+
+Format: `undo`
 
 ### Exiting the program : `exit`
 
