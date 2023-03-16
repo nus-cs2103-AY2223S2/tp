@@ -269,8 +269,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return tracker.equals(other.tracker)
-            && userPrefs.equals(other.userPrefs)
-            && filteredModules.equals(other.filteredModules);
+                && userPrefs.equals(other.userPrefs)
+                && filteredModules.equals(other.filteredModules)
+                && navigation.equals(other.navigation);
     }
 
     // TODO: Remove all code beyond this point
