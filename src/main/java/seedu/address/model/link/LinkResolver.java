@@ -1,7 +1,10 @@
 package seedu.address.model.link;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.item.Item;
 
 /**
@@ -9,7 +12,19 @@ import seedu.address.model.item.Item;
  *
  * @param <T> the item to resolve to.
  */
-public interface LinkResolver<T extends Item> {
+public class LinkResolver<T extends Item> {
+    private final ReadOnlyItemManager<T> manager;
+
+    /**
+     * Creates a new link resolver that resolves links using the items of the
+     * given manager.
+     *
+     * @param manager the manager with this the links are resolved.
+     */
+    public LinkResolver(ReadOnlyItemManager<T> manager) {
+        this.manager = manager;
+    }
+
     /**
      * Returns the item that corresponds to the given link.
      *
@@ -17,5 +32,12 @@ public interface LinkResolver<T extends Item> {
      * @return Optional of the item with the given id. If no item with the
      *     given id if found, then we resolve to `Optional.none`.
      */
-    Optional<T> resolve(String id);
+    public Optional<T> resolve(String id) {
+        for (T item : manager.getItemList()) {
+            if (item.getId().equals(id)) {
+                return Optional.of(item);
+            }
+        }
+        return Optional.empty();
+    }
 }

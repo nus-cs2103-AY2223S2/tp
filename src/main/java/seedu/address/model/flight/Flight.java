@@ -1,11 +1,24 @@
 package seedu.address.model.flight;
 
+import javax.crypto.spec.DESedeKeySpec;
+import java.util.Deque;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
+import seedu.address.commons.util.GetUtils;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.flight.exceptions.LinkedPlaneNotFoundException;
 import seedu.address.model.item.Item;
+import seedu.address.model.link.Link;
+import seedu.address.model.link.LinkResolver;
+import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.Location;
+import seedu.address.model.pilot.FlightPilotType;
+import seedu.address.model.pilot.Pilot;
 import seedu.address.model.plane.Plane;
 
 /**
@@ -26,28 +39,75 @@ public class Flight implements Item {
     private Location arrivalLocation;
 
     //TODO: Add exceptions to ensure departure and arrival locations are distinct
+    public final Link<FlightPilotType, Pilot, LinkResolver<Pilot>> pilotLink;
+
+    public Flight(
+        String id,
+        String code,
+        Plane plane,
+        Location departureLocation,
+        Location arrivalLocation,
+        Map<FlightPilotType, Deque<String>> pilotLink
+    ) throws LinkException {
+        this.id = id;
+        this.code = code;
+        this.plane = plane;
+        this.departureLocation = departureLocation;
+        this.arrivalLocation = arrivalLocation;
+        if (pilotLink != null) {
+            this.pilotLink = new Link<>(Pilot.SHAPE, pilotLink, Pilot.getLinkResolver());
+        } else {
+            this.pilotLink = new Link<>(Pilot.SHAPE, Pilot.getLinkResolver());
+        }
+    }
 
     /**
      * Creates a flight with a random UUID as its id
      *
+     * @param id   the id for the flight
      * @param code the code of the flight
      */
-    public Flight(String code) {
-        this.code = code;
-        this.id = UUID.randomUUID().toString();
-        this.plane = null;
+    public Flight(String id, String code,
+        Map<FlightPilotType, Deque<String>> pilotLink) throws LinkException {
+        this(
+            id,
+            code,
+            null,
+            null,
+            null,
+            pilotLink
+        );
     }
 
     /**
      * Creates a flight with a given id as its id
      *
-     * @param id   the id for the flight
      * @param code the code of the flight
      */
-    public Flight(String id, String code) {
-        this.code = code;
-        this.id = id;
-        this.plane = null;
+    public Flight(String code) throws LinkException {
+        this(UUID.randomUUID().toString(), code, new HashMap<>());
+    }
+
+    /**
+     * Returns the resolver for {@link Flight}s.
+     *
+     * @param manager the manager.
+     * @return the resolver for the flights.
+     */
+    public static LinkResolver<Flight> getResolver(
+        ReadOnlyItemManager<Flight> manager
+    ) {
+        return new LinkResolver<>(manager);
+    }
+
+
+    /**
+     * Returns the resolver for {@link Flight}s.
+     *
+     * @return the resolver for the flights.
+     */
+    public static LinkResolver<Flight> getResolver() {
+        return getResolver(GetUtils.get(Model.class).getFlightManager());
     }
 
     public String getCode() {
@@ -60,7 +120,8 @@ public class Flight implements Item {
             String.format("%s: %s", UUID_STRING, id),
             String.format("%s: %s", CODE_STRING, code),
             String.format("%s: %s", DEPARTURE_STRING, getDepartureLocationName()),
-            String.format("%s: %s", ARRIVE_STRING, getArrivalLocationName())
+            String.format("%s: %s", ARRIVE_STRING, getArrivalLocationName()),
+            String.format("%s: %s", "Pilots", pilotLink.toString())
         );
     }
 

@@ -151,6 +151,7 @@ public interface Model {
 
     /**
      * Returns location object by location id
+     *
      * @param id the location id
      * @return the location object with the id
      */
@@ -193,6 +194,7 @@ public interface Model {
     void updateFilteredLocationList(Predicate<Location> predicate);
 
     void linkFlightToLocations(Flight flight, Location departureLocation, Location arrivalLocation);
+
     void unlinkFlightToLocations(Flight flight);
 
     // ================ Crew methods ==============================
@@ -255,14 +257,23 @@ public interface Model {
     // ================ Plane methods ==============================
 
     void setPlaneManager(ReadOnlyItemManager<Plane> manager);
+
     ReadOnlyItemManager<Plane> getPlaneManager();
+
     void addPlane(Plane plane);
+
     void deletePlane(Plane plane);
+
     void deletePlane(String id);
+
     boolean hasPlane(Plane plane);
+
     boolean hasPlane(String id);
+
     void setPlane(Plane target, Plane editedPlane);
+
     ObservableList<Plane> getFilteredPlaneList();
+
     void updateFilteredPlaneList(Predicate<Plane> predicate);
 
 
@@ -270,6 +281,7 @@ public interface Model {
 
     /**
      * Returns flight object by flight id
+     *
      * @param id the flight id
      * @return the flight object with the id
      */
@@ -337,13 +349,14 @@ public interface Model {
      * {@code target} must exist in Wingman
      * The flight identity of {@code editedFlight} must not be the same as another existing flight in Wingman
      *
-     * @param target the flight to be replaced
+     * @param target       the flight to be replaced
      * @param editedFlight the flight to replace with
      */
     void setFlight(Flight target, Flight editedFlight);
 
     /**
      * Links a plane to a flight.
+     *
      * @param flight The flight to be linked to.
      * @param plane  The plane to be linked to a flight.
      */
@@ -351,12 +364,14 @@ public interface Model {
 
     /**
      * Unlinks a flight from any plane.
+     *
      * @param flight The flight to be unlinked from.
      */
     void unlinkPlane(Flight flight);
 
     /**
      * Returns an unmodifiable view of the filtered flight list
+     *
      * @return unmodifiable view of the filtered flight list
      */
     ObservableList<Flight> getFilteredFlightList();

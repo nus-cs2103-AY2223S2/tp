@@ -1,11 +1,16 @@
 package seedu.address.storage.json.adapted;
 
+import java.util.Deque;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.flight.Flight;
+import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.Location;
+import seedu.address.model.pilot.FlightPilotType;
 import seedu.address.storage.json.JsonAdaptedModel;
 
 /**
@@ -38,6 +43,8 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
     private String arrivalLocationId;
     private String arrivalLocationName;
 
+    private Map<FlightPilotType, Deque<String>> pilotLink;
+
     /**
      * Constructs a {@code JsonAdaptedFlight} with the given flight details.
      * This is intended for Jackson to use.
@@ -58,7 +65,8 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
         @JsonProperty("departureLocationId") String departureLocationId,
         @JsonProperty("departureLocationName") String departureLocationName,
         @JsonProperty("arrivalLocationId") String arrivalLocationId,
-        @JsonProperty("arrivalLocationName") String arrivalLocationName) {
+        @JsonProperty("arrivalLocationName") String arrivalLocationName,
+        @JsonProperty("pilotLink") Map<FlightPilotType, Deque<String>> pilotLink) {
         this.id = id;
         this.code = code;
         this.plane = plane;
@@ -67,6 +75,7 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
         this.departureLocationName = departureLocationName;
         this.arrivalLocationId = arrivalLocationId;
         this.arrivalLocationName = arrivalLocationName;
+        this.pilotLink = pilotLink;
     }
 
     /**
@@ -77,6 +86,7 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
     public JsonAdaptedFlight(Flight flight) {
         this.id = flight.getId();
         this.code = flight.getCode();
+        this.pilotLink = flight.pilotLink.getCopiedContents();
 
         if (flight.hasLinkedPlane()) {
             this.plane = flight.getLinkedPlane().getId();
@@ -104,7 +114,12 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "code"));
         }
 
-        Flight flight = new Flight(id, code);
+        Flight flight;
+        try {
+            flight = new Flight(id, code, pilotLink);
+        } catch (LinkException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
         if (hasLinkedLocations) {
             if (departureLocationId == null || departureLocationName == null
                     || arrivalLocationId == null || arrivalLocationName == null) {

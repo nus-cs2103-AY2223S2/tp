@@ -1,9 +1,15 @@
 package seedu.address.model.pilot;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.function.Supplier;
 
+import seedu.address.commons.util.GetUtils;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.item.Item;
+import seedu.address.model.link.LinkResolver;
 
 /**
  * Represents a Pilot in the Wingman app.
@@ -20,7 +26,12 @@ public class Pilot implements Item {
     private static final String RANK_STRING = "Rank";
 
     private static final String FLIGHT_HR_STRING = "Flight Hour";
-
+    /**
+     * The shape of the link to the pilot.
+     */
+    public static final Map<FlightPilotType, Integer> SHAPE =
+        Map.of(FlightPilotType.PILOT_FLYING, 1,
+            FlightPilotType.PILOT_MONITORING, 1);
     private final String name;
 
     private final int age;
@@ -63,6 +74,27 @@ public class Pilot implements Item {
         this.gender = gender;
         this.rank = rank;
         this.flightHour = flightHour;
+    }
+
+    /**
+     * Gets the link resolver for this class, from the manager specified.
+     *
+     * @param manager the manager from which the links are resolved.
+     * @return the link resolver.
+     */
+    public static LinkResolver<Pilot> getLinkResolver(
+        ReadOnlyItemManager<Pilot> manager
+    ) {
+        return new LinkResolver<>(manager);
+    }
+
+    /**
+     * Gets the link resolver for this class resolved from the service locator.
+     *
+     * @return the link resolver.
+     */
+    public static LinkResolver<Pilot> getLinkResolver() {
+        return getLinkResolver(GetUtils.get(Model.class).getPilotManager());
     }
 
     /**
@@ -125,5 +157,10 @@ public class Pilot implements Item {
     @Override
     public String getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s (age: %s)", rank, name, age);
     }
 }

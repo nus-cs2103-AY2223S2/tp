@@ -12,6 +12,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
+import seedu.address.commons.util.GetUtils;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
@@ -61,33 +62,39 @@ public class MainApp extends Application {
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
+        GetUtils.put(Config.class, config);
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ItemStorage<Pilot> pilotStorage =
             new JsonPilotManagerStorage(userPrefs.getPilotManagerFilePath());
         ItemStorage<Location> locationStorage =
-                new JsonLocationManagerStorage(userPrefs.getLocationManagerFilePath());
+            new JsonLocationManagerStorage(userPrefs.getLocationManagerFilePath());
         ItemStorage<Crew> crewStorage =
-                new JsonCrewManagerStorage(userPrefs.getCrewManagerFilePath());
+            new JsonCrewManagerStorage(userPrefs.getCrewManagerFilePath());
         ItemStorage<Plane> planeStorage =
-                new JsonPlaneManagerStorage(userPrefs.getPlaneManagerFilePath());
+            new JsonPlaneManagerStorage(userPrefs.getPlaneManagerFilePath());
         ItemStorage<Flight> flightStorage =
-                new JsonFlightManagerStorage(userPrefs.getFlightManagerFilePath());
+            new JsonFlightManagerStorage(userPrefs.getFlightManagerFilePath());
         storage = new StorageManager(userPrefsStorage, pilotStorage, locationStorage,
-                crewStorage, planeStorage, flightStorage);
+            crewStorage, planeStorage, flightStorage);
+        GetUtils.put(Storage.class, storage);
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        model = new ModelManager();
+        GetUtils.put(Model.class, model);
+        initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
+        GetUtils.put(Logic.class, logic);
 
         ui = new UiManager(logic);
     }
 
     /**
      * Read pilot manager from data.
+     *
      * @param storage the storage object
      * @return the pilot manager
      */
@@ -104,7 +111,7 @@ public class MainApp extends Application {
             }
         } catch (DataConversionException | IOException e) {
             logger.info("Exception caught while reading data file for storage manager: "
-                    + e.toString());
+                            + e.toString());
             pilotManager = new ItemManager<>();
         }
         return pilotManager;
@@ -112,6 +119,7 @@ public class MainApp extends Application {
 
     /**
      * Read location manager from data.
+     *
      * @param storage the storage object
      * @return the location manager
      */
@@ -128,7 +136,7 @@ public class MainApp extends Application {
             }
         } catch (DataConversionException | IOException e) {
             logger.info("Exception caught while reading data file for location manager: "
-                    + e.toString());
+                            + e.toString());
             locationManager = new ItemManager<>();
         }
         return locationManager;
@@ -136,6 +144,7 @@ public class MainApp extends Application {
 
     /**
      * Read crew manager from data.
+     *
      * @param storage the storage object
      * @return the crew manager
      */
@@ -152,7 +161,7 @@ public class MainApp extends Application {
             }
         } catch (DataConversionException | IOException e) {
             logger.info("Exception caught while reading data file for crew manager: "
-                    + e.toString());
+                            + e.toString());
             crewManager = new ItemManager<>();
         }
         return crewManager;
@@ -160,6 +169,7 @@ public class MainApp extends Application {
 
     /**
      * Read plane manager from data.
+     *
      * @param storage the storage object
      * @return the plane manager
      */
@@ -176,7 +186,7 @@ public class MainApp extends Application {
             }
         } catch (DataConversionException | IOException e) {
             logger.info("Exception caught while reading data file for plane manager: "
-                    + e.toString());
+                            + e.toString());
             planeManager = new ItemManager<>();
         }
         return planeManager;
@@ -184,6 +194,7 @@ public class MainApp extends Application {
 
     /**
      * Read flight manager from data.
+     *
      * @param storage the storage object
      * @return flight plane manager
      */
@@ -200,7 +211,7 @@ public class MainApp extends Application {
             }
         } catch (DataConversionException | IOException e) {
             logger.info("Exception caught while reading data file for flight manager: "
-                    + e.toString());
+                            + e.toString());
             flightManager = new ItemManager<>();
         }
         return flightManager;
@@ -211,16 +222,17 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-
+    private void initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         ReadOnlyItemManager<Pilot> pilotManager = readPilotManager(storage);
+        model.setPilotManager(pilotManager);
         ReadOnlyItemManager<Location> locationManager = readLocationManager(storage);
+        model.setLocationManager(locationManager);
         ReadOnlyItemManager<Crew> crewManager = readCrewManager(storage);
+        model.setCrewManager(crewManager);
         ReadOnlyItemManager<Plane> planeManager = readPlaneManager(storage);
+        model.setPlaneManager(planeManager);
         ReadOnlyItemManager<Flight> flightManager = readFlightManager(storage);
-
-        return new ModelManager(userPrefs,
-                                pilotManager, locationManager, crewManager, planeManager, flightManager);
+        model.setFlightManager(flightManager);
     }
 
     private void initLogging(Config config) {

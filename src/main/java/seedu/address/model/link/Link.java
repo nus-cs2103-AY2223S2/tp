@@ -30,8 +30,8 @@ import seedu.address.model.link.exceptions.LinkItemNotFoundException;
  * @param <T> target.
  * @param <R> the resolver for the item, see {@link LinkResolver}
  */
-class Link<K, T extends Item,
-              R extends LinkResolver<T>> {
+public class Link<K, T extends Item,
+                     R extends LinkResolver<T>> {
     private static final String KEY_NOT_FOUND_MESSAGE = "Key %s not found.";
 
     private static final String ILLEGAL_SIZE_MESSAGE =
@@ -86,8 +86,11 @@ class Link<K, T extends Item,
      *
      * @param shape the shape of the field.
      */
-    public Link(Map<K, Integer> shape, R resolver) throws LinkException {
-        this(shape, new HashMap<>(), resolver);
+    public Link(Map<K, Integer> shape, R resolver) {
+        this.shape = deepCopy(shape);
+        this.contents = new HashMap<>();
+        this.resolver = resolver;
+        fill(this.shape, this.contents);
     }
 
     /**
@@ -367,9 +370,6 @@ class Link<K, T extends Item,
      * @throws LinkException if the key is not valid.
      */
     public List<T> getAndRemoveInvalid(K key) throws LinkException {
-        _logger.warning(
-            "getAndRemoveInvalid is not tested, use with caution."
-        );
         keyValidOrThrow(key);
         final List<T> result = new ArrayList<>();
         final List<String> tbd = new ArrayList<>();
@@ -389,6 +389,16 @@ class Link<K, T extends Item,
                     this
                 )
             );
+        }
+        return result;
+    }
+
+    public List<T> getValid(K key) throws LinkException {
+        keyValidOrThrow(key);
+        final List<T> result = new ArrayList<>();
+        for (String id : contents.get(key)) {
+            final Optional<T> tmp = resolver.resolve(id);
+            tmp.ifPresent(result::add);
         }
         return result;
     }
@@ -425,5 +435,24 @@ class Link<K, T extends Item,
      */
     public boolean contains(K key, String id) {
         return contents.get(key).contains(id);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        for (K key : getUnmodifiableKeys()) {
+            if (contents.get(key).isEmpty()) {
+                continue;
+            }
+            builder.append(key).append(": ");
+            try {
+                final List<T> items = getValid(key);
+                builder.append(items.stream().map(Object::toString).collect(Collectors.joining(", ")));
+            } catch (LinkException e) {
+                builder.append("Failed to load: ").append(e.getMessage());
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
     }
 }
