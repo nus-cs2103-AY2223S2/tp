@@ -2,7 +2,7 @@ package seedu.address.model.navigation;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-
+import seedu.address.model.Navigation;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
 
@@ -106,5 +106,26 @@ public class NavigationContext {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof NavigationContext)) {
+            return false;
+        }
+
+        NavigationContext other = (NavigationContext) obj;
+
+        boolean moduleEquals = (moduleCode == null && other.moduleCode == null)
+                || (moduleCode.equals(other.moduleCode));
+
+        boolean lectureEquals = (lectureName == null && other.lectureName == null)
+                || (lectureName.equals(other.lectureName));
+
+        return moduleEquals && lectureEquals;
     }
 }

@@ -103,4 +103,18 @@ public class Navigation implements ReadOnlyNavigation {
     public boolean isAtLayer(int layer) {
         return contextStack.size() == layer;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Navigation)) {
+            return false;
+        }
+
+        Navigation other = (Navigation) obj;
+        return contextStack.equals(other.contextStack);
+    }
 }
