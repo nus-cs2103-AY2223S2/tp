@@ -72,7 +72,7 @@ public class JsonInternshipCatalogueStorageTest {
         assertEquals(original, new InternshipCatalogue(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addInternship(SE1);
+        original.addInternship(ML1);
         original.removeInternship(ML1);
         jsonInternshipCatalogueStorage.saveInternshipCatalogue(original, filePath);
         readBack = jsonInternshipCatalogueStorage.readInternshipCatalogue(filePath).get();

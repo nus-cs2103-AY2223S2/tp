@@ -1,8 +1,8 @@
 {
   "internships": [ {
-    "position": "Tut@r",
-    "company": "NUS",
-    "status": "invalid status",
+    "positionName": "Tut@r",
+    "companyName": "NUS",
+    "statusId": "5",
     "address": "4th street"
   } ]
 }

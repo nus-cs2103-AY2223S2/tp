@@ -1,13 +1,13 @@
 {
   "internships": [ {
-    "Position": "Tutor",
-    "company": "NUS",
-    "status": "APPLIED",
-    "description": "4th street"
+    "positionName": "Tutor",
+    "companyName": "NUS",
+    "statusId": "1",
+    "messageDescription": "4th street"
   }, {
-    "Position": "Tutor",
-    "company": "NUS",
-    "status": "APPLIED",
-    "address": "4th street"
+    "positionName": "Tutor",
+    "companyName": "NUS",
+    "statusId": "1",
+    "messageDescription": "4th street"
   } ]
 }
