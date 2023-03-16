@@ -1,0 +1,16 @@
+{
+  "_comment": "The first project below is invalid, since the status is empty.",
+  "persons": [],
+  "projects": [
+    {
+      "name": "Bard",
+      "status": null,
+      "clientEmail": "jamar@bard.org",
+      "source": null,
+      "description": null,
+      "acceptedOn": "14/03/2022",
+      "deadline": null
+    }
+  ],
+  "clients": []
+}
