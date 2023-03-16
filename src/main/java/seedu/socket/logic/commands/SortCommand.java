@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.socket.model.Model;
 
 /**
- * Sorts all persons in the address book and lists them to the user.
+ * Sorts all persons in SOCket and lists them to the user.
  */
 public class SortCommand extends Command {
 

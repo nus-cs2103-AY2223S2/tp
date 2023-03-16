@@ -6,7 +6,7 @@ import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.model.Model;
 
 /**
- * Restores a previously undone {@code SOCket} state.
+ * Restores a previously undone SOCket state.
  */
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";

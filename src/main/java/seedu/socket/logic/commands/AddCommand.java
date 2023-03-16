@@ -14,7 +14,7 @@ import seedu.socket.model.Model;
 import seedu.socket.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to SOCket.
  */
 public class AddCommand extends Command {
 

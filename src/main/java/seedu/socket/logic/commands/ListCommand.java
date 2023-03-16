@@ -12,7 +12,7 @@ import seedu.socket.model.tag.LanguageContainsKeywordsPredicate;
 import seedu.socket.model.tag.TagContainsKeywordsPredicate;
 
 /**
- * Lists all persons in the address book to the user or based on tag or language.
+ * Lists all persons in SOCket to the user or based on tag or language.
  */
 public class ListCommand extends Command {
 

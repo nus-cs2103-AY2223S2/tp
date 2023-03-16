@@ -14,15 +14,15 @@ import seedu.socket.model.Model;
 import seedu.socket.model.person.predicate.PersonContainsKeywordsPredicate;
 
 /**
- * Finds & lists all persons in SOCket whose fields contains any of the argument keywords for the respective fields.
- * Keyword matching is case insensitive.
+ * Finds & lists all persons in SOCket whose fields contain any of the argument keyword(s) for the respective fields.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose fields contain any of "
-            + "the specified keywords (case-insensitive) in the respective fields "
+            + "the specified keyword(s) (case-insensitive) in the respective fields "
             + "and displays them as a list with index numbers.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "

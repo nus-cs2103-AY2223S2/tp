@@ -31,7 +31,7 @@ import seedu.socket.model.tag.Language;
 import seedu.socket.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the SOCket.
+ * Edits the details of an existing person in SOCket.
  */
 public class EditCommand extends Command {
 
