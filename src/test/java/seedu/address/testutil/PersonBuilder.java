@@ -17,6 +17,8 @@ public class PersonBuilder {
     public static final String DEFAULT_TIMESLOT = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "default remark";
+    public static final String DEFAULT_DEADLINE = "default deadline";
+    public static final String DEFAULT_TEACHER = "default teacher";
 
     private Name name;
     private Type type;
@@ -24,6 +26,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Remark remark;
+    private Deadline deadline;
+    private Teacher teacher;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,6 +39,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         remark = new Remark(DEFAULT_REMARK);
+        deadline = new Deadline(DEFAULT_DEADLINE);
+        teacher = new Teacher(DEFAULT_TEACHER);
     }
 
     /**
@@ -47,6 +53,8 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         remark = personToCopy.getRemark();
+        deadline = personToCopy.getDeadline();
+        teacher = personToCopy.getTeacher();
     }
 
     /**
@@ -94,8 +102,18 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withDeadline(String deadline) {
+        this.deadline = new Deadline(deadline);
+        return this;
+    }
+
+    public PersonBuilder withTeacher(String teacher) {
+        this.teacher = new Teacher(teacher);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, type, timeSlot, address, tags, remark);
+        return new Person(name, type, timeSlot, address, tags, remark, deadline, teacher);
     }
 
 }
