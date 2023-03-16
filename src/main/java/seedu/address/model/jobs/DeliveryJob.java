@@ -1,7 +1,8 @@
 package seedu.address.model.jobs;
 
-import java.time.LocalDate;
 import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
