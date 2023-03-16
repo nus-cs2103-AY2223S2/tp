@@ -9,7 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_ID;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.logic.IdGenerator;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.commands.AddServiceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.service.Service;
@@ -18,7 +19,7 @@ import seedu.address.model.service.ServiceStatus;
 /**
  * Parses input arguments and creates new AddServiceCommandParser object
  */
-public class AddServiceCommandParser {
+public class AddServiceCommandParser implements Parser<AddServiceCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddVehicleCommand
      * and returns an AddVehicleCommand object for execution.
