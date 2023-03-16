@@ -113,7 +113,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this){
+        if (other == this) {
             return true;
         }
         if (other instanceof UniqueInternshipList) {
