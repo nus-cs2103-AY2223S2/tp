@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -12,10 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.patient.Name;
-import seedu.address.model.patient.Nric;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Status;
+import seedu.address.model.patient.*;
 
 
 /**
@@ -25,17 +23,17 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
-            + "by the index number used in the displayed patient list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the status and/or ward of the "
+            + "patient identified by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME]\n"
+            + "[" + PREFIX_STATUS + "STATUS " + PREFIX_WARD + "WARD]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "John Doe";
+            + PREFIX_STATUS + "GREEN " + PREFIX_WARD + "A1";
 
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in MedInfo.";
 
     private final Index index;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -85,8 +83,9 @@ public class EditCommand extends Command {
         Name updatedName = editPatientDescriptor.getName().orElse((Name) patientToEdit.getName());
         Nric updatedNric = editPatientDescriptor.getNric().orElse((Nric) patientToEdit.getNric());
         Status updatedStatus = editPatientDescriptor.getStatus().orElse((Status) patientToEdit.getStatus());
+        Ward updatedWard = editPatientDescriptor.getWard().orElse((Ward) patientToEdit.getWard());
 
-        return new Patient(updatedNric, updatedName, updatedStatus);
+        return new Patient(updatedNric, updatedName, updatedStatus, updatedWard);
     }
 
     @Override
@@ -116,6 +115,7 @@ public class EditCommand extends Command {
         private Name name;
         private Nric nric;
         private Status status;
+        private Ward ward;
 
         public EditPatientDescriptor() {
         }
@@ -128,6 +128,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setNric(toCopy.nric);
             setStatus(toCopy.status);
+            setWard(toCopy.ward);
 
         }
 
@@ -135,7 +136,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, nric, status);
+            return CollectionUtil.isAnyNonNull(name, nric, status, ward);
         }
 
         public void setName(Name name) {
@@ -150,6 +151,10 @@ public class EditCommand extends Command {
             this.status = status;
         }
 
+        public void setWard(Ward ward) {
+            this.ward = ward;
+        }
+
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
@@ -160,6 +165,10 @@ public class EditCommand extends Command {
 
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
+        }
+
+        public Optional<Ward> getWard() {
+            return Optional.ofNullable(ward);
         }
 
         @Override
@@ -178,8 +187,9 @@ public class EditCommand extends Command {
             EditPatientDescriptor e = (EditPatientDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getNric().equals(e.getNric())
                     && getStatus().equals(e.getStatus())
-                    && getNric().equals(e.getNric());
+                    && getWard().equals(e.getWard());
         }
     }
 }
