@@ -123,15 +123,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a given transaction to the transaction list.
      * A transaction must have an association with a Person.
      * A person may have zero to many transactions.
-     *
      * @param t
      */
-    public void addTransaction(Transaction t) {
-        requireAllNonNull(t);
+    public void addTransaction(Transaction t, Person customer) {
+        requireAllNonNull(t, customer);
 
-        //personTransactionRelation.addRelation(t);
-        //TODO: Add customer-transaction relationship
-        
+        personTransactionRelation.addRelation(t, customer);
         transactions.add(t);
     }
 
@@ -177,12 +174,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons)
-                && transactions.equals(((AddressBook) other).transactions));
+                && persons.equals(((AddressBook) other).persons));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode() + transactions.hashCode();
-    } //TODO: check later
+        return persons.hashCode();
+    } //TODO: check latera
 }

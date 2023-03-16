@@ -1,8 +1,0 @@
-{
-  "transactions": [ {
-    "description": "First transaction",
-    "value": "100",
-    "status": "not sure",
-    "owner": "Alice Pauline"
-  } ]
-}
