@@ -173,7 +173,7 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
     void fillInnerParts() {
         //Get year and month of week
         focusDate = logic.getFocusDate();
-       // System.out.println("focus: " + focusDate.toString());
+        // System.out.println("focus: " + focusDate.toString());
         year.setText(String.valueOf(focusDate.getYear()));
         month.setText(String.valueOf(focusDate.getMonth()));
 
