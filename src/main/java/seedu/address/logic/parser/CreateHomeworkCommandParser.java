@@ -59,6 +59,10 @@ public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand
 
     /**
      * Returns true if all prefixes are present in the given {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap the argument multimap to check for prefixes.
+     * @param prefixes the prefixes to be checked.
+     * @return true if all prefixes are present in the given {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());

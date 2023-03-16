@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
@@ -21,11 +23,11 @@ public class MarkHomeworkAsDoneCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an assignment as done for a student.\n"
             + "Parameters: "
-            + "n/STUDENT_NAME "
-            + "i/INDEX\n"
+            + PREFIX_NAME + "STUDENT_NAME "
+            + PREFIX_INDEX + "INDEX\n"
             + "Example: " + COMMAND_WORD + " "
-            + "n/John Doe "
-            + "i/1";
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_INDEX + "1";
 
     private final NameContainsKeywordsPredicate predicate;
     private final Index targetIndex;
