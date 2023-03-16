@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <HBox id="taskCardPane" fx:id="taskCardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@TaskCardView.css" />
+    </stylesheets>
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -21,8 +29,8 @@
                 </Label>
                 <Label fx:id="subject" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="content" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="status" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="content" styleClass="cell_small_label" text="\$content" />
+            <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
         </VBox>
     </GridPane>
 </HBox>
