@@ -241,8 +241,8 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 ## Advanced Details
 
 ### Prefixes
-* prefixes should be entered in all lower case (e.g. n/NAME instead of N/NAME)
-* field after prefixes have leading and trailing whitespaces removed (e.g. `n/  Mary` is truncated to `n/Mary`)
+* Prefixes should be entered in all lower case (e.g. n/Abdul instead of N/Abdul)
+* Fields after prefixes have leading and trailing whitespaces removed (e.g. `n/  Mary` is truncated to `n/Mary`)
 
 ### NRIC
 * NRIC is case-insensitive
