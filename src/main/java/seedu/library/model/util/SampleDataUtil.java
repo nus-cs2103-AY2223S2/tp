@@ -19,24 +19,18 @@ import seedu.library.model.tag.Tag;
 public class SampleDataUtil {
     public static Bookmark[] getSampleBookmarks() {
         return new Bookmark[] {
-            new Bookmark(new Title("Alex Yeoh"), new Progress("87438807"), new Genre("alexyeoh@example.com"),
-                new Author("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Bookmark(new Title("Bernice Yu"), new Progress("99272758"), new Genre("berniceyu@example.com"),
-                new Author("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Bookmark(new Title("Charlotte Oliveiro"), new Progress("93210283"), new Genre("charlotte@example.com"),
-                new Author("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Bookmark(new Title("David Li"), new Progress("91031282"), new Genre("lidavid@example.com"),
-                new Author("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Bookmark(new Title("Irfan Ibrahim"), new Progress("92492021"), new Genre("irfan@example.com"),
-                new Author("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Bookmark(new Title("Roy Balakrishnan"), new Progress("92624417"), new Genre("royb@example.com"),
-                new Author("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new Bookmark(new Title("Rankers Guide"), new Progress("Chapter 40"),
+                    new Genre("Modern Fantasy"), new Author("TeJe"),
+                    getTagSet("Hunters")),
+            new Bookmark(new Title("Chainsaw Man"), new Progress("Not Started"), new Genre("Action"),
+                    new Author("Tatsuki Fujimoto"),
+                    getTagSet("Gore")),
+            new Bookmark(new Title("Solo Leveling"), new Progress("Chapter 120"), new Genre("Modern Fantasy"),
+                    new Author("Chugong"),
+                    getTagSet("Hunters", "System", "Cheats")),
+            new Bookmark(new Title("Dungeon Defense"), new Progress("Chapter 40"), new Genre("Western Fantasy"),
+                    new Author("Yoo Heonhwa"),
+                    getTagSet("Antihero"))
         };
     }
     public static ReadOnlyLibrary getSampleLibrary() {
