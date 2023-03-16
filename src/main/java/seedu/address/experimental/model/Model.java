@@ -76,6 +76,7 @@ public interface Model {
      */
     void setEntity(Entity target, Entity editedEntity);
 
+    // ============== Filtered entity list =================
     /** Returns an unmodifiable view of the filtered entity list */
     ObservableList<Entity> getFilteredEntityList();
 
@@ -84,5 +85,31 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEntityList(Predicate<Entity> predicate);
+
+    /**
+     * Resets filtered entity list back to all entities
+     * Can be used before tag/name find function
+     */
+    void resetFilteredEntityList();
+
+    /** Set filtered list to items only */
+    void listItems();
+
+    /** Set filtered list to characters only */
+    void listCharacters();
+
+    /** Set filtered list to mobs only */
+    void listMobs();
+
+    // =============== Edit mode ===================
+    /**
+     * Sets the current selected entity
+     */
+    void setCurrentSelectedEntity(Entity newSelection);
+
+    /**
+     * Returns the current selected entity
+     */
+    Entity getCurrentSelectedEntity();
 
 }

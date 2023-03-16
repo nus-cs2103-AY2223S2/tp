@@ -41,16 +41,16 @@ public class JsonSerializableReroll {
         Reroll reroll = new Reroll();
         // Add all mobs
         for (JsonAdaptedMob jsonMob : mobs) {
-            reroll.addEntity(jsonMob.toModelType());
+            reroll.addMob(jsonMob.toModelType());
         }
         // Add all characters
         for (JsonAdaptedCharacter jsonChar : characters) {
-            reroll.addEntity(jsonChar.toModelType());
+            reroll.addCharacter(jsonChar.toModelType());
         }
 
         // Add all items
         for (JsonAdaptedItem jsonItem : items) {
-            reroll.addEntity(jsonItem.toModelType());
+            reroll.addItem(jsonItem.toModelType());
         }
 
         return reroll;
