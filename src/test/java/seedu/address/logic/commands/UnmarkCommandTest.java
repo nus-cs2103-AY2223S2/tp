@@ -28,23 +28,23 @@ import seedu.address.testutil.PersonBuilder;
 public class UnmarkCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalContactList(), new UserPrefs());
+     @Test
+     public void execute_validIndexUnfilteredList_success() {
+         Event eventToUnmark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+         Event unmarkedEvent = new PersonBuilder(eventToUnmark).build();
+         unmarkedEvent.mark();
+         unmarkedEvent.unmark();
+         eventToUnmark.unmark();
+         UnmarkCommand unmarkCommand = new UnmarkCommand(INDEX_FIRST_PERSON);
 
-    // @Test
-    // public void execute_validIndexUnfilteredList_success() {
-    //     Event eventToUnmark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-    //     Event unmarkedEvent = new PersonBuilder(eventToUnmark).build();
-    //     unmarkedEvent.mark();
-    //     unmarkedEvent.unmark();
-    //     UnmarkCommand unmarkCommand = new UnmarkCommand(INDEX_FIRST_PERSON);
+         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_EVENT_SUCCESS, eventToUnmark);
 
-    //     String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_EVENT_SUCCESS, eventToUnmark);
+         ModelManager expectedModel = new ModelManager(
+              model.getAddressBook(), model.getContactList(), new UserPrefs());
+         expectedModel.unmarkEvent(eventToUnmark);
 
-    //     ModelManager expectedModel = new ModelManager(
-    //          model.getAddressBook(), model.getContactList(), new UserPrefs());
-    //     expectedModel.unmarkEvent(eventToUnmark);
-
-    //     assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
-    // }
+         assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
+     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
@@ -61,6 +61,7 @@ public class UnmarkCommandTest {
         Event unmarkedEvent = new PersonBuilder(eventToUnmark).build();
         unmarkedEvent.mark();
         unmarkedEvent.unmark();
+        eventToUnmark.unmark();
         UnmarkCommand unmarkCommand = new UnmarkCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_EVENT_SUCCESS, eventToUnmark);
