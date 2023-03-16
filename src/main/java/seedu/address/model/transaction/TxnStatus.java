@@ -1,9 +1,5 @@
 package seedu.address.model.transaction;
 
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import java.time.LocalDateTime;
 
 /**
@@ -11,23 +7,23 @@ import java.time.LocalDateTime;
  */
 public class TxnStatus {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Transaction status should only be open or closed, and it should not be blank";
-
-    /* The input should be "open" or "closed" */
-    public static final String VALIDATION_REGEX = ".*\\bopen\\b|.*\\bclosed\\b";
-
-    public final String value;
-    public final LocalDateTime lastUpdate;
+    private final boolean isClosed;
+    private final LocalDateTime lastUpdate;
 
     /**
-     * Construct a {@code TxnStatus}.
-     * @param isClosed a valid transaction status
+     * Default constructor, constructs an new open transaction
      */
-    public TxnStatus(String isClosed) {
-        requireNonNull(isClosed);
-        checkArgument(isValidTxnStatus(isClosed), MESSAGE_CONSTRAINTS);
-        this.value = isClosed;
+    public TxnStatus() {
+        this.isClosed = false;
+        this.lastUpdate = LocalDateTime.now();
+    }
+
+    /**
+     * Constructor to construct a transaction with specified status
+     * @param isClosed boolean, if the transaction is done
+     */
+    public TxnStatus(boolean isClosed) {
+        this.isClosed = isClosed;
         this.lastUpdate = LocalDateTime.now();
     }
 
@@ -36,10 +32,7 @@ public class TxnStatus {
      * @return True if the transaction is closed.
      */
     public boolean isClosed() {
-        return value.equals("Closed");
-    }
-    public static boolean isValidTxnStatus(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return isClosed;
     }
 
     /**
@@ -49,22 +42,4 @@ public class TxnStatus {
     public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
-
-    @Override
-    public String toString() {
-        return this.value;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof TxnStatus // instanceof handles nulls
-                && value.equals(((TxnStatus) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }
