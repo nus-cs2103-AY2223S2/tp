@@ -12,7 +12,7 @@ import seedu.address.model.category.Category;
  * @author shirsho-12
  * @version 1.0
  */
-public class Expense {
+public class        Expense {
 
     public static final String MESSAGE_CONSTRAINTS = "Expense names should be alphanumeric";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
