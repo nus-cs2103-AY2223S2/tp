@@ -15,7 +15,7 @@ import trackr.model.UserPrefs;
 public class ClearSupplierCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptySupplierList_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -23,7 +23,7 @@ public class ClearSupplierCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptySupplierList_success() {
         Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
                 getTypicalOrderList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),

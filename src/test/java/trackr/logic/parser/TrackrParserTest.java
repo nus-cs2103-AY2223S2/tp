@@ -90,9 +90,16 @@ public class TrackrParserTest {
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
+    public void parseCommand_clearSupplier() throws Exception {
         assertTrue(parser.parseCommand(ClearSupplierCommand.COMMAND_WORD) instanceof ClearSupplierCommand);
         assertTrue(parser.parseCommand(ClearSupplierCommand.COMMAND_WORD + " 3") instanceof ClearSupplierCommand);
+    }
+
+    @Test
+    public void parseCommand_clearSupplierShortcut() throws Exception {
+        assertTrue(parser.parseCommand(ClearSupplierCommand.COMMAND_WORD_SHORTCUT) instanceof ClearSupplierCommand);
+        assertTrue(parser.parseCommand(
+                ClearSupplierCommand.COMMAND_WORD_SHORTCUT + " 3") instanceof ClearSupplierCommand);
     }
 
     @Test
@@ -217,9 +224,16 @@ public class TrackrParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_listSupplier() throws Exception {
         assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD) instanceof ListSupplierCommand);
         assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD + " 3") instanceof ListSupplierCommand);
+    }
+
+    @Test
+    public void parseCommand_listSupplierShortcut() throws Exception {
+        assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD_SHORTCUT) instanceof ListSupplierCommand);
+        assertTrue(parser.parseCommand(
+                ListSupplierCommand.COMMAND_WORD_SHORTCUT + " 3") instanceof ListSupplierCommand);
     }
 
     @Test
