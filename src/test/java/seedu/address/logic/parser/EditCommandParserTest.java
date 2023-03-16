@@ -31,7 +31,6 @@ import seedu.address.logic.commands.EditCommand.EditListingDescriptor;
 import seedu.address.model.applicant.Name;
 import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.JobDescription;
-import seedu.address.model.applicant.Applicant;
 import seedu.address.testutil.EditListingDescriptorBuilder;
 
 public class EditCommandParserTest {

@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.TitleContainsKeywordsPredicate;
+import seedu.address.testutil.EditListingDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -65,6 +66,17 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final EditCommand.EditListingDescriptor DESC_LISTING;
+    public static final EditCommand.EditListingDescriptor DESC_LISTING_ALT;
+
+    static {
+        DESC_LISTING = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE)
+                .withJobDescription(VALID_DESCRIPTION)
+                .withApplicants(VALID_APPLICANT_NAME_BENEDICT).build();
+        DESC_LISTING_ALT = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE_ALT)
+                .withJobDescription(VALID_DESCRIPTION_ALT)
+                .withApplicants(VALID_APPLICANT_NAME_BENEDICT, VALID_APPLICANT_NAME_CHRIS).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
