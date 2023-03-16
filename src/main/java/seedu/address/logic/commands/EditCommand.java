@@ -17,8 +17,8 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Name;
 import seedu.address.model.person.Address;
@@ -68,7 +68,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Entity> lastShownList = model.getFilteredPersonList();
+        List<Entity> lastShownList = model.getFilteredEntityList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -77,12 +77,12 @@ public class EditCommand extends Command {
         Entity entityToEdit = lastShownList.get(index.getZeroBased());
         Entity editedEntity = createEditedPerson(entityToEdit, editPersonDescriptor);
 
-        if (!entityToEdit.isSamePerson(editedEntity) && model.hasPerson(editedEntity)) {
+        if (!entityToEdit.isSamePerson(editedEntity) && model.hasEntity(editedEntity)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(entityToEdit, editedEntity);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setEntity(entityToEdit, editedEntity);
+        model.updateFilteredEntityList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedEntity));
     }
 

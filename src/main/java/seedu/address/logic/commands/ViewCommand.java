@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.experimental.model.Model;
 import seedu.address.logic.parser.UiSwitchMode;
-import seedu.address.model.Model;
 
 /**
  * Lists all persons in the address book to the user.

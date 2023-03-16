@@ -13,7 +13,13 @@ public class Classification {
     public static final String MESSAGE_CONSTRAINTS =
         "Classifications can only be char, item or mob, and should not be left blank.";
 
-    public static final String VALIDATION_REGEX = "char|item|mob";
+    public static final String VALIDATION_REGEX = "(char|item|mob)";
+
+    public static final String CHAR_STRING = "char";
+
+    public static final String CHAR_ITEM = "item";
+
+    public static final String CHAR_MOB = "mob";
 
     public final String classification;
 
@@ -31,8 +37,8 @@ public class Classification {
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidClassification(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidClassification(String classification) {
+        return classification.matches(VALIDATION_REGEX);
     }
 
 

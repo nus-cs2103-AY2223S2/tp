@@ -1,20 +1,17 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
-import java.util.Set;
-import java.util.stream.Stream;
+import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddEntityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -28,40 +25,23 @@ public class AddEntityCommandParser implements Parser<AddEntityCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddEntityCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_CLASSIFICATION, PREFIX_NAME);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLASSIFICATION, PREFIX_NAME)
-            || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddEntityCommand.MESSAGE_USAGE));
+        boolean isValidCommand = Pattern.matches("^make\\s+(char|item|mob)(\\s+[\\w]+)+$", args.trim());
+        if (!isValidCommand) {
+            throw new ParseException("Invalid command!");
         }
+        String[] split = args.trim().split("\\s+", 3);
+        Name name = ParserUtil.parseName(split[2]);
+        Classification classification = ParserUtil.parseClassification(split[1]);
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Classification classification = ParserUtil.parseClassification(
-            argMultimap.getValue(PREFIX_CLASSIFICATION).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Entity entity = null;
-
+        Entity newEntity = null;
         if (classification.isCharacter()) {
-            //Call AddCharacterCommmand
+            newEntity = new Character(name);
         } else if (classification.isItem()) {
-            entity = new Item(name, tagList);
+            newEntity = new Item(name);
         } else if (classification.isMob()) {
-            // Call AddMobCommand
-        } else {
+            newEntity = new Mob(name);
         }
-
-        return new AddEntityCommand(entity);
+        requireNonNull(newEntity);
+        return new AddEntityCommand(newEntity);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given {@code
-     * ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
