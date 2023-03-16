@@ -4,12 +4,14 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.project.Project;
 
 /**
  * The API for operations related to projects.
  */
 public interface ProjectModel {
+    Predicate<Person> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
     /**
      * Finds a single project that matches the specified predicate. Expects to
      * find either zero or one projects. If more than one project matches the

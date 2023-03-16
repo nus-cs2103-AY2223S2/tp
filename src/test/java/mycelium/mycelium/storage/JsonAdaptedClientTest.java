@@ -12,7 +12,6 @@ import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
 
-
 public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "K@NY3 W3ST";
     private static final String INVALID_MOBILE_NUMBER = "+651234";
@@ -24,6 +23,14 @@ public class JsonAdaptedClientTest {
     private static final String VALID_SOURCE = WEST.getSource().get();
     private static final String VALID_MOBILE_NUMBER = WEST.getMobileNumber().get().value;
 
+    //    @Test
+    //    public void basicSerialization() throws JsonProcessingException, IOException {
+    //        Client client = new ClientBuilder().build();
+    //        JsonAdaptedClient se = new JsonAdaptedClient(client);
+    //        String jsonStr = JsonUtil.toJsonString(se);
+    //        JsonAdaptedClient de = JsonUtil.fromJsonString(jsonStr, JsonAdaptedClient.class);
+    //        assertEquals(se, de);
+    //    }
 
     @Test
     public void toModelType_validClientDetails_returnsClient() throws Exception {
