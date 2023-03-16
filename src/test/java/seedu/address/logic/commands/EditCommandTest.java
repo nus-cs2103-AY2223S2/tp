@@ -142,7 +142,7 @@ public class EditCommandTest {
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(NAME_BEN).build();
-        EditCommand editCommand = new EditCommand(new ContactIndex(1000), descriptor);
+        EditCommand editCommand = new EditCommand(new ContactIndex(Integer.MAX_VALUE), descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -158,7 +158,7 @@ public class EditCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getEduMate().getPersonList().size());
 
-        EditCommand editCommand = new EditCommand(new ContactIndex(1000),
+        EditCommand editCommand = new EditCommand(new ContactIndex(Integer.MAX_VALUE),
                 new EditPersonDescriptorBuilder().withName(NAME_BEN).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

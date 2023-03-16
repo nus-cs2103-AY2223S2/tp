@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -20,8 +21,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.EduMate;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.testutil.PersonBuilder;
@@ -75,6 +79,37 @@ public class AddCommandTest {
 
         // different person -> returns false
         assertFalse(addAlbertCommand.equals(addBartCommand));
+    }
+
+    @Test
+    public void checkAssignedIndex_emptyModel_assign1() throws CommandException {
+        Model model = new ModelManager();
+        assertTrue(model.getFilteredPersonList().isEmpty());
+        Person validPerson = new PersonBuilder().build();
+        new AddCommand(validPerson).execute(model);
+        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(new ContactIndex(1), validPerson.getContactIndex());
+    }
+
+    @Test
+    public void checkAssignedIndex_gapsInContactIndexSequence_assignLowestAvailableIndex() throws CommandException {
+        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        int[] indicesToDelete = new int[] {3, 6, 10};
+        for (int idx : indicesToDelete) {
+            new DeleteCommand(new ContactIndex(idx)).execute(model);
+        }
+        Person validPerson = new PersonBuilder().build();
+        new AddCommand(validPerson).execute(model);
+        assertEquals(new ContactIndex(3), validPerson.getContactIndex());
+    }
+
+    @Test
+    public void checkAssignedIndex_consecutiveIndexPresent_assignLastIndex() throws CommandException {
+        Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        int size = model.getFilteredPersonList().size();
+        Person validPerson = new PersonBuilder().build();
+        new AddCommand(validPerson).execute(model);
+        assertEquals(new ContactIndex(size + 1), validPerson.getContactIndex());
     }
 
     /**
