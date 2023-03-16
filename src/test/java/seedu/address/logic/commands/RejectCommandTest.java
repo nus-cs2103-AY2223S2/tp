@@ -90,7 +90,8 @@ public class RejectCommandTest {
     }
 
     /**
-     * Edit filtered list but user is still able to reject applicants from outside the filtered list
+     * Edits filtered list to show the person that the user wants to reject.
+     * User is still able to reject applicants from outside the filtered list
      * without having to call the list command again to show the unfiltered list
      */
     @Test
