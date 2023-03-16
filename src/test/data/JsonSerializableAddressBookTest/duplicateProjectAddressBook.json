@@ -1,0 +1,24 @@
+{
+  "persons": [],
+  "projects": [
+	{
+      "name": "Bard",
+      "status": "NOT_STARTED",
+      "clientEmail": "jamar@bard.org",
+      "source": null,
+      "description": null,
+      "acceptedOn": "14/03/2022",
+      "deadline": null
+    },
+	{
+      "name": "Bard",
+      "status": "NOT_STARTED",
+      "clientEmail": "jamar@bard.org",
+      "source": null,
+      "description": null,
+      "acceptedOn": "14/03/2022",
+      "deadline": null
+    }
+  ],
+  "clients": []
+}
