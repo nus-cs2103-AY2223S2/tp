@@ -47,33 +47,33 @@ public class SampleDataUtil {
         Person[] persons = getSamplePersons();
         return new DeliveryJob[] {
             new DeliveryJob(
-                persons[0],
-                persons[1],
+                persons[0].getPersonId(),
+                persons[1].getPersonId(),
                 "dummy slot",
                 "0.0"),
             new DeliveryJob(
-                persons[1],
-                persons[2],
+                persons[1].getPersonId(),
+                persons[2].getPersonId(),
                 "dummy slot",
                 "1.0"),
             new DeliveryJob(
-                persons[2],
-                persons[3],
+                persons[2].getPersonId(),
+                persons[3].getPersonId(),
                 "dummy slot",
                 "2.0"),
             new DeliveryJob(
-                persons[3],
-                persons[4],
+                persons[3].getPersonId(),
+                persons[4].getPersonId(),
                 "dummy slot",
                 "3.0"),
             new DeliveryJob(
-                persons[4],
-                persons[5],
+                persons[4].getPersonId(),
+                persons[5].getPersonId(),
                 "dummy slot",
                 "4.0"),
             new DeliveryJob(
-                persons[5],
-                persons[0],
+                persons[5].getPersonId(),
+                persons[0].getPersonId(),
                 "dummy slot",
                 "5.0")
             };

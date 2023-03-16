@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -115,6 +116,12 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public Optional<Person> getPersonById(String id) {
+        requireNonNull(id);
+        return addressBook.getPersonById(id);
     }
 
     @Override

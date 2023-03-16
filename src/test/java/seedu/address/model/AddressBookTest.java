@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -103,6 +104,12 @@ public class AddressBookTest {
         @Override
         public ObservableList<Reminder> getReminderList() {
             return reminderList;
+        }
+
+        @Override
+        public Optional<Person> getPersonById(String id) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getPersonById'");
         }
     }
 }

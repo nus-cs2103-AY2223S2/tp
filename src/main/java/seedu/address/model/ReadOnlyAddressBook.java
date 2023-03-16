@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import java.util.Optional;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -16,5 +18,7 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
 
     ObservableList<Reminder> getReminderList();
+
+    Optional<Person> getPersonById(String id);
 
 }
