@@ -38,12 +38,12 @@ import org.junit.jupiter.api.Test;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.logic.commands.patient.EditCommand.EditPatientDescriptor;
-import seedu.vms.model.patient.Allergy;
+import seedu.vms.logic.parser.ParserUtil;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.patient.Vaccine;
 import seedu.vms.testutil.EditPatientDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -88,8 +88,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_DOB_DESC, Dob.MESSAGE_CONSTRAINTS); // invalid dob
         assertParseFailure(parser, "1" + INVALID_BLOODTYPE_DESC, BloodType.MESSAGE_CONSTRAINTS); // invalid allergy
-        assertParseFailure(parser, "1" + INVALID_ALLERGY_DESC, Allergy.MESSAGE_CONSTRAINTS); // invalid allergy
-        assertParseFailure(parser, "1" + INVALID_VACCINE_DESC, Vaccine.MESSAGE_CONSTRAINTS); // invalid vaccine
+        assertParseFailure(parser, "1" + INVALID_ALLERGY_DESC, GroupName.MESSAGE_CONSTRAINTS); // invalid allergy
+        assertParseFailure(parser, "1" + INVALID_VACCINE_DESC, GroupName.MESSAGE_CONSTRAINTS); // invalid vaccine
 
         // invalid phone followed by valid dob
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + DOB_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -101,11 +101,11 @@ public class EditCommandParserTest {
         // while parsing {@code PREFIX_ALLERGY} alone will reset the allergies of the {@code Patient} being edited,
         // parsing it together with a valid allergy results in error
         assertParseFailure(parser, "1" + ALLERGY_DESC_GLUTEN + ALLERGY_DESC_SEAFOOD + ALLERGY_EMPTY,
-                Allergy.MESSAGE_CONSTRAINTS);
+                ParserUtil.MESSAGE_BLANK_ELEMENT);
         assertParseFailure(parser, "1" + ALLERGY_DESC_GLUTEN + ALLERGY_EMPTY + ALLERGY_DESC_SEAFOOD,
-                Allergy.MESSAGE_CONSTRAINTS);
+                ParserUtil.MESSAGE_BLANK_ELEMENT);
         assertParseFailure(parser, "1" + ALLERGY_EMPTY + ALLERGY_DESC_GLUTEN + ALLERGY_DESC_SEAFOOD,
-                Allergy.MESSAGE_CONSTRAINTS);
+                ParserUtil.MESSAGE_BLANK_ELEMENT);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DOB_DESC + VALID_BLOODTYPE_AMY + VALID_PHONE_AMY,

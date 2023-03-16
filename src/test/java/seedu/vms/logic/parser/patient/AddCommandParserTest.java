@@ -31,7 +31,7 @@ import static seedu.vms.testutil.TypicalPatients.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.logic.commands.patient.AddCommand;
-import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
@@ -128,7 +128,7 @@ public class AddCommandParserTest {
 
         // invalid allergy
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + DOB_DESC_BOB + BLOODTYPE_DESC_BOB
-                + INVALID_ALLERGY_DESC + VALID_ALLERGY_GLUTEN, Allergy.MESSAGE_CONSTRAINTS);
+                + INVALID_ALLERGY_DESC + VALID_ALLERGY_GLUTEN, GroupName.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + DOB_DESC_BOB + INVALID_BLOODTYPE_DESC,

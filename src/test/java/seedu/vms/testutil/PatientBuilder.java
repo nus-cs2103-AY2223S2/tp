@@ -3,13 +3,12 @@ package seedu.vms.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.vms.model.patient.Allergy;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
-import seedu.vms.model.patient.Vaccine;
 import seedu.vms.model.util.SampleDataUtil;
 
 /**
@@ -26,8 +25,8 @@ public class PatientBuilder {
     private Phone phone;
     private Dob dateOfBirth;
     private BloodType bloodType;
-    private Set<Allergy> allergies = new HashSet<>();
-    private Set<Vaccine> vaccines = new HashSet<>();
+    private Set<GroupName> allergies = new HashSet<>();
+    private Set<GroupName> vaccines = new HashSet<>();
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
