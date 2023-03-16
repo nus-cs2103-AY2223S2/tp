@@ -106,7 +106,7 @@ public class Person {
         case APPLIED:
             return new Person(this, Status.SHORTLISTED, interviewDateTime);
         case SHORTLISTED:
-            return new Person (this, Status.ACCEPTED);
+            return new Person(this, Status.ACCEPTED);
         default:
             throw new AssertionError("This person's application status cannot be advanced!");
         }

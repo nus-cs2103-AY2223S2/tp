@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import seedu.address.logic.commands.AdvanceCommand;
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 

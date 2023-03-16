@@ -15,7 +15,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
@@ -82,8 +81,8 @@ public class AdvanceCommandTest {
             advanceCommand.execute(model);
         });
 
-        assertEquals(String.format(AdvanceCommand.MESSAGE_PERSON_CANNOT_BE_ADVANCED, personToAdvance.getName().fullName),
-                exceptionThrown.getMessage());
+        assertEquals(String.format(AdvanceCommand.MESSAGE_PERSON_CANNOT_BE_ADVANCED,
+                personToAdvance.getName().fullName), exceptionThrown.getMessage());
         model.deletePerson(personToAdvance);
     }
 

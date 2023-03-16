@@ -8,15 +8,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.note.Note;
-import seedu.address.model.person.*;
+import seedu.address.model.person.InterviewDateTime;
+import seedu.address.model.person.NamePhoneNumberPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Status;
 
 /**
  * Advances an applicant in HMHero.
@@ -127,7 +128,7 @@ public class AdvanceCommand extends Command {
      * @param interviewDateTime new date and time of the interview for the applicant
      */
     private boolean isDuplicateDateTime(
-            Model model, Person personToAdvance, InterviewDateTime interviewDateTime) throws CommandException{
+            Model model, Person personToAdvance, InterviewDateTime interviewDateTime) throws CommandException {
         Predicate<Person> shortlistedPredicate = person -> (person.getStatus() == Status.SHORTLISTED);
         model.refreshListWithPredicate(shortlistedPredicate);
         ObservableList<Person> shortlistedApplicants = model.getFilteredPersonList();
