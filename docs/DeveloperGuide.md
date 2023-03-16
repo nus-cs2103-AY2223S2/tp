@@ -493,24 +493,28 @@ Use case ends.
 
 1. User requests to list contacts.
 2. SOCket shows a list of contacts.
-3. User requests to list contacts by tag.
-4. SOCket shows a list of contacts with given tag.
+3. User requests to list contacts by language(s) and tag(s).
+4. SOCket shows a list of contacts with given language(s) and tag(s).
 
    Use case ends.
 
 **Extensions:**
 
-* 3a. The given tag is invalid.
+* 3a. The given tag(s) or language(s) is invalid.
 
     * 3a1. SOCket shows an error message.
 
       Use case resumes at step 2.
+      
+* 3b. No contact matches the given language(s) or tag(s). 
 
-* 3b. No category is given.
-
-  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+    * 3b1. SOCket shows an empty list of contacts. 
     
-     Use case ends.
+      Use case resumes at step 2. 
+
+* 3c. No category is given.
+      
+  Use case resumes at step 2. 
 
 **Use case: UC08 Access Help page**
 
