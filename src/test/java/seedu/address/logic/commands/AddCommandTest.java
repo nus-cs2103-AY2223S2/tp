@@ -179,6 +179,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyModule getModule(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteModule(ReadOnlyModule target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -200,6 +205,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -287,6 +297,7 @@ public class AddCommandTest {
         public void navigateToLecFromMod(LectureName lectureName) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**

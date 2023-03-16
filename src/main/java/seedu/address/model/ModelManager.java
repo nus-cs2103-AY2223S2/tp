@@ -150,6 +150,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName) {
+        ReadOnlyModule mod = tracker.getModule(moduleCode);
+        return mod.getLecture(lectureName);
+    }
+    @Override
     public void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target) {
         requireNonNull(module);
         //CHECKSTYLE.OFF: SeparatorWrap

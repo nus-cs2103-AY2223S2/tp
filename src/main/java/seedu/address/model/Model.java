@@ -154,10 +154,20 @@ public interface Model {
     /**
      * Returns true if a module of {@code moduleCode} has a lecture with {@code lectureName}.
      *
-     * @param moduleCode The moduleCode of the module that the lecture with {@code lectureName} belongs to .
+     * @param moduleCode The moduleCode of the module that the lecture with {@code lectureName} belongs to.
      * @return True if a module that has {@code moduleCode} has a lecture with {@code lectureName}. Otherwise, false.
      */
     boolean hasLecture(ModuleCode moduleCode, LectureName lectureName);
+
+    /**
+     * Returns a lecture with {@code lectureName} in module of {@code moduleCode}
+     * The module must exist in the tracker.
+     * The lecture must exist in {@code module}
+     *
+     * @param moduleCode The moduleCode of the module that the lecture with {@code lecturename} belongs to.
+     * @return Lecture with {@code lectureName} found in module of {@code moduleCode}
+     */
+    ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName);
 
     /**
      * Deletes the given lecture {@code target}.<p>

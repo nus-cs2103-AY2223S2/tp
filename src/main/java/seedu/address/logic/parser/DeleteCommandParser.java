@@ -7,9 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import java.util.Optional;
 
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteLectureCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-// import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
 // import seedu.address.model.video.VideoName;
 
@@ -33,20 +34,20 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         try {
 
             if (moduleCodeOptional.isPresent()) {
-                // ModuleCode moduleCode = new ModuleCode(moduleCodeOptional.get());
+                ModuleCode moduleCode = new ModuleCode(moduleCodeOptional.get());
 
                 // if (lectureNameOptional.isPresent()) {
                 //     LectureName lectureName = new LectureName(lectureNameOptional.get());
                 //     VideoName videoName = new VideoName(preamble);
                 //     return new DeleteVideoCommand(videoName, moduleCode, lectureName);
                 // } else {
-                //     LectureName lectureName = new LectureName(preamble);
-                //     return new DeleteLectureCommand(lectureName, moduleCode);
+                LectureName lectureName = new LectureName(preamble);
+                return new DeleteLectureCommand(lectureName, moduleCode);
                 // }
-            } // else {
-            ModuleCode moduleCode = ParserUtil.parseModuleCode(preamble);
-            return new DeleteModuleCommand(moduleCode);
-            // }
+            } else {
+                ModuleCode moduleCode = ParserUtil.parseModuleCode(preamble);
+                return new DeleteModuleCommand(moduleCode);
+            }
 
         } catch (ParseException pe) {
             throw new ParseException(

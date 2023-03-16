@@ -22,6 +22,11 @@ public class DeleteModuleCommand extends DeleteCommand {
 
     private final ModuleCode targetModuleCode;
 
+    /**
+     * Creates a Delete Module Command executable that deletes a module of {@code targetModuleCode}
+     *
+     * @param targetModuleCode Module Code of module to delete
+     */
     public DeleteModuleCommand(ModuleCode targetModuleCode) {
         this.targetModuleCode = targetModuleCode;
     }
