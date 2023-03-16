@@ -111,6 +111,8 @@ public interface Model {
 
     void updateFilteredCustomerList(Predicate<Customer> predicate);
 
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
     // ==== For Customers ==
 
     /**

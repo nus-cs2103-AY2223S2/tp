@@ -11,7 +11,7 @@ public class CustomerIdPredicate implements Predicate<Customer> {
     private final int id;
 
     public CustomerIdPredicate(Index id) {
-        this.id = id.getZeroBased();  //todo: assess if index is zero-based.
+        this.id = id.getZeroBased();
     }
 
     @Override

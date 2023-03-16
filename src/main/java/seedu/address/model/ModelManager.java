@@ -34,7 +34,7 @@ public class ModelManager implements Model {
     private final FilteredList<Service> filteredServices;
     private final FilteredList<Vehicle> filteredVehicles;
     //    private final FilteredList<Part> filteredParts;
-    //    private final FilteredList<Appointment> filteredAppointment;
+    private final FilteredList<Appointment> filteredAppointment;
     private final Shop shop;
 
     /**
@@ -56,7 +56,7 @@ public class ModelManager implements Model {
         filteredServices = new FilteredList<>(this.shop.getServiceList());
         filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
         //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
-        //        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
 
     }
 
@@ -279,6 +279,12 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointment.setPredicate(predicate);
     }
 
     @Override

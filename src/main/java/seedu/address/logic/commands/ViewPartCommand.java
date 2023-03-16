@@ -28,7 +28,7 @@ public class ViewPartCommand extends RedoableCommand {
     @Override
     public CommandResult executeUndoableCommand(Model model) {
         requireNonNull(model);
-        model.updateFilteredPartList(predicate); // todo: FIX
+        //        model.updateFilteredPartList(predicate); // todo: FIX
         return new CommandResult(
                 String.format(Messages.MESSAGE_PART_VIEW_OVERVIEW));
     }

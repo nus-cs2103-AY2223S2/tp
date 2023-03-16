@@ -19,6 +19,7 @@ import seedu.address.model.service.ServiceList;
 import seedu.address.model.service.UniqueVehicleList;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
+import seedu.address.model.service.appointment.UniqueAppointmentList;
 import seedu.address.model.service.exception.PartNotFoundException;
 import seedu.address.model.service.exception.VehicleNotFoundException;
 
@@ -32,17 +33,15 @@ public class Shop implements ReadOnlyShop {
     private final ServiceList services = new ServiceList();
 
     //TODO: Implement immutable list for appointments
-    private final List<Appointment> appointments;
+    private final UniqueAppointmentList appointments = new UniqueAppointmentList();
 
     //TODO: convert back to final, after figuring out how to properly implement setPartMap immutably
     private PartMap partMap;
-
 
     /**
      * Constructor for class Shop.
      */
     public Shop() {
-        this.appointments = new ArrayList<>();
         this.partMap = new PartMap();
     }
 
@@ -117,14 +116,6 @@ public class Shop implements ReadOnlyShop {
 
     // --------------------------------------------------
     //// Appointment-level operations
-    /**
-     * Get appointment list
-     *
-     * @return List of appointments
-     */
-    public List<Appointment> getAppointments() {
-        return this.appointments;
-    }
 
     /**
      * Adds appointment to the appointment list
@@ -132,14 +123,12 @@ public class Shop implements ReadOnlyShop {
      * @param appointment Appointment to be added
      */
     public void addAppointment(Appointment appointment) {
-        this.getAppointments().add(appointment);
+        this.appointments.add(appointment);
     }
 
     @Override
     public ObservableList<Appointment> getAppointmentList() {
-
-        //        return this.appointments.asUnmodifiableObservableList();
-        return null;
+        return this.appointments.asUnmodifiableObservableList();
     }
 
     // --------------------------------------------------

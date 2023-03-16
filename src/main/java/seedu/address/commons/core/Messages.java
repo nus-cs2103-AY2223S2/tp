@@ -12,7 +12,7 @@ public class Messages {
     public static final String MESSAGE_VEHICLE_VIEW_OVERVIEW = "Vehicle listed.";
     public static final String MESSAGE_CUSTOMER_VIEW_OVERVIEW = "Customer listed.";
     public static final String MESSAGE_PART_VIEW_OVERVIEW = "Part listed.";
-    //    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_APPOINTMENT_VIEW_OVERVIEW = "Customer listed.";
     //    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     //    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
