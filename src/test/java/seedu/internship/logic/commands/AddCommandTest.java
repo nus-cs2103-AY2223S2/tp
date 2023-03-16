@@ -47,21 +47,22 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validInternship);
         ModelStub modelStub = new ModelStubWithInternship(validInternship);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP, () ->
+                addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Internship ML2 = TypicalInternships.ML2;
-        Internship SE3 = TypicalInternships.SE3;
-        AddCommand addML2Command = new AddCommand(ML2);
-        AddCommand addSE3Command = new AddCommand(SE3);
+        Internship ml2 = TypicalInternships.ML2;
+        Internship se3 = TypicalInternships.SE3;
+        AddCommand addML2Command = new AddCommand(ml2);
+        AddCommand addSE3Command = new AddCommand(se3);
 
         // same object -> returns true
         assertTrue(addML2Command.equals(addML2Command));
 
         // same values -> returns true
-        AddCommand addML2CommandCopy = new AddCommand(ML2);
+        AddCommand addML2CommandCopy = new AddCommand(ml2);
         assertTrue(addML2Command.equals(addML2CommandCopy));
 
 

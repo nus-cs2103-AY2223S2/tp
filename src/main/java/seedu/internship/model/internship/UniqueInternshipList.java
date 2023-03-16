@@ -113,16 +113,12 @@ public class UniqueInternshipList implements Iterable<Internship> {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this){
+        if (other == this) {
             return true;
         }
         if (other instanceof UniqueInternshipList) {
             UniqueInternshipList otherList = (UniqueInternshipList) other;
-            boolean res = true;
-            for (Internship listing : this.internalList) {
-                res = res && otherList.contains(listing);
-            }
-            return res;
+            return this.internalList.equals(otherList.internalList);
         }
         return false;
 
