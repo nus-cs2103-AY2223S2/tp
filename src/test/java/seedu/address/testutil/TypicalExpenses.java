@@ -1,17 +1,14 @@
 package seedu.address.testutil;
 
-
-import seedu.address.model.ExpenseTracker;
-import seedu.address.model.category.MiscellaneousCategory;
-import seedu.address.model.expense.Expense;
-
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import seedu.address.model.ExpenseTracker;
+import seedu.address.model.category.MiscellaneousCategory;
+import seedu.address.model.expense.Expense;
+
 
 /**
  * A utility class containing a list of {@code Expense} objects to be used in tests.
@@ -50,6 +47,6 @@ public class TypicalExpenses {
     }
 
     public static List<Expense> getTypicalExpenses() {
-            return new ArrayList<>(Arrays.asList(APPLE, BANANA, CHERRY, DURIAN, ELDERBERRY, FIG, GRAPE));
+        return new ArrayList<>(Arrays.asList(APPLE, BANANA, CHERRY, DURIAN, ELDERBERRY, FIG, GRAPE));
     }
 }
