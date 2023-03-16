@@ -281,6 +281,10 @@ public class ModelManager implements Model {
         }
     }
 
+    @Override
+    public void updateFocusDate(LocalDate jobDate) {
+        this.focusDate = jobDate;
+    }
     private void addWeekJobList(LocalDate dayToAdd) {
         if (jobListGroupedByDate.containsKey(dayToAdd)) {
             ArrayList<ArrayList<DeliveryJob>> currentJobList = jobListGroupedByDate.get(dayToAdd);

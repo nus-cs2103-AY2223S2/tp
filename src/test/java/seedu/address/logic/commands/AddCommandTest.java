@@ -182,6 +182,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFocusDate(LocalDate jobDate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<DeliveryJob> getSortedDeliveryJobList() {
             throw new AssertionError("This method should not be called.");
         }

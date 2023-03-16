@@ -18,6 +18,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+import javax.management.DescriptorKey;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -109,9 +111,9 @@ public class ParserUtil {
         requireNonNull(date);
         String trimmedDate = date.trim();
         if (!DeliveryDate.isValidDate(trimmedDate)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS);
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate jobDate = LocalDate.parse(trimmedDate, formatter);
         return jobDate;
     }

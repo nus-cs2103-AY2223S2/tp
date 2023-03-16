@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -40,6 +41,9 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
 
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
+
+    @FXML
+    private VBox timetable;
 
     @FXML
     private Text year;
@@ -168,10 +172,11 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
      */
     void fillInnerParts() {
         //Get year and month of week
+        focusDate = logic.getFocusDate();
+       // System.out.println("focus: " + focusDate.toString());
         year.setText(String.valueOf(focusDate.getYear()));
         month.setText(String.valueOf(focusDate.getMonth()));
 
-        focusDate = logic.getFocusDate();
         setDayText();
 
         resultDisplay = new ResultDisplay();
@@ -186,17 +191,18 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         logic.setWeekDeliveryJobList(focusDate);
         Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> weekJobList = logic.getWeekDeliveryJobList();
 
-        addJobSlotsToPanel(deliveryJobListPanelPlaceholder1, logic.getDayofWeekJob(1));
+        /*addJobSlotsToPanel(deliveryJobListPanelPlaceholder1, logic.getDayofWeekJob(1));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder2, logic.getDayofWeekJob(2));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder3, logic.getDayofWeekJob(3));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder4, logic.getDayofWeekJob(4));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder5, logic.getDayofWeekJob(5));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder6, logic.getDayofWeekJob(6));
-        addJobSlotsToPanel(deliveryJobListPanelPlaceholder7, logic.getDayofWeekJob(7));
+        addJobSlotsToPanel(deliveryJobListPanelPlaceholder7, logic.getDayofWeekJob(7));*/
 
     }
 
     private void setDayText() {
+        focusDate = logic.getFocusDate();
         int focusDayOfWeek = focusDate.getDayOfWeek().getValue();
 
         int day1Text = focusDate.plusDays(1 - focusDayOfWeek).getDayOfMonth();
@@ -281,7 +287,7 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
 
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult = logic.executeTimetableCommand(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -289,6 +295,7 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
 
             return commandResult;
         } catch (CommandException | ParseException e) {

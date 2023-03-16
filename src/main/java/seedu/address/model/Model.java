@@ -120,6 +120,7 @@ public interface Model {
     void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter);
     void updateSortedDeliveryJobListByDate();
     void updateWeekDeliveryJobList(LocalDate date);
+    void updateFocusDate(LocalDate jobDate);
     ObservableList<DeliveryJob> getSortedDeliveryJobList();
     Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getSortedDeliveryJobListByDate();
     Map<LocalDate, ArrayList<ArrayList<DeliveryJob>>> getWeekDeliveryJobList();
