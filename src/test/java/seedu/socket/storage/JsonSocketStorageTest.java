@@ -31,7 +31,7 @@ public class JsonSocketStorageTest {
     }
 
     private java.util.Optional<ReadOnlySocket> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonSocketStorage(Paths.get(filePath)).readSocket(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -64,24 +64,24 @@ public class JsonSocketStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         Socket original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonSocketStorage jsonAddressBookStorage = new JsonSocketStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlySocket readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveSocket(original, filePath);
+        ReadOnlySocket readBack = jsonAddressBookStorage.readSocket(filePath).get();
         assertEquals(original, new Socket(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveSocket(original, filePath);
+        readBack = jsonAddressBookStorage.readSocket(filePath).get();
         assertEquals(original, new Socket(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonAddressBookStorage.saveSocket(original); // file path not specified
+        readBack = jsonAddressBookStorage.readSocket().get(); // file path not specified
         assertEquals(original, new Socket(readBack));
     }
 
@@ -95,8 +95,8 @@ public class JsonSocketStorageTest {
      */
     private void saveAddressBook(ReadOnlySocket addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonSocketStorage(Paths.get(filePath))
+                    .saveSocket(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

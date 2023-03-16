@@ -29,7 +29,7 @@ import seedu.socket.model.ModelManager;
 import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.UserPrefs;
 import seedu.socket.model.person.Person;
-import seedu.socket.storage.JsonAddressBookStorage;
+import seedu.socket.storage.JsonSocketStorage;
 import seedu.socket.storage.JsonUserPrefsStorage;
 import seedu.socket.storage.StorageManager;
 import seedu.socket.testutil.PersonBuilder;
@@ -45,8 +45,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonSocketStorage addressBookStorage =
+                new JsonSocketStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -72,9 +72,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonSocketIoExceptionThrowingStub
+        JsonSocketStorage addressBookStorage =
+                new JsonSocketIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -151,13 +151,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonSocketIoExceptionThrowingStub extends JsonSocketStorage {
+        private JsonSocketIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlySocket addressBook, Path filePath) throws IOException {
+        public void saveSocket(ReadOnlySocket socket, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

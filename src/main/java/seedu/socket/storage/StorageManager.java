@@ -12,19 +12,19 @@ import seedu.socket.model.ReadOnlyUserPrefs;
 import seedu.socket.model.UserPrefs;
 
 /**
- * Manages storage of Socket data in local storage.
+ * Manages storage of SOCket data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private SocketStorage socketStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code SocketStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(SocketStorage socketStorage, UserPrefsStorage userPrefsStorage) {
+        this.socketStorage = socketStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -49,30 +49,30 @@ public class StorageManager implements Storage {
     // ================ Socket methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getSocketFilePath() {
+        return socketStorage.getSocketFilePath();
     }
 
     @Override
-    public Optional<ReadOnlySocket> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlySocket> readSocket() throws DataConversionException, IOException {
+        return readSocket(socketStorage.getSocketFilePath());
     }
 
     @Override
-    public Optional<ReadOnlySocket> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlySocket> readSocket(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return socketStorage.readSocket(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlySocket addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveSocket(ReadOnlySocket socket) throws IOException {
+        saveSocket(socket, socketStorage.getSocketFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlySocket addressBook, Path filePath) throws IOException {
+    public void saveSocket(ReadOnlySocket socket, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        socketStorage.saveSocket(socket, filePath);
     }
 
 }

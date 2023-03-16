@@ -11,36 +11,37 @@ import seedu.socket.model.Socket;
 /**
  * Represents a storage for {@link Socket}.
  */
-public interface AddressBookStorage {
+public interface SocketStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getSocketFilePath();
 
     /**
-     * Returns Socket data as a {@link ReadOnlySocket}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Socket} data as a {@link ReadOnlySocket}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlySocket> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlySocket> readSocket() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getSocketFilePath()
      */
-    Optional<ReadOnlySocket> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlySocket> readSocket(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlySocket} to the storage.
-     * @param addressBook cannot be null.
+     * @param socket cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlySocket addressBook) throws IOException;
+    void saveSocket(ReadOnlySocket socket) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlySocket)
+     * @see #saveSocket(ReadOnlySocket)
      */
-    void saveAddressBook(ReadOnlySocket addressBook, Path filePath) throws IOException;
+    void saveSocket(ReadOnlySocket socket, Path filePath) throws IOException;
 
 }

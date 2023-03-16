@@ -23,8 +23,8 @@ import seedu.socket.model.ModelManager;
 import seedu.socket.model.ReadOnlyUserPrefs;
 import seedu.socket.model.UserPrefs;
 import seedu.socket.model.util.SampleDataUtil;
-import seedu.socket.storage.AddressBookStorage;
-import seedu.socket.storage.JsonAddressBookStorage;
+import seedu.socket.storage.JsonSocketStorage;
+import seedu.socket.storage.SocketStorage;
 import seedu.socket.storage.JsonUserPrefsStorage;
 import seedu.socket.storage.Storage;
 import seedu.socket.storage.StorageManager;
@@ -58,8 +58,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getSocketFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        SocketStorage socketStorage = new JsonSocketStorage(userPrefs.getSocketFilePath());
+        storage = new StorageManager(socketStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -81,7 +81,7 @@ public class MainApp extends Application {
         Optional<ReadOnlySocket> addressBookOptional;
         ReadOnlySocket initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readSocket();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Socket");
             }

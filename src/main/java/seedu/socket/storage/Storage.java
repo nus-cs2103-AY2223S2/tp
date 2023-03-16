@@ -12,7 +12,7 @@ import seedu.socket.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends SocketStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getSocketFilePath();
 
     @Override
-    Optional<ReadOnlySocket> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlySocket> readSocket() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlySocket addressBook) throws IOException;
+    void saveSocket(ReadOnlySocket socket) throws IOException;
 
 }
