@@ -17,7 +17,7 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons according to specified order "
-            + "(case-insensitive) and sort by (case-insensitive), displays them as a list with index numbers.\n"
+            + "and sort by (both case-insensitive), displays them as a list with index numbers.\n"
             + "Parameters: ORDER SORT_BY\n"
             + "Example: " + COMMAND_WORD + " desc tcount";
 
