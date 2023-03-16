@@ -6,15 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddReminderCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteReminderCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListReminderCommand;
-import seedu.address.logic.commands.StatisticsCommand;
-import seedu.address.logic.commands.TimetableCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.jobs.AddDeliveryJobCommand;
 import seedu.address.logic.commands.jobs.DeleteDeliveryJobCommand;
 import seedu.address.logic.commands.person.AddCommand;
@@ -29,6 +21,7 @@ import seedu.address.logic.parser.person.AddCommandParser;
 import seedu.address.logic.parser.person.DeleteCommandParser;
 import seedu.address.logic.parser.person.EditCommandParser;
 import seedu.address.logic.parser.person.FindCommandParser;
+import seedu.address.logic.parser.timetable.TimetableDateCommandParser;
 
 /**
  * Parses user input.
@@ -92,6 +85,9 @@ public class DukeDriverParser {
 
         case TimetableCommand.COMMAND_WORD:
             return new TimetableCommand();
+
+        case TimetableDateCommand.COMMAND_WORD:
+            return new TimetableDateCommandParser().parse(arguments);
 
         case AddDeliveryJobCommand.COMMAND_WORD:
             return new AddDeliveryJobCommandParser().parse(arguments);

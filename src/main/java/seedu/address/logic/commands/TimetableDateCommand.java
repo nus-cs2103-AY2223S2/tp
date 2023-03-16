@@ -13,7 +13,7 @@ import seedu.address.model.jobs.sorters.SortbyTime;
  * Shows timetable of the requested week based on user's date input
  */
 public class TimetableDateCommand extends Command {
-    public static final String COMMAND_WORD = "timetable";
+    public static final String COMMAND_WORD = "timetable_date";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows timetable of scheduled/uncompleted jobs in the week, "
@@ -48,7 +48,7 @@ public class TimetableDateCommand extends Command {
         model.updateWeekDeliveryJobList(jobDate);*/
 
         //System.out.print(model.getSortedDeliveryJobListByDate());
-        return new CommandResult(SHOWING_TIMETABLE_MESSAGE);
+        return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false, false, false);
     }
 
 }

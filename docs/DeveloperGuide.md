@@ -369,10 +369,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </details>
 
 <details>
-<summary><b>[TT2] Display timetable and scheduling tasks of specific week</b></summary>
+<summary><b>[TT2] Display timetable and scheduling tasks of week containing a specific date</b></summary>
 <pre>
 <b>MSS</b>
-1. User requests to display timetable of specific week by requesting to show timetable of a date in that week.
+1. User requests to display timetable of specific week containing a specific date.
 2. System displays timetable of uncompleted/upcoming jobs in the week.
    Use case ends.
 

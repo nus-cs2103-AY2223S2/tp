@@ -195,11 +195,11 @@ Shows timetable of jobs, with the week shown being current week.
 
 Format: `timetable`
 
-### Showing timetable of specific date: `timetable date/`
+### Showing timetable of specific date: `timetable_date`
 
 Shows timetable of specific week containing a specific date
 
-Format: `timetable date/YYYY-mm-DD`
+Format: `timetable_date date/YYYY-mm-DD`
 
 * Shows timetable of the week containing the given date
 
