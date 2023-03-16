@@ -18,6 +18,7 @@ import vimification.logic.commands.EditCommand;
 import vimification.logic.commands.EditCommand.EditPersonDescriptor;
 import vimification.model.tag.Tag;
 
+// TODO : FIX THIS
 /**
  * Parses input arguments and creates a new EditCommand object
  */

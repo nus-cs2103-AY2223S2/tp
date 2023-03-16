@@ -7,10 +7,12 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import vimification.commons.core.GuiSettings;
 import vimification.commons.core.LogsCenter;
+import vimification.logic.commands.AddCommand;
 import vimification.logic.commands.Command;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.commands.exceptions.CommandException;
-import vimification.logic.parser.AddressBookParser;
+// TODO : FIX THIS
+// import vimification.logic.parser.AddressBookParser;
 import vimification.logic.parser.ParseException;
 import vimification.model.Model;
 import vimification.model.ReadOnlyTaskPlanner;
@@ -26,7 +28,8 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    // TODO : FIX THIS
+    // private final AddressBookParser addressBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +37,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        // addressBookParser = new AddressBookParser();
     }
 
     @Override
@@ -42,7 +45,10 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+
+        // TODO : FIX THIS
+        // Command command = addressBookParser.parseCommand(commandText);
+        Command command = new AddCommand(null);
         commandResult = command.execute(model);
 
         try {
