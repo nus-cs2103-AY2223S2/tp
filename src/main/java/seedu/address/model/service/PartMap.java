@@ -17,7 +17,7 @@ public class PartMap {
     }
 
     /**
-     * Checks if part is in the list
+     * Checks if part is in the map
      *
      * @param partName Part Name
      */
@@ -26,11 +26,10 @@ public class PartMap {
     }
 
     /**
-     * Get part with suitable description
+     * Gets the quantity of a specified part
      *
      * @param partName Part name
      * @return Quantity of part
-     * @throws PartNotFoundException If part not in Set
      */
     public int getPartQuantity(String partName) {
         if (!contains(partName)) {
@@ -39,6 +38,9 @@ public class PartMap {
         return map.get(partName);
     }
 
+    /**
+     * Gets the entrySet of the map
+     */
     public Set<Map.Entry<String, Integer>> getEntrySet() {
         return map.entrySet();
     }
