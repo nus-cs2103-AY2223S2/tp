@@ -79,7 +79,11 @@ public class Person {
     }
 
     public String getInterviewDateTimeString() {
-        return interviewDateTime.map(InterviewDateTime::toString).orElse("");
+        if (this.getStatus() == Status.SHORTLISTED) {
+            return interviewDateTime.map(InterviewDateTime::toString).orElse("");
+        } else {
+            return "";
+        }
     }
 
     /**
