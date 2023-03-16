@@ -37,7 +37,7 @@ public class SocketTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlySocket_replacesData() {
         Socket newData = getTypicalAddressBook();
         socket.resetData(newData);
         assertEquals(newData, socket);
@@ -60,18 +60,18 @@ public class SocketTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInSocket_returnsFalse() {
         assertFalse(socket.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInSocket_returnsTrue() {
         socket.addPerson(ALICE);
         assertTrue(socket.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInSocket_returnsTrue() {
         socket.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
