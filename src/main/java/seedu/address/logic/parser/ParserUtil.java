@@ -8,6 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Status;
+import seedu.address.model.patient.Ward;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -64,7 +65,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -76,5 +77,20 @@ public class ParserUtil {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
         return new Status(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String ward} into a {@code Ward}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Ward parseWard(String ward) throws ParseException {
+        requireNonNull(ward);
+        String trimmedWard = ward.trim();
+        if (!Ward.isValidWard(trimmedWard)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+        return new Ward(trimmedWard);
     }
 }
