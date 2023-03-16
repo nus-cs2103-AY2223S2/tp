@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane prefHeight="106.0" prefWidth="346.0" HBox.hgrow="ALWAYS">
+  <GridPane prefHeight="115.0" prefWidth="346.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
@@ -29,10 +29,22 @@
 	  <Label fx:id="nric" styleClass="cell_big_label" text="\$nric" />
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="address" prefHeight="13.0" prefWidth="211.0" styleClass="cell_small_label" text="\$address" />
+      <FlowPane fx:id="tags">
+            <padding>
+               <Insets bottom="2.0" top="2.0" />
+            </padding></FlowPane>
+      <Label fx:id="phone" prefHeight="17.0" prefWidth="329.0" styleClass="cell_small_label" text="\$phone">
+            <padding>
+               <Insets top="3.0" />
+            </padding></Label>
+      <Label fx:id="email" prefHeight="17.0" prefWidth="332.0" styleClass="cell_small_label" text="\$email">
+            <padding>
+               <Insets top="3.0" />
+            </padding></Label>
+      <Label fx:id="address" prefHeight="17.0" prefWidth="333.0" styleClass="cell_small_label" text="\$address">
+            <padding>
+               <Insets top="3.0" />
+            </padding></Label>
     </VBox>
       <rowConstraints>
          <RowConstraints />
