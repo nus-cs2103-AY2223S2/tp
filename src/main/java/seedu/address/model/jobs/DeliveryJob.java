@@ -2,6 +2,7 @@ package seedu.address.model.jobs;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -36,8 +37,9 @@ public class DeliveryJob {
      * @param jobId
      * @param recepient
      * @param deliverSlot
-     * @param packages
+     * @param sender
      * @param earning
+     * @param isDelivered
      */
     public DeliveryJob(String jobId, String recepient, String sender, String deliverSlot, String earning,
             boolean isDelivered) {
@@ -80,6 +82,10 @@ public class DeliveryJob {
     public boolean getDeliveredStatus() {
         return isDelivered;
     }
+    public LocalDate getDeliverDate() {
+        return LocalDate.now();
+    }
+
 
     /**
      * isSameDeliveryJob.

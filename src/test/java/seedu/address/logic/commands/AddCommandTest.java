@@ -7,9 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -25,6 +27,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDeliveryJobSystem;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.PersonBuilder;
@@ -170,7 +173,42 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateSortedDeliveryJobListByDate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateWeekDeliveryJobList(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFocusDate(LocalDate jobDate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<DeliveryJob> getSortedDeliveryJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Map<LocalDate, DeliveryList> getSortedDeliveryJobListByDate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Map<LocalDate, DeliveryList> getWeekDeliveryJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public DeliveryList getDayOfWeekJob(int dayOfWeek) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public LocalDate getFocusDate() {
             throw new AssertionError("This method should not be called.");
         }
 

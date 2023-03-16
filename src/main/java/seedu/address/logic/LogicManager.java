@@ -2,6 +2,8 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -12,9 +14,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DukeDriverParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.timetable.TimetableParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.storage.Storage;
@@ -29,6 +33,8 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final DukeDriverParser addressBookParser;
+    private final TimetableParser timetableParser;
+
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -37,6 +43,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new DukeDriverParser();
+        timetableParser = new TimetableParser();
     }
 
     @Override
@@ -58,6 +65,25 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException {
+        logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        CommandResult commandResult;
+        Command command = timetableParser.parseCommand(commandText);
+        commandResult = command.execute(model);
+
+        try {
+            storage.saveAddressBook(model.getAddressBook());
+            storage.saveDeliveryJobSystem(model.getDeliveryJobSystem());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+
+        return commandResult;
+
+    }
+
+    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }
@@ -71,6 +97,17 @@ public class LogicManager implements Logic {
     public ObservableList<DeliveryJob> getFilteredDeliveryJobList() {
         return model.getDeliveryJobList();
     }
+
+    @Override
+    public Map<LocalDate, DeliveryList> getWeekDeliveryJobList() {
+        return model.getWeekDeliveryJobList();
+    }
+
+    @Override
+    public DeliveryList getDayofWeekJob(int dayOfWeek) {
+        return model.getDayOfWeekJob(dayOfWeek);
+    }
+
 
     @Override
     public ObservableList<Reminder> getReminderList() {
@@ -90,5 +127,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setWeekDeliveryJobList(LocalDate focusDate) {
+        model.updateWeekDeliveryJobList(focusDate);
+    }
+
+    @Override
+    public LocalDate getFocusDate() {
+        return model.getFocusDate();
     }
 }

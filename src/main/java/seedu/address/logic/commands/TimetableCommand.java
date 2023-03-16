@@ -26,7 +26,8 @@ public class TimetableCommand extends Command {
         requireNonNull(model);
 
         model.updateSortedDeliveryJobList(SORTER);
-        model.getSortedDeliveryJobList();
+        model.getSortedDeliveryJobListByDate();
+        model.updateSortedDeliveryJobListByDate();
 
         return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false, false, false);
     }
