@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
