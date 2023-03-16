@@ -26,11 +26,11 @@ public class JsonSocketStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readSocket_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readSocket(null));
     }
 
-    private java.util.Optional<ReadOnlySocket> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlySocket> readSocket(String filePath) throws Exception {
         return new JsonSocketStorage(Paths.get(filePath)).readSocket(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,26 +42,26 @@ public class JsonSocketStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readSocket("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormaSocket.json"));
+        assertThrows(DataConversionException.class, () -> readSocket("notJsonFormaSocket.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonSocket.json"));
+    public void readSocket_invalidPersonSocket_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readSocket("invalidPersonSocket.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonSocket.json"));
+    public void readSocket_invalidAndValidPersonSocket_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readSocket("invalidAndValidPersonSocket.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveSocket_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         Socket original = getTypicalAddressBook();
         JsonSocketStorage jsonAddressBookStorage = new JsonSocketStorage(filePath);
@@ -86,24 +86,24 @@ public class JsonSocketStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveSocket_nullSocket_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveSocket(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code Socket} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlySocket addressBook, String filePath) {
+    private void saveSocket(ReadOnlySocket socket, String filePath) {
         try {
             new JsonSocketStorage(Paths.get(filePath))
-                    .saveSocket(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveSocket(socket, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new Socket(), null));
+    public void saveSocket_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveSocket(new Socket(), null));
     }
 }

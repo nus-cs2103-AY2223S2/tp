@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.socket.commons.core.GuiSettings;
-import seedu.socket.model.Socket;
 import seedu.socket.model.ReadOnlySocket;
+import seedu.socket.model.Socket;
 import seedu.socket.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -48,7 +48,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void socketReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonSocketStorage} class.
@@ -61,7 +61,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getSocketFilePath() {
         assertNotNull(storageManager.getSocketFilePath());
     }
 
