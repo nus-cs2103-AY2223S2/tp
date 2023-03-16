@@ -7,6 +7,8 @@ public enum VehicleType {
     MOTORBIKE("motorbike"),
     CAR("car");
 
+    public static final String MESSAGE_CONSTRAINTS = "Vehicle type should only be 'motorbike' or 'car'";
+
     private final String value;
 
     /**

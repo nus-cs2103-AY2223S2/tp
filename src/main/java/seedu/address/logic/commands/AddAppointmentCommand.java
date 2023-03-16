@@ -23,7 +23,7 @@ public class AddAppointmentCommand extends RedoableCommand {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CUSTOMER_ID + "5 "
             + PREFIX_DATE + "05/03/2023 "
-            + PREFIX_TIME + "5pm ";
+            + PREFIX_TIME + "5pm";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer not registered";

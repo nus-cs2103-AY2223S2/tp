@@ -21,8 +21,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_SERVICE_TYPE = new Prefix("t/");
     public static final Prefix PREFIX_SERVICE_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_SERVICE_DESCRIPTION = new Prefix("d/");
+    public static final Prefix PREFIX_SERVICE_DURATION = new Prefix("l/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_TIME = new Prefix("t/");
+    public static final Prefix PREFIX_VEHICLE_COLOR = new Prefix("cl/");
     public static final Prefix PREFIX_SORT_BY = new Prefix("by/");
     public static final Prefix PREFIX_SORT_DIRECTION = new Prefix("d/");
 }
