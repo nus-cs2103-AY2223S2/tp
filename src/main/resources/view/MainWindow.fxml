@@ -11,8 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="MATHUTORING" minWidth="1080" minHeight="600" onCloseRequest="#handleExit">
+         title="MATHUTORING" minWidth="500" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -46,30 +47,32 @@
           </padding>
         </StackPane>
 
-        <HBox>
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="5" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-          </VBox>
-
-          <VBox HBox.hgrow="ALWAYS">
-            <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+        <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: #EFEEFC">
+          <HBox>
+            <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
               <padding>
-                <Insets top="10" right="10" bottom="5" left="5" />
+                <Insets top="10" right="5" bottom="10" left="10" />
               </padding>
-              <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
             </VBox>
 
-            <VBox fx:id="scoreList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-              <padding>
-                <Insets top="5" right="10" bottom="10" left="5" />
-              </padding>
-              <StackPane fx:id="scoreListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            <VBox HBox.hgrow="ALWAYS">
+              <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                <padding>
+                  <Insets top="10" right="10" bottom="5" left="5" />
+                </padding>
+                <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+              </VBox>
+
+              <VBox fx:id="scoreList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                <padding>
+                  <Insets top="5" right="10" bottom="10" left="5" />
+                </padding>
+                <StackPane fx:id="scoreListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+              </VBox>
             </VBox>
-          </VBox>
-        </HBox>
+          </HBox>
+        </ScrollPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

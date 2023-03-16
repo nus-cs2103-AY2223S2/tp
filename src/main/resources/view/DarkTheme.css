@@ -402,7 +402,7 @@ menu .left-container {
 
 .scroll-bar:horizontal {
     -fx-background-color:transparent;
-    -fx-pref-width: 18;
+    -fx-pref-height: 18;
     -fx-padding: 2 0 2 0;
 }
 
