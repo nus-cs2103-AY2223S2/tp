@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -60,9 +61,11 @@ public class PersonListPanel extends UiPart<Region> {
 
         //to sort
         //
-        // name.setSortable(true);
+        //performance.setSortable(true);
 
-        table.setItems(personList);
+        SortedList<Person> sorted = new SortedList<>(personList);
+        table.setItems(sorted);
+        sorted.comparatorProperty().bind(table.comparatorProperty());
         table.setRowFactory(tableView -> {
             TableRow<Person> row = new TableRow<>();
             return row;
