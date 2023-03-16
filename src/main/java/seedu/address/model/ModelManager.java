@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -20,24 +21,38 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final AppointmentList appointmentList;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
-
+    private final FilteredList<Appointment> filteredAppointments;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
+    // keeping for backward compatibility temporarily, because storage has not been updated
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
+        logger.fine("Initializing with address book: " + addressBook + userPrefs);
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
+        filteredAppointments = null; // stopgap measure
+        appointmentList = new AppointmentList(); // stopgap measure
+    }
+    public ModelManager(ReadOnlyAddressBook addressBook, AppointmentList appointmentList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, appointmentList, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook +
+                ", appointmentList: " + appointmentList + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.appointmentList = new AppointmentList(appointmentList);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
+        filteredAppointments = new FilteredList<>(this.appointmentList.getAppointmentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new AppointmentList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -73,6 +88,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getAppointmentListPath() {
+        return userPrefs.getAddressBookFilePath();
+    }
+
+    @Override
+    public void setAppointmentListPath(Path appointmentListFilePath) {
+        requireNonNull(appointmentListFilePath);
+        userPrefs.setAddressBookFilePath(appointmentListFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -145,6 +171,52 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPatients.equals(other.filteredPatients);
+//                && filteredAppointments.equals(other.filteredAppointments);
+        // not added to keep backward compatibility with tests until storage is fixed
     }
 
+    @Override
+    public void setAppointmentList(ReadOnlyAppointmentList appointmentList) {
+        this.appointmentList.resetData(appointmentList);
+    }
+
+    @Override
+    public ReadOnlyAppointmentList getAppointmentList() {
+        return appointmentList;
+    }
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointmentList);
+        return appointmentList.hasAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        appointmentList.removeAppointment(target);
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        appointmentList.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        appointmentList.setAppointment(target, editedAppointment);
+    }
+
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate){
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
 }

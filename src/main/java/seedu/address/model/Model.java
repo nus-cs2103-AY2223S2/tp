@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -13,7 +14,7 @@ import seedu.address.model.patient.Patient;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
-
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -43,6 +44,10 @@ public interface Model {
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
+
+    Path getAppointmentListPath();
+
+    void setAppointmentListPath(Path appointmentListPath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -85,4 +90,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    void setAppointmentList(ReadOnlyAppointmentList appointmentList);
+    ReadOnlyAppointmentList getAppointmentList();
+    boolean hasAppointment(Appointment appointment);
+    void deleteAppointment(Appointment appointment);
+    void addAppointment(Appointment appointment);
+    void setAppointment(Appointment target, Appointment editedAppointment);
+    ObservableList<Appointment> getFilteredAppointmentList();
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 }

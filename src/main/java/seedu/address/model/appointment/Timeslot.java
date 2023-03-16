@@ -37,6 +37,7 @@ public class Timeslot {
         String[] dateTimes = splitIntoStartAndEnd(timeslot);
         this.startingDateTime = LocalDateTime.parse(dateTimes[0], dateTimeFormatter);
         this.endingDateTime = LocalDateTime.parse(dateTimes[1], dateTimeFormatter);
+        checkArgument(startingDateTime.isBefore(endingDateTime), MESSAGE_CONSTRAINTS);
     }
 
     /**
