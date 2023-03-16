@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.socket.commons.core.GuiSettings;
-import seedu.socket.model.AddressBook;
-import seedu.socket.model.ReadOnlyAddressBook;
+import seedu.socket.model.Socket;
+import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -52,12 +52,12 @@ public class StorageManagerTest {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonSocketStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        Socket original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlySocket retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new Socket(retrieved));
     }
 
     @Test

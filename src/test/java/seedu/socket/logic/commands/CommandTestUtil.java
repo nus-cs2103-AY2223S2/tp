@@ -17,7 +17,7 @@ import java.util.List;
 
 import seedu.socket.commons.core.index.Index;
 import seedu.socket.logic.commands.exceptions.CommandException;
-import seedu.socket.model.AddressBook;
+import seedu.socket.model.Socket;
 import seedu.socket.model.Model;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.person.predicate.NameContainsKeywordsPredicate;
@@ -133,11 +133,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        Socket expectedSocket = new Socket(actualModel.getSocket());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedSocket, actualModel.getSocket());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

@@ -24,7 +24,7 @@ class SortCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getSocket(), new UserPrefs());
     }
     @Test
     public void equals() {

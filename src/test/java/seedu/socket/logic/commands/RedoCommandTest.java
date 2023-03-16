@@ -8,7 +8,7 @@ import static seedu.socket.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.logic.commands.exceptions.CommandException;
-import seedu.socket.model.AddressBook;
+import seedu.socket.model.Socket;
 import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
 import seedu.socket.model.UserPrefs;
@@ -27,7 +27,7 @@ class RedoCommandTest {
         RedoCommand redoCommand = new RedoCommand();
 
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Socket(model.getSocket()), new UserPrefs());
 
         deletePersonIndexOne(model);
         deletePersonIndexOne(expectedModel);
@@ -44,7 +44,7 @@ class RedoCommandTest {
         RedoCommand redoCommand = new RedoCommand();
 
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Socket(model.getSocket()), new UserPrefs());
 
         deletePersonIndexOne(model);
         deletePersonIndexOne(expectedModel);

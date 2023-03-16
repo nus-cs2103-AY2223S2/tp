@@ -26,7 +26,7 @@ import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.logic.parser.exceptions.ParseException;
 import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
-import seedu.socket.model.ReadOnlyAddressBook;
+import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.UserPrefs;
 import seedu.socket.model.person.Person;
 import seedu.socket.storage.JsonAddressBookStorage;
@@ -131,7 +131,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSocket(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -157,7 +157,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlySocket addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -28,7 +28,7 @@ public class ViewCommandTest {
 
         String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS, personToView);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSocket(), new UserPrefs());
         expectedModel.updateViewedPerson(personToView);
 
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
@@ -51,7 +51,7 @@ public class ViewCommandTest {
 
         String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS, personToView);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSocket(), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.updateViewedPerson(personToView);
 
@@ -64,7 +64,7 @@ public class ViewCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSocket().getPersonList().size());
 
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
 

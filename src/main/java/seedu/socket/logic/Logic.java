@@ -7,7 +7,7 @@ import seedu.socket.commons.core.GuiSettings;
 import seedu.socket.logic.commands.CommandResult;
 import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.logic.parser.exceptions.ParseException;
-import seedu.socket.model.ReadOnlyAddressBook;
+import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.person.Person;
 
 /**
@@ -28,7 +28,7 @@ public interface Logic {
      *
      * @see seedu.socket.model.Model#getSocket()
      */
-    ReadOnlyAddressBook getSocket();
+    ReadOnlySocket getSocket();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();

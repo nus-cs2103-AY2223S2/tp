@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.socket.commons.core.GuiSettings;
 import seedu.socket.logic.commands.exceptions.CommandException;
-import seedu.socket.model.AddressBook;
+import seedu.socket.model.ReadOnlySocket;
+import seedu.socket.model.Socket;
 import seedu.socket.model.Model;
-import seedu.socket.model.ReadOnlyAddressBook;
 import seedu.socket.model.ReadOnlyUserPrefs;
 import seedu.socket.model.person.Person;
 import seedu.socket.testutil.PersonBuilder;
@@ -109,12 +109,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getSocketFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setSocketFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,12 +124,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setSocket(ReadOnlySocket newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlySocket getSocket() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -226,8 +226,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlySocket getSocket() {
+            return new Socket();
         }
 
         // AddCommand#execute calls commitSocket()

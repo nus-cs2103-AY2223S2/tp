@@ -13,12 +13,12 @@ import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.logic.parser.SocketParser;
 import seedu.socket.logic.parser.exceptions.ParseException;
 import seedu.socket.model.Model;
-import seedu.socket.model.ReadOnlyAddressBook;
+import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.person.Person;
 import seedu.socket.storage.Storage;
 
 /**
- * The main LogicManager of the app.
+ * The main {@code LogicManager} of the app.
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getSocket());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getSocket() {
-        return model.getAddressBook();
+    public ReadOnlySocket getSocket() {
+        return model.getSocket();
     }
 
     @Override
@@ -76,7 +76,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getSocketFilePath();
     }
 
     @Override

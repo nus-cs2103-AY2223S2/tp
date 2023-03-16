@@ -14,12 +14,12 @@ import seedu.socket.commons.core.LogsCenter;
 import seedu.socket.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the {@code Socket} data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Socket socket;
     private final VersionedSocket versionedSocket;
     private final UserPrefs userPrefs;
     private FilteredList<Person> filteredPersons;
@@ -27,23 +27,24 @@ public class ModelManager implements Model {
     private FilteredList<Person> viewedPerson;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a {@code ModelManager} with the given {@code ReadOnlySocket} socket
+     * and {@code ReadOnlyUserPrefs} userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlySocket socket, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(socket, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + socket + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
-        this.versionedSocket = new VersionedSocket(this.addressBook);
+        this.socket = new Socket(socket);
+        this.versionedSocket = new VersionedSocket(this.socket);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        viewedPerson = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.socket.getPersonList());
+        viewedPerson = new FilteredList<>(this.socket.getPersonList());
         viewedPerson.setPredicate(x -> false);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Socket(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -71,42 +72,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getSocketFilePath() {
+        return userPrefs.getSocketFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setSocketFilePath(Path socketFilePath) {
+        requireNonNull(socketFilePath);
+        userPrefs.setSocketFilePath(socketFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Socket ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setSocket(ReadOnlySocket socket) {
+        this.socket.resetData(socket);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlySocket getSocket() {
+        return socket;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return socket.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        socket.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        socket.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -114,12 +115,12 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        socket.setPerson(target, editedPerson);
     }
 
     @Override
     public void commitSocket() {
-        versionedSocket.commit(addressBook);
+        versionedSocket.commit(socket);
     }
 
     @Override
@@ -141,11 +142,12 @@ public class ModelManager implements Model {
     public boolean canRedoSocket() {
         return versionedSocket.canRedoSocket();
     }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedSocket}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -170,7 +172,7 @@ public class ModelManager implements Model {
 
     @Override
     public void sortPersonList(String category) {
-        addressBook.sort(category);
+        socket.sort(category);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -188,7 +190,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return socket.equals(other.socket)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && viewedPerson.equals(other.viewedPerson);

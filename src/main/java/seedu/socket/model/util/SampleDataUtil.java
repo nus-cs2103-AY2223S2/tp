@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.socket.model.AddressBook;
-import seedu.socket.model.ReadOnlyAddressBook;
+import seedu.socket.model.ReadOnlySocket;
+import seedu.socket.model.Socket;
 import seedu.socket.model.person.Address;
 import seedu.socket.model.person.Email;
 import seedu.socket.model.person.GitHubProfile;
@@ -42,8 +42,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleSocket = new AddressBook();
+    public static ReadOnlySocket getSampleAddressBook() {
+        Socket sampleSocket = new Socket();
         for (Person samplePerson : getSamplePersons()) {
             sampleSocket.addPerson(samplePerson);
         }

@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.socket.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a {@code Socket}.
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlySocket {
 
     /**
      * Returns an unmodifiable view of the persons list.

@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.socket.commons.core.Messages;
 import seedu.socket.commons.core.index.Index;
 import seedu.socket.logic.commands.RemoveCommand.RemovePersonDescriptor;
-import seedu.socket.model.AddressBook;
+import seedu.socket.model.Socket;
 import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
 import seedu.socket.model.UserPrefs;
@@ -49,7 +49,7 @@ public class RemoveCommandTest {
 
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Socket(model.getSocket()), new UserPrefs());
         expectedModel.setPerson(lastPerson, removedFieldPerson);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
@@ -71,7 +71,7 @@ public class RemoveCommandTest {
 
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Socket(model.getSocket()), new UserPrefs());
         expectedModel.setPerson(lastPerson, removedFieldPerson);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
@@ -94,7 +94,7 @@ public class RemoveCommandTest {
 
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Socket(model.getSocket()), new UserPrefs());
         expectedModel.setPerson(lastPerson, removedFieldPerson);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
@@ -118,7 +118,7 @@ public class RemoveCommandTest {
 
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Socket(model.getSocket()), new UserPrefs());
         expectedModel.setPerson(benson, removedFieldPerson);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
@@ -155,7 +155,7 @@ public class RemoveCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSocket().getPersonList().size());
 
         RemoveCommand editCommand = new RemoveCommand(outOfBoundIndex,
                 new RemovePersonDescriptorBuilder().build());

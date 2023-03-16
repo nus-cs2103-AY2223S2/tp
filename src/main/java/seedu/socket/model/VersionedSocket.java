@@ -3,55 +3,55 @@ package seedu.socket.model;
 import java.util.ArrayList;
 
 /**
- * Facilitates undo/redo mechanism by maintaining SOCket states.
+ * Facilitates undo/redo mechanism by maintaining {@code Socket} states.
  */
-public class VersionedSocket extends AddressBook {
+public class VersionedSocket extends Socket {
     /** The initial value of currentStatePointer. */
     private static final int INIT_POINTER = 0;
-    /** The {@code ArrayList<ReadOnlyAddressBook>} in which the {@code Socket} states are stored. */
-    private final ArrayList<ReadOnlyAddressBook> socketStateList;
+    /** The {@code ArrayList<ReadOnlySocket>} in which the {@code Socket} states are stored. */
+    private final ArrayList<ReadOnlySocket> socketStateList;
     /** The pointer to the current {@code Socket} state. */
     private int currentStatePointer;
-    /** The associated {@code AddressBook} instance. */
-    private final AddressBook addressBook;
+    /** The associated {@code Socket} instance. */
+    private final Socket socket;
 
     /**
-     * Constructs a {@code VersionedSocket} with the given {@code AddressBook} and initializes the
+     * Constructs a {@code VersionedSocket} with the given {@code Socket} and initializes the
      * {@code currenStatePointer}.
      *
-     * @param initialAddressBook {@code AddressBook} to initialize the {@code VersionedSocket} with.
+     * @param initialSocket {@code Socket} to initialize the {@code VersionedSocket} with.
      */
-    public VersionedSocket(AddressBook initialAddressBook) {
-        addressBook = initialAddressBook;
+    public VersionedSocket(Socket initialSocket) {
+        socket = initialSocket;
         socketStateList = new ArrayList<>();
-        socketStateList.add(new AddressBook(initialAddressBook));
+        socketStateList.add(new Socket(initialSocket));
         currentStatePointer = INIT_POINTER;
     }
 
     /**
-     * Saves the current {@code SOCket} state.
+     * Saves the current {@code Socket} state.
      */
-    public void commit(AddressBook addressBook) {
+    public void commit(Socket socket) {
         assert currentStatePointer >= 0;
         if (currentStatePointer != (socketStateList.size() - 1)) {
             socketStateList.subList(currentStatePointer + 1, socketStateList.size()).clear();
         }
-        socketStateList.add(new AddressBook(addressBook));
+        socketStateList.add(new Socket(socket));
         currentStatePointer++;
     }
     /**
-     * Restores the previous {@code SOCket} state.
+     * Restores the previous {@code Socket} state.
      */
     public void undo() {
         --currentStatePointer;
-        addressBook.resetData(socketStateList.get(currentStatePointer));
+        socket.resetData(socketStateList.get(currentStatePointer));
     }
     /**
-     * Restores a previously undone {@code SOCket} state.
+     * Restores a previously undone {@code Socket} state.
      */
     public void redo() {
         ++currentStatePointer;
-        addressBook.resetData(socketStateList.get(currentStatePointer));
+        socket.resetData(socketStateList.get(currentStatePointer));
     }
 
     /**
