@@ -57,7 +57,7 @@ public class CommandTestUtil {
     public static final String POSITION_DESC_ML1 = " " + PREFIX_POSITION + VALID_POSITION_ML1;
     public static final String STATUS_DESC_ML1 = " " + PREFIX_STATUS + VALID_STATUS_ML1;
     public static final String DESCRIPTION_DESC_ML1 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_ML1;
-    public static final String TAG_DESC_ML1 = " " + PREFIX_TAG + VALID_TAG_FUN;
+    public static final String TAG_DESC_ML1 = " " + PREFIX_TAG + VALID_TAG_IMPORTANT;
 
     public static final String COMPANY_DESC_SE1 = " " + PREFIX_COMPANY + VALID_COMPANY_SE1;
     public static final String POSITION_DESC_SE1 = " " + PREFIX_POSITION + VALID_POSITION_SE1;

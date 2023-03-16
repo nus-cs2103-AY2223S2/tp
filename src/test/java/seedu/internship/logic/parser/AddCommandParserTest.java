@@ -69,7 +69,7 @@ public class AddCommandParserTest {
         Internship expectedInternshipMultipleTags = new InternshipBuilder(SE1).withTags(VALID_TAG_FUN, VALID_TAG_FUN)
                 .build();
         assertParseSuccess(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1
-                + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1 + TAG_DESC_ML1 , new AddCommand(expectedInternshipMultipleTags));
+                + DESCRIPTION_DESC_SE1 + TAG_DESC_SE1 + TAG_DESC_SE1 , new AddCommand(expectedInternshipMultipleTags));
     }
 
     @Test
