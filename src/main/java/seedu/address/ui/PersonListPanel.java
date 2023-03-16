@@ -44,8 +44,6 @@ public class PersonListPanel extends UiPart<Region> {
     private TableColumn<Person, String> remark;
     @FXML
     private TableColumn<Person, String> photo;
-    @FXML
-    private TextField filterField;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
