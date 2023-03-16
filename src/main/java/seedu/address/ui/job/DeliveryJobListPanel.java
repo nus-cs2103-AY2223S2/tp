@@ -1,8 +1,11 @@
 package seedu.address.ui.job;
 
+import java.util.function.BiConsumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -24,14 +27,25 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     /**
      * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
      */
-    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList) {
+    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList, BiConsumer<Integer, DeliveryJob> handler) {
         super(FXML);
         deliveryJobListView.setItems(jobList);
         deliveryJobListView.setCellFactory(listView -> new DeliveryJobListViewCell());
+        deliveryJobListView.setOnMouseClicked(new EventHandler<Event>() {
+
+            @Override
+            public void handle(Event event) {
+                logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
+                handler.accept(deliveryJobListView.getSelectionModel().getSelectedIndex(),
+                        deliveryJobListView.getSelectionModel().getSelectedItem());
+            }
+
+        });
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code job} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code job} using a
+     * {@code PersonCard}.
      */
     class DeliveryJobListViewCell extends ListCell<DeliveryJob> {
         @Override

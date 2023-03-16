@@ -11,11 +11,10 @@ Features
     - View jobs
     - Add jobs
 * Reminder and notifications:
-	- Set remainder for upcoming deadlines
-	- Get notified as soon as you open the app
-* Direct messaging :
-    - Linked to contact list
-    - Text messaging
+    - Set remainder for upcoming deadlines
+    - Get notified as soon as you open the app
+* Job scheduling :
+    - Schedule jobs for each day
 * Stats dashboard:
     - List all jobs
     - Show total number of jobs

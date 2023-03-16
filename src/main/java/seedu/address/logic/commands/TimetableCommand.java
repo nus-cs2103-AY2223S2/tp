@@ -29,8 +29,7 @@ public class TimetableCommand extends Command {
         model.getSortedDeliveryJobListByDate();
         model.updateSortedDeliveryJobListByDate();
 
-        System.out.print(model.getSortedDeliveryJobListByDate());
-        return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false);
+        return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false, false);
     }
 
 }

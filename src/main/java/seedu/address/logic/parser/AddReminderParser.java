@@ -9,14 +9,14 @@ import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateTimeUtil;
-import seedu.address.logic.commands.AddReminder;
+import seedu.address.logic.commands.AddReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.Reminder;
 
 /**
- * Parses input arguments and creates a new AddReminder object
+ * Parses input arguments and creates a new AddReminderCommand object
  */
-public class AddReminderParser implements Parser<AddReminder> {
+public class AddReminderParser implements Parser<AddReminderCommand> {
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -27,19 +27,19 @@ public class AddReminderParser implements Parser<AddReminder> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddReminder
-     * and returns an AddReminder object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddReminderCommand
+     * and returns an AddReminderCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public AddReminder parse(String args) throws ParseException {
+    public AddReminderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_TIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminder.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }
 
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).orElse("");
@@ -48,11 +48,11 @@ public class AddReminderParser implements Parser<AddReminder> {
         try {
             dateTime = DateTimeUtil.toDateTime(dateTimeString);
         } catch (DateTimeParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminder.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }
 
         Reminder reminder = new Reminder(description, dateTime);
 
-        return new AddReminder(reminder);
+        return new AddReminderCommand(reminder);
     }
 }
