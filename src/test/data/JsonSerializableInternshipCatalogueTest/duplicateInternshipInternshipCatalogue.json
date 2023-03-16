@@ -1,0 +1,13 @@
+{
+  "internships": [ {
+    "Position": "Tutor",
+    "company": "NUS",
+    "status": "APPLIED",
+    "description": "4th street"
+  }, {
+    "Position": "Tutor",
+    "company": "NUS",
+    "status": "APPLIED",
+    "address": "4th street"
+  } ]
+}
