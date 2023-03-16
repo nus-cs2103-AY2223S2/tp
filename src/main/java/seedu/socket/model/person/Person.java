@@ -13,7 +13,7 @@ import seedu.socket.model.tag.Language;
 import seedu.socket.model.tag.Tag;
 
 /**
- * Represents a {@code Person} in the address book.
+ * Represents a {@code Person} in SOCket.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
