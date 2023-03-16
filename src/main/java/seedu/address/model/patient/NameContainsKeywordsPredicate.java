@@ -2,7 +2,8 @@ package seedu.address.model.patient;
 
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Patient}'s {@code Name} matches any of the keywords given.
@@ -16,9 +17,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Patient> {
 
     @Override
     public boolean test(Patient patient) {
-        List<String> patientDetails = patient.getDetailsAsList();
-        patientDetails.retainAll(this.keywords.stream().map(String::toLowerCase).collect(Collectors.toList()));
-        return patientDetails.size() > 0;
+        return keywords.stream()
+            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(patient.getName().fullName, keyword));
     }
 
     @Override
