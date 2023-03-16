@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Performance;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Photo;
 import seedu.address.model.tag.Tag;
@@ -167,5 +168,17 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return trimmedName;
+    }
+
+    /**
+     * Parses {@code String performance} into a {@code Performance} object.
+     */
+    public static Performance parsePerformance(String performance) throws ParseException {
+        requireNonNull(performance);
+        String trimmedPerformance = performance.trim();
+        if (!Performance.isValidPerformance(trimmedPerformance)) {
+            throw new ParseException(Performance.MESSAGE_CONSTRAINTS);
+        }
+        return new Performance(trimmedPerformance);
     }
 }

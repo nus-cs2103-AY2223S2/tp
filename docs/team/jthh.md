@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Not available yet
-  
+
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `delete` and `find` [\#72]()
