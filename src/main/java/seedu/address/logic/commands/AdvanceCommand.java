@@ -145,7 +145,7 @@ public class AdvanceCommand extends Command {
     /**
      * Checks whether applicant can be advanced
      */
-    private boolean canAdvanceApplicant(Person personToAdvance) throws CommandException{
+    private boolean canAdvanceApplicant(Person personToAdvance) throws CommandException {
         Status status = personToAdvance.getStatus();
         if (status.equals(Status.ACCEPTED) || status.equals(Status.REJECTED)) {
             throw new CommandException(String.format(MESSAGE_PERSON_CANNOT_BE_ADVANCED,
