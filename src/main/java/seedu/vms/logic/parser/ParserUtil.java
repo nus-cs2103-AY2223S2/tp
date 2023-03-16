@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.StringUtil;
