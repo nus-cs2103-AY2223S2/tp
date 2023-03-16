@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -14,11 +13,11 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     * Ignores case, but a full word match is required.
+     * Ignores case, full word match is not required.
      * <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsWordIgnoreCase("ABc def", "AB") == true
      *       </pre>
      *
      * @param sentence cannot be null
@@ -30,13 +29,7 @@ public class StringUtil {
 
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
-
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
-
-        return Arrays.stream(wordsInPreppedSentence)
-            .anyMatch(preppedWord::equalsIgnoreCase);
+        return sentence.contains(preppedWord);
     }
 
     /**
@@ -46,7 +39,7 @@ public class StringUtil {
         requireNonNull(t);
         StringWriter sw = new StringWriter();
         t.printStackTrace(new PrintWriter(sw));
-        return t.getMessage() + "\n" + sw.toString();
+        return t.getMessage() + "\n" + sw;
     }
 
     /**
