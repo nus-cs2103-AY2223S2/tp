@@ -4,11 +4,15 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -35,6 +39,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane commandBoxPlaceholder;
+    @FXML
+    private VBox mainVbox;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -67,6 +73,10 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        Image customCursorImage = new Image("/images/cursor.png");
+        Cursor customCursor = new ImageCursor(customCursorImage);
+        mainVbox.setCursor(customCursor);
     }
 
     public Stage getPrimaryStage() {

@@ -22,5 +22,7 @@ title: OfficeConnect
 
 
 **Acknowledgements**
-
+* Images
+    - [ICONS8](https://icons8.com/)
+    - [freepik](https://www.freepik.com/)
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
