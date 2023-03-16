@@ -1,5 +1,6 @@
 package codoc.logic.parser;
 
+import static codoc.commons.core.Messages.MESSAGE_FIND_SKILL_NO_ARGUMENT;
 import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 
@@ -30,7 +31,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SKILL);
 
         if (argMultimap.getValue(PREFIX_SKILL).isPresent()) {
-            System.out.println("test");
+            return new FindCommand(new SkillContainsKeywordPredicate(argMultimap.getAllValues(PREFIX_SKILL)));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
