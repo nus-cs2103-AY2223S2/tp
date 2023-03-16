@@ -1,0 +1,25 @@
+{
+  "_comment": "The first project below is invalid, since the status is empty.",
+  "persons": [],
+  "projects": [
+    {
+      "name": "Bard",
+      "status": "",
+      "clientEmail": "jamar@bard.org",
+      "source": null,
+      "description": null,
+      "acceptedOn": "14/03/2022",
+      "deadline": null
+    },
+    {
+      "name": "Bing",
+      "status": "IN_PROGRESS",
+      "clientEmail": "jamal@bing.org",
+      "source": "fiverr.com",
+      "description": "Bing the new Google",
+      "acceptedOn": "14/03/2022",
+      "deadline": "14/04/2022"
+    }
+  ],
+  "clients": []
+}
