@@ -60,10 +60,8 @@ public class GetUtilsTest {
 
     @Test
     void putLazy_nullSupplied_shouldThrowNullPointerException() {
-        assertThrows(NullPointerException.class,
-            () -> GetUtils.putLazy(null, Stub::new));
-        assertThrows(NullPointerException.class,
-            () -> GetUtils.putLazy(Stub.class, null));
+        assertThrows(NullPointerException.class, () -> GetUtils.putLazy(null, Stub::new));
+        assertThrows(NullPointerException.class, () -> GetUtils.putLazy(Stub.class, null));
     }
 
     @Test

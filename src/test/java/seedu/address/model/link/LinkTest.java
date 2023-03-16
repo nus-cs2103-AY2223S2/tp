@@ -31,11 +31,11 @@ import seedu.address.model.link.exceptions.LinkItemNotFoundException;
 @ExtendWith(MockitoExtension.class)
 public class LinkTest {
     @Mock
-    LinkResolver<ItemStub> resolver;
-    ItemStub testItem;
-    Link<CategoryStub, ItemStub, LinkResolver<ItemStub>> sut;
-    Map<CategoryStub, Integer> shape;
-    Map<CategoryStub, Deque<String>> contents;
+    private LinkResolver<ItemStub> resolver;
+    private ItemStub testItem;
+    private Link<CategoryStub, ItemStub, LinkResolver<ItemStub>> sut;
+    private Map<CategoryStub, Integer> shape;
+    private Map<CategoryStub, Deque<String>> contents;
 
     @BeforeEach
     void setUp() throws LinkException {
@@ -124,20 +124,17 @@ public class LinkTest {
         Map<CategoryStub, Collection<String>> result = sut.getUnmodifiableContents();
 
         assertThrows(
-            UnsupportedOperationException.class,
-            () -> result.put(CategoryStub.UNSUPPORTED, new ArrayDeque<>())
+            UnsupportedOperationException.class, () -> result.put(CategoryStub.UNSUPPORTED, new ArrayDeque<>())
         );
         assertThrows(
-            UnsupportedOperationException.class,
-            () -> result.get(CategoryStub.CATEGORY_A).add("test-id-4")
+            UnsupportedOperationException.class, () -> result.get(CategoryStub.CATEGORY_A).add("test-id-4")
         );
     }
 
     @Test
     void getRemainingSizeOfKey_invalidKey_throwsLinkException() {
         assertThrows(
-            LinkException.class,
-            () -> sut.getRemainingSizeOfKey(CategoryStub.UNSUPPORTED)
+            LinkException.class, () -> sut.getRemainingSizeOfKey(CategoryStub.UNSUPPORTED)
         );
     }
 
@@ -169,12 +166,10 @@ public class LinkTest {
     void put_alreadyFull_throwsLinkException() throws LinkException {
         setUpLinkAsFull();
         assertThrows(
-            LinkException.class,
-            () -> sut.put(CategoryStub.CATEGORY_A, "hello")
+            LinkException.class, () -> sut.put(CategoryStub.CATEGORY_A, "hello")
         );
         assertThrows(
-            LinkException.class,
-            () -> sut.put(CategoryStub.CATEGORY_B, "hello")
+            LinkException.class, () -> sut.put(CategoryStub.CATEGORY_B, "hello")
         );
     }
 
@@ -182,8 +177,7 @@ public class LinkTest {
     void put_hasDuplicate_throwsLinkDuplicateException() throws LinkException {
         sut.put(CategoryStub.CATEGORY_B, "hello");
         assertThrows(
-            LinkDuplicateException.class,
-            () -> sut.put(CategoryStub.CATEGORY_B, "hello")
+            LinkDuplicateException.class, () -> sut.put(CategoryStub.CATEGORY_B, "hello")
         );
     }
 
@@ -276,8 +270,7 @@ public class LinkTest {
     void delete_invalidKey_throwsLinkException() throws LinkException {
         setUpLinkAsFull();
         assertThrows(
-            LinkException.class,
-            () -> sut.delete(CategoryStub.UNSUPPORTED, "test-id-1")
+            LinkException.class, () -> sut.delete(CategoryStub.UNSUPPORTED, "test-id-1")
         );
     }
 
@@ -285,17 +278,14 @@ public class LinkTest {
     void delete_itemNotContained_throwsLinkItemNotFoundException() throws LinkException {
         setUpLinkAsFull();
         assertThrows(
-            LinkItemNotFoundException.class,
-            () -> sut.delete(CategoryStub.CATEGORY_A, "hello-world")
+            LinkItemNotFoundException.class, () -> sut.delete(CategoryStub.CATEGORY_A, "hello-world")
         );
     }
 
     @Test
     void delete_validItem_removesTheItem() throws LinkException {
         setUpLinkAsFull();
-        assertDoesNotThrow(
-            () -> sut.delete(CategoryStub.CATEGORY_A, "test-id-1")
-        );
+        assertDoesNotThrow(() -> sut.delete(CategoryStub.CATEGORY_A, "test-id-1"));
         assertTrue(sut.getCopiedContents().get(CategoryStub.CATEGORY_A).isEmpty());
     }
 

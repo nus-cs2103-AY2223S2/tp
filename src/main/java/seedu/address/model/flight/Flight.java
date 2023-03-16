@@ -1,7 +1,6 @@
 package seedu.address.model.flight;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import seedu.address.model.flight.exceptions.LinkedPlaneNotFoundException;
@@ -43,7 +42,7 @@ public class Flight implements Item {
     /**
      * Creates a flight with a given id as its id
      *
-     * @param id the id for the flight
+     * @param id   the id for the flight
      * @param code the code of the flight
      */
     public Flight(String id, String code) {
@@ -59,10 +58,10 @@ public class Flight implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-                String.format("%s: %s", UUID_STRING, id),
-                String.format("%s: %s", CODE_STRING, code),
-                String.format("%s: %s", DEPARTURE_STRING, getDepartureLocationName()),
-                String.format("%s: %s", ARRIVE_STRING, getArrivalLocationName())
+            String.format("%s: %s", UUID_STRING, id),
+            String.format("%s: %s", CODE_STRING, code),
+            String.format("%s: %s", DEPARTURE_STRING, getDepartureLocationName()),
+            String.format("%s: %s", ARRIVE_STRING, getArrivalLocationName())
         );
     }
 
@@ -73,6 +72,7 @@ public class Flight implements Item {
 
     /**
      * Links a plane to this flight.
+     *
      * @param plane The plane to be linked.
      */
     public void linkPlane(Plane plane) {
@@ -92,6 +92,7 @@ public class Flight implements Item {
 
     /**
      * If there's a linked plane, it returns it.
+     *
      * @return The linked plane.
      * @throws LinkedPlaneNotFoundException If this flight doesn't have a linked plane.
      */
@@ -105,6 +106,7 @@ public class Flight implements Item {
 
     /**
      * Links the flight to a departure location.
+     *
      * @param departureLocation the departure location to link to
      */
     public void linkDepartureLocation(Location departureLocation) {
@@ -113,6 +115,7 @@ public class Flight implements Item {
 
     /**
      * Links the flight to an arrival location.
+     *
      * @param arrivalLocation the arrival location to link to
      */
     public void linkArrivalLocation(Location arrivalLocation) {
@@ -135,6 +138,7 @@ public class Flight implements Item {
 
     /**
      * Returns the departure location of the plane.
+     *
      * @return the departure location.
      */
     public Location getDepartureLocation() {
@@ -143,6 +147,7 @@ public class Flight implements Item {
 
     /**
      * Returns the arrival location of the plane.
+     *
      * @return the arrival location
      */
     public Location getArrivalLocation() {
@@ -151,6 +156,7 @@ public class Flight implements Item {
 
     /**
      * Returns the id of the departure location.
+     *
      * @return the id of the departure location
      */
     public String getDepartureLocationId() {
@@ -163,6 +169,7 @@ public class Flight implements Item {
 
     /**
      * Returns departure location name.
+     *
      * @return the name of the departure location
      */
     public String getDepartureLocationName() {
@@ -175,6 +182,7 @@ public class Flight implements Item {
 
     /**
      * Returns the id of the arrival location.
+     *
      * @return the id of the arrival location
      */
     public String getArrivalLocationId() {
@@ -187,6 +195,7 @@ public class Flight implements Item {
 
     /**
      * Returns arrival location name.
+     *
      * @return the name of the arrival location
      */
     private String getArrivalLocationName() {
@@ -199,6 +208,7 @@ public class Flight implements Item {
 
     /**
      * Returns whether the location has linked locations
+     *
      * @return true if there are linked locations
      */
     public boolean hasLinkedLocations() {

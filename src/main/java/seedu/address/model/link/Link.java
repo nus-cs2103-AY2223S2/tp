@@ -205,6 +205,16 @@ class Link<K, T extends Item,
     }
 
     /**
+     * Checks if we can put 1 value into the key. If not, then throw.
+     *
+     * @param key the key
+     * @throws LinkException if we cannot put 1 value into the key.
+     */
+    private void canPutOrThrow(K key) throws LinkException {
+        canPutOrThrow(key, 1);
+    }
+
+    /**
      * Checks if the id is already duplicated. If so, throw.
      *
      * @param key the key
@@ -220,16 +230,6 @@ class Link<K, T extends Item,
                 );
             }
         }
-    }
-
-    /**
-     * Checks if we can put 1 value into the key. If not, then throw.
-     *
-     * @param key the key
-     * @throws LinkException if we cannot put 1 value into the key.
-     */
-    private void canPutOrThrow(K key) throws LinkException {
-        canPutOrThrow(key, 1);
     }
 
     /**
