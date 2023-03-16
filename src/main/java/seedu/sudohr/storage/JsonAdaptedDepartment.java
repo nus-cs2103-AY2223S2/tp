@@ -13,9 +13,7 @@ import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
-import seedu.sudohr.model.employee.exceptions.DuplicatePhoneNumberException;
 
 /**
  * Jackson-friendly version of {@link Employee}.
@@ -60,12 +58,6 @@ class JsonAdaptedDepartment {
             Employee e = employee.toModelType();
             if (departmentEmployees.stream().anyMatch(e::isSameEmployee)) {
                 throw new DuplicateEmployeeException();
-            }
-            if (departmentEmployees.stream().anyMatch(e::phoneClashes)) {
-                throw new DuplicatePhoneNumberException();
-            }
-            if (departmentEmployees.stream().anyMatch(e::emailClashes)) {
-                throw new DuplicateEmailException();
             }
             departmentEmployees.add(e);
         }
