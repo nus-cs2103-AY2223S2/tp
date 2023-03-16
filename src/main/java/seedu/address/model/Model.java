@@ -82,7 +82,14 @@ public interface Model {
      * Marks the given event.
      * The event must exist in the address book.
      */
-    void markEvent(Event target, Event markedEvent);
+    void markEvent(Event target);
+
+    /**
+     * Unmarks the given event.
+     * The event must exist in the address book.
+     */
+    void unmarkEvent(Event target);
+
 
     /**
      * Adds the given contact.
