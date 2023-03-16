@@ -20,6 +20,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Nric nric;
+    private final Role role;
 
     // Data fields
     private final Address address;
@@ -28,14 +29,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, nric, address, tags);
+    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags, Role role) {
+        requireAllNonNull(name, phone, email, nric, address, tags, role);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.nric = nric;
         this.address = address;
         this.tags.addAll(tags);
+        this.role = role;
     }
 
     public Name getName() {
@@ -58,6 +60,10 @@ public class Person {
         return address;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -67,7 +73,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same NRIC.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -76,7 +82,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getNric().equals(getNric());
     }
 
     /**
