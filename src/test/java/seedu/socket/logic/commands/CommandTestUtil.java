@@ -17,8 +17,8 @@ import java.util.List;
 
 import seedu.socket.commons.core.index.Index;
 import seedu.socket.logic.commands.exceptions.CommandException;
-import seedu.socket.model.Socket;
 import seedu.socket.model.Model;
+import seedu.socket.model.Socket;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.socket.testutil.EditPersonDescriptorBuilder;
@@ -128,7 +128,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the {@code Socket}, filtered person list and selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -142,7 +142,7 @@ public class CommandTestUtil {
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s {@code Socket}.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
@@ -155,7 +155,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Removes the person at index 1 in {@code model}'s filtered list from the {@code model}'s address book.
+     * Removes the person at index 1 in {@code model}'s filtered list from the {@code model}'s {@code Socket}.
      */
     public static void deletePersonIndexOne(Model model) {
         Index indexOne = Index.fromOneBased(1);

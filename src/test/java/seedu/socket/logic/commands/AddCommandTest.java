@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.socket.commons.core.GuiSettings;
 import seedu.socket.logic.commands.exceptions.CommandException;
-import seedu.socket.model.ReadOnlySocket;
-import seedu.socket.model.Socket;
 import seedu.socket.model.Model;
+import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.ReadOnlyUserPrefs;
+import seedu.socket.model.Socket;
 import seedu.socket.model.person.Person;
 import seedu.socket.testutil.PersonBuilder;
 
