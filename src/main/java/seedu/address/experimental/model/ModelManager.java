@@ -154,6 +154,25 @@ public class ModelManager implements Model {
         } else {
         }
     }
+    // =========== List operations
+
+    @Override
+    public void listItems() {
+        filteredActive = filteredItems;
+        updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+    }
+
+    @Override
+    public void listCharacters() {
+        filteredActive = filteredCharacters;
+        updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+    }
+
+    @Override
+    public void listMobs() {
+        filteredActive = filteredMobs;
+        updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+    }
 
     //=========== Filtered Entity List Accessors ==========================================================//
 
@@ -171,6 +190,7 @@ public class ModelManager implements Model {
     @Override
     public void resetFilteredEntityList() {
         filteredActive = filteredAllEntities;
+        updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
     }
 
     // ============= Edit Mode ==================

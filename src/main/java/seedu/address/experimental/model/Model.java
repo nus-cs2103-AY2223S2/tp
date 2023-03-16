@@ -92,6 +92,15 @@ public interface Model {
      */
     void resetFilteredEntityList();
 
+    /** Set filtered list to items only */
+    void listItems();
+
+    /** Set filtered list to characters only */
+    void listCharacters();
+
+    /** Set filtered list to mobs only */
+    void listMobs();
+
     // =============== Edit mode ===================
     /**
      * Sets the current selected entity
