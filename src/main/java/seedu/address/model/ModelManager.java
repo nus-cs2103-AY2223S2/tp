@@ -305,7 +305,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public LocalDate getFocusDate(){
+    public LocalDate getFocusDate() {
         return focusDate;
     }
 
