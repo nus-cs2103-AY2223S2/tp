@@ -10,8 +10,9 @@ import java.util.Set;
  * The appointment class containing a meeting with a customer at a particular date.
  */
 public class Appointment {
-    private int customerId;
-    private LocalDateTime timeDate;
+    private final int id;
+    private final int customerId;
+    private final LocalDateTime timeDate;
 
     private final Set<Integer> staffIds = new HashSet<>();
 
@@ -20,9 +21,8 @@ public class Appointment {
      * @param customerId The customer id to meet.
      * @param timeDate The date time which this appointment occurs.
      */
-    public Appointment(int customerId, LocalDateTime timeDate) {
-        this.customerId = customerId;
-        this.timeDate = timeDate;
+    public Appointment(int id, int customerId, LocalDateTime timeDate) {
+        this(id, customerId, timeDate, new HashSet<>());
     }
 
     /**
@@ -31,10 +31,18 @@ public class Appointment {
      * @param timeDate The date time which this appointment occurs.
      * @param staffIds The list of staff ids involved in the appointment.
      */
-    public Appointment(int customerId, LocalDateTime timeDate, Set<Integer> staffIds) {
+    public Appointment(int id, int customerId, LocalDateTime timeDate, Set<Integer> staffIds) {
+        this.id = id;
         this.customerId = customerId;
         this.timeDate = timeDate;
         this.staffIds.addAll(staffIds);
+    }
+
+    /**
+     * @return ID of appointment
+     */
+    public int getId() {
+        return this.id;
     }
 
     /**

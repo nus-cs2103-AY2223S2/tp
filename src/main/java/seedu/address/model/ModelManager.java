@@ -15,7 +15,6 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
-import seedu.address.model.service.Part;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -230,21 +229,22 @@ public class ModelManager implements Model {
     /**
      * Adds part
      *
-     * @param part Part to add
+     * @param partName Name of the part to add
+     * @param quantity Quantity of the part to add
      */
     @Override
-    public void addPart(Part part) {
-        this.shop.addPart(part);
+    public void addPart(String partName, int quantity) {
+        this.shop.addPart(partName, quantity);
     }
 
     /**
      * Checks if part already exists
      *
-     * @param part Part to check against
+     * @param partName Name of part to check
      */
     @Override
-    public boolean hasPart(Part part) {
-        return this.shop.hasPart(part.getName());
+    public boolean hasPart(String partName) {
+        return this.shop.hasPart(partName);
     }
 
     //=========== Filtered Person List Accessors =============================================================
