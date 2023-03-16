@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUltron;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.ReadOnlyUserPrefsNew;
+import seedu.address.model.UserPrefsNew;
 
 /**
  * Manages storage of Ultron data in local storage.
@@ -18,12 +18,12 @@ public class StorageManagerNew implements StorageNew {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManagerNew.class);
     private UltronStorage ultronStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private UserPrefsStorageNew userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code UltronStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code UltronStorage} and {@code UserPrefStorageNew}.
      */
-    public StorageManagerNew(UltronStorage ultronStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManagerNew(UltronStorage ultronStorage, UserPrefsStorageNew userPrefsStorage) {
         this.ultronStorage = ultronStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -36,12 +36,12 @@ public class StorageManagerNew implements StorageNew {
     }
 
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
+    public Optional<UserPrefsNew> readUserPrefs() throws DataConversionException, IOException {
         return userPrefsStorage.readUserPrefs();
     }
 
     @Override
-    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+    public void saveUserPrefs(ReadOnlyUserPrefsNew userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 

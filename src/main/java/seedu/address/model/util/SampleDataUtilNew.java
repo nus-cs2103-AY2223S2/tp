@@ -22,16 +22,15 @@ public class SampleDataUtilNew {
     public static Opening[] getSampleOpenings() {
         return new Opening[] {
             new Opening(new Position("Software Engineer"), new Company("Google"), new Email("johnDoe@google.com"),
-                    new Status("found"), null, getDateSet(new Date("Interview", "20231121"))),
+                    new Status("FOUND"), null, getDateSet(new Date("Interview", "2023-11-21"))),
             new Opening(new Position("Software Developer"), new Company("Shopee"), new Email("alice@shopee.com"),
-                    new Status("applied"), new Remark("Dream Company"),
-                    getDateSet(new Date("Interview", "20231015"))),
-            new Opening(new Position("UI/UX Designer"), new Company("Grab"), new Email("tenz@grab.com"),
-                    new Status("found"), null, getDateSet(new Date("Interview", "20230412"),
-                        new Date("Practical Assessment", "20230511"))),
+                    new Status("APPLIED"), new Remark("Dream Company"),
+                    getDateSet(new Date("Interview", "2023-10-15"))),
+            new Opening(new Position("UX Designer"), new Company("Grab"), new Email("tenz@grab.com"),
+                    new Status("FOUND"), null, getDateSet(new Date("Interview", "2023-04-12"),
+                        new Date("Practical Assessment", "2023-05-11"))),
             new Opening(new Position("Software Engineer"), new Company("Gojek"), new Email("sleepy@gojek.com"),
-                    new Status("found"), null, getDateSet())
-
+                    new Status("FOUND"), null, getDateSet())
         };
     }
 
