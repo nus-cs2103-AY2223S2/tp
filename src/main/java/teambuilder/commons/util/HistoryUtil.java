@@ -51,7 +51,10 @@ public class HistoryUtil {
      */
     public boolean undo() {
         if (currentNum <= -1) {
-            assert currentNum == -1 : "currentNum too negative!";
+            return false;
+        }
+        if (history[currentNum] == null) {
+            currentNum = -1;
             return false;
         }
 
