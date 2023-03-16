@@ -11,11 +11,11 @@ public enum ServiceStatus {
     ON_HOLD("On Hold");
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Service status should only be 'to repair', " +
-                    "'in progress', " +
-                    "'complete', " +
-                    "'cancelled' or " +
-                    "'on hold'";
+            "Service status should only be 'to repair', "
+                    + "'in progress', "
+                    + "'complete', "
+                    + "'cancelled' or "
+                    + "'on hold'";
 
     private final String value;
 
