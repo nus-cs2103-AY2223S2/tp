@@ -49,7 +49,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditElderlyCommand;
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
