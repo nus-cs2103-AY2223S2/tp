@@ -84,6 +84,12 @@ public class Module implements ReadOnlyModule {
     }
 
     @Override
+    public boolean hasLecture(LectureName lecture) {
+        requireNonNull(lecture);
+        return getLecture(lecture) != null;
+    }
+
+    @Override
     public boolean isSameModule(Module other) {
         if (other == this) {
             return true;

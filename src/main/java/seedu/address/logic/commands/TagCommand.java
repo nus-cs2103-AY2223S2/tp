@@ -30,9 +30,13 @@ public class TagCommand extends Command {
     //TODO: MODIFY THIS
     public static final String MESSAGE_SUCCESS = "Item tagged";
     public static final String MESSAGE_MODULE_NOT_FOUND = "Module doesn't exist in Le Tracker";
+    public static final String MESSAGE_LECTURE_NOT_FOUND = "Lecture doesn't exist in this module";
+    public static final String MESSAGE_VIDEO_NOT_FOUND = "Video doesn't exist in this lecture";
+
+
     private final Set<Tag> tags;
 
-    private final VideoName VideoName;
+    private final VideoName videoName;
     private final LectureName lectureName;
     private final ModuleCode moduleCode;
     private final boolean isTaggingMod;
@@ -48,7 +52,7 @@ public class TagCommand extends Command {
         requireAllNonNull(tags, moduleCode);
 
         this.tags = tags;
-        this.VideoName = new VideoName("dummy");
+        this.videoName = new VideoName("dummy");
         this.lectureName = new LectureName("dummy");
         this.moduleCode = moduleCode;
         this.isTaggingMod = true;
@@ -60,7 +64,7 @@ public class TagCommand extends Command {
         requireAllNonNull(tags, moduleCode, lectureName);
 
         this.tags = tags;
-        this.VideoName = new VideoName("dummy");
+        this.videoName = new VideoName("dummy");
         this.lectureName = lectureName;
         this.moduleCode = moduleCode;
         this.isTaggingMod = false;
@@ -72,7 +76,7 @@ public class TagCommand extends Command {
         requireAllNonNull(tags, moduleCode, lectureName, videoName);
 
         this.tags = tags;
-        this.VideoName = videoName;
+        this.videoName = videoName;
         this.lectureName = lectureName;
         this.moduleCode = moduleCode;
         this.isTaggingMod = false;
@@ -84,10 +88,6 @@ public class TagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasModule(moduleCode)) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
-        }
-
         if (this.isTaggingMod) {
             tagModule(model);
         } else if (this.isTaggingLec) {
@@ -98,7 +98,11 @@ public class TagCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    private void tagModule(Model model) {
+    private void tagModule(Model model) throws CommandException {
+        if (!model.hasModule(moduleCode)) {
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+        }
+
         ReadOnlyModule taggingModule = model.getModule(this.moduleCode);
 
         Set<Tag> currentTags = taggingModule.getTags();
@@ -111,8 +115,17 @@ public class TagCommand extends Command {
         model.setModule(taggingModule, taggedModule);
     }
 
-    private void tagLecture(Model model) {
+    private void tagLecture(Model model) throws CommandException {
+        if (!model.hasModule(moduleCode)) {
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+        }
+
         ReadOnlyModule targetModule = model.getModule(this.moduleCode);
+
+        if (!targetModule.hasLecture(this.lectureName)) {
+            throw new CommandException(MESSAGE_LECTURE_NOT_FOUND);
+        }
+
         ReadOnlyLecture taggingLecture = targetModule.getLecture(this.lectureName);
 
         Set<Tag> currentTags = taggingLecture.getTags();
@@ -122,10 +135,24 @@ public class TagCommand extends Command {
         model.setLecture(targetModule, taggingLecture, taggedLecture);
     }
 
-    private void tagVideo(Model model) {
+    private void tagVideo(Model model) throws CommandException {
+        if (!model.hasModule(moduleCode)) {
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+        }
+
         ReadOnlyModule targetModule = model.getModule(this.moduleCode);
+
+        if (!targetModule.hasLecture(this.lectureName)) {
+            throw new CommandException(MESSAGE_LECTURE_NOT_FOUND);
+        }
+
         ReadOnlyLecture targetLecture = targetModule.getLecture(this.lectureName);
-        Video taggingVideo = targetLecture.getVideo(this.VideoName);
+
+        if (!targetLecture.hasVideo(this.videoName)) {
+            throw new CommandException(MESSAGE_VIDEO_NOT_FOUND);
+        }
+
+        Video taggingVideo = targetLecture.getVideo(this.videoName);
 
         Set<Tag> currentTags = taggingVideo.getTags();
         currentTags.addAll(this.tags);

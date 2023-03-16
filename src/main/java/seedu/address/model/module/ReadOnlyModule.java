@@ -58,6 +58,14 @@ public interface ReadOnlyModule {
     public boolean hasLecture(ReadOnlyLecture lecture);
 
     /**
+     * Returns true if a lecture with the same name as {@code lecture} exists in the module.
+     *
+     * @param lecture The lecture to check if it is in the module.
+     * @return True if a lecture with the same name as {@code lecture} exists in the module. Otherwise, false.
+     */
+    public boolean hasLecture(LectureName lecture);
+
+    /**
      * Returns true if both modules have the same code.<p>
      * This defines a weaker notion of equality between two modules.
      *
