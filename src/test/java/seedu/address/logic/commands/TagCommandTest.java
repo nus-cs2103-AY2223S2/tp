@@ -36,10 +36,10 @@ public class TagCommandTest {
         ContactIndex index2 = new ContactIndex(2);
 
         TagCommand tag1 = new TagCommand(index1, moduleToAdd);
-        CommandResult result1 = tag1.execute(model);
+        tag1.execute(model);
         Person personToEdit1 = indexHandler.getPersonByIndex(index1).orElseThrow(() ->
                 new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
-        // "CS2105", "CS2104", "CS2103", "CS1010", "CHC5338", "BT2103"
+
         Set<ModuleTag> tags1 = new HashSet<>();
         tags1.add(new ModuleTag("CS2105"));
         tags1.add(new ModuleTag("CS2104"));
@@ -48,15 +48,13 @@ public class TagCommandTest {
         tags1.add(new ModuleTag("CHC5338"));
         tags1.add(new ModuleTag("BT2103"));
         tags1.add(new ModuleTag("CS1234"));
-        System.out.println(tags1);
-        System.out.println("hello");
         assertEquals(personToEdit1.getImmutableModuleTags().toString(), tags1.toString());
 
         TagCommand tag2 = new TagCommand(index2, modulesToAdd);
-        CommandResult result2 = tag2.execute(model);
+        tag2.execute(model);
         Person personToEdit2 = indexHandler.getPersonByIndex(index2).orElseThrow(() ->
                 new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
-        // "CS2108", "GEN2061", "CS2107", "DSA2102", "CS2102", "CS2106"
+
         Set<ModuleTag> tags2 = new HashSet<>();
         tags2.add(new ModuleTag("CS2108"));
         tags2.add(new ModuleTag("GEN2061"));
@@ -104,6 +102,6 @@ public class TagCommandTest {
         UntagCommand untag = new UntagCommand(null, modulesToAdd);
         untag.execute(model);
 
-    } // how do i checkstyle for test files
+    }
 
 }
