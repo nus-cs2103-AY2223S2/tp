@@ -1,11 +1,8 @@
 package seedu.address.ui.job;
 
-import java.util.function.BiConsumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -17,7 +14,7 @@ import seedu.address.ui.UiPart;
 /**
  * Panel containing the list of persons.
  */
-public class DeliveryJobListPanel extends UiPart<Region> {
+public class SimpleDeliveryJobListPanel extends UiPart<Region> {
     private static final String FXML = "DeliveryJobListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(DeliveryJobListPanel.class);
 
@@ -27,34 +24,14 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     /**
      * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
      */
-    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList, BiConsumer<Integer, DeliveryJob> handler) {
-        super(FXML);
-        deliveryJobListView.setItems(jobList);
-        deliveryJobListView.setCellFactory(listView -> new DeliveryJobListViewCell());
-        deliveryJobListView.setOnMouseClicked(new EventHandler<Event>() {
-
-            @Override
-            public void handle(Event event) {
-                logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
-                handler.accept(deliveryJobListView.getSelectionModel().getSelectedIndex(),
-                        deliveryJobListView.getSelectionModel().getSelectedItem());
-            }
-
-        });
-    }
-
-    /**
-     * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
-     */
-    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList) {
+    public SimpleDeliveryJobListPanel(ObservableList<DeliveryJob> jobList) {
         super(FXML);
         deliveryJobListView.setItems(jobList);
         deliveryJobListView.setCellFactory(listView -> new DeliveryJobListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code job} using a
-     * {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code job} using a {@code PersonCard}.
      */
     class DeliveryJobListViewCell extends ListCell<DeliveryJob> {
         @Override
