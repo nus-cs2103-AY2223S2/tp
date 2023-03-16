@@ -7,12 +7,13 @@ import seedu.address.experimental.model.Reroll;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
-import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
 /***/
 public class SampleDataUtil {
+
     /***/
     public static Entity[] getSampleEntities() {
         Character c = new Character(new Name("Item1"), new Stats(0, 0, 0), 3, 2, new HashSet<Tag>());
@@ -21,6 +22,7 @@ public class SampleDataUtil {
         Entity[] entities = {c, m, m2};
         return entities;
     }
+
     /***/
     public static ReadOnlyReroll getSampleReroll() {
         Reroll sampleRr = new Reroll();

@@ -18,7 +18,7 @@ import seedu.address.experimental.storage.StorageManager;
 import seedu.address.experimental.storage.UserPrefsStorage;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Stats;
-import seedu.address.model.person.Name;
+import seedu.address.model.entity.Name;
 
 public class TesterModelStorage {
     public static void main(String[] args) {
