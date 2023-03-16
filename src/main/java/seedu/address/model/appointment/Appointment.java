@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.id.AppointmentId;
-import seedu.address.model.id.Id;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
@@ -21,13 +20,14 @@ public class Appointment {
     private final Description description;
     private final Patient patient;
     private final Set<Tag> tags = new HashSet<>();
-    private final AppointmentId ID = null;
+    private final AppointmentId id;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Timeslot timeslot, Description description, Patient patient, Set<Tag> tags) {
+    public Appointment(AppointmentId id, Timeslot timeslot, Description description, Patient patient, Set<Tag> tags) {
         requireAllNonNull(timeslot, description, patient, tags);
+        this.id = id;
         this.timeslot = timeslot;
         this.description = description;
         this.patient = patient;

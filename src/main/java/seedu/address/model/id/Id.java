@@ -19,7 +19,7 @@ public abstract class Id {
         return id;
     }
 
-    private static String generateUniqueId() {
+    public static String generateUniqueId() {
         return Integer.toString(idCounter.getAndIncrement());
     }
 
