@@ -7,7 +7,7 @@ import java.util.SortedSet;
 /**
  * Serializable IdGenerator state
  */
-public class IdGeneratorState implements Serializable {
+class IdGeneratorState implements Serializable {
     private final SortedSet<Integer> usedCustomerIds;
     private final Queue<Integer> unusedCustomerIds;
     private final SortedSet<Integer> usedVehicleIds;
