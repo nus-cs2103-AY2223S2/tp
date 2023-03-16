@@ -1,9 +1,11 @@
 package seedu.address.model.person;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.person.student.Student;
+import java.util.List;
 
 public interface ReadOnlyPCClass {
-    Class getPcClass();
-    ObservableList<Student> getStudentList();
+    /**
+     * Returns an unmodifiable view of the students list.
+     * This list will not contain any duplicate students.
+     */
+    List<Class> getClassList();
 }

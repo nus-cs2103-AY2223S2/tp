@@ -12,9 +12,9 @@ import seedu.address.storage.parents.ParentsStorage;
 import seedu.address.storage.pcclass.PCClassStorage;
 
 /**
- * API of the ClassStorage component
+ * API of the Storage component
  */
-public interface ClassStorage extends ParentsStorage, PCClassStorage, UserPrefsStorage {
+public interface Storage extends ParentsStorage, PCClassStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;

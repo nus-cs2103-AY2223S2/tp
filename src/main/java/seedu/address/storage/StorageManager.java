@@ -17,17 +17,17 @@ import seedu.address.storage.pcclass.PCClassStorage;
 /**
  * Manages storage of PCClass data in local storage.
  */
-public class ClassStorageManager implements ClassStorage {
+public class StorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(ClassStorageManager.class);
+    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private PCClassStorage pcClassStorage;
     private ParentsStorage parentsStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code ClassStorageManager} with the given {@code PCClassStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code PCClassStorage} and {@code UserPrefStorage}.
      */
-    public ClassStorageManager(PCClassStorage pcClassStorage, ParentsStorage parentsStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(PCClassStorage pcClassStorage, ParentsStorage parentsStorage, UserPrefsStorage userPrefsStorage) {
         this.pcClassStorage = pcClassStorage;
         this.parentsStorage = parentsStorage;
         this.userPrefsStorage = userPrefsStorage;
