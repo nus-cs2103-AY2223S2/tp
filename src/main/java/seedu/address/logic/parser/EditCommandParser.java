@@ -2,9 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliEventSyntax.PREFIX_END;
-import static seedu.address.logic.parser.CliEventSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliEventSyntax.PREFIX_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -12,7 +13,7 @@ import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditCommand object.
  */
 public class EditCommandParser implements Parser<EditCommand> {
 
@@ -25,7 +26,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START, PREFIX_END);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_START, PREFIX_END);
 
         Index index;
 
@@ -39,11 +40,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editEventDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editEventDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
+        }
         if (argMultimap.getValue(PREFIX_START).isPresent()) {
-            editEventDescriptor.setStartTime(ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START).get()));
+            editEventDescriptor.setStartTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_START).get()));
         }
         if (argMultimap.getValue(PREFIX_END).isPresent()) {
-            editEventDescriptor.setEndTime(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_END).get()));
+            editEventDescriptor.setEndTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_END).get()));
         }
 
         if (!editEventDescriptor.isAnyFieldEdited()) {

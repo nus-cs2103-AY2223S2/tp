@@ -1,25 +1,28 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliEventSyntax.PREFIX_END;
-import static seedu.address.logic.parser.CliEventSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliEventSyntax.PREFIX_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddEventCommand;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
-import seedu.address.model.person.Name;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Time;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
-public class AddCommandParser implements Parser<AddEventCommand> {
+public class AddCommandParser implements Parser<AddCommand> {
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
@@ -31,21 +34,22 @@ public class AddCommandParser implements Parser<AddEventCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddEventCommand parse(String args) throws ParseException {
+    public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START, PREFIX_END);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_START, PREFIX_END);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START, PREFIX_END)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATE, PREFIX_START, PREFIX_END)
             || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        String startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START).get());
-        String endTime = ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_END).get());
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START).get());
+        Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END).get());
 
-        Event event = new Event(name, startTime, endTime);
+        Event event = new Event(name, date, startTime, endTime);
 
-        return new AddEventCommand(event);
+        return new AddCommand(event);
     }
 }

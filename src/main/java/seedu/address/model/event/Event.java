@@ -1,23 +1,21 @@
 package seedu.address.model.event;
 
-import seedu.address.model.person.Name;
-
 /**
  * Represents an Event in the scheduler.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Event {
-
-    private Name name;
-    private String date; //Can abstract to Date class
-    private String startTime;
-    private String endTime;
-
+    private final Name name;
+    private final Date date;
+    private final Time startTime;
+    private final Time endTime;
+    
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, String startTime, String endTime) {
+    public Event(Name name, Date date, Time startTime, Time endTime) {
         this.name = name;
+        this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.date = "To be confirmed";
@@ -35,11 +33,15 @@ public class Event {
     }
     public String getDate() {return date;}
 
-    public String getParsedStartTime() {
+    public Date getDate() {
+        return date;
+    }
+
+    public Time getStartTime() {
         return startTime;
     }
 
-    public String getParsedEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
@@ -68,20 +70,21 @@ public class Event {
     
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
-                && otherEvent.getParsedStartTime().equals(getParsedStartTime())
-                && otherEvent.getParsedEndTime().equals(getParsedEndTime());
+            && otherEvent.getDate().equals(getDate())
+            && otherEvent.getStartTime().equals(getStartTime())
+            && otherEvent.getEndTime().equals(getEndTime());
     }
-    
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append(getName())
-                .append("Date: ")
-                .append(getDate())
-                .append("\nStart: ")
-                .append(getParsedStartTime())
-                .append("\nEnd: ")
-                .append(getParsedEndTime());
+            .append("\nDate: ")
+            .append(getDate())
+            .append("\nStart Time: ")
+            .append(getStartTime())
+            .append("\nEnd End: ")
+            .append(getEndTime());
         return sb.toString();
     }
 }
