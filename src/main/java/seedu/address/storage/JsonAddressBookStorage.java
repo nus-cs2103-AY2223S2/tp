@@ -46,7 +46,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         Optional<JsonSerializableScheduler> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableScheduler.class);
+            filePath, JsonSerializableScheduler.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -76,5 +76,4 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableScheduler(addressBook), filePath);
     }
-
 }

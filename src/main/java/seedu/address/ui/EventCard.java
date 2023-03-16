@@ -22,6 +22,8 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label date;
+    @FXML
     private Label startTime;
     @FXML
     private Label endTime;
@@ -35,8 +37,9 @@ public class EventCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().fullName);
-        startTime.setText(event.getParsedStartTime());
-        endTime.setText(event.getParsedEndTime());
+        date.setText(event.getDate().toString());
+        startTime.setText(event.getStartTime().toString());
+        endTime.setText(event.getEndTime().toString());
     }
 
     @Override
