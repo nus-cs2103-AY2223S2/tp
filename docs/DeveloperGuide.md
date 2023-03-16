@@ -518,9 +518,64 @@ Priorities:
 
       Use case resumes at 1.
 
+### Add Exam
+
+**MSS**
+
+1. User enters new-exam command with student name, exam title and start and end times.
+2. TutorPro adds the exam to that student's exam list..
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The named student does not exist
+    * 1a1. TutorPro returns an error message.
+
+      Use case resumes at 1.
+
+* 1b. The start/end time is in the past.
+    * 1b1. TutorPro returns an error message.
+
+      Use case resumes at 1.
+
+* 1c. The start/end time format is invalid.
+    * 1c1. TutorPro returns an error message showing the accepted time formats.
+
+      Use case resumes at 1.
+
+### View a particular Student's Exams
+
+**MSS**
+
+1. User clicks on **Exams** button of a student.
+2. TutorPro shows that student's past and upcoming Exams.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The student's exam list is empty.
+
+  Use case ends.
 
 *{More to be added}*
 
+### View all Students' Exams
+
+**MSS**
+
+1. User enters view-exam command without any arguments.
+2. TutorPro shows all students' past and upcoming exams.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. None of the students have any lessons.
+    * 2a1. TutorPro shows an empty Lesson list.
+
+      Use case ends.
 
 
 ### Non-Functional Requirements
@@ -528,6 +583,7 @@ Priorities:
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
 
 *{More to be added}*
 
