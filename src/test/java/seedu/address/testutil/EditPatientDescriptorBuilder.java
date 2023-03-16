@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
@@ -19,10 +18,10 @@ import seedu.address.model.tag.Tag;
  */
 public class EditPatientDescriptorBuilder {
 
-    private EditCommand.EditPatientDescriptor descriptor;
+    private EditPatientDescriptor descriptor;
 
     public EditPatientDescriptorBuilder() {
-        descriptor = new EditCommand.EditPatientDescriptor();
+        descriptor = new EditPatientDescriptor();
     }
 
     public EditPatientDescriptorBuilder(EditPatientDescriptor descriptor) {
@@ -33,7 +32,7 @@ public class EditPatientDescriptorBuilder {
      * Returns an {@code EditPatientDescriptor} with fields containing {@code patient}'s details
      */
     public EditPatientDescriptorBuilder(Patient patient) {
-        descriptor = new EditCommand.EditPatientDescriptor();
+        descriptor = new EditPatientDescriptor();
         descriptor.setName(patient.getName());
         descriptor.setPhone(patient.getPhone());
         descriptor.setEmail(patient.getEmail());
@@ -75,13 +74,12 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Remark} of the {@code EditPatientDescriptor} that we are building.
      */
     public EditPatientDescriptorBuilder withRemark(String remark) {
         descriptor.setRemark(new Remark(remark));
         return this;
     }
-
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPatientDescriptor}
@@ -93,7 +91,7 @@ public class EditPatientDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditPatientDescriptor build() {
+    public EditPatientDescriptor build() {
         return descriptor;
     }
 }
