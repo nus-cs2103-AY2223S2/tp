@@ -78,18 +78,6 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Advances the given person.
-     * The person must exist in the address book.
-     */
-    boolean advancePerson(Person target);
-
-    /**
-     * Rejects the given person.
-     * The person must exist in the address book.
-     */
-    boolean rejectPerson(Person target);
-
-    /**
      * Refreshes the list after a command.
      */
     void refreshListWithPredicate(Predicate<Person> predicate);

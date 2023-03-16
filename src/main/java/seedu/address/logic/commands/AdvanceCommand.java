@@ -71,7 +71,7 @@ public class AdvanceCommand extends Command {
         /* this if-statement will check whether the applicant can be advanced and also whether
         the interview datetime input is valid.
         If any exception occurs along the way, then CommandException will be thrown */
-        if (canAdvanceApplicant(model, personToAdvance)
+        if (canAdvanceApplicant(personToAdvance)
                 && isValidInterviewDateInput(model, personToAdvance, this.interviewDateTime)) {
             advancedPerson = createAdvancedPerson(personToAdvance, this.interviewDateTime);
             model.setPerson(personToAdvance, advancedPerson);
@@ -144,10 +144,10 @@ public class AdvanceCommand extends Command {
 
     /**
      * Checks whether applicant can be advanced
-     * @throws CommandException if applicant cannot be advanced any further in the application cycle
      */
-    private boolean canAdvanceApplicant(Model model, Person personToAdvance) throws CommandException {
-        if (!model.advancePerson(personToAdvance)) {
+    private boolean canAdvanceApplicant(Person personToAdvance) throws CommandException{
+        Status status = personToAdvance.getStatus();
+        if (status.equals(Status.ACCEPTED) || status.equals(Status.REJECTED)) {
             throw new CommandException(String.format(MESSAGE_PERSON_CANNOT_BE_ADVANCED,
                     personToAdvance.getName().fullName));
         }

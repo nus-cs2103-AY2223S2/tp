@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NamePhoneNumberPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Status;
 
 
 /**
@@ -56,7 +57,7 @@ public class RejectCommand extends Command {
 
         /* this if-statement will check whether the applicant can be rejected.
         If applicant cannot be rejected, CommandException will be thrown */
-        if (canRejectApplicant(model, personToReject)) {
+        if (canRejectApplicant(personToReject)) {
             rejectedPerson = createRejectedPerson(personToReject);
             model.setPerson(personToReject, rejectedPerson);
         }
@@ -68,8 +69,10 @@ public class RejectCommand extends Command {
      * Checks whether applicant can be rejected
      * @throws CommandException if applicant is already rejected
      */
-    private boolean canRejectApplicant(Model model, Person personToReject) throws CommandException {
-        if (!model.rejectPerson(personToReject)) {
+    private boolean canRejectApplicant(Person personToReject) throws CommandException {
+        Status status = personToReject.getStatus();
+
+        if (status.equals(Status.REJECTED)) {
             throw new CommandException(String.format(MESSAGE_PERSON_CANNOT_BE_REJECTED,
                     personToReject.getName().fullName));
         }

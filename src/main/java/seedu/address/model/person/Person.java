@@ -133,20 +133,6 @@ public class Person {
     }
 
     /**
-     * Returns true if the person status can be advanced otherwise false.
-     */
-    public boolean canAdvance() {
-        return this.status != Status.REJECTED && this.status != Status.ACCEPTED;
-    }
-
-    /**
-     * Returns true if the person status can be rejected otherwise false.
-     */
-    public boolean canReject() {
-        return this.status != Status.REJECTED;
-    }
-
-    /**
      * Returns true if the other person has the same interview date.
      * This is needed as Optional's equals method fails when two different Optional objects
      * are created with same value.
