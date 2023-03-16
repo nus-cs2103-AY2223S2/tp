@@ -10,6 +10,8 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
+      - name: Set up repository
+        uses: actions/checkout@main
 
       - name: Set up repository
         uses: actions/checkout@main
