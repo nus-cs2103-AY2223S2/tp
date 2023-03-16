@@ -1,5 +1,5 @@
 {
-  "_comment": "InternBuddy save file which contains the same Internship values as in TypicalInternships#getTypicalAddressBook()",
+  "_comment": "InternBuddy save file which contains the same Internship values as in TypicalInternships#getTypicalInternBuddy()",
   "internships" : [ {
       "companyName" : "Amazon",
       "role" : "Cloud Architect",

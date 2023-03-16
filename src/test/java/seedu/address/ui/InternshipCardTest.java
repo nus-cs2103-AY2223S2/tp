@@ -51,6 +51,7 @@ public class InternshipCardTest extends GuiUnitTest {
         InternshipCard internshipCardAmazonOne = new InternshipCard(TypicalInternships.AMAZON, 1);
         InternshipCard internshipCardAmazonTwo = new InternshipCard(TypicalInternships.AMAZON, 2);
         InternshipCard internshipCardAmazonOneDuplicate = new InternshipCard(TypicalInternships.AMAZON, 1);
+        InternshipCard internshipCardTesla = new InternshipCard(TypicalInternships.TESLA, 1);
         //Same object
         assertTrue(internshipCardAmazonOne.equals(internshipCardAmazonOne));
 
@@ -62,6 +63,9 @@ public class InternshipCardTest extends GuiUnitTest {
 
         //Different objects but same internship and index
         assertTrue(internshipCardAmazonOne.equals(internshipCardAmazonOneDuplicate));
+
+        ////Same index but different internships
+        assertFalse(internshipCardAmazonOne.equals(internshipCardTesla));
     }
 
     @Test

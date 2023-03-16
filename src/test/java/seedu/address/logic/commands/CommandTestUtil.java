@@ -15,7 +15,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.InternBuddy;
 import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
@@ -79,7 +79,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -94,7 +94,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -108,11 +108,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        InternBuddy expectedInternBuddy = new InternBuddy(actualModel.getInternBuddy());
         List<Internship> expectedFilteredList = new ArrayList<>(actualModel.getFilteredInternshipList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedInternBuddy, actualModel.getInternBuddy());
         assertEquals(expectedFilteredList, actualModel.getFilteredInternshipList());
     }
     /**
@@ -129,9 +129,9 @@ public class CommandTestUtil {
         final String[] splitTag = internship.getTags().isEmpty()
                 ? new String[0]
                 : internship.getTags().stream()
-                        .map(tag -> tag.tagName)
-                        .map(str -> str.split("\\s+"))
-                        .findFirst().get();
+                .map(tag -> tag.tagName)
+                .map(str -> str.split("\\s+"))
+                .findFirst().get();
         model.updateFilteredInternshipList(new InternshipContainsKeywordsPredicate(
                 Arrays.asList(splitCompanyName[0]), Arrays.asList(splitRole[0]), Arrays.asList(splitStatus[0]),
                 Arrays.asList((splitTag[0]))));

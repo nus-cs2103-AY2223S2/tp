@@ -49,11 +49,11 @@ public class FindCommandParserTest {
                         Arrays.asList("software", "developer"), Arrays.asList("applied"), Arrays.asList("frontend")));
 
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
-                        + TAG_DESC_FRONT, expectedFindCommand);
+                + TAG_DESC_FRONT, expectedFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + COMPANY_NAME_DESC_GOOGLE + " \n \t " + ROLE_DESC_GOOGLE + "\n "
-                        + STATUS_DESC_GOOGLE + "  \t" + TAG_DESC_FRONT + "   \n\t", expectedFindCommand);
+                + STATUS_DESC_GOOGLE + "  \t" + TAG_DESC_FRONT + "   \n\t", expectedFindCommand);
     }
 
     @Test

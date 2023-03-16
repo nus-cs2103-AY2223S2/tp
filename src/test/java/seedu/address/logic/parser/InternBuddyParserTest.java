@@ -33,9 +33,9 @@ import seedu.address.testutil.EditInternshipDescriptorBuilder;
 import seedu.address.testutil.InternshipBuilder;
 import seedu.address.testutil.InternshipUtil;
 
-public class AddressBookParserTest {
+public class InternBuddyParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final InternBuddyParser parser = new InternBuddyParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -105,7 +105,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

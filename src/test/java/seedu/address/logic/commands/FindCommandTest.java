@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalInternships.GOLDMAN;
 import static seedu.address.testutil.TypicalInternships.RIOTGAMES;
 import static seedu.address.testutil.TypicalInternships.SAMSUNG;
-import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalInternships.getTypicalInternBuddy;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalInternBuddy(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalInternBuddy(), new UserPrefs());
 
     @Test
     public void equals() {
