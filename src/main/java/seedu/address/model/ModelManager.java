@@ -16,8 +16,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.flight.Flight;
+import seedu.address.model.flight.exceptions.FlightNotFoundException;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
+import seedu.address.model.location.exceptions.LocationNotFoundException;
 import seedu.address.model.pilot.Pilot;
 import seedu.address.model.plane.Plane;
 
@@ -239,6 +241,20 @@ public class ModelManager implements Model {
     //=========== Location ========================================================
 
     @Override
+    public Location getLocationById(String id) {
+        Location locationToFind = null;
+        for (Location location: getFilteredLocationList()) {
+            if (location.getId().equals(id)) {
+                locationToFind = location;
+            }
+        }
+        if (locationToFind == null) {
+            throw new LocationNotFoundException();
+        }
+        return locationToFind;
+    }
+
+    @Override
     public ReadOnlyItemManager<Location> getLocationManager() {
         return locationManager;
     }
@@ -297,6 +313,19 @@ public class ModelManager implements Model {
         filteredLocations.setPredicate(predicate);
     }
 
+    @Override
+    public void linkFlightToLocations(Flight flight, Location departureLocation, Location arrivalLocation) {
+        requireAllNonNull(flight, departureLocation, arrivalLocation);
+        flight.linkDepartureLocation(departureLocation);
+        flight.linkArrivalLocation(arrivalLocation);
+    }
+
+    @Override
+    public void unlinkFlightToLocations(Flight flight) {
+        requireNonNull(flight);
+        flight.unLinkArrivalLocation();
+        flight.unLinkDepartureLocation();
+    }
 
     //=========== Crew ========================================================
 
@@ -426,6 +455,20 @@ public class ModelManager implements Model {
 
 
     //=========== Flight ========================================================
+
+    @Override
+    public Flight getFlightById(String id) {
+        Flight flightToFind = null;
+        for (Flight flight: getFilteredFlightList()) {
+            if (flight.getId().equals(id)) {
+                flightToFind = flight;
+            }
+        }
+        if (flightToFind == null) {
+            throw new FlightNotFoundException();
+        }
+        return flightToFind;
+    }
 
     @Override
     public ReadOnlyItemManager<Flight> getFlightManager() {

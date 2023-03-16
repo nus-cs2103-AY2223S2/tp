@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import seedu.address.model.flight.exceptions.LinkedPlaneNotFoundException;
 import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
 import seedu.address.model.plane.Plane;
 
 /**
@@ -14,11 +15,18 @@ import seedu.address.model.plane.Plane;
 public class Flight implements Item {
     private static final String UUID_STRING = "UUID";
     private static final String CODE_STRING = "Code";
+    private static final String DEPARTURE_STRING = "Depart from";
+    private static final String ARRIVE_STRING = "Arrive at";
+    private static final String NOT_SPECIFIED_STRING = "Not Specified";
+
     private final String code;
     private final String id;
     private Plane plane;
 
     //TODO: Add departure and arrival locations
+    private Location departureLocation;
+    private Location arrivalLocation;
+
     //TODO: Add exceptions to ensure departure and arrival locations are distinct
 
     /**
@@ -52,7 +60,9 @@ public class Flight implements Item {
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s: %s", UUID_STRING, id),
-                String.format("%s: %s", CODE_STRING, code)
+                String.format("%s: %s", CODE_STRING, code),
+                String.format("%s: %s", DEPARTURE_STRING, getDepartureLocationName()),
+                String.format("%s: %s", ARRIVE_STRING, getArrivalLocationName())
         );
     }
 
@@ -91,5 +101,107 @@ public class Flight implements Item {
         } else {
             throw new LinkedPlaneNotFoundException();
         }
+    }
+
+    /**
+     * Links the flight to a departure location.
+     * @param departureLocation the departure location to link to
+     */
+    public void linkDepartureLocation(Location departureLocation) {
+        this.departureLocation = departureLocation;
+    }
+
+    /**
+     * Links the flight to an arrival location.
+     * @param arrivalLocation the arrival location to link to
+     */
+    public void linkArrivalLocation(Location arrivalLocation) {
+        this.arrivalLocation = arrivalLocation;
+    }
+
+    /**
+     * Unlinks the departure location.
+     */
+    public void unLinkDepartureLocation() {
+        this.departureLocation = null;
+    }
+
+    /**
+     * Unlinks the arrival location.
+     */
+    public void unLinkArrivalLocation() {
+        this.arrivalLocation = null;
+    }
+
+    /**
+     * Returns the departure location of the plane.
+     * @return the departure location.
+     */
+    public Location getDepartureLocation() {
+        return departureLocation;
+    }
+
+    /**
+     * Returns the arrival location of the plane.
+     * @return the arrival location
+     */
+    public Location getArrivalLocation() {
+        return arrivalLocation;
+    }
+
+    /**
+     * Returns the id of the departure location.
+     * @return the id of the departure location
+     */
+    public String getDepartureLocationId() {
+        if (departureLocation == null) {
+            return NOT_SPECIFIED_STRING;
+        } else {
+            return departureLocation.getId();
+        }
+    }
+
+    /**
+     * Returns departure location name.
+     * @return the name of the departure location
+     */
+    public String getDepartureLocationName() {
+        if (departureLocation == null) {
+            return NOT_SPECIFIED_STRING;
+        } else {
+            return departureLocation.getName();
+        }
+    }
+
+    /**
+     * Returns the id of the arrival location.
+     * @return the id of the arrival location
+     */
+    public String getArrivalLocationId() {
+        if (departureLocation == null) {
+            return NOT_SPECIFIED_STRING;
+        } else {
+            return arrivalLocation.getId();
+        }
+    }
+
+    /**
+     * Returns arrival location name.
+     * @return the name of the arrival location
+     */
+    private String getArrivalLocationName() {
+        if (arrivalLocation == null) {
+            return NOT_SPECIFIED_STRING;
+        } else {
+            return arrivalLocation.getName();
+        }
+    }
+
+    /**
+     * Returns whether the location has linked locations
+     * @return true if there are linked locations
+     */
+    public boolean hasLinkedLocations() {
+        return arrivalLocation != null && departureLocation != null;
     }
 }
