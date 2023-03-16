@@ -1,26 +1,37 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #ffffff;
+    background-color: #ffffff; /* Used in the default.html file */
 }
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Roboto Light";
+    -fx-font-weight: normal;
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Roboto";
+    -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
+.label-bold {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+    -fx-opacity: 0.9;
+}
+
 .label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-size: 28pt;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
     -fx-opacity: 1;
 }
 
@@ -40,9 +51,9 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: #ffffff;
+    -fx-control-inner-background: #ffffff;
+    -fx-background-color: #ffffff;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -66,7 +77,8 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Roboto";
+    -fx-font-weight: normal;
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -77,20 +89,22 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: transparent;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #f0f0f0;
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bfbfbf;
+    -fx-border-width: 1;
 }
 
 .list-cell {
@@ -98,52 +112,63 @@
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
 }
+.list-cell:empty {
+    -fx-border-color: transparent;
+    -fx-background-color: #bfbfbf;
+}
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #eeeeee;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #e4e4e4;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-background-color: #daeaf6;
+    -fx-border-color: #6ba7d5;
     -fx-border-width: 1;
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #808080;
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Roboto";
+    -fx-font-weight: bold;
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #808080;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Roboto Light";
+    -fx-font-weight: normal;
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #808080;
+}
+
+.module_label {
+    -fx-font-family: "Roboto Mono", monospace;
+    -fx-font-weight: normal;
+    -fx-font-size: 16px;
+    -fx-text-fill: #808080;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #ffffff;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: #ffffff;
+     -fx-border-color: #bfbfbf;
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: transparent, #f0f0f0, transparent, transparent;
 }
 
 .result-display {
@@ -159,7 +184,7 @@
 
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: #808080;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
@@ -193,13 +218,13 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #f0f0f0;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
 
@@ -282,11 +307,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #bfbfbf;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: white;
     -fx-background-insets: 3;
 }
 
@@ -314,18 +339,20 @@
 
 #commandTypeLabel {
     -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
+    -fx-text-fill: #555555;
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-radius: 10;
+    -fx-background-color: #eeeeee;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: #bfbfbf;
+    -fx-border-radius: 10;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -333,8 +360,8 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
+    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-background-radius: 10;
 }
 
 #skills {
@@ -349,4 +376,70 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#moduleListView .list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-color: #BFBFBF;
+    -fx-border-width: 1;
+}
+
+#moduleListView .list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+    -fx-border-color: #ffc09f;
+}
+
+#moduleListView .list-cell:empty {
+    -fx-border-color: transparent;
+    -fx-background-color: derive(#ffc09f, 80%);
+}
+
+#moduleListView .list-cell:filled {
+    -fx-background-color: derive(#ffc09f, 50%);
+}
+
+#moduleListView .list-cell:filled:selected {
+    -fx-background-color: #daeaf6;
+    -fx-border-color: #6ba7d5;
+    -fx-border-width: 1.5;
+}
+
+#moduleListView .list-cell .label {
+    -fx-text-fill: #555555;
+}
+
+#skillListView .list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-color: #BFBFBF;
+    -fx-border-width: 1;
+}
+
+#skillListView .list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+    -fx-border-color: #ffee93;
+}
+
+#skillListView .list-cell:empty {
+    -fx-border-color: transparent;
+    -fx-background-color: derive(#ffee93, 50%);
+}
+
+#skillListView .list-cell:filled {
+    -fx-background-color: derive(#ffee93, 25%);
+}
+
+#skillListView .list-cell:filled:selected {
+    -fx-background-color: #daeaf6;
+    -fx-border-color: #6ba7d5;
+    -fx-border-width: 1.5;
+}
+
+#skillListView .list-cell .label {
+    -fx-text-fill: #555555;
 }

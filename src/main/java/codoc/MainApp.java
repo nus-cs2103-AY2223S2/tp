@@ -52,7 +52,12 @@ public class MainApp extends Application {
         logger.info("=============================[ Initializing CoDoc ]===========================");
         super.init();
 
-        Font.loadFont(MainApp.class.getResource("/font/JetBrainsMono-Bold.ttf").toExternalForm(), 10);
+        Font rbtBold = Font.loadFont(getClass().getResourceAsStream("/font/Roboto_Bold.ttf"), 10);
+        Font rbtReg = Font.loadFont(getClass().getResourceAsStream("/font/Roboto_Medium.ttf"), 10);
+        Font rbtLight = Font.loadFont(getClass().getResourceAsStream("/font/Roboto_Light.ttf"), 10);
+        Font rbtmBold = Font.loadFont(getClass().getResourceAsStream("/font/RobotoMono_Bold.ttf"), 10);
+        Font rbtmReg = Font.loadFont(getClass().getResourceAsStream("/font/RobotoMono_Regular.ttf"), 10);
+        Font rbtmLight = Font.loadFont(getClass().getResourceAsStream("/font/RobotoMono_Light.ttf"), 10);
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());

@@ -14,13 +14,8 @@
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$mod_name" />
+                <Label fx:id="id" alignment="CENTER_RIGHT" maxWidth="40.0" minWidth="40.0" styleClass="module_label" />
+                <Label fx:id="name" styleClass="module_label" text="\$mod_name" />
             </HBox>
         </VBox>
       <rowConstraints>

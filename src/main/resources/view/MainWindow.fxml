@@ -57,7 +57,7 @@
                   <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
               </VBox>
 
-              <VBox fx:id="infoTabPlaceholder" maxWidth="340" minWidth="340" styleClass="pane-with-border" />
+              <VBox fx:id="infoTabPlaceholder" maxWidth="340" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS"/>
           </SplitPane>
       </VBox>
     </Scene>

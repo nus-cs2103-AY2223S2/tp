@@ -33,6 +33,7 @@ public class DetailedSkill extends DetailedInfo {
                 .forEach(skill -> skills.add(skill));
         skillListView.setItems(skills);
         skillListView.setCellFactory(listView -> new SkillListViewCell());
+        skillListView.setPrefHeight((52 * skills.size()) + 2);
     }
 
     /**
