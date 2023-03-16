@@ -1,0 +1,10 @@
+{
+  "roles": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "address": "4th street",
+    "website": "www.google.com",
+    "experience": "0 Years"
+  } ]
+}

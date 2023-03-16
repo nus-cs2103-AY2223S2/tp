@@ -1,0 +1,24 @@
+{
+  "roles": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "jobDescription": "Analyst @ CitiBank",
+    "tagged": [ "friends" ],
+    "website": "www.google.com",
+    "salary": "4000",
+    "deadline" : "2023-10-20",
+    "experience": "Javascript - 1 Year"
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "address": "4th street",
+    "jobDescription": "Analyst @ CitiBank",
+    "website": "www.google.com",
+    "salary": "4000",
+    "deadline" : "2023-10-20",
+    "experience": "Javascript - 1 Year"
+  } ]
+}
