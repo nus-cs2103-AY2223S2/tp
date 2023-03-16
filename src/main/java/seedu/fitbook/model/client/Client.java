@@ -80,7 +80,6 @@ public class Client {
         return appointments.isEmpty();
     }
 
-
     /**
      * Returns an immutable appointment set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
