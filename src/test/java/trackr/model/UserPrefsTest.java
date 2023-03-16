@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.commons.core.GuiSettings;
+
 public class UserPrefsTest {
 
     @Test
@@ -44,6 +46,12 @@ public class UserPrefsTest {
         UserPrefs userPrefsDiffPath = new UserPrefs();
         userPrefsDiffPath.setTrackrFilePath(diffPath);
         assertFalse(userPrefs.equals(userPrefsDiffPath));
+
+        // different gui settings -> returns false
+        GuiSettings guiSettings = new GuiSettings(0, 0, 0, 0);
+        UserPrefs userPrefsDiffGui = new UserPrefs();
+        userPrefsDiffGui.setGuiSettings(guiSettings);
+        assertFalse(userPrefs.equals(userPrefsDiffGui));
     }
 
 }

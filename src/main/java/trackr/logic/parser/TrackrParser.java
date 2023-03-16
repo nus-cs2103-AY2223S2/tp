@@ -6,11 +6,13 @@ import static trackr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import trackr.logic.commands.AddOrderCommand;
 import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.AddTaskCommand;
 import trackr.logic.commands.ClearSupplierCommand;
 import trackr.logic.commands.ClearTaskCommand;
 import trackr.logic.commands.Command;
+import trackr.logic.commands.DeleteOrderCommand;
 import trackr.logic.commands.DeleteSupplierCommand;
 import trackr.logic.commands.DeleteTaskCommand;
 import trackr.logic.commands.EditSupplierCommand;
@@ -50,6 +52,10 @@ public class TrackrParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case AddOrderCommand.COMMAND_WORD:
+        case AddOrderCommand.COMMAND_WORD_SHORTCUT:
+            return new AddOrderCommandParser().parse(arguments);
+
         case AddSupplierCommand.COMMAND_WORD:
         case AddSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new AddSupplierCommandParser().parse(arguments);
@@ -77,6 +83,10 @@ public class TrackrParser {
         case ClearSupplierCommand.COMMAND_WORD:
         case ClearSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new ClearSupplierCommand();
+
+        case DeleteOrderCommand.COMMAND_WORD:
+        case DeleteOrderCommand.COMMAND_WORD_SHORTCUT:
+            return new DeleteOrderCommandParser().parse(arguments);
 
         case ClearTaskCommand.COMMAND_WORD:
         case ClearTaskCommand.COMMAND_WORD_SHORTCUT:

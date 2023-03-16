@@ -10,6 +10,13 @@ import java.util.Set;
 import trackr.commons.core.index.Index;
 import trackr.commons.util.StringUtil;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.order.OrderDeadline;
+import trackr.model.order.OrderName;
+import trackr.model.order.OrderQuantity;
+import trackr.model.order.OrderStatus;
+import trackr.model.order.customer.CustomerAddress;
+import trackr.model.order.customer.CustomerName;
+import trackr.model.order.customer.CustomerPhone;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.Name;
@@ -175,4 +182,115 @@ public class ParserUtil {
         }
         return new TaskStatus(trimmedTaskStatus);
     }
+
+    //========================Parse those related to order==================================
+    /**
+     * Parses a {@code String orderName} into a {@code OrderName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code orderName} is invalid.
+     */
+    public static OrderName parseOrderName(String orderName) throws ParseException {
+        requireNonNull(orderName);
+        String trimmedTaskName = orderName.trim();
+        if (!OrderName.isValidOrderName(trimmedTaskName)) {
+            throw new ParseException(OrderName.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderName(trimmedTaskName);
+    }
+
+    /**
+     * Parses a {@code String OrderDeadline} into a {@code OrderDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code OrderDeadline} is invalid.
+     */
+    public static OrderDeadline parseOrderDeadline(String orderDeadline) throws ParseException {
+        requireNonNull(orderDeadline);
+        String trimmedOrderDeadline = orderDeadline.trim();
+        if (!OrderDeadline.isValidOrderDeadline(trimmedOrderDeadline)) {
+            throw new ParseException(OrderDeadline.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderDeadline(trimmedOrderDeadline);
+    }
+
+    /**
+     * Parses a {@code String OrderStatus} into a {@code OrderStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code OrderStatus} is invalid.
+     */
+    public static OrderStatus parseOrderStatus(Optional<String> orderStatus) throws ParseException {
+        requireNonNull(orderStatus);
+        if (!orderStatus.isPresent()) {
+            return new OrderStatus();
+        }
+
+        String trimmedOrderStatus = orderStatus.get().trim();
+        if (!OrderStatus.isValidOrderStatus(trimmedOrderStatus)) {
+            throw new ParseException(OrderStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderStatus(trimmedOrderStatus);
+    }
+
+    /**
+     * Parses a {@code String OrderQuantity} into a {@code OrderQuantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code OrderQuantity} is invalid.
+     */
+    public static OrderQuantity parseOrderQuantity(String orderQuantity) throws ParseException {
+        requireNonNull(orderQuantity);
+        String trimmedOrderQuantity = orderQuantity.trim();
+        if (!OrderQuantity.isValidQuantity(trimmedOrderQuantity)) {
+            throw new ParseException(OrderQuantity.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderQuantity(trimmedOrderQuantity);
+    }
+
+    /**
+     * Parses a {@code String CustomerName} into a {@code CustomerName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code CustomerName} is invalid.
+     */
+    public static CustomerName parseCustomerName(String customerName) throws ParseException {
+        requireNonNull(customerName);
+        String trimmedCustomerName = customerName.trim();
+        if (!CustomerName.isValidCustomerName(trimmedCustomerName)) {
+            throw new ParseException(CustomerName.MESSAGE_CONSTRAINTS);
+        }
+        return new CustomerName(trimmedCustomerName);
+    }
+
+    /**
+     * Parses a {@code String CustomerPhone} into a {@code CustomerPhone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code CustomerPhone} is invalid.
+     */
+    public static CustomerPhone parseCustomerPhone(String customerPhone) throws ParseException {
+        requireNonNull(customerPhone);
+        String trimmedCustomerPhone = customerPhone.trim();
+        if (!CustomerPhone.isValidCustomerPhone(trimmedCustomerPhone)) {
+            throw new ParseException(CustomerPhone.MESSAGE_CONSTRAINTS);
+        }
+        return new CustomerPhone(trimmedCustomerPhone);
+    }
+
+    /**
+     * Parses a {@code String CustomerAddress} into a {@code CustomerAddress}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code CustomerAddress} is invalid.
+     */
+    public static CustomerAddress parseCustomerAddress(String customerAddress) throws ParseException {
+        requireNonNull(customerAddress);
+        String trimmedCustomerAddress = customerAddress.trim();
+        if (!CustomerAddress.isValidCustomerAddress(trimmedCustomerAddress)) {
+            throw new ParseException(CustomerAddress.MESSAGE_CONSTRAINTS);
+        }
+        return new CustomerAddress(trimmedCustomerAddress);
+    }
+
 }

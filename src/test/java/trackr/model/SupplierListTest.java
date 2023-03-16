@@ -7,6 +7,7 @@ import static trackr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static trackr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TypicalSuppliers.ALICE;
+import static trackr.testutil.TypicalSuppliers.BOB;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 
 import java.util.Arrays;
@@ -83,8 +84,26 @@ public class SupplierListTest {
         assertThrows(UnsupportedOperationException.class, () -> supplierList.getSupplierList().remove(0));
     }
 
+    @Test
+    public void equals() {
+        supplierList.addSupplier(ALICE);
+
+        SupplierList differentSupplierList = new SupplierList();
+        differentSupplierList.addSupplier(BOB);
+
+        SupplierList sameSupplierList = new SupplierList();
+        sameSupplierList.addSupplier(ALICE);
+
+        assertTrue(supplierList.equals(supplierList)); //same object
+        assertTrue(supplierList.equals(sameSupplierList)); //contains the same suppliers
+
+        assertFalse(supplierList.equals(null)); //null
+        assertFalse(supplierList.equals(differentSupplierList)); //different supplier list
+        assertFalse(supplierList.equals(1)); //different objects
+    }
+
     /**
-     * A stub ReadOnlysupplierList whose suppliers list can violate interface constraints.
+     * A stub ReadOnlySupplierList whose suppliers list can violate interface constraints.
      */
     private static class SupplierListStub implements ReadOnlySupplierList {
         private final ObservableList<Supplier> suppliers = FXCollections.observableArrayList();
