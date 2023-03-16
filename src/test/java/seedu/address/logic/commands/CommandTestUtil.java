@@ -20,9 +20,10 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditPersonDescriptor;
+import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
@@ -30,6 +31,7 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.EditElderlyDescriptorBuilder;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditVolunteerDescriptorBuilder;
 
 /**
@@ -88,6 +90,8 @@ public class CommandTestUtil {
     public static final String NRIC_ELDERLY_DESC_BOB = " " + PREFIX_NRIC_ELDERLY + VALID_NRIC_BOB;
     public static final String NRIC_VOLUNTEER_DESC_AMY = " " + PREFIX_NRIC_VOLUNTEER + VALID_NRIC_AMY;
     public static final String NRIC_VOLUNTEER_DESC_BOB = " " + PREFIX_NRIC_VOLUNTEER + VALID_NRIC_BOB;
+    public static final String NRIC_PERSON_DESC_AMY = " " + PREFIX_NRIC + VALID_NRIC_AMY;
+    public static final String NRIC_PERSON_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -108,6 +112,8 @@ public class CommandTestUtil {
 
     public static final EditVolunteerDescriptor DESC_VOLUNTEER_AMY;
     public static final EditVolunteerDescriptor DESC_VOLUNTEER_BOB;
+    public static final EditPersonDescriptor DESC_PERSON_AMY;
+    public static final EditPersonDescriptor DESC_PERSON_BOB;
 
     static {
         DESC_ELDERLY_AMY = new EditElderlyDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -126,6 +132,16 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_STRONG).build();
 
         DESC_VOLUNTEER_BOB = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
+                .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
+
+        DESC_PERSON_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY)
+                .withTags(VALID_TAG_STRONG).build();
+
+        DESC_PERSON_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB)
                 .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();

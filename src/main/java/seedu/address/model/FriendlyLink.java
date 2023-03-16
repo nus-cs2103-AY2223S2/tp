@@ -143,7 +143,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public Elderly getElderly(Nric nric) {
         requireNonNull(nric);
-        return elderly.getElderly(nric);
+        return elderly.get(nric);
     }
 
     /**
@@ -155,7 +155,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public Volunteer getVolunteer(Nric nric) {
         requireNonNull(nric);
-        return volunteers.getVolunteer(nric);
+        return volunteers.get(nric);
     }
 
     /**
