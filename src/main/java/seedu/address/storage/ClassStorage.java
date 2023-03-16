@@ -5,14 +5,16 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.ReadOnlyPCClass;
+import seedu.address.storage.parents.ParentsStorage;
+import seedu.address.storage.pcclass.PCClassStorage;
 
 /**
- * API of the Storage component
+ * API of the ClassStorage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface ClassStorage extends ParentsStorage, PCClassStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -20,13 +22,10 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
-    @Override
-    Path getAddressBookFilePath();
+    Path getPCFilePath();
 
-    @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyPCClass> readPC() throws DataConversionException, IOException;
 
-    @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void savePC(ReadOnlyPCClass readOnlyPCClass) throws IOException;
 
 }

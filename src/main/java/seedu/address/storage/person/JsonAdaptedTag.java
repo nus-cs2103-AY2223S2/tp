@@ -5,11 +5,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
+import seedu.address.storage.JsonAdapted;
 
 /**
  * Jackson-friendly version of {@link Tag}.
  */
-public class JsonAdaptedTag {
+public class JsonAdaptedTag implements JsonAdapted<Tag> {
 
     private final String tagName;
 
