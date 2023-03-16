@@ -18,6 +18,6 @@ public class ListReminderCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         return new CommandResult(SHOWING_REMINDERLIST_MESSAGE,
-                false, false, true, false);
+                false, false, true, false, false);
     }
 }

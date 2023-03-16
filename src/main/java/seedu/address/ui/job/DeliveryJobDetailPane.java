@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.person.PersonCard;
@@ -16,8 +17,6 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
     private static final String FXML = "DeliveryJobDetailPane.fxml";
 
     private DeliveryJobFullDetail deliveryJobFullDetail;
-    private PersonCard senderInfo;
-    private PersonCard recepientInfo;
 
     private final DeliveryJob job;
     private final int displayedIndex;
@@ -44,18 +43,25 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
         super(FXML);
         this.job = job;
         this.displayedIndex = displayedIndex;
-
-        fillInnerParts();
     }
 
-    void fillInnerParts() {
+    /**
+     * fillInnerParts.
+     *
+     * @param ab
+     */
+    public void fillInnerParts(ReadOnlyAddressBook ab) {
         deliveryJobFullDetail = new DeliveryJobFullDetail(job, displayedIndex);
         fullDeliveryJobDetailPlaceholder.getChildren().add(deliveryJobFullDetail.getRoot());
 
-        senderInfo = new PersonCard(job.getSender(), "Sender");
-        recepientInfo = new PersonCard(job.getRecepient(), "Recepient");
+        ab.getPersonById(job.getSenderId()).ifPresent(per -> {
+            PersonCard card = new PersonCard(per, "Sender");
+            senderContactInfoPlaceholder.getChildren().add(card.getRoot());
+        });
 
-        senderContactInfoPlaceholder.getChildren().add(senderInfo.getRoot());
-        recepientContactInfoPlaceholder.getChildren().add(recepientInfo.getRoot());
+        ab.getPersonById(job.getRecepientId()).ifPresent(per -> {
+            PersonCard card = new PersonCard(per, "Recepient");
+            recepientContactInfoPlaceholder.getChildren().add(card.getRoot());
+        });
     }
 }

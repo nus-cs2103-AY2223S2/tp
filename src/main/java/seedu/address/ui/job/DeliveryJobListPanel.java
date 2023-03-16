@@ -21,6 +21,8 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     private static final String FXML = "DeliveryJobListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(DeliveryJobListPanel.class);
 
+    private BiConsumer<Integer, DeliveryJob> onSelectHandler;
+
     @FXML
     private ListView<DeliveryJob> deliveryJobListView;
 
@@ -31,25 +33,27 @@ public class DeliveryJobListPanel extends UiPart<Region> {
         super(FXML);
         deliveryJobListView.setItems(jobList);
         deliveryJobListView.setCellFactory(listView -> new DeliveryJobListViewCell());
+        this.onSelectHandler = handler;
+
         deliveryJobListView.setOnMouseClicked(new EventHandler<Event>() {
 
             @Override
             public void handle(Event event) {
-                logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
-                handler.accept(deliveryJobListView.getSelectionModel().getSelectedIndex(),
-                        deliveryJobListView.getSelectionModel().getSelectedItem());
+                selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
             }
 
         });
     }
 
     /**
-     * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
+     * selectItem
+     *
+     * @param idx
      */
-    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList) {
-        super(FXML);
-        deliveryJobListView.setItems(jobList);
-        deliveryJobListView.setCellFactory(listView -> new DeliveryJobListViewCell());
+    public void selectItem(int idx) {
+        logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
+        deliveryJobListView.getSelectionModel().select(idx);
+        onSelectHandler.accept(idx, deliveryJobListView.getSelectionModel().getSelectedItem());
     }
 
     /**

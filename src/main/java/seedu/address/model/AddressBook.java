@@ -3,8 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
@@ -146,5 +148,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    public Optional<Person> getPersonById(String id) {
+        FilteredList<Person> list = persons.asUnmodifiableObservableList().filtered(x -> x.getPersonId().equals(id));
+        if (list.size() == 1) {
+            return Optional.of(list.get(0));
+        }
+        return Optional.empty();
     }
 }

@@ -94,6 +94,13 @@ public class DeliveryJobSystem implements ReadOnlyDeliveryJobSystem {
         return jobs.contains(job);
     }
 
+    /**
+     * @return number of jobs in list
+     */
+    public int size() {
+        return jobs.size();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

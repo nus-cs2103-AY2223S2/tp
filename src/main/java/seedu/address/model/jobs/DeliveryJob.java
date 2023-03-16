@@ -3,8 +3,6 @@ package seedu.address.model.jobs;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import seedu.address.model.person.Person;
-
 /**
  * Represents delivery jobs entities.
  */
@@ -13,8 +11,8 @@ public class DeliveryJob {
     private final String jobId;
 
     // Delivery informations
-    private final Person recepient;
-    private final Person sender; // aka customer
+    private final String recepient;
+    private final String sender; // aka customer
     private final String deliverSlot; // TODO: Update data type when confirmed
     private final Earning earning;
     private final boolean isDelivered;
@@ -25,10 +23,9 @@ public class DeliveryJob {
      * @param recepient
      * @param sender
      * @param deliverSlot
-     * @param packages
      * @param earning
      */
-    public DeliveryJob(Person recepient, Person sender, String deliverSlot, String earning) {
+    public DeliveryJob(String recepient, String sender, String deliverSlot, String earning) {
         this(UUID.randomUUID().toString(), recepient, sender, deliverSlot, earning, false);
     }
 
@@ -41,7 +38,7 @@ public class DeliveryJob {
      * @param packages
      * @param earning
      */
-    public DeliveryJob(String jobId, Person recepient, Person sender, String deliverSlot, String earning,
+    public DeliveryJob(String jobId, String recepient, String sender, String deliverSlot, String earning,
             boolean isDelivered) {
         this.jobId = jobId;
         this.recepient = recepient;
@@ -55,11 +52,11 @@ public class DeliveryJob {
         return jobId;
     }
 
-    public Person getRecepient() {
+    public String getRecepientId() {
         return recepient;
     }
 
-    public Person getSender() {
+    public String getSenderId() {
         return sender;
     }
 
@@ -99,6 +96,7 @@ public class DeliveryJob {
 
         String outString = "Job [%s]\n"
                 + "receipent: %s\n"
+                + "sender: %s\n"
                 + "slot: %s\n"
                 + "earn: $%s\n"
                 + "status: $%s\n";
@@ -106,7 +104,8 @@ public class DeliveryJob {
         builder.append(
                 String.format(outString,
                         jobId,
-                        getRecepient(),
+                        getRecepientId(),
+                        getSenderId(),
                         getDeliverSlot(),
                         getEarning(),
                         getDeliveredStatus()));

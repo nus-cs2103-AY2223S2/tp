@@ -13,5 +13,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_TIME = new Prefix("time/");
+    
     public static final Prefix PREFIX_DATE = new Prefix("date/");
+    public static final Prefix PREFIX_SENDER_ID = new Prefix("si/");
+    public static final Prefix PREFIX_RECEPIENT_ID = new Prefix("ri/");
+    public static final Prefix PREFIX_DELIVERY_DATE = new Prefix("date/");
+    public static final Prefix PREFIX_DELIVERY_SLOT = new Prefix("slot/");
+    public static final Prefix PREFIX_EARNING = new Prefix("earn/");
+
 }
