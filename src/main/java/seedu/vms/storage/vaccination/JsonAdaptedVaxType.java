@@ -24,7 +24,7 @@ public class JsonAdaptedVaxType {
     private final List<JsonAdaptedGroupName> groups;
     private final JsonAdaptedAge minAge;
     private final JsonAdaptedAge maxAge;
-    private final List<JsonAdaptedVaxRequirement> allergyReqs;
+    private final List<JsonAdaptedGroupName> allergyReqs;
     private final List<JsonAdaptedVaxRequirement> historyReqs;
 
 
@@ -35,7 +35,7 @@ public class JsonAdaptedVaxType {
                 @JsonProperty("groups") List<JsonAdaptedGroupName> groups,
                 @JsonProperty("minAge") JsonAdaptedAge minAge,
                 @JsonProperty("maxAge") JsonAdaptedAge maxAge,
-                @JsonProperty("allergyReqs") List<JsonAdaptedVaxRequirement> allergyReqs,
+                @JsonProperty("allergyReqs") List<JsonAdaptedGroupName> allergyReqs,
                 @JsonProperty("historyReqs") List<JsonAdaptedVaxRequirement> historyReqs) {
         this.name = name;
         this.groups = groups;
@@ -55,7 +55,7 @@ public class JsonAdaptedVaxType {
         List<JsonAdaptedGroupName> groups = JsonAdaptedGroupName.fromModelCollection(vaxType.getGroups());
         JsonAdaptedAge minAge = JsonAdaptedAge.fromModelType(vaxType.getMinAge());
         JsonAdaptedAge maxAge = JsonAdaptedAge.fromModelType(vaxType.getMaxAge());
-        List<JsonAdaptedVaxRequirement> allergyReqs = convertToAdaptedReq(vaxType.getAllergyReqs());
+        List<JsonAdaptedGroupName> allergyReqs = JsonAdaptedGroupName.fromModelCollection(vaxType.getAllergyReqs());
         List<JsonAdaptedVaxRequirement> historyReqs = convertToAdaptedReq(vaxType.getHistoryReqs());
 
         return new JsonAdaptedVaxType(name, groups, minAge, maxAge, allergyReqs, historyReqs);
@@ -94,7 +94,7 @@ public class JsonAdaptedVaxType {
         }
 
         if (allergyReqs != null) {
-            builder = builder.setAllergyReqs(toReqList(allergyReqs));
+            builder = builder.setGroups(JsonAdaptedGroupName.toModelSet(allergyReqs));
         }
 
         if (historyReqs != null) {

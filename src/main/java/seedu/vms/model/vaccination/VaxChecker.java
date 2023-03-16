@@ -28,7 +28,9 @@ public class VaxChecker {
                 Age age, HashSet<GroupName> allergies, List<VaxType> takenTypes) {
         boolean isWithinAge = age.compareTo(vaxType.getMinAge()) * vaxType.getMaxAge().compareTo(age) >= 0;
 
-        boolean isAllergiesSatisfied = checkReq(vaxType.getAllergyReqs(), allergies);
+        boolean isAllergiesSatisfied = checkReq(
+                List.of(new Requirement(Requirement.RequirementType.NONE, vaxType.getAllergyReqs())),
+                allergies);
         boolean isHistorySatisfied = checkHistReq(vaxType.getHistoryReqs(), takenTypes);
 
         return isWithinAge && isAllergiesSatisfied && isHistorySatisfied;

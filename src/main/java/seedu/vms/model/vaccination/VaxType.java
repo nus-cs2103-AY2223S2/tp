@@ -21,15 +21,15 @@ public class VaxType implements Comparable<VaxType> {
     public static final HashSet<GroupName> DEFAULT_GROUP_SET = new HashSet<>();
     public static final Age DEFAULT_MIN_AGE = Age.MIN_AGE;
     public static final Age DEFAULT_MAX_AGE = Age.MAX_AGE;
+    public static final HashSet<GroupName> DEFAULT_ALLERGY_REQS = new HashSet<>();
     public static final List<Requirement> DEFAULT_HISTORY_REQS = List.of();
-    public static final List<Requirement> DEFAULT_ALLERGY_REQS = List.of();
 
     private final GroupName name;
     private final HashSet<GroupName> groups;
     private final Age minAge;
     private final Age maxAge;
+    private final HashSet<GroupName> allergyReqs;
     private final List<Requirement> historyReqs;
-    private final List<Requirement> allergyReqs;
 
 
     /**
@@ -40,7 +40,7 @@ public class VaxType implements Comparable<VaxType> {
      */
     public VaxType(GroupName name, HashSet<GroupName> groups,
                 Age minAge, Age maxAge,
-                List<Requirement> allergyReqs, List<Requirement> historyReqs) {
+                HashSet<GroupName> allergyReqs, List<Requirement> historyReqs) {
         AppUtil.checkArgument(isValidRange(minAge, maxAge), MESSAGE_AGE_CONSTRAINTS);
         this.name = name;
         this.groups = groups;
@@ -85,8 +85,8 @@ public class VaxType implements Comparable<VaxType> {
     }
 
 
-    public List<Requirement> getAllergyReqs() {
-        return Requirement.copy(allergyReqs);
+    public HashSet<GroupName> getAllergyReqs() {
+        return new HashSet<>(allergyReqs);
     }
 
 

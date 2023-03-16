@@ -275,10 +275,10 @@ public class ParserUtil {
      *
      * @throws ParseException if any of the groups cannot be parsed.
      */
-    public static Set<GroupName> parseGroups(Collection<String> args) throws ParseException {
+    public static HashSet<GroupName> parseGroups(Collection<String> args) throws ParseException {
         requireNonNull(args);
 
-        final Set<GroupName> groups = new HashSet<>();
+        final HashSet<GroupName> groups = new HashSet<>();
         for (String grpString : args) {
             groups.addAll(parseGroups(grpString));
         }

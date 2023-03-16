@@ -22,19 +22,19 @@ public class VaxTypeBuilder {
     private final Optional<HashSet<GroupName>> setGrps;
     private final Optional<Age> setMinAge;
     private final Optional<Age> setMaxAge;
-    private final Optional<List<Requirement>> setAllergyReqs;
+    private final Optional<HashSet<GroupName>> setAllergyReqs;
     private final Optional<List<Requirement>> setHistoryReqs;
 
 
     private VaxTypeBuilder(GroupName refName, GroupName name, Optional<HashSet<GroupName>> setGrps,
                 Optional<Age> setMinAge, Optional<Age> setMaxAge,
-                Optional<List<Requirement>> setAllergyReqs, Optional<List<Requirement>> setHistoryReqs) {
+                Optional<HashSet<GroupName>> setAllergyReqs, Optional<List<Requirement>> setHistoryReqs) {
         this.refName = refName;
         this.name = name;
         this.setGrps = setGrps.map(HashSet::new);
         this.setMinAge = setMinAge;
         this.setMaxAge = setMaxAge;
-        this.setAllergyReqs = setAllergyReqs.map(Requirement::copy);
+        this.setAllergyReqs = setGrps.map(HashSet::new);
         this.setHistoryReqs = setHistoryReqs.map(Requirement::copy);
     }
 
@@ -91,7 +91,7 @@ public class VaxTypeBuilder {
     }
 
 
-    public VaxTypeBuilder setAllergyReqs(List<Requirement> allergyReqs) {
+    public VaxTypeBuilder setAllergyReqs(HashSet<GroupName> allergyReqs) {
         return new VaxTypeBuilder(refName, name, setGrps,
                 setMinAge, setMaxAge,
                 Optional.ofNullable(allergyReqs), setHistoryReqs);
@@ -153,7 +153,7 @@ public class VaxTypeBuilder {
         Age maxAge = setMaxAge.orElse(refVaxType
                 .map(VaxType::getMaxAge)
                 .orElse(VaxType.DEFAULT_MAX_AGE));
-        List<Requirement> allergyReqs = setAllergyReqs.orElse(refVaxType
+        HashSet<GroupName> allergyReqs = setAllergyReqs.orElse(refVaxType
                 .map(VaxType::getAllergyReqs)
                 .orElse(VaxType.DEFAULT_ALLERGY_REQS));
         List<Requirement> historyReqs = setHistoryReqs.orElse(refVaxType

@@ -11,19 +11,14 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "ALC-0315",
-            "ALC-0159",
-            "DSPC",
-            "Cholesterol",
-            "Sucrose",
-            "Phosphate",
-            "Tromethamine",
-            "Tromethamine hydrochloride"
-          ]
-        }
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
       ]
     },
     {
@@ -41,19 +36,14 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "ALC-0315",
-            "ALC-0159",
-            "DSPC",
-            "Cholesterol",
-            "Sucrose",
-            "Phosphate",
-            "Tromethamine",
-            "Tromethamine hydrochloride"
-          ]
-        }
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
       ]
     },
     {
@@ -71,19 +61,14 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "ALC-0315",
-            "ALC-0159",
-            "DSPC",
-            "Cholesterol",
-            "Sucrose",
-            "Phosphate",
-            "Tromethamine",
-            "Tromethamine hydrochloride"
-          ]
-        }
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
       ]
     },
     {
@@ -101,19 +86,14 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "ALC-0315",
-            "ALC-0159",
-            "DSPC",
-            "Cholesterol",
-            "Sucrose",
-            "Phosphate",
-            "Tromethamine",
-            "Tromethamine hydrochloride"
-          ]
-        }
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
       ]
     },
 
@@ -130,20 +110,15 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "SM-102",
-            "DMG-PEG 2000",
-            "Cholesterol",
-            "DSPC",
-            "Tromethamine",
-            "Tromethamine hydrochloride",
-            "Acetic acid",
-            "Sodium acetate",
-            "Sucrose"
-          ]
-        }
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
       ]
     },
     {
@@ -161,20 +136,15 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "SM-102",
-            "DMG-PEG 2000",
-            "Cholesterol",
-            "DSPC",
-            "Tromethamine",
-            "Tromethamine hydrochloride",
-            "Acetic acid",
-            "Sodium acetate",
-            "Sucrose"
-          ]
-        }
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
       ]
     },
     {
@@ -192,20 +162,15 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "SM-102",
-            "DMG-PEG 2000",
-            "Cholesterol",
-            "DSPC",
-            "Tromethamine",
-            "Tromethamine hydrochloride",
-            "Acetic acid",
-            "Sodium acetate",
-            "Sucrose"
-          ]
-        }
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
       ]
     },
     {
@@ -223,20 +188,15 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "SM-102",
-            "DMG-PEG 2000",
-            "Cholesterol",
-            "DSPC",
-            "Tromethamine",
-            "Tromethamine hydrochloride",
-            "Acetic acid",
-            "Sodium acetate",
-            "Sucrose"
-          ]
-        }
+        "SM-102",
+        "DMG-PEG 2000",
+        "Cholesterol",
+        "DSPC",
+        "Tromethamine",
+        "Tromethamine hydrochloride",
+        "Acetic acid",
+        "Sodium acetate",
+        "Sucrose"
       ]
     },
 
@@ -253,22 +213,17 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "Matrix-M1 adjuvant",
-            "Phosphatidylcholine",
-            "MKP",
-            "KCl",
-            "CAS-10028-24-7",
-            "CAS-7782-85-6",
-            "CAS-10049-21-5",
-            "NaCl",
-            "Polysorbate 80",
-            "NaOH",
-            "HCl"
-          ]
-        }
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
       ]
     },
     {
@@ -286,22 +241,17 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "Matrix-M1 adjuvant",
-            "Phosphatidylcholine",
-            "MKP",
-            "KCl",
-            "CAS-10028-24-7",
-            "CAS-7782-85-6",
-            "CAS-10049-21-5",
-            "NaCl",
-            "Polysorbate 80",
-            "NaOH",
-            "HCl"
-          ]
-        }
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
       ]
     },
     {
@@ -319,22 +269,17 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "Matrix-M1 adjuvant",
-            "Phosphatidylcholine",
-            "MKP",
-            "KCl",
-            "CAS-10028-24-7",
-            "CAS-7782-85-6",
-            "CAS-10049-21-5",
-            "NaCl",
-            "Polysorbate 80",
-            "NaOH",
-            "HCl"
-          ]
-        }
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
       ]
     },
     {
@@ -352,22 +297,17 @@
         }
       ],
       "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "Matrix-M1 adjuvant",
-            "Phosphatidylcholine",
-            "MKP",
-            "KCl",
-            "CAS-10028-24-7",
-            "CAS-7782-85-6",
-            "CAS-10049-21-5",
-            "NaCl",
-            "Polysorbate 80",
-            "NaOH",
-            "HCl"
-          ]
-        }
+        "Matrix-M1 adjuvant",
+        "Phosphatidylcholine",
+        "MKP",
+        "KCl",
+        "CAS-10028-24-7",
+        "CAS-7782-85-6",
+        "CAS-10049-21-5",
+        "NaCl",
+        "Polysorbate 80",
+        "NaOH",
+        "HCl"
       ]
     }
   ]

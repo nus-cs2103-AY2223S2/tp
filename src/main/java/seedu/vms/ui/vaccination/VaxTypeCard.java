@@ -42,7 +42,12 @@ public class VaxTypeCard extends UiPart<Region> {
                 .stream()
                 .map(GroupName::getName)
                 .collect(Collectors.toList())));
-        addAllReq(allergyBox, vaxType.getAllergyReqs());
+        allergyBox.getChildren().add(new TagFlowView(
+                vaxType.getAllergyReqs()
+                    .stream()
+                    .map(GroupName::toString)
+                    .collect(Collectors.toList()),
+                TagFlowView.STYLE_CLASS_TAG_RED));
         addAllReq(historyBox, vaxType.getHistoryReqs());
     }
 
