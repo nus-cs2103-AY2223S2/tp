@@ -48,7 +48,6 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = trackrParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
         try {
             storage.saveTrackr(model.getSupplierList(), model.getTaskList(), model.getOrderList());
         } catch (IOException ioe) {

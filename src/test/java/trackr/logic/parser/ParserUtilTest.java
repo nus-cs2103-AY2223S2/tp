@@ -15,6 +15,13 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.order.OrderDeadline;
+import trackr.model.order.OrderName;
+import trackr.model.order.OrderQuantity;
+import trackr.model.order.OrderStatus;
+import trackr.model.order.customer.CustomerAddress;
+import trackr.model.order.customer.CustomerName;
+import trackr.model.order.customer.CustomerPhone;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.Name;
@@ -35,8 +42,13 @@ public class ParserUtilTest {
     private static final String INVALID_TASK_DEADLINE = "35/13/2023";
     private static final String INVALID_TASK_STATUS = "done";
 
+    private static final String INVALID_ORDER_NAME = "@&*$&*COOKIES";
+    private static final String INVALID_ORDER_DEADLINE = "35/13/2023";
+    private static final String INVALID_ORDER_STATUS = "done";
+    private static final String INVALID_ORDER_QUANTITY = "213123";
+
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "12345678";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -45,6 +57,11 @@ public class ParserUtilTest {
     private static final String VALID_TASK_NAME = "Sort Inventory";
     private static final String VALID_TASK_DEADLINE = "01/01/2024";
     private static final String VALID_TASK_STATUS = "D";
+
+    private static final String VALID_ORDER_NAME = "Chocolate Cookies";
+    private static final String VALID_ORDER_DEADLINE = "01/01/2024";
+    private static final String VALID_ORDER_STATUS = "D";
+    private static final String VALID_ORDER_QUANTITY = "12";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -274,5 +291,168 @@ public class ParserUtilTest {
         Optional<String> taskStatusWithWhitespace = Optional.of(WHITESPACE + VALID_TASK_STATUS + WHITESPACE);
         TaskStatus expectedTaskStatus = new TaskStatus(VALID_TASK_STATUS);
         assertEquals(expectedTaskStatus, ParserUtil.parseTaskStatus(taskStatusWithWhitespace));
+    }
+
+    //=====================Test parser util methods that are related to order==================
+    @Test
+    public void parseOrderName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderName((String) null));
+    }
+
+    @Test
+    public void parseOrderName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderName(INVALID_ORDER_NAME));
+    }
+
+    @Test
+    public void parseOrderName_validValueWithoutWhitespace_returnsOrderName() throws Exception {
+        OrderName expectedOrderName = new OrderName(VALID_ORDER_NAME);
+        assertEquals(expectedOrderName, ParserUtil.parseOrderName(VALID_ORDER_NAME));
+    }
+
+    @Test
+    public void parseOrderName_validValueWithWhitespace_returnsTrimmedOrderName() throws Exception {
+        String orderNameWithWhitespace = WHITESPACE + VALID_ORDER_NAME + WHITESPACE;
+        TaskName expectedOrderName = new TaskName(VALID_ORDER_NAME);
+        assertEquals(expectedOrderName, ParserUtil.parseTaskName(orderNameWithWhitespace));
+    }
+
+    @Test
+    public void parseOrderDeadline_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderDeadline((String) null));
+    }
+
+    @Test
+    public void parseOrderDeadline_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderDeadline(INVALID_ORDER_DEADLINE));
+    }
+
+    @Test
+    public void parseOrderDeadline_validValueWithoutWhitespace_returnsOrderDeadline() throws Exception {
+        OrderDeadline expectedTaskDeadline = new OrderDeadline(VALID_ORDER_DEADLINE);
+        assertEquals(expectedTaskDeadline, ParserUtil.parseOrderDeadline(VALID_ORDER_DEADLINE));
+    }
+
+    @Test
+    public void parseOrderDeadline_validValueWithWhitespace_returnsTrimmedOrderDeadline() throws Exception {
+        String taskDeadlineWithWhitespace = WHITESPACE + VALID_TASK_DEADLINE + WHITESPACE;
+        OrderDeadline expectedTaskDeadline = new OrderDeadline(VALID_TASK_DEADLINE);
+        assertEquals(expectedTaskDeadline, ParserUtil.parseOrderDeadline(taskDeadlineWithWhitespace));
+    }
+
+    @Test
+    public void parseOrderStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderStatus((Optional<String>) null));
+    }
+
+    @Test
+    public void parseOrderStatus_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil
+            .parseOrderStatus(Optional.ofNullable(INVALID_ORDER_STATUS)));
+    }
+
+    @Test
+    public void parseOrderStatus_validValueWithoutWhitespace_returnsTaskStatus() throws Exception {
+        OrderStatus expectedOrderStatus = new OrderStatus(VALID_ORDER_STATUS);
+        assertEquals(expectedOrderStatus, ParserUtil.parseOrderStatus(Optional.ofNullable(VALID_ORDER_STATUS)));
+    }
+
+    @Test
+    public void parseOrderStatus_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
+        Optional<String> orderStatusWithWhitespace = Optional.of(WHITESPACE + VALID_ORDER_STATUS + WHITESPACE);
+        OrderStatus expectedTaskStatus = new OrderStatus(VALID_ORDER_STATUS);
+        assertEquals(expectedTaskStatus, ParserUtil.parseOrderStatus(orderStatusWithWhitespace));
+    }
+
+    @Test
+    public void parseOrderQuantity_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderQuantity(null));
+    }
+
+    @Test
+    public void parseOrderQuantity_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderQuantity(INVALID_ORDER_QUANTITY));
+    }
+
+    @Test
+    public void parseOrderQuantity_validValueWithoutWhitespace_returnsTaskStatus() throws Exception {
+        OrderQuantity expectedOrderQuantity = new OrderQuantity(VALID_ORDER_QUANTITY);
+        assertEquals(expectedOrderQuantity, ParserUtil.parseOrderQuantity(VALID_ORDER_QUANTITY));
+    }
+
+    @Test
+    public void parseOrderQuantity_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
+        String orderStatusWithWhitespace = WHITESPACE + VALID_ORDER_QUANTITY + WHITESPACE;
+        OrderQuantity expectedOrderQuantity = new OrderQuantity(VALID_ORDER_QUANTITY);
+        assertEquals(expectedOrderQuantity, ParserUtil.parseOrderQuantity(orderStatusWithWhitespace));
+    }
+
+    @Test
+    public void parseCustomerName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCustomerName(null));
+    }
+
+    @Test
+    public void parseCustomerName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCustomerName(INVALID_NAME));
+    }
+
+    @Test
+    public void parseCustomerName_validValueWithoutWhitespace_returnsCustomerName() throws Exception {
+        CustomerName expectedCustomerName = new CustomerName(VALID_NAME);
+        assertEquals(expectedCustomerName, ParserUtil.parseCustomerName(VALID_NAME));
+    }
+
+    @Test
+    public void parseCustomerName_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
+        String orderStatusWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        CustomerName expectedCustomerName = new CustomerName(VALID_NAME);
+        assertEquals(expectedCustomerName, ParserUtil.parseCustomerName(orderStatusWithWhitespace));
+    }
+
+    @Test
+    public void parseCustomerPhone_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCustomerPhone(null));
+    }
+
+    @Test
+    public void parseCustomerPhone_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCustomerPhone(INVALID_PHONE));
+    }
+
+    @Test
+    public void parseCustomerPhone_validValueWithoutWhitespace_returnsCustomerPhone() throws Exception {
+        CustomerPhone expectedCustoemrPhone = new CustomerPhone(VALID_PHONE);
+        assertEquals(expectedCustoemrPhone, ParserUtil.parseCustomerPhone(VALID_PHONE));
+    }
+
+    @Test
+    public void parseCustomerPhone_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
+        String customerPhoneWithWhiteSpace = WHITESPACE + VALID_PHONE + WHITESPACE;
+        CustomerPhone expectedCustomerPhone = new CustomerPhone(VALID_PHONE);
+        assertEquals(expectedCustomerPhone, ParserUtil.parseCustomerPhone(customerPhoneWithWhiteSpace));
+    }
+
+    @Test
+    public void parseCustomerAddress_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCustomerAddress(null));
+    }
+
+    @Test
+    public void parseCustomerAddress_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCustomerAddress(INVALID_ADDRESS));
+    }
+
+    @Test
+    public void parseCustomerAddress_validValueWithoutWhitespace_returnsCustomerAddress() throws Exception {
+        CustomerAddress expectedCustomerAddress = new CustomerAddress(VALID_ADDRESS);
+        assertEquals(expectedCustomerAddress, ParserUtil.parseCustomerAddress(VALID_ADDRESS));
+    }
+
+    @Test
+    public void parseCustomerAddress_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
+        String customerAddressWithWhiteSpace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
+        CustomerAddress expectedCustomerAddress = new CustomerAddress(VALID_ADDRESS);
+        assertEquals(expectedCustomerAddress, ParserUtil.parseCustomerAddress(customerAddressWithWhiteSpace));
     }
 }

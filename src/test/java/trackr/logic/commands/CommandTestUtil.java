@@ -19,6 +19,8 @@ import trackr.commons.core.index.Index;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
 import trackr.model.SupplierList;
+import trackr.model.order.Order;
+import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
@@ -131,6 +133,13 @@ public class CommandTestUtil {
     public static final String VALID_CUSTOMER_NAME = "Nigel Wong";
     public static final String VALID_CUSTOMER_PHONE = "91234567";
     public static final String VALID_CUSTOMER_ADDRESS = "Woodlands Street 43";
+    public static final String INVALID_ORDER_NAME = "!@#$%CHIPS";
+    public static final String INVALID_ORDER_DEADLINE = "01/01/999/INVALID";
+    public static final String INVALID_ORDER_STATUS = "T";
+    public static final String INVALID_ORDER_QUANTITY = "9999";
+    public static final String INVALID_CUSTOMER_NAME = "!@*&#";
+    public static final String INVALID_CUSTOMER_PHONE = "912345674554";
+    public static final String INVALID_CUSTOMER_ADDRESS = "  ";
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -203,6 +212,22 @@ public class CommandTestUtil {
         model.updateFilteredTaskList(predicate);
 
         assertEquals(1, model.getFilteredTaskList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered order list to show only the order at the given {@code targetIndex} in the
+     * {@code model}'s task list.
+     */
+    public static void showOrderAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
+
+        Order task = model.getFilteredOrderList().get(targetIndex.getZeroBased());
+        final String[] splitOrderName = task.getOrderName().value.split("\\s+");
+        OrderContainsKeywordsPredicate predicate = new OrderContainsKeywordsPredicate();
+        predicate.setOrderNameKeywords(Arrays.asList(splitOrderName[0]));
+        model.updateFilteredOrderList(predicate);
+
+        assertEquals(1, model.getFilteredOrderList().size());
     }
 
 }
