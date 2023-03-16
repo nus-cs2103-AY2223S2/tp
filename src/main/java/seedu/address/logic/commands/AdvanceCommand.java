@@ -117,7 +117,7 @@ public class AdvanceCommand extends Command {
      */
     private boolean isValidForAdvanceWithDateTime(Model model, Person personToAdvance,
             InterviewDateTime interviewDateTime) throws CommandException {
-        return personToAdvance.getStatus() == Status.APPLIED && !isDuplicateDateTime(model,
+        return personToAdvance.getStatus().equals(Status.APPLIED) && !isDuplicateDateTime(model,
                 personToAdvance, interviewDateTime);
     }
 
@@ -129,7 +129,7 @@ public class AdvanceCommand extends Command {
      */
     private boolean isDuplicateDateTime(
             Model model, Person personToAdvance, InterviewDateTime interviewDateTime) throws CommandException {
-        Predicate<Person> shortlistedPredicate = person -> (person.getStatus() == Status.SHORTLISTED);
+        Predicate<Person> shortlistedPredicate = person -> (person.getStatus().equals(Status.SHORTLISTED));
         model.refreshListWithPredicate(shortlistedPredicate);
         ObservableList<Person> shortlistedApplicants = model.getFilteredPersonList();
         for (Person applicant : shortlistedApplicants) {
