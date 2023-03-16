@@ -4,7 +4,7 @@
   "projects": [
     {
       "name": "Bard",
-      "status": "",
+      "status": null,
       "clientEmail": "jamar@bard.org",
       "source": null,
       "description": null,
