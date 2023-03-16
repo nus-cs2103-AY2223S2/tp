@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.internship.commons.exceptions.IllegalValueException;
 import seedu.internship.model.internship.Company;
-import seedu.internship.model.internship.Description;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
 
@@ -41,14 +40,16 @@ public class JsonAdaptedInternshipTest {
     @Test
     public void toModelType_invalidPosition_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
-                new JsonAdaptedInternship(INVALID_POSITION, VALID_COMPANY, VALID_STATUS, VALID_DESCRIPTION, VALID_TAGS);
+                new JsonAdaptedInternship(INVALID_POSITION, VALID_COMPANY, VALID_STATUS,
+                        VALID_DESCRIPTION, VALID_TAGS);
         String expectedMessage = Position.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
     @Test
     public void toModelType_nullPosition_throwsIllegalValueException() {
-        JsonAdaptedInternship internship = new JsonAdaptedInternship(null, VALID_COMPANY, VALID_STATUS, VALID_DESCRIPTION, VALID_TAGS);
+        JsonAdaptedInternship internship = new JsonAdaptedInternship(null, VALID_COMPANY, VALID_STATUS,
+                VALID_DESCRIPTION, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Position.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -63,7 +64,8 @@ public class JsonAdaptedInternshipTest {
 
     @Test
     public void toModelType_nullCompany_throwsIllegalValueException() {
-        JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_POSITION, null, VALID_STATUS, VALID_DESCRIPTION, VALID_TAGS);
+        JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_POSITION, null, VALID_STATUS,
+                VALID_DESCRIPTION, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -78,19 +80,11 @@ public class JsonAdaptedInternshipTest {
 
     @Test
     public void toModelType_nullStatus_throwsIllegalValueException() {
-        JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_POSITION, VALID_COMPANY, null, VALID_DESCRIPTION, VALID_TAGS);
+        JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_POSITION, VALID_COMPANY, null,
+                VALID_DESCRIPTION, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
-
-
-
-//    @Test
-//    public void toModelType_nullDescription_throwsIllegalValueException() {
-//        JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_POSITION, VALID_COMPANY, VALID_STATUS, null, VALID_TAGS);
-//        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
-//        assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
-//    }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {

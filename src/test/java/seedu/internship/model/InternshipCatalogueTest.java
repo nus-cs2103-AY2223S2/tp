@@ -4,7 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.testutil.Assert.assertThrows;
-import static seedu.internship.testutil.TypicalInternships.*;
+import static seedu.internship.testutil.TypicalInternships.ML1;
+import static seedu.internship.testutil.TypicalInternships.ML2;
+import static seedu.internship.testutil.TypicalInternships.VALID_COMPANY_ML1;
+import static seedu.internship.testutil.TypicalInternships.VALID_DESCRIPTION_ML1;
+import static seedu.internship.testutil.TypicalInternships.VALID_POSITION_ML1;
+import static seedu.internship.testutil.TypicalInternships.VALID_STATUS_ML1;
+import static seedu.internship.testutil.TypicalInternships.VALID_TAG_IMPORTANT;
+import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
 
 import java.util.Arrays;
 import java.util.Collection;
