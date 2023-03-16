@@ -98,14 +98,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_twoFieldsSpecified_success() {
-        String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 1, 3);
+        String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 0, 3);
 
         @SuppressWarnings("unchecked")
         FindCommand command = new FindCommand(listWithTwoPersonPredicate,
                 (List<Predicate<Elderly>>) emptyList, (List<Predicate<Volunteer>>) emptyList);
 
-        expectedModel.updateFilteredElderlyList(elderly ->
-                elderly.getName().fullName.equals(ALICE.getName().fullName));
+        expectedModel.updateFilteredElderlyList(unused -> false);
         expectedModel.updateFilteredVolunteerList(volunteer ->
                 volunteer.getName().fullName.equals(ALICE.getName().fullName));
         expectedModel.updateFilteredPairList(unused -> false);
