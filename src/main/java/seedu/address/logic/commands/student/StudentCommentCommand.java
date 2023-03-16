@@ -11,10 +11,10 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
-import seedu.address.model.person.student.StudentClass;
 
 /**
  * A StudentCommentCommand class for comment "student CLASSNAME comment"
@@ -34,14 +34,14 @@ public class StudentCommentCommand extends StudentCommand {
     private final IndexNumber index;
     private final Comment comment;
 
-    private final StudentClass studentClass;
+    private final Class studentClass;
     /**
      * Creates an AddCommand to add the specified {@code Person}
      *
      * @param index of the person in the filtered person list to edit
      * @param comment of the person to be updated to
      */
-    public StudentCommentCommand(StudentClass studentClass, IndexNumber index, Comment comment) {
+    public StudentCommentCommand(Class studentClass, IndexNumber index, Comment comment) {
         requireAllNonNull(index, comment);
 
         this.index = index;
@@ -64,7 +64,7 @@ public class StudentCommentCommand extends StudentCommand {
         for (int i = 0; i < lastShownList.size(); i++) {
             Student curr = lastShownList.get(i);
             if (i == lastShownList.size() - 1 && !curr.getIndexNumber().equals(index)) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
             if (curr.getIndexNumber().equals(index) && curr.getStudentClass().equals(studentClass)) {
                 studentToEdit = curr;
@@ -73,7 +73,7 @@ public class StudentCommentCommand extends StudentCommand {
         }
         Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
                 studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
-                studentToEdit.getAge(),
+                studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
                 studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
                 studentToEdit.getCca(), studentToEdit.getAddress(), studentToEdit.getAttendance(),
                 studentToEdit.getHomework(), studentToEdit.getTest(), studentToEdit.getTags(), comment);

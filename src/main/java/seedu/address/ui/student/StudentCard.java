@@ -49,7 +49,11 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label parentPhoneNumber;
+    @FXML
     private Label parentName;
+    @FXML
+    private Label rls;
     @FXML
     private Label age;
     // @FXML
@@ -62,7 +66,10 @@ public class StudentCard extends UiPart<Region> {
     private Label className;
     @FXML
     private Label comment;
-
+    @FXML
+    private FlowPane tests;
+    @FXML
+    private FlowPane homework;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -71,17 +78,56 @@ public class StudentCard extends UiPart<Region> {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
-        className.setText(student.getStudentClass().value);
+        className.setText(student.getStudentClass().getClassName());
         index.setText(student.getIndexNumber().value);
         sex.setText(student.getSex().value);
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
         email.setText(student.getEmail().value);
-        parentName.setText(student.getParentName().value);
+        address.setText(student.getAddress().value);
+        parentName.setText(student.getParentName().fullName);
+        parentPhoneNumber.setText(student.getParentNumber().value);
+        rls.setText(student.getRls().toString());
         age.setText(student.getAge().value);
         //image.setText(student.getImage().value);
         cca.setText(student.getCca().value);
         comment.setText(student.getComment().value);
+        student.getTest().stream()
+                        .sorted(Comparator.comparing(test -> test.getName()))
+                        .forEach(test -> {
+                            tests.getChildren().add(new Label(" Test Name: "));
+                            tests.getChildren().add(new Label(test.getName()));
+                            tests.getChildren().add(new Label(" Score: "));
+                            tests.getChildren().add(new Label(Integer.toString(test.getScore())));
+                            tests.getChildren().add(new Label(" Weightage: "));
+                            tests.getChildren().add(new Label(Integer.toString(test.getWeightage())));
+                            tests.getChildren().add(new Label(" Deadline: "));
+                            if (test.getDeadline() != null) {
+                                tests.getChildren().add(new Label(test.getDeadline().toString()));
+                            } else {
+                                tests.getChildren().add(new Label("No Deadline"));
+                            }
+
+                        });
+        student.getHomework().stream()
+                .sorted(Comparator.comparing(hw -> hw.getName()))
+                .forEach(hw -> {
+                    homework.getChildren().add(new Label(" Homework Name: "));
+                    homework.getChildren().add(new Label(hw.getName()));
+                    homework.getChildren().add(new Label(" Score: "));
+                    homework.getChildren().add(new Label(Integer.toString(hw.getScore())));
+                    homework.getChildren().add(new Label(" Weightage: "));
+                    homework.getChildren().add(new Label(Integer.toString(hw.getWeightage())));
+                    homework.getChildren().add(new Label(" Deadline: "));
+                    if (hw.getDeadline() != null) {
+                        homework.getChildren().add(new Label(hw.getDeadline().toString()));
+                    } else {
+                        homework.getChildren().add(new Label("No Deadline"));
+                    }
+                    homework.getChildren().add(new Label(" Is Done: "));
+                    homework.getChildren().add(new Label(Boolean.toString(hw.getIsDone())));
+
+                });
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

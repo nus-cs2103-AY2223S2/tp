@@ -16,6 +16,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.DuplicatePhoneException;
 import seedu.address.ui.parent.ParentListPanel;
 import seedu.address.ui.student.StudentListPanel;
 
@@ -208,6 +210,14 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } catch (DuplicatePersonException d) {
+            logger.info("Duplicate person: " + commandText);
+            resultDisplay.setFeedbackToUser(d.getMessage());
+            throw d;
+        } catch (DuplicatePhoneException dp) {
+            logger.info("Duplicate phone number: " + commandText);
+            resultDisplay.setFeedbackToUser(dp.getMessage());
+            throw dp;
         }
     }
 }

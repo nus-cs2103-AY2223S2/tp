@@ -31,7 +31,7 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
 
-        if (test.equals("Insert student phone number here!")) {
+        if (test.equals("Insert student phone number here!") || test.equals("Insert parent phone here!")) {
             return true;
         }
         return test.matches(VALIDATION_REGEX);

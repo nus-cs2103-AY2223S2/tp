@@ -11,89 +11,99 @@ import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
-import seedu.address.model.person.student.StudentClass;
 import seedu.address.model.tag.Tag;
 
 /**
- * A Parent Class that creates a parent who is a person
+ * A Parent Class that creates a Parent / Next-of-kin who is also a Person
  */
 public class Parent extends Person {
-    /**
-     * @param name
-     * @param indexNumber
-     * @param email
-     * @param address
-     * @param tags
-     */
+    public static final String MESSAGE_NUMBER_CONSTRAINTS = "Parent's phone should be a numeric value";
+    public static final String VALIDATION_NUMBER_REGEX = "\\d+";
     private final Age age;
     private final Image image;
-    private final IndexNumber indexNumber;
-    private final Relationship relationship;
-    private final StudentClass sc;
     private final List<Student> children = new ArrayList<>();
 
     /**
-     * A parent / next-of-kin (NOK) constructor
+     * A constructor that creates a Parent Object with particulars about the Parent.
      *
-     * @param name
-     * @param relationship
-     * @param age
-     * @param image
-     * @param email
-     * @param phone
-     * @param address
-     * @param tags
+     * @param name Parent's / NOK's name.
+     * @param age Parent's / NOK's age.
+     * @param image Image of Parent / NOK.
+     * @param email Email Address of Parent / NOK.
+     * @param phone Phone number of Parent / NOK.
+     * @param address Residential Address of Parent / NOK.
+     * @param tags Tags given to Parent.
      */
-    public Parent(StudentClass sc, IndexNumber indexNumber, Name name, Relationship relationship, Age age, Image image,
+    public Parent(Name name, Age age, Image image,
                   Email email, Phone phone, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
-        this.indexNumber = indexNumber;
-        this.sc = sc;
         this.age = age;
         this.image = image;
-        this.relationship = relationship;
     }
 
     /**
-     * A method that returns the Age of parent / NOK.
-     * @return Age
+     * Method to check if the Parent's phone number is valid.
+     * @param test Phone number of Parent / NOK.
+     * @return Returns true if the phone number is valid.
+     */
+    public static boolean isValidParentNumber(String test) {
+        return test.matches(VALIDATION_NUMBER_REGEX);
+    }
+
+    /**
+     * A method that returns the Age of Parent / NOK.
+     *
+     * @return Age of Parent / NOK.
      */
     public Age getAge() {
         return age;
     }
 
     /**
-     * A method that returns the Image of parent / NOK.
-     * @return Image
+     * A method that returns the Image of Parent / NOK.
+     *
+     * @return Image of Parent / NOK.
      */
     public Image getImage() {
         return image;
     }
 
     /**
-     * A method that returns the Relationship of parent / NOK.
-     * @return Relationship
-     */
-    public Relationship getRelationship() {
-        return relationship;
-    }
-
-    /**
-     * A method that returns a list of students the parent / NOK is related to.
-     * @return List of Students
+     * A method that returns a list of Students the Parent / NOK is related to.
+     *
+     * @return All Students that the Parent / NOK has relations to.
      */
     public List<Student> getChildren() {
         return children;
     }
 
     /**
-     * A method that adds a children to the parent
-     * @param child
+     * A method that adds a Student to the Parent / NOK.
+     *
+     * @param student Student who is related to this Parent object.
      */
-    public void addChildren(Student child) {
-        children.add(child);
+    public void addStudent(Student student) {
+        children.add(student);
+    }
+
+    /**
+     * A method that adds a list of Students to the Parent / NOK.
+     * @param students List of Students who are related to this Parent object.
+     */
+    public void addStudents(List<Student> students) {
+        children.addAll(students);
+    }
+
+    /**
+     * A method that removes a Student from the Parent / NOK.
+     *
+     * @param student Student who is related to this Parent object.
+     */
+    public void removeStudent(Student student) {
+        if (children.contains(student)) {
+            children.remove(student);
+        }
     }
 
     @Override
@@ -132,9 +142,7 @@ public class Parent extends Person {
                 .append(getEmail())
                 .append("; Parent Phone: ")
                 .append(getPhone())
-                .append("; ")
-                .append(getRelationship())
-                .append(" of:");
+                .append("; Parent/NOK of:");
 
         List<Student> children = getChildren();
         for (Student child : children) {

@@ -2,13 +2,11 @@ package seedu.address.logic.commands.parent;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,30 +15,27 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.parent.Parent;
 
 /**
- * A class for "parent Class Name add" command"
+ * A class for "parent add" command"
  */
 public class ParentAddCommand extends ParentCommand {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = "parent CLASS_NAME(of student) " + COMMAND_WORD
-            + ": Adds a parent to the address book. "
+    public static final String MESSAGE_USAGE = "parent " + COMMAND_WORD
+            + ": Adds a parent to the address book. \n"
             + "Parameters: "
-            + PREFIX_INDEXNUMBER + "INDEX NUMBER (of student) "
             + PREFIX_NAME + "NAME "
-            + PREFIX_RELATIONSHIP + "RELATIONSHIP "
+            + PREFIX_PHONEPARENT + "PHONE "
             + "["
-            + PREFIX_AGE + "AGE "
+            + PREFIX_PARENTAGE + "AGE "
             + PREFIX_IMAGEPARENT + "IMAGE PARENT "
-            + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "]\n"
-            + "Example: " + "parent 1A " + COMMAND_WORD + " "
+            + "Example: \n" + "parent " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tan Ah Niu "
-            + PREFIX_RELATIONSHIP + "Father "
-            + PREFIX_AGE + "30 "
+            + PREFIX_PHONEPARENT + "91234567 "
+            + PREFIX_PARENTAGE + "30 "
             + PREFIX_IMAGEPARENT + "C:// "
-            + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "tanahcow@gmail.com "
             + PREFIX_ADDRESS + "Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)";
 
@@ -49,7 +44,7 @@ public class ParentAddCommand extends ParentCommand {
     private final Parent parent;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Parent}
      */
     public ParentAddCommand(Parent parent) {
         requireNonNull(parent);

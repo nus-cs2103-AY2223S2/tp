@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.parent.Parent;
+import seedu.address.model.person.student.IndexNumber;
+import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,8 +26,9 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-
     private final Comment comment;
+    private Class sc;
+    private IndexNumber indexNumber;
 
     /**
      * Every field must be present and not null.
@@ -50,7 +54,21 @@ public class Person {
         this.tags.addAll(tags);
         this.comment = new Comment();
     }
-
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Class sc,
+                  IndexNumber indexNumber) {
+        requireAllNonNull(name, phone, email, address, tags, sc, indexNumber);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.comment = new Comment();
+        this.sc = sc;
+        this.indexNumber = indexNumber;
+    }
 
     public Name getName() {
         return name;
@@ -71,6 +89,12 @@ public class Person {
     public Comment getComment() {
         return comment;
     }
+    public Class getStudentClass() {
+        return sc;
+    }
+    public IndexNumber getIndexNumber() {
+        return indexNumber;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -88,6 +112,18 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
+
+        if (otherPerson instanceof Student) {
+            return otherPerson != null
+                    && otherPerson.getStudentClass().equals(getStudentClass())
+                    && otherPerson.getIndexNumber().equals(getIndexNumber());
+        }
+
+        if (otherPerson instanceof Parent) {
+            return otherPerson != null
+                    && otherPerson.getPhone().equals(getPhone());
+        }
+
         //Need to rethink what constitutes same student
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
@@ -139,5 +175,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }

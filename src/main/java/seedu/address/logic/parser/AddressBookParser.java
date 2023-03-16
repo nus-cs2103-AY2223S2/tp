@@ -39,6 +39,7 @@ public class AddressBookParser {
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        System.out.println("parseSuccess");
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
@@ -49,13 +50,14 @@ public class AddressBookParser {
         switch (commandWord) {
         case ParentCommand.COMMAND_WORD:
             return new ParentCommandParser().parse(arguments);
-        case StudentCommand.COMMAND_WORD:
+        case StudentCommand.PERSON_WORD:
             return new StudentCommandParser().parse(arguments);
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
         case DeleteCommand.COMMAND_WORD:
+            System.out.println("delete");
             return new DeleteCommandParser().parse(arguments);
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

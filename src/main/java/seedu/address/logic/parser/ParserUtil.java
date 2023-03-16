@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +14,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
@@ -23,8 +26,6 @@ import seedu.address.model.person.student.Attendance;
 import seedu.address.model.person.student.Cca;
 import seedu.address.model.person.student.Homework;
 import seedu.address.model.person.student.IndexNumber;
-import seedu.address.model.person.student.ParentName;
-import seedu.address.model.person.student.StudentClass;
 import seedu.address.model.person.student.Test;
 import seedu.address.model.tag.Tag;
 
@@ -165,21 +166,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses parentName to ParentName
-     * @param parentName
-     * @return a ParentName
-     * @throws ParseException
-     */
-    public static ParentName parseParentName(String parentName) throws ParseException {
-        requireNonNull(parentName);
-        String trimmedParentName = parentName.trim();
-        if (!ParentName.isValidParentName(trimmedParentName)) {
-            throw new ParseException(ParentName.MESSAGE_CONSTRAINTS);
-        }
-        return new ParentName(trimmedParentName);
-    }
-
-    /**
      * Parses relationship of Parent object.
      *
      * @param relationship Relation of Parent object to Student (parent / next-of-kin [NOK]).
@@ -245,18 +231,18 @@ public class ParserUtil {
 
     /**
      * Parses sc to StudentClass
-     * @param sc
-     * @return a StudentClass
+     * @param sc The name of the student class
+     * @return a Class
      * @throws ParseException
      */
 
-    public static StudentClass parseStudentClass(String sc) throws ParseException {
+    public static Class parseStudentClass(String sc) throws ParseException {
         requireNonNull(sc);
         String trimmedSc = sc.trim();
-        if (!StudentClass.isValidStudentClass(trimmedSc)) {
-            throw new ParseException(StudentClass.MESSAGE_CONSTRAINTS);
+        if (!Class.isValidClass(trimmedSc)) {
+            throw new ParseException(Class.MESSAGE_CONSTRAINTS);
         }
-        return new StudentClass(trimmedSc);
+        return Class.of(trimmedSc);
     }
 
     /**
@@ -265,14 +251,41 @@ public class ParserUtil {
      * @return a Test
      * @throws ParseException
      */
-    public static Test parseTest(String test) throws ParseException {
+    public static Test parseTest(String test, String score, String deadline, String weightage) throws ParseException {
         requireNonNull(test);
         String trimmedTest = test.trim();
         if (!Test.isValidTest(trimmedTest)) {
             throw new ParseException(Test.MESSAGE_CONSTRAINTS);
         }
-        //Please edit this
-        return new Test(trimmedTest, LocalDate.now(), 20, 100, 50);
+        String trimmedScore = score.trim();
+        //check if score is less than 100
+        if (!trimmedScore.matches("^([0-9]|[1-9][0-9]|100)$")
+                && !trimmedScore.equals("Insert student score here!")) {
+            throw new ParseException("Score cannot be more than 100 and must contain numbers only");
+        }
+        LocalDate localDate = null;
+        if (deadline != "Insert student deadline here!") {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                localDate = LocalDate.parse(deadline, formatter);
+            } catch (DateTimeParseException e) {
+                throw new ParseException("Date must be in the format dd/mm/yyyy");
+            }
+        }
+        String trimmedWeightage = weightage.trim();
+        //check if weightage is less than 100
+        if (!trimmedWeightage.matches("^([0-9]|[1-9][0-9]|100)$")
+                && !trimmedWeightage.equals("Insert student weightage here!")) {
+            throw new ParseException("Weightage(%) cannot be more than 100 and must contain numbers only");
+        }
+        if (trimmedWeightage.equals("Insert student weightage here!")) {
+            trimmedWeightage = "-100";
+        }
+        if (trimmedScore.equals("Insert student score here!")) {
+            trimmedScore = "-100";
+        }
+        return new Test(trimmedTest, localDate, Integer.parseInt(trimmedWeightage), Integer.parseInt(trimmedScore));
     }
 
     /**
@@ -297,14 +310,51 @@ public class ParserUtil {
      * @return A Homework
      * @throws ParseException
      */
-    public static Homework parseHomework(String homework) throws ParseException {
+    public static Homework parseHomework(String homework, String score, String deadline,
+                                         String weightage, String homeworkDone) throws ParseException {
         requireNonNull(homework);
         String trimmedHomework = homework.trim();
         if (!Homework.isValidHomework(trimmedHomework)) {
             throw new ParseException(Homework.MESSAGE_CONSTRAINTS);
         }
-        //Please edit this
-        return new Homework(homework, LocalDate.now(), 20, 100, 0, true);
+        String trimmedScore = score.trim();
+        //check if score is less than 100
+        if (!trimmedScore.matches("^([0-9]|[1-9][0-9]|100)$")
+                && !trimmedScore.equals("Insert student score here!")) {
+            throw new ParseException("Score cannot be more than 100 and must contain numbers only");
+        }
+        LocalDate localDate = null;
+        if (deadline != "Insert student deadline here!") {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                localDate = LocalDate.parse(deadline, formatter);
+            } catch (DateTimeParseException e) {
+                throw new ParseException("Date must be in the format dd/mm/yyyy");
+            }
+        }
+        String trimmedWeightage = weightage.trim();
+        //check if weightage is less than 100
+        if (!trimmedWeightage.matches("^([0-9]|[1-9][0-9]|100)$")
+                && !trimmedWeightage.equals("Insert student weightage here!")) {
+            throw new ParseException("Weightage(%) cannot be more than 100 and must contain numbers only");
+        }
+        String homeworkDoneTrimmed = homeworkDone.trim();
+        if (!homeworkDoneTrimmed.matches("^(true|false)$")
+                && !homeworkDoneTrimmed.equals("Insert student homework done here!")) {
+            throw new ParseException("Homework done must be 'true' or 'false'");
+        }
+        if (trimmedHomework.equals("Insert student homework done here!")) {
+            homeworkDoneTrimmed = "false";
+        }
+        if (trimmedWeightage.equals("Insert student weightage here!")) {
+            trimmedWeightage = "-100";
+        }
+        if (trimmedScore.equals("Insert student score here!")) {
+            trimmedScore = "-100";
+        }
+        return new Homework(homework, localDate, Integer.parseInt(trimmedWeightage),
+                Integer.parseInt(trimmedScore), Boolean.parseBoolean(homeworkDoneTrimmed));
     }
 
     /**

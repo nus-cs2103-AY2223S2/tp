@@ -17,11 +17,10 @@ public class Homework extends Assignment {
      * @param assignmentName Homework name.
      * @param deadline Due date for the homework.
      * @param weightage Weightage of the homework.
-     * @param maxScore Maximum score attainable for the homework.
      * @param isDone Boolean value indicating the completion status of the homework.
      */
-    public Homework(String assignmentName, LocalDate deadline, int weightage, int maxScore, int score, boolean isDone) {
-        super(assignmentName, deadline, weightage, score, maxScore);
+    public Homework(String assignmentName, LocalDate deadline, int weightage, int score, boolean isDone) {
+        super(assignmentName, deadline, weightage, score);
         this.isDone = isDone;
     }
 
@@ -41,26 +40,41 @@ public class Homework extends Assignment {
     public boolean isDue() {
         return LocalDate.now().isAfter(super.deadline);
     }
-    /*
+
 
     @Override
     public String toString() {
-        return value;
+        return super.assignmentName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Test// instanceof handles nulls
-                && value.equals(((Test) other).value)); // state check
+                || (other instanceof Homework// instanceof handles nulls
+                && super.assignmentName.equals(((Homework) other).assignmentName)); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return value.hashCode();
+
+
+    public String getName() {
+        return super.assignmentName;
     }
 
-     */
+    public int getScore() {
+        return super.score;
+    }
+
+    public int getWeightage() {
+        return super.weightage;
+    }
+
+    public LocalDate getDeadline() {
+        return super.deadline;
+    }
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
 
     public boolean isDone() {
         return isDone;
