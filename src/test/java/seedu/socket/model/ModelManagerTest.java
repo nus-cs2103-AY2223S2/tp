@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.socket.commons.core.GuiSettings;
 import seedu.socket.model.person.predicate.NameContainsKeywordsPredicate;
-import seedu.socket.testutil.AddressBookBuilder;
+import seedu.socket.testutil.SocketBuilder;
 
 public class ModelManagerTest {
 
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Socket socket = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Socket socket = new SocketBuilder().withPerson(ALICE).withPerson(BENSON).build();
         Socket differentSocket = new Socket();
         UserPrefs userPrefs = new UserPrefs();
 

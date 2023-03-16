@@ -42,7 +42,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlySocket getSampleAddressBook() {
+    public static ReadOnlySocket getSampleSocket() {
         Socket sampleSocket = new Socket();
         for (Person samplePerson : getSamplePersons()) {
             sampleSocket.addPerson(samplePerson);
