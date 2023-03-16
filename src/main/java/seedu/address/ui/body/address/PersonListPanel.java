@@ -11,10 +11,15 @@ import java.util.stream.Collectors;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
@@ -40,8 +45,6 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel) {
         super(FXML);
-        fillListView(personList);
-        personList.addListener((ListChangeListener<Person>) c -> fillListView(c.getList()));
         personListView.setCellFactory(listView -> new PersonListCell());
         personListView.setFocusTraversable(false);
         personListView.setOnMouseClicked(event -> {
@@ -52,6 +55,9 @@ public class PersonListPanel extends UiPart<Region> {
                 selectedIndex = clickedIndex;
             }
         });
+
+        fillListView(personList);
+        personList.addListener((ListChangeListener<Person>) c -> fillListView(c.getList()));
 
         /* Updates PersonDetailPanel accordingly
          * when the selected Person and index changes.
@@ -80,11 +86,14 @@ public class PersonListPanel extends UiPart<Region> {
 
     private void fillListView(Collection<? extends Person> people) {
         Objects.requireNonNull(people);
+        ObservableList<PersonListCellData> items = personListView.getItems();
+        items.clear();
+        if (people.isEmpty()) {
+            return;
+        }
+
         List<PersonListCellData> allData = assignIndices(people);
         List<PersonListCellData> favoriteData = getFavoriteData(allData);
-        ObservableList<PersonListCellData> items = personListView.getItems();
-
-        items.clear();
         if (!favoriteData.isEmpty()) {
             items.add(PersonListCellData.ofDivider(String.format(DIVIDER_FAVORITE, favoriteData.size())));
             items.addAll(favoriteData);
@@ -164,11 +173,6 @@ public class PersonListPanel extends UiPart<Region> {
                 } else {
                     setGraphic(null);
                 }
-            }
-            if (getIndex() == 0) { // formats the first ListCell with extra spacing
-                getStyleClass().add("first-cell");
-            } else {
-                getStyleClass().remove("first-cell");
             }
         }
 
