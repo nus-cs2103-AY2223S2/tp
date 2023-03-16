@@ -43,7 +43,7 @@ You can reach us at the email `what email should we put here?`
 <img src="images/daniellingzy.png" width="200px">
 
 [[github](http://github.com/daniellingzy)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/daniellingzy.md)]
 
 - Role: Test Engineer 
 - Responsibilities: Software Development Testing
