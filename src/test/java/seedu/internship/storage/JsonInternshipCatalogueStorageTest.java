@@ -47,7 +47,7 @@ public class JsonInternshipCatalogueStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readInternshipCatalogue("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readInternshipCatalogue("notJsonFormatInternshipCatalogue.json"));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class JsonInternshipCatalogueStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addInternship(ML1);
-        original.removeInternship(SE1);
+        original.removeInternship(ML1);
         jsonInternshipCatalogueStorage.saveInternshipCatalogue(original, filePath);
         readBack = jsonInternshipCatalogueStorage.readInternshipCatalogue(filePath).get();
         assertEquals(original, new InternshipCatalogue(readBack));

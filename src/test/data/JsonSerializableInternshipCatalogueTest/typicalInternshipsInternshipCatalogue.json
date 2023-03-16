@@ -1,0 +1,46 @@
+{
+  "_comment": "InternshipCatalogue save file which contains the same Internship values as in TypicalInternships#getTypicalInternshipCatalogue()",
+  "internships" : [ {
+    "positionName": "Machine Learning",
+    "companyName": "GovTech",
+    "statusId": 1,
+    "messageDescription": "The is a dummy internship. Interview date on DDMMYYYY.",
+    "tagged": [ "priority" ]
+  }, {
+    "positionName": "Software Engineer",
+    "companyName": "GovTech",
+    "statusId": 1,
+    "messageDescription": "The is a dummy internship. Interview date on DDMMYYYY.",
+    "tagged": [ "priority", "fun" ]
+  }, {
+    "positionName": "Software Engineer",
+    "companyName": "Apple",
+    "statusId": 1,
+    "messageDescription": "The is a dummy internship. Interview date on DDMMYYYY.",
+    "tagged": [ ]
+  }, {
+    "positionName": "Data Science",
+    "companyName": "Gojek",
+    "statusId": 1,
+    "messageDescription": "The is a dummy internship. Interview date on DDMMYYYY.",
+    "tagged": [ ]
+  }, {
+    "positionName": "Backend Engineer",
+    "companyName": "TikTok",
+    "statusId": 1,
+    "messageDescription": "The is a dummy internship. Interview date on DDMMYYYY.",
+    "tagged": [ ]
+  }, {
+    "positionName": "Software Testing",
+    "companyName": "Razor",
+    "statusId": 1,
+    "messageDescription": "The is a dummy internship. Interview date on DDMMYYYY.",
+    "tagged": [ "priority", "important" ]
+  }, {
+    "positionName": "Data Analyst",
+    "companyName": "Infineon Technologies",
+    "statusId": 1,
+    "messageDescription": "Final interview unconfirmed",
+    "tagged": [ ]
+  } ]
+}
