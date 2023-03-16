@@ -13,6 +13,7 @@ public class Navigation implements ReadOnlyNavigation {
 
     public static final int ROOT_LAYER = 1;
     public static final int MODULE_LAYER = 2;
+    public static final int LECTURE_LAYER = 3;
 
     private final Stack<NavigationContext> contextStack;
 
