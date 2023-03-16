@@ -58,6 +58,22 @@ public class Person {
     }
 
     /**
+     * Every field must be present and not null, medical condition will be created without any tag
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition) {
+        requireAllNonNull(name, phone, email, address, tags, time);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.age = age;
+        this.medicalCondition = medicalCondition;
+    }
+
+    /**
      * Alternative constructor for person with scheduled time.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
@@ -67,6 +83,22 @@ public class Person {
         this.email = email;
         this.address = address;
         this.age = new Age("");
+        this.tags.addAll(tags);
+        this.medicalCondition = new MedicalCondition("");
+    }
+
+    /**
+     * Alternative constructor for person with scheduled time.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age,
+                  Set<Tag> tags, LocalDateTime time) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = age;
+        this.time = time;
         this.tags.addAll(tags);
         this.medicalCondition = new MedicalCondition("");
     }

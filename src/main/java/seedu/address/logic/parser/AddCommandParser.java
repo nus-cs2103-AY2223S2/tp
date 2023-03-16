@@ -52,26 +52,45 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Optional<String> medicalAge = argMultimap.getValue(PREFIX_AGE);
         Optional<String> medicalString = argMultimap.getValue(PREFIX_MEDICAL);
+        Optional<String> time = argMultimap.getValue(PREFIX_SCHEDULE);
+        LocalDateTime parsedTime = null;
+        if (time.isPresent()) {
+            parsedTime = ParserUtil.parseTime(time.get());
+        }
+        Person person;
         if (medicalString.isEmpty()) {
             if (medicalAge.isEmpty()) {
-                Person person = new Person(name, phone, email, address, tagList);
-                return new AddCommand(person);
+                if (time.isEmpty()) {
+                    person = new Person(name, phone, email, address, tagList);
+                } else {
+                    person = new Person(name, phone, email, address, tagList, parsedTime);
+                }
             } else {
                 Age age = ParserUtil.parseAge(medicalAge.get().toString());
-                Person person = new Person(name, phone, email, address, age, tagList);
-                return new AddCommand(person);
+                if (time.isEmpty()) {
+                    person = new Person(name, phone, email, address, age, tagList);
+                } else {
+                    person = new Person(name, phone, email, address, age, tagList, parsedTime);
+                }
             }
         } else {
             MedicalCondition medicalCondition = ParserUtil.parseMedicalCond(medicalString.get());
             if (medicalAge.isEmpty()) {
-                Person person = new Person(name, phone, email, address, tagList, medicalCondition);
-                return new AddCommand(person);
+                if (time.isEmpty()) {
+                    person = new Person(name, phone, email, address, tagList, medicalCondition);
+                } else {
+                    person = new Person(name, phone, email, address, tagList, parsedTime, medicalCondition);
+                }
             } else {
                 Age age = ParserUtil.parseAge(medicalAge.get().toString());
-                Person person = new Person(name, phone, email, address, age, tagList, medicalCondition);
-                return new AddCommand(person);
+                if (time.isEmpty()) {
+                    person = new Person(name, phone, email, address, age, tagList, medicalCondition);
+                } else {
+                    person = new Person(name, phone, email, address, age, tagList, parsedTime, medicalCondition);
+                }
             }
         }
+        return new AddCommand(person);
     }
 
     /**

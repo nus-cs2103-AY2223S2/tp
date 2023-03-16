@@ -147,13 +147,26 @@ class JsonAdaptedPerson {
         final MedicalCondition modelMedical = new MedicalCondition(medicalCondition);
 
         if (age != null && medicalCondition != null) {
-            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelMedical);
+            if (time == null) {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelMedical);
+            } else {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                    modelAge, modelTags, time, modelMedical);
+            }
         }
         if (age != null && medicalCondition == null) {
-            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags);
+            if (time == null) {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags);
+            } else {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, time);
+            }
         }
         if (age == null && medicalCondition != null) {
-            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedical);
+            if (time == null) {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedical);
+            } else {
+                return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, time, modelMedical);
+            }
         }
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
