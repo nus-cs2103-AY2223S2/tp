@@ -32,9 +32,9 @@ import seedu.address.testutil.EditInternshipDescriptorBuilder;
 import seedu.address.testutil.InternshipBuilder;
 import seedu.address.testutil.InternshipUtil;
 
-public class AddressBookParserTest {
+public class InternBuddyParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final InternBuddyParser parser = new InternBuddyParser();
 
     @Test
     public void parseCommand_add() throws Exception {
