@@ -290,8 +290,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with many persons in the address book | sort persons by name                         | locate a person easily                                                |
 | `* * *`  | novice user                                | list all my intership applications easily | can confirm that my internship listing has been created
 | `* *`    | intermediate user                          | list all internships that have deadlines on a particular date	| avoid scheduling an interview on that day |
-| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about
-| `* *`    | expert user                                | see all internships that have not received updates in a long time | know which internships I need to follow up on 
+| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about |
+| `* *`    | expert user                                | see all internships that have not received updates in a long time | know which internships I need to follow up on |
 
 
 *{More to be added}*
@@ -318,11 +318,11 @@ Use Case ends.
 * 3a. The specified ID is invalid.
 
     * 3a1. System shows an error message.
-    
+
 * 5a. User cancels the operation midway.
 
     * 5a1. System retains the original description and does not edit the internship application.
-    
+
       Use case ends.
 
 * 5b. User inputs invalid description.
@@ -331,7 +331,7 @@ Use Case ends.
     * 5b2. System retains the original description and does not edit the internship application.
 
       Use case resumes at step 4.
-        
+
 **Use Case: Add an Internship Listing**
 
 **MSS**
@@ -352,17 +352,15 @@ Use Case ends.
 **Extensions**
 * 7.a System asks User to add addition information
 * 7.a1 System ask User for Application Link
-    
+
     * 7.a2 User inputs Application link
-    
+
     * 7.a3 System ask User for Contact details of Hiring Manager
-    
+
     * 7.a3 User inputs Contact details of Hiring Manager
-    
+
 * 8a. User denies the addition of the listing
       Use Case ends.
-
-
 
 **Use case: List all internship applications**
 
@@ -370,20 +368,18 @@ Use Case ends.
 
 1.  User requests to list all internship applications saved on System.
 2.  System displays a list of internships.
-    Use case ends. 
+    Use case ends.
 
 * 1a. User requests to list all internship applications that have not received updates in a long time.
-  
-  * 1b1. System displays all internships that have not had a change in status in a week. 
-    
+
+  * 1b1. System displays all internships that have not had a change in status in a week.
+
     Use case ends. 
 
 * 2a. The list is empty.
     Use case ends.
 
-
-
-**Use Case: Delete Internship Listing**  
+**Use Case: Delete Internship Listing**
 
 **MSS**
 
@@ -401,15 +397,13 @@ Use case ends.
 * 4a. User decides to not delete the listing  
 Use Case Ends.
 
-
-
 **Use case: List all internship applications with a deadline on a particular date**
 
 **MSS**
 
 1.  User requests to list all internship applications with an upcoming deadline on a particular date.
-2.  System prompts user to key in a date. 
-3.  User inputs a date. 
+2.  System prompts user to key in a date.
+3.  User inputs a date.
 4.  System displays the input date and a list of internships, with the target of the upcoming deadline (e.g. interview, online assessment)   highlighted.
 
     Use case ends.
@@ -417,10 +411,10 @@ Use Case Ends.
 **Extensions**
 
 * 3a. The date given by user is in the future (i.e. later than today).
-  
-  * 3a1. System displays an error message to inform the user that the input date is not valid and needs to be today's date and earlier. 
 
-    Use case resumes from step 2. 
+  * 3a1. System displays an error message to inform the user that the input date is not valid and needs to be today's date and earlier.
+
+    Use case resumes from step 2.
 
 * 4a. The list is empty.
 
@@ -433,10 +427,10 @@ Use Case Ends.
 
 **MSS**
 
-1. User requests to list sorted internships 
+1. User requests to list sorted internships
 2. System prompts user to choose a criteria to list internship by
 3. User inputs desired criteria
-4. System displays list of all internships sorted in order based on chosen 
+4. System displays list of all internships sorted in order based on chosen
    criteria
 
 **Extensions**
@@ -449,10 +443,7 @@ Use Case Ends.
 
     * 3a1. TinS shows an error message.
 
-  Use case ends.   
-
-
-
+  Use case ends.
 
 **Use case: View all clashes of internship Events.**
 
