@@ -15,6 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
-    // Department level deifinitions
+    // Department level definitions
     public static final Prefix PREFIX_DEPARTMENT_NAME = new Prefix("n/");
 }

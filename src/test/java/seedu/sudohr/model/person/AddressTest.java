@@ -6,6 +6,8 @@ import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.sudohr.model.employee.Address;
+
 public class AddressTest {
 
     @Test

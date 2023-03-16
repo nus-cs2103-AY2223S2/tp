@@ -20,6 +20,11 @@ public class JsonSerializableSudoHrTest {
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsSudoHr.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonSudoHr.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonSudoHr.json");
+    private static final Path DUPLICATE_ID_FILE = TEST_DATA_FOLDER.resolve("duplicateIdSudoHr.json");
+    private static final Path DUPLICATE_EMAIL_FILE = TEST_DATA_FOLDER.resolve("duplicateEmailSudoHr.json");
+    private static final Path DUPLICATE_PHONE_FILE = TEST_DATA_FOLDER.resolve("duplicatePhoneSudoHr.json");
+    private static final Path DUPLICATE_PHONE_AND_EMAIL_FILE = TEST_DATA_FOLDER.resolve(
+            "duplicatePhoneEmailSudoHr.json");
     private static final Path TYPICAL_DEPARTMENTS_FILE = TEST_DATA_FOLDER.resolve("typicalDepartmentsSudoHr.json");
     private static final Path INVALID_DEPARTMENT_FILE = TEST_DATA_FOLDER.resolve("invalidDepartmentSudoHr.json");
     private static final Path DUPLICATE_DEPARTMENT_FILE = TEST_DATA_FOLDER.resolve("duplicateDepartmentSudoHr.json");
@@ -46,7 +51,40 @@ public class JsonSerializableSudoHrTest {
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
         JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializableSudoHr.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableSudoHr.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableSudoHr.MESSAGE_DUPLICATE_EMPLOYEE,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateIds_throwsIllegalValueException() throws Exception {
+        JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ID_FILE,
+                JsonSerializableSudoHr.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableSudoHr.MESSAGE_DUPLICATE_EMPLOYEE,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateEmails_throwsIllegalValueException() throws Exception {
+        JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EMAIL_FILE,
+                JsonSerializableSudoHr.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableSudoHr.MESSAGE_DUPLICATE_EMAIL,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicatePhoneNumbers_throwsIllegalValueException() throws Exception {
+        JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PHONE_FILE,
+                JsonSerializableSudoHr.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableSudoHr.MESSAGE_DUPLICATE_PHONE,
+                dataFromFile::toModelType);
+    }
+
+    // note the checks for duplicate phone comes before email
+    @Test
+    public void toModelType_duplicatePhonesAndEmails_throwsIllegalValueException() throws Exception {
+        JsonSerializableSudoHr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PHONE_AND_EMAIL_FILE,
+                JsonSerializableSudoHr.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableSudoHr.MESSAGE_DUPLICATE_PHONE,
                 dataFromFile::toModelType);
     }
 

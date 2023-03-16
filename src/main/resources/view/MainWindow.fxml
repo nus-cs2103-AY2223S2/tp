@@ -24,10 +24,10 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox >
+      <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
+            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
@@ -47,13 +47,12 @@
           </padding>
         </StackPane>
 
-        <HBox>
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="400" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
+        <VBox fx:id="employeeList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <StackPane fx:id="employeeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        </VBox>
 
           <VBox fx:id="departmentList" styleClass="pane-with-border" minWidth="340" prefWidth="400" VBox.vgrow="ALWAYS">
             <padding>
@@ -62,7 +61,6 @@
             <StackPane fx:id="departmentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>
-
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

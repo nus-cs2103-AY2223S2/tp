@@ -22,7 +22,7 @@ import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.testutil.DepartmentBuilder;
 
 public class AddDepartmentCommandTest {
@@ -114,7 +114,7 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -129,27 +129,52 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public boolean hasEmployee(Employee employee, Employee excludeFromCheck) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public boolean hasClashingEmail(Employee person) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public boolean hasClashingEmail(Employee employee, Employee excludeFromCheck) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public boolean hasClashingPhoneNumber(Employee person) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public boolean hasClashingPhoneNumber(Employee employee, Employee excludeFromCheck) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void deleteEmployee(Employee target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEmployee(Employee target, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Employee> getFilteredEmployeeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -179,12 +204,12 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
-        public void addEmployeeToDepartment(Person p, Department d) {
+        public void addEmployeeToDepartment(Employee p, Department d) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void removeEmployeeFromDepartment(Person p, Department d) {
+        public void removeEmployeeFromDepartment(Employee p, Department d) {
             throw new AssertionError("This method should not be called.");
         }
 
