@@ -2,8 +2,11 @@ package seedu.address.experimental;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.HashSet;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.experimental.model.Model;
+import seedu.address.experimental.model.ModelManager;
 import seedu.address.experimental.model.ReadOnlyReroll;
 import seedu.address.experimental.model.UserPrefs;
 import seedu.address.experimental.model.util.SampleDataUtil;
@@ -13,11 +16,12 @@ import seedu.address.experimental.storage.RerollStorage;
 import seedu.address.experimental.storage.Storage;
 import seedu.address.experimental.storage.StorageManager;
 import seedu.address.experimental.storage.UserPrefsStorage;
-
-// This is tldr of the initialization for storage.
+import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Stats;
 
 /***/
-public class Tester {
+public class TesterModelStorage {
     /***/
     public static void main(String[] args) {
         // Instead of hard coded filepath, MainApp uses Config to get this.
@@ -36,13 +40,20 @@ public class Tester {
         } catch (IOException e) {
             System.out.println("error");
         }
-
-        // Check that readReroll is consistent
+        Model model = null;
         try {
-            // read is only used at the start of the program.
+            model = new ModelManager(storage.readReroll().get(), up);
+        } catch (Exception e) {
+            // catch all...
+        }
+        model.addEntity(new Character(new Name("GGWP"), new Stats(2, 3, 4), 3, 4, new HashSet<>()));
+        try {
+            // Save to storage
+            storage.saveReroll(model.getReroll());
             ReadOnlyReroll rr = storage.readReroll().get();
             System.out.println("Characters: " + rr.getCharacters().getEntityList());
             System.out.println("Mobs: " + rr.getMobs().getEntityList());
+            System.out.println("Items: " + rr.getItems().getEntityList());
         } catch (DataConversionException e) {
             System.out.println("May this never happen");
         } catch (IOException e) {

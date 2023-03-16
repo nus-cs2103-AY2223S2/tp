@@ -17,18 +17,24 @@ import seedu.address.experimental.model.Reroll;
 public class JsonSerializableReroll {
     private final List<JsonAdaptedMob> mobs = new ArrayList<>();
     private final List<JsonAdaptedCharacter> characters = new ArrayList<>();
+    private final List<JsonAdaptedItem> items = new ArrayList<>();
+
     /***/
     @JsonCreator
     public JsonSerializableReroll(@JsonProperty("mobs") List<JsonAdaptedMob> mobs,
-                                  @JsonProperty("characters") List<JsonAdaptedCharacter> characters) {
+                                  @JsonProperty("characters") List<JsonAdaptedCharacter> characters,
+                                  @JsonProperty("items") List<JsonAdaptedItem> items) {
         this.mobs.addAll(mobs);
         this.characters.addAll(characters);
+        this.items.addAll(items);
     }
     /***/
     public JsonSerializableReroll(ReadOnlyReroll source) {
         mobs.addAll(source.getMobs().getEntityList().stream().map(JsonAdaptedMob::new).collect(Collectors.toList()));
         characters.addAll(source.getCharacters()
                 .getEntityList().stream().map(JsonAdaptedCharacter::new).collect(Collectors.toList()));
+        items.addAll(source.getItems().getEntityList().stream()
+                .map(JsonAdaptedItem::new).collect(Collectors.toList()));
     }
     /***/
     public Reroll toModelType() throws IllegalValueException {
@@ -41,6 +47,12 @@ public class JsonSerializableReroll {
         for (JsonAdaptedCharacter jsonChar : characters) {
             reroll.addEntity(jsonChar.toModelType());
         }
+
+        // Add all items
+        for (JsonAdaptedItem jsonItem : items) {
+            reroll.addEntity(jsonItem.toModelType());
+        }
+
         return reroll;
     }
 
