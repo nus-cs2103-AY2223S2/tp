@@ -43,9 +43,11 @@ public class EditCommandParser implements Parser<EditCommand> {
             editListingDescriptor.setJobTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editListingDescriptor.setJobDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            editListingDescriptor.setJobDescription(ParserUtil
+                    .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
-        parseApplicantsForEdit(argMultimap.getAllValues(PREFIX_APPLICANT)).ifPresent(editListingDescriptor::setApplicants);
+        parseApplicantsForEdit(argMultimap.getAllValues(PREFIX_APPLICANT))
+                .ifPresent(editListingDescriptor::setApplicants);
 
         if (!editListingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -55,7 +57,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code ArrayList<String> applicants} into a {@code ArrayList<Applicant>} if {@code applicants} is non-empty.
+     * Parses {@code ArrayList<String> applicants} into a {@code ArrayList<Applicant>} if {@code applicants} is
+     * non-empty.
      * If {@code applicants} contain only one element which is an empty string, it will be parsed into a
      * {@code ArrayList<Applicant>} containing zero applicants.
      */
@@ -65,8 +68,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (applicants.isEmpty()) {
             return Optional.empty();
         }
-        ArrayList<String> applicantList = applicants.size() == 1 && applicants.contains("") ?
-                                          new ArrayList<>() : applicants;
+        ArrayList<String> applicantList = applicants.size() == 1 && applicants.contains("")
+                                          ? new ArrayList<>() : applicants;
         return Optional.of(ParserUtil.parseApplicants(applicantList));
     }
 
