@@ -6,12 +6,13 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import teambuilder.commons.core.GuiSettings;
+import teambuilder.commons.core.Originator;
 import teambuilder.model.person.Person;
 
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface Model extends Originator {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
