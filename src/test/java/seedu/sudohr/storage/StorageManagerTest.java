@@ -2,7 +2,7 @@ package seedu.sudohr.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.sudohr.testutil.TypicalPersons.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
 
 import java.nio.file.Path;
 

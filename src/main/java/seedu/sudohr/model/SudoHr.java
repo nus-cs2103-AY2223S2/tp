@@ -12,8 +12,8 @@ import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.UniqueEmployeeList;
 
 /**
- * Wraps all data at the sudohr-book level
- * Duplicates are not allowed (by .isSameEmployee comparison)
+ * Wraps all data at the SudoHR-level
+ * Duplicates are not allowed (by :isSameEmployee comparison)
  */
 public class SudoHr implements ReadOnlySudoHr {
 
@@ -35,7 +35,7 @@ public class SudoHr implements ReadOnlySudoHr {
     public SudoHr() {}
 
     /**
-     * Creates an SudoHr using the Persons in the {@code toBeCopied}
+     * Creates a SudoHR using the Employees in the {@code toBeCopied}
      */
     public SudoHr(ReadOnlySudoHr toBeCopied) {
         this();
@@ -45,8 +45,8 @@ public class SudoHr implements ReadOnlySudoHr {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the employee list with {@code employees}.
+     * {@code employees} must not contain duplicate employees.
      */
     public void setEmployees(List<Employee> employees) {
         this.employees.setEmployees(employees);
@@ -73,7 +73,7 @@ public class SudoHr implements ReadOnlySudoHr {
     //=========== Employee-Level Operations ============================
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in SudoHR.
+     * Returns true if an employee with the same identity as {@code employee} exists in SudoHR.
      */
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
@@ -81,8 +81,8 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in SudoHR,
-     * excluding the specified person
+     * Returns true if a employee with the same identity as {@code employee} exists in SudoHR,
+     * excluding the specified employee
      */
     public boolean hasEmployee(Employee employee, Employee excludeFromCheck) {
         requireNonNull(employee);
@@ -91,54 +91,54 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Returns true if a person shares the same email with a different {@code person} (different id).
+     * Returns true if an employee shares the same email with a different {@code employee} (different id).
      */
-    public boolean hasClashingEmail(Employee person) {
-        requireNonNull(person);
-        return employees.sharesEmail(person);
+    public boolean hasClashingEmail(Employee employee) {
+        requireNonNull(employee);
+        return employees.sharesEmail(employee);
     }
 
     /**
-     * Returns true if a person shares the same email with a different {@code person} (different id),
-     * excluding the specified person
+     * Returns true if an employee shares the same email with a different {@code employee} (different id),
+     * excluding the specified employee
      */
-    public boolean hasClashingEmail(Employee person, Employee excludeFromCheck) {
-        requireNonNull(person);
+    public boolean hasClashingEmail(Employee employee, Employee excludeFromCheck) {
+        requireNonNull(employee);
         requireNonNull(excludeFromCheck);
-        return employees.sharesEmail(person, excludeFromCheck);
+        return employees.sharesEmail(employee, excludeFromCheck);
     }
 
     /**
-     * Returns true if a person shares the same phone number with a different {@code person} (different id).
+     * Returns true if an employee shares the same phone number with a different {@code employee} (different id).
      */
-    public boolean hasClashingPhoneNumber(Employee person) {
-        requireNonNull(person);
-        return employees.sharesPhoneNumber(person);
+    public boolean hasClashingPhoneNumber(Employee employee) {
+        requireNonNull(employee);
+        return employees.sharesPhoneNumber(employee);
     }
 
     /**
-     * Returns true if a person shares the same phone number with a different {@code person} (different id),
-     * excluding the specified person
+     * Returns true if a employee shares the same phone number with a different {@code employee} (different id),
+     * excluding the specified employee
      */
-    public boolean hasClashingPhoneNumber(Employee person, Employee excludeFromCheck) {
-        requireNonNull(person);
+    public boolean hasClashingPhoneNumber(Employee employee, Employee excludeFromCheck) {
+        requireNonNull(employee);
         requireNonNull(excludeFromCheck);
-        return employees.sharesPhoneNumber(person, excludeFromCheck);
+        return employees.sharesPhoneNumber(employee, excludeFromCheck);
     }
 
     /**
      * Adds an employee to SudoHR.
-     * The person must not already exist in SudoHR and
+     * The employee must not already exist in SudoHR and
      * should not have any clashes with email or phone number fields
      */
-    public void addEmployee(Employee person) {
-        employees.add(person);
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedEmployee}.
+     * Replaces the given employee {@code target} in the list with {@code editedEmployee}.
      * {@code target} must exist in SudoHR.
-     * The person identity of {@code editedEmployee} must not be the same as
+     * The employee identity of {@code editedEmployee} must not be the same as
      * another existing employee in SudoHR.
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
@@ -175,17 +175,17 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Adds a department to the address book.
-     * The department must not already exist in the address book.
+     * Adds a department to SudoHR.
+     * The department must not already exist in SudoHR.
      */
     public void addDepartment(Department d) {
         departments.add(d);
     }
 
     /**
-     * Replaces the given department {@code target} in the list with {@code editedPerson}.
+     * Replaces the given department {@code target} in the list with {@code editedEmployee}.
      * {@code target} must exist in SudoHR.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in SudoHR.
+     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in SudoHR.
      */
     public void setDepartment(Department target, Department editedDepartment) {
         requireNonNull(editedDepartment);
@@ -193,8 +193,8 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code SudoHr}.
+     * {@code key} must exist in SudoHR.
      */
     public void removeDepartment(Department key) {
         departments.remove(key);

@@ -9,7 +9,7 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.sudohr.testutil.Assert.assertThrows;
-import static seedu.sudohr.testutil.TypicalPersons.AMY;
+import static seedu.sudohr.testutil.TypicalEmployees.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -31,7 +31,7 @@ import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.storage.JsonSudoHrStorage;
 import seedu.sudohr.storage.JsonUserPrefsStorage;
 import seedu.sudohr.storage.StorageManager;
-import seedu.sudohr.testutil.PersonBuilder;
+import seedu.sudohr.testutil.EmployeeBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -82,15 +82,15 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + ID_DESC_AMY + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Employee expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Employee expectedEmployee = new EmployeeBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addEmployee(expectedPerson);
+        expectedModel.addEmployee(expectedEmployee);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredEmployeeList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEmployeeList().remove(0));
     }
 

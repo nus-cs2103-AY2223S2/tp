@@ -1,12 +1,10 @@
-package seedu.sudohr.model.person;
+package seedu.sudohr.model.employee;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.sudohr.model.employee.Phone;
 
 public class PhoneTest {
 

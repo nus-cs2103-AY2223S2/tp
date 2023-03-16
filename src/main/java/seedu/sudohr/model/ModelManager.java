@@ -16,7 +16,7 @@ import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 
 /**
- * Represents the in-memory model of the sudohr book data.
+ * Represents the in-memory model of the SudoHR data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -95,42 +95,42 @@ public class ModelManager implements Model {
     //=========== Employee-Level Operations ========================
 
     @Override
-    public boolean hasEmployee(Employee person) {
-        requireNonNull(person);
-        return sudoHr.hasEmployee(person);
+    public boolean hasEmployee(Employee employee) {
+        requireNonNull(employee);
+        return sudoHr.hasEmployee(employee);
     }
 
     @Override
-    public boolean hasEmployee(Employee person, Employee excludeFromCheck) {
-        requireNonNull(person);
+    public boolean hasEmployee(Employee employee, Employee excludeFromCheck) {
+        requireNonNull(employee);
         requireAllNonNull(excludeFromCheck);
-        return sudoHr.hasEmployee(person, excludeFromCheck);
+        return sudoHr.hasEmployee(employee, excludeFromCheck);
     }
 
     @Override
-    public boolean hasClashingEmail(Employee person) {
-        requireNonNull(person);
-        return sudoHr.hasClashingEmail(person);
+    public boolean hasClashingEmail(Employee employee) {
+        requireNonNull(employee);
+        return sudoHr.hasClashingEmail(employee);
     }
 
     @Override
-    public boolean hasClashingEmail(Employee person, Employee excludeFromCheck) {
-        requireNonNull(person);
+    public boolean hasClashingEmail(Employee employee, Employee excludeFromCheck) {
+        requireNonNull(employee);
         requireNonNull(excludeFromCheck);
-        return sudoHr.hasClashingEmail(person, excludeFromCheck);
+        return sudoHr.hasClashingEmail(employee, excludeFromCheck);
     }
 
     @Override
-    public boolean hasClashingPhoneNumber(Employee person) {
-        requireNonNull(person);
-        return sudoHr.hasClashingPhoneNumber(person);
+    public boolean hasClashingPhoneNumber(Employee employee) {
+        requireNonNull(employee);
+        return sudoHr.hasClashingPhoneNumber(employee);
     }
 
     @Override
-    public boolean hasClashingPhoneNumber(Employee person, Employee excludeFromCheck) {
-        requireNonNull(person);
+    public boolean hasClashingPhoneNumber(Employee employee, Employee excludeFromCheck) {
+        requireNonNull(employee);
         requireNonNull(excludeFromCheck);
-        return sudoHr.hasClashingPhoneNumber(person, excludeFromCheck);
+        return sudoHr.hasClashingPhoneNumber(employee, excludeFromCheck);
     }
 
     @Override

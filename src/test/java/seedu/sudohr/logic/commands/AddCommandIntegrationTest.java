@@ -3,8 +3,8 @@ package seedu.sudohr.logic.commands;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.sudohr.testutil.TypicalPersons.BOB;
-import static seedu.sudohr.testutil.TypicalPersons.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalEmployees.BOB;
+import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
 import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.testutil.PersonBuilder;
+import seedu.sudohr.testutil.EmployeeBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -28,53 +28,53 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Employee validPerson = new PersonBuilder().build();
+    public void execute_newEmployee_success() {
+        Employee validEmployee = new EmployeeBuilder().build();
 
         Model expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
-        expectedModel.addEmployee(validPerson);
+        expectedModel.addEmployee(validEmployee);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validEmployee), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validEmployee), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Employee personInList = model.getSudoHr().getEmployeeList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+    public void execute_duplicateEmployee_throwsCommandException() {
+        Employee employeeInList = model.getSudoHr().getEmployeeList().get(0);
+        assertCommandFailure(new AddCommand(employeeInList), model, AddCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
     @Test
     public void execute_duplicateIdOnly_throwsCommandException() {
-        Employee personInList = model.getSudoHr().getEmployeeList().get(0);
-        Employee duplicateIdPerson = new PersonBuilder(BOB).withId(personInList.getId().value)
+        Employee employeeInList = model.getSudoHr().getEmployeeList().get(0);
+        Employee duplicateIdEmployee = new EmployeeBuilder(BOB).withId(employeeInList.getId().value)
                 .build();
-        assertCommandFailure(new AddCommand(duplicateIdPerson), model, AddCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(new AddCommand(duplicateIdEmployee), model, AddCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
     @Test
     public void execute_duplicateEmailOnly_throwsCommandException() {
-        Employee personInList = model.getSudoHr().getEmployeeList().get(0);
-        Employee duplicateEmailPerson = new PersonBuilder(BOB).withEmail(personInList.getEmail().value)
+        Employee employeeInList = model.getSudoHr().getEmployeeList().get(0);
+        Employee duplicateEmailEmployee = new EmployeeBuilder(BOB).withEmail(employeeInList.getEmail().value)
                 .build();
-        assertCommandFailure(new AddCommand(duplicateEmailPerson), model, AddCommand.MESSAGE_DUPLICATE_EMAIL);
+        assertCommandFailure(new AddCommand(duplicateEmailEmployee), model, AddCommand.MESSAGE_DUPLICATE_EMAIL);
     }
 
     @Test
     public void execute_duplicatePhoneNumberOnly_throwsCommandException() {
-        Employee personInList = model.getSudoHr().getEmployeeList().get(0);
-        Employee duplicatePhonePerson = new PersonBuilder(BOB).withPhone(personInList.getPhone().value)
+        Employee employeeInList = model.getSudoHr().getEmployeeList().get(0);
+        Employee duplicatePhoneEmployee = new EmployeeBuilder(BOB).withPhone(employeeInList.getPhone().value)
                 .build();
-        assertCommandFailure(new AddCommand(duplicatePhonePerson), model, AddCommand.MESSAGE_DUPLICATE_PHONE);
+        assertCommandFailure(new AddCommand(duplicatePhoneEmployee), model, AddCommand.MESSAGE_DUPLICATE_PHONE);
     }
 
     // Duplicate phone number should be identified first
     @Test
     public void execute_differentIdOnly_throwsCommandException() {
-        Employee personInList = model.getSudoHr().getEmployeeList().get(0);
-        Employee differentIdPerson = new PersonBuilder(personInList).withId(VALID_ID_BOB)
+        Employee employeeInList = model.getSudoHr().getEmployeeList().get(0);
+        Employee differentIdEmployee = new EmployeeBuilder(employeeInList).withId(VALID_ID_BOB)
                 .build();
-        assertCommandFailure(new AddCommand(differentIdPerson), model, AddCommand.MESSAGE_DUPLICATE_PHONE);
+        assertCommandFailure(new AddCommand(differentIdEmployee), model, AddCommand.MESSAGE_DUPLICATE_PHONE);
     }
 
 }

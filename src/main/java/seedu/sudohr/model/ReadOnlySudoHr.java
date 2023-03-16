@@ -5,7 +5,7 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
 
 /**
- * Unmodifiable view of an sudohr book
+ * Unmodifiable view of a SudoHR
  */
 public interface ReadOnlySudoHr {
 

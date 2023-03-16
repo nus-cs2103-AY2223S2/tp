@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.sudohr.testutil.TypicalPersons.CARL;
-import static seedu.sudohr.testutil.TypicalPersons.ELLE;
-import static seedu.sudohr.testutil.TypicalPersons.FIONA;
-import static seedu.sudohr.testutil.TypicalPersons.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalEmployees.CARL;
+import static seedu.sudohr.testutil.TypicalEmployees.ELLE;
+import static seedu.sudohr.testutil.TypicalEmployees.FIONA;
+import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,12 +50,12 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different employee -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noEmployeeFound() {
         String expectedMessage = String.format(MESSAGE_EMPLOYEES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
@@ -65,7 +65,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleEmployeesFound() {
         String expectedMessage = String.format(MESSAGE_EMPLOYEES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
