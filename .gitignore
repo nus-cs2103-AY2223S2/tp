@@ -1,21 +1,21 @@
 # Gradle build files
-/.gradle/
-/build/
+.gradle/
+build/
 src/main/resources/docs/
 
 # IDEA files
-/.idea/
-/out/
-/*.iml
+.idea/
+out/
+*.iml
 
 # VSCode files
-/bin/
+bin/
 
 # Storage/log files
-/data/
-/config.json
-/preferences.json
-/*.log.*
+data/
+config.json
+preferences.json
+*.log.*
 
 # Test sandbox files
 src/test/data/sandbox/
@@ -23,3 +23,6 @@ src/test/data/sandbox/
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+
+# Java class file
+*.class
