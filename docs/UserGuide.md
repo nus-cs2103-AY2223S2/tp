@@ -85,7 +85,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to OfficeConnect.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
@@ -99,13 +99,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the OfficeConnect.
+Shows a list of all persons in OfficeConnect.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the OfficeConnect.
+Edits an existing person in OfficeConnect.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -140,7 +140,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the OfficeConnect.
+Deletes the specified person from OfficeConnect.
 
 Format: `delete INDEX`
 
@@ -154,7 +154,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the OfficeConnect.
+Clears all entries from OfficeConnect.
 
 Format: `clear`
 
@@ -179,62 +179,100 @@ If your changes to the data file makes its format invalid, OfficeConnect will di
 # Command Summary For OfficeConnect
 
 ## Adding a Task: `addtask`
-Format: `addtask s/SUBJECT c/CONTENT st/STATUS`
 
 Adds a task to OfficeConnect.
+
+Format: `addtask s/SUBJECT c/CONTENT st/STATUS`
 
 Examples:
 - `addtask s/Complete slides c/Finish slides for meeting st/false`
 
 ## Deleting a Task: `deletetask`
-Format: `deletetask INDEX [MORE_INDEX]`
 
-Deletes the task at the specified INDEX.
-The INDEX refers to the INDEX shown in the displayed task list.
-The INDEX must be a positive integer 1, 2, 3...
+Deletes the specified task from OfficeConnect
+
+Format: `deletetask INDEX`
+
+* Deletes the task at the specified INDEX.
+* The INDEX refers to the INDEX shown in the displayed task list.
+* The INDEX must be a positive integer 1, 2, 3...
 
 Examples:
 - `listtasks` followed by `delete 2` deletes the 2nd task in the task list.
 - `findtasks book` followed by `delete 1` deletes the 1st task in the results of the `findtask` command.
 
-## Finding a Specific Task: `findtask`
-Format: `findtask KEYWORD [MORE_KEYWORDS]`
+## Locating a Specific Task: `findtask`
 
 Finds the task based on given keyword.
+
+Format: `findtask KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 - `findtask complete`
 
 ## Listing the Tasks: `listtask`
+
+Shows a list of all tasks in OfficeConnect.
+
 Format: `listtask`
 
-Lists all the tasks in OfficeConnect.
-
 ## Assigning a Task to a Person: `assign`
-Format: `assign ti/ INDEX pi/ INDEX`
 
-Assigns the task at specified index to the person at specified index.
-The index refers to the index number shown in the displayed person/task list.
-The index must be a positive integer 1, 2, 3...
+Assigns an existing task to an existing person in OfficeConnect.
+
+Format: `assign ti/INDEX pi/INDEX`
+
+* Assigns the task at specified index to the person at specified index.
+* The index refers to the index number shown in the displayed person/task list.
+* The index must be a positive integer 1, 2, 3...
 
 Examples:
 - `assign ti/ 2 pi/ 3` assigns task 2 to person 3.
 
+## Marking a Task as completed: `mark`
+
+Marks an existing task in OfficeConnect.
+
+Format: `mark INDEX`
+
+* Changes the status of the task at the specified index to completed.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive integer 1, 2, 3...
+
+Examples:
+- `mark 2` marks task 2 as completed
+
+## Unmarking a Task: `unmark`
+
+Unmarks a task in OfficeConnect
+
+Format: `unmark INDEX`
+
+* Changes the status of the task at the specified index to uncompleted.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive integer 1, 2, 3...
+
 ## Review tasks assigned to a Person: `review`
+
+Shows a list of tasks assigned to an existing person in OfficeConnect.
+
 Format: `review NAME`
 
-Reviews the list of tasks that are assigned to the person with the specified name.
+* Reviews the list of tasks that are assigned to the person with the specified name.
 
 Examples:
 - `review John Cena` displays all tasks that are assigned to him.
 
 ## Review tasks assigned to a Person: `reviewtask`
-Format: `review SUBJECT`
 
-Reviews the list of persons who are assigned to the task with the specified subject.
+Shows a list of persons assigned to an existing task in OfficeConnect.
+
+Format: `reviewtask SUBJECT`
+
+* Reviews the list of persons who are assigned to the task with the specified subject.
 
 Examples:
-- `review CS2103 TP` displays everyone who are assigned to this task.
+- `reviewtask CS2103 TP` displays everyone who are assigned to this task.
 
 ### Archiving data files `[coming in v1.3]`
 
@@ -257,8 +295,12 @@ _Details coming soon ..._
 | **Add Task**    | `addtask s/SUBJECT c/CONTENT st/STATUS` <br> e.g., `addtask s/Draft proposal c/Complete proposal by 1st March st/false`                                              |
 | **Clear**       | `clear`                                                                                                                                                              |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
+| **Delete Task** | `deletetask INDEX`<br/> e.g. `deletetask 2`                                                                                                                          |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **Assign**      | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                               |
+| **Mark Task**   | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                      |
+| **Unmark Task** | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                 |
 | **Help**        | `help`                                                                                                                                                               |
 | **List**        | `list`                                                                                                                                                               |
 | **List All**    | `listall`                                                                                                                                                            |
