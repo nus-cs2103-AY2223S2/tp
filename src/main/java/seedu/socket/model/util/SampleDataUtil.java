@@ -16,7 +16,7 @@ import seedu.socket.model.tag.Language;
 import seedu.socket.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Socket} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -43,11 +43,11 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+        AddressBook sampleSocket = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            sampleSocket.addPerson(samplePerson);
         }
-        return sampleAb;
+        return sampleSocket;
     }
 
     /**
