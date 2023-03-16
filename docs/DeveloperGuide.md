@@ -652,7 +652,7 @@ Use case ends.
 
 **MSS:**
 
-1. User has a team project and creates a event.
+1. User has a team project and creates an event.
 2. SOCket creates the event.
 3. User request to groups all the team members contact under the event created.
 4. SOCket groups the contacts together.
@@ -672,6 +672,33 @@ Use case ends.
       Use case resume at step 6 when the date entered is correct.
 
    Use case resumes at step 2.
+
+**Use case: UC17 Removing tag/language(s)**
+
+**MSS**
+
+1. User found that he/she has place a wrong tag to a person.
+2. User request to remove the specific tag.
+3. SOCket find the person and removes the tag associated to it.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. SOCket detects that user inputs an empty field after the tag prefix.
+
+    * 2a1. SOCket removes all tags associated to it.
+
+      Use case ends.
+
+**Use case: UC18 Viewing a person's detail**
+
+**MSS**
+
+1. User <ins>find contact(s) (UC05)</ins> he/she wishes to view.
+2. SOCket lists out all the contact associated to the category.
+3. User wishes to view the first contact in the list.
+4. SOCket displays all the person's information at the detail display window.
 
 *{More to be added}*
 

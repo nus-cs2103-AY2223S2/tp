@@ -223,6 +223,14 @@ Format: `redo`
 Changes made to SOCket are **not** saved upon exit.
 </div>
 
+### Viewing a person's detailed infomation: `view`
+
+Views a person's details whose in the filtered list
+
+Format: `view INDEX`
+* Views the person's detailed information at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -269,4 +277,5 @@ Action | Format, Examples
 **Help** | `help`
 **Undo** | `undo`
 **Redo** | `redo`
+**View** | `view INDEX`<br> e.g., `view 1`
 **Exit** | `exit`
