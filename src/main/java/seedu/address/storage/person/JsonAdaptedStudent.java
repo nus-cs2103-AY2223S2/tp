@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.person;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,8 +17,8 @@ import seedu.address.model.person.student.Homework;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Test;
 import seedu.address.model.person.student.Student;
-import seedu.address.storage.adaptedassignment.JsonAdaptedHomework;
-import seedu.address.storage.adaptedassignment.JsonAdaptedTest;
+import seedu.address.storage.academics.JsonAdaptedHomework;
+import seedu.address.storage.academics.JsonAdaptedTest;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -28,7 +28,7 @@ import java.util.Set;
 /**
  * Jackson-friendly version of {@link Student}.
  */
-class JsonAdaptedStudent extends JsonAdaptedPerson {
+public class JsonAdaptedStudent extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
     private final String indexNumber;
@@ -85,6 +85,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
      */
     public JsonAdaptedStudent(Student student) {
         super(student);
+        System.out.println("1");
         this.indexNumber = student.getIndexNumber().value;
         this.sex = student.getSex().value;
         this.age = student.getAge().value;

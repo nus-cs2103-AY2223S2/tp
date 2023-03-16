@@ -1,9 +1,10 @@
-package seedu.address.storage.adaptedassignment;
+package seedu.address.storage.academics;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.student.Assignment;
-import seedu.address.model.person.student.Test;
+import seedu.address.model.person.student.Homework;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,22 +12,35 @@ import java.time.format.DateTimeFormatter;
 /**
  * Jackson-friendly version of {@link Assignment}.
  */
-public class JsonAdaptedTest extends JsonAdaptedAssignment {
+public class JsonAdaptedHomework extends JsonAdaptedAssignment {
 
+    private final boolean isDone;
     /**
      * Constructs a {@code JsonAdaptedAssignment} with the given {@code assignmentName}.
      */
     @JsonCreator
-    public JsonAdaptedTest(String assignmentName, String deadline, int weightage, int score) {
+    public JsonAdaptedHomework(String assignmentName, String deadline, int weightage, int score, boolean isDone) {
         super(assignmentName, deadline, weightage, score);
+        this.isDone = isDone;
     }
 
     /**
      * Converts a given {@code Assignment} into this class for Jackson use.
      */
-    public JsonAdaptedTest(Assignment source) {
+    public JsonAdaptedHomework(Homework source) {
         super(source);
+        this.isDone = source.getIsDone();
     }
+
+    /**
+     * Returns the score of the assignment.
+     * @return score of the assignment.
+     */
+    @JsonValue
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
 
     
     /**
@@ -34,12 +48,12 @@ public class JsonAdaptedTest extends JsonAdaptedAssignment {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted Assignment.
      */
-    public Test toModelType() throws IllegalValueException {
+    public Homework toModelType() throws IllegalValueException {
         if (!Assignment.isValidAssignmentName(super.getAssignmentName())) {
             throw new IllegalValueException(Assignment.MESSAGE_CONSTRAINTS);
         }
         LocalDate deadline = LocalDate.parse(super.getDeadline(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        return new Test(super.getAssignmentName(), deadline, super.getWeightage(), super.getScore());
+        return new Homework(super.getAssignmentName(), deadline, super.getWeightage(), super.getScore(), this.isDone);
     }
 
 }
