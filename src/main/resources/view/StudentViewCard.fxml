@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="197.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefWidth="386.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox fx:id="viewPane" prefWidth="321.0" style="-fx-background-color: white; -fx-background-radius: 10;" stylesheets="@StudentViewCard.css">
+      <VBox fx:id="viewPane" prefWidth="321.0" style="-fx-background-color: white; -fx-background-radius: 10;" stylesheets="@StudentViewCard.css" VBox.vgrow="ALWAYS">
          <children>
             <Label fx:id="title" text="Student Particulars">
                <padding>
                   <Insets bottom="10.0" />
                </padding>
             </Label>
-            <HBox fx:id="infoPane" prefHeight="158.0" prefWidth="624.0">
+            <HBox fx:id="infoPane" prefHeight="158.0" prefWidth="624.0" VBox.vgrow="ALWAYS">
                <children>
                   <GridPane HBox.hgrow="ALWAYS">
                      <columnConstraints>
@@ -34,8 +34,8 @@
                               <Label fx:id="name" text="Name" />
                               <HBox prefHeight="8.0" prefWidth="486.0">
                                  <children>
-                                    <FlowPane fx:id="modules" prefHeight="25.0" prefWidth="103.0" />
-                                    <FlowPane fx:id="tags" prefHeight="1.0" prefWidth="486.0" />
+                                    <FlowPane fx:id="modules" prefHeight="17.0" prefWidth="0.0" />
+                                    <FlowPane fx:id="tags" prefHeight="21.0" prefWidth="0.0" />
                                  </children>
                               </HBox>
                               <Label fx:id="studentId" text="StudentId" />

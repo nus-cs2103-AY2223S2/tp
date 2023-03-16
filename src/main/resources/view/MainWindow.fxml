@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -32,6 +33,14 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+            <HBox fx:id="header" maxHeight="30.0" prefHeight="100.0" prefWidth="1070.0" style="-fx-background-color: derive(#a1826d, 50%);" VBox.vgrow="NEVER">
+               <children>
+                  <Label text="Welcome to CLIpboard" />
+               </children>
+               <padding>
+                  <Insets left="15.0" top="5.0" />
+               </padding>
+            </HBox>
             <HBox fx:id="studentPanelPlaceholder" style="-fx-background-color: derive(#a1826d, 50%);" VBox.vgrow="ALWAYS">
                <children>
       

@@ -1,6 +1,5 @@
-
 .error {
-    -fx-text-fill: #d1b9a7 !important; /* The error class should always override the default text-fill style */
+    -fx-text-fill: #fa594d !important; /* The error class should always override the default text-fill style */
 }
 
 .list-cell:empty {

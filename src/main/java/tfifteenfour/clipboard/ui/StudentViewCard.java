@@ -1,5 +1,9 @@
 package tfifteenfour.clipboard.ui;
 
+import java.io.File;
+import java.util.Comparator;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -12,16 +16,13 @@ import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.model.student.Student;
 
-
-import java.io.File;
-import java.util.Comparator;
-import java.util.Optional;
-import java.util.logging.Logger;
-
+/**
+ * A UI component that displays information of a {@code Student}.
+ */
 public class StudentViewCard extends UiPart<Region> {
 
-    private static final String FXML = "StudentViewCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static final String FXML = "StudentViewCard.fxml";
 
     @FXML
     private VBox viewPane;
@@ -50,6 +51,9 @@ public class StudentViewCard extends UiPart<Region> {
     @FXML
     private Label remark;
 
+    /**
+     * Creates a {@code StudentCode} with the given {@code Student} to display.
+     */
     public StudentViewCard(Student viewedStudent) {
         super(FXML);
         name.setText(viewedStudent.getName().fullName);

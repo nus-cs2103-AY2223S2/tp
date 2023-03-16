@@ -33,6 +33,13 @@
     src: url("fonts/OpenSans-BoldItalic.ttf");
 }
 
+@font-face {
+    font-family: "Satoshi Black";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/Satoshi-Black.ttf");
+}
+
 .label {
     -fx-font-size: 12;
     -fx-font-family: "Open Sans Medium";
@@ -42,7 +49,7 @@
 #title {
     -fx-font-size: 17;
     -fx-font-family: "Open Sans Bold";
-    -fx-text-fill: "black";
+    -fx-text-fill: #574539;
 }
 
 #name {

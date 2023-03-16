@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.model;
 
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -91,7 +90,4 @@ public interface Model {
     ObservableList<Student> getViewedStudent();
 
     void updateViewedStudent(Predicate<Student> predicate);
-
-    void clearViewedStudent();
-
 }

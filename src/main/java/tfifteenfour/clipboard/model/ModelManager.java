@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -104,7 +103,7 @@ public class ModelManager implements Model {
     @Override
     public void addStudent(Student student) {
         roster.addStudent(student);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        //updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -160,10 +159,5 @@ public class ModelManager implements Model {
     public void updateViewedStudent(Predicate<Student> predicate) {
         requireNonNull(predicate);
         viewedStudent.setPredicate(predicate);
-    }
-
-    @Override
-    public void clearViewedStudent() {
-        viewedStudent.clear();
     }
 }

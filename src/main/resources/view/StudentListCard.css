@@ -27,16 +27,30 @@
 }
 
 @font-face {
-    font-family: "Open Sans Bold Italic";
+    font-family: "Open Sans Semi Bold";
     font-style: normal;
     font-weight: 700;
-    src: url("fonts/OpenSans-BoldItalic.ttf");
+    src: url("fonts/OpenSans-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Satoshi Black";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/Satoshi-Black.ttf");
+}
+
+@font-face {
+    font-family: "Satoshi Black";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/Satoshi-Black.ttf");
 }
 
 .label {
-    -fx-font-size: 12;
-    -fx-font-family: "Open Sans Bold";
-    -fx-text-fill:  "black";
+    -fx-font-size: 13;
+    -fx-font-family: "Satoshi Black";
+    -fx-text-fill:  #574539;
 }
 
 #studentId {

@@ -33,6 +33,13 @@
     src: url("fonts/OpenSans-BoldItalic.ttf");
 }
 
+@font-face {
+    font-family: "Satoshi Black";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/Satoshi-Black.ttf");
+}
+
 .background {
     -fx-background-color: derive(#a1826d, 50%);
     background-color: #a1826d; /* Used in the default.html file */
@@ -128,7 +135,7 @@
 }
 
 .list-view .scroll-bar:vertical {
-    -fx-background-color: #a1826d;
+    -fx-background-color: transparent;
     -fx-background-radius: 10;
 }
 
@@ -242,8 +249,8 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Open Sans";
+    -fx-font-size: 12pt;
+    -fx-font-family: "Satoshi Black";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -327,11 +334,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#a1826d, 50%);
+    -fx-background-color: #a1826d;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#a1826d, 50%);
+    -fx-background-color: #a1826d;
     -fx-background-insets: 3;
 }
 
@@ -415,4 +422,9 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#header .label {
+    -fx-font-family: "Open Sans Bold";
+    -fx-font-size: 20;
 }

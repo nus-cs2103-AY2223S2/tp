@@ -2,7 +2,6 @@ package tfifteenfour.clipboard.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -69,12 +68,6 @@ public class LogicManager implements Logic {
     public ObservableList<Student> getViewedStudent() {
         return model.getViewedStudent();
     }
-
-    @Override
-    public void clearViewedStudent() {
-        model.clearViewedStudent();
-    }
-
 
     @Override
     public Path getRosterFilePath() {

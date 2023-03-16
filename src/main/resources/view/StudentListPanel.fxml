@@ -4,5 +4,5 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" prefHeight="376.0" prefWidth="214.0" style="-fx-padding: 5; -fx-background-insets: 5;" />
+  <ListView fx:id="personListView" prefHeight="376.0" prefWidth="214.0" style="-fx-padding: 5; -fx-background-insets: 5;" VBox.vgrow="ALWAYS" />
 </VBox>
