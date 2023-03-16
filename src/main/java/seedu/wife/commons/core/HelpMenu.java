@@ -45,7 +45,8 @@ public enum HelpMenu {
         sb.append(HEADER + System.lineSeparator());
 
         for (HelpMenu command : HelpMenu.values()) {
-            sb.append(command.getDescription() + command.getFormat());
+            sb.append(command.getDescription());
+            sb.append(command.getFormat());
             sb.append(System.lineSeparator());
         }
         return sb.toString();
