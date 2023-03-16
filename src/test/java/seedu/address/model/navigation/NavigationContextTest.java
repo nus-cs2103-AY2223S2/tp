@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.module.Module;
+
 import seedu.address.model.lecture.Lecture;
+import seedu.address.model.module.Module;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 
@@ -19,7 +20,7 @@ public class NavigationContextTest {
     }
 
     @Test
-    void testAddModule() {
+    void addModule() {
         Module mod = TypicalModules.CS2040S;
         NavigationContext context = new NavigationContext();
         context = context.addModule(mod.getCode());

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.navigation.NavigationContext;
