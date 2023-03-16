@@ -50,4 +50,16 @@ public class Status {
     public String toString() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Status // instanceof handles nulls
+                && value.equals(((Status) other).value)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
 }

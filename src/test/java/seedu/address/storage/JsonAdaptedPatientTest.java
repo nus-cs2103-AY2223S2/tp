@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Status;
 
 public class JsonAdaptedPatientTest {
@@ -23,7 +22,7 @@ public class JsonAdaptedPatientTest {
     private static final String VALID_STATUS = BENSON.getStatus().toString();
 
     @Test
-    public void toModelType_validPatientDetails_returnsPerson() throws Exception {
+    public void toModelType_validPatientDetails_returnsPatient() throws Exception {
         JsonAdaptedPatient patient = new JsonAdaptedPatient(BENSON);
         assertEquals(BENSON, patient.toModelType());
     }
