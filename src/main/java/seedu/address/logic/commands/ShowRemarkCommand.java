@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -19,14 +17,20 @@ import seedu.address.model.person.Remark;
 public class ShowRemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "show";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the remarks added to a person. "
-            + "Parameters: INDEX (must be a positive integer)";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the remarks added to a person.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: show 2";
 
-    public static final String MESSAGE_SHOWN_REMARK_SUCCESS = "Shown: %1$s";
+    public static final String MESSAGE_SHOWN_REMARK_SUCCESS = "Remarks: %1$s";
+    public static final String MESSAGE_SHOWN_REMARK_EMPTY = "No remarks yet...";
 
     private final Index index;
     //private final Remark remark;
 
+    /**
+     * Constructor for ShowRemarkCommand command
+     * @param index
+     */
     public ShowRemarkCommand(Index index) {
         requireNonNull(index);
 
@@ -43,8 +47,8 @@ public class ShowRemarkCommand extends Command {
 
         Person personToShow = lastShownList.get(index.getZeroBased());
         Remark toBeShown = personToShow.getRemark();
-
-        return new CommandResult(String.format(MESSAGE_SHOWN_REMARK_SUCCESS, toBeShown));
+        String message = !toBeShown.value.isEmpty() ? MESSAGE_SHOWN_REMARK_SUCCESS : MESSAGE_SHOWN_REMARK_EMPTY;
+        return new CommandResult(String.format(message, toBeShown));
     }
 
     @Override
