@@ -1,6 +1,5 @@
 package seedu.address.ui.body.address;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -121,6 +120,25 @@ public class PersonListPanel extends UiPart<Region> {
      */
     static class PersonListCell extends ListCell<PersonListCellData> {
         private PersonListCellData data;
+        private final PersonCard personCard = new PersonCard();
+        private final PersonListDivider personListDivider = new PersonListDivider(null);
+        private int graphicId = -1;
+
+        public int getGraphicId() {
+            return graphicId;
+        }
+
+        public void setGraphicId(int graphicId) {
+            this.graphicId = graphicId;
+        }
+
+        public PersonCard getPersonCard() {
+            return personCard;
+        }
+
+        public PersonListDivider getPersonListDivider() {
+            return personListDivider;
+        }
 
         @Override
         protected void updateItem(PersonListCellData newData, boolean empty) {
@@ -132,41 +150,27 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
                 return;
             }
-            if (data == newData) {
-                return;
-            }
-
-            data = newData;
-            setGraphic(data.getUiPart().getRoot());
-            setMouseTransparent(data.isMouseTransparent());
+            newData.updateGraphic(this);
         }
     }
 
     private interface PersonListCellData {
-        UiPart<Region> getUiPart();
-
-        boolean isMouseTransparent();
-
         Person getPerson();
 
         int getIndex();
+
+        void updateGraphic(PersonListCell cell);
     }
 
     private static class PersonListDividerData implements PersonListCellData {
-        private final PersonListDivider divider;
+        private static final int GRAPHIC_ID = 0;
+        private static final boolean IS_MOUSE_TRANSPARENT = true;
+
+        private final String title;
 
         public PersonListDividerData(String title) {
-            divider = new PersonListDivider(title);
-        }
-
-        @Override
-        public UiPart<Region> getUiPart() {
-            return divider;
-        }
-
-        @Override
-        public boolean isMouseTransparent() {
-            return true;
+            Objects.requireNonNull(title);
+            this.title = title;
         }
 
         @Override
@@ -180,6 +184,17 @@ public class PersonListPanel extends UiPart<Region> {
         }
 
         @Override
+        public void updateGraphic(PersonListCell cell) {
+            Objects.requireNonNull(cell);
+            cell.getPersonListDivider().setTitle(title);
+            if (cell.getGraphicId() != GRAPHIC_ID) {
+                cell.setGraphic(cell.getPersonListDivider().getRoot());
+            }
+            cell.setMouseTransparent(IS_MOUSE_TRANSPARENT);
+            cell.setGraphicId(GRAPHIC_ID);
+        }
+
+        @Override
         public boolean equals(Object other) {
             if (other == this) {
                 return true;
@@ -188,35 +203,40 @@ public class PersonListPanel extends UiPart<Region> {
                 return false;
             }
             PersonListDividerData that = (PersonListDividerData) other;
-            return divider.equals(that.divider);
+            return title.equals(that.title);
         }
     }
 
     private static class PersonListCardData implements PersonListCellData {
-        private final PersonCard card;
+        private static final int GRAPHIC_ID = 1;
+        private static final boolean IS_MOUSE_TRANSPARENT = false;
+
+        private final Person person;
+        private final int index;
 
         public PersonListCardData(Person person, int index) {
-            card = new PersonCard(person, index);
+            this.person = person;
+            this.index = index;
         }
 
         @Override
         public Person getPerson() {
-            return card.getPerson();
+            return person;
         }
 
         @Override
         public int getIndex() {
-            return card.getIndex();
+            return index;
         }
 
         @Override
-        public UiPart<Region> getUiPart() {
-            return card;
-        }
-
-        @Override
-        public boolean isMouseTransparent() {
-            return false;
+        public void updateGraphic(PersonListCell cell) {
+            cell.getPersonCard().setPerson(person, index);
+            if (cell.getGraphicId() != GRAPHIC_ID) {
+                cell.setGraphic(cell.getPersonCard().getRoot());
+            }
+            cell.setMouseTransparent(IS_MOUSE_TRANSPARENT);
+            cell.setGraphicId(GRAPHIC_ID);
         }
 
         @Override
@@ -228,7 +248,7 @@ public class PersonListPanel extends UiPart<Region> {
                 return false;
             }
             PersonListCardData that = (PersonListCardData) other;
-            return card.equals(that.card);
+            return index == that.index && person.equals(that.person);
         }
     }
 }

@@ -45,10 +45,18 @@ public class PersonCard extends UiPart<Region> {
     private int index;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates an empty {@code PersonCard}.
+     */
+    public PersonCard() {
+        super(FXML);
+        setPerson(null, -1);
+    }
+
+    /**
+     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
-        super(FXML);
+        this();
         setPerson(person, displayedIndex);
     }
 
@@ -61,9 +69,12 @@ public class PersonCard extends UiPart<Region> {
     }
 
     public void setPerson(Person person, int displayedIndex) {
-        Objects.requireNonNull(person);
         this.person = person;
         this.index = displayedIndex;
+
+        if (person == null) {
+            return;
+        }
 
         id.setText(String.valueOf(displayedIndex));
         name.setText(person.getName().fullName);
@@ -92,6 +103,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return index == card.index
-                && person.equals(card.person);
+                && Objects.equals(person, card.person);
     }
 }
