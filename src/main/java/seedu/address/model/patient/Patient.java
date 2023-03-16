@@ -17,6 +17,7 @@ public class Patient {
 
     // Data fields
     private Status status = new Status("GRAY");
+    private Ward ward = new Ward("Waiting Room");
 
     /**
      * Every field must be present and not null.
@@ -27,18 +28,26 @@ public class Patient {
         this.name = name;
     }
 
-    /**
-     * Constructs a {@code Patient}.
-     *
-     * @param nric Input NRIC.
-     * @param name Input Name.
-     * @param status Input Status.
-     */
     public Patient(Nric nric, Name name, Status status) {
         requireAllNonNull(nric, name, status);
         this.nric = nric;
         this.name = name;
         this.status = status;
+    }
+
+    public Patient(Nric nric, Name name, Ward ward) {
+        requireAllNonNull(nric, name, ward);
+        this.nric = nric;
+        this.name = name;
+        this.ward = ward;
+    }
+
+    public Patient(Nric nric, Name name, Status status, Ward ward) {
+        requireAllNonNull(nric, name, status, ward);
+        this.nric = nric;
+        this.name = name;
+        this.status = status;
+        this.ward = ward;
     }
 
     public Nric getNric() {
@@ -53,9 +62,18 @@ public class Patient {
         return status;
     }
 
+    public Ward getWard() {
+        return ward;
+    }
+
     public void setStatus(Status newStatus) {
-        requireAllNonNull(status);
+        requireAllNonNull(newStatus);
         status = newStatus;
+    }
+
+    public void setWard(Ward newWard) {
+        requireAllNonNull(newWard);
+        ward = newWard;
     }
 
     /**
@@ -89,13 +107,14 @@ public class Patient {
         Patient otherPatient = (Patient) other;
         return otherPatient.getNric().equals(getNric())
                 && otherPatient.getName().equals(getName())
-                && otherPatient.getStatus().equals(getStatus());
+                && otherPatient.getStatus().equals(getStatus())
+                && otherPatient.getWard().equals(getWard());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(nric, name, status);
+        return Objects.hash(nric, name, status, ward);
     }
 
     @Override
@@ -105,7 +124,9 @@ public class Patient {
                 .append("; Name: ")
                 .append(getName())
                 .append("; Status: ")
-                .append(getStatus());
+                .append(getStatus())
+                .append("; Ward: ")
+                .append(getWard());
 
         return builder.toString();
     }
