@@ -26,6 +26,13 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
         super(toBeCopied);
     }
 
+
+    /**
+     * Checks if appointment manager contains the given patient id
+     *
+     * @param patientId - The patient id to check for
+     * @return true if patient id is in the appointment manager, otherwise false
+     */
     public boolean containsPatient(Index patientId) {
         Map<Integer, IdData<Appointment>> appointmentList = this.getMapView();
         for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
