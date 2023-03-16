@@ -66,7 +66,13 @@ public class StringUtil {
         }
     }
 
-
+    /**
+     * Returns true if the given text contains the keyword, ignoring case.
+     *
+     * @param text the text to search for the keyword
+     * @param keyword the keyword to search for in the text
+     * @return true if the text contains the keyword, ignoring case
+     */
     public static boolean containsIgnoreCase(String text, String keyword) {
         if (keyword.isEmpty()) {
             return true;
