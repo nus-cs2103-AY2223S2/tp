@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+/**
+ * Provides HelpWindow class with long strings to be displayed on screen.
+ */
 public class HelpStrings {
     public static final String HELP_MESSAGE = "For more help, Refer to the user guide: " + HelpStrings.USERGUIDE_URL;
 
