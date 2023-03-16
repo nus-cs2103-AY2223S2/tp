@@ -50,7 +50,7 @@ public class ParseArgument {
      * @throws ParseException if the given {@code name} is invalid.
      */
 
-    public static VideoName parseVideo(String videoName) throws ParseException {
+    public static VideoName parseVideo(String videoName) {
         requireNonNull(videoName);
         String trimmedVideoName = videoName.trim();
         return new VideoName(trimmedVideoName);
