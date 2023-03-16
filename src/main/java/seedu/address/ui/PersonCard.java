@@ -70,10 +70,10 @@ public class PersonCard extends UiPart<Region> {
         parentPhone.setText(person.getParentPhone().value + " (P)");
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        phoneIcon1.setImage(new Image(this.getClass().getResourceAsStream("/images/icons/phone.png")));
-        phoneIcon2.setImage(new Image(this.getClass().getResourceAsStream("/images/icons/phone.png")));
-        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/icons/address.png")));
-        emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/icons/email.png")));
+        phoneIcon1.setImage(new Image(this.getClass().getResourceAsStream("/images/Phone.png")));
+        phoneIcon2.setImage(new Image(this.getClass().getResourceAsStream("/images/Phone.png")));
+        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/Address.png")));
+        emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/Email.png")));
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         personCardImage(person);
@@ -86,13 +86,13 @@ public class PersonCard extends UiPart<Region> {
      */
     private void personCardImage(Person person) {
         if (person.getTags().contains(new Tag("male")) && person.getTags().contains(new Tag("female"))) {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/avatars/unisex.png")));
+            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
         } else if (person.getTags().contains(new Tag("male"))) {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/avatars/male.png")));
+            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/male.png")));
         } else if (person.getTags().contains(new Tag("female"))) {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/avatars/female.png")));
+            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/female.png")));
         } else {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/avatars/unisex.png")));
+            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
         }
     }
 
