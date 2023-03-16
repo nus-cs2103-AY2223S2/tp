@@ -211,7 +211,9 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
-        filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
     }
 
     //=========== Filtered Lecture List Accessors =============================================================
