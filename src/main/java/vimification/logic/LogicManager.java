@@ -14,6 +14,7 @@ import vimification.logic.parser.AddressBookParser;
 import vimification.logic.parser.ParseException;
 import vimification.model.Model;
 import vimification.model.ReadOnlyTaskPlanner;
+import vimification.model.task.Task;
 import vimification.storage.Storage;
 
 /**
@@ -45,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskList(model.getTaskList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -54,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyTaskPlanner getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTaskPlanner getTaskList() {
+        return model.getTaskList();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Task> getFilteredPersonList() {
+        return model.getFilteredTaskList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getTaskListFilePath() {
+        return model.getTaskListFilePath();
     }
 
     @Override

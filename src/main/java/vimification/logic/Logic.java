@@ -8,6 +8,7 @@ import vimification.logic.commands.CommandResult;
 import vimification.logic.commands.exceptions.CommandException;
 import vimification.logic.parser.ParseException;
 import vimification.model.ReadOnlyTaskPlanner;
+import vimification.model.task.Task;
 
 /**
  * API of the Logic component
@@ -26,17 +27,17 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see vimification.model.Model#getAddressBook()
+     * @see vimification.model.Model#getTaskList()
      */
-    ReadOnlyTaskPlanner getAddressBook();
+    ReadOnlyTaskPlanner getTaskList();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Task> getFilteredPersonList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

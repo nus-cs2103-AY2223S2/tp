@@ -40,7 +40,8 @@ public class ModelManager implements Model {
         this(new TaskPlanner(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -75,7 +76,8 @@ public class ModelManager implements Model {
         userPrefs.setTaskListFilePath(taskListFilePath);
     }
 
-    //=========== TaskPlanner ================================================================================
+    // =========== TaskPlanner
+    // ================================================================================
 
     @Override
     public void setTaskList(ReadOnlyTaskPlanner taskList) {
@@ -101,7 +103,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task t) {
         taskPlanner.addTask(t);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override
@@ -122,7 +124,8 @@ public class ModelManager implements Model {
         taskPlanner.unmarkTask(task);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of

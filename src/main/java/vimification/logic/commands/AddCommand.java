@@ -9,6 +9,7 @@ import static vimification.logic.parser.CliSyntax.PREFIX_TAG;
 
 import vimification.logic.commands.exceptions.CommandException;
 import vimification.model.Model;
+import vimification.model.task.Task;
 
 /**
  * Adds a person to the address book.
@@ -37,12 +38,12 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON =
             "This person already exists in the address book";
 
-    private final Person toAdd;
+    private final Task toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddCommand(Task person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -51,11 +52,11 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -2,7 +2,7 @@ package vimification.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import vimification.model.AddressBook;
+import vimification.model.TaskPlanner;
 import vimification.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setTaskList(new TaskPlanner());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

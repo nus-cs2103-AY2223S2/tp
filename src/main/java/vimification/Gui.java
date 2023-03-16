@@ -15,14 +15,15 @@ import vimification.commons.util.ConfigUtil;
 import vimification.commons.util.StringUtil;
 import vimification.logic.Logic;
 import vimification.logic.LogicManager;
-import vimification.model.AddressBook;
+import vimification.model.TaskPlanner;
 import vimification.model.Model;
 import vimification.model.ModelManager;
-import vimification.model.ReadOnlyAddressBook;
+import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 import vimification.model.util.SampleDataUtil;
-import vimification.storage.JsonAddressBookStorage;
+import vimification.storage.TaskPlannerStorage;
+import vimification.storage.JsonTaskPlannerStorage;
 import vimification.storage.JsonUserPrefsStorage;
 import vimification.storage.Storage;
 import vimification.storage.StorageManager;
@@ -39,12 +40,12 @@ public class Gui extends Application {
     protected Config config;
 
 
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static final Logger logger = LogsCenter.getLogger(Gui.class);
 
     @Override
     public void init() throws Exception {
         logger.info(
-                "=============================[ Initializing AddressBook ]===========================");
+                "=============================[ Initializing TaskPlanner ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -52,8 +53,11 @@ public class Gui extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+
+        // TODO: Temporary fix until Jiayue finishes implementation.
+        // TaskPlannerStorage addressBookStorage = null;
+        TaskPlannerStorage addressBookStorage =
+                new JsonTaskPlannerStorage(userPrefs.getTaskListFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -78,22 +82,22 @@ public class Gui extends Application {
      * {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTaskPlanner> addressBookOptional;
+        ReadOnlyTaskPlanner initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readTaskList();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTaskList);
         } catch (DataConversionException e) {
             logger.warning(
                     "Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new TaskPlanner();
         } catch (IOException e) {
             logger.warning(
                     "Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new TaskPlanner();
         }
 
         return new ModelManager(initialData, userPrefs);
