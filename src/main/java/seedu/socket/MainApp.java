@@ -16,16 +16,16 @@ import seedu.socket.commons.util.ConfigUtil;
 import seedu.socket.commons.util.StringUtil;
 import seedu.socket.logic.Logic;
 import seedu.socket.logic.LogicManager;
-import seedu.socket.model.ReadOnlySocket;
-import seedu.socket.model.Socket;
 import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
+import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.ReadOnlyUserPrefs;
+import seedu.socket.model.Socket;
 import seedu.socket.model.UserPrefs;
 import seedu.socket.model.util.SampleDataUtil;
 import seedu.socket.storage.JsonSocketStorage;
-import seedu.socket.storage.SocketStorage;
 import seedu.socket.storage.JsonUserPrefsStorage;
+import seedu.socket.storage.SocketStorage;
 import seedu.socket.storage.Storage;
 import seedu.socket.storage.StorageManager;
 import seedu.socket.storage.UserPrefsStorage;
@@ -73,19 +73,19 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s {@code Socket} and {@code userPrefs}. <br>
+     * The data from the sample {@code Socket} will be used instead if {@code storage}'s {@code Socket} is not found,
+     * or an empty {@code Socket} will be used instead if errors occur when reading {@code storage}'s {@code Socket}.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlySocket> addressBookOptional;
+        Optional<ReadOnlySocket> socketOptional;
         ReadOnlySocket initialData;
         try {
-            addressBookOptional = storage.readSocket();
-            if (!addressBookOptional.isPresent()) {
+            socketOptional = storage.readSocket();
+            if (!socketOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Socket");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = socketOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Socket");
             initialData = new Socket();
@@ -177,7 +177,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Socket ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
