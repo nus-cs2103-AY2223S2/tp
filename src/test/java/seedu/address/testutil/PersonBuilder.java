@@ -49,7 +49,6 @@ public class PersonBuilder {
         performance = new Performance(DEFAULT_PERFORMANCE);
         tags = new HashSet<>();
     }
-
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
@@ -60,7 +59,7 @@ public class PersonBuilder {
         photo = personToCopy.getPhoto();
         address = personToCopy.getAddress();
         remark = personToCopy.getRemark();
-        performance = new Performance(DEFAULT_PERFORMANCE);
+        performance = personToCopy.getPerformance();
         tags = new HashSet<>(personToCopy.getTags());
     }
 

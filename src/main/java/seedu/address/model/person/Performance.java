@@ -60,7 +60,7 @@ public class Performance {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Performance // instanceof handles nulls
-                && value == ((Performance) other).value); // state check
+                && value.equals(((Performance) other).value)); // state check
     }
 
     @Override

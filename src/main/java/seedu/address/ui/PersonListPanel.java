@@ -51,11 +51,12 @@ public class PersonListPanel extends UiPart<Region> {
                 new SimpleStringProperty(cellData.getValue().getPerformance().toString()));
         remark.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRemark().toString()));
 
-        photo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoto().getUrlPath()));
-
+        //photo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoto().getUrlPath()));
+        /*
         photo.setCellFactory(
                 p -> new PhotoCell()
         );
+        */
 
         //to sort
         //
