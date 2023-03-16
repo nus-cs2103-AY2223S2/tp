@@ -1,8 +1,8 @@
 package seedu.patientist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PID;
 
 import java.util.Objects;
 
@@ -22,9 +22,9 @@ public class FindPatientCommand extends Command {
             + "Keywords must be either name or pid.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PID + "PID] \n"
+            + "[" + PREFIX_ID + "PID] \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PID + "A12345B";
+            + PREFIX_ID + "A12345B";
 
     private final PidContainsKeywordsPredicate pidPredicate;
     private final PatientNameContainsKeywordsPredicate namePredicate;

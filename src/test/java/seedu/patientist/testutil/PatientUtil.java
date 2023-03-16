@@ -2,9 +2,9 @@ package seedu.patientist.testutil;
 
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -35,7 +35,7 @@ public class PatientUtil {
         sb.append(PREFIX_PHONE + patient.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + patient.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");
-        sb.append(PREFIX_PID + patient.getPatientIdNumber().getIdNumber() + " ");
+        sb.append(PREFIX_ID + patient.getIdNumber().toString() + " ");
         sb.append(PREFIX_STATUS + patient.getPatientStatusDetails().getDetails() + " ");
         patient.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")

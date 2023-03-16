@@ -1,5 +1,8 @@
 package seedu.patientist.storage;
 
+import static seedu.patientist.model.person.patient.Patient.PATIENT_TAG;
+import static seedu.patientist.model.person.staff.Staff.STAFF_TAG;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,11 +15,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.patientist.commons.exceptions.IllegalValueException;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
-import seedu.patientist.model.person.patient.PatientIdNumber;
+import seedu.patientist.model.person.patient.PatientStatusDetails;
+import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -40,7 +45,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("patientist") String address, @JsonProperty("status") String status,
+            @JsonProperty("address") String address, @JsonProperty("status") String status,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.id = id;
@@ -60,19 +65,17 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        id = source.getIdNumber().toString();
         address = source.getAddress().value;
+        if (source instanceof Patient) {
+            Patient patient = (Patient) source;
+            status = patient.getPatientStatusDetails().getDetails();
+        } else {
+            status = "";
+        }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-
-        if (source instanceof Patient) {
-            Patient patient = (Patient) source;
-            id = patient.getPatientIdNumber().getIdNumber();
-            status = patient.getPatientStatusDetails().getDetails();
-        } else {
-            id = "";
-            status = "";
-        }
     }
 
     /**
@@ -97,10 +100,10 @@ class JsonAdaptedPerson {
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!PatientIdNumber.isValidPid(id)) {
-            throw new IllegalValueException(PatientIdNumber.MESSAGE_CONSTRAINTS);
+        if (!IdNumber.isValidPid(id)) {
+            throw new IllegalValueException(IdNumber.MESSAGE_CONSTRAINTS);
         }
-        final PatientIdNumber modelPid = new PatientIdNumber(id);
+        final IdNumber modelId = new IdNumber(id);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -127,7 +130,16 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelPid, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (modelTags.contains(STAFF_TAG)) {
+            return new Staff(modelName, modelPhone, modelEmail, modelId, modelAddress, modelTags);
+        }
+
+        if (modelTags.contains(PATIENT_TAG) && status != null) {
+            final PatientStatusDetails modelDetails = new PatientStatusDetails(status);
+            return new Patient(modelId, modelName, modelPhone, modelEmail, modelAddress, modelDetails, modelTags);
+        }
+        return new Patient(modelEmail, modelName, modelPhone, modelId, modelAddress, modelTags);
     }
 
 }

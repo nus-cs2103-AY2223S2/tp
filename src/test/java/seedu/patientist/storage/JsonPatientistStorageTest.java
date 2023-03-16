@@ -69,7 +69,8 @@ public class JsonPatientistStorageTest {
         // Save in new file and read back
         jsonAddressBookStorage.savePatientist(original, filePath);
         ReadOnlyPatientist readBack = jsonAddressBookStorage.readPatientist(filePath).get();
-        assertEquals(original, new Patientist(readBack));
+        Patientist p = new Patientist(readBack);
+        assertEquals(original, p);
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(CHARLIE);

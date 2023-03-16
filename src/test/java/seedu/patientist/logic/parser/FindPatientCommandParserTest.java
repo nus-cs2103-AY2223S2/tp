@@ -1,8 +1,8 @@
 package seedu.patientist.logic.parser;
 
 import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PID;
 import static seedu.patientist.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.patientist.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -34,12 +34,12 @@ public class FindPatientCommandParserTest {
         // no leading and trailing whitespaces
         expectedFindCommand =
                 new FindPatientCommand(new PidContainsKeywordsPredicate(Arrays.asList("A123")));
-        assertParseSuccess(parser, " " + PREFIX_PID + "A123", expectedFindCommand);
+        assertParseSuccess(parser, " " + PREFIX_ID + "A123", expectedFindCommand);
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, PREFIX_NAME + "Alice " + PREFIX_PID + "A123",
+        assertParseFailure(parser, PREFIX_NAME + "Alice " + PREFIX_ID + "A123",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
     }
 }

@@ -26,7 +26,7 @@ public class PidContainsKeywordsPredicate implements Predicate<Person> {
 
         return keywords.stream()
                 .anyMatch(keyword ->
-                        StringUtil.containsWordIgnoreCase(patient.getPatientIdNumber().getIdNumber(), keyword));
+                        StringUtil.containsWordIgnoreCase(patient.getIdNumber().toString(), keyword));
     }
 
     @Override
