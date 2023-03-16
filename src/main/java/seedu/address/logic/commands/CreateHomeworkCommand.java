@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,13 +25,13 @@ public class CreateHomeworkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to a student.\n"
             + "Parameters: "
-            + "n/STUDENT_NAME "
-            + "hw/HOMEWORK_NAME "
-            + "d/DEADLINE\n"
+            + PREFIX_NAME + "STUDENT_NAME "
+            + PREFIX_HOMEWORK + "HOMEWORK_NAME "
+            + PREFIX_DEADLINE + "DEADLINE\n"
             + "Example: " + COMMAND_WORD + " "
-            + "n/John Doe "
-            + "hw/Math Homework "
-            + "d/2023-03-01T12:00";
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_HOMEWORK + "Math Homework "
+            + PREFIX_DEADLINE + "2023-03-01T12:00";
 
     private final String homeworkName;
     private final LocalDateTime deadline;
