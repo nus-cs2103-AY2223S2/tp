@@ -264,18 +264,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Remove** | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g., `remove 1 t/ l/Java e/`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Sort** | `sort [CATEGORY]`<br> e.g. `sort address`
-**Find** | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`
-**List** | `list [t/tag]`
-**Help** | `help`
-**Undo** | `undo`
-**Redo** | `redo`
-**View** | `view INDEX`<br> e.g., `view 1`
-**Exit** | `exit`
+|  Action    | Format, Examples                                                                                                                                                                                                 |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| **Add**    | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python`  |
+| **Clear**  | `clear`                                                                                                                                                                                                          |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                              |
+| **Remove** | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g., `remove 1 t/ l/Java e/`                                                                        |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                    |
+| **Sort**   | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                                                        |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`                                                                                                                           |
+| **List**   | `list [t/tag]`                                                                                                                                                                                                   |
+| **Help**   | `help`                                                                                                                                                                                                           |
+| **Undo**   | `undo`                                                                                                                                                                                                           |
+| **Redo**   | `redo`                                                                                                                                                                                                           |
+| **View**   | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                  |
+| **Exit**   | `exit`                                                                                                                                                                                                           |
