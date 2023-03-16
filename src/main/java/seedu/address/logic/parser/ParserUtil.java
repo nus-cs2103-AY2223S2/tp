@@ -136,12 +136,8 @@ public class ParserUtil {
      * @throws ParseException if the given {@code moduleCode} is invalid.
      */
     public static Module parseModule(String moduleCode) throws ParseException {
-        requireNonNull(moduleCode);
-        String trimmedModuleCode = moduleCode.trim();
-        if (!ModuleCode.isValidCode(trimmedModuleCode)) {
-            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
-        }
-        return new Module(new ModuleCode(trimmedModuleCode));
+        ModuleCode parsedModuleCode = parseModuleCode(moduleCode);
+        return new Module(parsedModuleCode);
     }
 
     // TODO: Consider removing this

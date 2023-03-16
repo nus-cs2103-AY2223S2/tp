@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 import seedu.address.model.video.exceptions.DuplicateVideoException;
 import seedu.address.model.video.exceptions.VideoNotFoundException;
 import seedu.address.testutil.LectureBuilder;
@@ -53,7 +55,11 @@ public class LectureTest {
     }
 
     public void hasVideo_nullVideo_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> lecture.hasVideo(null));
+        assertThrows(NullPointerException.class, () -> lecture.hasVideo((Video) null));
+    }
+
+    public void hasVideo_nullVideoName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> lecture.hasVideo((VideoName) null));
     }
 
     @Test

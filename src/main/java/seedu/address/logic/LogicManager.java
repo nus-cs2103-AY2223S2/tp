@@ -49,6 +49,9 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
 
         commandText = navigationInjector.inject(commandText, model);
+
+        logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
+
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 

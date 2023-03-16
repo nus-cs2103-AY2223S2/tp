@@ -109,6 +109,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearTracker() {
+        tracker.clear();
+    }
+
+    @Override
     public boolean hasModule(ReadOnlyModule module) {
         return tracker.hasModule(module);
     }
@@ -152,9 +157,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+
     public boolean hasLecture(ReadOnlyModule module, LectureName lecture) {
         requireNonNull(module);
         return module.getLecture(lecture) != null;
+    }
+
+
+    public ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName) {
+        ReadOnlyModule mod = tracker.getModule(moduleCode);
+        return mod.getLecture(lectureName);
     }
 
     @Override
@@ -188,9 +200,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
+    public boolean hasVideo(ReadOnlyLecture lecture, VideoName videoName) {
         requireNonNull(lecture);
-        return lecture.getVideo(video) != null;
+        return lecture.hasVideo(videoName);
+    }
+
+    @Override
+    public Video getVideo(ReadOnlyLecture lecture, VideoName videoName) {
+        requireNonNull(lecture);
+        return lecture.getVideo(videoName);
+
     }
 
     @Override
@@ -287,8 +306,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return tracker.equals(other.tracker)
-            && userPrefs.equals(other.userPrefs)
-            && filteredModules.equals(other.filteredModules);
+                && userPrefs.equals(other.userPrefs)
+                && filteredModules.equals(other.filteredModules)
+                && navigation.equals(other.navigation);
     }
 
     // TODO: Remove all code beyond this point
