@@ -11,8 +11,8 @@ import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.EditOrderCommand;
-import trackr.logic.commands.EditOrderCommand.EditOrderDescriptor;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.order.OrderDescriptor;
 
 /**
  * Parses input arguments and creates a new EditOrderCommand object
@@ -38,7 +38,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditOrderCommand.MESSAGE_USAGE), pe);
         }
 
-        EditOrderDescriptor editOrderDescriptor = new EditOrderDescriptor();
+        OrderDescriptor editOrderDescriptor = new OrderDescriptor();
         if (argMultimap.getValue(PREFIX_ORDERNAME).isPresent()) {
             editOrderDescriptor.setOrderName(
                     ParserUtil.parseOrderName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -52,7 +52,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
                     ParserUtil.parseOrderStatus(argMultimap.getValue(PREFIX_STATUS)));
         }
 
-        if (!editOrderDescriptor.isAnyFieldEdited()) {
+        if (!editOrderDescriptor.isAnyFieldNonNull()) {
             throw new ParseException(EditOrderCommand.MESSAGE_NOT_EDITED);
         }
 

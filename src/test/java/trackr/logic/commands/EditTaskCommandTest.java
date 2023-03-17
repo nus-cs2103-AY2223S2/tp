@@ -61,9 +61,10 @@ public class EditTaskCommandTest {
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task editedTask = taskInList.withTaskName(VALID_TASK_NAME_SORT_INVENTORY)
-                .withTaskDeadline(VALID_TASK_DEADLINE_2100)
-                .withTaskStatus(VALID_TASK_STATUS_DONE).build();
+        taskInList.withTaskName(VALID_TASK_NAME_SORT_INVENTORY);
+        taskInList.withTaskDeadline(VALID_TASK_DEADLINE_2100);
+        taskInList.withTaskStatus(VALID_TASK_STATUS_DONE);
+        Task editedTask = taskInList.build();
 
         TaskDescriptor descriptor = new TaskDescriptorBuilder()
                 .withTaskName(VALID_TASK_NAME_SORT_INVENTORY)
