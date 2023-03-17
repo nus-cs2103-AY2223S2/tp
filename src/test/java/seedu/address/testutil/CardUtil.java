@@ -14,19 +14,19 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class for Card.
  */
-public class PersonUtil {
+public class CardUtil {
 
     /**
      * Returns an add command string for adding the {@code card}.
      */
     public static String getAddCommand(Card card) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(card);
+        return AddCommand.COMMAND_WORD + " " + getCardDetails(card);
     }
 
     /**
      * Returns the part of command string for the given {@code card}'s details.
      */
-    public static String getPersonDetails(Card card) {
+    public static String getCardDetails(Card card) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_QUESTION + card.getQuestion().question + " ");
         sb.append(PREFIX_ANSWER + card.getAnswer().answer + " ");
@@ -39,7 +39,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditCardDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCardDescriptor descriptor) {
+    public static String getEditCardDescriptorDetails(EditCardDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getQuestion().ifPresent(name -> sb.append(PREFIX_QUESTION).append(name.question).append(" "));
         descriptor.getAnswer().ifPresent(address -> sb.append(PREFIX_ANSWER).append(address.answer).append(" "));

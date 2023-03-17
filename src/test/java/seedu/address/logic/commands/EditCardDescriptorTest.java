@@ -10,7 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditCardDescriptorBuilder;
 
 public class EditCardDescriptorTest {
 
@@ -33,16 +33,16 @@ public class EditCardDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditCommand.EditCardDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY)
-                .withName(VALID_NAME_PHOTOSYNTHESIS).build();
+        EditCommand.EditCardDescriptor editedAmy = new EditCardDescriptorBuilder(DESC_AMY)
+                .withQuestion(VALID_NAME_PHOTOSYNTHESIS).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).build();
+        editedAmy = new EditCardDescriptorBuilder(DESC_AMY).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HARD).build();
+        editedAmy = new EditCardDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HARD).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

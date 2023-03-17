@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the card in the {@code model}'s card list at {@code index}.
      */
-    public static Card getPerson(Model model, Index index) {
+    public static Card getCard(Model model, Index index) {
         return model.getFilteredCardList().get(index.getZeroBased());
     }
 }

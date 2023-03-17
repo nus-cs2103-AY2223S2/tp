@@ -15,7 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
 import seedu.address.model.card.Card;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditCardDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -48,10 +48,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditCardDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_QUESTION_GRAVITY).withAddress(VALID_ANSWER_GRAVITY)
+        DESC_AMY = new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_GRAVITY).withAnswer(VALID_ANSWER_GRAVITY)
                 .withTags(VALID_TAG_MEDIUM).build();
-        DESC_BOB = new EditPersonDescriptorBuilder()
-                .withName(VALID_NAME_PHOTOSYNTHESIS).withAddress(VALID_ANSWER_PHOTOSYNTHESIS)
+        DESC_BOB = new EditCardDescriptorBuilder()
+                .withQuestion(VALID_NAME_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
                 .withTags(VALID_TAG_HARD, VALID_TAG_MEDIUM).build();
     }
 
