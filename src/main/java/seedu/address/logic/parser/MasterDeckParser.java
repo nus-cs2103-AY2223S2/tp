@@ -126,6 +126,9 @@ public class MasterDeckParser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
+        case SelectDeckCommand.COMMAND_WORD:
+            return new SelectDeckCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
