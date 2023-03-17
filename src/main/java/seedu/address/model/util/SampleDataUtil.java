@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyShop;
@@ -55,31 +56,31 @@ public class SampleDataUtil {
 
     public static Customer[] getSampleCustomers() {
         return new Customer[] {
-            new Customer(1, new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Customer(IdGenerator.generateCustomerId(), new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("regular"), getIntegerSet(1, 2)),
-            new Customer(2, new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Customer(IdGenerator.generateCustomerId(), new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("difficult", "new driver"), getIntegerSet(3)),
-            new Customer(3, new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+            new Customer(IdGenerator.generateCustomerId(), new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 new HashSet<>(), getIntegerSet(4, 5)),
-            new Customer(4, new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+            new Customer(IdGenerator.generateCustomerId(), new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("regular"), getIntegerSet(6)),
-            new Customer(5, new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+            new Customer(IdGenerator.generateCustomerId(), new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new HashSet<>(), new HashSet<>()),
         };
     }
 
     public static Vehicle[] getSampleVehicles() {
         return new Vehicle[] {
-            new Vehicle(1, 1, "SKA1234A", "Red", "Toyota Corolla", VehicleType.CAR),
-            new Vehicle(2, 1, "SGP5678B", "Blue", "Toyota Prius", VehicleType.CAR),
-            new Vehicle(3, 2, "SLK9123C", "Grey", "BMW X4", VehicleType.CAR),
-            new Vehicle(4, 3, "SBF4567D", "Grey", "Suzuki SV650X ABS", VehicleType.MOTORBIKE),
-            new Vehicle(5, 3, "SGC2345F", "Black and White", "Honda Adv 150", VehicleType.MOTORBIKE),
-            new Vehicle(6, 4, "SLM5678K", "Dark Blue", "Hyundai Tucson SUV", VehicleType.CAR),
+            new Vehicle(IdGenerator.generateVehicleId(), 1, "SKA1234A", "Red", "Toyota Corolla", VehicleType.CAR),
+            new Vehicle(IdGenerator.generateVehicleId(), 1, "SGP5678B", "Blue", "Toyota Prius", VehicleType.CAR),
+            new Vehicle(IdGenerator.generateVehicleId(), 2, "SLK9123C", "Grey", "BMW X4", VehicleType.CAR),
+            new Vehicle(IdGenerator.generateVehicleId(), 3, "SBF4567D", "Grey", "Suzuki SV650X ABS", VehicleType.MOTORBIKE),
+            new Vehicle(IdGenerator.generateVehicleId(), 3, "SGC2345F", "Black and White", "Honda Adv 150", VehicleType.MOTORBIKE),
+            new Vehicle(IdGenerator.generateVehicleId(), 4, "SLM5678K", "Dark Blue", "Hyundai Tucson SUV", VehicleType.CAR),
         };
     }
 
