@@ -30,12 +30,12 @@ public class JsonSerializableMasterDeckTest {
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 
-    //    @Test
-    //    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-    //        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_CARD_FILE,
-    //                JsonSerializableAddressBook.class).get();
-    //        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
-    //    }
+    @Test
+    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_CARD_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
 
     @Test
     public void toModelType_duplicateCards_throwsIllegalValueException() throws Exception {

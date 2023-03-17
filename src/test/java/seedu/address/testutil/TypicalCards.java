@@ -66,12 +66,12 @@ public class TypicalCards {
      * Returns an {@code Deck} with all the typical cards.
      */
     public static MasterDeck getTypicalMasterDeck() {
-        MasterDeck ab = new MasterDeck();
+        MasterDeck masterDeck = new MasterDeck();
         for (Card card : getTypicalCards()) {
-            ab.addCard(card);
+            masterDeck.addCard(card);
         }
-        ab.initDecks();
-        return ab;
+        masterDeck.initDecks();
+        return masterDeck;
     }
 
     public static List<Card> getTypicalCards() {
