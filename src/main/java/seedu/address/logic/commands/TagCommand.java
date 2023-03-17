@@ -3,6 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.Lecture;
@@ -14,11 +18,6 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Tag a video, a lecture, or a module.
@@ -46,9 +45,8 @@ public class TagCommand extends Command {
     private final boolean isTaggingVid;
 
     /**
-     * Creates a TagCommand to tag the specified {@code Video}, {@code Lecture}, or {@code Module}
+     * Creates a TagCommand to tag the specified {@code Module}
      */
-
 
     public TagCommand(Set<Tag> tags, ModuleCode moduleCode) {
         requireAllNonNull(tags, moduleCode);
@@ -62,6 +60,9 @@ public class TagCommand extends Command {
         this.isTaggingVid = false;
     }
 
+    /**
+     * Creates a TagCommand to tag the specified {@code Lecture}
+     */
     public TagCommand(Set<Tag> tags, ModuleCode moduleCode, LectureName lectureName) {
         requireAllNonNull(tags, moduleCode, lectureName);
 
@@ -74,6 +75,9 @@ public class TagCommand extends Command {
         this.isTaggingVid = false;
     }
 
+    /**
+     * Creates a TagCommand to tag the specified {@code Video}
+     */
     public TagCommand(Set<Tag> tags, ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
         requireAllNonNull(tags, moduleCode, lectureName, videoName);
 
@@ -94,7 +98,7 @@ public class TagCommand extends Command {
             tagModule(model);
         } else if (this.isTaggingLec) {
             tagLecture(model);
-        } else if (this.isTaggingVid){
+        } else if (this.isTaggingVid) {
             tagVideo(model);
         }
         return new CommandResult(MESSAGE_SUCCESS);

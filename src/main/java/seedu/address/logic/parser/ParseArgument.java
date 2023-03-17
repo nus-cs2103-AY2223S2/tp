@@ -1,19 +1,19 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.lecture.LectureName;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.video.VideoName;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.video.VideoName;
+
 
 /**
  * A dummy class containing utility methods used for parsing strings into ModuleCode, LectureName, and Video.
@@ -105,5 +105,4 @@ public class ParseArgument {
         }
         return new HashSet<>(listOfTags);
     }
-
 }

@@ -3,6 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.Lecture;
@@ -14,11 +19,6 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Tag a video, a lecture, or a module.
@@ -47,7 +47,7 @@ public class UntagCommand extends Command {
     private final boolean isUntaggingVid;
 
     /**
-     * Creates a TagCommand to tag the specified {@code Video}, {@code Lecture}, or {@code Module}
+     * Creates an UntagCommand to untag the specified {@code Module}
      */
 
 
@@ -63,6 +63,10 @@ public class UntagCommand extends Command {
         this.isUntaggingVid = false;
     }
 
+    /**
+     * Creates an UntagCommand to untag the specified {@code Lecture}
+     */
+
     public UntagCommand(Tag tag, ModuleCode moduleCode, LectureName lectureName) {
         requireAllNonNull(tag, moduleCode, lectureName);
 
@@ -75,6 +79,9 @@ public class UntagCommand extends Command {
         this.isUntaggingVid = false;
     }
 
+    /**
+     * Creates an UntagCommand to untag the specified {@code Video}
+     */
     public UntagCommand(Tag tag, ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
         requireAllNonNull(tag, moduleCode, lectureName, videoName);
 
@@ -95,7 +102,7 @@ public class UntagCommand extends Command {
             untagModule(model);
         } else if (this.isUntaggingLec) {
             untagLecture(model);
-        } else if (this.isUntaggingLec){
+        } else if (this.isUntaggingLec) {
             untagVideo(model);
         }
         return new CommandResult(MESSAGE_SUCCESS);
@@ -175,7 +182,6 @@ public class UntagCommand extends Command {
         Video untaggingVideo = targetLecture.getVideo(this.videoName);
 
         Set<Tag> currentTags = untaggingVideo.getTags();
-        
         if (!currentTags.contains(this.tag)) {
             throw new CommandException(MESSAGE_TAG_NOT_FOUND);
         }

@@ -3,7 +3,11 @@ package seedu.address.model.lecture;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;

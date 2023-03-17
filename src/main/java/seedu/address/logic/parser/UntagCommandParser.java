@@ -1,10 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -43,15 +44,11 @@ public class UntagCommandParser implements Parser<UntagCommand> {
         if (isUntaggingMod(presentPrefixes)) {
             ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getPreamble());
             return new UntagCommand(tag, moduleCode);
-        }
-
-        else if (isUntaggingLec(presentPrefixes)) {
+        } else if (isUntaggingLec(presentPrefixes)) {
             ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
             LectureName lectureName = ParseArgument.parseLecture(argMultimap.getPreamble());
             return new UntagCommand(tag, moduleCode, lectureName);
-        }
-
-        else {
+        } else {
             ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
             LectureName lectureName = ParseArgument.parseLecture(argMultimap.getValue(PREFIX_LECTURE).get());
             VideoName videoName = ParseArgument.parseVideo(argMultimap.getPreamble());
@@ -61,7 +58,9 @@ public class UntagCommandParser implements Parser<UntagCommand> {
     }
 
     private static List<Prefix> streamOfPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).collect(Collectors.toList());
+        return Stream.of(prefixes).filter(
+                prefix -> argumentMultimap.getValue(prefix).isPresent())
+                .collect(Collectors.toList());
     }
 
     private boolean isValidUntagCommand(List<Prefix> presentPrefixes) {
@@ -70,27 +69,27 @@ public class UntagCommandParser implements Parser<UntagCommand> {
     }
 
     private boolean isUntaggingMod(List<Prefix> presentPrefixes) {
-        if (presentPrefixes.contains(PREFIX_TAG) &&
-                !presentPrefixes.contains(PREFIX_MODULE) &&
-                !presentPrefixes.contains(PREFIX_LECTURE)) {
+        if (presentPrefixes.contains(PREFIX_TAG)
+                && !presentPrefixes.contains(PREFIX_MODULE)
+                && !presentPrefixes.contains(PREFIX_LECTURE)) {
             return true;
         }
         return false;
     }
 
     private boolean isUntaggingLec(List<Prefix> presentPrefixes) {
-        if (presentPrefixes.contains(PREFIX_TAG) &&
-                presentPrefixes.contains(PREFIX_MODULE) &&
-                !presentPrefixes.contains(PREFIX_LECTURE)) {
+        if (presentPrefixes.contains(PREFIX_TAG)
+                && presentPrefixes.contains(PREFIX_MODULE)
+                && !presentPrefixes.contains(PREFIX_LECTURE)) {
             return true;
         }
         return false;
     }
 
     private boolean isUntaggingVideo(List<Prefix> presentPrefixes) {
-        if (presentPrefixes.contains(PREFIX_TAG) &&
-                presentPrefixes.contains(PREFIX_MODULE) &&
-                presentPrefixes.contains(PREFIX_LECTURE)) {
+        if (presentPrefixes.contains(PREFIX_TAG)
+                && presentPrefixes.contains(PREFIX_MODULE)
+                && presentPrefixes.contains(PREFIX_LECTURE)) {
             return true;
         }
         return false;

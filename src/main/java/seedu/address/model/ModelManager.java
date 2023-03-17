@@ -19,7 +19,6 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 

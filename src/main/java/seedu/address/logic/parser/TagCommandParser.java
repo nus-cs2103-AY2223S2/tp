@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.Set;
@@ -44,15 +46,11 @@ public class TagCommandParser implements Parser<TagCommand> {
         if (isTaggingMod(presentPrefixes)) {
             ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getPreamble());
             return new TagCommand(tags, moduleCode);
-        }
-
-        else if (isTaggingLec(presentPrefixes)) {
+        } else if (isTaggingLec(presentPrefixes)) {
             ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
             LectureName lectureName = ParseArgument.parseLecture(argMultimap.getPreamble());
             return new TagCommand(tags, moduleCode, lectureName);
-        }
-
-        else {
+        } else {
             ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
             LectureName lectureName = ParseArgument.parseLecture(argMultimap.getValue(PREFIX_LECTURE).get());
             VideoName videoName = ParseArgument.parseVideo(argMultimap.getPreamble());
@@ -61,7 +59,9 @@ public class TagCommandParser implements Parser<TagCommand> {
 
     }
     private static List<Prefix> streamOfPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).collect(Collectors.toList());
+        return Stream.of(prefixes).filter(
+                prefix -> argumentMultimap.getValue(prefix).isPresent())
+                .collect(Collectors.toList());
     }
 
     private boolean isValidTagCommand(List<Prefix> presentPrefixes) {
@@ -70,27 +70,27 @@ public class TagCommandParser implements Parser<TagCommand> {
     }
 
     private boolean isTaggingMod(List<Prefix> presentPrefixes) {
-        if (presentPrefixes.contains(PREFIX_TAG) &&
-                !presentPrefixes.contains(PREFIX_MODULE) &&
-                !presentPrefixes.contains(PREFIX_LECTURE)) {
+        if (presentPrefixes.contains(PREFIX_TAG)
+                && !presentPrefixes.contains(PREFIX_MODULE)
+                && !presentPrefixes.contains(PREFIX_LECTURE)) {
             return true;
         }
         return false;
     }
 
     private boolean isTaggingLec(List<Prefix> presentPrefixes) {
-        if (presentPrefixes.contains(PREFIX_TAG) &&
-                presentPrefixes.contains(PREFIX_MODULE) &&
-                !presentPrefixes.contains(PREFIX_LECTURE)) {
+        if (presentPrefixes.contains(PREFIX_TAG)
+                && presentPrefixes.contains(PREFIX_MODULE)
+                && !presentPrefixes.contains(PREFIX_LECTURE)) {
             return true;
         }
         return false;
     }
 
     private boolean isTaggingVideo(List<Prefix> presentPrefixes) {
-        if (presentPrefixes.contains(PREFIX_TAG) &&
-                presentPrefixes.contains(PREFIX_MODULE) &&
-                presentPrefixes.contains(PREFIX_LECTURE)) {
+        if (presentPrefixes.contains(PREFIX_TAG)
+                && presentPrefixes.contains(PREFIX_MODULE)
+                && presentPrefixes.contains(PREFIX_LECTURE)) {
             return true;
         }
         return false;
