@@ -19,18 +19,18 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.MasterDeck;
 import seedu.address.model.ReadOnlyMasterDeck;
 
-public class JsonAddressBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+public class JsonMasterDeckStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonMasterDeckStorageTest");
 
     @TempDir
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readMasterDeck_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readMasterDeck(null));
     }
 
-    private java.util.Optional<ReadOnlyMasterDeck> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyMasterDeck> readMasterDeck(String filePath) throws Exception {
         return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,28 +42,27 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readMasterDeck("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readMasterDeck("notJsonFormatAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readMasterDeck_invalidPersonAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readMasterDeck("invalidPersonAddressBook.json"));
     }
 
-    /*
-    @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
-    }
-     */
+    //    @Test
+    //    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
+    //        assertThrows(DataConversionException.class, ()
+    //        -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    //    }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveMasterDeck_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         MasterDeck original = getTypicalMasterDeck();
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
@@ -89,14 +88,14 @@ public class JsonAddressBookStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveMasterDeck_nullAddressBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveMasterDeck(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyMasterDeck addressBook, String filePath) {
+    private void saveMasterDeck(ReadOnlyMasterDeck addressBook, String filePath) {
         try {
             new JsonAddressBookStorage(Paths.get(filePath))
                     .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
@@ -107,6 +106,6 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new MasterDeck(), null));
+        assertThrows(NullPointerException.class, () -> saveMasterDeck(new MasterDeck(), null));
     }
 }
