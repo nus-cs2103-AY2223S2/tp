@@ -165,11 +165,7 @@ Search for a contact based on a keyword, or by specifying its index number.
 
 Format: `find [INDEX or KEYWORD(S)]`
 
-<<<<<<< HEAD
 * The search is case-insensitive. e.g. `hans` will match `Hans`
-=======
-* The find is case-insensitive. e.g `hans` will match `Hans`
->>>>>>> 53e0b3e9525bde2e18a61a0e05e6aaf5baa25200
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is found.
 * Only full words will be matched e.g. `Han` will not match `Hans`
