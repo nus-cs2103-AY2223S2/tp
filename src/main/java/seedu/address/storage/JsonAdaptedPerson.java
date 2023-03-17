@@ -64,10 +64,11 @@ class JsonAdaptedPerson {
         phone = source.getOptionalPhone().map(Phone::toString).orElse("");
         email = source.getOptionalEmail().map(Email::toString).orElse("");
         address = source.getOptionalAddress().map(Address::toString).orElse("");
-        remark = source.getRemark().value;
+        remark = source.getOptionalRemark().map(Remark::toString).orElse("");
         subjects.addAll(source.getSubjects().stream()
                 .map(JsonAdaptedSubject::new)
                 .collect(Collectors.toList()));
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

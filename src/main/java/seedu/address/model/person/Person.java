@@ -24,21 +24,22 @@ public class Person {
 
     // Data fields
     private final Optional<Address> address;
-    private final Remark remark;
+    private final Optional<Remark> remark;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Subject> subjects = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
+
     public Person(Name name, Phone phone, Email email, Address address, Remark remark,
                   Set<Subject> subjects, Set<Tag> tags) {
-        requireAllNonNull(name, remark);
+        requireAllNonNull(name);
         this.name = name;
         this.phone = Optional.ofNullable(phone);
         this.email = Optional.ofNullable(email);
         this.address = Optional.ofNullable(address);
-        this.remark = remark;
+        this.remark = Optional.ofNullable(remark);
         this.tags.addAll(tags);
         this.subjects.addAll(subjects);
     }
@@ -59,7 +60,7 @@ public class Person {
         return address;
     }
 
-    public Remark getRemark() {
+    public Optional<Remark> getOptionalRemark() {
         return remark;
     }
 
@@ -118,7 +119,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, subjects, tags);
+        return Objects.hash(name, phone, email, address, subjects, remark, tags);
     }
 
     @Override
@@ -132,7 +133,6 @@ public class Person {
                 .append(phone)
                 .append(email)
                 .append(address)
-                .append(getRemark());
 
         Set<Subject> subjects = getSubjects();
         if (!subjects.isEmpty()) {
