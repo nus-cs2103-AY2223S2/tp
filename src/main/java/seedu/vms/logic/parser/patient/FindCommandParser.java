@@ -20,6 +20,7 @@ public class FindCommandParser implements CommandParser {
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+    @Override
     public FindCommand parse(ArgumentMultimap argsMap) throws ParseException {
         String trimmedArgs = argsMap.getPreamble().trim();
         if (trimmedArgs.isEmpty()) {

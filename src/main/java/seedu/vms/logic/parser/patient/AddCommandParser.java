@@ -35,6 +35,7 @@ public class AddCommandParser implements CommandParser {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
+    @Override
     public AddCommand parse(ArgumentMultimap argsMap) throws ParseException {
         if (!arePrefixesPresent(argsMap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DOB, PREFIX_BLOODTYPE)
                 || !argsMap.getPreamble().isEmpty()) {

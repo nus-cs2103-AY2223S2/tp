@@ -19,6 +19,7 @@ public class DeleteCommandParser implements CommandParser {
      * and returns a DeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+    @Override
     public DeleteCommand parse(ArgumentMultimap argsMap) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(argsMap.getPreamble());

@@ -26,6 +26,7 @@ public class EditCommandParser implements CommandParser {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
+    @Override
     public EditCommand parse(ArgumentMultimap argsMap) throws ParseException {
         requireNonNull(argsMap);
 
