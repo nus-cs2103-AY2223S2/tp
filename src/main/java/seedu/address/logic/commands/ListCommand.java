@@ -77,7 +77,7 @@ public class ListCommand extends Command {
         if (moduleCode != null && lectureName != null) {
             if (!model.hasLecture(moduleCode, lectureName)) {
                 return new CommandResult(
-                    String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, moduleCode, lectureName), Level.MODULE);
+                    String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode), Level.MODULE);
             }
             // Update filtered videos and show
             return new CommandResult(String.format(MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName), Level.VIDEO);
