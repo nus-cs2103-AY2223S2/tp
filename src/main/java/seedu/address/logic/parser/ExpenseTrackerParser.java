@@ -68,7 +68,7 @@ public class ExpenseTrackerParser {
             return new RemarkCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ListCategory.COMMAND_WORD:
             return new ListCategory();
