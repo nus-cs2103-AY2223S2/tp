@@ -88,7 +88,7 @@ public class AddressBookParser {
             return new ViewCustomerCommandParser().parse(arguments);
 
         case ViewPartCommand.COMMAND_WORD:
-            return new ViewPartCommandParser().parse(arguments);
+            return new ViewPartCommand(arguments);
 
         case ViewAppointmentCommand.COMMAND_WORD:
             return new ViewAppointmentCommandParser().parse(arguments);

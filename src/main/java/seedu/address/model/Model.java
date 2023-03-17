@@ -102,6 +102,8 @@ public interface Model {
 
     ObservableList<Vehicle> getFilteredVehicleList();
 
+    PartMap getPartMap();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
@@ -180,4 +182,5 @@ public interface Model {
 
     void updateFilteredVehicleList(Predicate<Vehicle> predicate);
 
+    void updatePartsMap();
 }

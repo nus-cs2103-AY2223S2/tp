@@ -34,13 +34,13 @@ public class Shop implements ReadOnlyShop {
     private final UniqueAppointmentList appointments = new UniqueAppointmentList();
 
     //TODO: convert back to final, after figuring out how to properly implement setPartMap immutably
-    private PartMap partMap;
+    //NOTE: Cannot convert to final due to setParts(newData.getPartMap());
+    private PartMap partMap = new PartMap();
 
     /**
      * Constructor for class Shop.
      */
     public Shop() {
-        this.partMap = new PartMap();
     }
 
     /**
