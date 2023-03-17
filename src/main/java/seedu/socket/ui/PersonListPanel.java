@@ -44,9 +44,9 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
+
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
                 setOnMouseClicked(e -> {
-                    System.out.println("Single click on item: " + personListView.getItems().get(getIndex()));
                     logic.setViewedPerson(getIndex());
                 });
             }

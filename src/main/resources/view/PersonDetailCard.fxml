@@ -22,16 +22,7 @@
                         <Insets bottom="5" left="15" right="5" top="5" />
                     </padding>
                     <children>
-                        <HBox spacing="5">
-                            <children>
-                                <Label styleClass="cell_big_label" text="Name: ">
-                                    <minWidth>
-                                        <Region fx:constant="USE_PREF_SIZE" />
-                                    </minWidth>
-                                </Label>
-                                <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
-                            </children>
-                        </HBox>
+                          <Label fx:id="name" styleClass="label-header" text="\$first" wrapText="true" />
                         <FlowPane fx:id="languages" />
                         <FlowPane fx:id="tags" />
                         <HBox spacing="5">
