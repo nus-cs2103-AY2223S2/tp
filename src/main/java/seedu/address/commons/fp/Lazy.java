@@ -1,5 +1,6 @@
 package seedu.address.commons.fp;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -46,5 +47,21 @@ public class Lazy<T> {
             supplierOrValue = Either.right(supplierOrValue.getLeft().get());
         }
         return supplierOrValue.getRight();
+    }
+
+    /**
+     * Maps the lazy. If the lazy value is already evaluated, then the new
+     * lazy function would also be evaluated.
+     *
+     * @param func the map function
+     * @param <R>  the type of the new value contained by the lazy.
+     * @return the result.
+     */
+    public <R> Lazy<R> map(Function<? super T, ? extends R> func) {
+        return new Lazy<>(
+            this.supplierOrValue
+                .<Supplier<R>>mapLeft((f) -> () -> func.apply(f.get()))
+                .mapRight(func)
+        );
     }
 }

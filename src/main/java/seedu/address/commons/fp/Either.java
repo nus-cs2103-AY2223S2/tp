@@ -1,5 +1,7 @@
 package seedu.address.commons.fp;
 
+import java.util.function.Function;
+
 /**
  * Represents an instance that can be either left or right.
  *
@@ -59,6 +61,10 @@ public abstract class Either<L, R> {
      */
     public abstract boolean isRight();
 
+    public abstract <T> Either<T, R> mapLeft(Function<? super L, ? extends T> mp);
+
+    public abstract <T> Either<L, T> mapRight(Function<? super R, ? extends T> mp);
+
     /**
      * The left instance.
      *
@@ -93,6 +99,16 @@ public abstract class Either<L, R> {
         @Override
         public boolean isRight() {
             return false;
+        }
+
+        @Override
+        public <T> Either<T, R> mapLeft(Function<? super L, ? extends T> mp) {
+            return Either.left(mp.apply(this.value));
+        }
+
+        @Override
+        public <T> Either<L, T> mapRight(Function<? super R, ? extends T> mp) {
+            return Either.left(this.value);
         }
     }
 
@@ -130,6 +146,16 @@ public abstract class Either<L, R> {
         @Override
         public boolean isRight() {
             return true;
+        }
+
+        @Override
+        public <T> Either<T, R> mapLeft(Function<? super L, ? extends T> mp) {
+            return Either.right(this.value);
+        }
+
+        @Override
+        public <T> Either<L, T> mapRight(Function<? super R, ? extends T> mp) {
+            return Either.right(mp.apply(this.value));
         }
     }
 }

@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.fp.Lazy;
 
 /**
  * The service locator for locating already instantiated services. This can
@@ -27,16 +28,7 @@ public class GetUtils {
     private static final String CLEAR_MESSAGE =
         "Clearing the contents of GetUtils.";
 
-    /**
-     * For storing services that has already been instantiated
-     */
-    private static final Map<Class<?>, Object> services = new HashMap<>();
-
-    /**
-     * For getting the services that has been registered as lazy
-     */
-    private static final Map<Class<?>, Supplier<?>> servicesSuppliers =
-        new HashMap<>();
+    private static final Map<Class<?>, Lazy<?>> services = new HashMap<>();
 
     private static final Logger logger = LogsCenter.getLogger(GetUtils.class);
 
@@ -46,39 +38,37 @@ public class GetUtils {
     public static void clear() {
         logger.info(CLEAR_MESSAGE);
         services.clear();
-        servicesSuppliers.clear();
     }
 
     /**
      * Gets the instance of the corresponding class
+     *
+     * @param clazz the class of the service that's registered.
      */
     @SuppressWarnings("unchecked")
     public static <T> T get(Class<T> clazz) {
         requireNonNull(clazz);
         if (services.containsKey(clazz)) {
             try {
-                return (T) services.get(clazz);
+                return (T) services.get(clazz).get();
             } catch (ClassCastException e) {
                 throw new GetException(String.format(CAST_FAILED_MESSAGE,
                     e.getMessage()));
             }
-        }
-        if (servicesSuppliers.containsKey(clazz)) {
-            T result;
-            try {
-                result = (T) servicesSuppliers.get(clazz).get();
-                logger.info(String.format(INSTANTIATE_LAZY_VARIABLE_MESSAGE,
-                    result.toString(), clazz.getName()));
-            } catch (ClassCastException e) {
-                throw new GetException(String.format(CAST_FAILED_MESSAGE,
-                    e.getMessage()));
-            }
-            servicesSuppliers.remove(clazz);
-            services.put(clazz, result);
-            return result;
         }
         throw new GetException(String.format(SERVICE_NOT_REGISTERED_MESSAGE,
             clazz.getName()));
+    }
+
+    /**
+     * Gets the value corresponding to the class clazz, in a lazy manner.
+     *
+     * @param clazz the class that contains the key
+     * @param <T>   the type of the value contained by the lazy instance.
+     * @return the lazy instance
+     */
+    public static <T> Lazy<T> getLazy(Class<T> clazz) {
+        return Lazy.of(() -> get(clazz));
     }
 
     /**
@@ -88,20 +78,13 @@ public class GetUtils {
      * @param <T> the type of the value.
      */
     private static <T> void throwIfContains(Class<T> key) {
-        if (servicesSuppliers.containsKey(key)) {
-            throw new GetException(
-                String.format(
-                    SERVICE_ALREADY_REGISTERED_MESSAGE,
-                    servicesSuppliers.get(key).get().toString()
-                )
-            );
+        if (!services.containsKey(key)) {
+            return;
         }
-        if (services.containsKey(key)) {
-            throw new GetException(
-                String.format(SERVICE_ALREADY_REGISTERED_MESSAGE,
-                    services.get(key).toString())
-            );
-        }
+        throw new GetException(
+            String.format(SERVICE_ALREADY_REGISTERED_MESSAGE,
+                services.get(key).toString())
+        );
     }
 
     /**
@@ -111,16 +94,12 @@ public class GetUtils {
      * @param <T> the type of the value.
      */
     public static <T> void delete(Class<T> key) {
-        if (servicesSuppliers.containsKey(key)) {
-            logger.info(String.format(DELETE_IF_CONTAINS_MESSAGE,
-                servicesSuppliers.get(key).get().toString(), key.getName()));
-            servicesSuppliers.remove(key);
+        if (!services.containsKey(key)) {
+            return;
         }
-        if (services.containsKey(key)) {
-            logger.info(String.format(DELETE_IF_CONTAINS_MESSAGE,
-                services.get(key).toString(), key.getName()));
-            services.remove(key);
-        }
+        logger.info(String.format(DELETE_IF_CONTAINS_MESSAGE,
+            services.get(key).toString(), key.getName()));
+        services.remove(key);
     }
 
     /**
@@ -137,7 +116,7 @@ public class GetUtils {
         requireNonNull(key);
         requireNonNull(value);
         throwIfContains(key);
-        services.put(key, value);
+        services.put(key, Lazy.of(value));
     }
 
     /**
@@ -149,7 +128,7 @@ public class GetUtils {
      */
     public static <T> void putForce(Class<T> key, T value) {
         delete(key);
-        services.put(key, value);
+        services.put(key, Lazy.of(value));
     }
 
     /**
@@ -164,7 +143,7 @@ public class GetUtils {
         requireNonNull(key);
         requireNonNull(supplier);
         throwIfContains(key);
-        servicesSuppliers.put(key, supplier);
+        services.put(key, Lazy.of(supplier));
     }
 
     /**
@@ -179,7 +158,7 @@ public class GetUtils {
         requireNonNull(key);
         requireNonNull(supplier);
         delete(key);
-        servicesSuppliers.put(key, supplier);
+        services.put(key, Lazy.of(supplier));
     }
 
     /**

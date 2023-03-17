@@ -64,9 +64,9 @@ public class Flight implements Item {
         this.departureLocation = departureLocation;
         this.arrivalLocation = arrivalLocation;
         if (pilotLink != null) {
-            this.pilotLink = new Link<>(Pilot.SHAPE, pilotLink, Pilot.getLinkResolver());
+            this.pilotLink = new Link<>(Pilot.SHAPE, pilotLink, Pilot.getLazyLinkResolver());
         } else {
-            this.pilotLink = new Link<>(Pilot.SHAPE, Pilot.getLinkResolver());
+            this.pilotLink = new Link<>(Pilot.SHAPE, Pilot.getLazyLinkResolver());
         }
     }
 

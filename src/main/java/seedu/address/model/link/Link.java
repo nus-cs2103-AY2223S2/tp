@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.fp.Lazy;
 import seedu.address.model.item.Item;
 import seedu.address.model.link.exceptions.LinkDuplicateException;
 import seedu.address.model.link.exceptions.LinkException;
@@ -62,22 +63,22 @@ public class Link<K, T extends Item,
     /**
      * The resolver that's used to resolve the links.
      */
-    private final R resolver;
+    private final Lazy<R> resolverLazy;
 
     /**
      * Creates a link with the given shape.
      *
-     * @param shape    the shape of the link.
-     * @param contents the contents that this link contains.
-     * @param resolver the {@link LinkResolver} that resolves to an item from
-     *                 the id.
+     * @param shape        the shape of the link.
+     * @param contents     the contents that this link contains.
+     * @param resolverLazy the {@link LinkResolver} that resolves to an item from
+     *                     the id.
      */
     public Link(Map<K, Integer> shape,
-        Map<K, Deque<String>> contents, R resolver) throws LinkException {
+        Map<K, Deque<String>> contents, Lazy<R> resolverLazy) throws LinkException {
         fitShapeOrThrow(shape, contents);
         this.shape = deepCopy(shape);
         this.contents = deepCopyMapDq(contents);
-        this.resolver = resolver;
+        this.resolverLazy = resolverLazy;
         fill(this.shape, this.contents);
     }
 
@@ -86,10 +87,10 @@ public class Link<K, T extends Item,
      *
      * @param shape the shape of the field.
      */
-    public Link(Map<K, Integer> shape, R resolver) {
+    public Link(Map<K, Integer> shape, Lazy<R> resolverLazy) {
         this.shape = deepCopy(shape);
         this.contents = new HashMap<>();
-        this.resolver = resolver;
+        this.resolverLazy = resolverLazy;
         fill(this.shape, this.contents);
     }
 
@@ -356,7 +357,7 @@ public class Link<K, T extends Item,
         keyValidOrThrow(key);
         return contents.get(key)
                    .stream()
-                   .map(resolver::resolve)
+                   .map(resolverLazy.get()::resolve)
                    .collect(Collectors.toList());
     }
 
@@ -374,7 +375,7 @@ public class Link<K, T extends Item,
         final List<T> result = new ArrayList<>();
         final List<String> tbd = new ArrayList<>();
         for (String id : contents.get(key)) {
-            final Optional<T> tmp = resolver.resolve(id);
+            final Optional<T> tmp = resolverLazy.get().resolve(id);
             if (tmp.isPresent()) {
                 result.add(tmp.get());
             } else {
@@ -397,7 +398,7 @@ public class Link<K, T extends Item,
         keyValidOrThrow(key);
         final List<T> result = new ArrayList<>();
         for (String id : contents.get(key)) {
-            final Optional<T> tmp = resolver.resolve(id);
+            final Optional<T> tmp = resolverLazy.get().resolve(id);
             tmp.ifPresent(result::add);
         }
         return result;

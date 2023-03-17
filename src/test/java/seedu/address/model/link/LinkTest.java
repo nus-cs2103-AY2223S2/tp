@@ -23,6 +23,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import seedu.address.commons.fp.Lazy;
 import seedu.address.model.item.Item;
 import seedu.address.model.link.exceptions.LinkDuplicateException;
 import seedu.address.model.link.exceptions.LinkException;
@@ -45,20 +46,20 @@ public class LinkTest {
         contents.put(CategoryStub.CATEGORY_A, new ArrayDeque<>());
         contents.put(CategoryStub.CATEGORY_B, new ArrayDeque<>());
         shape = Map.of(CategoryStub.CATEGORY_A, 1, CategoryStub.CATEGORY_B, 2);
-        sut = new Link<>(shape, contents, resolver);
+        sut = new Link<>(shape, contents, Lazy.of(resolver));
     }
 
     void setUpLinkAsFull() throws LinkException {
         contents.get(CategoryStub.CATEGORY_A).push("test-id-1");
         contents.get(CategoryStub.CATEGORY_B).push("test-id-2");
         contents.get(CategoryStub.CATEGORY_B).push("test-id-3");
-        sut = new Link<>(shape, contents, resolver);
+        sut = new Link<>(shape, contents, Lazy.of(resolver));
     }
 
     @Test
     void constructor_twoValidParam_shouldCreateNewInstance() throws LinkException {
         final Link<CategoryStub, ItemStub, LinkResolver<ItemStub>> result =
-            new Link<>(shape, resolver);
+            new Link<>(shape, Lazy.of(resolver));
         assertNotNull(result);
         for (CategoryStub key : shape.keySet()) {
             assertTrue(result.getUnmodifiableContents().containsKey(key));
@@ -68,7 +69,7 @@ public class LinkTest {
     @Test
     void constructor_threeValidParam_shouldCreateNewInstance() throws LinkException {
         final Link<CategoryStub, ItemStub, LinkResolver<ItemStub>> result =
-            new Link<>(shape, contents, resolver);
+            new Link<>(shape, contents, Lazy.of(resolver));
         assertNotNull(result);
         for (CategoryStub key : shape.keySet()) {
             assertTrue(result.getUnmodifiableContents().containsKey(key));
@@ -79,7 +80,7 @@ public class LinkTest {
     void constructor_threeParamUnspecifiedKey_shouldThrowLinkException() {
         contents.put(CategoryStub.UNSUPPORTED, new ArrayDeque<>());
         assertThrows(LinkException.class, () -> new Link<>(shape, contents,
-            resolver));
+            Lazy.of(resolver)));
     }
 
     @Test
@@ -88,7 +89,7 @@ public class LinkTest {
         contents.get(CategoryStub.CATEGORY_A).push("test-id-2");
         contents.get(CategoryStub.CATEGORY_A).push("test-id-3");
         assertThrows(LinkException.class, () -> new Link<>(shape, contents,
-            resolver));
+            Lazy.of(resolver)));
     }
 
     @Test
