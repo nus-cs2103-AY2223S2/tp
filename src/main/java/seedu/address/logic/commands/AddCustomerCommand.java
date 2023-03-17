@@ -9,13 +9,12 @@ import seedu.address.model.entity.person.Customer;
 /**
  * Manages adding of customers
  */
-public class AddCustomerCommand extends RedoableCommand {
+public class AddCustomerCommand extends AddCommand {
     public static final String COMMAND_WORD = "addcustomer";
     public static final String MESSAGE_USAGE = AddCommand.MESSAGE_USAGE;
     public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already registered";
 
-    private final Customer toAdd;
 
     /**
      * Constructs command that adds customer to the model
@@ -23,7 +22,7 @@ public class AddCustomerCommand extends RedoableCommand {
      * @param customer Customer to be added
      */
     public AddCustomerCommand(Customer customer) {
-        this.toAdd = customer;
+        super(customer);
     }
 
     /**
@@ -36,7 +35,7 @@ public class AddCustomerCommand extends RedoableCommand {
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-
+        Customer toAdd = (Customer) this.toAdd;
         if (model.hasCustomer(toAdd.getId())) {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
         }
