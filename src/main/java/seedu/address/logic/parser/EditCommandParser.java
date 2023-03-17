@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -34,9 +35,16 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditPatientDescriptor editPatientDescriptor = new EditCommand.EditPatientDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+
+        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+            System.out.println(argMultimap.getValue(PREFIX_STATUS).get());
+            editPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_STATUS).get()));
         }
+
+//        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+//            System.out.println(argMultimap.getValue(PREFIX_NAME).get());
+//            editPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+//        }
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

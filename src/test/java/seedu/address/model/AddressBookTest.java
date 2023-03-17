@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPatients.ALICE;
+import static seedu.address.testutil.TypicalPatients.ALEX;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -44,9 +44,9 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two patients with the same identity fields
-        Patient editedAlice = new PatientBuilder(ALICE).withNric("S1234567A")
+        Patient editedAlice = new PatientBuilder(ALEX).withNric("S1334567A")
                 .build();
-        List<Patient> newPatients = Arrays.asList(ALICE, editedAlice);
+        List<Patient> newPatients = Arrays.asList(ALEX, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPatients);
 
         assertThrows(DuplicatePatientException.class, () -> addressBook.resetData(newData));
@@ -59,19 +59,19 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPatient(ALICE));
+        assertFalse(addressBook.hasPatient(ALEX));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPatient(ALICE);
-        assertTrue(addressBook.hasPatient(ALICE));
+        addressBook.addPatient(ALEX);
+        assertTrue(addressBook.hasPatient(ALEX));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPatient(ALICE);
-        Patient editedAlice = new PatientBuilder(ALICE).withNric("S1234567")
+        addressBook.addPatient(ALEX);
+        Patient editedAlice = new PatientBuilder(ALEX).withStatus("YELLOW")
                 .build();
         assertTrue(addressBook.hasPatient(editedAlice));
     }

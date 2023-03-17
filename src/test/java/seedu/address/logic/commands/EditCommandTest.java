@@ -97,9 +97,9 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Patient firstPatient = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient firstPatient = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased()); //gets the first person
         EditCommand.EditPatientDescriptor descriptor = new EditPersonDescriptorBuilder(firstPatient).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor); //replace 2nd person with a 1st descriptor
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PATIENT);
     }
