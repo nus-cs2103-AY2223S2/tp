@@ -3,7 +3,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <style>
+    .sidebar {
+      position: fixed;
+      top: 15%;
+      right: 1%;
+      width: 20%;
+      height: 100%;
+      overflow-y: auto;
+      font-size: 14px
+    }
+
+    div.sidebar ul {
+      list-style: none;
+    }
+
+    div.sidebar a {
+        color: grey;
+    }
+
+    .wrapper {
+      margin-right:22%;
+    }
+  </style>
 
   {%- include custom-head.html -%}
 
