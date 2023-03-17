@@ -16,7 +16,7 @@
         {% endif %}
       </div>
 
-      {% if page.title in ["User Guide", "Developer Guide"] %}
+      {% if page.title == "User Guide" or page.title == "Developer Guide" %}
       <div class="wrapper" style="margin-right:22%;margin-left: 3%;" >
         {{ content }}
       </div>
