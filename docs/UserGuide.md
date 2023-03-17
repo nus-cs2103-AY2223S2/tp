@@ -60,28 +60,28 @@ AutoM8 is a **desktop app for an auto repair shop, optimized for use via a Comma
 ### Adding a customer: `add customer`
 Adds a customer to the system and assigns a unique customer ID.
 
-Format: `add customer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `addcustomer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
-Example: `add customer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+Example: `addcustomer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
 ### Adding a vehicle: `add vehicle`
 Adds a vehicle of specified type (i.e. motorbike, 4wd) to the system and assigns a unique vehicle ID.
 
-Format: `add vehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE`
+Format: `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE`
 
-Example: `add vehicle p/SBA1234A b/Toyota c/1 t/4wd`
+Example: `addvehicle p/SBA1234A b/Toyota c/1 t/4wd`
 
 ### Adding a vehicle part: `add part`
 Adds a vehicle part to the system.
 
-Format: `add part n/NAME q/Quantity`
+Format: `addpart n/NAME q/Quantity`
 
-Example: `add part n/Cylinder Head q/50`
+Example: `addpart n/Cylinder Head q/50`
 
 ### Adding a service to a vehicle: `add service`
 Adds a service to perform on the specified vehicle plate number.
 
-Format: `add service v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`
+Format: `addservice v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`
 
 Examples:
 * `add service v/10 t/standard s/in progress d/Customer says abc`
@@ -91,9 +91,9 @@ Note: Adding service without specifying the type of service will default to “t
 ### Adding a customer appointment: `add appointment`
 Adds a customer appointment to the system.
 
-Format: `add appointment c/CUSTOMER_ID d/DATE t/TIME`
+Format: `addappointment c/CUSTOMER_ID d/DATE t/TIME`
 
-Example: `add appointment c/5 d/05/03/2023 t/5pm`
+Example: `addappointment c/5 d/05/03/2023 t/5pm`
 
 ---
 ### List/Sort
@@ -104,10 +104,10 @@ Shows all vehicles/customers/parts/appointments.
 Format: `list (vehicles/customers/parts/appointments)`
 
 Examples:
-* `list vehicles`
-* `list customers`
-* `list parts`
-* `list appointments`
+* `listvehicles`
+* `listcustomers`
+* `listparts`
+* `listappointments`
 
 Shows a list of all persons in the address book.
 
@@ -133,55 +133,73 @@ Finds vehicles/customers/parts/appointments that contain any of the given keywor
 Format: `find (vehicle/customer/part/appointment) KEYWORD`
 
 Examples:
-* `find vehicle toyota`
-* `find customer John`
-* `find part Cylinder Head`
-* `find appointment 05/03/2023`
+* `findvehicle toyota`
+* `findcustomer John`
+* `findpart Cylinder Head`
+* `findappointment 05/03/2023`
 ---
 ### View
 
-### Viewing specific vehicle/customer/part/appointment details: `view`
+### Viewing specific vehicle/customer/appointment details: `view`
 
 View a specific vehicle/customer/part/appointment detail. Id can be found by using the find or list command.
 
-Format: `view (vehicle/customer/part/appointment) ID`
+Format: `view(vehicle/customer/appointment) ID`
 
 Examples:
-* `view vehicle 12`
-* `view customer 2`
-* `view part 23`
-* `view appointment 56`
+* `viewvehicle 12`
+* `viewcustomer 2`
+* `viewappointment 56`
+
+### Viewing specific vehicle/customer/part/appointment details: `view`
+
+View a specific part detail. Part name can be found by using the find or list command.
+
+Format: `viewpart name`
+
+Examples:
+* `viewpart Cylinder Head`
 
 ---
 ### Edit
 
-### Editing a vehicle/customer/part/appointment : `edit`
+### Editing a vehicle/customer/appointment : `edit`
 
-Updates the specified (Vehicle/Customer/Part/Appointment) information
+Updates the specified (Vehicle/Customer/Appointment) information
 
-Format: `edit (vehicle/customer/part/appointment) ID [?/PARAM] …​`
+Format: `edit(vehicle/customer/appointment) ID [?/PARAM] …​`
 
 * Edits the specified object at the specified `ID`. The id refers to the index number shown in the displayed list from the list or find command. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit customer 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with id 1 to be `91234567` and `johndoe@example.com` respectively.
-*  `edit vehicle 2 p/SBA9876G` Edits the plate number of the vehicle with id 2 to be `SBA9876G`.
+*  `editcustomer 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with id 1 to be `91234567` and `johndoe@example.com` respectively.
+*  `editvehicle 2 p/SBA9876G` Edits the plate number of the vehicle with id 2 to be `SBA9876G`.
 
 ---
 ### Delete
 
-### Deleting a vehicle/customer/part/appointment : `delete`
+### Deleting a vehicle/customer/appointment : `delete`
 
 Deletes the specified vehicle/customer/part/appointment from the system and all its related records.
 * Deletes the vehicle/customer/part/appointment at the specified `ID`.
 * The id refers to the index number shown in the displayed list from the list or find command.
 * The id **must be a positive integer** 1, 2, 3, …​
 
-Format: `delete (vehicle/customer/part/appointment) ID`
+Format: `delete(vehicle/customer/appointment) ID`
 
-Example: `delete customer 12` deletes the customer with id 12 and all their related records in the AutoM8 system.
+Example: `deletecustomer 12` deletes the customer with id 12 and all their related records in the AutoM8 system.
+
+### Deleting a part : `delete`
+
+Deletes the specified part from the system and all its related records.
+* Deletes the part with the specified `NAME`.
+
+Format: `deletepart NAME`
+
+Example: `deletepart Cylinder Head` deletes the part 'Cylinder Head' and all their related records in the AutoM8 system.
+
 
 ---
 ### Actions
