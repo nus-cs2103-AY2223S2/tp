@@ -11,37 +11,37 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of events.
  */
 public class EventListPanel extends UiPart<Region> {
     private static final String FXML = "EventListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EventListPanel.class);
 
     @FXML
-    private ListView<Event> personListView;
+    private ListView<Event> eventListView;
 
     /**
      * Creates a {@code EventListPanel} with the given {@code ObservableList}.
      */
-    public EventListPanel(ObservableList<Event> personList) {
+    public EventListPanel(ObservableList<Event> eventList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new EventListViewCell());
+        eventListView.setItems(eventList);
+        eventListView.setCellFactory(listView -> new EventListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code EventCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCard}.
      */
     class EventListViewCell extends ListCell<Event> {
         @Override
-        protected void updateItem(Event person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Event event, boolean empty) {
+            super.updateItem(event, empty);
 
-            if (empty || person == null) {
+            if (empty || event == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new EventCard(person, getIndex() + 1).getRoot());
+                setGraphic(new EventCard(event, getIndex() + 1).getRoot());
             }
         }
     }

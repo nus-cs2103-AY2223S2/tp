@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Event objects.
  */
 public class EventBuilder {
 
@@ -52,21 +52,21 @@ public class EventBuilder {
     }
 
     /**
-     * Initializes the EventBuilder with the data of {@code personToCopy}.
+     * Initializes the EventBuilder with the data of {@code eventToCopy}.
      */
-    public EventBuilder(Event personToCopy) {
-        name = personToCopy.getName();
-        rate = personToCopy.getRate();
-        address = personToCopy.getAddress();
-        startTime = personToCopy.getStartTime();
-        endTime = personToCopy.getEndTime();
-        mark = personToCopy.getMark();
-        tags = new HashSet<>(personToCopy.getTags());
-        contact = personToCopy.getContact();
+    public EventBuilder(Event eventToCopy) {
+        name = eventToCopy.getName();
+        rate = eventToCopy.getRate();
+        address = eventToCopy.getAddress();
+        startTime = eventToCopy.getStartTime();
+        endTime = eventToCopy.getEndTime();
+        mark = eventToCopy.getMark();
+        tags = new HashSet<>(eventToCopy.getTags());
+        contact = eventToCopy.getContact();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Event} that we are building.
      */
     public EventBuilder withName(String name) {
         this.name = new Name(name);
@@ -74,7 +74,7 @@ public class EventBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Event} that we are building.
      */
     public EventBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -82,7 +82,7 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Event} that we are building.
      */
     public EventBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -90,7 +90,7 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Rate} of the {@code Person} that we are building.
+     * Sets the {@code Rate} of the {@code Event} that we are building.
      */
     public EventBuilder withRate(String rate) {
         this.rate = new Rate(rate);

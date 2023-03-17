@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -64,9 +64,9 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This event already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book.";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
@@ -86,39 +86,39 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<seedu.address.model.event.Event> lastShownList = model.getFilteredPersonList();
+        List<seedu.address.model.event.Event> lastShownList = model.getFilteredEventList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Event personToEdit = lastShownList.get(index.getZeroBased());
-        Event editedPerson = createEditedPerson(personToEdit, editEventDescriptor);
+        Event eventToEdit = lastShownList.get(index.getZeroBased());
+        Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
-        if (!personToEdit.isSameEvent(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setEvent(eventToEdit, editedEvent);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedPerson(Event personToEdit, EditEventDescriptor editEventDescriptor) {
-        assert personToEdit != null;
+    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
+        assert eventToEdit != null;
 
-        Name updatedName = editEventDescriptor.getName().orElse(personToEdit.getName());
-        Rate updatedRate = editEventDescriptor.getRate().orElse(personToEdit.getRate());
-        Address updatedAddress = editEventDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Time updatedStartTime = editEventDescriptor.getStartTime().orElse(personToEdit.getStartTime());
-        Time updatedEndTime = editEventDescriptor.getEndTime().orElse(personToEdit.getEndTime());
-        Contact updatedContact = editEventDescriptor.getContact().orElse(personToEdit.getContact());
-        Mark updatedMark = editEventDescriptor.getMark().orElse(personToEdit.getMark());
-        Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
+        Rate updatedRate = editEventDescriptor.getRate().orElse(eventToEdit.getRate());
+        Address updatedAddress = editEventDescriptor.getAddress().orElse(eventToEdit.getAddress());
+        Time updatedStartTime = editEventDescriptor.getStartTime().orElse(eventToEdit.getStartTime());
+        Time updatedEndTime = editEventDescriptor.getEndTime().orElse(eventToEdit.getEndTime());
+        Contact updatedContact = editEventDescriptor.getContact().orElse(eventToEdit.getContact());
+        Mark updatedMark = editEventDescriptor.getMark().orElse(eventToEdit.getMark());
+        Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
 
         Event updatedEvent = new Event(
                 updatedName, updatedRate, updatedAddress, updatedStartTime, updatedEndTime, updatedTags);

@@ -49,9 +49,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME_END).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Event person = new Event(name, rate, address, startTime, endTime, tagList);
+        Event event = new Event(name, rate, address, startTime, endTime, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(event);
     }
 
     /**

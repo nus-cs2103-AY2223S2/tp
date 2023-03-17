@@ -28,7 +28,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getEventList());
     }
 
     @Test
@@ -44,72 +44,72 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
+    public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
+        // Two events with the same identity fields
         Event editedAlice = new EventBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Event> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Event> newEvents = Arrays.asList(ALICE, editedAlice);
+        AddressBookStub newData = new AddressBookStub(newEvents);
 
         assertThrows(DuplicateEventException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasEvent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasEvent_eventNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasEvent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasEvent_eventInAddressBook_returnsTrue() {
+        addressBook.addEvent(ALICE);
+        assertTrue(addressBook.hasEvent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasEvent_eventWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addEvent(ALICE);
         Event editedAlice = new EventBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasEvent(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEventList().remove(0));
     }
 
     @Test
     public void linkContact_linkContactToEvent_success() {
-        addressBook.addPerson(ALICE);
+        addressBook.addEvent(ALICE);
         Event editedAlice = new EventBuilder(ALICE).withContact("ALICE", "91234567").build();
         addressBook.linkContact(ALICE, editedAlice);
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasEvent(editedAlice));
     }
 
     @Test
     public void linkContact_linkNullToEvent_throwsNullPointerException() {
-        addressBook.addPerson(ALICE);
+        addressBook.addEvent(ALICE);
         assertThrows(NullPointerException.class, () -> addressBook.linkContact(ALICE, null));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose events list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Event> persons = FXCollections.observableArrayList();
+        private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Event> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Event> events) {
+            this.events.setAll(events);
         }
 
         @Override
-        public ObservableList<Event> getPersonList() {
-            return persons;
+        public ObservableList<Event> getEventList() {
+            return events;
         }
     }
 

@@ -89,16 +89,16 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY
                 + START_TIME_DESC_AMY + END_TIME_DESC_AMY;
-        Event expectedPerson = new EventBuilder(AMY).withTags().build();
+        Event expectedEvent = new EventBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addEvent(expectedEvent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEventList().remove(0));
     }
 
     /**

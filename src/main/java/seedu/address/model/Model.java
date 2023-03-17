@@ -14,7 +14,7 @@ import seedu.address.model.event.Rate;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Event> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -70,13 +70,13 @@ public interface Model {
     /**
      * Returns true if a event with the same identity as {@code event} exists in the address book.
      */
-    boolean hasPerson(Event person);
+    boolean hasEvent(Event event);
 
     /**
      * Deletes the given event.
      * The event must exist in the address book.
      */
-    void deletePerson(Event target);
+    void deleteEvent(Event target);
 
     /**
      * Marks the given event.
@@ -101,7 +101,7 @@ public interface Model {
      * Adds the given event.
      * {@code event} must not already exist in the address book.
      */
-    void addPerson(Event person);
+    void addEvent(Event event);
 
     /**
      * Retrieves the rate of an event.
@@ -109,21 +109,21 @@ public interface Model {
     Rate getRate(Event event);
 
     /**
-     * Replaces the given event {@code target} with {@code editedPerson}.
+     * Replaces the given event {@code target} with {@code editedEvent}.
      * {@code target} must exist in the address book.
-     * The event identity of {@code editedPerson} must not be the same as another existing event in the address book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
      */
-    void setPerson(Event target, Event editedPerson);
+    void setEvent(Event target, Event editedEvent);
 
     /** Returns an unmodifiable view of the filtered event list */
-    ObservableList<Event> getFilteredPersonList();
+    ObservableList<Event> getFilteredEventList();
 
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Event> predicate);
+    void updateFilteredEventList(Predicate<Event> predicate);
 
     void updateFilteredContactList(Predicate<Contact> contact);
 

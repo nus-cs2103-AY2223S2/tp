@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.AMY;
 import static seedu.address.testutil.TypicalContacts.BOB;
@@ -93,8 +93,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasEvent(null));
     }
 
     @Test
@@ -103,8 +103,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasEvent_eventNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasEvent(ALICE));
     }
 
     @Test
@@ -113,9 +113,9 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasEvent_eventInAddressBook_returnsTrue() {
+        modelManager.addEvent(ALICE);
+        assertTrue(modelManager.hasEvent(ALICE));
     }
 
     @Test
@@ -125,26 +125,26 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
     }
 
     @Test
     public void linkContact() {
         modelManager.addContact(AMY);
-        modelManager.addPerson(ALICE);
-        Event event = modelManager.getAddressBook().getPersonList().get(0);
+        modelManager.addEvent(ALICE);
+        Event event = modelManager.getAddressBook().getEventList().get(0);
         Contact contact = modelManager.getContactList().getContactList().get(0);
         Event before = event;
         event.linkContact(contact);
         Event linkedEvent = event;
         modelManager.linkContact(before, linkedEvent);
-        assertTrue(modelManager.getFilteredPersonList().get(0).equals(linkedEvent));
+        assertTrue(modelManager.getFilteredEventList().get(0).equals(linkedEvent));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withEvent(ALICE).withEvent(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         ContactList contactList = new ContactListBuilder().withContact(AMY).withContact(BOB).build();
         ContactList differentContactList = new ContactList();
@@ -172,11 +172,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredEventList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, contactList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

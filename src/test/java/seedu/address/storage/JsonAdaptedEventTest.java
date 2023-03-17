@@ -38,118 +38,118 @@ public class JsonAdaptedEventTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedEvent person = new JsonAdaptedEvent(BENSON);
-        assertEquals(BENSON, person.toModelType());
+    public void toModelType_validEventDetails_returnsEvent() throws Exception {
+        JsonAdaptedEvent event = new JsonAdaptedEvent(BENSON);
+        assertEquals(BENSON, event.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedEvent person =
+        JsonAdaptedEvent event =
                 new JsonAdaptedEvent(
                         INVALID_NAME, VALID_RATE, VALID_ADDRESS,
                         VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_CONTACTNUM, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedEvent person = new JsonAdaptedEvent(
+        JsonAdaptedEvent event = new JsonAdaptedEvent(
                 null, VALID_RATE, VALID_ADDRESS, VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_CONTACTNUM,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedEvent person =
+        JsonAdaptedEvent event =
                 new JsonAdaptedEvent(
                         VALID_NAME, INVALID_RATE, VALID_ADDRESS,
                         VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_CONTACTNUM, VALID_TAGS);
         String expectedMessage = Rate.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedEvent person = new JsonAdaptedEvent(
+        JsonAdaptedEvent event = new JsonAdaptedEvent(
                 VALID_NAME, null, VALID_ADDRESS, VALID_START_TIME, VALID_END_TIME, VALID_MARK,
                 VALID_CONTACTNUM, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Rate.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedEvent person = new JsonAdaptedEvent(
+        JsonAdaptedEvent event = new JsonAdaptedEvent(
                         VALID_NAME, VALID_RATE, INVALID_ADDRESS,
                         VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_CONTACTNUM, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedEvent person = new JsonAdaptedEvent(
+        JsonAdaptedEvent event = new JsonAdaptedEvent(
                 VALID_NAME, VALID_RATE, null, VALID_START_TIME, VALID_END_TIME, VALID_MARK,
                 VALID_CONTACTNUM, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_invalidTiming_throwsIllegalValueException() {
-        JsonAdaptedEvent person = new JsonAdaptedEvent(
+        JsonAdaptedEvent event = new JsonAdaptedEvent(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, INVALID_START_TIME, VALID_END_TIME, VALID_MARK,
                 VALID_CONTACTNUM, VALID_TAGS);
         String expectedMessage = Time.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
 
-        person = new JsonAdaptedEvent(
+        event = new JsonAdaptedEvent(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, VALID_START_TIME, INVALID_END_TIME, VALID_MARK,
                 VALID_CONTACTNUM, VALID_TAGS);
         expectedMessage = Time.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
 
-        person = new JsonAdaptedEvent(
+        event = new JsonAdaptedEvent(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, INVALID_START_TIME, INVALID_END_TIME, VALID_MARK,
                 VALID_CONTACTNUM, VALID_TAGS);
         expectedMessage = Time.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
 
     @Test
     public void toModelType_nullTiming_throwsIllegalValueException() {
-        JsonAdaptedEvent person = new JsonAdaptedEvent(
+        JsonAdaptedEvent event = new JsonAdaptedEvent(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, null, VALID_END_TIME, VALID_MARK, VALID_CONTACTNUM,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
 
-        person = new JsonAdaptedEvent(
+        event = new JsonAdaptedEvent(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, VALID_START_TIME, null, VALID_MARK, VALID_CONTACTNUM,
                 VALID_TAGS);
         expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
 
-        person = new JsonAdaptedEvent(
+        event = new JsonAdaptedEvent(
                 VALID_NAME, VALID_RATE, VALID_ADDRESS, null, null, VALID_MARK, VALID_CONTACTNUM,
                 VALID_TAGS);
         expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedEvent person = new JsonAdaptedEvent(
+        JsonAdaptedEvent event = new JsonAdaptedEvent(
                         VALID_NAME, VALID_RATE, VALID_ADDRESS,
                         VALID_START_TIME, VALID_END_TIME, VALID_MARK, VALID_CONTACTNUM, invalidTags);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        assertThrows(IllegalValueException.class, event::toModelType);
     }
 
 }

@@ -51,7 +51,7 @@ public class LinkContactCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> lastShownList = model.getFilteredPersonList();
+        List<Event> lastShownList = model.getFilteredEventList();
         List<Contact> contactList = model.getContactList().getContactList();
 
         if (eventIndex.getZeroBased() >= lastShownList.size()) {
@@ -64,7 +64,7 @@ public class LinkContactCommand extends Command {
             Contact contactToAdd = contactList.get(UniqueContactList.getNumberMap().get(addContact));
             Event eventToLink = createLinkedEvent(toAdd, contactToAdd);
             model.linkContact(toAdd, eventToLink);
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
         } catch (NullPointerException iobe) {
             throw new CommandException(Messages.MESSAGE_CONTACT_NOT_FOUND);
         }

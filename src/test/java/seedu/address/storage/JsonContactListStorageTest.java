@@ -47,13 +47,13 @@ class JsonContactListStorageTest {
     }
 
     @Test
-    public void readContactList_invalidPersonContactList_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readContactList("invalidPersonContactList.json"));
+    public void readContactList_invalidEventContactList_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readContactList("invalidEventContactList.json"));
     }
 
     @Test
     public void readContactList_invalidAndValidContactContactList_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readContactList("invalidAndValidPersonContactList.json"));
+        assertThrows(DataConversionException.class, () -> readContactList("invalidAndValidEventContactList.json"));
     }
 
     @Test

@@ -50,18 +50,18 @@ public class UniqueContactListTest {
     }
 
     @Test
-    public void add_duplicateContact_throwsDuplicatePersonException() {
+    public void add_duplicateContact_throwsDuplicateEventException() {
         uniqueContactList.add(ALICE);
         assertThrows(DuplicateContactException.class, () -> uniqueContactList.add(ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetContact_throwsNullPointerException() {
+    public void setEvent_nullTargetContact_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueContactList.setContact(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedContact_throwsNullPointerException() {
+    public void setEvent_nullEditedContact_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueContactList.setContact(ALICE, null));
     }
 

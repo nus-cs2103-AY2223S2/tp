@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_EVENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEvents.CARL;
 import static seedu.address.testutil.TypicalEvents.ELLE;
@@ -58,23 +58,23 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noEventFound() {
+        String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredEventList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    public void execute_multipleKeywords_multipleEventsFound() {
+        String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredEventList());
     }
 
     /**

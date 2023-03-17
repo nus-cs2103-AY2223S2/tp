@@ -43,7 +43,7 @@ public class ContactListTest {
 
     @Test
     public void resetData_withDuplicateContacts_throwsDuplicateContactException() {
-        // Two persons with the same identity fields
+        // Two events with the same identity fields
         Contact editedAlice = new ContactBuilder(ALICE)
                 .build();
         List<Contact> newContacts = Arrays.asList(ALICE, editedAlice);
@@ -53,7 +53,7 @@ public class ContactListTest {
     }
 
     @Test
-    public void hasPerson_nullContact_throwsNullPointerException() {
+    public void hasEvent_nullContact_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> contactList.hasContact(null));
     }
 
@@ -82,7 +82,7 @@ public class ContactListTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose events list can violate interface constraints.
      */
     private static class ContactBookStub implements ReadOnlyContactList {
         private final ObservableList<Contact> contacts = FXCollections.observableArrayList();

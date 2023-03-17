@@ -90,7 +90,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -99,7 +99,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Event` object residing in the `Model`.
 
 ### Logic component
 
@@ -112,7 +112,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a event).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -138,12 +138,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Event` objects (which are contained in a `UniqueEventList` object).
+* stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Event` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Event` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -189,11 +189,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th event in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new event. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -201,7 +201,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the event was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -246,7 +246,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the event being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -274,14 +274,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* freelancer who wants to keep track of their events and contact person
+* freelancer who wants to keep track of their events and contact event
 * has a need to manage a significant number of events
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage events' information and respective contact person faster than a typical mouse/GUI driven app.
+**Value proposition**: manage events' information and respective contact event faster than a typical mouse/GUI driven app.
 
 
 ### User stories
@@ -320,15 +320,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | User                 | View timing of upcoming events                   | I know when to go                                    |
 | `* *`   | User                 | See the most urgent events                       | I know what to do first                              |
 | `* *`   | Careless user        | Undo accidental deletion                         | I can undo deleted events                            |
-| `* *`   | Impatient person     | Search contacts                                  | I can quick find specific POC                        |
-| `* *`   | Impatient person     | Search events                                    | I can quick find specific event                      |
-| `* *`   | Lazy person          | Filter events to find similar events             | I can find similar events easily                     |
+| `* *`   | Impatient event     | Search contacts                                  | I can quick find specific POC                        |
+| `* *`   | Impatient event     | Search events                                    | I can quick find specific event                      |
+| `* *`   | Lazy event          | Filter events to find similar events             | I can find similar events easily                     |
 | `* *`   | User                 | Add all information to an event at the same time | I can save time on adding all the information        |
 | `* *`   | User                 | View events associated to each contact           | I know what events to contact the POC for            |
 | `*`      | User                 | Toggle between light and dark mode               | I can use the theme i prefer                         |
 | `*`      | User                 | Redo previous action                             | I can redo previous action                           |
 | `*`      | User                 | Use abbreviation                                 | I can quickly insert items                           |
-| `*`      | Goal oriented person | Set goals                                        | I can look at my goals                               |
+| `*`      | Goal oriented event | Set goals                                        | I can look at my goals                               |
 | `*`      | Forgetful User       | Set reminders/checklist for events               | I can remember things to bring etc.                  |
 
 
@@ -619,7 +619,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. The system should work on both 32-bit and 64-bit environments.
 6. The source code should be open source.
 7. The product is offered as a free product.
-8. The system should respond within two seconds for events and persons up to 1000.
+8. The system should respond within two seconds for events and events up to 1000.
 9. The user interface should be intuitive enough for users who are not as IT-savvy.
 10. The dimensions should be at least `726px * 593px` so that it is readable for the user.
 
@@ -657,17 +657,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a event
 
-1. Deleting a person while all persons are being shown
+1. Deleting a event while all events are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all events using the `list` command. Multiple events in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No event is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

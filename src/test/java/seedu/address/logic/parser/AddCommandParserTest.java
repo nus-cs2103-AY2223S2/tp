@@ -49,44 +49,44 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Event expectedPerson = new EventBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Event expectedEvent = new EventBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
                 + ADDRESS_DESC_BOB
-                + START_TIME_DESC_BOB + END_TIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + START_TIME_DESC_BOB + END_TIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedEvent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
                 + ADDRESS_DESC_BOB
-                + START_TIME_DESC_BOB + END_TIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + START_TIME_DESC_BOB + END_TIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedEvent));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
                 + ADDRESS_DESC_BOB
-                + START_TIME_DESC_BOB + END_TIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + START_TIME_DESC_BOB + END_TIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedEvent));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB
-                + START_TIME_DESC_BOB + END_TIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + START_TIME_DESC_BOB + END_TIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedEvent));
 
         // multiple tags - all accepted
-        Event expectedPersonMultipleTags = new EventBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Event expectedEventMultipleTags = new EventBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
                 + START_TIME_DESC_BOB + END_TIME_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedEventMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Event expectedPerson = new EventBuilder(AMY).withTags().build();
+        Event expectedEvent = new EventBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
                         + ADDRESS_DESC_AMY
                         + START_TIME_DESC_AMY + END_TIME_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedEvent));
     }
 
     @Test

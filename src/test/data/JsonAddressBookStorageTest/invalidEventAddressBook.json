@@ -1,6 +1,6 @@
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
+  "events": [ {
+    "name": "Event with invalid name field: Ha!ns Mu@ster",
     "rate": "9482424",
     "address": "4th street",
     "startTiming": "11-03-2023 11:00",

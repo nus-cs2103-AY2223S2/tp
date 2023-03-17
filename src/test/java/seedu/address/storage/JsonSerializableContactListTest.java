@@ -17,9 +17,9 @@ import seedu.address.testutil.TypicalContacts;
 class JsonSerializableContactListTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
             "JsonSerializableContactListTest");
-    private static final Path TYPICAL_CONTACTS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsContactList.json");
-    private static final Path INVALID_CONTACT_FILE = TEST_DATA_FOLDER.resolve("invalidPersonContactList.json");
-    private static final Path DUPLICATE_CONTACT_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonContactList.json");
+    private static final Path TYPICAL_CONTACTS_FILE = TEST_DATA_FOLDER.resolve("typicalEventsContactList.json");
+    private static final Path INVALID_CONTACT_FILE = TEST_DATA_FOLDER.resolve("invalidEventContactList.json");
+    private static final Path DUPLICATE_CONTACT_FILE = TEST_DATA_FOLDER.resolve("duplicateEventContactList.json");
 
     @Test
     public void toModelType_typicalContactFile_success() throws Exception {

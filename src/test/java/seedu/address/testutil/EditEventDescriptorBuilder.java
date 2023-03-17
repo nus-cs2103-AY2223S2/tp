@@ -31,15 +31,15 @@ public class EditEventDescriptorBuilder {
     /**
      * Returns an {@code EditEventDescriptor} with fields containing {@code event}'s details
      */
-    public EditEventDescriptorBuilder(Event person) {
+    public EditEventDescriptorBuilder(Event event) {
         descriptor = new EditEventDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setRate(person.getRate());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setStartTime(person.getStartTime());
-        descriptor.setEndTime(person.getEndTime());
-        descriptor.setMark(person.getMark());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(event.getName());
+        descriptor.setRate(event.getRate());
+        descriptor.setAddress(event.getAddress());
+        descriptor.setStartTime(event.getStartTime());
+        descriptor.setEndTime(event.getEndTime());
+        descriptor.setMark(event.getMark());
+        descriptor.setTags(event.getTags());
     }
 
     /**

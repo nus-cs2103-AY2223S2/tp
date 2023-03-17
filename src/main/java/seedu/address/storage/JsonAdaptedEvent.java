@@ -25,7 +25,7 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedEvent {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing!";
 
     private final String name;
     private final String rate;
@@ -59,7 +59,7 @@ class JsonAdaptedEvent {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Event} into this class for Jackson use.
      */
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
@@ -75,14 +75,14 @@ class JsonAdaptedEvent {
     }
 
     /**
-     * Converts this Jackson-friendly adapted event object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted event object into the model's {@code Event} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public Event toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> eventTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            eventTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -118,7 +118,7 @@ class JsonAdaptedEvent {
         final Time modelStartTime = new Time(startTime);
         final Time modelEndTime = new Time(endTime);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(eventTags);
         Event event = new Event(modelName, modelRate, modelAddress, modelStartTime, modelEndTime, modelTags);
         if (mark.equals("[X]")) {
             event.mark();

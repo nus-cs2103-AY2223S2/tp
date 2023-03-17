@@ -15,28 +15,28 @@ import seedu.address.model.event.Event;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Event.
  */
 public class EventUtil {
 
     /**
      * Returns an add command string for adding the {@code event}.
      */
-    public static String getAddCommand(Event person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Event event) {
+        return AddCommand.COMMAND_WORD + " " + getEventDetails(event);
     }
 
     /**
      * Returns the part of command string for the given {@code event}'s details.
      */
-    public static String getPersonDetails(Event person) {
+    public static String getEventDetails(Event event) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_RATE + Double.toString(person.getRate().value) + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_TIME_START + person.getStartTime().toString() + " ");
-        sb.append(PREFIX_TIME_END + person.getEndTime().toString() + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + event.getName().fullName + " ");
+        sb.append(PREFIX_RATE + Double.toString(event.getRate().value) + " ");
+        sb.append(PREFIX_ADDRESS + event.getAddress().value + " ");
+        sb.append(PREFIX_TIME_START + event.getStartTime().toString() + " ");
+        sb.append(PREFIX_TIME_END + event.getEndTime().toString() + " ");
+        event.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
@@ -45,7 +45,7 @@ public class EventUtil {
     /**
      * Returns the part of command string for the given {@code EditEventDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCommand.EditEventDescriptor descriptor) {
+    public static String getEditEventDescriptorDetails(EditCommand.EditEventDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getRate().ifPresent(rate -> sb.append(PREFIX_RATE).append(rate.value).append(" "));

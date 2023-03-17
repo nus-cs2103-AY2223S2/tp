@@ -147,7 +147,7 @@ class NewContactCommandTest {
 
 
         @Override
-        public boolean hasPerson(Event person) {
+        public boolean hasEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -157,12 +157,12 @@ class NewContactCommandTest {
         }
 
         @Override
-        public void addPerson(Event person) {
+        public void addEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Event target) {
+        public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -177,17 +177,17 @@ class NewContactCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Event> predicate) {
+        public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Event target, Event editedPerson) {
+        public void setEvent(Event target, Event editedEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Event> getFilteredPersonList() {
+        public ObservableList<Event> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -59,7 +59,7 @@ public class AddCommand extends Command {
     private final Event toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Event}
      */
     public AddCommand(Event event) {
         requireNonNull(event);
@@ -69,11 +69,11 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.hasPerson(toAdd)) {
+        if (model.hasEvent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        model.addPerson(toAdd);
+        model.addEvent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

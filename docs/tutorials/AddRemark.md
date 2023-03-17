@@ -28,7 +28,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing event in the address book.
  */
 public class RemarkCommand extends Command {
 
@@ -65,8 +65,8 @@ Following the convention in other commands, we add relevant messages as constant
 
 ``` java
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
+            + ": Edits the remark of the event identified "
+            + "by the index number used in the last event listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
@@ -101,8 +101,8 @@ public class RemarkCommand extends Command {
     private final String remark;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index of the event in the filtered event list to edit the remark
+     * @param remark of the event to be updated to
      */
     public RemarkCommand(Index index, String remark) {
         requireAllNonNull(index, remark);
@@ -225,7 +225,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of person data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the person’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a person.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of event data. We achieve that by working with the `Event` model. Each field in a Event is implemented as a separate class (e.g. a `Name` object represents the event’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a event.
 
 ### Add a new `Remark` class
 
@@ -240,11 +240,11 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 ## Add a placeholder element for remark to the UI
 
-Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each person.
+Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each event.
 
 Simply add the following to [`seedu.address.ui.EventCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
 
-**`PersonCard.java`:**
+**`EventCard.java`:**
 
 ``` java
 @FXML
@@ -256,7 +256,7 @@ private Label remark;
 
 Then insert the following into [`main/resources/view/EventListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-d44c4f51c24f6253c277a2bb9bc440b8064d9c15ad7cb7ceda280bca032efce9).
 
-**`PersonListCard.fxml`:**
+**`EventListCard.fxml`:**
 
 ``` xml
 <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
@@ -266,21 +266,21 @@ That’s it! Fire up the application again and you should see something like thi
 
 ![$remark shows up in each entry](../images/add-remark/$Remark.png)
 
-## Modify `Person` to support a `Remark` field
+## Modify `Event` to support a `Remark` field
 
-Since `PersonCard` displays data from a `Person`, we need to update `Person` to get our `Remark` displayed!
+Since `EventCard` displays data from a `Event`, we need to update `Event` to get our `Remark` displayed!
 
-### Modify `Person`
+### Modify `Event`
 
-We change the constructor of `Person` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
+We change the constructor of `Event` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
 
-### Update other usages of `Person`
+### Update other usages of `Event`
 
-Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
+Unfortunately, a change to `Event` will cause other commands to break, you will have to modify these commands to use the updated `Event`!
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
+:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Event` class to find these commands.
 
 </div>
 
@@ -289,7 +289,7 @@ Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998
 
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
+AddressBook stores data by serializing `JsonAdaptedEvent` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedEvent` to work with our new `Event`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
@@ -304,16 +304,16 @@ to see what the changes entail.
 
 ## Finalizing the UI
 
-Now that we have finalized the `Person` class and its dependencies, we can now bind the `Remark` field to the UI.
+Now that we have finalized the `Event` class and its dependencies, we can now bind the `Remark` field to the UI.
 
 Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/commit/5b98fee11b6b3f5749b6b943c4f3bd3aa049b692)
 
-**`PersonCard.java`:**
+**`EventCard.java`:**
 
 ``` java
-public PersonCard(Person person, int displayedIndex) {
+public EventCard(Event event, int displayedIndex) {
     //...
-    remark.setText(person.getRemark().value);
+    remark.setText(event.getRemark().value);
 }
 ```
 
@@ -325,43 +325,43 @@ After the previous step, we notice a peculiar regression — we went from di
 
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
-In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Person`. Since all fields in a `Person` are immutable, we create a new instance of a `Person` with the values that we want and
-save it with `Model#setPerson()`.
+In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Event`. Since all fields in a `Event` are immutable, we create a new instance of a `Event` with the values that we want and
+save it with `Model#setEvent()`.
 
 **`RemarkCommand.java`:**
 
 ``` java
 //...
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Event: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Event: %1$s";
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Event> lastShownList = model.getFilteredEventList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), remark, personToEdit.getTags());
+        Event eventToEdit = lastShownList.get(index.getZeroBased());
+        Event editedEvent = new Event(
+                eventToEdit.getName(), eventToEdit.getPhone(), eventToEdit.getEmail(),
+                eventToEdit.getAddress(), remark, eventToEdit.getTags());
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setEvent(eventToEdit, editedEvent);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedEvent));
     }
 
     /**
      * Generates a command execution success message based on whether
      * the remark is added to or removed from
-     * {@code personToEdit}.
+     * {@code eventToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
+    private String generateSuccessMessage(Event eventToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, eventToEdit);
     }
 ```
 

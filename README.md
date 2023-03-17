@@ -4,7 +4,7 @@
 ![Ui](docs/images/Ui.png)
 
 * `Paidlancers` is **desktop application for freelancers to keep track of their events and contacts, optimized for use via a Command Line Interface (CLI) while still having the option of using the Graphical User Interface (GUI)**.<br>
-* The app manages events’ information and respective contact person faster than a typical mouse/GUI driven app.
+* The app manages events’ information and respective contact event faster than a typical mouse/GUI driven app.
 * The name `Paidlancers` is inspired by a play-on-word of the word "free" in freelancers.
 * For the detailed documentation of this project, see the **[Paidlancers Product Website](https://ay2223s2-cs2103t-t11-3.github.io/tp/)**.
 

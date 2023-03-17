@@ -33,8 +33,8 @@ public interface Logic {
 
     ReadOnlyContactList getContactList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Event> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of events */
+    ObservableList<Event> getFilteredEventList();
 
     /**
      * Returns the user prefs' address book file path.

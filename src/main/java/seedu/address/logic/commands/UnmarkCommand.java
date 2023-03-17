@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class UnmarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> lastShownList = model.getFilteredPersonList();
+        List<Event> lastShownList = model.getFilteredEventList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
@@ -42,7 +42,7 @@ public class UnmarkCommand extends Command {
 
         Event eventToUnmark = lastShownList.get(targetIndex.getZeroBased());
         model.unmarkEvent(eventToUnmark);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_UNMARK_EVENT_SUCCESS, eventToUnmark));
     }
 

@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final ContactList contactList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Event> filteredPersons;
+    private final FilteredList<Event> filteredEvents;
     private final FilteredList<Contact> filteredContacts;
 
     /**
@@ -40,7 +40,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
         filteredContacts = new FilteredList<>(this.contactList.getContactList());
 
     }
@@ -108,58 +108,58 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Event person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
     }
 
     @Override
-    public void deletePerson(Event target) {
-        addressBook.removePerson(target);
+    public void deleteEvent(Event target) {
+        addressBook.removeEvent(target);
     }
 
     @Override
     public void markEvent(Event target) {
         requireNonNull(target);
         addressBook.markEvent(target);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
     public void unmarkEvent(Event target) {
         requireNonNull(target);
         addressBook.unmarkEvent(target);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
-    public void addPerson(Event person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addEvent(Event event) {
+        addressBook.addEvent(event);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
-    public void setPerson(Event target, Event editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setEvent(target, editedEvent);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Event List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Event> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Event> predicate) {
+    public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 
     @Override
@@ -187,7 +187,7 @@ public class ModelManager implements Model {
     @Override
     public void linkContact(Event event, Event linkedEvent) {
         addressBook.linkContact(event, linkedEvent);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
@@ -212,7 +212,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && contactList.equals(other.contactList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredEvents.equals(other.filteredEvents);
     }
 
 }

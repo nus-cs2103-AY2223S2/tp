@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,10 +31,10 @@ public class MarkCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Event eventToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Event eventToMark = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
         Event markedEvent = new EventBuilder(eventToMark).build();
         markedEvent.mark();
-        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_EVENT);
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_EVENT_SUCCESS, eventToMark);
 
@@ -46,37 +46,37 @@ public class MarkCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex);
 
         assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showEventAtIndex(model, INDEX_FIRST_EVENT);
 
-        Event eventToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Event eventToMark = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
         Event markedEvent = new EventBuilder(eventToMark).build();
         markedEvent.mark();
-        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_EVENT);
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_EVENT_SUCCESS, eventToMark);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getContactList(), new UserPrefs());
         expectedModel.markEvent(eventToMark);
 
-        showNoPerson(expectedModel);
+        showNoEvent(expectedModel);
 
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showEventAtIndex(model, INDEX_FIRST_EVENT);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_EVENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEventList().size());
 
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex);
 
@@ -86,14 +86,14 @@ public class MarkCommandTest {
 
     @Test
     public void equals() {
-        MarkCommand markFirstCommand = new MarkCommand(INDEX_FIRST_PERSON);
-        MarkCommand markSecondCommand = new MarkCommand(INDEX_SECOND_PERSON);
+        MarkCommand markFirstCommand = new MarkCommand(INDEX_FIRST_EVENT);
+        MarkCommand markSecondCommand = new MarkCommand(INDEX_SECOND_EVENT);
 
         // same object -> returns true
         assertTrue(markFirstCommand.equals(markFirstCommand));
 
         // same values -> returns true
-        MarkCommand markFirstCommandCopy = new MarkCommand(INDEX_FIRST_PERSON);
+        MarkCommand markFirstCommandCopy = new MarkCommand(INDEX_FIRST_EVENT);
         assertTrue(markFirstCommand.equals(markFirstCommandCopy));
 
         // different types -> returns false
@@ -109,9 +109,9 @@ public class MarkCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoEvent(Model model) {
+        model.updateFilteredEventList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredEventList().isEmpty());
     }
 }

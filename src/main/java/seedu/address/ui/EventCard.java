@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.event.Event;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Event}.
  */
 public class EventCard extends UiPart<Region> {
 
@@ -24,7 +24,7 @@ public class EventCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Event person;
+    public final Event event;
 
     @FXML
     private HBox cardPane;
@@ -46,19 +46,19 @@ public class EventCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code EventCode} with the given {@code Event} and index to display.
      */
-    public EventCard(Event person, int displayedIndex) {
+    public EventCard(Event event, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.event = event;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        rate.setText(Double.toString(person.getRate().value));
-        address.setText(person.getAddress().value);
-        timing.setText(person.getStartTime().toString() + " - " + person.getEndTime().toString());
-        mark.setText(person.getMark().toString());
-        contact.setText(person.getContact().toCardString());
-        person.getTags().stream()
+        name.setText(event.getName().fullName);
+        rate.setText(Double.toString(event.getRate().value));
+        address.setText(event.getAddress().value);
+        timing.setText(event.getStartTime().toString() + " - " + event.getEndTime().toString());
+        mark.setText(event.getMark().toString());
+        contact.setText(event.getContact().toCardString());
+        event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -78,6 +78,6 @@ public class EventCard extends UiPart<Region> {
         // state check
         EventCard card = (EventCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && event.equals(card.event);
     }
 }

@@ -21,7 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.event.Event;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Event} objects to be used in tests.
  */
 public class TypicalEvents {
 
@@ -83,7 +83,7 @@ public class TypicalEvents {
             .withMark("[X]")
             .withAddress("chicago ave").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Event's details found in {@code CommandTestUtil}
     public static final Event AMY = new EventBuilder().withName(VALID_NAME_AMY).withRate(VALID_PHONE_AMY)
             .withAddress(VALID_ADDRESS_AMY)
             .withStartTime(VALID_START_TIME_AMY)
@@ -102,17 +102,17 @@ public class TypicalEvents {
     private TypicalEvents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical events.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Event person : getTypicalPersons()) {
-            ab.addPerson(person);
+        for (Event event : getTypicalEvents()) {
+            ab.addEvent(event);
         }
         return ab;
     }
 
-    public static List<Event> getTypicalPersons() {
+    public static List<Event> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

@@ -29,7 +29,7 @@ public class SampleDataUtil {
             new Contact(new ContactName("Mandy"), new ContactPhone("98765432"))
         };
     }
-    public static Event[] getSamplePersons() {
+    public static Event[] getSampleEvents() {
         return new Event[] {
             new Event(new Name("Event 1"), new Rate("1"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -60,8 +60,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Event samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Event sampleEvent : getSampleEvents()) {
+            sampleAb.addEvent(sampleEvent);
         }
         return sampleAb;
     }

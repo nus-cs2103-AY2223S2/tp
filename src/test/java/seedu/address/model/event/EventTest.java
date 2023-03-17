@@ -20,8 +20,8 @@ public class EventTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Event person = new EventBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Event event = new EventBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> event.getTags().remove(0));
     }
 
     @Test
