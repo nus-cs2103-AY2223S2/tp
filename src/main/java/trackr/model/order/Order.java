@@ -67,6 +67,7 @@ public class Order {
                 && otherOrder.getOrderName().equals(this.getOrderName())
                 && otherOrder.getOrderDeadline().equals(this.getOrderDeadline())
                 && otherOrder.getOrderQuantity().equals(this.getOrderQuantity());
+
     }
 
     /**

@@ -5,7 +5,7 @@ import static trackr.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Order's status in the order list.
- * Guaruntees: immutable; is valid as declared in {@link #isValidOrdeStatus(String)}
+ * Guaruntees: immutable; is valid as declared in {@link #isValidOrderStatus(String)}
  */
 public class OrderStatus {
 

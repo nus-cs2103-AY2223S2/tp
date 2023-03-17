@@ -20,6 +20,10 @@ import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
 import trackr.model.SupplierList;
 import trackr.model.order.Order;
+import trackr.model.order.OrderDescriptor;
+import trackr.model.order.OrderName;
+import trackr.model.order.OrderNameContainsKeywordPredicate;
+import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.supplier.Supplier;
@@ -27,6 +31,7 @@ import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDescriptor;
 import trackr.testutil.EditSupplierDescriptorBuilder;
+import trackr.testutil.OrderDescriptorBuilder;
 import trackr.testutil.TaskDescriptorBuilder;
 
 /**
@@ -123,6 +128,8 @@ public class CommandTestUtil {
 
     //order fields
     public static final String VALID_ORDER_NAME_CHOCOLATE_COOKIES = "Chocolate Cookies";
+    public static final String VALID_ORDER_NAME_CUPCAKES = "Cupcakes";
+    public static final String VALID_ORDER_DEADLINE_2023 = "02/02/2023";
     public static final String VALID_ORDER_DEADLINE_2024 = "01/01/2024";
     public static final String VALID_ORDER_STATUS_DONE = "D";
     public static final String VALID_ORDER_STATUS_NOT_DONE = "N";
@@ -228,6 +235,21 @@ public class CommandTestUtil {
         model.updateFilteredOrderList(predicate);
 
         assertEquals(1, model.getFilteredOrderList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered order list to show only the order at the given {@code targetIndex} in the
+     * {@code model}'s order list.
+     */
+    public static void showOrderAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Order order = model.getFilteredOrderList().get(targetIndex.getZeroBased());
+        final String[] splitOrderName = order.getOrderName().value.split("\\s+");
+        model.updateFilteredOrderList(new OrderNameContainsKeywordPredicate(Arrays.asList(splitOrderName[0])));
+
+        assertEquals(1, model.getFilteredOrderList().size());
+
     }
 
 }

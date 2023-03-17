@@ -15,6 +15,7 @@ import trackr.logic.commands.Command;
 import trackr.logic.commands.DeleteOrderCommand;
 import trackr.logic.commands.DeleteSupplierCommand;
 import trackr.logic.commands.DeleteTaskCommand;
+import trackr.logic.commands.EditOrderCommand;
 import trackr.logic.commands.EditSupplierCommand;
 import trackr.logic.commands.EditTaskCommand;
 import trackr.logic.commands.ExitCommand;
@@ -73,6 +74,10 @@ public class TrackrParser {
 
         case DeleteSupplierCommand.COMMAND_WORD:
             return new DeleteSupplierCommandParser().parse(arguments);
+        case EditOrderCommand.COMMAND_WORD:
+        case EditOrderCommand.COMMAND_WORD_SHORTCUT:
+            return new EditOrderCommandParser().parse(arguments);
+
 
         case DeleteTaskCommand.COMMAND_WORD:
         case DeleteTaskCommand.COMMAND_WORD_SHORTCUT:
