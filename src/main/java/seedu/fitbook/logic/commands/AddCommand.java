@@ -62,10 +62,8 @@ public class AddCommand extends Command {
     public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
         if (model.hasClient(toAdd)) {
-
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
-
         model.addClient(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
