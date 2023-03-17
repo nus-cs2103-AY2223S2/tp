@@ -119,9 +119,20 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
         mainWindow.changeIndividualPane(editedPerson, "edit");
+    }
+
+    @Override
+    public void findOrListContents(Predicate<Person> predicate, String command) {
+        requireNonNull(predicate);
+        updateFilteredPersonList(predicate);
+        if(command.equals("find")) {
+            mainWindow.changeIndividualPane(filteredPersons.get(0), "find");
+        } else {
+            mainWindow.changeIndividualPane(filteredPersons.get(0), "clear");
+        }
+
     }
 
     //=========== Filtered Person List Accessors =============================================================
