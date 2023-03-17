@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEvents.CARL;
 import static seedu.address.testutil.TypicalEvents.ELLE;
 import static seedu.address.testutil.TypicalEvents.FIONA;
-import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,9 +25,9 @@ import seedu.address.testutil.TypicalContacts;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(),
+    private Model model = new ModelManager(getTypicalEventBook(),
             TypicalContacts.getTypicalContactList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(),
+    private Model expectedModel = new ModelManager(getTypicalEventBook(),
             TypicalContacts.getTypicalContactList(), new UserPrefs());
 
     @Test

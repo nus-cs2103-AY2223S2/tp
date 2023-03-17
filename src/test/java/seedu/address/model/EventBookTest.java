@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.ALICE;
-import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.testutil.EventBuilder;
 
-public class AddressBookTest {
+public class EventBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final EventBook eventBook = new EventBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getEventList());
+        assertEquals(Collections.emptyList(), eventBook.getEventList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> eventBook.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyEventBook_replacesData() {
+        EventBook newData = getTypicalEventBook();
+        eventBook.resetData(newData);
+        assertEquals(newData, eventBook);
     }
 
     @Test
@@ -49,61 +49,61 @@ public class AddressBookTest {
         Event editedAlice = new EventBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Event> newEvents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newEvents);
+        EventBookStub newData = new EventBookStub(newEvents);
 
-        assertThrows(DuplicateEventException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateEventException.class, () -> eventBook.resetData(newData));
     }
 
     @Test
     public void hasEvent_nullEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasEvent(null));
+        assertThrows(NullPointerException.class, () -> eventBook.hasEvent(null));
     }
 
     @Test
-    public void hasEvent_eventNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEvent(ALICE));
+    public void hasEvent_eventNotInEventBook_returnsFalse() {
+        assertFalse(eventBook.hasEvent(ALICE));
     }
 
     @Test
-    public void hasEvent_eventInAddressBook_returnsTrue() {
-        addressBook.addEvent(ALICE);
-        assertTrue(addressBook.hasEvent(ALICE));
+    public void hasEvent_eventInEventBook_returnsTrue() {
+        eventBook.addEvent(ALICE);
+        assertTrue(eventBook.hasEvent(ALICE));
     }
 
     @Test
-    public void hasEvent_eventWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addEvent(ALICE);
+    public void hasEvent_eventWithSameIdentityFieldsInEventBook_returnsTrue() {
+        eventBook.addEvent(ALICE);
         Event editedAlice = new EventBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasEvent(editedAlice));
+        assertTrue(eventBook.hasEvent(editedAlice));
     }
 
     @Test
     public void getEventList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEventList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> eventBook.getEventList().remove(0));
     }
 
     @Test
     public void linkContact_linkContactToEvent_success() {
-        addressBook.addEvent(ALICE);
+        eventBook.addEvent(ALICE);
         Event editedAlice = new EventBuilder(ALICE).withContact("ALICE", "91234567").build();
-        addressBook.linkContact(ALICE, editedAlice);
-        assertTrue(addressBook.hasEvent(editedAlice));
+        eventBook.linkContact(ALICE, editedAlice);
+        assertTrue(eventBook.hasEvent(editedAlice));
     }
 
     @Test
     public void linkContact_linkNullToEvent_throwsNullPointerException() {
-        addressBook.addEvent(ALICE);
-        assertThrows(NullPointerException.class, () -> addressBook.linkContact(ALICE, null));
+        eventBook.addEvent(ALICE);
+        assertThrows(NullPointerException.class, () -> eventBook.linkContact(ALICE, null));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose events list can violate interface constraints.
+     * A stub ReadOnlyEventBook whose events list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class EventBookStub implements ReadOnlyEventBook {
         private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Event> events) {
+        EventBookStub(Collection<Event> events) {
             this.events.setAll(events);
         }
 

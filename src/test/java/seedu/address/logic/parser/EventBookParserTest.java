@@ -36,9 +36,9 @@ import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.EventUtil;
 
-public class AddressBookParserTest {
+public class EventBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final EventBookParser parser = new EventBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {

@@ -15,18 +15,18 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
+import seedu.address.model.EventBook;
 import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEventBook;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.EventBookStorage;
 import seedu.address.storage.ContactListStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonEventBookStorage;
 import seedu.address.storage.JsonContactListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -60,9 +60,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        EventBookStorage eventBookStorage = new JsonEventBookStorage(userPrefs.getEventBookFilePath());
         ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
-        storage = new StorageManager(addressBookStorage, contactListStorage, userPrefsStorage);
+        storage = new StorageManager(eventBookStorage, contactListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -79,22 +79,22 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyEventBook> addressBookOptional;
         Optional<ReadOnlyContactList> contactListOptional;
-        ReadOnlyAddressBook initialData;
+        ReadOnlyEventBook initialData;
         ReadOnlyContactList initialContactData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readEventBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Paidlancers");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleEventBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Paidlancers");
-            initialData = new AddressBook();
+            initialData = new EventBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Paidlancers");
-            initialData = new AddressBook();
+            initialData = new EventBook();
         }
 
         try {

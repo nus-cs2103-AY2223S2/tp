@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
-import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 
@@ -23,8 +23,8 @@ import seedu.address.testutil.EventBuilder;
 
 public class LinkContactCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalContactList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalContactList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalEventBook(), getTypicalContactList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalEventBook(), getTypicalContactList(), new UserPrefs());
 
 
     @Test

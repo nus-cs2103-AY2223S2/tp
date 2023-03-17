@@ -12,7 +12,7 @@ import seedu.address.model.event.UniqueEventList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameEvent comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class EventBook implements ReadOnlyEventBook {
 
     private final UniqueEventList events;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         events = new UniqueEventList();
     }
 
-    public AddressBook() {}
+    public EventBook() {}
 
     /**
-     * Creates an AddressBook using the Events in the {@code toBeCopied}
+     * Creates an EventBook using the Events in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public EventBook(ReadOnlyEventBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code EventBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyEventBook newData) {
         requireNonNull(newData);
 
         setEvents(newData.getEventList());
@@ -86,7 +86,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code EventBook}.
      * {@code key} must exist in the address book.
      */
     public void removeEvent(Event key) {
@@ -94,7 +94,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Marks {@code target} from this {@code AddressBook}.
+     * Marks {@code target} from this {@code EventBook}.
      * {@code target} must exist in the address book.
      */
     public void markEvent(Event target) {
@@ -102,7 +102,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Unmarks {@code target} from this {@code AddressBook}.
+     * Unmarks {@code target} from this {@code EventBook}.
      * {@code target} must exist in the address book.
      */
     public void unmarkEvent(Event target) {
@@ -129,8 +129,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && events.equals(((AddressBook) other).events));
+                || (other instanceof EventBook // instanceof handles nulls
+                && events.equals(((EventBook) other).events));
     }
 
     @Override

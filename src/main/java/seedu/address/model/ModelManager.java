@@ -21,32 +21,32 @@ import seedu.address.model.event.Rate;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final EventBook eventBook;
     private final ContactList contactList;
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Contact> filteredContacts;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given eventBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyEventBook addressBook, ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, contactList, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook
                 + " with contact list: " + contactList
                 + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.eventBook = new EventBook(addressBook);
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        filteredEvents = new FilteredList<>(this.eventBook.getEventList());
         filteredContacts = new FilteredList<>(this.contactList.getContactList());
 
     }
 
     public ModelManager() {
-        this(new AddressBook(), new ContactList(), new UserPrefs());
+        this(new EventBook(), new ContactList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -74,8 +74,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getEventBookFilePath() {
+        return userPrefs.getEventBookFilePath();
     }
 
     @Override
@@ -84,9 +84,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setEventBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setEventBookFilePath(addressBookFilePath);
     }
 
     @Override
@@ -95,46 +95,46 @@ public class ModelManager implements Model {
         userPrefs.setContactListFilePath(contactListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== EventBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setEventBook(ReadOnlyEventBook addressBook) {
+        this.eventBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyEventBook getEventBook() {
+        return eventBook;
     }
 
     @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
-        return addressBook.hasEvent(event);
+        return eventBook.hasEvent(event);
     }
 
     @Override
     public void deleteEvent(Event target) {
-        addressBook.removeEvent(target);
+        eventBook.removeEvent(target);
     }
 
     @Override
     public void markEvent(Event target) {
         requireNonNull(target);
-        addressBook.markEvent(target);
+        eventBook.markEvent(target);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
     public void unmarkEvent(Event target) {
         requireNonNull(target);
-        addressBook.unmarkEvent(target);
+        eventBook.unmarkEvent(target);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
     public void addEvent(Event event) {
-        addressBook.addEvent(event);
+        eventBook.addEvent(event);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
 
-        addressBook.setEvent(target, editedEvent);
+        eventBook.setEvent(target, editedEvent);
     }
 
     //=========== Filtered Event List Accessors =============================================================
@@ -186,7 +186,7 @@ public class ModelManager implements Model {
 
     @Override
     public void linkContact(Event event, Event linkedEvent) {
-        addressBook.linkContact(event, linkedEvent);
+        eventBook.linkContact(event, linkedEvent);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
@@ -209,7 +209,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return eventBook.equals(other.eventBook)
                 && contactList.equals(other.contactList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredEvents.equals(other.filteredEvents);

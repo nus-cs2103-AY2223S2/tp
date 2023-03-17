@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
-import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 
@@ -26,7 +26,7 @@ import seedu.address.model.event.Rate;
  */
 public class RateCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalContactList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalEventBook(), getTypicalContactList(), new UserPrefs());
 
     @Test
     public void execute_validIndex_success() {
@@ -36,7 +36,7 @@ public class RateCommandTest {
 
         String expectedMessage = String.format(RateCommand.MESSAGE_SUCCESS, rate);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getContactList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getEventBook(), model.getContactList(), new UserPrefs());
         expectedModel.getRate(event);
 
         assertCommandSuccess(rateCommand, model, expectedMessage, expectedModel);

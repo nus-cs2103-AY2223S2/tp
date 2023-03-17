@@ -82,7 +82,7 @@ public class ContactListTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose contacts list can violate interface constraints.
+     * A stub ReadOnlyEventBook whose contacts list can violate interface constraints.
      */
     private static class ContactBookStub implements ReadOnlyContactList {
         private final ObservableList<Contact> contacts = FXCollections.observableArrayList();

@@ -20,7 +20,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.EventBookBuilder;
 import seedu.address.testutil.ContactListBuilder;
 
 public class ModelManagerTest {
@@ -31,7 +31,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new EventBook(), new EventBook(modelManager.getEventBook()));
         assertEquals(new ContactList(), new ContactList(modelManager.getContactList()));
     }
 
@@ -43,7 +43,7 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setEventBookFilePath(Paths.get("address/book/file/path"));
         userPrefs.setContactListFilePath(Paths.get("contact/list/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
@@ -51,7 +51,7 @@ public class ModelManagerTest {
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setEventBookFilePath(Paths.get("new/address/book/file/path"));
         userPrefs.setContactListFilePath(Paths.get("new/contact/list/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
@@ -69,8 +69,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setEventBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setEventBookFilePath(null));
     }
 
     @Test
@@ -79,10 +79,10 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setEventBookFilePath_validPath_setsEventBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setEventBookFilePath(path);
+        assertEquals(path, modelManager.getEventBookFilePath());
     }
 
     @Test
@@ -103,7 +103,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasEvent_eventNotInAddressBook_returnsFalse() {
+    public void hasEvent_eventNotInEventBook_returnsFalse() {
         assertFalse(modelManager.hasEvent(ALICE));
     }
 
@@ -113,7 +113,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasEvent_eventInAddressBook_returnsTrue() {
+    public void hasEvent_eventInEventBook_returnsTrue() {
         modelManager.addEvent(ALICE);
         assertTrue(modelManager.hasEvent(ALICE));
     }
@@ -133,7 +133,7 @@ public class ModelManagerTest {
     public void linkContact() {
         modelManager.addContact(AMY);
         modelManager.addEvent(ALICE);
-        Event event = modelManager.getAddressBook().getEventList().get(0);
+        Event event = modelManager.getEventBook().getEventList().get(0);
         Contact contact = modelManager.getContactList().getContactList().get(0);
         Event before = event;
         event.linkContact(contact);
@@ -144,15 +144,15 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withEvent(ALICE).withEvent(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        EventBook eventBook = new EventBookBuilder().withEvent(ALICE).withEvent(BENSON).build();
+        EventBook differentEventBook = new EventBook();
         ContactList contactList = new ContactListBuilder().withContact(AMY).withContact(BOB).build();
         ContactList differentContactList = new ContactList();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, contactList, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, contactList, userPrefs);
+        modelManager = new ModelManager(eventBook, contactList, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(eventBook, contactList, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -164,23 +164,23 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, contactList, userPrefs)));
+        // different eventBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentEventBook, contactList, userPrefs)));
 
         // different contactList -> return false
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentContactList, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(eventBook, differentContactList, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredEventList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, contactList, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(eventBook, contactList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, contactList, differentUserPrefs)));
+        differentUserPrefs.setEventBookFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(eventBook, contactList, differentUserPrefs)));
     }
 }

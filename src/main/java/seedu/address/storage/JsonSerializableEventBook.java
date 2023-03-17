@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.EventBook;
+import seedu.address.model.ReadOnlyEventBook;
 import seedu.address.model.event.Event;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable EventBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableEventBook {
 
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given events.
+     * Constructs a {@code JsonSerializableEventBook} with the given events.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("events") List<JsonAdaptedEvent> events) {
+    public JsonSerializableEventBook(@JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.events.addAll(events);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyEventBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableEventBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableEventBook(ReadOnlyEventBook source) {
         events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code EventBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public EventBook toModelType() throws IllegalValueException {
+        EventBook eventBook = new EventBook();
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
             Event event = jsonAdaptedEvent.toModelType();
-            if (addressBook.hasEvent(event)) {
+            if (eventBook.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
-            addressBook.addEvent(event);
+            eventBook.addEvent(event);
         }
-        return addressBook;
+        return eventBook;
     }
 
 }

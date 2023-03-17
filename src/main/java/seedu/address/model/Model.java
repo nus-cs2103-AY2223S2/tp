@@ -39,24 +39,24 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getEventBookFilePath();
 
     Path getContactListFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setEventBookFilePath(Path addressBookFilePath);
 
     void setContactListFilePath(Path contactListFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setEventBook(ReadOnlyEventBook addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the EventBook */
+    ReadOnlyEventBook getEventBook();
 
     /** Returns the ContactList */
     ReadOnlyContactList getContactList();

@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
-import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 
@@ -27,7 +27,7 @@ import seedu.address.testutil.EventBuilder;
  */
 public class MarkCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalContactList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalEventBook(), getTypicalContactList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -38,7 +38,7 @@ public class MarkCommandTest {
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_EVENT_SUCCESS, eventToMark);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getContactList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getEventBook(), model.getContactList(), new UserPrefs());
         expectedModel.markEvent(eventToMark);
 
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
@@ -62,7 +62,7 @@ public class MarkCommandTest {
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_EVENT_SUCCESS, eventToMark);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getContactList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getEventBook(), model.getContactList(), new UserPrefs());
         expectedModel.markEvent(eventToMark);
 
         showNoEvent(expectedModel);
@@ -76,7 +76,7 @@ public class MarkCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_EVENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEventList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getEventBook().getEventList().size());
 
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex);
 

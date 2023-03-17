@@ -14,7 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
-import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 
@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.EventBook;
 import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -37,7 +37,7 @@ import seedu.address.testutil.EventBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalContactList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalEventBook(), getTypicalContactList(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -47,7 +47,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new EventBook(model.getEventBook()),
                 new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
@@ -75,7 +75,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new EventBook(model.getEventBook()),
                 new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setEvent(lastEvent, editedEvent);
 
@@ -89,7 +89,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new EventBook(model.getEventBook()),
                 new ContactList(model.getContactList()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -106,7 +106,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+        Model expectedModel = new ModelManager(new EventBook(model.getEventBook()),
                 new ContactList(model.getContactList()), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
@@ -127,7 +127,7 @@ public class EditCommandTest {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
         // edit event in filtered list into a duplicate in address book
-        Event eventInList = model.getAddressBook().getEventList().get(INDEX_SECOND_EVENT.getZeroBased());
+        Event eventInList = model.getEventBook().getEventList().get(INDEX_SECOND_EVENT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT,
                 new EditEventDescriptorBuilder(eventInList).build());
 
@@ -152,7 +152,7 @@ public class EditCommandTest {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
         Index outOfBoundIndex = INDEX_SECOND_EVENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEventList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getEventBook().getEventList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditEventDescriptorBuilder().withName(VALID_NAME_BOB).build());
