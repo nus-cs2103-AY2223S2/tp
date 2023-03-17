@@ -50,7 +50,7 @@ public class UniqueContactListTest {
     }
 
     @Test
-    public void add_duplicateContact_throwsDuplicateEventException() {
+    public void add_duplicateContact_throwsDuplicateContactException() {
         uniqueContactList.add(ALICE);
         assertThrows(DuplicateContactException.class, () -> uniqueContactList.add(ALICE));
     }
