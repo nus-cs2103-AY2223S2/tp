@@ -24,18 +24,21 @@ public class Person {
     // Data fields
     private final Optional<Address> address;
     private final Optional<Remark> remark;
+    private final Optional<Education> education;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Education education,
+            Remark remark, Set<Tag> tags) {
         requireAllNonNull(name);
         //requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = Optional.ofNullable(phone);
         this.email = Optional.ofNullable(email);
         this.address = Optional.ofNullable(address);
+        this.education = Optional.ofNullable(education);
         this.remark = Optional.ofNullable(remark);
         this.tags.addAll(tags);
     }
@@ -54,6 +57,10 @@ public class Person {
 
     public Optional<Address> getOptionalAddress() {
         return address;
+    }
+
+    public Optional<Education> getOptionalEducation() {
+        return education;
     }
 
     public Optional<Remark> getOptionalRemark() {
@@ -106,7 +113,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, remark, tags);
+        return Objects.hash(name, phone, email, address, education, remark, tags);
     }
 
     @Override
@@ -117,6 +124,7 @@ public class Person {
         getOptionalPhone().ifPresent(phone -> builder.append("; Phone: ").append(phone));
         getOptionalEmail().ifPresent(email -> builder.append("; Email: ").append(email));
         getOptionalAddress().ifPresent(address -> builder.append("; Address: ").append(address));
+        getOptionalEducation().ifPresent(education -> builder.append("; Education: ").append(education));
         getOptionalRemark().ifPresent(remark -> builder.append("; Remark: ").append(remark));
 
         Set<Tag> tags = getTags();
