@@ -51,7 +51,7 @@ public class ArgumentMultimap {
             return new ArrayList<>();
         }
         usedPrefixes.add(prefix);
-        return new ArrayList<>(argMultimap.remove(prefix));
+        return new ArrayList<>(argMultimap.get(prefix));
     }
 
     /**
@@ -66,7 +66,7 @@ public class ArgumentMultimap {
      * Returns a list of {@code Map.Entry} representing the list of unused
      * arguments.
      */
-    public List<Map.Entry<Prefix, List<String>>> getUsedPrefixes() {
+    public List<Map.Entry<Prefix, List<String>>> getUnusedArgs() {
         ArrayList<Map.Entry<Prefix, List<String>>> unusedArgs = new ArrayList<>();
         for (Map.Entry<Prefix, List<String>> entry : argMultimap.entrySet()) {
             if (!usedPrefixes.contains(entry.getKey())) {

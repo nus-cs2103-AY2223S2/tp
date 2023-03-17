@@ -13,8 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.vms.logic.commands.patient.AddCommand;
 import seedu.vms.logic.parser.ArgumentMultimap;
-import seedu.vms.logic.parser.ArgumentTokenizer;
-import seedu.vms.logic.parser.Parser;
+import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.Prefix;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -28,7 +27,7 @@ import seedu.vms.model.patient.Phone;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddCommandParser implements CommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -36,20 +35,18 @@ public class AddCommandParser implements Parser<AddCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DOB, PREFIX_BLOODTYPE)
-                || !argMultimap.getPreamble().isEmpty()) {
+    public AddCommand parse(ArgumentMultimap argsMap) throws ParseException {
+        if (!arePrefixesPresent(argsMap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DOB, PREFIX_BLOODTYPE)
+                || !argsMap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Dob dateOfBirth = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
-        BloodType bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get());
-        Set<GroupName> allergies = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_ALLERGY));
-        Set<GroupName> vaccines = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_VACCINATION));
+        Name name = ParserUtil.parseName(argsMap.getValue(PREFIX_NAME).get());
+        Phone phone = ParserUtil.parsePhone(argsMap.getValue(PREFIX_PHONE).get());
+        Dob dateOfBirth = ParserUtil.parseDob(argsMap.getValue(PREFIX_DOB).get());
+        BloodType bloodType = ParserUtil.parseBloodType(argsMap.getValue(PREFIX_BLOODTYPE).get());
+        Set<GroupName> allergies = ParserUtil.parseGroups(argsMap.getAllValues(PREFIX_ALLERGY));
+        Set<GroupName> vaccines = ParserUtil.parseGroups(argsMap.getAllValues(PREFIX_VACCINATION));
 
         Patient patient = new Patient(name, phone, dateOfBirth, bloodType, allergies, vaccines);
 

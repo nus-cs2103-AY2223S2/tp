@@ -18,8 +18,7 @@ import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.logic.commands.patient.EditCommand.EditPatientDescriptor;
 import seedu.vms.logic.parser.ArgumentMultimap;
-import seedu.vms.logic.parser.ArgumentTokenizer;
-import seedu.vms.logic.parser.Parser;
+import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
@@ -27,7 +26,7 @@ import seedu.vms.model.GroupName;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditCommandParser implements CommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -35,33 +34,32 @@ public class EditCommandParser implements Parser<EditCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
-        requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+    public EditCommand parse(ArgumentMultimap argsMap) throws ParseException {
+        requireNonNull(argsMap);
 
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argsMap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditPatientDescriptor editPatientDescriptor = new EditPatientDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        if (argsMap.getValue(PREFIX_NAME).isPresent()) {
+            editPatientDescriptor.setName(ParserUtil.parseName(argsMap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPatientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (argsMap.getValue(PREFIX_PHONE).isPresent()) {
+            editPatientDescriptor.setPhone(ParserUtil.parsePhone(argsMap.getValue(PREFIX_PHONE).get()));
         }
-        if (argMultimap.getValue(PREFIX_DOB).isPresent()) {
-            editPatientDescriptor.setDob(ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get()));
+        if (argsMap.getValue(PREFIX_DOB).isPresent()) {
+            editPatientDescriptor.setDob(ParserUtil.parseDob(argsMap.getValue(PREFIX_DOB).get()));
         }
-        if (argMultimap.getValue(PREFIX_BLOODTYPE).isPresent()) {
-            editPatientDescriptor.setBloodType(ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get()));
+        if (argsMap.getValue(PREFIX_BLOODTYPE).isPresent()) {
+            editPatientDescriptor.setBloodType(ParserUtil.parseBloodType(argsMap.getValue(PREFIX_BLOODTYPE).get()));
         }
-        parseAllergiesForEdit(argMultimap.getAllValues(PREFIX_ALLERGY)).ifPresent(editPatientDescriptor::setAllergies);
-        parseVaccinesForEdit(argMultimap.getAllValues(PREFIX_VACCINATION))
+        parseAllergiesForEdit(argsMap.getAllValues(PREFIX_ALLERGY)).ifPresent(editPatientDescriptor::setAllergies);
+        parseVaccinesForEdit(argsMap.getAllValues(PREFIX_VACCINATION))
                 .ifPresent(editPatientDescriptor::setVaccines);
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {

@@ -7,6 +7,7 @@ import seedu.vms.logic.commands.appointment.AddCommand;
 import seedu.vms.logic.commands.appointment.DeleteCommand;
 import seedu.vms.logic.commands.appointment.EditCommand;
 import seedu.vms.logic.commands.appointment.ListCommand;
+import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.FeatureParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
@@ -19,7 +20,7 @@ public class AppointmentParser extends FeatureParser {
 
 
     @Override
-    public Command parseCommand(String commandWord, String arguments) throws ParseException {
+    public Command parseCommand(String commandWord, ArgumentMultimap arguments) throws ParseException {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:

@@ -9,6 +9,7 @@ import seedu.vms.logic.commands.patient.DeleteCommand;
 import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.logic.commands.patient.FindCommand;
 import seedu.vms.logic.commands.patient.ListCommand;
+import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.FeatureParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
@@ -20,7 +21,7 @@ public class PatientParser extends FeatureParser {
     public static final String FEATURE_NAME = "patient";
 
     @Override
-    public Command parseCommand(String commandWord, String arguments) throws ParseException {
+    public Command parseCommand(String commandWord, ArgumentMultimap arguments) throws ParseException {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:

@@ -10,6 +10,7 @@ import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.ArgumentTokenizer;
 import seedu.vms.logic.parser.CliSyntax;
+import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.Parser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -22,7 +23,7 @@ import seedu.vms.model.vaccination.VaxTypeBuilder;
 /**
  * A parser for commands that utilizes {@link VaxTypeBuilder}.
  */
-public abstract class VaxTypeValueParser implements Parser<Command> {
+public abstract class VaxTypeValueParser implements CommandParser {
     public static final String COMMAND_WORD = "add";
 
     // these names are meant to be they align so well
@@ -53,9 +54,7 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
 
 
     @Override
-    public Command parse(String args) throws ParseException {
-        ArgumentMultimap argsMap = ArgumentTokenizer.tokenize(args);
-
+    public Command parse(ArgumentMultimap argsMap) throws ParseException {
         VaxTypeBuilder builder = VaxTypeBuilder.of(mapName(argsMap.getPreamble()));
 
         builder = mapRenamedName(argsMap.getValue(CliSyntax.PREFIX_NAME))

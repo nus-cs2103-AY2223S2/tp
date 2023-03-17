@@ -14,6 +14,7 @@ import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.VmsParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
@@ -90,8 +91,10 @@ public class LogicManager implements Logic {
     }
 
 
-    private void execute(Command command) {
+    private void execute(ParseResult parseResult) {
         ArrayList<CommandMessage> results = new ArrayList<>();
+        parseResult.getMessage().ifPresent(results::add);
+        Command command = parseResult.getCommand();
 
         try {
             results.add(command.execute(model));
@@ -120,6 +123,11 @@ public class LogicManager implements Logic {
         }
 
         completeExecution(results, command.getFollowUp());
+    }
+
+
+    private void execute(Command command) {
+        execute(new ParseResult(command));
     }
 
 

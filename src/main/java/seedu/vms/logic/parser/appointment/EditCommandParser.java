@@ -11,15 +11,14 @@ import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.appointment.EditCommand;
 import seedu.vms.logic.commands.appointment.EditCommand.EditAppointmentDescriptor;
 import seedu.vms.logic.parser.ArgumentMultimap;
-import seedu.vms.logic.parser.ArgumentTokenizer;
-import seedu.vms.logic.parser.Parser;
+import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditCommandParser implements CommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -27,34 +26,33 @@ public class EditCommandParser implements Parser<EditCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
-        requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+    public EditCommand parse(ArgumentMultimap argsMap) throws ParseException {
+        requireNonNull(argsMap);
 
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argsMap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
-        if (argMultimap.getValue(PREFIX_PATIENT).isPresent()) {
+        if (argsMap.getValue(PREFIX_PATIENT).isPresent()) {
             editAppointmentDescriptor.setPatient(ParserUtil
-                    .parseIndex(argMultimap.getValue(PREFIX_PATIENT).get()));
+                    .parseIndex(argsMap.getValue(PREFIX_PATIENT).get()));
         }
-        if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
+        if (argsMap.getValue(PREFIX_STARTTIME).isPresent()) {
             editAppointmentDescriptor.setStartTime(ParserUtil
-                    .parseDate(argMultimap.getValue(PREFIX_STARTTIME).get()));
+                    .parseDate(argsMap.getValue(PREFIX_STARTTIME).get()));
         }
-        if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
+        if (argsMap.getValue(PREFIX_ENDTIME).isPresent()) {
             editAppointmentDescriptor.setEndTime(ParserUtil
-                    .parseDate(argMultimap.getValue(PREFIX_ENDTIME).get()));
+                    .parseDate(argsMap.getValue(PREFIX_ENDTIME).get()));
         }
-        if (argMultimap.getValue(PREFIX_VACCINATION).isPresent()) {
+        if (argsMap.getValue(PREFIX_VACCINATION).isPresent()) {
             editAppointmentDescriptor.setVaccine(ParserUtil
-                    .parseGroupName(argMultimap.getValue(PREFIX_VACCINATION).get()));
+                    .parseGroupName(argsMap.getValue(PREFIX_VACCINATION).get()));
         }
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
