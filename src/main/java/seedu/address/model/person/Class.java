@@ -23,8 +23,9 @@ public class Class {
     public static final String MESSAGE_CONSTRAINTS =
             "Class name must contain letters and/or digits with no spaces in between";
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    private static final List<Class> classes = new ArrayList<>();
+    private static List<Class> classes = new ArrayList<>();
 
+    // TODO: Change type to Name
     private final String className;
     private UniqueStudentList students;
     private UniqueParentList parents;
@@ -97,6 +98,27 @@ public class Class {
     }
 
     /**
+     * Constructs a {@code Class}.
+     * @param c The class to be added to static list.
+     * @return The class with the given name.
+     */
+    public static Class of (Class c) {
+        try {
+            return new Class(c.getClassName(), c.getStudents(), c.getParents());
+        } catch (DuplicateClassException e) {
+            return getClass(c.getClassName());
+        }
+    }
+
+    /**
+     * Updates the list of classes.
+     * @param classes The new list of classes.
+     */
+    public static void setClasses(List<Class> classes) {
+        Class.classes = classes;
+    }
+
+    /**
      * Returns true if a given string is a valid class name.
      *
      * @param className Test string to be checked.
@@ -137,8 +159,8 @@ public class Class {
     public static ObservableList<Person> getPersons() {
         ObservableList<Person> persons = new UniquePersonList().asUnmodifiableObservableList();
         for (Class c : classes) {
-            persons.addAll(c.getStudents());
-            persons.addAll(c.getParents());
+            persons.addAll(c.getStudents().asUnmodifiableObservableList());
+            persons.addAll(c.getParents().asUnmodifiableObservableList());
         }
         return persons;
     }
@@ -170,6 +192,14 @@ public class Class {
     }
 
     /**
+     * Remove the class from the list of classes.
+     * @param c The class to be removed.
+     */
+    public static void removeClass(Class c) {
+        classes.remove(c);
+    }
+
+    /**
      * Get the name of the class.
      *
      * @return The name of the class.
@@ -183,8 +213,8 @@ public class Class {
      *
      * @return The list of students in the class.
      */
-    public ObservableList<Student> getStudents() {
-        return students.asUnmodifiableObservableList();
+    public UniqueStudentList getStudents() {
+        return students;
     }
 
     /**
@@ -192,8 +222,8 @@ public class Class {
      *
      * @return The list of parents in the class.
      */
-    public ObservableList<Parent> getParents() {
-        return parents.asUnmodifiableObservableList();
+    public UniqueParentList getParents() {
+        return parents;
     }
 
     /**
@@ -270,6 +300,16 @@ public class Class {
     }
 
     /**
+     * Update a student in the class.
+     * @param target The student to be updated.
+     * @param editedStudent The student to be updated to.
+     */
+    public void setStudent(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
+        students.setStudent(target, editedStudent);
+    }
+
+    /**
      * Replaces parents in the class with another list.
      *
      * @param parents The UniqueParentList of parents to be replaced with.
@@ -324,5 +364,12 @@ public class Class {
     @Override
     public int hashCode() {
         return Objects.hash(className);
+    }
+
+    public boolean isSameClass(Class aClass) {
+        if (aClass == this) {
+            return true;
+        }
+        return aClass != null && aClass.getClassName().equals(getClassName());
     }
 }

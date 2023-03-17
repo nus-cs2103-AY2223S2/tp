@@ -7,24 +7,29 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.ReadOnlyPCClass;
+import seedu.address.model.person.parent.ReadOnlyParents;
+import seedu.address.storage.parents.ParentsStorage;
+import seedu.address.storage.pcclass.PCClassStorage;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of PCClass data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private PCClassStorage pcClassStorage;
+    private ParentsStorage parentsStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code PCClassStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(PCClassStorage pcClassStorage, ParentsStorage parentsStorage, UserPrefsStorage userPrefsStorage) {
+        this.pcClassStorage = pcClassStorage;
+        this.parentsStorage = parentsStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,33 +51,60 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
-
+    // ================ PCClass methods ==============================
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getPCFilePath() {
+        return pcClassStorage.getPCFilePath();
     }
-
+    
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+        public Optional<ReadOnlyPCClass> readPC() throws DataConversionException, IOException {
+        return readPC(pcClassStorage.getPCFilePath());
     }
-
+    
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyPCClass> readPC(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return pcClassStorage.readPC(filePath);
     }
-
+    
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void savePC(ReadOnlyPCClass readOnlyPCClass) throws IOException {
+        savePC(readOnlyPCClass, pcClassStorage.getPCFilePath());
     }
-
+    
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void savePC(ReadOnlyPCClass readOnlyPCClass, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        pcClassStorage.savePC(readOnlyPCClass, filePath);
     }
-
+    
+    // ================ Parents methods ==============================
+    @Override
+    public Path getParentsFilePath() {
+        return parentsStorage.getParentsFilePath();
+    }
+    
+    @Override
+    public Optional<ReadOnlyParents> readParents() throws DataConversionException, IOException {
+        return readParents(parentsStorage.getParentsFilePath());
+    }
+    
+    @Override
+    public Optional<ReadOnlyParents> readParents(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return parentsStorage.readParents(filePath);
+    }
+    
+    @Override
+    public void saveParents(ReadOnlyParents readOnlyParents) throws IOException {
+        saveParents(readOnlyParents, parentsStorage.getParentsFilePath());
+    }
+    
+    @Override
+    public void saveParents(ReadOnlyParents readOnlyParents, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        parentsStorage.saveParents(readOnlyParents, filePath);
+    }
+    
 }
