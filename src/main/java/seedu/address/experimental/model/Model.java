@@ -79,6 +79,8 @@ public interface Model {
      */
     void setEntity(Entity target, Entity editedEntity);
 
+    // ============== Filtered entity list =================
+
     /**
      * Returns an unmodifiable view of the filtered entity list
      */
@@ -92,12 +94,35 @@ public interface Model {
     void updateFilteredEntityList(Predicate<Entity> predicate);
 
     /**
-     * Returns the current selected entity
+     * Resets filtered entity list back to all entities Can be used before tag/name find function
      */
-    Entity getCurrentSelectedEntity();
+    void resetFilteredEntityList();
+
+    /**
+     * Set filtered list to items only
+     */
+    void listItems();
+
+    /**
+     * Set filtered list to characters only
+     */
+    void listCharacters();
+
+    /**
+     * Set filtered list to mobs only
+     */
+    void listMobs();
+
+    // =============== Edit mode ===================
 
     /**
      * Sets the current selected entity
      */
     void setCurrentSelectedEntity(Entity newSelection);
+
+    /**
+     * Returns the current selected entity
+     */
+    Entity getCurrentSelectedEntity();
+
 }
