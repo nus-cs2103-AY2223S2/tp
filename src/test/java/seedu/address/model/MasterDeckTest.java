@@ -23,25 +23,25 @@ import seedu.address.model.card.exceptions.DuplicatePersonException;
 import seedu.address.model.deck.Deck;
 import seedu.address.testutil.CardBuilder;
 
-public class AddressBookTest {
+public class MasterDeckTest {
 
-    private final MasterDeck addressBook = new MasterDeck();
+    private final MasterDeck masterDeck = new MasterDeck();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getCardList());
+        assertEquals(Collections.emptyList(), masterDeck.getCardList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> masterDeck.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyMasterDeck_replacesData() {
         MasterDeck newData = getTypicalMasterDeck();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        masterDeck.resetData(newData);
+        assertEquals(newData, masterDeck);
     }
 
     @Test
@@ -52,36 +52,36 @@ public class AddressBookTest {
         List<Card> newCards = Arrays.asList(LOOP, editedAlice);
         MasterDeckStub newData = new MasterDeckStub(newCards);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> masterDeck.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasCard(null));
+    public void hasCard_nullCard_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> masterDeck.hasCard(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasCard(LOOP));
+    public void hasCard_cardNotInMasterDeck_returnsFalse() {
+        assertFalse(masterDeck.hasCard(LOOP));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addCard(LOOP);
-        assertTrue(addressBook.hasCard(LOOP));
+    public void hasCard_cardInMasterDeck_returnsTrue() {
+        masterDeck.addCard(LOOP);
+        assertTrue(masterDeck.hasCard(LOOP));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addCard(LOOP);
+    public void hasCard_cardWithSameIdentityFieldsInMasterDeck_returnsTrue() {
+        masterDeck.addCard(LOOP);
         Card editedAlice = new CardBuilder(LOOP).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
                 .build();
-        assertTrue(addressBook.hasCard(editedAlice));
+        assertTrue(masterDeck.hasCard(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getCardList().remove(0));
+    public void getCardList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> masterDeck.getCardList().remove(0));
     }
 
     /**
