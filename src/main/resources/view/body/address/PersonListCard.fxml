@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,21 +16,23 @@
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="72" GridPane.columnIndex="0"
-          spacing="5" styleClass="pa">
-      <!-- Index and name -->
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+    <HBox spacing="10" styleClass="pa" GridPane.columnIndex="0">
+      <VBox spacing="10" alignment="TOP_CENTER">
+        <Label fx:id="id" styleClass="label-h6">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="star" text="⭐" styleClass="cell_big_label" />
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-      </HBox>
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <FlowPane fx:id="tags" />
-    </VBox>
+        <ImageView fx:id="star" fitHeight="10" fitWidth="10" visible="false">
+          <Image url="/images/star.png"/>
+        </ImageView>
+      </VBox>
+      <VBox fx:id="summaryContainer" spacing="5" HBox.hgrow="ALWAYS">
+        <Label fx:id="name" text="\$first" styleClass="label-h6" />
+        <Label fx:id="phone" styleClass="label-p" text="\$phone" />
+        <FlowPane fx:id="tags" />
+      </VBox>
+    </HBox>
   </GridPane>
 </HBox>

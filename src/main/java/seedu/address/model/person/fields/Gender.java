@@ -1,5 +1,7 @@
 package seedu.address.model.person.fields;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Locale;
 import java.util.Objects;
 
@@ -14,12 +16,14 @@ public class Gender {
             + "Male, Female or DNS (i.e. Did not specify)";
     public final Genders gender;
 
+
     /**
      * Constructs a {@code Gender}.
      *
      * @param gender A valid name.
      */
     public Gender(String gender) {
+        requireNonNull(gender);
         switch (gender.toLowerCase(Locale.ROOT)) {
         case "male":
             this.gender = Genders.MALE;

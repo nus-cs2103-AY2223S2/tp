@@ -13,7 +13,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.subfields.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -114,10 +114,42 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Major} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMajor(String major) {
+        this.major = new Major(major);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Race} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRace(String race) {
+        this.race = new Race(race);
+        return this;
+    }
+
+
+    /**
+     * Sets the {@code Comms} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withComms(String comms) {
+        this.comms = new CommunicationChannel(comms);
+        return this;
+    }
+    /**
      * Builds the {@code person} object
      */
     public Person build() {
-        return new Person(name, phone, email, address, this.gender,
+        return new Person(this.name, this.phone, this.email, this.address, this.gender,
                 this.major, this.modules, this.race, this.tags, this.comms);
     }
 

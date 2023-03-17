@@ -7,11 +7,19 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.ui.tab.TabInfo;
+import seedu.address.logic.ui.tab.TabType;
+import seedu.address.logic.ui.tab.TabUtil;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.user.User;
+import seedu.address.model.user.UserData;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,23 +29,27 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final UserData userData;
     private final FilteredList<Person> filteredPersons;
+    private final TabUtil tabUtil;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyUserData userData) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.userData = new UserData(userData);
+        filteredPersons = new FilteredList<>(this.addressBook.getData());
+        this.tabUtil = new TabUtil(TabType.getAll());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new UserData());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -73,6 +85,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getUserDataFilePath() {
+        return this.userPrefs.getUserDataFilePath();
+    }
+
+    @Override
+    public void setUserDataFilePath(Path userDataFilePath) {
+        requireNonNull(userDataFilePath);
+        this.userPrefs.setUserDataFilePath(userDataFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -111,6 +134,39 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== UserData ================================================================================
+
+    @Override
+    public void setUserData(ReadOnlyUserData userData) {
+        this.userData.resetData(userData);
+    }
+
+    @Override
+    public ReadOnlyUserData getUserData() {
+        return this.userData;
+    }
+
+    @Override
+    public void setUser(User user) {
+        this.userData.setUser(user);
+    }
+
+    @Override
+    public boolean hasEvent(Event event) {
+        return this.userData.hasEvent(event);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        this.userData.addEvent(event);
+    }
+
+    @Override
+    public ObservableList<Event> getEvents() {
+        return this.userData.getData().getValue().getEvents().asUnmodifiableObservableList();
+    }
+
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,6 +182,29 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Tabs =======================================================================================
+
+
+    @Override
+    public boolean isValidTabIndex(Index index) {
+        return tabUtil.isIndexInRange(index);
+    }
+
+    @Override
+    public TabUtil getTabUtil() {
+        return tabUtil;
+    }
+
+    @Override
+    public ReadOnlyObjectProperty<TabInfo> getSelectedTab() {
+        return tabUtil.getSelectedTab();
+    }
+
+    @Override
+    public void setSelectedTab(Index index) {
+        tabUtil.setSelectedTab(index);
     }
 
     @Override
@@ -144,7 +223,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && tabUtil.equals(other.tabUtil);
     }
-
 }

@@ -1,13 +1,18 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.List;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.ui.tab.TabInfo;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.person.Person;
 
 /**
@@ -47,4 +52,12 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ReadOnlyUserData getUserData();
+
+    List<TabInfo> getTabInfoList();
+
+    ReadOnlyObjectProperty<TabInfo> getSelectedTab();
+
+    void setSelectedTab(Index index);
 }

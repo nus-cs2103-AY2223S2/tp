@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, it can get your contact management tasks done faster than traditional GUI apps.
+AddressBook Neo is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, it can get your contact management tasks done faster than traditional GUI apps.
 
 Apart from being your all-encompassing address book, AddressBook Neo also has a calendar function for you to keep track of your daily schedule.
 
@@ -22,7 +22,7 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)   
+   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -67,12 +67,12 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
 ![calendar](images/userguide/calendarUI.png)
 
 1. Calender Display
-    * displays all lessons and events you have saved
-2.Command Results:
-    * displays the result of input command
-4. Command Line:
-    * type command and press enter to execute it
-    * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
+   * displays all lessons and events you have saved
+2. Command Results:
+   * displays the result of input command
+3. Command Line
+   * type command and press enter to execute it
+   * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
 
 ____________________________________________________________________________________________________________________
 ## Address Book Features
@@ -88,7 +88,7 @@ ________________________________________________________________________________
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -136,7 +136,7 @@ Here are all the specifiers that can be used:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and modules taken(including 0). 
 
-IMPT: If you want to add multiple tags or modules in one statement, 
+IMPT: If you want to add multiple tags or modules in one statement,
 every tag or module has to have its corresponding specifier.
 
 In the future, only modules that are a part of NUS' mod systems will be allowed. This is
@@ -166,7 +166,7 @@ Use this command to favourite it so that you have easy access to it!
 Here are some important requirements for you to take note:
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer**.
 
 ### Unfavourite A Contact : `unfav`
 
@@ -179,7 +179,7 @@ Use this command to unfavourite it!
 Here are some important requirements for you to take note:
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer**.
 
 ### Editing a contact's details : `edit`
 
@@ -194,11 +194,11 @@ Here are some important requirements for you to take note:
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 * At least one field must be provided.
-  * Note that when editing tags/mods taken, the existing tags/mods taken of/by the person will be removed 
+  * Note that when editing tags/mods taken, the existing tags/mods taken of/by the person will be removed
 
-    _[i.e  adding of tags and mods taken are not cumulative]_
-    * If you wish to remove all tags/mods from the person, simply type `t/` / `mt/`.
- * We plan to make a new function in the future to make both tags and mods taken cumulative, stay tuned!
+  _[i.e  adding of tags and mods taken are not cumulative]_
+  * If you wish to remove all tags/mods from the person, simply type `t/` / `mt/`.
+* We plan to make a new function in the future to make both tags and mods taken cumulative, stay tuned!
 
 | Specifier | Name of Field                   | Optional? |
 |-----------|---------------------------------|-----------|
@@ -231,7 +231,7 @@ Here are some important requirements for you to take note:
 * The search is **case-insensitive**.
 
     _[e.g `hans`,`Hans`, `HANS` are all equivalent]_
-* The order of the keywords does not matter. 
+* The order of the keywords does not matter.
 
     _[e.g. `Hans Bo` will match `Bo Hans`]_
 
@@ -271,6 +271,22 @@ Simply use this command to clear all contacts from your address book.
 
 > Command: `clear`
 
+### Switching between UI tabs: `tab`
+
+Looking for a faster way to switch between the address book and the calendar?
+
+Use this command to navigate to the specified tab.
+
+> Command: `tab INDEX`
+
+Here are some important requirements for you to take note:
+* `INDEX` refers to the index of the tab to navigate to, shown before the name in the tab.
+  * `INDEX` must be a positive integer.
+
+Examples:
+* `tab 1` switches to the address book tab.
+* `tab 2` switches to the calendar tab.
+
 ### Exiting AddressBookNeo : `exit`
 
 Finished what you needed to do?
@@ -281,17 +297,19 @@ Use this command to exit the application!
 
 ### Address Book Command Summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action     | Format, Examples                                                                                                                                                         |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Clear**  | `clear`                                                                                                                                                                  |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                      |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |  
-| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                         |
-| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                     |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                            |
+| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                        |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                               |
+| **List**   | `list`                                                                                                                                                                   |
+| **Help**   | `help`                                                                                                                                                                   |
+| **Tab**    | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                            |
+| **Exit**   | `exit`                                                                                                                                                                   |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Calendar Features

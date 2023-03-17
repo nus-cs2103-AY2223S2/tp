@@ -2,13 +2,21 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <ScrollPane fx:id="scrollContainer" fitToWidth="true" hbarPolicy="NEVER" styleClass="pane-with-rounded-corner, p0"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <VBox spacing="10" styleClass="pa">
-        <Label fx:id="id" styleClass="label-bright" />
-        <Label fx:id="name" text="\$first" styleClass="label-header" wrapText="true" minHeight="-Infinity" />
-        <FlowPane fx:id="tags" />
-        <VBox fx:id="dataContainer" spacing="10" />
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label fx:id="id" styleClass="label-p, tag-accented" />
+            <ImageView fx:id="star" fitHeight="10" fitWidth="10">
+                <Image url="/images/star.png"/>
+            </ImageView>
+        </HBox>
+        <Label fx:id="name" text="\$first" styleClass="label-h1" wrapText="true" minHeight="-Infinity" />
+        <VBox fx:id="dataContainer" spacing="10">
+            <FlowPane fx:id="tags" />
+        </VBox>
     </VBox>
 </ScrollPane>

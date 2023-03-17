@@ -5,7 +5,7 @@
 
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml">
-    <StackPane fx:id="personListPanelPlaceholder" minWidth="320">
+    <StackPane fx:id="personListPanelPlaceholder" minWidth="320" maxWidth="320">
         <padding>
             <Insets right="10" />
         </padding>

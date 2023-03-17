@@ -9,7 +9,7 @@
            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="result-display, p0">
     <VBox fx:id="resultDisplayContainer" spacing="10" styleClass="result-display, pa">
-      <Label fx:id="resultDisplayLabel" styleClass="label-p" />
+      <Label fx:id="resultDisplayLabel" styleClass="label-p" wrapText="true" />
     </VBox>
   </ScrollPane>
 </StackPane>
