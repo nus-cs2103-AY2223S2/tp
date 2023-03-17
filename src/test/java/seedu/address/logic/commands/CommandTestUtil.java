@@ -26,6 +26,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -95,6 +96,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditEventCommand.EditEventDescriptor DESC_CARNIVAL;
+    public static final EditEventCommand.EditEventDescriptor DESC_SPORTS_DAY;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -103,6 +106,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withEventSet(SPORTS_DAY).build();
+        DESC_CARNIVAL = new EditEventDescriptorBuilder().withEventName(VALID_EVENT_NAME_CARNIVAL)
+                .withStartDateTime(VALID_START_DATE_TIME_CARNIVAL)
+                .withEndDateTime(VALID_END_DATE_TIME_CARNIVAL).build();
+        DESC_SPORTS_DAY = new EditEventDescriptorBuilder().withEventName(VALID_EVENT_NAME_SPORTS_DAY)
+                .withStartDateTime(VALID_START_DATE_TIME_SPORTS_DAY)
+                .withEndDateTime(VALID_END_DATE_TIME_SPORTS_DAY).build();
     }
 
     /**
