@@ -10,10 +10,10 @@ import seedu.socket.model.person.tag.Language;
 /**
  * Tests that a {@code Person}'s {@code Language} matches any of the languages given.
  */
-public class listCommandLanguagePredicate implements Predicate<Person> {
+public class ListCommandLanguagePredicate implements Predicate<Person> {
     private final Set<Language> languages;
 
-    public listCommandLanguagePredicate(Set<Language> languages) {
+    public ListCommandLanguagePredicate(Set<Language> languages) {
         this.languages = languages;
     }
 
@@ -37,7 +37,7 @@ public class listCommandLanguagePredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof listCommandLanguagePredicate // instanceof handles nulls
-                && languages.equals(((listCommandLanguagePredicate) other).languages)); // state check
+                || (other instanceof ListCommandLanguagePredicate // instanceof handles nulls
+                && languages.equals(((ListCommandLanguagePredicate) other).languages)); // state check
     }
 }

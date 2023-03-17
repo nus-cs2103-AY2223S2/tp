@@ -10,11 +10,11 @@ import seedu.socket.model.person.tag.Tag;
 /**
  * Tests that a {@code Person}'s {@code Tag} matches any of the tags given.
  */
-public class listCommandTagPredicate implements Predicate<Person> {
+public class ListCommandTagPredicate implements Predicate<Person> {
 
     private final Set<Tag> tags;
 
-    public listCommandTagPredicate(Set<Tag> keywords) {
+    public ListCommandTagPredicate(Set<Tag> keywords) {
         this.tags = keywords;
     }
 
@@ -38,7 +38,7 @@ public class listCommandTagPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof listCommandTagPredicate // instanceof handles nulls
-                && tags.equals(((listCommandTagPredicate) other).tags)); // state check
+                || (other instanceof ListCommandTagPredicate // instanceof handles nulls
+                && tags.equals(((ListCommandTagPredicate) other).tags)); // state check
     }
 }

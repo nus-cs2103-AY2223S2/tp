@@ -11,10 +11,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.logic.commands.ListCommand;
+import seedu.socket.model.person.predicate.ListCommandLanguagePredicate;
+import seedu.socket.model.person.predicate.ListCommandTagPredicate;
 import seedu.socket.model.person.tag.Language;
-import seedu.socket.model.person.predicate.listCommandLanguagePredicate;
 import seedu.socket.model.person.tag.Tag;
-import seedu.socket.model.person.predicate.listCommandTagPredicate;
 
 public class ListCommandParserTest {
 
@@ -27,8 +27,8 @@ public class ListCommandParserTest {
         Set<Language> testLanguages = new HashSet<>();
 
         ListCommand expectedListCommand =
-                new ListCommand(new listCommandTagPredicate(testTags),
-                        new listCommandLanguagePredicate(testLanguages),
+                new ListCommand(new ListCommandTagPredicate(testTags),
+                        new ListCommandLanguagePredicate(testLanguages),
                         false);
         // empty argument
         assertParseSuccess(parser, "", expectedListCommand);
@@ -39,8 +39,8 @@ public class ListCommandParserTest {
 
         // no leading and trailing whitespaces
         expectedListCommand =
-                new ListCommand(new listCommandTagPredicate(testTags),
-                        new listCommandLanguagePredicate(testLanguages),
+                new ListCommand(new ListCommandTagPredicate(testTags),
+                        new ListCommandLanguagePredicate(testLanguages),
                         true);
         assertParseSuccess(parser, " t/friend l/python", expectedListCommand);
         // multiple whitespaces between keywords
