@@ -1,5 +1,8 @@
 package seedu.loyaltylift.model.customer;
 
+import seedu.loyaltylift.commons.exceptions.IllegalValueException;
+import seedu.loyaltylift.logic.commands.AddPointsCommand;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -27,6 +30,31 @@ public class Points {
         value = points;
     }
 
+    public Points editPoints(Points.AddPoints p) throws IllegalValueException {
+        Points newPoints = p.modifier.isPositive()
+                ? addPoints(p)
+                : subtractPoints(p);
+        return newPoints;
+    }
+
+    private Points addPoints(Points.AddPoints p) throws IllegalValueException {
+        Integer newPoints = this.value + p.value;
+        if (isValidPoints(newPoints)) {
+            return new Points(newPoints);
+        } else {
+            throw new IllegalValueException(Points.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    private Points subtractPoints(Points.AddPoints p) throws IllegalValueException {
+        Integer newPoints = this.value - p.value;
+        if (isValidPoints(newPoints)) {
+            return new Points(newPoints);
+        } else {
+            throw new IllegalValueException(Points.MESSAGE_CONSTRAINTS);
+        }
+    }
+
     /**
      * Returns true if a given point is valid.
      */
@@ -50,5 +78,57 @@ public class Points {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public static class AddPoints {
+        public enum Modifier {
+            PLUS("+"),
+            MINUS("-");
+
+            public static final String MESSAGE_CONSTRAINTS = "Modifier must '+' or '-'";
+
+            private String value;
+            private Modifier(String value) {
+                this.value = value;
+            }
+
+            public boolean isPositive() {
+                return (this.toString().compareTo("+") == 0);
+            }
+
+            public String toString() {
+                return this.value;
+            }
+        }
+
+        public final Integer value;
+        public final Modifier modifier;
+        public static final String MESSAGE_CONSTRAINTS = "In the addpoints command, points must be an integer.\n"
+                + "Points can only range from 0 to 999 999.\n"
+                + "A modifier, '+' or '-' can be added in front of points to add or subtract points respectively.\n"
+                + "If no such modifier exists, addpoints command will default to an addition.";
+
+        public AddPoints(Integer value, Modifier modifier) {
+            this.value = value;
+            this.modifier = modifier;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof Points.AddPoints)) {
+                return false;
+            }
+
+            // state check
+            Points.AddPoints e = (Points.AddPoints) other;
+            return value.equals(e.value)
+                    && modifier.equals(e.modifier);
+        }
     }
 }
