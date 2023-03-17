@@ -7,7 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -51,10 +55,10 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        remark.setText(person.getRemark().value);
+        phone.setText(person.getOptionalPhone().map(Phone::toString).orElse(null));
+        address.setText(person.getOptionalAddress().map(Address::toString).orElse(null));
+        email.setText(person.getOptionalEmail().map(Email::toString).orElse(null));
+        remark.setText(person.getOptionalRemark().map(Remark::toString).orElse(null));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
