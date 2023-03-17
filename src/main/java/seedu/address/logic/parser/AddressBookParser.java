@@ -18,6 +18,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.InterviewCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RejectCommand;
+import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -79,6 +80,9 @@ public class AddressBookParser {
 
         case InterviewCommand.COMMAND_WORD:
             return new InterviewCommand();
+
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
