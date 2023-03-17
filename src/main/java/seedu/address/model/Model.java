@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
@@ -105,9 +106,20 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void updateFilteredCustomerList(Predicate<Customer> predicate);
-
     // ==== For Customers ==
+
+    /**
+     * Returns an unmodifiable view of the filtered customer list
+     */
+    ObservableList<Customer> getFilteredCustomerList();
+
+    /**
+     * Updates the filter of the filtered customer list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredCustomerList(Predicate<Customer> predicate);
 
     /**
      * Adds customer to the shop
@@ -177,4 +189,6 @@ public interface Model {
     void updateFilteredServiceList(Predicate<Service> predicate);
 
     void updateFilteredVehicleList(Predicate<Vehicle> predicate);
+
+    CustomerVehicleMap getCustomerVehicleMap();
 }
