@@ -20,11 +20,8 @@ import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
 import trackr.model.SupplierList;
 import trackr.model.order.Order;
-import trackr.model.order.OrderDescriptor;
-import trackr.model.order.OrderName;
-import trackr.model.order.OrderNameContainsKeywordPredicate;
-import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
+import trackr.model.order.OrderDescriptor;
 import trackr.model.supplier.NameContainsKeywordsPredicate;
 import trackr.model.supplier.Supplier;
 import trackr.model.task.Task;
@@ -148,6 +145,24 @@ public class CommandTestUtil {
     public static final String INVALID_CUSTOMER_PHONE = "912345674554";
     public static final String INVALID_CUSTOMER_ADDRESS = "  ";
 
+    public static final OrderDescriptor DESC_CHOCO_COOKIE;
+    public static final OrderDescriptor DESC_CUPCAKE;
+
+    static {
+        DESC_CHOCO_COOKIE = new OrderDescriptorBuilder()
+                .withOrderName(VALID_ORDER_NAME_CHOCOLATE_COOKIES)
+                .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
+                .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
+                .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
+                .withCustomer(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE, VALID_CUSTOMER_ADDRESS).build();
+
+        DESC_CUPCAKE = new OrderDescriptorBuilder()
+                .withOrderName(VALID_ORDER_NAME_CUPCAKES)
+                .withOrderDeadline(VALID_ORDER_DEADLINE_2023)
+                .withOrderStatus(VALID_ORDER_STATUS_DONE)
+                .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
+                .withCustomer(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE, VALID_CUSTOMER_ADDRESS).build();
+    }
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -235,21 +250,6 @@ public class CommandTestUtil {
         model.updateFilteredOrderList(predicate);
 
         assertEquals(1, model.getFilteredOrderList().size());
-    }
-
-    /**
-     * Updates {@code model}'s filtered order list to show only the order at the given {@code targetIndex} in the
-     * {@code model}'s order list.
-     */
-    public static void showOrderAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
-
-        Order order = model.getFilteredOrderList().get(targetIndex.getZeroBased());
-        final String[] splitOrderName = order.getOrderName().value.split("\\s+");
-        model.updateFilteredOrderList(new OrderNameContainsKeywordPredicate(Arrays.asList(splitOrderName[0])));
-
-        assertEquals(1, model.getFilteredOrderList().size());
-
     }
 
 }

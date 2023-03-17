@@ -23,6 +23,9 @@ import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.order.customer.Customer;
+import trackr.model.order.customer.CustomerAddress;
+import trackr.model.order.customer.CustomerName;
+import trackr.model.order.customer.CustomerPhone;
 
 /**
  * Edits the details of an existing order in the order list.
@@ -99,11 +102,16 @@ public class EditOrderCommand extends Command {
                 editOrderDescriptor.getOrderStatus().orElse(orderToEdit.getOrderStatus());
         OrderQuantity updatedOrderQuantity =
                 editOrderDescriptor.getOrderQuantity().orElse(orderToEdit.getOrderQuantity());
-        Customer updatedCustomer =
-                editOrderDescriptor.getCustomer().orElse(orderToEdit.getCustomer());
+        CustomerName updatedCustomerName =
+                editOrderDescriptor.getCustomerName().orElse(orderToEdit.getCustomer().getCustomerName());
+        CustomerPhone updatedCustomerPhone =
+                editOrderDescriptor.getCustomerPhone().orElse(orderToEdit.getCustomer().getCustomerPhone());
+        CustomerAddress updatedCustomerAddress =
+                editOrderDescriptor.getCustomerAddress().orElse(orderToEdit.getCustomer().getCustomerAddress());
+        Customer updatedCustomer = new Customer(updatedCustomerName, updatedCustomerPhone, updatedCustomerAddress);
 
-        return new Order(updatedOrderName, updatedOrderDeadline, updatedOrderStatus, updatedOrderQuantity,
-                updatedCustomer);
+        return new Order(updatedOrderName, updatedOrderDeadline, updatedOrderStatus,
+                updatedOrderQuantity, updatedCustomer);
     }
 
     @Override

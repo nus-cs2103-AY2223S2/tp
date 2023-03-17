@@ -17,11 +17,11 @@ public class Customer {
     /**
      *  Every field must be present and not null.
      */
-    public Customer(CustomerName customerName, CustomerPhone customerPhone, CustomerAddress customer) {
-        requireAllNonNull(customerName, customerPhone, customer);
+    public Customer(CustomerName customerName, CustomerPhone customerPhone, CustomerAddress customerAddress) {
+        requireAllNonNull(customerName, customerPhone, customerAddress);
         this.customerName = customerName;
         this.customerPhone = customerPhone;
-        this.customerAddress = customer;
+        this.customerAddress = customerAddress;
     }
 
     public CustomerName getCustomerName() {
