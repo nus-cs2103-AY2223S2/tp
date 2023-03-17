@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Comment;
 import seedu.address.model.task.Task;
 
 
@@ -114,6 +115,12 @@ public interface Model {
      * {@code task} must exist in the address book.
      */
     void unmarkTask(Task task);
+
+    /**
+     * Adds the given comment to the specified task.
+     *  @param comment Comment by user
+     * @param task specified task to receive comment*/
+    void commentOnTask(Comment comment, Task task);
 
     // /**
     //  * Assign a task to a person.

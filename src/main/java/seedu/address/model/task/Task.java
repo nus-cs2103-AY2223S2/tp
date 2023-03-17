@@ -11,6 +11,7 @@ public class Task {
 
     protected boolean isDone;
     private final TaskDescription description;
+    private Comment taskComment;
     private Index personAssignedIndex;
     private String personAssignedName;
     private String personAssignedRole;
@@ -24,6 +25,7 @@ public class Task {
         this.personAssignedIndex = null;
         this.personAssignedName = null;
         this.personAssignedRole = null;
+        this.taskComment = null;
     }
 
     /**
@@ -51,6 +53,24 @@ public class Task {
      */
     public boolean isDone() {
         return isDone;
+    }
+
+    /**
+     * Leaves a comment to the current task.
+     *
+     * @param comment Comment by user to be assigned to the current task
+     */
+    public void setTaskComment(Comment comment) {
+        this.taskComment = comment;
+    }
+
+    /**
+     * Returns the comment of the current task.
+     *
+     * @return Comment value assigned to the current task
+     */
+    public Comment getTaskComment() {
+        return this.taskComment;
     }
 
     /**
