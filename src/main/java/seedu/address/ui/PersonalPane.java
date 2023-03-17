@@ -25,6 +25,10 @@ public class PersonalPane extends UiPart<Region> {
     private ImageView imageView;
     @FXML
     private Label name;
+
+    @FXML
+    private Label status;
+
     @FXML
     private Label id;
     @FXML
@@ -49,6 +53,7 @@ public class PersonalPane extends UiPart<Region> {
         }
         imageView.setImage(image);
         name.setText(person.getName().fullName);
+        status.setText(person.getStatus().fullStatusDetail);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);

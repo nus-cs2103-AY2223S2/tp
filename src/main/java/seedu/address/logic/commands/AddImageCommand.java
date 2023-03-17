@@ -54,7 +54,7 @@ public class AddImageCommand extends Command {
             throw new CommandException("Failed to update image.", io);
         }
         Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getName(), personToEdit.getStatus(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), toAdd);
         model.setPerson(personToEdit, editedPerson);
 
