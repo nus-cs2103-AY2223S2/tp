@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.logic.commands.AddPartCommand;
+import seedu.address.logic.commands.AddServiceCommand;
 import seedu.address.logic.commands.AddTechnicianCommand;
 import seedu.address.logic.commands.AddVehicleCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -96,6 +97,9 @@ public class AddressBookParser {
 
         case AddVehicleCommand.COMMAND_WORD:
             return new AddVehicleCommandParser().parse(arguments);
+
+        case AddServiceCommand.COMMAND_WORD:
+            return new AddServiceCommandParser().parse(arguments);
 
         case AddAppointmentCommand.COMMAND_WORD:
             return new AddAppointmentCommandParser().parse(arguments);
