@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "modules": [ {
     "name": "Valid Module",
     "type": "9482424",
     "timeSlot": "hans@example.com",
