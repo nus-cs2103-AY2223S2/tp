@@ -122,6 +122,8 @@ Format: `setpoints INDEX pt/POINTS`
 * The points refers to the reward points of the customer
 * The points **must be a positive integer** 1, 2, 3, ​​…
 * The points can only range from 0 to 999999
+* Setting points will also set cumulative points to the same amount, if you wish to keep the current cumulative points,
+use the `addpoints` command instead.
 
 Examples:
 * `listc` followed by `setpoints 2 pt/100` sets the 2nd customer points as 100.
@@ -131,7 +133,7 @@ Examples:
 
 Edits a customer's reward points by adding or removing from it.
 
-Format: `addpoints INDEX +/-POINTS`
+Format: `addpoints INDEX pt/[+/-]POINTS`
 
 * Add or subtract the points of the customer at the specified `INDEX` to `POINTS`.
 * If the points subtracted is greater than what the user has, the command will not be executed
@@ -141,10 +143,12 @@ Format: `addpoints INDEX +/-POINTS`
 * The +/- refers to whether you wish to add or subtract from the reward points of the customer, + to add, - to subtract
 * The points refers to how much you wish to add or subtract the reward points of the customer
 * The points **must be a positive integer** 1, 2, 3, ​​…
+* Addition will also result in an addition of cumulative points, subtraction will not change cumulative points.
 
 Examples:
-* `listc` followed by `addpoints 2 100` adds 100 reward points to the 2nd customer.
-* `findc Betsy` followed by `addpoints 1 300` adds 300 reward poitns to the 1st customer in the results of the `findc` command.
+* `listc` followed by `addpoints 2 pt/100` adds 100 reward points to the 2nd customer.
+* `findc Betsy` followed by `addpoints 1 pt/-300` deducts 300 reward points from 
+the 1st customer in the results of the `findc` command.
 
 ### Setting tiers for your reward system : `settier`
 
