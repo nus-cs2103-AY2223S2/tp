@@ -79,16 +79,16 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyEventBook> addressBookOptional;
+        Optional<ReadOnlyEventBook> eventBookOptional;
         Optional<ReadOnlyContactList> contactListOptional;
         ReadOnlyEventBook initialData;
         ReadOnlyContactList initialContactData;
         try {
-            addressBookOptional = storage.readEventBook();
-            if (!addressBookOptional.isPresent()) {
+            eventBookOptional = storage.readEventBook();
+            if (!eventBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Paidlancers");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleEventBook);
+            initialData = eventBookOptional.orElseGet(SampleDataUtil::getSampleEventBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Paidlancers");
             initialData = new EventBook();

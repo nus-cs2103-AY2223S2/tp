@@ -46,14 +46,14 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setEventBookFilePath(Path addressBookFilePath);
+    void setEventBookFilePath(Path eventBookFilePath);
 
     void setContactListFilePath(Path contactListFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code eventBook}.
      */
-    void setEventBook(ReadOnlyEventBook addressBook);
+    void setEventBook(ReadOnlyEventBook eventBook);
 
     /** Returns the EventBook */
     ReadOnlyEventBook getEventBook();

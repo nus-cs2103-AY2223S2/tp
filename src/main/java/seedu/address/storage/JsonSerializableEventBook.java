@@ -16,7 +16,7 @@ import seedu.address.model.event.Event;
 /**
  * An Immutable EventBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "eventbook")
 class JsonSerializableEventBook {
 
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";

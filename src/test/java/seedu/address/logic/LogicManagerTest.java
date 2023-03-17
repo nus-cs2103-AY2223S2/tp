@@ -46,12 +46,12 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonEventBookStorage addressBookStorage =
+        JsonEventBookStorage eventBookStorage =
                 new JsonEventBookStorage(temporaryFolder.resolve("eventBook.json"));
         JsonContactListStorage contactListStorage =
                 new JsonContactListStorage(temporaryFolder.resolve("contactList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, contactListStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(eventBookStorage, contactListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -76,14 +76,14 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonEventBookIoExceptionThrowingStub
-        JsonEventBookStorage addressBookStorage =
+        JsonEventBookStorage eventBookStorage =
                 new JsonEventBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionEventBook.json"));
         JsonContactListStorage contactListStorage =
                 new JsonContactListIoExceptionThrowingStub(temporaryFolder
                         .resolve("ioExceptionContactList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, contactListStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(eventBookStorage, contactListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -174,7 +174,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveContactList(ReadOnlyContactList contactList, Path filePath) throws IOException {
+        public void saveContactList(ReadOnlyContactList eventBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

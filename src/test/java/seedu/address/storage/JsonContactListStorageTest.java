@@ -87,7 +87,7 @@ class JsonContactListStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code eventBook} at the specified {@code filePath}.
      */
     private void saveContactList(ReadOnlyContactList contactList, String filePath) {
         try {

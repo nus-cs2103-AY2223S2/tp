@@ -69,14 +69,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveEventBook(ReadOnlyEventBook addressBook) throws IOException {
-        saveEventBook(addressBook, eventBookStorage.getEventBookFilePath());
+    public void saveEventBook(ReadOnlyEventBook eventBook) throws IOException {
+        saveEventBook(eventBook, eventBookStorage.getEventBookFilePath());
     }
 
     @Override
-    public void saveEventBook(ReadOnlyEventBook addressBook, Path filePath) throws IOException {
+    public void saveEventBook(ReadOnlyEventBook eventBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        eventBookStorage.saveEventBook(addressBook, filePath);
+        eventBookStorage.saveEventBook(eventBook, filePath);
     }
 
     // ================ ContactList methods ==============================
@@ -103,8 +103,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveContactList(ReadOnlyContactList contactList, Path filePath) throws IOException {
+    public void saveContactList(ReadOnlyContactList eventBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        contactListStorage.saveContactList(contactList, filePath);
+        contactListStorage.saveContactList(eventBook, filePath);
     }
 }

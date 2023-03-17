@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "eventbook.json"
+  "eventBookFilePath" : "eventbook.json"
 }

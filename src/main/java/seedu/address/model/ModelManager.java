@@ -30,14 +30,14 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given eventBook and userPrefs.
      */
-    public ModelManager(ReadOnlyEventBook addressBook, ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, contactList, userPrefs);
+    public ModelManager(ReadOnlyEventBook eventBook, ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(eventBook, contactList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook
+        logger.fine("Initializing with address book: " + eventBook
                 + " with contact list: " + contactList
                 + " and user prefs " + userPrefs);
 
-        this.eventBook = new EventBook(addressBook);
+        this.eventBook = new EventBook(eventBook);
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.eventBook.getEventList());
@@ -84,9 +84,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setEventBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setEventBookFilePath(addressBookFilePath);
+    public void setEventBookFilePath(Path eventBookFilePath) {
+        requireNonNull(eventBookFilePath);
+        userPrefs.setEventBookFilePath(eventBookFilePath);
     }
 
     @Override
@@ -98,8 +98,8 @@ public class ModelManager implements Model {
     //=========== EventBook ================================================================================
 
     @Override
-    public void setEventBook(ReadOnlyEventBook addressBook) {
-        this.eventBook.resetData(addressBook);
+    public void setEventBook(ReadOnlyEventBook eventBook) {
+        this.eventBook.resetData(eventBook);
     }
 
     @Override
@@ -149,7 +149,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedEventBook}
      */
     @Override
     public ObservableList<Event> getFilteredEventList() {

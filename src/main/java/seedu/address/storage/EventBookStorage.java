@@ -33,14 +33,14 @@ public interface EventBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyEventBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param eventBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveEventBook(ReadOnlyEventBook addressBook) throws IOException;
+    void saveEventBook(ReadOnlyEventBook eventBook) throws IOException;
 
     /**
      * @see #saveEventBook(ReadOnlyEventBook)
      */
-    void saveEventBook(ReadOnlyEventBook addressBook, Path filePath) throws IOException;
+    void saveEventBook(ReadOnlyEventBook eventBook, Path filePath) throws IOException;
 
 }

@@ -112,12 +112,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setEventBookFilePath(Path addressBookFilePath) {
+        public void setEventBookFilePath(Path eventBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setContactListFilePath(Path addressBookFilePath) {
+        public void setContactListFilePath(Path eventBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -132,7 +132,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setEventBook(ReadOnlyEventBook newData) {
+        public void setEventBook(ReadOnlyEventBook eventBook) {
             throw new AssertionError("This method should not be called.");
         }
 

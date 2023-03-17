@@ -34,7 +34,7 @@ public interface Storage extends EventBookStorage, ContactListStorage, UserPrefs
     Optional<ReadOnlyContactList> readContactList() throws DataConversionException, IOException;
 
     @Override
-    void saveEventBook(ReadOnlyEventBook addressBook) throws IOException;
+    void saveEventBook(ReadOnlyEventBook eventBook) throws IOException;
 
     @Override
     void saveContactList(ReadOnlyContactList contactList) throws IOException;
