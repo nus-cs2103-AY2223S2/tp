@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
+import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalCustomers.ALICE;
-import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_A;
 
 import java.util.Arrays;

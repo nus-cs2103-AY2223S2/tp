@@ -3,10 +3,10 @@ package seedu.loyaltylift.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
+import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalCustomers.ALICE;
 import static seedu.loyaltylift.testutil.TypicalCustomers.HOON;
 import static seedu.loyaltylift.testutil.TypicalCustomers.IDA;
-import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;

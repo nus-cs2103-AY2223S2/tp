@@ -2,7 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
-import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
+import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 
 import org.junit.jupiter.api.BeforeEach;

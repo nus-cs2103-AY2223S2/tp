@@ -12,6 +12,7 @@ import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.ReadOnlyAddressBook;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.order.Order;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,15 +21,19 @@ import seedu.loyaltylift.model.customer.Customer;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "Customers list contains duplicate customer(s).";
+    public static final String MESSAGE_DUPLICATE_ORDER = "Orders list contains duplicate orders(s).";
 
     private final List<JsonAdaptedCustomer> customers = new ArrayList<>();
+    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given customers.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("customers") List<JsonAdaptedCustomer> customers) {
+    public JsonSerializableAddressBook(@JsonProperty("customers") List<JsonAdaptedCustomer> customers,
+                                       @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
         this.customers.addAll(customers);
+        this.orders.addAll(orders);
     }
 
     /**
@@ -38,6 +43,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         customers.addAll(source.getCustomerList().stream().map(JsonAdaptedCustomer::new).collect(Collectors.toList()));
+        orders.addAll(source.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +59,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CUSTOMER);
             }
             addressBook.addCustomer(customer);
+        }
+        for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
+            Order order = jsonAdaptedOrder.toModelType();
+            if (addressBook.hasOrder(order)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
+            }
+            addressBook.addOrder(order);
         }
         return addressBook;
     }
