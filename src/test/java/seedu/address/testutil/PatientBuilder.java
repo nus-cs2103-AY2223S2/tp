@@ -106,7 +106,7 @@ public class PatientBuilder {
         this.id = new PatientId(id);
         return this;
     }
-    
+
     /**
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */

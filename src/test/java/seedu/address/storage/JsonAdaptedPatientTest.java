@@ -90,8 +90,7 @@ public class JsonAdaptedPatientTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPatient patient = new JsonAdaptedPatient(VALID_ID, VALID_NAME, VALID_PHONE,
-        null, VALID_ADDRESS,
-                VALID_REMARK, VALID_TAGS);
+                null, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, patient::toModelType);
     }

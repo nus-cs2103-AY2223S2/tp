@@ -38,7 +38,7 @@ class JsonAdaptedPatient {
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
      */
     @JsonCreator
-    public JsonAdaptedPatient(@JsonProperty("id") String id,, @JsonProperty("name") String name,
+    public JsonAdaptedPatient(@JsonProperty("id") String id, @JsonProperty("name") String name,
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                               @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark,
