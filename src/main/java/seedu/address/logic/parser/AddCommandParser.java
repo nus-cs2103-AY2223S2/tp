@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Education;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -45,9 +46,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = parsePrefixIfPresent(argMultimap, PREFIX_EMAIL, ParserUtil::parseEmail);
         Address address = parsePrefixIfPresent(argMultimap, PREFIX_ADDRESS, ParserUtil::parseAddress);
         Remark remark = parsePrefixIfPresent(argMultimap, PREFIX_REMARK, ParserUtil::parseRemark);
+        Education education = null;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, remark, tagList);
+        Person person = new Person(name, phone, email, address, education, remark, tagList);
         return new AddCommand(person);
     }
 
