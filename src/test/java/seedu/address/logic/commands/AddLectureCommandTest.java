@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class AddLectureCommandTest {
     @Test
     public void constructor_nullLecture_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddLectureCommand(new ModuleCode(VALID_MODULE_CODE_2103), null));
+                new AddLectureCommand(TypicalModules.CS2040S.getCode(), null));
     }
 
     @Test
