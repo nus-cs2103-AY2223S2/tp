@@ -27,6 +27,12 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<? super ReadOnlyModule> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
+    Predicate<? super ReadOnlyModule> PREDICATE_HIDE_ALL_MODULES = unused -> false;
+
+    Predicate<? super ReadOnlyLecture> PREDICATE_HIDE_ALL_LECTURES = unused -> false;
+
+    Predicate<? super Video> PREDICATE_HIDE_ALL_VIDEOS = unused -> false;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      *
@@ -268,12 +274,47 @@ public interface Model {
     ObservableList<? extends ReadOnlyModule> getFilteredModuleList();
 
     /**
+     * Returns an unmodifiable view of the filtered lecture list.
+     *
+     * @return An unmodifiable view of the filtered lecture list.
+     */
+    ObservableList<? extends ReadOnlyLecture> getFilteredLectureList();
+
+    /**
+     * Returns an unmodifiable view of the filtered lecture list.
+     *
+     * @return An unmodifiable view of the filtered lecture list.
+     */
+    ObservableList<? extends Video> getFilteredVideoList();
+
+    /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      *
      * @param predicate The predicate to filter modules by.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate);
+
+    /**
+     * Updates the filter of the filtered lecture list to filter by the given {@code predicate}.
+     *
+     * @param predicate The predicate to filter lecture by.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate, ReadOnlyModule module);
+
+    /**
+     * Updates the filter of the filtered video list to filter by the given {@code predicate}.
+     *
+     * @param predicate The predicate to filter video by.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredVideoList(Predicate<? super Video> predicate, ReadOnlyLecture lecture);
+
+    /**
+     * Updates the filter to hide all the contents of a list.
+     */
+    void updateAllFilteredListAsHidden();
 
     // TODO: Add JavaDocs
     void navigateBack();
