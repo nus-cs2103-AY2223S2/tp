@@ -122,7 +122,7 @@
     /* Horizontal inset and padding to separate from the parent list view,
      * and vertical inset and padding to separate from the next list cell.
      */
-    -fx-padding: 5 0 5 0;
+    -fx-padding: 3 0 5 0;
     -fx-background-insets: 5;
     -fx-background-color: transparent;
     -fx-background-radius: 10;
