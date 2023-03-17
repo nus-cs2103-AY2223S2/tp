@@ -33,6 +33,7 @@ public class ModelManager implements Model {
     private final Navigation navigation;
     private final FilteredList<? extends ReadOnlyModule> filteredModules;
     private FilteredList<? extends ReadOnlyLecture> filteredLectures;
+    private FilteredList<? extends Video> filteredVideos;
 
     private AddressBook addressBook; // TODO: Remove this
     private FilteredList<Person> filteredPersons; // TODO: Remove this
@@ -239,8 +240,13 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+
+        // Hide other list components
         if (filteredLectures != null) {
             filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
         }
     }
 
@@ -259,7 +265,34 @@ public class ModelManager implements Model {
         }
         requireNonNull(filteredLectures);
         filteredLectures.setPredicate(predicate);
+
+        // Hide other list components
         filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+        }
+    }
+
+    //=========== Filtered Video List Accessors =============================================================
+    @Override
+    public ObservableList<? extends Video> getFilteredVideoList() {
+        return filteredVideos;
+    }
+
+    @Override
+    public void updateFilteredVideoList(Predicate<? super Video> predicate, ReadOnlyLecture lecture) {
+        requireNonNull(predicate);
+        if (filteredVideos == null) {
+            filteredVideos = new FilteredList<>(lecture.getVideoList());
+        }
+        requireNonNull(filteredVideos);
+        filteredVideos.setPredicate(predicate);
+
+        // Hide other list components
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
     }
 
     //=========== Navigation =================================================================================

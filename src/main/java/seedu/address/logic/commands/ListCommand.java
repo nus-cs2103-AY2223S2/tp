@@ -10,9 +10,11 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import seedu.address.model.Level;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.LecturePredicate;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.module.VideoPredicate;
 
 
 /**
@@ -79,14 +81,15 @@ public class ListCommand extends Command {
                 return new CommandResult(
                     String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode), Level.MODULE);
             }
-            // Update filtered videos and show
+            ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
+            model.updateFilteredVideoList(new VideoPredicate(lecture), lecture);
             return new CommandResult(String.format(MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName), Level.VIDEO);
         }
         if (moduleCode != null) {
             if (!model.hasModule(moduleCode)) {
                 return new CommandResult(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode), Level.LECTURE);
             }
-            ReadOnlyModule module = model.getTracker().getModule(moduleCode);
+            ReadOnlyModule module = model.getModule(moduleCode);
             model.updateFilteredLectureList(new LecturePredicate(module), module);
             return new CommandResult(String.format(MESSAGE_SUCCESS_LECTURES, moduleCode), Level.LECTURE);
         }

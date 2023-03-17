@@ -7,39 +7,40 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.lecture.ReadOnlyLecture;
+
+import seedu.address.model.video.Video;
 
 /**
  * A UI component that displapys information of a {@code Module}.
  */
-public class LectureCard extends UiPart<Region> {
+public class VideoCard extends UiPart<Region> {
 
-    private static final String FXML = "LectureListCard.fxml";
+    private static final String FXML = "VideoListCard.fxml";
 
-    private final ReadOnlyLecture lecture;
+    private final Video video;
 
     @FXML
     private HBox cardPane;
     @FXML
     private Label id;
     @FXML
-    private Label lectureName;
+    private Label videoName;
     @FXML
-    private Label videoCount;
+    private Label watchedStatus;
     @FXML
     private FlowPane tags;
 
     /**
      * Creates a {@code ModuleCard} with the given {@code ReadOnlyModule}.
      */
-    public LectureCard(ReadOnlyLecture lecture, int displayedIndex) {
+    public VideoCard(Video video, int displayedIndex) {
         super(FXML);
-        this.lecture = lecture;
+        this.video = video;
         id.setText(displayedIndex + ". ");
-        lectureName.setText(lecture.getName().toString());
+        videoName.setText(video.getName().toString());
 
-        videoCount.setText("Videos: " + lecture.getVideoList().size());
-        lecture.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
+        watchedStatus.setText(video.hasWatched() ? "Watched" : "Not Watched");
+        video.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
@@ -51,12 +52,12 @@ public class LectureCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof LectureCard)) {
+        if (!(other instanceof VideoCard)) {
             return false;
         }
 
         // state check
-        LectureCard card = (LectureCard) other;
-        return id.getText().equals(card.id.getText()) && lecture.equals(card.lecture);
+        VideoCard card = (VideoCard) other;
+        return id.getText().equals(card.id.getText()) && video.equals(card.video);
     }
 }
