@@ -29,7 +29,12 @@ public class FileStorage {
         createDrc(path);
     }
 
-    private void createDrc(String path) {
+    /**
+     * Create drc.
+     *
+     * @param path the path
+     */
+    public static void createDrc(String path) {
         File directory = new File(path);
         checkDir(directory);
     }
@@ -92,7 +97,13 @@ public class FileStorage {
         });
     }
 
-    private static boolean isImageFile(File file) {
+    /**
+     * Is image file boolean.
+     *
+     * @param file the file
+     * @return the boolean
+     */
+    public static boolean isImageFile(File file) {
         String fileName = file.getName();
         String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
         return extension.equalsIgnoreCase("jpg")
@@ -127,7 +138,12 @@ public class FileStorage {
     */
 
 
-    private void checkDir(File userDir) {
+    /**
+     * Check dir.
+     *
+     * @param userDir the user dir
+     */
+    public static void checkDir(File userDir) {
         if (!userDir.exists()) {
             userDir.mkdirs();
         }
