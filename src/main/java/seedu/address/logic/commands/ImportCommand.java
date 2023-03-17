@@ -24,7 +24,7 @@ public class ImportCommand extends Command {
             + "Parameters: FACULTY\n"
             + "Example: " + COMMAND_WORD + " SOC";
 
-    public static final String MESSAGE_SUCCESS = "Contacts successfully imported";
+    public static final String MESSAGE_SUCCESS = "Theses contact(s) were successfully imported:";
     public static final String MESSAGE_DUPLICATE_IMPORT = " already exists in the address book";
     public static final String MESSAGE_NO_FACULTY = "Faculty not found!";
 
@@ -42,6 +42,7 @@ public class ImportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String duplicates = "";
+        String successes = "";
         ArrayList<Person> importList = new ArrayList<Person>();
 
         if (faculty.equalsIgnoreCase("soc")) {
@@ -56,13 +57,16 @@ public class ImportCommand extends Command {
             if (model.hasPerson(toAdd)) {
                 duplicates += toAdd.getName() + MESSAGE_DUPLICATE_IMPORT + "\n";
                 continue;
+            } else {
+                duplicates += toAdd.getName() + " was successfully imported\n";
+                successes += "\n" + toAdd.getName();
             }
             model.addPerson(toAdd);
         }
         if (duplicates.length() > 0) {
             throw new CommandException(duplicates);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_SUCCESS + successes));
     }
 
     @Override
