@@ -17,9 +17,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.shared.Id;
 import seedu.address.model.task.Task;
 
-
-
-
 /**
  * Reviews the list of tasks assigned to a specific person
  */
