@@ -28,7 +28,7 @@ public class PointsTest {
     }
 
     @Test
-    public void AddPointsEquals() {
+    public void addPointsEquals() {
         Points.AddPoints addPoints = new Points.AddPoints(100, Points.AddPoints.Modifier.PLUS);
 
         // same object -> returns true

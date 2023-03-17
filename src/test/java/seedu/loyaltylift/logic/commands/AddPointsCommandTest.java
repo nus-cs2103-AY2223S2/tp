@@ -28,8 +28,8 @@ public class AddPointsCommandTest {
 
     @Test
     public void constructor_nullAddPoints_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddPointsCommand(Index.fromOneBased(1)
-                , null));
+        assertThrows(NullPointerException.class, () -> new AddPointsCommand(Index.fromOneBased(1),
+                null));
     }
 
     @Test

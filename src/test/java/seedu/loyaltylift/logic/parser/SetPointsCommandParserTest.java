@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
-import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
 import seedu.loyaltylift.model.customer.Points;
 
@@ -38,11 +37,9 @@ public class SetPointsCommandParserTest {
         assertParseFailure(parser, SetPointsCommand.COMMAND_WORD, expectedMessage);
 
         // weird test failure, not sure what is going on, will fix in future
-        /**
         // no index
-        assertParseFailure(parser, SetPointsCommand.COMMAND_WORD + " "
-                + PREFIX_POINTS + nonEmptyPoints, expectedMessage);
-         */
+        //assertParseFailure(parser, SetPointsCommand.COMMAND_WORD + " "
+        //        + PREFIX_POINTS + nonEmptyPoints, expectedMessage);
 
         // no points
         assertParseFailure(parser, SetPointsCommand.COMMAND_WORD + " 1", expectedMessage);
