@@ -1,22 +1,27 @@
 package seedu.address.storage.adaptedassignment;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.student.Assignment;
 import seedu.address.model.person.student.Test;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Jackson-friendly version of {@link Assignment}.
  */
 public class JsonAdaptedTest extends JsonAdaptedAssignment {
 
+    @JsonCreator
+    public JsonAdaptedTest(String assignmentName) {
+        super(assignmentName, "No Deadline", -100, -100);
+    }
+
     /**
      * Constructs a {@code JsonAdaptedAssignment} with the given {@code assignmentName}.
      */
-    @JsonCreator
     public JsonAdaptedTest(String assignmentName, String deadline, int weightage, int score) {
         super(assignmentName, deadline, weightage, score);
     }
@@ -28,7 +33,6 @@ public class JsonAdaptedTest extends JsonAdaptedAssignment {
         super(source);
     }
 
-    
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Assignment} object.
      *
@@ -38,8 +42,12 @@ public class JsonAdaptedTest extends JsonAdaptedAssignment {
         if (!Assignment.isValidAssignmentName(super.getAssignmentName())) {
             throw new IllegalValueException(Assignment.MESSAGE_CONSTRAINTS);
         }
-        LocalDate deadline = LocalDate.parse(super.getDeadline(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        return new Test(super.getAssignmentName(), deadline, super.getWeightage(), super.getScore());
+        if (!super.getDeadline().equals("No Deadline")) {
+            LocalDate deadline = LocalDate.parse(super.getDeadline(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            return new Test(super.getAssignmentName(), deadline, super.getWeightage(), super.getScore());
+        } else {
+            return new Test(super.getAssignmentName(), null, super.getWeightage(), super.getScore());
+        }
     }
 
 }

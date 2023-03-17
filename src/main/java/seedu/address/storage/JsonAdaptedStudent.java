@@ -1,7 +1,14 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Class;
@@ -15,15 +22,12 @@ import seedu.address.model.person.student.Attendance;
 import seedu.address.model.person.student.Cca;
 import seedu.address.model.person.student.Homework;
 import seedu.address.model.person.student.IndexNumber;
-import seedu.address.model.person.student.Test;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.Test;
 import seedu.address.storage.adaptedassignment.JsonAdaptedHomework;
 import seedu.address.storage.adaptedassignment.JsonAdaptedTest;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -95,12 +99,21 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         this.parentNumber = student.getParentNumber().value;
         this.parentName = student.getParentName().fullName;
         this.rls = student.getRls().rls;
+        /*
         for (Homework hw : student.getHomework()) {
             this.homework.add(new JsonAdaptedHomework(hw));
         }
         for (Test t : student.getTest()) {
             this.test.add(new JsonAdaptedTest(t));
         }
+
+         */
+        homework.addAll(student.getHomework().stream()
+                .map(JsonAdaptedHomework::new)
+                .collect(Collectors.toList()));
+        test.addAll(student.getTest().stream()
+                .map(JsonAdaptedTest::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -201,9 +214,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
             studentHomework.add(jsonAdaptedHomework.toModelType());
         }
         final Set<Homework> modelHomework = new HashSet<>(studentHomework);
-
-
-        return new Student(person.getName(), person.getStudentClass(), modelIndexNumber, modelSex, modelParentName,
+        return new Student(person.getName(), Class.of(sc), modelIndexNumber, modelSex, modelParentName,
                 modelParentNumber, modelRls, modelAge, modelImage, person.getEmail(), person.getPhone(), modelCca,
                 person.getAddress(), modelAttendance, modelHomework, modelTest, person.getTags(), person.getComment());
     }

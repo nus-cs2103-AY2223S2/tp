@@ -72,7 +72,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        setStudents(newData.getStudentList());
+        setParents(newData.getParentList());
         setPersons(newData.getPersonList());
     }
 
@@ -204,7 +205,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
     }
-
+    @Override
     public ObservableList<Parent> getParentList() {
         return parents.asUnmodifiableObservableList();
     }

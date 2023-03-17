@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * Represents an Assignment that is assigned to the Student.
  */
-abstract public class Assignment {
+public abstract class Assignment {
 
     public static final String MESSAGE_CONSTRAINTS = "Assignment name should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -35,6 +35,10 @@ abstract public class Assignment {
      * @return boolean value to indicate if the assignment name is valid.
      */
     public static boolean isValidAssignmentName(String test) {
+        if (test.equals("Insert student homework here!") || test.equals("Insert student test here!")) {
+            return true;
+        }
+
         return test.matches(VALIDATION_REGEX);
     }
 

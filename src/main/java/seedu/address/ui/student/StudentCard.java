@@ -78,6 +78,7 @@ public class StudentCard extends UiPart<Region> {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
+        System.out.println(student.getStudentClass());
         className.setText(student.getStudentClass().getClassName());
         index.setText(student.getIndexNumber().value);
         sex.setText(student.getSex().value);

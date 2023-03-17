@@ -1,7 +1,11 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Image;
@@ -10,8 +14,7 @@ import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Jackson-friendly version of {@link Parent}.
@@ -60,7 +63,7 @@ class JsonAdaptedParent extends JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Parent toModelType () throws IllegalValueException {
+    public Parent toModelType() throws IllegalValueException {
         Person person = super.toModelType();
 
         if (age == null) {
