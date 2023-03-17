@@ -2,6 +2,7 @@ package seedu.vms.logic.parser;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,12 +30,19 @@ public abstract class FeatureParser implements Parser<ParseResult> {
         ArgumentMultimap args = ArgumentTokenizer.tokenize(argString);
 
         Command command = parseCommand(commandWord, args);
-        return new ParseResult(command, formParseMessage(args));
+        Optional<CommandMessage> message = formParseMessage(args);
+
+        return message.map(msg -> new ParseResult(command, msg))
+                .orElseGet(() -> new ParseResult(command));
     }
 
 
-    private CommandMessage formParseMessage(ArgumentMultimap args) {
+    private Optional<CommandMessage> formParseMessage(ArgumentMultimap args) {
         List<Map.Entry<Prefix, List<String>>> unusedArgs = args.getUnusedArgs();
+        if (unusedArgs.isEmpty()) {
+            return Optional.empty();
+        }
+
         StringBuilder builder = new StringBuilder();
         for (Map.Entry<Prefix, List<String>> entry : unusedArgs) {
             Prefix prefix = entry.getKey();
@@ -45,8 +53,9 @@ public abstract class FeatureParser implements Parser<ParseResult> {
                         arg));
             }
         }
+
         String message = String.format("The following arguments are unused:%s", builder.toString());
-        return new CommandMessage(message, CommandMessage.State.WARNING);
+        return Optional.ofNullable(new CommandMessage(message, CommandMessage.State.WARNING));
     }
 
 
