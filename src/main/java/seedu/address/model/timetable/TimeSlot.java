@@ -23,8 +23,12 @@ public class TimeSlot extends TimePeriod {
         super(startTime, startTime.plusHours(1), schoolDay);
     }
 
+    /**
+     * Copys a TimeSlot to another TimeSlot.
+     */
     public TimeSlot(TimeSlot timeSlot) {
         super(timeSlot.getStartTime(), timeSlot.getEndTime(), timeSlot.getSchoolDay());
+        this.lesson = timeSlot.getLesson();
     }
 
     public LocalTime getStartTime() {
@@ -37,7 +41,7 @@ public class TimeSlot extends TimePeriod {
 
     @Override
     public TimeBlock merge(TimePeriod timePeriod) {
-        if (this.isConsecutiveWith(timePeriod)) {
+        if (this.isConsecutiveWith(timePeriod) && timePeriod.getSchoolDay().equals(getSchoolDay())) {
             if (this.getStartTime().isBefore(timePeriod.getStartTime())
                     && getSchoolDay().equals(timePeriod.getSchoolDay())) {
                 return new TimeBlock(this.getStartTime(), timePeriod.getEndTime(), getSchoolDay());
@@ -84,10 +88,12 @@ public class TimeSlot extends TimePeriod {
         // or that timeslot start is after lesson start AND timeslot end is before lesson end.
         LocalTime lessonStartTime = lesson.getStartTime();
         LocalTime lessonEndTime = lesson.getEndTime();
+        if (!lesson.getDay().equals(getSchoolDay())) {
+            return false;
+        }
         if (getStartTime().isEqual(lessonStartTime) || getEndTime().isEqual(lessonEndTime)) {
             return true;
-        }
-        if (getStartTime().isAfter(lessonStartTime) && getEndTime().isBefore(lessonEndTime)) {
+        } else if (getStartTime().isAfter(lessonStartTime) && getEndTime().isBefore(lessonEndTime)) {
             return true;
         }
         return false;
