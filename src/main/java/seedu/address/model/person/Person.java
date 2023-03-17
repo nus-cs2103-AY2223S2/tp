@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -39,7 +38,7 @@ public class Person {
      */
 
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Group> groups,
-                  List<IsolatedEvent> isolatedEvents, List<RecurringEvent> recurringEvents) {
+                  Set<IsolatedEvent> isolatedEvents, Set<RecurringEvent> recurringEvents) {
         requireAllNonNull(name, phone, email, address, tags, groups, isolatedEvents, recurringEvents);
         this.name = name;
         this.phone = phone;

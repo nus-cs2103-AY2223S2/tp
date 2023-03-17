@@ -112,8 +112,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
-        List<IsolatedEvent> originalIsolatedEvents = personToEdit.getIsolatedEventList().getList();
-        List<RecurringEvent> originalRecurringEvents = personToEdit.getRecurringEventList().getList();
+        Set<IsolatedEvent> originalIsolatedEvents = personToEdit.getIsolatedEventList().getSet();
+        Set<RecurringEvent> originalRecurringEvents = personToEdit.getRecurringEventList().getSet();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedGroups,
                 originalIsolatedEvents, originalRecurringEvents);

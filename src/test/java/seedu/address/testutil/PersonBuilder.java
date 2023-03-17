@@ -1,9 +1,8 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.RecurringEvent;
@@ -32,8 +31,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Set<Group> groups;
-    private List<IsolatedEvent> isolatedEvents;
-    private List<RecurringEvent> recurringEvents;
+    private Set<IsolatedEvent> isolatedEvents;
+    private Set<RecurringEvent> recurringEvents;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -45,8 +44,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         groups = new HashSet<>();
-        isolatedEvents = new ArrayList<>();
-        recurringEvents = new ArrayList<>();
+        isolatedEvents = new TreeSet<>();
+        recurringEvents = new TreeSet<>();
     }
 
     /**
@@ -59,8 +58,8 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         groups = new HashSet<>(personToCopy.getGroups());
-        isolatedEvents = personToCopy.getIsolatedEventList().getList();
-        recurringEvents = personToCopy.getRecurringEventList().getList();
+        isolatedEvents = new TreeSet<>(personToCopy.getIsolatedEventList().getSet());
+        recurringEvents = new TreeSet<>(personToCopy.getRecurringEventList().getSet());
     }
 
     /**
@@ -114,7 +113,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code IsolatedEventList} of the {@code Person} that we are building.
      */
-    public PersonBuilder withIsolatedEventList(List<IsolatedEvent> isolatedEvents) {
+    public PersonBuilder withIsolatedEventList(Set<IsolatedEvent> isolatedEvents) {
         this.isolatedEvents = isolatedEvents;
         return this;
     }
@@ -122,7 +121,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code RecurringEventList} of the {@code Person} that we are building.
      */
-    public PersonBuilder withRecurringEventList(List<RecurringEvent> recurringEvents) {
+    public PersonBuilder withRecurringEventList(Set<RecurringEvent> recurringEvents) {
         this.recurringEvents = recurringEvents;
         return this;
     }

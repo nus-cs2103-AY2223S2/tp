@@ -98,6 +98,8 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         final List<Group> personGroups = new ArrayList<>();
+        final List<IsolatedEvent> personIsolatedEvents = new ArrayList<>();
+        final List<RecurringEvent> personRecurringEvents = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
@@ -105,14 +107,11 @@ class JsonAdaptedPerson {
         for (JsonAdaptedGroup group : groups) {
             personGroups.add(group.toModelType());
         }
-
-        final List<IsolatedEvent> modelIsolatedEvents = new ArrayList<>();
-        final List<RecurringEvent> modelRecurringEvents = new ArrayList<>();
         for (JsonAdaptedIsolatedEvent isolatedEvent : isolatedEvents) {
-            modelIsolatedEvents.add(isolatedEvent.toModelType());
+            personIsolatedEvents.add(isolatedEvent.toModelType());
         }
         for (JsonAdaptedRecurringEvent recurringEvent : recurringEvents) {
-            modelRecurringEvents.add(recurringEvent.toModelType());
+            personRecurringEvents.add(recurringEvent.toModelType());
         }
 
         if (name == null) {
@@ -149,6 +148,8 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Group> modelGroups = new HashSet<>(personGroups);
+        final Set<IsolatedEvent> modelIsolatedEvents = new HashSet<>(personIsolatedEvents);
+        final Set<RecurringEvent> modelRecurringEvents = new HashSet<>(personRecurringEvents);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelGroups,
                 modelIsolatedEvents, modelRecurringEvents);
     }

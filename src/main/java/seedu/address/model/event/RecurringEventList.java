@@ -2,7 +2,7 @@ package seedu.address.model.event;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 
 /**
@@ -28,11 +28,14 @@ public class RecurringEventList {
     public boolean contain(RecurringEvent event) {
         return recurringEvents.contains(event);
     }
-    public void addAll(List<RecurringEvent> recurringEvents) {
+    public void addAll(Set<RecurringEvent> recurringEvents) {
         this.recurringEvents.addAll(recurringEvents);
     }
     public ArrayList<RecurringEvent> getList() {
         return new ArrayList<>(this.recurringEvents);
+    }
+    public Set<RecurringEvent> getSet() {
+        return new TreeSet<>(this.recurringEvents);
     }
     /**
      * Prints out a list of all event that occur within the given time period
