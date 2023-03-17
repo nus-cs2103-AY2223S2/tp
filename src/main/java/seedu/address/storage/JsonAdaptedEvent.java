@@ -23,7 +23,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Event}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedEvent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
@@ -37,15 +37,15 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given event details.
+     * Constructs a {@code JsonAdaptedEvent} with the given event details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("rate") String rate,
-            @JsonProperty("address") String address,
-            @JsonProperty("startTiming") String startTime,
-            @JsonProperty("endTiming") String endTiming,
-            @JsonProperty("mark") String mark, @JsonProperty("contact") String contact,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("rate") String rate,
+                            @JsonProperty("address") String address,
+                            @JsonProperty("startTiming") String startTime,
+                            @JsonProperty("endTiming") String endTiming,
+                            @JsonProperty("mark") String mark, @JsonProperty("contact") String contact,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.rate = rate;
         this.address = address;
@@ -61,7 +61,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Event source) {
+    public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
         rate = Double.toString(source.getRate().value);
         address = source.getAddress().value;

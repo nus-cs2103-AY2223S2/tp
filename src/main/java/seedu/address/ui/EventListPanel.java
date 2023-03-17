@@ -26,13 +26,13 @@ public class EventListPanel extends UiPart<Region> {
     public EventListPanel(ObservableList<Event> personList) {
         super(FXML);
         personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new EventListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code EventCard}.
      */
-    class PersonListViewCell extends ListCell<Event> {
+    class EventListViewCell extends ListCell<Event> {
         @Override
         protected void updateItem(Event person, boolean empty) {
             super.updateItem(person, empty);

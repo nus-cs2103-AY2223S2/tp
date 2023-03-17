@@ -69,18 +69,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This event already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditEventDescriptor editEventDescriptor;
 
     /**
      * @param index of the event in the filtered event list to edit
-     * @param editPersonDescriptor details to edit the event with
+     * @param editEventDescriptor details to edit the event with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditEventDescriptor editEventDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editEventDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editEventDescriptor = new EditEventDescriptor(editEventDescriptor);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class EditCommand extends Command {
         }
 
         Event personToEdit = lastShownList.get(index.getZeroBased());
-        Event editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Event editedPerson = createEditedPerson(personToEdit, editEventDescriptor);
 
         if (!personToEdit.isSameEvent(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -106,19 +106,19 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedPerson(Event personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Event createEditedPerson(Event personToEdit, EditEventDescriptor editEventDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Rate updatedRate = editPersonDescriptor.getRate().orElse(personToEdit.getRate());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Time updatedStartTime = editPersonDescriptor.getStartTime().orElse(personToEdit.getStartTime());
-        Time updatedEndTime = editPersonDescriptor.getEndTime().orElse(personToEdit.getEndTime());
-        Contact updatedContact = editPersonDescriptor.getContact().orElse(personToEdit.getContact());
-        Mark updatedMark = editPersonDescriptor.getMark().orElse(personToEdit.getMark());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editEventDescriptor.getName().orElse(personToEdit.getName());
+        Rate updatedRate = editEventDescriptor.getRate().orElse(personToEdit.getRate());
+        Address updatedAddress = editEventDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Time updatedStartTime = editEventDescriptor.getStartTime().orElse(personToEdit.getStartTime());
+        Time updatedEndTime = editEventDescriptor.getEndTime().orElse(personToEdit.getEndTime());
+        Contact updatedContact = editEventDescriptor.getContact().orElse(personToEdit.getContact());
+        Mark updatedMark = editEventDescriptor.getMark().orElse(personToEdit.getMark());
+        Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(personToEdit.getTags());
 
         Event updatedEvent = new Event(
                 updatedName, updatedRate, updatedAddress, updatedStartTime, updatedEndTime, updatedTags);
@@ -145,14 +145,14 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editEventDescriptor.equals(e.editEventDescriptor);
     }
 
     /**
      * Stores the details to edit the event with. Each non-empty field value will replace the
      * corresponding field value of the event.
      */
-    public static class EditPersonDescriptor {
+    public static class EditEventDescriptor {
         private Name name;
         private Rate rate;
         private Address address;
@@ -162,13 +162,13 @@ public class EditCommand extends Command {
         private Mark mark;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditEventDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditEventDescriptor(EditEventDescriptor toCopy) {
             setName(toCopy.name);
             setRate(toCopy.rate);
             setAddress(toCopy.address);
@@ -267,12 +267,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditEventDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditEventDescriptor e = (EditEventDescriptor) other;
 
             return getName().equals(e.getName())
                     && getRate().equals(e.getRate())

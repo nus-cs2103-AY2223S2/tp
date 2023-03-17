@@ -35,7 +35,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        ModelStubAcceptingEventAdded modelStub = new ModelStubAcceptingEventAdded();
         Event validPerson = new EventBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
@@ -48,7 +48,7 @@ public class AddCommandTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Event validPerson = new EventBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        ModelStub modelStub = new ModelStubWithEvent(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EVENT, () -> addCommand.execute(modelStub));
     }
@@ -205,10 +205,10 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single event.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithEvent extends ModelStub {
         private final Event person;
 
-        ModelStubWithPerson(Event person) {
+        ModelStubWithEvent(Event person) {
             requireNonNull(person);
             this.person = person;
         }
@@ -223,7 +223,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the event being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class ModelStubAcceptingEventAdded extends ModelStub {
         final ArrayList<Event> personsAdded = new ArrayList<>();
 
         @Override

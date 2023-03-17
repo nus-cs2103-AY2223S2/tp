@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.event.exceptions.DuplicatePersonException;
-import seedu.address.model.event.exceptions.PersonNotFoundException;
+import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.testutil.EventBuilder;
 
 public class UniqueEventListTest {
@@ -55,7 +55,7 @@ public class UniqueEventListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniqueEventList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueEventList.add(ALICE));
+        assertThrows(DuplicateEventException.class, () -> uniqueEventList.add(ALICE));
     }
 
     @Test
@@ -70,7 +70,7 @@ public class UniqueEventListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueEventList.setPerson(ALICE, ALICE));
+        assertThrows(EventNotFoundException.class, () -> uniqueEventList.setPerson(ALICE, ALICE));
     }
 
     @Test
@@ -106,7 +106,7 @@ public class UniqueEventListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueEventList.add(ALICE);
         uniqueEventList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniqueEventList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateEventException.class, () -> uniqueEventList.setPerson(ALICE, BOB));
     }
 
     @Test
@@ -116,7 +116,7 @@ public class UniqueEventListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueEventList.remove(ALICE));
+        assertThrows(EventNotFoundException.class, () -> uniqueEventList.remove(ALICE));
     }
 
     @Test
@@ -159,7 +159,7 @@ public class UniqueEventListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Event> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueEventList.setPersons(listWithDuplicatePersons));
+        assertThrows(DuplicateEventException.class, () -> uniqueEventList.setPersons(listWithDuplicatePersons));
     }
 
     @Test
