@@ -71,12 +71,11 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        toggleTheme(logic.getGuiSettings().isLightMode());
 
         setAccelerators();
 
         helpWindow = new HelpWindow();
-
-        toggleTheme(false);
     }
 
     public Stage getPrimaryStage() {
@@ -168,7 +167,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), isLightMode);
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
