@@ -17,7 +17,10 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Level;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.video.Video;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +37,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ModuleListPanel moduleListPanel;
+    private LectureListPanel lectureListPanel;
+    private VideoListPanel videoListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,7 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane moduleListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,9 +116,24 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        moduleListPanel = new ModuleListPanel((ObservableList<ReadOnlyModule>) logic.getFilteredModuleList());
-        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+    @SuppressWarnings("unchecked")
+    void fillInnerParts(Level level) {
+        // Sets the list displayed on UI based on the level type
+        if (level.equals(Level.MODULE)) {
+            this.moduleListPanel = new ModuleListPanel(
+                (ObservableList<ReadOnlyModule>) logic.getFilteredModuleList());
+            listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        }
+        if (level.equals(Level.LECTURE)) {
+            this.lectureListPanel = new LectureListPanel(
+                (ObservableList<ReadOnlyLecture>) logic.getFilteredLectureList());
+            listPanelPlaceholder.getChildren().add(lectureListPanel.getRoot());
+        }
+        if (level.equals(Level.VIDEO)) {
+            this.videoListPanel = new VideoListPanel(
+                (ObservableList<Video>) logic.getFilteredVideoList());
+            listPanelPlaceholder.getChildren().add(videoListPanel.getRoot());
+        }
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -177,6 +197,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            fillInnerParts(commandResult.getLevel());
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
