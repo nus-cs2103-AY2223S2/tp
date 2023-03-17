@@ -12,7 +12,6 @@ import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
-import seedu.address.ui.ConfirmationDialog;
 
 /**
  * Clears the address book entries by parameter specified.
@@ -44,17 +43,14 @@ public class ClearByCommand extends Command {
 
     public static final String MESSAGE_INVALID_PARAMETER = "Invalid param!";
     public static final String MESSAGE_CLEAR_SUCCESS = "All internship application with %s : %s has been cleared!";
-    public static final String MESSAGE_CLEAR_FAILED = "Applications with %s \"%s\" Not Deleted";
     public static final String MESSAGE_NULL = "There is nothing to clear!";
     public static final String MESSAGE_FAILED = "Clear command cannot be executed!";
-    public static final String MESSAGE_CLEAR_CONFIRMATION = "Are you sure you want to clear this: %s";
     public static final String MESSAGE_EMPTY_FILTERED_LIST = "There is no %s with keyword \"%s\"!";
 
     private CompanyName companyName = null;
     private JobTitle jobTitle = null;
     private InternshipStatus status = null;
     private String param;
-    private ConfirmationDialog confirmationDialog;
 
     private ParamType paramType;
 
@@ -102,10 +98,11 @@ public class ClearByCommand extends Command {
                 return new CommandResult(String.format(MESSAGE_EMPTY_FILTERED_LIST, paramType.getName(), param));
             }
 
-            confirmationDialog = new ConfirmationDialog((
-                    String.format(MESSAGE_CLEAR_CONFIRMATION, param)));
+            for (InternshipApplication application : filteredList) {
+                model.deleteInternship(application);
+            }
 
-            return deleteAll(model, filteredList, confirmationDialog.getConfirmationStatus());
+            return new CommandResult(String.format(MESSAGE_CLEAR_SUCCESS, paramType.getName(), param));
 
         } catch (IllegalArgumentException e) {
             return new CommandResult(MESSAGE_FAILED);
@@ -113,23 +110,8 @@ public class ClearByCommand extends Command {
 
     }
 
-    /**
-     * Finds {@code param} and deletes relevant internship applications from the {@code model} data and returns result
-     * message with respect to the user's action to {@code confirm}.
-     */
-    public CommandResult deleteAll(Model model, List<InternshipApplication> filteredList, boolean confirm) {
-        if (confirm) {
-            for (InternshipApplication application : filteredList) {
-                model.deleteInternship(application);
-            }
-
-            return new CommandResult(String.format(MESSAGE_CLEAR_SUCCESS, paramType.getName(), param));
-        }
-        return new CommandResult(String.format(MESSAGE_CLEAR_FAILED, paramType.getName(), param));
-    }
-
     private List<InternshipApplication> getFilteredList(List<InternshipApplication> lastShownList) {
-        List<InternshipApplication> filteredList = lastShownList;
+        List<InternshipApplication> filteredList;
         switch (paramType) {
         case COMPANYNAME:
             filteredList = lastShownList

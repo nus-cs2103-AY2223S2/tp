@@ -1,0 +1,17 @@
+.dialog-pane {
+    -fx-background-color: #edede9;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1);
+}
+
+.dialog-pane > .content.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: Georgia;
+    -fx-text-fill: #023047;
+    -fx-wrap-text: true;
+}
+
+.dialog-pane:hover {
+    -fx-background-color: #cecece;
+}
