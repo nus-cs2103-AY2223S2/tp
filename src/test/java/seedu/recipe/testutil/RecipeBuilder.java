@@ -14,7 +14,7 @@ import seedu.recipe.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Recipe objects.
  */
-public class PersonBuilder {
+public class RecipeBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -28,9 +28,9 @@ public class PersonBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code RecipeBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public RecipeBuilder() {
         name = new Name(DEFAULT_NAME);
         ingredient = new Ingredient(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -39,9 +39,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code recipeToCopy}.
+     * Initializes the RecipeBuilder with the data of {@code recipeToCopy}.
      */
-    public PersonBuilder(Recipe recipeToCopy) {
+    public RecipeBuilder(Recipe recipeToCopy) {
         name = recipeToCopy.getName();
         ingredient = recipeToCopy.getIngredient();
         email = recipeToCopy.getEmail();
@@ -52,7 +52,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Recipe} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public RecipeBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -60,7 +60,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Recipe} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public RecipeBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -68,7 +68,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Recipe} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public RecipeBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -76,7 +76,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Ingredient} of the {@code Recipe} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public RecipeBuilder withPhone(String phone) {
         this.ingredient = new Ingredient(phone);
         return this;
     }
@@ -84,7 +84,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Recipe} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public RecipeBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }

@@ -1,12 +1,16 @@
 package seedu.recipe.ui;
 
 import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
 
 /**
@@ -21,7 +25,7 @@ public class RecipeCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/recipebook-level4/issues/336">The issue on RecipeBook level 4</a>
      */
 
     public final Recipe recipe;
@@ -32,14 +36,22 @@ public class RecipeCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+
     @FXML
-    private Label ingredient;
+    private Label duration;
+
     @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private Label portion;
+
     @FXML
     private FlowPane tags;
+
+    @FXML
+    private FlowPane ingredients;
+
+    @FXML
+    private FlowPane steps;
+
 
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
@@ -49,12 +61,33 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().recipeName);
-        ingredient.setText(recipe.getIngredient().value);
-        address.setText(recipe.getAddress().value);
-        email.setText(recipe.getEmail().value);
+
+        //Duration
+        duration.setText(
+                Optional.ofNullable(recipe.getDurationNullable())
+                        .map(Object::toString)
+                        .orElse("Duration was not added.")
+        );
+
+        //Portion
+        portion.setText(
+                Optional.ofNullable(recipe.getPortionNullable())
+                        .map(Object::toString)
+                        .orElse("Portion was not added.")
+        );
+
+        //Tags
         recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        //Ingredients
+        recipe.getIngredients()
+                .forEach(ingredient -> ingredients.getChildren().add(new Label(ingredient.toString())));
+
+        //Steps
+        recipe.getSteps()
+                .forEach(step -> steps.getChildren().add(new Label(step.toString())));
     }
 
     @Override
@@ -69,7 +102,7 @@ public class RecipeCard extends UiPart<Region> {
             return false;
         }
 
-        // state check
+        // state checkbyd
         RecipeCard card = (RecipeCard) other;
         return id.getText().equals(card.id.getText())
                 && recipe.equals(card.recipe);

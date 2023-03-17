@@ -30,7 +30,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
     public RecipeBook() {}
 
     /**
-     * Creates an AddressBook using the Recipes in the {@code toBeCopied}
+     * Creates an RecipeBook using the Recipes in the {@code toBeCopied}
      */
     public RecipeBook(ReadOnlyRecipeBook toBeCopied) {
         this();
@@ -48,7 +48,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code RecipeBook} with {@code newData}.
      */
     public void resetData(ReadOnlyRecipeBook newData) {
         requireNonNull(newData);
@@ -86,7 +86,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code RecipeBook}.
      * {@code key} must exist in the address book.
      */
     public void removeRecipe(Recipe key) {

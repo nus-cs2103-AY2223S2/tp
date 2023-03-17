@@ -10,4 +10,8 @@ public abstract class Unit {
         requireNonNull(unit);
         this.unit = unit;
     }
+
+    public String getUnit() {
+        return this.unit;
+    }
 }

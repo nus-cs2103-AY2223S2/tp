@@ -2,35 +2,22 @@ package seedu.recipe.model.recipe;
 
 import seedu.recipe.model.recipe.exceptions.RecipeDurationInvalidArgumentLengthException;
 import seedu.recipe.model.recipe.exceptions.RecipeDurationInvalidDurationException;
-import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
 import seedu.recipe.model.recipe.unit.TimeUnit;
 
 import java.util.Objects;
 
 public class RecipeDuration {
 
-    private final double time;
-    private final TimeUnit unit;
-
-    private static final String VALIDATION_REGEX =
-            "^\\d+(.\\d+)?\\s+[A-Za-z]*$";
-
     public static final String MESSAGE_CONSTRAINTS =
             "A Recipe Duration should consist of a numeric/decimal portion and an alphanumeric time unit";
+    private static final String VALIDATION_REGEX =
+            "^\\d+(.\\d+)?\\s+[A-Za-z]*$";
+    private final double time;
+    private final TimeUnit timeUnit;
 
-    private RecipeDuration(double time, TimeUnit unit){
+    public RecipeDuration(double time, TimeUnit timeUnit) {
         this.time = time;
-        this.unit = unit;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s %s", this.time, this.unit);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(time, unit);
+        this.timeUnit = timeUnit;
     }
 
     public static boolean isValidRecipeDuration(String test) {
@@ -61,5 +48,23 @@ public class RecipeDuration {
             throw new RecipeDurationInvalidDurationException(tokens[0]);
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s", this.time, this.timeUnit.toString());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(time, timeUnit);
+    }
+
+    public double getTime() {
+        return time;
+    }
+
+    public TimeUnit getTimeUnit() {
+        return timeUnit;
     }
 }

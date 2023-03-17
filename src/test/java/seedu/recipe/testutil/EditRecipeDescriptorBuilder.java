@@ -16,22 +16,22 @@ import seedu.recipe.model.tag.Tag;
 /**
  * A utility class to help with building EditRecipeDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditRecipeDescriptorBuilder {
 
     private EditCommand.EditRecipeDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditRecipeDescriptorBuilder() {
         descriptor = new EditCommand.EditRecipeDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditRecipeDescriptor descriptor) {
+    public EditRecipeDescriptorBuilder(EditCommand.EditRecipeDescriptor descriptor) {
         this.descriptor = new EditCommand.EditRecipeDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditRecipeDescriptor} with fields containing {@code recipe}'s details
      */
-    public EditPersonDescriptorBuilder(Recipe recipe) {
+    public EditRecipeDescriptorBuilder(Recipe recipe) {
         descriptor = new EditRecipeDescriptor();
         descriptor.setName(recipe.getName());
         descriptor.setPhone(recipe.getIngredient());
@@ -43,7 +43,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditRecipeDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditRecipeDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
@@ -51,7 +51,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Ingredient} of the {@code EditRecipeDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
+    public EditRecipeDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Ingredient(phone));
         return this;
     }
@@ -59,7 +59,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditRecipeDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
+    public EditRecipeDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
         return this;
     }
@@ -67,7 +67,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditRecipeDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
+    public EditRecipeDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
         return this;
     }
@@ -76,7 +76,7 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditRecipeDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditRecipeDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;

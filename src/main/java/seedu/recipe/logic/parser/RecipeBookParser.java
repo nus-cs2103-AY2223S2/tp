@@ -20,7 +20,7 @@ import seedu.recipe.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class RecipeBookParser {
 
     /**
      * Used for initial separation of command word and args.

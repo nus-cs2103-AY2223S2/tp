@@ -45,11 +45,11 @@ public interface Model {
     void setRecipeBookFilePath(Path recipeBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code recipeBook}.
      */
-    void setRecipeBook(ReadOnlyRecipeBook addressBook);
+    void setRecipeBook(ReadOnlyRecipeBook recipeBook);
 
-    /** Returns the AddressBook */
+    /** Returns the RecipeBook */
     ReadOnlyRecipeBook getRecipeBook();
 
     /**

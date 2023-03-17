@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the RecipeBook.
      *
      * @see seedu.recipe.model.Model#getRecipeBook()
      */
-    ReadOnlyRecipeBook getAddressBook();
+    ReadOnlyRecipeBook getRecipeBook();
 
     /** Returns an unmodifiable view of the filtered list of recipes */
     ObservableList<Recipe> getFilteredRecipeList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getRecipeBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

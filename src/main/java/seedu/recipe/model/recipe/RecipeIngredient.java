@@ -20,6 +20,10 @@ public class RecipeIngredient extends Ingredient {
         this.amount = amount;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public double getAmount() {
         return this.amount;
     }
@@ -43,5 +47,16 @@ public class RecipeIngredient extends Ingredient {
     @Override
     public int hashCode() {
         return Objects.hash(amount, unit, substitutions);
+    }
+
+    // Example RecipeIngredient input is "2 potato" (minimum)
+    // Example RecipeIngredient input is "5 tbsp pepper/salt" (maximum)
+    @Override
+    public String toString() {
+        String out = String.format(
+            "%s %s %s/%s",
+            amount, unit, name, substitutions
+        );
+        return out;
     }
 }

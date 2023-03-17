@@ -16,19 +16,19 @@ import seedu.recipe.model.tag.Tag;
 /**
  * A utility class for Recipe.
  */
-public class PersonUtil {
+public class RecipeUtil {
 
     /**
      * Returns an add command string for adding the {@code recipe}.
      */
     public static String getAddCommand(Recipe recipe) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(recipe);
+        return AddCommand.COMMAND_WORD + " " + getRecipeDetails(recipe);
     }
 
     /**
      * Returns the part of command string for the given {@code recipe}'s details.
      */
-    public static String getPersonDetails(Recipe recipe) {
+    public static String getRecipeDetails(Recipe recipe) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + recipe.getName().recipeName + " ");
         sb.append(PREFIX_PHONE + recipe.getIngredient().value + " ");
@@ -43,7 +43,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditRecipeDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCommand.EditRecipeDescriptor descriptor) {
+    public static String getEditRecipeDescriptorDetails(EditCommand.EditRecipeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.recipeName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

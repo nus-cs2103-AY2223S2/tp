@@ -14,47 +14,47 @@ import seedu.recipe.model.ReadOnlyRecipeBook;
 import seedu.recipe.model.recipe.Recipe;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable RecipeBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "recipebook")
 class JsonSerializableRecipeBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate recipe(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Recipes list contains duplicate recipe(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedRecipe> recipes = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableRecipeBook} with the given recipes.
      */
     @JsonCreator
-    public JsonSerializableRecipeBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableRecipeBook(@JsonProperty("recipes") List<JsonAdaptedRecipe> recipes) {
+        this.recipes.addAll(recipes);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyRecipeBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableRecipeBook}.
      */
     public JsonSerializableRecipeBook(ReadOnlyRecipeBook source) {
-        persons.addAll(source.getRecipeList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        recipes.addAll(source.getRecipeList().stream().map(JsonAdaptedRecipe::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code RecipeBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public RecipeBook toModelType() throws IllegalValueException {
-        RecipeBook addressBook = new RecipeBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Recipe recipe = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasRecipe(recipe)) {
+        RecipeBook recipeBook = new RecipeBook();
+        for (JsonAdaptedRecipe jsonAdaptedRecipe : recipes) {
+            Recipe recipe = jsonAdaptedRecipe.toModelType();
+            if (recipeBook.hasRecipe(recipe)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addRecipe(recipe);
+            recipeBook.addRecipe(recipe);
         }
-        return addressBook;
+        return recipeBook;
     }
 
 }
