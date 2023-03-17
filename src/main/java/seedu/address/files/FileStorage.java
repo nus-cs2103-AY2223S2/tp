@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+//import java.util.ArrayList;
+//import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -51,7 +53,6 @@ public class FileStorage {
     /**
      * Upload file.
      *
-     * @throws IOException the io exception
      */
     public void uploadFile() {
         SwingUtilities.invokeLater(() -> {
@@ -76,9 +77,54 @@ public class FileStorage {
                         System.out.println("Error copying file");
                     }
                 }
+                /*
+                FilesManager filesManager = new FilesManager();
+                List<Path> temp = filesManager.getAllDirectories();
+                for (int x = 0; x < temp.size(); x++) {
+                    System.out.println(temp.get(x).getFileName());
+                    List<Path> temp2 = filesManager.getAllFiles(temp.get(x));
+                    for (int y = 0; y < temp2.size(); y++) {
+                        System.out.println(temp2.get(y).getFileName());
+                    }
+                }
+                */
             }
         });
     }
+
+    private static boolean isImageFile(File file) {
+        String fileName = file.getName();
+        String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
+        return extension.equalsIgnoreCase("jpg")
+                || extension.equalsIgnoreCase("jpeg")
+                || extension.equalsIgnoreCase("png")
+                || extension.equalsIgnoreCase("bmp")
+                || extension.equalsIgnoreCase("gif");
+    }
+    /*
+    private void imgToPdf(File file) {
+        if (isImageFile(file)) {
+            try {
+                BufferedImage image = ImageIO.read(file);
+                PDDocument document = new PDDocument();
+                PDPage page = new PDPage();
+                document.addPage(page);
+                PDImageXObject pdfImage = LosslessFactory.createFromImage(document, image);
+                PDImageXObject pdImageObject = PDImageXObject.createFromFileByContent(file, document);
+                int width = image.getWidth();
+                int height = image.getHeight();
+                PDRectangle pageSize = new PDRectangle(width, height);
+                PDPage page1 = new PDPage(pageSize);
+                document.addPage(page1);
+                File pdfFile = new File(file.getAbsoluteFile() + ".pdf");
+                document.save(pdfFile);
+                document.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    */
 
 
     private void checkDir(File userDir) {

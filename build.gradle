@@ -63,6 +63,8 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+    implementation files('lib/pdfbox-app-3.0.0-alpha3.jar')
 }
 
 shadowJar {
