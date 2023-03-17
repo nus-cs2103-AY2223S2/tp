@@ -98,6 +98,14 @@ public interface Model {
      */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Customer> getFilteredCustomerList();
+
+    ObservableList<Vehicle> getFilteredVehicleList();
+
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    PartMap getPartMap();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
@@ -106,6 +114,8 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     void updateFilteredCustomerList(Predicate<Customer> predicate);
+
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
     // ==== For Customers ==
 
@@ -123,6 +133,10 @@ public interface Model {
      */
     boolean hasCustomer(int customerId);
 
+    void deleteCustomer(Customer target);
+
+    void setCustomer(Customer target, Customer editedPerson);
+
     /**
      * Adds vehicle to the shop
      *
@@ -137,6 +151,8 @@ public interface Model {
      */
     boolean hasVehicle(int vehicleId);
 
+    void deleteVehicle(Vehicle target);
+
     /**
      * Adds service
      *
@@ -149,6 +165,8 @@ public interface Model {
      * @return Whether service already in the system
      */
     boolean hasService(int serviceId);
+
+    void deleteAppointment(Appointment target);
 
     /**
      * Adds appointment
@@ -171,4 +189,8 @@ public interface Model {
      * @param partName Name of the part to check against
      */
     boolean hasPart(String partName);
+
+    void updateFilteredVehicleList(Predicate<Vehicle> predicate);
+
+    void updatePartsMap();
 }

@@ -21,6 +21,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -138,12 +139,37 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Customer> getFilteredCustomerList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Vehicle> getFilteredVehicleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Appointment> getFilteredAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PartMap getPartMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -158,6 +184,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteCustomer(Customer target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCustomer(Customer target, Customer editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addVehicle(int customerId, Vehicle vehicle) {
             throw new AssertionError("This method should not be called.");
         }
@@ -168,12 +204,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteVehicle(Vehicle target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addService(int vehicleId, Service service) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasService(int serviceId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAppointment(Appointment target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -189,6 +235,16 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPart(String partName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePartsMap() {
             throw new AssertionError("This method should not be called.");
         }
     }

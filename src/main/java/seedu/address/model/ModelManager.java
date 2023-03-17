@@ -15,6 +15,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -32,8 +33,9 @@ public class ModelManager implements Model {
     private final FilteredList<Technician> filteredTechnicians;
     private final FilteredList<Service> filteredServices;
     private final FilteredList<Vehicle> filteredVehicles;
-    //    private final FilteredList<Part> filteredParts;
-    //    private final FilteredList<Appointment> filteredAppointment;
+    private final FilteredList<Appointment> filteredAppointment;
+
+    private final PartMap partMap;
     private final Shop shop;
 
     /**
@@ -54,8 +56,9 @@ public class ModelManager implements Model {
         filteredTechnicians = new FilteredList<>(this.shop.getTechnicianList());
         filteredServices = new FilteredList<>(this.shop.getServiceList());
         filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
-        //        filteredParts = new FilteredList<>(this.shop.getPartList());
-        //        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+        partMap = this.shop.getPartMap();
+        //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
 
     }
 
@@ -161,16 +164,16 @@ public class ModelManager implements Model {
         //        }
     }
 
-    //    @Override
-    //    public void deleteCustomer(Customer target) {
-    //        addressBook.removeCustomer(target);
-    //    }
-    //
-    //    @Override
-    //    public void setCustomer(Customer target, Customer editedPerson) {
-    //        requireAllNonNull(target, editedPerson);
-    //        addressBook.setCustomer(target, editedPerson);
-    //    }
+    @Override
+    public void deleteCustomer(Customer target) {
+        this.shop.removeCustomer(target);
+    }
+
+    @Override
+    public void setCustomer(Customer target, Customer editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        this.shop.setCustomer(target, editedPerson);
+    }
 
     // ==== For Vehicles ==
     /**
@@ -193,6 +196,12 @@ public class ModelManager implements Model {
         return this.shop.hasVehicle(vehicleId);
     }
 
+    @Override
+    public void deleteVehicle(Vehicle target) {
+        this.shop.removeVehicle(target);
+    }
+
+
     // -------------
     /**
      * Adds service
@@ -213,6 +222,11 @@ public class ModelManager implements Model {
         return this.shop.hasService(serviceId);
     }
 
+    @Override
+    public void deleteAppointment(Appointment target) {
+        this.shop.removeAppointment(target);
+    }
+
     // -------------
 
     /**
@@ -224,6 +238,7 @@ public class ModelManager implements Model {
     public void addAppointment(Appointment appointment) {
         this.shop.addAppointment(appointment);
     }
+
 
     // -------------
     /**
@@ -247,6 +262,8 @@ public class ModelManager implements Model {
         return this.shop.hasPart(partName);
     }
 
+
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -259,6 +276,26 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Customer> getFilteredCustomerList() {
+        return filteredCustomers;
+    }
+
+    @Override
+    public ObservableList<Vehicle> getFilteredVehicleList() {
+        return filteredVehicles;
+    }
+
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointment;
+    }
+
+    @Override
+    public PartMap getPartMap() {
+        return partMap;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -268,6 +305,23 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointment.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
+        requireNonNull(predicate);
+        filteredVehicles.setPredicate(predicate);
+    }
+
+    @Override
+    public void updatePartsMap() {
+        //todo: GUI stuff for printing!
     }
 
     @Override

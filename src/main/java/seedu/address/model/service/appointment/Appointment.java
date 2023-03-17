@@ -70,4 +70,16 @@ public class Appointment {
     public List<Integer> getStaffIds() {
         return new ArrayList<>(this.staffIds);
     }
+
+    /**
+     * Returns true if both staffs have the same id.
+     */
+    public boolean isSameAppointment(Appointment otherAppointment) {
+        if (otherAppointment == this) {
+            return true;
+        }
+
+        return otherAppointment != null
+                && otherAppointment.getId() == getId();
+    }
 }
