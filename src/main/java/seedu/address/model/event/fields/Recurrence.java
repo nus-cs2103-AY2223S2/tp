@@ -55,10 +55,8 @@ public class Recurrence {
      */
     public static boolean isValidRecurrence(String trimmedInterval) {
         String lowerCaseInterval = trimmedInterval.toLowerCase(Locale.ROOT);
-        return Objects.equals(lowerCaseInterval, NONE_CASE)
-                || Objects.equals(lowerCaseInterval, DAILY_CASE)
-                || Objects.equals(lowerCaseInterval, WEEKLY_CASE)
-                || Objects.equals(lowerCaseInterval, MONTHLY_CASE) || Objects.equals(lowerCaseInterval, YEARLY_CASE);
+        return List.of(NONE_CASE, DAILY_CASE, WEEKLY_CASE, MONTHLY_CASE, YEARLY_CASE)
+                .contains(lowerCaseInterval);
     }
 
     public boolean isRecurring() {
