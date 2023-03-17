@@ -65,20 +65,9 @@ public class Deck {
         return Objects.hash(deckName);
     }
 
-    /*
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getQuestion())
-                .append("; Answer: ")
-                .append(getAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
+        return this.deckName;
     }
-     */
+
 }
