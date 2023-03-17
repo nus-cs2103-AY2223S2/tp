@@ -40,7 +40,7 @@ public class JsonAdaptedTxn {
      */
     public JsonAdaptedTxn(Transaction source) {
         description = source.getDescription().value;
-        owner = source.getOwner().fullName;
+        owner = source.getOwner().value;
         status = source.getStatus().value;
         value = source.getValue().value;
     }
@@ -64,7 +64,7 @@ public class JsonAdaptedTxn {
         if (owner == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Owner.class.getSimpleName()));
         }
-        if (!Owner.isValidName(owner)) {
+        if (!Owner.isValidOwner(owner)) {
             throw new IllegalValueException(Owner.MESSAGE_CONSTRAINTS);
         }
         final Owner modelOwner = new Owner(owner);

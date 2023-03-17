@@ -128,10 +128,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTransaction(Transaction t) {
         requireAllNonNull(t);
+        transactions.add(t);
 
         //personTransactionRelation.addRelation(t);
         //TODO: Add customer-transaction relationship
-        transactions.add(t);
     }
 
     /**

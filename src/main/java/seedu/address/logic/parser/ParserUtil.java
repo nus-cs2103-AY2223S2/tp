@@ -245,7 +245,7 @@ public class ParserUtil {
      */
     public static Owner parseOwner(String owner) throws ParseException {
         requireNonNull(owner);
-        if (!Owner.isValidName(owner)) {
+        if (!Owner.isValidOwner(owner)) {
             throw new ParseException(Owner.MESSAGE_CONSTRAINTS);
         }
         return new Owner(owner);
