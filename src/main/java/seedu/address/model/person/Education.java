@@ -5,50 +5,50 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Education level in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidEducationName(String)}
+ * Guarantees: immutable; value is valid as declared in {@link #isValidEducation(String)}
  */
 public class Education {
 
     public static final String MESSAGE_CONSTRAINTS = "Education levels names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String educationName;
+    public final String value;
 
     /**
      * Constructs a {@code Education}.
      *
-     * @param educationName A valid tag name.
+     * @param value A valid tag name.
      */
-    public Education(String educationName) {
-        requireNonNull(educationName);
-        checkArgument(isValidEducationName(educationName), MESSAGE_CONSTRAINTS);
-        this.educationName = educationName;
+    public Education(String education) {
+        requireNonNull(education);
+        checkArgument(isValidEducation(education), MESSAGE_CONSTRAINTS);
+        this.value = education;
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
-    public static boolean isValidEducationName(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidEducation(String test) {
+        return test.matches(VALIDATION_REGEX) || test.isEmpty();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Education // instanceof handles nulls
-                && educationName.equals(((Education) other).educationName)); // state check
+                && value.equals(((Education) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return educationName.hashCode();
+        return value.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return "[Education: " + educationName + ']';
+        return "[Education: " + value + ']';
     }
 
 }
