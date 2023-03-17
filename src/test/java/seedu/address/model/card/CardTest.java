@@ -12,13 +12,13 @@ import static seedu.address.testutil.TypicalCards.PHOTOSYNTHESIS;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CardBuilder;
 
 public class CardTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Card card = new PersonBuilder().build();
+        Card card = new CardBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> card.getTags().remove(0));
     }
 
@@ -31,28 +31,28 @@ public class CardTest {
         assertFalse(LOOP.isSameCard(null));
 
         // same name, all other attributes different -> returns true
-        Card editedAlice = new PersonBuilder(LOOP)
+        Card editedAlice = new CardBuilder(LOOP)
                 .withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD).build();
         assertTrue(LOOP.isSameCard(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(LOOP).withName(VALID_NAME_PHOTOSYNTHESIS).build();
+        editedAlice = new CardBuilder(LOOP).withName(VALID_NAME_PHOTOSYNTHESIS).build();
         assertFalse(LOOP.isSameCard(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Card editedBob = new PersonBuilder(PHOTOSYNTHESIS).withName(VALID_NAME_PHOTOSYNTHESIS.toLowerCase()).build();
+        Card editedBob = new CardBuilder(PHOTOSYNTHESIS).withName(VALID_NAME_PHOTOSYNTHESIS.toLowerCase()).build();
         assertFalse(PHOTOSYNTHESIS.isSameCard(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_PHOTOSYNTHESIS + " ";
-        editedBob = new PersonBuilder(PHOTOSYNTHESIS).withName(nameWithTrailingSpaces).build();
+        editedBob = new CardBuilder(PHOTOSYNTHESIS).withName(nameWithTrailingSpaces).build();
         assertFalse(PHOTOSYNTHESIS.isSameCard(editedBob));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Card aliceCopy = new PersonBuilder(LOOP).build();
+        Card aliceCopy = new CardBuilder(LOOP).build();
         assertTrue(LOOP.equals(aliceCopy));
 
         // same object -> returns true
@@ -68,15 +68,15 @@ public class CardTest {
         assertFalse(LOOP.equals(PHOTOSYNTHESIS));
 
         // different name -> returns false
-        Card editedAlice = new PersonBuilder(LOOP).withName(VALID_NAME_PHOTOSYNTHESIS).build();
+        Card editedAlice = new CardBuilder(LOOP).withName(VALID_NAME_PHOTOSYNTHESIS).build();
         assertFalse(LOOP.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).build();
+        editedAlice = new CardBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).build();
         assertFalse(LOOP.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(LOOP).withTags(VALID_TAG_MEDIUM).build();
+        editedAlice = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).build();
         assertFalse(LOOP.equals(editedAlice));
     }
 }

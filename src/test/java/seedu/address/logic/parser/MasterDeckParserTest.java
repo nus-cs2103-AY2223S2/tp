@@ -26,7 +26,7 @@ public class MasterDeckParserTest {
 
     @Test
     public void parseCommand_add() throws Exception { // edit in the future as deck needs to be selected
-        // Card card = new PersonBuilder().build();
+        // Card card = new CardBuilder().build();
         // AddCommand command = (AddCommand) parser.parseCommandWhenDeckNotSelected(PersonUtil.getAddCommand(card));
         // assertEquals(new AddCommand(card), command);
     }
@@ -47,7 +47,7 @@ public class MasterDeckParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception { // edit in the future as deck needs to be selected
-        // Card card = new PersonBuilder().build();
+        // Card card = new CardBuilder().build();
         // EditCardDescriptor descriptor = new EditPersonDescriptorBuilder(card).build();
         // EditCommand command = (EditCommand) parser.parseCommandWhenDeckNotSelected(EditCommand.COMMAND_WORD
         //        + " " + INDEX_FIRST_PERSON.getOneBased() + " "

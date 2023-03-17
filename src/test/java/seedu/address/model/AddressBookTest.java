@@ -21,7 +21,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.exceptions.DuplicatePersonException;
 import seedu.address.model.deck.Deck;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CardBuilder;
 
 public class AddressBookTest {
 
@@ -47,7 +47,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two cards with the same identity fields
-        Card editedAlice = new PersonBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
+        Card editedAlice = new CardBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
                 .build();
         List<Card> newCards = Arrays.asList(LOOP, editedAlice);
         MasterDeckStub newData = new MasterDeckStub(newCards);
@@ -74,7 +74,7 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addCard(LOOP);
-        Card editedAlice = new PersonBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
+        Card editedAlice = new CardBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
                 .build();
         assertTrue(addressBook.hasCard(editedAlice));
     }

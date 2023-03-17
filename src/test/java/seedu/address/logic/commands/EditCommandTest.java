@@ -23,8 +23,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.card.Card;
+import seedu.address.testutil.CardBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -35,7 +35,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Card editedCard = new PersonBuilder().build();
+        Card editedCard = new CardBuilder().build();
         EditCommand.EditCardDescriptor descriptor = new EditPersonDescriptorBuilder(editedCard).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
@@ -52,7 +52,7 @@ public class EditCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredCardList().size());
         Card lastCard = model.getFilteredCardList().get(indexLastPerson.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastCard);
+        CardBuilder personInList = new CardBuilder(lastCard);
         Card editedCard = personInList.withName(VALID_NAME_PHOTOSYNTHESIS)
                 .withTags(VALID_TAG_HARD).build();
 
@@ -85,7 +85,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Card cardInFilteredList = model.getFilteredCardList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Card editedCard = new PersonBuilder(cardInFilteredList).withName(VALID_NAME_PHOTOSYNTHESIS).build();
+        Card editedCard = new CardBuilder(cardInFilteredList).withName(VALID_NAME_PHOTOSYNTHESIS).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_PHOTOSYNTHESIS).build());
 

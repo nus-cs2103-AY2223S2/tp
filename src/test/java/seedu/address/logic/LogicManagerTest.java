@@ -71,7 +71,7 @@ public class LogicManagerTest {
 
         // Execute add command
         // String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
-        // Card expectedCard = new PersonBuilder(AMY).withTags().build();
+        // Card expectedCard = new CardBuilder(AMY).withTags().build();
         // ModelManager expectedModel = new ModelManager();
         // expectedModel.addCard(expectedCard);
         // String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

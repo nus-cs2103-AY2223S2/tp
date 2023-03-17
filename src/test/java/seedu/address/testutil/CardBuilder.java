@@ -14,7 +14,7 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Card objects.
  */
-public class PersonBuilder {
+public class CardBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
@@ -26,9 +26,9 @@ public class PersonBuilder {
 
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code CardBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public CardBuilder() {
         question = new Question(DEFAULT_NAME);
         answer = new Answer(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -36,9 +36,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code cardToCopy}.
+     * Initializes the CardBuilder with the data of {@code cardToCopy}.
      */
-    public PersonBuilder(Card cardToCopy) {
+    public CardBuilder(Card cardToCopy) {
         question = cardToCopy.getQuestion();
         answer = cardToCopy.getAnswer();
         tags = new HashSet<>(cardToCopy.getTags());
@@ -48,7 +48,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Question} of the {@code Card} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public CardBuilder withName(String name) {
         this.question = new Question(name);
         return this;
     }
@@ -56,7 +56,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Card} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public CardBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -64,7 +64,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Answer} of the {@code Card} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public CardBuilder withAddress(String address) {
         this.answer = new Answer(address);
         return this;
     }
@@ -72,7 +72,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Deck} of the {@code Card} that we are building.
      */
-    public PersonBuilder withDeck(String deckName) {
+    public CardBuilder withDeck(String deckName) {
         this.deck = Optional.of(new Deck(DEFAULT_DECK));
         return this;
     }

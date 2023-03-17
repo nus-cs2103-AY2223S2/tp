@@ -16,7 +16,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        //        Card expectedCard = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        //        Card expectedCard = new CardBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
         //
         //        // whitespace only preamble
         //        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
@@ -31,7 +31,7 @@ public class AddCommandParserTest {
         //                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCard));
         //
         //        // multiple tags - all accepted
-        //        Card expectedCardMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        //        Card expectedCardMultipleTags = new CardBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
         //                .build();
         //        assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB
         //                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedCardMultipleTags));
@@ -40,7 +40,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        //        Card expectedCard = new PersonBuilder(AMY).withTags().build();
+        //        Card expectedCard = new CardBuilder(AMY).withTags().build();
         //        assertParseSuccess(parser, NAME_DESC_AMY + ADDRESS_DESC_AMY,
         //                new AddCommand(expectedCard));
     }
