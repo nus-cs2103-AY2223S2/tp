@@ -18,8 +18,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.sudohr.logic.commands.employee.AddCommand;
 import seedu.sudohr.logic.commands.CommandResult;
+import seedu.sudohr.logic.commands.employee.AddCommand;
 import seedu.sudohr.logic.commands.employee.ListCommand;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.logic.parser.exceptions.ParseException;

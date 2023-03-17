@@ -42,7 +42,6 @@ import org.junit.jupiter.api.Test;
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.employee.EditCommand;
 import seedu.sudohr.logic.commands.employee.EditCommand.EditEmployeeDescriptor;
-import seedu.sudohr.logic.parser.employee.EditCommandParser;
 import seedu.sudohr.model.employee.Address;
 import seedu.sudohr.model.employee.Email;
 import seedu.sudohr.model.employee.Id;

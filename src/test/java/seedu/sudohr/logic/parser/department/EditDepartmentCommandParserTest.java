@@ -13,7 +13,6 @@ import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseSuccess
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
-import seedu.sudohr.logic.parser.department.EditDepartmentCommandParser;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.testutil.EditDepartmentDescriptorBuilder;
 

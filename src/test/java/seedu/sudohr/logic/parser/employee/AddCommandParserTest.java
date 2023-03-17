@@ -37,7 +37,6 @@ import static seedu.sudohr.testutil.TypicalEmployees.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.logic.commands.employee.AddCommand;
-import seedu.sudohr.logic.parser.employee.AddCommandParser;
 import seedu.sudohr.model.employee.Address;
 import seedu.sudohr.model.employee.Email;
 import seedu.sudohr.model.employee.Employee;

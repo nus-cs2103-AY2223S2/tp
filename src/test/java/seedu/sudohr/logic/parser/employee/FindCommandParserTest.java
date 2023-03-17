@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.logic.commands.employee.FindCommand;
-import seedu.sudohr.logic.parser.employee.FindCommandParser;
 import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {

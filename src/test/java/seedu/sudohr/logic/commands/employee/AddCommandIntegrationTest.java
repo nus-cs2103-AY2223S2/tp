@@ -9,7 +9,6 @@ import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.logic.commands.employee.AddCommand;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;

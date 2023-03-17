@@ -6,7 +6,11 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 import java.util.stream.Stream;
 
 import seedu.sudohr.logic.commands.department.AddDepartmentCommand;
-import seedu.sudohr.logic.parser.*;
+import seedu.sudohr.logic.parser.ArgumentMultimap;
+import seedu.sudohr.logic.parser.ArgumentTokenizer;
+import seedu.sudohr.logic.parser.Parser;
+import seedu.sudohr.logic.parser.ParserUtil;
+import seedu.sudohr.logic.parser.Prefix;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;

@@ -12,7 +12,6 @@ import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseSuccess
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.logic.commands.department.AddEmployeeToDepartmentCommand;
-import seedu.sudohr.logic.parser.department.AddEmployeeToDepartmentCommandParser;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Id;
 

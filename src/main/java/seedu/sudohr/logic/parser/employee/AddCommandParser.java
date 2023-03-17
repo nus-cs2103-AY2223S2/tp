@@ -12,7 +12,11 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.sudohr.logic.commands.employee.AddCommand;
-import seedu.sudohr.logic.parser.*;
+import seedu.sudohr.logic.parser.ArgumentMultimap;
+import seedu.sudohr.logic.parser.ArgumentTokenizer;
+import seedu.sudohr.logic.parser.Parser;
+import seedu.sudohr.logic.parser.ParserUtil;
+import seedu.sudohr.logic.parser.Prefix;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.employee.Address;
 import seedu.sudohr.model.employee.Email;

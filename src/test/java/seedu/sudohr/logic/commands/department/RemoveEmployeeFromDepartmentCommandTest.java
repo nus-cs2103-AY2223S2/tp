@@ -3,8 +3,10 @@ package seedu.sudohr.logic.commands.department;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,9 +24,6 @@ import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.testutil.TypicalDepartmentNames;
 import seedu.sudohr.testutil.TypicalEmployees;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
 
 public class RemoveEmployeeFromDepartmentCommandTest {
 

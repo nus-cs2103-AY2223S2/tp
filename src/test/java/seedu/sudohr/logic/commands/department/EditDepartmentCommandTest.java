@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.logic.commands.ClearCommand;
-import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.SudoHr;

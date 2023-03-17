@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.commons.core.index.Index;
-import seedu.sudohr.logic.commands.employee.DeleteCommand;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;

@@ -13,13 +13,13 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.logic.commands.employee.AddCommand;
 import seedu.sudohr.logic.commands.ClearCommand;
+import seedu.sudohr.logic.commands.ExitCommand;
+import seedu.sudohr.logic.commands.HelpCommand;
+import seedu.sudohr.logic.commands.employee.AddCommand;
 import seedu.sudohr.logic.commands.employee.DeleteCommand;
 import seedu.sudohr.logic.commands.employee.EditCommand;
-import seedu.sudohr.logic.commands.ExitCommand;
 import seedu.sudohr.logic.commands.employee.FindCommand;
-import seedu.sudohr.logic.commands.HelpCommand;
 import seedu.sudohr.logic.commands.employee.ListCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.employee.Employee;

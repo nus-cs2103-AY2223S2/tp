@@ -8,7 +8,6 @@ import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.logic.commands.employee.DeleteCommand;
-import seedu.sudohr.logic.parser.employee.DeleteCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
