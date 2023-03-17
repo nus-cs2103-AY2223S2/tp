@@ -1,11 +1,31 @@
 package seedu.address.model.timetable;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.timetable.util.TypicalTime.EIGHT_AM;
+import static seedu.address.model.timetable.util.TypicalTime.EIGHT_PM;
+import static seedu.address.model.timetable.util.TypicalTime.ELEVEN_AM;
+import static seedu.address.model.timetable.util.TypicalTime.FIVE_PM;
+import static seedu.address.model.timetable.util.TypicalTime.FOUR_PM;
+import static seedu.address.model.timetable.util.TypicalTime.NINE_AM;
+import static seedu.address.model.timetable.util.TypicalTime.NINE_PM;
+import static seedu.address.model.timetable.util.TypicalTime.ONE_PM;
+import static seedu.address.model.timetable.util.TypicalTime.SEVEN_PM;
+import static seedu.address.model.timetable.util.TypicalTime.SIX_PM;
+import static seedu.address.model.timetable.util.TypicalTime.TEN_AM;
+import static seedu.address.model.timetable.util.TypicalTime.TEN_PM;
+import static seedu.address.model.timetable.util.TypicalTime.THREE_PM;
+import static seedu.address.model.timetable.util.TypicalTime.TWELVE_PM;
+import static seedu.address.model.timetable.util.TypicalTime.TWO_PM;
+
 import org.joda.time.Hours;
 import org.junit.jupiter.api.Test;
-import seedu.address.model.timetable.exceptions.WrongTimeException;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.model.timetable.util.TypicalTime.*;
+import seedu.address.model.timetable.exceptions.WrongTimeException;
 
 class TimeBlockTest {
 
@@ -358,5 +378,4 @@ class TimeBlockTest {
         TimeBlock timeBlock1 = new TimeBlock(EIGHT_AM, TWELVE_PM, SchoolDay.MONDAY);
         assertEquals(timeBlock1, timeBlock1);
     }
-
 }
