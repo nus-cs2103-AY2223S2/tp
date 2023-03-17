@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.Mark;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Rate;
-import seedu.address.model.person.Time;
+import seedu.address.model.event.Address;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Mark;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Rate;
+import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,7 +29,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code event}'s details
      */
     public EditPersonDescriptorBuilder(Event person) {
         descriptor = new EditPersonDescriptor();

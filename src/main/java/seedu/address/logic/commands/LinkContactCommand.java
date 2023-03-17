@@ -11,12 +11,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.UniqueContactList;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.Mark;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Rate;
-import seedu.address.model.person.Time;
+import seedu.address.model.event.Address;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Mark;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Rate;
+import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 
 /**

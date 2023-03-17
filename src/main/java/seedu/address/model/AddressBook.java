@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.UniqueEventList;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.UniqueEventList;
 
 /**
  * Wraps all data at the address-book level
@@ -40,7 +40,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
+     * Replaces the contents of the event list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Event> persons) {
@@ -56,10 +56,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
     }
 
-    //// person-level operations
+    //// event-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a event with the same identity as {@code event} exists in the address book.
      */
     public boolean hasPerson(Event person) {
         requireNonNull(person);
@@ -67,17 +67,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a event to the address book.
+     * The event must not already exist in the address book.
      */
     public void addPerson(Event p) {
         persons.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given event {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The event identity of {@code editedPerson} must not be the same as another existing event in the address book.
      */
     public void setPerson(Event target, Event editedPerson) {
         requireNonNull(editedPerson);

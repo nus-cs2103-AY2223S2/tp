@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.ContactListBuilder;
 

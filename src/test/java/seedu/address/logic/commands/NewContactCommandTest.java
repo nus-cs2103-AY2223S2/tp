@@ -22,8 +22,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.Rate;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Rate;
 import seedu.address.testutil.ContactBuilder;
 
 
@@ -75,7 +75,7 @@ class NewContactCommandTest {
         // null -> returns false
         assertFalse(addMandyCommand.equals(null));
 
-        // different person -> false
+        // different event -> false
         assertFalse(addMandyCommand.equals(addDeborahCommand));
     }
 

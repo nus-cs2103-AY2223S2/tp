@@ -18,7 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Event;
+import seedu.address.model.event.Event;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -102,7 +102,7 @@ public class MarkCommandTest {
         // null -> returns false
         assertFalse(markFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different event -> returns false
         assertFalse(markFirstCommand.equals(markSecondCommand));
     }
 

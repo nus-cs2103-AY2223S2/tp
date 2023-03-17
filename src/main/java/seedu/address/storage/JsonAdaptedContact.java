@@ -36,7 +36,7 @@ public class JsonAdaptedContact {
     }
 
     /**
-     * Converts this Jackson-friendly adopted person object into the model's {@code Contact} object.
+     * Converts this Jackson-friendly adopted event object into the model's {@code Contact} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted contact.
      */

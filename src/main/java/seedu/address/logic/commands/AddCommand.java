@@ -12,10 +12,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_START;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Event;
+import seedu.address.model.event.Event;
 
 /**
- * Adds a person to the address book.
+ * Adds a event to the address book.
  */
 public class AddCommand extends Command {
 
@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "dj";
 
-    public static final String MESSAGE_USAGE_CONTACT = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE_CONTACT = COMMAND_WORD + ": Adds a event to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

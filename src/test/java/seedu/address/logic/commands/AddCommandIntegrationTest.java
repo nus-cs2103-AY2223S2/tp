@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Event;
+import seedu.address.model.event.Event;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalContacts;
 

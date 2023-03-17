@@ -11,7 +11,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Event;
+import seedu.address.model.event.Event;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,14 +20,14 @@ import seedu.address.model.tag.Tag;
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code event}.
      */
     public static String getAddCommand(Event person) {
         return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code event}'s details.
      */
     public static String getPersonDetails(Event person) {
         StringBuilder sb = new StringBuilder();

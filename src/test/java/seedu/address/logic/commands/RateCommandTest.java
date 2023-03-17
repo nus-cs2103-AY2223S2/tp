@@ -17,8 +17,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.Rate;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Rate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -68,7 +68,7 @@ public class RateCommandTest {
         // null -> returns false
         assertFalse(rateFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different event -> returns false
         assertFalse(rateFirstCommand.equals(rateSecondCommand));
     }
 }

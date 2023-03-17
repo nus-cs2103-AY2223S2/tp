@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.event;
 
 /**
  * Represents the completeness of an Event in Paidlancers.

@@ -9,10 +9,10 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Event;
+import seedu.address.model.event.Event;
 
 /**
- * Marks a person identified using it's displayed index from the address book.
+ * Marks a event identified using it's displayed index from the address book.
  */
 public class MarkCommand extends Command {
 

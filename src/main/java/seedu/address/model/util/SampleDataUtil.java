@@ -11,11 +11,11 @@ import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.ContactPhone;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Rate;
-import seedu.address.model.person.Time;
+import seedu.address.model.event.Address;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Rate;
+import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 
 /**
