@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,33 +12,28 @@ import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
 /**
- * Deletes a video identified using its name, within a lecture, within a module
+ * Marks a video identified using its name, within a lecture, within a module, as watched
  */
-public class DeleteVideoCommand extends DeleteCommand {
+public class MarkAsWatchedCommand extends MarkCommand {
 
-    public static final String MESSAGE_USAGE =
-            "(3) Deletes the video of the lecture of the module identified.\n"
-            + "Parameters: video name, lecture name, module code\n"
-            + "Example: " + COMMAND_WORD + " Video 01 " + PREFIX_MODULE + " CS2102 " + PREFIX_LECTURE + " Lecture 01";
-
-    public static final String MESSAGE_DELETE_VIDEO_SUCCESS = "Deleted Video: %1$s from Lecture %2$s in Module %3$s";
+    public static final String COMMAND_WORD = "mark";
 
     private final ModuleCode moduleCode;
     private final LectureName lectureName;
     private final VideoName targetVideoName;
 
     /**
-     * Creates a Delete Video Command executable that deletes a video with {@code targetVideoName}
-     * from lecture with {@code lectureName} in module of {@code moduleCode}
+     * Creates a Mark As Watched Command that marks a video with {@code targetVideoName}
+     * from lecture with {@code lectureName} in module of {@code moduleCode} as watched.
      *
-     * @param targetVideoName Name of Video to delete
+     * @param targetVideoName Name of the Video to mark
      * @param moduleCode Module Code of module that contains lecture that video is within
      * @param lectureName Name of Lecture that video is within
      */
-    public DeleteVideoCommand(VideoName targetVideoName, ModuleCode moduleCode, LectureName lectureName) {
+    public MarkAsWatchedCommand(VideoName targetVideoName, ModuleCode moduleCode, LectureName lectureName) {
+        this.targetVideoName = targetVideoName;
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
-        this.targetVideoName = targetVideoName;
     }
 
     @Override
@@ -67,22 +60,15 @@ public class DeleteVideoCommand extends DeleteCommand {
 
         Video targetVideo = model.getVideo(lecture, targetVideoName);
 
-        // TODO: repetition ends here
+        // TODO: ends here
 
-        model.deleteVideo(lecture, targetVideo);
+        if (targetVideo.hasWatched()) {
+            throw new CommandException(String.format(MESSAGE_VIDEO_MARK_NOT_CHANGED, targetVideoName, COMMAND_WORD));
+        }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_VIDEO_SUCCESS,
-                                                    targetVideoName,
-                                                    lectureName,
-                                                    moduleCode));
-    }
+        Video newVideo = new Video(targetVideoName, true, targetVideo.getTags());
+        model.setVideo(lecture, targetVideo, newVideo);
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof DeleteVideoCommand
-                && moduleCode.equals(((DeleteVideoCommand) other).moduleCode)
-                && lectureName.equals(((DeleteVideoCommand) other).lectureName)
-                && targetVideoName.equals(((DeleteVideoCommand) other).targetVideoName));
+        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD));
     }
 }
