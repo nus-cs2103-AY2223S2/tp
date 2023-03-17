@@ -65,7 +65,7 @@ public class PartMap {
 
         checkArgument(isValidName(partName), MESSAGE_CONSTRAINTS);
 
-        if (quantity < 1) {
+        if (quantity < 0) {
             throw new NegativeValueException(quantity);
         }
 

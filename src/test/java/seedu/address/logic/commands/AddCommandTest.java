@@ -244,6 +244,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public void addTechnician(Technician technician) {
             throw new AssertionError("This method should not be called.");
         }

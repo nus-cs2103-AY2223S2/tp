@@ -27,11 +27,11 @@ public class AddServiceCommandParser implements Parser<AddServiceCommand> {
      */
     public AddServiceCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_VEHICLE_ID, PREFIX_SERVICE_DURATION, PREFIX_SERVICE_STATUS,
-                        PREFIX_SERVICE_DESCRIPTION);
+            ArgumentTokenizer.tokenize(args, PREFIX_VEHICLE_ID, PREFIX_SERVICE_DURATION, PREFIX_SERVICE_STATUS,
+                PREFIX_SERVICE_DESCRIPTION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_VEHICLE_ID)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddServiceCommand.MESSAGE_USAGE));
         }
 
@@ -40,11 +40,12 @@ public class AddServiceCommandParser implements Parser<AddServiceCommand> {
         Optional<String> rawServiceDuration = argMultimap.getAllValues(PREFIX_SERVICE_DURATION).stream().findFirst();
         Optional<String> rawServiceStatus = argMultimap.getAllValues(PREFIX_SERVICE_STATUS).stream().findFirst();
 
-        int serviceDuration = ParserUtil.parseInt(rawServiceDuration.orElse("7"));
+        int serviceDuration = ParserUtil.parseInt(
+            rawServiceDuration.orElse(String.valueOf(Service.DEFAULT_SEVEN_DAYS)));
         ServiceStatus serviceStatus = ParserUtil.parseServiceStatus(rawServiceStatus.orElse("to repair"));
 
         Service service = new Service(IdGenerator.generateServiceId(), vehicleId, serviceDuration, serviceDesc,
-                serviceStatus);
+            serviceStatus);
         return new AddServiceCommand(service);
     }
 

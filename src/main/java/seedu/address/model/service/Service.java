@@ -13,6 +13,7 @@ import seedu.address.model.entity.person.Technician;
  * The Service class contains information about what task to be performed on the vehicle.
  */
 public class Service {
+    public static final int DEFAULT_SEVEN_DAYS = 7;
     private final int id;
     private final int vehicleId;
     private final LocalDate entryDate;
@@ -74,7 +75,7 @@ public class Service {
      * By default, this method estimates the amount of time needed to be 7 whole days (not working days).
      */
     public Service(int id, int vehicleId) {
-        this(id, vehicleId, 7, "");
+        this(id, vehicleId, DEFAULT_SEVEN_DAYS, "");
     }
 
     /**
