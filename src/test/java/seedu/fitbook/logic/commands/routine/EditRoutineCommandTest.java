@@ -33,7 +33,7 @@ import seedu.fitbook.testutil.routine.EditRoutineDescriptorBuilder;
 import seedu.fitbook.testutil.routine.RoutineBuilder;
 
 /**
- * Contains integration tests (interaction with the FitBookModel) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the FitBookModel) and unit tests for EditRoutineCommand.
  */
 public class EditRoutineCommandTest {
 
