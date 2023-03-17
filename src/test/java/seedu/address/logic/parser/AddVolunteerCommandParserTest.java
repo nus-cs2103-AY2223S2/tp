@@ -20,7 +20,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_VOLUNTEER_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.NRIC_ELDERLY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_VOLUNTEER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_VOLUNTEER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -113,7 +112,8 @@ public class AddVolunteerCommandParserTest {
                 + TAG_DESC_STRONG + AVAILABLE_DATES_ONE, new AddVolunteerCommand(expectedVolunteer));
 
         // multiple date ranges - all accepted
-        Volunteer expectedVolunteerMultipleDates = new VolunteerBuilder(BOB).withTags(VALID_TAG_STRONG, VALID_TAG_SINGLE)
+        Volunteer expectedVolunteerMultipleDates = new VolunteerBuilder(BOB)
+                .withTags(VALID_TAG_STRONG, VALID_TAG_SINGLE)
                 .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE)
                 .withAvailableDates(VALID_START_DATE_TWO, VALID_END_DATE_TWO)
                 .build();
