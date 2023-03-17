@@ -15,8 +15,6 @@ import seedu.address.model.patient.*;
  * Finds and lists all patients in MedInfo whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-
-//@SuppressWarnings({"unchecked"})
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
@@ -41,8 +39,6 @@ public class FindCommand extends Command {
 
     private final Predicate<Patient> predicate;
 
-    //
-    //kkk
     public FindCommand(Predicate<Patient> predicate) {
         this.predicate = predicate;
     }
