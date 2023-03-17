@@ -39,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setMajor(person.getMajor());
         descriptor.setTags(person.getTags());
+        descriptor.setTeams(person.getTeams());
     }
 
     /**
@@ -90,6 +91,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(tagSet);
         return this;
     }
+
+    //TODO: withTeams test
 
     public EditPersonDescriptor build() {
         return descriptor;
