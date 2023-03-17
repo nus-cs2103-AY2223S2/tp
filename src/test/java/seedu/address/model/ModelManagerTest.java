@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.card.QuestionContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.MasterDeckBuilder;
 
 public class ModelManagerTest {
 
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        MasterDeck addressBook = new AddressBookBuilder().withPerson(LOOP).withPerson(VARIABLE).build();
+        MasterDeck addressBook = new MasterDeckBuilder().withCard(LOOP).withCard(VARIABLE).build();
         MasterDeck differentAddressBook = new MasterDeck();
         UserPrefs userPrefs = new UserPrefs();
 
