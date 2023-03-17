@@ -14,13 +14,17 @@
         {% elsif page.title == "Developer Guide" %}
             {% include tocDg.html %}
         {% endif %}
-
-
       </div>
 
+      {% if page.title in ["User Guide", "Developer Guide"] %}
+      <div class="wrapper" style="margin-right:22%;margin-left: 3%;" >
+        {{ content }}
+      </div>
+      {% else %}
       <div class="wrapper">
         {{ content }}
       </div>
+      {% endif %}
 
     </main>
   </body>
