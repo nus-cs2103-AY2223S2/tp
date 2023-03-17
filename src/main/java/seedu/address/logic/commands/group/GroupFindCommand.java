@@ -3,23 +3,25 @@ package seedu.address.logic.commands.group;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.group.GroupNameContainsKeywordsPredicate;
 import seedu.address.model.person.MemberOfGroupPredicate;
 
 /**
- * Finds and lists all persons in address book who belongs to groups with name containing any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all groups in address book with name containing any of the argument keywords. The people who belong
+ * to these groups are also listed.
+ * Keyword matching is case-insensitive.
  */
-public class GroupFindCommand extends GroupCommand {
-    public static final String SUB_COMMAND_WORD = "find";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD
-            + ": Finds group with names that contain any of "
+public class GroupFindCommand extends Command {
+    public static final String COMMAND_WORD = "group_find";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " : Finds group with names that contain any of "
             + "the specified keywords (case-insensitive) "
             + "and displays the people in the group as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " CS2101";
+            + "Example: " + COMMAND_WORD + " CS2101";
 
     private final GroupNameContainsKeywordsPredicate groupPredicate;
     private final MemberOfGroupPredicate memberPredicate;

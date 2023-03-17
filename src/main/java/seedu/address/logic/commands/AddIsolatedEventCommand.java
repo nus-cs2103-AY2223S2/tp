@@ -56,8 +56,8 @@ public class AddIsolatedEventCommand extends Command {
         IsolatedEvent checkForEventClash = isolatedEventList.checkClashingIsolatedEvent(eventToAdd.getStartDate(),
                 eventToAdd.getEndDate());
 
-        if (checkForEventClash != null ) {
-            throw new CommandException(String.format(Messages.MESSAGE_EVENT_ClASH, checkForEventClash));
+        if (checkForEventClash != null) {
+            throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));
         }
 
         model.addIsolatedEvent(personToEdit, eventToAdd);
