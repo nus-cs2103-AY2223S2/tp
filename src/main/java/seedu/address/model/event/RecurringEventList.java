@@ -10,17 +10,7 @@ import seedu.address.model.event.exceptions.EventNotFoundException;
  * Represents the list of {@code RecurringEvent} that each {@code Person} has.
  */
 public class RecurringEventList {
-
-    private final TreeSet<RecurringEvent> recurringEvents;
-
-
-    public RecurringEventList() {
-        recurringEvents = new TreeSet<>();
-    }
-
-    public RecurringEventList(RecurringEventList toCopy) {
-        this.recurringEvents = toCopy.getRecurringEvents();
-    }
+    private final TreeSet<RecurringEvent> recurringEvents = new TreeSet<>();
 
     public void insert(RecurringEvent newEvent) {
         this.recurringEvents.add(newEvent);
@@ -104,22 +94,4 @@ public class RecurringEventList {
         recurringEvents.remove(originalEvent);
         recurringEvents.add(editedRecurringEvent);
     }
-
-    /**
-     * Checks if the other eventList has the exact same events as this event list
-     * @param otherEventList to check if it is the same
-     * @return true if it is the same and false if not the same
-     */
-    public boolean equals(RecurringEventList otherEventList) {
-        if (getSize() != otherEventList.getSize()) {
-            return true;
-        }
-        for (RecurringEvent re : otherEventList.getRecurringEvents()) {
-            if (!contain(re)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
 }

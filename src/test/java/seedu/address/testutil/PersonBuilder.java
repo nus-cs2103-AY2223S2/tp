@@ -3,8 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.event.RecurringEvent;
-import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -31,8 +29,6 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Set<Group> groups;
 
-    private RecurringEventList recurringEventList;
-
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -43,7 +39,6 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         groups = new HashSet<>();
-        recurringEventList = new RecurringEventList();
     }
 
     /**
@@ -56,7 +51,6 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         groups = new HashSet<>(personToCopy.getGroups());
-        recurringEventList = personToCopy.getRecurringEventList();
     }
 
     /**
@@ -107,19 +101,8 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code recurringEventList} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withRecurringEvent(RecurringEvent... recurringEvent) {
-        recurringEventList = new RecurringEventList();
-        for (RecurringEvent re : recurringEvent) {
-            recurringEventList.insert(re);
-        }
-        return this;
-    }
-
     public Person build() {
-        return new Person(name, phone, email, address, tags, groups, recurringEventList);
+        return new Person(name, phone, email, address, tags, groups);
     }
 
 }

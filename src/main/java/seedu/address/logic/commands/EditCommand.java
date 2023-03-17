@@ -20,7 +20,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -105,10 +104,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
 
-        RecurringEventList recurringEventList = personToEdit.getRecurringEventList();
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                updatedGroups, recurringEventList);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedGroups);
     }
 
     @Override
