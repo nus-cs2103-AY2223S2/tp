@@ -1,9 +1,8 @@
 package seedu.loyaltylift.model.customer;
 
-import seedu.loyaltylift.commons.exceptions.IllegalValueException;
-import seedu.loyaltylift.logic.commands.AddPointsCommand;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Customer's points in the address book.
@@ -19,6 +18,7 @@ public class Points {
 
     public final Integer value;
     public final Integer cumulative;
+
     /**
      * Constructs an {@code Points}.
      *
@@ -30,6 +30,13 @@ public class Points {
         cumulative = maxPoints;
     }
 
+    /**
+     * For adding or subtracting points.
+     *
+     * @param p the object with points to be added or subtracted from
+     * @return a new Points object, value depends on whether it is an addition or subtraction.
+     * @throws IllegalValueException when points are not valid
+     */
     public Points editPoints(Points.AddPoints p) throws IllegalValueException {
         Points newPoints = p.modifier.isPositive()
                 ? addPoints(p)
@@ -84,7 +91,14 @@ public class Points {
         return value.hashCode();
     }
 
+    /**
+     * Represents a temporary Points object, to be used for addition or subtraction.
+     */
     public static class AddPoints {
+        /**
+         * Represents a Point's modifier.
+         * Currently, it is either a PLUS or MINUS to represent addition and subtraction respectively.
+         */
         public enum Modifier {
             PLUS("+"),
             MINUS("-");
@@ -105,13 +119,20 @@ public class Points {
             }
         }
 
-        public final Integer value;
-        public final Modifier modifier;
         public static final String MESSAGE_CONSTRAINTS = "In the addpoints command, points must be an integer.\n"
                 + "Points can only range from 0 to 999 999.\n"
                 + "A modifier, '+' or '-' can be added in front of points to add or subtract points respectively.\n"
                 + "If no such modifier exists, addpoints command will default to an addition.";
 
+        public final Integer value;
+        public final Modifier modifier;
+
+        /**
+         * Constructs an {@code Points.AddPoints}.
+         *
+         * @param value A valid amount of points.
+         * @param modifier A valid modifier.
+         */
         public AddPoints(Integer value, Modifier modifier) {
             this.value = value;
             this.modifier = modifier;

@@ -11,7 +11,6 @@ import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
-
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;

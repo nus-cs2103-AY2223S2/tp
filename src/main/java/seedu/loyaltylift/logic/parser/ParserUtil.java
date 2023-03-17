@@ -8,7 +8,6 @@ import java.util.Set;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.commons.util.StringUtil;
-import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
