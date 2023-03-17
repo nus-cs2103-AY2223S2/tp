@@ -21,6 +21,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
@@ -245,6 +246,16 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPart(String partName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTechnician(int id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTechnician(Technician technician) {
             throw new AssertionError("This method should not be called.");
         }
 

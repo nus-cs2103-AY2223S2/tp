@@ -36,7 +36,7 @@ public class AddCommand extends RedoableCommand {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Person toAdd;
+    protected final Person toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}

@@ -137,6 +137,7 @@ public class ModelManager implements Model {
     }
 
     // ==== For Customers ==
+
     /**
      * Adds customer to the shop
      *
@@ -176,6 +177,7 @@ public class ModelManager implements Model {
     }
 
     // ==== For Vehicles ==
+
     /**
      * Adds vehicle to the shop
      *
@@ -203,6 +205,7 @@ public class ModelManager implements Model {
 
 
     // -------------
+
     /**
      * Adds service
      *
@@ -246,6 +249,7 @@ public class ModelManager implements Model {
 
 
     // -------------
+
     /**
      * Adds part
      *
@@ -267,7 +271,15 @@ public class ModelManager implements Model {
         return this.shop.hasPart(partName);
     }
 
+    @Override
+    public void addTechnician(Technician technician) {
+        this.shop.addTechnician(technician);
+    }
 
+    @Override
+    public boolean hasTechnician(int technicianId) {
+        return this.shop.hasTechnician(technicianId);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 

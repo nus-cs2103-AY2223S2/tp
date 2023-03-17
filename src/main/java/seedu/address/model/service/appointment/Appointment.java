@@ -1,6 +1,10 @@
 package seedu.address.model.service.appointment;
 
+import static seedu.address.commons.util.StringUtil.NEWLINE;
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +14,9 @@ import java.util.Set;
  * The appointment class containing a meeting with a customer at a particular date.
  */
 public class Appointment {
+    private static final String OUTPUT_FORMAT = "<<Appointment>>" + NEWLINE
+            + "Customer: %d" + NEWLINE
+            + "Date: %s";
     private final int id;
     private final int customerId;
     private final LocalDateTime timeDate;
@@ -18,8 +25,9 @@ public class Appointment {
 
     /**
      * This method is the constructor for Appointment.
+     *
      * @param customerId The customer id to meet.
-     * @param timeDate The date time which this appointment occurs.
+     * @param timeDate   The date time which this appointment occurs.
      */
     public Appointment(int id, int customerId, LocalDateTime timeDate) {
         this(id, customerId, timeDate, new HashSet<>());
@@ -27,9 +35,10 @@ public class Appointment {
 
     /**
      * This method is the constructor for Appointment.
+     *
      * @param customerId The customer id to meet.
-     * @param timeDate The date time which this appointment occurs.
-     * @param staffIds The list of staff ids involved in the appointment.
+     * @param timeDate   The date time which this appointment occurs.
+     * @param staffIds   The list of staff ids involved in the appointment.
      */
     public Appointment(int id, int customerId, LocalDateTime timeDate, Set<Integer> staffIds) {
         this.id = id;
@@ -47,6 +56,7 @@ public class Appointment {
 
     /**
      * This method returns the customer id who we are meeting.
+     *
      * @return The customer id.
      */
     public int getCustomerId() {
@@ -81,5 +91,12 @@ public class Appointment {
 
         return otherAppointment != null
                 && otherAppointment.getId() == getId();
+    }
+
+    @Override
+    public String toString() {
+        return String.format(OUTPUT_FORMAT, this.getCustomerId(),
+                this.getTimeDate().format(DateTimeFormatter.ofLocalizedDateTime(
+                        FormatStyle.FULL, FormatStyle.SHORT)));
     }
 }

@@ -10,33 +10,34 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCustomerCommand;
+import seedu.address.logic.commands.AddTechnicianCommand;
 import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.person.Address;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Phone;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCustomerCommand object
+ * Parses input arguments and creates AddTechnicianCommand object
  */
-public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
+public class AddTechnicianCommandParser implements Parser<AddTechnicianCommand> {
+
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTechnicianCommand
+     * and returns an AddTechnicianCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCustomerCommand parse(String args) throws ParseException {
+    public AddTechnicianCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCustomerCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTechnicianCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -45,9 +46,9 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Customer customer = new Customer(IdGenerator.generateCustomerId(), name, phone, email, address, tagList);
+        Technician technician = new Technician(IdGenerator.generateCustomerId(), name, phone, email, address, tagList);
 
-        return new AddCustomerCommand(customer);
+        return new AddTechnicianCommand(technician);
     }
 
     /**
@@ -57,5 +58,4 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

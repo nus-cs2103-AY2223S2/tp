@@ -6,7 +6,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddCustomerCommand;
+import seedu.address.logic.commands.AddPartCommand;
+import seedu.address.logic.commands.AddServiceCommand;
+import seedu.address.logic.commands.AddTechnicianCommand;
+import seedu.address.logic.commands.AddVehicleCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -83,6 +89,27 @@ public class AddressBookParser {
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
 
+        // AutoM8 commands
+
+        case AddCustomerCommand.COMMAND_WORD:
+            return new AddCustomerCommandParser().parse(arguments);
+
+        case AddVehicleCommand.COMMAND_WORD:
+            return new AddVehicleCommandParser().parse(arguments);
+
+        case AddServiceCommand.COMMAND_WORD:
+            return new AddServiceCommandParser().parse(arguments);
+
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
+
+        case AddPartCommand.COMMAND_WORD:
+            return new AddPartCommandParser().parse(arguments);
+
+        case AddTechnicianCommand.COMMAND_WORD:
+            return new AddTechnicianCommandParser().parse(arguments);
+
+
         case ViewVehicleCommand.COMMAND_WORD:
             return new ViewVehicleCommandParser().parse(arguments);
 
@@ -90,7 +117,7 @@ public class AddressBookParser {
             return new ViewCustomerCommandParser().parse(arguments);
 
         case ViewPartCommand.COMMAND_WORD:
-            return new ViewPartCommand(arguments);
+            return new ViewPartCommand(arguments.trim());
 
         case ViewAppointmentCommand.COMMAND_WORD:
             return new ViewAppointmentCommandParser().parse(arguments);
