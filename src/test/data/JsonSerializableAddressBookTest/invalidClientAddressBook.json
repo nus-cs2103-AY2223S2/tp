@@ -1,0 +1,13 @@
+{
+  "persons": [],
+  "projects": [],
+  "clients": [
+	{
+      "name": "Futanari@example.com is not a valid name!!!",
+      "email": "Futanari@example.com",
+      "yearOfBirth": "1958",
+      "source": "www.nippon.com",
+      "mobileNumber": "99910102"
+	}
+  ]
+}

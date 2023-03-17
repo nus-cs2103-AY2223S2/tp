@@ -139,5 +139,8 @@ public class Client implements IsSame<Client> {
         return Objects.hash(name, email, yearOfBirth, source, mobileNumber);
     }
 
-    // TODO implement a user-friendly toString method
+    @Override
+    public String toString() {
+        return String.format("%s (%s)", name, email);
+    }
 }

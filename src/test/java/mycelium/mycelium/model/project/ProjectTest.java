@@ -98,4 +98,10 @@ public class ProjectTest {
         assertEquals(project.getAcceptedOn(), LocalDate.now());
         assertEquals(project.getDeadline(), Optional.empty());
     }
+
+    @Test
+    public void toString_works() {
+        Project project = new Project("Bing", new Email("jamal@hogriders.org"));
+        assertEquals("Bing from client jamal@hogriders.org", project.toString());
+    }
 }

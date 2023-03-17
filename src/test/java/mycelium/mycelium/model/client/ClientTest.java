@@ -57,4 +57,10 @@ public class ClientTest {
         assertEquals(client.getSource(), Optional.empty());
         assertEquals(client.getMobileNumber(), Optional.empty());
     }
+
+    @Test
+    public void toString_works() {
+        Client client = new ClientBuilder().withName("Jamal").withEmail("jamal@hogriders.org").build();
+        assertEquals(client.toString(), "Jamal (jamal@hogriders.org)");
+    }
 }

@@ -55,6 +55,7 @@ public class Project implements IsSame<Project> {
      * values.
      */
     public Project(String name, Email clientEmail) {
+        // TODO we should probably enforce an invariant that the name is non-empty?
         this.name = name;
         this.status = ProjectStatus.NOT_STARTED;
         this.clientEmail = clientEmail;
@@ -149,6 +150,9 @@ public class Project implements IsSame<Project> {
         return Objects.hash(name, status, clientEmail, source, description, acceptedOn, deadline);
     }
 
-    // TODO implement a user-friendly toString()
+    @Override
+    public String toString() {
+        return String.format("%s from client %s", name, clientEmail);
+    }
 }
 
